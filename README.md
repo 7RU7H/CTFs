@@ -6,7 +6,7 @@ I will archive them accordly:
 
 <CTF-NAME>-Notes.txt    # These are raw note taking, some of which will be pre-notetaking application usage and will not have screenshots
   
-<CTF-NAME>-Walkthrough.*      # These will be in more of documentation of my general learning progress in blog style, sometimes raw tex.
+<CTF-NAME>-Walkthrough.*      # These will be in more of documentation of my general learning progress in blog style, sometimes raw text.
 - *Pre 2022=.txt        # The formatting we improve over time with screenshots and nicer looking file formats.
                         # I don't plan to retroactively prettify although general editorial work to make them actaully readable.
                         # These will only be from THM boxes were I wanted to learn and while trying to improve my writing in various ways.
