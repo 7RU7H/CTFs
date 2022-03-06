@@ -16,6 +16,15 @@ I will archive them accordly:
 Directory structure:
 Platform -> file format
 
+Header Template:
+Name:
+Date:
+Difficulty:
+Description:
+Better Description:
+Goals:
+Learnt:
+
   
 Contents:
 
