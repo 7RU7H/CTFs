@@ -1,0 +1,115 @@
+Name: Carnage
+Date: 26/11/2021
+Difficulty: Medium
+Description: Apply your analytical skills to analyze the malicious network traffic using Wireshark. 
+Better Description: A good wireshark
+Goals: Practice packet analysis
+Learnt: How to deal with various scrabbled forms of data transmission and what some malicious traffic looks and why it does
+
+Question 2: 
+
+packet 1735
+filtered http -> documents.zip
+
+Question 1: 
+
+packet 1735
+Arrval time is Sep 24 2021
+The is source is the 10.9.23.102 ip so -
+
+Question 3:
+
+GOTO filtered http -> get request -> hyper transfer protocol
+Host: attirenepal.com
+
+Question 4:
+
+GOTO -> no.2173 (below the first GET request for the malicious file) open packet:
+GOTO -> first packet frame as the zip will contain file names inside the zip but after the packet info: chart-15330076591.xls
+
+YOU could also be smart and right-click Follow the http stream and scroll to the bottom of the packet to get the name of the file
+
+Question 5:
+
+Same packet as Question 4, just after the date: Fri, 24 sept GMT
+server: Litespeed
+
+Question 6: 
+
+In the same packet as Question 4, after connection status info,
+packet: x-powered-by: PHP/7.2.34
+
+Question 7:
+
+Hint says filter for timeframe
+(frame.time >= "Sep 24, 2021 16:45:11") && (frame.time <= "Sep 24, 2021 16:45:30") && tcp.port==443 && ssl.handshake.type==1
+Domain 1: finejewels.com.au
+Domain 2: thietbi.com
+Domain 3: new.americold.com
+maldivehost.net
+(frame.time >= "Sep 24, 2021 16:45:11") && (frame.time <= "Sep 24, 2021 16:45:30") && tls
+
+Question8: 
+
+godaddy from packet 243
+
+Question9:
+
+https://blog.nviso.eu/2021/10/21/cobalt-strike-using-known-private-keys-to-decrypt-traffic-part-1/
+https://blog.nviso.eu/2021/10/27/cobalt-strike-using-known-private-keys-to-decrypt-traffic-part-2/
+tried the filter for matching but did not work,
+tried filter:
+http.request.method==GET
+ip1:185.106.96.158
+ip2:185.125.204.174 for this I stumbled on by looking for lots of encrypted weird traffic
+
+Question10:
+
+look at the packet of one of the get requests:
+ocsp.verisign.com
+
+Question11: 
+
+Input the ip, goto community tab
+survmeter[.]live
+securitybusinpuff[.]com
+
+Question12: 
+
+http.request.method==POST
+maldivehost.net
+
+Question13: 
+
+in the info column easy:
+zLIisQRWZI9
+
+Question14: 
+
+281, packet 3822
+
+Question15:
+
+https://dnschecker.org/server-headers-check.php
+208.91.128.6 ==
+Apache/2.4.51 (cPanel) OpenSSL/1.1.1l mod_bwlimited/1.4
+
+Question16: 
+
+filtered for dns
+first weird api.ipify.org at 2021-09-24 17:00:04
+
+Question17: 
+
+filtered for dns
+api.ipify.org
+
+Question18:
+
+smtp.req.parameter contains "FROM"
+farshin@mailfa.com
+
+Question19: 
+
+Look in the bottom right hand corner after filtering for smtp
+1439
