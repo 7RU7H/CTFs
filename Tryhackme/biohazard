@@ -1,0 +1,408 @@
+Name: Biohazard
+Date: 26/02/2022
+Difficulty: Medium
+Description: A CTF room based on the old-time survival horror game, Resident Evil. Can you survive until the end?
+Better Description: 
+Goals: Improve general spotting and looking, iterative processes of selecting pathes.
+Learnt: I need better notetaking format - looking into cherry tree and obsidian; 
+        I need more automation and automation to background while manual enumerating or researching
+
+root@ip-10-10-252-46:~# nmap -sC -sV -O -T 4 -p- 10.10.140.179
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-01-24 10:34 GMT
+Nmap scan report for ip-10-10-140-179.eu-west-1.compute.internal (10.10.140.179)
+Host is up (0.00040s latency).
+Not shown: 65532 closed ports
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     vsftpd 3.0.3
+22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 c9:03:aa:aa:ea:a9:f1:f4:09:79:c0:47:41:16:f1:9b (RSA)
+|   256 2e:1d:83:11:65:03:b4:78:e9:6d:94:d1:3b:db:f4:d6 (ECDSA)
+|_  256 91:3d:e4:4f:ab:aa:e2:9e:44:af:d3:57:86:70:bc:39 (EdDSA)
+80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+|_http-title: Beginning of the end
+MAC Address: 02:F5:49:A0:30:A7 (Unknown)
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.60%E=4%D=1/24%OT=21%CT=1%CU=32313%PV=Y%DS=1%DC=D%G=Y%M=02F549%T
+OS:M=61EE85A8%P=x86_64-pc-linux-gnu)SEQ(SP=FE%GCD=1%ISR=102%TI=Z%CI=I%TS=A)
+OS:SEQ(SP=FE%GCD=2%ISR=102%TI=Z%CI=RD%II=I%TS=A)OPS(O1=M2301ST11NW7%O2=M230
+OS:1ST11NW7%O3=M2301NNT11NW7%O4=M2301ST11NW7%O5=M2301ST11NW7%O6=M2301ST11)W
+OS:IN(W1=68DF%W2=68DF%W3=68DF%W4=68DF%W5=68DF%W6=68DF)ECN(R=Y%DF=Y%T=40%W=6
+OS:903%O=M2301NNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N)
+OS:T3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=40%W=0%
+OS:S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7(
+OS:R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=40%IPL=164%UN=0
+OS:%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=S)
+
+Network Distance: 1 hop
+Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 1239.79 seconds
+
+root@ip-10-10-249-68:~# nmap --script discovery -p 21,22,80 10.10.1.208
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-02-26 17:55 GMT
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for ip-10-10-1-208.eu-west-1.compute.internal (10.10.1.208)
+Host is up (0.00029s latency).
+
+PORT   STATE SERVICE
+21/tcp open  ftp
+|_banner: 220 (vsFTPd 3.0.3)
+22/tcp open  ssh
+|_banner: SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3
+| ssh-hostkey: 
+|   2048 c9:03:aa:aa:ea:a9:f1:f4:09:79:c0:47:41:16:f1:9b (RSA)
+|   256 2e:1d:83:11:65:03:b4:78:e9:6d:94:d1:3b:db:f4:d6 (ECDSA)
+|_  256 91:3d:e4:4f:ab:aa:e2:9e:44:af:d3:57:86:70:bc:39 (EdDSA)
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+80/tcp open  http
+|_http-chrono: Request times for /; avg: 173.14ms; min: 160.81ms; max: 179.50ms
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=ip-10-10-1-208.eu-west-1.compute.internal
+|     
+|     Path: http://ip-10-10-1-208.eu-west-1.compute.internal/mansionmain/
+|     Line number: 13
+|     Comment: 
+|_        <!-- It is in the /diningRoom/ -->
+|_http-date: Sat, 26 Feb 2022 17:55:58 GMT; 0s from local time.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-enum: 
+|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|   /images/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|_  /js/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|_http-errors: Couldn't find any error pages.
+|_http-feed: Couldn't find any feeds.
+| http-headers: 
+|   Date: Sat, 26 Feb 2022 17:55:58 GMT
+|   Server: Apache/2.4.29 (Ubuntu)
+|   Last-Modified: Thu, 19 Sep 2019 13:49:13 GMT
+|   ETag: "2b4-592e838050f26"
+|   Accept-Ranges: bytes
+|   Content-Length: 692
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+| http-internal-ip-disclosure: 
+|_  Internal IP Leaked: 10
+|_http-mobileversion-checker: No mobile version detected.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-security-headers: 
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /images/
+|       jpg: 2
+|     /mansionmain/
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /images/
+|   Total files found (by extension):
+|_    Other: 2; jpg: 2
+|_http-title: Beginning of the end
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-vhosts: 
+|_127 names had status 200
+|_http-xssed: No previously reported XSS vuln.
+MAC Address: 02:2D:E2:5E:E3:79 (Unknown)
+
+Host script results:
+| dns-brute: 
+|   DNS Brute-force hostnames: 
+|_    ns0.eu-west-1.compute.internal - 172.16.0.23
+|_fcrdns: PASS (ip-10-10-1-208.eu-west-1.compute.internal)
+|_ipidseq: All zeros
+|_path-mtu: PMTU == 9001
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV  LOSS (%)
+| 21    0       450.50     42.52   40.0%
+| 22    0       437.60     97.01   50.0%
+|_80    0       460.00     43.48   50.0%
+
+Nmap done: 1 IP address (1 host up) scanned in 47.51 seconds
+
+root@ip-10-10-249-68:~# nikto -h 10.10.1.208
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.1.208
++ Target Hostname:    ip-10-10-1-208.eu-west-1.compute.internal
++ Target Port:        80
++ Start Time:         2022-02-26 17:53:52 (GMT0)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.29 (Ubuntu)
++ Server leaks inodes via ETags, header found with file /, fields: 0x2b4 0x592e838050f26 
++ The anti-clickjacking X-Frame-Options header is not present.
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ Allowed HTTP Methods: OPTIONS, HEAD, GET, POST 
++ OSVDB-3268: /images/: Directory indexing found.
++ OSVDB-3268: /images/?pattern=/etc/*&sort=name: Directory indexing found.
++ OSVDB-3233: /icons/README: Apache default file found.
++ 6544 items checked: 0 error(s) and 6 item(s) reported on remote host
++ End Time:           2022-02-26 17:54:01 (GMT0) (9 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+root@ip-10-10-249-68:~# gobuster dir -u http://10.10.1.208 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.1.208
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2022/02/26 17:54:48 Starting gobuster
+===============================================================
+/images (Status: 301)
+/css (Status: 301)
+/js (Status: 301)
+/attic (Status: 301)
+/server-status (Status: 403)
+===============================================================
+2022/02/26 17:55:12 Finished
+===============================================================
+
+
+On the website:
+
+July 1998, Evening
+
+The STARS alpha team, Chris, Jill, Barry, Weasker and Joseph is in the operation on searching the STARS bravo team in the nortwest of Racoon city.
+
+Unfortunately, the team was attacked by a horde of infected zombie dog. Sadly, Joseph was eaten alive.
+
+The team decided to run for the nearby mansion and the nightmare begin..........
+
+
+view-source:http://10.10.1.208/mansionmain/
+
+
+        <p>The team reach the mansion safe and sound. However, it appear that Chris is missing</p>
+        <p>Jill try to open the door but stopped by Weasker</p>
+        <p>Suddenly, a gunshot can be heard in the nearby room. Weaker order Jill to make an investigate on the gunshot. Where is the room?</p>
+        <!-- It is in the /diningRoom/ -->
+
+
+
+/diningRoom/
+<!-- SG93IGFib3V0IHRoZSAvdGVhUm9vbS8= --> = base64 -d -> How about the /teaRoom/
+/diningRoom/emblem.php for flag
+input the flag into /diningRoom
+
+/teaRoom/
+http://10.10.1.208/teaRoom/master_of_unlock.html
+
+/artRoom/
+Look like a map
+
+/artRoom/MansionMap.html
+Location:
+/diningRoom/
+/teaRoom/
+/artRoom/
+/barRoom/ -> use lock_pick{flag}
+http://10.10.1.208/barRoom357162e3db904857963e6e0b64b96ba7/musicNote.html
+NV2XG2LDL5ZWQZLFOR5TGNRSMQ3TEZDFMFTDMNLGGVRGIYZWGNSGCZLDMU3GCMLGGY3TMZL5 = base32 music_sheet{}
+-> takes you to secret bar room which gives you the golden emblem flag
+-> input emblem flag
+gives you a name rebecca 
+
+/diningRoom2F/
+<!-- Lbh trg gur oyhr trz ol chfuvat gur fgnghf gb gur ybjre sybbe. Gur trz vf ba gur qvavatEbbz svefg sybbe. Ivfvg fnccuver.ugzy -->
+
+caesar cipher +13
+You get the blue gem by pushing the status to the lower floor. The gem is on the diningRoom first floor. Visit sapphire.html
+
+/tigerStatusRoom/ blue_jewel_flag
+
+crest 1:
+S0pXRkVVS0pKQkxIVVdTWUpFM0VTUlk9
+Hint 1: Crest 1 has been encoded twice
+Hint 2: Crest 1 contanis 14 letters
+
+base64 -> base32 = RlRQIHVzZXI6IG
+/galleryRoom/
+crest 2:
+GVFWK5KHK5WTGTCILE4DKY3DNN4GQQRTM5AVCTKE
+Hint 1: Crest 2 has been encoded twice
+Hint 2: Crest 2 contanis 18 letters
+Note: You need to collect all 4 crests, combine and decode to reavel another path
+The combination should be crest 1 + crest 2 + crest 3 + crest 4. Also, the combination is a type of encoded base and you need to decode it
+from base32 -> base58 -> h1bnRlciwgRlRQIHBh
+/studyRoom/
+/armorRoom/ key from golden_emblem -> dinginRoom decrypt -> the_great_shield_key
+crest 3:
+MDAxMTAxMTAgMDAxMTAwMTEgMDAxMDAwMDAgMDAxMTAwMTEgMDAxMTAwMTEgMDAxMDAwMDAgMDAxMTAxMDAgMDExMDAxMDAgMDAxMDAwMDAgMDAxMTAwMTEgMDAxMTAxMTAgMDAxMDAwMDAgMDAxMTAxMDAgMDAxMTEwMDEgMDAxMDAwMDAgMDAxMTAxMDAgMDAxMTEwMDAgMDAxMDAwMDAgMDAxMTAxMTAgMDExMDAwMTEgMDAxMDAwMDAgMDAxMTAxMTEgMDAxMTAxMTAgMDAxMDAwMDAgMDAxMTAxMTAgMDAxMTAxMDAgMDAxMDAwMDAgMDAxMTAxMDEgMDAxMTAxMTAgMDAxMDAwMDAgMDAxMTAwMTEgMDAxMTEwMDEgMDAxMDAwMDAgMDAxMTAxMTAgMDExMDAwMDEgMDAxMDAwMDAgMDAxMTAxMDEgMDAxMTEwMDEgMDAxMDAwMDAgMDAxMTAxMDEgMDAxMTAxMTEgMDAxMDAwMDAgMDAxMTAwMTEgMDAxMTAxMDEgMDAxMDAwMDAgMDAxMTAwMTEgMDAxMTAwMDAgMDAxMDAwMDAgMDAxMTAxMDEgMDAxMTEwMDAgMDAxMDAwMDAgMDAxMTAwMTEgMDAxMTAwMTAgMDAxMDAwMDAgMDAxMTAxMTAgMDAxMTEwMDA=
+Hint 1: Crest 3 has been encoded three times
+Hint 2: Crest 3 contanis 19 letters
+Note: You need to collect all 4 crests, combine and decode to reavel another path
+The combination should be crest 1 + crest 2 + crest 3 + crest 4. Also, the combination is a type of encoded base and you need to decode it
+
+from base64 -> from binary -> from hex = c3M6IHlvdV9jYW50X2h
+
+/attic/ sheild_key
+crest 4:
+gSUERauVpvKzRpyPpuYz66JDmRTbJubaoArM6CAQsnVwte6zF9J4GGYyun3k5qM9ma4s
+Hint 1: Crest 2 has been encoded twice
+Hint 2: Crest 2 contanis 17 characters
+Note: You need to collect all 4 crests, combine and decode to reavel another path
+The combination should be crest 1 + crest 2 + crest 3 + crest 4. Also, the combination is a type of encoded base and you need to decode it
+from b58 -> from hex -> pZGVfZm9yZXZlcg==
+
+golden_emblem -> /diningRoom =
+= Vigenere cipher key = rebecca
+klfvg ks r wimgnd biz mpuiui ulg fiemok tqod. Xii jvmc tbkg ks tempgf tyi_hvgct_jljinf_kvc
+there is a shield key inside the dining room. The html page is called the_great_shield_key
+get that key i
+
+$crest1:RlRQIHVzZXI6IG
+$crest2:h1bnRlciwgRlRQIHBh
+$creat3:c3M6IHlvdV9jYW50X2h
+$crest4:pZGVfZm9yZXZlcg==
+
+FTP user: hunter, FTP pass: you_cant_hide_forevero
+
+ftp in; give credentials; passive; ascii; get <every-file> 
+ftp> ls
+227 Entering Passive Mode (10,10,1,208,39,91).
+150 Here comes the directory listing.
+-rw-r--r--    1 0        0            7994 Sep 19  2019 001-key.jpg
+-rw-r--r--    1 0        0            2210 Sep 19  2019 002-key.jpg
+-rw-r--r--    1 0        0            2146 Sep 19  2019 003-key.jpg
+-rw-r--r--    1 0        0             121 Sep 19  2019 helmet_key.txt.gpg
+-rw-r--r--    1 0        0             170 Sep 20  2019 important.txt
+
+root@ip-10-10-249-68:~# cat important.txt 
+Jill,
+
+I think the helmet key is inside the text file, but I have no clue on decrypting stuff. Also, I come across a /hidden_closet/ door but it was locked.
+
+From,
+Barry
+
+# get stegoveritas;
+
+apt install python3 && apt install python3-pip;
+pip3 install stegoveritas;
+stegoveritas_install_deps;
+
+stegoveritas each images # beware of dirctory naming
+two = 5fYmVfZGVzdHJveV9
+
+I tried on both 001-key.jpg and 003, but the key.txt in three was blank tried what the walkthroughs suggested:
+steghide extract -sf 001-key.jpg # did not work , there should not be a password
+and 
+binwalk -e 003-key.jpg # empty key.txt
+
+https://github.com/strange07/tryhackme/blob/master/biohazard/biohazard.md for the complete key
+
+plant42_can_be_destroy_with_vjolt -> decrypt gpg file -> get helmet_key -> studyRoom -> input helmet _key
+
+open the doom.tar.gz:
+SSH user: umbrella_guest
+
+-> goto /hidden_closet -> input -> helmet_key
+
+The closet room lead to an underground cave
+
+In the cave, Jill met injured Enrico, the leader of the STARS Bravo team. He mentioned there is a traitor among the STARTS Alpha team.
+
+When he was about to tell the traitor name, suddenly, a gun shot can be heard and Enrico was shot dead.
+
+Jill somehow cannot figure out who did that. Also, Jill found a MO disk 1 and a wolf Medal
+
+
+wpbwbxr wpkzg pltwnhro, txrks_xfqsxrd_bvv_fy_rvmexa_ajk
+
+SSH password: T_virus_rules
+
+https://www.boxentriq.com/code-breaking/vigenere-cipher # from https://shalindafernando.com/ctf/tryhackme/thm-writeup-biohazard/ 
+
+weasker login password, stars_members_are_my_guinea_pig
+
+Desktop  weasker_note.txt
+weasker@umbrella_corp:~$ cat weasker_note.txt 
+Weaker: Finally, you are here, Jill.
+Jill: Weasker! stop it, You are destroying the  mankind.
+Weasker: Destroying the mankind? How about creating a 'new' mankind. A world, only the strong can survive.
+Jill: This is insane.
+Weasker: Let me show you the ultimate lifeform, the Tyrant.
+
+(Tyrant jump out and kill Weasker instantly)
+(Jill able to stun the tyrant will a few powerful magnum round)
+
+Alarm: Warning! warning! Self-detruct sequence has been activated. All personal, please evacuate immediately. (Repeat)
+Jill: Poor bastard
+
+
+weasker@umbrella_corp:/home/umbrella_guest$ find / -type f -name "chris*" 2>/dev/null
+/home/umbrella_guest/.jailcell/chris.txt
+weasker@umbrella_corp:/home/umbrella_guest$ 
+weasker@umbrella_corp:/home/umbrella_guest$ cat /home/umbrella_guest/.jailcell/chris.txt
+Jill: Chris, is that you?
+Chris: Jill, you finally come. I was locked in the Jail cell for a while. It seem that weasker is behind all this.
+Jil, What? Weasker? He is the traitor?
+Chris: Yes, Jill. Unfortunately, he play us like a damn fiddle.
+Jill: Let's get out of here first, I have contact brad for helicopter support.
+Chris: Thanks Jill, here, take this MO Disk 2 with you. It look like the key to decipher something.
+Jill: Alright, I will deal with him later.
+Chris: see ya.
+
+MO disk 2: albert 
+
+
+weasker@umbrella_corp:/home/umbrella_guest$ sudo -l
+[sudo] password for weasker: 
+Matching Defaults entries for weasker on umbrella_corp:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User weasker may run the following commands on umbrella_corp:
+    (ALL : ALL) ALL
+weasker@umbrella_corp:/home/umbrella_guest$ sudo cat /root/root.txt
+In the state of emergency, Jill, Barry and Chris are reaching the helipad and awaiting for the helicopter support.
+
+Suddenly, the Tyrant jump out from nowhere. After a tough fight, brad, throw a rocket launcher on the helipad. Without thinking twice, Jill pick up the launcher and fire at the Tyrant.
+
+The Tyrant shredded into pieces and the Mansion was blowed. The survivor able to escape with the helicopter and prepare for their next fight.
+
+The End
+
+flag: 3c5794a00dc56c35f2bf096571edf3bf
