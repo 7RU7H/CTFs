@@ -1,0 +1,141 @@
+Name: Anthem
+Date: 13/01/2022
+Difficulty: Easy
+Description: Exploit a Windows machine in this beginner level challenge.
+Better Description: A non-smb enumeration machine
+Goals: Practice Windows cmds
+Learnt: icacls is very powerful
+
+
+root@ip-10-10-107-13:~# nmap -Pn -sV -sC -T 4 -p- 10.10.67.143
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-01-11 19:55 GMT
+Nmap scan report for ip-10-10-67-143.eu-west-1.compute.internal (10.10.67.143)
+Host is up (0.00080s latency).
+Not shown: 65532 filtered ports
+PORT     STATE SERVICE       VERSION
+80/tcp   open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+| http-robots.txt: 4 disallowed entries 
+|_/bin/ /config/ /umbraco/ /umbraco_client/
+|_http-title: Anthem.com - Welcome to our blog
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+| ssl-cert: Subject: commonName=WIN-LU09299160F
+| Not valid before: 2022-01-10T19:54:36
+|_Not valid after:  2022-07-12T19:54:36
+|_ssl-date: 2022-01-11T20:05:52+00:00; 0s from scanner time.
+5985/tcp open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+MAC Address: 02:89:F3:6B:1A:51 (Unknown)
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 625.03 seconds
+
+
+root@ip-10-10-107-13:~# nikto -h 10.10.67.143:80
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.67.143
++ Target Hostname:    ip-10-10-67-143.eu-west-1.compute.internal
++ Target Port:        80
++ Start Time:         2022-01-11 19:57:59 (GMT0)
+---------------------------------------------------------------------------
++ Server: No banner retrieved
++ The anti-clickjacking X-Frame-Options header is not present.
++ Server banner has changed from '' to 'Microsoft-IIS/10.0' which may suggest a WAF, load balancer or proxy is in place
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ Server leaks inodes via ETags, header found with file /robots.txt, fields: 0xd296b3369ebd61:0 
++ File/dir '/umbraco/' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ "robots.txt" contains 4 entries which should be manually viewed.
++ 6544 items checked: 0 error(s) and 4 item(s) reported on remote host
++ End Time:           2022-01-11 20:05:27 (GMT0) (448 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+root@ip-10-10-107-13:~# nikto -h 10.10.67.143:5985
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.67.143
++ Target Hostname:    ip-10-10-67-143.eu-west-1.compute.internal
++ Target Port:        5985
++ Start Time:         2022-01-11 20:10:19 (GMT0)
+---------------------------------------------------------------------------
++ Server: Microsoft-HTTPAPI/2.0
++ The anti-clickjacking X-Frame-Options header is not present.
++ No CGI Directories found (use '-C all' to force check all possible dirs
+
+The second http on 5985, just spun for ages.
+
+root@ip-10-10-167-165:~# gobuster dir -u http://10.10.219.98/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.219.98/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2022/01/13 10:37:23 Starting gobuster
+===============================================================
+/search (Status: 200)
+/blog (Status: 200)
+/sitemap (Status: 200)
+/rss (Status: 200)
+/archive (Status: 301)
+/categories (Status: 200)
+/authors (Status: 200)
+/Search (Status: 200)
+/tags (Status: 200)
+/install (Status: 302)
+/RSS (Status: 200)
+/Blog (Status: 200)
+/Archive (Status: 301)
+/SiteMap (Status: 200)
+/siteMap (Status: 200)
+/INSTALL (Status: 302)
+/Sitemap (Status: 200)
+
+Gobuster will keep producing noisey info that is not useful...
+
+/robots.txt 
+UmbracoIsTheBest!
+
+
+http://10.10.67.143/archive/we-are-hiring/
+Manual Searching email disclosure:
+JD@anthem.com
+http://10.10.219.98/archive/a-cheers-to-our-it-department/
+James Orchard Halliwell 
+
+http://10.10.67.143/umbraco/#/login 
+is a login
+
+The user name of the Adminstrator is the whom the nursery rhyme that James claims to have written.
+
+SG@anthem.com
+
+Flags:
+
+Flag 1 and 2:
+view-source:http://10.10.219.98/archive/we-are-hiring/ 
+
+Flag 3: 
+http://10.10.219.98/Authors
+
+Flag 2 and 4:
+view-source:http://10.10.219.98/archive/a-cheers-to-our-it-department/
+
+No need to exploit anything, RDP into the box, SG = username! (@anthem.com is the email - it would be if you had to exploit the Umbraco CMS
+
+USE:
+dir /A          reveals hidden files, folders and symbolic links
+you will need to use 
+icacls /?
+you want to grant the SG user the read and execute powers of this file as you can't read it.
+Then :
+type filename.txt
+
+Now you have the Administrator password!
