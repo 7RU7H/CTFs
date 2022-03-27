@@ -1,0 +1,68 @@
+Name: Investigating Windows 2.0
+Date: 15/01/2022
+Difficulty: Medium
+Description: In the previous challenge you performed a brief analysis. Within this challenge, you will take a deeper dive into the attack. 
+Better Description: N/A
+Goals: Learn more about Windows, refresh my sysinternals use
+Learnt: Chris Dommas is right - solution: methodical note taking and workflow. Copy and paste commands from these notes to reduce frustration. 
+
+Investigating Windows 2.0
+
+First run Loki at:
+C:\Users\Administrator\Desktop\Tools\loki_0.33.0\loki>loki.exe -l C:\Users\Administrator\Desktop\lokiOutput.txt
+
+It takes a while, save easy accessed place and when completed, use type filename | find "stringrelevant to the questions".
+
+Then get busy with Sysinternals. Learn what you can about the machine.
+
+C:\Users\Administrator\Desktop\Tools\SysinternalsSuite>psinfo.exe /accepteula
+
+PsInfo v1.78 - Local and remote system information viewer
+Copyright (C) 2001-2016 Mark Russinovich
+Sysinternals - www.sysinternals.com
+
+System information for \\EC2AMAZ-I8UHO76:
+Uptime:                    0 days 0 hours 19 minutes 30 seconds
+Kernel version:            Windows Server 2016 Datacenter, Multiprocessor Free
+Product type:              Standard Edition
+Product version:           6.3
+Service pack:              0
+Kernel build number:       14393
+Registered organization:
+Registered owner:
+IE version:                9.0000
+System root:               C:\Windows
+Processors:                2
+Processor speed:           2.5 GHz
+Processor type:            Intel(R) Xeon(R) Platinum 8259CL CPU @
+Physical memory:           2 MB
+Video driver:              Microsoft Basic Display Adapter
+
+However you will need to run, for the first 9 questions:
+autoruns.exe /accepreula
+
+Question ten is the most irratating part of any of these kinds CTFs
+
+Sidenote: Chris Dommas has a great anti-reverse engineering DEFCON talk that if you are Red teaming this kind of pyschological warfare against the analyst is critical to breaking the focus, willpower, thought processes and intention of the analyst of your malware. Like: "oops those powershell.exe that keep openning and now you double clicked once and you click off your nice
+sysinternals windows that you getting back to and now you have to go through the same cli tasks to recover the point of current place in your problem solving methology.
+
+unclick the KillProccess in autoruns.exe to then run:
+
+procexp64.exe
+Wait till the two very irratating pop-up return see the tree amongst the other svchosts.exe (parent process)
+Or goto the directory run the proccess, right-click and suspend the process. I tried dumping the process and using Dbgview.exe but that did not work
+procmon.exe
+Filter by the pid of the mim.exe
+4th Column in, first row!! Right-click to properties for the next question!
+
+Filter by pid of the parent pid
+
+Question 14 use Process Hacker
+
+Next question require your trusty output file. Two methods both used because find does not get previous lines you may need stuff
+type lokioutput.txt | find "whatyour are looking for"
+
+Last Question:
+Collect artifacts to add to the rule file:
+strings64.exe C:\Tmp\mim.exe | findstr "inserthere" start with exe
+Hint everything has a version number...
