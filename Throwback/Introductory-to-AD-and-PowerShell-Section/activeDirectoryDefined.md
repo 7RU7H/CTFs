@@ -46,11 +46,11 @@ AD is organised around a top domain domain.com, with the possibility of subdomai
 Forest  
 |			\
 Tree  
-|				\
+|  				\
 Domain
-|					\
+|  					\
 Organisation Unit
-|
+|  
 
  
 ### Forest 
@@ -58,29 +58,30 @@ Forests are self-contained and provides all required services as the highest-lev
 
 
 ### Trees
-Trees are a hierarchy of domains in Active Directory Domain Services
+Trees are a hierarchy of domains in Active Directory Domain Services  
 
+### Domains
 
-Domains are used to group and manage objects 
+Domains are used to group and manage objects  
 
 ### Organizational Units (OUs)
 OUS defined as *CONTAINERS* for groups, computers, users, printers and other OUs
 
-### Domain Trusts
+## Domain Trusts
 
 Trusts are mechanism for user users to access other resources in their domain and other domains.
 Trusts define the interactions that are possible between domains inside of a forest, even external domains or forest.
 The type of trusts between domains, trees in a forest or external to it can be use to traverse laterally throughout the network.  
-Type:  
+Types:  
 Directional: Direction of trust flows from a trusting domain to a trusted domain  
 Transitive: The trust relationship expands beyond two domains to include other trusted domains  
 
-### Domain Policies
+## Domain Policies
 
 Policies are like groups, but they are sets of rules of operation that apply to the domain as a whole.
 There are default domain policy and Domain Admin can add, remove, modify these tules when necessary to uphold the integrity of the network.
 
-#### Group Policy Objects
+### Group Policy Objects
 
 GPOs are used to managing many settings, Local GPOs for local machine and AD GPOs.
 They are configured through Active Directory.
@@ -97,11 +98,11 @@ GPOs in AD work by each domain-joined computer, updated from the DC EVERY 90mins
 gpupdate /force.
 
 
-### Objects
+## Objects
 
 Objects are defined as users, groups, printers, computers, shares; Microsoft love Object Oriented everything.
 
-#### Active Directory Users
+### Active Directory Users
 
 ##### Domain Admins 
 
@@ -122,7 +123,7 @@ Users that make changes to local machines as an administrator, sometimes able to
 
 Regular users, can only log in on mahcine that they are authorized to access and may have some local administrator rights to machine
 
-#### Security Identifier or SID
+### Security Identifier or SID
 S-R-I-SA
 S = literal "S"
 R = revision level (usually set to 1)
@@ -132,16 +133,14 @@ SA = one or more sub authority value
 Sub authority value is dynamic and consists tof two primary parts: 
 /	Domain's numeric identifier 	-22-1234-1234-1234 
 	Relative identifier(RID) 	-1010
-
-
-
+	
 ##### Notes:
 BEWARE AD-cmdlets only installed by default on DCs!
 ```
 Get-ADUser <user> 
 ```
 
-#### Active Directory Groups
+### Active Directory Groups
 
 Authorization process is controlled by membership in Active Directory Groups, for scalablity and dynamism
 Group types:
@@ -156,53 +155,52 @@ Responsible for maintaining the data that is stored in AD DS and on domain membe
 ```
 Get-ADGroupMember <groupname> -recursive
 ```
-##### Default Security Groups
+#### Default Security Groups
 
-Domain Controllers - All domain controllers in the domain
-Domain Guests - All domain guests
-Domain Users - All domain users
-Domain Computers - All workstations and servers joined to the domain
-Domain Admins - Designated administrators of the domain
-Enterprise Admins - Designated administrators of the enterprise
-Schema Admins - Designated administrators of the schema
-DNS Admins - DNS Administrators Group
-DNS Update Proxy - DNS clients who are permitted to perform dynamic updates on behalf of some other clients (such as DHCP servers).
-Allowed RODC Password Replication Group - Members in this group can have their passwords replicated to all read-only domain controllers in the domain
-Group Policy Creator Owners - Members in this group can modify group policy for the domain
-Denied RODC Password Replication Group - Members in this group cannot have their passwords replicated to any read-only domain controllers in the domain
-Protected Users - Members of this group are afforded additional protections against authentication security threats. See http://go.microsoft.com/fwlink/?LinkId=298939 for more information.
-Cert Publishers - Members of this group are permitted to publish certificates to the directory
-Read-Only Domain Controllers - Members of this group are Read-Only Domain Controllers in the domain
-Enterprise Read-Only Domain Controllers - Members of this group are Read-Only Domain Controllers in the enterprise
-Key Admins - Members of this group can perform administrative actions on key objects within the domain.
-Enterprise Key Admins - Members of this group can perform administrative actions on key objects within the forest.
-Cloneable Domain Controllers - Members of this group that are domain controllers may be cloned.
-RAS and IAS Servers - Servers in this group can access remote access properties of users
+Domain Controllers - All domain controllers in the domain  
+Domain Guests - All domain guests  
+Domain Users - All domain users  
+Domain Computers - All workstations and servers joined to the domain  
+Domain Admins - Designated administrators of the domain  
+Enterprise Admins - Designated administrators of the enterprise  
+Schema Admins - Designated administrators of the schema  
+DNS Admins - DNS Administrators Group  
+DNS Update Proxy - DNS clients who are permitted to perform dynamic updates on behalf of some other clients (such as DHCP servers).  
+Allowed RODC Password Replication Group - Members in this group can have their passwords replicated to all read-only domain controllers in the domain  
+Group Policy Creator Owners - Members in this group can modify group policy for the domain  
+Denied RODC Password Replication Group - Members in this group cannot have their passwords replicated to any read-only domain controllers in the domain  
+Protected Users - Members of this group are afforded additional protections against authentication security threats. [See](http://go.microsoft.com/fwlink/?LinkId=298939) for more information.  
+Cert Publishers - Members of this group are permitted to publish certificates to the directory  
+Read-Only Domain Controllers - Members of this group are Read-Only Domain Controllers in the domain  
+Enterprise Read-Only Domain Controllers - Members of this group are Read-Only Domain Controllers in the enterprise  
+Key Admins - Members of this group can perform administrative actions on key objects within the domain.  
+Enterprise Key Admins - Members of this group can perform administrative actions on key objects within the forest.  
+Cloneable Domain Controllers - Members of this group that are domain controllers may be cloned.  
+RAS and IAS Servers - Servers in this group can access remote access properties of users  
 
 ### Domain Services
 
 Defined as the services provided by the Domain Controller to the rest of the domain or tree.
 
-Domain Services include: 
+Domain Services include:  
 	DNS Server,  
 	DNS, LLMNR, NBT-NS: domain Name Services for identifying IP hostnames,  
 	IPv6,
-    	LDAP - see LDAP section.
-    	Certificate Services - allows the Domain Controller to create, validate, and revoke public key certificates,  
+    	LDAP - see LDAP section.  
+    	Certificate Services - allows the Domain Controller to create, validate, and revoke public key certificates,    
 
 #### Lightweight Directory Access Protocol(LDAP)
 
 Lightweight Directory Access Protocol5 (LDAP) is very commonly used to interact with Domain Controllers to submit or retrieve data. 
 LDAP is an open-source protocol designed to provides communication and interaction between applications and directory services.
 
-#### Certicate Services
+## Certicate Services
 
 THM room and abusing AD certificate service in the pipeline!
 
-### Domain Schema
+## Domain Schema
 
 Domain Schema are rules for object creation
-
 
 ## Domain Authentication
 
@@ -261,11 +259,10 @@ AP\_REQ			username and timestamp (encrypted with session key associated with ser
 
 This aides in mitigating against faking credentials 
 		
-### Cloud AD
+## Azure AD
 
-#### Azure AD
+Azure is Microsoft's Cloud implementation of AD acting s  middle man between physical Active Directory and users' sign on machines, securing transaction between domains.
 
-Azure act as middle man between physical Active Directory and users' sign on machines, securing transaction between domains 
 It has its own terminalogy and security precautions beyond the that of physical AD
 Windows Server AD	Azure AD
 LDAP			Rest APIs
@@ -275,9 +272,9 @@ OU Tree			Flat Structure
 Domains and Forests	Tenants
 Trusts			Guests
 
-### Enterpries AD
+## Enterpries AD
 
-#### Topology
+### Topology
 
 Branch1
 		  |
