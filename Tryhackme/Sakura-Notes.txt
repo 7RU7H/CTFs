@@ -1,0 +1,168 @@
+Name: Sakura
+Date: 28/03/2022
+Difficulty: Easy
+Description: Use a variety of OSINT techniques to solve this room created by the OSINT Dojo.
+Better Description: Bad man tries bad offucication
+Goals: Test my very limited OSINT methodolgy, ability and knowledge
+Learnt: pgpkeys, more OSINT in general, forced me to try some Geolocating of images in another room mid way
+
+Warning these are just notes someone very new to OSINT
+
+I
+Had
+Help:
+https://vnc.tryhackme.tech/index.html?host=proxy-3.tryhackme.tech&password=9c62ed6995c40576&proxyIP=10.10.31.12&resize=remote
+https://sarrieta.medium.com/sakura-room-walkthrough-thm-11798c5c06f4
+
+TIP-OFF
+
+https://raw.githubusercontent.com/OsintDojo/public/3f178408909bc1aae7ea2f51126984a8813b0901/sakurapwnedletter.svg
+
+Install steganography tool stegoveristas
+
+pip3 install stegoveritas;
+stegoveritas_install_deps;
+
+stegoveritas sakurapwnedletter.svg
+
++---------------------+---------------------------------------------------+
+| key                 | value                                             |
++---------------------+---------------------------------------------------+
+| SourceFile          | /root/sakurapwnedletter.svg                       |
+| ExifToolVersion     | 10.8                                              |
+| FileName            | sakurapwnedletter.svg                             |
+| Directory           | /root                                             |
+| FileSize            | 810 kB                                            |
+| FileModifyDate      | 2022:03:27 18:33:32+01:00                         |
+| FileAccessDate      | 2022:03:27 18:35:09+01:00                         |
+| FileInodeChangeDate | 2022:03:27 18:33:33+01:00                         |
+| FilePermissions     | rw-r--r--                                         |
+| FileType            | SVG                                               |
+| FileTypeExtension   | svg                                               |
+| MIMEType            | image/svg+xml                                     |
+| Xmlns               | http://www.w3.org/2000/svg                        |
+| ImageWidth          | 116.29175mm                                       |
+| ImageHeight         | 174.61578mm                                       |
+| ViewBox             | 0 0 116.29175 174.61578                           |
+| SVGVersion          | 1.1                                               |
+| ID                  | svg8                                              |
+| Version             | 0.92.5 (2060ec1f9f, 2020-04-08)                   |
+| Docname             | pwnedletter.svg                                   |
+| Export-filename     | /home/SakuraSnowAngelAiko/Desktop/pwnedletter.png | <---- Here is the user name *facepalm*
+| Export-xdpi         | 96                                                |
+| Export-ydpi         | 96                                                |
+| MetadataID          | metadata5                                         |
+| WorkFormat          | image/svg+xml                                     |
+| WorkType            | http://purl.org/dc/dcmitype/StillImage            |
+| WorkTitle           |                                                   |
++---------------------+---------------------------------------------------+
+
+
+RECONNAISSANCE 
+
+Install social media username hunter tool Sherlock
+
+git clone https://github.com/sherlock-project/sherlock.git
+cd sherlock; python3 -m pip install -r requirements.txt
+wait; cd ../;
+
+root@ip-10-10-31-12:~/sherlock# python3 sherlock SakuraSnowAngelAiko
+[*] Checking username SakuraSnowAngelAiko on:
+
+[+] CapFriendly: https://www.capfriendly.com/users/SakuraSnowAngelAiko
+[+] GitHub: https://www.github.com/SakuraSnowAngelAiko
+[+] Gumroad: https://www.gumroad.com/SakuraSnowAngelAiko
+[+] LeetCode: https://leetcode.com/SakuraSnowAngelAiko
+[+] Quizlet: https://quizlet.com/SakuraSnowAngelAiko
+[+] Reddit: https://www.reddit.com/user/SakuraSnowAngelAiko
+[+] Smule: https://www.smule.com/SakuraSnowAngelAiko
+[+] Spotify: https://open.spotify.com/user/SakuraSnowAngelAiko
+[+] TradingView: https://www.tradingview.com/u/SakuraSnowAngelAiko/
+[+] Venmo: https://venmo.com/u/SakuraSnowAngelAiko
+
+[!] End:  The processing has been finished.
+
+
+Google Dorking: sakurasnowangelaiko
+
+Aiko Abe is Senior Software Engineer Japonya
+
+https://github.com/sakurasnowangelaiko
+
+From Github we can deduce he likes Crytpocurrency mining
+
+https://github.com/sakurasnowangelaiko/ETH/blob/main/miningscript
+stratum://ethwallet.workerid:password@miningpool:port
+
+https://github.com/sakurasnowangelaiko/PGP/blob/main/publickey
+save this key as: pgpkey.asc
+
+https://vnc.tryhackme.tech/index.html?host=proxy-3.tryhackme.tech&password=9c62ed6995c40576&proxyIP=10.10.31.12&resize=remote
+
+root@ip-10-10-31-12:~# gpg pgpkey.asc 
+gpg: WARNING: no command supplied.  Trying to guess what you mean ...
+pub   rsa3072 2021-01-23 [SC] [expires: 2023-01-22]
+      A6519F273BF88E9126B0F4C5ECDD0FD294110450
+uid           SakuraSnowAngel83@protonmail.com
+sub   rsa3072 2021-01-23 [E] [expires: 2023-01-22]
+
+
+UNVEIL
+
+ethwallet = Ethereum
+
+https://github.com/sakurasnowangelaiko/ETH/commit/5d83f7bb37c2048bb5b9eb29bb95ec1603c40135
+stratum://0xa102397dbeeBeFD8cD2F73A89122fCdB53abB6ef.Aiko:pswd@eu1.ethermine.org:4444
+
+https://sarrieta.medium.com/sakura-room-walkthrough-thm-11798c5c06f4
+To find the address used:
+https://etherscan.io/  
+
+https://etherscan.io/address/0xa102397dbeeBeFD8cD2F73A89122fCdB53abB6ef
+
+Ethermine
+
+Erc20 Token Txns
+Tether
+
+
+TAUNT
+
+https://twitter.com/sakuraloveraiko?lang=en:
+sakuraloveraiko
+
+Tweets about his stuff pasted on Darkweb, just use the hint..
+
+https://raw.githubusercontent.com/OsintDojo/public/main/deeppaste.png
+
+http://depasteon6cqgrykzrgya52xglohg5ovyuyhte3ll7hzix7h5ldfqsyd.onion/show.php=
+
+COMBINE
+
+0a5c6e136a98a60b8b8a21643ce8c15a74
+
+
+https://www.wigle.net/
+
+Home Wifi:              DK1f-g          Fsdf324T@@
+
+Make account, advacned search for the SSID = DK1f-g
+https://wigle.net/search?ssid=DK1f-g
+84:AF:EC:34:FC:F8
+
+HOMEBOUND
+
+I have done no Geolocation at this point and decided to go away and do those. Otherwise I might aswell copy any writeup fully.
+Did the geolocation room, I have never played geoguesser so that was a massive kick in the preverbals at how geolocating things, did ok but not good.
+Used:
+https://yandex.com/images/search?rpt=imageview&url=https%3A%2F%2Favatars.mds.yandex.net%2Fget-images-cbir%2F2217145%2FFM6C-IJXO8XmmKJ-SLgoSA6064%2Forig&cbir_id=2217145%2FFM6C-IJXO8XmmKJ-SLgoSA6064
+
+Checked:
+https://octothorp88.medium.com/tryhackme-sakura-room-97ac5bb887b3
+
+It is apparently DC from the spire.
+airport is DCA
+layover: HND 
+Lake Inawashiro.
+
+Search go to the map from the wigle.net to find the location via the wifi router SSID: Hirosaki.
