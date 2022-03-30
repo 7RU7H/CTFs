@@ -13,7 +13,7 @@ For this I provide a Powershell101.md, but I suggest:
 I a good references for starting and returning too, but there are a few other resources that really help with the nitty-gritty of powershell:  
 [Microsoft Scripting Blog](https://devblogs.microsoft.com/scripting/)  
 
-Also I will provide my current very very limit ADPrivEsc CheetSheet in its current state, but please check out my  [method repository](https://github.com/7RU7H/method)  
+Also I will provide my current very very limit ADPrivEsc CheatSheet and some useful Powershell stuff in its current state, but please check out my [Archive repository](https://github.com/7RU7H/Archive)  
 It also contains both regular Linux and Windows PrivEsc cheetsheats also! 
 
 **Task 7 Entering the Breach**
