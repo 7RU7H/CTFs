@@ -16,14 +16,14 @@ I will archive them accordly:
 Directory structure:
 Platform -> file format
 
-Header Template:
-Name:
-Date:
-Difficulty:
-Description:
-Better Description:
-Goals:
-Learnt:
+Header Template:  
+Name:  
+Date:  
+Difficulty:  
+Description:  
+Better Description:  
+Goals:  
+Learnt:  
 
   
 Contents:
@@ -33,3 +33,8 @@ Contents:
 -- Offsec Proving Ground
   
 -- Tryhackme 
+  1. Code Challenges
+  1. CTFs Writeups, Walkthroughs, Notes
+  1. Throwback 
+  
+  
