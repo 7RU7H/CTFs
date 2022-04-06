@@ -4,8 +4,7 @@
 1. Nuclei - DONE!
 1. Socat 
 1. Responder 
-1.
-1.
+1. Brutespray DONE!
 1.
 1.
 1.

