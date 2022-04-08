@@ -151,4 +151,4 @@ What version of Apache is running on THROWBACK-MAIL?
 Apache/2.4.29
 ```
 
-I felt that with the prelimary task out the way and and direction to go boldly in I began testing new tools,, my methodology and myself for the long haul in the Exploring the Caverns completely blackboxing it. The next section will have multiple parts given trail and error combined with trying to make the follow discourse narratological coherent. 
+I felt that with the prelimary task out the way and and direction to go boldly in I began testing new tools, my methodology and myself for the long haul in the Exploring the Caverns completely blackboxing it. The next section will have multiple parts given trail and error combined with trying to make the follow discourse narratological coherent. 

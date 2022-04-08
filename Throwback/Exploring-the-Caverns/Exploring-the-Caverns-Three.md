@@ -2,7 +2,7 @@
 
 Part three now, but I feeling the momentuum of progression. Plan of attack before attempting to even look to answering questions on the Task 8 Drop-Down is as follows:
 
-CVE-2018-15473 to get as many credientals as possible before SMB enumeration with [Enum4linux]() and [smbmap](), exfiltrating share data and credientals. If possible try to get foothold and maintain persistance with couple backdoors(just try to emulate what I atleast read about and tried in various THM rooms).
+CVE-2018-15473 to get as many credientals as possible before SMB enumeration with Enum4linuxand smbmap, exfiltrating share data and credientals. If possible try to get foothold and maintain persistance with couple backdoors(just try to emulate what I atleast read about and tried in various THM rooms).
 
 [CVE-2018-15473](https://nvd.nist.gov/vuln/detail/CVE-2018-15473_) states:  
 *"OpenSSH through 7.7 is prone to a user enumeration vulnerability due to not delaying bailout for an invalid authenticating user until after the packet containing the request has been fully parsed, related to auth2-gss.c, auth2-hostbased.c, and auth2-pubkey.c."*

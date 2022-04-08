@@ -18,6 +18,8 @@ It also contains both regular Linux and Windows PrivEsc cheetsheats also!
 
 **Task 7 Entering the Breach**
 
+This section was more of a directional spring board to then try new things, please see the TryThisStuff section to see a list of tools, techniques, etc tried. 
 
+**Task 8 Exploring the Caverns**
 
-Task 8 Exploring the Caverns
+Finally figured out how to use those nice screenshots I see on writeups and walk through that seem be nicely cropped. I also use nikto and nuclei awesome tools that I am using in my bug bounty tool I am making called the [H4dd1xB4gd3r](https://github.com/7RU7H/H4dd1xB4dg3r). Tried and failed to reconftw to run, will try again at later enuemration stage.

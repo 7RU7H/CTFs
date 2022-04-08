@@ -166,4 +166,4 @@ directory to export results in markdown format
 [2022-03-31 21:16:13] [CVE-2018-15473] [network] [medium] 10.200.102.232:22 [SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3]
 ```
 
-I the moved `mv throwback.md Throwback/Introductory-to-AD-and-PowerShell-Section/nuclei-scans-one.md` . Looked in my obsidian Throwback vault and was awestruck at the results.
+I then moved `mv throwback.md Throwback/Introductory-to-AD-and-PowerShell-Section/nuclei-scans-one.md` . Looked in my obsidian Throwback vault and was awestruck at the results.

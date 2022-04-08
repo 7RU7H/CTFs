@@ -1,5 +1,5 @@
-
-
+# ThisTimeBruteSpray
+Due to the various issues outlined in Waitwhathappened, this is pieced together as bruteforcing takes time and I want a better life to have to more time to do more ethical hacking and programming. Hydra has finished on 08/04/2022. 
 
 ```bash
 root@kali:~# nmap -sV -sC -oA throwback -p- 10.200.0-255.0/24 --min-rate 5000
@@ -124,3 +124,5 @@ Nmap done: 65536 IP addresses (4 hosts up) scanned in 411.92 seconds
 ## Running Brutespray
 
 `brutespray --file throwback.gnmap --userlist usernames.txt`
+Was ran before my *101 you are a noob at github, seek manpages*
+this time `brutespray -f throwback.gnmap -U usernames.txt -P passwords.txt`. 
