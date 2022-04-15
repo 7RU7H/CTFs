@@ -23,3 +23,17 @@ This section was more of a directional spring board to then try new things, plea
 **Task 8 Exploring the Caverns**
 
 Finally figured out how to use those nice screenshots I see on writeups and walk through that seem be nicely cropped. I also use nikto and nuclei awesome tools that I am using in my bug bounty tool I am making called the [H4dd1xB4gd3r](https://github.com/7RU7H/H4dd1xB4dg3r). Tried and failed to reconftw to run, will try again at later enuemration stage.
+
+**Task 9  Webshells and you !**
+
+**Task 10 First Contact**
+
+**Task 11 Wait, just you mean just one this time?**
+
+**Task 12 Gone Phishing**
+
+**Task 13 Just a Drop Will Do**
+
+**Task 14 We Will, We Will, Rockyou**
+
+**Task 15 Building Your Own Dark... er Deathstar**
