@@ -64,3 +64,4 @@ Completed! [To see full output ](prod-seatbelt.out). *spoiler* CredEnum Errored 
 
 Instead tried manually running seatbelt:
 ![fail](Screenshots/credenum-man-fail.png)
+
