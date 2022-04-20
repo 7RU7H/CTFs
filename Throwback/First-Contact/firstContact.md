@@ -72,8 +72,6 @@ But it broke, tried again:
 
 ![root-stab](Screenshots/fw-shell-stab-broke.png)
 
-
-
 ![root-log](Screenshots/fw-find-logs.png)
 
 Why would you have login.log

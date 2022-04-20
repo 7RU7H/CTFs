@@ -8,11 +8,11 @@ And inital dashboard screen:
 
 ![dashboard](Screenshots/pfsense-admin-dsahboard)
 
-You can change the firewall rules 
+You can change the firewall rules.. 
 
 ![rules](Screenshots/fw-rules)
 
-You can add users
+You can add users:
 
 ![addusers](Screenshots/fw-addusers)
 

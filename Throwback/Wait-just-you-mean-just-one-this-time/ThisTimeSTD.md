@@ -1,6 +1,6 @@
 #  Wait, just you mean just one this time?
 
-With my smb analysis leading to the conclusion that the HumpreyW account is a backdoor we return to guided path once again. Accoring to the instruction from the team are going to do some crediental spraying. Firstly a nice awk on the usernames from the contacts:
+With my smb analysis leading to the conclusion that the HumpreyW account is a backdoor we return to guided path once again. According to the instruction from the team are going to do some crediental spraying. Firstly a nice awk on the usernames from the contacts:
 
 ![awk](Screenshots/wait-usernames-awk.png)
 

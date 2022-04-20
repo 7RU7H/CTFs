@@ -59,9 +59,37 @@ Familiarised myself with some menus and tested a shell command queuing.
 
 Setup the seatbelt module, screenshot contain a description of this C# module. Use the "<" to see commands in the Agent tasks tab  
 ![sk7](Screenshots/sk-seatbelt-setup.png)
-Completed! [To see full output ](prod-seatbelt.out). *spoiler* CredEnum Errored out 
+Completed! [To see full output ](prod-fail-seatbelt.out.md). *spoiler* CredEnum Errored out 
 ![sk8](Screenshots/sk-seatbelt-completed.png)
 
 Instead tried manually running seatbelt:
 ![fail](Screenshots/credenum-man-fail.png)
+
+" you should run Seatbelt **over an RDP Session** using the pre-compiled binary that can be found here:https://github.com/r3motecontrol/Ghostpack-CompiledBinaries"
+
+Thanks to malware59 for pointing this out over discord when I asked. After many attempts to setup rdp on Kali VM on THM, I reset Throwback network and tried on the AttackBox:
+
+![rdp](Screenshots/sb-succesfull-rdp.png)
+And then wget-ing the Seatbelt.exe
+![rdp](Screenshots/sb-rdp-sb-wget.png)
+HURRAY! CredEnum:
+![rdp](Screenshots/sb-rdp-sb-credenum-success.png)
+HURRAY! WindowsVault:
+![rdp](Screenshots/sb-windows-vault-success.png)
+```powershell
+`runas /savecred /user:<user> /profile "cmd.exe"`
+```
+ROOT!
+![rdp](Screenshots/prod-root.png)
+
+Run this to get all the flags on the box:
+```powershell
+get-childItem -Path C:\Users\ -include *.txt -file -recurse -erroraction silentlycontinue
+```
+
+## Answers
+What user was found from seatbelt?
+```{toggle}
+admin-petersj
+```
 
