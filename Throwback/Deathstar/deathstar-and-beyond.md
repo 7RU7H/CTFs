@@ -77,7 +77,7 @@ HURRAY! CredEnum:
 HURRAY! WindowsVault:
 ![rdp](Screenshots/sb-windows-vault-success.png)
 ```powershell
-`runas /savecred /user:<user> /profile "cmd.exe"`
+runas /savecred /user:<user> /profile "cmd.exe"
 ```
 ROOT!
 ![rdp](Screenshots/prod-root.png)

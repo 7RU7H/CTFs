@@ -1,7 +1,5 @@
 # Contents
 
-#### Introduction
-#### Introductory to AD and PowerShell Section
 **Task 5 AD Basics (Reading): **  
 
 For this I provide my activeDirectoryDefined.md as collection everything learnt thus far in its current state.
@@ -52,15 +50,27 @@ Then cracked the hash from LLMNR attack to gain access to PROD workstation.
 
 The section contains "Deploy the Grunts!", "Get-Help Invoke-WorldDomination", "SEATBELT CHECK!" until I failed to read that you need to perform this over a rdp connection! so some progress was halted by this.
 
-
 **Task 19-20  Dump It Like It's Hot to Not the soft and fluffy kind**
 
+Usage of MimiKatz and the resulting output avaliable in this directory. 
 
 **Task 21 Yo Dawg, I heard you like proxies.**
+
+Setup of Metasploit and Proxychains, showcased the usage of mfspc a tool for automating payload creation using the msfvenom. Ran into a problem with the Attackbox and the next section so switched back to the THM Kali VM. 
+
 **Task 22 Good Intentions, Courtesy of Microsoft**
-**Task 23 Wallace and Gromit**
-**Task 24 With three heads you'd think they'd at least agree once**
+
+With good intentions for my time I skipped through the next task and updated and upgrade the THM Kali VM, then installed bloodhound, crackmapexec, pip3 and impacket. This took like 3 hours. Then Sharphound is broken! Had to resort to John Hammond's video linked in the task for to see One flag and Bloodhound information.
+
+**Task 23-24  Wallace and Gromit and With three heads you'd think they'd at least agree once**
+
+From here progress went vastly quicker, I had lots of connection issues managed to get this one done myself and gained alot of momentuum as the troubleshooting and connection issues really hurt.
+
 **Task 25 You're Five Minutes Late...**
+
+Things really picked up pace and all the demotivation burnt away. Ran an additional smbmap and nmap scan just because it was on the TryThisStuff list
+
+
 **Task 26 Word to your Mother**
 **Task 27 Meterpreter session 1 closed. Reason: World-Domination**
 **Task 28 We gotta drop the load!**

