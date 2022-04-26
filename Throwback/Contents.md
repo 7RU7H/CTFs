@@ -66,12 +66,11 @@ With good intentions for my time I skipped through the next task and updated and
 
 From here progress went vastly quicker, I had lots of connection issues managed to get this one done myself and gained alot of momentuum as the troubleshooting and connection issues really hurt.
 
-**Task 25 You're Five Minutes Late...**
+**Task 25 You're Five Minutes Late... Word to your Mother** Task 26
+Things really picked up pace and all the demotivation burnt away. Ran an additional smbmap and nmap scan just because it was on the TryThisStuff list, although I took too long before I had to stop. Followed the Auto_Open Excel instructions 
 
-Things really picked up pace and all the demotivation burnt away. Ran an additional smbmap and nmap scan just because it was on the TryThisStuff list
 
 
-**Task 26 Word to your Mother**
 **Task 27 Meterpreter session 1 closed. Reason: World-Domination**
 **Task 28 We gotta drop the load!**
 **Task 29 So we're doing this again...**
