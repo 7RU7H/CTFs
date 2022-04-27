@@ -1,5 +1,7 @@
 # Contents
 
+**Introduction**
+
 **Task 5 AD Basics (Reading): **  
 
 For this I provide my activeDirectoryDefined.md as collection everything learnt thus far in its current state.
@@ -66,19 +68,30 @@ With good intentions for my time I skipped through the next task and updated and
 
 From here progress went vastly quicker, I had lots of connection issues managed to get this one done myself and gained alot of momentuum as the troubleshooting and connection issues really hurt.
 
-**Task 25 You're Five Minutes Late... Word to your Mother** Task 26
-Things really picked up pace and all the demotivation burnt away. Ran an additional smbmap and nmap scan just because it was on the TryThisStuff list, although I took too long before I had to stop. Followed the Auto_Open Excel instructions 
+**Task 25-26 You're Five Minutes Late... Word to your Mother** 
 
+Things really picked up pace and all the demotivation burnt away. Ran an additional smbmap and nmap scan just because it was on the TryThisStuff list, although I took too long before I had to stop. Followed the Auto_Open Excel instructions, got the `[*] 10.200.102.176   hta_server - Delivering Payload`, no return.
 
+**Task 0 Forsaken...**
 
-**Task 27 Meterpreter session 1 closed. Reason: World-Domination**
-**Task 28 We gotta drop the load!**
-**Task 29 So we're doing this again...**
-**Task 30 SYNCHRONIZE**
-**Task 31 This forest has trust issues**
-**Task 32 r/badcode would like a word**
-**Task 33 Identity Theft is not a Joke Jim**
-**Task 34 So anyways, I just started hiring...**
-**Task 35 Lost and Found**
-**Task 36 Kerberoasting II Electric Boogaloo**
-**Task 37 Game Over **
+Given what has happen this section will be notes until I add more detail the following day. I was forsaken by the Timesheet.xlsm and had to power through the rest of this the best I could. *Disclaimer* due to not getting the ONLY way on to Throwback-TIME, I had to pretend I did by using the password you would dumped instantly with the Timesheet.xlsm meterpreter from John Hammond's video. I do not feel like I cheated myself. It did not work and I tried various ways to kerberoast, enumerate another way. There may have been one, but i could not find it. With the clock ticking to get Throwback complete. This section contains lots of failure and some actual success under pressure, but ultimately I got the first DC the second I could not pivot to and I would have been pivoting to a DC as a DC to get that trust DC so much less work than going from a domain user. This section contains:
+
+Task 27 Meterpreter session 1 closed. Reason: World-Domination
+Task 28 We gotta drop the load!
+Task 29 So we're doing this again...
+Task 30 SYNCHRONIZE
+Task 31 This forest has trust issues
+Task 32 r/badcode would like a word
+Task 33 Identity Theft is not a Joke Jim
+Task 34 So anyways, I just started hiring...
+Task 35 Lost and Found
+Task 36 Kerberoasting II Electric Boogaloo
+Task 37 Game Over 
+
+**Conclusions** 
+
+I review and conclusory remarks about my experience.
+
+**Appendix**
+
+Contains lists of addresses, credentials, flag locations, stuff to try.

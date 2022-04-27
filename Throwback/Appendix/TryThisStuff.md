@@ -9,17 +9,8 @@
 7. Brutespray DONE! - But medusa timeout ICMP wreck will redo during downtime. 
 8. MSFvenom Payload Creator (MSFPC) DONE!
 9. smbmap - With proxychains!
-1.
-1.
-1.
-1.
-1.
-
 
 
 ### Things I ended up trying 
 1. Making a fake card with https://privacy.com/
 1. Phishing
-1.
-1.
-1.

