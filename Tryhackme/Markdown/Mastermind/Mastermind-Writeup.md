@@ -6,7 +6,8 @@ Difficulty: Medium
 Description: Practice analyzing malicious traffic using Brim.  
 Better Description: First time using Brim here goes where is the first one.. my bad.. well that went well..  
 Goals: Early morning brain wake up CTF, more netowrk concept exposure,   
-Learnt: A bit of Brim, Zed, Bash  
+Learnt: A bit of Brim, Zed, Bash
+THMLink:[THMlink](https://tryhackme.com/room/mastermindsxlq)  
 
 
 ## Infection 1
