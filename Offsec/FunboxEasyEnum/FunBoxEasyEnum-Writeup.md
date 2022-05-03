@@ -1,6 +1,10 @@
-
-
-
+Name: FunBoxEasyEnum
+Date: 03/05/2022
+Difficulty: Easy
+Description: Don't hesitate Enumerate
+Better Description:  
+Goals: 1/many OSCP Boxes to do!
+Learnt: 
 
 ## Recon
 
@@ -77,3 +81,34 @@ Default credentials for phpmyadmin did not work, but produce this error exposing
 ```php
 mysqli_real_connect(): (HY000/1698): Access denied for user 'root'@'localhost'
 ```
+
+
+```bash
+
+gobuster dir -u http://192.168.55.132/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php
+===============================================================
+Gobuster v3.1.0
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://192.168.55.132/
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.1.0
+[+] Extensions:              php
+[+] Timeout:                 10s
+===============================================================
+2022/05/03 10:00:25 Starting gobuster in directory enumeration mode
+===============================================================
+/javascript           (Status: 301) [Size: 321] [--> http://192.168.55.132/javascript/]
+/mini.php             (Status: 200) [Size: 3828]                                       
+/phpmyadmin           (Status: 301) [Size: 321] [--> http://192.168.55.132/phpmyadmin/]
+/server-status        (Status: 403) [Size: 279]                                        
+                                                                                       
+===============================================================
+2022/05/03 10:38:51 Finished
+===============================================================
+
+```
+
