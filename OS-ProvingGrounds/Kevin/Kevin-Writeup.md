@@ -364,8 +364,150 @@ Host script results:
 |_path-mtu: PMTU == 1500
 
 Nmap done: 1 IP address (1 host up) scanned in 373.90 seconds
-
-
 ```
 There was alot of xss vulnerabilities found so [nikto output](nikto.md) can be found by following the link.
+
+## SMB Enumeration
+
+```bash
+enum4linux -a 192.168.80.45                            
+Starting enum4linux v0.9.1 ( http://labs.portcullis.co.uk/application/enum4linux/ ) on Tue May 10 22:11:02 2022
+
+ =========================================( Target Information )=========================================
+
+Target ........... 192.168.80.45
+RID Range ........ 500-550,1000-1050
+Username ......... ''
+Password ......... ''
+Known Usernames .. administrator, guest, krbtgt, domain admins, root, bin, none
+
+
+ ===========================( Enumerating Workgroup/Domain on 192.168.80.45 )===========================
+
+
+[+] Got domain/workgroup name: WORKGROUP
+
+
+ ===============================( Nbtstat Information for 192.168.80.45 )===============================
+
+Looking up status of 192.168.80.45
+        KEVIN           <00> -         B <ACTIVE>  Workstation Service
+        WORKGROUP       <00> - <GROUP> B <ACTIVE>  Domain/Workgroup Name
+        KEVIN           <20> -         B <ACTIVE>  File Server Service
+        WORKGROUP       <1e> - <GROUP> B <ACTIVE>  Browser Service Elections
+        WORKGROUP       <1d> -         B <ACTIVE>  Master Browser
+
+        MAC Address = 00-50-56-BA-AF-FE
+
+ ===================================( Session Check on 192.168.80.45 )===================================
+
+
+[+] Server 192.168.80.45 allows sessions using username '', password ''
+
+
+ ================================( Getting domain SID for 192.168.80.45 )================================
+
+do_cmd: Could not initialise lsarpc. Error was NT_STATUS_ACCESS_DENIED
+
+[+] Can't determine if host is part of domain or part of a workgroup
+
+
+ ==================================( OS information on 192.168.80.45 )==================================
+
+
+[E] Can't get OS info with smbclient
+
+
+[+] Got OS info for 192.168.80.45 from srvinfo: 
+do_cmd: Could not initialise srvsvc. Error was NT_STATUS_ACCESS_DENIED
+
+
+ =======================================( Users on 192.168.80.45 )=======================================
+
+
+[E] Couldn't find users using querydispinfo: NT_STATUS_ACCESS_DENIED
+
+                                                                                                          
+
+[E] Couldn't find users using enumdomusers: NT_STATUS_ACCESS_DENIED                                       
+                                                                                                          
+                                                                                                          
+ =================================( Share Enumeration on 192.168.80.45 )=================================
+                                                                                                          
+do_connect: Connection to 192.168.80.45 failed (Error NT_STATUS_RESOURCE_NAME_NOT_FOUND)                  
+
+        Sharename       Type      Comment
+        ---------       ----      -------
+Reconnecting with SMB1 for workgroup listing.
+Unable to connect with SMB1 -- no workgroup available
+
+[+] Attempting to map shares on 192.168.80.45                                                             
+                                                                                                          
+                                                                                                          
+ ===========================( Password Policy Information for 192.168.80.45 )===========================
+                                                                                                          
+                                                                                                          
+[E] Unexpected error from polenum:                                                                        
+                                                                                                          
+                                                                                                          
+
+[+] Attaching to 192.168.80.45 using a NULL share
+
+[+] Trying protocol 139/SMB...
+
+        [!] Protocol failed: Cannot request session (Called Name:192.168.80.45)
+
+[+] Trying protocol 445/SMB...
+
+        [!] Protocol failed: SMB SessionError: STATUS_ACCESS_DENIED({Access Denied} A process has requested access to an object but has not been granted those access rights.)
+
+
+
+[E] Failed to get password policy with rpcclient                                                          
+                                                                                                          
+                                                                                                          
+
+ ======================================( Groups on 192.168.80.45 )======================================
+                                                                                                          
+                                                                                                          
+[+] Getting builtin groups:                                                                               
+                                                                                                          
+                                                                                                          
+[+]  Getting builtin group memberships:                                                                   
+                                                                                                          
+                                                                                                          
+[+]  Getting local groups:                                                                                
+                                                                                                          
+                                                                                                          
+[+]  Getting local group memberships:                                                                     
+                                                                                                          
+                                                                                                          
+[+]  Getting domain groups:                                                                               
+                                                                                                          
+                                                                                                          
+[+]  Getting domain group memberships:                                                                    
+                                                                                                          
+                                                                                                          
+ ==================( Users on 192.168.80.45 via RID cycling (RIDS: 500-550,1000-1050) )==================
+                                                                                                          
+                                                                                                          
+[E] Couldn't get SID: NT_STATUS_ACCESS_DENIED.  RID cycling not possible.                                 
+                                                                                                          
+                                                                                                          
+ ===============================( Getting printer info for 192.168.80.45 )===============================
+                                                                                                          
+do_cmd: Could not initialise spoolss. Error was NT_STATUS_ACCESS_DENIED                                   
+
+
+enum4linux complete on Tue May 10 22:11:09 2022
+
+
+nbtscan -r 192.168.80.45  
+Doing NBT name scan for addresses from 192.168.80.45
+
+IP address       NetBIOS Name     Server    User             MAC address      
+------------------------------------------------------------------------------
+192.168.80.45    KEVIN            <server>  <unknown>        00:50:56:ba:af:fe
+
+```
 
