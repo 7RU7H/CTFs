@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Thu May 12 10:57:03 2022 as: nmap -&#45;script vuln -oA nmap/vuln -p 80 -&#45;min-rate 5000 192.168.80.61 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/vuln -p 80 -&#45;min-rate 5000 192.168.80.61" start="1652349423" startstr="Thu May 12 10:57:03 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="1" services="80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.80.61" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1652349434" endtime="1652349559"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="192.168.80.61" addrtype="ipv4"/>
+<hostnames>
+<hostname name="Billyboss" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-phpmyadmin-dir-traversal" output="&#xa;  VULNERABLE:&#xa;  phpMyAdmin grab_globals.lib.php subform Parameter Traversal Local File Inclusion&#xa;    State: LIKELY VULNERABLE&#xa;    IDs:  CVE:CVE-2005-3299&#xa;      PHP file inclusion vulnerability in grab_globals.lib.php in phpMyAdmin 2.6.4 and 2.6.4-pl1 allows remote attackers to include local files via the $__redirect parameter, possibly involving the subform array.&#xa;      &#xa;    Disclosure date: 2005-10-nil&#xa;    Extra information:&#xa;      ../../../../../etc/passwd not found.&#xa;  &#xa;    References:&#xa;      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2005-3299&#xa;      http://www.exploit-db.com/exploits/1244/&#xa;"><table key="CVE-2005-3299">
+<elem key="title">phpMyAdmin grab_globals.lib.php subform Parameter Traversal Local File Inclusion</elem>
+<elem key="state">LIKELY VULNERABLE</elem>
+<table key="ids">
+<elem>CVE:CVE-2005-3299</elem>
+</table>
+<table key="description">
+<elem>PHP file inclusion vulnerability in grab_globals.lib.php in phpMyAdmin 2.6.4 and 2.6.4-pl1 allows remote attackers to include local files via the $__redirect parameter, possibly involving the subform array.&#xa;</elem>
+</table>
+<table key="dates">
+<table key="disclosure">
+<elem key="month">10</elem>
+<elem key="year">2005</elem>
+<elem key="dat">10</elem>
+</table>
+</table>
+<elem key="disclosure">2005-10-nil</elem>
+<table key="extra_info">
+<elem>../../../../../etc/passwd not found.&#xa;</elem>
+</table>
+<table key="refs">
+<elem>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2005-3299</elem>
+<elem>http://www.exploit-db.com/exploits/1244/</elem>
+</table>
+</table>
+</script><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-vuln-cve2017-1001000" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-majordomo2-dir-traversal" output="ERROR: Script execution failed (use -d to debug)"/></port>
+</ports>
+<times srtt="42790" rttvar="35308" to="184022"/>
+</host>
+<runstats><finished time="1652349559" timestr="Thu May 12 10:59:19 2022" summary="Nmap done at Thu May 12 10:59:19 2022; 1 IP address (1 host up) scanned in 136.10 seconds" elapsed="136.10" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -1,0 +1,103 @@
+# Nmap 7.92 scan initiated Thu May 12 10:55:35 2022 as: nmap --script discovery -oA nmap/discovery -p 80 --min-rate 5000 192.168.80.61
+Pre-scan script results:
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for Billyboss (192.168.80.61)
+Host is up (0.042s latency).
+
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+80/tcp open  http
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-chrono: Request times for /; avg: 231.71ms; min: 150.41ms; max: 302.33ms
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-cors: HEAD GET POST PUT DELETE TRACE OPTIONS CONNECT PATCH
+|_http-feed: Couldn't find any feeds.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=billyboss
+|     
+|     Path: http://billyboss:80/static/css/2.ab0e71a6.chunk.css
+|     Line number: 7
+|     Comment: 
+|         /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+|     
+|     Path: http://billyboss:80/static/css/2.ab0e71a6.chunk.css
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * Bootstrap v3.3.7 (http://getbootstrap.com)
+|          * Copyright 2011-2016 Twitter, Inc.
+|          * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+|          */
+|     
+|     Path: http://billyboss:80/static/css/2.ab0e71a6.chunk.css
+|     Line number: 6
+|     Comment: 
+|         /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+|     
+|     Path: http://billyboss:80/static/css/2.ab0e71a6.chunk.css
+|     Line number: 8
+|     Comment: 
+|         /*# sourceMappingURL=2.ab0e71a6.chunk.css.map */
+|     
+|     Path: http://billyboss:80/static/css/main.bf7806c2.chunk.css
+|     Line number: 2
+|     Comment: 
+|_        /*# sourceMappingURL=main.bf7806c2.chunk.css.map */
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; ico: 1
+|     /static/css/
+|       css: 2
+|   Longest directory structure:
+|     Depth: 2
+|     Dir: /static/css/
+|   Total files found (by extension):
+|_    Other: 1; css: 2; ico: 1
+| http-headers: 
+|   Content-Length: 2166
+|   Content-Type: text/html
+|   Last-Modified: Tue, 11 Feb 2020 12:44:24 GMT
+|   Accept-Ranges: bytes
+|   ETag: "1d5e0d8fd07cc76"
+|   Server: Microsoft-IIS/10.0
+|   Date: Thu, 12 May 2022 09:55:36 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+|_http-date: Thu, 12 May 2022 09:55:37 GMT; +59m45s from local time.
+|_http-errors: Couldn't find any error pages.
+|_http-xssed: No previously reported XSS vuln.
+| http-vhosts: 
+|_128 names had status 200
+|_http-mobileversion-checker: No mobile version detected.
+|_http-title: BaGet
+
+Host script results:
+|_dns-brute: Can't guess domain of "Billyboss"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Thu May 12 10:56:42 2022 -- 1 IP address (1 host up) scanned in 67.60 seconds

@@ -1,0 +1,27 @@
+# Nmap 7.92 scan initiated Thu May 12 10:57:03 2022 as: nmap --script vuln -oA nmap/vuln -p 80 --min-rate 5000 192.168.80.61
+Nmap scan report for Billyboss (192.168.80.61)
+Host is up (0.043s latency).
+
+PORT   STATE SERVICE
+80/tcp open  http
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-phpmyadmin-dir-traversal: 
+|   VULNERABLE:
+|   phpMyAdmin grab_globals.lib.php subform Parameter Traversal Local File Inclusion
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2005-3299
+|       PHP file inclusion vulnerability in grab_globals.lib.php in phpMyAdmin 2.6.4 and 2.6.4-pl1 allows remote attackers to include local files via the $__redirect parameter, possibly involving the subform array.
+|       
+|     Disclosure date: 2005-10-nil
+|     Extra information:
+|       ../../../../../etc/passwd not found.
+|   
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2005-3299
+|_      http://www.exploit-db.com/exploits/1244/
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+|_http-majordomo2-dir-traversal: ERROR: Script execution failed (use -d to debug)
+
+# Nmap done at Thu May 12 10:59:19 2022 -- 1 IP address (1 host up) scanned in 136.10 seconds

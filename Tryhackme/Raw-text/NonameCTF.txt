@@ -1,0 +1,225 @@
+Name: NonameCTF
+Date:  
+Difficulty: Easy 
+Description: Buffer overflow, server-side template injection and more...
+Better Description:  
+Goals: BufferOverflow and SSTI practice, don't care about anything else
+Learnt:
+
+## Recon
+
+root@ip-10-10-220-33:~# ping -c 3 10.10.210.34
+PING 10.10.210.34 (10.10.210.34) 56(84) bytes of data.
+64 bytes from 10.10.210.34: icmp_seq=1 ttl=64 time=16.3 ms
+64 bytes from 10.10.210.34: icmp_seq=2 ttl=64 time=0.493 ms
+64 bytes from 10.10.210.34: icmp_seq=3 ttl=64 time=0.446 ms
+
+--- 10.10.210.34 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2016ms
+rtt min/avg/max/mdev = 0.446/5.762/16.348/7.485 ms
+root@ip-10-10-220-33:~# nmap -sC -sV -p- 10.10.210.34 --min-rate 5000
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-05-12 10:23 BST
+Nmap scan report for ip-10-10-210-34.eu-west-1.compute.internal (10.10.210.34)
+Host is up (0.00053s latency).
+Not shown: 65531 closed ports
+PORT     STATE SERVICE       VERSION
+22/tcp   open  ssh           OpenSSH 7.2p2 Ubuntu 4ubuntu2.8 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 12:57:3f:cc:86:39:04:3b:f0:e6:46:bf:72:51:64:0b (RSA)
+|   256 81:05:75:ad:78:83:62:b2:06:41:5b:e5:a5:a9:82:4d (ECDSA)
+|_  256 0f:8d:0e:19:e9:c7:cc:14:39:e9:34:60:5c:f7:aa:fe (EdDSA)
+80/tcp   open  http          Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Site doesn't have a title (text/html).
+2222/tcp open  EtherNetIP-1?
+| fingerprint-strings: 
+|   DNSStatusRequest, GenericLines, NULL, SMBProgNeg, SSLSessionReq, X11Probe: 
+|     Welcome to the NoNameCTF!
+|     Choose an action:
+|     regiser: 1
+|     login: 2
+|     get_secret_directory: 3
+|     store_your_buffer: 4
+|   GetRequest, HTTPOptions, Help, RTSPRequest: 
+|     Welcome to the NoNameCTF!
+|     Choose an action:
+|     regiser: 1
+|     login: 2
+|     get_secret_directory: 3
+|     store_your_buffer: 4
+|     Wrong option
+|_    Good bye
+9090/tcp open  http          Tornado httpd 6.0.3
+|_http-server-header: TornadoServer/6.0.3
+|_http-title: Site doesn't have a title (text/plain).
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port2222-TCP:V=7.60%I=7%D=5/12%Time=627CD229%P=x86_64-pc-linux-gnu%r(NU
+SF:LL,7B,"Welcome\x20to\x20the\x20NoNameCTF!\r\nChoose\x20an\x20action:\r\
+SF:n>\x20regiser:\x201\r\n>\x20login:\x202\r\n>\x20get_secret_directory:\x
+SF:203\r\n>\x20store_your_buffer:\x204\r\n")%r(GenericLines,7B,"Welcome\x2
+SF:0to\x20the\x20NoNameCTF!\r\nChoose\x20an\x20action:\r\n>\x20regiser:\x2
+SF:01\r\n>\x20login:\x202\r\n>\x20get_secret_directory:\x203\r\n>\x20store
+SF:_your_buffer:\x204\r\n")%r(GetRequest,93,"Welcome\x20to\x20the\x20NoNam
+SF:eCTF!\r\nChoose\x20an\x20action:\r\n>\x20regiser:\x201\r\n>\x20login:\x
+SF:202\r\n>\x20get_secret_directory:\x203\r\n>\x20store_your_buffer:\x204\
+SF:r\nWrong\x20option\r\nGood\x20bye\r\n")%r(HTTPOptions,93,"Welcome\x20to
+SF:\x20the\x20NoNameCTF!\r\nChoose\x20an\x20action:\r\n>\x20regiser:\x201\
+SF:r\n>\x20login:\x202\r\n>\x20get_secret_directory:\x203\r\n>\x20store_yo
+SF:ur_buffer:\x204\r\nWrong\x20option\r\nGood\x20bye\r\n")%r(RTSPRequest,9
+SF:3,"Welcome\x20to\x20the\x20NoNameCTF!\r\nChoose\x20an\x20action:\r\n>\x
+SF:20regiser:\x201\r\n>\x20login:\x202\r\n>\x20get_secret_directory:\x203\
+SF:r\n>\x20store_your_buffer:\x204\r\nWrong\x20option\r\nGood\x20bye\r\n")
+SF:%r(DNSStatusRequest,7B,"Welcome\x20to\x20the\x20NoNameCTF!\r\nChoose\x2
+SF:0an\x20action:\r\n>\x20regiser:\x201\r\n>\x20login:\x202\r\n>\x20get_se
+SF:cret_directory:\x203\r\n>\x20store_your_buffer:\x204\r\n")%r(Help,93,"W
+SF:elcome\x20to\x20the\x20NoNameCTF!\r\nChoose\x20an\x20action:\r\n>\x20re
+SF:giser:\x201\r\n>\x20login:\x202\r\n>\x20get_secret_directory:\x203\r\n>
+SF:\x20store_your_buffer:\x204\r\nWrong\x20option\r\nGood\x20bye\r\n")%r(S
+SF:SLSessionReq,7B,"Welcome\x20to\x20the\x20NoNameCTF!\r\nChoose\x20an\x20
+SF:action:\r\n>\x20regiser:\x201\r\n>\x20login:\x202\r\n>\x20get_secret_di
+SF:rectory:\x203\r\n>\x20store_your_buffer:\x204\r\n")%r(SMBProgNeg,7B,"We
+SF:lcome\x20to\x20the\x20NoNameCTF!\r\nChoose\x20an\x20action:\r\n>\x20reg
+SF:iser:\x201\r\n>\x20login:\x202\r\n>\x20get_secret_directory:\x203\r\n>\
+SF:x20store_your_buffer:\x204\r\n")%r(X11Probe,7B,"Welcome\x20to\x20the\x2
+SF:0NoNameCTF!\r\nChoose\x20an\x20action:\r\n>\x20regiser:\x201\r\n>\x20lo
+SF:gin:\x202\r\n>\x20get_secret_directory:\x203\r\n>\x20store_your_buffer:
+SF:\x204\r\n");
+MAC Address: 02:05:1D:32:91:25 (Unknown)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 142.47 seconds
+
+
+root@ip-10-10-220-33:~# nikto -h 10.10.210.34:80
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.210.34
++ Target Hostname:    ip-10-10-210-34.eu-west-1.compute.internal
++ Target Port:        80
++ Start Time:         2022-05-12 10:28:24 (GMT1)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.18 (Ubuntu)
++ Server leaks inodes via ETags, header found with file /, fields: 0x65 0x59ece6d6b892e 
++ The anti-clickjacking X-Frame-Options header is not present.
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ Allowed HTTP Methods: POST, OPTIONS, GET, HEAD 
++ OSVDB-3233: /icons/README: Apache default file found.
++ 6544 items checked: 0 error(s) and 4 item(s) reported on remote host
++ End Time:           2022-05-12 10:28:35 (GMT1) (11 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+root@ip-10-10-220-33:~# nikto -h 10.10.210.34:9090
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.210.34
++ Target Hostname:    ip-10-10-210-34.eu-west-1.compute.internal
++ Target Port:        9090
++ Start Time:         2022-05-12 10:29:00 (GMT1)
+---------------------------------------------------------------------------
++ Server: TornadoServer/6.0.3
++ The anti-clickjacking X-Frame-Options header is not present.
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ 6544 items checked: 0 error(s) and 1 item(s) reported on remote host
++ End Time:           2022-05-12 10:29:14 (GMT1) (14 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+root@ip-10-10-220-33:~# nmap --script discovery -p 80,2222,9090 10.10.210.34 --min-rate 5000
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-05-12 10:31 BST
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for ip-10-10-210-34.eu-west-1.compute.internal (10.10.210.34)
+Host is up (0.0016s latency).
+
+PORT     STATE SERVICE
+80/tcp   open  http
+|_http-chrono: Request times for /; avg: 181.25ms; min: 157.92ms; max: 200.00ms
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=ip-10-10-210-34.eu-west-1.compute.internal
+|     
+|     Path: http://ip-10-10-210-34.eu-west-1.compute.internal:80/
+|     Line number: 4
+|     Comment: 
+|         <!--char buffer[250]; -->
+|     
+|     Path: http://ip-10-10-210-34.eu-west-1.compute.internal:80/
+|     Line number: 5
+|     Comment: 
+|_        <!--A*1000-->
+|_http-date: Thu, 12 May 2022 09:31:25 GMT; -1s from local time.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-errors: Couldn't find any error pages.
+|_http-feed: Couldn't find any feeds.
+| http-headers: 
+|   Date: Thu, 12 May 2022 09:31:24 GMT
+|   Server: Apache/2.4.18 (Ubuntu)
+|   Last-Modified: Tue, 18 Feb 2020 00:05:19 GMT
+|   ETag: "65-59ece6d6b892e"
+|   Accept-Ranges: bytes
+|   Content-Length: 101
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-mobileversion-checker: No mobile version detected.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-security-headers: 
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1
+|_http-title: Site doesn't have a title (text/html).
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-vhosts: 
+|_127 names had status 200
+|_http-xssed: No previously reported XSS vuln.
+2222/tcp open  EtherNetIP-1
+|_banner: Welcome to the NoNameCTF!\x0D\x0AChoose an action:\x0D\x0A> ...
+9090/tcp open  zeus-admin
+MAC Address: 02:05:1D:32:91:25 (Unknown)
+
+Host script results:
+| dns-brute: 
+|   DNS Brute-force hostnames: 
+|_    ns0.eu-west-1.compute.internal - 172.16.0.23
+|_fcrdns: PASS (ip-10-10-210-34.eu-west-1.compute.internal)
+|_ipidseq: All zeros
+|_path-mtu: PMTU == 9001
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV  LOSS (%)
+| 80    0       454.00     84.44   50.0%
+| 2222  0       570.80     252.19  50.0%
+|_9090  0       458.00     41.10   40.0%
+
+Nmap done: 1 IP address (1 host up) scanned in 48.60 seconds
+
+
