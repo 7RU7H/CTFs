@@ -1,0 +1,269 @@
+# Nmap 7.92 scan initiated Tue May 17 09:07:52 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 5000 192.168.144.152
+Pre-scan script results:
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 192.168.144.152
+Host is up (0.041s latency).
+Not shown: 65530 filtered tcp ports (no-response)
+Bug in http-security-headers: no string output.
+PORT    STATE SERVICE
+80/tcp  open  http
+| http-headers: 
+|   Content-Length: 703
+|   Content-Type: text/html
+|   Last-Modified: Tue, 01 Jun 2021 14:59:09 GMT
+|   Accept-Ranges: bytes
+|   ETag: "3c7a34adf656d71:0"
+|   Server: Microsoft-IIS/10.0
+|   X-Powered-By: ASP.NET
+|   Date: Tue, 17 May 2022 08:08:54 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+|_http-devframework: ASP.NET detected. Found related header.
+|_http-mobileversion-checker: No mobile version detected.
+|_http-date: Tue, 17 May 2022 08:08:53 GMT; +1h00m00s from local time.
+|_http-feed: Couldn't find any feeds.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; png: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1; png: 1
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-xssed: No previously reported XSS vuln.
+|_http-chrono: Request times for /; avg: 651.63ms; min: 149.07ms; max: 2549.10ms
+| http-vhosts: 
+|_128 names had status 200
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.144.152
+|     
+|     Path: http://192.168.144.152:80/
+|     Line number: 7
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|_        -->
+|_http-errors: Couldn't find any error pages.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-title: IIS Windows Server
+135/tcp open  msrpc
+139/tcp open  netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+443/tcp open  https
+|_http-devframework: ASP.NET detected. Found related header.
+|_http-chrono: Request times for /; avg: 264.80ms; min: 252.01ms; max: 301.75ms
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.144.152
+|     
+|     Path: https://192.168.144.152:443/
+|     Line number: 7
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|_        -->
+|_http-mobileversion-checker: No mobile version detected.
+| ssl-cert: Subject: commonName=PowerShellWebAccessTestWebSite
+| Not valid before: 2021-06-01T08:00:08
+|_Not valid after:  2021-08-30T08:00:08
+|_http-xssed: No previously reported XSS vuln.
+|_http-errors: Couldn't find any error pages.
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp384r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - F
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp384r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Insecure certificate signature (SHA1), score capped at F
+|_  least strength: F
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; png: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1; png: 1
+|_http-feed: Couldn't find any feeds.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| tls-alpn: 
+|_  http/1.1
+|_http-date: Tue, 17 May 2022 08:08:26 GMT; +1h00m00s from local time.
+|_http-title: IIS Windows Server
+|_ssl-date: 2022-05-17T08:08:30+00:00; +1s from scanner time.
+| http-vhosts: 
+|_128 names had status 200
+| http-headers: 
+|   Content-Length: 703
+|   Content-Type: text/html
+|   Last-Modified: Tue, 01 Jun 2021 14:59:09 GMT
+|   Accept-Ranges: bytes
+|   ETag: "3c7a34adf656d71:0"
+|   Server: Microsoft-IIS/10.0
+|   X-Powered-By: ASP.NET
+|   Date: Tue, 17 May 2022 08:08:31 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+| http-security-headers: 
+|   Strict_Transport_Security: 
+|_    HSTS not configured in HTTPS Server
+445/tcp open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+
+Host script results:
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled but not required
+|_fcrdns: FAIL (No PTR record)
+|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_dns-brute: Can't guess domain of "192.168.144.152"; use dns-brute.domain script argument.
+| smb2-time: 
+|   date: 2022-05-17T08:08:36
+|_  start_date: N/A
+| smb2-capabilities: 
+|   2.0.2: 
+|     Distributed File System
+|   2.1: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.0.2: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.1.1: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+| smb-protocols: 
+|   dialects: 
+|     2.0.2
+|     2.1
+|     3.0
+|     3.0.2
+|_    3.1.1
+
+# Nmap done at Tue May 17 09:14:40 2022 -- 1 IP address (1 host up) scanned in 408.11 seconds

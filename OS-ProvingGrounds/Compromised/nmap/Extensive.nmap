@@ -1,0 +1,33 @@
+# Nmap 7.92 scan initiated Tue May 17 09:05:30 2022 as: nmap -sC -sV -oA nmap/Extensive -p- --min-rate 5000 192.168.144.152
+Nmap scan report for 192.168.144.152
+Host is up (0.045s latency).
+Not shown: 65530 filtered tcp ports (no-response)
+PORT    STATE SERVICE       VERSION
+80/tcp  open  http          Microsoft IIS httpd 10.0
+|_http-server-header: Microsoft-IIS/10.0
+|_http-title: IIS Windows Server
+135/tcp open  msrpc?
+139/tcp open  netbios-ssn?
+443/tcp open  https?
+| tls-alpn: 
+|_  http/1.1
+| ssl-cert: Subject: commonName=PowerShellWebAccessTestWebSite
+| Not valid before: 2021-06-01T08:00:08
+|_Not valid after:  2021-08-30T08:00:08
+|_ssl-date: 2022-05-17T08:06:58+00:00; 0s from scanner time.
+445/tcp open  microsoft-ds?
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port139-TCP:V=7.92%I=7%D=5/17%Time=6283576D%P=x86_64-pc-linux-gnu%r(Get
+SF:Request,5,"\x83\0\0\x01\x8f");
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-time: 
+|   date: 2022-05-17T08:06:15
+|_  start_date: N/A
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled but not required
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Tue May 17 09:07:05 2022 -- 1 IP address (1 host up) scanned in 94.40 seconds

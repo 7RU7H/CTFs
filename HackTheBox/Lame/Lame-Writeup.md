@@ -1,10 +1,10 @@
-Name:  
-Date:  
-Difficulty:  
+Name: Lame 
+Date: 17/05/2022
+Difficulty: Easy 
 Description:  
-Better Description:  
-Goals:  
-Learnt: 
+Better Description: Research the versions the box.
+Goals: TJNull's OSCP like boxes
+Learnt: Check all the versions!
 
 ## Recon
 
@@ -435,9 +435,14 @@ smbmap -H 10.129.103.233
 
 ```
 
-Given read and write access without credentials we can upload a shell to the server via the /tmp shar
+Given read and write access without credentials we can upload a shell to the server via the /tmp share
+I put a reverse tcp msfvenom shell on there for later just in case.  You can't execute file oiver smbclient but a backdoor is a backdoor and backup.
 
 ```bash
+smbclient //$IP//tmp -c 'put shell.elf'
+````
 
-smbclient //$IP/$share -c 'put /var/www/my_local_file.txt .\target_folder\target_file.txt' password -U username 
-```
+Research distcc [found](http://edublog.bitcrack.net/2016/10/pwning-metasploitable-2-exploiting_12.html); TL;DR version is that there is metasploit exploit.
+It is showcase on metasploitable-2. But it is ruse. Dorked the Samaba version for [another metasploit exploit](https://www.exploit-db.com/exploits/16320)
+
+![foothold](Screenshots/foothold.png)
