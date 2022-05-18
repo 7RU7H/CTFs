@@ -1,0 +1,202 @@
+# Nmap 7.92 scan initiated Wed May 18 09:00:17 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 5000 10.129.104.163
+Pre-scan script results:
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.129.104.163
+Host is up (0.052s latency).
+Not shown: 65533 filtered tcp ports (no-response)
+Bug in http-security-headers: no string output.
+PORT    STATE SERVICE
+80/tcp  open  http
+|_http-mobileversion-checker: No mobile version detected.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-xssed: No previously reported XSS vuln.
+|_http-feed: Couldn't find any feeds.
+|_http-chrono: Request times for /; avg: 164.33ms; min: 153.60ms; max: 201.46ms
+|_http-date: Wed, 18 May 2022 08:00:50 GMT; +59m59s from local time.
+|_http-title: Site doesn't have a title (text/html).
+| http-headers: 
+|   Date: Wed, 18 May 2022 08:01:00 GMT
+|   Server: Apache/2.4.18 (Ubuntu)
+|   Last-Modified: Sun, 02 Jul 2017 23:49:44 GMT
+|   ETag: "b2-5535e4e04002a"
+|   Accept-Ranges: bytes
+|   Content-Length: 178
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-comments-displayer: Couldn't find any comments.
+| http-vhosts: 
+|_128 names had status 200
+| http-enum: 
+|_  /info.php: Possible information file
+|_http-errors: Couldn't find any error pages.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1
+443/tcp open  https
+| http-security-headers: 
+|   Strict_Transport_Security: 
+|_    HSTS not configured in HTTPS Server
+|_http-mobileversion-checker: No mobile version detected.
+|_http-feed: Couldn't find any feeds.
+|_ssl-date: TLS randomness does not represent time
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; png: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1; png: 1
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: client
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: client
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: client
+|_  least strength: A
+| ssl-cert: Subject: commonName=nineveh.htb/organizationName=HackTheBox Ltd/stateOrProvinceName=Athens/countryName=GR
+| Not valid before: 2017-07-01T15:03:30
+|_Not valid after:  2018-07-01T15:03:30
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-vhosts: 
+| mail3 : 400
+| en : 400
+| apache : 400
+| mail2 : 400
+| cdn : 400
+|_123 names had status 200
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-headers: 
+|   Date: Wed, 18 May 2022 08:00:56 GMT
+|   Server: Apache/2.4.18 (Ubuntu)
+|   Last-Modified: Sun, 02 Jul 2017 23:50:02 GMT
+|   ETag: "31-5535e4f1dfd20"
+|   Accept-Ranges: bytes
+|   Content-Length: 49
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-chrono: Request times for /; avg: 336.61ms; min: 303.12ms; max: 392.42ms
+|_http-comments-displayer: Couldn't find any comments.
+|_http-title: Site doesn't have a title (text/html).
+|_http-date: Wed, 18 May 2022 08:00:54 GMT; +59m59s from local time.
+|_http-xssed: No previously reported XSS vuln.
+| http-enum: 
+|   /db/: BlogWorx Database
+|_  /db/: Potentially interesting folder
+| tls-alpn: 
+|_  http/1.1
+|_http-errors: Couldn't find any error pages.
+
+Host script results:
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "10.129.104.163"; use dns-brute.domain script argument.
+
+# Nmap done at Wed May 18 09:05:06 2022 -- 1 IP address (1 host up) scanned in 288.34 seconds

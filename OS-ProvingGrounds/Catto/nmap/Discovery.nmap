@@ -1,0 +1,43 @@
+# Nmap 7.92 scan initiated Wed May 18 09:31:11 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 5000 192.168.249.139
+Pre-scan script results:
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for 192.168.249.139
+Host is up (0.064s latency).
+Not shown: 65528 closed tcp ports (conn-refused)
+PORT      STATE SERVICE
+8080/tcp  open  http-proxy
+| http-enum: 
+|_  /README.txt: Interesting, a readme.
+|_http-open-proxy: Proxy might be redirecting requests
+|_http-title: Identity by HTML5 UP
+| http-vhosts: 
+|_128 names had status 200
+|_http-chrono: Request times for /; avg: 352.02ms; min: 203.75ms; max: 577.29ms
+| http-headers: 
+|   Server: nginx/1.14.1
+|   Date: Wed, 18 May 2022 08:30:54 GMT
+|   Content-Type: text/html
+|   Content-Length: 3032
+|   Last-Modified: Tue, 01 Dec 2020 00:22:51 GMT
+|   Connection: close
+|   ETag: "5fc58cdb-bd8"
+|   Accept-Ranges: bytes
+|   
+|_  (Request type: HEAD)
+|_http-date: Wed, 18 May 2022 08:30:52 GMT; +59m20s from local time.
+18080/tcp open  unknown
+30330/tcp open  unknown
+33047/tcp open  unknown
+35045/tcp open  unknown
+42022/tcp open  unknown
+|_banner: SSH-2.0-OpenSSH_8.0
+50400/tcp open  unknown
+
+Host script results:
+|_dns-brute: Can't guess domain of "192.168.249.139"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Wed May 18 09:33:42 2022 -- 1 IP address (1 host up) scanned in 150.31 seconds

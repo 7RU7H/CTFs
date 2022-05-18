@@ -1,0 +1,68 @@
+# Nmap 7.92 scan initiated Wed May 18 09:30:05 2022 as: nmap -sC -sV -oA nmap/Extensive -p- --min-rate 5000 192.168.249.139
+Nmap scan report for 192.168.249.139
+Host is up (0.051s latency).
+Not shown: 65528 closed tcp ports (conn-refused)
+PORT      STATE SERVICE VERSION
+8080/tcp  open  http    nginx 1.14.1
+|_http-title: Identity by HTML5 UP
+|_http-open-proxy: Proxy might be redirecting requests
+|_http-server-header: nginx/1.14.1
+18080/tcp open  http    Apache httpd 2.4.37 ((centos))
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-title: CentOS \xE6\x8F\x90\xE4\xBE\x9B\xE7\x9A\x84 Apache HTTP \xE6\x9C\x8D\xE5\x8A\xA1\xE5\x99\xA8\xE6\xB5\x8B\xE8\xAF\x95\xE9\xA1\xB5
+|_http-server-header: Apache/2.4.37 (centos)
+30330/tcp open  http    Node.js Express framework
+|_http-title: Site doesn't have a title (text/html; charset=UTF-8).
+|_http-cors: HEAD GET POST PUT DELETE PATCH
+33047/tcp open  http    Node.js Express framework
+|_http-title: Site doesn't have a title (text/html; charset=utf-8).
+|_http-cors: HEAD GET POST PUT DELETE PATCH
+35045/tcp open  unknown
+| fingerprint-strings: 
+|   DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, JavaRMI, Kerberos, LANDesk-RC, LDAPBindReq, LDAPSearchReq, LPDString, NCP, NotesRPC, RPCCheck, RTSPRequest, SIPOptions, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServer, TerminalServerCookie, WMSRequest, X11Probe, afp, ms-sql-s, oracle-tns: 
+|     HTTP/1.1 400 Bad Request
+|_    Connection: close
+42022/tcp open  ssh     OpenSSH 8.0 (protocol 2.0)
+| ssh-hostkey: 
+|   3072 cc:21:51:f2:c6:2a:ad:d6:ca:07:04:de:70:5f:fa:13 (RSA)
+|   256 05:e4:90:d2:00:2b:9d:14:e3:9f:44:68:d2:8e:bc:dc (ECDSA)
+|_  256 ca:80:49:73:f0:c8:05:ae:bd:2b:42:37:1d:13:e0:71 (ED25519)
+50400/tcp open  http    Node.js Express framework
+|_http-title: Error
+|_http-cors: HEAD GET POST PUT DELETE PATCH
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port35045-TCP:V=7.92%I=7%D=5/18%Time=6284AEB0%P=x86_64-pc-linux-gnu%r(R
+SF:TSPRequest,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20clo
+SF:se\r\n\r\n")%r(RPCCheck,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConne
+SF:ction:\x20close\r\n\r\n")%r(DNSVersionBindReqTCP,2F,"HTTP/1\.1\x20400\x
+SF:20Bad\x20Request\r\nConnection:\x20close\r\n\r\n")%r(DNSStatusRequestTC
+SF:P,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r\
+SF:n")%r(Help,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20clo
+SF:se\r\n\r\n")%r(SSLSessionReq,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\n
+SF:Connection:\x20close\r\n\r\n")%r(TerminalServerCookie,2F,"HTTP/1\.1\x20
+SF:400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r\n")%r(TLSSessionReq
+SF:,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r\n
+SF:")%r(Kerberos,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20
+SF:close\r\n\r\n")%r(SMBProgNeg,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\n
+SF:Connection:\x20close\r\n\r\n")%r(X11Probe,2F,"HTTP/1\.1\x20400\x20Bad\x
+SF:20Request\r\nConnection:\x20close\r\n\r\n")%r(LPDString,2F,"HTTP/1\.1\x
+SF:20400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r\n")%r(LDAPSearchR
+SF:eq,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r
+SF:\n")%r(LDAPBindReq,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection
+SF::\x20close\r\n\r\n")%r(SIPOptions,2F,"HTTP/1\.1\x20400\x20Bad\x20Reques
+SF:t\r\nConnection:\x20close\r\n\r\n")%r(LANDesk-RC,2F,"HTTP/1\.1\x20400\x
+SF:20Bad\x20Request\r\nConnection:\x20close\r\n\r\n")%r(TerminalServer,2F,
+SF:"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r\n")%r
+SF:(NCP,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\n
+SF:\r\n")%r(NotesRPC,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:
+SF:\x20close\r\n\r\n")%r(JavaRMI,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\
+SF:nConnection:\x20close\r\n\r\n")%r(WMSRequest,2F,"HTTP/1\.1\x20400\x20Ba
+SF:d\x20Request\r\nConnection:\x20close\r\n\r\n")%r(oracle-tns,2F,"HTTP/1\
+SF:.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r\n")%r(ms-sql-
+SF:s,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r\
+SF:n")%r(afp,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20clos
+SF:e\r\n\r\n");
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed May 18 09:30:57 2022 -- 1 IP address (1 host up) scanned in 51.38 seconds

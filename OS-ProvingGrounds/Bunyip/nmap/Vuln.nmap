@@ -1,0 +1,46 @@
+# Nmap 7.92 scan initiated Wed May 18 11:09:14 2022 as: nmap --script vuln -oA nmap/Vuln -p- --min-rate 5000 192.168.249.153
+Nmap scan report for 192.168.249.153
+Host is up (0.058s latency).
+Not shown: 65531 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+| http-enum: 
+|   /blog/: Blog
+|   /help/: Potentially interesting folder
+|_  /users/: Potentially interesting folder
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-vuln-cve2011-3192: 
+|   VULNERABLE:
+|   Apache byterange filter DoS
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2011-3192  BID:49303
+|       The Apache web server is vulnerable to a denial of service attack when numerous
+|       overlapping byte ranges are requested.
+|     Disclosure date: 2011-08-19
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
+|       https://seclists.org/fulldisclosure/2011/Aug/175
+|       https://www.securityfocus.com/bid/49303
+|_      https://www.tenable.com/plugins/nessus/55976
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+3306/tcp open  mysql
+|_mysql-vuln-cve2012-2122: ERROR: Script execution failed (use -d to debug)
+8000/tcp open  http-alt
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       http://ha.ckers.org/slowloris/
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+
+# Nmap done at Wed May 18 11:18:21 2022 -- 1 IP address (1 host up) scanned in 547.58 seconds

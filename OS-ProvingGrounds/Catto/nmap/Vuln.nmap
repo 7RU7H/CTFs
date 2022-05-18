@@ -1,0 +1,29 @@
+# Nmap 7.92 scan initiated Wed May 18 09:34:05 2022 as: nmap --script vuln -oA nmap/Vuln -p- --min-rate 5000 192.168.249.139
+Nmap scan report for 192.168.249.139
+Host is up (0.053s latency).
+Not shown: 65031 closed tcp ports (conn-refused), 497 filtered tcp ports (no-response)
+PORT      STATE SERVICE
+8080/tcp  open  http-proxy
+| http-vuln-cve2011-3192: 
+|   VULNERABLE:
+|   Apache byterange filter DoS
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2011-3192  BID:49303
+|       The Apache web server is vulnerable to a denial of service attack when numerous
+|       overlapping byte ranges are requested.
+|     Disclosure date: 2011-08-19
+|     References:
+|       https://www.tenable.com/plugins/nessus/55976
+|       https://www.securityfocus.com/bid/49303
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
+|_      https://seclists.org/fulldisclosure/2011/Aug/175
+| http-enum: 
+|_  /README.txt: Interesting, a readme.
+18080/tcp open  unknown
+30330/tcp open  unknown
+33047/tcp open  unknown
+35045/tcp open  unknown
+42022/tcp open  unknown
+50400/tcp open  unknown
+
+# Nmap done at Wed May 18 09:36:57 2022 -- 1 IP address (1 host up) scanned in 172.27 seconds

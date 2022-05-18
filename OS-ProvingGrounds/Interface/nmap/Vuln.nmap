@@ -1,0 +1,39 @@
+# Nmap 7.92 scan initiated Tue May 17 20:52:58 2022 as: nmap --script vuln -oA nmap/Vuln -p- --min-rate 5000 192.168.249.106
+Nmap scan report for 192.168.249.106
+Host is up (0.096s latency).
+Not shown: 65253 filtered tcp ports (no-response), 280 closed tcp ports (conn-refused)
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       http://ha.ckers.org/slowloris/
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-vuln-cve2011-3192: 
+|   VULNERABLE:
+|   Apache byterange filter DoS
+|     State: VULNERABLE
+|     IDs:  BID:49303  CVE:CVE-2011-3192
+|       The Apache web server is vulnerable to a denial of service attack when numerous
+|       overlapping byte ranges are requested.
+|     Disclosure date: 2011-08-19
+|     References:
+|       https://www.tenable.com/plugins/nessus/55976
+|       https://seclists.org/fulldisclosure/2011/Aug/175
+|       https://www.securityfocus.com/bid/49303
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
+
+# Nmap done at Tue May 17 20:56:30 2022 -- 1 IP address (1 host up) scanned in 211.87 seconds
