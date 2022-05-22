@@ -1,0 +1,26 @@
+# Nmap 7.92 scan initiated Sat May 21 20:22:50 2022 as: nmap --script vuln -oA nmap/Vuln -p- 10.10.34.164
+Nmap scan report for 10.10.34.164
+Host is up (0.057s latency).
+Not shown: 65532 filtered tcp ports (no-response)
+PORT     STATE  SERVICE
+22/tcp   open   ssh
+80/tcp   open   http
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|_      httponly flag not set
+| http-git: 
+|   10.10.34.164:80/.git/
+|     Git repository found!
+|     .git/config matched patterns 'user'
+|     Repository description: Unnamed repository; edit this file 'description' to name the...
+|_    Last commit message: added mobile apk for beta testing. 
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|   /info.php: Possible information file
+|_  /.git/HEAD: Git folder
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+8080/tcp closed http-proxy
+
+# Nmap done at Sat May 21 20:27:58 2022 -- 1 IP address (1 host up) scanned in 308.59 seconds

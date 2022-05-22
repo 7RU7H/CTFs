@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Fri May 20 10:21:10 2022 as: nmap -sC -sV -oA nmap/Extensive -p- 10.10.183.102 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA nmap/Extensive -p- 10.10.183.102" start="1653038470" startstr="Fri May 20 10:21:10 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.183.102" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1653038470" endtime="1653038962"><status state="up" reason="conn-refused" reason_ttl="0"/>
+<address addr="10.10.183.102" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65532">
+<extrareasons reason="conn-refused" count="65532" proto="tcp" ports="1-79,81-138,140-444,446-65535"/>
+</extraports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="Apache httpd" version="2.4.29" hostname="year-of-the-fox.lan" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.29</cpe></service><script id="http-server-header" output="Apache/2.4.29 (Ubuntu)"><elem>Apache/2.4.29 (Ubuntu)</elem>
+</script><script id="http-auth" output="&#xa;HTTP/1.1 401 Unauthorized&#xd;&#xa;  Basic realm=You want in? Gotta guess the password!&#xa;"><table>
+<table key="params">
+<elem key="realm">You want in? Gotta guess the password!</elem>
+</table>
+<elem key="scheme">Basic</elem>
+</table>
+</script><script id="http-title" output="401 Unauthorized"><elem key="title">401 Unauthorized</elem>
+</script></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="netbios-ssn" product="Samba smbd" version="3.X - 4.X" extrainfo="workgroup: YEAROFTHEFOX" hostname="YEAR-OF-THE-FOX" method="probed" conf="10"><cpe>cpe:/a:samba:samba</cpe></service></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="netbios-ssn" product="Samba smbd" version="4.7.6-Ubuntu" extrainfo="workgroup: YEAROFTHEFOX" hostname="YEAR-OF-THE-FOX" method="probed" conf="10"><cpe>cpe:/a:samba:samba</cpe></service></port>
+</ports>
+<hostscript><script id="clock-skew" output="mean: -20m00s, deviation: 34m38s, median: 0s"><elem key="stddev">2078</elem>
+<elem key="count">3</elem>
+<elem key="median">0</elem>
+<elem key="mean">-1200</elem>
+</script><script id="nbstat" output="NetBIOS name: YEAR-OF-THE-FOX, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: &lt;unknown&gt; (unknown)"/><script id="smb-security-mode" output="&#xa;  account_used: guest&#xa;  authentication_level: user&#xa;  challenge_response: supported&#xa;  message_signing: disabled (dangerous, but default)"><elem key="account_used">guest</elem>
+<elem key="authentication_level">user</elem>
+<elem key="challenge_response">supported</elem>
+<elem key="message_signing">disabled</elem>
+</script><script id="smb2-time" output="&#xa;  date: 2022-05-20T09:29:20&#xa;  start_date: N/A"><elem key="date">2022-05-20T09:29:20</elem>
+<elem key="start_date">N/A</elem>
+</script><script id="smb2-security-mode" output="&#xa;  3.1.1: &#xa;    Message signing enabled but not required"><table key="3.1.1">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script><script id="smb-os-discovery" output="&#xa;  OS: Windows 6.1 (Samba 4.7.6-Ubuntu)&#xa;  Computer name: year-of-the-fox&#xa;  NetBIOS computer name: YEAR-OF-THE-FOX\x00&#xa;  Domain name: lan&#xa;  FQDN: year-of-the-fox.lan&#xa;  System time: 2022-05-20T10:29:20+01:00&#xa;"><elem key="os">Windows 6.1</elem>
+<elem key="lanmanager">Samba 4.7.6-Ubuntu</elem>
+<elem key="server">YEAR-OF-THE-FOX\x00</elem>
+<elem key="date">2022-05-20T10:29:20+01:00</elem>
+<elem key="fqdn">year-of-the-fox.lan</elem>
+<elem key="domain_dns">lan</elem>
+<elem key="workgroup">YEAROFTHEFOX\x00</elem>
+</script></hostscript><times srtt="58435" rttvar="4666" to="100000"/>
+</host>
+<runstats><finished time="1653038962" timestr="Fri May 20 10:29:22 2022" summary="Nmap done at Fri May 20 10:29:22 2022; 1 IP address (1 host up) scanned in 492.13 seconds" elapsed="492.13" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

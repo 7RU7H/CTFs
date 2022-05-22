@@ -1,0 +1,302 @@
+# Nmap 7.92 scan initiated Thu May 19 16:01:45 2022 as: nmap --script discovery -oA nmap/Discovery -p- 10.129.105.60
+Pre-scan script results:
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for 10.129.105.60
+Host is up (0.35s latency).
+Not shown: 65533 filtered tcp ports (no-response)
+PORT    STATE SERVICE
+80/tcp  open  http
+|_http-devframework: ERROR: Script execution failed (use -d to debug)
+|_http-date: Thu, 19 May 2022 15:18:29 GMT; +59m59s from local time.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Redirected To: https://10.129.105.60/
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-security-headers: 
+|   X_Frame_Options: 
+|     Header: X-Frame-Options: SAMEORIGIN
+|     Description: The browser must not display this content in any frame from a page of different origin than the content itself.
+|   Cache_Control: 
+|     Header: Cache-Control: max-age=180000, no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+|   Pragma: 
+|     Header: Pragma: no-cache
+|   Expires: 
+|_    Header: Expires: Sat, 21 May 2022 17:18:40 GMT, Thu, 19 Nov 1981 08:52:00 GMT
+|_http-chrono: Request times for /; avg: 622.21ms; min: 403.57ms; max: 999.91ms
+|_http-comments-displayer: Couldn't find any comments.
+| http-vhosts: 
+|_128 names had status 301
+|_http-title: Did not follow redirect to https://10.129.105.60/
+|_http-feed: Couldn't find any feeds.
+|_http-errors: Couldn't find any error pages.
+| http-sitemap-generator: 
+|   Directory structure:
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-headers: 
+|   Location: https://10.129.105.60/
+|   Content-Length: 0
+|   Connection: close
+|   Date: Thu, 19 May 2022 15:18:44 GMT
+|   Server: lighttpd/1.4.35
+|   
+|_  (Request type: GET)
+|_http-xssed: No previously reported XSS vuln.
+|_http-mobileversion-checker: No mobile version detected.
+443/tcp open  https
+|_http-feed: Couldn't find any feeds.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-enum: 
+|   /javascript/sorttable.js: Secunia NSI
+|   /changelog.txt: Interesting, a changelog.
+|_  /tree/: Potentially interesting folder
+|_http-mobileversion-checker: No mobile version detected.
+|_http-title: Login
+| ssl-enum-ciphers: 
+|   SSLv3: 
+|     ciphers: 
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 1024) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 1024) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 1024) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 1024) - A
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - A
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - D
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 1024) - D
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       CBC-mode cipher in SSLv3 (CVE-2014-3566)
+|       Ciphersuite uses MD5 for message integrity
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 1024) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 1024) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 1024) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 1024) - A
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - A
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - D
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 1024) - D
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 1024) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 1024) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 1024) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 1024) - A
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - A
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - D
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 1024) - D
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 1024) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 1024) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 1024) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 1024) - A
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - A
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - D
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 1024) - D
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|_  least strength: D
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-date: Thu, 19 May 2022 15:18:21 GMT; +59m58s from local time.
+| http-headers: 
+|   Expires: Sat, 21 May 2022 17:18:13 GMT
+|   Expires: Thu, 19 Nov 1981 08:52:00 GMT
+|   Cache-Control: max-age=180000
+|   Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+|   Last-Modified: Thu, 19 May 2022 15:18:13 GMT
+|   X-Frame-Options: SAMEORIGIN
+|   Set-Cookie: PHPSESSID=7054c5cd377d372558cc3b4f54ccd744; path=/; secure; HttpOnly
+|   Set-Cookie: cookie_test=1652977093
+|   Pragma: no-cache
+|   Content-type: text/html
+|   Connection: close
+|   Date: Thu, 19 May 2022 15:18:13 GMT
+|   Server: lighttpd/1.4.35
+|   
+|_  (Request type: HEAD)
+| ssl-cert: Subject: commonName=Common Name (eg, YOUR name)/organizationName=CompanyName/stateOrProvinceName=Somewhere/countryName=US
+| Not valid before: 2017-10-14T19:21:35
+|_Not valid after:  2023-04-06T19:21:35
+|_http-xssed: No previously reported XSS vuln.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; php: 1
+|     /themes/pfsense_ng/javascript/
+|       js: 1
+|   Longest directory structure:
+|     Depth: 3
+|     Dir: /themes/pfsense_ng/javascript/
+|   Total files found (by extension):
+|_    Other: 1; js: 1; php: 1
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.105.60
+|   url                                  method
+|   https://10.129.105.60:443/           FORM
+|_  https://10.129.105.60:443/index.php  FORM
+|_http-errors: Couldn't find any error pages.
+|_ssl-date: TLS randomness does not represent time
+| http-security-headers: 
+|   Strict_Transport_Security: 
+|     HSTS not configured in HTTPS Server
+|   X_Frame_Options: 
+|     Header: X-Frame-Options: SAMEORIGIN
+|     Description: The browser must not display this content in any frame from a page of different origin than the content itself.
+|   Cookie: 
+|     Cookies are secured with Secure Flag in HTTPS Connection
+|   Cache_Control: 
+|     Header: Cache-Control: max-age=180000, no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+|   Pragma: 
+|     Header: Pragma: no-cache
+|   Expires: 
+|_    Header: Expires: Sat, 21 May 2022 17:18:20 GMT, Thu, 19 Nov 1981 08:52:00 GMT
+| http-vhosts: 
+|_128 names had status 200
+|_http-chrono: Request times for /; avg: 1380.13ms; min: 1015.39ms; max: 1919.32ms
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.105.60
+|     
+|     Path: https://10.129.105.60:443/themes/pfsense_ng/javascript/niftyjsCode.js
+|     Line number: 149
+|     Comment: 
+|          // tag selector like "tag"
+|     
+|     Path: https://10.129.105.60:443/index.php
+|     Line number: 32
+|     Comment: 
+|          // debugging helper
+|     
+|     Path: https://10.129.105.60:443/index.php
+|     Line number: 33
+|     Comment: 
+|          //alert('adding observe event for submit button');
+|     
+|     Path: https://10.129.105.60:443/index.php
+|     Line number: 49
+|     Comment: 
+|         /* dsh: Introduced because pkg_edit tries to set some hidden fields
+|                *      if executing submit's onclick event. The click gets deleted
+|                *      by Ajax. Hence using onkeydown instead.
+|                */
+|     
+|     Path: https://10.129.105.60:443/themes/pfsense_ng/javascript/niftyjsCode.js
+|     Line number: 144
+|     Comment: 
+|          //class selector like "tag.class"
+|     
+|     Path: https://10.129.105.60:443/themes/pfsense_ng/javascript/niftyjsCode.js
+|     Line number: 134
+|     Comment: 
+|          //id selector like "tag#id"
+|     
+|     Path: https://10.129.105.60:443/index.php
+|     Line number: 44
+|     Comment: 
+|          //alert(Form.serialize($('iform')));
+|     
+|     Path: https://10.129.105.60:443/index.php
+|     Line number: 70
+|     Comment: 
+|         /* somehow we have been fed an html page! */
+|     
+|     Path: https://10.129.105.60:443/index.php
+|     Line number: 71
+|     Comment: 
+|          //alert('Somehow we have been fed an html page! Forwarding to /.');
+|     
+|     Path: https://10.129.105.60:443/index.php
+|     Line number: 60
+|     Comment: 
+|          // submit the form using Ajax
+|     
+|     Path: https://10.129.105.60:443/index.php
+|     Line number: 67
+|     Comment: 
+|          // alert(responseText);
+|     
+|     Path: https://10.129.105.60:443/themes/pfsense_ng/javascript/niftyjsCode.js
+|     Line number: 126
+|     Comment: 
+|          //descendant selector like "tag#id tag"
+|     
+|     Path: https://10.129.105.60:443/index.php
+|     Line number: 78
+|     Comment: 
+|_        /* this function will be called if an HTTP error will be triggered */
+
+Host script results:
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "10.129.105.60"; use dns-brute.domain script argument.
+
+# Nmap done at Thu May 19 16:20:55 2022 -- 1 IP address (1 host up) scanned in 1149.78 seconds

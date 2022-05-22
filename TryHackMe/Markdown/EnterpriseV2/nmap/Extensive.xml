@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Fri May 20 12:10:07 2022 as: nmap -sC -sV -oA nmap/Extensive -p- 10.10.95.240 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA nmap/Extensive -p- 10.10.95.240" start="1653045007" startstr="Fri May 20 12:10:07 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.95.240" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<taskprogress task="Connect Scan" time="1653048129" percent="95.52" remaining="147" etc="1653048275"/>
+<host starttime="1653045008" endtime="1653048716"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="10.10.95.240" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65506">
+<extrareasons reason="conn-refused" count="65506" proto="tcp" ports="1-52,54-79,81-87,89-134,136-138,140-388,390-444,446-463,465-592,594-635,637-3267,3270-3388,3390-5356,5358-5984,5986-7989,7991-9388,9390-47000,47002-49663,49667,49671,49673-49675,49677-49701,49703-49709,49711-49834,49836-65535"/>
+</extraports>
+<port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="domain" product="Simple DNS Plus" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:jh_software:simple_dns_plus</cpe><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="Microsoft IIS httpd" version="10.0" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:microsoft:internet_information_server:10.0</cpe><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-title" output="Site doesn&apos;t have a title (text/html)."></script><script id="http-methods" output="&#xa;  Potentially risky methods: TRACE"><table key="Potentially risky methods">
+<elem>TRACE</elem>
+</table>
+</script><script id="http-server-header" output="Microsoft-IIS/10.0"><elem>Microsoft-IIS/10.0</elem>
+</script></port>
+<port protocol="tcp" portid="88"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="kerberos-sec" product="Microsoft Windows Kerberos" extrainfo="server time: 2022-05-20 12:10:50Z" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:microsoft:kerberos</cpe><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="netbios-ssn" product="Microsoft Windows netbios-ssn" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="389"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ldap" product="Microsoft Windows Active Directory LDAP" extrainfo="Domain: ENTERPRISE.THM0., Site: Default-First-Site-Name" hostname="LAB-DC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="464"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="kpasswd5" method="table" conf="3"/></port>
+<port protocol="tcp" portid="593"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ncacn_http" product="Microsoft Windows RPC over HTTP" version="1.0" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="636"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="3268"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ldap" product="Microsoft Windows Active Directory LDAP" extrainfo="Domain: ENTERPRISE.THM0., Site: Default-First-Site-Name" hostname="LAB-DC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="3269"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="tcpwrapped" method="probed" conf="8"/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ms-wbt-server" product="Microsoft Terminal Services" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="rdp-ntlm-info" output="&#xa;  Target_Name: LAB-ENTERPRISE&#xa;  NetBIOS_Domain_Name: LAB-ENTERPRISE&#xa;  NetBIOS_Computer_Name: LAB-DC&#xa;  DNS_Domain_Name: LAB.ENTERPRISE.THM&#xa;  DNS_Computer_Name: LAB-DC.LAB.ENTERPRISE.THM&#xa;  DNS_Tree_Name: ENTERPRISE.THM&#xa;  Product_Version: 10.0.17763&#xa;  System_Time: 2022-05-20T12:11:46+00:00"><elem key="Target_Name">LAB-ENTERPRISE</elem>
+<elem key="NetBIOS_Domain_Name">LAB-ENTERPRISE</elem>
+<elem key="NetBIOS_Computer_Name">LAB-DC</elem>
+<elem key="DNS_Domain_Name">LAB.ENTERPRISE.THM</elem>
+<elem key="DNS_Computer_Name">LAB-DC.LAB.ENTERPRISE.THM</elem>
+<elem key="DNS_Tree_Name">ENTERPRISE.THM</elem>
+<elem key="Product_Version">10.0.17763</elem>
+<elem key="System_Time">2022-05-20T12:11:46+00:00</elem>
+</script><script id="ssl-cert" output="Subject: commonName=LAB-DC.LAB.ENTERPRISE.THM&#xa;Not valid before: 2022-05-19T11:08:27&#xa;Not valid after:  2022-11-18T11:08:27"><table key="subject">
+<elem key="commonName">LAB-DC.LAB.ENTERPRISE.THM</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">LAB-DC.LAB.ENTERPRISE.THM</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">A47DE04605CBDF41640AD75DD65B2D679F0EE0CDA174B1402A03B4F52CF02DC32996CF8A19C8BAD4445018708FA749A963CC840B656016B77E6761D36716A71FFF37D65EA3B0EFEA88B02F37CDBDECC5F20135095A76AEB2ACD282461EC88F48B1EEB4AC5792BF322D45D5678EAF34B8D2A1F0AB5532AB507CDEF36964F42D4D1B49AA34B795D25711AD53136E968C84F2CF93552D1F173E7E9E0414E2E12F32364F2C02C811CD3550402B36771C3BDD0B85982C4F7B927BFBF58EDBA29D4193175F93DA3853D3B0CAD3169C67453C2DB72CA47030F3F67903B5E9E02F1A10168275BD96BBB610CE7EB73912E489BDB5CE7CD427B63B8101AC606CC0A43D7FCD</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Key Encipherment, Data Encipherment</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2022-05-19T11:08:27</elem>
+<elem key="notAfter">2022-11-18T11:08:27</elem>
+</table>
+<elem key="md5">120fc4f0e6d2b02997e5f668ac10df44</elem>
+<elem key="sha1">56347f89990deec8e7650a5b25f500b595c96323</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIC9jCCAd6gAwIBAgIQJx9PVWmusaVM6p17hB5drTANBgkqhkiG9w0BAQsFADAk&#xa;MSIwIAYDVQQDExlMQUItREMuTEFCLkVOVEVSUFJJU0UuVEhNMB4XDTIyMDUxOTEx&#xa;MDgyN1oXDTIyMTExODExMDgyN1owJDEiMCAGA1UEAxMZTEFCLURDLkxBQi5FTlRF&#xa;UlBSSVNFLlRITTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKR94EYF&#xa;y99BZArXXdZbLWefDuDNoXSxQCoDtPUs8C3DKZbPihnIutREUBhwj6dJqWPMhAtl&#xa;YBa3fmdh02cWpx//N9Zeo7Dv6oiwLzfNvezF8gE1CVp2rrKs0oJGHsiPSLHutKxX&#xa;kr8yLUXVZ46vNLjSofCrVTKrUHze82lk9C1NG0mqNLeV0lcRrVMTbpaMhPLPk1Ut&#xa;Hxc+fp4EFOLhLzI2TywCyBHNNVBAKzZ3HDvdC4WYLE97knv79Y7bop1Bkxdfk9o4&#xa;U9OwytMWnGdFPC23LKRwMPP2eQO16eAvGhAWgnW9lru2EM5+tzkS5Im9tc581Ce2&#xa;O4EBrGBswKQ9f80CAwEAAaMkMCIwEwYDVR0lBAwwCgYIKwYBBQUHAwEwCwYDVR0P&#xa;BAQDAgQwMA0GCSqGSIb3DQEBCwUAA4IBAQCMhnZq46veEtViWayno3/2m8Y1g8eE&#xa;4sPn4hAaEhJ4TEOsrL3NhK7QA91rcaQqPNpYc0whbJeTTsfmtNE2c33AUA0IMIgg&#xa;ENJENF0MZQg7dlz8coLaQcgT+pO1EqPYKLZj/rVJJNPpc47nTsnb/ZzJkIdBBQia&#xa;ew4jJUWxGwzEqejnURdEltuBVPZ6irBUi96e4Wttypj7nVWJFCzcFb8zt7smgMhZ&#xa;1wia7hVyODI5BH/fZynI4fPHWD5h6vxs1ppxmcw9EyP/Lyp5cjGAXvqeAw47gd/h&#xa;r0aKYQcPAQHj7X2TM3QwFH/9QY17+xLhkpAZ9qPYQj0UhvNJ2NhttQaQ&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ssl-date" output="2022-05-20T12:11:53+00:00; -1s from scanner time."><elem key="date">2022-05-20T12:11:53+00:00</elem>
+<elem key="delta">-1.0</elem>
+</script></port>
+<port protocol="tcp" portid="5357"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="Microsoft HTTPAPI httpd" version="2.0" extrainfo="SSDP/UPnP" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-title" output="Service Unavailable"><elem key="title">Service Unavailable</elem>
+</script><script id="http-server-header" output="Microsoft-HTTPAPI/2.0"><elem>Microsoft-HTTPAPI/2.0</elem>
+</script></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="Microsoft HTTPAPI httpd" version="2.0" extrainfo="SSDP/UPnP" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-title" output="Not Found"><elem key="title">Not Found</elem>
+</script><script id="http-server-header" output="Microsoft-HTTPAPI/2.0"><elem>Microsoft-HTTPAPI/2.0</elem>
+</script></port>
+<port protocol="tcp" portid="7990"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="Microsoft IIS httpd" version="10.0" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:microsoft:internet_information_server:10.0</cpe><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-server-header" output="Microsoft-IIS/10.0"><elem>Microsoft-IIS/10.0</elem>
+</script><script id="http-title" output="Log in to continue - Log in with Atlassian account"><elem key="title">Log in to continue - Log in with Atlassian account</elem>
+</script><script id="http-methods" output="&#xa;  Potentially risky methods: TRACE"><table key="Potentially risky methods">
+<elem>TRACE</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="9389"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="mc-nmf" product=".NET Message Framing" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="47001"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="Microsoft HTTPAPI httpd" version="2.0" extrainfo="SSDP/UPnP" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-title" output="Not Found"><elem key="title">Not Found</elem>
+</script><script id="http-server-header" output="Microsoft-HTTPAPI/2.0"><elem>Microsoft-HTTPAPI/2.0</elem>
+</script></port>
+<port protocol="tcp" portid="49664"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49665"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49666"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49668"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ncacn_http" product="Microsoft Windows RPC over HTTP" version="1.0" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49669"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49670"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49672"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49676"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49702"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49710"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49835"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+</ports>
+<hostscript><script id="smb2-time" output="&#xa;  date: 2022-05-20T12:11:47&#xa;  start_date: N/A"><elem key="date">2022-05-20T12:11:47</elem>
+<elem key="start_date">N/A</elem>
+</script><script id="clock-skew" output="mean: -1s, deviation: 0s, median: -1s"><elem key="count">3</elem>
+<elem key="mean">-1</elem>
+<elem key="median">-1</elem>
+<elem key="stddev">0</elem>
+</script><script id="smb2-security-mode" output="&#xa;  3.1.1: &#xa;    Message signing enabled and required"><table key="3.1.1">
+<elem>Message signing enabled and required</elem>
+</table>
+</script></hostscript><times srtt="55744" rttvar="4305" to="100000"/>
+</host>
+<runstats><finished time="1653048716" timestr="Fri May 20 13:11:56 2022" summary="Nmap done at Fri May 20 13:11:56 2022; 1 IP address (1 host up) scanned in 3708.28 seconds" elapsed="3708.28" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

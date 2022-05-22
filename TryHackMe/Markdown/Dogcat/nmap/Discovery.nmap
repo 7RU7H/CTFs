@@ -1,0 +1,87 @@
+# Nmap 7.92 scan initiated Fri May 20 09:12:19 2022 as: nmap --script discovery -oA nmap/Discovery -p- 10.10.107.170
+Pre-scan script results:
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.10.107.170
+Host is up (0.060s latency).
+Not shown: 65533 closed tcp ports (conn-refused)
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh-hostkey: 
+|   2048 24:31:19:2a:b1:97:1a:04:4e:2c:36:ac:84:0a:75:87 (RSA)
+|   256 21:3d:46:18:93:aa:f9:e7:c9:b5:4c:0f:16:0b:71:e1 (ECDSA)
+|_  256 c1:fb:7d:73:2b:57:4a:8b:dc:d7:6f:49:bb:3b:d0:20 (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3
+80/tcp open  http
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-date: Fri, 20 May 2022 08:18:35 GMT; +1h00m00s from local time.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-headers: 
+|   Date: Fri, 20 May 2022 08:18:37 GMT
+|   Server: Apache/2.4.38 (Debian)
+|   X-Powered-By: PHP/7.4.3
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+|_http-title: dogcat
+|_http-xssed: No previously reported XSS vuln.
+|_http-php-version: Version from header x-powered-by: PHP/7.4.3
+| http-vhosts: 
+|_128 names had status 200
+| http-unsafe-output-escaping: 
+|   Characters ['] reflected in parameter view at http://10.10.107.170:80/?view=cat
+|_  Characters ['] reflected in parameter view at http://10.10.107.170:80/?view=dog
+|_http-errors: Couldn't find any error pages.
+|_http-feed: Couldn't find any feeds.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-comments-displayer: Couldn't find any comments.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; css: 1
+|     /cats/
+|       jpg: 1
+|     /dogs/
+|       jpg: 1
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /cats/
+|   Total files found (by extension):
+|_    Other: 1; css: 1; jpg: 2
+|_http-chrono: Request times for /; avg: 148.82ms; min: 111.22ms; max: 174.24ms
+|_http-mobileversion-checker: No mobile version detected.
+
+Host script results:
+|_dns-brute: Can't guess domain of "10.10.107.170"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Fri May 20 09:23:33 2022 -- 1 IP address (1 host up) scanned in 673.78 seconds

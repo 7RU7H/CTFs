@@ -1,0 +1,153 @@
+# Nmap 7.92 scan initiated Sun May 22 13:08:32 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 1000 10.10.64.116
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.10.64.116
+Host is up (0.11s latency).
+Not shown: 48090 filtered tcp ports (no-response), 17418 closed tcp ports (conn-refused)
+Bug in http-security-headers: no string output.
+PORT      STATE SERVICE
+21/tcp    open  ftp
+22/tcp    open  ssh
+|_banner: SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3
+|_ssh-hostkey: ERROR: Script execution failed (use -d to debug)
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+23/tcp    open  telnet
+25/tcp    open  smtp
+|_smtp-commands: Couldn't establish connection on port 25
+|_smtp-open-relay: Couldn't establish connection on port 25
+80/tcp    open  http
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-headers: 
+|   Date: Sun, 22 May 2022 12:19:59 GMT
+|   Server: Apache/2.4.29 (Ubuntu)
+|   Last-Modified: Tue, 03 Nov 2020 13:48:32 GMT
+|   ETag: "27e-5b3341e534c00"
+|   Accept-Ranges: bytes
+|   Content-Length: 638
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-date: Sun, 22 May 2022 12:20:00 GMT; +59m59s from local time.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-chrono: Request times for /; avg: 2699.00ms; min: 650.98ms; max: 5496.19ms
+|_http-title: Dante's Inferno
+|_http-errors: Couldn't find any error pages.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-xssed: No previously reported XSS vuln.
+|_http-feed: Couldn't find any feeds.
+|_http-mobileversion-checker: No mobile version detected.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; jpg: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1; jpg: 1
+|_http-comments-displayer: Couldn't find any comments.
+|_http-traceroute: ERROR: Script execution failed (use -d to debug)
+|_http-aspnet-debug: ERROR: Script execution failed (use -d to debug)
+| http-vhosts: 
+|_128 names had status ERROR
+110/tcp   open  pop3
+|_ssl-date: ERROR: Script execution failed (use -d to debug)
+|_tls-nextprotoneg: ERROR: Script execution failed (use -d to debug)
+|_ssl-cert: ERROR: Script execution failed (use -d to debug)
+|_tls-alpn: ERROR: Script execution failed (use -d to debug)
+389/tcp   open  ldap
+443/tcp   open  https
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-mobileversion-checker: No mobile version detected.
+|_http-comments-displayer: Couldn't find any comments.
+| http-sitemap-generator: 
+|   Directory structure:
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    
+| http-vhosts: 
+|_128 names had status ERROR
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-security-headers: 
+|   Strict_Transport_Security: 
+|_    HSTS not configured in HTTPS Server
+|_http-aspnet-debug: ERROR: Script execution failed (use -d to debug)
+| http-useragent-tester: 
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-xssed: No previously reported XSS vuln.
+|_http-chrono: Request times for /; avg: 2519.38ms; min: 852.42ms; max: 5355.10ms
+|_http-errors: ERROR: Script execution failed (use -d to debug)
+|_http-feed: Couldn't find any feeds.
+750/tcp   open  kerberos
+777/tcp   open  multiling-http
+1001/tcp  open  webpush
+1236/tcp  open  bvcontrol
+2000/tcp  open  cisco-sccp
+2003/tcp  open  finger
+|_finger: ERROR: Script execution failed (use -d to debug)
+2988/tcp  open  hippad
+5151/tcp  open  esri_sde
+5354/tcp  open  mdnsresponder
+5432/tcp  open  postgresql
+|_ssl-date: ERROR: Script execution failed (use -d to debug)
+|_ssl-cert: ERROR: Script execution failed (use -d to debug)
+|_tls-alpn: ERROR: Script execution failed (use -d to debug)
+|_tls-nextprotoneg: ERROR: Script execution failed (use -d to debug)
+6514/tcp  open  syslog-tls
+6566/tcp  open  sane-port
+8081/tcp  open  blackice-icecap
+9098/tcp  open  unknown
+9673/tcp  open  unknown
+20011/tcp open  unknown
+24554/tcp open  binkp
+27374/tcp open  subseven
+60179/tcp open  unknown
+
+Host script results:
+|_dns-brute: Can't guess domain of "10.10.64.116"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Sun May 22 13:24:48 2022 -- 1 IP address (1 host up) scanned in 976.26 seconds

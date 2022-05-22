@@ -1,0 +1,84 @@
+# Nmap 7.92 scan initiated Sat May 21 20:13:52 2022 as: nmap --script discovery -oA nmap/Discovery -p- 10.129.1.254
+Pre-scan script results:
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.129.1.254
+Host is up (0.045s latency).
+Not shown: 65533 closed tcp ports (conn-refused)
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (6)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (9)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   2048 e3:3b:7d:3c:8f:4b:8c:f9:cd:7f:d2:3a:ce:2d:ff:bb (RSA)
+|   256 4c:e8:c6:02:bd:fc:83:ff:c9:80:01:54:7d:22:81:72 (ECDSA)
+|_  256 0b:8f:d5:71:85:90:13:85:61:8b:eb:34:13:5f:94:3b (ED25519)
+|_banner: SSH-2.0-OpenSSH_7.2 FreeBSD-20161230
+80/tcp open  http
+|_http-php-version: Version from header x-powered-by: PHP/5.6.32
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-enum: 
+|   /info.php: Possible information file
+|_  /phpinfo.php: Possible information file
+| http-vhosts: 
+|_128 names had status 200
+|_http-title: Site doesn't have a title (text/html; charset=UTF-8).
+|_http-date: Sat, 21 May 2022 19:24:36 GMT; +1h00m00s from local time.
+|_http-trace: TRACE is enabled
+|_http-xssed: No previously reported XSS vuln.
+| http-headers: 
+|   Date: Sat, 21 May 2022 19:24:35 GMT
+|   Server: Apache/2.4.29 (FreeBSD) PHP/5.6.32
+|   X-Powered-By: PHP/5.6.32
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+|_http-errors: Couldn't find any error pages.
+|_http-feed: Couldn't find any feeds.
+|_http-comments-displayer: Couldn't find any comments.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; php: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1; php: 1
+|_http-mobileversion-checker: No mobile version detected.
+|_http-chrono: Request times for /; avg: 145.52ms; min: 101.53ms; max: 169.50ms
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+
+Host script results:
+|_dns-brute: Can't guess domain of "10.129.1.254"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Sat May 21 20:28:28 2022 -- 1 IP address (1 host up) scanned in 875.55 seconds

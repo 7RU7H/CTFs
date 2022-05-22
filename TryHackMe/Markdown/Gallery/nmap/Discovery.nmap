@@ -1,0 +1,140 @@
+# Nmap 7.92 scan initiated Thu May 19 09:31:07 2022 as: nmap --script discovery -oA nmap/Discovery -p- 10.10.170.23
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.10.170.23
+Host is up (0.054s latency).
+Not shown: 65533 closed tcp ports (conn-refused)
+Bug in http-security-headers: no string output.
+PORT     STATE SERVICE
+80/tcp   open  http
+|_http-xssed: No previously reported XSS vuln.
+| http-vhosts: 
+|_128 names had status 200
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.170.23
+|     
+|     Path: http://10.10.170.23:80/
+|     Line number: 4
+|     Comment: 
+|         <!--
+|             Modified from the Debian original for Ubuntu
+|             Last updated: 2016-11-16
+|             See: https://launchpad.net/bugs/1288690
+|           -->
+|     
+|     Path: http://10.10.170.23:80/
+|     Line number: 201
+|     Comment: 
+|         <!--      <div class="table_of_contents floating_element">
+|                 <div class="section_header section_header_grey">
+|                   TABLE OF CONTENTS
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#about">About</a>
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#changes">Changes</a>
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#scope">Scope</a>
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#files">Config files</a>
+|                 </div>
+|               </div>
+|_        -->
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-date: Thu, 19 May 2022 08:35:21 GMT; +1h00m00s from local time.
+|_http-chrono: Request times for /; avg: 1206.34ms; min: 253.47ms; max: 2484.79ms
+|_http-mobileversion-checker: No mobile version detected.
+|_http-traceroute: ERROR: Script execution failed (use -d to debug)
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.10.170.23
+|   Found the following error pages: 
+|   
+|   Error Code: 404
+|_  	http://10.10.170.23:80/manual
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /icons/
+|       png: 1
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /icons/
+|   Total files found (by extension):
+|_    Other: 1; png: 1
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-title: Apache2 Ubuntu Default Page: It works
+| http-grep: 
+|   (1) http://10.10.170.23:80/manual: 
+|     (1) ip: 
+|_      + 10.10.170.23
+|_http-feed: Couldn't find any feeds.
+| http-headers: 
+|   Date: Thu, 19 May 2022 08:35:18 GMT
+|   Server: Apache/2.4.29 (Ubuntu)
+|   Last-Modified: Fri, 21 May 2021 11:24:43 GMT
+|   ETag: "2aa6-5c2d54e72ade1"
+|   Accept-Ranges: bytes
+|   Content-Length: 10918
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+8080/tcp open  http-proxy
+| http-grep: 
+|   (2) http://10.10.170.23:8080/: 
+|     (1) email: 
+|       + oretnom23@gmail.com
+|     (1) ip: 
+|_      + 10.10.170.23
+|_http-title: Simple Image Gallery System
+|_http-chrono: Request times for /; avg: 3244.29ms; min: 301.56ms; max: 7396.26ms
+|_http-date: Thu, 19 May 2022 08:35:12 GMT; +59m59s from local time.
+|_http-open-proxy: Proxy might be redirecting requests
+| http-headers: 
+|   Date: Thu, 19 May 2022 08:35:10 GMT
+|   Server: Apache/2.4.29 (Ubuntu)
+|   Set-Cookie: PHPSESSID=5gv7lmost4t0nvbm85ouhbfa88; path=/
+|   Expires: Thu, 19 Nov 1981 08:52:00 GMT
+|   Cache-Control: no-store, no-cache, must-revalidate
+|   Pragma: no-cache
+|   Access-Control-Allow-Origin: *
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+| http-vhosts: 
+|_128 names had status 200
+
+Host script results:
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "10.10.170.23"; use dns-brute.domain script argument.
+
+# Nmap done at Thu May 19 09:36:42 2022 -- 1 IP address (1 host up) scanned in 334.59 seconds

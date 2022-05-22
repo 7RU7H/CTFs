@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Sun May 22 12:54:02 2022 as: nmap -&#45;script vuln -oA nmap/vuln -p- -&#45;min-rate 1000 192.168.152.163 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/vuln -p- -&#45;min-rate 1000 192.168.152.163" start="1653220442" startstr="Sun May 22 12:54:02 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.152.163" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1653220452" endtime="1653220907"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="192.168.152.163" addrtype="ipv4"/>
+<hostnames>
+<hostname name="exfiltrated.offsec" type="PTR"/>
+</hostnames>
+<ports><extraports state="closed" count="65496">
+<extrareasons reason="conn-refused" count="65496" proto="tcp" ports="1-21,23-79,81-2992,2994-5812,5814-6760,6762-11823,11825-14264,14266-16411,16413-17083,17085-20335,20337-20704,20706-22202,22204-22334,22336-23651,23653-24418,24420-24973,24975-25470,25472-26725,26727-29422,29424-29451,29453-30183,30185-33216,33218-33881,33883-34253,34255-41799,41801-42790,42792-43202,43204-47597,47599-48241,48243-48480,48482-49034,49036-54875,54877-55656,55658-57035,57037-57324,57326-60061,60063-61179,61181-61231,61233-64537,64539-65535"/>
+</extraports>
+<extraports state="filtered" count="37">
+<extrareasons reason="no-response" count="37" proto="tcp" ports="2993,5813,6761,11824,14265,16412,17084,20336,20705,22203,22335,23652,24419,24974,25471,26726,29423,29452,30184,33217,33882,34254,41800,42791,43203,47598,48242,48481,49035,54876,55657,57036,57325,60062,61180,61232,64538"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/><script id="http-enum" output="&#xa;  /blog/: Blog&#xa;  /clientaccesspolicy.xml: Microsoft Silverlight crossdomain policy&#xa;  /atom.xml: RSS or Atom feed&#xa;  /rss.xml: RSS or Atom feed&#xa;  /login/: Login page&#xa;  /robots.txt: Robots file&#xa;  /crossdomain.xml: Adobe Flash crossdomain policy&#xa;  /.gitignore: Revision control ignore file&#xa;  /Citrix/PNAgent/config.xml: Citrix&#xa;  /changelog.txt: Version field&#xa;  /admin/environment.xml: Moodle files&#xa;  /manifest.json: Manifest JSON File&#xa;  /0/: Potentially interesting folder&#xa;  /cron/: Potentially interesting folder&#xa;  /help/: Potentially interesting folder&#xa;  /index/: Potentially interesting folder&#xa;  /members/: Potentially interesting folder&#xa;  /search/: Potentially interesting folder&#xa;  /sitecore/shell/sitecore.version.xml: Sitecore.NET login page&#xa;  /sitecore/shell/Applications/shell.xml: Sitecore.NET (CMS)&#xa;  /App_Config/Security/Domains.config.xml: Sitecore.NET (CMS)&#xa;  /App_Config/Security/GlobalRoles.config.xml: Sitecore.NET (CMS)&#xa;"/><script id="http-fileupload-exploiter" output="&#xa;  &#xa;    Couldn&apos;t find a file-type field.&#xa;  &#xa;    Couldn&apos;t find a file-type field."><table>
+<elem>Couldn&apos;t find a file-type field.</elem>
+</table>
+<table>
+<elem>Couldn&apos;t find a file-type field.</elem>
+</table>
+</script><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=exfiltrated.offsec&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://exfiltrated.offsec:80/&#xa;    Form id: &#xa;    Form action: http://exfiltrated.offsec/search/&#xa;    &#xa;    Path: http://exfiltrated.offsec:80/registration/&#xa;    Form id: &#xa;    Form action: http://exfiltrated.offsec/search/&#xa;    &#xa;    Path: http://exfiltrated.offsec:80/registration/&#xa;    Form id: fieldgroup_general&#xa;    Form action: http://exfiltrated.offsec/registration/&#xa;    &#xa;    Path: http://exfiltrated.offsec:80/about/&#xa;    Form id: &#xa;    Form action: http://exfiltrated.offsec/search/&#xa;    &#xa;    Path: http://exfiltrated.offsec:80/help/&#xa;    Form id: &#xa;    Form action: http://exfiltrated.offsec/search/&#xa;    &#xa;    Path: http://exfiltrated.offsec:80/blog/&#xa;    Form id: &#xa;    Form action: http://exfiltrated.offsec/search/&#xa;    &#xa;    Path: http://exfiltrated.offsec:80/search/&#xa;    Form id: &#xa;    Form action: http://exfiltrated.offsec/search/&#xa;    &#xa;    Path: http://exfiltrated.offsec:80/terms/&#xa;    Form id: &#xa;    Form action: http://exfiltrated.offsec/search/&#xa;"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/></port>
+</ports>
+<times srtt="61568" rttvar="5070" to="100000"/>
+</host>
+<runstats><finished time="1653220907" timestr="Sun May 22 13:01:47 2022" summary="Nmap done at Sun May 22 13:01:47 2022; 1 IP address (1 host up) scanned in 465.71 seconds" elapsed="465.71" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

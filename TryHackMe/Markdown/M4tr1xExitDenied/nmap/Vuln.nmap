@@ -1,0 +1,36 @@
+# Nmap 7.92 scan initiated Thu May 19 19:54:37 2022 as: nmap --script vuln -oA nmap/Vuln -p- --min-rate 5000 10.10.201.126
+Nmap scan report for 10.10.201.126
+Host is up (0.15s latency).
+Not shown: 65228 filtered tcp ports (no-response), 304 closed tcp ports (conn-refused)
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.201.126
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.10.201.126:80/search.php
+|     Form id: author
+|     Form action: search.php
+|     
+|     Path: http://10.10.201.126:80/member.php?action=login
+|     Form id: 
+|_    Form action: member.php
+|_http-phpself-xss: ERROR: Script execution failed (use -d to debug)
+| http-enum: 
+|   /admin/: Possible admin folder
+|   /admin/index.php: Possible admin folder
+|   /archive/: Potentially interesting folder
+|   /cache/: Potentially interesting folder
+|   /images/: Potentially interesting folder
+|   /inc/: Potentially interesting folder
+|   /install/: Potentially interesting folder
+|_  /uploads/: Potentially interesting folder
+| http-internal-ip-disclosure: 
+|_  Internal IP Leaked: 10
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+3306/tcp open  mysql
+
+# Nmap done at Thu May 19 20:00:00 2022 -- 1 IP address (1 host up) scanned in 322.14 seconds

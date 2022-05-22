@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Sat May 21 20:22:50 2022 as: nmap -&#45;script vuln -oA nmap/Vuln -p- 10.10.34.164 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/Vuln -p- 10.10.34.164" start="1653160970" startstr="Sat May 21 20:22:50 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.34.164" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1653160980" endtime="1653161278"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="10.10.34.164" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65532">
+<extrareasons reason="no-response" count="65532" proto="tcp" ports="1-21,23-79,81-8079,8081-65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/><script id="http-cookie-flags" output="&#xa;  /: &#xa;    PHPSESSID: &#xa;      httponly flag not set"><table key="/">
+<table key="PHPSESSID">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+</script><script id="http-git" output="&#xa;  10.10.34.164:80/.git/&#xa;    Git repository found!&#xa;    .git/config matched patterns &apos;user&apos;&#xa;    Repository description: Unnamed repository; edit this file &apos;description&apos; to name the...&#xa;    Last commit message: added mobile apk for beta testing. &#xa;"><table key="10.10.34.164:80/.git/">
+<elem key="repository-description">Unnamed repository; edit this file &apos;description&apos; to name the repository.&#xa;</elem>
+<elem key="last-commit-message">added mobile apk for beta testing.&#xa;</elem>
+<table key="interesting-matches">
+<table key=".git/config">
+<elem>user</elem>
+</table>
+</table>
+<table key="files-found">
+<elem key=".git/info/exclude">true</elem>
+<elem key=".git/COMMIT_EDITMSG">true</elem>
+<elem key=".gitignore">false</elem>
+<elem key=".git/config">true</elem>
+<elem key=".git/description">true</elem>
+</table>
+</table>
+</script><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-enum" output="&#xa;  /info.php: Possible information file&#xa;  /.git/HEAD: Git folder&#xa;"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/></port>
+<port protocol="tcp" portid="8080"><state state="closed" reason="conn-refused" reason_ttl="0"/><service name="http-proxy" method="table" conf="3"/></port>
+</ports>
+<times srtt="57086" rttvar="8744" to="100000"/>
+</host>
+<runstats><finished time="1653161278" timestr="Sat May 21 20:27:58 2022" summary="Nmap done at Sat May 21 20:27:58 2022; 1 IP address (1 host up) scanned in 308.59 seconds" elapsed="308.59" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

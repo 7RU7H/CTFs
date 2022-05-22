@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Fri May 20 13:44:04 2022 as: nmap -&#45;script vuln -oA nmap/vuln -p- 10.10.223.231 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/vuln -p- 10.10.223.231" start="1653050644" startstr="Fri May 20 13:44:04 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.223.231" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<taskprogress task="Connect Scan" time="1653050846" percent="44.20" remaining="242" etc="1653051087"/>
+<host starttime="1653050655" endtime="1653051253"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="10.10.223.231" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65532">
+<extrareasons reason="conn-refused" count="65532" proto="tcp" ports="1-20,23-79,81-65535"/>
+</extraports>
+<port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-enum" output="&#xa;  /wordpress/: Blog&#xa;  /wordpress/wp-login.php: Wordpress login page.&#xa;"/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/></port>
+</ports>
+<times srtt="56114" rttvar="8725" to="100000"/>
+</host>
+<runstats><finished time="1653051253" timestr="Fri May 20 13:54:13 2022" summary="Nmap done at Fri May 20 13:54:13 2022; 1 IP address (1 host up) scanned in 608.21 seconds" elapsed="608.21" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

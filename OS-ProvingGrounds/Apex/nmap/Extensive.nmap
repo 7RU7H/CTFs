@@ -1,0 +1,44 @@
+# Nmap 7.92 scan initiated Wed May 18 21:35:35 2022 as: nmap -sC -sV -oA nmap/Extensive -p- --min-rate 5000 192.168.249.145
+Nmap scan report for 192.168.249.145
+Host is up (0.041s latency).
+Not shown: 65532 filtered tcp ports (no-response)
+PORT     STATE SERVICE     VERSION
+80/tcp   open  http        Apache httpd 2.4.29 ((Ubuntu))
+|_http-title: APEX Hospital
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+445/tcp  open  netbios-ssn Samba smbd 4.7.6-Ubuntu (workgroup: WORKGROUP)
+3306/tcp open  mysql       MySQL 5.5.5-10.1.48-MariaDB-0ubuntu0.18.04.1
+| mysql-info: 
+|   Protocol: 10
+|   Version: 5.5.5-10.1.48-MariaDB-0ubuntu0.18.04.1
+|   Thread ID: 34
+|   Capabilities flags: 63487
+|   Some Capabilities: Support41Auth, ODBCClient, Speaks41ProtocolOld, ConnectWithDatabase, DontAllowDatabaseTableColumn, FoundRows, Speaks41ProtocolNew, IgnoreSpaceBeforeParenthesis, SupportsCompression, IgnoreSigpipes, LongPassword, InteractiveClient, SupportsTransactions, SupportsLoadDataLocal, LongColumnFlag, SupportsMultipleResults, SupportsMultipleStatments, SupportsAuthPlugins
+|   Status: Autocommit
+|   Salt: (')8~4&a835Pqi<.rsmH
+|_  Auth Plugin Name: mysql_native_password
+Service Info: Host: APEX
+
+Host script results:
+| smb2-time: 
+|   date: 2022-05-18T20:36:09
+|_  start_date: N/A
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled but not required
+| smb-os-discovery: 
+|   OS: Windows 6.1 (Samba 4.7.6-Ubuntu)
+|   Computer name: apex
+|   NetBIOS computer name: APEX\x00
+|   Domain name: \x00
+|   FQDN: apex
+|_  System time: 2022-05-18T16:36:12-04:00
+|_clock-skew: mean: 1h20m00s, deviation: 2h18m36s, median: 0s
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed May 18 21:36:49 2022 -- 1 IP address (1 host up) scanned in 74.02 seconds

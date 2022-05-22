@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Sat May 21 20:14:15 2022 as: nmap -sC -sV -oA nmap/Extensive -p- 10.10.34.164 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA nmap/Extensive -p- 10.10.34.164" start="1653160455" startstr="Sat May 21 20:14:15 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.34.164" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1653160455" endtime="1653160637"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="10.10.34.164" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65532">
+<extrareasons reason="no-response" count="65532" proto="tcp" ports="1-21,23-79,81-8079,8081-65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" product="OpenSSH" version="7.2p2 Ubuntu 4ubuntu2.8" extrainfo="Ubuntu Linux; protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:7.2p2</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service><script id="ssh-hostkey" output="&#xa;  2048 bf:44:f9:8d:20:ce:68:0f:c1:2d:0a:c5:ed:57:ee:91 (RSA)&#xa;  256 68:d4:95:9c:3f:09:9a:eb:3c:dc:0e:00:23:44:ae:94 (ECDSA)&#xa;  256 42:e3:f0:c4:86:81:cf:81:4a:db:39:fb:11:25:49:80 (ED25519)"><table>
+<elem key="bits">2048</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABAQDDWluqi6k7FZO1/Qa3XYP5Z1VuKSC0/8NZyfg8yyTW2zVbwJLogK0r7u2NRB08XcIz/nihI/njjAZNHG49hII/M6X1Nbnb+7kfp5D9IfxVTwdtGxDqXKCtENSv5zSiAqD5ki5AUHcMRMjb6d6cxeY11U+e6s2QWBnAECApgz/LLftVBpf4ri+xX1vPGBFBLDqW/0S1P9gQWd8Z8uRhw/hL5GEZNOIgcuJt1IltflSDMDvt3zCAc8q2viSeRuopRrfZz1VLpaaOG30qs/CFgIrQ8z9aGfdquxTvnTaGYNm2w8DU3mWdIYfywmfed67dsETzl00Tt1/wszF+cfbHyFC9</elem>
+<elem key="type">ssh-rsa</elem>
+<elem key="fingerprint">bf44f98d20ce680fc12d0ac5ed57ee91</elem>
+</table>
+<table>
+<elem key="bits">256</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEn8yQEyyK4Uv7IEwdkZ+l0VDuj0jXOaGmaf92oA8SmXeAZkwC9xH+J1V6n/OGbUVxpZEBrkiLys9+eTyJo6JCA=</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="fingerprint">68d4959c3f099aeb3cdc0e002344ae94</elem>
+</table>
+<table>
+<elem key="bits">256</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIOr4QdHFqUP3LX7IPs6K0d+NKSbG25wxoDYW/HUDXwxh</elem>
+<elem key="type">ssh-ed25519</elem>
+<elem key="fingerprint">42e3f0c48681cf814adb39fb11254980</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="nginx" version="1.14.0" extrainfo="Ubuntu" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:igor_sysoev:nginx:1.14.0</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service><script id="http-server-header" output="nginx/1.14.0 (Ubuntu)"><elem>nginx/1.14.0 (Ubuntu)</elem>
+</script><script id="http-cookie-flags" output="&#xa;  /: &#xa;    PHPSESSID: &#xa;      httponly flag not set"><table key="/">
+<table key="PHPSESSID">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+</script><script id="http-title" output="Context Information Security - HackBack 2"><elem key="title">Context Information Security - HackBack 2</elem>
+</script><script id="http-git" output="&#xa;  10.10.34.164:80/.git/&#xa;    Git repository found!&#xa;    .git/config matched patterns &apos;user&apos;&#xa;    Repository description: Unnamed repository; edit this file &apos;description&apos; to name the...&#xa;    Last commit message: added mobile apk for beta testing. &#xa;"><table key="10.10.34.164:80/.git/">
+<elem key="repository-description">Unnamed repository; edit this file &apos;description&apos; to name the repository.&#xa;</elem>
+<table key="files-found">
+<elem key=".git/config">true</elem>
+<elem key=".gitignore">false</elem>
+<elem key=".git/info/exclude">true</elem>
+<elem key=".git/COMMIT_EDITMSG">true</elem>
+<elem key=".git/description">true</elem>
+</table>
+<elem key="last-commit-message">added mobile apk for beta testing.&#xa;</elem>
+<table key="interesting-matches">
+<table key=".git/config">
+<elem>user</elem>
+</table>
+</table>
+</table>
+</script></port>
+<port protocol="tcp" portid="8080"><state state="closed" reason="conn-refused" reason_ttl="0"/><service name="http-proxy" method="table" conf="3"/></port>
+</ports>
+<times srtt="56480" rttvar="6165" to="100000"/>
+</host>
+<runstats><finished time="1653160637" timestr="Sat May 21 20:17:17 2022" summary="Nmap done at Sat May 21 20:17:17 2022; 1 IP address (1 host up) scanned in 182.76 seconds" elapsed="182.76" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

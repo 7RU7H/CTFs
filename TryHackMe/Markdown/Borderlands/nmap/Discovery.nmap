@@ -1,0 +1,96 @@
+# Nmap 7.92 scan initiated Sat May 21 20:17:31 2022 as: nmap --script discovery -oA nmap/Discovery -p- 10.10.34.164
+Pre-scan script results:
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.10.34.164
+Host is up (0.054s latency).
+Not shown: 65532 filtered tcp ports (no-response)
+PORT     STATE  SERVICE
+22/tcp   open   ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (6)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   2048 bf:44:f9:8d:20:ce:68:0f:c1:2d:0a:c5:ed:57:ee:91 (RSA)
+|   256 68:d4:95:9c:3f:09:9a:eb:3c:dc:0e:00:23:44:ae:94 (ECDSA)
+|_  256 42:e3:f0:c4:86:81:cf:81:4a:db:39:fb:11:25:49:80 (ED25519)
+|_banner: SSH-2.0-OpenSSH_7.2p2 Ubuntu-4ubuntu2.8
+80/tcp   open   http
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.34.164
+|   url                      method
+|_  http://10.10.34.164:80/  FORM
+|_http-chrono: Request times for /; avg: 257.15ms; min: 239.22ms; max: 280.58ms
+| http-headers: 
+|   Server: nginx/1.14.0 (Ubuntu)
+|   Date: Sat, 21 May 2022 19:20:12 GMT
+|   Content-Type: text/html; charset=UTF-8
+|   Connection: close
+|   Set-Cookie: PHPSESSID=g2nsufm4t6htoohjm23p75bmss; path=/
+|   Expires: Thu, 19 Nov 1981 08:52:00 GMT
+|   Cache-Control: no-store, no-cache, must-revalidate
+|   Pragma: no-cache
+|   
+|_  (Request type: HEAD)
+|_http-date: Sat, 21 May 2022 19:20:14 GMT; +1h00m00s from local time.
+|_http-title: Context Information Security - HackBack 2
+|_http-feed: Couldn't find any feeds.
+|_http-xssed: No previously reported XSS vuln.
+| http-security-headers: 
+|   Cache_Control: 
+|     Header: Cache-Control: no-store, no-cache, must-revalidate
+|   Pragma: 
+|     Header: Pragma: no-cache
+|   Expires: 
+|_    Header: Expires: Thu, 19 Nov 1981 08:52:00 GMT
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-enum: 
+|   /info.php: Possible information file
+|_  /.git/HEAD: Git folder
+|_http-errors: Couldn't find any error pages.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; apk: 1; pdf: 5
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1; apk: 1; pdf: 5
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-vhosts: 
+|_128 names had status 200
+|_http-mobileversion-checker: No mobile version detected.
+|_http-comments-displayer: Couldn't find any comments.
+8080/tcp closed http-proxy
+
+Host script results:
+|_dns-brute: Can't guess domain of "10.10.34.164"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Sat May 21 20:22:27 2022 -- 1 IP address (1 host up) scanned in 295.61 seconds

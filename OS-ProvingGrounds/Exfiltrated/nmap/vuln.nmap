@@ -1,0 +1,75 @@
+# Nmap 7.92 scan initiated Sun May 22 12:54:02 2022 as: nmap --script vuln -oA nmap/vuln -p- --min-rate 1000 192.168.152.163
+Warning: 192.168.152.163 giving up on port because retransmission cap hit (10).
+Nmap scan report for exfiltrated.offsec (192.168.152.163)
+Host is up (0.062s latency).
+Not shown: 65496 closed tcp ports (conn-refused), 37 filtered tcp ports (no-response)
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+| http-enum: 
+|   /blog/: Blog
+|   /clientaccesspolicy.xml: Microsoft Silverlight crossdomain policy
+|   /atom.xml: RSS or Atom feed
+|   /rss.xml: RSS or Atom feed
+|   /login/: Login page
+|   /robots.txt: Robots file
+|   /crossdomain.xml: Adobe Flash crossdomain policy
+|   /.gitignore: Revision control ignore file
+|   /Citrix/PNAgent/config.xml: Citrix
+|   /changelog.txt: Version field
+|   /admin/environment.xml: Moodle files
+|   /manifest.json: Manifest JSON File
+|   /0/: Potentially interesting folder
+|   /cron/: Potentially interesting folder
+|   /help/: Potentially interesting folder
+|   /index/: Potentially interesting folder
+|   /members/: Potentially interesting folder
+|   /search/: Potentially interesting folder
+|   /sitecore/shell/sitecore.version.xml: Sitecore.NET login page
+|   /sitecore/shell/Applications/shell.xml: Sitecore.NET (CMS)
+|   /App_Config/Security/Domains.config.xml: Sitecore.NET (CMS)
+|_  /App_Config/Security/GlobalRoles.config.xml: Sitecore.NET (CMS)
+| http-fileupload-exploiter: 
+|   
+|     Couldn't find a file-type field.
+|   
+|_    Couldn't find a file-type field.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=exfiltrated.offsec
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://exfiltrated.offsec:80/
+|     Form id: 
+|     Form action: http://exfiltrated.offsec/search/
+|     
+|     Path: http://exfiltrated.offsec:80/registration/
+|     Form id: 
+|     Form action: http://exfiltrated.offsec/search/
+|     
+|     Path: http://exfiltrated.offsec:80/registration/
+|     Form id: fieldgroup_general
+|     Form action: http://exfiltrated.offsec/registration/
+|     
+|     Path: http://exfiltrated.offsec:80/about/
+|     Form id: 
+|     Form action: http://exfiltrated.offsec/search/
+|     
+|     Path: http://exfiltrated.offsec:80/help/
+|     Form id: 
+|     Form action: http://exfiltrated.offsec/search/
+|     
+|     Path: http://exfiltrated.offsec:80/blog/
+|     Form id: 
+|     Form action: http://exfiltrated.offsec/search/
+|     
+|     Path: http://exfiltrated.offsec:80/search/
+|     Form id: 
+|     Form action: http://exfiltrated.offsec/search/
+|     
+|     Path: http://exfiltrated.offsec:80/terms/
+|     Form id: 
+|_    Form action: http://exfiltrated.offsec/search/
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+
+# Nmap done at Sun May 22 13:01:47 2022 -- 1 IP address (1 host up) scanned in 465.71 seconds

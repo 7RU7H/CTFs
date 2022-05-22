@@ -1,0 +1,21 @@
+# Nmap 7.92 scan initiated Fri May 20 09:28:44 2022 as: nmap --script vuln -oA nmap/Vuln -p- 10.10.107.170
+Nmap scan report for 10.10.107.170
+Host is up (0.057s latency).
+Not shown: 65533 closed tcp ports (conn-refused)
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+| http-sql-injection: 
+|   Possible sqli for queries:
+|     http://10.10.107.170:80/?view=dog%27%20OR%20sqlspider
+|     http://10.10.107.170:80/?view=cat%27%20OR%20sqlspider
+|     http://10.10.107.170:80/?view=dog%27%20OR%20sqlspider
+|     http://10.10.107.170:80/?view=cat%27%20OR%20sqlspider
+|     http://10.10.107.170:80/?view=dog%27%20OR%20sqlspider
+|_    http://10.10.107.170:80/?view=cat%27%20OR%20sqlspider
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+
+# Nmap done at Fri May 20 09:39:17 2022 -- 1 IP address (1 host up) scanned in 632.66 seconds

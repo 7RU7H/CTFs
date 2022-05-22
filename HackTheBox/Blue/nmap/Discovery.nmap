@@ -1,0 +1,574 @@
+# Nmap 7.92 scan initiated Thu May 19 08:29:43 2022 as: nmap --script discovery -oA nmap/Discovery -p- 10.129.105.18
+Pre-scan script results:
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for 10.129.105.18
+Host is up (0.049s latency).
+Not shown: 65526 closed tcp ports (conn-refused)
+PORT      STATE SERVICE
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+445/tcp   open  microsoft-ds
+49152/tcp open  unknown
+49153/tcp open  unknown
+49154/tcp open  unknown
+49155/tcp open  unknown
+49156/tcp open  unknown
+49157/tcp open  unknown
+
+Host script results:
+| smb-enum-shares: 
+|   account_used: guest
+|   \\10.129.105.18\ADMIN$: 
+|     Type: STYPE_DISKTREE_HIDDEN
+|     Comment: Remote Admin
+|     Anonymous access: <none>
+|     Current user access: <none>
+|   \\10.129.105.18\C$: 
+|     Type: STYPE_DISKTREE_HIDDEN
+|     Comment: Default share
+|     Anonymous access: <none>
+|     Current user access: <none>
+|   \\10.129.105.18\IPC$: 
+|     Type: STYPE_IPC_HIDDEN
+|     Comment: Remote IPC
+|     Anonymous access: READ
+|     Current user access: READ/WRITE
+|   \\10.129.105.18\Share: 
+|     Type: STYPE_DISKTREE
+|     Comment: 
+|     Anonymous access: <none>
+|     Current user access: READ
+|   \\10.129.105.18\Users: 
+|     Type: STYPE_DISKTREE
+|     Comment: 
+|     Anonymous access: <none>
+|_    Current user access: READ
+| smb-os-discovery: 
+|   OS: Windows 7 Professional 7601 Service Pack 1 (Windows 7 Professional 6.1)
+|   OS CPE: cpe:/o:microsoft:windows_7::sp1:professional
+|   Computer name: haris-PC
+|   NetBIOS computer name: HARIS-PC\x00
+|   Workgroup: WORKGROUP\x00
+|_  System time: 2022-05-19T08:33:21+01:00
+| smb-ls: Volume \\10.129.105.18\Share
+| SIZE   TIME                 FILENAME
+| <DIR>  2017-07-14T13:48:44  .
+| <DIR>  2017-07-14T13:48:44  ..
+| 
+| 
+| Volume \\10.129.105.18\Users
+| SIZE   TIME                 FILENAME
+| <DIR>  2009-07-14T03:20:08  .
+| <DIR>  2009-07-14T03:20:08  ..
+| <DIR>  2009-07-14T03:20:08  Public
+| <DIR>  2009-07-14T03:20:08  Public\Documents
+| <DIR>  2009-07-14T03:20:08  Public\Downloads
+| <DIR>  2009-07-14T03:20:08  Public\Music
+| <DIR>  2009-07-14T03:20:08  Public\Pictures
+| <DIR>  2011-04-12T07:51:29  Public\Recorded TV
+| <DIR>  2009-07-14T03:20:08  Public\Videos
+|_
+| smb2-capabilities: 
+|   2.0.2: 
+|     Distributed File System
+|   2.1: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+| smb-protocols: 
+|   dialects: 
+|     NT LM 0.12 (SMBv1) [dangerous, but default]
+|     2.0.2
+|_    2.1
+| smb2-time: 
+|   date: 2022-05-19T07:33:09
+|_  start_date: 2022-05-19T07:09:36
+|_dns-brute: Can't guess domain of "10.129.105.18"; use dns-brute.domain script argument.
+| msrpc-enum: 
+|   
+|     tcp_port: 49152
+|     ip_addr: 0.0.0.0
+|     uuid: d95afe70-a6d5-4259-822e-2c84da1ddb0d
+|   
+|     netbios: \\HARIS-PC
+|     exe: lsass.exe samr interface
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|     ncacn_np: \pipe\lsass
+|   
+|     ncalrpc: LRPC-7a0281bfe8f1f7e45e
+|     exe: lsass.exe samr interface
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|   
+|     ncalrpc: audit
+|     exe: lsass.exe samr interface
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|   
+|     ncalrpc: securityevent
+|     exe: lsass.exe samr interface
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|   
+|     ncalrpc: LSARPC_ENDPOINT
+|     exe: lsass.exe samr interface
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|   
+|     ncalrpc: lsapolicylookup
+|     exe: lsass.exe samr interface
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|   
+|     ncalrpc: lsasspirpc
+|     exe: lsass.exe samr interface
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|   
+|     ncalrpc: protected_storage
+|     exe: lsass.exe samr interface
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|   
+|     netbios: \\HARIS-PC
+|     exe: lsass.exe samr interface
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|     ncacn_np: \PIPE\protected_storage
+|   
+|     ncalrpc: samss lpc
+|     exe: lsass.exe samr interface
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|   
+|     exe: lsass.exe samr interface
+|     ip_addr: 0.0.0.0
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|     tcp_port: 49157
+|   
+|     ncalrpc: LRPC-94c4e787c8862a6bc1
+|     uuid: 906b0ce0-c70b-1067-b317-00dd010662da
+|   
+|     ncalrpc: LRPC-94c4e787c8862a6bc1
+|     uuid: 906b0ce0-c70b-1067-b317-00dd010662da
+|   
+|     ncalrpc: LRPC-94c4e787c8862a6bc1
+|     uuid: 906b0ce0-c70b-1067-b317-00dd010662da
+|   
+|     ncalrpc: LRPC-94c4e787c8862a6bc1
+|     uuid: 906b0ce0-c70b-1067-b317-00dd010662da
+|   
+|     ncalrpc: OLEC4116D7B17634A3DBF94489DE351
+|     uuid: 906b0ce0-c70b-1067-b317-00dd010662da
+|   
+|     ncalrpc: LRPC-3f3a18a9f7636aa806
+|     uuid: 906b0ce0-c70b-1067-b317-00dd010662da
+|   
+|     tcp_port: 49156
+|     ip_addr: 0.0.0.0
+|     uuid: 6b5bdd1e-528c-422c-af8c-a4079be4fe48
+|     annotation: Remote Fw APIs
+|   
+|     tcp_port: 49156
+|     ip_addr: 0.0.0.0
+|     uuid: 12345678-1234-abcd-ef00-0123456789ab
+|     annotation: IPSec Policy agent endpoint
+|   
+|     ncalrpc: LRPC-52e46c1adeeb5adda1
+|     uuid: 12345678-1234-abcd-ef00-0123456789ab
+|     annotation: IPSec Policy agent endpoint
+|   
+|     tcp_port: 49155
+|     ip_addr: 0.0.0.0
+|     uuid: 367abb81-9844-35f1-ad32-98f038001003
+|   
+|     ncalrpc: OLEE2C39FC674B041398D442E369664
+|     uuid: 0767a036-0d22-48aa-ba69-b619480f38cb
+|     annotation: PcaSvc
+|   
+|     ncalrpc: LRPC-bbf30eb68fc0a5c5fa
+|     uuid: 0767a036-0d22-48aa-ba69-b619480f38cb
+|     annotation: PcaSvc
+|   
+|     ncalrpc: OLEE2C39FC674B041398D442E369664
+|     uuid: b58aa02e-2884-4e97-8176-4ee06d794184
+|   
+|     ncalrpc: LRPC-bbf30eb68fc0a5c5fa
+|     uuid: b58aa02e-2884-4e97-8176-4ee06d794184
+|   
+|     netbios: \\HARIS-PC
+|     uuid: b58aa02e-2884-4e97-8176-4ee06d794184
+|     ncacn_np: \pipe\trkwks
+|   
+|     ncalrpc: trkwks
+|     uuid: b58aa02e-2884-4e97-8176-4ee06d794184
+|   
+|     ncalrpc: LRPC-0494e6b17ab65897cc
+|     uuid: dd490425-5325-4565-b774-7e27d6c09c24
+|     annotation: Base Firewall Engine API
+|   
+|     ncalrpc: LRPC-0494e6b17ab65897cc
+|     uuid: 7f9d11bf-7fb9-436b-a812-b2d50c5d4c03
+|     annotation: Fw APIs
+|   
+|     ncalrpc: LRPC-0494e6b17ab65897cc
+|     uuid: 2fb92682-6599-42dc-ae13-bd2ca89bd11c
+|     annotation: Fw APIs
+|   
+|     ncalrpc: spoolss
+|     uuid: 0b6edbfa-4a24-4fc6-8a23-942b1eca65d1
+|     annotation: Spooler function endpoint
+|   
+|     ncalrpc: spoolss
+|     uuid: ae33069b-a2a8-46ee-a235-ddfd339be281
+|     annotation: Spooler base remote object endpoint
+|   
+|     ncalrpc: spoolss
+|     uuid: 4a452661-8290-4b36-8fbe-7f4093a94978
+|     annotation: Spooler function endpoint
+|   
+|     ncalrpc: OLE3AE2C3678A704C4AB4AABAF5E9AC
+|     uuid: 7ea70bcf-48af-4f6a-8968-6a440754d5fa
+|     annotation: NSI server endpoint
+|   
+|     ncalrpc: LRPC-35b853e030c766d95e
+|     uuid: 7ea70bcf-48af-4f6a-8968-6a440754d5fa
+|     annotation: NSI server endpoint
+|   
+|     ncalrpc: OLE3AE2C3678A704C4AB4AABAF5E9AC
+|     uuid: 3473dd4d-2e88-4006-9cba-22570909dd10
+|     annotation: WinHttp Auto-Proxy Service
+|   
+|     ncalrpc: LRPC-35b853e030c766d95e
+|     uuid: 3473dd4d-2e88-4006-9cba-22570909dd10
+|     annotation: WinHttp Auto-Proxy Service
+|   
+|     ncalrpc: LRPC-29d358628467ca9793
+|     uuid: 24019106-a203-4642-b88d-82dae9158929
+|   
+|     ncalrpc: IUserProfile2
+|     uuid: c9ac6db5-82b7-4e55-ae8a-e464ed7b4277
+|     annotation: Impl friendly name
+|   
+|     ncalrpc: IUserProfile2
+|     uuid: c9ac6db5-82b7-4e55-ae8a-e464ed7b4277
+|     annotation: Impl friendly name
+|   
+|     ncalrpc: OLE008863FBE4294040BD99C4C9221B
+|     uuid: c9ac6db5-82b7-4e55-ae8a-e464ed7b4277
+|     annotation: Impl friendly name
+|   
+|     ncalrpc: senssvc
+|     uuid: c9ac6db5-82b7-4e55-ae8a-e464ed7b4277
+|     annotation: Impl friendly name
+|   
+|     ncalrpc: IUserProfile2
+|     uuid: c9ac6db5-82b7-4e55-ae8a-e464ed7b4277
+|     annotation: Impl friendly name
+|   
+|     ncalrpc: OLE008863FBE4294040BD99C4C9221B
+|     uuid: c9ac6db5-82b7-4e55-ae8a-e464ed7b4277
+|     annotation: Impl friendly name
+|   
+|     ncalrpc: senssvc
+|     uuid: c9ac6db5-82b7-4e55-ae8a-e464ed7b4277
+|     annotation: Impl friendly name
+|   
+|     ncalrpc: IUserProfile2
+|     uuid: 2eb08e3e-639f-4fba-97b1-14f878961076
+|   
+|     ncalrpc: OLE008863FBE4294040BD99C4C9221B
+|     uuid: 2eb08e3e-639f-4fba-97b1-14f878961076
+|   
+|     ncalrpc: senssvc
+|     uuid: 2eb08e3e-639f-4fba-97b1-14f878961076
+|   
+|     ncalrpc: IUserProfile2
+|     uuid: 0a74ef1c-41a4-4e06-83ae-dc74fb1cdd53
+|   
+|     ncalrpc: OLE008863FBE4294040BD99C4C9221B
+|     uuid: 0a74ef1c-41a4-4e06-83ae-dc74fb1cdd53
+|   
+|     ncalrpc: senssvc
+|     uuid: 0a74ef1c-41a4-4e06-83ae-dc74fb1cdd53
+|   
+|     ncalrpc: IUserProfile2
+|     exe: mstask.exe atsvc interface (Scheduler service)
+|     uuid: 1ff70682-0a51-30e8-076d-740be8cee98b
+|   
+|     ncalrpc: OLE008863FBE4294040BD99C4C9221B
+|     exe: mstask.exe atsvc interface (Scheduler service)
+|     uuid: 1ff70682-0a51-30e8-076d-740be8cee98b
+|   
+|     ncalrpc: senssvc
+|     exe: mstask.exe atsvc interface (Scheduler service)
+|     uuid: 1ff70682-0a51-30e8-076d-740be8cee98b
+|   
+|     netbios: \\HARIS-PC
+|     exe: mstask.exe atsvc interface (Scheduler service)
+|     uuid: 1ff70682-0a51-30e8-076d-740be8cee98b
+|     ncacn_np: \PIPE\atsvc
+|   
+|     ncalrpc: IUserProfile2
+|     uuid: 378e52b0-c0a9-11cf-822d-00aa0051e40f
+|   
+|     ncalrpc: OLE008863FBE4294040BD99C4C9221B
+|     uuid: 378e52b0-c0a9-11cf-822d-00aa0051e40f
+|   
+|     ncalrpc: senssvc
+|     uuid: 378e52b0-c0a9-11cf-822d-00aa0051e40f
+|   
+|     netbios: \\HARIS-PC
+|     uuid: 378e52b0-c0a9-11cf-822d-00aa0051e40f
+|     ncacn_np: \PIPE\atsvc
+|   
+|     ncalrpc: IUserProfile2
+|     uuid: 86d35949-83c9-4044-b424-db363231fd0c
+|   
+|     ncalrpc: OLE008863FBE4294040BD99C4C9221B
+|     uuid: 86d35949-83c9-4044-b424-db363231fd0c
+|   
+|     ncalrpc: senssvc
+|     uuid: 86d35949-83c9-4044-b424-db363231fd0c
+|   
+|     netbios: \\HARIS-PC
+|     uuid: 86d35949-83c9-4044-b424-db363231fd0c
+|     ncacn_np: \PIPE\atsvc
+|   
+|     tcp_port: 49154
+|     ip_addr: 0.0.0.0
+|     uuid: 86d35949-83c9-4044-b424-db363231fd0c
+|   
+|     ncalrpc: IUserProfile2
+|     uuid: a398e520-d59a-4bdd-aa7a-3c1e0303a511
+|     annotation: IKE/Authip API
+|   
+|     ncalrpc: OLE008863FBE4294040BD99C4C9221B
+|     uuid: a398e520-d59a-4bdd-aa7a-3c1e0303a511
+|     annotation: IKE/Authip API
+|   
+|     ncalrpc: senssvc
+|     uuid: a398e520-d59a-4bdd-aa7a-3c1e0303a511
+|     annotation: IKE/Authip API
+|   
+|     netbios: \\HARIS-PC
+|     uuid: a398e520-d59a-4bdd-aa7a-3c1e0303a511
+|     annotation: IKE/Authip API
+|     ncacn_np: \PIPE\atsvc
+|   
+|     tcp_port: 49154
+|     ip_addr: 0.0.0.0
+|     uuid: a398e520-d59a-4bdd-aa7a-3c1e0303a511
+|     annotation: IKE/Authip API
+|   
+|     ncalrpc: IUserProfile2
+|     uuid: 552d076a-cb29-4e44-8b6a-d15e59e2c0af
+|     annotation: IP Transition Configuration endpoint
+|   
+|     ncalrpc: OLE008863FBE4294040BD99C4C9221B
+|     uuid: 552d076a-cb29-4e44-8b6a-d15e59e2c0af
+|     annotation: IP Transition Configuration endpoint
+|   
+|     ncalrpc: senssvc
+|     uuid: 552d076a-cb29-4e44-8b6a-d15e59e2c0af
+|     annotation: IP Transition Configuration endpoint
+|   
+|     netbios: \\HARIS-PC
+|     uuid: 552d076a-cb29-4e44-8b6a-d15e59e2c0af
+|     annotation: IP Transition Configuration endpoint
+|     ncacn_np: \PIPE\atsvc
+|   
+|     tcp_port: 49154
+|     ip_addr: 0.0.0.0
+|     uuid: 552d076a-cb29-4e44-8b6a-d15e59e2c0af
+|     annotation: IP Transition Configuration endpoint
+|   
+|     ncalrpc: IUserProfile2
+|     uuid: 98716d03-89ac-44c7-bb8c-285824e51c4a
+|     annotation: XactSrv service
+|   
+|     ncalrpc: OLE008863FBE4294040BD99C4C9221B
+|     uuid: 98716d03-89ac-44c7-bb8c-285824e51c4a
+|     annotation: XactSrv service
+|   
+|     ncalrpc: senssvc
+|     uuid: 98716d03-89ac-44c7-bb8c-285824e51c4a
+|     annotation: XactSrv service
+|   
+|     netbios: \\HARIS-PC
+|     uuid: 98716d03-89ac-44c7-bb8c-285824e51c4a
+|     annotation: XactSrv service
+|     ncacn_np: \PIPE\atsvc
+|   
+|     tcp_port: 49154
+|     ip_addr: 0.0.0.0
+|     uuid: 98716d03-89ac-44c7-bb8c-285824e51c4a
+|     annotation: XactSrv service
+|   
+|     ncalrpc: WMsgKRpc090741
+|     uuid: 76f226c3-ec14-4325-8a99-6a46348418af
+|   
+|     ncalrpc: eventlog
+|     uuid: f6beaff7-1e19-4fbb-9f8f-b89e2018337c
+|     annotation: Event log TCPIP
+|   
+|     netbios: \\HARIS-PC
+|     uuid: f6beaff7-1e19-4fbb-9f8f-b89e2018337c
+|     annotation: Event log TCPIP
+|     ncacn_np: \pipe\eventlog
+|   
+|     tcp_port: 49153
+|     ip_addr: 0.0.0.0
+|     uuid: f6beaff7-1e19-4fbb-9f8f-b89e2018337c
+|     annotation: Event log TCPIP
+|   
+|     ncalrpc: eventlog
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d5
+|     annotation: DHCP Client LRPC Endpoint
+|   
+|     netbios: \\HARIS-PC
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d5
+|     annotation: DHCP Client LRPC Endpoint
+|     ncacn_np: \pipe\eventlog
+|   
+|     tcp_port: 49153
+|     ip_addr: 0.0.0.0
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d5
+|     annotation: DHCP Client LRPC Endpoint
+|   
+|     ncalrpc: AudioClientRpc
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d5
+|     annotation: DHCP Client LRPC Endpoint
+|   
+|     ncalrpc: Audiosrv
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d5
+|     annotation: DHCP Client LRPC Endpoint
+|   
+|     ncalrpc: dhcpcsvc
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d5
+|     annotation: DHCP Client LRPC Endpoint
+|   
+|     ncalrpc: eventlog
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d6
+|     annotation: DHCPv6 Client LRPC Endpoint
+|   
+|     netbios: \\HARIS-PC
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d6
+|     annotation: DHCPv6 Client LRPC Endpoint
+|     ncacn_np: \pipe\eventlog
+|   
+|     tcp_port: 49153
+|     ip_addr: 0.0.0.0
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d6
+|     annotation: DHCPv6 Client LRPC Endpoint
+|   
+|     ncalrpc: AudioClientRpc
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d6
+|     annotation: DHCPv6 Client LRPC Endpoint
+|   
+|     ncalrpc: Audiosrv
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d6
+|     annotation: DHCPv6 Client LRPC Endpoint
+|   
+|     ncalrpc: dhcpcsvc
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d6
+|     annotation: DHCPv6 Client LRPC Endpoint
+|   
+|     ncalrpc: dhcpcsvc6
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d6
+|     annotation: DHCPv6 Client LRPC Endpoint
+|   
+|     ncalrpc: eventlog
+|     uuid: 30adc50c-5cbc-46ce-9a0e-91914789e23c
+|     annotation: NRP server endpoint
+|   
+|     netbios: \\HARIS-PC
+|     uuid: 30adc50c-5cbc-46ce-9a0e-91914789e23c
+|     annotation: NRP server endpoint
+|     ncacn_np: \pipe\eventlog
+|   
+|     tcp_port: 49153
+|     ip_addr: 0.0.0.0
+|     uuid: 30adc50c-5cbc-46ce-9a0e-91914789e23c
+|     annotation: NRP server endpoint
+|   
+|     ncalrpc: AudioClientRpc
+|     uuid: 30adc50c-5cbc-46ce-9a0e-91914789e23c
+|     annotation: NRP server endpoint
+|   
+|     ncalrpc: Audiosrv
+|     uuid: 30adc50c-5cbc-46ce-9a0e-91914789e23c
+|     annotation: NRP server endpoint
+|   
+|     ncalrpc: dhcpcsvc
+|     uuid: 30adc50c-5cbc-46ce-9a0e-91914789e23c
+|     annotation: NRP server endpoint
+|   
+|     ncalrpc: dhcpcsvc6
+|     uuid: 30adc50c-5cbc-46ce-9a0e-91914789e23c
+|     annotation: NRP server endpoint
+|   
+|     ncalrpc: eventlog
+|     uuid: 06bba54a-be05-49f9-b0a0-30f790261023
+|     annotation: Security Center
+|   
+|     netbios: \\HARIS-PC
+|     uuid: 06bba54a-be05-49f9-b0a0-30f790261023
+|     annotation: Security Center
+|     ncacn_np: \pipe\eventlog
+|   
+|     tcp_port: 49153
+|     ip_addr: 0.0.0.0
+|     uuid: 06bba54a-be05-49f9-b0a0-30f790261023
+|     annotation: Security Center
+|   
+|     ncalrpc: AudioClientRpc
+|     uuid: 06bba54a-be05-49f9-b0a0-30f790261023
+|     annotation: Security Center
+|   
+|     ncalrpc: Audiosrv
+|     uuid: 06bba54a-be05-49f9-b0a0-30f790261023
+|     annotation: Security Center
+|   
+|     ncalrpc: dhcpcsvc
+|     uuid: 06bba54a-be05-49f9-b0a0-30f790261023
+|     annotation: Security Center
+|   
+|     ncalrpc: dhcpcsvc6
+|     uuid: 06bba54a-be05-49f9-b0a0-30f790261023
+|     annotation: Security Center
+|   
+|     ncalrpc: OLE57EF03EA9FFD4B63A5CB19525FDC
+|     uuid: 06bba54a-be05-49f9-b0a0-30f790261023
+|     annotation: Security Center
+|   
+|     ncalrpc: LRPC-a6d68a8fa29b8daf22
+|     uuid: c9ac6db5-82b7-4e55-ae8a-e464ed7b4277
+|     annotation: Impl friendly name
+|   
+|     ncalrpc: WMsgKRpc0895F0
+|     uuid: 76f226c3-ec14-4325-8a99-6a46348418af
+|   
+|     netbios: \\HARIS-PC
+|     uuid: 76f226c3-ec14-4325-8a99-6a46348418af
+|     ncacn_np: \PIPE\InitShutdown
+|   
+|     ncalrpc: WindowsShutdown
+|     uuid: 76f226c3-ec14-4325-8a99-6a46348418af
+|   
+|     ncalrpc: WMsgKRpc0895F0
+|     uuid: d95afe70-a6d5-4259-822e-2c84da1ddb0d
+|   
+|     netbios: \\HARIS-PC
+|     uuid: d95afe70-a6d5-4259-822e-2c84da1ddb0d
+|     ncacn_np: \PIPE\InitShutdown
+|   
+|     ncalrpc: WindowsShutdown
+|_    uuid: d95afe70-a6d5-4259-822e-2c84da1ddb0d
+| smb2-security-mode: 
+|   2.1: 
+|_    Message signing enabled but not required
+| smb-mbenum: 
+|_  ERROR: Call to Browser Service failed with status = 59
+|_fcrdns: FAIL (No PTR record)
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+
+# Nmap done at Thu May 19 08:34:50 2022 -- 1 IP address (1 host up) scanned in 307.12 seconds

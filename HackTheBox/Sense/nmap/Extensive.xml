@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Thu May 19 15:31:08 2022 as: nmap -sC -sV -oA nmap/Extensive -p- 10.129.105.60 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA nmap/Extensive -p- 10.129.105.60" start="1652970668" startstr="Thu May 19 15:31:08 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.105.60" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1652970669" endtime="1652972415"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="10.129.105.60" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65533">
+<extrareasons reason="no-response" count="65533" proto="tcp" ports="1-79,81-442,444-65535"/>
+</extraports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="lighttpd" version="1.4.35" method="probed" conf="10"><cpe>cpe:/a:lighttpd:lighttpd:1.4.35</cpe></service><script id="http-title" output="Did not follow redirect to https://10.129.105.60/"><elem key="redirect_url">https://10.129.105.60/</elem>
+</script><script id="http-server-header" output="lighttpd/1.4.35"><elem>lighttpd/1.4.35</elem>
+</script></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="lighttpd" version="1.4.35" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/a:lighttpd:lighttpd:1.4.35</cpe></service><script id="http-title" output="Login"><elem key="title">Login</elem>
+</script><script id="ssl-cert" output="Subject: commonName=Common Name (eg, YOUR name)/organizationName=CompanyName/stateOrProvinceName=Somewhere/countryName=US&#xa;Not valid before: 2017-10-14T19:21:35&#xa;Not valid after:  2023-04-06T19:21:35"><table key="subject">
+<elem key="commonName">Common Name (eg, YOUR name)</elem>
+<elem key="countryName">US</elem>
+<elem key="emailAddress">Email Address</elem>
+<elem key="localityName">Somecity</elem>
+<elem key="organizationName">CompanyName</elem>
+<elem key="organizationalUnitName">Organizational Unit Name (eg, section)</elem>
+<elem key="stateOrProvinceName">Somewhere</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">Common Name (eg, YOUR name)</elem>
+<elem key="countryName">US</elem>
+<elem key="emailAddress">Email Address</elem>
+<elem key="localityName">Somecity</elem>
+<elem key="organizationName">CompanyName</elem>
+<elem key="organizationalUnitName">Organizational Unit Name (eg, section)</elem>
+<elem key="stateOrProvinceName">Somewhere</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">1024</elem>
+<elem key="modulus">BFB1653A072D3C9466EFB6D01FC78ED25A4B2003B15ABCDAC4A16F48469D16FD117D169E4141EB0B2F714C274307C8671F4619CBE55C0308BD04FB5634E5ACFC3D8F245268EFC52BF14022E7E8C8779D366488027CBE90745809E396DAD3084B2FEC39F3D8EA1F929A9A527A0D19F3B7B8A58FBD15E5F4E9527BF05C0D2B5F7D</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">32:B9:0D:2F:E1:4E:C8:BD:48:7C:53:EF:8F:4E:77:FA:77:2E:AD:39</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">keyid:32:B9:0D:2F:E1:4E:C8:BD:48:7C:53:EF:8F:4E:77:FA:77:2E:AD:39&#xa;DirName:/C=US/ST=Somewhere/L=Somecity/O=CompanyName/OU=Organizational Unit Name (eg, section)/CN=Common Name (eg, YOUR name)/emailAddress=Email Address&#xa;serial:B0:A1:68:8A:62:C3:3E:35&#xa;</elem>
+</table>
+<table>
+<elem key="name">X509v3 Basic Constraints</elem>
+<elem key="value">CA:TRUE</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2017-10-14T19:21:35</elem>
+<elem key="notAfter">2023-04-06T19:21:35</elem>
+</table>
+<elem key="md5">65f8b00f57d234682c520f448110c622</elem>
+<elem key="sha1">4f7c9a75cb7f70d3808708cb8c2720dc05f1bb02</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIEKDCCA5GgAwIBAgIJALChaIpiwz41MA0GCSqGSIb3DQEBCwUAMIG/MQswCQYD&#xa;VQQGEwJVUzESMBAGA1UECBMJU29tZXdoZXJlMREwDwYDVQQHEwhTb21lY2l0eTEU&#xa;MBIGA1UEChMLQ29tcGFueU5hbWUxLzAtBgNVBAsTJk9yZ2FuaXphdGlvbmFsIFVu&#xa;aXQgTmFtZSAoZWcsIHNlY3Rpb24pMSQwIgYDVQQDExtDb21tb24gTmFtZSAoZWcs&#xa;IFlPVVIgbmFtZSkxHDAaBgkqhkiG9w0BCQEWDUVtYWlsIEFkZHJlc3MwHhcNMTcx&#xa;MDE0MTkyMTM1WhcNMjMwNDA2MTkyMTM1WjCBvzELMAkGA1UEBhMCVVMxEjAQBgNV&#xa;BAgTCVNvbWV3aGVyZTERMA8GA1UEBxMIU29tZWNpdHkxFDASBgNVBAoTC0NvbXBh&#xa;bnlOYW1lMS8wLQYDVQQLEyZPcmdhbml6YXRpb25hbCBVbml0IE5hbWUgKGVnLCBz&#xa;ZWN0aW9uKTEkMCIGA1UEAxMbQ29tbW9uIE5hbWUgKGVnLCBZT1VSIG5hbWUpMRww&#xa;GgYJKoZIhvcNAQkBFg1FbWFpbCBBZGRyZXNzMIGfMA0GCSqGSIb3DQEBAQUAA4GN&#xa;ADCBiQKBgQC/sWU6By08lGbvttAfx47SWksgA7FavNrEoW9IRp0W/RF9Fp5BQesL&#xa;L3FMJ0MHyGcfRhnL5VwDCL0E+1Y05az8PY8kUmjvxSvxQCLn6Mh3nTZkiAJ8vpB0&#xa;WAnjltrTCEsv7Dnz2OofkpqaUnoNGfO3uKWPvRXl9OlSe/BcDStffQIDAQABo4IB&#xa;KDCCASQwHQYDVR0OBBYEFDK5DS/hTsi9SHxT749Od/p3Lq05MIH0BgNVHSMEgeww&#xa;gemAFDK5DS/hTsi9SHxT749Od/p3Lq05oYHFpIHCMIG/MQswCQYDVQQGEwJVUzES&#xa;MBAGA1UECBMJU29tZXdoZXJlMREwDwYDVQQHEwhTb21lY2l0eTEUMBIGA1UEChML&#xa;Q29tcGFueU5hbWUxLzAtBgNVBAsTJk9yZ2FuaXphdGlvbmFsIFVuaXQgTmFtZSAo&#xa;ZWcsIHNlY3Rpb24pMSQwIgYDVQQDExtDb21tb24gTmFtZSAoZWcsIFlPVVIgbmFt&#xa;ZSkxHDAaBgkqhkiG9w0BCQEWDUVtYWlsIEFkZHJlc3OCCQCwoWiKYsM+NTAMBgNV&#xa;HRMEBTADAQH/MA0GCSqGSIb3DQEBCwUAA4GBAHNn+1AX2qwJ9zhgN3I4ES1Vq84l&#xa;n6p7OoBefxcf31Pn3VDnbvJJFFcZdplDxbIWh5lyjpTHRJQyHECtEMW677rFXJAl&#xa;/cEYWHDndn9Gwaxn7JyffK5lUAPMPEDtudQb3cxrevP/iFZwefi2d5p3jFkDCcGI&#xa;+Y0tZRIRzHWgQHa/&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="http-server-header" output="lighttpd/1.4.35"><elem>lighttpd/1.4.35</elem>
+</script><script id="ssl-date" output="TLS randomness does not represent time"></script></port>
+</ports>
+<times srtt="410315" rttvar="90846" to="773699"/>
+</host>
+<runstats><finished time="1652972415" timestr="Thu May 19 16:00:15 2022" summary="Nmap done at Thu May 19 16:00:15 2022; 1 IP address (1 host up) scanned in 1747.07 seconds" elapsed="1747.07" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

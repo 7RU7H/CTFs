@@ -1,0 +1,48 @@
+# Nmap 7.92 scan initiated Wed May 18 21:51:10 2022 as: nmap --script vuln -oA nmap/Vuln -p- 192.168.249.145
+Nmap scan report for 192.168.249.145
+Host is up (0.051s latency).
+Not shown: 65532 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+80/tcp   open  http
+| http-cookie-flags: 
+|   /filemanager/: 
+|     PHPSESSID: 
+|_      httponly flag not set
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.249.145
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://192.168.249.145:80/
+|     Form id: name
+|     Form action: 
+|     
+|     Path: http://192.168.249.145:80/
+|     Form id: name
+|     Form action: 
+|     
+|     Path: http://192.168.249.145:80/
+|     Form id: 
+|_    Form action: 
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-internal-ip-disclosure: ERROR: Script execution failed (use -d to debug)
+| http-enum: 
+|   /filemanager/: Potentially interesting folder
+|_  /source/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+445/tcp  open  microsoft-ds
+3306/tcp open  mysql
+|_mysql-vuln-cve2012-2122: ERROR: Script execution failed (use -d to debug)
+
+Host script results:
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: false
+| smb-vuln-regsvc-dos: 
+|   VULNERABLE:
+|   Service regsvc in Microsoft Windows systems vulnerable to denial of service
+|     State: VULNERABLE
+|       The service regsvc in Microsoft Windows 2000 systems is vulnerable to denial of service caused by a null deference
+|       pointer. This script will crash the service if it is vulnerable. This vulnerability was discovered by Ron Bowes
+|       while working on smb-enum-sessions.
+|_          
+
+# Nmap done at Wed May 18 21:54:43 2022 -- 1 IP address (1 host up) scanned in 213.03 seconds

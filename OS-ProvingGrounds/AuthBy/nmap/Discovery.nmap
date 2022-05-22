@@ -1,0 +1,47 @@
+# Nmap 7.92 scan initiated Thu May 19 18:19:34 2022 as: nmap -Pn --script discovery -oA nmap/Discovery -p- 192.168.249.46
+Pre-scan script results:
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 192.168.249.46
+Host is up (0.042s latency).
+Not shown: 65531 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+21/tcp   open  ftp
+|_banner: 220 zFTPServer v6.0, build 2011-10-17 15:25 ready.
+242/tcp  open  direct
+3145/tcp open  csi-lfap
+|_banner: 220 .
+3389/tcp open  ms-wbt-server
+| rdp-enum-encryption: 
+|   Security layer
+|     CredSSP (NLA): SUCCESS
+|     CredSSP with Early User Auth: SUCCESS
+|     Native RDP: SUCCESS
+|     RDSTLS: SUCCESS
+|     SSL: SUCCESS
+|   RDP Encryption level: Client Compatible
+|     40-bit RC4: SUCCESS
+|     56-bit RC4: SUCCESS
+|     128-bit RC4: SUCCESS
+|     FIPS 140-1: SUCCESS
+|_  RDP Protocol Version:  RDP 5.x, 6.x, 7.x, or 8.x server
+| ssl-cert: Subject: commonName=LIVDA
+| Not valid before: 2022-02-14T08:20:57
+|_Not valid after:  2022-08-16T08:20:57
+|_ssl-date: 2022-05-19T17:22:30+00:00; 0s from scanner time.
+| rdp-ntlm-info: 
+|   Target_Name: LIVDA
+|   NetBIOS_Domain_Name: LIVDA
+|   NetBIOS_Computer_Name: LIVDA
+|   DNS_Domain_Name: LIVDA
+|   DNS_Computer_Name: LIVDA
+|   Product_Version: 6.0.6001
+|_  System_Time: 2022-05-19T17:22:31+00:00
+
+Host script results:
+|_dns-brute: Can't guess domain of "192.168.249.46"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Thu May 19 18:22:51 2022 -- 1 IP address (1 host up) scanned in 197.01 seconds

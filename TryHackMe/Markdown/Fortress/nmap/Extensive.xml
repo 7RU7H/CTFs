@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Sat May 21 18:55:07 2022 as: nmap -sC -sV -oA nmap/Extensive -p- 10.10.29.151 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA nmap/Extensive -p- 10.10.29.151" start="1653155707" startstr="Sat May 21 18:55:07 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.29.151" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1653155708" endtime="1653156345"><status state="up" reason="conn-refused" reason_ttl="0"/>
+<address addr="10.10.29.151" addrtype="ipv4"/>
+<hostnames>
+<hostname name="fortress" type="PTR"/>
+</hostnames>
+<ports><extraports state="closed" count="65531">
+<extrareasons reason="conn-refused" count="65531" proto="tcp" ports="1-21,23-5580,5582-5751,5753-7330,7332-65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" product="OpenSSH" version="7.2p2 Ubuntu 4ubuntu2.10" extrainfo="Ubuntu Linux; protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:7.2p2</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service><script id="ssh-hostkey" output="&#xa;  2048 9f:d0:bb:c7:e2:ee:7f:91:fe:c2:6a:a6:bb:b2:e1:91 (RSA)&#xa;  256 06:4b:fe:c0:6e:e4:f4:7e:e1:db:1c:e7:79:9d:2b:1d (ECDSA)&#xa;  256 0d:0e:ce:57:00:1a:e2:8d:d2:1b:2e:6d:92:3e:65:c4 (ED25519)"><table>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABAQCXx2nOQ7SVuA1liJqX+ZR2KK9Oipy+1cd4ZZ3iD+/xuAkvon338WPfjcGmNaBd0McHqunhvl1xJZZMsOsjVuMUSD0GUX3YF6BQ/RdVxQ00/gRvVW70nUk+kf+Umz/5HbI9IfBLoIcRGWxf3naUdl8Vfs7Fj38fnZB0A+8av3/VAthEhiOq58o9ssQJ7DD6ZJydt4R1G9WYa2C+8O76/rJ9EadLCaNAeKKUYmuGEdJit+vGsd4ggzYc0qJQ2QmRUrVK+FeIFZDIo4InaPIiI1VF0X+ooax1siytlF85f5956EfDsGgzNBZb/9I5tGz4QFnM/FH65fXEnvUrDoXO2+dj</elem>
+<elem key="fingerprint">9fd0bbc7e2ee7f91fec26aa6bbb2e191</elem>
+<elem key="bits">2048</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+<table>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPBJBTN55zS77xduARAxZeA+xhJt04e3yVZpkmTObu2JMOjxTzFoK4mftWUdLsx1bs1mDIWWXLOKjXcnq3PcO84=</elem>
+<elem key="fingerprint">064bfec06ee4f47ee1db1ce7799d2b1d</elem>
+<elem key="bits">256</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+</table>
+<table>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIJezjvXtsHInz+XQ4hYfNBX5kjinTpiKRYaK5rF1og71</elem>
+<elem key="fingerprint">0d0ece57001ae28dd21b2e6d923e65c4</elem>
+<elem key="bits">256</elem>
+<elem key="type">ssh-ed25519</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="5581"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ftp" product="vsftpd" version="3.0.3" ostype="Unix" method="probed" conf="10"><cpe>cpe:/a:vsftpd:vsftpd:3.0.3</cpe></service><script id="ftp-anon" output="Anonymous FTP login allowed (FTP code 230)&#xa;-rw-r-&#45;r-&#45;    1 ftp      ftp           305 Jul 25  2021 marked.txt"/><script id="ftp-syst" output="&#xa;  STAT: &#xa;FTP server status:&#xa;     Connected to ::ffff:10.9.8.139&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 3&#xa;     vsFTPd 3.0.3 - secure, fast, stable&#xa;End of status"><elem key="STAT">&#xa;FTP server status:&#xa;     Connected to ::ffff:10.9.8.139&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 3&#xa;     vsFTPd 3.0.3 - secure, fast, stable&#xa;End of status</elem>
+</script></port>
+<port protocol="tcp" portid="5752"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" servicefp="SF-Port5752-TCP:V=7.92%I=7%D=5/21%Time=6289295E%P=x86_64-pc-linux-gnu%r(NULL,28,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20&quot;)%r(GenericLines,32,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20Password:\x20&quot;)%r(GetRequest,32,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20Password:\x20&quot;)%r(HTTPOptions,32,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20Password:\x20&quot;)%r(RTSPRequest,32,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20Password:\x20&quot;)%r(RPCCheck,28,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20&quot;)%r(DNSVersionBindReqTCP,32,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20Password:\x20&quot;)%r(DNSStatusRequestTCP,32,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20Password:\x20&quot;)%r(Help,32,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20Password:\x20&quot;)%r(SSLSessionReq,28,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20&quot;)%r(TerminalServerCookie,28,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20&quot;)%r(TLSSessionReq,28,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20&quot;)%r(Kerberos,28,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20&quot;)%r(SMBProgNeg,28,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20&quot;)%r(X11Probe,32,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20Password:\x20&quot;)%r(FourOhFourRequest,32,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20Password:\x20&quot;)%r(LPDString,32,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20Password:\x20&quot;)%r(LDAPSearchReq,28,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20&quot;)%r(LDAPBindReq,28,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20&quot;)%r(SIPOptions,32,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20Password:\x20&quot;)%r(LANDesk-RC,32,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20Password:\x20&quot;)%r(TerminalServer,28,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20&quot;)%r(NCP,28,&quot;\n\tChapter\x201:\x20A\x20Call\x20for\x20help\n\nUsername:\x20&quot;);" method="table" conf="3"/><script id="fingerprint-strings" output="&#xa;  DNSStatusRequestTCP, DNSVersionBindReqTCP, FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, Help, LANDesk-RC, LPDString, RTSPRequest, SIPOptions, X11Probe: &#xa;    Chapter 1: A Call for help&#xa;    Username: Password:&#xa;  Kerberos, LDAPBindReq, LDAPSearchReq, NCP, NULL, RPCCheck, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServer, TerminalServerCookie: &#xa;    Chapter 1: A Call for help&#xa;    Username:"><elem key="DNSStatusRequestTCP, DNSVersionBindReqTCP, FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, Help, LANDesk-RC, LPDString, RTSPRequest, SIPOptions, X11Probe">&#xa;    Chapter 1: A Call for help&#xa;    Username: Password:</elem>
+<elem key="Kerberos, LDAPBindReq, LDAPSearchReq, NCP, NULL, RPCCheck, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServer, TerminalServerCookie">&#xa;    Chapter 1: A Call for help&#xa;    Username:</elem>
+</script></port>
+<port protocol="tcp" portid="7331"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="Apache httpd" version="2.4.18" extrainfo="(Ubuntu)" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.18</cpe></service><script id="http-title" output="Apache2 Ubuntu Default Page: It works"><elem key="title">Apache2 Ubuntu Default Page: It works</elem>
+</script><script id="http-server-header" output="Apache/2.4.18 (Ubuntu)"><elem>Apache/2.4.18 (Ubuntu)</elem>
+</script></port>
+</ports>
+<times srtt="61169" rttvar="12124" to="109665"/>
+</host>
+<runstats><finished time="1653156345" timestr="Sat May 21 19:05:45 2022" summary="Nmap done at Sat May 21 19:05:45 2022; 1 IP address (1 host up) scanned in 637.79 seconds" elapsed="637.79" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

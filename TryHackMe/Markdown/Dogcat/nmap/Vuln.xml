@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Fri May 20 09:28:44 2022 as: nmap -&#45;script vuln -oA nmap/Vuln -p- 10.10.107.170 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/Vuln -p- 10.10.107.170" start="1653035324" startstr="Fri May 20 09:28:44 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.107.170" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1653035335" endtime="1653035957"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="10.10.107.170" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65533">
+<extrareasons reason="conn-refused" count="65533" proto="tcp" ports="1-21,23-79,81-65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/><script id="http-sql-injection" output="&#xa;  Possible sqli for queries:&#xa;    http://10.10.107.170:80/?view=dog%27%20OR%20sqlspider&#xa;    http://10.10.107.170:80/?view=cat%27%20OR%20sqlspider&#xa;    http://10.10.107.170:80/?view=dog%27%20OR%20sqlspider&#xa;    http://10.10.107.170:80/?view=cat%27%20OR%20sqlspider&#xa;    http://10.10.107.170:80/?view=dog%27%20OR%20sqlspider&#xa;    http://10.10.107.170:80/?view=cat%27%20OR%20sqlspider&#xa;"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-vuln-cve2017-1001000" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/></port>
+</ports>
+<times srtt="56914" rttvar="2556" to="100000"/>
+</host>
+<runstats><finished time="1653035957" timestr="Fri May 20 09:39:17 2022" summary="Nmap done at Fri May 20 09:39:17 2022; 1 IP address (1 host up) scanned in 632.66 seconds" elapsed="632.66" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

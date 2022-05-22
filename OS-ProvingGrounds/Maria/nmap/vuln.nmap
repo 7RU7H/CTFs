@@ -1,0 +1,34 @@
+# Nmap 7.92 scan initiated Sun May 22 10:46:21 2022 as: nmap --script vuln -oA nmap/vuln -p 21,80,3306 192.168.152.167
+Nmap scan report for 192.168.152.167
+Host is up (0.047s latency).
+
+PORT     STATE SERVICE
+21/tcp   open  ftp
+80/tcp   open  http
+| http-enum: 
+|   /wp-login.php: Possible admin folder
+|   /readme.html: Wordpress version: 2 
+|   /: WordPress version: 5.7.1
+|   /wp-includes/images/rss.png: Wordpress version 2.2 found.
+|   /wp-includes/js/jquery/suggest.js: Wordpress version 2.5 found.
+|   /wp-includes/images/blank.gif: Wordpress version 2.6 found.
+|   /wp-includes/js/comment-reply.js: Wordpress version 2.7 found.
+|   /wp-login.php: Wordpress login page.
+|   /wp-admin/upgrade.php: Wordpress login page.
+|_  /readme.html: Interesting, a readme.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.152.167
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://192.168.152.167:80/
+|     Form id: search-form-1
+|     Form action: http:/
+|     
+|     Path: http://192.168.152.167:80/
+|     Form id: search-form-2
+|_    Form action: http:/
+3306/tcp open  mysql
+
+# Nmap done at Sun May 22 10:50:37 2022 -- 1 IP address (1 host up) scanned in 256.46 seconds

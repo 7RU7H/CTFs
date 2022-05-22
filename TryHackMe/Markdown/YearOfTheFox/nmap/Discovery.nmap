@@ -1,0 +1,179 @@
+# Nmap 7.92 scan initiated Fri May 20 10:30:19 2022 as: nmap --script discovery -oA nmap/Discovery -p- 10.10.183.102
+Pre-scan script results:
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.10.183.102
+Host is up (0.057s latency).
+Not shown: 65532 closed tcp ports (conn-refused)
+Bug in http-security-headers: no string output.
+PORT    STATE SERVICE
+80/tcp  open  http
+| http-useragent-tester: 
+|   Status for browser useragent: 401
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-date: Fri, 20 May 2022 10:17:30 GMT; +59m59s from local time.
+| http-vhosts: 
+|_128 names had status 401
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.10.183.102
+|   Found the following error pages: 
+|   
+|   Error Code: 401
+|_  	http://10.10.183.102:80/
+|_http-title: 401 Unauthorized
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.183.102
+|   url                       method
+|_  http://10.10.183.102:80/  HTTP: Basic
+|_http-mobileversion-checker: No mobile version detected.
+| http-grep: 
+|   (1) http://10.10.183.102:80/: 
+|     (1) ip: 
+|_      + 10.10.183.102
+|_http-feed: Couldn't find any feeds.
+|_http-chrono: Request times for /; avg: 196.25ms; min: 176.21ms; max: 226.64ms
+|_http-comments-displayer: Couldn't find any comments.
+| http-headers: 
+|   Date: Fri, 20 May 2022 10:17:39 GMT
+|   Server: Apache/2.4.29 (Ubuntu)
+|   WWW-Authenticate: Basic realm="You want in? Gotta guess the password!"
+|   Content-Length: 460
+|   Connection: close
+|   Content-Type: text/html; charset=iso-8859-1
+|   
+|_  (Request type: GET)
+| http-sitemap-generator: 
+|   Directory structure:
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    
+|_http-xssed: No previously reported XSS vuln.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+139/tcp open  netbios-ssn
+445/tcp open  microsoft-ds
+
+Host script results:
+| smb-enum-shares: 
+|   account_used: guest
+|   \\10.10.183.102\IPC$: 
+|     Type: STYPE_IPC_HIDDEN
+|     Comment: IPC Service (year-of-the-fox server (Samba, Ubuntu))
+|     Users: 3
+|     Max Users: <unlimited>
+|     Path: C:\tmp
+|     Anonymous access: READ/WRITE
+|     Current user access: READ/WRITE
+|   \\10.10.183.102\yotf: 
+|     Type: STYPE_DISKTREE
+|     Comment: Fox's Stuff -- keep out!
+|     Users: 0
+|     Max Users: <unlimited>
+|     Path: C:\home\fox\samba
+|     Anonymous access: <none>
+|_    Current user access: <none>
+|_dns-brute: Can't guess domain of "10.10.183.102"; use dns-brute.domain script argument.
+| smb-enum-domains: 
+|   YEAR-OF-THE-FOX
+|     Groups: n/a
+|     Users: fox
+|     Creation time: unknown
+|     Passwords: min length: 5; min age: n/a days; max age: n/a days; history: n/a passwords
+|     Account lockout disabled
+|   Builtin
+|     Groups: n/a
+|     Users: n/a
+|     Creation time: unknown
+|     Passwords: min length: 5; min age: n/a days; max age: n/a days; history: n/a passwords
+|_    Account lockout disabled
+|_nbstat: NetBIOS name: YEAR-OF-THE-FOX, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+|_fcrdns: FAIL (No PTR record)
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2022-05-20T10:16:52
+|_  start_date: N/A
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb-mbenum: 
+|   DFS Root
+|     YEAR-OF-THE-FOX  0.0  year-of-the-fox server (Samba, Ubuntu)
+|   Master Browser
+|     YEAR-OF-THE-FOX  0.0  year-of-the-fox server (Samba, Ubuntu)
+|   Print server
+|     YEAR-OF-THE-FOX  0.0  year-of-the-fox server (Samba, Ubuntu)
+|   Server
+|     YEAR-OF-THE-FOX  0.0  year-of-the-fox server (Samba, Ubuntu)
+|   Server service
+|     YEAR-OF-THE-FOX  0.0  year-of-the-fox server (Samba, Ubuntu)
+|   Unix server
+|     YEAR-OF-THE-FOX  0.0  year-of-the-fox server (Samba, Ubuntu)
+|   Windows NT/2000/XP/2003 server
+|     YEAR-OF-THE-FOX  0.0  year-of-the-fox server (Samba, Ubuntu)
+|   Workstation
+|_    YEAR-OF-THE-FOX  0.0  year-of-the-fox server (Samba, Ubuntu)
+| smb2-capabilities: 
+|   2.0.2: 
+|     Distributed File System
+|   2.1: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.0.2: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.1.1: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+| smb-protocols: 
+|   dialects: 
+|     NT LM 0.12 (SMBv1) [dangerous, but default]
+|     2.0.2
+|     2.1
+|     3.0
+|     3.0.2
+|_    3.1.1
+|_smb-system-info: ERROR: Script execution failed (use -d to debug)
+|_msrpc-enum: NT_STATUS_OBJECT_NAME_NOT_FOUND
+| smb-os-discovery: 
+|   OS: Windows 6.1 (Samba 4.7.6-Ubuntu)
+|   Computer name: year-of-the-fox
+|   NetBIOS computer name: YEAR-OF-THE-FOX\x00
+|   Domain name: lan
+|   FQDN: year-of-the-fox.lan
+|_  System time: 2022-05-20T11:16:52+01:00
+| smb-enum-sessions: 
+|_  <nobody>
+
+# Nmap done at Fri May 20 11:21:53 2022 -- 1 IP address (1 host up) scanned in 3094.00 seconds

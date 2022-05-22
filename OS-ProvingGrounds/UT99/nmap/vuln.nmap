@@ -1,0 +1,593 @@
+# Nmap 7.92 scan initiated Fri May 20 12:30:57 2022 as: nmap -Pn --script vuln -oA nmap/vuln -p- 192.168.152.44
+Nmap scan report for 192.168.152.44
+Host is up (0.046s latency).
+Not shown: 65187 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+21/tcp   open  ftp
+80/tcp   open  http
+| http-sql-injection: 
+|   Possible sqli for queries:
+|     http://192.168.152.44:80/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=N%3BO%3DD%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=S%3BO%3DD%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=M%3BO%3DD%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=D%3BO%3DD%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=N%3BO%3DD%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.152.44:80/?C=N%3BO%3DA%27%20OR%20sqlspider
+|_    http://192.168.152.44:80/?C=D%3BO%3DA%27%20OR%20sqlspider
+| http-enum: 
+|   /: Root directory w/ listing on 'apache/2.4.16 (win32) openssl/1.0.1p php/5.6.12'
+|   /phpmyadmin/: phpMyAdmin
+|_  /icons/: Potentially interesting folder w/ directory listing
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-trace: TRACE is enabled
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|_      http://ha.ckers.org/slowloris/
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.152.44
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://192.168.152.44:80/public_html/
+|     Form id: 
+|     Form action: /public_html/
+|     
+|     Path: http://192.168.152.44:80/public_html/index.php
+|     Form id: 
+|     Form action: /public_html/index.php
+|     
+|     Path: http://192.168.152.44:80/public_html/index.php?jsonpcallback=test
+|     Form id: 
+|     Form action: /public_html/index.php?jsonpcallback=test
+|     
+|     Path: http://192.168.152.44:80/public_html/index.php?name=Statistics
+|     Form id: 
+|     Form action: /public_html/index.php?name=Statistics
+|     
+|     Path: http://192.168.152.44:80/public_html/?cb=test
+|     Form id: 
+|     Form action: /public_html/?cb=test
+|     
+|     Path: http://192.168.152.44:80/public_html/index.php?cb=test
+|     Form id: 
+|     Form action: /public_html/index.php?cb=test
+|     
+|     Path: http://192.168.152.44:80/public_html/index.php?name=coppermine&amp;amp;file=search
+|     Form id: 
+|     Form action: /public_html/index.php?name=coppermine&amp;file=search
+|     
+|     Path: http://192.168.152.44:80/public_html/index.php?jsonp=test
+|     Form id: 
+|     Form action: /public_html/index.php?jsonp=test
+|     
+|     Path: http://192.168.152.44:80/public_html/index.php?jcb=test
+|     Form id: 
+|     Form action: /public_html/index.php?jcb=test
+|     
+|     Path: http://192.168.152.44:80/public_html/index.php?name=coppermine
+|     Form id: 
+|     Form action: /public_html/index.php?name=coppermine
+|     
+|     Path: http://192.168.152.44:80/public_html/index.php?call=test
+|     Form id: 
+|_    Form action: /public_html/index.php?call=test
+443/tcp  open  https
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-sql-injection: 
+|   Possible sqli for queries:
+|     https://192.168.152.44:443/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=N%3BO%3DD%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=M%3BO%3DD%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=D%3BO%3DD%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=S%3BO%3DD%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=N%3BO%3DD%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://192.168.152.44:443/?C=N%3BO%3DA%27%20OR%20sqlspider
+|_    https://192.168.152.44:443/?C=S%3BO%3DA%27%20OR%20sqlspider
+| ssl-dh-params: 
+|   VULNERABLE:
+|   Diffie-Hellman Key Exchange Insufficient Group Strength
+|     State: VULNERABLE
+|       Transport Layer Security (TLS) services that use Diffie-Hellman groups
+|       of insufficient strength, especially those using one of a few commonly
+|       shared groups, may be susceptible to passive eavesdropping attacks.
+|     Check results:
+|       WEAK DH GROUP 1
+|             Cipher Suite: TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA
+|             Modulus Type: Safe prime
+|             Modulus Source: RFC2409/Oakley Group 2
+|             Modulus Length: 1024
+|             Generator Length: 8
+|             Public Key Length: 1024
+|     References:
+|_      https://weakdh.org
+|_http-trace: TRACE is enabled
+|_http-phpself-xss: ERROR: Script execution failed (use -d to debug)
+| http-enum: 
+|   /: Root directory w/ listing on 'apache/2.4.16 (win32) openssl/1.0.1p php/5.6.12'
+|   /phpmyadmin/: phpMyAdmin
+|_  /icons/: Potentially interesting folder w/ directory listing
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|_      http://ha.ckers.org/slowloris/
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.152.44
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: https://192.168.152.44:443/public_html/
+|     Form id: 
+|     Form action: /public_html/
+|     
+|     Path: https://192.168.152.44:443/public_html/index.php
+|     Form id: 
+|     Form action: /public_html/index.php
+|     
+|     Path: https://192.168.152.44:443/public_html/index.php?name=News&amp;topic=0
+|     Form id: 
+|     Form action: /public_html/index.php?name=News&topic=0
+|     
+|     Path: https://192.168.152.44:443/public_html/index.php?name=coppermine&amp;file=search
+|     Form id: 
+|     Form action: /public_html/index.php?name=coppermine&file=search
+|     
+|     Path: https://192.168.152.44:443/public_html/index.php?name=Surveys
+|     Form id: 
+|     Form action: /public_html/index.php?name=Surveys
+|     
+|     Path: https://192.168.152.44:443/public_html/index.php?name=Surveys
+|     Form id: 
+|     Form action: index.php?name=Surveys
+|     
+|     Path: https://192.168.152.44:443/public_html/index.php?name=Tell_a_Friend
+|     Form id: 
+|     Form action: /public_html/index.php?name=Tell_a_Friend
+|     
+|     Path: https://192.168.152.44:443/public_html/index.php?name=Tell_a_Friend
+|     Form id: tell_friend
+|_    Form action: index.php?name=Tell_a_Friend
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+3306/tcp open  mysql
+|_mysql-vuln-cve2012-2122: ERROR: Script execution failed (use -d to debug)
+6660/tcp open  unknown
+6661/tcp open  unknown
+6662/tcp open  radmind
+6663/tcp open  unknown
+6664/tcp open  unknown
+| irc-botnet-channels: 
+|_  ERROR: TIMEOUT
+6665/tcp open  irc
+|_irc-unrealircd-backdoor: Server closed connection, possibly due to too many reconnects. Try again with argument irc-unrealircd-backdoor.wait set to 100 (or higher if you get this message again).
+| irc-botnet-channels: 
+|_  ERROR: TIMEOUT
+6666/tcp open  irc
+| irc-botnet-channels: 
+|_  ERROR: TIMEOUT
+6667/tcp open  irc
+|_irc-unrealircd-backdoor: Server closed connection, possibly due to too many reconnects. Try again with argument irc-unrealircd-backdoor.wait set to 100 (or higher if you get this message again).
+| irc-botnet-channels: 
+|_  ERROR: Closing link: (unknown@192.168.49.152) [No more connections allowed from your host via this connect class (local)]
+6668/tcp open  irc
+| irc-botnet-channels: 
+|_  ERROR: TIMEOUT
+|_irc-unrealircd-backdoor: Server closed connection, possibly due to too many reconnects. Try again with argument irc-unrealircd-backdoor.wait set to 100 (or higher if you get this message again).
+6669/tcp open  irc
+| irc-botnet-channels: 
+|_  ERROR: TIMEOUT
+|_irc-unrealircd-backdoor: Server closed connection, possibly due to too many reconnects. Try again with argument irc-unrealircd-backdoor.wait set to 100 (or higher if you get this message again).
+6670/tcp open  irc
+|_irc-unrealircd-backdoor: Server closed connection, possibly due to too many reconnects. Try again with argument irc-unrealircd-backdoor.wait set to 100 (or higher if you get this message again).
+| irc-botnet-channels: 
+|_  ERROR: TIMEOUT
+6671/tcp open  p4p-portal
+6672/tcp open  vision_server
+6673/tcp open  vision_elmd
+6674/tcp open  unknown
+6675/tcp open  unknown
+6676/tcp open  unknown
+6677/tcp open  unknown
+6678/tcp open  vfbp
+6679/tcp open  osaut
+| irc-botnet-channels: 
+|_  ERROR: TIMEOUT
+|_ssl-ccs-injection: No reply from server (TIMEOUT)
+6680/tcp open  unknown
+6681/tcp open  unknown
+6682/tcp open  unknown
+6683/tcp open  unknown
+6684/tcp open  unknown
+6685/tcp open  unknown
+6686/tcp open  unknown
+6687/tcp open  clever-ctrace
+6688/tcp open  clever-tcpip
+6689/tcp open  tsa
+6690/tcp open  cleverdetect
+6691/tcp open  unknown
+6692/tcp open  unknown
+6693/tcp open  unknown
+6694/tcp open  unknown
+6695/tcp open  unknown
+6696/tcp open  babel
+6697/tcp open  ircs-u
+|_ssl-ccs-injection: No reply from server (TIMEOUT)
+| irc-botnet-channels: 
+|_  ERROR: Closing link: (unknown@192.168.49.152) [No more connections allowed from your host via this connect class (local)]
+6698/tcp open  unknown
+6699/tcp open  napster
+6700/tcp open  carracho
+6701/tcp open  carracho
+6702/tcp open  e-design-net
+6703/tcp open  e-design-web
+6704/tcp open  unknown
+6705/tcp open  unknown
+6706/tcp open  unknown
+6707/tcp open  unknown
+6708/tcp open  unknown
+6709/tcp open  unknown
+6710/tcp open  unknown
+6711/tcp open  unknown
+6712/tcp open  unknown
+6713/tcp open  unknown
+6714/tcp open  ibprotocol
+6715/tcp open  fibotrader-com
+6716/tcp open  princity-agent
+6717/tcp open  unknown
+6718/tcp open  unknown
+6719/tcp open  unknown
+6720/tcp open  unknown
+6721/tcp open  unknown
+6722/tcp open  unknown
+6723/tcp open  unknown
+6724/tcp open  unknown
+6725/tcp open  unknown
+6726/tcp open  unknown
+6727/tcp open  unknown
+6728/tcp open  unknown
+6729/tcp open  unknown
+6730/tcp open  unknown
+6731/tcp open  unknown
+6732/tcp open  unknown
+6733/tcp open  unknown
+6734/tcp open  unknown
+6735/tcp open  unknown
+6736/tcp open  unknown
+6737/tcp open  unknown
+6738/tcp open  unknown
+6739/tcp open  unknown
+6740/tcp open  unknown
+6741/tcp open  unknown
+6742/tcp open  unknown
+6743/tcp open  unknown
+6744/tcp open  unknown
+6745/tcp open  unknown
+6746/tcp open  unknown
+6747/tcp open  unknown
+6748/tcp open  unknown
+6749/tcp open  unknown
+6750/tcp open  unknown
+6751/tcp open  unknown
+6752/tcp open  unknown
+6753/tcp open  unknown
+6754/tcp open  unknown
+6755/tcp open  unknown
+6756/tcp open  unknown
+6757/tcp open  unknown
+6758/tcp open  unknown
+6759/tcp open  unknown
+6760/tcp open  unknown
+6761/tcp open  unknown
+6762/tcp open  unknown
+6763/tcp open  unknown
+6764/tcp open  unknown
+6765/tcp open  unknown
+6766/tcp open  unknown
+6767/tcp open  bmc-perf-agent
+6768/tcp open  bmc-perf-mgrd
+6769/tcp open  adi-gxp-srvprt
+6770/tcp open  plysrv-http
+6771/tcp open  plysrv-https
+6772/tcp open  unknown
+6773/tcp open  unknown
+6774/tcp open  unknown
+6775/tcp open  unknown
+6776/tcp open  unknown
+6777/tcp open  ntz-tracker
+6778/tcp open  ntz-p2p-storage
+6779/tcp open  unknown
+6780/tcp open  unknown
+6781/tcp open  unknown
+6782/tcp open  unknown
+6783/tcp open  unknown
+6784/tcp open  bfd-lag
+6785/tcp open  dgpf-exchg
+6786/tcp open  smc-jmx
+6787/tcp open  smc-admin
+6788/tcp open  smc-http
+6789/tcp open  ibm-db2-admin
+6790/tcp open  hnmp
+6791/tcp open  hnm
+6792/tcp open  unknown
+6793/tcp open  unknown
+6794/tcp open  unknown
+6795/tcp open  unknown
+6796/tcp open  unknown
+6797/tcp open  unknown
+6798/tcp open  unknown
+6799/tcp open  unknown
+6800/tcp open  unknown
+6801/tcp open  acnet
+6802/tcp open  unknown
+6803/tcp open  unknown
+6804/tcp open  unknown
+6805/tcp open  unknown
+6806/tcp open  unknown
+6807/tcp open  unknown
+6808/tcp open  unknown
+6809/tcp open  unknown
+6810/tcp open  unknown
+6811/tcp open  unknown
+6812/tcp open  unknown
+6813/tcp open  unknown
+6814/tcp open  unknown
+6815/tcp open  unknown
+6816/tcp open  unknown
+6817/tcp open  pentbox-sim
+6818/tcp open  unknown
+6819/tcp open  unknown
+6820/tcp open  unknown
+6821/tcp open  unknown
+6822/tcp open  unknown
+6823/tcp open  unknown
+6824/tcp open  unknown
+6825/tcp open  unknown
+6826/tcp open  unknown
+6827/tcp open  unknown
+6828/tcp open  unknown
+6829/tcp open  unknown
+6830/tcp open  unknown
+6831/tcp open  ambit-lm
+6832/tcp open  unknown
+6833/tcp open  unknown
+6834/tcp open  unknown
+6835/tcp open  unknown
+6836/tcp open  unknown
+6837/tcp open  unknown
+6838/tcp open  unknown
+6839/tcp open  unknown
+6840/tcp open  unknown
+6841/tcp open  netmo-default
+6842/tcp open  netmo-http
+6843/tcp open  unknown
+6844/tcp open  unknown
+6845/tcp open  unknown
+6846/tcp open  unknown
+6847/tcp open  unknown
+6848/tcp open  unknown
+6849/tcp open  unknown
+6850/tcp open  iccrushmore
+6851/tcp open  unknown
+6852/tcp open  unknown
+6853/tcp open  unknown
+6854/tcp open  unknown
+6855/tcp open  unknown
+6856/tcp open  unknown
+6857/tcp open  unknown
+6858/tcp open  unknown
+6859/tcp open  unknown
+6860/tcp open  unknown
+6861/tcp open  unknown
+6862/tcp open  unknown
+6863/tcp open  unknown
+6864/tcp open  unknown
+6865/tcp open  unknown
+6866/tcp open  unknown
+6867/tcp open  unknown
+6868/tcp open  acctopus-cc
+6869/tcp open  unknown
+6870/tcp open  unknown
+6871/tcp open  unknown
+6872/tcp open  unknown
+6873/tcp open  unknown
+6874/tcp open  unknown
+6875/tcp open  unknown
+6876/tcp open  unknown
+6877/tcp open  unknown
+6878/tcp open  unknown
+6879/tcp open  unknown
+6880/tcp open  unknown
+6881/tcp open  bittorrent-tracker
+6882/tcp open  unknown
+6883/tcp open  unknown
+6884/tcp open  unknown
+6885/tcp open  unknown
+6886/tcp open  unknown
+6887/tcp open  unknown
+6888/tcp open  muse
+6889/tcp open  unknown
+6890/tcp open  unknown
+6891/tcp open  unknown
+6892/tcp open  unknown
+6893/tcp open  unknown
+6894/tcp open  unknown
+6895/tcp open  unknown
+6896/tcp open  unknown
+6897/tcp open  unknown
+6898/tcp open  unknown
+6899/tcp open  unknown
+6900/tcp open  rtimeviewer
+6901/tcp open  jetstream
+6902/tcp open  unknown
+6903/tcp open  unknown
+6904/tcp open  unknown
+6905/tcp open  unknown
+6906/tcp open  unknown
+6907/tcp open  unknown
+6908/tcp open  unknown
+6909/tcp open  unknown
+6910/tcp open  unknown
+6911/tcp open  unknown
+6912/tcp open  unknown
+6913/tcp open  unknown
+6914/tcp open  unknown
+6915/tcp open  unknown
+6916/tcp open  unknown
+6917/tcp open  unknown
+6918/tcp open  unknown
+6919/tcp open  unknown
+6920/tcp open  unknown
+6921/tcp open  unknown
+6922/tcp open  unknown
+6923/tcp open  unknown
+6924/tcp open  split-ping
+6925/tcp open  unknown
+6926/tcp open  unknown
+6927/tcp open  unknown
+6928/tcp open  unknown
+6929/tcp open  unknown
+6930/tcp open  unknown
+6931/tcp open  unknown
+6932/tcp open  unknown
+6933/tcp open  unknown
+6934/tcp open  unknown
+6935/tcp open  ethoscan
+6936/tcp open  xsmsvc
+6937/tcp open  unknown
+6938/tcp open  unknown
+6939/tcp open  unknown
+6940/tcp open  unknown
+6941/tcp open  unknown
+6942/tcp open  unknown
+6943/tcp open  unknown
+6944/tcp open  unknown
+6945/tcp open  unknown
+6946/tcp open  bioserver
+6947/tcp open  unknown
+6948/tcp open  unknown
+6949/tcp open  unknown
+6950/tcp open  unknown
+6951/tcp open  otlp
+6952/tcp open  unknown
+6953/tcp open  unknown
+6954/tcp open  unknown
+6955/tcp open  unknown
+6956/tcp open  unknown
+6957/tcp open  unknown
+6958/tcp open  unknown
+6959/tcp open  unknown
+6960/tcp open  unknown
+6961/tcp open  jmact3
+6962/tcp open  jmevt2
+6963/tcp open  swismgr1
+6964/tcp open  swismgr2
+6965/tcp open  swistrap
+6966/tcp open  swispol
+6967/tcp open  unknown
+6968/tcp open  unknown
+6969/tcp open  acmsoda
+6970/tcp open  conductor
+6971/tcp open  unknown
+6972/tcp open  unknown
+6973/tcp open  unknown
+6974/tcp open  unknown
+6975/tcp open  unknown
+6976/tcp open  unknown
+6977/tcp open  unknown
+6978/tcp open  unknown
+6979/tcp open  unknown
+6980/tcp open  unknown
+6981/tcp open  unknown
+6982/tcp open  unknown
+6983/tcp open  unknown
+6984/tcp open  unknown
+6985/tcp open  unknown
+6986/tcp open  unknown
+6987/tcp open  unknown
+6988/tcp open  unknown
+6989/tcp open  unknown
+6990/tcp open  unknown
+6991/tcp open  unknown
+6992/tcp open  unknown
+6993/tcp open  unknown
+6994/tcp open  unknown
+6995/tcp open  unknown
+6996/tcp open  unknown
+6997/tcp open  MobilitySrv
+6998/tcp open  iatp-highpri
+6999/tcp open  iatp-normalpri
+7000/tcp open  afs3-fileserver
+| irc-botnet-channels: 
+|_  ERROR: Closing link: (unknown@192.168.49.152) [No more connections allowed from your host via this connect class (local)]
+7001/tcp open  afs3-callback
+7005/tcp open  afs3-volser
+7007/tcp open  afs3-bos
+
+# Nmap done at Fri May 20 14:18:20 2022 -- 1 IP address (1 host up) scanned in 6442.83 seconds

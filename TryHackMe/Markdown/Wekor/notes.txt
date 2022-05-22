@@ -1,0 +1,166 @@
+
+root@ip-10-10-73-202:~# nmap -sC -sV -T 4 -O -p- 10.10.20.3
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-03-07 09:58 GMT
+Warning: 10.10.20.3 giving up on port because retransmission cap hit (6).
+Nmap scan report for ip-10-10-20-3.eu-west-1.compute.internal (10.10.20.3)
+Host is up (0.00060s latency).
+Not shown: 65533 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.10 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 95:c3:ce:af:07:fa:e2:8e:29:04:e4:cd:14:6a:21:b5 (RSA)
+|   256 4d:99:b5:68:af:bb:4e:66:ce:72:70:e6:e3:f8:96:a4 (ECDSA)
+|_  256 0d:e5:7d:e8:1a:12:c0:dd:b7:66:5e:98:34:55:59:f6 (EdDSA)
+80/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
+| http-robots.txt: 9 disallowed entries 
+| /workshop/ /root/ /lol/ /agent/ /feed /crawler /boot 
+|_/comingreallysoon /interesting
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title: Site doesn't have a title (text/html).
+MAC Address: 02:A5:61:AD:27:CF (Unknown)
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.60%E=4%D=3/7%OT=22%CT=1%CU=38841%PV=Y%DS=1%DC=D%G=Y%M=02A561%TM
+OS:=6225DDB0%P=x86_64-pc-linux-gnu)SEQ(SP=FF%GCD=1%ISR=108%TI=Z%CI=Z%TS=A)S
+OS:EQ(SP=FF%GCD=1%ISR=108%TI=Z%CI=Z%II=I%TS=A)OPS(O1=M2301ST11NW7%O2=M2301S
+OS:T11NW7%O3=M2301NNT11NW7%O4=M2301ST11NW7%O5=M2301ST11NW7%O6=M2301ST11)WIN
+OS:(W1=F4B3%W2=F4B3%W3=F4B3%W4=F4B3%W5=F4B3%W6=F4B3)ECN(R=Y%DF=Y%T=40%W=F50
+OS:7%O=M2301NNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N)T3
+OS:(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=40%W=0%S=
+OS:Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7(R=
+OS:Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=40%IPL=164%UN=0%R
+OS:IPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=S)
+
+Network Distance: 1 hop
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 1662.03 seconds
+
+
+root@ip-10-10-73-202:~# nmap --script discovery -p 80 10.10.20.3
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-03-07 10:28 GMT
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for ip-10-10-20-3.eu-west-1.compute.internal (10.10.20.3)
+Host is up (0.0026s latency).
+
+PORT   STATE SERVICE
+80/tcp open  http
+|_http-chrono: Request times for /; avg: 658.73ms; min: 415.46ms; max: 988.60ms
+|_http-comments-displayer: Couldn't find any comments.
+|_http-date: Mon, 07 Mar 2022 10:28:40 GMT; -1s from local time.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-enum: 
+|_  /robots.txt: Robots file
+|_http-errors: Couldn't find any error pages.
+|_http-feed: Couldn't find any feeds.
+| http-headers: 
+|   Date: Mon, 07 Mar 2022 10:28:44 GMT
+|   Server: Apache/2.4.18 (Ubuntu)
+|   Last-Modified: Sun, 12 Jul 2020 00:29:54 GMT
+|   ETag: "17-5aa33ac47e480"
+|   Accept-Ranges: bytes
+|   Content-Length: 23
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-mobileversion-checker: No mobile version detected.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-robots.txt: 9 disallowed entries 
+| /workshop/ /root/ /lol/ /agent/ /feed /crawler /boot 
+|_/comingreallysoon /interesting
+|_http-security-headers: 
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1
+|_http-title: Site doesn't have a title (text/html).
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-vhosts: 
+|_127 names had status 200
+|_http-xssed: No previously reported XSS vuln.
+MAC Address: 02:A5:61:AD:27:CF (Unknown)
+
+Host script results:
+| dns-brute: 
+|   DNS Brute-force hostnames: 
+|_    ns0.eu-west-1.compute.internal - 172.16.0.23
+|_fcrdns: PASS (ip-10-10-20-3.eu-west-1.compute.internal)
+|_ipidseq: All zeros
+|_path-mtu: PMTU == 9001
+
+Nmap done: 1 IP address (1 host up) scanned in 38.14 seconds
+
+root@ip-10-10-73-202:~# nikto -h 10.10.20.3
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.20.3
++ Target Hostname:    ip-10-10-20-3.eu-west-1.compute.internal
++ Target Port:        80
++ Start Time:         2022-03-07 10:28:30 (GMT0)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.18 (Ubuntu)
++ Server leaks inodes via ETags, header found with file /, fields: 0x17 0x5aa33ac47e480 
++ The anti-clickjacking X-Frame-Options header is not present.
++ No CGI Directories found (use '-C all' to force check all possible dirs)
++ File/dir '/comingreallysoon/' in robots.txt returned a non-forbidden or redirect HTTP code (200)
++ "robots.txt" contains 9 entries which should be manually viewed.
++ Allowed HTTP Methods: GET, HEAD, POST, OPTIONS 
++ OSVDB-3233: /icons/README: Apache default file found.
++ 6544 items checked: 0 error(s) and 6 item(s) reported on remote host
++ End Time:           2022-03-07 10:30:02 (GMT0) (92 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+
+root@ip-10-10-73-202:~# gobuster dir -u http://10.10.20.3 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x .php,.txt
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.20.3
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Extensions:     php,txt
+[+] Timeout:        10s
+===============================================================
+2022/03/07 10:29:12 Starting gobuster
+===============================================================
+/robots.txt (Status: 200)
+/server-status (Status: 403)
+===============================================================
+2022/03/07 10:35:14 Finished
+===============================================================
+
+

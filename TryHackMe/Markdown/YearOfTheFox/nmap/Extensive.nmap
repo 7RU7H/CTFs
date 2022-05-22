@@ -1,0 +1,39 @@
+# Nmap 7.92 scan initiated Fri May 20 10:21:10 2022 as: nmap -sC -sV -oA nmap/Extensive -p- 10.10.183.102
+Nmap scan report for 10.10.183.102
+Host is up (0.058s latency).
+Not shown: 65532 closed tcp ports (conn-refused)
+PORT    STATE SERVICE     VERSION
+80/tcp  open  http        Apache httpd 2.4.29
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+| http-auth: 
+| HTTP/1.1 401 Unauthorized\x0D
+|_  Basic realm=You want in? Gotta guess the password!
+|_http-title: 401 Unauthorized
+139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: YEAROFTHEFOX)
+445/tcp open  netbios-ssn Samba smbd 4.7.6-Ubuntu (workgroup: YEAROFTHEFOX)
+Service Info: Hosts: year-of-the-fox.lan, YEAR-OF-THE-FOX
+
+Host script results:
+|_clock-skew: mean: -20m00s, deviation: 34m38s, median: 0s
+|_nbstat: NetBIOS name: YEAR-OF-THE-FOX, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-time: 
+|   date: 2022-05-20T09:29:20
+|_  start_date: N/A
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled but not required
+| smb-os-discovery: 
+|   OS: Windows 6.1 (Samba 4.7.6-Ubuntu)
+|   Computer name: year-of-the-fox
+|   NetBIOS computer name: YEAR-OF-THE-FOX\x00
+|   Domain name: lan
+|   FQDN: year-of-the-fox.lan
+|_  System time: 2022-05-20T10:29:20+01:00
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri May 20 10:29:22 2022 -- 1 IP address (1 host up) scanned in 492.13 seconds

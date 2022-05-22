@@ -1,0 +1,251 @@
+Name: 0day
+Date: 21/05/22
+Difficulty: Medium
+Description: Exploit Ubuntu, like a Turtle in a hurricane
+Better Description:  
+Goals: Read Muirland writeup and learn about shellshock exploit
+Learnt: 
+
+root@ip-10-10-110-9:~# nmap -sC -sV -O -T 4 -p- 10.10.150.2
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-03-05 10:19 GMT
+Nmap scan report for ip-10-10-150-2.eu-west-1.compute.internal (10.10.150.2)
+Host is up (0.00055s latency).
+Not shown: 65533 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.13 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   1024 57:20:82:3c:62:aa:8f:42:23:c0:b8:93:99:6f:49:9c (DSA)
+|   2048 4c:40:db:32:64:0d:11:0c:ef:4f:b8:5b:73:9b:c7:6b (RSA)
+|   256 f7:6f:78:d5:83:52:a6:4d:da:21:3c:55:47:b7:2d:6d (ECDSA)
+|_  256 a5:b4:f0:84:b6:a7:8d:eb:0a:9d:3e:74:37:33:65:16 (EdDSA)
+80/tcp open  http    Apache httpd 2.4.7 ((Ubuntu))
+|_http-server-header: Apache/2.4.7 (Ubuntu)
+|_http-title: 0day
+MAC Address: 02:93:49:2C:B5:D7 (Unknown)
+No exact OS matches for host (If you know what OS is running on it, see https://nmap.org/submit/ ).
+TCP/IP fingerprint:
+OS:SCAN(V=7.60%E=4%D=3/5%OT=22%CT=1%CU=35315%PV=Y%DS=1%DC=D%G=Y%M=029349%TM
+OS:=62233DE8%P=x86_64-pc-linux-gnu)SEQ(SP=105%GCD=1%ISR=106%TI=Z%CI=I%TS=8)
+OS:SEQ(SP=105%GCD=1%ISR=106%TI=Z%CI=I%II=I%TS=8)OPS(O1=M2301ST11NW7%O2=M230
+OS:1ST11NW7%O3=M2301NNT11NW7%O4=M2301ST11NW7%O5=M2301ST11NW7%O6=M2301ST11)W
+OS:IN(W1=68DF%W2=68DF%W3=68DF%W4=68DF%W5=68DF%W6=68DF)ECN(R=Y%DF=Y%T=40%W=6
+OS:903%O=M2301NNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%T=40%S=O%A=S+%F=AS%RD=0%Q=)T2(R=N)
+OS:T3(R=N)T4(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T5(R=Y%DF=Y%T=40%W=0%
+OS:S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%T=40%W=0%S=A%A=Z%F=R%O=%RD=0%Q=)T7(
+OS:R=Y%DF=Y%T=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)U1(R=Y%DF=N%T=40%IPL=164%UN=0
+OS:%RIPL=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=S)
+
+Network Distance: 1 hop
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 1192.12 seconds
+root@ip-10-10-110-9:~# nmap --script discovery -p 80 10.10.150.2
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2022-03-05 10:56 GMT
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for ip-10-10-150-2.eu-west-1.compute.internal (10.10.150.2)
+Host is up (0.00022s latency).
+
+PORT   STATE SERVICE
+80/tcp open  http
+|_http-chrono: Request times for /; avg: 180.38ms; min: 164.69ms; max: 204.56ms
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=ip-10-10-150-2.eu-west-1.compute.internal
+|     
+|     Path: http://ip-10-10-150-2.eu-west-1.compute.internal:80/
+|     Line number: 9
+|     Comment: 
+|_        <!--<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">-->
+|_http-date: Sat, 05 Mar 2022 10:56:51 GMT; -1s from local time.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-enum: 
+|   /admin/: Possible admin folder
+|   /admin/index.html: Possible admin folder
+|   /backup/: Possible backup
+|   /robots.txt: Robots file
+|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.7 (ubuntu)'
+|   /img/: Potentially interesting directory w/ listing on 'apache/2.4.7 (ubuntu)'
+|   /js/: Potentially interesting directory w/ listing on 'apache/2.4.7 (ubuntu)'
+|   /secret/: Potentially interesting folder
+|_  /uploads/: Potentially interesting folder
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=ip-10-10-150-2.eu-west-1.compute.internal
+|   Found the following error pages: 
+|   
+|   Error Code: 404
+|_  	http://ip-10-10-150-2.eu-west-1.compute.internal/favicon.ico
+|_http-feed: Couldn't find any feeds.
+| http-headers: 
+|   Date: Sat, 05 Mar 2022 10:56:51 GMT
+|   Server: Apache/2.4.7 (Ubuntu)
+|   Last-Modified: Wed, 02 Sep 2020 17:11:56 GMT
+|   ETag: "bd1-5ae57bb9a1192"
+|   Accept-Ranges: bytes
+|   Content-Length: 3025
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-mobileversion-checker: No mobile version detected.
+| http-referer-checker: 
+| Spidering limited to: maxpagecount=30
+|   https://code.jquery.com/jquery-3.3.1.slim.min.js
+|   https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js
+|   https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js
+|_  https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js
+|_http-security-headers: 
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /css/
+|       css: 1
+|     /img/
+|       png: 1
+|     /js/
+|       js: 1
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /css/
+|   Total files found (by extension):
+|_    Other: 1; css: 1; js: 1; png: 1
+|_http-title: 0day
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-vhosts: 
+|_127 names had status 200
+|_http-xssed: No previously reported XSS vuln.
+MAC Address: 02:93:49:2C:B5:D7 (Unknown)
+
+Host script results:
+| dns-brute: 
+|   DNS Brute-force hostnames: 
+|_    ns0.eu-west-1.compute.internal - 172.16.0.23
+|_fcrdns: PASS (ip-10-10-150-2.eu-west-1.compute.internal)
+|_ipidseq: All zeros
+|_path-mtu: PMTU == 9001
+
+Nmap done: 1 IP address (1 host up) scanned in 30.61 seconds
+
+root@ip-10-10-110-9:~# nikto -h 10.10.150.2
+- Nikto v2.1.5
+---------------------------------------------------------------------------
++ Target IP:          10.10.150.2
++ Target Hostname:    ip-10-10-150-2.eu-west-1.compute.internal
++ Target Port:        80
++ Start Time:         2022-03-05 10:53:44 (GMT0)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.7 (Ubuntu)
++ Server leaks inodes via ETags, header found with file /, fields: 0xbd1 0x5ae57bb9a1192 
++ The anti-clickjacking X-Frame-Options header is not present.
++ "robots.txt" retrieved but it does not contain any 'disallow' entries (which is odd).
++ Allowed HTTP Methods: GET, HEAD, POST, OPTIONS 
++ OSVDB-3092: /admin/: This might be interesting...
++ OSVDB-3092: /backup/: This might be interesting...
++ OSVDB-3268: /img/: Directory indexing found.
++ OSVDB-3092: /img/: This might be interesting...
++ OSVDB-3092: /secret/: This might be interesting...
++ OSVDB-3092: /cgi-bin/test.cgi: This might be interesting...
++ OSVDB-3233: /icons/README: Apache default file found.
++ /admin/index.html: Admin login page/section found.
++ 6544 items checked: 0 error(s) and 12 item(s) reported on remote host
++ End Time:           2022-03-05 10:54:03 (GMT0) (19 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+
+root@ip-10-10-110-9:~# gobuster dir -u http://10.10.150.2 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt 
+===============================================================
+Gobuster v3.0.1
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
+===============================================================
+[+] Url:            http://10.10.150.2
+[+] Threads:        10
+[+] Wordlist:       /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+[+] Status codes:   200,204,301,302,307,401,403
+[+] User Agent:     gobuster/3.0.1
+[+] Timeout:        10s
+===============================================================
+2022/03/05 10:53:34 Starting gobuster
+===============================================================
+/cgi-bin (Status: 301)
+/img (Status: 301)
+/uploads (Status: 301)
+/admin (Status: 301)
+/css (Status: 301)
+/js (Status: 301)
+/backup (Status: 301)
+/secret (Status: 301)
+/server-status (Status: 403)
+===============================================================
+2022/03/05 10:54:00 Finished
+===============================================================
+
+---------------------------------------------------------------
+Previous Recon
+
+https://muirlandoracle.co.uk/2020/09/03/0day-writeup/
+
+
+https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-6278)
+
+https://www.exploit-db.com/exploits/34900
+
+https://www.infosecarticles.com/exploiting-shellshock-vulnerability/
+
+nikto -h 10.10.212.65 -C all                       
+- Nikto v2.1.6
+---------------------------------------------------------------------------
++ Target IP:          10.10.212.65
++ Target Hostname:    10.10.212.65
++ Target Port:        80
++ Start Time:         2022-05-22 10:40:43 (GMT1)
+---------------------------------------------------------------------------
++ Server: Apache/2.4.7 (Ubuntu)
++ The anti-clickjacking X-Frame-Options header is not present.
++ The X-XSS-Protection header is not defined. This header can hint to the user agent to protect against some forms of XSS
++ The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type
++ Server may leak inodes via ETags, header found with file /, inode: bd1, size: 5ae57bb9a1192, mtime: gzip
++ Apache/2.4.7 appears to be outdated (current is at least Apache/2.4.37). Apache 2.2.34 is the EOL for the 2.x branch.
++ Allowed HTTP Methods: GET, HEAD, POST, OPTIONS 
++ Uncommon header '93e4r0-cve-2014-6271' found, with contents: true
++ OSVDB-112004: /cgi-bin/test.cgi: Site appears vulnerable to the 'shellshock' vulnerability (http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-6278).
++ OSVDB-3092: /admin/: This might be interesting...
++ OSVDB-3092: /backup/: This might be interesting...
++ OSVDB-3268: /css/: Directory indexing found.
++ OSVDB-3092: /css/: This might be interesting...
++ OSVDB-3268: /img/: Directory indexing found.
++ OSVDB-3092: /img/: This might be interesting...
++ OSVDB-3092: /secret/: This might be interesting...
++ OSVDB-3092: /cgi-bin/test.cgi: This might be interesting...
++ OSVDB-3233: /icons/README: Apache default file found.
++ /admin/index.html: Admin login page/section found.
++ 26496 requests: 0 error(s) and 18 item(s) reported on remote host
++ End Time:           2022-05-22 11:12:26 (GMT1) (1903 seconds)
+---------------------------------------------------------------------------
++ 1 host(s) tested
+
+                  

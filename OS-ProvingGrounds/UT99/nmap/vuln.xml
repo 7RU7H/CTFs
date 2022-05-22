@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Fri May 20 12:30:57 2022 as: nmap -Pn -&#45;script vuln -oA nmap/vuln -p- 192.168.152.44 -->
+<nmaprun scanner="nmap" args="nmap -Pn -&#45;script vuln -oA nmap/vuln -p- 192.168.152.44" start="1653046257" startstr="Fri May 20 12:30:57 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<taskprogress task="Connect Scan" time="1653048123" percent="57.99" remaining="1344" etc="1653049467"/>
+<taskprogress task="Connect Scan" time="1653050921" percent="87.68" remaining="655" etc="1653051575"/>
+<taskprogress task="Connect Scan" time="1653051864" percent="96.17" remaining="223" etc="1653052087"/>
+<taskprogress task="Connect Scan" time="1653052051" percent="97.88" remaining="126" etc="1653052176"/>
+<taskprogress task="Connect Scan" time="1653052190" percent="99.14" remaining="52" etc="1653052241"/>
+<taskprogress task="Connect Scan" time="1653052190" percent="99.14" remaining="52" etc="1653052241"/>
+<host starttime="1653046268" endtime="1653052700"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="192.168.152.44" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65187">
+<extrareasons reason="no-response" count="65187" proto="tcp" ports="1-20,22-79,81-442,444-3305,3307-6659,7002-7004,7006,7008-65535"/>
+</extraports>
+<port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/><script id="http-sql-injection" output="&#xa;  Possible sqli for queries:&#xa;    http://192.168.152.44:80/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=N%3BO%3DD%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=S%3BO%3DD%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=M%3BO%3DD%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=D%3BO%3DD%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=N%3BO%3DD%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.152.44:80/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;"/><script id="http-enum" output="&#xa;  /: Root directory w/ listing on &apos;apache/2.4.16 (win32) openssl/1.0.1p php/5.6.12&apos;&#xa;  /phpmyadmin/: phpMyAdmin&#xa;  /icons/: Potentially interesting folder w/ directory listing&#xa;"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-trace" output="TRACE is enabled"/><script id="http-slowloris-check" output="&#xa;  VULNERABLE:&#xa;  Slowloris DOS attack&#xa;    State: LIKELY VULNERABLE&#xa;    IDs:  CVE:CVE-2007-6750&#xa;      Slowloris tries to keep many connections to the target web server open and hold&#xa;      them open as long as possible.  It accomplishes this by opening connections to&#xa;      the target web server and sending a partial request. By doing so, it starves&#xa;      the http server&apos;s resources causing Denial Of Service.&#xa;      &#xa;    Disclosure date: 2009-09-17&#xa;    References:&#xa;      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750&#xa;      http://ha.ckers.org/slowloris/&#xa;"><table key="CVE-2007-6750">
+<elem key="title">Slowloris DOS attack</elem>
+<elem key="state">LIKELY VULNERABLE</elem>
+<table key="ids">
+<elem>CVE:CVE-2007-6750</elem>
+</table>
+<table key="description">
+<elem>Slowloris tries to keep many connections to the target web server open and hold&#xa;them open as long as possible.  It accomplishes this by opening connections to&#xa;the target web server and sending a partial request. By doing so, it starves&#xa;the http server&apos;s resources causing Denial Of Service.&#xa;</elem>
+</table>
+<table key="dates">
+<table key="disclosure">
+<elem key="year">2009</elem>
+<elem key="day">17</elem>
+<elem key="month">09</elem>
+</table>
+</table>
+<elem key="disclosure">2009-09-17</elem>
+<table key="exploit_results">
+</table>
+<table key="refs">
+<elem>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750</elem>
+<elem>http://ha.ckers.org/slowloris/</elem>
+</table>
+</table>
+</script><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.152.44&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://192.168.152.44:80/public_html/&#xa;    Form id: &#xa;    Form action: /public_html/&#xa;    &#xa;    Path: http://192.168.152.44:80/public_html/index.php&#xa;    Form id: &#xa;    Form action: /public_html/index.php&#xa;    &#xa;    Path: http://192.168.152.44:80/public_html/index.php?jsonpcallback=test&#xa;    Form id: &#xa;    Form action: /public_html/index.php?jsonpcallback=test&#xa;    &#xa;    Path: http://192.168.152.44:80/public_html/index.php?name=Statistics&#xa;    Form id: &#xa;    Form action: /public_html/index.php?name=Statistics&#xa;    &#xa;    Path: http://192.168.152.44:80/public_html/?cb=test&#xa;    Form id: &#xa;    Form action: /public_html/?cb=test&#xa;    &#xa;    Path: http://192.168.152.44:80/public_html/index.php?cb=test&#xa;    Form id: &#xa;    Form action: /public_html/index.php?cb=test&#xa;    &#xa;    Path: http://192.168.152.44:80/public_html/index.php?name=coppermine&amp;amp;amp;file=search&#xa;    Form id: &#xa;    Form action: /public_html/index.php?name=coppermine&amp;amp;file=search&#xa;    &#xa;    Path: http://192.168.152.44:80/public_html/index.php?jsonp=test&#xa;    Form id: &#xa;    Form action: /public_html/index.php?jsonp=test&#xa;    &#xa;    Path: http://192.168.152.44:80/public_html/index.php?jcb=test&#xa;    Form id: &#xa;    Form action: /public_html/index.php?jcb=test&#xa;    &#xa;    Path: http://192.168.152.44:80/public_html/index.php?name=coppermine&#xa;    Form id: &#xa;    Form action: /public_html/index.php?name=coppermine&#xa;    &#xa;    Path: http://192.168.152.44:80/public_html/index.php?call=test&#xa;    Form id: &#xa;    Form action: /public_html/index.php?call=test&#xa;"/></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="https" method="table" conf="3"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-sql-injection" output="&#xa;  Possible sqli for queries:&#xa;    https://192.168.152.44:443/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=N%3BO%3DD%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=M%3BO%3DD%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=D%3BO%3DD%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=S%3BO%3DD%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=N%3BO%3DD%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    https://192.168.152.44:443/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;"/><script id="ssl-dh-params" output="&#xa;  VULNERABLE:&#xa;  Diffie-Hellman Key Exchange Insufficient Group Strength&#xa;    State: VULNERABLE&#xa;      Transport Layer Security (TLS) services that use Diffie-Hellman groups&#xa;      of insufficient strength, especially those using one of a few commonly&#xa;      shared groups, may be susceptible to passive eavesdropping attacks.&#xa;    Check results:&#xa;      WEAK DH GROUP 1&#xa;            Cipher Suite: TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA&#xa;            Modulus Type: Safe prime&#xa;            Modulus Source: RFC2409/Oakley Group 2&#xa;            Modulus Length: 1024&#xa;            Generator Length: 8&#xa;            Public Key Length: 1024&#xa;    References:&#xa;      https://weakdh.org&#xa;"><table key="NMAP-23">
+<elem key="title">Diffie-Hellman Key Exchange Insufficient Group Strength</elem>
+<elem key="state">VULNERABLE</elem>
+<table key="description">
+<elem>Transport Layer Security (TLS) services that use Diffie-Hellman groups&#xa;of insufficient strength, especially those using one of a few commonly&#xa;shared groups, may be susceptible to passive eavesdropping attacks.</elem>
+</table>
+<table key="check_results">
+<elem>WEAK DH GROUP 1&#xa;      Cipher Suite: TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA&#xa;      Modulus Type: Safe prime&#xa;      Modulus Source: RFC2409/Oakley Group 2&#xa;      Modulus Length: 1024&#xa;      Generator Length: 8&#xa;      Public Key Length: 1024</elem>
+</table>
+<table key="refs">
+<elem>https://weakdh.org</elem>
+</table>
+</table>
+</script><script id="http-trace" output="TRACE is enabled"/><script id="http-phpself-xss" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-enum" output="&#xa;  /: Root directory w/ listing on &apos;apache/2.4.16 (win32) openssl/1.0.1p php/5.6.12&apos;&#xa;  /phpmyadmin/: phpMyAdmin&#xa;  /icons/: Potentially interesting folder w/ directory listing&#xa;"/><script id="http-slowloris-check" output="&#xa;  VULNERABLE:&#xa;  Slowloris DOS attack&#xa;    State: LIKELY VULNERABLE&#xa;    IDs:  CVE:CVE-2007-6750&#xa;      Slowloris tries to keep many connections to the target web server open and hold&#xa;      them open as long as possible.  It accomplishes this by opening connections to&#xa;      the target web server and sending a partial request. By doing so, it starves&#xa;      the http server&apos;s resources causing Denial Of Service.&#xa;      &#xa;    Disclosure date: 2009-09-17&#xa;    References:&#xa;      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750&#xa;      http://ha.ckers.org/slowloris/&#xa;"><table key="CVE-2007-6750">
+<elem key="title">Slowloris DOS attack</elem>
+<elem key="state">LIKELY VULNERABLE</elem>
+<table key="ids">
+<elem>CVE:CVE-2007-6750</elem>
+</table>
+<table key="description">
+<elem>Slowloris tries to keep many connections to the target web server open and hold&#xa;them open as long as possible.  It accomplishes this by opening connections to&#xa;the target web server and sending a partial request. By doing so, it starves&#xa;the http server&apos;s resources causing Denial Of Service.&#xa;</elem>
+</table>
+<table key="dates">
+<table key="disclosure">
+<elem key="year">2009</elem>
+<elem key="day">17</elem>
+<elem key="month">09</elem>
+</table>
+</table>
+<elem key="disclosure">2009-09-17</elem>
+<table key="exploit_results">
+</table>
+<table key="refs">
+<elem>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750</elem>
+<elem>http://ha.ckers.org/slowloris/</elem>
+</table>
+</table>
+</script><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.152.44&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: https://192.168.152.44:443/public_html/&#xa;    Form id: &#xa;    Form action: /public_html/&#xa;    &#xa;    Path: https://192.168.152.44:443/public_html/index.php&#xa;    Form id: &#xa;    Form action: /public_html/index.php&#xa;    &#xa;    Path: https://192.168.152.44:443/public_html/index.php?name=News&amp;amp;topic=0&#xa;    Form id: &#xa;    Form action: /public_html/index.php?name=News&amp;topic=0&#xa;    &#xa;    Path: https://192.168.152.44:443/public_html/index.php?name=coppermine&amp;amp;file=search&#xa;    Form id: &#xa;    Form action: /public_html/index.php?name=coppermine&amp;file=search&#xa;    &#xa;    Path: https://192.168.152.44:443/public_html/index.php?name=Surveys&#xa;    Form id: &#xa;    Form action: /public_html/index.php?name=Surveys&#xa;    &#xa;    Path: https://192.168.152.44:443/public_html/index.php?name=Surveys&#xa;    Form id: &#xa;    Form action: index.php?name=Surveys&#xa;    &#xa;    Path: https://192.168.152.44:443/public_html/index.php?name=Tell_a_Friend&#xa;    Form id: &#xa;    Form action: /public_html/index.php?name=Tell_a_Friend&#xa;    &#xa;    Path: https://192.168.152.44:443/public_html/index.php?name=Tell_a_Friend&#xa;    Form id: tell_friend&#xa;    Form action: index.php?name=Tell_a_Friend&#xa;"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/></port>
+<port protocol="tcp" portid="3306"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="mysql" method="table" conf="3"/><script id="mysql-vuln-cve2012-2122" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="6660"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6661"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6662"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="radmind" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6663"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6664"><state state="open" reason="syn-ack" reason_ttl="0"/><script id="irc-botnet-channels" output="&#xa;  ERROR: TIMEOUT&#xa;"/></port>
+<port protocol="tcp" portid="6665"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="irc" method="table" conf="3"/><script id="irc-unrealircd-backdoor" output="Server closed connection, possibly due to too many reconnects. Try again with argument irc-unrealircd-backdoor.wait set to 100 (or higher if you get this message again)."/><script id="irc-botnet-channels" output="&#xa;  ERROR: TIMEOUT&#xa;"/></port>
+<port protocol="tcp" portid="6666"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="irc" method="table" conf="3"/><script id="irc-botnet-channels" output="&#xa;  ERROR: TIMEOUT&#xa;"/></port>
+<port protocol="tcp" portid="6667"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="irc" method="table" conf="3"/><script id="irc-unrealircd-backdoor" output="Server closed connection, possibly due to too many reconnects. Try again with argument irc-unrealircd-backdoor.wait set to 100 (or higher if you get this message again)."/><script id="irc-botnet-channels" output="&#xa;  ERROR: Closing link: (unknown@192.168.49.152) [No more connections allowed from your host via this connect class (local)]&#xa;"/></port>
+<port protocol="tcp" portid="6668"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="irc" method="table" conf="3"/><script id="irc-botnet-channels" output="&#xa;  ERROR: TIMEOUT&#xa;"/><script id="irc-unrealircd-backdoor" output="Server closed connection, possibly due to too many reconnects. Try again with argument irc-unrealircd-backdoor.wait set to 100 (or higher if you get this message again)."/></port>
+<port protocol="tcp" portid="6669"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="irc" method="table" conf="3"/><script id="irc-botnet-channels" output="&#xa;  ERROR: TIMEOUT&#xa;"/><script id="irc-unrealircd-backdoor" output="Server closed connection, possibly due to too many reconnects. Try again with argument irc-unrealircd-backdoor.wait set to 100 (or higher if you get this message again)."/></port>
+<port protocol="tcp" portid="6670"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="irc" method="table" conf="3"/><script id="irc-unrealircd-backdoor" output="Server closed connection, possibly due to too many reconnects. Try again with argument irc-unrealircd-backdoor.wait set to 100 (or higher if you get this message again)."/><script id="irc-botnet-channels" output="&#xa;  ERROR: TIMEOUT&#xa;"/></port>
+<port protocol="tcp" portid="6671"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="p4p-portal" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6672"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="vision_server" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6673"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="vision_elmd" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6674"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6675"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6676"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6677"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6678"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="vfbp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6679"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="osaut" method="table" conf="3"/><script id="irc-botnet-channels" output="&#xa;  ERROR: TIMEOUT&#xa;"/><script id="ssl-ccs-injection" output="No reply from server (TIMEOUT)"/></port>
+<port protocol="tcp" portid="6680"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6681"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6682"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6683"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6684"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6685"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6686"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6687"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="clever-ctrace" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6688"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="clever-tcpip" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6689"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="tsa" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6690"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="cleverdetect" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6691"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6692"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6693"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6694"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6695"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6696"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="babel" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6697"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ircs-u" method="table" conf="3"/><script id="ssl-ccs-injection" output="No reply from server (TIMEOUT)"/><script id="irc-botnet-channels" output="&#xa;  ERROR: Closing link: (unknown@192.168.49.152) [No more connections allowed from your host via this connect class (local)]&#xa;"/></port>
+<port protocol="tcp" portid="6698"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6699"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="napster" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6700"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="carracho" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6701"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="carracho" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6702"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="e-design-net" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6703"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="e-design-web" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6704"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6705"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6706"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6707"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6708"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6709"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6710"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6711"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6712"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6713"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6714"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ibprotocol" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6715"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="fibotrader-com" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6716"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="princity-agent" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6717"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6718"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6719"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6720"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6721"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6722"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6723"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6724"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6725"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6726"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6727"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6728"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6729"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6730"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6731"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6732"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6733"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6734"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6735"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6736"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6737"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6738"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6739"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6740"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6741"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6742"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6743"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6744"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6745"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6746"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6747"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6748"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6749"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6750"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6751"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6752"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6753"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6754"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6755"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6756"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6757"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6758"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6759"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6760"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6761"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6762"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6763"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6764"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6765"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6766"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6767"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="bmc-perf-agent" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6768"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="bmc-perf-mgrd" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6769"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="adi-gxp-srvprt" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6770"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="plysrv-http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6771"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="plysrv-https" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6772"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6773"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6774"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6775"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6776"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6777"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ntz-tracker" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6778"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ntz-p2p-storage" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6779"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6780"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6781"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6782"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6783"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6784"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="bfd-lag" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6785"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="dgpf-exchg" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6786"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="smc-jmx" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6787"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="smc-admin" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6788"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="smc-http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6789"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ibm-db2-admin" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6790"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="hnmp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6791"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="hnm" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6792"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6793"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6794"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6795"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6796"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6797"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6798"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6799"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6800"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6801"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="acnet" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6802"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6803"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6804"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6805"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6806"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6807"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6808"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6809"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6810"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6811"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6812"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6813"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6814"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6815"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6816"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6817"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="pentbox-sim" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6818"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6819"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6820"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6821"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6822"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6823"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6824"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6825"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6826"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6827"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6828"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6829"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6830"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6831"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ambit-lm" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6832"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6833"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6834"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6835"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6836"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6837"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6838"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6839"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6840"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6841"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="netmo-default" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6842"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="netmo-http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6843"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6844"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6845"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6846"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6847"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6848"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6849"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6850"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="iccrushmore" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6851"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6852"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6853"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6854"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6855"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6856"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6857"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6858"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6859"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6860"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6861"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6862"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6863"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6864"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6865"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6866"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6867"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6868"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="acctopus-cc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6869"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6870"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6871"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6872"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6873"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6874"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6875"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6876"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6877"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6878"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6879"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6880"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6881"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="bittorrent-tracker" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6882"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6883"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6884"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6885"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6886"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6887"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6888"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="muse" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6889"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6890"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6891"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6892"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6893"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6894"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6895"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6896"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6897"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6898"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6899"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6900"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="rtimeviewer" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6901"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="jetstream" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6902"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6903"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6904"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6905"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6906"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6907"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6908"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6909"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6910"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6911"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6912"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6913"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6914"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6915"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6916"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6917"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6918"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6919"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6920"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6921"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6922"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6923"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6924"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="split-ping" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6925"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6926"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6927"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6928"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6929"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6930"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6931"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6932"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6933"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6934"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6935"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ethoscan" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6936"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="xsmsvc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6937"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6938"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6939"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6940"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6941"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6942"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6943"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6944"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6945"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6946"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="bioserver" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6947"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6948"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6949"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6950"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6951"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="otlp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6952"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6953"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6954"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6955"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6956"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6957"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6958"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6959"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6960"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6961"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="jmact3" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6962"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="jmevt2" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6963"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="swismgr1" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6964"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="swismgr2" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6965"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="swistrap" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6966"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="swispol" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6967"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6968"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6969"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="acmsoda" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6970"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="conductor" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6971"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6972"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6973"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6974"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6975"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6976"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6977"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6978"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6979"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6980"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6981"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6982"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6983"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6984"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6985"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6986"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6987"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6988"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6989"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6990"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6991"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6992"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6993"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6994"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6995"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6996"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="6997"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="MobilitySrv" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6998"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="iatp-highpri" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6999"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="iatp-normalpri" method="table" conf="3"/></port>
+<port protocol="tcp" portid="7000"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="afs3-fileserver" method="table" conf="3"/><script id="irc-botnet-channels" output="&#xa;  ERROR: Closing link: (unknown@192.168.49.152) [No more connections allowed from your host via this connect class (local)]&#xa;"/></port>
+<port protocol="tcp" portid="7001"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="afs3-callback" method="table" conf="3"/></port>
+<port protocol="tcp" portid="7005"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="afs3-volser" method="table" conf="3"/></port>
+<port protocol="tcp" portid="7007"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="afs3-bos" method="table" conf="3"/></port>
+</ports>
+<times srtt="45714" rttvar="5049" to="100000"/>
+</host>
+<runstats><finished time="1653052700" timestr="Fri May 20 14:18:20 2022" summary="Nmap done at Fri May 20 14:18:20 2022; 1 IP address (1 host up) scanned in 6442.83 seconds" elapsed="6442.83" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
