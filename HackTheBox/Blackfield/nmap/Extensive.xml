@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Thu May 26 08:15:23 2022 as: nmap -Pn -sC -sV -oA nmap/Extensive -p- -&#45;min-rate 500 10.129.100.114 -->
+<nmaprun scanner="nmap" args="nmap -Pn -sC -sV -oA nmap/Extensive -p- -&#45;min-rate 500 10.129.100.114" start="1653549323" startstr="Thu May 26 08:15:23 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1653549324" endtime="1653549512"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.129.100.114" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65527">
+<extrareasons reason="no-response" count="65527" proto="tcp" ports="1-52,54-87,89-134,136-388,390-444,446-592,594-3267,3269-5984,5986-65535"/>
+</extraports>
+<port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="domain" product="Simple DNS Plus" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:jh_software:simple_dns_plus</cpe><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="88"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="kerberos-sec" product="Microsoft Windows Kerberos" extrainfo="server time: 2022-05-26 14:17:49Z" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:microsoft:kerberos</cpe><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="389"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ldap" product="Microsoft Windows Active Directory LDAP" extrainfo="Domain: BLACKFIELD.local0., Site: Default-First-Site-Name" hostname="DC01" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="593"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ncacn_http" product="Microsoft Windows RPC over HTTP" version="1.0" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="3268"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ldap" product="Microsoft Windows Active Directory LDAP" extrainfo="Domain: BLACKFIELD.local0., Site: Default-First-Site-Name" hostname="DC01" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="Microsoft HTTPAPI httpd" version="2.0" extrainfo="SSDP/UPnP" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-server-header" output="Microsoft-HTTPAPI/2.0"><elem>Microsoft-HTTPAPI/2.0</elem>
+</script><script id="http-title" output="Not Found"><elem key="title">Not Found</elem>
+</script></port>
+</ports>
+<hostscript><script id="clock-skew" output="6h59m59s"><elem key="median">25199</elem>
+<elem key="count">1</elem>
+<elem key="stddev">0</elem>
+<elem key="mean">25199</elem>
+</script><script id="smb2-security-mode" output="&#xa;  3.1.1: &#xa;    Message signing enabled and required"><table key="3.1.1">
+<elem>Message signing enabled and required</elem>
+</table>
+</script><script id="smb2-time" output="&#xa;  date: 2022-05-26T14:17:55&#xa;  start_date: N/A"><elem key="date">2022-05-26T14:17:55</elem>
+<elem key="start_date">N/A</elem>
+</script></hostscript><times srtt="45483" rttvar="3769" to="100000"/>
+</host>
+<runstats><finished time="1653549512" timestr="Thu May 26 08:18:32 2022" summary="Nmap done at Thu May 26 08:18:32 2022; 1 IP address (1 host up) scanned in 188.34 seconds" elapsed="188.34" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

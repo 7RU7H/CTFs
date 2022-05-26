@@ -1,0 +1,50 @@
+# Nmap 7.92 scan initiated Wed May 25 20:47:41 2022 as: nmap -Pn -sC -sV -oA nmap/Extensive -p- 192.168.120.175
+Nmap scan report for 192.168.120.175
+Host is up (0.050s latency).
+Not shown: 65517 filtered tcp ports (no-response)
+PORT      STATE SERVICE       VERSION
+53/tcp    open  domain        Simple DNS Plus
+88/tcp    open  kerberos-sec  Microsoft Windows Kerberos (server time: 2022-05-25 19:50:43Z)
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp   open  ldap          Microsoft Windows Active Directory LDAP (Domain: resourced.local0., Site: Default-First-Site-Name)
+445/tcp   open  microsoft-ds?
+593/tcp   open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp   open  tcpwrapped
+3268/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: resourced.local0., Site: Default-First-Site-Name)
+3269/tcp  open  tcpwrapped
+3389/tcp  open  ms-wbt-server Microsoft Terminal Services
+| rdp-ntlm-info: 
+|   Target_Name: resourced
+|   NetBIOS_Domain_Name: resourced
+|   NetBIOS_Computer_Name: RESOURCEDC
+|   DNS_Domain_Name: resourced.local
+|   DNS_Computer_Name: ResourceDC.resourced.local
+|   DNS_Tree_Name: resourced.local
+|   Product_Version: 10.0.17763
+|_  System_Time: 2022-05-25T19:51:32+00:00
+|_ssl-date: 2022-05-25T19:52:12+00:00; 0s from scanner time.
+| ssl-cert: Subject: commonName=ResourceDC.resourced.local
+| Not valid before: 2022-05-24T19:46:04
+|_Not valid after:  2022-11-23T19:46:04
+5985/tcp  open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+9389/tcp  open  mc-nmf        .NET Message Framing
+49666/tcp open  msrpc         Microsoft Windows RPC
+49667/tcp open  msrpc         Microsoft Windows RPC
+49676/tcp open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+49677/tcp open  msrpc         Microsoft Windows RPC
+49705/tcp open  msrpc         Microsoft Windows RPC
+Service Info: Host: RESOURCEDC; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled and required
+| smb2-time: 
+|   date: 2022-05-25T19:51:37
+|_  start_date: N/A
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed May 25 20:52:13 2022 -- 1 IP address (1 host up) scanned in 272.03 seconds

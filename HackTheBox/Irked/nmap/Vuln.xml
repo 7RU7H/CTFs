@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Wed May 25 19:14:20 2022 as: nmap -&#45;script vuln -oA nmap/Vuln -p- -&#45;min-rate 500 10.129.1.108 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/Vuln -p- -&#45;min-rate 500 10.129.1.108" start="1653502460" startstr="Wed May 25 19:14:20 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<taskprogress task="NSE" time="1653502468" percent="0.00"/>
+<taskprogress task="NSE" time="1653502470" percent="0.00"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.1.108" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1653502471" endtime="1653502583"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="10.129.1.108" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65528">
+<extrareasons reason="conn-refused" count="65528" proto="tcp" ports="1-21,23-79,81-110,112-6696,6698-8066,8068-35548,35550-65533,65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-enum" output="&#xa;  /manual/: Potentially interesting folder&#xa;"/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/></port>
+<port protocol="tcp" portid="111"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="rpcbind" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6697"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ircs-u" method="table" conf="3"/><script id="irc-botnet-channels" output="&#xa;  ERROR: Closing Link: [10.10.14.29] (Throttled: Reconnecting too fast) -Email djmardov@irked.htb for more information.&#xa;"/><script id="ssl-ccs-injection" output="No reply from server (TIMEOUT)"/></port>
+<port protocol="tcp" portid="8067"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="infi-async" method="table" conf="3"/></port>
+<port protocol="tcp" portid="35549"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="65534"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+</ports>
+<times srtt="52098" rttvar="4798" to="100000"/>
+</host>
+<runstats><finished time="1653502583" timestr="Wed May 25 19:16:23 2022" summary="Nmap done at Wed May 25 19:16:23 2022; 1 IP address (1 host up) scanned in 122.83 seconds" elapsed="122.83" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

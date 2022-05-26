@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Thu May 26 09:44:50 2022 as: nmap -sC -sV -oA nmap/Extensive -p- -&#45;min-rate 500 10.129.100.123 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA nmap/Extensive -p- -&#45;min-rate 500 10.129.100.123" start="1653554690" startstr="Thu May 26 09:44:50 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.100.123" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1653554690" endtime="1653554953"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="10.129.100.123" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65508">
+<extrareasons reason="no-response" count="65508" proto="tcp" ports="1-20,22-52,54-79,81-134,136-138,140-388,390-442,444,446-463,465-592,594-635,637-3267,3270-5984,5987-47000,47002-49663,49667,49669-49670,49672-49686,49688-49689,49691,49693-49694,49696-49704,49706-49712,49714-65535"/>
+</extraports>
+<port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ftp" product="Microsoft ftpd" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:microsoft:ftp_service</cpe><cpe>cpe:/o:microsoft:windows</cpe></service><script id="ftp-syst" output="&#xa;  SYST: Windows_NT"><elem key="SYST">Windows_NT</elem>
+</script><script id="ftp-anon" output="Anonymous FTP login allowed (FTP code 230)"/></port>
+<port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="domain" product="Simple DNS Plus" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:jh_software:simple_dns_plus</cpe><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="Microsoft IIS httpd" version="10.0" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:microsoft:internet_information_server:10.0</cpe><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-server-header" output="Microsoft-IIS/10.0"><elem>Microsoft-IIS/10.0</elem>
+</script><script id="http-methods" output="&#xa;  Potentially risky methods: TRACE"><table key="Potentially risky methods">
+<elem>TRACE</elem>
+</table>
+</script><script id="http-title" output="Site doesn&apos;t have a title (text/html)."></script></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="netbios-ssn" product="Microsoft Windows netbios-ssn" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="389"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ldap" product="Microsoft Windows Active Directory LDAP" extrainfo="Domain: HTB.LOCAL, Site: Default-First-Site-Name" hostname="SIZZLE" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="ssl-date" output="2022-05-26T08:49:12+00:00; 0s from scanner time."><elem key="delta">0.0</elem>
+<elem key="date">2022-05-26T08:49:12+00:00</elem>
+</script><script id="ssl-cert" output="Subject: commonName=sizzle.HTB.LOCAL&#xa;Subject Alternative Name: othername:&lt;unsupported&gt;, DNS:sizzle.HTB.LOCAL&#xa;Not valid before: 2021-02-11T12:59:51&#xa;Not valid after:  2022-02-11T12:59:51"><table key="subject">
+<elem key="commonName">sizzle.HTB.LOCAL</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">HTB-SIZZLE-CA</elem>
+<elem key="domainComponent">HTB</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">B2BA294A5D6E69C4DF25ADB0AD858F50EAB2187888A0E48013CFC8BCA2E5ADA3C9C805D7DECB4BDF93A0B6A41E00A50365F6723845D095C4368D786067151A9B0E880F784B808CB8740AEE3A35EAB6ACEB9167EA7DFA323D73AAF6904F426968702BB167F6D70BE3D98DFF4FCC0EE36D2DE58EF4037D9173E5CBAB7F26CD7A046C0E629721378C51A3934AF644B723DDC1D985C75C2FCD074BF67F69E85C822993EAABD16C3EC45F12033DCB0CD98E97E8DB74834708B689C8C2D226D748DABDD8D124BD960A1AE501D0CA29B9150DB83A75F37D9D23913BA5ED1D03A981932940E3D30F1C78802175AC690B4AF60BECF7D8148188E82276CF537E09013A3689</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">1.3.6.1.4.1.311.20.2</elem>
+</table>
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Client Authentication, TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Digital Signature, Key Encipherment</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">S/MIME Capabilities</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">9D:B8:AA:70:68:58:C0:33:DF:1B:4E:CB:AB:24:DA:FA:E0:64:09:D7</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">keyid:40:06:E4:54:B3:37:98:BC:22:2E:0E:19:36:0A:18:A0:B1:DE:0B:8A&#xa;</elem>
+</table>
+<table>
+<elem key="name">X509v3 CRL Distribution Points</elem>
+<elem key="value">&#xa;Full Name:&#xa;  URI:ldap:///CN=HTB-SIZZLE-CA,CN=sizzle,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=HTB,DC=LOCAL?certificateRevocationList?base?objectClass=cRLDistributionPoint&#xa;</elem>
+</table>
+<table>
+<elem key="name">Authority Information Access</elem>
+<elem key="value">CA Issuers - URI:ldap:///CN=HTB-SIZZLE-CA,CN=AIA,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=HTB,DC=LOCAL?cACertificate?base?objectClass=certificationAuthority&#xa;</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">othername:&lt;unsupported&gt;, DNS:sizzle.HTB.LOCAL</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2021-02-11T12:59:51</elem>
+<elem key="notAfter">2022-02-11T12:59:51</elem>
+</table>
+<elem key="md5">634607e3ae830744681e3c0b00ff80d9</elem>
+<elem key="sha1">e07144af92c6e2028f210fc6c9c7433b360be3a9</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIF1TCCBL2gAwIBAgITaQAAABUzqoRTL6/IkwAAAAAAFTANBgkqhkiG9w0BAQsF&#xa;ADBEMRUwEwYKCZImiZPyLGQBGRYFTE9DQUwxEzARBgoJkiaJk/IsZAEZFgNIVEIx&#xa;FjAUBgNVBAMTDUhUQi1TSVpaTEUtQ0EwHhcNMjEwMjExMTI1OTUxWhcNMjIwMjEx&#xa;MTI1OTUxWjAbMRkwFwYDVQQDExBzaXp6bGUuSFRCLkxPQ0FMMIIBIjANBgkqhkiG&#xa;9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsropSl1uacTfJa2wrYWPUOqyGHiIoOSAE8/I&#xa;vKLlraPJyAXX3stL35OgtqQeAKUDZfZyOEXQlcQ2jXhgZxUamw6ID3hLgIy4dAru&#xa;OjXqtqzrkWfqffoyPXOq9pBPQmlocCuxZ/bXC+PZjf9PzA7jbS3ljvQDfZFz5cur&#xa;fybNegRsDmKXITeMUaOTSvZEtyPdwdmFx1wvzQdL9n9p6FyCKZPqq9FsPsRfEgM9&#xa;ywzZjpfo23SDRwi2icjC0ibXSNq92NEkvZYKGuUB0MopuRUNuDp1832dI5E7pe0d&#xa;A6mBkylA49MPHHiAIXWsaQtK9gvs99gUgYjoInbPU34JATo2iQIDAQABo4IC5zCC&#xa;AuMwLwYJKwYBBAGCNxQCBCIeIABEAG8AbQBhAGkAbgBDAG8AbgB0AHIAbwBsAGwA&#xa;ZQByMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATAOBgNVHQ8BAf8EBAMC&#xa;BaAweAYJKoZIhvcNAQkPBGswaTAOBggqhkiG9w0DAgICAIAwDgYIKoZIhvcNAwQC&#xa;AgCAMAsGCWCGSAFlAwQBKjALBglghkgBZQMEAS0wCwYJYIZIAWUDBAECMAsGCWCG&#xa;SAFlAwQBBTAHBgUrDgMCBzAKBggqhkiG9w0DBzAdBgNVHQ4EFgQUnbiqcGhYwDPf&#xa;G07LqyTa+uBkCdcwHwYDVR0jBBgwFoAUQAbkVLM3mLwiLg4ZNgoYoLHeC4owgcgG&#xa;A1UdHwSBwDCBvTCBuqCBt6CBtIaBsWxkYXA6Ly8vQ049SFRCLVNJWlpMRS1DQSxD&#xa;Tj1zaXp6bGUsQ049Q0RQLENOPVB1YmxpYyUyMEtleSUyMFNlcnZpY2VzLENOPVNl&#xa;cnZpY2VzLENOPUNvbmZpZ3VyYXRpb24sREM9SFRCLERDPUxPQ0FMP2NlcnRpZmlj&#xa;YXRlUmV2b2NhdGlvbkxpc3Q/YmFzZT9vYmplY3RDbGFzcz1jUkxEaXN0cmlidXRp&#xa;b25Qb2ludDCBvQYIKwYBBQUHAQEEgbAwga0wgaoGCCsGAQUFBzAChoGdbGRhcDov&#xa;Ly9DTj1IVEItU0laWkxFLUNBLENOPUFJQSxDTj1QdWJsaWMlMjBLZXklMjBTZXJ2&#xa;aWNlcyxDTj1TZXJ2aWNlcyxDTj1Db25maWd1cmF0aW9uLERDPUhUQixEQz1MT0NB&#xa;TD9jQUNlcnRpZmljYXRlP2Jhc2U/b2JqZWN0Q2xhc3M9Y2VydGlmaWNhdGlvbkF1&#xa;dGhvcml0eTA8BgNVHREENTAzoB8GCSsGAQQBgjcZAaASBBB7YfekKJKyQJ4UWzrt&#xa;tIm9ghBzaXp6bGUuSFRCLkxPQ0FMMA0GCSqGSIb3DQEBCwUAA4IBAQBl66ilIguB&#xa;3jfQ6I/4hq6mVs1JfH2dGBEz1T0o+doSqzYIrye1cZ8+DzzNkTtcRZVjl1HDlgsO&#xa;SmktmHk4HOCfyJYdH4nF6mcaLexGQ+8q8jNincsR8/l0CuYSb0/5T1g4ARViL/af&#xa;0083rH8Xe8ieEWJrgYyxaNCs9vfBROekc8vrTZo2bDwy6rvhmjIbZWlxXDX9msh3&#xa;67GrumUsh5xRdgLUkXmahrGIveyUSsZqAsokn4F/I7JBgTaBlVYbRj/axaSLS285&#xa;7m9mK0X692OAveEaxr2XHcIqZwUeetL7yDrVRqZDQi6li30iVbL+qk7/k/7z9PU+&#xa;Oftl7go8IzrS&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="Microsoft IIS httpd" version="10.0" ostype="Windows" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/a:microsoft:internet_information_server:10.0</cpe><cpe>cpe:/o:microsoft:windows</cpe></service><script id="ssl-date" output="2022-05-26T08:49:12+00:00; 0s from scanner time."><elem key="delta">0.0</elem>
+<elem key="date">2022-05-26T08:49:12+00:00</elem>
+</script><script id="http-server-header" output="Microsoft-IIS/10.0"><elem>Microsoft-IIS/10.0</elem>
+</script><script id="ssl-cert" output="Subject: commonName=sizzle.htb.local&#xa;Not valid before: 2018-07-03T17:58:55&#xa;Not valid after:  2020-07-02T17:58:55"><table key="subject">
+<elem key="commonName">sizzle.htb.local</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">HTB-SIZZLE-CA</elem>
+<elem key="domainComponent">HTB</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">A20B046C91AC3BD70DB071F918B4B8E6A7244803F452B351B33819475D036CD077BD5EE149C882221968FCCBBB321AEDB81E082AD5A9E4EDF5BEAE643F03B4C55DA37CDB4EE8C1F673B8863C7F48C7499314BA8337D0D88DD59422384C6AD8951ED75098CB35FB108844E3D7195B37537231C9F2D7AE44678AEEAC967BC66919F75D3115AFA2475282D60B0B34F82D8C9991C566CE55E4D54B98FD3440BB51EE10E6F65AD5D5E86F096E4EC40545A7DE73D3E9A0C2901AB46D9461FB238B27585C1862D732DAFF2BD73A46113890BF03639A90D95411202996C3E5D3449A4B4D8DA5F691C23FD59DF12E46CD64D0B91B4C2BC45D5B068481B18EA1611AFB2BE9</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">1.3.6.1.4.1.311.21.7</elem>
+</table>
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Digital Signature, Key Encipherment</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">1.3.6.1.4.1.311.21.10</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">5C:F4:0F:6B:6F:7F:99:22:B8:69:7D:E9:D6:0F:DA:B9:52:7C:47:67</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">keyid:40:06:E4:54:B3:37:98:BC:22:2E:0E:19:36:0A:18:A0:B1:DE:0B:8A&#xa;</elem>
+</table>
+<table>
+<elem key="name">X509v3 CRL Distribution Points</elem>
+<elem key="value">&#xa;Full Name:&#xa;  URI:ldap:///CN=HTB-SIZZLE-CA,CN=sizzle,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=HTB,DC=LOCAL?certificateRevocationList?base?objectClass=cRLDistributionPoint&#xa;</elem>
+</table>
+<table>
+<elem key="name">Authority Information Access</elem>
+<elem key="value">CA Issuers - URI:ldap:///CN=HTB-SIZZLE-CA,CN=AIA,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=HTB,DC=LOCAL?cACertificate?base?objectClass=certificationAuthority&#xa;</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2018-07-03T17:58:55</elem>
+<elem key="notAfter">2020-07-02T17:58:55</elem>
+</table>
+<elem key="md5">240b1eff5a65ad8dc64d855eaeb59e6b</elem>
+<elem key="sha1">77bb3f671b6b3e09b8f96503ddc10bbf0b750c72</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIFPTCCBCWgAwIBAgITaQAAAAXvru32D6T3IQAAAAAABTANBgkqhkiG9w0BAQsF&#xa;ADBEMRUwEwYKCZImiZPyLGQBGRYFTE9DQUwxEzARBgoJkiaJk/IsZAEZFgNIVEIx&#xa;FjAUBgNVBAMTDUhUQi1TSVpaTEUtQ0EwHhcNMTgwNzAzMTc1ODU1WhcNMjAwNzAy&#xa;MTc1ODU1WjAbMRkwFwYDVQQDExBzaXp6bGUuaHRiLmxvY2FsMIIBIjANBgkqhkiG&#xa;9w0BAQEFAAOCAQ8AMIIBCgKCAQEAogsEbJGsO9cNsHH5GLS45qckSAP0UrNRszgZ&#xa;R10DbNB3vV7hSciCIhlo/Mu7MhrtuB4IKtWp5O31vq5kPwO0xV2jfNtO6MH2c7iG&#xa;PH9Ix0mTFLqDN9DYjdWUIjhMatiVHtdQmMs1+xCIROPXGVs3U3IxyfLXrkRniu6s&#xa;lnvGaRn3XTEVr6JHUoLWCws0+C2MmZHFZs5V5NVLmP00QLtR7hDm9lrV1ehvCW5O&#xa;xAVFp95z0+mgwpAatG2UYfsjiydYXBhi1zLa/yvXOkYROJC/A2OakNlUESAplsPl&#xa;00SaS02NpfaRwj/VnfEuRs1k0LkbTCvEXVsGhIGxjqFhGvsr6QIDAQABo4ICTzCC&#xa;AkswPAYJKwYBBAGCNxUHBC8wLQYlKwYBBAGCNxUI5pJfgvm/E4epnz7ahB+Br/MJ&#xa;gWCD/sNihcXjWQIBZAIBBDATBgNVHSUEDDAKBggrBgEFBQcDATAOBgNVHQ8BAf8E&#xa;BAMCBaAwGwYJKwYBBAGCNxUKBA4wDDAKBggrBgEFBQcDATAdBgNVHQ4EFgQUXPQP&#xa;a29/mSK4aX3p1g/auVJ8R2cwHwYDVR0jBBgwFoAUQAbkVLM3mLwiLg4ZNgoYoLHe&#xa;C4owgcgGA1UdHwSBwDCBvTCBuqCBt6CBtIaBsWxkYXA6Ly8vQ049SFRCLVNJWlpM&#xa;RS1DQSxDTj1zaXp6bGUsQ049Q0RQLENOPVB1YmxpYyUyMEtleSUyMFNlcnZpY2Vz&#xa;LENOPVNlcnZpY2VzLENOPUNvbmZpZ3VyYXRpb24sREM9SFRCLERDPUxPQ0FMP2Nl&#xa;cnRpZmljYXRlUmV2b2NhdGlvbkxpc3Q/YmFzZT9vYmplY3RDbGFzcz1jUkxEaXN0&#xa;cmlidXRpb25Qb2ludDCBvQYIKwYBBQUHAQEEgbAwga0wgaoGCCsGAQUFBzAChoGd&#xa;bGRhcDovLy9DTj1IVEItU0laWkxFLUNBLENOPUFJQSxDTj1QdWJsaWMlMjBLZXkl&#xa;MjBTZXJ2aWNlcyxDTj1TZXJ2aWNlcyxDTj1Db25maWd1cmF0aW9uLERDPUhUQixE&#xa;Qz1MT0NBTD9jQUNlcnRpZmljYXRlP2Jhc2U/b2JqZWN0Q2xhc3M9Y2VydGlmaWNh&#xa;dGlvbkF1dGhvcml0eTANBgkqhkiG9w0BAQsFAAOCAQEAFaiP/3IAxom3OvWWMrsE&#xa;jR2AV7qiLZw39AxTsYRVERC011TMTV5DBzScb1dA6ne4Su0EEzetNkqmWdOHqJbx&#xa;tQuZYcD/CBfVAveKdLCEGh3gONk8sY+gnbJ7J3hucHIWtjamq+Kys2qXMRWSikkS&#xa;jG4txpZTg5nXlWvV0U2E8RdKjmFuolfPvrIMEuyzdq/0Cw+xhJfiLD67obIP+EmF&#xa;FbKnTQiGAipk0dIsHN6ckA6l3IXm1M5kqKfj4bXASLN49SvBVKOGcuKVam/0zLdR&#xa;8E+4FEEjhjQPdbLkSof1KnO23fiO+T2uZjLcKDMdO6griGwDwpBkORV0vatQbpi0&#xa;QQ==&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="tls-alpn" output="&#xa;  h2&#xa;  http/1.1"><elem>h2</elem>
+<elem>http/1.1</elem>
+</script><script id="http-methods" output="&#xa;  Potentially risky methods: TRACE"><table key="Potentially risky methods">
+<elem>TRACE</elem>
+</table>
+</script><script id="http-title" output="Site doesn&apos;t have a title (text/html)."></script></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="464"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="kpasswd5" method="table" conf="3"/></port>
+<port protocol="tcp" portid="593"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ncacn_http" product="Microsoft Windows RPC over HTTP" version="1.0" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="636"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ldap" product="Microsoft Windows Active Directory LDAP" extrainfo="Domain: HTB.LOCAL, Site: Default-First-Site-Name" hostname="SIZZLE" ostype="Windows" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="ssl-date" output="2022-05-26T08:49:12+00:00; 0s from scanner time."><elem key="delta">0.0</elem>
+<elem key="date">2022-05-26T08:49:12+00:00</elem>
+</script><script id="ssl-cert" output="Subject: commonName=sizzle.HTB.LOCAL&#xa;Subject Alternative Name: othername:&lt;unsupported&gt;, DNS:sizzle.HTB.LOCAL&#xa;Not valid before: 2021-02-11T12:59:51&#xa;Not valid after:  2022-02-11T12:59:51"><table key="subject">
+<elem key="commonName">sizzle.HTB.LOCAL</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">HTB-SIZZLE-CA</elem>
+<elem key="domainComponent">HTB</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">B2BA294A5D6E69C4DF25ADB0AD858F50EAB2187888A0E48013CFC8BCA2E5ADA3C9C805D7DECB4BDF93A0B6A41E00A50365F6723845D095C4368D786067151A9B0E880F784B808CB8740AEE3A35EAB6ACEB9167EA7DFA323D73AAF6904F426968702BB167F6D70BE3D98DFF4FCC0EE36D2DE58EF4037D9173E5CBAB7F26CD7A046C0E629721378C51A3934AF644B723DDC1D985C75C2FCD074BF67F69E85C822993EAABD16C3EC45F12033DCB0CD98E97E8DB74834708B689C8C2D226D748DABDD8D124BD960A1AE501D0CA29B9150DB83A75F37D9D23913BA5ED1D03A981932940E3D30F1C78802175AC690B4AF60BECF7D8148188E82276CF537E09013A3689</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">1.3.6.1.4.1.311.20.2</elem>
+</table>
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Client Authentication, TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Digital Signature, Key Encipherment</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">S/MIME Capabilities</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">9D:B8:AA:70:68:58:C0:33:DF:1B:4E:CB:AB:24:DA:FA:E0:64:09:D7</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">keyid:40:06:E4:54:B3:37:98:BC:22:2E:0E:19:36:0A:18:A0:B1:DE:0B:8A&#xa;</elem>
+</table>
+<table>
+<elem key="name">X509v3 CRL Distribution Points</elem>
+<elem key="value">&#xa;Full Name:&#xa;  URI:ldap:///CN=HTB-SIZZLE-CA,CN=sizzle,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=HTB,DC=LOCAL?certificateRevocationList?base?objectClass=cRLDistributionPoint&#xa;</elem>
+</table>
+<table>
+<elem key="name">Authority Information Access</elem>
+<elem key="value">CA Issuers - URI:ldap:///CN=HTB-SIZZLE-CA,CN=AIA,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=HTB,DC=LOCAL?cACertificate?base?objectClass=certificationAuthority&#xa;</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">othername:&lt;unsupported&gt;, DNS:sizzle.HTB.LOCAL</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2021-02-11T12:59:51</elem>
+<elem key="notAfter">2022-02-11T12:59:51</elem>
+</table>
+<elem key="md5">634607e3ae830744681e3c0b00ff80d9</elem>
+<elem key="sha1">e07144af92c6e2028f210fc6c9c7433b360be3a9</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIF1TCCBL2gAwIBAgITaQAAABUzqoRTL6/IkwAAAAAAFTANBgkqhkiG9w0BAQsF&#xa;ADBEMRUwEwYKCZImiZPyLGQBGRYFTE9DQUwxEzARBgoJkiaJk/IsZAEZFgNIVEIx&#xa;FjAUBgNVBAMTDUhUQi1TSVpaTEUtQ0EwHhcNMjEwMjExMTI1OTUxWhcNMjIwMjEx&#xa;MTI1OTUxWjAbMRkwFwYDVQQDExBzaXp6bGUuSFRCLkxPQ0FMMIIBIjANBgkqhkiG&#xa;9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsropSl1uacTfJa2wrYWPUOqyGHiIoOSAE8/I&#xa;vKLlraPJyAXX3stL35OgtqQeAKUDZfZyOEXQlcQ2jXhgZxUamw6ID3hLgIy4dAru&#xa;OjXqtqzrkWfqffoyPXOq9pBPQmlocCuxZ/bXC+PZjf9PzA7jbS3ljvQDfZFz5cur&#xa;fybNegRsDmKXITeMUaOTSvZEtyPdwdmFx1wvzQdL9n9p6FyCKZPqq9FsPsRfEgM9&#xa;ywzZjpfo23SDRwi2icjC0ibXSNq92NEkvZYKGuUB0MopuRUNuDp1832dI5E7pe0d&#xa;A6mBkylA49MPHHiAIXWsaQtK9gvs99gUgYjoInbPU34JATo2iQIDAQABo4IC5zCC&#xa;AuMwLwYJKwYBBAGCNxQCBCIeIABEAG8AbQBhAGkAbgBDAG8AbgB0AHIAbwBsAGwA&#xa;ZQByMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATAOBgNVHQ8BAf8EBAMC&#xa;BaAweAYJKoZIhvcNAQkPBGswaTAOBggqhkiG9w0DAgICAIAwDgYIKoZIhvcNAwQC&#xa;AgCAMAsGCWCGSAFlAwQBKjALBglghkgBZQMEAS0wCwYJYIZIAWUDBAECMAsGCWCG&#xa;SAFlAwQBBTAHBgUrDgMCBzAKBggqhkiG9w0DBzAdBgNVHQ4EFgQUnbiqcGhYwDPf&#xa;G07LqyTa+uBkCdcwHwYDVR0jBBgwFoAUQAbkVLM3mLwiLg4ZNgoYoLHeC4owgcgG&#xa;A1UdHwSBwDCBvTCBuqCBt6CBtIaBsWxkYXA6Ly8vQ049SFRCLVNJWlpMRS1DQSxD&#xa;Tj1zaXp6bGUsQ049Q0RQLENOPVB1YmxpYyUyMEtleSUyMFNlcnZpY2VzLENOPVNl&#xa;cnZpY2VzLENOPUNvbmZpZ3VyYXRpb24sREM9SFRCLERDPUxPQ0FMP2NlcnRpZmlj&#xa;YXRlUmV2b2NhdGlvbkxpc3Q/YmFzZT9vYmplY3RDbGFzcz1jUkxEaXN0cmlidXRp&#xa;b25Qb2ludDCBvQYIKwYBBQUHAQEEgbAwga0wgaoGCCsGAQUFBzAChoGdbGRhcDov&#xa;Ly9DTj1IVEItU0laWkxFLUNBLENOPUFJQSxDTj1QdWJsaWMlMjBLZXklMjBTZXJ2&#xa;aWNlcyxDTj1TZXJ2aWNlcyxDTj1Db25maWd1cmF0aW9uLERDPUhUQixEQz1MT0NB&#xa;TD9jQUNlcnRpZmljYXRlP2Jhc2U/b2JqZWN0Q2xhc3M9Y2VydGlmaWNhdGlvbkF1&#xa;dGhvcml0eTA8BgNVHREENTAzoB8GCSsGAQQBgjcZAaASBBB7YfekKJKyQJ4UWzrt&#xa;tIm9ghBzaXp6bGUuSFRCLkxPQ0FMMA0GCSqGSIb3DQEBCwUAA4IBAQBl66ilIguB&#xa;3jfQ6I/4hq6mVs1JfH2dGBEz1T0o+doSqzYIrye1cZ8+DzzNkTtcRZVjl1HDlgsO&#xa;SmktmHk4HOCfyJYdH4nF6mcaLexGQ+8q8jNincsR8/l0CuYSb0/5T1g4ARViL/af&#xa;0083rH8Xe8ieEWJrgYyxaNCs9vfBROekc8vrTZo2bDwy6rvhmjIbZWlxXDX9msh3&#xa;67GrumUsh5xRdgLUkXmahrGIveyUSsZqAsokn4F/I7JBgTaBlVYbRj/axaSLS285&#xa;7m9mK0X692OAveEaxr2XHcIqZwUeetL7yDrVRqZDQi6li30iVbL+qk7/k/7z9PU+&#xa;Oftl7go8IzrS&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script></port>
+<port protocol="tcp" portid="3268"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ldap" product="Microsoft Windows Active Directory LDAP" extrainfo="Domain: HTB.LOCAL, Site: Default-First-Site-Name" hostname="SIZZLE" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="ssl-cert" output="Subject: commonName=sizzle.HTB.LOCAL&#xa;Subject Alternative Name: othername:&lt;unsupported&gt;, DNS:sizzle.HTB.LOCAL&#xa;Not valid before: 2021-02-11T12:59:51&#xa;Not valid after:  2022-02-11T12:59:51"><table key="subject">
+<elem key="commonName">sizzle.HTB.LOCAL</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">HTB-SIZZLE-CA</elem>
+<elem key="domainComponent">HTB</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">B2BA294A5D6E69C4DF25ADB0AD858F50EAB2187888A0E48013CFC8BCA2E5ADA3C9C805D7DECB4BDF93A0B6A41E00A50365F6723845D095C4368D786067151A9B0E880F784B808CB8740AEE3A35EAB6ACEB9167EA7DFA323D73AAF6904F426968702BB167F6D70BE3D98DFF4FCC0EE36D2DE58EF4037D9173E5CBAB7F26CD7A046C0E629721378C51A3934AF644B723DDC1D985C75C2FCD074BF67F69E85C822993EAABD16C3EC45F12033DCB0CD98E97E8DB74834708B689C8C2D226D748DABDD8D124BD960A1AE501D0CA29B9150DB83A75F37D9D23913BA5ED1D03A981932940E3D30F1C78802175AC690B4AF60BECF7D8148188E82276CF537E09013A3689</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">1.3.6.1.4.1.311.20.2</elem>
+</table>
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Client Authentication, TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Digital Signature, Key Encipherment</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">S/MIME Capabilities</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">9D:B8:AA:70:68:58:C0:33:DF:1B:4E:CB:AB:24:DA:FA:E0:64:09:D7</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">keyid:40:06:E4:54:B3:37:98:BC:22:2E:0E:19:36:0A:18:A0:B1:DE:0B:8A&#xa;</elem>
+</table>
+<table>
+<elem key="name">X509v3 CRL Distribution Points</elem>
+<elem key="value">&#xa;Full Name:&#xa;  URI:ldap:///CN=HTB-SIZZLE-CA,CN=sizzle,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=HTB,DC=LOCAL?certificateRevocationList?base?objectClass=cRLDistributionPoint&#xa;</elem>
+</table>
+<table>
+<elem key="name">Authority Information Access</elem>
+<elem key="value">CA Issuers - URI:ldap:///CN=HTB-SIZZLE-CA,CN=AIA,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=HTB,DC=LOCAL?cACertificate?base?objectClass=certificationAuthority&#xa;</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">othername:&lt;unsupported&gt;, DNS:sizzle.HTB.LOCAL</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2021-02-11T12:59:51</elem>
+<elem key="notAfter">2022-02-11T12:59:51</elem>
+</table>
+<elem key="md5">634607e3ae830744681e3c0b00ff80d9</elem>
+<elem key="sha1">e07144af92c6e2028f210fc6c9c7433b360be3a9</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIF1TCCBL2gAwIBAgITaQAAABUzqoRTL6/IkwAAAAAAFTANBgkqhkiG9w0BAQsF&#xa;ADBEMRUwEwYKCZImiZPyLGQBGRYFTE9DQUwxEzARBgoJkiaJk/IsZAEZFgNIVEIx&#xa;FjAUBgNVBAMTDUhUQi1TSVpaTEUtQ0EwHhcNMjEwMjExMTI1OTUxWhcNMjIwMjEx&#xa;MTI1OTUxWjAbMRkwFwYDVQQDExBzaXp6bGUuSFRCLkxPQ0FMMIIBIjANBgkqhkiG&#xa;9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsropSl1uacTfJa2wrYWPUOqyGHiIoOSAE8/I&#xa;vKLlraPJyAXX3stL35OgtqQeAKUDZfZyOEXQlcQ2jXhgZxUamw6ID3hLgIy4dAru&#xa;OjXqtqzrkWfqffoyPXOq9pBPQmlocCuxZ/bXC+PZjf9PzA7jbS3ljvQDfZFz5cur&#xa;fybNegRsDmKXITeMUaOTSvZEtyPdwdmFx1wvzQdL9n9p6FyCKZPqq9FsPsRfEgM9&#xa;ywzZjpfo23SDRwi2icjC0ibXSNq92NEkvZYKGuUB0MopuRUNuDp1832dI5E7pe0d&#xa;A6mBkylA49MPHHiAIXWsaQtK9gvs99gUgYjoInbPU34JATo2iQIDAQABo4IC5zCC&#xa;AuMwLwYJKwYBBAGCNxQCBCIeIABEAG8AbQBhAGkAbgBDAG8AbgB0AHIAbwBsAGwA&#xa;ZQByMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATAOBgNVHQ8BAf8EBAMC&#xa;BaAweAYJKoZIhvcNAQkPBGswaTAOBggqhkiG9w0DAgICAIAwDgYIKoZIhvcNAwQC&#xa;AgCAMAsGCWCGSAFlAwQBKjALBglghkgBZQMEAS0wCwYJYIZIAWUDBAECMAsGCWCG&#xa;SAFlAwQBBTAHBgUrDgMCBzAKBggqhkiG9w0DBzAdBgNVHQ4EFgQUnbiqcGhYwDPf&#xa;G07LqyTa+uBkCdcwHwYDVR0jBBgwFoAUQAbkVLM3mLwiLg4ZNgoYoLHeC4owgcgG&#xa;A1UdHwSBwDCBvTCBuqCBt6CBtIaBsWxkYXA6Ly8vQ049SFRCLVNJWlpMRS1DQSxD&#xa;Tj1zaXp6bGUsQ049Q0RQLENOPVB1YmxpYyUyMEtleSUyMFNlcnZpY2VzLENOPVNl&#xa;cnZpY2VzLENOPUNvbmZpZ3VyYXRpb24sREM9SFRCLERDPUxPQ0FMP2NlcnRpZmlj&#xa;YXRlUmV2b2NhdGlvbkxpc3Q/YmFzZT9vYmplY3RDbGFzcz1jUkxEaXN0cmlidXRp&#xa;b25Qb2ludDCBvQYIKwYBBQUHAQEEgbAwga0wgaoGCCsGAQUFBzAChoGdbGRhcDov&#xa;Ly9DTj1IVEItU0laWkxFLUNBLENOPUFJQSxDTj1QdWJsaWMlMjBLZXklMjBTZXJ2&#xa;aWNlcyxDTj1TZXJ2aWNlcyxDTj1Db25maWd1cmF0aW9uLERDPUhUQixEQz1MT0NB&#xa;TD9jQUNlcnRpZmljYXRlP2Jhc2U/b2JqZWN0Q2xhc3M9Y2VydGlmaWNhdGlvbkF1&#xa;dGhvcml0eTA8BgNVHREENTAzoB8GCSsGAQQBgjcZAaASBBB7YfekKJKyQJ4UWzrt&#xa;tIm9ghBzaXp6bGUuSFRCLkxPQ0FMMA0GCSqGSIb3DQEBCwUAA4IBAQBl66ilIguB&#xa;3jfQ6I/4hq6mVs1JfH2dGBEz1T0o+doSqzYIrye1cZ8+DzzNkTtcRZVjl1HDlgsO&#xa;SmktmHk4HOCfyJYdH4nF6mcaLexGQ+8q8jNincsR8/l0CuYSb0/5T1g4ARViL/af&#xa;0083rH8Xe8ieEWJrgYyxaNCs9vfBROekc8vrTZo2bDwy6rvhmjIbZWlxXDX9msh3&#xa;67GrumUsh5xRdgLUkXmahrGIveyUSsZqAsokn4F/I7JBgTaBlVYbRj/axaSLS285&#xa;7m9mK0X692OAveEaxr2XHcIqZwUeetL7yDrVRqZDQi6li30iVbL+qk7/k/7z9PU+&#xa;Oftl7go8IzrS&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ssl-date" output="2022-05-26T08:49:12+00:00; 0s from scanner time."><elem key="delta">0.0</elem>
+<elem key="date">2022-05-26T08:49:12+00:00</elem>
+</script></port>
+<port protocol="tcp" portid="3269"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ldap" product="Microsoft Windows Active Directory LDAP" extrainfo="Domain: HTB.LOCAL, Site: Default-First-Site-Name" hostname="SIZZLE" ostype="Windows" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="ssl-cert" output="Subject: commonName=sizzle.HTB.LOCAL&#xa;Subject Alternative Name: othername:&lt;unsupported&gt;, DNS:sizzle.HTB.LOCAL&#xa;Not valid before: 2021-02-11T12:59:51&#xa;Not valid after:  2022-02-11T12:59:51"><table key="subject">
+<elem key="commonName">sizzle.HTB.LOCAL</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">HTB-SIZZLE-CA</elem>
+<elem key="domainComponent">HTB</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">B2BA294A5D6E69C4DF25ADB0AD858F50EAB2187888A0E48013CFC8BCA2E5ADA3C9C805D7DECB4BDF93A0B6A41E00A50365F6723845D095C4368D786067151A9B0E880F784B808CB8740AEE3A35EAB6ACEB9167EA7DFA323D73AAF6904F426968702BB167F6D70BE3D98DFF4FCC0EE36D2DE58EF4037D9173E5CBAB7F26CD7A046C0E629721378C51A3934AF644B723DDC1D985C75C2FCD074BF67F69E85C822993EAABD16C3EC45F12033DCB0CD98E97E8DB74834708B689C8C2D226D748DABDD8D124BD960A1AE501D0CA29B9150DB83A75F37D9D23913BA5ED1D03A981932940E3D30F1C78802175AC690B4AF60BECF7D8148188E82276CF537E09013A3689</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">1.3.6.1.4.1.311.20.2</elem>
+</table>
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Client Authentication, TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Digital Signature, Key Encipherment</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">S/MIME Capabilities</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">9D:B8:AA:70:68:58:C0:33:DF:1B:4E:CB:AB:24:DA:FA:E0:64:09:D7</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">keyid:40:06:E4:54:B3:37:98:BC:22:2E:0E:19:36:0A:18:A0:B1:DE:0B:8A&#xa;</elem>
+</table>
+<table>
+<elem key="name">X509v3 CRL Distribution Points</elem>
+<elem key="value">&#xa;Full Name:&#xa;  URI:ldap:///CN=HTB-SIZZLE-CA,CN=sizzle,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=HTB,DC=LOCAL?certificateRevocationList?base?objectClass=cRLDistributionPoint&#xa;</elem>
+</table>
+<table>
+<elem key="name">Authority Information Access</elem>
+<elem key="value">CA Issuers - URI:ldap:///CN=HTB-SIZZLE-CA,CN=AIA,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=HTB,DC=LOCAL?cACertificate?base?objectClass=certificationAuthority&#xa;</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">othername:&lt;unsupported&gt;, DNS:sizzle.HTB.LOCAL</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2021-02-11T12:59:51</elem>
+<elem key="notAfter">2022-02-11T12:59:51</elem>
+</table>
+<elem key="md5">634607e3ae830744681e3c0b00ff80d9</elem>
+<elem key="sha1">e07144af92c6e2028f210fc6c9c7433b360be3a9</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIF1TCCBL2gAwIBAgITaQAAABUzqoRTL6/IkwAAAAAAFTANBgkqhkiG9w0BAQsF&#xa;ADBEMRUwEwYKCZImiZPyLGQBGRYFTE9DQUwxEzARBgoJkiaJk/IsZAEZFgNIVEIx&#xa;FjAUBgNVBAMTDUhUQi1TSVpaTEUtQ0EwHhcNMjEwMjExMTI1OTUxWhcNMjIwMjEx&#xa;MTI1OTUxWjAbMRkwFwYDVQQDExBzaXp6bGUuSFRCLkxPQ0FMMIIBIjANBgkqhkiG&#xa;9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsropSl1uacTfJa2wrYWPUOqyGHiIoOSAE8/I&#xa;vKLlraPJyAXX3stL35OgtqQeAKUDZfZyOEXQlcQ2jXhgZxUamw6ID3hLgIy4dAru&#xa;OjXqtqzrkWfqffoyPXOq9pBPQmlocCuxZ/bXC+PZjf9PzA7jbS3ljvQDfZFz5cur&#xa;fybNegRsDmKXITeMUaOTSvZEtyPdwdmFx1wvzQdL9n9p6FyCKZPqq9FsPsRfEgM9&#xa;ywzZjpfo23SDRwi2icjC0ibXSNq92NEkvZYKGuUB0MopuRUNuDp1832dI5E7pe0d&#xa;A6mBkylA49MPHHiAIXWsaQtK9gvs99gUgYjoInbPU34JATo2iQIDAQABo4IC5zCC&#xa;AuMwLwYJKwYBBAGCNxQCBCIeIABEAG8AbQBhAGkAbgBDAG8AbgB0AHIAbwBsAGwA&#xa;ZQByMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATAOBgNVHQ8BAf8EBAMC&#xa;BaAweAYJKoZIhvcNAQkPBGswaTAOBggqhkiG9w0DAgICAIAwDgYIKoZIhvcNAwQC&#xa;AgCAMAsGCWCGSAFlAwQBKjALBglghkgBZQMEAS0wCwYJYIZIAWUDBAECMAsGCWCG&#xa;SAFlAwQBBTAHBgUrDgMCBzAKBggqhkiG9w0DBzAdBgNVHQ4EFgQUnbiqcGhYwDPf&#xa;G07LqyTa+uBkCdcwHwYDVR0jBBgwFoAUQAbkVLM3mLwiLg4ZNgoYoLHeC4owgcgG&#xa;A1UdHwSBwDCBvTCBuqCBt6CBtIaBsWxkYXA6Ly8vQ049SFRCLVNJWlpMRS1DQSxD&#xa;Tj1zaXp6bGUsQ049Q0RQLENOPVB1YmxpYyUyMEtleSUyMFNlcnZpY2VzLENOPVNl&#xa;cnZpY2VzLENOPUNvbmZpZ3VyYXRpb24sREM9SFRCLERDPUxPQ0FMP2NlcnRpZmlj&#xa;YXRlUmV2b2NhdGlvbkxpc3Q/YmFzZT9vYmplY3RDbGFzcz1jUkxEaXN0cmlidXRp&#xa;b25Qb2ludDCBvQYIKwYBBQUHAQEEgbAwga0wgaoGCCsGAQUFBzAChoGdbGRhcDov&#xa;Ly9DTj1IVEItU0laWkxFLUNBLENOPUFJQSxDTj1QdWJsaWMlMjBLZXklMjBTZXJ2&#xa;aWNlcyxDTj1TZXJ2aWNlcyxDTj1Db25maWd1cmF0aW9uLERDPUhUQixEQz1MT0NB&#xa;TD9jQUNlcnRpZmljYXRlP2Jhc2U/b2JqZWN0Q2xhc3M9Y2VydGlmaWNhdGlvbkF1&#xa;dGhvcml0eTA8BgNVHREENTAzoB8GCSsGAQQBgjcZAaASBBB7YfekKJKyQJ4UWzrt&#xa;tIm9ghBzaXp6bGUuSFRCLkxPQ0FMMA0GCSqGSIb3DQEBCwUAA4IBAQBl66ilIguB&#xa;3jfQ6I/4hq6mVs1JfH2dGBEz1T0o+doSqzYIrye1cZ8+DzzNkTtcRZVjl1HDlgsO&#xa;SmktmHk4HOCfyJYdH4nF6mcaLexGQ+8q8jNincsR8/l0CuYSb0/5T1g4ARViL/af&#xa;0083rH8Xe8ieEWJrgYyxaNCs9vfBROekc8vrTZo2bDwy6rvhmjIbZWlxXDX9msh3&#xa;67GrumUsh5xRdgLUkXmahrGIveyUSsZqAsokn4F/I7JBgTaBlVYbRj/axaSLS285&#xa;7m9mK0X692OAveEaxr2XHcIqZwUeetL7yDrVRqZDQi6li30iVbL+qk7/k/7z9PU+&#xa;Oftl7go8IzrS&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ssl-date" output="2022-05-26T08:49:12+00:00; 0s from scanner time."><elem key="delta">0.0</elem>
+<elem key="date">2022-05-26T08:49:12+00:00</elem>
+</script></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="Microsoft HTTPAPI httpd" version="2.0" extrainfo="SSDP/UPnP" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-server-header" output="Microsoft-HTTPAPI/2.0"><elem>Microsoft-HTTPAPI/2.0</elem>
+</script><script id="http-title" output="Not Found"><elem key="title">Not Found</elem>
+</script></port>
+<port protocol="tcp" portid="5986"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="Microsoft HTTPAPI httpd" version="2.0" extrainfo="SSDP/UPnP" ostype="Windows" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="tls-alpn" output="&#xa;  h2&#xa;  http/1.1"><elem>h2</elem>
+<elem>http/1.1</elem>
+</script><script id="ssl-date" output="2022-05-26T08:49:12+00:00; 0s from scanner time."><elem key="delta">0.0</elem>
+<elem key="date">2022-05-26T08:49:12+00:00</elem>
+</script><script id="ssl-cert" output="Subject: commonName=sizzle.HTB.LOCAL&#xa;Subject Alternative Name: othername:&lt;unsupported&gt;, DNS:sizzle.HTB.LOCAL&#xa;Not valid before: 2021-02-11T12:59:51&#xa;Not valid after:  2022-02-11T12:59:51"><table key="subject">
+<elem key="commonName">sizzle.HTB.LOCAL</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">HTB-SIZZLE-CA</elem>
+<elem key="domainComponent">HTB</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">B2BA294A5D6E69C4DF25ADB0AD858F50EAB2187888A0E48013CFC8BCA2E5ADA3C9C805D7DECB4BDF93A0B6A41E00A50365F6723845D095C4368D786067151A9B0E880F784B808CB8740AEE3A35EAB6ACEB9167EA7DFA323D73AAF6904F426968702BB167F6D70BE3D98DFF4FCC0EE36D2DE58EF4037D9173E5CBAB7F26CD7A046C0E629721378C51A3934AF644B723DDC1D985C75C2FCD074BF67F69E85C822993EAABD16C3EC45F12033DCB0CD98E97E8DB74834708B689C8C2D226D748DABDD8D124BD960A1AE501D0CA29B9150DB83A75F37D9D23913BA5ED1D03A981932940E3D30F1C78802175AC690B4AF60BECF7D8148188E82276CF537E09013A3689</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">1.3.6.1.4.1.311.20.2</elem>
+</table>
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Client Authentication, TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Digital Signature, Key Encipherment</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">S/MIME Capabilities</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">9D:B8:AA:70:68:58:C0:33:DF:1B:4E:CB:AB:24:DA:FA:E0:64:09:D7</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">keyid:40:06:E4:54:B3:37:98:BC:22:2E:0E:19:36:0A:18:A0:B1:DE:0B:8A&#xa;</elem>
+</table>
+<table>
+<elem key="name">X509v3 CRL Distribution Points</elem>
+<elem key="value">&#xa;Full Name:&#xa;  URI:ldap:///CN=HTB-SIZZLE-CA,CN=sizzle,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=HTB,DC=LOCAL?certificateRevocationList?base?objectClass=cRLDistributionPoint&#xa;</elem>
+</table>
+<table>
+<elem key="name">Authority Information Access</elem>
+<elem key="value">CA Issuers - URI:ldap:///CN=HTB-SIZZLE-CA,CN=AIA,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=HTB,DC=LOCAL?cACertificate?base?objectClass=certificationAuthority&#xa;</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">othername:&lt;unsupported&gt;, DNS:sizzle.HTB.LOCAL</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2021-02-11T12:59:51</elem>
+<elem key="notAfter">2022-02-11T12:59:51</elem>
+</table>
+<elem key="md5">634607e3ae830744681e3c0b00ff80d9</elem>
+<elem key="sha1">e07144af92c6e2028f210fc6c9c7433b360be3a9</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIF1TCCBL2gAwIBAgITaQAAABUzqoRTL6/IkwAAAAAAFTANBgkqhkiG9w0BAQsF&#xa;ADBEMRUwEwYKCZImiZPyLGQBGRYFTE9DQUwxEzARBgoJkiaJk/IsZAEZFgNIVEIx&#xa;FjAUBgNVBAMTDUhUQi1TSVpaTEUtQ0EwHhcNMjEwMjExMTI1OTUxWhcNMjIwMjEx&#xa;MTI1OTUxWjAbMRkwFwYDVQQDExBzaXp6bGUuSFRCLkxPQ0FMMIIBIjANBgkqhkiG&#xa;9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsropSl1uacTfJa2wrYWPUOqyGHiIoOSAE8/I&#xa;vKLlraPJyAXX3stL35OgtqQeAKUDZfZyOEXQlcQ2jXhgZxUamw6ID3hLgIy4dAru&#xa;OjXqtqzrkWfqffoyPXOq9pBPQmlocCuxZ/bXC+PZjf9PzA7jbS3ljvQDfZFz5cur&#xa;fybNegRsDmKXITeMUaOTSvZEtyPdwdmFx1wvzQdL9n9p6FyCKZPqq9FsPsRfEgM9&#xa;ywzZjpfo23SDRwi2icjC0ibXSNq92NEkvZYKGuUB0MopuRUNuDp1832dI5E7pe0d&#xa;A6mBkylA49MPHHiAIXWsaQtK9gvs99gUgYjoInbPU34JATo2iQIDAQABo4IC5zCC&#xa;AuMwLwYJKwYBBAGCNxQCBCIeIABEAG8AbQBhAGkAbgBDAG8AbgB0AHIAbwBsAGwA&#xa;ZQByMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATAOBgNVHQ8BAf8EBAMC&#xa;BaAweAYJKoZIhvcNAQkPBGswaTAOBggqhkiG9w0DAgICAIAwDgYIKoZIhvcNAwQC&#xa;AgCAMAsGCWCGSAFlAwQBKjALBglghkgBZQMEAS0wCwYJYIZIAWUDBAECMAsGCWCG&#xa;SAFlAwQBBTAHBgUrDgMCBzAKBggqhkiG9w0DBzAdBgNVHQ4EFgQUnbiqcGhYwDPf&#xa;G07LqyTa+uBkCdcwHwYDVR0jBBgwFoAUQAbkVLM3mLwiLg4ZNgoYoLHeC4owgcgG&#xa;A1UdHwSBwDCBvTCBuqCBt6CBtIaBsWxkYXA6Ly8vQ049SFRCLVNJWlpMRS1DQSxD&#xa;Tj1zaXp6bGUsQ049Q0RQLENOPVB1YmxpYyUyMEtleSUyMFNlcnZpY2VzLENOPVNl&#xa;cnZpY2VzLENOPUNvbmZpZ3VyYXRpb24sREM9SFRCLERDPUxPQ0FMP2NlcnRpZmlj&#xa;YXRlUmV2b2NhdGlvbkxpc3Q/YmFzZT9vYmplY3RDbGFzcz1jUkxEaXN0cmlidXRp&#xa;b25Qb2ludDCBvQYIKwYBBQUHAQEEgbAwga0wgaoGCCsGAQUFBzAChoGdbGRhcDov&#xa;Ly9DTj1IVEItU0laWkxFLUNBLENOPUFJQSxDTj1QdWJsaWMlMjBLZXklMjBTZXJ2&#xa;aWNlcyxDTj1TZXJ2aWNlcyxDTj1Db25maWd1cmF0aW9uLERDPUhUQixEQz1MT0NB&#xa;TD9jQUNlcnRpZmljYXRlP2Jhc2U/b2JqZWN0Q2xhc3M9Y2VydGlmaWNhdGlvbkF1&#xa;dGhvcml0eTA8BgNVHREENTAzoB8GCSsGAQQBgjcZAaASBBB7YfekKJKyQJ4UWzrt&#xa;tIm9ghBzaXp6bGUuSFRCLkxPQ0FMMA0GCSqGSIb3DQEBCwUAA4IBAQBl66ilIguB&#xa;3jfQ6I/4hq6mVs1JfH2dGBEz1T0o+doSqzYIrye1cZ8+DzzNkTtcRZVjl1HDlgsO&#xa;SmktmHk4HOCfyJYdH4nF6mcaLexGQ+8q8jNincsR8/l0CuYSb0/5T1g4ARViL/af&#xa;0083rH8Xe8ieEWJrgYyxaNCs9vfBROekc8vrTZo2bDwy6rvhmjIbZWlxXDX9msh3&#xa;67GrumUsh5xRdgLUkXmahrGIveyUSsZqAsokn4F/I7JBgTaBlVYbRj/axaSLS285&#xa;7m9mK0X692OAveEaxr2XHcIqZwUeetL7yDrVRqZDQi6li30iVbL+qk7/k/7z9PU+&#xa;Oftl7go8IzrS&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="http-server-header" output="Microsoft-HTTPAPI/2.0"><elem>Microsoft-HTTPAPI/2.0</elem>
+</script><script id="http-title" output="Not Found"><elem key="title">Not Found</elem>
+</script></port>
+<port protocol="tcp" portid="47001"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="Microsoft HTTPAPI httpd" version="2.0" extrainfo="SSDP/UPnP" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-server-header" output="Microsoft-HTTPAPI/2.0"><elem>Microsoft-HTTPAPI/2.0</elem>
+</script><script id="http-title" output="Not Found"><elem key="title">Not Found</elem>
+</script></port>
+<port protocol="tcp" portid="49664"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49665"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49666"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49668"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49671"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49687"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ncacn_http" product="Microsoft Windows RPC over HTTP" version="1.0" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49690"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49692"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49695"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49705"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49713"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+</ports>
+<hostscript><script id="smb2-security-mode" output="&#xa;  3.1.1: &#xa;    Message signing enabled and required"><table key="3.1.1">
+<elem>Message signing enabled and required</elem>
+</table>
+</script><script id="smb2-time" output="&#xa;  date: 2022-05-26T08:48:35&#xa;  start_date: 2022-05-26T08:43:21"><elem key="date">2022-05-26T08:48:35</elem>
+<elem key="start_date">2022-05-26T08:43:21</elem>
+</script></hostscript><times srtt="45989" rttvar="5332" to="100000"/>
+</host>
+<runstats><finished time="1653554953" timestr="Thu May 26 09:49:13 2022" summary="Nmap done at Thu May 26 09:49:13 2022; 1 IP address (1 host up) scanned in 263.31 seconds" elapsed="263.31" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

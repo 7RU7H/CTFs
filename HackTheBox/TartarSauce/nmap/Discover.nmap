@@ -1,0 +1,83 @@
+# Nmap 7.92 scan initiated Wed May 25 10:23:54 2022 as: nmap --script discovery -oA nmap/Discover -p- --min-rate 500 10.129.1.185
+Pre-scan script results:
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.129.1.185
+Host is up (0.046s latency).
+Not shown: 65534 closed tcp ports (conn-refused)
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+80/tcp open  http
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1
+| http-robots.txt: 5 disallowed entries 
+| /webservices/tar/tar/source/ 
+| /webservices/monstra-3.0.4/ /webservices/easy-file-uploader/ 
+|_/webservices/developmental/ /webservices/phpmyadmin/
+| http-vhosts: 
+|_128 names had status 200
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.1.185
+|     
+|     Path: http://10.129.1.185:80/
+|     Line number: 563
+|     Comment: 
+|_        <!--Carry on, nothing to see here :D-->
+|_http-errors: Couldn't find any error pages.
+|_http-feed: Couldn't find any feeds.
+|_http-xssed: No previously reported XSS vuln.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-enum: 
+|_  /robots.txt: Robots file
+|_http-title: Landing Page
+| http-headers: 
+|   Date: Wed, 25 May 2022 09:25:35 GMT
+|   Server: Apache/2.4.18 (Ubuntu)
+|   Last-Modified: Wed, 21 Feb 2018 20:31:20 GMT
+|   ETag: "2a0e-565becf5ff08d"
+|   Accept-Ranges: bytes
+|   Content-Length: 10766
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-date: Wed, 25 May 2022 09:25:37 GMT; +1h00m00s from local time.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-mobileversion-checker: No mobile version detected.
+|_http-chrono: Request times for /; avg: 161.39ms; min: 135.39ms; max: 198.63ms
+
+Host script results:
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "10.129.1.185"; use dns-brute.domain script argument.
+
+# Nmap done at Wed May 25 10:29:37 2022 -- 1 IP address (1 host up) scanned in 342.36 seconds

@@ -1,0 +1,22 @@
+# Nmap 7.92 scan initiated Wed May 25 19:14:20 2022 as: nmap --script vuln -oA nmap/Vuln -p- --min-rate 500 10.129.1.108
+Nmap scan report for 10.129.1.108
+Host is up (0.052s latency).
+Not shown: 65528 closed tcp ports (conn-refused)
+PORT      STATE SERVICE
+22/tcp    open  ssh
+80/tcp    open  http
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|_  /manual/: Potentially interesting folder
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+111/tcp   open  rpcbind
+6697/tcp  open  ircs-u
+| irc-botnet-channels: 
+|_  ERROR: Closing Link: [10.10.14.29] (Throttled: Reconnecting too fast) -Email djmardov@irked.htb for more information.
+|_ssl-ccs-injection: No reply from server (TIMEOUT)
+8067/tcp  open  infi-async
+35549/tcp open  unknown
+65534/tcp open  unknown
+
+# Nmap done at Wed May 25 19:16:23 2022 -- 1 IP address (1 host up) scanned in 122.83 seconds

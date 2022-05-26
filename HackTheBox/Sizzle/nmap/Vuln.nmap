@@ -1,0 +1,47 @@
+# Nmap 7.92 scan initiated Thu May 26 10:04:27 2022 as: nmap --script vuln -oA nmap/Vuln -p- --min-rate 500 10.129.100.123
+Nmap scan report for 10.129.100.123
+Host is up (0.053s latency).
+Not shown: 65506 filtered tcp ports (no-response)
+PORT      STATE SERVICE
+21/tcp    open  ftp
+53/tcp    open  domain
+80/tcp    open  http
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+389/tcp   open  ldap
+443/tcp   open  https
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+445/tcp   open  microsoft-ds
+464/tcp   open  kpasswd5
+593/tcp   open  http-rpc-epmap
+636/tcp   open  ldapssl
+3268/tcp  open  globalcatLDAP
+3269/tcp  open  globalcatLDAPssl
+5985/tcp  open  wsman
+5986/tcp  open  wsmans
+9389/tcp  open  adws
+47001/tcp open  winrm
+49664/tcp open  unknown
+49665/tcp open  unknown
+49666/tcp open  unknown
+49668/tcp open  unknown
+49671/tcp open  unknown
+49687/tcp open  unknown
+49690/tcp open  unknown
+49692/tcp open  unknown
+49695/tcp open  unknown
+49705/tcp open  unknown
+49713/tcp open  unknown
+57810/tcp open  unknown
+
+Host script results:
+|_smb-vuln-ms10-061: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_smb-vuln-ms10-054: false
+|_samba-vuln-cve-2012-1182: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+
+# Nmap done at Thu May 26 10:13:43 2022 -- 1 IP address (1 host up) scanned in 556.34 seconds

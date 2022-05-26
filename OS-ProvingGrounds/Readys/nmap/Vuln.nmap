@@ -1,0 +1,33 @@
+# Nmap 7.92 scan initiated Tue May 24 20:56:35 2022 as: nmap --script vuln -oA nmap/Vuln -p- --min-rate 500 192.168.194.166
+Nmap scan report for 192.168.194.166
+Host is up (0.065s latency).
+Not shown: 65532 closed tcp ports (conn-refused)
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+| http-wordpress-users: 
+| Username found: admin
+|_Search stopped at ID #25. Increase the upper limit if necessary with 'http-wordpress-users.limit'
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|   /wp-login.php: Possible admin folder
+|   /readme.html: Wordpress version: 2 
+|   /: WordPress version: 5.7.2
+|   /wp-includes/images/rss.png: Wordpress version 2.2 found.
+|   /wp-includes/js/jquery/suggest.js: Wordpress version 2.5 found.
+|   /wp-includes/images/blank.gif: Wordpress version 2.6 found.
+|   /wp-includes/js/comment-reply.js: Wordpress version 2.7 found.
+|   /wp-login.php: Wordpress login page.
+|   /wp-admin/upgrade.php: Wordpress login page.
+|_  /readme.html: Interesting, a readme.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.194.166
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://192.168.194.166:80/
+|     Form id: search-form-1
+|_    Form action: http://192.168.194.166/
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+6379/tcp open  redis
+
+# Nmap done at Tue May 24 20:59:26 2022 -- 1 IP address (1 host up) scanned in 171.30 seconds

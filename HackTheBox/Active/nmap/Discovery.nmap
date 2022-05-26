@@ -1,0 +1,148 @@
+# Nmap 7.92 scan initiated Tue May 24 14:56:51 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 500 10.129.102.148
+Pre-scan script results:
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Warning: 10.129.102.148 giving up on port because retransmission cap hit (10).
+Nmap scan report for 10.129.102.148
+Host is up (0.051s latency).
+Not shown: 65294 closed tcp ports (conn-refused), 219 filtered tcp ports (no-response)
+PORT      STATE SERVICE
+53/tcp    open  domain
+|_dns-nsec-enum: Can't determine domain for host 10.129.102.148; use dns-nsec-enum.domains script arg.
+| dns-nsid: 
+|_  bind.version: Microsoft DNS 6.1.7601 (1DB15D39)
+|_dns-nsec3-enum: Can't determine domain for host 10.129.102.148; use dns-nsec3-enum.domains script arg.
+88/tcp    open  kerberos-sec
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+389/tcp   open  ldap
+| ldap-rootdse: 
+| LDAP Results
+|   <ROOT>
+|       currentTime: 20220524135913.0Z
+|       subschemaSubentry: CN=Aggregate,CN=Schema,CN=Configuration,DC=active,DC=htb
+|       dsServiceName: CN=NTDS Settings,CN=DC,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=active,DC=htb
+|       namingContexts: DC=active,DC=htb
+|       namingContexts: CN=Configuration,DC=active,DC=htb
+|       namingContexts: CN=Schema,CN=Configuration,DC=active,DC=htb
+|       namingContexts: DC=DomainDnsZones,DC=active,DC=htb
+|       namingContexts: DC=ForestDnsZones,DC=active,DC=htb
+|       defaultNamingContext: DC=active,DC=htb
+|       schemaNamingContext: CN=Schema,CN=Configuration,DC=active,DC=htb
+|       configurationNamingContext: CN=Configuration,DC=active,DC=htb
+|       rootDomainNamingContext: DC=active,DC=htb
+|       supportedControl: 1.2.840.113556.1.4.319
+|       supportedControl: 1.2.840.113556.1.4.801
+|       supportedControl: 1.2.840.113556.1.4.473
+|       supportedControl: 1.2.840.113556.1.4.528
+|       supportedControl: 1.2.840.113556.1.4.417
+|       supportedControl: 1.2.840.113556.1.4.619
+|       supportedControl: 1.2.840.113556.1.4.841
+|       supportedControl: 1.2.840.113556.1.4.529
+|       supportedControl: 1.2.840.113556.1.4.805
+|       supportedControl: 1.2.840.113556.1.4.521
+|       supportedControl: 1.2.840.113556.1.4.970
+|       supportedControl: 1.2.840.113556.1.4.1338
+|       supportedControl: 1.2.840.113556.1.4.474
+|       supportedControl: 1.2.840.113556.1.4.1339
+|       supportedControl: 1.2.840.113556.1.4.1340
+|       supportedControl: 1.2.840.113556.1.4.1413
+|       supportedControl: 2.16.840.1.113730.3.4.9
+|       supportedControl: 2.16.840.1.113730.3.4.10
+|       supportedControl: 1.2.840.113556.1.4.1504
+|       supportedControl: 1.2.840.113556.1.4.1852
+|       supportedControl: 1.2.840.113556.1.4.802
+|       supportedControl: 1.2.840.113556.1.4.1907
+|       supportedControl: 1.2.840.113556.1.4.1948
+|       supportedControl: 1.2.840.113556.1.4.1974
+|       supportedControl: 1.2.840.113556.1.4.1341
+|       supportedControl: 1.2.840.113556.1.4.2026
+|       supportedControl: 1.2.840.113556.1.4.2064
+|       supportedControl: 1.2.840.113556.1.4.2065
+|       supportedControl: 1.2.840.113556.1.4.2066
+|       supportedLDAPVersion: 3
+|       supportedLDAPVersion: 2
+|       supportedLDAPPolicies: MaxPoolThreads
+|       supportedLDAPPolicies: MaxDatagramRecv
+|       supportedLDAPPolicies: MaxReceiveBuffer
+|       supportedLDAPPolicies: InitRecvTimeout
+|       supportedLDAPPolicies: MaxConnections
+|       supportedLDAPPolicies: MaxConnIdleTime
+|       supportedLDAPPolicies: MaxPageSize
+|       supportedLDAPPolicies: MaxQueryDuration
+|       supportedLDAPPolicies: MaxTempTableSize
+|       supportedLDAPPolicies: MaxResultSetSize
+|       supportedLDAPPolicies: MinResultSets
+|       supportedLDAPPolicies: MaxResultSetsPerConn
+|       supportedLDAPPolicies: MaxNotificationPerConn
+|       supportedLDAPPolicies: MaxValRange
+|       supportedLDAPPolicies: ThreadMemoryLimit
+|       supportedLDAPPolicies: SystemMemoryLimitPercent
+|       highestCommittedUSN: 110659
+|       supportedSASLMechanisms: GSSAPI
+|       supportedSASLMechanisms: GSS-SPNEGO
+|       supportedSASLMechanisms: EXTERNAL
+|       supportedSASLMechanisms: DIGEST-MD5
+|       dnsHostName: DC.active.htb
+|       ldapServiceName: active.htb:dc$@ACTIVE.HTB
+|       serverName: CN=DC,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=active,DC=htb
+|       supportedCapabilities: 1.2.840.113556.1.4.800
+|       supportedCapabilities: 1.2.840.113556.1.4.1670
+|       supportedCapabilities: 1.2.840.113556.1.4.1791
+|       supportedCapabilities: 1.2.840.113556.1.4.1935
+|       supportedCapabilities: 1.2.840.113556.1.4.2080
+|       isSynchronized: TRUE
+|       isGlobalCatalogReady: TRUE
+|       domainFunctionality: 4
+|       forestFunctionality: 4
+|_      domainControllerFunctionality: 4
+445/tcp   open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+593/tcp   open  http-rpc-epmap
+|_banner: ncacn_http/1.0
+636/tcp   open  ldapssl
+3268/tcp  open  globalcatLDAP
+3269/tcp  open  globalcatLDAPssl
+5722/tcp  open  msdfsr
+9389/tcp  open  adws
+47001/tcp open  winrm
+49152/tcp open  unknown
+49153/tcp open  unknown
+49154/tcp open  unknown
+49155/tcp open  unknown
+49157/tcp open  unknown
+|_banner: ncacn_http/1.0
+49158/tcp open  unknown
+49169/tcp open  unknown
+49173/tcp open  unknown
+49174/tcp open  unknown
+Service Info: Host: DC; OS: Windows 2008 R2
+
+Host script results:
+| smb2-time: 
+|   date: 2022-05-24T13:59:17
+|_  start_date: 2022-05-24T13:42:32
+|_fcrdns: FAIL (No PTR record)
+| smb-protocols: 
+|   dialects: 
+|     2.0.2
+|_    2.1
+| smb2-capabilities: 
+|   2.0.2: 
+|     Distributed File System
+|   2.1: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+|_dns-brute: Can't guess domain of "10.129.102.148"; use dns-brute.domain script argument.
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+| smb2-security-mode: 
+|   2.1: 
+|_    Message signing enabled and required
+
+# Nmap done at Tue May 24 15:01:52 2022 -- 1 IP address (1 host up) scanned in 301.06 seconds

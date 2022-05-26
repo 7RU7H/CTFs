@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Tue May 24 20:56:35 2022 as: nmap -&#45;script vuln -oA nmap/Vuln -p- -&#45;min-rate 500 192.168.194.166 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/Vuln -p- -&#45;min-rate 500 192.168.194.166" start="1653422195" startstr="Tue May 24 20:56:35 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.194.166" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1653422205" endtime="1653422366"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="192.168.194.166" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65532">
+<extrareasons reason="conn-refused" count="65532" proto="tcp" ports="1-21,23-79,81-6378,6380-65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/><script id="http-wordpress-users" output="&#xa;Username found: admin&#xa;Search stopped at ID #25. Increase the upper limit if necessary with &apos;http-wordpress-users.limit&apos;"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-enum" output="&#xa;  /wp-login.php: Possible admin folder&#xa;  /readme.html: Wordpress version: 2 &#xa;  /: WordPress version: 5.7.2&#xa;  /wp-includes/images/rss.png: Wordpress version 2.2 found.&#xa;  /wp-includes/js/jquery/suggest.js: Wordpress version 2.5 found.&#xa;  /wp-includes/images/blank.gif: Wordpress version 2.6 found.&#xa;  /wp-includes/js/comment-reply.js: Wordpress version 2.7 found.&#xa;  /wp-login.php: Wordpress login page.&#xa;  /wp-admin/upgrade.php: Wordpress login page.&#xa;  /readme.html: Interesting, a readme.&#xa;"/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.194.166&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://192.168.194.166:80/&#xa;    Form id: search-form-1&#xa;    Form action: http://192.168.194.166/&#xa;"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/></port>
+<port protocol="tcp" portid="6379"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="redis" method="table" conf="3"/></port>
+</ports>
+<times srtt="64883" rttvar="7193" to="100000"/>
+</host>
+<runstats><finished time="1653422366" timestr="Tue May 24 20:59:26 2022" summary="Nmap done at Tue May 24 20:59:26 2022; 1 IP address (1 host up) scanned in 171.30 seconds" elapsed="171.30" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

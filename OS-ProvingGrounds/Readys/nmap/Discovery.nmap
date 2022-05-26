@@ -1,0 +1,206 @@
+# Nmap 7.92 scan initiated Tue May 24 20:46:33 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 500 192.168.194.166
+Pre-scan script results:
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 192.168.194.166
+Host is up (0.044s latency).
+Not shown: 65532 closed tcp ports (conn-refused)
+Bug in http-security-headers: no string output.
+PORT     STATE SERVICE
+22/tcp   open  ssh
+|_banner: SSH-2.0-OpenSSH_7.9p1 Debian-10+deb10u2
+| ssh-hostkey: 
+|   2048 74:ba:20:23:89:92:62:02:9f:e7:3d:3b:83:d4:d9:6c (RSA)
+|   256 54:8f:79:55:5a:b0:3a:69:5a:d5:72:39:64:fd:07:4e (ECDSA)
+|_  256 7f:5d:10:27:62:ba:75:e9:bc:c8:4f:e2:72:87:d4:e2 (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+80/tcp   open  http
+| http-feed: 
+| Spidering limited to: maxpagecount=40; withinhost=192.168.194.166
+|   Found the following feeds: 
+|     RSS (version 2.0): http://192.168.194.166/index.php/comments/feed/
+|_    RSS (version 2.0): http://192.168.194.166/index.php/feed/
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.194.166
+|     
+|     Path: http://192.168.194.166:80/index.php/category/uncategorised/
+|     Line number: 168
+|     Comment: 
+|         <!-- #colophon -->
+|     
+|     Path: http://192.168.194.166:80/index.php/category/uncategorised/
+|     Line number: 163
+|     Comment: 
+|         <!-- .site-name -->
+|     
+|     Path: http://192.168.194.166:80/index.php/category/uncategorised/
+|     Line number: 65
+|     Comment: 
+|         <!-- .site-branding -->
+|     
+|     Path: http://192.168.194.166:80/index.php/category/uncategorised/
+|     Line number: 101
+|     Comment: 
+|         <!-- #post-${ID} -->
+|     
+|     Path: http://192.168.194.166:80/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2
+|     Line number: 1
+|     Comment: 
+|         /*! jQuery Migrate v3.3.2 | (c) OpenJS Foundation and other contributors | jquery.org/license */
+|     
+|     Path: http://192.168.194.166:80/index.php/category/uncategorised/
+|     Line number: 155
+|     Comment: 
+|         <!-- .widget-area -->
+|     
+|     Path: http://192.168.194.166:80/index.php/category/uncategorised/
+|     Line number: 100
+|     Comment: 
+|         <!-- .entry-footer -->
+|     
+|     Path: http://192.168.194.166:80/index.php/category/uncategorised/
+|     Line number: 68
+|     Comment: 
+|         <!-- #masthead -->
+|     
+|     Path: http://192.168.194.166:80/index.php/category/uncategorised/
+|     Line number: 97
+|     Comment: 
+|         <!-- .entry-content -->
+|     
+|     Path: http://192.168.194.166:80/index.php/category/uncategorised/
+|     Line number: 167
+|     Comment: 
+|         <!-- .site-info -->
+|     
+|     Path: http://192.168.194.166:80/index.php/category/uncategorised/
+|     Line number: 93
+|     Comment: 
+|         <!-- .entry-header -->
+|     
+|     Path: http://192.168.194.166:80/index.php/category/uncategorised/
+|     Line number: 137
+|     Comment: 
+|         <!-- #content -->
+|     
+|     Path: http://192.168.194.166:80/index.php/category/uncategorised/
+|     Line number: 86
+|     Comment: 
+|         <!-- .page-header -->
+|     
+|     Path: http://192.168.194.166:80/index.php/category/uncategorised/
+|     Line number: 165
+|     Comment: 
+|         <!-- .powered-by -->
+|     
+|     Path: http://192.168.194.166:80/index.php/category/uncategorised/
+|     Line number: 136
+|     Comment: 
+|         <!-- #primary -->
+|     
+|     Path: http://192.168.194.166:80/index.php/category/uncategorised/
+|     Line number: 135
+|     Comment: 
+|         <!-- #main -->
+|     
+|     Path: http://192.168.194.166:80/index.php/category/uncategorised/
+|     Line number: 200
+|     Comment: 
+|         <!-- Thanks for stopping by. Have an amazing day! -->
+|     
+|     Path: http://192.168.194.166:80/index.php/category/uncategorised/
+|     Line number: 4
+|     Comment: 
+|         <!-- Built With SiteEditor | http://www.siteeditor.org -->
+|     
+|     Path: http://192.168.194.166:80/index.php/category/uncategorised/
+|     Line number: 170
+|     Comment: 
+|_        <!-- #page -->
+| http-wordpress-enum: 
+| Search limited to top 100 themes/plugins
+|   plugins
+|_    akismet 4.1.9
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-date: Tue, 24 May 2022 19:49:02 GMT; +59m59s from local time.
+|_http-xssed: No previously reported XSS vuln.
+| http-grep: 
+|   (1) http://192.168.194.166:80/: 
+|     (1) ip: 
+|_      + 192.168.194.166
+|_http-mobileversion-checker: No mobile version detected.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-errors: Couldn't find any error pages.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; php: 1
+|     /index.php/category/uncategorised/
+|       Other: 1
+|     /wp-includes/
+|       xml: 1
+|     /wp-includes/js/jquery/
+|       js: 1
+|   Longest directory structure:
+|     Depth: 3
+|     Dir: /index.php/category/uncategorised/
+|   Total files found (by extension):
+|_    Other: 2; js: 1; php: 1; xml: 1
+|_http-devframework: Wordpress detected. Found common traces on /
+|_http-chrono: Request times for /; avg: 204.17ms; min: 152.31ms; max: 241.86ms
+| http-vhosts: 
+|_128 names had status 200
+| http-enum: 
+|   /wp-login.php: Possible admin folder
+|   /readme.html: Wordpress version: 2 
+|   /: WordPress version: 5.7.2
+|   /wp-includes/images/rss.png: Wordpress version 2.2 found.
+|   /wp-includes/js/jquery/suggest.js: Wordpress version 2.5 found.
+|   /wp-includes/images/blank.gif: Wordpress version 2.6 found.
+|   /wp-includes/js/comment-reply.js: Wordpress version 2.7 found.
+|   /wp-login.php: Wordpress login page.
+|   /wp-admin/upgrade.php: Wordpress login page.
+|_  /readme.html: Interesting, a readme.
+|_http-generator: WordPress 5.7.2
+| http-headers: 
+|   Date: Tue, 24 May 2022 19:49:11 GMT
+|   Server: Apache/2.4.38 (Debian)
+|   Link: <http://192.168.194.166/index.php/wp-json/>; rel="https://api.w.org/"
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+|_http-title: Readys &#8211; Just another WordPress site
+6379/tcp open  redis
+
+Host script results:
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "192.168.194.166"; use dns-brute.domain script argument.
+
+# Nmap done at Tue May 24 20:53:18 2022 -- 1 IP address (1 host up) scanned in 405.16 seconds

@@ -1,0 +1,844 @@
+# Nmap 7.92 scan initiated Wed May 25 21:26:52 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 500 192.168.120.187
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 192.168.120.187
+Host is up (0.14s latency).
+Not shown: 65516 filtered tcp ports (no-response)
+Bug in http-security-headers: no string output.
+PORT      STATE SERVICE
+53/tcp    open  domain
+|_dns-nsec3-enum: Can't determine domain for host 192.168.120.187; use dns-nsec3-enum.domains script arg.
+|_dns-nsec-enum: Can't determine domain for host 192.168.120.187; use dns-nsec-enum.domains script arg.
+80/tcp    open  http
+| http-headers: 
+|   Date: Wed, 25 May 2022 20:32:51 GMT
+|   Server: Apache/2.4.48 (Win64) OpenSSL/1.1.1k PHP/8.0.7
+|   Last-Modified: Mon, 11 Oct 2021 13:26:28 GMT
+|   ETag: "c210-5ce13ad22e900"
+|   Accept-Ranges: bytes
+|   Content-Length: 49680
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-chrono: Request times for /; avg: 1505.11ms; min: 484.68ms; max: 3298.49ms
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; html: 1
+|     /assets/css/
+|       css: 1
+|     /assets/img/
+|       png: 1
+|     /assets/img/gallery/
+|       jpg: 3
+|     /assets/img/hotels/
+|       jpg: 3
+|     /assets/img/speakers/
+|       jpg: 2
+|     /assets/img/supporters/
+|       png: 2
+|     /assets/img/venue-gallery/
+|       jpg: 2
+|     /assets/js/
+|       js: 1
+|     /assets/vendor/php-email-form/
+|       js: 1
+|     /assets/vendor/swiper/
+|       js: 1
+|     /forms/
+|       php: 1
+|   Longest directory structure:
+|     Depth: 3
+|     Dir: /assets/img/hotels/
+|   Total files found (by extension):
+|_    Other: 1; css: 1; html: 1; jpg: 10; js: 3; php: 1; png: 3
+| http-vhosts: 
+|_128 names had status 200
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-feed: Couldn't find any feeds.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-title: Access The Event
+| http-enum: 
+|   /forms/: Potentially interesting directory w/ listing on 'apache/2.4.48 (win64) openssl/1.1.1k php/8.0.7'
+|   /icons/: Potentially interesting folder w/ directory listing
+|_  /uploads/: Potentially interesting directory w/ listing on 'apache/2.4.48 (win64) openssl/1.1.1k php/8.0.7'
+|_http-mobileversion-checker: No mobile version detected.
+|_http-xssed: No previously reported XSS vuln.
+|_http-date: Wed, 25 May 2022 20:31:40 GMT; +59m59s from local time.
+|_http-errors: Couldn't find any error pages.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.120.187
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 88
+|     Comment: 
+|         /* Sections Header
+|         --------------------------------*/
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 827
+|     Comment: 
+|         <!-- End Subscribe Section -->
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 327
+|     Comment: 
+|         <!-- Schdule Day 2 -->
+|     
+|     Path: http://192.168.120.187:80/speaker-details.html
+|     Line number: 206
+|     Comment: 
+|         <!-- Template Main JS File -->
+|     
+|     Path: http://192.168.120.187:80/assets/js/main.js
+|     Line number: 122
+|     Comment: 
+|         
+|         
+|            */
+|     
+|     Path: http://192.168.120.187:80/speaker-details.html
+|     Line number: 186
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|               -->
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 668
+|     Comment: 
+|         <!-- ======= Supporters Section ======= -->
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 640
+|     Comment: 
+|         <!-- End Hotels Section -->
+|     
+|     Path: http://192.168.120.187:80/assets/js/main.js
+|     Line number: 212
+|     Comment: 
+|         
+|         
+|            */
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 1165
+|     Comment: 
+|         /*--------------------------------------------------------------
+|         # Contact Section
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 908
+|     Comment: 
+|         <!-- Modal Order Form -->
+|     
+|     Path: http://192.168.120.187:80/speaker-details.html
+|     Line number: 19
+|     Comment: 
+|         <!-- Vendor CSS Files -->
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 247
+|     Comment: 
+|         <!-- Schdule Day 1 -->
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 809
+|     Comment: 
+|         <!-- ======= Subscribe Section ======= -->
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 477
+|     Comment: 
+|         <!-- ======= Venue Section ======= -->
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 881
+|     Comment: 
+|         <!-- Pro Tier -->
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 1103
+|     Comment: 
+|         /*--------------------------------------------------------------
+|         # Buy Tickets Section
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 222
+|     Comment: 
+|         <!-- ======= Schedule Section ======= -->
+|     
+|     Path: http://192.168.120.187:80/assets/js/main.js
+|     Line number: 113
+|     Comment: 
+|         
+|         
+|            */
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 325
+|     Comment: 
+|         <!-- End Schdule Day 1 -->
+|     
+|     Path: http://192.168.120.187:80/assets/js/main.js
+|     Line number: 1
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         */
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 198
+|     Comment: 
+|         /**
+|         * Desktop Navigation 
+|         */
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 941
+|     Comment: 
+|         <!-- /.modal-dialog -->
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 125
+|     Comment: 
+|         /*--------------------------------------------------------------
+|         # Header
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 220
+|     Comment: 
+|         <!-- End Speakers Section -->
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 574
+|     Comment: 
+|         <!-- End Venue Section -->
+|     
+|     Path: http://192.168.120.187:80/speaker-details.html
+|     Line number: 87
+|     Comment: 
+|         <!-- ======= Speaker Details Sectionn ======= -->
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 96
+|     Comment: 
+|         <!-- ======= About Section ======= -->
+|     
+|     Path: http://192.168.120.187:80/assets/vendor/swiper/swiper-bundle.min.css
+|     Line number: 1
+|     Comment: 
+|         /**
+|          * Swiper 7.0.8
+|          * Most modern mobile touch slider and framework with hardware accelerated transitions
+|          * https://swiperjs.com
+|          *
+|          * Copyright 2014-2021 Vladimir Kharlampidi
+|          *
+|          * Released under the MIT License
+|          *
+|          * Released on: October 4, 2021
+|          */
+|     
+|     Path: http://192.168.120.187:80/speaker-details.html
+|     Line number: 12
+|     Comment: 
+|         <!-- Favicons -->
+|     
+|     Path: http://192.168.120.187:80/assets/js/main.js
+|     Line number: 219
+|     Comment: 
+|         
+|         
+|            */
+|     
+|     Path: http://192.168.120.187:80/assets/js/main.js
+|     Line number: 205
+|     Comment: 
+|         
+|         
+|            */
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 116
+|     Comment: 
+|         <!-- End About Section -->
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 401
+|     Comment: 
+|         /*--------------------------------------------------------------
+|         # Hero Section
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 730
+|     Comment: 
+|         <!-- End Sponsors Section -->
+|     
+|     Path: http://192.168.120.187:80/speaker-details.html
+|     Line number: 79
+|     Comment: 
+|         <!-- .navbar -->
+|     
+|     Path: http://192.168.120.187:80/assets/js/main.js
+|     Line number: 161
+|     Comment: 
+|         
+|         
+|            */
+|     
+|     Path: http://192.168.120.187:80/speaker-details.html
+|     Line number: 39
+|     Comment: 
+|         <!-- ======= Header ======= -->
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 919
+|     Comment: 
+|         /*--------------------------------------------------------------
+|         # Gallery Section
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 944
+|     Comment: 
+|         <!-- End Buy Ticket Section -->
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 807
+|     Comment: 
+|         <!-- End  F.A.Q Section -->
+|     
+|     Path: http://192.168.120.187:80/assets/js/main.js
+|     Line number: 150
+|     Comment: 
+|         
+|         
+|            */
+|     
+|     Path: http://192.168.120.187:80/assets/js/main.js
+|     Line number: 132
+|     Comment: 
+|         
+|         
+|            */
+|     
+|     Path: http://192.168.120.187:80/assets/js/main.js
+|     Line number: 97
+|     Comment: 
+|         
+|         
+|            */
+|     
+|     Path: http://192.168.120.187:80/assets/js/main.js
+|     Line number: 81
+|     Comment: 
+|         
+|         
+|            */
+|     
+|     Path: http://192.168.120.187:80/assets/js/main.js
+|     Line number: 63
+|     Comment: 
+|         
+|         
+|            */
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 58
+|     Comment: 
+|         /*--------------------------------------------------------------
+|         # Back to top button
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 399
+|     Comment: 
+|         <!-- Schdule Day 3 -->
+|     
+|     Path: http://192.168.120.187:80/assets/js/main.js
+|     Line number: 10
+|     Comment: 
+|         
+|         
+|            */
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 118
+|     Comment: 
+|         <!-- ======= Speakers Section ======= -->
+|     
+|     Path: http://192.168.120.187:80/assets/js/main.js
+|     Line number: 36
+|     Comment: 
+|         
+|         
+|            */
+|     
+|     Path: http://192.168.120.187:80/speaker-details.html
+|     Line number: 195
+|     Comment: 
+|         <!-- End  Footer -->
+|     
+|     Path: http://192.168.120.187:80/assets/js/main.js
+|     Line number: 43
+|     Comment: 
+|         
+|         
+|            */
+|     
+|     Path: http://192.168.120.187:80/speaker-details.html
+|     Line number: 122
+|     Comment: 
+|         <!-- End #main -->
+|     
+|     Path: http://192.168.120.187:80/speaker-details.html
+|     Line number: 59
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|                 </li> -->
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 1292
+|     Comment: 
+|         /*--------------------------------------------------------------
+|         # Footer
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.120.187:80/speaker-details.html
+|     Line number: 29
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|           ======================================================== -->
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 732
+|     Comment: 
+|         <!-- =======  F.A.Q Section ======= -->
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 1041
+|     Comment: 
+|         /*--------------------------------------------------------------
+|         # Subscribe Section
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 986
+|     Comment: 
+|         /*--------------------------------------------------------------
+|         # F.A.Q Section
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 957
+|     Comment: 
+|         /*--------------------------------------------------------------
+|         # Sponsors Section
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 871
+|     Comment: 
+|         /*--------------------------------------------------------------
+|         # Hotels Section
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 812
+|     Comment: 
+|         /*--------------------------------------------------------------
+|         # Venue Section
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.120.187:80/speaker-details.html
+|     Line number: 83
+|     Comment: 
+|         <!-- End Header -->
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 942
+|     Comment: 
+|         <!-- /.modal -->
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 621
+|     Comment: 
+|         /*--------------------------------------------------------------
+|         # Speakers Section
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 946
+|     Comment: 
+|         <!-- ======= Contact Section ======= -->
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 710
+|     Comment: 
+|         /*--------------------------------------------------------------
+|         # Schedule Section
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 577
+|     Comment: 
+|         /*--------------------------------------------------------------
+|         # About Section
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 308
+|     Comment: 
+|         /**
+|         * Mobile Navigation 
+|         */
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 576
+|     Comment: 
+|         <!-- ======= Hotels Section ======= -->
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 829
+|     Comment: 
+|         <!-- ======= Buy Ticket Section ======= -->
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 642
+|     Comment: 
+|         <!-- ======= Gallery Section ======= -->
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 195
+|     Comment: 
+|         /*--------------------------------------------------------------
+|         # Navigation Menu
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 166
+|     Comment: 
+|         /*--------------------------------------------------------------
+|         # Buy Tickets
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 46
+|     Comment: 
+|         /* Prelaoder */
+|     
+|     Path: http://192.168.120.187:80/speaker-details.html
+|     Line number: 199
+|     Comment: 
+|         <!-- Vendor JS Files -->
+|     
+|     Path: http://192.168.120.187:80/speaker-details.html
+|     Line number: 44
+|     Comment: 
+|         <!-- Uncomment below if you prefer to use a text logo -->
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 397
+|     Comment: 
+|         <!-- End Schdule Day 2 -->
+|     
+|     Path: http://192.168.120.187:80/assets/css/style.css
+|     Line number: 8
+|     Comment: 
+|         /*--------------------------------------------------------------
+|         # General
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 940
+|     Comment: 
+|         <!-- /.modal-content -->
+|     
+|     Path: http://192.168.120.187:80/assets/js/main.js
+|     Line number: 22
+|     Comment: 
+|         
+|         
+|            */
+|     
+|     Path: http://192.168.120.187:80/assets/vendor/php-email-form/validate.js
+|     Line number: 1
+|     Comment: 
+|         
+|         
+|         
+|         
+|         */
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 92
+|     Comment: 
+|         <!-- End Hero Section -->
+|     
+|     Path: http://192.168.120.187:80/speaker-details.html
+|     Line number: 124
+|     Comment: 
+|         <!-- ======= Footer ======= -->
+|     
+|     Path: http://192.168.120.187:80/speaker-details.html
+|     Line number: 45
+|     Comment: 
+|         <!-- <h1><a href="index.html">The<span>Event</span></a></h1>-->
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 1010
+|     Comment: 
+|         <!-- End Contact Section -->
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 475
+|     Comment: 
+|         <!-- End Schedule Section -->
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 85
+|     Comment: 
+|         <!-- ======= Hero Section ======= -->
+|     
+|     Path: http://192.168.120.187:80/speaker-details.html
+|     Line number: 16
+|     Comment: 
+|         <!-- Google Fonts -->
+|     
+|     Path: http://192.168.120.187:80/index.html
+|     Line number: 666
+|     Comment: 
+|         <!-- End Gallery Section -->
+|     
+|     Path: http://192.168.120.187:80/assets/js/main.js
+|     Line number: 168
+|     Comment: 
+|         
+|         
+|            */
+|     
+|     Path: http://192.168.120.187:80/speaker-details.html
+|     Line number: 26
+|     Comment: 
+|_        <!-- Template Main CSS File -->
+| http-grep: 
+|   (1) http://192.168.120.187:80/: 
+|     (1) email: 
+|       + info@example.com
+|   (1) http://192.168.120.187:80/assets/vendor/swiper/none: 
+|     (1) ip: 
+|_      + 192.168.120.187
+|_http-trace: TRACE is enabled
+88/tcp    open  kerberos-sec
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+389/tcp   open  ldap
+| ldap-rootdse: 
+| LDAP Results
+|   <ROOT>
+|       domainFunctionality: 7
+|       forestFunctionality: 7
+|       domainControllerFunctionality: 7
+|       rootDomainNamingContext: DC=access,DC=offsec
+|       ldapServiceName: access.offsec:server$@ACCESS.OFFSEC
+|       isGlobalCatalogReady: TRUE
+|       supportedSASLMechanisms: GSSAPI
+|       supportedSASLMechanisms: GSS-SPNEGO
+|       supportedSASLMechanisms: EXTERNAL
+|       supportedSASLMechanisms: DIGEST-MD5
+|       supportedLDAPVersion: 3
+|       supportedLDAPVersion: 2
+|       supportedLDAPPolicies: MaxPoolThreads
+|       supportedLDAPPolicies: MaxPercentDirSyncRequests
+|       supportedLDAPPolicies: MaxDatagramRecv
+|       supportedLDAPPolicies: MaxReceiveBuffer
+|       supportedLDAPPolicies: InitRecvTimeout
+|       supportedLDAPPolicies: MaxConnections
+|       supportedLDAPPolicies: MaxConnIdleTime
+|       supportedLDAPPolicies: MaxPageSize
+|       supportedLDAPPolicies: MaxBatchReturnMessages
+|       supportedLDAPPolicies: MaxQueryDuration
+|       supportedLDAPPolicies: MaxDirSyncDuration
+|       supportedLDAPPolicies: MaxTempTableSize
+|       supportedLDAPPolicies: MaxResultSetSize
+|       supportedLDAPPolicies: MinResultSets
+|       supportedLDAPPolicies: MaxResultSetsPerConn
+|       supportedLDAPPolicies: MaxNotificationPerConn
+|       supportedLDAPPolicies: MaxValRange
+|       supportedLDAPPolicies: MaxValRangeTransitive
+|       supportedLDAPPolicies: ThreadMemoryLimit
+|       supportedLDAPPolicies: SystemMemoryLimitPercent
+|       supportedControl: 1.2.840.113556.1.4.319
+|       supportedControl: 1.2.840.113556.1.4.801
+|       supportedControl: 1.2.840.113556.1.4.473
+|       supportedControl: 1.2.840.113556.1.4.528
+|       supportedControl: 1.2.840.113556.1.4.417
+|       supportedControl: 1.2.840.113556.1.4.619
+|       supportedControl: 1.2.840.113556.1.4.841
+|       supportedControl: 1.2.840.113556.1.4.529
+|       supportedControl: 1.2.840.113556.1.4.805
+|       supportedControl: 1.2.840.113556.1.4.521
+|       supportedControl: 1.2.840.113556.1.4.970
+|       supportedControl: 1.2.840.113556.1.4.1338
+|       supportedControl: 1.2.840.113556.1.4.474
+|       supportedControl: 1.2.840.113556.1.4.1339
+|       supportedControl: 1.2.840.113556.1.4.1340
+|       supportedControl: 1.2.840.113556.1.4.1413
+|       supportedControl: 2.16.840.1.113730.3.4.9
+|       supportedControl: 2.16.840.1.113730.3.4.10
+|       supportedControl: 1.2.840.113556.1.4.1504
+|       supportedControl: 1.2.840.113556.1.4.1852
+|       supportedControl: 1.2.840.113556.1.4.802
+|       supportedControl: 1.2.840.113556.1.4.1907
+|       supportedControl: 1.2.840.113556.1.4.1948
+|       supportedControl: 1.2.840.113556.1.4.1974
+|       supportedControl: 1.2.840.113556.1.4.1341
+|       supportedControl: 1.2.840.113556.1.4.2026
+|       supportedControl: 1.2.840.113556.1.4.2064
+|       supportedControl: 1.2.840.113556.1.4.2065
+|       supportedControl: 1.2.840.113556.1.4.2066
+|       supportedControl: 1.2.840.113556.1.4.2090
+|       supportedControl: 1.2.840.113556.1.4.2205
+|       supportedControl: 1.2.840.113556.1.4.2204
+|       supportedControl: 1.2.840.113556.1.4.2206
+|       supportedControl: 1.2.840.113556.1.4.2211
+|       supportedControl: 1.2.840.113556.1.4.2239
+|       supportedControl: 1.2.840.113556.1.4.2255
+|       supportedControl: 1.2.840.113556.1.4.2256
+|       supportedControl: 1.2.840.113556.1.4.2309
+|       supportedControl: 1.2.840.113556.1.4.2330
+|       supportedControl: 1.2.840.113556.1.4.2354
+|       supportedCapabilities: 1.2.840.113556.1.4.800
+|       supportedCapabilities: 1.2.840.113556.1.4.1670
+|       supportedCapabilities: 1.2.840.113556.1.4.1791
+|       supportedCapabilities: 1.2.840.113556.1.4.1935
+|       supportedCapabilities: 1.2.840.113556.1.4.2080
+|       supportedCapabilities: 1.2.840.113556.1.4.2237
+|       subschemaSubentry: CN=Aggregate,CN=Schema,CN=Configuration,DC=access,DC=offsec
+|       serverName: CN=SERVER,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=access,DC=offsec
+|       schemaNamingContext: CN=Schema,CN=Configuration,DC=access,DC=offsec
+|       namingContexts: DC=access,DC=offsec
+|       namingContexts: CN=Configuration,DC=access,DC=offsec
+|       namingContexts: CN=Schema,CN=Configuration,DC=access,DC=offsec
+|       namingContexts: DC=DomainDnsZones,DC=access,DC=offsec
+|       namingContexts: DC=ForestDnsZones,DC=access,DC=offsec
+|       isSynchronized: TRUE
+|       highestCommittedUSN: 73780
+|       dsServiceName: CN=NTDS Settings,CN=SERVER,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=access,DC=offsec
+|       dnsHostName: SERVER.access.offsec
+|       defaultNamingContext: DC=access,DC=offsec
+|       currentTime: 20220525203053.0Z
+|_      configurationNamingContext: CN=Configuration,DC=access,DC=offsec
+445/tcp   open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+464/tcp   open  kpasswd5
+593/tcp   open  http-rpc-epmap
+|_banner: ncacn_http/1.0
+3268/tcp  open  globalcatLDAP
+3269/tcp  open  globalcatLDAPssl
+5985/tcp  open  wsman
+9389/tcp  open  adws
+49666/tcp open  unknown
+49667/tcp open  unknown
+49669/tcp open  unknown
+|_banner: ncacn_http/1.0
+49673/tcp open  unknown
+49700/tcp open  unknown
+49775/tcp open  unknown
+Service Info: Host: SERVER; OS: Windows
+
+Host script results:
+|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_dns-brute: Can't guess domain of "192.168.120.187"; use dns-brute.domain script argument.
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+| smb2-capabilities: 
+|   2.0.2: 
+|     Distributed File System
+|   2.1: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.0.2: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.1.1: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled and required
+| smb-protocols: 
+|   dialects: 
+|     2.0.2
+|     2.1
+|     3.0
+|     3.0.2
+|_    3.1.1
+|_fcrdns: FAIL (No PTR record)
+| smb2-time: 
+|   date: 2022-05-25T20:31:05
+|_  start_date: N/A
+
+# Nmap done at Wed May 25 21:37:38 2022 -- 1 IP address (1 host up) scanned in 646.53 seconds

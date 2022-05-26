@@ -1,0 +1,343 @@
+# Nmap 7.92 scan initiated Wed May 25 16:19:46 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 500 192.168.194.37
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 192.168.194.37
+Host is up (0.048s latency).
+Not shown: 65530 closed tcp ports (conn-refused)
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+21/tcp open  ftp
+|_banner: 220---------- Welcome to Pure-FTPd [privsep] [TLS] ---------...
+22/tcp open  ssh
+| ssh-hostkey: 
+|   1024 5b:b4:3f:ad:ac:70:b3:6f:70:db:de:72:11:03:d7:1d (DSA)
+|   2048 13:dc:ff:d4:03:51:a5:9f:0c:05:33:82:f0:4a:dd:21 (RSA)
+|_  256 fe:be:7f:91:5c:5e:64:78:0b:35:e4:73:1f:01:f5:a1 (ECDSA)
+|_banner: SSH-2.0-OpenSSH_5.8p1 Debian-7ubuntu1
+| ssh2-enum-algos: 
+|   kex_algorithms: (7)
+|   server_host_key_algorithms: (3)
+|   encryption_algorithms: (13)
+|   mac_algorithms: (7)
+|_  compression_algorithms: (2)
+25/tcp open  smtp
+|_banner: 220 ucal.local ESMTP Postfix (Ubuntu)
+|_smtp-commands: ucal.local, PIPELINING, SIZE 10240000, VRFY, ETRN, STARTTLS, ENHANCEDSTATUSCODES, 8BITMIME, DSN
+| ssl-cert: Subject: commonName=ucal.local
+| Not valid before: 2013-01-14T10:28:18
+|_Not valid after:  2023-01-12T10:28:18
+|_ssl-date: 2022-05-25T15:22:10+00:00; 0s from scanner time.
+| ssl-enum-ciphers: 
+|   SSLv3: 
+|     ciphers: 
+|       TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA (dh 512) - F
+|       TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_DES_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_SEED_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA (dh 512) - F
+|       TLS_DH_anon_EXPORT_WITH_RC4_40_MD5 (dh 512) - F
+|       TLS_DH_anon_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_DES_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_RC4_128_MD5 (dh 1024) - F
+|       TLS_DH_anon_WITH_SEED_CBC_SHA (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA (secp256r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - F
+|       TLS_ECDHE_RSA_WITH_RC4_128_SHA (secp256r1) - F
+|       TLS_ECDH_anon_WITH_3DES_EDE_CBC_SHA (secp256r1) - F
+|       TLS_ECDH_anon_WITH_AES_128_CBC_SHA (secp256r1) - F
+|       TLS_ECDH_anon_WITH_AES_256_CBC_SHA (secp256r1) - F
+|       TLS_ECDH_anon_WITH_RC4_128_SHA (secp256r1) - F
+|       TLS_RSA_EXPORT_WITH_DES40_CBC_SHA (rsa 64) - F
+|       TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5 (rsa 64) - F
+|       TLS_RSA_EXPORT_WITH_RC4_40_MD5 (rsa 64) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_DES_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 2048) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_SEED_CBC_SHA (rsa 2048) - F
+|     compressors: 
+|       DEFLATE
+|       NULL
+|     cipher preference: client
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       64-bit block cipher DES vulnerable to SWEET32 attack
+|       64-bit block cipher DES40 vulnerable to SWEET32 attack
+|       64-bit block cipher RC2 vulnerable to SWEET32 attack
+|       Anonymous key exchange, score capped at F
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       CBC-mode cipher in SSLv3 (CVE-2014-3566)
+|       Ciphersuite uses MD5 for message integrity
+|       Export key exchange
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA (dh 512) - F
+|       TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_DES_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_SEED_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA (dh 512) - F
+|       TLS_DH_anon_EXPORT_WITH_RC4_40_MD5 (dh 512) - F
+|       TLS_DH_anon_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_DES_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_RC4_128_MD5 (dh 1024) - F
+|       TLS_DH_anon_WITH_SEED_CBC_SHA (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA (secp256r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - F
+|       TLS_ECDHE_RSA_WITH_RC4_128_SHA (secp256r1) - F
+|       TLS_ECDH_anon_WITH_3DES_EDE_CBC_SHA (secp256r1) - F
+|       TLS_ECDH_anon_WITH_AES_128_CBC_SHA (secp256r1) - F
+|       TLS_ECDH_anon_WITH_AES_256_CBC_SHA (secp256r1) - F
+|       TLS_ECDH_anon_WITH_RC4_128_SHA (secp256r1) - F
+|       TLS_RSA_EXPORT_WITH_DES40_CBC_SHA (rsa 64) - F
+|       TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5 (rsa 64) - F
+|       TLS_RSA_EXPORT_WITH_RC4_40_MD5 (rsa 64) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_DES_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 2048) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_SEED_CBC_SHA (rsa 2048) - F
+|     compressors: 
+|       DEFLATE
+|       NULL
+|     cipher preference: client
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       64-bit block cipher DES vulnerable to SWEET32 attack
+|       64-bit block cipher DES40 vulnerable to SWEET32 attack
+|       64-bit block cipher RC2 vulnerable to SWEET32 attack
+|       Anonymous key exchange, score capped at F
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|       Export key exchange
+|       Insecure certificate signature (SHA1), score capped at F
+|_  least strength: F
+|_smtp-open-relay: Server doesn't seem to be an open relay, all tests failed
+53/tcp open  domain
+|_dns-nsec3-enum: Can't determine domain for host 192.168.194.37; use dns-nsec3-enum.domains script arg.
+|_dns-nsec-enum: Can't determine domain for host 192.168.194.37; use dns-nsec-enum.domains script arg.
+| dns-nsid: 
+|_  bind.version: 9.7.3
+80/tcp open  http
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; php: 1
+|     /resources/css/
+|       css: 1
+|     /resources/img/
+|       png: 1
+|     /resources/img/follow_us_icons/
+|       png: 3
+|     /resources/js/
+|       js: 3
+|   Longest directory structure:
+|     Depth: 3
+|     Dir: /resources/img/follow_us_icons/
+|   Total files found (by extension):
+|_    Other: 1; css: 1; js: 3; php: 1; png: 4
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-title: Construction Page
+|_http-chrono: Request times for /; avg: 203.86ms; min: 148.75ms; max: 255.49ms
+| http-referer-checker: 
+| Spidering limited to: maxpagecount=30
+|_  http://ajax.googleapis.com:80/ajax/libs/jquery/1.4/jquery.min.js
+| http-enum: 
+|_  /icons/: Potentially interesting folder w/ directory listing
+|_http-xssed: No previously reported XSS vuln.
+|_http-errors: Couldn't find any error pages.
+|_http-date: Wed, 25 May 2022 15:22:20 GMT; +1h00m00s from local time.
+|_http-mobileversion-checker: No mobile version detected.
+|_http-feed: Couldn't find any feeds.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.194.37
+|     
+|     Path: http://192.168.194.37:80/send.php
+|     Line number: 21
+|     Comment: 
+|         <!-- end: content -->
+|     
+|     Path: http://192.168.194.37:80/
+|     Line number: 25
+|     Comment: 
+|         <!-- start: countdownTimer -->
+|     
+|     Path: http://192.168.194.37:80/
+|     Line number: 47
+|     Comment: 
+|         <!-- end: countdownTimer -->
+|     
+|     Path: http://192.168.194.37:80/send.php
+|     Line number: 56
+|     Comment: 
+|         <!-- start: notifyMe -->
+|     
+|     Path: http://192.168.194.37:80/
+|     Line number: 62
+|     Comment: 
+|         <!-- end: progressBar -->
+|     
+|     Path: http://192.168.194.37:80/
+|     Line number: 52
+|     Comment: 
+|         <!-- start: progressBar -->
+|     
+|     Path: http://192.168.194.37:80/
+|     Line number: 64
+|     Comment: 
+|         <!-- start: progressDescription -->
+|     
+|     Path: http://192.168.194.37:80/send.php
+|     Line number: 13
+|     Comment: 
+|         <!-- start: container -->
+|     
+|     Path: http://192.168.194.37:80/
+|     Line number: 23
+|     Comment: 
+|         <!-- start: countdownTimerWrap -->
+|     
+|     Path: http://192.168.194.37:80/
+|     Line number: 74
+|     Comment: 
+|         <!-- end: progressDescription -->
+|     
+|     Path: http://192.168.194.37:80/send.php
+|     Line number: 81
+|     Comment: 
+|         <!-- end: container -->
+|     
+|     Path: http://192.168.194.37:80/resources/js/main.js
+|     Line number: 9
+|     Comment: 
+|         /* DON'T EDIT BELOW */
+|     
+|     Path: http://192.168.194.37:80/send.php
+|     Line number: 23
+|     Comment: 
+|         <!-- start: bottomBar -->
+|     
+|     Path: http://192.168.194.37:80/send.php
+|     Line number: 17
+|     Comment: 
+|         <!-- start: content -->
+|     
+|     Path: http://192.168.194.37:80/resources/js/main.js
+|     Line number: 3
+|     Comment: 
+|         /* EDIT BELOW */
+|     
+|     Path: http://192.168.194.37:80/
+|     Line number: 60
+|     Comment: 
+|         <!-- end: progressBarFill -->
+|     
+|     Path: http://192.168.194.37:80/resources/css/main.css
+|     Line number: 57
+|     Comment: 
+|         /* close commented backslash hack */
+|     
+|     Path: http://192.168.194.37:80/resources/css/main.css
+|     Line number: 54
+|     Comment: 
+|         /* start commented backslash hack \*/
+|     
+|     Path: http://192.168.194.37:80/send.php
+|     Line number: 77
+|     Comment: 
+|         <!-- end: notifyMe -->
+|     
+|     Path: http://192.168.194.37:80/send.php
+|     Line number: 79
+|     Comment: 
+|         <!-- end: bottomBar -->
+|     
+|     Path: http://192.168.194.37:80/
+|     Line number: 54
+|     Comment: 
+|         <!-- start: progressBarFill -->
+|     
+|     Path: http://192.168.194.37:80/send.php
+|     Line number: 55
+|     Comment: 
+|         <!-- end: followUs -->
+|     
+|     Path: http://192.168.194.37:80/send.php
+|     Line number: 25
+|     Comment: 
+|         <!-- start: followUs -->
+|     
+|     Path: http://192.168.194.37:80/
+|     Line number: 49
+|     Comment: 
+|_        <!-- end: countdownTimerWrap -->
+| http-headers: 
+|   Date: Wed, 25 May 2022 15:22:18 GMT
+|   Server: Apache/2.2.20 (Ubuntu)
+|   Last-Modified: Mon, 14 Jan 2013 13:39:30 GMT
+|   ETag: "24f13-13f1-4d33fc653f98d"
+|   Accept-Ranges: bytes
+|   Content-Length: 5105
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+| http-vhosts: 
+|_128 names had status 200
+|_http-apache-negotiation: mod_negotiation enabled.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+
+Host script results:
+|_dns-brute: Can't guess domain of "192.168.194.37"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Wed May 25 16:26:27 2022 -- 1 IP address (1 host up) scanned in 401.04 seconds

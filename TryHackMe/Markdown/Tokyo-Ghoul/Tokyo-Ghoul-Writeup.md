@@ -237,8 +237,7 @@ Hey Kaneki finnaly you want to talk
 Unfortunately before I can give you the kagune you need to give me the paraphrase
 Do you have what I'm looking for?
 
-> REDACTED
 Good job. I believe this is what you came for:
 You_found_1t
-
+```
 

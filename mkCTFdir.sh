@@ -32,6 +32,8 @@ Goals:
 Learnt:
 
 ## Recon
+
+![ping](Screenshots/ping.png)
 	
 ## Exploit
 

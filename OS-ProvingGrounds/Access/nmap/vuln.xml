@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Wed May 25 21:45:03 2022 as: nmap -&#45;script vuln -oA nmap/vuln -p- -&#45;min-rate 500 192.168.120.187 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/vuln -p- -&#45;min-rate 500 192.168.120.187" start="1653511503" startstr="Wed May 25 21:45:03 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.120.187" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<taskprogress task="Connect Scan" time="1653511564" percent="21.92" remaining="179" etc="1653511742"/>
+<taskprogress task="Connect Scan" time="1653511564" percent="22.05" remaining="177" etc="1653511741"/>
+<host starttime="1653511514" endtime="1653512113"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="192.168.120.187" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65514">
+<extrareasons reason="no-response" count="65514" proto="tcp" ports="1-52,54-79,81-87,89-134,136-138,140-388,390-444,446-463,465-592,594-635,637-3267,3270-5984,5986-9388,9390-49665,49668,49671-49672,49674-49699,49701-49774,49776-65535"/>
+</extraports>
+<port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="domain" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/><script id="http-fileupload-exploiter" output="&#xa;  &#xa;    Failed to upload and execute a payload.&#xa;  &#xa;    Failed to upload and execute a payload.&#xa;  &#xa;    Failed to upload and execute a payload.&#xa;  &#xa;    Failed to upload and execute a payload.&#xa;  &#xa;    Failed to upload and execute a payload.&#xa;  &#xa;    Failed to upload and execute a payload.&#xa;  &#xa;    Failed to upload and execute a payload.&#xa;  &#xa;    Failed to upload and execute a payload.&#xa;  &#xa;    Failed to upload and execute a payload.&#xa;  &#xa;    Failed to upload and execute a payload.&#xa;  &#xa;    Failed to upload and execute a payload.&#xa;  &#xa;    Failed to upload and execute a payload.&#xa;  &#xa;    Failed to upload and execute a payload.&#xa;  &#xa;    Failed to upload and execute a payload."><table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+<table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+<table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+<table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+<table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+<table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+<table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+<table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+<table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+<table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+<table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+<table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+<table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+<table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+</script><script id="http-enum" output="&#xa;  /forms/: Potentially interesting directory w/ listing on &apos;apache/2.4.48 (win64) openssl/1.1.1k php/8.0.7&apos;&#xa;  /icons/: Potentially interesting folder w/ directory listing&#xa;  /uploads/: Potentially interesting directory w/ listing on &apos;apache/2.4.48 (win64) openssl/1.1.1k php/8.0.7&apos;&#xa;"/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.120.187&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://192.168.120.187:80/&#xa;    Form id: &#xa;    Form action: #&#xa;    &#xa;    Path: http://192.168.120.187:80/&#xa;    Form id: ticket-type&#xa;    Form action: /Ticket.php&#xa;    &#xa;    Path: http://192.168.120.187:80/&#xa;    Form id: name&#xa;    Form action: forms/contact.php&#xa;    &#xa;    Path: http://192.168.120.187:80/index.html&#xa;    Form id: &#xa;    Form action: #&#xa;    &#xa;    Path: http://192.168.120.187:80/index.html&#xa;    Form id: ticket-type&#xa;    Form action: /Ticket.php&#xa;    &#xa;    Path: http://192.168.120.187:80/index.html&#xa;    Form id: name&#xa;    Form action: forms/contact.php&#xa;"/><script id="http-slowloris-check" output="&#xa;  VULNERABLE:&#xa;  Slowloris DOS attack&#xa;    State: LIKELY VULNERABLE&#xa;    IDs:  CVE:CVE-2007-6750&#xa;      Slowloris tries to keep many connections to the target web server open and hold&#xa;      them open as long as possible.  It accomplishes this by opening connections to&#xa;      the target web server and sending a partial request. By doing so, it starves&#xa;      the http server&apos;s resources causing Denial Of Service.&#xa;      &#xa;    Disclosure date: 2009-09-17&#xa;    References:&#xa;      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750&#xa;      http://ha.ckers.org/slowloris/&#xa;"><table key="CVE-2007-6750">
+<elem key="title">Slowloris DOS attack</elem>
+<elem key="state">LIKELY VULNERABLE</elem>
+<table key="ids">
+<elem>CVE:CVE-2007-6750</elem>
+</table>
+<table key="description">
+<elem>Slowloris tries to keep many connections to the target web server open and hold&#xa;them open as long as possible.  It accomplishes this by opening connections to&#xa;the target web server and sending a partial request. By doing so, it starves&#xa;the http server&apos;s resources causing Denial Of Service.&#xa;</elem>
+</table>
+<table key="dates">
+<table key="disclosure">
+<elem key="month">09</elem>
+<elem key="year">2009</elem>
+<elem key="day">17</elem>
+</table>
+</table>
+<elem key="disclosure">2009-09-17</elem>
+<table key="exploit_results">
+</table>
+<table key="refs">
+<elem>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750</elem>
+<elem>http://ha.ckers.org/slowloris/</elem>
+</table>
+</table>
+</script><script id="http-trace" output="TRACE is enabled"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/></port>
+<port protocol="tcp" portid="88"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="kerberos-sec" method="table" conf="3"/></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="netbios-ssn" method="table" conf="3"/></port>
+<port protocol="tcp" portid="389"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ldap" method="table" conf="3"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="464"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="kpasswd5" method="table" conf="3"/></port>
+<port protocol="tcp" portid="593"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http-rpc-epmap" method="table" conf="3"/></port>
+<port protocol="tcp" portid="636"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ldapssl" method="table" conf="3"/><script id="ssl-ccs-injection" output="No reply from server (TIMEOUT)"/></port>
+<port protocol="tcp" portid="3268"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="globalcatLDAP" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3269"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="globalcatLDAPssl" method="table" conf="3"/><script id="ssl-ccs-injection" output="No reply from server (TIMEOUT)"/></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="wsman" method="table" conf="3"/></port>
+<port protocol="tcp" portid="9389"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="adws" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49666"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="49667"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="49669"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="49670"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="49673"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="49700"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="49775"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+</ports>
+<hostscript><script id="smb-vuln-ms10-054" output="false">false</script><script id="samba-vuln-cve-2012-1182" output="Could not negotiate a connection:SMB: Failed to receive bytes: ERROR">false</script><script id="smb-vuln-ms10-061" output="Could not negotiate a connection:SMB: Failed to receive bytes: ERROR">false</script></hostscript><times srtt="44689" rttvar="4914" to="100000"/>
+</host>
+<runstats><finished time="1653512113" timestr="Wed May 25 21:55:13 2022" summary="Nmap done at Wed May 25 21:55:13 2022; 1 IP address (1 host up) scanned in 609.83 seconds" elapsed="609.83" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

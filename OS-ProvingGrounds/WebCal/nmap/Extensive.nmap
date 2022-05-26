@@ -1,0 +1,28 @@
+# Nmap 7.92 scan initiated Wed May 25 15:42:40 2022 as: nmap -sC -sV -oA nmap/Extensive -p- --min-rate 500 192.168.194.37
+Warning: 192.168.194.37 giving up on port because retransmission cap hit (10).
+Nmap scan report for 192.168.194.37
+Host is up (0.043s latency).
+Not shown: 65241 closed tcp ports (conn-refused), 289 filtered tcp ports (no-response)
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     Pure-FTPd
+22/tcp open  ssh     OpenSSH 5.8p1 Debian 7ubuntu1 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   1024 5b:b4:3f:ad:ac:70:b3:6f:70:db:de:72:11:03:d7:1d (DSA)
+|   2048 13:dc:ff:d4:03:51:a5:9f:0c:05:33:82:f0:4a:dd:21 (RSA)
+|_  256 fe:be:7f:91:5c:5e:64:78:0b:35:e4:73:1f:01:f5:a1 (ECDSA)
+25/tcp open  smtp    Postfix smtpd
+|_smtp-commands: ucal.local, PIPELINING, SIZE 10240000, VRFY, ETRN, STARTTLS, ENHANCEDSTATUSCODES, 8BITMIME, DSN
+| ssl-cert: Subject: commonName=ucal.local
+| Not valid before: 2013-01-14T10:28:18
+|_Not valid after:  2023-01-12T10:28:18
+|_ssl-date: 2022-05-25T14:45:04+00:00; 0s from scanner time.
+53/tcp open  domain  ISC BIND 9.7.3
+| dns-nsid: 
+|_  bind.version: 9.7.3
+80/tcp open  http    Apache httpd 2.2.20 ((Ubuntu))
+|_http-title: Construction Page
+|_http-server-header: Apache/2.2.20 (Ubuntu)
+Service Info: Host:  ucal.local; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed May 25 15:45:06 2022 -- 1 IP address (1 host up) scanned in 145.94 seconds
