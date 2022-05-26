@@ -1,0 +1,99 @@
+# Nmap 7.92 scan initiated Thu May 26 21:21:50 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 500 10.129.95.233
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.129.95.233
+Host is up (0.050s latency).
+Not shown: 65534 filtered tcp ports (no-response)
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+80/tcp open  http
+|_http-feed: Couldn't find any feeds.
+| http-headers: 
+|   Content-Length: 1433
+|   Content-Type: text/html
+|   Content-Location: http://10.129.95.233/iisstart.htm
+|   Last-Modified: Fri, 21 Feb 2003 15:48:30 GMT
+|   Accept-Ranges: bytes
+|   ETag: "05b3daec0d9c21:300"
+|   Server: Microsoft-IIS/6.0
+|   MicrosoftOfficeWebServer: 5.0_Pub
+|   X-Powered-By: ASP.NET
+|   Date: Thu, 26 May 2022 20:24:33 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-enum: 
+|   /postinfo.html: Frontpage file or folder
+|   /_vti_bin/_vti_aut/author.dll: Frontpage file or folder
+|   /_vti_bin/_vti_aut/author.exe: Frontpage file or folder
+|   /_vti_bin/_vti_adm/admin.dll: Frontpage file or folder
+|   /_vti_bin/_vti_adm/admin.exe: Frontpage file or folder
+|   /_vti_bin/fpcount.exe?Page=default.asp|Image=3: Frontpage file or folder
+|   /_vti_bin/shtml.dll: Frontpage file or folder
+|_  /_vti_bin/shtml.exe: Frontpage file or folder
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; gif: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1; gif: 1
+| http-webdav-scan: 
+|   Allowed Methods: OPTIONS, TRACE, GET, HEAD, COPY, PROPFIND, SEARCH, LOCK, UNLOCK
+|   Server Type: Microsoft-IIS/6.0
+|   Public Options: OPTIONS, TRACE, GET, HEAD, DELETE, PUT, POST, COPY, MOVE, MKCOL, PROPFIND, PROPPATCH, LOCK, UNLOCK, SEARCH
+|   WebDAV type: Unknown
+|_  Server Date: Thu, 26 May 2022 20:24:27 GMT
+| http-vhosts: 
+|_128 names had status 200
+|_http-devframework: ASP.NET detected. Found related header.
+|_http-mobileversion-checker: No mobile version detected.
+|_http-xssed: No previously reported XSS vuln.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-chrono: Request times for /; avg: 137.91ms; min: 94.90ms; max: 158.76ms
+|_http-title: Under Construction
+|_http-date: Thu, 26 May 2022 20:24:36 GMT; +59m59s from local time.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.95.233
+|     
+|     Path: http://10.129.95.233:80/
+|     Line number: 18
+|     Comment: 
+|         <!--Problem-->
+|     
+|     Path: http://10.129.95.233:80/
+|     Line number: 20
+|     Comment: 
+|_        <!--Probable causes:<-->
+|_http-errors: Couldn't find any error pages.
+
+Host script results:
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "10.129.95.233"; use dns-brute.domain script argument.
+
+# Nmap done at Thu May 26 21:27:02 2022 -- 1 IP address (1 host up) scanned in 311.92 seconds

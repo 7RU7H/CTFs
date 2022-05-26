@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Thu May 26 21:19:52 2022 as: nmap -Pn -sC -sV -oA nmap/Extensive -p- -&#45;min-rate 500 192.168.120.43 -->
+<nmaprun scanner="nmap" args="nmap -Pn -sC -sV -oA nmap/Extensive -p- -&#45;min-rate 500 192.168.120.43" start="1653596392" startstr="Thu May 26 21:19:52 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1653596392" endtime="1653596622"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="192.168.120.43" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65530">
+<extrareasons reason="no-response" count="65530" proto="tcp" ports="1-134,136-138,140-444,446-3388,3390-8079,8081-65535"/>
+</extraports>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="netbios-ssn" product="Microsoft Windows netbios-ssn" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="microsoft-ds" product="Windows Server (R) 2008 Standard 6001 Service Pack 1 microsoft-ds" extrainfo="workgroup: WORKGROUP" hostname="HELPDESK" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows_server_2008:r2</cpe></service></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ms-wbt-server" product="Microsoft Terminal Service" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="Apache Tomcat/Coyote JSP engine" version="1.1" method="probed" conf="10"><cpe>cpe:/a:apache:coyote_http_connector:1.1</cpe></service><script id="http-server-header" output="Apache-Coyote/1.1"><elem>Apache-Coyote/1.1</elem>
+</script><script id="http-title" output="ManageEngine ServiceDesk Plus"><elem key="title">ManageEngine ServiceDesk Plus</elem>
+</script><script id="http-cookie-flags" output="&#xa;  /: &#xa;    JSESSIONID: &#xa;      httponly flag not set"><table key="/">
+<table key="JSESSIONID">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+</script></port>
+</ports>
+<hostscript><script id="clock-skew" output="mean: 2h19m59s, deviation: 4h02m29s, median: 0s"><elem key="median">0</elem>
+<elem key="stddev">14549</elem>
+<elem key="mean">8399</elem>
+<elem key="count">3</elem>
+</script><script id="smb-os-discovery" output="&#xa;  OS: Windows Server (R) 2008 Standard 6001 Service Pack 1 (Windows Server (R) 2008 Standard 6.0)&#xa;  OS CPE: cpe:/o:microsoft:windows_server_2008::sp1&#xa;  Computer name: HELPDESK&#xa;  NetBIOS computer name: HELPDESK\x00&#xa;  Workgroup: WORKGROUP\x00&#xa;  System time: 2022-05-26T13:23:01-07:00&#xa;"><elem key="os">Windows Server (R) 2008 Standard 6001 Service Pack 1</elem>
+<elem key="lanmanager">Windows Server (R) 2008 Standard 6.0</elem>
+<elem key="server">HELPDESK\x00</elem>
+<elem key="date">2022-05-26T13:23:01-07:00</elem>
+<elem key="fqdn">HELPDESK</elem>
+<elem key="domain_dns">HELPDESK</elem>
+<elem key="workgroup">WORKGROUP\x00</elem>
+<elem key="cpe">cpe:/o:microsoft:windows_server_2008::sp1</elem>
+</script><script id="smb2-time" output="&#xa;  date: 2022-05-26T20:23:01&#xa;  start_date: 2022-05-26T20:08:26"><elem key="date">2022-05-26T20:23:01</elem>
+<elem key="start_date">2022-05-26T20:08:26</elem>
+</script><script id="nbstat" output="NetBIOS name: HELPDESK, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: 00:50:56:ba:fc:c1 (VMware)"/><script id="smb-security-mode" output="&#xa;  account_used: guest&#xa;  authentication_level: user&#xa;  challenge_response: supported&#xa;  message_signing: disabled (dangerous, but default)"><elem key="account_used">guest</elem>
+<elem key="authentication_level">user</elem>
+<elem key="challenge_response">supported</elem>
+<elem key="message_signing">disabled</elem>
+</script><script id="smb2-security-mode" output="&#xa;  2.0.2: &#xa;    Message signing enabled but not required"><table key="2.0.2">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script></hostscript><times srtt="50551" rttvar="9241" to="100000"/>
+</host>
+<runstats><finished time="1653596622" timestr="Thu May 26 21:23:42 2022" summary="Nmap done at Thu May 26 21:23:42 2022; 1 IP address (1 host up) scanned in 229.56 seconds" elapsed="229.56" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

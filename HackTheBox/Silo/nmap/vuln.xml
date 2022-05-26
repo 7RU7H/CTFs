@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Thu May 26 22:13:04 2022 as: nmap -&#45;script vuln -oA nmap/vuln -p- -&#45;min-rate 500 10.129.136.46 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/vuln -p- -&#45;min-rate 500 10.129.136.46" start="1653599584" startstr="Thu May 26 22:13:04 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.136.46" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1653599594" endtime="1653599897"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="10.129.136.46" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65520">
+<extrareasons reason="conn-refused" count="65520" proto="tcp" ports="1-79,81-134,136-138,140-444,446-1520,1522-5984,5986-47000,47002-49151,49156-49158,49163-65535"/>
+</extraports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="netbios-ssn" method="table" conf="3"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="1521"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="oracle" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="wsman" method="table" conf="3"/></port>
+<port protocol="tcp" portid="47001"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="winrm" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49152"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49153"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49154"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49155"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49159"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49160"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49161"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49162"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+</ports>
+<hostscript><script id="smb-vuln-ms10-054" output="false">false</script><script id="samba-vuln-cve-2012-1182" output="No accounts left to try">false</script><script id="smb-vuln-ms10-061" output="No accounts left to try">false</script></hostscript><times srtt="65474" rttvar="1742" to="100000"/>
+</host>
+<runstats><finished time="1653599897" timestr="Thu May 26 22:18:17 2022" summary="Nmap done at Thu May 26 22:18:17 2022; 1 IP address (1 host up) scanned in 312.70 seconds" elapsed="312.70" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

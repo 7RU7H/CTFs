@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Thu May 26 22:13:15 2022 as: nmap -&#45;script vuln -oA nmap/vuln -p- -&#45;min-rate 500 192.168.120.174 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/vuln -p- -&#45;min-rate 500 192.168.120.174" start="1653599595" startstr="Thu May 26 22:13:15 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.120.174" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1653599605" endtime="1653599676"><status state="up" reason="conn-refused" reason_ttl="0"/>
+<address addr="192.168.120.174" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65458">
+<extrareasons reason="conn-refused" count="65458" proto="tcp" ports="1-21,23-79,81-2601,2603-2753,2755-3031,3033-3173,3175-4080,4082-4346,4348-5723,5725-5753,5755-6369,6371-6542,6544-7179,7181-7310,7312-8486,8488-8879,8881-8887,8889-10505,10507-12667,12669-14382,14384-14433,14435-14503,14505-14916,14918-15909,15911-16449,16451-16515,16517-19713,19715-20053,20055-20352,20354-20408,20410-21955,21957-22320,22322-22976,22978-24055,24057-24396,24398-24967,24969-25186,25188-25303,25305-26260,26262-28102,28104-30352,30354-30950,30952-32593,32595-33889,33891-34716,34718-35104,35106-35365,35367-35877,35879-36973,36975-39613,39615-39973,39975-43645,43647-44627,44629-45862,45864-46337,46339-47739,47741-48672,48674-48852,48854-49630,49632-50516,50518-51024,51026-52053,52055-52335,52337-53029,53031-53647,53649-54292,54294-54519,54521-54767,54769-60180,60182-60510,60512-60675,60677-61068,61070-61747,61749-62305,62307-62979,62981-63532,63534-64368,64370-65535"/>
+</extraports>
+<extraports state="filtered" count="74">
+<extrareasons reason="no-response" count="74" proto="tcp" ports="2602,2754,3032,3174,4081,4347,5724,5754,6370,6543,7180,7311,8487,8880,10506,12668,14383,14434,14504,14917,15910,16450,16516,19714,20054,20353,20409,21956,22321,22977,24056,24397,24968,25187,25304,26261,28103,30353,30951,32594,33890,34717,35105,35366,35878,36974,39614,39974,43646,44628,45863,46338,47740,48673,48853,49631,50517,51025,52054,52336,53030,53648,54293,54520,54768,60181,60511,60676,61069,61748,62306,62980,63533,64369"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/><script id="http-enum" output="&#xa;  /wp-login.php: Possible admin folder&#xa;  /readme.html: Wordpress version: 2 &#xa;  /: WordPress version: 4.9.6&#xa;  /wp-includes/images/rss.png: Wordpress version 2.2 found.&#xa;  /wp-includes/js/jquery/suggest.js: Wordpress version 2.5 found.&#xa;  /wp-includes/images/blank.gif: Wordpress version 2.6 found.&#xa;  /wp-includes/js/comment-reply.js: Wordpress version 2.7 found.&#xa;  /wp-login.php: Wordpress login page.&#xa;  /wp-admin/upgrade.php: Wordpress login page.&#xa;  /readme.html: Interesting, a readme.&#xa;"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.120.174&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://192.168.120.174:80/&#xa;    Form id: &#xa;    Form action: http:/&#xa;"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/></port>
+<port protocol="tcp" portid="8888"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="sun-answerbook" method="table" conf="3"/></port>
+</ports>
+<times srtt="45045" rttvar="813" to="100000"/>
+</host>
+<runstats><finished time="1653599676" timestr="Thu May 26 22:14:36 2022" summary="Nmap done at Thu May 26 22:14:36 2022; 1 IP address (1 host up) scanned in 81.84 seconds" elapsed="81.84" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

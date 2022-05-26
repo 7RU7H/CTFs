@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Thu May 26 21:28:27 2022 as: nmap -&#45;script vuln -oA nmap/Vuln -p- -&#45;min-rate 500 10.129.95.233 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/Vuln -p- -&#45;min-rate 500 10.129.95.233" start="1653596907" startstr="Thu May 26 21:28:27 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.95.233" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1653596917" endtime="1653597313"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="10.129.95.233" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65534">
+<extrareasons reason="no-response" count="65534" proto="tcp" ports="1-79,81-65535"/>
+</extraports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/><script id="http-enum" output="&#xa;  /postinfo.html: Frontpage file or folder&#xa;  /_vti_bin/_vti_aut/author.dll: Frontpage file or folder&#xa;  /_vti_bin/_vti_aut/author.exe: Frontpage file or folder&#xa;  /_vti_bin/_vti_adm/admin.dll: Frontpage file or folder&#xa;  /_vti_bin/_vti_adm/admin.exe: Frontpage file or folder&#xa;  /_vti_bin/fpcount.exe?Page=default.asp|Image=3: Frontpage file or folder&#xa;  /_vti_bin/shtml.dll: Frontpage file or folder&#xa;  /_vti_bin/shtml.exe: Frontpage file or folder&#xa;"/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-frontpage-login" output="&#xa;  VULNERABLE:&#xa;  Frontpage extension anonymous login&#xa;    State: VULNERABLE&#xa;      Default installations of older versions of frontpage extensions allow anonymous logins which can lead to server compromise.&#xa;      &#xa;    References:&#xa;      http://insecure.org/sploits/Microsoft.frontpage.insecurities.html&#xa;"><table key="NMAP-4">
+<elem key="title">Frontpage extension anonymous login</elem>
+<elem key="state">VULNERABLE</elem>
+<table key="description">
+<elem>Default installations of older versions of frontpage extensions allow anonymous logins which can lead to server compromise.&#xa;</elem>
+</table>
+<table key="refs">
+<elem>http://insecure.org/sploits/Microsoft.frontpage.insecurities.html</elem>
+</table>
+</table>
+</script><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/></port>
+</ports>
+<times srtt="47416" rttvar="5434" to="100000"/>
+</host>
+<runstats><finished time="1653597313" timestr="Thu May 26 21:35:13 2022" summary="Nmap done at Thu May 26 21:35:13 2022; 1 IP address (1 host up) scanned in 405.83 seconds" elapsed="405.83" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

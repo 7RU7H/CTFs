@@ -1,0 +1,28 @@
+# Nmap 7.92 scan initiated Thu May 26 21:28:27 2022 as: nmap --script vuln -oA nmap/Vuln -p- --min-rate 500 10.129.95.233
+Nmap scan report for 10.129.95.233
+Host is up (0.047s latency).
+Not shown: 65534 filtered tcp ports (no-response)
+PORT   STATE SERVICE
+80/tcp open  http
+| http-enum: 
+|   /postinfo.html: Frontpage file or folder
+|   /_vti_bin/_vti_aut/author.dll: Frontpage file or folder
+|   /_vti_bin/_vti_aut/author.exe: Frontpage file or folder
+|   /_vti_bin/_vti_adm/admin.dll: Frontpage file or folder
+|   /_vti_bin/_vti_adm/admin.exe: Frontpage file or folder
+|   /_vti_bin/fpcount.exe?Page=default.asp|Image=3: Frontpage file or folder
+|   /_vti_bin/shtml.dll: Frontpage file or folder
+|_  /_vti_bin/shtml.exe: Frontpage file or folder
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-frontpage-login: 
+|   VULNERABLE:
+|   Frontpage extension anonymous login
+|     State: VULNERABLE
+|       Default installations of older versions of frontpage extensions allow anonymous logins which can lead to server compromise.
+|       
+|     References:
+|_      http://insecure.org/sploits/Microsoft.frontpage.insecurities.html
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+
+# Nmap done at Thu May 26 21:35:13 2022 -- 1 IP address (1 host up) scanned in 405.83 seconds
