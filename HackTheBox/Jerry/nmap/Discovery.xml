@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Tue May 31 08:49:00 2022 as: nmap -Pn -&#45;script discovery -oA nmap/Discovery -p- -&#45;min-rate 500 10.129.99.114 -->
+<nmaprun scanner="nmap" args="nmap -Pn -&#45;script discovery -oA nmap/Discovery -p- -&#45;min-rate 500 10.129.99.114" start="1653983340" startstr="Tue May 31 08:49:00 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/></prescript><taskprogress task="Connect Scan" time="1653983346" percent="0.07"/>
+<taskprogress task="Connect Scan" time="1653983348" percent="0.78"/>
+<taskprogress task="Connect Scan" time="1653983349" percent="1.10" remaining="271" etc="1653983620"/>
+<taskprogress task="Connect Scan" time="1653983349" percent="1.45" remaining="204" etc="1653983552"/>
+<taskprogress task="Connect Scan" time="1653983430" percent="76.69" remaining="26" etc="1653983456"/>
+<taskprogress task="Connect Scan" time="1653983432" percent="79.28" remaining="23" etc="1653983454"/>
+<taskprogress task="NSE" time="1653983536" percent="99.29" remaining="1" etc="1653983537"/>
+<taskprogress task="NSE" time="1653983538" percent="99.29" remaining="1" etc="1653983539"/>
+<taskprogress task="NSE" time="1653983552" percent="99.52" remaining="1" etc="1653983552"/>
+<host starttime="1653983346" endtime="1653983597"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.129.99.114" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65534">
+<extrareasons reason="no-response" count="65534" proto="tcp" ports="1-8079,8081-65535"/>
+</extraports>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http-proxy" method="table" conf="3"/><script id="http-chrono" output="Request times for /; avg: 458.06ms; min: 305.49ms; max: 817.22ms"/><script id="http-default-accounts" output="&#xa;  [Apache Tomcat] at /manager/html/&#xa;    tomcat:s3cret&#xa;"><table key="Apache Tomcat">
+<elem key="cpe">cpe:/a:apache:tomcat</elem>
+<elem key="path">/manager/html/</elem>
+<table key="credentials">
+<table>
+<elem key="username">tomcat</elem>
+<elem key="password">s3cret</elem>
+</table>
+</table>
+</table>
+</script><script id="http-auth-finder" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.99.114&#xa;  url                                          method&#xa;  http://10.129.99.114:8080/manager/status     HTTP: Basic&#xa;  http://10.129.99.114:8080/host-manager/html  HTTP: Basic&#xa;  http://10.129.99.114:8080/manager/html       HTTP: Basic&#xa;"/><script id="http-title" output="Apache Tomcat/7.0.88"><elem key="title">Apache Tomcat/7.0.88</elem>
+</script><script id="http-favicon" output="Apache Tomcat"/><script id="http-headers" output="&#xa;  Server: Apache-Coyote/1.1&#xa;  Content-Type: text/html;charset=ISO-8859-1&#xa;  Transfer-Encoding: chunked&#xa;  Date: Tue, 31 May 2022 14:50:50 GMT&#xa;  Connection: close&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-enum" output="&#xa;  /examples/: Sample scripts&#xa;  /manager/html/upload: Apache Tomcat (401 Unauthorized)&#xa;  /manager/html: Apache Tomcat (401 Unauthorized)&#xa;  /docs/: Potentially interesting folder&#xa;"/><script id="http-vhosts" output="&#xa;128 names had status 200"/><script id="http-date" output="Tue, 31 May 2022 14:50:49 GMT; +8h00m00s from local time."><elem key="date">2022-05-31T15:50:49+00:00</elem>
+<elem key="delta">28800.0</elem>
+</script><script id="http-waf-detect" output="IDS/IPS/WAF detected:&#xa;10.129.99.114:8080/?p4yl04d3=&lt;script&gt;alert(document.cookie)&lt;/script&gt;"/><script id="http-grep" output="&#xa;  (1) http://10.129.99.114:8080/docs/appdev/: &#xa;    (1) email: &#xa;      + craigmcc@apache.org&#xa;  (2) http://10.129.99.114:8080/docs/realm-howto.html: &#xa;    (2) email: &#xa;      + j.jones@mycompany.com&#xa;      + f.bloggs@mycompany.com"><table key="(1) http://10.129.99.114:8080/docs/appdev/">
+<table key="(1) email">
+<elem>+ craigmcc@apache.org</elem>
+</table>
+</table>
+<table key="(2) http://10.129.99.114:8080/docs/realm-howto.html">
+<table key="(2) email">
+<elem>+ j.jones@mycompany.com</elem>
+<elem>+ f.bloggs@mycompany.com</elem>
+</table>
+</table>
+</script></port>
+</ports>
+<hostscript><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.129.99.114&quot;; use dns-brute.domain script argument."/></hostscript><times srtt="45659" rttvar="5238" to="100000"/>
+</host>
+<runstats><finished time="1653983597" timestr="Tue May 31 08:53:17 2022" summary="Nmap done at Tue May 31 08:53:17 2022; 1 IP address (1 host up) scanned in 257.84 seconds" elapsed="257.84" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

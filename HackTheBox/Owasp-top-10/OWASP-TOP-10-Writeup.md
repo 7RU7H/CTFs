@@ -30,6 +30,7 @@ XSRF
 
 ## baby BoneChewerCon
 
+This one requires two things. Enter in anytime and read the debugger output.
 
 ## Full Stack Conf
 
