@@ -1,0 +1,128 @@
+# Nmap 7.92 scan initiated Thu Jun  2 07:10:56 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 500 10.129.1.109
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.129.1.109
+Host is up (0.051s latency).
+Not shown: 65531 filtered tcp ports (no-response)
+Bug in http-security-headers: no string output.
+PORT      STATE SERVICE
+80/tcp    open  http
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-xssed: No previously reported XSS vuln.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-mobileversion-checker: No mobile version detected.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; PNG: 1; css: 1; html: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1; PNG: 1; css: 1; html: 1
+|_http-chrono: Request times for /; avg: 168.31ms; min: 127.25ms; max: 207.38ms
+|_http-errors: Couldn't find any error pages.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.1.109
+|     
+|     Path: http://10.129.1.109:80/style.css
+|     Line number: 57
+|     Comment: 
+|         
+|         
+|         
+|                 box-shadow: 0 0 2px rgba(0,0,0,.8) inset;*/
+|     
+|     Path: http://10.129.1.109:80/style.css
+|     Line number: 12
+|     Comment: 
+|_        /*-------------------------------------*/
+| http-vhosts: 
+|_128 names had status 200
+|_http-date: Thu, 02 Jun 2022 11:14:31 GMT; +5h59m58s from local time.
+|_http-feed: Couldn't find any feeds.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-title: Ask Jeeves
+| http-headers: 
+|   Content-Length: 503
+|   Content-Type: text/html
+|   Last-Modified: Mon, 06 Nov 2017 02:34:40 GMT
+|   Accept-Ranges: bytes
+|   ETag: "2277f7cba756d31:0"
+|   Server: Microsoft-IIS/10.0
+|   Date: Thu, 02 Jun 2022 11:14:32 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+135/tcp   open  msrpc
+445/tcp   open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+50000/tcp open  ibm-db2
+
+Host script results:
+|_fcrdns: FAIL (No PTR record)
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled but not required
+| smb-protocols: 
+|   dialects: 
+|     NT LM 0.12 (SMBv1) [dangerous, but default]
+|     2.0.2
+|     2.1
+|     3.0
+|     3.0.2
+|_    3.1.1
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: No accounts left to try
+|_dns-brute: Can't guess domain of "10.129.1.109"; use dns-brute.domain script argument.
+| smb2-capabilities: 
+|   2.0.2: 
+|     Distributed File System
+|   2.1: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.0.2: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.1.1: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+| smb-security-mode: 
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-time: 
+|   date: 2022-06-02T11:14:19
+|_  start_date: 2022-06-02T11:05:04
+|_msrpc-enum: No accounts left to try
+
+# Nmap done at Thu Jun  2 07:17:16 2022 -- 1 IP address (1 host up) scanned in 379.89 seconds

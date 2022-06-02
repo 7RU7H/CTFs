@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Thu Jun  2 07:18:33 2022 as: nmap -&#45;script vuln -oA nmap/Vuln -p- -&#45;min-rate 500 10.129.1.109 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/Vuln -p- -&#45;min-rate 500 10.129.1.109" start="1654150713" startstr="Thu Jun  2 07:18:33 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.1.109" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1654150723" endtime="1654151105"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="10.129.1.109" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65531">
+<extrareasons reason="no-response" count="65531" proto="tcp" ports="1-79,81-134,136-444,446-49999,50001-65535"/>
+</extraports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.1.109&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://10.129.1.109:80/&#xa;    Form id: &#xa;    Form action: error.html&#xa;"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="50000"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ibm-db2" method="table" conf="3"/></port>
+</ports>
+<hostscript><script id="smb-vuln-ms10-061" output="No accounts left to try">false</script><script id="samba-vuln-cve-2012-1182" output="No accounts left to try">false</script><script id="smb-vuln-ms10-054" output="false">false</script></hostscript><times srtt="45277" rttvar="4076" to="100000"/>
+</host>
+<runstats><finished time="1654151105" timestr="Thu Jun  2 07:25:05 2022" summary="Nmap done at Thu Jun  2 07:25:05 2022; 1 IP address (1 host up) scanned in 391.84 seconds" elapsed="391.84" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Thu Jun  2 07:11:15 2022 as: nmap -&#45;script discovery -oA nmap/Discovery -p- -&#45;min-rate 500 192.168.249.110 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/Discovery -p- -&#45;min-rate 500 192.168.249.110" start="1654150275" startstr="Thu Jun  2 07:11:15 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.249.110" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1654150281" endtime="1654150784"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="192.168.249.110" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65530">
+<extrareasons reason="no-response" count="65530" proto="tcp" ports="1-20,23-79,81-2999,3001-27016,27018-65535"/>
+</extraports>
+<port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ftp" method="table" conf="3"/><script id="banner" output="220 (vsFTPd 3.0.3)"/><script id="ftp-syst" output="&#xa;  STAT: &#xa;FTP server status:&#xa;     Connected to 192.168.49.249&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 2&#xa;     vsFTPd 3.0.3 - secure, fast, stable&#xa;End of status"><elem key="STAT">&#xa;FTP server status:&#xa;     Connected to 192.168.49.249&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 2&#xa;     vsFTPd 3.0.3 - secure, fast, stable&#xa;End of status</elem>
+</script></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" method="table" conf="3"/><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (11)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (7)&#xa;  mac_algorithms: (8)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group-exchange-sha1</elem>
+<elem>diffie-hellman-group14-sha1</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ssh-rsa</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>aes256-gcm@openssh.com</elem>
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes256-ctr</elem>
+<elem>aes256-cbc</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes128-cbc</elem>
+</table>
+<table key="mac_algorithms">
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha1</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-512</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script><script id="ssh-hostkey" output="&#xa;  3072 9d:3f:eb:1b:aa:9c:1e:b1:30:9b:23:53:4b:cf:59:75 (RSA)&#xa;  256 cd:dc:05:e6:e3:bb:12:33:f7:09:74:50:12:8a:85:64 (ECDSA)&#xa;  256 a0:90:1f:50:78:b3:9e:41:2a:7f:5c:6f:4d:0e:a1:fa (ED25519)"><table>
+<elem key="bits">3072</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABgQDJQfskNhOndcMLdRllpGbvhSaJBkmwdZnt3n0U7U3XxjpKx/ZUagAkwNTNPooV1Vc10PSdPE1pWMpqEiiHz7+guLRB4SrXsayYx67pZ0yiRrZ7gaxyEMKoI+p9owIt77Q6mG7PDjb5PQCd7G0xYFMCCaNFUpDfzZZUp2RGenL6b/xLSY1g0/Id1c9Q1S2pKsxMmf+TFqvAS6uOjSHY9fMbQesNQ0hZ74hcWooMOARyPTIYsu2/EmFjhz/hWydF2y5yikz96aBmBl6Z4KBVjp9vFHH50BwAMJuXyKMx5yCr4JzEV8RY3D6otNvR/yxuAxGcwffsaY6O1f9K8HyP6mF9J22tuxsRepSQTDUXNAUGeg9RR86RP7EpGkJ+3Y08vFGnsaRUY7w0800mpafyBeQMjO07urK0UuHihOKTRyW0aXsk9W/ruNJkLQNPWuNiZ/R1QCFRICQLJXl6V0nw0sKv7uxdDYO50OyQ3w3T08pazQr8tiuW38YonUwKPU6I6xc=</elem>
+<elem key="fingerprint">9d3feb1baa9c1eb1309b23534bcf5975</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+<table>
+<elem key="bits">256</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK9spPy8kad9kuulG4kX03Wofq8wXe6arLeCb41/Nh7xFMtpRGM6zo7A8U3Vatg7bX20jaU43i7uYZyl7IA5dNA=</elem>
+<elem key="fingerprint">cddc05e6e3bb1233f7097450128a8564</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+</table>
+<table>
+<elem key="bits">256</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIJ00KH0CvMHGQmVCsdM6I+93pxC0naR6to6qUq3ZJa4b</elem>
+<elem key="fingerprint">a0901f5078b39e412a7f5c6f4d0ea1fa</elem>
+<elem key="type">ssh-ed25519</elem>
+</table>
+</script><script id="banner" output="SSH-2.0-OpenSSH_8.3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      Other: 1; xml: 1&#xa;    /core/misc/&#xa;      ico: 1; js: 1&#xa;    /node/&#xa;      Other: 5&#xa;    /user/&#xa;      Other: 3&#xa;  Longest directory structure:&#xa;    Depth: 2&#xa;    Dir: /core/misc/&#xa;  Total files found (by extension):&#xa;    Other: 9; ico: 1; js: 1; xml: 1&#xa;"/><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-security-headers" output="&#xa;  X_Frame_Options: &#xa;    Header: X-Frame-Options: SAMEORIGIN&#xa;    Description: The browser must not display this content in any frame from a page of different origin than the content itself.&#xa;  X_Content_Type_Options: &#xa;    Header: X-Content-Type-Options: nosniff&#xa;    Description: Will prevent the browser from MIME-sniffing a response away from the declared content-type. &#xa;  Cache_Control: &#xa;    Header: Cache-Control: must-revalidate, no-cache, private&#xa;  Expires: &#xa;    Header: Expires: Sun, 19 Nov 1978 05:00:00 GMT"><table key="X_Frame_Options">
+<elem>Header: X-Frame-Options: SAMEORIGIN</elem>
+<elem>Description: The browser must not display this content in any frame from a page of different origin than the content itself.</elem>
+</table>
+<table key="X_Content_Type_Options">
+<elem>Header: X-Content-Type-Options: nosniff</elem>
+<elem>Description: Will prevent the browser from MIME-sniffing a response away from the declared content-type. </elem>
+</table>
+<table key="Cache_Control">
+<elem>Header: Cache-Control: must-revalidate, no-cache, private</elem>
+</table>
+<table key="Expires">
+<elem>Header: Expires: Sun, 19 Nov 1978 05:00:00 GMT</elem>
+</table>
+</script><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">200</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-title" output="Home | Hacking Articles"><elem key="title">Home | Hacking Articles</elem>
+</script><script id="http-traceroute" output="&#xa;  HTML title&#xa;    Hop #1: 400 Proxy Error&#xa;    Hop #2: Home | Hacking Articles&#xa;    Hop #3: Home | Hacking Articles&#xa;  Status Code&#xa;    Hop #1: 400&#xa;    Hop #2: 200&#xa;    Hop #3: 200&#xa;  content-type&#xa;    Hop #1: text/html; charset=iso-8859-1&#xa;    Hop #2: text/html; charset=UTF-8&#xa;    Hop #3: text/html; charset=UTF-8&#xa;  content-length&#xa;    Hop #1: 346&#xa;    Hop #2&#xa;    Hop #3&#xa;"/><script id="http-vhosts" output="&#xa;128 names had status 200"/><script id="http-errors" output="Couldn&apos;t find any error pages."/><script id="http-grep" output="&#xa;  (1) http://192.168.249.110:80/: &#xa;    (1) ip: &#xa;      + 192.168.249.110"><table key="(1) http://192.168.249.110:80/">
+<table key="(1) ip">
+<elem>+ 192.168.249.110</elem>
+</table>
+</table>
+</script><script id="http-chrono" output="Request times for /; avg: 361.33ms; min: 245.17ms; max: 594.40ms"/><script id="http-comments-displayer" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.249.110&#xa;    &#xa;    Path: http://192.168.249.110:80/core/misc/modernizr-additional-tests.js?v=3.8.0&#xa;    Line number: 1&#xa;    Comment: &#xa;        /**&#xa;        * DO NOT EDIT THIS FILE.&#xa;        * See the following change record for more information,&#xa;        * https://www.drupal.org/node/2815083&#xa;        * @preserve&#xa;        **/&#xa;"/><script id="http-trace" output="TRACE is enabled"/><script id="http-enum" output="&#xa;  /rss.xml: RSS or Atom feed&#xa;  /robots.txt: Robots file&#xa;  /INSTALL.txt: Drupal file&#xa;  /: Drupal version 9 &#xa;  /README.txt: Interesting, a readme.&#xa;  /contact/: Potentially interesting folder&#xa;  /core/: Potentially interesting folder w/ directory listing&#xa;  /icons/: Potentially interesting folder w/ directory listing&#xa;  /modules/: Potentially interesting folder w/ directory listing&#xa;  /sites/: Potentially interesting folder w/ directory listing&#xa;  /themes/: Potentially interesting folder w/ directory listing&#xa;"/><script id="http-robots.txt" output="22 disallowed entries (15 shown)&#xa;/core/ /profiles/ /README.txt /web.config /admin/ &#xa;/comment/reply/ /filter/tips /node/add/ /search/ /user/register/ &#xa;/user/password/ /user/login/ /user/logout/ /index.php/admin/ &#xa;/index.php/comment/reply/"/><script id="http-php-version" output="Version from header x-powered-by: PHP/7.4.10"/><script id="http-headers" output="&#xa;  Date: Thu, 02 Jun 2022 06:09:24 GMT&#xa;  Server: Apache/2.4.46 (Fedora)&#xa;  X-Powered-By: PHP/7.4.10&#xa;  Cache-Control: must-revalidate, no-cache, private&#xa;  X-Drupal-Dynamic-Cache: MISS&#xa;  X-UA-Compatible: IE=edge&#xa;  Content-language: en&#xa;  X-Content-Type-Options: nosniff&#xa;  X-Frame-Options: SAMEORIGIN&#xa;  Expires: Sun, 19 Nov 1978 05:00:00 GMT&#xa;  X-Generator: Drupal 9 (https://www.drupal.org)&#xa;  X-Drupal-Cache: HIT&#xa;  Connection: close&#xa;  Content-Type: text/html; charset=UTF-8&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-xssed" output="No previously reported XSS vuln."/><script id="http-generator" output="Drupal 9 (https://www.drupal.org)"/><script id="http-auth-finder" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.249.110&#xa;  url                                                                      method&#xa;  http://192.168.249.110:80/user/login?destination=/node/1%23comment-form  FORM&#xa;  http://192.168.249.110:80/user/login?destination=/node/2%23comment-form  FORM&#xa;  http://192.168.249.110:80/user/login?destination=/node/4%23comment-form  FORM&#xa;  http://192.168.249.110:80/user/login?destination=/node/3%23comment-form  FORM&#xa;  http://192.168.249.110:80/user/login                                     FORM&#xa;"/><script id="http-devframework" output="Drupal detected. Found common traces on /"/><script id="http-date" output="Thu, 02 Jun 2022 06:09:24 GMT; +55m32s from local time."><elem key="date">2022-06-02T07:09:24+00:00</elem>
+<elem key="delta">3332.0</elem>
+</script><script id="http-feed" output="&#xa;Spidering limited to: maxpagecount=40; withinhost=192.168.249.110&#xa;  Found the following feeds: &#xa;    RSS (version 2.0): http://192.168.249.110/rss.xml&#xa;    RSS (version 2.0): http://192.168.249.110:80/rss.xml&#xa;"/><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/></port>
+<port protocol="tcp" portid="3000"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ppp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="27017"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="mongodb" product="MongoDB" method="probed" conf="10"/><script id="mongodb-databases" output="&#xa;  ok = 1.0&#xa;  totalSize = 307200.0&#xa;  databases&#xa;    2&#xa;      name = config&#xa;      sizeOnDisk = 61440.0&#xa;      empty = false&#xa;    3&#xa;      name = local&#xa;      sizeOnDisk = 73728.0&#xa;      empty = false&#xa;    0&#xa;      name = account-app&#xa;      sizeOnDisk = 131072.0&#xa;      empty = false&#xa;    1&#xa;      name = admin&#xa;      sizeOnDisk = 40960.0&#xa;      empty = false&#xa;"/><script id="mongodb-info" output="ERROR: Script execution failed (use -d to debug)"/></port>
+</ports>
+<hostscript><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="dns-brute" output="Can&apos;t guess domain of &quot;192.168.249.110&quot;; use dns-brute.domain script argument."/></hostscript><times srtt="45709" rttvar="4032" to="100000"/>
+</host>
+<runstats><finished time="1654150784" timestr="Thu Jun  2 07:19:44 2022" summary="Nmap done at Thu Jun  2 07:19:44 2022; 1 IP address (1 host up) scanned in 509.69 seconds" elapsed="509.69" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

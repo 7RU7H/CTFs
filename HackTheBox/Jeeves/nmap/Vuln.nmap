@@ -1,0 +1,25 @@
+# Nmap 7.92 scan initiated Thu Jun  2 07:18:33 2022 as: nmap --script vuln -oA nmap/Vuln -p- --min-rate 500 10.129.1.109
+Nmap scan report for 10.129.1.109
+Host is up (0.045s latency).
+Not shown: 65531 filtered tcp ports (no-response)
+PORT      STATE SERVICE
+80/tcp    open  http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.1.109
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.129.1.109:80/
+|     Form id: 
+|_    Form action: error.html
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+135/tcp   open  msrpc
+445/tcp   open  microsoft-ds
+50000/tcp open  ibm-db2
+
+Host script results:
+|_smb-vuln-ms10-061: No accounts left to try
+|_samba-vuln-cve-2012-1182: No accounts left to try
+|_smb-vuln-ms10-054: false
+
+# Nmap done at Thu Jun  2 07:25:05 2022 -- 1 IP address (1 host up) scanned in 391.84 seconds

@@ -1,0 +1,54 @@
+# Nmap 7.92 scan initiated Tue May 31 13:11:51 2022 as: nmap --script vuln -oA nmap/Vuln -p- --min-rate 500 192.168.187.160
+Nmap scan report for 192.168.187.160
+Host is up (0.042s latency).
+Not shown: 65280 closed tcp ports (conn-refused), 250 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+22/tcp   open  ssh
+25/tcp   open  smtp
+| ssl-dh-params: 
+|   VULNERABLE:
+|   Anonymous Diffie-Hellman Key Exchange MitM Vulnerability
+|     State: VULNERABLE
+|       Transport Layer Security (TLS) services that use anonymous
+|       Diffie-Hellman key exchange only provide protection against passive
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|       which could completely compromise the confidentiality and integrity
+|       of any data exchanged over the resulting session.
+|     Check results:
+|       ANONYMOUS DH GROUP 1
+|             Cipher Suite: TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA
+|             Modulus Type: Safe prime
+|             Modulus Source: Unknown/Custom-generated
+|             Modulus Length: 2048
+|             Generator Length: 8
+|             Public Key Length: 2048
+|     References:
+|_      https://www.ietf.org/rfc/rfc2246.txt
+| smtp-vuln-cve2010-4344: 
+|_  The SMTP server is not Exim: NOT VULNERABLE
+80/tcp   open  http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-vuln-cve2011-3192: 
+|   VULNERABLE:
+|   Apache byterange filter DoS
+|     State: VULNERABLE
+|     IDs:  BID:49303  CVE:CVE-2011-3192
+|       The Apache web server is vulnerable to a denial of service attack when numerous
+|       overlapping byte ranges are requested.
+|     Disclosure date: 2011-08-19
+|     References:
+|       https://www.securityfocus.com/bid/49303
+|       https://www.tenable.com/plugins/nessus/55976
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
+|_      https://seclists.org/fulldisclosure/2011/Aug/175
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+6667/tcp open  irc
+|_irc-unrealircd-backdoor: Server closed connection, possibly due to too many reconnects. Try again with argument irc-unrealircd-backdoor.wait set to 100 (or higher if you get this message again).
+| irc-botnet-channels: 
+|_  ERROR: TIMEOUT
+8080/tcp open  http-proxy
+| http-enum: 
+|_  /login.php: Possible admin folder
+
+# Nmap done at Tue May 31 13:17:14 2022 -- 1 IP address (1 host up) scanned in 322.64 seconds

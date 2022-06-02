@@ -1,0 +1,108 @@
+# Nmap 7.92 scan initiated Thu Jun  2 07:24:37 2022 as: nmap --script vuln -oA nmap/Vuln -p- --min-rate 500 192.168.249.110
+Nmap scan report for 192.168.249.110
+Host is up (0.045s latency).
+Not shown: 65530 filtered tcp ports (no-response)
+PORT      STATE SERVICE
+21/tcp    open  ftp
+22/tcp    open  ssh
+80/tcp    open  http
+| http-enum: 
+|   /rss.xml: RSS or Atom feed
+|   /robots.txt: Robots file
+|   /INSTALL.txt: Drupal file
+|   /: Drupal version 9 
+|   /README.txt: Interesting, a readme.
+|   /contact/: Potentially interesting folder
+|   /core/: Potentially interesting folder w/ directory listing
+|   /icons/: Potentially interesting folder w/ directory listing
+|   /modules/: Potentially interesting folder w/ directory listing
+|   /sites/: Potentially interesting folder w/ directory listing
+|_  /themes/: Potentially interesting folder w/ directory listing
+| http-fileupload-exploiter: 
+|   
+|     Failed to upload and execute a payload.
+|   
+|     Failed to upload and execute a payload.
+|   
+|     Failed to upload and execute a payload.
+|   
+|     Failed to upload and execute a payload.
+|   
+|     Failed to upload and execute a payload.
+|   
+|     Failed to upload and execute a payload.
+|   
+|     Failed to upload and execute a payload.
+|   
+|     Failed to upload and execute a payload.
+|   
+|     Failed to upload and execute a payload.
+|   
+|     Failed to upload and execute a payload.
+|   
+|     Failed to upload and execute a payload.
+|   
+|     Failed to upload and execute a payload.
+|   
+|     Failed to upload and execute a payload.
+|   
+|     Failed to upload and execute a payload.
+|   
+|     Failed to upload and execute a payload.
+|   
+|_    Failed to upload and execute a payload.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.249.110
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://192.168.249.110:80/user/register?destination=/node/2%23comment-form
+|     Form id: user-register-form
+|     Form action: /user/register?destination=/node/2%23comment-form
+|     
+|     Path: http://192.168.249.110:80/user/login?destination=/node/1%23comment-form
+|     Form id: user-login-form
+|     Form action: /user/login?destination=/node/1%23comment-form
+|     
+|     Path: http://192.168.249.110:80/user/register?destination=/node/3%23comment-form
+|     Form id: user-register-form
+|     Form action: /user/register?destination=/node/3%23comment-form
+|     
+|     Path: http://192.168.249.110:80/user/login?destination=/node/4%23comment-form
+|     Form id: user-login-form
+|     Form action: /user/login?destination=/node/4%23comment-form
+|     
+|     Path: http://192.168.249.110:80/user/register?destination=/node/1%23comment-form
+|     Form id: user-register-form
+|     Form action: /user/register?destination=/node/1%23comment-form
+|     
+|     Path: http://192.168.249.110:80/user/login?destination=/node/3%23comment-form
+|     Form id: user-login-form
+|     Form action: /user/login?destination=/node/3%23comment-form
+|     
+|     Path: http://192.168.249.110:80/user/register?destination=/node/4%23comment-form
+|     Form id: user-register-form
+|     Form action: /user/register?destination=/node/4%23comment-form
+|     
+|     Path: http://192.168.249.110:80/user/login?destination=/node/2%23comment-form
+|     Form id: user-login-form
+|     Form action: /user/login?destination=/node/2%23comment-form
+|     
+|     Path: http://192.168.249.110:80/user/login
+|     Form id: user-login-form
+|     Form action: /user/login
+|     
+|     Path: http://192.168.249.110:80/user/password
+|     Form id: user-pass
+|     Form action: /user/password
+|     
+|     Path: http://192.168.249.110:80/user/register
+|     Form id: user-register-form
+|_    Form action: /user/register
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-passwd: ERROR: Script execution failed (use -d to debug)
+|_http-trace: TRACE is enabled
+3000/tcp  open  ppp
+27017/tcp open  mongod
+
+# Nmap done at Thu Jun  2 07:28:52 2022 -- 1 IP address (1 host up) scanned in 254.80 seconds

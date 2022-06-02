@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Thu Jun  2 07:06:20 2022 as: nmap -sC -sV -oA nmap/Extensive -p- -&#45;min-rate 500 10.129.1.109 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA nmap/Extensive -p- -&#45;min-rate 500 10.129.1.109" start="1654149980" startstr="Thu Jun  2 07:06:20 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.1.109" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1654149980" endtime="1654150186"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="10.129.1.109" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65531">
+<extrareasons reason="no-response" count="65531" proto="tcp" ports="1-79,81-134,136-444,446-49999,50001-65535"/>
+</extraports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="Microsoft IIS httpd" version="10.0" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:microsoft:internet_information_server:10.0</cpe><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-title" output="Ask Jeeves"><elem key="title">Ask Jeeves</elem>
+</script><script id="http-methods" output="&#xa;  Potentially risky methods: TRACE"><table key="Potentially risky methods">
+<elem>TRACE</elem>
+</table>
+</script><script id="http-server-header" output="Microsoft-IIS/10.0"><elem>Microsoft-IIS/10.0</elem>
+</script></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="microsoft-ds" product="Microsoft Windows 7 - 10 microsoft-ds" extrainfo="workgroup: WORKGROUP" hostname="JEEVES" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="50000"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="Jetty" version="9.4.z-SNAPSHOT" method="probed" conf="10"><cpe>cpe:/a:mortbay:jetty:9.4.z-snapshot</cpe></service><script id="http-title" output="Error 404 Not Found"><elem key="title">Error 404 Not Found</elem>
+</script><script id="http-server-header" output="Jetty(9.4.z-SNAPSHOT)"><elem>Jetty(9.4.z-SNAPSHOT)</elem>
+</script></port>
+</ports>
+<hostscript><script id="smb2-security-mode" output="&#xa;  3.1.1: &#xa;    Message signing enabled but not required"><table key="3.1.1">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script><script id="smb2-time" output="&#xa;  date: 2022-06-02T11:09:07&#xa;  start_date: 2022-06-02T11:05:04"><elem key="date">2022-06-02T11:09:07</elem>
+<elem key="start_date">2022-06-02T11:05:04</elem>
+</script><script id="smb-security-mode" output="&#xa;  authentication_level: user&#xa;  challenge_response: supported&#xa;  message_signing: disabled (dangerous, but default)"><elem key="authentication_level">user</elem>
+<elem key="challenge_response">supported</elem>
+<elem key="message_signing">disabled</elem>
+</script><script id="clock-skew" output="mean: 4h59m59s, deviation: 0s, median: 4h59m58s"><elem key="median">17998</elem>
+<elem key="mean">17999</elem>
+<elem key="stddev">0</elem>
+<elem key="count">2</elem>
+</script></hostscript><times srtt="45894" rttvar="5469" to="100000"/>
+</host>
+<runstats><finished time="1654150186" timestr="Thu Jun  2 07:09:46 2022" summary="Nmap done at Thu Jun  2 07:09:46 2022; 1 IP address (1 host up) scanned in 205.72 seconds" elapsed="205.72" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

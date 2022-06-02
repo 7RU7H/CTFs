@@ -1,0 +1,41 @@
+# Nmap 7.92 scan initiated Tue May 31 11:25:06 2022 as: nmap -sC -sV -oA nmap/Extensive -p- --min-rate 500 192.168.187.160
+Nmap scan report for 192.168.187.160
+Host is up (0.043s latency).
+Not shown: 65530 closed tcp ports (conn-refused)
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.1 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 c1:99:4b:95:22:25:ed:0f:85:20:d3:63:b4:48:bb:cf (RSA)
+|   256 0f:44:8b:ad:ad:95:b8:22:6a:f0:36:ac:19:d0:0e:f3 (ECDSA)
+|_  256 32:e1:2a:6c:cc:7c:e6:3e:23:f4:80:8d:33:ce:9b:3a (ED25519)
+25/tcp   open  smtp    Postfix smtpd
+|_smtp-commands: spaghetti.lan, PIPELINING, SIZE 10240000, VRFY, ETRN, STARTTLS, ENHANCEDSTATUSCODES, 8BITMIME, DSN, SMTPUTF8, CHUNKING
+| ssl-cert: Subject: commonName=spaghetti.lan
+| Subject Alternative Name: DNS:spaghetti.lan
+| Not valid before: 2021-03-09T11:39:07
+|_Not valid after:  2031-03-07T11:39:07
+|_ssl-date: TLS randomness does not represent time
+80/tcp   open  http    nginx 1.18.0 (Ubuntu)
+|_http-title: Spaghetti Mail
+|_http-server-header: nginx/1.18.0 (Ubuntu)
+6667/tcp open  irc
+| irc-info: 
+|   users: 2
+|   servers: 1
+|   chans: 1
+|   lusers: 2
+|   lservers: 0
+|   server: irc.spaghetti.lan
+|   version: InspIRCd-3. irc.spaghetti.lan 
+|   source ident: nmap
+|   source host: 192.168.49.187
+|_  error: Closing link: (nmap@192.168.49.187) [Client exited]
+8080/tcp open  http    nginx 1.18.0 (Ubuntu)
+| http-title: Postfix Admin - 192.168.187.160:8080
+|_Requested resource was login.php
+|_http-open-proxy: Proxy might be redirecting requests
+|_http-server-header: nginx/1.18.0 (Ubuntu)
+Service Info: Hosts:  spaghetti.lan, irc.spaghetti.lan; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Tue May 31 11:27:32 2022 -- 1 IP address (1 host up) scanned in 146.34 seconds

