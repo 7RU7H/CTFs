@@ -1,0 +1,138 @@
+# Nmap 7.92 scan initiated Mon Jun  6 10:30:07 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 500 10.129.169.203
+Pre-scan script results:
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Warning: 10.129.169.203 giving up on port because retransmission cap hit (10).
+Nmap scan report for 10.129.169.203
+Host is up (0.12s latency).
+Not shown: 51575 closed tcp ports (conn-refused), 13939 filtered tcp ports (no-response)
+PORT      STATE SERVICE
+53/tcp    open  domain
+|_dns-nsec3-enum: Can't determine domain for host 10.129.169.203; use dns-nsec3-enum.domains script arg.
+|_dns-nsec-enum: Can't determine domain for host 10.129.169.203; use dns-nsec-enum.domains script arg.
+| dns-nsid: 
+|_  bind.version: Microsoft DNS 6.1.7601 (1DB15CD4)
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+445/tcp   open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+464/tcp   open  kpasswd5
+593/tcp   open  http-rpc-epmap
+|_banner: ncacn_http/1.0
+636/tcp   open  ldapssl
+1337/tcp  open  waste
+3269/tcp  open  globalcatLDAPssl
+5722/tcp  open  msdfsr
+8080/tcp  open  http-proxy
+| http-vhosts: 
+| vm
+|_127 names had status 200
+|_http-open-proxy: Proxy might be redirecting requests
+|_http-title: Tossed Salad - Blog
+| http-grep: 
+|   (1) http://10.129.169.203:8080/Contents/Item/Display/17: 
+|     (1) ip: 
+|_      + 10.129.169.203
+| http-headers: 
+|   Cache-Control: private
+|   Content-Length: 5897
+|   Content-Type: text/html; charset=utf-8
+|   ETag: 431c8aeef7a44e12aeee939804845a8c
+|   Server: Microsoft-IIS/7.5
+|   X-Generator: Orchard
+|   X-AspNetMvc-Version: 5.2
+|   X-AspNet-Version: 4.0.30319
+|   X-Powered-By: ASP.NET
+|   Date: Mon, 06 Jun 2022 09:39:28 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.169.203
+|   url                                                                                                      method
+|   http://10.129.169.203:8080/Users/Account/LogOn?ReturnUrl=%2F                                             FORM
+|   http://10.129.169.203:8080/Users/Account/LogOn?ReturnUrl=%2FContents%2FItem%2FDisplay%2F17               FORM
+|_  http://10.129.169.203:8080/Users/Account/LogOn?ReturnUrl=%2Fpita-pockets-with-a-sun-dried-tomato-flavor  FORM
+| http-waf-detect: IDS/IPS/WAF detected:
+|_10.129.169.203:8080/?p4yl04d3=<script>alert(document.cookie)</script>
+|_http-date: Mon, 06 Jun 2022 09:39:14 GMT; +59m59s from local time.
+|_http-chrono: Request times for /; avg: 1405.25ms; min: 522.42ms; max: 2961.73ms
+47001/tcp open  winrm
+49152/tcp open  unknown
+49153/tcp open  unknown
+49154/tcp open  unknown
+49157/tcp open  unknown
+|_banner: ncacn_http/1.0
+49158/tcp open  unknown
+49168/tcp open  unknown
+50255/tcp open  unknown
+62019/tcp open  unknown
+62028/tcp open  unknown
+
+Host script results:
+| smb-mbenum: 
+|_  ERROR: Call to Browser Service failed with status = 2184
+| smb-protocols: 
+|   dialects: 
+|     NT LM 0.12 (SMBv1) [dangerous, but default]
+|     2.0.2
+|_    2.1
+|_msrpc-enum: NT_STATUS_ACCESS_DENIED
+| smb-security-mode: 
+|   account_used: <blank>
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: required
+| smb2-capabilities: 
+|   2.0.2: 
+|     Distributed File System
+|   2.1: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+| smb2-security-mode: 
+|   2.1: 
+|_    Message signing enabled and required
+| smb-enum-shares: 
+|   note: ERROR: Enumerating shares failed, guessing at common ones (NT_STATUS_ACCESS_DENIED)
+|   account_used: <blank>
+|   \\10.129.169.203\ADMIN$: 
+|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
+|     Anonymous access: <none>
+|   \\10.129.169.203\C$: 
+|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
+|     Anonymous access: <none>
+|   \\10.129.169.203\IPC$: 
+|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
+|     Anonymous access: READ
+|   \\10.129.169.203\NETLOGON: 
+|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
+|_    Anonymous access: <none>
+|_dns-brute: Can't guess domain of "10.129.169.203"; use dns-brute.domain script argument.
+| ms-sql-info: 
+|   10.129.169.203:1433: 
+|     Version: 
+|       name: Microsoft SQL Server 2014 RTM
+|       number: 12.00.2000.00
+|       Product: Microsoft SQL Server 2014
+|       Service pack level: RTM
+|       Post-SP patches applied: false
+|_    TCP port: 1433
+|_fcrdns: FAIL (No PTR record)
+| smb-os-discovery: 
+|   OS: Windows Server 2008 R2 Standard 7601 Service Pack 1 (Windows Server 2008 R2 Standard 6.1)
+|   OS CPE: cpe:/o:microsoft:windows_server_2008::sp1
+|   Computer name: mantis
+|   NetBIOS computer name: MANTIS\x00
+|   Domain name: htb.local
+|   Forest name: htb.local
+|   FQDN: mantis.htb.local
+|_  System time: 2022-06-06T05:39:45-04:00
+| smb2-time: 
+|   date: 2022-06-06T09:39:21
+|_  start_date: 2022-06-06T09:14:49
+
+# Nmap done at Mon Jun  6 10:55:23 2022 -- 1 IP address (1 host up) scanned in 1516.60 seconds

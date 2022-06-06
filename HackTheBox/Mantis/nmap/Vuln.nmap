@@ -1,0 +1,56 @@
+# Nmap 7.92 scan initiated Mon Jun  6 10:55:47 2022 as: nmap --script vuln -oA nmap/Vuln -p- --min-rate 500 10.129.169.203
+Warning: 10.129.169.203 giving up on port because retransmission cap hit (10).
+Nmap scan report for 10.129.169.203
+Host is up (0.14s latency).
+Not shown: 54342 closed tcp ports (conn-refused), 11168 filtered tcp ports (no-response)
+PORT      STATE SERVICE
+53/tcp    open  domain
+88/tcp    open  kerberos-sec
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+389/tcp   open  ldap
+445/tcp   open  microsoft-ds
+464/tcp   open  kpasswd5
+593/tcp   open  http-rpc-epmap
+636/tcp   open  ldapssl
+|_ssl-ccs-injection: No reply from server (TIMEOUT)
+1433/tcp  open  ms-sql-s
+| ssl-poodle: 
+|   VULNERABLE:
+|   SSL POODLE information leak
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|           The SSL protocol 3.0, as used in OpenSSL through 1.0.1i and other
+|           products, uses nondeterministic CBC padding, which makes it easier
+|           for man-in-the-middle attackers to obtain cleartext data via a
+|           padding-oracle attack, aka the "POODLE" issue.
+|     Disclosure date: 2014-10-14
+|     Check results:
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA
+|     References:
+|       https://www.securityfocus.com/bid/70574
+|       https://www.openssl.org/~bodo/ssl-poodle.pdf
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|_      https://www.imperialviolet.org/2014/10/14/poodle.html
+3268/tcp  open  globalcatLDAP
+3269/tcp  open  globalcatLDAPssl
+|_ssl-ccs-injection: No reply from server (TIMEOUT)
+5722/tcp  open  msdfsr
+8080/tcp  open  http-proxy
+9389/tcp  open  adws
+47001/tcp open  winrm
+49153/tcp open  unknown
+49154/tcp open  unknown
+49155/tcp open  unknown
+49157/tcp open  unknown
+49158/tcp open  unknown
+49168/tcp open  unknown
+50255/tcp open  unknown
+62019/tcp open  unknown
+62028/tcp open  unknown
+
+Host script results:
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: NT_STATUS_ACCESS_DENIED
+
+# Nmap done at Mon Jun  6 11:20:20 2022 -- 1 IP address (1 host up) scanned in 1473.34 seconds

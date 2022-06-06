@@ -1,0 +1,189 @@
+### WAF Detection (waf-detect:aspgeneric) found on http://10.129.169.203:8080
+---
+**Details**: **waf-detect:aspgeneric**  matched at http://10.129.169.203:8080
+
+**Protocol**: HTTP
+
+**Full URL**: http://10.129.169.203:8080/
+
+**Timestamp**: Mon Jun 6 12:06:35 +0100 BST 2022
+
+**Template Information**
+
+| Key | Value |
+|---|---|
+| Name | WAF Detection |
+| Authors | dwisiswant0, lu4nx |
+| Tags | waf, tech, misc |
+| Severity | info |
+| Description | A web application firewall was detected. |
+| CWE-ID | [CWE-200](https://cwe.mitre.org/data/definitions/200.html) |
+| CVSS-Score | 0.00 |
+
+**Request**
+```http
+POST / HTTP/1.1
+Host: 10.129.169.203:8080
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.67 Safari/537.36
+Connection: close
+Content-Length: 27
+Content-Type: application/x-www-form-urlencoded
+Accept-Encoding: gzip
+
+_=<script>alert(1)</script>
+```
+
+**Response**
+```http
+HTTP/1.1 200 OK
+Connection: close
+Content-Length: 5897
+Cache-Control: private
+Content-Type: text/html; charset=utf-8
+Date: Mon, 06 Jun 2022 11:06:34 GMT
+Server: Microsoft-IIS/7.5
+X-Aspnet-Version: 4.0.30319
+X-Aspnetmvc-Version: 5.2
+X-Generator: Orchard
+X-Powered-By: ASP.NET
+
+
+<!DOCTYPE html> 
+<html lang="en-US" class="static dir-ltr orchard-blogs" dir="ltr"> 
+<head> 
+    <meta charset="utf-8" />
+    <title>Tossed Salad - Blog</title> 
+    <link href="//fonts.googleapis.com/css?family=Lobster&amp;subset=latin" rel="stylesheet" type="text/css" />
+<link href="/Themes/TheThemeMachine/Styles/default-grid.css" rel="stylesheet" type="text/css" />
+<link href="/Themes/TheThemeMachine/Styles/Site.css" rel="stylesheet" type="text/css" />
+<!--[if lt IE 9]>
+<script src="/Core/Shapes/scripts/html5.js" type="text/javascript"></script>
+<![endif]-->
+<meta content="Orchard" name="generator" />
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+<link href="http://localhost:8080/XmlRpc/LiveWriter/Manifest" rel="wlwmanifest" type="application/wlwmanifest+xml" />
+<link href="http://localhost:8080/rsd" rel="EditURI" title="RSD" type="application/rsd+xml" />
+<link href="/modules/orchard.themes/Content/orchard.ico" rel="shortcut icon" type="image/x-icon" />
+
+<link rel="alternate" type="application/rss+xml" title="Blog" href="/rss?containerid=12" />
+
+    <script>(function(d){d.className="dyn"+d.className.substring(6,d.className.length);})(document.documentElement);</script> 
+    <script>window.isRTL = false;</script>
+</head> 
+<body>
+
+
+<div class="tripel-123" id="layout-wrapper">
+<header id="layout-header" class="group">
+    <div id="header">
+        <div class="zone zone-header"><h1 id="branding"><a href="/">Tossed Salad</a></h1>
+</div>
+    </div>
+</header>
+<div id="layout-navigation" class="group">
+    <div class="zone zone-navigation">
+<article class="widget-navigation widget-menu-widget widget">
+    
+<nav>
+    <ul class="menu menu-main-menu">
+        
+        
+<li class="current last first"><a href="/">Home</a>
+</li>
+    </ul>
+</nav>
+</article></div>
+</div>
+<div id="layout-main-container">
+<div id="layout-main" class="group">
+    <div id="layout-content" class="group">
+                        <div id="content" class="group">
+            <div class="zone zone-content">
+<article class="blog content-item">
+    <header>
+        
+
+<h1>Blog</h1>
+            <div class="metadata">
+                <div class="published">Friday, September 01, 2017 9:44:04 AM</div>
+            </div>
+    </header>
+    <div data-tab="Content" id="tab-content"><div class="content-description blog-description">
+    <p>This is your Orchard Blog.</p>
+</div>
+</div><div data-tab="Content" id="tab-content">
+<ul class="blog-posts content-items"><li class="first">
+<article class="content-item blog-post">
+    <header>
+        
+
+<h1><a href="/pita-pockets-with-a-sun-dried-tomato-flavor">Pita Pockets with a sun dried tomato flavor</a></h1>
+
+
+        <div class="metadata">
+            <div class="published">Friday, September 01, 2017 10:06:09 AM</div><span class="comment-count">No Comments</span>
+        </div>
+    </header>
+    
+
+<p>Simple ingredients which can be&#160;assembled&#160;quickly, makes this pita pocket a go to dish time and again.The sun-dried tomato paste makes this pocket flavorful and&#160;delicious!HINT:&#160; Make the paste in&#160;… <a href="/pita-pockets-with-a-sun-dried-tomato-flavor">more</a></p>
+</article></li>
+<li class="last">
+<article class="content-item blog-post">
+    <header>
+        
+
+<h1><a href="/Contents/Item/Display/17">Purple cabbage and carrot salad</a></h1>
+
+
+        <div class="metadata">
+            <div class="published">Friday, September 01, 2017 10:05:16 AM</div><span class="comment-count">No Comments</span>
+        </div>
+    </header>
+    
+
+<p>Serves 2 large portionsSalad Ingredients:2 cups thinly sliced purple cabbage3 carrots skinned and grated in a large-holed grater6 spring onions sliced with some of the green shoots1 cup lettuce of a&#160;… <a href="/Contents/Item/Display/17">more</a></p>
+</article></li>
+</ul>
+
+
+</div>
+</article></div>
+        </div>
+            </div>
+</div>
+</div>
+<div id="layout-tripel-container">
+<div id="layout-tripel" class="group">
+    <div id="tripel-first">
+        <div class="zone zone-tripel-first">
+<article class="widget-tripel-first widget-html-widget widget">
+    <header>
+        <h1>First Leader Aside</h1>
+        
+    </header>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur a nibh ut tortor dapibus vestibulum. Aliquam vel sem nibh. Suspendisse vel condimentum tellus.</p>
+</article></div>
+    </div>
+        <div id="tripel-second">
+        <div class="zone zone-tripel-second">
+<article class="widget-tripel-second widget-html-widget widget">
+    <header>
+        <h1>Second Leader Aside</h1>
+        
+    </header>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur a nibh ut tortor dapibus vestibulum. Aliquam vel sem nibh. Suspendisse vel condimentum tellus.</p>
+</article></div>
+    </div>
+        <div id="tripel-th.... Truncated ....
+```
+
+References: 
+- https://github.com/ekultek/whatwaf
+
+**CURL Command**
+```
+curl -X 'POST' -d '_=<script>alert(1)</script>' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Host: 10.129.169.203:8080' -H 'User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.67 Safari/537.36' 'http://10.129.169.203:8080/'
+```
+---
+Generated by [Nuclei 2.7.1](https://github.com/projectdiscovery/nuclei)

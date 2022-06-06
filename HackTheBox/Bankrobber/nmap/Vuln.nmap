@@ -1,0 +1,144 @@
+# Nmap 7.92 scan initiated Sun Jun  5 20:36:50 2022 as: nmap --script vuln -oA nmap/Vuln -p- --min-rate 500 10.129.70.254
+Nmap scan report for 10.129.70.254
+Host is up (0.048s latency).
+Not shown: 65531 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+80/tcp   open  http
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-phpself-xss: ERROR: Script execution failed (use -d to debug)
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       http://ha.ckers.org/slowloris/
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|_http-trace: TRACE is enabled
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.70.254
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.129.70.254:80/
+|     Form id: 
+|     Form action: login.php
+|     
+|     Path: http://10.129.70.254:80/
+|     Form id: 
+|     Form action: register.php
+|     
+|     Path: http://10.129.70.254:80/
+|     Form id: 
+|     Form action: #
+|     
+|     Path: http://10.129.70.254:80/login.php
+|     Form id: 
+|     Form action: login.php
+|     
+|     Path: http://10.129.70.254:80/login.php
+|     Form id: 
+|     Form action: register.php
+|     
+|     Path: http://10.129.70.254:80/login.php
+|     Form id: 
+|_    Form action: #
+| http-enum: 
+|   /admin/: Possible admin folder
+|   /admin/index.php: Possible admin folder
+|   /Admin/: Possible admin folder
+|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.39 (win64) openssl/1.1.1b php/7.3.4'
+|   /icons/: Potentially interesting folder w/ directory listing
+|   /img/: Potentially interesting directory w/ listing on 'apache/2.4.39 (win64) openssl/1.1.1b php/7.3.4'
+|   /js/: Potentially interesting directory w/ listing on 'apache/2.4.39 (win64) openssl/1.1.1b php/7.3.4'
+|_  /user/: Potentially interesting folder
+443/tcp  open  https
+|_http-trace: TRACE is enabled
+|_http-phpself-xss: ERROR: Script execution failed (use -d to debug)
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| ssl-dh-params: 
+|   VULNERABLE:
+|   Diffie-Hellman Key Exchange Insufficient Group Strength
+|     State: VULNERABLE
+|       Transport Layer Security (TLS) services that use Diffie-Hellman groups
+|       of insufficient strength, especially those using one of a few commonly
+|       shared groups, may be susceptible to passive eavesdropping attacks.
+|     Check results:
+|       WEAK DH GROUP 1
+|             Cipher Suite: TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA
+|             Modulus Type: Safe prime
+|             Modulus Source: RFC2409/Oakley Group 2
+|             Modulus Length: 1024
+|             Generator Length: 8
+|             Public Key Length: 1024
+|     References:
+|_      https://weakdh.org
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       http://ha.ckers.org/slowloris/
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.70.254
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: https://10.129.70.254:443/
+|     Form id: 
+|     Form action: login.php
+|     
+|     Path: https://10.129.70.254:443/
+|     Form id: 
+|     Form action: register.php
+|     
+|     Path: https://10.129.70.254:443/
+|     Form id: 
+|     Form action: #
+|     
+|     Path: https://10.129.70.254:443/login.php
+|     Form id: 
+|     Form action: login.php
+|     
+|     Path: https://10.129.70.254:443/login.php
+|     Form id: 
+|     Form action: register.php
+|     
+|     Path: https://10.129.70.254:443/login.php
+|     Form id: 
+|_    Form action: #
+| http-enum: 
+|   /admin/: Possible admin folder
+|   /admin/index.php: Possible admin folder
+|   /Admin/: Possible admin folder
+|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.39 (win64) openssl/1.1.1b php/7.3.4'
+|   /icons/: Potentially interesting folder w/ directory listing
+|   /img/: Potentially interesting directory w/ listing on 'apache/2.4.39 (win64) openssl/1.1.1b php/7.3.4'
+|   /js/: Potentially interesting directory w/ listing on 'apache/2.4.39 (win64) openssl/1.1.1b php/7.3.4'
+|_  /user/: Potentially interesting folder
+445/tcp  open  microsoft-ds
+3306/tcp open  mysql
+|_mysql-vuln-cve2012-2122: ERROR: Script execution failed (use -d to debug)
+
+Host script results:
+|_smb-vuln-ms10-054: false
+|_samba-vuln-cve-2012-1182: No accounts left to try
+|_smb-vuln-ms10-061: No accounts left to try
+
+# Nmap done at Sun Jun  5 20:44:16 2022 -- 1 IP address (1 host up) scanned in 446.02 seconds

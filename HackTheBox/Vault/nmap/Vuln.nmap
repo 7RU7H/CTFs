@@ -1,0 +1,27 @@
+# Nmap 7.92 scan initiated Mon Jun  6 09:31:47 2022 as: nmap --script vuln -oA nmap/Vuln -p- --min-rate 500 10.129.95.149
+Nmap scan report for 10.129.95.149
+Host is up (0.050s latency).
+Not shown: 65533 closed tcp ports (conn-refused)
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|_      http://ha.ckers.org/slowloris/
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+
+# Nmap done at Mon Jun  6 09:37:50 2022 -- 1 IP address (1 host up) scanned in 363.14 seconds
