@@ -1,0 +1,61 @@
+# Nmap 7.92 scan initiated Mon Jun  6 15:34:29 2022 as: nmap --script vuln -oA nmap/Vuln -p- --min-rate 500 10.129.1.183
+Nmap scan report for 10.129.1.183
+Host is up (0.055s latency).
+Not shown: 65514 closed tcp ports (conn-refused)
+PORT      STATE SERVICE
+21/tcp    open  ftp
+80/tcp    open  http
+| http-enum: 
+|   /_layouts/images/helpicon.gif: MS Sharepoint
+|   /_vti_bin/_vti_aut/author.dll: Frontpage file or folder
+|   /_vti_bin/_vti_adm/admin.dll: Frontpage file or folder
+|   /_vti_bin/shtml.dll: Frontpage file or folder
+|   /_vti_pvt/service.cnf: Frontpage file or folder
+|   /_vti_pvt/services.cnf: Frontpage file or folder
+|   /CuteSoft_Client/CuteEditor/Load.ashx?type=image&file=../../../web.config: Cute Editor ASP.NET Remote File Disclosure ( CVE 2009-4665 )
+|   /manifest.json: Manifest JSON File
+|   /archive/flash:home/html/images/Cisco_logo.gif: Cisco SDM
+|_  /sitecore%20modules/staging/service/api.asmx: Sitecore.NET (CMS)
+| http-frontpage-login: 
+|   VULNERABLE:
+|   Frontpage extension anonymous login
+|     State: VULNERABLE
+|       Default installations of older versions of frontpage extensions allow anonymous logins which can lead to server compromise.
+|       
+|     References:
+|_      http://insecure.org/sploits/Microsoft.frontpage.insecurities.html
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.1.183
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.129.1.183:80/_layouts/15/start.aspx
+|     Form id: aspnetform
+|_    Form action: ./start.aspx
+81/tcp    open  hosts2-ns
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+445/tcp   open  microsoft-ds
+808/tcp   open  ccproxy-http
+1433/tcp  open  ms-sql-s
+5985/tcp  open  wsman
+15567/tcp open  unknown
+32843/tcp open  unknown
+32844/tcp open  unknown
+32846/tcp open  unknown
+47001/tcp open  winrm
+49664/tcp open  unknown
+49665/tcp open  unknown
+49666/tcp open  unknown
+49667/tcp open  unknown
+49668/tcp open  unknown
+49669/tcp open  unknown
+49670/tcp open  unknown
+
+Host script results:
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: No accounts left to try
+|_samba-vuln-cve-2012-1182: No accounts left to try
+
+# Nmap done at Mon Jun  6 15:42:27 2022 -- 1 IP address (1 host up) scanned in 477.52 seconds

@@ -1,0 +1,460 @@
+# Nmap 7.92 scan initiated Mon Jun  6 15:22:33 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 500 10.129.1.183
+Pre-scan script results:
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Warning: 10.129.1.183 giving up on port because retransmission cap hit (10).
+Nmap scan report for 10.129.1.183
+Host is up (0.046s latency).
+Not shown: 65461 closed tcp ports (conn-refused), 53 filtered tcp ports (no-response)
+PORT      STATE SERVICE
+21/tcp    open  ftp
+| ftp-syst: 
+|_  SYST: Windows_NT
+|_banner: 220 Microsoft FTP Service
+80/tcp    open  http
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.1.183
+|   url                                                                                        method
+|_  http://10.129.1.183:80/_layouts/15/Authenticate.aspx?Source=%2F_layouts%2F15%2Fstart.aspx  HTTP: Negotiate, NTLM
+|_http-feed: Couldn't find any feeds.
+|_http-mobileversion-checker: No mobile version detected.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Redirected To: http://10.129.1.183/_layouts/15/start.aspx#/default.aspx
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|   Forbidden/Redirected User Agents: 
+|     http client: 
+|       Different Host: http://10.129.1.183/default.aspx
+|     WWW-Mechanize/1.34: 
+|       Different Host: http://10.129.1.183/default.aspx
+|     Snoopy: 
+|       Different Host: http://10.129.1.183/default.aspx
+|     PHP/: 
+|       Different Host: http://10.129.1.183/default.aspx
+|     PECL::HTTP: 
+|       Different Host: http://10.129.1.183/default.aspx
+|     Wget/1.13.4 (linux-gnu): 
+|       Different Host: http://10.129.1.183/default.aspx
+|     libcurl-agent/1.0: 
+|       Different Host: http://10.129.1.183/default.aspx
+|     Zend_Http_Client: 
+|       Different Host: http://10.129.1.183/default.aspx
+|     GT::WWW: 
+|       Different Host: http://10.129.1.183/default.aspx
+|     PHPCrawl: 
+|       Different Host: http://10.129.1.183/default.aspx
+|     URI::Fetch: 
+|       Different Host: http://10.129.1.183/default.aspx
+|     Python-urllib/2.5: 
+|       Different Host: http://10.129.1.183/default.aspx
+|     lwp-trivial: 
+|       Different Host: http://10.129.1.183/default.aspx
+|     libwww: 
+|       Different Host: http://10.129.1.183/default.aspx
+|     MFC_Tear_Sample: 
+|       Different Host: http://10.129.1.183/default.aspx
+|     HTTP::Lite: 
+|_      Different Host: http://10.129.1.183/default.aspx
+| http-headers: 
+|   Cache-Control: private, max-age=2592000
+|   Content-Length: 27066
+|   Content-Type: text/html; charset=utf-8
+|   Expires: Wed, 06 Jul 2022 14:27:44 GMT
+|   Server: Microsoft-IIS/10.0
+|   X-SharePointHealthScore: 5
+|   X-AspNet-Version: 4.0.30319
+|   SPRequestGuid: 6eb944a0-dc76-f075-0000-050b05305545
+|   request-id: 6eb944a0-dc76-f075-0000-050b05305545
+|   X-FRAME-OPTIONS: SAMEORIGIN
+|   SPRequestDuration: 3524
+|   SPIisLatency: 7
+|   X-Powered-By: ASP.NET
+|   MicrosoftSharePointTeamServices: 15.0.0.4420
+|   X-Content-Type-Options: nosniff
+|   X-MS-InvokeApp: 1; RequireReadOnly
+|   Date: Mon, 06 Jun 2022 14:27:44 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+| http-security-headers: 
+|   X_Frame_Options: 
+|     Header: X-Frame-Options: SAMEORIGIN
+|     Description: The browser must not display this content in any frame from a page of different origin than the content itself.
+|   X_Content_Type_Options: 
+|     Header: X-Content-Type-Options: nosniff
+|     Description: Will prevent the browser from MIME-sniffing a response away from the declared content-type. 
+|   Cache_Control: 
+|     Header: Cache-Control: private, max-age=2592000
+|   Expires: 
+|_    Header: Expires: Wed, 06 Jul 2022 14:27:52 GMT
+| http-waf-detect: IDS/IPS/WAF detected:
+|_10.129.1.183:80/?p4yl04d3=<script>alert(document.cookie)</script>
+|_http-chrono: Request times for /_layouts/15/start.aspx; avg: 3727.99ms; min: 3051.59ms; max: 4979.46ms
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-date: Mon, 06 Jun 2022 14:27:48 GMT; +59m59s from local time.
+| http-backup-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.1.183
+|   http://10.129.1.183:80/_layouts/15/start copy.aspx
+|   http://10.129.1.183:80/_layouts/15/Copy of start.aspx
+|   http://10.129.1.183:80/_layouts/15/Copy (2) of start.aspx
+|   http://10.129.1.183:80/_layouts/15/start copy.aspx
+|   http://10.129.1.183:80/_layouts/15/Copy of start.aspx
+|   http://10.129.1.183:80/_layouts/15/Copy (2) of start.aspx
+|   http://10.129.1.183:80/Copy of ScriptResource.axd
+|   http://10.129.1.183:80/Copy (2) of ScriptResource.axd
+|   http://10.129.1.183:80/Copy of ScriptResource.axd
+|   http://10.129.1.183:80/Copy (2) of ScriptResource.axd
+|   http://10.129.1.183:80/_layouts/15/Authenticate copy.aspx
+|   http://10.129.1.183:80/_layouts/15/Copy of Authenticate.aspx
+|_  http://10.129.1.183:80/_layouts/15/Copy (2) of Authenticate.aspx
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.1.183
+|     
+|     Path: http://10.129.1.183:80/ScriptResource.axd?d=eTCNgCiZdswz9QpQ_ZvzzcY8CO1XXJVIMi2H_VMyJIG2jXCfYb2Y8bHkFpSjzstYJ_5Flrr2Ibkzqa-KJh8hLRqEnOTyLnGgdGsT2-cejToU8t3ZlarpWJYaFMp4g4fkIm4ZBeTWERfCfttBGg_Btr5QCXJmMnrA934ryfcP3D06Vm0t08VfiefQhPVLr-0d0&amp;t=7e14f9a4
+|     Line number: 4
+|     Comment: 
+|         
+|         
+|     
+|     Path: http://10.129.1.183:80/_layouts/15/start.aspx
+|     Line number: 92
+|     Comment: 
+|         
+|         
+|     
+|     Path: http://10.129.1.183:80/ScriptResource.axd?d=eTCNgCiZdswz9QpQ_ZvzzcY8CO1XXJVIMi2H_VMyJIG2jXCfYb2Y8bHkFpSjzstYJ_5Flrr2Ibkzqa-KJh8hLRqEnOTyLnGgdGsT2-cejToU8t3ZlarpWJYaFMp4g4fkIm4ZBeTWERfCfttBGg_Btr5QCXJmMnrA934ryfcP3D06Vm0t08VfiefQhPVLr-0d0&amp;t=7e14f9a4
+|     Line number: 2
+|     Comment: 
+|         
+|         
+|     
+|     Path: http://10.129.1.183:80/WebResource.axd?d=Gwz0PPobaMOCkqNusxuvhOfwv_63CI3FADlwRkhEgFFhfzvqyV9PsDqXGqq-7cckqq04CY2qcgpSXb_QtZdWIRCQf83JgWOYyfuQwuRuoFM1&amp;t=636228100318038770
+|     Line number: 100
+|     Comment: 
+|         
+|     
+|     Path: http://10.129.1.183:80/WebResource.axd?d=Gwz0PPobaMOCkqNusxuvhOfwv_63CI3FADlwRkhEgFFhfzvqyV9PsDqXGqq-7cckqq04CY2qcgpSXb_QtZdWIRCQf83JgWOYyfuQwuRuoFM1&amp;t=636228100318038770
+|     Line number: 105
+|     Comment: 
+|         
+|     
+|     Path: http://10.129.1.183:80/_layouts/15/start.aspx
+|     Line number: 80
+|     Comment: 
+|         
+|         
+|     
+|     Path: http://10.129.1.183:80/ScriptResource.axd?d=GP_MiQpjhaPIWbSpegGvISS4NlpnTADYmg1h6qPm5Fx46cBX-Msl4D3HQjsRW1jnxdGLjqK15cC_rhBHLtLonC2B1c5qPm_sH8EJWtP8b3wjS0VZWgilL1erQu_8T4Mq1iz1F1YwV0pvcbtiH6dSEGe3-S8bDLYhO3PEW2S2_wFNw7YTR1qAFSpFKBW9hObw0&amp;t=7e14f9a4
+|     Line number: 4
+|     Comment: 
+|         
+|         
+|     
+|     Path: http://10.129.1.183:80/WebResource.axd?d=Gwz0PPobaMOCkqNusxuvhOfwv_63CI3FADlwRkhEgFFhfzvqyV9PsDqXGqq-7cckqq04CY2qcgpSXb_QtZdWIRCQf83JgWOYyfuQwuRuoFM1&amp;t=636228100318038770
+|     Line number: 85
+|     Comment: 
+|_        
+| http-vhosts: 
+|_128 names had status 302
+| http-enum: 
+|   /_layouts/images/helpicon.gif: MS Sharepoint
+|   /_vti_bin/_vti_aut/author.dll: Frontpage file or folder
+|   /_vti_bin/_vti_adm/admin.dll: Frontpage file or folder
+|   /_vti_bin/shtml.dll: Frontpage file or folder
+|   /_vti_pvt/service.cnf: Frontpage file or folder
+|   /_vti_pvt/services.cnf: Frontpage file or folder
+|   /CuteSoft_Client/CuteEditor/Load.ashx?type=image&file=../../../web.config: Cute Editor ASP.NET Remote File Disclosure ( CVE 2009-4665 )
+|   /manifest.json: Manifest JSON File
+|   /archive/flash:home/html/images/Cisco_logo.gif: Cisco SDM
+|_  /sitecore%20modules/staging/service/api.asmx: Sitecore.NET (CMS)
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.129.1.183
+|   Found the following error pages: 
+|   
+|   Error Code: 400
+|   	http://10.129.1.183:80
+|   
+|   Error Code: 401
+|   	http://10.129.1.183:80/_layouts/15/Authenticate.aspx?Source=%2F_layouts%2F15%2Fstart.aspx
+|   
+|   Error Code: 403
+|   	http://10.129.1.183:80/_layouts/15/
+|   
+|   Error Code: 404
+|   	http://10.129.1.183:80/_layouts/15/slNavUrl;}function
+|   
+|   Error Code: 404
+|   	http://10.129.1.183:80/u;k=new
+|   
+|   Error Code: 404
+|_  	http://10.129.1.183:80/event.srcElement
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       axd: 1
+|     /_layouts/15/
+|       aspx: 1; js: 1
+|     /_layouts/15/images/
+|       ico: 1; png: 1
+|   Longest directory structure:
+|     Depth: 3
+|     Dir: /_layouts/15/images/
+|   Total files found (by extension):
+|_    aspx: 1; axd: 1; ico: 1; js: 1; png: 1
+| http-title: Home
+|_Requested resource was http://10.129.1.183/_layouts/15/start.aspx#/default.aspx
+|_http-devframework: ASP.NET detected. Found related header.
+|_http-xssed: No previously reported XSS vuln.
+|_http-generator: Microsoft SharePoint
+81/tcp    open  hosts2-ns
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+445/tcp   open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+808/tcp   open  ccproxy-http
+1433/tcp  open  ms-sql-s
+| ms-sql-tables: 
+|   [10.129.1.183:1433]
+|_    ERROR: No login credentials.
+| ms-sql-dump-hashes: 
+| [10.129.1.183:1433]
+|_  ERROR: No login credentials
+|_ssl-date: 2022-06-06T14:27:32+00:00; 0s from scanner time.
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 2048) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 2048) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - F
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - F
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 2048) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|       Insecure certificate signature (SHA1), score capped at F
+|_  least strength: F
+| ms-sql-config: 
+|   [10.129.1.183:1433]
+|_    ERROR: No login credentials
+| ssl-cert: Subject: commonName=SSL_Self_Signed_Fallback
+| Not valid before: 2022-06-06T14:17:18
+|_Not valid after:  2052-06-06T14:17:18
+| ms-sql-hasdbaccess: 
+|   [10.129.1.183:1433]
+|_    ERROR: No login credentials.
+| ms-sql-ntlm-info: 
+|   Target_Name: TALLY
+|   NetBIOS_Domain_Name: TALLY
+|   NetBIOS_Computer_Name: TALLY
+|   DNS_Domain_Name: TALLY
+|   DNS_Computer_Name: TALLY
+|_  Product_Version: 10.0.14393
+| ms-sql-query: 
+|   (Use --script-args=ms-sql-query.query='<QUERY>' to change query.)
+|   [10.129.1.183:1433]
+|_    ERROR: No login credentials
+5985/tcp  open  wsman
+15567/tcp open  unknown
+32843/tcp open  unknown
+32844/tcp open  unknown
+|_ssl-date: 2022-06-06T14:27:29+00:00; 0s from scanner time.
+| ssl-cert: Subject: commonName=SharePoint Services/organizationName=Microsoft/countryName=US
+| Subject Alternative Name: DNS:localhost, DNS:tally
+| Not valid before: 2017-09-17T22:51:16
+|_Not valid after:  9999-01-01T00:00:00
+| tls-alpn: 
+|   h2
+|_  http/1.1
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 2048) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 2048) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - F
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - F
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 2048) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|       Insecure certificate signature (SHA1), score capped at F
+|_  least strength: F
+32846/tcp open  unknown
+47001/tcp open  winrm
+49664/tcp open  unknown
+49665/tcp open  unknown
+49666/tcp open  unknown
+49667/tcp open  unknown
+49668/tcp open  unknown
+49669/tcp open  unknown
+49670/tcp open  unknown
+
+Host script results:
+|_msrpc-enum: No accounts left to try
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "10.129.1.183"; use dns-brute.domain script argument.
+| smb2-time: 
+|   date: 2022-06-06T14:25:45
+|_  start_date: 2022-06-06T14:16:58
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: No accounts left to try
+| ms-sql-info: 
+|   10.129.1.183:1433: 
+|     Version: 
+|       name: Microsoft SQL Server 2016 RTM
+|       number: 13.00.1601.00
+|       Product: Microsoft SQL Server 2016
+|       Service pack level: RTM
+|       Post-SP patches applied: false
+|_    TCP port: 1433
+| smb2-capabilities: 
+|   2.0.2: 
+|     Distributed File System
+|   2.1: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.0.2: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.1.1: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+| smb-security-mode: 
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled but not required
+| smb-protocols: 
+|   dialects: 
+|     NT LM 0.12 (SMBv1) [dangerous, but default]
+|     2.0.2
+|     2.1
+|     3.0
+|     3.0.2
+|_    3.1.1
+
+# Nmap done at Mon Jun  6 15:33:42 2022 -- 1 IP address (1 host up) scanned in 668.89 seconds

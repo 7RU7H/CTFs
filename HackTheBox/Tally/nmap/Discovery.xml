@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Mon Jun  6 15:22:33 2022 as: nmap -&#45;script discovery -oA nmap/Discovery -p- -&#45;min-rate 500 10.129.1.183 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/Discovery -p- -&#45;min-rate 500 10.129.1.183" start="1654525353" startstr="Mon Jun  6 15:22:33 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.1.183" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1654525359" endtime="1654526022"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="10.129.1.183" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65461">
+<extrareasons reason="conn-refused" count="65461" proto="tcp" ports="1-20,22-79,82-134,136-138,140-444,446-471,473-713,715-807,809-1052,1054-1432,1434-3417,3419-3652,3654-5984,5986-6041,6043-6501,6503-7625,7627-8110,8112-9220,9222-10471,10473-11587,11589-12452,12454-15265,15267-15566,15568-15612,15614-17722,17724-19871,19873-22439,22441-23304,23306-25670,25672-26425,26427-27152,27154-28113,28115-28219,28221-32842,32845,32847-34279,34281-36647,36649-38413,38415-39005,39007-40232,40234-40624,40626-41100,41102-42888,42890-43555,43557-46779,46781-46910,46912-47000,47002-47118,47120-47446,47448-47613,47615-48241,48243-48386,48388,48390-49014,49016-49605,49607-49663,49671-51444,51446-53096,53098-54608,54610-55695,55697-56254,56256-56976,56978-60160,60162-63583,63585-63639,63641-63942,63944-65535"/>
+</extraports>
+<extraports state="filtered" count="53">
+<extrareasons reason="no-response" count="53" proto="tcp" ports="472,714,1053,3418,3653,6042,6502,7626,8111,9221,10472,11588,12453,15266,15613,17723,19872,22440,23305,25671,26426,27153,28114,28220,34280,36648,38414,39006,40233,40625,41101,42889,43556,46780,46911,47119,47447,47614,48242,48387,48389,49015,49606,51445,53097,54609,55696,56255,56977,60161,63584,63640,63943"/>
+</extraports>
+<port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ftp" method="table" conf="3"/><script id="ftp-syst" output="&#xa;  SYST: Windows_NT"><elem key="SYST">Windows_NT</elem>
+</script><script id="banner" output="220 Microsoft FTP Service"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/><script id="http-auth-finder" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.1.183&#xa;  url                                                                                        method&#xa;  http://10.129.1.183:80/_layouts/15/Authenticate.aspx?Source=%2F_layouts%2F15%2Fstart.aspx  HTTP: Negotiate, NTLM&#xa;"/><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Redirected To: http://10.129.1.183/_layouts/15/start.aspx#/default.aspx&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;  Forbidden/Redirected User Agents: &#xa;    http client: &#xa;      Different Host: http://10.129.1.183/default.aspx&#xa;    WWW-Mechanize/1.34: &#xa;      Different Host: http://10.129.1.183/default.aspx&#xa;    Snoopy: &#xa;      Different Host: http://10.129.1.183/default.aspx&#xa;    PHP/: &#xa;      Different Host: http://10.129.1.183/default.aspx&#xa;    PECL::HTTP: &#xa;      Different Host: http://10.129.1.183/default.aspx&#xa;    Wget/1.13.4 (linux-gnu): &#xa;      Different Host: http://10.129.1.183/default.aspx&#xa;    libcurl-agent/1.0: &#xa;      Different Host: http://10.129.1.183/default.aspx&#xa;    Zend_Http_Client: &#xa;      Different Host: http://10.129.1.183/default.aspx&#xa;    GT::WWW: &#xa;      Different Host: http://10.129.1.183/default.aspx&#xa;    PHPCrawl: &#xa;      Different Host: http://10.129.1.183/default.aspx&#xa;    URI::Fetch: &#xa;      Different Host: http://10.129.1.183/default.aspx&#xa;    Python-urllib/2.5: &#xa;      Different Host: http://10.129.1.183/default.aspx&#xa;    lwp-trivial: &#xa;      Different Host: http://10.129.1.183/default.aspx&#xa;    libwww: &#xa;      Different Host: http://10.129.1.183/default.aspx&#xa;    MFC_Tear_Sample: &#xa;      Different Host: http://10.129.1.183/default.aspx&#xa;    HTTP::Lite: &#xa;      Different Host: http://10.129.1.183/default.aspx"><elem key="Status for browser useragent">200</elem>
+<elem key="Redirected To">http://10.129.1.183/_layouts/15/start.aspx#/default.aspx</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+</table>
+<table key="Forbidden/Redirected User Agents">
+<table key="http client">
+<elem key="Different Host">http://10.129.1.183/default.aspx</elem>
+</table>
+<table key="WWW-Mechanize/1.34">
+<elem key="Different Host">http://10.129.1.183/default.aspx</elem>
+</table>
+<table key="Snoopy">
+<elem key="Different Host">http://10.129.1.183/default.aspx</elem>
+</table>
+<table key="PHP/">
+<elem key="Different Host">http://10.129.1.183/default.aspx</elem>
+</table>
+<table key="PECL::HTTP">
+<elem key="Different Host">http://10.129.1.183/default.aspx</elem>
+</table>
+<table key="Wget/1.13.4 (linux-gnu)">
+<elem key="Different Host">http://10.129.1.183/default.aspx</elem>
+</table>
+<table key="libcurl-agent/1.0">
+<elem key="Different Host">http://10.129.1.183/default.aspx</elem>
+</table>
+<table key="Zend_Http_Client">
+<elem key="Different Host">http://10.129.1.183/default.aspx</elem>
+</table>
+<table key="GT::WWW">
+<elem key="Different Host">http://10.129.1.183/default.aspx</elem>
+</table>
+<table key="PHPCrawl">
+<elem key="Different Host">http://10.129.1.183/default.aspx</elem>
+</table>
+<table key="URI::Fetch">
+<elem key="Different Host">http://10.129.1.183/default.aspx</elem>
+</table>
+<table key="Python-urllib/2.5">
+<elem key="Different Host">http://10.129.1.183/default.aspx</elem>
+</table>
+<table key="lwp-trivial">
+<elem key="Different Host">http://10.129.1.183/default.aspx</elem>
+</table>
+<table key="libwww">
+<elem key="Different Host">http://10.129.1.183/default.aspx</elem>
+</table>
+<table key="MFC_Tear_Sample">
+<elem key="Different Host">http://10.129.1.183/default.aspx</elem>
+</table>
+<table key="HTTP::Lite">
+<elem key="Different Host">http://10.129.1.183/default.aspx</elem>
+</table>
+</table>
+</script><script id="http-headers" output="&#xa;  Cache-Control: private, max-age=2592000&#xa;  Content-Length: 27066&#xa;  Content-Type: text/html; charset=utf-8&#xa;  Expires: Wed, 06 Jul 2022 14:27:44 GMT&#xa;  Server: Microsoft-IIS/10.0&#xa;  X-SharePointHealthScore: 5&#xa;  X-AspNet-Version: 4.0.30319&#xa;  SPRequestGuid: 6eb944a0-dc76-f075-0000-050b05305545&#xa;  request-id: 6eb944a0-dc76-f075-0000-050b05305545&#xa;  X-FRAME-OPTIONS: SAMEORIGIN&#xa;  SPRequestDuration: 3524&#xa;  SPIisLatency: 7&#xa;  X-Powered-By: ASP.NET&#xa;  MicrosoftSharePointTeamServices: 15.0.0.4420&#xa;  X-Content-Type-Options: nosniff&#xa;  X-MS-InvokeApp: 1; RequireReadOnly&#xa;  Date: Mon, 06 Jun 2022 14:27:44 GMT&#xa;  Connection: close&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-security-headers" output="&#xa;  X_Frame_Options: &#xa;    Header: X-Frame-Options: SAMEORIGIN&#xa;    Description: The browser must not display this content in any frame from a page of different origin than the content itself.&#xa;  X_Content_Type_Options: &#xa;    Header: X-Content-Type-Options: nosniff&#xa;    Description: Will prevent the browser from MIME-sniffing a response away from the declared content-type. &#xa;  Cache_Control: &#xa;    Header: Cache-Control: private, max-age=2592000&#xa;  Expires: &#xa;    Header: Expires: Wed, 06 Jul 2022 14:27:52 GMT"><table key="X_Frame_Options">
+<elem>Header: X-Frame-Options: SAMEORIGIN</elem>
+<elem>Description: The browser must not display this content in any frame from a page of different origin than the content itself.</elem>
+</table>
+<table key="X_Content_Type_Options">
+<elem>Header: X-Content-Type-Options: nosniff</elem>
+<elem>Description: Will prevent the browser from MIME-sniffing a response away from the declared content-type. </elem>
+</table>
+<table key="Cache_Control">
+<elem>Header: Cache-Control: private, max-age=2592000</elem>
+</table>
+<table key="Expires">
+<elem>Header: Expires: Wed, 06 Jul 2022 14:27:52 GMT</elem>
+</table>
+</script><script id="http-waf-detect" output="IDS/IPS/WAF detected:&#xa;10.129.1.183:80/?p4yl04d3=&lt;script&gt;alert(document.cookie)&lt;/script&gt;"/><script id="http-chrono" output="Request times for /_layouts/15/start.aspx; avg: 3727.99ms; min: 3051.59ms; max: 4979.46ms"/><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-date" output="Mon, 06 Jun 2022 14:27:48 GMT; +59m59s from local time."><elem key="date">2022-06-06T15:27:48+00:00</elem>
+<elem key="delta">3599.0</elem>
+</script><script id="http-backup-finder" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.1.183&#xa;  http://10.129.1.183:80/_layouts/15/start copy.aspx&#xa;  http://10.129.1.183:80/_layouts/15/Copy of start.aspx&#xa;  http://10.129.1.183:80/_layouts/15/Copy (2) of start.aspx&#xa;  http://10.129.1.183:80/_layouts/15/start copy.aspx&#xa;  http://10.129.1.183:80/_layouts/15/Copy of start.aspx&#xa;  http://10.129.1.183:80/_layouts/15/Copy (2) of start.aspx&#xa;  http://10.129.1.183:80/Copy of ScriptResource.axd&#xa;  http://10.129.1.183:80/Copy (2) of ScriptResource.axd&#xa;  http://10.129.1.183:80/Copy of ScriptResource.axd&#xa;  http://10.129.1.183:80/Copy (2) of ScriptResource.axd&#xa;  http://10.129.1.183:80/_layouts/15/Authenticate copy.aspx&#xa;  http://10.129.1.183:80/_layouts/15/Copy of Authenticate.aspx&#xa;  http://10.129.1.183:80/_layouts/15/Copy (2) of Authenticate.aspx&#xa;"/><script id="http-comments-displayer" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.1.183&#xa;    &#xa;    Path: http://10.129.1.183:80/ScriptResource.axd?d=eTCNgCiZdswz9QpQ_ZvzzcY8CO1XXJVIMi2H_VMyJIG2jXCfYb2Y8bHkFpSjzstYJ_5Flrr2Ibkzqa-KJh8hLRqEnOTyLnGgdGsT2-cejToU8t3ZlarpWJYaFMp4g4fkIm4ZBeTWERfCfttBGg_Btr5QCXJmMnrA934ryfcP3D06Vm0t08VfiefQhPVLr-0d0&amp;amp;t=7e14f9a4&#xa;    Line number: 4&#xa;    Comment: &#xa;        &#xa;        &#xa;    &#xa;    Path: http://10.129.1.183:80/_layouts/15/start.aspx&#xa;    Line number: 92&#xa;    Comment: &#xa;        &#xa;        &#xa;    &#xa;    Path: http://10.129.1.183:80/ScriptResource.axd?d=eTCNgCiZdswz9QpQ_ZvzzcY8CO1XXJVIMi2H_VMyJIG2jXCfYb2Y8bHkFpSjzstYJ_5Flrr2Ibkzqa-KJh8hLRqEnOTyLnGgdGsT2-cejToU8t3ZlarpWJYaFMp4g4fkIm4ZBeTWERfCfttBGg_Btr5QCXJmMnrA934ryfcP3D06Vm0t08VfiefQhPVLr-0d0&amp;amp;t=7e14f9a4&#xa;    Line number: 2&#xa;    Comment: &#xa;        &#xa;        &#xa;    &#xa;    Path: http://10.129.1.183:80/WebResource.axd?d=Gwz0PPobaMOCkqNusxuvhOfwv_63CI3FADlwRkhEgFFhfzvqyV9PsDqXGqq-7cckqq04CY2qcgpSXb_QtZdWIRCQf83JgWOYyfuQwuRuoFM1&amp;amp;t=636228100318038770&#xa;    Line number: 100&#xa;    Comment: &#xa;        &#xa;    &#xa;    Path: http://10.129.1.183:80/WebResource.axd?d=Gwz0PPobaMOCkqNusxuvhOfwv_63CI3FADlwRkhEgFFhfzvqyV9PsDqXGqq-7cckqq04CY2qcgpSXb_QtZdWIRCQf83JgWOYyfuQwuRuoFM1&amp;amp;t=636228100318038770&#xa;    Line number: 105&#xa;    Comment: &#xa;        &#xa;    &#xa;    Path: http://10.129.1.183:80/_layouts/15/start.aspx&#xa;    Line number: 80&#xa;    Comment: &#xa;        &#xa;        &#xa;    &#xa;    Path: http://10.129.1.183:80/ScriptResource.axd?d=GP_MiQpjhaPIWbSpegGvISS4NlpnTADYmg1h6qPm5Fx46cBX-Msl4D3HQjsRW1jnxdGLjqK15cC_rhBHLtLonC2B1c5qPm_sH8EJWtP8b3wjS0VZWgilL1erQu_8T4Mq1iz1F1YwV0pvcbtiH6dSEGe3-S8bDLYhO3PEW2S2_wFNw7YTR1qAFSpFKBW9hObw0&amp;amp;t=7e14f9a4&#xa;    Line number: 4&#xa;    Comment: &#xa;        &#xa;        &#xa;    &#xa;    Path: http://10.129.1.183:80/WebResource.axd?d=Gwz0PPobaMOCkqNusxuvhOfwv_63CI3FADlwRkhEgFFhfzvqyV9PsDqXGqq-7cckqq04CY2qcgpSXb_QtZdWIRCQf83JgWOYyfuQwuRuoFM1&amp;amp;t=636228100318038770&#xa;    Line number: 85&#xa;    Comment: &#xa;        &#xa;"/><script id="http-vhosts" output="&#xa;128 names had status 302"/><script id="http-enum" output="&#xa;  /_layouts/images/helpicon.gif: MS Sharepoint&#xa;  /_vti_bin/_vti_aut/author.dll: Frontpage file or folder&#xa;  /_vti_bin/_vti_adm/admin.dll: Frontpage file or folder&#xa;  /_vti_bin/shtml.dll: Frontpage file or folder&#xa;  /_vti_pvt/service.cnf: Frontpage file or folder&#xa;  /_vti_pvt/services.cnf: Frontpage file or folder&#xa;  /CuteSoft_Client/CuteEditor/Load.ashx?type=image&amp;file=../../../web.config: Cute Editor ASP.NET Remote File Disclosure ( CVE 2009-4665 )&#xa;  /manifest.json: Manifest JSON File&#xa;  /archive/flash:home/html/images/Cisco_logo.gif: Cisco SDM&#xa;  /sitecore%20modules/staging/service/api.asmx: Sitecore.NET (CMS)&#xa;"/><script id="http-errors" output="&#xa;Spidering limited to: maxpagecount=40; withinhost=10.129.1.183&#xa;  Found the following error pages: &#xa;  &#xa;  Error Code: 400&#xa;  &#x9;http://10.129.1.183:80&#xa;  &#xa;  Error Code: 401&#xa;  &#x9;http://10.129.1.183:80/_layouts/15/Authenticate.aspx?Source=%2F_layouts%2F15%2Fstart.aspx&#xa;  &#xa;  Error Code: 403&#xa;  &#x9;http://10.129.1.183:80/_layouts/15/&#xa;  &#xa;  Error Code: 404&#xa;  &#x9;http://10.129.1.183:80/_layouts/15/slNavUrl;}function&#xa;  &#xa;  Error Code: 404&#xa;  &#x9;http://10.129.1.183:80/u;k=new&#xa;  &#xa;  Error Code: 404&#xa;  &#x9;http://10.129.1.183:80/event.srcElement&#xa;"/><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      axd: 1&#xa;    /_layouts/15/&#xa;      aspx: 1; js: 1&#xa;    /_layouts/15/images/&#xa;      ico: 1; png: 1&#xa;  Longest directory structure:&#xa;    Depth: 3&#xa;    Dir: /_layouts/15/images/&#xa;  Total files found (by extension):&#xa;    aspx: 1; axd: 1; ico: 1; js: 1; png: 1&#xa;"/><script id="http-title" output="Home&#xa;Requested resource was http://10.129.1.183/_layouts/15/start.aspx#/default.aspx"><elem key="title">&#xd;&#xa;&#x9;&#xd;&#xa;&#x9;&#x9;&#x9;Home&#xd;&#xa;&#x9;&#x9;&#xd;&#xa;</elem>
+<elem key="redirect_url">http://10.129.1.183/_layouts/15/start.aspx#/default.aspx</elem>
+</script><script id="http-devframework" output="ASP.NET detected. Found related header."/><script id="http-xssed" output="No previously reported XSS vuln."/><script id="http-generator" output="Microsoft SharePoint"/></port>
+<port protocol="tcp" portid="81"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="hosts2-ns" method="table" conf="3"/></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="netbios-ssn" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="808"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ccproxy-http" method="table" conf="3"/></port>
+<port protocol="tcp" portid="1433"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ms-sql-s" product="Microsoft SQL Server 2016" version="13.00.1601.00; RTM" method="probed" conf="10"/><script id="ms-sql-tables" output="&#xa;  [10.129.1.183:1433]&#xa;    ERROR: No login credentials.&#xa;"/><script id="ms-sql-dump-hashes" output="&#xa;[10.129.1.183:1433]&#xa;  ERROR: No login credentials&#xa;"/><script id="ssl-date" output="2022-06-06T14:27:32+00:00; 0s from scanner time."><elem key="delta">0.0</elem>
+<elem key="date">2022-06-06T14:27:32+00:00</elem>
+</script><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.0: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - F&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_RC4_128_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_RC4_128_MD5 (rsa 2048) - F&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;      Broken cipher RC4 is deprecated by RFC 7465&#xa;      Ciphersuite uses MD5 for message integrity&#xa;      Insecure certificate signature (SHA1), score capped at F&#xa;  TLSv1.1: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - F&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_RC4_128_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_RC4_128_MD5 (rsa 2048) - F&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;      Broken cipher RC4 is deprecated by RFC 7465&#xa;      Ciphersuite uses MD5 for message integrity&#xa;      Insecure certificate signature (SHA1), score capped at F&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - F&#xa;      TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - F&#xa;      TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (ecdh_x25519) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - F&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - F&#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_RC4_128_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_RC4_128_MD5 (rsa 2048) - F&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;      Broken cipher RC4 is deprecated by RFC 7465&#xa;      Ciphersuite uses MD5 for message integrity&#xa;      Insecure certificate signature (SHA1), score capped at F&#xa;  least strength: F"><table key="TLSv1.0">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_RC4_128_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_RC4_128_MD5</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+<elem>Broken cipher RC4 is deprecated by RFC 7465</elem>
+<elem>Ciphersuite uses MD5 for message integrity</elem>
+<elem>Insecure certificate signature (SHA1), score capped at F</elem>
+</table>
+</table>
+<table key="TLSv1.1">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_RC4_128_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_RC4_128_MD5</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+<elem>Broken cipher RC4 is deprecated by RFC 7465</elem>
+<elem>Ciphersuite uses MD5 for message integrity</elem>
+<elem>Insecure certificate signature (SHA1), score capped at F</elem>
+</table>
+</table>
+<table key="TLSv1.2">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_RC4_128_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_RC4_128_MD5</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+<elem>Broken cipher RC4 is deprecated by RFC 7465</elem>
+<elem>Ciphersuite uses MD5 for message integrity</elem>
+<elem>Insecure certificate signature (SHA1), score capped at F</elem>
+</table>
+</table>
+<elem key="least strength">F</elem>
+</script><script id="ms-sql-config" output="&#xa;  [10.129.1.183:1433]&#xa;    ERROR: No login credentials&#xa;"/><script id="ssl-cert" output="Subject: commonName=SSL_Self_Signed_Fallback&#xa;Not valid before: 2022-06-06T14:17:18&#xa;Not valid after:  2052-06-06T14:17:18"><table key="subject">
+<elem key="commonName">\x00S\x00S\x00L\x00_\x00S\x00e\x00l\x00f\x00_\x00S\x00i\x00g\x00n\x00e\x00d\x00_\x00F\x00a\x00l\x00l\x00b\x00a\x00c\x00k</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">\x00S\x00S\x00L\x00_\x00S\x00e\x00l\x00f\x00_\x00S\x00i\x00g\x00n\x00e\x00d\x00_\x00F\x00a\x00l\x00l\x00b\x00a\x00c\x00k</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">C9EBB9931E0FBDA33BFB3E840BEECEA2EA27A2D61B0BC307406B758D3DC17D1B3E41590CC9D9FD9A24B1E2863F6E344A4EAD89681E93EB6EB35E71F0D148D23CEE3705F3314888250BA89FB6721B3CEEE1BE482F66843A632F5A003DDA5D8FDE1DD137C79C7CAE06FF145B9B054D4DF6D0FC317BF47AB3FF930598F5E7D618BAE8B7925956EDC98046AA0885732301EBE82D183192EBB18EE7A031E9BB9A45D1203B2351CB841BBE200BBABB9B095D4B57AF31E0481895056C82B1520F0FBD328523CFDA90630CDA77657AD1AA8F9BE725FBD744E0F6B9B4E6510BF7FAF45AC5A06108D4A7801D6C580C5D45A7D59677FB897D40B8C8A7EC70EAD0B1665D47F7</elem>
+<elem key="exponent">65537</elem>
+</table>
+<elem key="sig_algo">sha1WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2022-06-06T14:17:18</elem>
+<elem key="notAfter">2052-06-06T14:17:18</elem>
+</table>
+<elem key="md5">a00e0f468ff97b947cbe6e7aaa95d640</elem>
+<elem key="sha1">06cabeceb9153a934552463806c6b546d458b03c</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDADCCAeigAwIBAgIQNqXSfC06La9H2YmERRkYKjANBgkqhkiG9w0BAQUFADA7&#xa;MTkwNwYDVQQDHjAAUwBTAEwAXwBTAGUAbABmAF8AUwBpAGcAbgBlAGQAXwBGAGEA&#xa;bABsAGIAYQBjAGswIBcNMjIwNjA2MTQxNzE4WhgPMjA1MjA2MDYxNDE3MThaMDsx&#xa;OTA3BgNVBAMeMABTAFMATABfAFMAZQBsAGYAXwBTAGkAZwBuAGUAZABfAEYAYQBs&#xa;AGwAYgBhAGMAazCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMnruZMe&#xa;D72jO/s+hAvuzqLqJ6LWGwvDB0BrdY09wX0bPkFZDMnZ/ZokseKGP240Sk6tiWge&#xa;k+tus15x8NFI0jzuNwXzMUiIJQuon7ZyGzzu4b5IL2aEOmMvWgA92l2P3h3RN8ec&#xa;fK4G/xRbmwVNTfbQ/DF79Hqz/5MFmPXn1hi66LeSWVbtyYBGqgiFcyMB6+gtGDGS&#xa;67GO56Ax6buaRdEgOyNRy4QbviALurubCV1LV68x4EgYlQVsgrFSDw+9MoUjz9qQ&#xa;Ywzad2V60aqPm+cl+9dE4Pa5tOZRC/f69FrFoGEI1KeAHWxYDF1Fp9WWd/uJfUC4&#xa;yKfscOrQsWZdR/cCAwEAATANBgkqhkiG9w0BAQUFAAOCAQEAhm7LqrKlsO9sO57m&#xa;HhA7HGjLSrzYtWzKTPTl1gev+Ec9ml2ujddqKqEWMHs6AF6i7HJ7StS7ldrbTFF1&#xa;K6UyiT5tzom+mMVpuW3e0LTai+USEhWUWdOiFQDVJ3D1c8CsD8SdYBFQwJS8EUev&#xa;CBbwiswsOSMPbM5s12SnJjVJUwERSP4afqmHVqxL5+WINoBb22yD8tAQOGSHM54h&#xa;0pzYf8NzR65NENXI21CA4sW8qIrE3k9ch37MNRVkRzgxkzpUJ8SKJpzXsL6ET/R8&#xa;n7dCYmPlsI5iQm4qUvYydCLO/B7/6VnwyXSyYBRtMHKBDaJUTXnIyDgdisVXUuSo&#xa;uIxBdw==&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ms-sql-hasdbaccess" output="&#xa;  [10.129.1.183:1433]&#xa;    ERROR: No login credentials.&#xa;"/><script id="ms-sql-ntlm-info" output="&#xa;  Target_Name: TALLY&#xa;  NetBIOS_Domain_Name: TALLY&#xa;  NetBIOS_Computer_Name: TALLY&#xa;  DNS_Domain_Name: TALLY&#xa;  DNS_Computer_Name: TALLY&#xa;  Product_Version: 10.0.14393"><elem key="Target_Name">TALLY</elem>
+<elem key="NetBIOS_Domain_Name">TALLY</elem>
+<elem key="NetBIOS_Computer_Name">TALLY</elem>
+<elem key="DNS_Domain_Name">TALLY</elem>
+<elem key="DNS_Computer_Name">TALLY</elem>
+<elem key="Product_Version">10.0.14393</elem>
+</script><script id="ms-sql-query" output="&#xa;  (Use -&#45;script-args=ms-sql-query.query=&apos;&lt;QUERY&gt;&apos; to change query.)&#xa;  [10.129.1.183:1433]&#xa;    ERROR: No login credentials&#xa;"/></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="wsman" method="table" conf="3"/></port>
+<port protocol="tcp" portid="15567"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="32843"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="32844"><state state="open" reason="syn-ack" reason_ttl="0"/><script id="ssl-date" output="2022-06-06T14:27:29+00:00; 0s from scanner time."><elem key="delta">0.0</elem>
+<elem key="date">2022-06-06T14:27:29+00:00</elem>
+</script><script id="ssl-cert" output="Subject: commonName=SharePoint Services/organizationName=Microsoft/countryName=US&#xa;Subject Alternative Name: DNS:localhost, DNS:tally&#xa;Not valid before: 2017-09-17T22:51:16&#xa;Not valid after:  9999-01-01T00:00:00"><table key="subject">
+<elem key="commonName">SharePoint Services</elem>
+<elem key="countryName">US</elem>
+<elem key="organizationName">Microsoft</elem>
+<elem key="organizationalUnitName">SharePoint</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">SharePoint Root Authority</elem>
+<elem key="countryName">US</elem>
+<elem key="organizationName">Microsoft</elem>
+<elem key="organizationalUnitName">SharePoint</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">A4DE194845F787B4986C04A91DED06181C9D4104777E10B20D5F6A863FD5C797222B89DC5594DA8406D57A737CF7134F968C4C72A69D869DD6C0E86BEFB319E97FCFF129DBA45A0A5450945715C8061559437B00A99DA8239FBA54E62752A933604E541589E503CB527CD82909E67880D86BDD5366C57C7EE52694B9F9B6A8B2899FDDD11AF9D1605D1A6D3073E706E38E310B9AAEBED9E46335B936E26CCC5A2548FF25B911AEC1B6EAC0E98AAE991BE1A9782A8128E20FF39F0CF5C8274922989B87ADEE8C1853C10E66056B8ED6F8D2D9C56EA3E0F3906AC69DCBEF7C087BCCF3CE39E930A9F56BD61FA47A0F129D996AC0F80EAA264AFBAD33F99F9A0909</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:localhost, DNS:tally</elem>
+</table>
+</table>
+<elem key="sig_algo">sha1WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2017-09-17T22:51:16</elem>
+<elem key="notAfter">9999-01-01T00:00:00</elem>
+</table>
+<elem key="md5">965f55d6a0b1fed54ce5388729380d53</elem>
+<elem key="sha1">0f6a3c08bee8b7ad237e9759e91cf6838f0b149f</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIEWTCCAkGgAwIBAgIQyV6dVL5Kk6BEr58pxdsV6TANBgkqhkiG9w0BAQUFADBa&#xa;MQswCQYDVQQGEwJVUzESMBAGA1UEChMJTWljcm9zb2Z0MRMwEQYDVQQLEwpTaGFy&#xa;ZVBvaW50MSIwIAYDVQQDExlTaGFyZVBvaW50IFJvb3QgQXV0aG9yaXR5MCAXDTE3&#xa;MDkxNzIyNTExNloYDzk5OTkwMTAxMDAwMDAwWjBUMQswCQYDVQQGEwJVUzESMBAG&#xa;A1UEChMJTWljcm9zb2Z0MRMwEQYDVQQLEwpTaGFyZVBvaW50MRwwGgYDVQQDExNT&#xa;aGFyZVBvaW50IFNlcnZpY2VzMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC&#xa;AQEApN4ZSEX3h7SYbASpHe0GGBydQQR3fhCyDV9qhj/Vx5ciK4ncVZTahAbVenN8&#xa;9xNPloxMcqadhp3WwOhr77MZ6X/P8SnbpFoKVFCUVxXIBhVZQ3sAqZ2oI5+6VOYn&#xa;UqkzYE5UFYnlA8tSfNgpCeZ4gNhr3VNmxXx+5SaUufm2qLKJn93RGvnRYF0abTBz&#xa;5wbjjjELmq6+2eRjNbk24mzMWiVI/yW5Ea7BturA6YqumRvhqXgqgSjiD/OfDPXI&#xa;J0kimJuHre6MGFPBDmYFa47W+NLZxW6j4POQasady+98CHvM88456TCp9WvWH6R6&#xa;DxKdmWrA+A6qJkr7rTP5n5oJCQIDAQABox8wHTAbBgNVHREEFDASgglsb2NhbGhv&#xa;c3SCBXRhbGx5MA0GCSqGSIb3DQEBBQUAA4ICAQBGkHAoLvIgw3mH6EyflnMyWREG&#xa;yEZ02iUx/I0yJDUp6gnEgHNeNh0dnqNOjvyQktFG1+e+VFgt5kSI4sUlGSkFasDf&#xa;fcnFUcM6iq6bRZzWNgYyhrYBaPgr50oaZZs4qEJufObrmeD6rL37URiO7tFE/UOM&#xa;77AipPQ8j7BVGwCG++XEYQPpYt1fo/N/aCrdY4akz2rKQ+GmoO6V429ovTJtO+z0&#xa;qJID3JUhYjA2ZiL6Are4+L6eZAlnxFR45W2p1XS2by+J4AxSGj1aZGVE83ngrdi9&#xa;F/WB6IIInpFsDiCYgDdyqIR/7xR+iiIdwqsHBZ6OU0YV5UBkWAOjUHIoJkp6rJ9L&#xa;RtcQBlyRSEEiFVn1tU4GK7Sb5E+HsSBpvFA8K1vKZDP+N4J83ii1p6esaZ6g0oy3&#xa;tMY9E+v6xQkzXjCb1ZW2jBSqZK7Bzb/SKcjOnzDvDeKZwJY8RUEHpVVEhwj752ml&#xa;Xr95eiWQsuzJyB2cJ5jwiL+uBWcswrjFLQk+zpY/jx0WXnBS8aEGnyohmbQ1POcg&#xa;ETpi4jhYGmFG4EJyHv25c2k3JvvrY4HufeUQg5qWljLG+UCSgnZrpDgIv4/pTSZ1&#xa;ICd9gsCOZZ44qx9OwP25yxb165VU+kDt218w2WSrBwxuk6D59jjQw9z3+/kCZug9&#xa;ox1fB7OQe5ABVPlttQ==&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="tls-alpn" output="&#xa;  h2&#xa;  http/1.1"><elem>h2</elem>
+<elem>http/1.1</elem>
+</script><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.0: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - F&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_RC4_128_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_RC4_128_MD5 (rsa 2048) - F&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;      Broken cipher RC4 is deprecated by RFC 7465&#xa;      Ciphersuite uses MD5 for message integrity&#xa;      Insecure certificate signature (SHA1), score capped at F&#xa;  TLSv1.1: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - F&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_RC4_128_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_RC4_128_MD5 (rsa 2048) - F&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;      Broken cipher RC4 is deprecated by RFC 7465&#xa;      Ciphersuite uses MD5 for message integrity&#xa;      Insecure certificate signature (SHA1), score capped at F&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - F&#xa;      TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - F&#xa;      TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (ecdh_x25519) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - F&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - F&#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_RC4_128_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_RC4_128_MD5 (rsa 2048) - F&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;      Broken cipher RC4 is deprecated by RFC 7465&#xa;      Ciphersuite uses MD5 for message integrity&#xa;      Insecure certificate signature (SHA1), score capped at F&#xa;  least strength: F"><table key="TLSv1.0">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_RC4_128_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_RC4_128_MD5</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+<elem>Broken cipher RC4 is deprecated by RFC 7465</elem>
+<elem>Ciphersuite uses MD5 for message integrity</elem>
+<elem>Insecure certificate signature (SHA1), score capped at F</elem>
+</table>
+</table>
+<table key="TLSv1.1">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_RC4_128_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_RC4_128_MD5</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+<elem>Broken cipher RC4 is deprecated by RFC 7465</elem>
+<elem>Ciphersuite uses MD5 for message integrity</elem>
+<elem>Insecure certificate signature (SHA1), score capped at F</elem>
+</table>
+</table>
+<table key="TLSv1.2">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_RC4_128_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_RC4_128_MD5</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+<elem>Broken cipher RC4 is deprecated by RFC 7465</elem>
+<elem>Ciphersuite uses MD5 for message integrity</elem>
+<elem>Insecure certificate signature (SHA1), score capped at F</elem>
+</table>
+</table>
+<elem key="least strength">F</elem>
+</script></port>
+<port protocol="tcp" portid="32846"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="47001"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="winrm" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49664"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="49665"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="49666"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="49667"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="49668"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="49669"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="49670"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+</ports>
+<hostscript><script id="msrpc-enum" output="No accounts left to try">false</script><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.129.1.183&quot;; use dns-brute.domain script argument."/><script id="smb2-time" output="&#xa;  date: 2022-06-06T14:25:45&#xa;  start_date: 2022-06-06T14:16:58"><elem key="date">2022-06-06T14:25:45</elem>
+<elem key="start_date">2022-06-06T14:16:58</elem>
+</script><script id="smb-mbenum" output="&#xa;  ERROR: Failed to connect to browser service: No accounts left to try"/><script id="ms-sql-info" output="&#xa;  10.129.1.183:1433: &#xa;    Version: &#xa;      name: Microsoft SQL Server 2016 RTM&#xa;      number: 13.00.1601.00&#xa;      Product: Microsoft SQL Server 2016&#xa;      Service pack level: RTM&#xa;      Post-SP patches applied: false&#xa;    TCP port: 1433"><table key="10.129.1.183:1433">
+<table key="Version">
+<elem key="name">Microsoft SQL Server 2016 RTM</elem>
+<elem key="number">13.00.1601.00</elem>
+<elem key="Product">Microsoft SQL Server 2016</elem>
+<elem key="Service pack level">RTM</elem>
+<elem key="Post-SP patches applied">false</elem>
+</table>
+<elem key="TCP port">1433</elem>
+</table>
+</script><script id="smb2-capabilities" output="&#xa;  2.0.2: &#xa;    Distributed File System&#xa;  2.1: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3.0: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3.0.2: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3.1.1: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations"><table key="2.0.2">
+<elem>Distributed File System</elem>
+</table>
+<table key="2.1">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3.0">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3.0.2">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3.1.1">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+</script><script id="smb-security-mode" output="&#xa;  authentication_level: user&#xa;  challenge_response: supported&#xa;  message_signing: disabled (dangerous, but default)"><elem key="authentication_level">user</elem>
+<elem key="challenge_response">supported</elem>
+<elem key="message_signing">disabled</elem>
+</script><script id="smb2-security-mode" output="&#xa;  3.1.1: &#xa;    Message signing enabled but not required"><table key="3.1.1">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script><script id="smb-protocols" output="&#xa;  dialects: &#xa;    NT LM 0.12 (SMBv1) [dangerous, but default]&#xa;    2.0.2&#xa;    2.1&#xa;    3.0&#xa;    3.0.2&#xa;    3.1.1"><table key="dialects">
+<elem>NT LM 0.12 (SMBv1) [dangerous, but default]</elem>
+<elem>2.0.2</elem>
+<elem>2.1</elem>
+<elem>3.0</elem>
+<elem>3.0.2</elem>
+<elem>3.1.1</elem>
+</table>
+</script></hostscript><times srtt="45638" rttvar="2542" to="100000"/>
+</host>
+<runstats><finished time="1654526022" timestr="Mon Jun  6 15:33:42 2022" summary="Nmap done at Mon Jun  6 15:33:42 2022; 1 IP address (1 host up) scanned in 668.89 seconds" elapsed="668.89" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
