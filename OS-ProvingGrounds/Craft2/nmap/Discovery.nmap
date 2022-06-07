@@ -1,0 +1,330 @@
+# Nmap 7.92 scan initiated Tue Jun  7 21:20:55 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 500 192.168.198.188
+Pre-scan script results:
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for 192.168.198.188
+Host is up (0.051s latency).
+Not shown: 65531 filtered tcp ports (no-response)
+Bug in http-security-headers: no string output.
+PORT      STATE SERVICE
+80/tcp    open  http
+| http-referer-checker: 
+| Spidering limited to: maxpagecount=30
+|   https://cdn.startbootstrap.com:443/sb-forms-0.4.1.js
+|   https://cdn.jsdelivr.net:443/npm/bootstrap15.0.2/dist/js/bootstrap.bundle.min.js
+|_  https://use.fontawesome.com:443/releases/v5.15.3/js/all.js
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-enum: 
+|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.48 (win64) openssl/1.1.1k php/8.0.7'
+|   /icons/: Potentially interesting folder w/ directory listing
+|   /js/: Potentially interesting directory w/ listing on 'apache/2.4.48 (win64) openssl/1.1.1k php/8.0.7'
+|_  /uploads/: Potentially interesting directory w/ listing on 'apache/2.4.48 (win64) openssl/1.1.1k php/8.0.7'
+|_http-trace: TRACE is enabled
+| http-grep: 
+|   (1) http://192.168.198.188:80/: 
+|     (1) email: 
+|_      + admin@craft.offs
+| http-vhosts: 
+|_128 names had status 200
+|_http-chrono: Request times for /; avg: 197.79ms; min: 167.32ms; max: 233.76ms
+|_http-xssed: No previously reported XSS vuln.
+|_http-php-version: Version from header x-powered-by: PHP/8.0.7
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; php: 1
+|     /assets/
+|       ico: 1
+|     /assets/img/
+|       jpg: 3
+|     /css/
+|       css: 1
+|     /js/
+|       js: 1
+|   Longest directory structure:
+|     Depth: 2
+|     Dir: /assets/img/
+|   Total files found (by extension):
+|_    Other: 1; css: 1; ico: 1; jpg: 3; js: 1; php: 1
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.198.188
+|     
+|     Path: http://192.168.198.188:80/
+|     Line number: 154
+|     Comment: 
+|         <!-- Footer-->
+|     
+|     Path: http://192.168.198.188:80/js/scripts.js
+|     Line number: 12
+|     Comment: 
+|          // Navbar shrink function
+|     
+|     Path: http://192.168.198.188:80/
+|     Line number: 79
+|     Comment: 
+|         <!-- Project Two Row-->
+|     
+|     Path: http://192.168.198.188:80/js/scripts.js
+|     Line number: 29
+|     Comment: 
+|          // Shrink the navbar when page is scrolled
+|     
+|     Path: http://192.168.198.188:80/css/styles.css
+|     Line number: 5952
+|     Comment: 
+|         /* rtl:begin:ignore */
+|     
+|     Path: http://192.168.198.188:80/css/styles.css
+|     Line number: 6039
+|     Comment: 
+|         /* rtl:options: {
+|           "autoRename": true,
+|           "stringMap":[ {
+|             "name"    : "prev-next",
+|             "search"  : "prev",
+|             "replace" : "next"
+|           } ]
+|         } */
+|     
+|     Path: http://192.168.198.188:80/js/scripts.js
+|     Line number: 1
+|     Comment: 
+|         /*!
+|         * Start Bootstrap - Grayscale v7.0.2 (https://startbootstrap.com/theme/grayscale)
+|         * Copyright 2013-2021 Start Bootstrap
+|         * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-grayscale/blob/master/LICENSE)
+|         */
+|     
+|     Path: http://192.168.198.188:80/js/scripts.js
+|     Line number: 32
+|     Comment: 
+|          // Activate Bootstrap scrollspy on the main nav element
+|     
+|     Path: http://192.168.198.188:80/
+|     Line number: 54
+|     Comment: 
+|         <!-- Featured Project Row-->
+|     
+|     Path: http://192.168.198.188:80/css/styles.css
+|     Line number: 4667
+|     Comment: 
+|         /* rtl: var(--bs-breadcrumb-divider, "/") */
+|     
+|     Path: http://192.168.198.188:80/js/scripts.js
+|     Line number: 8
+|     Comment: 
+|         
+|         // 
+|     
+|     Path: http://192.168.198.188:80/
+|     Line number: 37
+|     Comment: 
+|         <!-- Masthead-->
+|     
+|     Path: http://192.168.198.188:80/css/styles.css
+|     Line number: 230
+|     Comment: 
+|         /* rtl:ignore */
+|     
+|     Path: http://192.168.198.188:80/
+|     Line number: 156
+|     Comment: 
+|         <!-- Bootstrap core JS-->
+|     
+|     Path: http://192.168.198.188:80/
+|     Line number: 161
+|     Comment: 
+|         <!-- * *                               SB Forms JS                               * *-->
+|     
+|     Path: http://192.168.198.188:80/
+|     Line number: 158
+|     Comment: 
+|         <!-- Core theme JS-->
+|     
+|     Path: http://192.168.198.188:80/css/styles.css
+|     Line number: 7527
+|     Comment: 
+|         /* rtl:end:remove */
+|     
+|     Path: http://192.168.198.188:80/css/styles.css
+|     Line number: 7
+|     Comment: 
+|         /*!
+|          * Bootstrap v5.0.2 (https://getbootstrap.com/)
+|          * Copyright 2011-2021 The Bootstrap Authors
+|          * Copyright 2011-2021 Twitter, Inc.
+|          * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+|          */
+|     
+|     Path: http://192.168.198.188:80/css/styles.css
+|     Line number: 7521
+|     Comment: 
+|         /* rtl:begin:remove */
+|     
+|     Path: http://192.168.198.188:80/js/scripts.js
+|     Line number: 41
+|     Comment: 
+|          // Collapse responsive navbar when toggler is visible
+|     
+|     Path: http://192.168.198.188:80/css/styles.css
+|     Line number: 414
+|     Comment: 
+|         /* rtl:raw:
+|         [type="tel"],
+|         [type="url"],
+|         [type="email"],
+|         [type="number"] {
+|           direction: ltr;
+|         }
+|         */
+|     
+|     Path: http://192.168.198.188:80/
+|     Line number: 51
+|     Comment: 
+|         <!-- Projects-->
+|     
+|     Path: http://192.168.198.188:80/
+|     Line number: 96
+|     Comment: 
+|         <!-- Signup-->
+|     
+|     Path: http://192.168.198.188:80/
+|     Line number: 19
+|     Comment: 
+|         <!-- Navigation-->
+|     
+|     Path: http://192.168.198.188:80/
+|     Line number: 10
+|     Comment: 
+|         <!-- Font Awesome icons (free version)-->
+|     
+|     Path: http://192.168.198.188:80/js/scripts.js
+|     Line number: 26
+|     Comment: 
+|          // Shrink the navbar 
+|     
+|     Path: http://192.168.198.188:80/
+|     Line number: 64
+|     Comment: 
+|         <!-- Project One Row-->
+|     
+|     Path: http://192.168.198.188:80/
+|     Line number: 12
+|     Comment: 
+|         <!-- Google fonts-->
+|     
+|     Path: http://192.168.198.188:80/js/scripts.js
+|     Line number: 6
+|     Comment: 
+|         
+|         //
+|     
+|     Path: http://192.168.198.188:80/
+|     Line number: 15
+|     Comment: 
+|         <!-- Core theme CSS (includes Bootstrap)-->
+|     
+|     Path: http://192.168.198.188:80/
+|     Line number: 162
+|     Comment: 
+|         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+|     
+|     Path: http://192.168.198.188:80/
+|     Line number: 49
+|     Comment: 
+|         <!-- About-->
+|     
+|     Path: http://192.168.198.188:80/css/styles.css
+|     Line number: 5963
+|     Comment: 
+|         /* rtl:end:ignore */
+|     
+|     Path: http://192.168.198.188:80/
+|     Line number: 112
+|     Comment: 
+|         <!-- Contact-->
+|     
+|     Path: http://192.168.198.188:80/
+|     Line number: 160
+|     Comment: 
+|_        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+|_http-date: Tue, 07 Jun 2022 20:23:32 GMT; +59m59s from local time.
+|_http-mobileversion-checker: No mobile version detected.
+|_http-feed: Couldn't find any feeds.
+|_http-errors: Couldn't find any error pages.
+|_http-title: Craft
+| http-headers: 
+|   Date: Tue, 07 Jun 2022 20:23:32 GMT
+|   Server: Apache/2.4.48 (Win64) OpenSSL/1.1.1k PHP/8.0.7
+|   X-Powered-By: PHP/8.0.7
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+135/tcp   open  msrpc
+445/tcp   open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+49666/tcp open  unknown
+
+Host script results:
+|_fcrdns: FAIL (No PTR record)
+| smb-protocols: 
+|   dialects: 
+|     2.0.2
+|     2.1
+|     3.0
+|     3.0.2
+|_    3.1.1
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled but not required
+|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+| smb2-capabilities: 
+|   2.0.2: 
+|     Distributed File System
+|   2.1: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.0.2: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.1.1: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+|_dns-brute: Can't guess domain of "192.168.198.188"; use dns-brute.domain script argument.
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+| smb2-time: 
+|   date: 2022-06-07T20:22:54
+|_  start_date: N/A
+
+# Nmap done at Tue Jun  7 21:27:43 2022 -- 1 IP address (1 host up) scanned in 407.97 seconds

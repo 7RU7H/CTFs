@@ -1,0 +1,141 @@
+# Nmap 7.92 scan initiated Tue Jun  7 21:21:26 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 500 10.129.88.158
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.129.88.158
+Host is up (0.057s latency).
+Not shown: 65203 filtered tcp ports (no-response), 326 filtered tcp ports (host-unreach)
+Bug in http-security-headers: no string output.
+PORT      STATE SERVICE
+22/tcp    open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (8)
+|   server_host_key_algorithms: (3)
+|   encryption_algorithms: (16)
+|   mac_algorithms: (19)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_6.6.1
+| ssh-hostkey: 
+|   2048 cd:ec:19:7c:da:dc:16:e2:a3:9d:42:f3:18:4b:e6:4d (RSA)
+|   256 af:94:9f:2f:21:d0:e0:1d:ae:8e:7f:1d:7b:d7:42:ef (ECDSA)
+|_  256 6b:f8:dc:27:4f:1c:89:67:a4:67:c5:ed:07:53:af:97 (ED25519)
+80/tcp    open  http
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-errors: Couldn't find any error pages.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-enum: 
+|_  /icons/: Potentially interesting folder w/ directory listing
+|_http-xssed: No previously reported XSS vuln.
+|_http-trace: TRACE is enabled
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.88.158
+|     
+|     Path: http://10.129.88.158:80/
+|     Line number: 34
+|     Comment: 
+|          //              /    |   ____  |______             \
+|     
+|     Path: http://10.129.88.158:80/
+|     Line number: 35
+|     Comment: 
+|          //              /    (O) |    | |      \             \
+|     
+|     Path: http://10.129.88.158:80/
+|     Line number: 33
+|     Comment: 
+|          //              /   |         |                  \
+|     
+|     Path: http://10.129.88.158:80/
+|     Line number: 36
+|     Comment: 
+|_         //              /         |____| |  0    \             \
+|_http-feed: Couldn't find any feeds.
+|_http-chrono: Request times for /; avg: 171.83ms; min: 163.93ms; max: 189.15ms
+|_http-mobileversion-checker: No mobile version detected.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-vhosts: 
+|_128 names had status 200
+| http-headers: 
+|   Date: Tue, 07 Jun 2022 20:27:37 GMT
+|   Server: Apache/2.4.6 (CentOS)
+|   Last-Modified: Mon, 26 Jun 2017 01:11:46 GMT
+|   ETag: "83a-552d2a27c66d2"
+|   Accept-Ranges: bytes
+|   Content-Length: 2106
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+|_http-title: Site doesn't have a title (text/html; charset=UTF-8).
+|_http-date: Tue, 07 Jun 2022 20:27:39 GMT; +1h00m00s from local time.
+111/tcp   open  rpcbind
+| nfs-showmount: 
+|   /opt *
+|_  /var/nfsshare *
+| rpcinfo: 
+|   program version    port/proto  service
+|   100000  2,3,4        111/tcp   rpcbind
+|   100000  2,3,4        111/udp   rpcbind
+|   100000  3,4          111/tcp6  rpcbind
+|   100000  3,4          111/udp6  rpcbind
+|   100003  3,4         2049/tcp   nfs
+|   100003  3,4         2049/tcp6  nfs
+|   100003  3,4         2049/udp   nfs
+|   100003  3,4         2049/udp6  nfs
+|   100005  1,2,3      20048/tcp   mountd
+|   100005  1,2,3      20048/tcp6  mountd
+|   100005  1,2,3      20048/udp   mountd
+|   100005  1,2,3      20048/udp6  mountd
+|   100021  1,3,4      36542/udp6  nlockmgr
+|   100021  1,3,4      41952/udp   nlockmgr
+|   100021  1,3,4      44204/tcp6  nlockmgr
+|   100021  1,3,4      45067/tcp   nlockmgr
+|   100024  1          37246/udp6  status
+|   100024  1          42674/udp   status
+|   100024  1          57767/tcp6  status
+|   100024  1          59129/tcp   status
+|   100227  3           2049/tcp   nfs_acl
+|   100227  3           2049/tcp6  nfs_acl
+|   100227  3           2049/udp   nfs_acl
+|_  100227  3           2049/udp6  nfs_acl
+2049/tcp  open  nfs_acl
+7411/tcp  open  daqstream
+|_banner: OK Ready. Send USER command.
+20048/tcp open  mountd
+|_nfs-showmount: ERROR: Script execution failed (use -d to debug)
+
+Host script results:
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "10.129.88.158"; use dns-brute.domain script argument.
+
+# Nmap done at Tue Jun  7 21:32:49 2022 -- 1 IP address (1 host up) scanned in 683.04 seconds
