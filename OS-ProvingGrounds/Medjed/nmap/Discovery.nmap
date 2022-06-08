@@ -1,0 +1,183 @@
+# Nmap 7.92 scan initiated Wed Jun  8 20:53:37 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 500 192.168.198.127
+Pre-scan script results:
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for 192.168.198.127
+Host is up (0.043s latency).
+Not shown: 65517 closed tcp ports (conn-refused)
+PORT      STATE SERVICE
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+445/tcp   open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+3306/tcp  open  mysql
+|_mysql-vuln-cve2012-2122: ERROR: Script execution failed (use -d to debug)
+|_banner: I\x00\x00\x01\xFFj\x04Host '192.168.49.198' is not allowed t...
+5040/tcp  open  unknown
+7680/tcp  open  pando-pub
+8000/tcp  open  http-alt
+| http-grep: 
+|   (1) http://192.168.198.127:8000/: 
+|     (1) ip: 
+|_      + 192.168.198.127
+| http-headers: 
+|   Date: Wed, 08 Jun 2022 19:55:21 GMT
+|   Server: BarracudaServer.com (Windows)
+|   Connection: Close
+|   Last-Modified: Tue, 19 Feb 2013 19:58:47 GMT
+|   Content-Length: 8295
+|   
+|_  (Request type: HEAD)
+| http-vhosts: 
+| ftp
+|_127 names had status 200
+|_http-date: Wed, 08 Jun 2022 19:55:22 GMT; +1h00m00s from local time.
+| http-open-proxy: Potentially OPEN proxy.
+|_Methods supported:CONNECTION
+| http-webdav-scan: 
+|   Server Type: BarracudaServer.com (Windows)
+|   WebDAV type: Unknown
+|   Allowed Methods: OPTIONS, GET, HEAD, PROPFIND, PUT, COPY, DELETE, MOVE, MKCOL, PROPFIND, PROPPATCH, LOCK, UNLOCK
+|_  Server Date: Wed, 08 Jun 2022 19:55:28 GMT
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.198.127
+|   url                                                            method
+|   http://192.168.198.127:8000/Config-Wizard/wizard/SetAdmin.lsp  FORM
+|_  http://192.168.198.127:8000/Config-Wizard/wizard/SetAdmin.lsp  FORM
+|_http-title: Home
+|_http-chrono: Request times for /; avg: 1447.70ms; min: 250.17ms; max: 5433.93ms
+| http-enum: 
+|   /blog/: Blog
+|_  /private/sdc.tgz: IBM Bladecenter Management Logs (401 Unauthorized)
+30021/tcp open  unknown
+|_banner: 220-FileZilla Server version 0.9.41 beta\x0D\x0A220-written ...
+33033/tcp open  unknown
+44330/tcp open  unknown
+| ssl-enum-ciphers: 
+|   SSLv3: 
+|     ciphers: 
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|     compressors: 
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       CBC-mode cipher in SSLv3 (CVE-2014-3566)
+|       Insecure certificate signature (MD5), score capped at F
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Insecure certificate signature (MD5), score capped at F
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Insecure certificate signature (MD5), score capped at F
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Insecure certificate signature (MD5), score capped at F
+|_  least strength: F
+| ssl-cert: Subject: commonName=server demo 1024 bits/organizationName=Real Time Logic/stateOrProvinceName=CA/countryName=US
+| Not valid before: 2009-08-27T14:40:47
+|_Not valid after:  2019-08-25T14:40:47
+|_ssl-date: 2022-06-08T19:57:03+00:00; 0s from scanner time.
+45332/tcp open  unknown
+45443/tcp open  unknown
+49664/tcp open  unknown
+49665/tcp open  unknown
+49666/tcp open  unknown
+49667/tcp open  unknown
+49668/tcp open  unknown
+49669/tcp open  unknown
+
+Host script results:
+| smb2-capabilities: 
+|   2.0.2: 
+|     Distributed File System
+|   2.1: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.0.2: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.1.1: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "192.168.198.127"; use dns-brute.domain script argument.
+| smb2-time: 
+|   date: 2022-06-08T19:55:34
+|_  start_date: N/A
+|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled but not required
+| smb-protocols: 
+|   dialects: 
+|     2.0.2
+|     2.1
+|     3.0
+|     3.0.2
+|_    3.1.1
+
+# Nmap done at Wed Jun  8 20:58:45 2022 -- 1 IP address (1 host up) scanned in 307.74 seconds

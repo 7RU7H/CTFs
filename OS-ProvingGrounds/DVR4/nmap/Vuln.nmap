@@ -1,0 +1,40 @@
+# Nmap 7.92 scan initiated Wed Jun  8 20:15:59 2022 as: nmap --script vuln -oA nmap/Vuln -p- --min-rate 500 192.168.198.179
+Nmap scan report for 192.168.198.179
+Host is up (0.045s latency).
+Not shown: 65523 closed tcp ports (conn-refused)
+PORT      STATE SERVICE
+22/tcp    open  ssh
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+445/tcp   open  microsoft-ds
+5040/tcp  open  unknown
+8080/tcp  open  http-proxy
+|_http-aspnet-debug: ERROR: Script execution failed (use -d to debug)
+| http-phpmyadmin-dir-traversal: 
+|   VULNERABLE:
+|   phpMyAdmin grab_globals.lib.php subform Parameter Traversal Local File Inclusion
+|     State: UNKNOWN (unable to test)
+|     IDs:  CVE:CVE-2005-3299
+|       PHP file inclusion vulnerability in grab_globals.lib.php in phpMyAdmin 2.6.4 and 2.6.4-pl1 allows remote attackers to include local files via the $__redirect parameter, possibly involving the subform array.
+|       
+|     Disclosure date: 2005-10-nil
+|     Extra information:
+|       ../../../../../etc/passwd :
+|   <HTML><HEAD><TITLE>File Not Found</TITLE></HEAD><BODY><H1>Cannot find this file.</H1>The requested file: <B>/phpMyAdmin-2.6.4-pl1/libraries/grab_globals.lib.php</B> was not found.</BODY></HTML>
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2005-3299
+|_      http://www.exploit-db.com/exploits/1244/
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+49664/tcp open  unknown
+49665/tcp open  unknown
+49666/tcp open  unknown
+49667/tcp open  unknown
+49668/tcp open  unknown
+49669/tcp open  unknown
+
+Host script results:
+|_smb-vuln-ms10-061: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_samba-vuln-cve-2012-1182: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_smb-vuln-ms10-054: false
+
+# Nmap done at Wed Jun  8 20:19:31 2022 -- 1 IP address (1 host up) scanned in 211.99 seconds

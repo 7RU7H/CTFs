@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Wed Jun  8 21:04:03 2022 as: nmap -&#45;script vuln -oA nmap/Vuln -p- -&#45;min-rate 500 10.129.166.116 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/Vuln -p- -&#45;min-rate 500 10.129.166.116" start="1654718643" startstr="Wed Jun  8 21:04:03 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.166.116" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1654718653" endtime="1654718895"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="10.129.166.116" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65531">
+<extrareasons reason="conn-refused" count="65531" proto="tcp" ports="1-20,23-79,81-442,444-65535"/>
+</extraports>
+<port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-fileupload-exploiter" output="&#xa;  &#xa;    Couldn&apos;t find a file-type field."><table>
+<elem>Couldn&apos;t find a file-type field.</elem>
+</table>
+</script><script id="http-aspnet-debug" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="https" method="table" conf="3"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-aspnet-debug" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-method-tamper" output="&#xa;  VULNERABLE:&#xa;  Authentication bypass by HTTP verb tampering&#xa;    State: VULNERABLE (Exploitable)&#xa;      This web server contains password protected resources vulnerable to authentication bypass&#xa;      vulnerabilities via HTTP verb tampering. This is often found in web servers that only limit access to the&#xa;       common HTTP methods and in misconfigured .htaccess files.&#xa;             &#xa;    Extra information:&#xa;      &#xa;  URIs suspected to be vulnerable to HTTP verb tampering:&#xa;    / [POST]&#xa;  &#xa;    References:&#xa;      http://www.mkit.com.ar/labs/htexploit/&#xa;      http://capec.mitre.org/data/definitions/274.html&#xa;      http://www.imperva.com/resources/glossary/http_verb_tampering.html&#xa;      https://www.owasp.org/index.php/Testing_for_HTTP_Methods_and_XST_%28OWASP-CM-008%29&#xa;"><table key="NMAP-21">
+<elem key="title">Authentication bypass by HTTP verb tampering</elem>
+<elem key="state">VULNERABLE (Exploitable)</elem>
+<table key="description">
+<elem>This web server contains password protected resources vulnerable to authentication bypass&#xa;vulnerabilities via HTTP verb tampering. This is often found in web servers that only limit access to the&#xa; common HTTP methods and in misconfigured .htaccess files.&#xa;       </elem>
+</table>
+<table key="extra_info">
+<elem>&#xa;URIs suspected to be vulnerable to HTTP verb tampering:&#xa;  / [POST]&#xa;</elem>
+</table>
+<table key="refs">
+<elem>http://www.mkit.com.ar/labs/htexploit/</elem>
+<elem>http://capec.mitre.org/data/definitions/274.html</elem>
+<elem>http://www.imperva.com/resources/glossary/http_verb_tampering.html</elem>
+<elem>https://www.owasp.org/index.php/Testing_for_HTTP_Methods_and_XST_%28OWASP-CM-008%29</elem>
+</table>
+</table>
+</script></port>
+</ports>
+<times srtt="49087" rttvar="4325" to="100000"/>
+</host>
+<runstats><finished time="1654718895" timestr="Wed Jun  8 21:08:15 2022" summary="Nmap done at Wed Jun  8 21:08:15 2022; 1 IP address (1 host up) scanned in 252.02 seconds" elapsed="252.02" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

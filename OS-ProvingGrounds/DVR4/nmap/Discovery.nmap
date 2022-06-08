@@ -1,0 +1,109 @@
+# Nmap 7.92 scan initiated Wed Jun  8 20:11:29 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 500 192.168.198.179
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 192.168.198.179
+Host is up (0.15s latency).
+Not shown: 65502 closed tcp ports (conn-refused)
+PORT      STATE    SERVICE
+22/tcp    open     ssh
+| ssh-hostkey: 
+|   3072 21:25:f0:53:b4:99:0f:34:de:2d:ca:bc:5d:fe:20:ce (RSA)
+|_  384 e7:96:f3:6a:d8:92:07:5a:bf:37:06:86:0a:31:73:19 (ECDSA)
+|_banner: SSH-2.0-8.48 FlowSsh: Bitvise SSH Server (WinSSHD) 8.48: fre...
+| ssh2-enum-algos: 
+|   kex_algorithms: (12)
+|   server_host_key_algorithms: (4)
+|   encryption_algorithms: (5)
+|   mac_algorithms: (2)
+|_  compression_algorithms: (2)
+135/tcp   open     msrpc
+139/tcp   open     netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+445/tcp   open     microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+2137/tcp  filtered connect
+5040/tcp  open     unknown
+7680/tcp  open     pando-pub
+8080/tcp  open     http-proxy
+| http-vhosts: 
+| 117 names had status 200
+|_11 names had status ERROR
+|_http-title: Argus Surveillance DVR
+|_http-generator: Actual Drawing 6.0 (http://www.pysoft.com) [PYSOFTWARE]
+| http-headers: 
+|   Connection: Keep-Alive
+|   Keep-Alive: timeout=15, max=4
+|   Content-Type: text/html
+|   Content-Length: 985
+|   
+|_  (Request type: GET)
+|_http-chrono: Request times for /; avg: 240.13ms; min: 199.89ms; max: 251.22ms
+9100/tcp  filtered jetdirect
+10413/tcp filtered unknown
+11646/tcp filtered unknown
+12965/tcp filtered unknown
+22561/tcp filtered unknown
+23654/tcp filtered unknown
+28825/tcp filtered unknown
+30002/tcp filtered pago-services2
+41797/tcp filtered crestron-ctps
+43855/tcp filtered unknown
+43995/tcp filtered unknown
+48829/tcp filtered unknown
+49664/tcp open     unknown
+49665/tcp open     unknown
+49666/tcp open     unknown
+49667/tcp open     unknown
+49668/tcp open     unknown
+49669/tcp open     unknown
+49958/tcp filtered unknown
+50398/tcp filtered unknown
+51563/tcp filtered unknown
+55567/tcp filtered unknown
+58882/tcp filtered unknown
+61562/tcp filtered unknown
+65436/tcp filtered unknown
+
+Host script results:
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_dns-brute: Can't guess domain of "192.168.198.179"; use dns-brute.domain script argument.
+| smb-protocols: 
+|   dialects: 
+|     2.0.2
+|     2.1
+|     3.0
+|     3.0.2
+|_    3.1.1
+| smb2-time: 
+|   date: 2022-06-08T19:13:54
+|_  start_date: N/A
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled but not required
+| smb2-capabilities: 
+|   2.0.2: 
+|     Distributed File System
+|   2.1: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.0.2: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.1.1: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+|_fcrdns: FAIL (No PTR record)
+|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+
+# Nmap done at Wed Jun  8 20:15:43 2022 -- 1 IP address (1 host up) scanned in 253.68 seconds

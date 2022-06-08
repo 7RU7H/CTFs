@@ -1,0 +1,194 @@
+# Nmap 7.92 scan initiated Wed Jun  8 20:56:33 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 500 10.129.166.116
+Pre-scan script results:
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for 10.129.166.116
+Host is up (0.047s latency).
+Not shown: 65531 closed tcp ports (conn-refused)
+Bug in http-security-headers: no string output.
+PORT    STATE SERVICE
+21/tcp  open  ftp
+|_banner: 220 (vsFTPd 2.3.4)
+22/tcp  open  ssh
+|_banner: SSH-2.0-OpenSSH_7.9
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   2048 03:e1:c2:c9:79:1c:a6:6b:51:34:8d:7a:c3:c7:c8:50 (RSA)
+|   256 41:e4:95:a3:39:0b:25:f9:da:de:be:6a:dc:59:48:6d (ECDSA)
+|_  256 30:0b:c6:66:2b:8f:5e:4f:26:28:75:0e:f5:b1:71:e4 (ED25519)
+80/tcp  open  http
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 2
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 2
+|_http-feed: Couldn't find any feeds.
+|_http-devframework: Express detected. Found Express in X-Powered-By Header
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-errors: Couldn't find any error pages.
+| http-vhosts: 
+|_128 names had status 200
+|_http-mobileversion-checker: No mobile version detected.
+|_http-xssed: No previously reported XSS vuln.
+|_http-chrono: Request times for /; avg: 250.88ms; min: 193.64ms; max: 404.33ms
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-date: Wed, 08 Jun 2022 19:58:52 GMT; +59m58s from local time.
+|_http-title: La Casa De Papel
+|_http-aspnet-debug: ERROR: Script execution failed (use -d to debug)
+|_http-comments-displayer: Couldn't find any comments.
+| http-headers: 
+|   X-Powered-By: Express
+|   Content-Type: text/html; charset=utf-8
+|   Content-Length: 1754
+|   ETag: W/"6da-YVFdHGWR0nFijLJJbW8L2nwhZq8"
+|   Date: Wed, 08 Jun 2022 19:59:01 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+443/tcp open  https
+| http-useragent-tester: 
+|   Status for browser useragent: 401
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.166.116
+|   url                          method
+|_  https://10.129.166.116:443/  HTTP: Server returned no authentication headers.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-comments-displayer: Couldn't find any comments.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| tls-nextprotoneg: 
+|   http/1.1
+|_  http/1.0
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|_  least strength: A
+|_http-chrono: Request times for /; avg: 285.99ms; min: 208.09ms; max: 333.76ms
+|_http-mobileversion-checker: No mobile version detected.
+| http-vhosts: 
+| 16 names had status ERROR
+|_112 names had status 401
+| http-headers: 
+|   X-Powered-By: Express
+|   Content-Type: text/html; charset=utf-8
+|   Content-Length: 931
+|   ETag: W/"3a3-ltZ9andWBAdO1mJpoSYlrCWcCP0"
+|   Date: Wed, 08 Jun 2022 19:59:14 GMT
+|   Connection: close
+|   
+|_  (Request type: GET)
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       jpg: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    jpg: 1
+|_http-title: La Casa De Papel
+|_http-xssed: No previously reported XSS vuln.
+| tls-alpn: 
+|_  http/1.1
+| ssl-cert: Subject: commonName=lacasadepapel.htb/organizationName=La Casa De Papel
+| Not valid before: 2019-01-27T08:35:30
+|_Not valid after:  2029-01-24T08:35:30
+|_http-aspnet-debug: ERROR: Script execution failed (use -d to debug)
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.129.166.116
+|   Found the following error pages: 
+|   
+|   Error Code: 401
+|_  	https://10.129.166.116:443/
+|_ssl-date: TLS randomness does not represent time
+|_http-date: Wed, 08 Jun 2022 19:58:56 GMT; +59m57s from local time.
+| http-security-headers: 
+|   Strict_Transport_Security: 
+|_    HSTS not configured in HTTPS Server
+|_http-feed: Couldn't find any feeds.
+
+Host script results:
+|_dns-brute: Can't guess domain of "10.129.166.116"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Wed Jun  8 21:01:47 2022 -- 1 IP address (1 host up) scanned in 313.56 seconds
