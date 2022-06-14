@@ -1,0 +1,41 @@
+# Nmap 7.92 scan initiated Mon Jun 13 11:08:55 2022 as: nmap --script vuln -oA nmap/Vuln --min-rate 500 -p- 10.129.1.83
+Warning: 10.129.1.83 giving up on port because retransmission cap hit (10).
+Nmap scan report for 10.129.1.83
+Host is up (0.045s latency).
+Not shown: 53754 closed tcp ports (conn-refused), 11779 filtered tcp ports (no-response)
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+| http-cookie-flags: 
+|   /login.php: 
+|     PHPSESSID: 
+|_      httponly flag not set
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.1.83
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.129.1.83:80/login.php
+|     Form id: 
+|_    Form action: 
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-enum: 
+|   /login.php: Possible admin folder
+|_  /robots.txt: Robots file
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|_      http://ha.ckers.org/slowloris/
+
+# Nmap done at Mon Jun 13 11:21:05 2022 -- 1 IP address (1 host up) scanned in 730.11 seconds
