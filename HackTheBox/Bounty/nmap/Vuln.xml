@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Wed Jun 15 09:39:17 2022 as: nmap -&#45;script vuln -oA nmap/Vuln -&#45;min-rate 500 -p- 10.129.73.237 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/Vuln -&#45;min-rate 500 -p- 10.129.73.237" start="1655282357" startstr="Wed Jun 15 09:39:17 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.73.237" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<taskprogress task="Connect Scan" time="1655282369" percent="0.48"/>
+<taskprogress task="Connect Scan" time="1655282370" percent="0.87"/>
+<host starttime="1655282367" endtime="1655282703"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="10.129.73.237" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65534">
+<extrareasons reason="no-response" count="65534" proto="tcp" ports="1-79,81-65535"/>
+</extraports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/></port>
+</ports>
+<times srtt="54924" rttvar="15741" to="117888"/>
+</host>
+<runstats><finished time="1655282703" timestr="Wed Jun 15 09:45:03 2022" summary="Nmap done at Wed Jun 15 09:45:03 2022; 1 IP address (1 host up) scanned in 345.92 seconds" elapsed="345.92" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

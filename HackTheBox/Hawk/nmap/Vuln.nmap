@@ -1,0 +1,55 @@
+# Nmap 7.92 scan initiated Tue Jun 14 20:04:13 2022 as: nmap --script vuln -oA nmap/Vuln --min-rate 500 -p- 10.129.95.193
+Nmap scan report for 10.129.95.193
+Host is up (0.042s latency).
+Not shown: 65529 closed tcp ports (conn-refused)
+PORT     STATE SERVICE
+21/tcp   open  ftp
+22/tcp   open  ssh
+80/tcp   open  http
+| http-enum: 
+|   /rss.xml: RSS or Atom feed
+|   /robots.txt: Robots file
+|   /UPGRADE.txt: Drupal file
+|   /INSTALL.txt: Drupal file
+|   /INSTALL.mysql.txt: Drupal file
+|   /INSTALL.pgsql.txt: Drupal file
+|   /CHANGELOG.txt: Drupal v1
+|   /: Drupal version 7 
+|   /README: Interesting, a readme.
+|   /README.txt: Interesting, a readme.
+|   /0/: Potentially interesting folder
+|_  /user/: Potentially interesting folder
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.95.193
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.129.95.193:80/
+|     Form id: user-login-form
+|     Form action: /node?destination=node
+|     
+|     Path: http://10.129.95.193:80/user/register
+|     Form id: user-register-form
+|     Form action: /user/register
+|     
+|     Path: http://10.129.95.193:80/node?destination=node
+|     Form id: user-login-form
+|     Form action: /node?destination=node
+|     
+|     Path: http://10.129.95.193:80/user/password
+|     Form id: user-pass
+|     Form action: /user/password
+|     
+|     Path: http://10.129.95.193:80/user
+|     Form id: user-login
+|     Form action: /user
+|     
+|     Path: http://10.129.95.193:80/user/
+|     Form id: user-login
+|_    Form action: /user/
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+5435/tcp open  sceanics
+8082/tcp open  blackice-alerts
+9092/tcp open  XmlIpcRegSvc
+
+# Nmap done at Tue Jun 14 20:06:08 2022 -- 1 IP address (1 host up) scanned in 114.28 seconds

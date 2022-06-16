@@ -1,0 +1,80 @@
+# Nmap 7.92 scan initiated Thu Jun 16 18:11:01 2022 as: nmap -vv --script=ldap-search -p 389 --script-args ldap.maxobjects=-1 -oA nmap/ldap-search 10.129.54.55
+Nmap scan report for 10.129.54.55
+Host is up, received syn-ack (0.055s latency).
+Scanned at 2022-06-16 18:11:01 BST for 0s
+
+PORT    STATE SERVICE REASON
+389/tcp open  ldap    syn-ack
+| ldap-search: 
+|   Context: dc=lightweight,dc=htb
+|     dn: dc=lightweight,dc=htb
+|         objectClass: top
+|         objectClass: dcObject
+|         objectClass: organization
+|         o: lightweight htb
+|         dc: lightweight
+|     dn: cn=Manager,dc=lightweight,dc=htb
+|         objectClass: organizationalRole
+|         cn: Manager
+|         description: Directory Manager
+|     dn: ou=People,dc=lightweight,dc=htb
+|         objectClass: organizationalUnit
+|         ou: People
+|     dn: ou=Group,dc=lightweight,dc=htb
+|         objectClass: organizationalUnit
+|         ou: Group
+|     dn: uid=ldapuser1,ou=People,dc=lightweight,dc=htb
+|         uid: ldapuser1
+|         cn: ldapuser1
+|         sn: ldapuser1
+|         mail: ldapuser1@lightweight.htb
+|         objectClass: person
+|         objectClass: organizationalPerson
+|         objectClass: inetOrgPerson
+|         objectClass: posixAccount
+|         objectClass: top
+|         objectClass: shadowAccount
+|         userPassword: {crypt}$6$3qx0SD9x$Q9y1lyQaFKpxqkGqKAjLOWd33Nwdhj.l4MzV7vTnfkE/g/Z/7N5ZbdEQWfup2lSdASImHtQFh6zMo41ZA./44/
+|         shadowLastChange: 17691
+|         shadowMin: 0
+|         shadowMax: 99999
+|         shadowWarning: 7
+|         loginShell: /bin/bash
+|         uidNumber: 1000
+|         gidNumber: 1000
+|         homeDirectory: /home/ldapuser1
+|     dn: uid=ldapuser2,ou=People,dc=lightweight,dc=htb
+|         uid: ldapuser2
+|         cn: ldapuser2
+|         sn: ldapuser2
+|         mail: ldapuser2@lightweight.htb
+|         objectClass: person
+|         objectClass: organizationalPerson
+|         objectClass: inetOrgPerson
+|         objectClass: posixAccount
+|         objectClass: top
+|         objectClass: shadowAccount
+|         userPassword: {crypt}$6$xJxPjT0M$1m8kM00CJYCAgzT4qz8TQwyGFQvk3boaymuAmMZCOfm3OA7OKunLZZlqytUp2dun509OBE2xwX/QEfjdRQzgn1
+|         shadowLastChange: 17691
+|         shadowMin: 0
+|         shadowMax: 99999
+|         shadowWarning: 7
+|         loginShell: /bin/bash
+|         uidNumber: 1001
+|         gidNumber: 1001
+|         homeDirectory: /home/ldapuser2
+|     dn: cn=ldapuser1,ou=Group,dc=lightweight,dc=htb
+|         objectClass: posixGroup
+|         objectClass: top
+|         cn: ldapuser1
+|         userPassword: {crypt}x
+|         gidNumber: 1000
+|     dn: cn=ldapuser2,ou=Group,dc=lightweight,dc=htb
+|         objectClass: posixGroup
+|         objectClass: top
+|         cn: ldapuser2
+|         userPassword: {crypt}x
+|_        gidNumber: 1001
+
+Read data files from: /usr/bin/../share/nmap
+# Nmap done at Thu Jun 16 18:11:01 2022 -- 1 IP address (1 host up) scanned in 0.48 seconds

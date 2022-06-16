@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Tue Jun 14 20:04:13 2022 as: nmap -&#45;script vuln -oA nmap/Vuln -&#45;min-rate 500 -p- 10.129.95.193 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/Vuln -&#45;min-rate 500 -p- 10.129.95.193" start="1655233453" startstr="Tue Jun 14 20:04:13 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.95.193" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1655233464" endtime="1655233568"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="10.129.95.193" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65529">
+<extrareasons reason="conn-refused" count="65529" proto="tcp" ports="1-20,23-79,81-5434,5436-8081,8083-9091,9093-65535"/>
+</extraports>
+<port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/><script id="http-enum" output="&#xa;  /rss.xml: RSS or Atom feed&#xa;  /robots.txt: Robots file&#xa;  /UPGRADE.txt: Drupal file&#xa;  /INSTALL.txt: Drupal file&#xa;  /INSTALL.mysql.txt: Drupal file&#xa;  /INSTALL.pgsql.txt: Drupal file&#xa;  /CHANGELOG.txt: Drupal v1&#xa;  /: Drupal version 7 &#xa;  /README: Interesting, a readme.&#xa;  /README.txt: Interesting, a readme.&#xa;  /0/: Potentially interesting folder&#xa;  /user/: Potentially interesting folder&#xa;"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.95.193&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://10.129.95.193:80/&#xa;    Form id: user-login-form&#xa;    Form action: /node?destination=node&#xa;    &#xa;    Path: http://10.129.95.193:80/user/register&#xa;    Form id: user-register-form&#xa;    Form action: /user/register&#xa;    &#xa;    Path: http://10.129.95.193:80/node?destination=node&#xa;    Form id: user-login-form&#xa;    Form action: /node?destination=node&#xa;    &#xa;    Path: http://10.129.95.193:80/user/password&#xa;    Form id: user-pass&#xa;    Form action: /user/password&#xa;    &#xa;    Path: http://10.129.95.193:80/user&#xa;    Form id: user-login&#xa;    Form action: /user&#xa;    &#xa;    Path: http://10.129.95.193:80/user/&#xa;    Form id: user-login&#xa;    Form action: /user/&#xa;"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/></port>
+<port protocol="tcp" portid="5435"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="sceanics" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8082"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="blackice-alerts" method="table" conf="3"/></port>
+<port protocol="tcp" portid="9092"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="XmlIpcRegSvc" method="table" conf="3"/></port>
+</ports>
+<times srtt="42139" rttvar="704" to="100000"/>
+</host>
+<runstats><finished time="1655233568" timestr="Tue Jun 14 20:06:08 2022" summary="Nmap done at Tue Jun 14 20:06:08 2022; 1 IP address (1 host up) scanned in 114.28 seconds" elapsed="114.28" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

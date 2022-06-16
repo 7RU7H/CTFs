@@ -1,0 +1,33 @@
+# Nmap 7.92 scan initiated Thu Jun 16 17:43:11 2022 as: nmap --script vuln -oA nmap/Vuln --min-rate 500 -p- 10.129.95.236
+Nmap scan report for 10.129.95.236
+Host is up (0.049s latency).
+Not shown: 65307 filtered tcp ports (no-response), 225 filtered tcp ports (host-unreach)
+PORT    STATE SERVICE
+22/tcp  open  ssh
+80/tcp  open  http
+|_http-trace: TRACE is enabled
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-aspnet-debug: ERROR: Script execution failed (use -d to debug)
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+389/tcp open  ldap
+| ssl-poodle: 
+|   VULNERABLE:
+|   SSL POODLE information leak
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2014-3566  BID:70574
+|           The SSL protocol 3.0, as used in OpenSSL through 1.0.1i and other
+|           products, uses nondeterministic CBC padding, which makes it easier
+|           for man-in-the-middle attackers to obtain cleartext data via a
+|           padding-oracle attack, aka the "POODLE" issue.
+|     Disclosure date: 2014-10-14
+|     Check results:
+|       TLS_RSA_WITH_AES_128_CBC_SHA
+|       TLS_FALLBACK_SCSV properly implemented
+|     References:
+|       https://www.securityfocus.com/bid/70574
+|       https://www.openssl.org/~bodo/ssl-poodle.pdf
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566
+|_      https://www.imperialviolet.org/2014/10/14/poodle.html
+
+# Nmap done at Thu Jun 16 17:48:02 2022 -- 1 IP address (1 host up) scanned in 291.01 seconds

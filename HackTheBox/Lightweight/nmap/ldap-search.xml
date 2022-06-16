@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Thu Jun 16 18:11:01 2022 as: nmap -vv -&#45;script=ldap-search -p 389 -&#45;script-args ldap.maxobjects=-1 -oA nmap/ldap-search 10.129.54.55 -->
+<nmaprun scanner="nmap" args="nmap -vv -&#45;script=ldap-search -p 389 -&#45;script-args ldap.maxobjects=-1 -oA nmap/ldap-search 10.129.54.55" start="1655399461" startstr="Thu Jun 16 18:11:01 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="connect" protocol="tcp" numservices="1" services="389"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1655399461"/>
+<taskend task="NSE" time="1655399461"/>
+<taskbegin task="Ping Scan" time="1655399461"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.54.55" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<taskend task="Ping Scan" time="1655399461" extrainfo="1 total hosts"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1655399461"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1655399461"/>
+<taskbegin task="Connect Scan" time="1655399461"/>
+<taskend task="Connect Scan" time="1655399461" extrainfo="1 total ports"/>
+<taskbegin task="NSE" time="1655399461"/>
+<taskend task="NSE" time="1655399461"/>
+<host starttime="1655399461" endtime="1655399461"><status state="up" reason="syn-ack" reason_ttl="0"/>
+<address addr="10.129.54.55" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="389"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ldap" method="table" conf="3"/><script id="ldap-search" output="&#xa;  Context: dc=lightweight,dc=htb&#xa;    dn: dc=lightweight,dc=htb&#xa;        objectClass: top&#xa;        objectClass: dcObject&#xa;        objectClass: organization&#xa;        o: lightweight htb&#xa;        dc: lightweight&#xa;    dn: cn=Manager,dc=lightweight,dc=htb&#xa;        objectClass: organizationalRole&#xa;        cn: Manager&#xa;        description: Directory Manager&#xa;    dn: ou=People,dc=lightweight,dc=htb&#xa;        objectClass: organizationalUnit&#xa;        ou: People&#xa;    dn: ou=Group,dc=lightweight,dc=htb&#xa;        objectClass: organizationalUnit&#xa;        ou: Group&#xa;    dn: uid=ldapuser1,ou=People,dc=lightweight,dc=htb&#xa;        uid: ldapuser1&#xa;        cn: ldapuser1&#xa;        sn: ldapuser1&#xa;        mail: ldapuser1@lightweight.htb&#xa;        objectClass: person&#xa;        objectClass: organizationalPerson&#xa;        objectClass: inetOrgPerson&#xa;        objectClass: posixAccount&#xa;        objectClass: top&#xa;        objectClass: shadowAccount&#xa;        userPassword: {crypt}$6$3qx0SD9x$Q9y1lyQaFKpxqkGqKAjLOWd33Nwdhj.l4MzV7vTnfkE/g/Z/7N5ZbdEQWfup2lSdASImHtQFh6zMo41ZA./44/&#xa;        shadowLastChange: 17691&#xa;        shadowMin: 0&#xa;        shadowMax: 99999&#xa;        shadowWarning: 7&#xa;        loginShell: /bin/bash&#xa;        uidNumber: 1000&#xa;        gidNumber: 1000&#xa;        homeDirectory: /home/ldapuser1&#xa;    dn: uid=ldapuser2,ou=People,dc=lightweight,dc=htb&#xa;        uid: ldapuser2&#xa;        cn: ldapuser2&#xa;        sn: ldapuser2&#xa;        mail: ldapuser2@lightweight.htb&#xa;        objectClass: person&#xa;        objectClass: organizationalPerson&#xa;        objectClass: inetOrgPerson&#xa;        objectClass: posixAccount&#xa;        objectClass: top&#xa;        objectClass: shadowAccount&#xa;        userPassword: {crypt}$6$xJxPjT0M$1m8kM00CJYCAgzT4qz8TQwyGFQvk3boaymuAmMZCOfm3OA7OKunLZZlqytUp2dun509OBE2xwX/QEfjdRQzgn1&#xa;        shadowLastChange: 17691&#xa;        shadowMin: 0&#xa;        shadowMax: 99999&#xa;        shadowWarning: 7&#xa;        loginShell: /bin/bash&#xa;        uidNumber: 1001&#xa;        gidNumber: 1001&#xa;        homeDirectory: /home/ldapuser2&#xa;    dn: cn=ldapuser1,ou=Group,dc=lightweight,dc=htb&#xa;        objectClass: posixGroup&#xa;        objectClass: top&#xa;        cn: ldapuser1&#xa;        userPassword: {crypt}x&#xa;        gidNumber: 1000&#xa;    dn: cn=ldapuser2,ou=Group,dc=lightweight,dc=htb&#xa;        objectClass: posixGroup&#xa;        objectClass: top&#xa;        cn: ldapuser2&#xa;        userPassword: {crypt}x&#xa;        gidNumber: 1001&#xa;"/></port>
+</ports>
+<times srtt="54740" rttvar="42644" to="225316"/>
+</host>
+<taskbegin task="NSE" time="1655399461"/>
+<taskend task="NSE" time="1655399461"/>
+<runstats><finished time="1655399461" timestr="Thu Jun 16 18:11:01 2022" summary="Nmap done at Thu Jun 16 18:11:01 2022; 1 IP address (1 host up) scanned in 0.48 seconds" elapsed="0.48" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

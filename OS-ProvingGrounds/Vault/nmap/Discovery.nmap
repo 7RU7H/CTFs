@@ -1,16 +1,243 @@
-# Nmap 7.92 scan initiated Tue May 31 09:45:01 2022 as: nmap -Pn --script discovery -oA nmap/Discovery -p- --min-rate 500 192.168.187.172
+# Nmap 7.92 scan initiated Thu Jun 16 17:53:51 2022 as: nmap -Pn --script discovery -oA nmap/Discovery --min-rate 500 -p- 192.168.126.172
 Pre-scan script results:
 |_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
 | targets-asn: 
 |_  targets-asn.asn is a mandatory parameter
-|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
-Nmap scan report for 192.168.187.172
-Host is up.
-All 65535 scanned ports on 192.168.187.172 are in ignored states.
-Not shown: 65535 filtered tcp ports (no-response)
+Nmap scan report for 192.168.126.172
+Host is up (0.048s latency).
+Not shown: 65514 filtered tcp ports (no-response)
+PORT      STATE SERVICE
+53/tcp    open  domain
+|_dns-nsec-enum: Can't determine domain for host 192.168.126.172; use dns-nsec-enum.domains script arg.
+|_dns-nsec3-enum: Can't determine domain for host 192.168.126.172; use dns-nsec3-enum.domains script arg.
+88/tcp    open  kerberos-sec
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+389/tcp   open  ldap
+| ldap-rootdse: 
+| LDAP Results
+|   <ROOT>
+|       domainFunctionality: 7
+|       forestFunctionality: 7
+|       domainControllerFunctionality: 7
+|       rootDomainNamingContext: DC=vault,DC=offsec
+|       ldapServiceName: vault.offsec:dc$@VAULT.OFFSEC
+|       isGlobalCatalogReady: TRUE
+|       supportedSASLMechanisms: GSSAPI
+|       supportedSASLMechanisms: GSS-SPNEGO
+|       supportedSASLMechanisms: EXTERNAL
+|       supportedSASLMechanisms: DIGEST-MD5
+|       supportedLDAPVersion: 3
+|       supportedLDAPVersion: 2
+|       supportedLDAPPolicies: MaxPoolThreads
+|       supportedLDAPPolicies: MaxPercentDirSyncRequests
+|       supportedLDAPPolicies: MaxDatagramRecv
+|       supportedLDAPPolicies: MaxReceiveBuffer
+|       supportedLDAPPolicies: InitRecvTimeout
+|       supportedLDAPPolicies: MaxConnections
+|       supportedLDAPPolicies: MaxConnIdleTime
+|       supportedLDAPPolicies: MaxPageSize
+|       supportedLDAPPolicies: MaxBatchReturnMessages
+|       supportedLDAPPolicies: MaxQueryDuration
+|       supportedLDAPPolicies: MaxDirSyncDuration
+|       supportedLDAPPolicies: MaxTempTableSize
+|       supportedLDAPPolicies: MaxResultSetSize
+|       supportedLDAPPolicies: MinResultSets
+|       supportedLDAPPolicies: MaxResultSetsPerConn
+|       supportedLDAPPolicies: MaxNotificationPerConn
+|       supportedLDAPPolicies: MaxValRange
+|       supportedLDAPPolicies: MaxValRangeTransitive
+|       supportedLDAPPolicies: ThreadMemoryLimit
+|       supportedLDAPPolicies: SystemMemoryLimitPercent
+|       supportedControl: 1.2.840.113556.1.4.319
+|       supportedControl: 1.2.840.113556.1.4.801
+|       supportedControl: 1.2.840.113556.1.4.473
+|       supportedControl: 1.2.840.113556.1.4.528
+|       supportedControl: 1.2.840.113556.1.4.417
+|       supportedControl: 1.2.840.113556.1.4.619
+|       supportedControl: 1.2.840.113556.1.4.841
+|       supportedControl: 1.2.840.113556.1.4.529
+|       supportedControl: 1.2.840.113556.1.4.805
+|       supportedControl: 1.2.840.113556.1.4.521
+|       supportedControl: 1.2.840.113556.1.4.970
+|       supportedControl: 1.2.840.113556.1.4.1338
+|       supportedControl: 1.2.840.113556.1.4.474
+|       supportedControl: 1.2.840.113556.1.4.1339
+|       supportedControl: 1.2.840.113556.1.4.1340
+|       supportedControl: 1.2.840.113556.1.4.1413
+|       supportedControl: 2.16.840.1.113730.3.4.9
+|       supportedControl: 2.16.840.1.113730.3.4.10
+|       supportedControl: 1.2.840.113556.1.4.1504
+|       supportedControl: 1.2.840.113556.1.4.1852
+|       supportedControl: 1.2.840.113556.1.4.802
+|       supportedControl: 1.2.840.113556.1.4.1907
+|       supportedControl: 1.2.840.113556.1.4.1948
+|       supportedControl: 1.2.840.113556.1.4.1974
+|       supportedControl: 1.2.840.113556.1.4.1341
+|       supportedControl: 1.2.840.113556.1.4.2026
+|       supportedControl: 1.2.840.113556.1.4.2064
+|       supportedControl: 1.2.840.113556.1.4.2065
+|       supportedControl: 1.2.840.113556.1.4.2066
+|       supportedControl: 1.2.840.113556.1.4.2090
+|       supportedControl: 1.2.840.113556.1.4.2205
+|       supportedControl: 1.2.840.113556.1.4.2204
+|       supportedControl: 1.2.840.113556.1.4.2206
+|       supportedControl: 1.2.840.113556.1.4.2211
+|       supportedControl: 1.2.840.113556.1.4.2239
+|       supportedControl: 1.2.840.113556.1.4.2255
+|       supportedControl: 1.2.840.113556.1.4.2256
+|       supportedControl: 1.2.840.113556.1.4.2309
+|       supportedControl: 1.2.840.113556.1.4.2330
+|       supportedControl: 1.2.840.113556.1.4.2354
+|       supportedCapabilities: 1.2.840.113556.1.4.800
+|       supportedCapabilities: 1.2.840.113556.1.4.1670
+|       supportedCapabilities: 1.2.840.113556.1.4.1791
+|       supportedCapabilities: 1.2.840.113556.1.4.1935
+|       supportedCapabilities: 1.2.840.113556.1.4.2080
+|       supportedCapabilities: 1.2.840.113556.1.4.2237
+|       subschemaSubentry: CN=Aggregate,CN=Schema,CN=Configuration,DC=vault,DC=offsec
+|       serverName: CN=DC,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=vault,DC=offsec
+|       schemaNamingContext: CN=Schema,CN=Configuration,DC=vault,DC=offsec
+|       namingContexts: DC=vault,DC=offsec
+|       namingContexts: CN=Configuration,DC=vault,DC=offsec
+|       namingContexts: CN=Schema,CN=Configuration,DC=vault,DC=offsec
+|       namingContexts: DC=DomainDnsZones,DC=vault,DC=offsec
+|       namingContexts: DC=ForestDnsZones,DC=vault,DC=offsec
+|       isSynchronized: TRUE
+|       highestCommittedUSN: 61509
+|       dsServiceName: CN=NTDS Settings,CN=DC,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=vault,DC=offsec
+|       dnsHostName: DC.vault.offsec
+|       defaultNamingContext: DC=vault,DC=offsec
+|       currentTime: 20220616165632.0Z
+|_      configurationNamingContext: CN=Configuration,DC=vault,DC=offsec
+445/tcp   open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+464/tcp   open  kpasswd5
+593/tcp   open  http-rpc-epmap
+|_banner: ncacn_http/1.0
+636/tcp   open  ldapssl
+3268/tcp  open  globalcatLDAP
+3269/tcp  open  globalcatLDAPssl
+3389/tcp  open  ms-wbt-server
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|_  least strength: C
+| rdp-ntlm-info: 
+|   Target_Name: VAULT
+|   NetBIOS_Domain_Name: VAULT
+|   NetBIOS_Computer_Name: DC
+|   DNS_Domain_Name: vault.offsec
+|   DNS_Computer_Name: DC.vault.offsec
+|   DNS_Tree_Name: vault.offsec
+|   Product_Version: 10.0.17763
+|_  System_Time: 2022-06-16T16:56:26+00:00
+|_ssl-date: 2022-06-16T16:56:27+00:00; 0s from scanner time.
+| ssl-cert: Subject: commonName=DC.vault.offsec
+| Not valid before: 2022-06-15T16:23:36
+|_Not valid after:  2022-12-15T16:23:36
+| rdp-enum-encryption: 
+|   Security layer
+|     CredSSP (NLA): SUCCESS
+|     CredSSP with Early User Auth: SUCCESS
+|     RDSTLS: SUCCESS
+|     SSL: SUCCESS
+|_  RDP Protocol Version:  RDP 10.6 server
+5985/tcp  open  wsman
+9389/tcp  open  adws
+49666/tcp open  unknown
+49668/tcp open  unknown
+49669/tcp open  unknown
+|_banner: ncacn_http/1.0
+49670/tcp open  unknown
+49675/tcp open  unknown
+49699/tcp open  unknown
+49792/tcp open  unknown
+Service Info: Host: DC; OS: Windows
 
 Host script results:
-|_dns-brute: Can't guess domain of "192.168.187.172"; use dns-brute.domain script argument.
+| smb2-time: 
+|   date: 2022-06-16T16:56:27
+|_  start_date: N/A
+| smb2-capabilities: 
+|   2.0.2: 
+|     Distributed File System
+|   2.1: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.0.2: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.1.1: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_dns-brute: Can't guess domain of "192.168.126.172"; use dns-brute.domain script argument.
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
 |_fcrdns: FAIL (No PTR record)
+| smb-protocols: 
+|   dialects: 
+|     2.0.2
+|     2.1
+|     3.0
+|     3.0.2
+|_    3.1.1
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled and required
 
-# Nmap done at Tue May 31 09:49:30 2022 -- 1 IP address (1 host up) scanned in 269.09 seconds
+# Nmap done at Thu Jun 16 17:58:21 2022 -- 1 IP address (1 host up) scanned in 269.81 seconds
