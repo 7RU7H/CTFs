@@ -1,0 +1,285 @@
+# Nmap 7.92 scan initiated Tue Jun 14 22:58:10 2022 as: nmap --script discovery -oA nmap/Discovery --min-rate 500 -p- 10.129.73.197
+Pre-scan script results:
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Warning: 10.129.73.197 giving up on port because retransmission cap hit (10).
+Nmap scan report for 10.129.73.197
+Host is up (0.048s latency).
+Not shown: 62183 closed tcp ports (conn-refused), 3349 filtered tcp ports (no-response)
+Bug in http-security-headers: no string output.
+PORT    STATE SERVICE
+22/tcp  open  ssh
+|_banner: SSH-2.0-OpenSSH_8.0
+| ssh2-enum-algos: 
+|   kex_algorithms: (11)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (7)
+|   mac_algorithms: (8)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   2048 10:05:ea:50:56:a6:00:cb:1c:9c:93:df:5f:83:e0:64 (RSA)
+|   256 58:8c:82:1c:c6:63:2a:83:87:5c:2f:2b:4f:4d:c3:79 (ECDSA)
+|_  256 31:78:af:d1:3b:c4:2e:9d:60:4e:eb:5d:03:ec:a0:22 (ED25519)
+80/tcp  open  http
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.73.197
+|     
+|     Path: http://10.129.73.197:80/
+|     Line number: 10
+|     Comment: 
+|         /*<![CDATA[*/
+|     
+|     Path: http://10.129.73.197:80/
+|     Line number: 11
+|     Comment: 
+|         /*!
+|                * Bootstrap v4.3.1 (https://getbootstrap.com/)
+|                * Copyright 2011-2019 The Bootstrap Authors
+|                * Copyright 2011-2019 Twitter, Inc.
+|                * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+|                */
+|     
+|     Path: http://10.129.73.197:80/
+|     Line number: 19
+|     Comment: 
+|         /*!
+|                * CentOS Customization
+|                * Copyright 2021 Alain Reguera Delgado
+|                * Licensed under CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+|                */
+|     
+|     Path: http://10.129.73.197:80/
+|     Line number: 25
+|     Comment: 
+|         /*]]>*/
+|     
+|     Path: http://10.129.73.197:80/
+|     Line number: 17
+|     Comment: 
+|_        /*# sourceMappingURL=bootstrap.min.css.map */
+|_http-feed: Couldn't find any feeds.
+|_http-chrono: Request times for /; avg: 10128.43ms; min: 5514.13ms; max: 16715.18ms
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       png: 1
+|     /icons/
+|       png: 1
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /icons/
+|   Total files found (by extension):
+|_    png: 2
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-headers: 
+|   Date: Tue, 14 Jun 2022 22:02:42 GMT
+|   Server: Apache/2.4.37 (centos) OpenSSL/1.1.1k mod_fcgid/2.3.9
+|   X-Backend-Server: office.paper
+|   Last-Modified: Sun, 27 Jun 2021 23:47:13 GMT
+|   ETag: "30c0b-5c5c7fdeec240"
+|   Accept-Ranges: bytes
+|   Content-Length: 199691
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: GET)
+|_http-mobileversion-checker: No mobile version detected.
+|_http-date: Tue, 14 Jun 2022 22:02:01 GMT; +59m47s from local time.
+|_http-title: HTTP Server Test Page powered by CentOS
+| http-enum: 
+|   /icons/: Potentially interesting folder w/ directory listing
+|_  /manual/: Potentially interesting folder
+| http-useragent-tester: 
+|   Allowed User Agents: 
+|     PHP/
+|   Change in Status Code: 
+|     WWW-Mechanize/1.34: 403
+|     Wget/1.13.4 (linux-gnu): 403
+|     PECL::HTTP: 403
+|     MFC_Tear_Sample: 403
+|     lwp-trivial: 403
+|     http client: 403
+|     libwww: 403
+|     libcurl-agent/1.0: 403
+|     PHPCrawl: 403
+|     Snoopy: 403
+|     Python-urllib/2.5: 403
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html): 403
+|     URI::Fetch: 403
+|     HTTP::Lite: 403
+|     GT::WWW: 403
+|_    Zend_Http_Client: 403
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-vhosts: 
+|_128 names had status 403
+| http-grep: 
+|   (1) http://10.129.73.197:80/: 
+|     (1) email: 
+|_      + webmaster@example.com
+|_http-traceroute: ERROR: Script execution failed (use -d to debug)
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.129.73.197
+|   Found the following error pages: 
+|   
+|   Error Code: 403
+|_  	http://10.129.73.197:80/
+|_http-generator: HTML Tidy for HTML5 for Linux version 5.7.28
+|_http-xssed: No previously reported XSS vuln.
+|_http-trace: TRACE is enabled
+443/tcp open  https
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       png: 1
+|     /icons/
+|       png: 1
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /icons/
+|   Total files found (by extension):
+|_    png: 2
+|_http-chrono: Request times for /; avg: 14397.29ms; min: 7971.56ms; max: 21704.40ms
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.73.197
+|     
+|     Path: https://10.129.73.197:443/
+|     Line number: 10
+|     Comment: 
+|         /*<![CDATA[*/
+|     
+|     Path: https://10.129.73.197:443/
+|     Line number: 11
+|     Comment: 
+|         /*!
+|                * Bootstrap v4.3.1 (https://getbootstrap.com/)
+|                * Copyright 2011-2019 The Bootstrap Authors
+|                * Copyright 2011-2019 Twitter, Inc.
+|                * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+|                */
+|     
+|     Path: https://10.129.73.197:443/
+|     Line number: 19
+|     Comment: 
+|         /*!
+|                * CentOS Customization
+|                * Copyright 2021 Alain Reguera Delgado
+|                * Licensed under CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+|                */
+|     
+|     Path: https://10.129.73.197:443/
+|     Line number: 25
+|     Comment: 
+|         /*]]>*/
+|     
+|     Path: https://10.129.73.197:443/
+|     Line number: 17
+|     Comment: 
+|_        /*# sourceMappingURL=bootstrap.min.css.map */
+|_http-date: Tue, 14 Jun 2022 22:02:29 GMT; +59m50s from local time.
+| ssl-enum-ciphers: 
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CCM (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CCM (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CCM (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CCM (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|   TLSv1.3: 
+|     ciphers: 
+|       TLS_AKE_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A
+|       TLS_AKE_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - A
+|       TLS_AKE_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|       TLS_AKE_WITH_AES_128_CCM_SHA256 (ecdh_x25519) - A
+|     cipher preference: server
+|_  least strength: A
+|_http-title: HTTP Server Test Page powered by CentOS
+| http-grep: 
+|   (1) https://10.129.73.197:443/: 
+|     (1) email: 
+|_      + webmaster@example.com
+|_http-generator: HTML Tidy for HTML5 for Linux version 5.7.28
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.129.73.197
+|   Found the following error pages: 
+|   
+|   Error Code: 403
+|_  	https://10.129.73.197:443/
+|_http-mobileversion-checker: No mobile version detected.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-feed: Couldn't find any feeds.
+| http-useragent-tester: 
+|   Status for browser useragent: 403
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| ssl-cert: Subject: commonName=localhost.localdomain/organizationName=Unspecified/countryName=US
+| Subject Alternative Name: DNS:localhost.localdomain
+| Not valid before: 2021-07-03T08:52:34
+|_Not valid after:  2022-07-08T10:32:34
+| http-security-headers: 
+|   Strict_Transport_Security: 
+|_    HSTS not configured in HTTPS Server
+| http-headers: 
+|   Date: Tue, 14 Jun 2022 22:02:29 GMT
+|   Server: Apache/2.4.37 (centos) OpenSSL/1.1.1k mod_fcgid/2.3.9
+|   Last-Modified: Sun, 27 Jun 2021 23:47:13 GMT
+|   ETag: "30c0b-5c5c7fdeec240"
+|   Accept-Ranges: bytes
+|   Content-Length: 199691
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: GET)
+| tls-alpn: 
+|_  http/1.1
+|_http-xssed: No previously reported XSS vuln.
+|_ssl-date: TLS randomness does not represent time
+|_http-trace: TRACE is enabled
+| http-vhosts: 
+| 105 names had status 403
+|_23 names had status 400
+
+Host script results:
+|_dns-brute: Can't guess domain of "10.129.73.197"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Tue Jun 14 23:05:29 2022 -- 1 IP address (1 host up) scanned in 439.20 seconds

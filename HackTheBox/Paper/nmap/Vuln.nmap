@@ -1,0 +1,21 @@
+# Nmap 7.92 scan initiated Tue Jun 14 23:06:58 2022 as: nmap --script vuln -oA nmap/Vuln --min-rate 500 -p- 10.129.73.197
+Nmap scan report for 10.129.73.197
+Host is up (0.044s latency).
+Not shown: 65532 closed tcp ports (conn-refused)
+PORT    STATE SERVICE
+22/tcp  open  ssh
+80/tcp  open  http
+|_http-trace: TRACE is enabled
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+| http-enum: 
+|   /icons/: Potentially interesting folder w/ directory listing
+|_  /manual/: Potentially interesting folder
+443/tcp open  https
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-trace: TRACE is enabled
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+
+# Nmap done at Tue Jun 14 23:08:42 2022 -- 1 IP address (1 host up) scanned in 103.48 seconds
