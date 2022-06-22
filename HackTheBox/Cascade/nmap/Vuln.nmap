@@ -1,0 +1,28 @@
+# Nmap 7.92 scan initiated Wed Jun 22 08:40:08 2022 as: nmap -Pn --script vuln -oA nmap/Vuln --min-rate 500 -p- 10.129.124.131
+Nmap scan report for 10.129.124.131
+Host is up (0.044s latency).
+Not shown: 65520 filtered tcp ports (no-response)
+PORT      STATE SERVICE
+53/tcp    open  domain
+88/tcp    open  kerberos-sec
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+389/tcp   open  ldap
+445/tcp   open  microsoft-ds
+636/tcp   open  ldapssl
+3268/tcp  open  globalcatLDAP
+3269/tcp  open  globalcatLDAPssl
+|_ssl-ccs-injection: No reply from server (TIMEOUT)
+5985/tcp  open  wsman
+49154/tcp open  unknown
+49155/tcp open  unknown
+49157/tcp open  unknown
+49158/tcp open  unknown
+49173/tcp open  unknown
+
+Host script results:
+|_smb-vuln-ms10-061: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_smb-vuln-ms10-054: false
+|_samba-vuln-cve-2012-1182: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+
+# Nmap done at Wed Jun 22 08:43:30 2022 -- 1 IP address (1 host up) scanned in 201.78 seconds
