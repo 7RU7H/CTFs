@@ -1,11 +1,11 @@
 # Walkthrough
-Name: Forest
-Date: 03/06/2022
-Difficulty: Easy / User Average: Medium
-Description: Retired Staff Pick Active Directory machine
+Name: Forest  
+Date: 03/06/2022  
+Difficulty: Easy / User Average: Medium  
+Description: Retired Staff Pick Active Directory machine  
 Better Description:  
-Goals: OSCP Prep, revise DNS, LDAP, SMB, RPC enumeration; Revise AD attacks from THM stuff.
-Learnt: Habits must change in note taking, I doing ok and the next improvements aren't far away just another 50 machines away.
+Goals: OSCP Prep, revise DNS, LDAP, SMB, RPC enumeration; Revise AD attacks from THM stuff.  
+Learnt: Habits must change in note taking, I doing ok and the next improvements aren't far away just another 50 machines away.  
 
 This is mainly a hand hold through this machine that will be redone at a later date to test myself. Need to revise and add to cheatsheets also while doing this it pulled up note taking vs writing habits. I will have on the same day uploaded another AD machine from HTB without Ippsec. Basically I love vim too much should use Obsidian more. Note then write stuff.
 
@@ -22,9 +22,9 @@ Went through my [SMB Cheatsheet](https://github.com/7RU7H/Archive/blob/main/Reco
 rpcclient -U "" -N $IP
 ```
 
-![rpc](Screenshosts/rcpenum.png)
-![rpc1](Screenshosts/rcpenum-one.png)
-![rpc2](Screenshosts/rcpenum-two.png)
+![rpc](Screenshots/rcpenum.png)
+![rpc1](Screenshots/rcpenum-one.png)
+![rpc2](Screenshots/rcpenum-two.png)
 
 The above was some of the stuff I tried, found another cheatsheet to added to my current RPC Cheatsheet, while nmap ran:
 ```bash
