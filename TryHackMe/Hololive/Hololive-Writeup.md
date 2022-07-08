@@ -19,24 +19,47 @@ The inital nmap:
 #### Task 8 Answers
 
 What is the last octet of the IP address of the public-facing web server?
-```toggle
+```
 33
 ```
 How many ports are open on the web server?
-```toggle
+```
 3
 ```
 What CME is running on port 80 of the web server?
-```toggle
+```
 wordpress
 ```
 What version of the CME is running on port 80 of the web server?
-```toggle
+```
 5.5.3
 ```
 What is the HTTP title of the web server?
-```toggle
+```
 holo.live
+```
+
+## Web App Exploitation
+
+#### Task 9 Answers
+
+![task9](Screenshots/gobuster-task9.png)
+
+```bash
+gobuster vhost -u http://holo.live -w /usr/share/amass/wordlists/subdomains-top1mil-110000.txt
+```
+
+What domains loads images on the first web page?
+```
+www.holo.live
+```
+What are the two other domains present on the web server? Format: Alphabetical Order
+```
+admin.holo.live, dev.holo.live
+```
+
+```bash
+git clone https://github.com/danielmiessler/SecLists.git
 ```
 
 ## Exploit
