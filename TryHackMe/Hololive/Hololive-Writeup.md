@@ -12,9 +12,9 @@ Learnt:
 I ran a masscan and alarm so that the network did not shutdown.
 
 The inital nmap:
-![initnmap](Screenshots/init-recon-nmap-webserver.png)
+![initnmap](init-recon-nmap-webserver.png)
 
-![nikto](Screenshots/nikto-init-webserver.png)
+![nikto](nikto-init-webserver.png)
 
 #### Task 8 Answers
 
