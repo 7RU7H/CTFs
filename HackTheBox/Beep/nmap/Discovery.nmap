@@ -1,39 +1,45 @@
-# Nmap 7.92 scan initiated Tue May 17 09:16:12 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 5000 10.129.1.226
+# Nmap 7.92 scan initiated Sat Jul  9 20:03:34 2022 as: nmap --script discovery -oA Discovery 10.129.77.22
 Pre-scan script results:
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
 | targets-asn: 
 |_  targets-asn.asn is a mandatory parameter
 |_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
-|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
-Nmap scan report for 10.129.1.226
-Host is up (0.070s latency).
-Not shown: 65498 filtered tcp ports (no-response), 27 closed tcp ports (conn-refused)
-PORT     STATE SERVICE
-22/tcp   open  ssh
+Nmap scan report for 10.129.77.22
+Host is up (0.043s latency).
+Not shown: 988 closed tcp ports (conn-refused)
+PORT      STATE SERVICE
+22/tcp    open  ssh
 | ssh2-enum-algos: 
 |   kex_algorithms: (3)
 |   server_host_key_algorithms: (2)
 |   encryption_algorithms: (13)
 |   mac_algorithms: (6)
 |_  compression_algorithms: (2)
-|_banner: SSH-2.0-OpenSSH_4.3
 | ssh-hostkey: 
 |   1024 ad:ee:5a:bb:69:37:fb:27:af:b8:30:72:a0:f9:6f:53 (DSA)
 |_  2048 bc:c6:73:59:13:a1:8a:4b:55:07:50:f6:65:1d:6d:0d (RSA)
-25/tcp   open  smtp
+|_banner: SSH-2.0-OpenSSH_4.3
+25/tcp    open  smtp
 |_smtp-commands: Couldn't establish connection on port 25
 |_smtp-open-relay: Couldn't establish connection on port 25
-80/tcp   open  http
-|_http-errors: Couldn't find any error pages.
+80/tcp    open  http
 | http-headers: 
-|   Date: Tue, 17 May 2022 08:17:57 GMT
+|   Date: Sat, 09 Jul 2022 19:05:14 GMT
 |   Server: Apache/2.2.3 (CentOS)
-|   Location: https://10.129.1.226/
+|   Location: https://10.129.77.22/
 |   Content-Length: 282
 |   Connection: close
 |   Content-Type: text/html; charset=iso-8859-1
 |   
 |_  (Request type: GET)
-|_http-date: Tue, 17 May 2022 08:17:55 GMT; +59m59s from local time.
+|_http-trace: TRACE is enabled
+| http-grep: 
+|   (1) https://10.129.77.22:443/: 
+|     (1) ip: 
+|_      + 10.129.77.22
+|_http-xssed: No previously reported XSS vuln.
+|_http-chrono: Request times for /; avg: 159.83ms; min: 149.62ms; max: 199.23ms
+|_http-date: Sat, 09 Jul 2022 19:05:14 GMT; +1h00m00s from local time.
 | http-security-headers: 
 |   Cache_Control: 
 |     Header: Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
@@ -41,12 +47,20 @@ PORT     STATE SERVICE
 |     Header: Pragma: no-cache
 |   Expires: 
 |_    Header: Expires: Thu, 19 Nov 1981 08:52:00 GMT
-|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
-|_http-trace: TRACE is enabled
+|_http-comments-displayer: Couldn't find any comments.
+| http-sitemap-generator: 
+|   Directory structure:
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    
+|_http-errors: Couldn't find any error pages.
 |_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-title: Did not follow redirect to https://10.129.77.22/
 | http-useragent-tester: 
 |   Status for browser useragent: 200
-|   Redirected To: https://10.129.1.226/
+|   Redirected To: https://10.129.77.22/
 |   Allowed User Agents: 
 |     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
 |     libwww
@@ -65,42 +79,32 @@ PORT     STATE SERVICE
 |     PECL::HTTP
 |     Wget/1.13.4 (linux-gnu)
 |_    WWW-Mechanize/1.34
-| http-enum: 
-|_  /icons/: Potentially interesting directory w/ listing on 'apache/2.2.3 (centos)'
 | http-vhosts: 
 |_128 names had status 302
-|_http-xssed: No previously reported XSS vuln.
-|_http-title: Did not follow redirect to https://10.129.1.226/
+| http-enum: 
+|_  /icons/: Potentially interesting directory w/ listing on 'apache/2.2.3 (centos)'
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
 |_http-feed: Couldn't find any feeds.
 |_http-mobileversion-checker: No mobile version detected.
-| http-sitemap-generator: 
-|   Directory structure:
-|   Longest directory structure:
-|     Depth: 0
-|     Dir: /
-|   Total files found (by extension):
-|_    
-|_http-chrono: Request times for /; avg: 171.24ms; min: 151.75ms; max: 200.31ms
-|_http-comments-displayer: Couldn't find any comments.
-110/tcp  open  pop3
-|_tls-alpn: ERROR: Script execution failed (use -d to debug)
+110/tcp   open  pop3
 |_ssl-cert: ERROR: Script execution failed (use -d to debug)
-|_tls-nextprotoneg: ERROR: Script execution failed (use -d to debug)
 |_ssl-date: ERROR: Script execution failed (use -d to debug)
-111/tcp  open  rpcbind
+|_tls-nextprotoneg: ERROR: Script execution failed (use -d to debug)
+|_tls-alpn: ERROR: Script execution failed (use -d to debug)
+111/tcp   open  rpcbind
 | rpcinfo: 
 |   program version    port/proto  service
 |   100000  2            111/tcp   rpcbind
 |   100000  2            111/udp   rpcbind
-|   100024  1            938/udp   status
-|_  100024  1            941/tcp   status
-143/tcp  open  imap
-|_tls-alpn: ERROR: Script execution failed (use -d to debug)
+|   100024  1            940/udp   status
+|_  100024  1            943/tcp   status
+143/tcp   open  imap
 |_ssl-cert: ERROR: Script execution failed (use -d to debug)
-|_tls-nextprotoneg: ERROR: Script execution failed (use -d to debug)
-|_imap-ntlm-info: ERROR: Script execution failed (use -d to debug)
+|_tls-alpn: ERROR: Script execution failed (use -d to debug)
 |_ssl-date: ERROR: Script execution failed (use -d to debug)
-443/tcp  open  https
+|_imap-ntlm-info: ERROR: Script execution failed (use -d to debug)
+|_tls-nextprotoneg: ERROR: Script execution failed (use -d to debug)
+443/tcp   open  https
 | http-security-headers: 
 |   Strict_Transport_Security: 
 |     HSTS not configured in HTTPS Server
@@ -110,6 +114,45 @@ PORT     STATE SERVICE
 |     Header: Pragma: no-cache
 |   Expires: 
 |_    Header: Expires: Thu, 19 Nov 1981 08:52:00 GMT
+|_ssl-date: 2022-07-09T19:03:41+00:00; 0s from scanner time.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-trace: TRACE is enabled
+|_http-mobileversion-checker: No mobile version detected.
+|_http-chrono: Request times for /; avg: 349.71ms; min: 298.84ms; max: 499.92ms
+|_http-title: Elastix - Login page
+| http-robots.txt: 1 disallowed entry 
+|_/
+|_http-errors: Couldn't find any error pages.
+| ssl-cert: Subject: commonName=localhost.localdomain/organizationName=SomeOrganization/stateOrProvinceName=SomeState/countryName=--
+| Not valid before: 2017-04-07T08:22:08
+|_Not valid after:  2018-04-07T08:22:08
+| http-headers: 
+|   Date: Sat, 09 Jul 2022 19:03:48 GMT
+|   Server: Apache/2.2.3 (CentOS)
+|   X-Powered-By: PHP/5.1.6
+|   Set-Cookie: elastixSession=nvd7slbnm2eav8m01dqagjuq67; path=/
+|   Expires: Thu, 19 Nov 1981 08:52:00 GMT
+|   Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+|   Pragma: no-cache
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.77.22
+|   url                        method
+|_  https://10.129.77.22:443/  FORM
+|_http-date: Sat, 09 Jul 2022 19:03:41 GMT; +59m58s from local time.
+| http-php-version: Versions from credits query (more accurate): 5.1.3 - 5.1.6
+|_Version from header x-powered-by: PHP/5.1.6
+| http-vhosts: 
+| 124 names had status 200
+| auth
+| vpn
+| sip
+|_mssql
+|_http-feed: Couldn't find any feeds.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
 | ssl-enum-ciphers: 
 |   SSLv3: 
 |     ciphers: 
@@ -157,29 +200,19 @@ PORT     STATE SERVICE
 |       Ciphersuite uses MD5 for message integrity
 |       Insecure certificate signature (SHA1), score capped at F
 |_  least strength: F
-| http-php-version: Versions from credits query (more accurate): 5.1.3 - 5.1.6
-|_Version from header x-powered-by: PHP/5.1.6
-|_http-title: Elastix - Login page
-|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
-|_http-referer-checker: Couldn't find any cross-domain scripts.
-|_http-xssed: No previously reported XSS vuln.
-|_ssl-date: 2022-05-17T08:16:50+00:00; -1s from scanner time.
-|_http-date: Tue, 17 May 2022 08:17:17 GMT; +59m59s from local time.
-|_http-feed: Couldn't find any feeds.
-| http-headers: 
-|   Date: Tue, 17 May 2022 08:17:17 GMT
-|   Server: Apache/2.2.3 (CentOS)
-|   X-Powered-By: PHP/5.1.6
-|   Set-Cookie: elastixSession=du17uf2jdiitfo93ucdecamc25; path=/
-|   Expires: Thu, 19 Nov 1981 08:52:00 GMT
-|   Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
-|   Pragma: no-cache
-|   Connection: close
-|   Content-Type: text/html; charset=UTF-8
-|   
-|_  (Request type: HEAD)
-| http-robots.txt: 1 disallowed entry 
-|_/
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /themes/elastixneo/
+|       css: 1
+|     /themes/elastixneo/images/
+|       png: 1
+|   Longest directory structure:
+|     Depth: 3
+|     Dir: /themes/elastixneo/images/
+|   Total files found (by extension):
+|_    Other: 1; css: 1; png: 1
 | http-useragent-tester: 
 |   Status for browser useragent: 200
 |   Allowed User Agents: 
@@ -200,58 +233,90 @@ PORT     STATE SERVICE
 |     PECL::HTTP
 |     Wget/1.13.4 (linux-gnu)
 |_    WWW-Mechanize/1.34
-|_http-errors: Couldn't find any error pages.
-| http-sitemap-generator: 
-|   Directory structure:
-|     /
-|       Other: 1
-|     /themes/elastixneo/
-|       css: 1
-|     /themes/elastixneo/images/
-|       png: 1
-|   Longest directory structure:
-|     Depth: 3
-|     Dir: /themes/elastixneo/images/
-|   Total files found (by extension):
-|_    Other: 1; css: 1; png: 1
-|_http-trace: TRACE is enabled
-| ssl-cert: Subject: commonName=localhost.localdomain/organizationName=SomeOrganization/stateOrProvinceName=SomeState/countryName=--
-| Not valid before: 2017-04-07T08:22:08
-|_Not valid after:  2018-04-07T08:22:08
-|_http-chrono: Request times for /; avg: 411.15ms; min: 352.41ms; max: 486.50ms
-|_http-mobileversion-checker: No mobile version detected.
 | http-comments-displayer: 
-| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.1.226
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.77.22
 |     
-|     Path: https://10.129.1.226:443/themes/elastixneo/login_styles.css
-|     Line number: 29
-|     Comment: 
-|         /* -moz-box-shadow: 8px 8px 10px rgb(0,0,0); */
-|     
-|     Path: https://10.129.1.226:443/
+|     Path: https://10.129.77.22:443/
 |     Line number: 6
 |     Comment: 
-|_        <!--<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">-->
-| http-auth-finder: 
-| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.1.226
-|   url                        method
-|_  https://10.129.1.226:443/  FORM
-| http-vhosts: 
-| 126 names had status 200
-| testing
-|_sip
-993/tcp  open  imaps
-995/tcp  open  pop3s
-3306/tcp open  mysql
-|_ssl-date: ERROR: Script execution failed (use -d to debug)
-|_ssl-cert: ERROR: Script execution failed (use -d to debug)
-|_tls-alpn: ERROR: Script execution failed (use -d to debug)
-|_mysql-info: ERROR: Script execution failed (use -d to debug)
-|_tls-nextprotoneg: ERROR: Script execution failed (use -d to debug)
+|         <!--<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">-->
+|     
+|     Path: https://10.129.77.22:443/themes/elastixneo/login_styles.css
+|     Line number: 29
+|     Comment: 
+|_        /* -moz-box-shadow: 8px 8px 10px rgb(0,0,0); */
+|_http-xssed: No previously reported XSS vuln.
+993/tcp   open  imaps
+995/tcp   open  pop3s
+3306/tcp  open  mysql
 |_mysql-vuln-cve2012-2122: ERROR: Script execution failed (use -d to debug)
+|_tls-nextprotoneg: ERROR: Script execution failed (use -d to debug)
+|_mysql-info: ERROR: Script execution failed (use -d to debug)
+|_tls-alpn: ERROR: Script execution failed (use -d to debug)
+|_ssl-cert: ERROR: Script execution failed (use -d to debug)
+|_ssl-date: ERROR: Script execution failed (use -d to debug)
+4445/tcp  open  upnotifyp
+10000/tcp open  snet-sensor-mgmt
+|_ssl-date: 2022-07-09T19:04:05+00:00; 0s from scanner time.
+| ssl-cert: Subject: commonName=*/organizationName=Webmin Webserver on localhost.localdomain
+| Not valid before: 2017-04-07T08:24:46
+|_Not valid after:  2022-04-06T08:24:46
+| ssl-enum-ciphers: 
+|   SSLv3: 
+|     ciphers: 
+|       TLS_RSA_EXPORT_WITH_DES40_CBC_SHA (rsa 512) - F
+|       TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5 (rsa 512) - F
+|       TLS_RSA_EXPORT_WITH_RC4_40_MD5 (rsa 512) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 512) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 512) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 512) - F
+|       TLS_RSA_WITH_DES_CBC_SHA (rsa 512) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 512) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 512) - F
+|     compressors: 
+|       DEFLATE
+|       NULL
+|     cipher preference: client
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       64-bit block cipher DES vulnerable to SWEET32 attack
+|       64-bit block cipher DES40 vulnerable to SWEET32 attack
+|       64-bit block cipher RC2 vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       CBC-mode cipher in SSLv3 (CVE-2014-3566)
+|       Ciphersuite uses MD5 for message integrity
+|       Export key exchange
+|       Forward Secrecy not supported by any cipher
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_RSA_EXPORT_WITH_DES40_CBC_SHA (rsa 512) - F
+|       TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5 (rsa 512) - F
+|       TLS_RSA_EXPORT_WITH_RC4_40_MD5 (rsa 512) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 512) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 512) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 512) - F
+|       TLS_RSA_WITH_DES_CBC_SHA (rsa 512) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 512) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 512) - F
+|     compressors: 
+|       DEFLATE
+|       NULL
+|     cipher preference: client
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       64-bit block cipher DES vulnerable to SWEET32 attack
+|       64-bit block cipher DES40 vulnerable to SWEET32 attack
+|       64-bit block cipher RC2 vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|       Export key exchange
+|       Forward Secrecy not supported by any cipher
+|       Insecure certificate signature (SHA1), score capped at F
+|_  least strength: F
 
 Host script results:
-|_dns-brute: Can't guess domain of "10.129.1.226"; use dns-brute.domain script argument.
 |_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "10.129.77.22"; use dns-brute.domain script argument.
 
-# Nmap done at Tue May 17 09:23:37 2022 -- 1 IP address (1 host up) scanned in 444.66 seconds
+# Nmap done at Sat Jul  9 20:10:24 2022 -- 1 IP address (1 host up) scanned in 409.97 seconds

@@ -7,9 +7,7 @@ Better Description:
 Goals: OSCP revision, demonstrate how far I have come since Throwback..
 Learnt:
 
-## Intial Recon
-
-I ran a masscan and alarm so that the network did not shutdown.
+## Initial Recon
 
 The inital nmap:
 ![initnmap](init-recon-nmap-webserver.png)
@@ -62,10 +60,6 @@ admin.holo.live, dev.holo.live
 git clone https://github.com/danielmiessler/SecLists.git
 ```
 
-## Exploit
 
-## Foothold
-
-## PrivEsc
 
       
