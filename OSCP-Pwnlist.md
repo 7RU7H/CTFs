@@ -96,10 +96,9 @@ Artic | Done | WILL RETRY WITHOUT MS10-059 | [Link](https://github.com/7RU7H/CTF
 Grandpa| Done | | [Link]()
 Silo | Done | | [Link]()
 Bounty | Done | | [Link]()
-Jerry | Done | | [Link]()
+Jerry | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Jerry)
 Conceal |  | | [Link]()
 Vault | Done | | [Link]()
-
 Cronos | Done | | [Link]()
 
 #### TJNULL Harder than OSCP!
