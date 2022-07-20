@@ -99,7 +99,7 @@ Bounty | Done | | [Link]()
 Jerry | Done | | [Link]()
 Conceal |  | | [Link]()
 Vault | Done | | [Link]()
-Reddish | Done | | [Link]() AMAP the udp!
+
 Cronos | Done | | [Link]()
 
 #### TJNULL Harder than OSCP!
@@ -150,8 +150,10 @@ Bankrobber | Done | | [Link]()
 Ypuffy | | [Link]()
 Querier | | [Link]()
 Charon | | [Link]()
+Reddish | Done | | [Link]() AMAP the udp!
 
 #### HTB  
+Intended method is broken - try later
 Box Name | Recon-ed | Done | Writeup
 --- | --- | --- | --- 
 Legacy | Done | | [Link]()
