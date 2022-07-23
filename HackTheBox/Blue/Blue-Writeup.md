@@ -8,6 +8,7 @@ Goals:
 Learnt:
 
 ## Recon
+The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ```bash
 ping -c 3 10.129.105.18  
 PING 10.129.105.18 (10.129.105.18) 56(84) bytes of data.
@@ -20,8 +21,7 @@ PING 10.129.105.18 (10.129.105.18) 56(84) bytes of data.
 rtt min/avg/max/mdev = 221.410/228.976/233.237/5.364 ms
 ```
 Even though the name of this room is very siumilar to a famous exploit,
-seeing the `Windows 7 Professional 7601 Service Pack 1 microsoft-ds` in nmap of anything to means to check for 
-Eternal Blue. But I also run other nmap scan for completeness and Vuln returns the dreaded smb-vuln-ms17-010.
+seeing the `Windows 7 Professional 7601 Service Pack 1 microsoft-ds` in nmap of anything to means to check for Eternal Blue. But I also run other nmap scan for completeness and Vuln returns the dreaded smb-vuln-ms17-010.
 
 ## Exploit
 

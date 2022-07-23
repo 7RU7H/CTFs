@@ -1,13 +1,14 @@
-
+# Beep 
 Name: Beep
 Date:  
-Difficulty:  
+Difficulty:  Easy
 Description:  
 Better Description:  
-Goals:  
+Goals:  OSCP Prep
 Learnt:
 
 ## Recon
+The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ```bash
 ping -c 3 10.129.1.226
 PING 10.129.1.226 (10.129.1.226) 56(84) bytes of data.
@@ -21,10 +22,17 @@ rtt min/avg/max/mdev = 35.626/39.005/42.630/2.864 ms
 ```
 
 Anti directory busting: 
-[feroxfail](Screenshots/content-overdiscovery.png)
+![feroxfail](Screenshots/content-overdiscovery.png)
 
-admin
-jEhdIekWmdjE
+Searchpsploiting for elastix:
+![searchsploit](Screenshots/searchsploit.png)
+
+## Exploit
+
+![lifexploit](Screenshots/lfiexploit.png)
+
+For human eyes:
+`admin: jEhdIekWmdjE` are valid credentials.
 ```
 # AMPDBUSER: Username used to connect to the FreePBX database 
 # AMPDBPASS: Password for AMPDBUSER (above) 
@@ -41,7 +49,29 @@ ARI_ADMIN_USERNAME=admin
 # This is the default admin password to allow an administrator to login to ARI bypassing all security. 
 # Change this to a secure password. ARI_ADMIN_PASSWORD=jEhdIekWmdjE
 ```
-## Exploit
+
+Login to the elastix dashboard
+![elastixdsahboard](Screenshots/readingisgood.png)
+
+Click around...
+![versions](Screenshots/versions.png)
+
+More clicking around, user name in address book that maybe useful.
+![[fanis.png]]
+
+Secret?
+![secret](Screenshots/fanis-secret.png)
+
+At this point, I went back to my nmap scans and tried to verify extract states of what was running on each port as nmap return alot of `?` unsure except for the http.
+
+CHECK SMTP with credentials
+
+![smtp](Screenshots/smtpweird.png)
+
+
+
+
+
 
 ## Foothold
 

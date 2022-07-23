@@ -71,7 +71,7 @@ Sneaky | [Link]() | [Ippsec]
 Box Name  | Recon-ed | Done | Writeup
 --- | --- | --- | ---  
 Bashed | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Bashed)
-Nibbles | Done | | [Link]()
+Nibbles | !! | | [Link]()
 Lame | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Lame)
 Brainfuck | Done | | [Link]()
 Shocker| Done | | [Link]()
@@ -99,7 +99,7 @@ Bounty | Done | | [Link]()
 Jerry | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Jerry)
 Conceal |  | | [Link]()
 Vault | Done | | [Link]()
-Cronos | Done | | [Link]()
+
 
 #### TJNULL Harder than OSCP!
 Box Name  | Recon-ed | Done | Writeup

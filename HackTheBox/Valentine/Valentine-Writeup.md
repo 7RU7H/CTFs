@@ -10,10 +10,10 @@ Learnt:
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](Screenshots/ping.png)
 
-This machine is vulnerable to Heartbleed
+This machine is vulnerable to [Heartbleed](https://heartbleed.com/) and a good tryhackme [room](https://tryhackme.com/room/heartbleed) that demos the vulnerablity and exploit.
 ![nmapvuln](Screenshots/heartbleed-nmap.png)
 
-Searchsploiting exploit and intial code review and modifications as it is a python2 script that only targets localhost
+Searchsploiting exploit and intial code review and modifications as it is a python2 script that only targets localhost.
 ```bash
 searchsploit heartbleed
 searchsploit -x multiple/remote/32764.py # it's another python2 script
@@ -21,11 +21,13 @@ searchsploit -m multiple/remote/32764.py
 2to3-2.7 -f all -w  32764.py
 ```
 
- remote IP for socket.connect too
+Ran into issues with encoding and decoding. Remote IP for socket.connect too
  https://docs.python.org/3/library/socket.html
  https://duckduckgo.com/?q=hex+encoding+and+decoding+in+python3&t=newext&atb=v329-5&ia=web
- https://duckduckgo.com/?q=openssl+bio.h&t=newext&atb=v329-5&ia=web
- 
+https://duckduckgo.com/?q=openssl+bio.h&t=newext&atb=v329-5&ia=web
+
+So fixing the exploit is a possiblity. - Note that I then used this exploit with python2 for the THM room demonstrating Heartbleed.
+
 ```
 ssh - debian-5ubuntu1
 apache2.2.22(ubuntu)
@@ -70,6 +72,8 @@ RUgZkbMQZNIIfzj1QuilRVBm/F76Y/YMrmnM9k/1xSGIskwCUQ+95CGHJE8MkhD3
 ```
 
 Possibly we have to try to disclose the username with Heartbleed to use the id_rsa key to login through ssh.
+
+There is a golang application called [Heartbleed](https://github.com/FiloSottile/Heartbleed) for checking heartbleed
 
 ## Exploit
 
