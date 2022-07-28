@@ -38,13 +38,12 @@ After looking around I found credentials in the hubot/.env file
 ![creds](Screenshots/hubot-env.png)
 
 ![denied](denied-by-dwight.png)
-but Dwight does use the same password for recyclops and himself:
-
-![](same-password.png)
-
-
 
 ## Foothold
+
+..but Dwight does use the same password for recyclops and himself:
+
+![](same-password.png)
 
 ## PrivEsc
 ```bash

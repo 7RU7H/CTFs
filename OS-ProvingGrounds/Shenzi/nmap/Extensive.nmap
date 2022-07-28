@@ -1,0 +1,64 @@
+# Nmap 7.92 scan initiated Thu Jul 28 19:34:48 2022 as: nmap -sC -sV -oA nmap/Extensive -p- --min-rate 1000 192.168.122.55
+Nmap scan report for 192.168.122.55
+Host is up (0.055s latency).
+Not shown: 65521 closed tcp ports (reset)
+PORT      STATE SERVICE       VERSION
+21/tcp    open  ftp           FileZilla ftpd 0.9.41 beta
+| ftp-syst: 
+|_  SYST: UNIX emulated by FileZilla
+80/tcp    open  http          Apache httpd 2.4.43 ((Win64) OpenSSL/1.1.1g PHP/7.4.6)
+|_http-server-header: Apache/2.4.43 (Win64) OpenSSL/1.1.1g PHP/7.4.6
+| http-title: Welcome to XAMPP
+|_Requested resource was http://192.168.122.55/dashboard/
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+443/tcp   open  ssl/http      Apache httpd 2.4.43 ((Win64) OpenSSL/1.1.1g PHP/7.4.6)
+|_ssl-date: TLS randomness does not represent time
+| http-title: Welcome to XAMPP
+|_Requested resource was https://192.168.122.55/dashboard/
+| tls-alpn: 
+|_  http/1.1
+| ssl-cert: Subject: commonName=localhost
+| Not valid before: 2009-11-10T23:48:47
+|_Not valid after:  2019-11-08T23:48:47
+|_http-server-header: Apache/2.4.43 (Win64) OpenSSL/1.1.1g PHP/7.4.6
+445/tcp   open  microsoft-ds?
+3306/tcp  open  mysql?
+| fingerprint-strings: 
+|   JavaRMI, LDAPSearchReq, NULL, SIPOptions, TerminalServerCookie, X11Probe, ms-sql-s: 
+|_    Host '192.168.49.122' is not allowed to connect to this MariaDB server
+5040/tcp  open  unknown
+49664/tcp open  msrpc         Microsoft Windows RPC
+49665/tcp open  msrpc         Microsoft Windows RPC
+49666/tcp open  msrpc         Microsoft Windows RPC
+49667/tcp open  msrpc         Microsoft Windows RPC
+49668/tcp open  msrpc         Microsoft Windows RPC
+49669/tcp open  msrpc         Microsoft Windows RPC
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port3306-TCP:V=7.92%I=7%D=7/28%Time=62E2D70A%P=x86_64-pc-linux-gnu%r(NU
+SF:LL,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.122'\x20is\x20not\x20al
+SF:lowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(TerminalS
+SF:erverCookie,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.122'\x20is\x20
+SF:not\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(
+SF:X11Probe,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.122'\x20is\x20not
+SF:\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(LDA
+SF:PSearchReq,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.122'\x20is\x20n
+SF:ot\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(S
+SF:IPOptions,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.122'\x20is\x20no
+SF:t\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(Ja
+SF:vaRMI,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.122'\x20is\x20not\x2
+SF:0allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(ms-sql
+SF:-s,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.122'\x20is\x20not\x20al
+SF:lowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server");
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2022-07-28T18:38:34
+|_  start_date: N/A
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Jul 28 19:38:54 2022 -- 1 IP address (1 host up) scanned in 246.23 seconds
