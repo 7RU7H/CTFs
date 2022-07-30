@@ -1,0 +1,23 @@
+# Nmap 7.92 scan initiated Fri Jul 29 19:04:05 2022 as: nmap --script vuln -oA nmap/Vuln -p- --min-rate 1000 192.168.122.119
+Nmap scan report for 192.168.122.119
+Host is up (0.049s latency).
+Not shown: 65527 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+21/tcp   open  ftp
+80/tcp   open  http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+135/tcp  open  msrpc
+139/tcp  open  netbios-ssn
+445/tcp  open  microsoft-ds
+2290/tcp open  sonus-logging
+3389/tcp open  ms-wbt-server
+5985/tcp open  wsman
+
+Host script results:
+|_smb-vuln-ms10-061: NT_STATUS_ACCESS_DENIED
+|_samba-vuln-cve-2012-1182: No accounts left to try
+|_smb-vuln-ms10-054: false
+
+# Nmap done at Fri Jul 29 19:10:22 2022 -- 1 IP address (1 host up) scanned in 377.04 seconds
