@@ -1,10 +1,10 @@
-
+# Artic
 Name: Artic
 Date:  
-Difficulty:  
+Difficulty:  Easy
 Description:  
 Better Description:  
-Goals:  
+Goals:  OSCP Prep
 Learnt:
 
 ## Recon
