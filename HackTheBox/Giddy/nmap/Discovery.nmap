@@ -1,0 +1,365 @@
+# Nmap 7.92 scan initiated Sun Aug  7 15:14:13 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 1000 10.129.96.140
+Pre-scan script results:
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::2054:a7ff:fe50:852b  MAC: 22:54:a7:50:85:2b  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| ipv6-multicast-mld-list: 
+|   fe80::2054:a7ff:fe50:852b: 
+|     device: usb0
+|     mac: 22:54:a7:50:85:2b
+|     multicast_ips: 
+|       ff02::1:ff50:852b         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:a4           (Solicited-Node Address)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:485:19f0::a4      MAC: 22:54:a7:50:85:2b  IFACE: usb0
+|   IP: fe80::2054:a7ff:fe50:852b  MAC: 22:54:a7:50:85:2b  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-echo: 
+|   IP: fe80::2054:a7ff:fe50:852b  MAC: 22:54:a7:50:85:2b  IFACE: usb0
+|   IP: 2a01:4c8:485:19f0::a4      MAC: 22:54:a7:50:85:2b  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+Nmap scan report for 10.129.96.140
+Host is up (0.33s latency).
+Not shown: 65531 filtered tcp ports (no-response)
+Bug in http-security-headers: no string output.
+PORT     STATE SERVICE
+80/tcp   open  http
+|_http-feed: Couldn't find any feeds.
+|_http-date: Sun, 07 Aug 2022 14:17:56 GMT; +59m59s from local time.
+|_http-devframework: ASP.NET detected. Found related header.
+|_http-mobileversion-checker: No mobile version detected.
+|_http-xssed: No previously reported XSS vuln.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-chrono: Request times for /; avg: 212.50ms; min: 201.23ms; max: 252.19ms
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.96.140
+|     
+|     Path: http://10.129.96.140:80/
+|     Line number: 7
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|_        -->
+| http-vhosts: 
+|_128 names had status 200
+| http-headers: 
+|   Content-Length: 700
+|   Content-Type: text/html
+|   Last-Modified: Sun, 17 Jun 2018 14:24:23 GMT
+|   Accept-Ranges: bytes
+|   ETag: "d07343e3466d41:0"
+|   Server: Microsoft-IIS/10.0
+|   X-Powered-By: ASP.NET
+|   Date: Sun, 07 Aug 2022 14:17:55 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+|_http-title: IIS Windows Server
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-errors: Couldn't find any error pages.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; jpg: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1; jpg: 1
+443/tcp  open  https
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-headers: 
+|   Content-Length: 700
+|   Content-Type: text/html
+|   Last-Modified: Sun, 17 Jun 2018 14:24:23 GMT
+|   Accept-Ranges: bytes
+|   ETag: "d07343e3466d41:0"
+|   Server: Microsoft-IIS/10.0
+|   X-Powered-By: ASP.NET
+|   Date: Sun, 07 Aug 2022 14:17:53 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+|_http-devframework: ASP.NET detected. Found related header.
+|_http-mobileversion-checker: No mobile version detected.
+| tls-alpn: 
+|   h2
+|_  http/1.1
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - F
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - F
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|       Insecure certificate signature (SHA1), score capped at F
+|_  least strength: F
+|_ssl-date: 2022-08-07T14:17:46+00:00; -1s from scanner time.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; jpg: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1; jpg: 1
+|_http-chrono: Request times for /; avg: 334.34ms; min: 301.27ms; max: 357.80ms
+|_http-xssed: No previously reported XSS vuln.
+| http-vhosts: 
+|_128 names had status 200
+|_http-feed: Couldn't find any feeds.
+| ssl-cert: Subject: commonName=PowerShellWebAccessTestWebSite
+| Not valid before: 2018-06-16T21:28:55
+|_Not valid after:  2018-09-14T21:28:55
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-security-headers: 
+|   Strict_Transport_Security: 
+|_    HSTS not configured in HTTPS Server
+|_http-errors: Couldn't find any error pages.
+|_http-date: Sun, 07 Aug 2022 14:17:52 GMT; +59m59s from local time.
+|_http-title: IIS Windows Server
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.96.140
+|     
+|     Path: https://10.129.96.140:443/
+|     Line number: 7
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|_        -->
+3389/tcp open  ms-wbt-server
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 2048) - C
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 2048) - C
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 2048) - C
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|_  least strength: C
+| rdp-ntlm-info: 
+|   Target_Name: GIDDY
+|   NetBIOS_Domain_Name: GIDDY
+|   NetBIOS_Computer_Name: GIDDY
+|   DNS_Domain_Name: Giddy
+|   DNS_Computer_Name: Giddy
+|   Product_Version: 10.0.14393
+|_  System_Time: 2022-08-07T14:17:45+00:00
+|_ssl-date: 2022-08-07T14:17:44+00:00; 0s from scanner time.
+| rdp-enum-encryption: 
+|   Security layer
+|     CredSSP (NLA): SUCCESS
+|     CredSSP with Early User Auth: SUCCESS
+|_    RDSTLS: SUCCESS
+| ssl-cert: Subject: commonName=Giddy
+| Not valid before: 2022-08-05T20:05:41
+|_Not valid after:  2023-02-04T20:05:41
+5985/tcp open  wsman
+
+Host script results:
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 80    0       50423.00   7276.50   0.0%
+| 443   0       53874.90   6949.50   0.0%
+| 3389  0       54249.30   7441.22   0.0%
+|_5985  0       79034.70   81150.01  0.0%
+|_ipidseq: ERROR: Script execution failed (use -d to debug)
+|_dns-brute: Can't guess domain of "10.129.96.140"; use dns-brute.domain script argument.
+|_path-mtu: PMTU == 1500
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Sun Aug  7 15:23:30 2022 -- 1 IP address (1 host up) scanned in 557.16 seconds

@@ -111,7 +111,7 @@ Jail | Done | | [Link]()
 Falafel | Done | | [Link]()
 DevOops | | | [Link]()
 Hawks | Done | | [Link]()
-Netmon | Done | Done | [Link]((https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Netmon) 
+Netmon | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Netmon) 
 Lightweight | Done | | [Link]()
 LaCasaDePapel | Done | | [Link]()
 
@@ -120,7 +120,7 @@ Box Name | Recon-ed | Done | Writeup
 --- | --- | --- | --- 
 Sauna | SMBtodo(excluding enum4linux) | | [Link]()
 Active | SMBtodo | | [Link]()
-Forest | Done | | [Link]()
+Forest | Done | Walkthrough -> Retry in Randomiser | [Link]()
 
 #### HTB AD HARDER!
 Box Name | Recon-ed | Done | Writeup
