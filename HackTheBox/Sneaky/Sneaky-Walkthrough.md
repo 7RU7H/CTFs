@@ -5,7 +5,7 @@ Difficulty: Medium
 Description:  
 Better Description:  
 Goals: OSCP revision, BoF, learn about IPv6 with Ippsec - do the intended way.
-Learnt:
+Learnt: IPv6
 
 ## Recon
 
@@ -16,14 +16,15 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 
 The site is vulnerable to SQL injection a subject that I am familiar with, but I have not done I much as want to.
 
-![sqli](Screenshots/sqlisuccess.png)
-![devlogin](Screenshots/devlogin.png)
+![sqli](Screenshots/sqlsuccess.png)
+![devlogin](Screenshots/adminlogin.png)
 
 Ran sqlmap with:
 ```bash
 sqlmap -r sqlmapwhileippsectalksipv6 -p pass --dbms mysql --level 4 --risk 3 --dump
 ```
-While Ippsec talked IPv6 
+
+While Ippsec talks IPv6 
 
 ![sqlmap](Screenshots/sqlmapsuccess.png)
 

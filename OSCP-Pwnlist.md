@@ -1,6 +1,6 @@
 # OSCP-Pwnlist
 This is a list of completed and to finish, which I planned to finish by November 2022. Order of presedence for completion:
-1. HTB -> OSPG
+1. HTB -> OSProving Grounds -> Randomizer Practice Exam (THM, HTB, OSPG) - need make a auto-extend THM machine script
 2. Walkthrough a non TJNull or Active HTB
 3. THM AD boxes or OP path
 4. Anything else THM
@@ -65,7 +65,7 @@ Plan being to get more experience without insane timesinks of failing hard and m
 Box Name  | Walkthrough | References
 --- | --- | ----
 Forest | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Forest) | [Ippsec](https://www.youtube.com/watch?v=H9FcE_FMZio)
-Sneaky | [Link]() | [Ippsec]
+Sneaky | [Link]() | [Ippsec]()
 
 #### TJNULL OSCP
 Box Name  | Recon-ed | Done | Writeup
@@ -118,7 +118,7 @@ LaCasaDePapel | Done | | [Link]()
 #### HTB AD
 Box Name | Recon-ed | Done | Writeup
 --- | --- | --- | --- 
-Sauna | SMBtodo(excluding enum4linux) | | [Link]()
+Sauna | Done | | [Link]()
 Active | SMBtodo | | [Link]()
 Forest | Done | Walkthrough -> Retry in Randomiser | [Link]()
 
@@ -217,7 +217,7 @@ Box Name  | Recon-ed | Done | Writeup
 Blueprint  | | | [Link]()
 VulnNetActive  | | | [Link]()
 Throwback  | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/Throwback)
-Attacktive Directory | | | [Link]()
+Attacktive Directory | Done | Done | [Link]()
 Holo  | | | [Link]()
 Enterprise  | Done | | [Link]()
 
