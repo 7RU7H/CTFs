@@ -1,10 +1,10 @@
-
+# Giddy Walkthrough
 Name: Giddy
 Date:  
 Difficulty:  Medium
 Description:  
 Better Description:  
-Goals:  OSCP Prep - Ippsec handholding to 
+Goals:  OSCP Prep - Ippsec handholding to feel mentored
 Learnt:
 
 
@@ -37,6 +37,7 @@ Ippsec demonstrated a more through methodology of testing for `--` aswell to see
 
 ![sqlimap](id-sqli.png)
 
+## Exploit
 
 Arbituary File Reading with xp_dirtree
 ```sql
@@ -53,11 +54,25 @@ responder -I tun0
 
 Paused video to see if I could try pass the hash. I could not.
 
+![cracked](cracked.png)
 
-## Exploit
+```
+xNnWo6272k7x
+```
+
 
 ## Foothold
 
+![](unifivideo.png)
+
 ## PrivEsc
 
-      
+This directory is writable, see the 43390.txt poc.
+![](icacls-unifi-video.png)
+![msfail](xcopythemsfshell.png)
+
+But..
+![wd](windowsdefendstrikesagain.png)
+Windows Defender removes it... 
+
+Then I went on a research spree on C Sharp,  Undetectable C sharp Reverse Shells and the best Windows-OS VM for ethical hacking for Archive. 33:00 paused...
