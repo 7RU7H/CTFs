@@ -126,7 +126,7 @@ Forest | Done | Walkthrough -> Retry in Randomiser | [Link]()
 Box Name | Recon-ed | Done | Writeup
 --- | --- | --- | --- 
 Blackfield | Done | | [Link]()
-Resolute | Done | | [Link]()
+Resolute | Done-Redid | | [Link]()
 Reel | SMBtodo | | [Link]() smtp-enum
 Sizzle | Done | | [Link]()
 Mantis | SMBtodo + feroxbuster for completion(there are admin panel(s)) | | [Link]() 
@@ -146,9 +146,9 @@ Calamity | | | [Link]()
 Box Name | Recon-ed | Done | Writeup
 --- | --- | --- | --- 
 Bankrobber | Done | | [Link]() 
-Ypuffy | | [Link]()
-Querier | | [Link]()
-Charon | | [Link]()
+Ypuffy | | | [Link]()
+Querier | | | [Link]()
+Charon | | | [Link]()
 Reddish | Done | | [Link]() AMAP the udp!
 
 #### HTB  

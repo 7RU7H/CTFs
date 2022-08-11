@@ -1,16 +1,40 @@
-# Nmap 7.92 scan initiated Thu May 26 08:57:24 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 500 10.129.96.155
+# Nmap 7.92 scan initiated Thu Aug 11 12:12:23 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 1000 10.129.96.155
 Pre-scan script results:
+| ipv6-multicast-mld-list: 
+|   fe80::5871:d2ff:fed1:901: 
+|     device: usb0
+|     mac: 5a:71:d2:d1:09:01
+|     multicast_ips: 
+|       ff02::1:ffd1:901          (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:6f           (Solicited-Node Address)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
 |_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::5871:d2ff:fed1:901  MAC: 5a:71:d2:d1:09:01  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: fe80::5871:d2ff:fed1:901  MAC: 5a:71:d2:d1:09:01  IFACE: usb0
+|   IP: 2a01:4c8:485:19f0::6f     MAC: 5a:71:d2:d1:09:01  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:485:19f0::6f     MAC: 5a:71:d2:d1:09:01  IFACE: usb0
+|   IP: fe80::5871:d2ff:fed1:901  MAC: 5a:71:d2:d1:09:01  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
 | targets-asn: 
 |_  targets-asn.asn is a mandatory parameter
-|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
-Nmap scan report for 10.129.96.155
-Host is up (0.046s latency).
-Not shown: 65511 closed tcp ports (conn-refused)
+Nmap scan report for megabank.local (10.129.96.155)
+Host is up (0.054s latency).
+Not shown: 65511 closed tcp ports (reset)
 PORT      STATE SERVICE
 53/tcp    open  domain
-|_dns-nsec-enum: Can't determine domain for host 10.129.96.155; use dns-nsec-enum.domains script arg.
-|_dns-nsec3-enum: Can't determine domain for host 10.129.96.155; use dns-nsec3-enum.domains script arg.
+| dns-nsec3-enum: 
+|_  DNSSEC NSEC3 not supported
+| dns-nsec-enum: 
+|_  No NSEC records found
 88/tcp    open  kerberos-sec
 135/tcp   open  msrpc
 139/tcp   open  netbios-ssn
@@ -19,7 +43,7 @@ PORT      STATE SERVICE
 | ldap-rootdse: 
 | LDAP Results
 |   <ROOT>
-|       currentTime: 20220526080543.0Z
+|       currentTime: 20220811112053.0Z
 |       subschemaSubentry: CN=Aggregate,CN=Schema,CN=Configuration,DC=megabank,DC=local
 |       dsServiceName: CN=NTDS Settings,CN=RESOLUTE,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=megabank,DC=local
 |       namingContexts: DC=megabank,DC=local
@@ -91,7 +115,7 @@ PORT      STATE SERVICE
 |       supportedLDAPPolicies: MaxValRangeTransitive
 |       supportedLDAPPolicies: ThreadMemoryLimit
 |       supportedLDAPPolicies: SystemMemoryLimitPercent
-|       highestCommittedUSN: 159841
+|       highestCommittedUSN: 159873
 |       supportedSASLMechanisms: GSSAPI
 |       supportedSASLMechanisms: GSS-SPNEGO
 |       supportedSASLMechanisms: EXTERNAL
@@ -119,7 +143,7 @@ PORT      STATE SERVICE
 |         distinguishedName: DC=megabank,DC=local
 |         instanceType: 5
 |         whenCreated: 2019/09/25 13:28:22 UTC
-|         whenChanged: 2022/05/26 07:57:58 UTC
+|         whenChanged: 2022/08/11 10:56:42 UTC
 |         subRefs: DC=ForestDnsZones,DC=megabank,DC=local
 |         subRefs: DC=DomainDnsZones,DC=megabank,DC=local
 |         subRefs: CN=Configuration,DC=megabank,DC=local
@@ -132,7 +156,7 @@ PORT      STATE SERVICE
 |         cjy\xA3\xC2I\x89d\xE1om\x86\xB0Y\x1F\x10\x02\x00\x00\x00\x00\x00\xF1.\xF8\x13\x03\x00\x00\x0068\xC9\x82\x1E\xBD\xD2N\x92\x1CL\xAF\xF2=\xC6o\x0C\xE0\x00\x00\x00\x00\x00\x00@\x1F\xE6\x13\x03\x00\x00\x00\x11:\x85\x83#\x98\xDAJ\xAA\x83\xE6\xF7%{w\xC1\x18\xA0\x01\x00\x00\x00\x00\x00
 |         i\xF7\x13\x03\x00\x00\x00\xD0\xBBK\x8B\xF5\xB5\xD5D\xBE\xF9\xD7\x92\xCEz?;\x1B\xD0\x01\x00\x00\x00\x00\x00vw\xF7\x13\x03\x00\x00\x00
 |         n\xF7\x13\x03\x00\x00\x00%}:\xF7\xE0\xF6\xEFM\xB2\xE2\xDD\x80.\xF0*\xB3\x17\x90\x01\x00\x00\x00\x00\x00\xBB`\xF7\x13\x03\x00\x00\x00\xF90\xC0\xFF\x9Df\xB6K\x939WR\x81\xC5P\xA6\x1E\x00\x02\x00\x00\x00\x00\x00\x07\x1D\xF8\x13\x03\x00\x00\x00
-|         creationTime: 132980254785655378
+|         creationTime: 133046890023107473
 |         forceLogoff: -9223372036854775808
 |         lockoutDuration: -18000000000
 |         lockOutObservationWindow: -18000000000
@@ -558,28 +582,34 @@ PORT      STATE SERVICE
 49665/tcp open  unknown
 49666/tcp open  unknown
 49667/tcp open  unknown
-49671/tcp open  unknown
-49676/tcp open  unknown
+49670/tcp open  unknown
+49678/tcp open  unknown
 |_banner: ncacn_http/1.0
-49677/tcp open  unknown
-49686/tcp open  unknown
-49797/tcp open  unknown
-49818/tcp open  unknown
+49679/tcp open  unknown
+49684/tcp open  unknown
+49817/tcp open  unknown
+50144/tcp open  unknown
 Service Info: Host: RESOLUTE; OS: Windows
 
 Host script results:
-| smb-protocols: 
-|   dialects: 
-|     NT LM 0.12 (SMBv1) [dangerous, but default]
-|     2.0.2
-|     2.1
-|     3.0
-|     3.0.2
-|_    3.1.1
-|_msrpc-enum: NT_STATUS_ACCESS_DENIED
-| smb2-time: 
-|   date: 2022-05-26T08:05:50
-|_  start_date: 2022-05-26T07:58:08
+| smb-enum-shares: 
+|   note: ERROR: Enumerating shares failed, guessing at common ones (NT_STATUS_ACCESS_DENIED)
+|   account_used: <blank>
+|   \\10.129.96.155\ADMIN$: 
+|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
+|     Anonymous access: <none>
+|   \\10.129.96.155\C$: 
+|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
+|     Anonymous access: <none>
+|   \\10.129.96.155\IPC$: 
+|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
+|     Anonymous access: READ
+|   \\10.129.96.155\NETLOGON: 
+|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
+|_    Anonymous access: <none>
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled and required
 | smb2-capabilities: 
 |   2.0.2: 
 |     Distributed File System
@@ -599,27 +629,19 @@ Host script results:
 |     Distributed File System
 |     Leasing
 |_    Multi-credit operations
-| smb-enum-shares: 
-|   note: ERROR: Enumerating shares failed, guessing at common ones (NT_STATUS_ACCESS_DENIED)
-|   account_used: <blank>
-|   \\10.129.96.155\ADMIN$: 
-|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
-|     Anonymous access: <none>
-|   \\10.129.96.155\C$: 
-|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
-|     Anonymous access: <none>
-|   \\10.129.96.155\IPC$: 
-|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
-|     Anonymous access: READ
-|   \\10.129.96.155\NETLOGON: 
-|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
-|_    Anonymous access: <none>
-|_dns-brute: Can't guess domain of "10.129.96.155"; use dns-brute.domain script argument.
-| smb-security-mode: 
-|   account_used: <blank>
-|   authentication_level: user
-|   challenge_response: supported
-|_  message_signing: required
+|_msrpc-enum: NT_STATUS_ACCESS_DENIED
+| smb-os-discovery: 
+|   OS: Windows Server 2016 Standard 14393 (Windows Server 2016 Standard 6.3)
+|   Computer name: Resolute
+|   NetBIOS computer name: RESOLUTE\x00
+|   Domain name: megabank.local
+|   Forest name: megabank.local
+|   FQDN: Resolute.megabank.local
+|_  System time: 2022-08-11T04:20:55-07:00
+|_fcrdns: FAIL (No PTR record)
+| smb2-time: 
+|   date: 2022-08-11T11:21:10
+|_  start_date: 2022-08-11T10:56:52
 | smb-mbenum: 
 |_  ERROR: Call to Browser Service failed with status = 2184
 | smb-enum-domains: 
@@ -632,20 +654,36 @@ Host script results:
 |   MEGABANK
 |     Groups: Cert Publishers, RAS and IAS Servers, Allowed RODC Password Replication Group, Denied RODC Password Replication Group, DnsAdmins
 |     Users: Administrator, Guest, krbtgt, DefaultAccount, ryan, marko, sunita, abigail, marcus, sally, fred, angela, felicia, gustavo, ulf, stevie
-|     Creation time: 2022-05-26T07:57:58
+|     Creation time: 2022-08-11T10:56:42
 |     Passwords: min length: 7; min age: 1.0 days; max age: n/a days; history: 24 passwords
 |_    Account lockout disabled
-| smb-os-discovery: 
-|   OS: Windows Server 2016 Standard 14393 (Windows Server 2016 Standard 6.3)
-|   Computer name: Resolute
-|   NetBIOS computer name: RESOLUTE\x00
-|   Domain name: megabank.local
-|   Forest name: megabank.local
-|   FQDN: Resolute.megabank.local
-|_  System time: 2022-05-26T01:05:58-07:00
-|_fcrdns: FAIL (No PTR record)
-| smb2-security-mode: 
-|   3.1.1: 
-|_    Message signing enabled and required
+| dns-brute: 
+|_  DNS Brute-force hostnames: No results.
+| smb-protocols: 
+|   dialects: 
+|     NT LM 0.12 (SMBv1) [dangerous, but default]
+|     2.0.2
+|     2.1
+|     3.0
+|     3.0.2
+|_    3.1.1
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 1     0       77766.30   89981.62  0.0%
+| 53    0       48129.20   4800.27   0.0%
+| 88    0       47774.80   2712.33   0.0%
+| 135   0       47061.60   5215.37   0.0%
+| 139   0       46274.50   3655.32   0.0%
+| 389   0       47789.40   3838.64   0.0%
+| 445   0       47367.20   5499.94   0.0%
+| 464   0       72336.00   76759.92  0.0%
+|_593   0       50076.44   5772.61   10.0%
+|_ipidseq: ERROR: Script execution failed (use -d to debug)
+|_path-mtu: PMTU == 1500
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: required
 
-# Nmap done at Thu May 26 09:02:56 2022 -- 1 IP address (1 host up) scanned in 331.51 seconds
+# Nmap done at Thu Aug 11 12:18:14 2022 -- 1 IP address (1 host up) scanned in 351.75 seconds
