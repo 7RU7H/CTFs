@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Thu Aug 11 10:26:16 2022 as: nmap -&#45;script vuln -oA nmap/Vuln -p- -&#45;min-rate 1000 10.129.84.130 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/Vuln -p- -&#45;min-rate 1000 10.129.84.130" start="1660209976" startstr="Thu Aug 11 10:26:16 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.84.130" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1660209987" endtime="1660210456"><status state="up" reason="echo-reply" reason_ttl="127"/>
+<address addr="10.129.84.130" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65532">
+<extrareasons reason="no-response" count="65532" proto="tcp" ports="1-79,81-134,136-49153,49155-65535"/>
+</extraports>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" method="table" conf="3"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.84.130&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://10.129.84.130:80/&#xa;    Form id: user-login-form&#xa;    Form action: /node?destination=node&#xa;    &#xa;    Path: http://10.129.84.130:80/user/password&#xa;    Form id: user-pass&#xa;    Form action: /user/password&#xa;    &#xa;    Path: http://10.129.84.130:80/user/register&#xa;    Form id: user-register-form&#xa;    Form action: /user/register&#xa;    &#xa;    Path: http://10.129.84.130:80/node?destination=node&#xa;    Form id: user-login-form&#xa;    Form action: /node?destination=node&#xa;    &#xa;    Path: http://10.129.84.130:80/user/&#xa;    Form id: user-login&#xa;    Form action: /user/&#xa;    &#xa;    Path: http://10.129.84.130:80/user&#xa;    Form id: user-login&#xa;    Form action: /user&#xa;"/></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49154"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="unknown" method="table" conf="3"/></port>
+</ports>
+<times srtt="321148" rttvar="287681" to="1471872"/>
+</host>
+<runstats><finished time="1660210456" timestr="Thu Aug 11 10:34:16 2022" summary="Nmap done at Thu Aug 11 10:34:16 2022; 1 IP address (1 host up) scanned in 480.15 seconds" elapsed="480.15" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

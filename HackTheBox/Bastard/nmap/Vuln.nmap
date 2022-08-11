@@ -1,0 +1,39 @@
+# Nmap 7.92 scan initiated Thu Aug 11 10:26:16 2022 as: nmap --script vuln -oA nmap/Vuln -p- --min-rate 1000 10.129.84.130
+Nmap scan report for 10.129.84.130
+Host is up (0.32s latency).
+Not shown: 65532 filtered tcp ports (no-response)
+PORT      STATE SERVICE
+80/tcp    open  http
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.84.130
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.129.84.130:80/
+|     Form id: user-login-form
+|     Form action: /node?destination=node
+|     
+|     Path: http://10.129.84.130:80/user/password
+|     Form id: user-pass
+|     Form action: /user/password
+|     
+|     Path: http://10.129.84.130:80/user/register
+|     Form id: user-register-form
+|     Form action: /user/register
+|     
+|     Path: http://10.129.84.130:80/node?destination=node
+|     Form id: user-login-form
+|     Form action: /node?destination=node
+|     
+|     Path: http://10.129.84.130:80/user/
+|     Form id: user-login
+|     Form action: /user/
+|     
+|     Path: http://10.129.84.130:80/user
+|     Form id: user-login
+|_    Form action: /user
+135/tcp   open  msrpc
+49154/tcp open  unknown
+
+# Nmap done at Thu Aug 11 10:34:16 2022 -- 1 IP address (1 host up) scanned in 480.15 seconds

