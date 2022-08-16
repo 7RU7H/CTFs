@@ -66,6 +66,7 @@ Box Name  | Walkthrough | References
 --- | --- | ----
 Forest | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Forest) | [Ippsec](https://www.youtube.com/watch?v=H9FcE_FMZio)
 Sneaky | [Link]() | [Ippsec]()
+Blunder | [Link]() | [Ippsec]
 
 #### TJNULL OSCP
 Box Name  | Recon-ed | Done | Writeup
