@@ -3,7 +3,7 @@ Name: Blunder
 Date:  
 Difficulty:  Easy
 Description:  
-Better Description:  
+Better Description:  [Ippsec Video](https://www.youtube.com/watch?v=G5iw8c2vXuk&t=2270s)
 Goals:  OSCP Prep - Python scripting on the fly
 Learnt: 
 

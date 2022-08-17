@@ -1,0 +1,45 @@
+# Nmap 7.92 scan initiated Wed Aug 17 20:35:30 2022 as: nmap --script vuln -oA /home/kali/7ru7hGithub/CTFs/HackTheBox/Brainfuck/nmap/Vuln --min-rate 1000 -p- 10.129.1.1
+Nmap scan report for 10.129.1.1
+Host is up (0.16s latency).
+Not shown: 65530 filtered tcp ports (no-response)
+PORT    STATE SERVICE
+22/tcp  open  ssh
+25/tcp  open  smtp
+110/tcp open  pop3
+143/tcp open  imap
+443/tcp open  https
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+| ssl-dh-params: 
+|   VULNERABLE:
+|   Diffie-Hellman Key Exchange Insufficient Group Strength
+|     State: VULNERABLE
+|       Transport Layer Security (TLS) services that use Diffie-Hellman groups
+|       of insufficient strength, especially those using one of a few commonly
+|       shared groups, may be susceptible to passive eavesdropping attacks.
+|     Check results:
+|       WEAK DH GROUP 1
+|             Cipher Suite: TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA
+|             Modulus Type: Safe prime
+|             Modulus Source: nginx/1024-bit MODP group with safe prime modulus
+|             Modulus Length: 1024
+|             Generator Length: 8
+|             Public Key Length: 1024
+|     References:
+|_      https://weakdh.org
+| http-vuln-cve2011-3192: 
+|   VULNERABLE:
+|   Apache byterange filter DoS
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2011-3192  BID:49303
+|       The Apache web server is vulnerable to a denial of service attack when numerous
+|       overlapping byte ranges are requested.
+|     Disclosure date: 2011-08-19
+|     References:
+|       https://seclists.org/fulldisclosure/2011/Aug/175
+|       https://www.securityfocus.com/bid/49303
+|       https://www.tenable.com/plugins/nessus/55976
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
+
+# Nmap done at Wed Aug 17 20:42:31 2022 -- 1 IP address (1 host up) scanned in 420.81 seconds

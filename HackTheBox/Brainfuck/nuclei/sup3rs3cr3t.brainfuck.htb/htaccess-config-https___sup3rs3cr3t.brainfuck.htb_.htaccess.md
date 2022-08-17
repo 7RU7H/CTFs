@@ -1,0 +1,139 @@
+### HTaccess config file (htaccess-config) found on https://sup3rs3cr3t.brainfuck.htb
+---
+**Details**: **htaccess-config**  matched at https://sup3rs3cr3t.brainfuck.htb
+
+**Protocol**: HTTP
+
+**Full URL**: https://sup3rs3cr3t.brainfuck.htb/.htaccess
+
+**Timestamp**: Wed Aug 17 20:52:31 +0100 BST 2022
+
+**Template Information**
+
+| Key | Value |
+|---|---|
+| Name | HTaccess config file |
+| Authors | yash anand @yashanand155 |
+| Tags | misc, config |
+| Severity | info |
+
+**Request**
+```http
+GET /.htaccess HTTP/1.1
+Host: sup3rs3cr3t.brainfuck.htb
+User-Agent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/44.0.2403.155 Safari/537.36
+Connection: close
+Accept: */*
+Accept-Language: en
+Accept-Encoding: gzip
+
+
+```
+
+**Response**
+```http
+HTTP/1.1 200 OK
+Connection: close
+Content-Length: 3611
+Accept-Ranges: bytes
+Content-Type: application/octet-stream
+Date: Wed, 17 Aug 2022 19:52:33 GMT
+Etag: "58060a91-e1b"
+Last-Modified: Tue, 18 Oct 2016 11:42:09 GMT
+Server: nginx/1.10.0 (Ubuntu)
+
+# Allow access if Flarum is installed in a subdirectory,
+# but another .htaccess in a higher directory denies access.
+
+<IfModule mod_authz_core.c>
+  Require all granted
+</IfModule>
+<IfModule !mod_authz_core.c>
+  Order Allow,Deny
+  Allow from all
+</IfModule>
+
+# Fix for https://httpoxy.org vulnerability
+Header unset Proxy
+
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+
+  RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+  RewriteRule ^vendor/(.*)?$ / [F,L]
+  RewriteRule ^storage/(.*)?$ / [F,L]
+  RewriteRule ^config.php$ / [F,L]
+  RewriteRule ^.git/(.*)?$ / [F,L]
+
+  RewriteRule ^api(.*)$ api.php [QSA,L]
+  RewriteRule ^admin(.*)$ admin.php [QSA,L]
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule !^assets index.php [QSA,L]
+
+  # MultiViews can mess up our rewriting scheme
+  Options -MultiViews
+
+  # Autoindex will list all assets files which is not so good
+  Options -Indexes
+</IfModule>
+
+<IfModule mod_deflate.c>
+  # Compress all output labeled with one of the following MIME-types
+  <IfModule mod_filter.c>
+    AddOutputFilterByType DEFLATE application/atom+xml \
+                                  application/javascript \
+                                  application/json \
+                                  application/vnd.ms-fontobject \
+                                  application/x-font-ttf \
+                                  application/x-web-app-manifest+json \
+                                  application/xhtml+xml \
+                                  application/xml \
+                                  font/opentype \
+                                  image/svg+xml \
+                                  image/x-icon \
+                                  text/css \
+                                  text/html \
+                                  text/plain \
+                                  text/xml
+  </IfModule>
+</IfModule>
+
+# Configure cache expiry for different file types
+<IfModule mod_expires.c>
+  ExpiresActive on
+  ExpiresDefault                                      "access plus 1 second"
+
+  ExpiresByType text/css                              "access plus 1 year"
+  ExpiresByType application/json                      "access plus 0 seconds"
+  ExpiresByType application/xml                       "access plus 0 seconds"
+  ExpiresByType text/xml                              "access plus 0 seconds"
+  ExpiresByType image/x-icon                          "access plus 1 week"
+  ExpiresByType text/html                             "access plus 0 seconds"
+  ExpiresByType application/javascript                "access plus 1 year"
+  ExpiresByType application/x-web-app-manifest+json   "access plus 0 seconds"
+  ExpiresByType text/cache-manifest                   "access plus 0 seconds"
+  ExpiresByType image/gif                             "access plus 1 month"
+  ExpiresByType image/jpeg                            "access plus 1 month"
+  ExpiresByType image/png                             "access plus 1 month"
+  ExpiresByType application/atom+xml                  "access plus 1 hour"
+  ExpiresByType application/rss+xml                   "access plus 1 hour"
+  ExpiresByType application/font-woff2                "access plus 1 month"
+  ExpiresByType application/font-woff                 "access plus 1 month"
+  ExpiresByType application/vnd.ms-fontobject         "access plus 1 month"
+  ExpiresByType application/x-font-ttf                "access plus 1 month"
+  ExpiresByType font/opentype                         "access plus 1 month"
+  ExpiresByType image/svg+xml                         "access plus 1 month"
+</IfModule>
+
+```
+
+
+**CURL Command**
+```
+curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/44.0.2403.155 Safari/537.36' 'https://sup3rs3cr3t.brainfuck.htb/.htaccess'
+```
+---
+Generated by [Nuclei 2.7.4](https://github.com/projectdiscovery/nuclei)

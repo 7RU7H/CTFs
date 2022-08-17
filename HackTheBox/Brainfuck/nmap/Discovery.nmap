@@ -1,70 +1,63 @@
-# Nmap 7.92 scan initiated Mon May 16 19:05:52 2022 as: nmap --script discovery -oA nmap/Discovery -p 22,25,110,143,443 --min-rate 5000 10.129.104.19
+# Nmap 7.92 scan initiated Wed Aug 17 20:28:06 2022 as: nmap --script discovery -oA /home/kali/7ru7hGithub/CTFs/HackTheBox/Brainfuck/nmap/Discovery --min-rate 1000 -p- 10.129.1.1
 Pre-scan script results:
-|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-echo: 
+|   IP: fe80::4cb8:19ff:fe3b:42b3  MAC: 4e:b8:19:3b:42:b3  IFACE: usb0
+|   IP: 2a01:4c8:1423:7bb0::18     MAC: 4e:b8:19:3b:42:b3  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: fe80::4cb8:19ff:fe3b:42b3  MAC: 4e:b8:19:3b:42:b3  IFACE: usb0
+|   IP: 2a01:4c8:1423:7bb0::18     MAC: 4e:b8:19:3b:42:b3  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
 |_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| ipv6-multicast-mld-list: 
+|   fe80::4cb8:19ff:fe3b:42b3: 
+|     device: usb0
+|     mac: 4e:b8:19:3b:42:b3
+|     multicast_ips: 
+|       ff02::1:ff3b:42b3         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:18           (Solicited-Node Address)
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::4cb8:19ff:fe3b:42b3  MAC: 4e:b8:19:3b:42:b3  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
 | targets-asn: 
 |_  targets-asn.asn is a mandatory parameter
-Nmap scan report for 10.129.104.19
+Nmap scan report for 10.129.1.1
 Host is up (0.050s latency).
-
+Not shown: 65530 filtered tcp ports (no-response)
 PORT    STATE SERVICE
 22/tcp  open  ssh
+| ssh-hostkey: 
+|   2048 94:d0:b3:34:e9:a5:37:c5:ac:b9:80:df:2a:54:a5:f0 (RSA)
+|   256 6b:d5:dc:15:3a:66:7a:f4:19:91:5d:73:85:b2:4c:b2 (ECDSA)
+|_  256 23:f5:a3:33:33:9d:76:d5:f2:ea:69:71:e3:4e:8e:02 (ED25519)
+|_banner: SSH-2.0-OpenSSH_7.2p2 Ubuntu-4ubuntu2.1
 | ssh2-enum-algos: 
 |   kex_algorithms: (6)
 |   server_host_key_algorithms: (5)
 |   encryption_algorithms: (6)
 |   mac_algorithms: (10)
 |_  compression_algorithms: (2)
-|_banner: SSH-2.0-OpenSSH_7.2p2 Ubuntu-4ubuntu2.1
-| ssh-hostkey: 
-|   2048 94:d0:b3:34:e9:a5:37:c5:ac:b9:80:df:2a:54:a5:f0 (RSA)
-|   256 6b:d5:dc:15:3a:66:7a:f4:19:91:5d:73:85:b2:4c:b2 (ECDSA)
-|_  256 23:f5:a3:33:33:9d:76:d5:f2:ea:69:71:e3:4e:8e:02 (ED25519)
 25/tcp  open  smtp
-|_smtp-open-relay: Server doesn't seem to be an open relay, all tests failed
-|_smtp-commands: brainfuck, PIPELINING, SIZE 10240000, VRFY, ETRN, STARTTLS, ENHANCEDSTATUSCODES, 8BITMIME, DSN
+|_smtp-commands: Couldn't establish connection on port 25
+|_smtp-open-relay: Couldn't establish connection on port 25
 110/tcp open  pop3
+|_pop3-capabilities: TOP UIDL RESP-CODES USER PIPELINING AUTH-RESP-CODE CAPA SASL(PLAIN)
 |_banner: +OK Dovecot ready.
-|_pop3-capabilities: PIPELINING SASL(PLAIN) UIDL USER AUTH-RESP-CODE CAPA TOP RESP-CODES
 143/tcp open  imap
 |_banner: * OK [CAPABILITY IMAP4rev1 LITERAL+ SASL-IR LOGIN-REFERRALS ...
 443/tcp open  https
-|_http-referer-checker: Couldn't find any cross-domain scripts.
-|_http-errors: Couldn't find any error pages.
-| tls-nextprotoneg: 
-|_  http/1.1
-|_http-chrono: Request times for /; avg: 317.52ms; min: 300.61ms; max: 366.87ms
 |_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
-|_http-feed: Couldn't find any feeds.
-|_ssl-date: TLS randomness does not represent time
-| tls-alpn: 
-|_  http/1.1
-|_http-mobileversion-checker: No mobile version detected.
-| http-sitemap-generator: 
-|   Directory structure:
-|     /
-|       Other: 1
-|   Longest directory structure:
-|     Depth: 0
-|     Dir: /
-|   Total files found (by extension):
-|_    Other: 1
-|_http-xssed: No previously reported XSS vuln.
-| http-security-headers: 
-|   Strict_Transport_Security: 
-|_    HSTS not configured in HTTPS Server
+|_http-date: Wed, 17 Aug 2022 19:30:34 GMT; +1h00m01s from local time.
 |_http-comments-displayer: Couldn't find any comments.
-| http-headers: 
-|   Server: nginx/1.10.0 (Ubuntu)
-|   Date: Mon, 16 May 2022 18:06:02 GMT
-|   Content-Type: text/html
-|   Content-Length: 612
-|   Last-Modified: Thu, 13 Apr 2017 10:20:10 GMT
-|   Connection: close
-|   ETag: "58ef50da-264"
-|   Accept-Ranges: bytes
-|   
-|_  (Request type: HEAD)
+|_http-feed: Couldn't find any feeds.
+| http-vhosts: 
+|_128 names had status 200
+|_ssl-date: TLS randomness does not represent time
 | http-useragent-tester: 
 |   Status for browser useragent: 200
 |   Allowed User Agents: 
@@ -85,8 +78,6 @@ PORT    STATE SERVICE
 |     PECL::HTTP
 |     Wget/1.13.4 (linux-gnu)
 |_    WWW-Mechanize/1.34
-| http-vhosts: 
-|_128 names had status 200
 | ssl-enum-ciphers: 
 |   TLSv1.0: 
 |     ciphers: 
@@ -152,15 +143,55 @@ PORT    STATE SERVICE
 |     warnings: 
 |       Key exchange (dh 1024) of lower strength than certificate key
 |_  least strength: A
-|_http-date: Mon, 16 May 2022 18:06:02 GMT; +1h00m00s from local time.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-title: Welcome to nginx!
+| tls-alpn: 
+|_  http/1.1
 | ssl-cert: Subject: commonName=brainfuck.htb/organizationName=Brainfuck Ltd./stateOrProvinceName=Attica/countryName=GR
 | Subject Alternative Name: DNS:www.brainfuck.htb, DNS:sup3rs3cr3t.brainfuck.htb
 | Not valid before: 2017-04-13T11:19:29
 |_Not valid after:  2027-04-11T11:19:29
-|_http-title: Welcome to nginx!
+| http-security-headers: 
+|   Strict_Transport_Security: 
+|_    HSTS not configured in HTTPS Server
+|_http-chrono: Request times for /; avg: 352.69ms; min: 260.76ms; max: 458.40ms
+|_http-xssed: No previously reported XSS vuln.
+|_http-errors: Couldn't find any error pages.
+| tls-nextprotoneg: 
+|_  http/1.1
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1
+| http-headers: 
+|   Server: nginx/1.10.0 (Ubuntu)
+|   Date: Wed, 17 Aug 2022 19:30:33 GMT
+|   Content-Type: text/html
+|   Content-Length: 612
+|   Last-Modified: Thu, 13 Apr 2017 10:20:10 GMT
+|   Connection: close
+|   ETag: "58ef50da-264"
+|   Accept-Ranges: bytes
+|   
+|_  (Request type: HEAD)
+|_http-mobileversion-checker: No mobile version detected.
 
 Host script results:
+|_path-mtu: PMTU == 1500
+|_dns-brute: Can't guess domain of "10.129.1.1"; use dns-brute.domain script argument.
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       49879.60   8874.57   0.0%
+| 25    0       50703.70   5475.62   0.0%
+| 110   0       51645.40   9531.69   0.0%
+| 143   0       58676.80   40780.89  0.0%
+|_443   0       47388.70   6240.50   0.0%
 |_fcrdns: FAIL (No PTR record)
-|_dns-brute: Can't guess domain of "10.129.104.19"; use dns-brute.domain script argument.
+|_ipidseq: ERROR: Script execution failed (use -d to debug)
 
-# Nmap done at Mon May 16 19:07:12 2022 -- 1 IP address (1 host up) scanned in 80.23 seconds
+# Nmap done at Wed Aug 17 20:35:30 2022 -- 1 IP address (1 host up) scanned in 443.45 seconds
