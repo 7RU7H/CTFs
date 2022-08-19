@@ -74,12 +74,68 @@ Never done this before!
 ```
 SMTP:orestis kHGuERB29DNiNE
 ```
-Paused video, research other people OSCP SMTP Cheatsheets to compile into my own. Also want to find a good cli email client that can be scripted instead of evolution. 
-13:47
+Paused video, research other people OSCP SMTP Cheatsheets to compile into my own. Also want to find a good cli email client that can be scripted instead of evolution. This seemed like a bit of rabbit hole, for another day..
+
+## Returning two days later
+![rootsendsmail](rootsendsmail.png)
+
+```
+orestis : kIEnnfEKJ#9UmdO
+```
+
+Paused here and 
+![](cthululanguage.png)
+
+![](sshaccess-noorestis.png)
 
 
 ## Foothold
 
+Best site in the known universe for code-breaking that I found was [boxentriq](https://www.boxentriq.com/). It has analysis tools to attempt to figure out the encoding. Most can perform an autosolve. With autosolve I just changed the defaults to: min key length 1; max key length 16.  It is [Vigenère Cipher](https://www.boxentriq.com/code-breaking/vigenere-cipher), with key  `fuckmybrain`, decoded it is:
+```
+Hey give me the url for my key bitch
+
+Orestis - Hacking for fun and profit
+Vko bwlbbr dgg s zgda nrtkm gy ia...
+
+Toggdxhhu....
+Kgivvkr - Ahraeck iqt enu pdz evrhks
+
+There you go you stupid fuck, I hope you remember your key password because I dont
+https://10.10.10.17/8ba5aa10e915218697d1c658cdee0bb8/orestis/id_rsa
+
+Sa ewgxcjo, P'hq ngzla wttja nf
+Dwwoknu - Owhwxsy bfw hbj fzs ujkwnv
+```
+
+
+Download and crack the SSH key with:
+```bash
+ssh2john id_rsa > id_rsa_crackable
+```
+
+![](crackthesshkey.png)
+
+Remember to `chmod 600 id_rsa`, using the creds:
+```
+3poulakia!
+```
+
 ## PrivEsc
+
+Still paused I wanna sharpen some Linux PrivEsc...
+
+
+![](likesencryption.png)
+
+How random is it...
+![](shannon-entropy.png)
+Not really potental
+
+
+![](linux-priv-esc-suggester.png)
+
+
+
 
       
