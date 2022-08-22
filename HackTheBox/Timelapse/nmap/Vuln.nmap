@@ -1,0 +1,32 @@
+# Nmap 7.92 scan initiated Fri Jun 10 06:14:12 2022 as: nmap -Pn --script vuln -oA nmap/Vuln -p- --min-rate 500 10.129.90.131
+Nmap scan report for timelapse.htb0 (10.129.90.131)
+Host is up (0.100s latency).
+Not shown: 65517 filtered tcp ports (no-response)
+PORT      STATE SERVICE
+53/tcp    open  domain
+88/tcp    open  kerberos-sec
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+389/tcp   open  ldap
+445/tcp   open  microsoft-ds
+464/tcp   open  kpasswd5
+593/tcp   open  http-rpc-epmap
+636/tcp   open  ldapssl
+|_ssl-ccs-injection: No reply from server (TIMEOUT)
+3268/tcp  open  globalcatLDAP
+3269/tcp  open  globalcatLDAPssl
+|_ssl-ccs-injection: No reply from server (TIMEOUT)
+5986/tcp  open  wsmans
+9389/tcp  open  adws
+49667/tcp open  unknown
+49673/tcp open  unknown
+49674/tcp open  unknown
+49696/tcp open  unknown
+63766/tcp open  unknown
+
+Host script results:
+|_smb-vuln-ms10-061: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_smb-vuln-ms10-054: false
+|_samba-vuln-cve-2012-1182: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+
+# Nmap done at Fri Jun 10 06:20:13 2022 -- 1 IP address (1 host up) scanned in 361.28 seconds

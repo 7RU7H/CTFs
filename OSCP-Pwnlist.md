@@ -5,6 +5,9 @@ This is a list of completed and to finish, which I planned to finish by November
 3. THM AD boxes or OP path
 4. Anything else THM
 
+Any HTB active box I did not complete, gets this note also here for my own reminder and commitment. This was a hopeful to completing a active box on the side of doing all the OSCP study and prep just to get points and learn more *new* tricks, techniques and building up capability so that after OSCP completion I do atleast one of these or multiple a week in 2023.
+
+
 https://github.com/7RU7H/CTFs/tree/main/
 
 ## OS-Proving-Grounds
