@@ -1,0 +1,17 @@
+MEGABANK\smorgan
+MEGABANK\Administrator
+MEGABANK\krbtgt
+MEGABANK\AAD_987d7f2f57d2
+MEGABANK\mhope
+MEGABANK\SABatchJobs
+MEGABANK\svc-ata
+MEGABANK\svc-bexec
+MEGABANK\svc-netapp
+MEGABANK\dgalanos
+MEGABANK\roleary
+MEGABANK\smorgan
+MEGABANK\Guest
+MEGABANK\Administrator
+MEGABANK\AAD_987d7f2f57d2
+MEGABANK\mhope
+

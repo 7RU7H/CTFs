@@ -21,7 +21,7 @@ Possible hint is the SQLI in th corner
 ## Baby Auth
 
 Make an account because you can -> change your PHPSESSION cookie to a base64 encoded {"username": "admin"}
-![exploit](Screenshots/baby-exploit.png)
+![exploit](Screenshots/babyauth-exploit.png)
  
 ## Baby Nginxatsu
 
