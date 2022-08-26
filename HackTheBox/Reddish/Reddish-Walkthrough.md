@@ -90,8 +90,7 @@ Oneliner
 $1 = Gateway
 try 2!
 $3 = possibly other containers
-19:45
-https://www.youtube.com/watch?v=Yp4oxoQIBAM
+
 
 ```bash
 cd /tmp
@@ -111,6 +110,9 @@ go env GOOS GOARCH # current system as target
 go tool dist list
 GOOS=<os> GOARCH=<arch> go build
 ```
+
+30:00
+https://www.youtube.com/watch?v=Yp4oxoQIBAM
 
 ## Exploit
 

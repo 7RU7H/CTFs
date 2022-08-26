@@ -141,6 +141,8 @@ Went back to the video was surprise how just google a line of the script reveale
 [Euler constant with Python](https://datagy.io/python-e-euler/)
 [Python Math](https://docs.python.org/3/library/math.html)
 
+p and q are not secret
+
 ![notsohard](wikisecurity.png)
 
 Debug.txt contains, both p and q:
@@ -170,8 +172,13 @@ phi =
 52607443949523684204017785703334000062938570714097986630590264896550409660884195770611782961328739044415119649238794734477667608013099487155120771988003771494764364932809973892863137642261832650207296912020821259493213503048069367649430050615158480078856785603105463963127579348618667488619572543565279827868
 ```
 
+![](python-hot-examples.png)
 
+nbits is the proof to check up to 
 
 Fortran gcd = Returns the greatest common divisor of two integers
 
 math.e
+
+[SageMath](https://stackoverflow.com/questions/15724000/using-sage-math-library-within-python) -> [FAQ](https://doc.sagemath.org/html/en/faq/faq-usage.html)
+
