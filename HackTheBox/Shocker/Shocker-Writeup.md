@@ -1,11 +1,13 @@
+
+# Shocker
 Name: Shocker 
 Date:
 Difficulty: Easy
-Description:
-Better Description:
+Description: 
 Goals: OSCP Prep.
 Learnt:
 
+![asd](bug.jpg)
 ## Recon 
 Full extensive `nmap -sC -sV -p- and -sU` and `--script discovery`  scans can be found in the `nmap/`
 
@@ -82,4 +84,40 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 
 Nothing for nikto apache users plugin
 
-Weirdly my gobuster did not list cgi bins at all and neither ferxobuster or nikto.
+Weirdly my gobuster did not list cgi bins at all and neither feroxbuster or nikto. Coming back to this box I seclist raft-small-words, which definitely contains `cgi-bin` . Reran nikto
+
+I sneaked at look as it is a retired box, because I tried everything.
+
+![cgibin](cgi-bins-forbidden.png)
+
+![hangs](cgi-bin-hangs.png)
+
+![forbidden](cgi-bins-forbidden.png)
+[tried](https://www.infosecarticles.com/exploiting-shellshock-vulnerability/)
+
+![not found](cgi-bin-not-found.png)
+
+Watched the Ippsec Video. HE found it. Using both gobuster and feroxbuster, both by default recording `403`. 
+
+![status-codes](feroxbuster-defaults-status-codes.png)
+
+```bash
+ffuf -w /usr/share/seclists/Discovery/Web-Content/directory-list-2.3-small.txt:FUZZ -u  http://10.129.54.129/cgi-bin/FUZZ.sh
+```
+
+ `user.sh` is an script in this directory 
+
+![burp](burp-user-sh.png)
+
+Trying the reverse shell from the aforementioned article:
+
+![sss](shellshockshell.png)
+
+## PrivEsc
+
+[We need ask a Perl Programmer how to PrivEsc...](https://www.youtube.com/watch?v=0jK0ytvjv-E)
+![perl](sudoperlpwnage.png)
+
+`sudo perl -e 'exec "/bin/sh";'` from the [GTFObins](https://gtfobins.github.io/gtfobins/perl/#reverse-shell)
+
+![rooted](root.png)

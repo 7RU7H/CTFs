@@ -77,7 +77,7 @@ Box Name  | Recon-ed | Done | Writeup
 Bashed | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Bashed)
 Nibbles | !! | | [Link]()
 Lame | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Lame)
-Brainfuck | Done | | [Link]()
+Brainfuck | Done | Walkthrough | [Link]()
 Shocker| Done | | [Link]()
 Beep | Done | | [Link]()
 Cronos | Done | | [Link]()
