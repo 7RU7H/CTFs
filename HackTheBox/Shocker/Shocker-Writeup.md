@@ -1,11 +1,10 @@
 
 # Shocker
 Name: Shocker 
-Date:
+Date: 30/08/2022
 Difficulty: Easy
-Description: 
 Goals: OSCP Prep.
-Learnt:
+Learnt: Tools sometimes don't work; FFUF directories more
 
 ![asd](bug.jpg)
 ## Recon 

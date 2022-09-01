@@ -70,15 +70,16 @@ Box Name  | Walkthrough | References
 Forest | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Forest) | [Ippsec](https://www.youtube.com/watch?v=H9FcE_FMZio)
 Sneaky | [Link]() | [Ippsec]()
 Blunder | [Link]() | [Ippsec]
-
+Brainfuck | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Brainfuck)  | [Ippsec]
+Reddish | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Reddish) | [Ippsec] | 
 #### TJNULL OSCP
 Box Name  | Recon-ed | Done | Writeup
 --- | --- | --- | ---  
 Bashed | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Bashed)
 Nibbles | !! | | [Link]()
 Lame | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Lame)
-Brainfuck | Done | Walkthrough | [Link]()
-Shocker| Done | | [Link]()
+Brainfuck | Done | Walkthrough | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Brainfuck)
+Shocker| Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Shocker)
 Beep | Done | | [Link]()
 Cronos | Done | | [Link]()
 Nineveh | Done | | [Link]()
@@ -131,7 +132,7 @@ Box Name | Recon-ed | Done | Writeup
 --- | --- | --- | --- 
 Blackfield | Done | | [Link]()
 Resolute | Done-Redid | | [Link]()
-Reel | SMBtodo | | [Link]() smtp-enum
+Reel | SMB, smtp-enum todo | | [Link]() 
 Sizzle | Done | | [Link]()
 Mantis | SMBtodo + feroxbuster for completion(there are admin panel(s)) | | [Link]() 
 Cascade | Mostly | | [Link]()
@@ -221,7 +222,7 @@ Box Name  | Recon-ed | Done | Writeup
 Blueprint  | | | [Link]()
 VulnNetActive  | | | [Link]()
 Throwback  | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/Throwback)
-Attacktive Directory | Done | Done | [Link]()
+Attacktive Directory | Done | Done | N/A
 Holo  | | | [Link]()
 Enterprise  | Done | | [Link]()
 

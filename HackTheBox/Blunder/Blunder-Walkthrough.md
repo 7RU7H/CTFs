@@ -2,8 +2,7 @@
 Name: Blunder
 Date:  
 Difficulty:  Easy
-Description:  
-Better Description:  [Ippsec Video](https://www.youtube.com/watch?v=G5iw8c2vXuk&t=2270s)
+Walkthrough Video:  [Ippsec Video]()
 Goals:  OSCP Prep - Python scripting on the fly
 Learnt: 
 
@@ -27,6 +26,7 @@ Google dork the [CMS](https://github.com/Bludit)
 
 Although there is already a script at this point for the bruteforcing the goal of this walkthrough is to improve my python scripting - which for me seems like a step that I have to improve at my overall hacking perspective of interacting with application less indirect manner, refactoring the bruteforcer from the Black Hat Python book for my AllTheHackingScripts repo to make it more universal. 
 
+![csrfprotect](csrftoken.png)
 
 ## Exploit
 
