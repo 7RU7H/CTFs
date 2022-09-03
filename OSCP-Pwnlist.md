@@ -17,7 +17,7 @@ BadCorp | NOTDONE | | [Link]()
 Monster | NOTDONE | | [Link]()
 Internal | IS WEIRD | | [Link]()
 ClamAV | IS WEIRD | | [Link]()
-Algernon | Done | | [Link]()
+Algernon | REDO | REDO! | [Link]()
 Mice | Done | | [Link]()
 Wombo | Done | | [Link]()
 Panic | Done | | [Link]()
@@ -72,6 +72,7 @@ Sneaky | [Link]() | [Ippsec]()
 Blunder | [Link]() | [Ippsec]
 Brainfuck | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Brainfuck)  | [Ippsec]
 Reddish | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Reddish) | [Ippsec] | 
+
 #### TJNULL OSCP
 Box Name  | Recon-ed | Done | Writeup
 --- | --- | --- | ---  
