@@ -1,3 +1,36 @@
-<nmaprun><runstats><finished time="1662327328" timestr="Sun Sep  4 22:35:28 2022" summary="Nmap done at Sun Sep  4 22:35:28 2022; 0 IP addresses (0 hosts up) scanned in 0.05 seconds" elapsed="0.05" exit="error" errormsg="Error #485: Your port specifications are illegal.  Example of proper form: &quot;-100,200-1024,T:3000-4000,U:60000-&quot;"/><hosts up="0" down="0" total="0"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Mon Sep  5 09:43:29 2022 as: nmap -&#45;script vuln -oA /home/kali/7ru7hGithub/CTFs/OS-ProvingGrounds/CookieCutter/nmap/Vuln -&#45;min-rate 1000 -p 22,80,50000 192.168.226.112 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA /home/kali/7ru7hGithub/CTFs/OS-ProvingGrounds/CookieCutter/nmap/Vuln -&#45;min-rate 1000 -p 22,80,50000 192.168.226.112" start="1662367409" startstr="Mon Sep  5 09:43:29 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="22,80,50000"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.226.112" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1662367419" endtime="1662367499"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="192.168.226.112" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-enum" output="&#xa;  /css/: Potentially interesting directory w/ listing on &apos;apache/2.4.29 (ubuntu)&apos;&#xa;  /images/: Potentially interesting directory w/ listing on &apos;apache/2.4.29 (ubuntu)&apos;&#xa;  /js/: Potentially interesting directory w/ listing on &apos;apache/2.4.29 (ubuntu)&apos;&#xa;  /vendor/: Potentially interesting directory w/ listing on &apos;apache/2.4.29 (ubuntu)&apos;&#xa;"/><script id="http-sql-injection" output="&#xa;  Possible sqli for queries:&#xa;    http://192.168.226.112:80/vendor/bootstrap/js/?C=N%3BO%3DD%27%20OR%20sqlspider&#xa;    http://192.168.226.112:80/vendor/bootstrap/js/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.226.112:80/vendor/bootstrap/js/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.226.112:80/vendor/bootstrap/js/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.226.112:80/vendor/jquery/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.226.112:80/vendor/jquery/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    http://192.168.226.112:80/vendor/jquery/?C=N%3BO%3DD%27%20OR%20sqlspider&#xa;    http://192.168.226.112:80/vendor/jquery/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;"/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-internal-ip-disclosure" output="&#xa;  Internal IP Leaked: 127.0.0.1"><elem key="Internal IP Leaked">127.0.0.1</elem>
+</script><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-fileupload-exploiter" output="&#xa;  &#xa;    Couldn&apos;t find a file-type field.&#xa;  &#xa;    Couldn&apos;t find a file-type field.&#xa;  &#xa;    Couldn&apos;t find a file-type field."><table>
+<elem>Couldn&apos;t find a file-type field.</elem>
+</table>
+<table>
+<elem>Couldn&apos;t find a file-type field.</elem>
+</table>
+<table>
+<elem>Couldn&apos;t find a file-type field.</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="50000"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ibm-db2" method="table" conf="3"/></port>
+</ports>
+<times srtt="42675" rttvar="19796" to="121859"/>
+</host>
+<runstats><finished time="1662367499" timestr="Mon Sep  5 09:44:59 2022" summary="Nmap done at Mon Sep  5 09:44:59 2022; 1 IP address (1 host up) scanned in 89.83 seconds" elapsed="89.83" exit="success"/><hosts up="1" down="0" total="1"/>
 </runstats>
 </nmaprun>

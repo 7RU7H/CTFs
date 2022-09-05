@@ -1,2 +1,37 @@
-Error #485: Your port specifications are illegal.  Example of proper form: "-100,200-1024,T:3000-4000,U:60000-"
-QUITTING!
+# Nmap 7.92 scan initiated Mon Sep  5 09:43:29 2022 as: nmap --script vuln -oA /home/kali/7ru7hGithub/CTFs/OS-ProvingGrounds/CookieCutter/nmap/Vuln --min-rate 1000 -p 22,80,50000 192.168.226.112
+Nmap scan report for 192.168.226.112
+Host is up (0.043s latency).
+
+PORT      STATE SERVICE
+22/tcp    open  ssh
+80/tcp    open  http
+| http-enum: 
+|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|   /images/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|   /js/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|_  /vendor/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+| http-sql-injection: 
+|   Possible sqli for queries:
+|     http://192.168.226.112:80/vendor/bootstrap/js/?C=N%3BO%3DD%27%20OR%20sqlspider
+|     http://192.168.226.112:80/vendor/bootstrap/js/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.226.112:80/vendor/bootstrap/js/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.226.112:80/vendor/bootstrap/js/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.226.112:80/vendor/jquery/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.226.112:80/vendor/jquery/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://192.168.226.112:80/vendor/jquery/?C=N%3BO%3DD%27%20OR%20sqlspider
+|_    http://192.168.226.112:80/vendor/jquery/?C=M%3BO%3DA%27%20OR%20sqlspider
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-internal-ip-disclosure: 
+|_  Internal IP Leaked: 127.0.0.1
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-fileupload-exploiter: 
+|   
+|     Couldn't find a file-type field.
+|   
+|     Couldn't find a file-type field.
+|   
+|_    Couldn't find a file-type field.
+50000/tcp open  ibm-db2
+
+# Nmap done at Mon Sep  5 09:44:59 2022 -- 1 IP address (1 host up) scanned in 89.83 seconds
