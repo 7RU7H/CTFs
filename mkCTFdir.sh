@@ -9,7 +9,7 @@ if [ "$#" -ne $ARGTOTAL ]; then
 fi
 OS="OS-ProvingGrounds"
 THM="TryHackMe/Markdown"
-HTB="HackTheBox"
+HTB="HackTheBox/Challenges"
 if [ "$site" != $1 ] || [ "$name" != $2 ];
 then
 	case "$1" in
@@ -22,12 +22,10 @@ then
 	mkdir $site/$name/Screenshots -p;
 	cd $site/$name;
 	mkdir nmap && mkdir nikto && mkdir feroxbuster && mkdir masscan;
-	echo "
+	echo "# $name Writeup
 Name: $name
 Date:  
 Difficulty:  
-Description:  
-Better Description:  
 Goals:  
 Learnt:
 
