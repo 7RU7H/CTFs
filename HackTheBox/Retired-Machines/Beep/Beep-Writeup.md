@@ -1,9 +1,7 @@
-# Beep 
+# Beep
 Name: Beep
 Date:  
 Difficulty:  Easy
-Description:  
-Better Description:  
 Goals:  OSCP Prep
 Learnt:
 
@@ -64,15 +62,31 @@ Secret?
 
 At this point, I went back to my nmap scans and tried to verify extract states of what was running on each port as nmap return alot of `?` unsure except for the http.
 
+fji#REH9i##nrllOnjndwP923UEj
+
 CHECK SMTP with credentials
 
 ![smtp](Screenshots/smtpweird.png)
 
-
-
-
-
-
 ## Foothold
 
+## Sometime later...
+Exploits were buggy, so I decontructed the exploits and ran the url manually from a burp session that handle all the ssl related nightmares that I ran into.
+
+![](manualurl.png)
+
+![](rce.png)
+
+Very restrictive and unstable shell.
+
 ## PrivEsc
+
+![](privEnum-One.png)
+
+LinEnum found:
+
+![](sudonopass.png)
+
+GTFObins for interactive nmap as I have never tried interactive nmap before.
+
+![](root.png)
