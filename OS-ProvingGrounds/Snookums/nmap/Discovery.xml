@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Tue Sep  6 11:39:10 2022 as: nmap -script discovery -oA /home/kali/7ru7hGithub/CTFs/OS-ProvingGrounds/Snookums/nmap/Discovery -&#45;min-rate 1000 -p 21,22,80,111,139,445,3306,33060 192.168.226.58 -->
+<nmaprun scanner="nmap" args="nmap -script discovery -oA /home/kali/7ru7hGithub/CTFs/OS-ProvingGrounds/Snookums/nmap/Discovery -&#45;min-rate 1000 -p 21,22,80,111,139,445,3306,33060 192.168.226.58" start="1662460750" startstr="Tue Sep  6 11:39:10 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="8" services="21-22,80,111,139,445,3306,33060"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-ipv6-multicast-mld" output="&#xa;  IP: fe80::b078:abff:fe07:d7a3  MAC: b2:78:ab:07:d7:a3  IFACE: usb0&#xa;&#xa;  Use -&#45;script-args=newtargets to add the results as targets"><table>
+<elem key="address">fe80::b078:abff:fe07:d7a3</elem>
+<elem key="mac">b2:78:ab:07:d7:a3</elem>
+<elem key="iface">usb0</elem>
+</table>
+</script><script id="targets-ipv6-multicast-echo" output="&#xa;  IP: 2a01:4c8:148a:75e7::4a     MAC: b2:78:ab:07:d7:a3  IFACE: usb0&#xa;  IP: fe80::b078:abff:fe07:d7a3  MAC: b2:78:ab:07:d7:a3  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-ipv6-multicast-invalid-dst" output="&#xa;  IP: 2a01:4c8:148a:75e7::4a     MAC: b2:78:ab:07:d7:a3  IFACE: usb0&#xa;  IP: fe80::b078:abff:fe07:d7a3  MAC: b2:78:ab:07:d7:a3  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="ipv6-multicast-mld-list" output="&#xa;  fe80::b078:abff:fe07:d7a3: &#xa;    device: usb0&#xa;    mac: b2:78:ab:07:d7:a3&#xa;    multicast_ips: &#xa;      ff02::1:ff07:d7a3         (NDP Solicited-node)&#xa;      ff02::1:ff00:0            (Solicited-Node Address)&#xa;      ff05::2                   (unknown)&#xa;      ff02::2                   (All Routers Address)&#xa;      ff02::1:ff00:4a           (Solicited-Node Address)"><table key="fe80::b078:abff:fe07:d7a3">
+<elem key="device">usb0</elem>
+<elem key="mac">b2:78:ab:07:d7:a3</elem>
+<table key="multicast_ips">
+<table>
+<elem key="description">NDP Solicited-node</elem>
+<elem key="ip">ff02::1:ff07:d7a3</elem>
+</table>
+<table>
+<elem key="description">Solicited-Node Address</elem>
+<elem key="ip">ff02::1:ff00:0</elem>
+</table>
+<table>
+<elem key="description">unknown</elem>
+<elem key="ip">ff05::2</elem>
+</table>
+<table>
+<elem key="description">All Routers Address</elem>
+<elem key="ip">ff02::2</elem>
+</table>
+<table>
+<elem key="description">Solicited-Node Address</elem>
+<elem key="ip">ff02::1:ff00:4a</elem>
+</table>
+</table>
+</table>
+</script></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.226.58" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1662460762" endtime="1662461101"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="192.168.226.58" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ftp" method="table" conf="3"/><script id="banner" output="220 (vsFTPd 3.0.2)"/><script id="ftp-syst" output="&#xa;  STAT: &#xa;FTP server status:&#xa;     Connected to ::ffff:192.168.49.226&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 1&#xa;     vsFTPd 3.0.2 - secure, fast, stable&#xa;End of status"><elem key="STAT">&#xa;FTP server status:&#xa;     Connected to ::ffff:192.168.49.226&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 1&#xa;     vsFTPd 3.0.2 - secure, fast, stable&#xa;End of status</elem>
+</script></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/><script id="banner" output="SSH-2.0-OpenSSH_7.4"/><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (12)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (12)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group-exchange-sha1</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+<elem>diffie-hellman-group14-sha1</elem>
+<elem>diffie-hellman-group1-sha1</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>ssh-rsa</elem>
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+<elem>aes128-cbc</elem>
+<elem>aes192-cbc</elem>
+<elem>aes256-cbc</elem>
+<elem>blowfish-cbc</elem>
+<elem>cast128-cbc</elem>
+<elem>3des-cbc</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script><script id="ssh-hostkey" output="&#xa;  2048 4a:79:67:12:c7:ec:13:3a:96:bd:d3:b4:7c:f3:95:15 (RSA)&#xa;  256 a8:a3:a7:88:cf:37:27:b5:4d:45:13:79:db:d2:ba:cb (ECDSA)&#xa;  256 f2:07:13:19:1f:29:de:19:48:7c:db:45:99:f9:cd:3e (ED25519)"><table>
+<elem key="fingerprint">4a796712c7ec133a96bdd3b47cf39515</elem>
+<elem key="type">ssh-rsa</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABAQCtUk/m8ssh+nfn52VkolWbpJihGyH2vdELXJv/X0HIj5hbkXnM1QgSSKltTq+cev1QtkrwtUTV3j2AD5Ftxz7ivrm0PvsGNI6QGnIxdAwCvt1OjDHoz6IGDS4kz5IcW3Q3SmwceCwDKPA55mupKhKlKjkZyLn4+d9An50AV1Hyj+E8APALHQBQFVp7cdJe9lqj7K8dxNVo1XExUDgU3trRSGDO5bZN7C57VsHXN6MIITU9RtyMhLbxYwA6KTU8RluW1/5v7T4EnHlRZcdmbneVcefK+EK69Mgdn5L+ww/5YrWiYbXDOUTEymWfeyoOl2LoFBD/nmSb9hayKirR4guf</elem>
+<elem key="bits">2048</elem>
+</table>
+<table>
+<elem key="fingerprint">a8a3a788cf3727b54d451379dbd2bacb</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOk5HGeIHhlXkWc9v507Ap0zc5wnKxhGa7WG9fWJhL/yr9bveHEBZllHErnP6vaWM4WRudCxA6z6rqnhep9wNW8=</elem>
+<elem key="bits">256</elem>
+</table>
+<table>
+<elem key="fingerprint">f20713191f29de19487cdb4599f9cd3e</elem>
+<elem key="type">ssh-ed25519</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIDvde70kt/TjqXRmChJ0XvKYTpljMNu6TKlAtF/S4IHL</elem>
+<elem key="bits">256</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-chrono" output="Request times for /; avg: 299.37ms; min: 245.33ms; max: 409.27ms"/><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      Other: 1&#xa;    /css/&#xa;      css: 1&#xa;    /images/examples/&#xa;      jpg: 2&#xa;  Longest directory structure:&#xa;    Depth: 2&#xa;    Dir: /images/examples/&#xa;  Total files found (by extension):&#xa;    Other: 1; css: 1; jpg: 2&#xa;"/><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">200</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-security-headers" output=""></script><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-errors" output="Couldn&apos;t find any error pages."/><script id="http-headers" output="&#xa;  Date: Tue, 06 Sep 2022 10:40:28 GMT&#xa;  Server: Apache/2.4.6 (CentOS) PHP/5.4.16&#xa;  X-Powered-By: PHP/5.4.16&#xa;  Connection: close&#xa;  Content-Type: text/html; charset=UTF-8&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-vhosts" output="&#xa;128 names had status 200"/><script id="http-title" output="Simple PHP Photo Gallery"><elem key="title">Simple PHP Photo Gallery</elem>
+</script><script id="http-php-version" output="Versions from credits query (more accurate): 5.4.15 - 5.4.45&#xa;Version from header x-powered-by: PHP/5.4.16"/><script id="http-date" output="Tue, 06 Sep 2022 10:39:47 GMT; +1h00m24s from local time."><elem key="date">2022-09-06T11:39:47+00:00</elem>
+<elem key="delta">3624.0</elem>
+</script><script id="http-trace" output="TRACE is enabled"/><script id="http-comments-displayer" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.226.58&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 24&#xa;    Comment: &#xa;        /* line 24, ../sass/lightbox.sass */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 104&#xa;    Comment: &#xa;        /* line 76, ../sass/lightbox.sass */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 120&#xa;    Comment: &#xa;        /* line 88, ../sass/lightbox.sass */&#xa;    &#xa;    Path: http://192.168.226.58:80/js/jquery.smooth-scroll.min.js&#xa;    Line number: 1&#xa;    Comment: &#xa;        /*!&#xa;         * jQuery Smooth Scroll Plugin v1.4.5&#xa;         *&#xa;         * Date: Sun Mar 11 18:17:42 2012 EDT&#xa;         * Requires: jQuery v1.3+&#xa;         *&#xa;         * Copyright 2012, Karl Swedberg&#xa;         * Dual licensed under the MIT and GPL licenses (just like jQuery):&#xa;         * http://www.opensource.org/licenses/mit-license.php&#xa;         * http://www.gnu.org/licenses/gpl.html&#xa;         *&#xa;         *&#xa;         *&#xa;         *&#xa;        */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 36&#xa;    Comment: &#xa;        /* line 30, ../sass/lightbox.sass */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 168&#xa;    Comment: &#xa;        /* line 117, ../sass/lightbox.sass */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 31&#xa;    Comment: &#xa;        /* line 27, ../sass/lightbox.sass */&#xa;    &#xa;    Path: http://192.168.226.58:80/&#xa;    Line number: 57&#xa;    Comment: &#xa;        &lt;!-&#45; end #content -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 110&#xa;    Comment: &#xa;        /* line 81, ../sass/lightbox.sass */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 154&#xa;    Comment: &#xa;        /* line 107, ../sass/lightbox.sass */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 141&#xa;    Comment: &#xa;        /* line 98, ../sass/lightbox.sass */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 136&#xa;    Comment: &#xa;        /* line 95, ../sass/lightbox.sass */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 115&#xa;    Comment: &#xa;        /* line 85, ../sass/lightbox.sass */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 69&#xa;    Comment: &#xa;        /* line 51, ../sass/lightbox.sass */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 148&#xa;    Comment: &#xa;        /* line 103, ../sass/lightbox.sass */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 84&#xa;    Comment: &#xa;        /* line 62, ../sass/lightbox.sass */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 98&#xa;    Comment: &#xa;        /* line 72, ../sass/lightbox.sass */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 53&#xa;    Comment: &#xa;        /* line 39, ../sass/lightbox.sass */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 13&#xa;    Comment: &#xa;        /* line 15, ../sass/lightbox.sass */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 94&#xa;    Comment: &#xa;        /* Trick IE into showing hover */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 1&#xa;    Comment: &#xa;        /* line 6, ../sass/lightbox.sass */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 58&#xa;    Comment: &#xa;        /* line 42, ../sass/lightbox.sass */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 46&#xa;    Comment: &#xa;        /* line 38, ../../../../.rvm/gems/ruby-1.9.2-p290/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/utilities/general/_clearfix.scss */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 89&#xa;    Comment: &#xa;        /* line 65, ../sass/lightbox.sass */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 161&#xa;    Comment: &#xa;        /* line 112, ../sass/lightbox.sass */&#xa;    &#xa;    Path: http://192.168.226.58:80/css/lightbox.css&#xa;    Line number: 79&#xa;    Comment: &#xa;        /* line 59, ../sass/lightbox.sass */&#xa;"/><script id="http-enum" output="&#xa;  /README.txt: Interesting, a readme.&#xa;  /css/: Potentially interesting folder w/ directory listing&#xa;  /icons/: Potentially interesting folder w/ directory listing&#xa;  /images/: Potentially interesting folder w/ directory listing&#xa;  /js/: Potentially interesting folder w/ directory listing&#xa;"/><script id="http-xssed" output="No previously reported XSS vuln."/><script id="http-affiliate-id" output="&#xa;  Google Analytics ID: UA-2196019-1&#xa;"/></port>
+<port protocol="tcp" portid="111"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="rpcbind" version="2-4" extrainfo="RPC #100000" method="probed" conf="10"/><script id="rpcinfo" output="&#xa;  program version    port/proto  service&#xa;  100000  2,3,4        111/tcp   rpcbind&#xa;  100000  2,3,4        111/udp   rpcbind&#xa;  100000  3,4          111/tcp6  rpcbind&#xa;  100000  3,4          111/udp6  rpcbind&#xa;"><table key="100000">
+<table key="udp6">
+<elem key="port">111</elem>
+<table key="version">
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="addr">::</elem>
+<elem key="owner">superuser</elem>
+</table>
+<table key="tcp">
+<elem key="port">111</elem>
+<table key="version">
+<elem>2</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="addr">0.0.0.0</elem>
+<elem key="owner">superuser</elem>
+</table>
+<table key="tcp6">
+<elem key="port">111</elem>
+<table key="version">
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="addr">::</elem>
+<elem key="owner">superuser</elem>
+</table>
+<table key="udp">
+<elem key="port">111</elem>
+<table key="version">
+<elem>2</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="addr">0.0.0.0</elem>
+<elem key="owner">superuser</elem>
+</table>
+<table key="local">
+<elem key="owner">superuser</elem>
+<table key="version">
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="addr">/var/run/rpcbind.sock</elem>
+</table>
+</table>
+</script></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="netbios-ssn" method="table" conf="3"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="microsoft-ds" product="Samba smbd" version="4.10.4" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="3306"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="mysql" method="table" conf="3"/><script id="mysql-vuln-cve2012-2122" output="ERROR: Script execution failed (use -d to debug)"/><script id="banner" output="G\x00\x00\x00\xFFj\x04Host &apos;192.168.49.226&apos; is not allowed t...&#xa;"/></port>
+<port protocol="tcp" portid="33060"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="mysqlx" method="table" conf="3"/><script id="banner" output="\x05\x00\x00\x00\x0B\x08\x05\x1A\x00"/></port>
+</ports>
+<hostscript><script id="smb-enum-sessions" output="&#xa;  &lt;nobody&gt;&#xa;"/><script id="smb2-capabilities" output="&#xa;  2.0.2: &#xa;    Distributed File System&#xa;  2.1: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3.0: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3.0.2: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3.1.1: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations"><table key="2.0.2">
+<elem>Distributed File System</elem>
+</table>
+<table key="2.1">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3.0">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3.0.2">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3.1.1">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+</script><script id="path-mtu" output="PMTU == 1500"/><script id="smb-enum-domains" output="&#xa;  SNOOKUMS&#xa;    Groups: n/a&#xa;    Users: n/a&#xa;    Creation time: unknown&#xa;    Passwords: min length: 5; min age: n/a days; max age: n/a days; history: n/a passwords&#xa;    Account lockout disabled&#xa;  Builtin&#xa;    Groups: n/a&#xa;    Users: n/a&#xa;    Creation time: unknown&#xa;    Passwords: min length: 5; min age: n/a days; max age: n/a days; history: n/a passwords&#xa;    Account lockout disabled&#xa;"/><script id="smb-os-discovery" output="&#xa;  OS: Windows 6.1 (Samba 4.10.4)&#xa;  Computer name: snookums&#xa;  NetBIOS computer name: SNOOKUMS\x00&#xa;  Domain name: \x00&#xa;  FQDN: snookums&#xa;  System time: 2022-09-06T06:39:57-04:00&#xa;"><elem key="os">Windows 6.1</elem>
+<elem key="lanmanager">Samba 4.10.4</elem>
+<elem key="server">SNOOKUMS\x00</elem>
+<elem key="date">2022-09-06T06:39:57-04:00</elem>
+<elem key="fqdn">snookums</elem>
+<elem key="domain_dns">\x00</elem>
+<elem key="workgroup">SAMBA\x00</elem>
+</script><script id="smb-enum-shares" output="&#xa;  account_used: &lt;blank&gt;&#xa;  \\192.168.226.58\IPC$: &#xa;    Type: STYPE_IPC_HIDDEN&#xa;    Comment: IPC Service (Samba 4.10.4)&#xa;    Users: 3&#xa;    Max Users: &lt;unlimited&gt;&#xa;    Path: C:\tmp&#xa;    Anonymous access: READ/WRITE&#xa;  \\192.168.226.58\print$: &#xa;    Type: STYPE_DISKTREE&#xa;    Comment: Printer Drivers&#xa;    Users: 0&#xa;    Max Users: &lt;unlimited&gt;&#xa;    Path: C:\var\lib\samba\drivers&#xa;    Anonymous access: &lt;none&gt;"><elem key="account_used">&lt;blank&gt;</elem>
+<table key="\\192.168.226.58\IPC$">
+<elem key="Type">STYPE_IPC_HIDDEN</elem>
+<elem key="Comment">IPC Service (Samba 4.10.4)</elem>
+<elem key="Users">3</elem>
+<elem key="Max Users">&lt;unlimited&gt;</elem>
+<elem key="Path">C:\tmp</elem>
+<elem key="Anonymous access">READ/WRITE</elem>
+</table>
+<table key="\\192.168.226.58\print$">
+<elem key="Type">STYPE_DISKTREE</elem>
+<elem key="Comment">Printer Drivers</elem>
+<elem key="Users">0</elem>
+<elem key="Max Users">&lt;unlimited&gt;</elem>
+<elem key="Path">C:\var\lib\samba\drivers</elem>
+<elem key="Anonymous access">&lt;none&gt;</elem>
+</table>
+</script><script id="qscan" output="&#xa;PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;21     0       41778.00   5520.88   0.0%&#xa;22     0       44877.50   9563.99   0.0%&#xa;80     0       46353.80   13277.12  0.0%&#xa;111    0       48484.60   17433.55  0.0%&#xa;139    0       44203.56   6790.16   10.0%&#xa;445    0       82195.00   86796.37  0.0%&#xa;3306   0       65974.90   72504.04  0.0%&#xa;33060  0       63008.20   70479.30  0.0%&#xa;"/><script id="smb-system-info" output="ERROR: Script execution failed (use -d to debug)"/><script id="smb-protocols" output="&#xa;  dialects: &#xa;    NT LM 0.12 (SMBv1) [dangerous, but default]&#xa;    2.0.2&#xa;    2.1&#xa;    3.0&#xa;    3.0.2&#xa;    3.1.1"><table key="dialects">
+<elem>NT LM 0.12 (SMBv1) [dangerous, but default]</elem>
+<elem>2.0.2</elem>
+<elem>2.1</elem>
+<elem>3.0</elem>
+<elem>3.0.2</elem>
+<elem>3.1.1</elem>
+</table>
+</script><script id="dns-brute" output="Can&apos;t guess domain of &quot;192.168.226.58&quot;; use dns-brute.domain script argument."/><script id="msrpc-enum" output="NT_STATUS_OBJECT_NAME_NOT_FOUND">false</script><script id="smb-mbenum" output="&#xa;  DFS Root&#xa;    SNOOKUMS  0.0  Samba 4.10.4&#xa;  Potential Browser&#xa;    SNOOKUMS  0.0  Samba 4.10.4&#xa;  Print server&#xa;    SNOOKUMS  0.0  Samba 4.10.4&#xa;  Server&#xa;    SNOOKUMS  0.0  Samba 4.10.4&#xa;  Server service&#xa;    SNOOKUMS  0.0  Samba 4.10.4&#xa;  Unix server&#xa;    SNOOKUMS  0.0  Samba 4.10.4&#xa;  Windows NT/2000/XP/2003 server&#xa;    SNOOKUMS  0.0  Samba 4.10.4&#xa;  Workstation&#xa;    SNOOKUMS  0.0  Samba 4.10.4&#xa;"/><script id="smb-security-mode" output="&#xa;  account_used: &lt;blank&gt;&#xa;  authentication_level: user&#xa;  challenge_response: supported&#xa;  message_signing: disabled (dangerous, but default)"><elem key="account_used">&lt;blank&gt;</elem>
+<elem key="authentication_level">user</elem>
+<elem key="challenge_response">supported</elem>
+<elem key="message_signing">disabled</elem>
+</script><script id="ipidseq" output="ERROR: Script execution failed (use -d to debug)"/><script id="smb2-security-mode" output="&#xa;  3.1.1: &#xa;    Message signing enabled but not required"><table key="3.1.1">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="smb2-time" output="&#xa;  date: 2022-09-06T10:39:50&#xa;  start_date: N/A"><elem key="date">2022-09-06T10:39:50</elem>
+<elem key="start_date">N/A</elem>
+</script></hostscript><times srtt="78920" rttvar="17618" to="149392"/>
+</host>
+<runstats><finished time="1662461101" timestr="Tue Sep  6 11:45:01 2022" summary="Nmap done at Tue Sep  6 11:45:01 2022; 1 IP address (1 host up) scanned in 350.82 seconds" elapsed="350.82" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

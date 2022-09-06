@@ -1,0 +1,140 @@
+# Nmap 7.92 scan initiated Tue Sep  6 10:31:08 2022 as: nmap -script discovery -oA /home/kali/7ru7hGithub/CTFs/OS-ProvingGrounds/Phobos/nmap/Discovery --min-rate 1000 -p 80 192.168.226.131
+Pre-scan script results:
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::b078:abff:fe07:d7a3  MAC: b2:78:ab:07:d7:a3  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| ipv6-multicast-mld-list: 
+|   fe80::b078:abff:fe07:d7a3: 
+|     device: usb0
+|     mac: b2:78:ab:07:d7:a3
+|     multicast_ips: 
+|       ff02::1:ff07:d7a3         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:4a           (Solicited-Node Address)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:148a:75e7::4a     MAC: b2:78:ab:07:d7:a3  IFACE: usb0
+|   IP: fe80::b078:abff:fe07:d7a3  MAC: b2:78:ab:07:d7:a3  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:148a:75e7::4a     MAC: b2:78:ab:07:d7:a3  IFACE: usb0
+|   IP: fe80::b078:abff:fe07:d7a3  MAC: b2:78:ab:07:d7:a3  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+Nmap scan report for 192.168.226.131
+Host is up (0.041s latency).
+
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+80/tcp open  http
+|_http-mobileversion-checker: No mobile version detected.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=192.168.226.131
+|   Found the following error pages: 
+|   
+|   Error Code: 404
+|_  	http://192.168.226.131:80/manual
+|_http-feed: Couldn't find any feeds.
+| http-enum: 
+|_  /svn/: Subversion Repository (401 Unauthorized)
+|_http-date: Tue, 06 Sep 2022 09:31:48 GMT; +1h00m17s from local time.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /icons/
+|       png: 1
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /icons/
+|   Total files found (by extension):
+|_    Other: 1; png: 1
+|_http-title: Apache2 Ubuntu Default Page: It works
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-grep: 
+|   (1) http://192.168.226.131:80/manual: 
+|     (1) ip: 
+|_      + 192.168.226.131
+|_http-chrono: Request times for /; avg: 183.98ms; min: 139.44ms; max: 240.22ms
+| http-headers: 
+|   Date: Tue, 06 Sep 2022 09:31:47 GMT
+|   Server: Apache/2.4.29 (Ubuntu)
+|   Last-Modified: Tue, 26 Jan 2021 15:06:35 GMT
+|   ETag: "2aa6-5b9cf002d0c8d"
+|   Accept-Ranges: bytes
+|   Content-Length: 10918
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-xssed: No previously reported XSS vuln.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.226.131
+|     
+|     Path: http://192.168.226.131:80/
+|     Line number: 4
+|     Comment: 
+|         <!--
+|             Modified from the Debian original for Ubuntu
+|             Last updated: 2016-11-16
+|             See: https://launchpad.net/bugs/1288690
+|           -->
+|     
+|     Path: http://192.168.226.131:80/
+|     Line number: 201
+|     Comment: 
+|         <!--      <div class="table_of_contents floating_element">
+|                 <div class="section_header section_header_grey">
+|                   TABLE OF CONTENTS
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#about">About</a>
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#changes">Changes</a>
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#scope">Scope</a>
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#files">Config files</a>
+|                 </div>
+|               </div>
+|_        -->
+| http-vhosts: 
+|_128 names had status 200
+
+Host script results:
+|_dns-brute: Can't guess domain of "192.168.226.131"; use dns-brute.domain script argument.
+|_ipidseq: ERROR: Script execution failed (use -d to debug)
+|_path-mtu: PMTU == 1500
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Tue Sep  6 10:35:27 2022 -- 1 IP address (1 host up) scanned in 258.72 seconds

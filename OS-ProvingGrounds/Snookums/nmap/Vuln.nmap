@@ -1,0 +1,39 @@
+# Nmap 7.92 scan initiated Tue Sep  6 11:45:01 2022 as: nmap --script vuln -oA /home/kali/7ru7hGithub/CTFs/OS-ProvingGrounds/Snookums/nmap/Vuln --min-rate 1000 -p 21,22,80,111,139,445,3306,33060 192.168.226.58
+Nmap scan report for 192.168.226.58
+Host is up (0.046s latency).
+
+PORT      STATE SERVICE
+21/tcp    open  ftp
+22/tcp    open  ssh
+80/tcp    open  http
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-enum: 
+|   /README.txt: Interesting, a readme.
+|   /css/: Potentially interesting folder w/ directory listing
+|   /icons/: Potentially interesting folder w/ directory listing
+|   /images/: Potentially interesting folder w/ directory listing
+|_  /js/: Potentially interesting folder w/ directory listing
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-trace: TRACE is enabled
+111/tcp   open  rpcbind
+139/tcp   open  netbios-ssn
+445/tcp   open  microsoft-ds
+3306/tcp  open  mysql
+|_mysql-vuln-cve2012-2122: ERROR: Script execution failed (use -d to debug)
+33060/tcp open  mysqlx
+
+Host script results:
+|_smb-vuln-ms10-061: false
+|_smb-vuln-ms10-054: false
+| smb-vuln-regsvc-dos: 
+|   VULNERABLE:
+|   Service regsvc in Microsoft Windows systems vulnerable to denial of service
+|     State: VULNERABLE
+|       The service regsvc in Microsoft Windows 2000 systems is vulnerable to denial of service caused by a null deference
+|       pointer. This script will crash the service if it is vulnerable. This vulnerability was discovered by Ron Bowes
+|       while working on smb-enum-sessions.
+|_          
+
+# Nmap done at Tue Sep  6 11:45:59 2022 -- 1 IP address (1 host up) scanned in 58.46 seconds

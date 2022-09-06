@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Tue Sep  6 11:38:04 2022 as: nmap -sC -sV -oA /home/kali/7ru7hGithub/CTFs/OS-ProvingGrounds/Snookums/nmap/Extensive -&#45;min-rate 1000 -p 21,22,80,111,139,445,3306,33060 192.168.226.58 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA /home/kali/7ru7hGithub/CTFs/OS-ProvingGrounds/Snookums/nmap/Extensive -&#45;min-rate 1000 -p 21,22,80,111,139,445,3306,33060 192.168.226.58" start="1662460684" startstr="Tue Sep  6 11:38:04 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="8" services="21-22,80,111,139,445,3306,33060"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.226.58" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1662460685" endtime="1662460750"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="192.168.226.58" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ftp" product="vsftpd" version="3.0.2" ostype="Unix" method="probed" conf="10"><cpe>cpe:/a:vsftpd:vsftpd:3.0.2</cpe></service><script id="ftp-syst" output="&#xa;  STAT: &#xa;FTP server status:&#xa;     Connected to ::ffff:192.168.49.226&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 2&#xa;     vsFTPd 3.0.2 - secure, fast, stable&#xa;End of status"><elem key="STAT">&#xa;FTP server status:&#xa;     Connected to ::ffff:192.168.49.226&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 2&#xa;     vsFTPd 3.0.2 - secure, fast, stable&#xa;End of status</elem>
+</script><script id="ftp-anon" output="Anonymous FTP login allowed (FTP code 230)&#xa;Can&apos;t get directory listing: TIMEOUT"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" product="OpenSSH" version="7.4" extrainfo="protocol 2.0" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:7.4</cpe></service><script id="ssh-hostkey" output="&#xa;  2048 4a:79:67:12:c7:ec:13:3a:96:bd:d3:b4:7c:f3:95:15 (RSA)&#xa;  256 a8:a3:a7:88:cf:37:27:b5:4d:45:13:79:db:d2:ba:cb (ECDSA)&#xa;  256 f2:07:13:19:1f:29:de:19:48:7c:db:45:99:f9:cd:3e (ED25519)"><table>
+<elem key="fingerprint">4a796712c7ec133a96bdd3b47cf39515</elem>
+<elem key="bits">2048</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABAQCtUk/m8ssh+nfn52VkolWbpJihGyH2vdELXJv/X0HIj5hbkXnM1QgSSKltTq+cev1QtkrwtUTV3j2AD5Ftxz7ivrm0PvsGNI6QGnIxdAwCvt1OjDHoz6IGDS4kz5IcW3Q3SmwceCwDKPA55mupKhKlKjkZyLn4+d9An50AV1Hyj+E8APALHQBQFVp7cdJe9lqj7K8dxNVo1XExUDgU3trRSGDO5bZN7C57VsHXN6MIITU9RtyMhLbxYwA6KTU8RluW1/5v7T4EnHlRZcdmbneVcefK+EK69Mgdn5L+ww/5YrWiYbXDOUTEymWfeyoOl2LoFBD/nmSb9hayKirR4guf</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+<table>
+<elem key="fingerprint">a8a3a788cf3727b54d451379dbd2bacb</elem>
+<elem key="bits">256</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBOk5HGeIHhlXkWc9v507Ap0zc5wnKxhGa7WG9fWJhL/yr9bveHEBZllHErnP6vaWM4WRudCxA6z6rqnhep9wNW8=</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+</table>
+<table>
+<elem key="fingerprint">f20713191f29de19487cdb4599f9cd3e</elem>
+<elem key="bits">256</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIDvde70kt/TjqXRmChJ0XvKYTpljMNu6TKlAtF/S4IHL</elem>
+<elem key="type">ssh-ed25519</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="Apache httpd" version="2.4.6" extrainfo="(CentOS) PHP/5.4.16" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.6</cpe></service><script id="http-server-header" output="Apache/2.4.6 (CentOS) PHP/5.4.16"><elem>Apache/2.4.6 (CentOS) PHP/5.4.16</elem>
+</script><script id="http-title" output="Simple PHP Photo Gallery"><elem key="title">Simple PHP Photo Gallery</elem>
+</script></port>
+<port protocol="tcp" portid="111"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="rpcbind" version="2-4" extrainfo="RPC #100000" method="probed" conf="10"/><script id="rpcinfo" output="&#xa;  program version    port/proto  service&#xa;  100000  2,3,4        111/tcp   rpcbind&#xa;  100000  2,3,4        111/udp   rpcbind&#xa;  100000  3,4          111/tcp6  rpcbind&#xa;  100000  3,4          111/udp6  rpcbind&#xa;"><table key="100000">
+<table key="tcp">
+<table key="version">
+<elem>2</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="port">111</elem>
+<elem key="addr">0.0.0.0</elem>
+<elem key="owner">superuser</elem>
+</table>
+<table key="tcp6">
+<table key="version">
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="port">111</elem>
+<elem key="addr">::</elem>
+<elem key="owner">superuser</elem>
+</table>
+<table key="local">
+<elem key="addr">/var/run/rpcbind.sock</elem>
+<table key="version">
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="owner">superuser</elem>
+</table>
+<table key="udp6">
+<table key="version">
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="port">111</elem>
+<elem key="addr">::</elem>
+<elem key="owner">superuser</elem>
+</table>
+<table key="udp">
+<table key="version">
+<elem>2</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="port">111</elem>
+<elem key="addr">0.0.0.0</elem>
+<elem key="owner">superuser</elem>
+</table>
+</table>
+</script></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="netbios-ssn" product="Samba smbd" version="3.X - 4.X" extrainfo="workgroup: SAMBA" hostname="SNOOKUMS" method="probed" conf="10"><cpe>cpe:/a:samba:samba</cpe></service></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="netbios-ssn" product="Samba smbd" version="4.10.4" extrainfo="workgroup: SAMBA" hostname="SNOOKUMS" method="probed" conf="10"><cpe>cpe:/a:samba:samba</cpe></service></port>
+<port protocol="tcp" portid="3306"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="mysql" product="MySQL" extrainfo="unauthorized" method="probed" conf="10"><cpe>cpe:/a:mysql:mysql</cpe></service></port>
+<port protocol="tcp" portid="33060"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="mysqlx" servicefp="SF-Port33060-TCP:V=7.92%I=7%D=9/6%Time=63172313%P=x86_64-pc-linux-gnu%r(NULL,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(GenericLines,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(GetRequest,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(HTTPOptions,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(RTSPRequest,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(RPCCheck,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(DNSVersionBindReqTCP,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(DNSStatusRequestTCP,2B,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0\x1e\0\0\0\x01\x08\x01\x10\x88&apos;\x1a\x0fInvalid\x20message\&quot;\x05HY000&quot;)%r(Help,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(SSLSessionReq,2B,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0\x1e\0\0\0\x01\x08\x01\x10\x88&apos;\x1a\x0fInvalid\x20message\&quot;\x05HY000&quot;)%r(TerminalServerCookie,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(TLSSessionReq,2B,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0\x1e\0\0\0\x01\x08\x01\x10\x88&apos;\x1a\x0fInvalid\x20message\&quot;\x05HY000&quot;)%r(Kerberos,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(SMBProgNeg,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(X11Probe,2B,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0\x1e\0\0\0\x01\x08\x01\x10\x88&apos;\x1a\x0fInvalid\x20message\&quot;\x05HY000&quot;)%r(FourOhFourRequest,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(LPDString,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(LDAPSearchReq,2B,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0\x1e\0\0\0\x01\x08\x01\x10\x88&apos;\x1a\x0fInvalid\x20message\&quot;\x05HY000&quot;)%r(LDAPBindReq,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(SIPOptions,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(LANDesk-RC,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(TerminalServer,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(NCP,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(NotesRPC,2B,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0\x1e\0\0\0\x01\x08\x01\x10\x88&apos;\x1a\x0fInvalid\x20message\&quot;\x05HY000&quot;)%r(JavaRMI,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(WMSRequest,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(oracle-tns,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(ms-sql-s,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;)%r(afp,2B,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0\x1e\0\0\0\x01\x08\x01\x10\x88&apos;\x1a\x0fInvalid\x20message\&quot;\x05HY000&quot;)%r(giop,9,&quot;\x05\0\0\0\x0b\x08\x05\x1a\0&quot;);" method="table" conf="3"/><script id="fingerprint-strings" output="&#xa;  DNSStatusRequestTCP, LDAPSearchReq, NotesRPC, SSLSessionReq, TLSSessionReq, X11Probe, afp: &#xa;    Invalid message&quot;&#xa;    HY000"><elem key="DNSStatusRequestTCP, LDAPSearchReq, NotesRPC, SSLSessionReq, TLSSessionReq, X11Probe, afp">&#xa;    Invalid message&quot;&#xa;    HY000</elem>
+</script></port>
+</ports>
+<hostscript><script id="clock-skew" output="mean: 1h20m25s, deviation: 2h18m35s, median: 24s"><elem key="mean">4825</elem>
+<elem key="median">24</elem>
+<elem key="count">3</elem>
+<elem key="stddev">8315</elem>
+</script><script id="smb-security-mode" output="&#xa;  account_used: guest&#xa;  authentication_level: user&#xa;  challenge_response: supported&#xa;  message_signing: disabled (dangerous, but default)"><elem key="account_used">guest</elem>
+<elem key="authentication_level">user</elem>
+<elem key="challenge_response">supported</elem>
+<elem key="message_signing">disabled</elem>
+</script><script id="smb2-time" output="&#xa;  date: 2022-09-06T10:38:56&#xa;  start_date: N/A"><elem key="date">2022-09-06T10:38:56</elem>
+<elem key="start_date">N/A</elem>
+</script><script id="smb2-security-mode" output="&#xa;  3.1.1: &#xa;    Message signing enabled but not required"><table key="3.1.1">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script><script id="smb-os-discovery" output="&#xa;  OS: Windows 6.1 (Samba 4.10.4)&#xa;  Computer name: snookums&#xa;  NetBIOS computer name: SNOOKUMS\x00&#xa;  Domain name: \x00&#xa;  FQDN: snookums&#xa;  System time: 2022-09-06T06:38:57-04:00&#xa;"><elem key="os">Windows 6.1</elem>
+<elem key="lanmanager">Samba 4.10.4</elem>
+<elem key="server">SNOOKUMS\x00</elem>
+<elem key="date">2022-09-06T06:38:57-04:00</elem>
+<elem key="fqdn">snookums</elem>
+<elem key="domain_dns">\x00</elem>
+<elem key="workgroup">SAMBA\x00</elem>
+</script></hostscript><times srtt="45378" rttvar="8097" to="100000"/>
+</host>
+<runstats><finished time="1662460750" timestr="Tue Sep  6 11:39:10 2022" summary="Nmap done at Tue Sep  6 11:39:10 2022; 1 IP address (1 host up) scanned in 65.52 seconds" elapsed="65.52" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
