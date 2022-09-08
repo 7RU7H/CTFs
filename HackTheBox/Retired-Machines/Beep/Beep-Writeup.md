@@ -1,9 +1,9 @@
 # Beep
 Name: Beep
-Date:  
+Date:  06/09/2022
 Difficulty:  Easy
 Goals:  OSCP Prep
-Learnt:
+Learnt: Sometimes hacky hacking of old exploits and manually doing things is better than dealing with python modules.. chose Go for exploit development.
 
 ## Recon
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.

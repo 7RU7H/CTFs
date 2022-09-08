@@ -1,10 +1,11 @@
+# Lame
 Name: Lame 
 Date: 17/05/2022
 Difficulty: Easy 
-Description:  
-Better Description: Research the versions the box.
 Goals: TJNull's OSCP like boxes
 Learnt: Check all the versions!
+
+Research the versions the box.
 
 ## Recon
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
