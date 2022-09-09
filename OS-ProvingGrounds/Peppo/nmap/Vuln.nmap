@@ -1,0 +1,59 @@
+# Nmap 7.92 scan initiated Fri Sep  9 20:14:40 2022 as: nmap --script vuln -oA /home/kali/7ru7hGithub/CTFs/OS-ProvingGrounds/Peppo/nmap/Vuln --min-rate 1000 -p 22,113,5432,8080,10000 192.168.73.60
+Nmap scan report for 192.168.73.60
+Host is up (0.046s latency).
+
+PORT      STATE SERVICE
+22/tcp    open  ssh
+113/tcp   open  ident
+5432/tcp  open  postgresql
+8080/tcp  open  http-proxy
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       http://ha.ckers.org/slowloris/
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+| http-enum: 
+|   /login.stm: Belkin G Wireless Router
+|   /admin.php: Possible admin folder (401 Unauthorized )
+|   /login.php: Possible admin folder
+|   /login.html: Possible admin folder
+|   /admin.cfm: Possible admin folder (401 Unauthorized )
+|   /login.cfm: Possible admin folder
+|   /admin.asp: Possible admin folder (401 Unauthorized )
+|   /login.asp: Possible admin folder
+|   /admin.aspx: Possible admin folder (401 Unauthorized )
+|   /login.aspx: Possible admin folder
+|   /admin.jsp: Possible admin folder (401 Unauthorized )
+|   /login.jsp: Possible admin folder
+|   /users.sql: Possible database backup (401 Unauthorized )
+|   /login/: Login page
+|   /login.htm: Login page
+|   /login.jsp: Login page
+|   /robots.txt: Robots file
+|_  /admin.nsf: Lotus Domino (401 Unauthorized )
+10000/tcp open  snet-sensor-mgmt
+| http-vuln-cve2006-3392: 
+|   VULNERABLE:
+|   Webmin File Disclosure
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2006-3392
+|       Webmin before 1.290 and Usermin before 1.220 calls the simplify_path function before decoding HTML.
+|       This allows arbitrary files to be read, without requiring authentication, using "..%01" sequences
+|       to bypass the removal of "../" directory traversal sequences.
+|       
+|     Disclosure date: 2006-06-29
+|     References:
+|       http://www.exploit-db.com/exploits/1997/
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2006-3392
+|_      http://www.rapid7.com/db/modules/auxiliary/admin/webmin/file_disclosure
+
+# Nmap done at Fri Sep  9 20:15:39 2022 -- 1 IP address (1 host up) scanned in 58.78 seconds

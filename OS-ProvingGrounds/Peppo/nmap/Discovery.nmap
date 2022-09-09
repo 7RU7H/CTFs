@@ -1,0 +1,119 @@
+# Nmap 7.92 scan initiated Fri Sep  9 20:12:06 2022 as: nmap -script discovery -oA /home/kali/7ru7hGithub/CTFs/OS-ProvingGrounds/Peppo/nmap/Discovery --min-rate 1000 -p 22,113,5432,8080,10000 192.168.73.60
+Pre-scan script results:
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::5040:86ff:fe09:c393  MAC: 52:40:86:09:c3:93  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-echo: 
+|   IP: fe80::5040:86ff:fe09:c393  MAC: 52:40:86:09:c3:93  IFACE: usb0
+|   IP: 2a01:4c8:1402:53ff::b4     MAC: 52:40:86:09:c3:93  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| ipv6-multicast-mld-list: 
+|   fe80::5040:86ff:fe09:c393: 
+|     device: usb0
+|     mac: 52:40:86:09:c3:93
+|     multicast_ips: 
+|       ff02::1:ff09:c393         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:b4           (Solicited-Node Address)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:1402:53ff::b4     MAC: 52:40:86:09:c3:93  IFACE: usb0
+|   IP: fe80::5040:86ff:fe09:c393  MAC: 52:40:86:09:c3:93  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+Nmap scan report for 192.168.73.60
+Host is up (0.043s latency).
+
+PORT      STATE SERVICE
+22/tcp    open  ssh
+| ssh-hostkey: 
+|   2048 75:4c:02:01:fa:1e:9f:cc:e4:7b:52:fe:ba:36:85:a9 (RSA)
+|   256 b7:6f:9c:2b:bf:fb:04:62:f4:18:c9:38:f4:3d:6b:2b (ECDSA)
+|_  256 98:7f:b6:40:ce:bb:b5:57:d5:d1:3c:65:72:74:87:c3 (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_7.4p1 Debian-10+deb9u7
+113/tcp   open  ident
+5432/tcp  open  postgresql
+8080/tcp  open  http-proxy
+| http-enum: 
+|   /login.stm: Belkin G Wireless Router
+|   /admin.php: Possible admin folder (401 Unauthorized )
+|   /login.php: Possible admin folder
+|   /login.html: Possible admin folder
+|   /admin.cfm: Possible admin folder (401 Unauthorized )
+|   /login.cfm: Possible admin folder
+|   /admin.asp: Possible admin folder (401 Unauthorized )
+|   /login.asp: Possible admin folder
+|   /admin.aspx: Possible admin folder (401 Unauthorized )
+|   /login.aspx: Possible admin folder
+|   /admin.jsp: Possible admin folder (401 Unauthorized )
+|   /login.jsp: Possible admin folder
+|   /users.sql: Possible database backup (401 Unauthorized )
+|   /login/: Login page
+|   /login.htm: Login page
+|   /login.jsp: Login page
+|   /robots.txt: Robots file
+|   /admin.nsf: Lotus Domino (401 Unauthorized )
+|   /news/: Potentially interesting folder
+|_  /search/: Potentially interesting folder
+| http-vhosts: 
+|_128 names had status 200
+| http-robots.txt: 4 disallowed entries 
+|_/issues/gantt /issues/calendar /activity /search
+|_http-chrono: Request times for /; avg: 301.69ms; min: 285.70ms; max: 320.74ms
+|_http-date: Fri, 09 Sep 2022 19:12:39 GMT; +1h00m21s from local time.
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.73.60
+|   url                                         method
+|   http://192.168.73.60:8080/login             FORM
+|_  http://192.168.73.60:8080/account/register  FORM
+| http-grep: 
+|   (1) http://192.168.73.60:8080/: 
+|     (1) ip: 
+|_      + 192.168.73.60
+| http-headers: 
+|   X-Frame-Options: SAMEORIGIN
+|   X-Xss-Protection: 1; mode=block
+|   X-Content-Type-Options: nosniff
+|   X-Download-Options: noopen
+|   X-Permitted-Cross-Domain-Policies: none
+|   Referrer-Policy: strict-origin-when-cross-origin
+|   Content-Type: text/html; charset=utf-8
+|   Etag: W/"a734693af9786336ae7178d15ac50b68"
+|   Cache-Control: max-age=0, private, must-revalidate
+|   X-Request-Id: 1b33386c-cac7-411d-a2ec-0bc29ee3befb
+|   X-Runtime: 0.020755
+|   Content-Length: 0
+|   Server: WEBrick/1.4.2 (Ruby/2.6.6/2020-03-31)
+|   Date: Fri, 09 Sep 2022 19:12:42 GMT
+|   Connection: close
+|   Set-Cookie: _redmine_session=N085U0Q3UExzUE8wbGIzd01tTC9QaDlnOU85MFZHS1ljajNxdzMvb1lHbmVKVUczd3NzUTZjRWo4TTlvSXRZRlFnbnFkS1FMT0tQQjd2SXpNaUJKaUxRRnVXRzVrL2JMM0pUZzVZQXo0c2RPT1QrcWZxR3pqWTZDNkNYTFppWVAyUnZQRG1ObmwrYnNuS1dkaU56TVFPTHJmR0Rtb3hhSlNuV0FKZWNXVVdPUmpGY1h0UmExRnY0NkJ6aUdaMDcvLS1UckhiczB6Zk1pN0pLSURyb0E1ME1BPT0%3D--040b54871f79a53d0d8675ce9b95f90ac5a467d2; path=/; HttpOnly
+|   
+|_  (Request type: HEAD)
+|_http-title: Redmine
+10000/tcp open  snet-sensor-mgmt
+
+Host script results:
+| qscan: 
+| PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22     0       46707.50   6736.11   0.0%
+| 113    0       45970.20   10425.65  0.0%
+| 5432   0       46441.40   8061.19   0.0%
+| 8080   0       45286.70   5562.88   0.0%
+|_10000  0       48145.40   6517.51   0.0%
+|_dns-brute: Can't guess domain of "192.168.73.60"; use dns-brute.domain script argument.
+|_path-mtu: PMTU == 1500
+|_fcrdns: FAIL (No PTR record)
+|_ipidseq: ERROR: Script execution failed (use -d to debug)
+
+# Nmap done at Fri Sep  9 20:14:40 2022 -- 1 IP address (1 host up) scanned in 154.31 seconds

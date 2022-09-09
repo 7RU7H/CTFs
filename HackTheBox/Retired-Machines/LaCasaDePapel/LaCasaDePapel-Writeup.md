@@ -2,7 +2,7 @@
 Name: LaCasaDePapel
 Date:  
 Difficulty:  Easy
-Goals:  OSCP prep
+Goals:  OSCP Prep
 Learnt:
 
 ## Recon

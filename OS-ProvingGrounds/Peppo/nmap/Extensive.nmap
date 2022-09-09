@@ -1,0 +1,93 @@
+# Nmap 7.92 scan initiated Fri Sep  9 20:11:20 2022 as: nmap -sC -sV -oA /home/kali/7ru7hGithub/CTFs/OS-ProvingGrounds/Peppo/nmap/Extensive --min-rate 1000 -p 22,113,5432,8080,10000 192.168.73.60
+Nmap scan report for 192.168.73.60
+Host is up (0.046s latency).
+
+PORT      STATE SERVICE           VERSION
+22/tcp    open  ssh               OpenSSH 7.4p1 Debian 10+deb9u7 (protocol 2.0)
+|_auth-owners: root
+| ssh-hostkey: 
+|   2048 75:4c:02:01:fa:1e:9f:cc:e4:7b:52:fe:ba:36:85:a9 (RSA)
+|   256 b7:6f:9c:2b:bf:fb:04:62:f4:18:c9:38:f4:3d:6b:2b (ECDSA)
+|_  256 98:7f:b6:40:ce:bb:b5:57:d5:d1:3c:65:72:74:87:c3 (ED25519)
+113/tcp   open  ident             FreeBSD identd
+|_auth-owners: nobody
+5432/tcp  open  postgresql        PostgreSQL DB 9.6.0 or later
+| fingerprint-strings: 
+|   SMBProgNeg: 
+|     SFATAL
+|     VFATAL
+|     C0A000
+|     Munsupported frontend protocol 65363.19778: server supports 2.0 to 3.0
+|     Fpostmaster.c
+|     L2071
+|_    RProcessStartupPacket
+8080/tcp  open  http              WEBrick httpd 1.4.2 (Ruby 2.6.6 (2020-03-31))
+| http-robots.txt: 4 disallowed entries 
+|_/issues/gantt /issues/calendar /activity /search
+|_http-title: Redmine
+|_http-server-header: WEBrick/1.4.2 (Ruby/2.6.6/2020-03-31)
+10000/tcp open  snet-sensor-mgmt?
+| fingerprint-strings: 
+|   DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, Kerberos, LANDesk-RC, LDAPBindReq, LDAPSearchReq, LPDString, RPCCheck, RTSPRequest, SIPOptions, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServer, TerminalServerCookie, X11Probe: 
+|     HTTP/1.1 400 Bad Request
+|     Connection: close
+|   FourOhFourRequest: 
+|     HTTP/1.1 200 OK
+|     Content-Type: text/plain
+|     Date: Fri, 09 Sep 2022 19:11:54 GMT
+|     Connection: close
+|     Hello World
+|   GetRequest: 
+|     HTTP/1.1 200 OK
+|     Content-Type: text/plain
+|     Date: Fri, 09 Sep 2022 19:11:47 GMT
+|     Connection: close
+|     Hello World
+|   HTTPOptions: 
+|     HTTP/1.1 200 OK
+|     Content-Type: text/plain
+|     Date: Fri, 09 Sep 2022 19:11:48 GMT
+|     Connection: close
+|_    Hello World
+|_auth-owners: eleanor
+2 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port5432-TCP:V=7.92%I=7%D=9/9%Time=631B8FDF%P=x86_64-pc-linux-gnu%r(SMB
+SF:ProgNeg,8C,"E\0\0\0\x8bSFATAL\0VFATAL\0C0A000\0Munsupported\x20frontend
+SF:\x20protocol\x2065363\.19778:\x20server\x20supports\x202\.0\x20to\x203\
+SF:.0\0Fpostmaster\.c\0L2071\0RProcessStartupPacket\0\0");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port10000-TCP:V=7.92%I=7%D=9/9%Time=631B8FDF%P=x86_64-pc-linux-gnu%r(Ge
+SF:tRequest,71,"HTTP/1\.1\x20200\x20OK\r\nContent-Type:\x20text/plain\r\nD
+SF:ate:\x20Fri,\x2009\x20Sep\x202022\x2019:11:47\x20GMT\r\nConnection:\x20
+SF:close\r\n\r\nHello\x20World\n")%r(HTTPOptions,71,"HTTP/1\.1\x20200\x20O
+SF:K\r\nContent-Type:\x20text/plain\r\nDate:\x20Fri,\x2009\x20Sep\x202022\
+SF:x2019:11:48\x20GMT\r\nConnection:\x20close\r\n\r\nHello\x20World\n")%r(
+SF:RTSPRequest,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20cl
+SF:ose\r\n\r\n")%r(RPCCheck,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConn
+SF:ection:\x20close\r\n\r\n")%r(DNSVersionBindReqTCP,2F,"HTTP/1\.1\x20400\
+SF:x20Bad\x20Request\r\nConnection:\x20close\r\n\r\n")%r(DNSStatusRequestT
+SF:CP,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r
+SF:\n")%r(Help,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20cl
+SF:ose\r\n\r\n")%r(SSLSessionReq,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\
+SF:nConnection:\x20close\r\n\r\n")%r(TerminalServerCookie,2F,"HTTP/1\.1\x2
+SF:0400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r\n")%r(TLSSessionRe
+SF:q,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r\
+SF:n")%r(Kerberos,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x2
+SF:0close\r\n\r\n")%r(SMBProgNeg,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\
+SF:nConnection:\x20close\r\n\r\n")%r(X11Probe,2F,"HTTP/1\.1\x20400\x20Bad\
+SF:x20Request\r\nConnection:\x20close\r\n\r\n")%r(FourOhFourRequest,71,"HT
+SF:TP/1\.1\x20200\x20OK\r\nContent-Type:\x20text/plain\r\nDate:\x20Fri,\x2
+SF:009\x20Sep\x202022\x2019:11:54\x20GMT\r\nConnection:\x20close\r\n\r\nHe
+SF:llo\x20World\n")%r(LPDString,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\n
+SF:Connection:\x20close\r\n\r\n")%r(LDAPSearchReq,2F,"HTTP/1\.1\x20400\x20
+SF:Bad\x20Request\r\nConnection:\x20close\r\n\r\n")%r(LDAPBindReq,2F,"HTTP
+SF:/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r\n")%r(SIPO
+SF:ptions,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r
+SF:\n\r\n")%r(LANDesk-RC,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnect
+SF:ion:\x20close\r\n\r\n")%r(TerminalServer,2F,"HTTP/1\.1\x20400\x20Bad\x2
+SF:0Request\r\nConnection:\x20close\r\n\r\n");
+Service Info: OSs: Linux, FreeBSD; CPE: cpe:/o:linux:linux_kernel, cpe:/o:freebsd:freebsd
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Sep  9 20:12:06 2022 -- 1 IP address (1 host up) scanned in 45.62 seconds

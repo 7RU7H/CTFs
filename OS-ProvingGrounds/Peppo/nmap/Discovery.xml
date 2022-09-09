@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Fri Sep  9 20:12:06 2022 as: nmap -script discovery -oA /home/kali/7ru7hGithub/CTFs/OS-ProvingGrounds/Peppo/nmap/Discovery -&#45;min-rate 1000 -p 22,113,5432,8080,10000 192.168.73.60 -->
+<nmaprun scanner="nmap" args="nmap -script discovery -oA /home/kali/7ru7hGithub/CTFs/OS-ProvingGrounds/Peppo/nmap/Discovery -&#45;min-rate 1000 -p 22,113,5432,8080,10000 192.168.73.60" start="1662750726" startstr="Fri Sep  9 20:12:06 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="5" services="22,113,5432,8080,10000"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="targets-ipv6-multicast-mld" output="&#xa;  IP: fe80::5040:86ff:fe09:c393  MAC: 52:40:86:09:c3:93  IFACE: usb0&#xa;&#xa;  Use -&#45;script-args=newtargets to add the results as targets"><table>
+<elem key="address">fe80::5040:86ff:fe09:c393</elem>
+<elem key="iface">usb0</elem>
+<elem key="mac">52:40:86:09:c3:93</elem>
+</table>
+</script><script id="targets-ipv6-multicast-echo" output="&#xa;  IP: fe80::5040:86ff:fe09:c393  MAC: 52:40:86:09:c3:93  IFACE: usb0&#xa;  IP: 2a01:4c8:1402:53ff::b4     MAC: 52:40:86:09:c3:93  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="ipv6-multicast-mld-list" output="&#xa;  fe80::5040:86ff:fe09:c393: &#xa;    device: usb0&#xa;    mac: 52:40:86:09:c3:93&#xa;    multicast_ips: &#xa;      ff02::1:ff09:c393         (NDP Solicited-node)&#xa;      ff02::1:ff00:0            (Solicited-Node Address)&#xa;      ff05::2                   (unknown)&#xa;      ff02::2                   (All Routers Address)&#xa;      ff02::1:ff00:b4           (Solicited-Node Address)"><table key="fe80::5040:86ff:fe09:c393">
+<elem key="device">usb0</elem>
+<elem key="mac">52:40:86:09:c3:93</elem>
+<table key="multicast_ips">
+<table>
+<elem key="ip">ff02::1:ff09:c393</elem>
+<elem key="description">NDP Solicited-node</elem>
+</table>
+<table>
+<elem key="ip">ff02::1:ff00:0</elem>
+<elem key="description">Solicited-Node Address</elem>
+</table>
+<table>
+<elem key="ip">ff05::2</elem>
+<elem key="description">unknown</elem>
+</table>
+<table>
+<elem key="ip">ff02::2</elem>
+<elem key="description">All Routers Address</elem>
+</table>
+<table>
+<elem key="ip">ff02::1:ff00:b4</elem>
+<elem key="description">Solicited-Node Address</elem>
+</table>
+</table>
+</table>
+</script><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-ipv6-multicast-invalid-dst" output="&#xa;  IP: 2a01:4c8:1402:53ff::b4     MAC: 52:40:86:09:c3:93  IFACE: usb0&#xa;  IP: fe80::5040:86ff:fe09:c393  MAC: 52:40:86:09:c3:93  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.73.60" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1662750738" endtime="1662750880"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="192.168.73.60" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/><script id="ssh-hostkey" output="&#xa;  2048 75:4c:02:01:fa:1e:9f:cc:e4:7b:52:fe:ba:36:85:a9 (RSA)&#xa;  256 b7:6f:9c:2b:bf:fb:04:62:f4:18:c9:38:f4:3d:6b:2b (ECDSA)&#xa;  256 98:7f:b6:40:ce:bb:b5:57:d5:d1:3c:65:72:74:87:c3 (ED25519)"><table>
+<elem key="fingerprint">754c0201fa1e9fcce47b52feba3685a9</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABAQCzklV3kD0MUV8hlgkTzmIXus0hs0kpUtsw944TP1RKcoGH+RVDKO3+X9tM0O5o4FWlq63/Rgu/MsM+MHhYJzR9SqhCwFN7FtcAumLaykQRuOTOUMWtRqNybqwTC1noDrh1I6zg/hmzNIOHBH7jVFX4hZ18puzP7kUEwLyzTL6gl8OekAnPGYQFNkLDLo1QuSHoPif+835rjirf6Z+AcVHtz+BCrJa+UvtCuDgQk6+hRvASZ/sZk21jTLqe+pc32a1yYnfySXJrfGevezVVeOzWca4Kbt8HcWz7nNmyS8vcr9U/sDD2ZvW0GEVgxneCDSha5zzAt3blNf8xgwaboetx</elem>
+<elem key="bits">2048</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+<table>
+<elem key="fingerprint">b76f9c2bbffb0462f418c938f43d6b2b</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBqNWmLnEEMpbdgBBhkcQQqjHi1mO1wl55JIWh4kpqzQYuZaKGZ63cIOppztFxsAowPqOEhImpkEni9fcTflquQ=</elem>
+<elem key="bits">256</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+</table>
+<table>
+<elem key="fingerprint">987fb640cebbb557d5d13c65727487c3</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIOEgaTq2swxYKGv8XDDrdarrUGFDnxl/3X18UjliCfL6</elem>
+<elem key="bits">256</elem>
+<elem key="type">ssh-ed25519</elem>
+</table>
+</script><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (10)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (6)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+<elem>diffie-hellman-group14-sha1</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>ssh-rsa</elem>
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script><script id="banner" output="SSH-2.0-OpenSSH_7.4p1 Debian-10+deb9u7"/></port>
+<port protocol="tcp" portid="113"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ident" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5432"><state state="open" reason="syn-ack" reason_ttl="62"/><service name="postgresql" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="62"/><service name="http-proxy" method="table" conf="3"/><script id="http-enum" output="&#xa;  /login.stm: Belkin G Wireless Router&#xa;  /admin.php: Possible admin folder (401 Unauthorized )&#xa;  /login.php: Possible admin folder&#xa;  /login.html: Possible admin folder&#xa;  /admin.cfm: Possible admin folder (401 Unauthorized )&#xa;  /login.cfm: Possible admin folder&#xa;  /admin.asp: Possible admin folder (401 Unauthorized )&#xa;  /login.asp: Possible admin folder&#xa;  /admin.aspx: Possible admin folder (401 Unauthorized )&#xa;  /login.aspx: Possible admin folder&#xa;  /admin.jsp: Possible admin folder (401 Unauthorized )&#xa;  /login.jsp: Possible admin folder&#xa;  /users.sql: Possible database backup (401 Unauthorized )&#xa;  /login/: Login page&#xa;  /login.htm: Login page&#xa;  /login.jsp: Login page&#xa;  /robots.txt: Robots file&#xa;  /admin.nsf: Lotus Domino (401 Unauthorized )&#xa;  /news/: Potentially interesting folder&#xa;  /search/: Potentially interesting folder&#xa;"/><script id="http-vhosts" output="&#xa;128 names had status 200"/><script id="http-robots.txt" output="4 disallowed entries &#xa;/issues/gantt /issues/calendar /activity /search"/><script id="http-chrono" output="Request times for /; avg: 301.69ms; min: 285.70ms; max: 320.74ms"/><script id="http-date" output="Fri, 09 Sep 2022 19:12:39 GMT; +1h00m21s from local time."><elem key="date">2022-09-09T20:12:39+00:00</elem>
+<elem key="delta">3621.0</elem>
+</script><script id="http-auth-finder" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.73.60&#xa;  url                                         method&#xa;  http://192.168.73.60:8080/login             FORM&#xa;  http://192.168.73.60:8080/account/register  FORM&#xa;"/><script id="http-grep" output="&#xa;  (1) http://192.168.73.60:8080/: &#xa;    (1) ip: &#xa;      + 192.168.73.60"><table key="(1) http://192.168.73.60:8080/">
+<table key="(1) ip">
+<elem>+ 192.168.73.60</elem>
+</table>
+</table>
+</script><script id="http-headers" output="&#xa;  X-Frame-Options: SAMEORIGIN&#xa;  X-Xss-Protection: 1; mode=block&#xa;  X-Content-Type-Options: nosniff&#xa;  X-Download-Options: noopen&#xa;  X-Permitted-Cross-Domain-Policies: none&#xa;  Referrer-Policy: strict-origin-when-cross-origin&#xa;  Content-Type: text/html; charset=utf-8&#xa;  Etag: W/&quot;a734693af9786336ae7178d15ac50b68&quot;&#xa;  Cache-Control: max-age=0, private, must-revalidate&#xa;  X-Request-Id: 1b33386c-cac7-411d-a2ec-0bc29ee3befb&#xa;  X-Runtime: 0.020755&#xa;  Content-Length: 0&#xa;  Server: WEBrick/1.4.2 (Ruby/2.6.6/2020-03-31)&#xa;  Date: Fri, 09 Sep 2022 19:12:42 GMT&#xa;  Connection: close&#xa;  Set-Cookie: _redmine_session=N085U0Q3UExzUE8wbGIzd01tTC9QaDlnOU85MFZHS1ljajNxdzMvb1lHbmVKVUczd3NzUTZjRWo4TTlvSXRZRlFnbnFkS1FMT0tQQjd2SXpNaUJKaUxRRnVXRzVrL2JMM0pUZzVZQXo0c2RPT1QrcWZxR3pqWTZDNkNYTFppWVAyUnZQRG1ObmwrYnNuS1dkaU56TVFPTHJmR0Rtb3hhSlNuV0FKZWNXVVdPUmpGY1h0UmExRnY0NkJ6aUdaMDcvLS1UckhiczB6Zk1pN0pLSURyb0E1ME1BPT0%3D-&#45;040b54871f79a53d0d8675ce9b95f90ac5a467d2; path=/; HttpOnly&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-title" output="Redmine"><elem key="title">Redmine</elem>
+</script></port>
+<port protocol="tcp" portid="10000"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="snet-sensor-mgmt" method="table" conf="3"/></port>
+</ports>
+<hostscript><script id="qscan" output="&#xa;PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;22     0       46707.50   6736.11   0.0%&#xa;113    0       45970.20   10425.65  0.0%&#xa;5432   0       46441.40   8061.19   0.0%&#xa;8080   0       45286.70   5562.88   0.0%&#xa;10000  0       48145.40   6517.51   0.0%&#xa;"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;192.168.73.60&quot;; use dns-brute.domain script argument."/><script id="path-mtu" output="PMTU == 1500"/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="ipidseq" output="ERROR: Script execution failed (use -d to debug)"/></hostscript><times srtt="42517" rttvar="13061" to="100000"/>
+</host>
+<runstats><finished time="1662750880" timestr="Fri Sep  9 20:14:40 2022" summary="Nmap done at Fri Sep  9 20:14:40 2022; 1 IP address (1 host up) scanned in 154.31 seconds" elapsed="154.31" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
