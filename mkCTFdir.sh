@@ -9,7 +9,7 @@ if [ "$#" -ne $ARGTOTAL ]; then
 fi
 OS="OS-ProvingGrounds"
 THM="TryHackMe/Markdown"
-HTB="HackTheBox/Challenges"
+HTB="HackTheBox/Retire-Machines"
 if [ "$site" != $1 ] || [ "$name" != $2 ];
 then
 	case "$1" in

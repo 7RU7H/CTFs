@@ -1,0 +1,90 @@
+# Nmap 7.92 scan initiated Fri Sep  9 21:06:22 2022 as: nmap -script discovery -oA /home/kali/7ru7hGithub/CTFs/HackTheBox/Retired-Machines/Sunday/nmap/Discovery --min-rate 1000 -p 79,111,515,6787,22022 10.129.48.72
+Pre-scan script results:
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| ipv6-multicast-mld-list: 
+|   fe80::5040:86ff:fe09:c393: 
+|     device: usb0
+|     mac: 52:40:86:09:c3:93
+|     multicast_ips: 
+|       ff02::1:ff09:c393         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:b4           (Solicited-Node Address)
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::5040:86ff:fe09:c393  MAC: 52:40:86:09:c3:93  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:1402:53ff::b4     MAC: 52:40:86:09:c3:93  IFACE: usb0
+|   IP: fe80::5040:86ff:fe09:c393  MAC: 52:40:86:09:c3:93  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:1402:53ff::b4     MAC: 52:40:86:09:c3:93  IFACE: usb0
+|   IP: fe80::5040:86ff:fe09:c393  MAC: 52:40:86:09:c3:93  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for 10.129.48.72
+Host is up (0.048s latency).
+
+PORT      STATE SERVICE
+79/tcp    open  finger
+|_finger: No one logged on\x0D
+111/tcp   open  rpcbind
+515/tcp   open  printer
+6787/tcp  open  smc-admin
+| ssl-cert: Subject: commonName=sunday
+| Subject Alternative Name: DNS:sunday
+| Not valid before: 2021-12-08T19:40:00
+|_Not valid after:  2031-12-06T19:40:00
+| tls-alpn: 
+|_  http/1.1
+|_ssl-date: TLS randomness does not represent time
+| ssl-enum-ciphers: 
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|_  least strength: A
+22022/tcp open  unknown
+|_banner: SSH-2.0-OpenSSH_7.5
+
+Host script results:
+|_dns-brute: Can't guess domain of "10.129.48.72"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+| qscan: 
+| PORT   FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 79     0       45632.90   6001.28  0.0%
+| 111    0       44540.80   4679.57  0.0%
+| 515    0       46477.30   6407.45  0.0%
+| 6787   0       46221.90   5699.21  0.0%
+|_22022  0       45927.10   6165.41  0.0%
+|_path-mtu: PMTU == 1500
+|_ipidseq: ERROR: Script execution failed (use -d to debug)
+
+# Nmap done at Fri Sep  9 21:07:03 2022 -- 1 IP address (1 host up) scanned in 41.29 seconds

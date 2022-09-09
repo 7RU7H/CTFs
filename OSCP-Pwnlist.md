@@ -51,6 +51,7 @@ Craft2 | Done | | [Link]()
 Flasky | Done | | [Link]()
 DVR4 | Done | | [Link]()
 Medjed | Done - gospider,ferox needed lost connection | | [Link]()
+Peppo | Done | | | [Link]()
 
 #### OS-Proving-Grounds AD 
 Box Name  | Recon-ed | Done | Writeup
@@ -81,7 +82,7 @@ Nibbles | !! | | [Link]()
 Lame | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Lame)
 Brainfuck | Done | Walkthrough | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Brainfuck)
 Shocker| Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Shocker)
-Beep | Done | | [Link]()
+Beep | Done | Done | [Link]()
 Cronos | Done | | [Link]()
 Nineveh | Done | | [Link]()
 Sense | Done | | [Link]()
