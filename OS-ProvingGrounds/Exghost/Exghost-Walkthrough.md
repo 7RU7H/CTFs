@@ -20,15 +20,20 @@ hydra -L users.txt -P /usr/share/seclists/Passwords/Default-Credentials/ftp-bett
 Got the backup file, `file backup` outputs that it is a pcap filem open wireshark 
 ![](posttoexiftool.png)
 
+![](exampleupload.png)
+
 Post the Pentest Monkey PHP reverse shell!
 
-Work in progress
+![](curlnoworko.png)
 
-```bash
-curl -X POST -F "type=file;name=php-reverse-shell.php;type=submit;type=Upload" 'http://192.168.226.183/exiftool.php' -F "file=@php-reverse-shell.php"
-```
 
 ## Exploit
+
+There is only one exploit for Exiftool on Searchsploit, that is this for the exact same version 12.23! 
+
+![](50911.png)
+
+
 
 ## Foothold
 
