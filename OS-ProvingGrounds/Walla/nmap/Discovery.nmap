@@ -1,0 +1,208 @@
+# Nmap 7.92 scan initiated Tue Sep 13 10:01:03 2022 as: nmap --script discovery --min-rate 1000 -p 22,23,25,53,422,8091,42042 -oA nmap/Discovery 192.168.170.97
+Pre-scan script results:
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::90d3:4dff:fe1f:e11d  MAC: 92:d3:4d:1f:e1:1d  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| ipv6-multicast-mld-list: 
+|   fe80::90d3:4dff:fe1f:e11d: 
+|     device: usb0
+|     mac: 92:d3:4d:1f:e1:1d
+|     multicast_ips: 
+|       ff02::1:ff1f:e11d         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:88           (Solicited-Node Address)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:1402:53ff::88     MAC: 92:d3:4d:1f:e1:1d  IFACE: usb0
+|   IP: fe80::90d3:4dff:fe1f:e11d  MAC: 92:d3:4d:1f:e1:1d  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:1402:53ff::88     MAC: 92:d3:4d:1f:e1:1d  IFACE: usb0
+|   IP: fe80::90d3:4dff:fe1f:e11d  MAC: 92:d3:4d:1f:e1:1d  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+Nmap scan report for 192.168.170.97
+Host is up (0.054s latency).
+
+PORT      STATE SERVICE
+22/tcp    open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   2048 02:71:5d:c8:b9:43:ba:6a:c8:ed:15:c5:6c:b2:f5:f9 (RSA)
+|   256 f3:e5:10:d4:16:a9:9e:03:47:38:ba:ac:18:24:53:28 (ECDSA)
+|_  256 02:4f:99:ec:85:6d:79:43:88:b2:b5:7c:f0:91:fe:74 (ED25519)
+|_banner: SSH-2.0-OpenSSH_7.9p1 Debian-10+deb10u2
+23/tcp    open  telnet
+|_banner: Linux Telnetd 0.17
+| telnet-encryption: 
+|_  Telnet server does not support encryption
+25/tcp    open  smtp
+|_smtp-commands: walla, PIPELINING, SIZE 10240000, VRFY, ETRN, STARTTLS, ENHANCEDSTATUSCODES, 8BITMIME, DSN, SMTPUTF8, CHUNKING
+|_smtp-open-relay: Server doesn't seem to be an open relay, all tests failed
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_SEED_CBC_SHA (dh 2048) - A
+|       TLS_DH_anon_WITH_AES_128_CBC_SHA (dh 2048) - F
+|       TLS_DH_anon_WITH_AES_256_CBC_SHA (dh 2048) - F
+|       TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - F
+|       TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - F
+|       TLS_DH_anon_WITH_SEED_CBC_SHA (dh 2048) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A
+|       TLS_ECDH_anon_WITH_AES_128_CBC_SHA (secp256r1) - F
+|       TLS_ECDH_anon_WITH_AES_256_CBC_SHA (secp256r1) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_SEED_CBC_SHA (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: client
+|     warnings: 
+|       Anonymous key exchange, score capped at F
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_SEED_CBC_SHA (dh 2048) - A
+|       TLS_DH_anon_WITH_AES_128_CBC_SHA (dh 2048) - F
+|       TLS_DH_anon_WITH_AES_256_CBC_SHA (dh 2048) - F
+|       TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - F
+|       TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - F
+|       TLS_DH_anon_WITH_SEED_CBC_SHA (dh 2048) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A
+|       TLS_ECDH_anon_WITH_AES_128_CBC_SHA (secp256r1) - F
+|       TLS_ECDH_anon_WITH_AES_256_CBC_SHA (secp256r1) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_SEED_CBC_SHA (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: client
+|     warnings: 
+|       Anonymous key exchange, score capped at F
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CCM (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CCM_8 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CCM (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CCM_8 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_ARIA_128_GCM_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_ARIA_256_GCM_SHA384 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_SEED_CBC_SHA (dh 2048) - A
+|       TLS_DH_anon_WITH_AES_128_CBC_SHA (dh 2048) - F
+|       TLS_DH_anon_WITH_AES_128_CBC_SHA256 (dh 2048) - F
+|       TLS_DH_anon_WITH_AES_128_GCM_SHA256 (dh 2048) - F
+|       TLS_DH_anon_WITH_AES_256_CBC_SHA (dh 2048) - F
+|       TLS_DH_anon_WITH_AES_256_CBC_SHA256 (dh 2048) - F
+|       TLS_DH_anon_WITH_AES_256_GCM_SHA384 (dh 2048) - F
+|       TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - F
+|       TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA256 (dh 2048) - F
+|       TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - F
+|       TLS_DH_anon_WITH_CAMELLIA_256_CBC_SHA256 (dh 2048) - F
+|       TLS_DH_anon_WITH_SEED_CBC_SHA (dh 2048) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_ARIA_128_GCM_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_ARIA_256_GCM_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_CAMELLIA_256_CBC_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (secp256r1) - A
+|       TLS_ECDH_anon_WITH_AES_128_CBC_SHA (secp256r1) - F
+|       TLS_ECDH_anon_WITH_AES_256_CBC_SHA (secp256r1) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CCM (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CCM_8 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CCM (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CCM_8 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_ARIA_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_ARIA_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_SEED_CBC_SHA (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: client
+|     warnings: 
+|       Anonymous key exchange, score capped at F
+|   TLSv1.3: 
+|     ciphers: 
+|       TLS_AKE_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|       TLS_AKE_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A
+|       TLS_AKE_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - A
+|     cipher preference: client
+|_  least strength: F
+|_ssl-date: TLS randomness does not represent time
+| ssl-cert: Subject: commonName=walla
+| Subject Alternative Name: DNS:walla
+| Not valid before: 2020-09-17T18:26:36
+|_Not valid after:  2030-09-15T18:26:36
+|_banner: 220 walla ESMTP Postfix (Debian/GNU)
+53/tcp    open  domain
+|_dns-nsec3-enum: Can't determine domain for host 192.168.170.97; use dns-nsec3-enum.domains script arg.
+|_dns-nsec-enum: Can't determine domain for host 192.168.170.97; use dns-nsec-enum.domains script arg.
+422/tcp   open  ariel3
+|_banner: SSH-2.0-OpenSSH_7.9p1 Debian-10+deb10u2
+8091/tcp  open  jamlink
+42042/tcp open  unknown
+|_banner: SSH-2.0-OpenSSH_7.9p1 Debian-10+deb10u2
+
+Host script results:
+|_ipidseq: ERROR: Script execution failed (use -d to debug)
+|_path-mtu: PMTU == 1500
+| qscan: 
+| PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22     0       44667.60   6112.40   0.0%
+| 23     1       39998.40   5914.09   0.0%
+| 25     0       42033.20   5435.20   0.0%
+| 53     0       45588.10   7508.60   0.0%
+| 422    0       43051.90   5837.24   0.0%
+| 8091   0       47135.70   6685.89   0.0%
+|_42042  0       43881.20   10220.38  0.0%
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "192.168.170.97"; use dns-brute.domain script argument.
+
+# Nmap done at Tue Sep 13 10:02:02 2022 -- 1 IP address (1 host up) scanned in 59.22 seconds
