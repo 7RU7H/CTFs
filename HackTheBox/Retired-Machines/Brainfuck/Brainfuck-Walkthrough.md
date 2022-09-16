@@ -3,7 +3,7 @@ Name: Brainfuck
 Date:  26/08/2022
 Difficulty:  Insane
 Description:  Walkthough
-Better Description:  [Ippsec Video]()
+Better Description:  [Ippsec Video](https://www.youtube.com/watch?v=o5x1yg3JnYI)
 Goals:  OSCP Prep, Ippsec handholding, but read atleast another method from a written source, if possible try practice on-the-fly python scripting
 Learnt: 
 - Hosting PHP to request a cookie for my browser to 

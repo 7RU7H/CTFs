@@ -71,17 +71,18 @@ Box Name  | Walkthrough | References
 Forest | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Forest) | [Ippsec](https://www.youtube.com/watch?v=H9FcE_FMZio)
 Sneaky | [Link]() | [Ippsec]()
 Blunder | [Link]() | [Ippsec]
-Brainfuck | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Brainfuck)  | [Ippsec]
+Brainfuck | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Brainfuck)  | [Ippsec](https://www.youtube.com/watch?v=o5x1yg3JnYI)
 Reddish | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Reddish) | [Ippsec] | 
+Querier | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Retired-Machines/Querier) | [Ippsec](https://www.youtube.com/watch?v=d7ACjty4m7U)
 
 #### TJNULL OSCP
 Box Name  | Recon-ed | Done | Writeup
 --- | --- | --- | ---  
-Bashed | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Bashed)
+Bashed | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Retired-Machines/Bashed)
 Nibbles | !! | | [Link]()
-Lame | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Lame)
-Brainfuck | Done | Walkthrough | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Brainfuck)
-Shocker| Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Shocker)
+Lame | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Retired-Machines/Lame)
+Brainfuck | Done | Walkthrough | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Retired-Machines/Brainfuck)
+Shocker| Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Retired-Machines/Shocker)
 Beep | Done | Done | [Link]()
 Cronos | Done | | [Link]()
 Nineveh | Done | | [Link]()
@@ -90,7 +91,7 @@ Solidstate | Done | | [Link]()
 Node | Done | | [Link]()
 Valentine | Done | | [Link]()
 Poison | Done | | [Link]()
-Sunday | !! | | [Link]()
+Sunday | Done | | [Link]()
 Tartarsauce | Done | | [Link]()
 Irked | Done | | [Link]()
 Friendzone  | Done -not done smb | | [Link]()
@@ -103,7 +104,7 @@ Artic | Done | WILL RETRY WITHOUT MS10-059 | [Link](https://github.com/7RU7H/CTF
 Grandpa| Done | | [Link]()
 Silo | Done | | [Link]()
 Bounty | Done | | [Link]()
-Jerry | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Jerry)
+Jerry | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Retired-Machines/Jerry)
 Conceal |  | | [Link]()
 Vault | Done | | [Link]()
 
@@ -154,9 +155,8 @@ Box Name | Recon-ed | Done | Writeup
 --- | --- | --- | --- 
 Bankrobber | Done | | [Link]() 
 Ypuffy | | | [Link]()
-Querier | | | [Link]()
 Charon | | | [Link]()
-Reddish | Done | | [Link]() AMAP the udp!
+
 
 #### HTB  
 Intended method is broken - try later
