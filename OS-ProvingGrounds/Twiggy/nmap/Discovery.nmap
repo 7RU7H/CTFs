@@ -1,0 +1,171 @@
+# Nmap 7.92 scan initiated Sat Sep 17 21:12:10 2022 as: nmap --script discovery -oA nmap/Discovery -min-rate 1000 -p- 192.168.141.62
+Pre-scan script results:
+| ipv6-multicast-mld-list: 
+|   fe80::987e:19ff:fe3e:4a41: 
+|     device: usb0
+|     mac: 9a:7e:19:3e:4a:41
+|     multicast_ips: 
+|       ff02::1:ff3e:4a41         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:4f           (Solicited-Node Address)
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::987e:19ff:fe3e:4a41  MAC: 9a:7e:19:3e:4a:41  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: fe80::987e:19ff:fe3e:4a41  MAC: 9a:7e:19:3e:4a:41  IFACE: usb0
+|   IP: 2a01:4c8:148a:6809::4f     MAC: 9a:7e:19:3e:4a:41  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:148a:6809::4f     MAC: 9a:7e:19:3e:4a:41  IFACE: usb0
+|   IP: fe80::987e:19ff:fe3e:4a41  MAC: 9a:7e:19:3e:4a:41  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+Nmap scan report for 192.168.141.62
+Host is up (0.044s latency).
+Not shown: 65529 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+22/tcp   open  ssh
+| ssh-hostkey: 
+|   2048 44:7d:1a:56:9b:68:ae:f5:3b:f6:38:17:73:16:5d:75 (RSA)
+|   256 1c:78:9d:83:81:52:f4:b0:1d:8e:32:03:cb:a6:18:93 (ECDSA)
+|_  256 08:c9:12:d9:7b:98:98:c8:b3:99:7a:19:82:2e:a3:ea (ED25519)
+|_banner: SSH-2.0-OpenSSH_7.4
+| ssh2-enum-algos: 
+|   kex_algorithms: (12)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (12)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+53/tcp   open  domain
+|_dns-nsec3-enum: Can't determine domain for host 192.168.141.62; use dns-nsec3-enum.domains script arg.
+|_dns-nsec-enum: Can't determine domain for host 192.168.141.62; use dns-nsec-enum.domains script arg.
+80/tcp   open  http
+|_http-title: Home | Mezzanine
+|_http-chrono: Request times for /; avg: 336.79ms; min: 178.73ms; max: 553.97ms
+| http-feed: 
+| Spidering limited to: maxpagecount=40; withinhost=192.168.141.62
+|   Found the following feeds: 
+|     RSS (version 2.0): /blog/feeds/rss/
+|_    Atom: /blog/feeds/atom/
+|_http-date: Sat, 17 Sep 2022 20:14:29 GMT; +59m59s from local time.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-headers: 
+|   Server: nginx/1.16.1
+|   Date: Sat, 17 Sep 2022 20:14:52 GMT
+|   Content-Type: text/html; charset=utf-8
+|   Content-Length: 6927
+|   Connection: close
+|   X-Frame-Options: SAMEORIGIN
+|   Vary: Cookie
+|   
+|_  (Request type: HEAD)
+|_http-errors: Couldn't find any error pages.
+|_http-xssed: No previously reported XSS vuln.
+|_http-devframework: Django detected. Found Django admin login page on /admin/
+| http-security-headers: 
+|   X_Frame_Options: 
+|     Header: X-Frame-Options: SAMEORIGIN
+|_    Description: The browser must not display this content in any frame from a page of different origin than the content itself.
+|_http-mobileversion-checker: No mobile version detected.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.141.62
+|     
+|     Path: http://192.168.141.62:80/about/
+|     Line number: 34
+|     Comment: 
+|         <!--[if lt IE 9]>
+|         <script src="/static/js/html5shiv.js"></script>
+|         <script src="/static/js/respond.min.js"></script>
+|_        <![endif]-->
+| http-enum: 
+|   /blog/: Blog
+|   /contact/: Potentially interesting folder
+|_  /search/: Potentially interesting folder
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /about/
+|       Other: 1
+|     /about/team/
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 2
+|     Dir: /about/team/
+|   Total files found (by extension):
+|_    Other: 3
+| http-vhosts: 
+|_128 names had status 200
+4505/tcp open  unknown
+|_banner: \xFF\x00\x00\x00\x00\x00\x00\x00\x01\x7F
+4506/tcp open  unknown
+|_banner: \xFF\x00\x00\x00\x00\x00\x00\x00\x01\x7F
+8000/tcp open  http-alt
+|_http-open-proxy: Proxy might be redirecting requests
+|_http-chrono: Request times for /; avg: 186.47ms; min: 152.00ms; max: 215.97ms
+| http-vhosts: 
+|_128 names had status 200
+| http-headers: 
+|   Server: nginx/1.16.1
+|   Date: Sat, 17 Sep 2022 20:14:30 GMT
+|   Content-Type: application/json
+|   Content-Length: 146
+|   Connection: close
+|   Access-Control-Expose-Headers: GET, POST
+|   Vary: Accept-Encoding
+|   Allow: GET, HEAD, POST
+|   Access-Control-Allow-Credentials: true
+|   Access-Control-Allow-Origin: *
+|   X-Upstream: salt-api/3000-1
+|   
+|_  (Request type: HEAD)
+|_http-title: Site doesn't have a title (application/json).
+| http-waf-detect: IDS/IPS/WAF detected:
+|_192.168.141.62:8000/?p4yl04d3=<script>alert(document.cookie)</script>
+|_http-date: Sat, 17 Sep 2022 20:14:30 GMT; +59m59s from local time.
+| http-enum: 
+|   /login/: Login page
+|   /index/: Potentially interesting folder
+|_  /stats/: Potentially interesting folder (401 Unauthorized)
+
+Host script results:
+|_ipidseq: ERROR: Script execution failed (use -d to debug)
+|_path-mtu: PMTU == 1500
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       44207.10   5395.39   0.0%
+| 53    0       54858.60   34100.30  0.0%
+| 80    0       55839.00   40099.25  0.0%
+| 4505  0       57767.60   42197.25  0.0%
+| 4506  0       50378.10   33695.47  0.0%
+|_8000  0       40611.20   5000.46   0.0%
+|_dns-brute: Can't guess domain of "192.168.141.62"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Sat Sep 17 21:18:29 2022 -- 1 IP address (1 host up) scanned in 379.92 seconds

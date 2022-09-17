@@ -3,7 +3,7 @@ Name: Internal
 Date:  17/09/2022
 Difficulty:  Easy
 Goals:  OSCP Prep
-Learnt: Get Old Python scripts is sometimes not worth it. 
+Learnt: Using old Python scripts is sometimes not worth it. 
 
 ## Recon
 

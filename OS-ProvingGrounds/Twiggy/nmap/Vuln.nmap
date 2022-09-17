@@ -1,0 +1,52 @@
+# Nmap 7.92 scan initiated Sat Sep 17 21:20:41 2022 as: nmap --script vuln -oA nmap/Vuln -min-rate 1000 -p- 192.168.141.62
+Nmap scan report for 192.168.141.62
+Host is up (0.050s latency).
+Not shown: 65529 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+22/tcp   open  ssh
+53/tcp   open  domain
+80/tcp   open  http
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-enum: 
+|   /blog/: Blog
+|   /contact/: Potentially interesting folder
+|_  /search/: Potentially interesting folder
+|_http-frontpage-login: ERROR: Script execution failed (use -d to debug)
+|_http-passwd: ERROR: Script execution failed (use -d to debug)
+|_http-vuln-cve2013-7091: ERROR: Script execution failed (use -d to debug)
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.141.62
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://192.168.141.62:80/
+|     Form id: 
+|     Form action: /search/
+|     
+|     Path: http://192.168.141.62:80/blog/
+|     Form id: 
+|     Form action: /search/
+|     
+|     Path: http://192.168.141.62:80/contact/legals/
+|     Form id: 
+|     Form action: /search/
+|     
+|     Path: http://192.168.141.62:80/about/team/
+|     Form id: 
+|_    Form action: /search/
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+4505/tcp open  unknown
+4506/tcp open  unknown
+8000/tcp open  http-alt
+| http-cookie-flags: 
+|   /login/: 
+|     session_id: 
+|       httponly flag not set
+|   /stats/: 
+|     session_id: 
+|_      httponly flag not set
+| http-enum: 
+|   /login/: Login page
+|   /index/: Potentially interesting folder
+|_  /stats/: Potentially interesting folder (401 Unauthorized)
+
+# Nmap done at Sat Sep 17 21:26:59 2022 -- 1 IP address (1 host up) scanned in 378.97 seconds

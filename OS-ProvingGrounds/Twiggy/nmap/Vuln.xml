@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Sat Sep 17 21:20:41 2022 as: nmap -&#45;script vuln -oA nmap/Vuln -min-rate 1000 -p- 192.168.141.62 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/Vuln -min-rate 1000 -p- 192.168.141.62" start="1663446041" startstr="Sat Sep 17 21:20:41 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<taskprogress task="NSE" time="1663446042" percent="0.00"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.141.62" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1663446051" endtime="1663446419"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="192.168.141.62" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="filtered" count="65529">
+<extrareasons reason="no-response" count="65529" proto="tcp" ports="1-21,23-52,54-79,81-4504,4507-7999,8001-65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="domain" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-enum" output="&#xa;  /blog/: Blog&#xa;  /contact/: Potentially interesting folder&#xa;  /search/: Potentially interesting folder&#xa;"/><script id="http-frontpage-login" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-passwd" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-vuln-cve2013-7091" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.141.62&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://192.168.141.62:80/&#xa;    Form id: &#xa;    Form action: /search/&#xa;    &#xa;    Path: http://192.168.141.62:80/blog/&#xa;    Form id: &#xa;    Form action: /search/&#xa;    &#xa;    Path: http://192.168.141.62:80/contact/legals/&#xa;    Form id: &#xa;    Form action: /search/&#xa;    &#xa;    Path: http://192.168.141.62:80/about/team/&#xa;    Form id: &#xa;    Form action: /search/&#xa;"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/></port>
+<port protocol="tcp" portid="4505"><state state="open" reason="syn-ack" reason_ttl="63"/></port>
+<port protocol="tcp" portid="4506"><state state="open" reason="syn-ack" reason_ttl="63"/></port>
+<port protocol="tcp" portid="8000"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http-alt" method="table" conf="3"/><script id="http-cookie-flags" output="&#xa;  /login/: &#xa;    session_id: &#xa;      httponly flag not set&#xa;  /stats/: &#xa;    session_id: &#xa;      httponly flag not set"><table key="/login/">
+<table key="session_id">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+<table key="/stats/">
+<table key="session_id">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+</script><script id="http-enum" output="&#xa;  /login/: Login page&#xa;  /index/: Potentially interesting folder&#xa;  /stats/: Potentially interesting folder (401 Unauthorized)&#xa;"/></port>
+</ports>
+<times srtt="49810" rttvar="15620" to="112290"/>
+</host>
+<runstats><finished time="1663446419" timestr="Sat Sep 17 21:26:59 2022" summary="Nmap done at Sat Sep 17 21:26:59 2022; 1 IP address (1 host up) scanned in 378.97 seconds" elapsed="378.97" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
