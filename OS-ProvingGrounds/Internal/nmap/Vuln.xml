@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Sat Sep 17 20:06:32 2022 as: nmap -Pn -&#45;script vuln -oA nmap/Vuln -min-rate 1000 -p- 192.168.141.40 -->
+<nmaprun scanner="nmap" args="nmap -Pn -&#45;script vuln -oA nmap/Vuln -min-rate 1000 -p- 192.168.141.40" start="1663441592" startstr="Sat Sep 17 20:06:32 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1663441602" endtime="1663441754"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="192.168.141.40" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65522">
+<extrareasons reason="reset" count="65522" proto="tcp" ports="1-52,54-134,136-138,140-444,446-3388,3390-5356,5358-49151,49159-65535"/>
+</extraports>
+<port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="domain" method="table" conf="3"/></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="netbios-ssn" method="table" conf="3"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ms-wbt-server" method="table" conf="3"/><script id="ssl-ccs-injection" output="No reply from server (TIMEOUT)"/></port>
+<port protocol="tcp" portid="5357"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="wsdapi" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49152"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49153"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49154"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49155"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49156"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49157"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49158"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="unknown" method="table" conf="3"/></port>
+</ports>
+<hostscript><script id="smb-vuln-cve2009-3103" output="&#xa;  VULNERABLE:&#xa;  SMBv2 exploit (CVE-2009-3103, Microsoft Security Advisory 975497)&#xa;    State: VULNERABLE&#xa;    IDs:  CVE:CVE-2009-3103&#xa;          Array index error in the SMBv2 protocol implementation in srv2.sys in Microsoft Windows Vista Gold, SP1, and SP2,&#xa;          Windows Server 2008 Gold and SP2, and Windows 7 RC allows remote attackers to execute arbitrary code or cause a&#xa;          denial of service (system crash) via an &amp; (ampersand) character in a Process ID High header field in a NEGOTIATE&#xa;          PROTOCOL REQUEST packet, which triggers an attempted dereference of an out-of-bounds memory location,&#xa;          aka &quot;SMBv2 Negotiation Vulnerability.&quot;&#xa;          &#xa;    Disclosure date: 2009-09-08&#xa;    References:&#xa;      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3103&#xa;      http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3103&#xa;"><table key="CVE-2009-3103">
+<elem key="title">SMBv2 exploit (CVE-2009-3103, Microsoft Security Advisory 975497)</elem>
+<elem key="state">VULNERABLE</elem>
+<table key="ids">
+<elem>CVE:CVE-2009-3103</elem>
+</table>
+<table key="description">
+<elem>    Array index error in the SMBv2 protocol implementation in srv2.sys in Microsoft Windows Vista Gold, SP1, and SP2,&#xa;    Windows Server 2008 Gold and SP2, and Windows 7 RC allows remote attackers to execute arbitrary code or cause a&#xa;    denial of service (system crash) via an &amp; (ampersand) character in a Process ID High header field in a NEGOTIATE&#xa;    PROTOCOL REQUEST packet, which triggers an attempted dereference of an out-of-bounds memory location,&#xa;    aka &quot;SMBv2 Negotiation Vulnerability.&quot;&#xa;    </elem>
+</table>
+<table key="dates">
+<table key="disclosure">
+<elem key="month">09</elem>
+<elem key="year">2009</elem>
+<elem key="day">08</elem>
+</table>
+</table>
+<elem key="disclosure">2009-09-08</elem>
+<table key="refs">
+<elem>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3103</elem>
+<elem>http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3103</elem>
+</table>
+</table>
+</script><script id="smb-vuln-ms10-054" output="false">false</script><script id="samba-vuln-cve-2012-1182" output="Could not negotiate a connection:SMB: Failed to receive bytes: TIMEOUT">false</script><script id="smb-vuln-ms10-061" output="Could not negotiate a connection:SMB: Failed to receive bytes: TIMEOUT">false</script></hostscript><times srtt="40851" rttvar="1548" to="100000"/>
+</host>
+<runstats><finished time="1663441754" timestr="Sat Sep 17 20:09:14 2022" summary="Nmap done at Sat Sep 17 20:09:14 2022; 1 IP address (1 host up) scanned in 161.99 seconds" elapsed="161.99" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

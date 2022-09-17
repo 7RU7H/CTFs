@@ -1,0 +1,150 @@
+# Nmap 7.92 scan initiated Sat Sep 17 19:50:54 2022 as: nmap --script discovery -oA nmap/Discovery -min-rate 1000 -p- 192.168.141.40
+Pre-scan script results:
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::987e:19ff:fe3e:4a41  MAC: 9a:7e:19:3e:4a:41  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:148a:6809::4f     MAC: 9a:7e:19:3e:4a:41  IFACE: usb0
+|   IP: fe80::987e:19ff:fe3e:4a41  MAC: 9a:7e:19:3e:4a:41  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:148a:6809::4f     MAC: 9a:7e:19:3e:4a:41  IFACE: usb0
+|   IP: fe80::987e:19ff:fe3e:4a41  MAC: 9a:7e:19:3e:4a:41  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| ipv6-multicast-mld-list: 
+|   fe80::987e:19ff:fe3e:4a41: 
+|     device: usb0
+|     mac: 9a:7e:19:3e:4a:41
+|     multicast_ips: 
+|       ff02::1:ff3e:4a41         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:4f           (Solicited-Node Address)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for 192.168.141.40
+Host is up (0.045s latency).
+Not shown: 65522 closed tcp ports (reset)
+PORT      STATE SERVICE
+53/tcp    open  domain
+|_dns-nsec-enum: Can't determine domain for host 192.168.141.40; use dns-nsec-enum.domains script arg.
+|_dns-nsec3-enum: Can't determine domain for host 192.168.141.40; use dns-nsec3-enum.domains script arg.
+| dns-nsid: 
+|_  bind.version: Microsoft DNS 6.0.6001 (17714650)
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+445/tcp   open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+3389/tcp  open  ms-wbt-server
+| ssl-cert: Subject: commonName=internal
+| Not valid before: 2022-02-14T16:09:44
+|_Not valid after:  2022-08-16T16:09:44
+|_ssl-date: 2022-09-17T18:52:02+00:00; 0s from scanner time.
+| rdp-enum-encryption: 
+|   Security layer
+|     CredSSP (NLA): SUCCESS
+|     CredSSP with Early User Auth: SUCCESS
+|     Native RDP: SUCCESS
+|     RDSTLS: SUCCESS
+|     SSL: SUCCESS
+|   RDP Encryption level: Client Compatible
+|     40-bit RC4: SUCCESS
+|     56-bit RC4: SUCCESS
+|     128-bit RC4: SUCCESS
+|     FIPS 140-1: SUCCESS
+|_  RDP Protocol Version:  RDP 5.x, 6.x, 7.x, or 8.x server
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 2048) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|       Insecure certificate signature (SHA1), score capped at F
+|_  least strength: F
+5357/tcp  open  wsdapi
+49152/tcp open  unknown
+49153/tcp open  unknown
+49154/tcp open  unknown
+49155/tcp open  unknown
+49156/tcp open  unknown
+49157/tcp open  unknown
+49158/tcp open  unknown
+
+Host script results:
+|_nbstat: NetBIOS name: INTERNAL, NetBIOS user: <unknown>, NetBIOS MAC: 00:50:56:ba:6c:ec (VMware)
+| smb-security-mode: 
+|   account_used: <blank>
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-capabilities: 
+|   2.0.2: 
+|_    Distributed File System
+| smb-mbenum: 
+|_  ERROR: Call to Browser Service failed with status = 2184
+|_dns-brute: Can't guess domain of "192.168.141.40"; use dns-brute.domain script argument.
+| smb-enum-shares: 
+|   note: ERROR: Enumerating shares failed, guessing at common ones (NT_STATUS_ACCESS_DENIED)
+|   account_used: <blank>
+|   \\192.168.141.40\ADMIN$: 
+|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
+|     Anonymous access: <none>
+|   \\192.168.141.40\C$: 
+|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
+|     Anonymous access: <none>
+|   \\192.168.141.40\IPC$: 
+|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
+|     Anonymous access: READ
+|   \\192.168.141.40\PUBLIC: 
+|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
+|_    Anonymous access: <none>
+| smb-os-discovery: 
+|   OS: Windows Server (R) 2008 Standard 6001 Service Pack 1 (Windows Server (R) 2008 Standard 6.0)
+|   OS CPE: cpe:/o:microsoft:windows_server_2008::sp1
+|   Computer name: internal
+|   NetBIOS computer name: INTERNAL\x00
+|   Workgroup: WORKGROUP\x00
+|_  System time: 2022-09-17T11:52:02-07:00
+|_fcrdns: FAIL (No PTR record)
+| smb2-security-mode: 
+|   2.0.2: 
+|_    Message signing enabled but not required
+| smb-protocols: 
+|   dialects: 
+|     NT LM 0.12 (SMBv1) [dangerous, but default]
+|_    2.0.2
+|_path-mtu: PMTU == 1500
+| smb2-time: 
+|   date: 2022-09-17T18:52:02
+|_  start_date: 2022-02-15T16:09:41
+|_msrpc-enum: NT_STATUS_ACCESS_DENIED
+| qscan: 
+| PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 1      0       42679.70   8689.28   0.0%
+| 53     0       43160.50   8006.21   0.0%
+| 135    0       40934.10   4329.42   0.0%
+| 139    0       46999.40   13567.35  0.0%
+| 445    0       44902.40   14099.42  0.0%
+| 3389   0       40304.70   3627.76   0.0%
+| 5357   0       44905.20   21225.71  0.0%
+| 49152  0       40801.60   3806.14   0.0%
+|_49153  0       38986.70   2675.44   0.0%
+|_ipidseq: ERROR: Script execution failed (use -d to debug)
+
+# Nmap done at Sat Sep 17 19:54:13 2022 -- 1 IP address (1 host up) scanned in 199.12 seconds

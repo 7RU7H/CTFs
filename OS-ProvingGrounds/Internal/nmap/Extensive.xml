@@ -1,20 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE nmaprun>
 <?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
-<!-- Nmap 7.92 scan initiated Tue May 24 10:20:53 2022 as: nmap -Pn -sS -sC -sV -oA nmap/Extensive -p- -&#45;min-rate 500 192.168.194.40 -->
-<nmaprun scanner="nmap" args="nmap -Pn -sS -sC -sV -oA nmap/Extensive -p- -&#45;min-rate 500 192.168.194.40" start="1653384053" startstr="Tue May 24 10:20:53 2022" version="7.92" xmloutputversion="1.05">
+<!-- Nmap 7.92 scan initiated Sat Sep 17 19:45:38 2022 as: nmap -sC -sV -oA nmap/Extensive -min-rate 1000 -p- 192.168.141.40 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA nmap/Extensive -min-rate 1000 -p- 192.168.141.40" start="1663440338" startstr="Sat Sep 17 19:45:38 2022" version="7.92" xmloutputversion="1.05">
 <scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
 <verbose level="0"/>
 <debugging level="0"/>
-<host starttime="1653384053" endtime="1653384316"><status state="up" reason="user-set" reason_ttl="0"/>
-<address addr="192.168.194.40" addrtype="ipv4"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.141.40" addrtype="ipv4"/>
 <hostnames>
 </hostnames>
-<ports><extraports state="filtered" count="65535">
-<extrareasons reason="no-response" count="65535" proto="tcp" ports="1-65535"/>
+</hosthint>
+<host starttime="1663440339" endtime="1663440469"><status state="up" reason="reset" reason_ttl="127"/>
+<address addr="192.168.141.40" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65522">
+<extrareasons reason="reset" count="65522" proto="tcp" ports="1-52,54-134,136-138,140-444,446-3388,3390-5356,5358-49151,49159-65535"/>
 </extraports>
+<port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="domain" product="Microsoft DNS" version="6.0.6001 (17714650)" extrainfo="Windows Server 2008 SP1" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:microsoft:dns</cpe><cpe>cpe:/o:microsoft:windows_server_2008::sp1</cpe></service><script id="dns-nsid" output="&#xa;  bind.version: Microsoft DNS 6.0.6001 (17714650)"><elem key="bind.version">Microsoft DNS 6.0.6001 (17714650)</elem>
+</script></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="netbios-ssn" product="Microsoft Windows netbios-ssn" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" product="Windows Server (R) 2008 Standard 6001 Service Pack 1 microsoft-ds" extrainfo="workgroup: WORKGROUP" hostname="INTERNAL" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows_server_2008:r2</cpe></service></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ms-wbt-server" tunnel="ssl" method="table" conf="3"/><script id="ssl-date" output="2022-09-17T18:47:49+00:00; 0s from scanner time."><elem key="date">2022-09-17T18:47:49+00:00</elem>
+<elem key="delta">0.0</elem>
+</script><script id="ssl-cert" output="Subject: commonName=internal&#xa;Not valid before: 2022-02-14T16:09:44&#xa;Not valid after:  2022-08-16T16:09:44"><table key="subject">
+<elem key="commonName">internal</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">internal</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">B0EE1AB2F8FB431FC3AF0CFB1B557AF28BF6853E57F35F3AB103BD3ACE9896954C3F51731DA2AD87479068F3F53ACE1D49C0E0F3EFBD05BA205E3377B55C13BC6C1E485E72F4922D543AC5BE0A35BE5E9292CDE9AF8C256EF472CCD8BBE041544B81D6594FE6DA8D5526B09B540CADA14403A7F5571911EAE01562B9CDB7E68A81F5283A6D1A6CF20D1E882F715E0EFAEDA2775703BFDF41B08A0F4B2FC2F9F8E378C8251EE49EA4A3CB53083E9E268F265A65F34817559BCB614B4492B5C7895C8D8CBA201816A73C7904A0E9BFA3493A445B6356EDDE93BC9F4CC88ACBE826D28F4CE38958FB20398B56EC93B33E8230B46A69002C65C42F7544F65868A193</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Key Encipherment, Data Encipherment</elem>
+</table>
+</table>
+<elem key="sig_algo">sha1WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2022-02-14T16:09:44</elem>
+<elem key="notAfter">2022-08-16T16:09:44</elem>
+</table>
+<elem key="md5">72e299023781e0a0b91193960c057f54</elem>
+<elem key="sha1">4a54e7756fa36f8cfcfb0e9efb8ee993aaeca29e</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIC1DCCAbygAwIBAgIQgGYH1fB4kKZA1UEJ9OBDqjANBgkqhkiG9w0BAQUFADAT&#xa;MREwDwYDVQQDEwhpbnRlcm5hbDAeFw0yMjAyMTQxNjA5NDRaFw0yMjA4MTYxNjA5&#xa;NDRaMBMxETAPBgNVBAMTCGludGVybmFsMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A&#xa;MIIBCgKCAQEAsO4asvj7Qx/Drwz7G1V68ov2hT5X8186sQO9Os6YlpVMP1FzHaKt&#xa;h0eQaPP1Os4dScDg8++9BbogXjN3tVwTvGweSF5y9JItVDrFvgo1vl6Sks3pr4wl&#xa;bvRyzNi74EFUS4HWWU/m2o1VJrCbVAytoUQDp/VXGRHq4BViuc235oqB9Sg6bRps&#xa;8g0eiC9xXg767aJ3VwO/30Gwig9LL8L5+ON4yCUe5J6ko8tTCD6eJo8mWmXzSBdV&#xa;m8thS0SStceJXI2MuiAYFqc8eQSg6b+jSTpEW2NW7d6TvJ9MyIrL6CbSj0zjiVj7&#xa;IDmLVuyTsz6CMLRqaQAsZcQvdUT2WGihkwIDAQABoyQwIjATBgNVHSUEDDAKBggr&#xa;BgEFBQcDATALBgNVHQ8EBAMCBDAwDQYJKoZIhvcNAQEFBQADggEBAAqzLe92OjJM&#xa;ktnUo0HLp1jNsVvJcTAxH1z8vioktt1CK8is0+hUvUeD/60MmvzdI83fE2I7y1iL&#xa;wkO3ZdrQzRyXejurPPVjedwf/TKi3ql2x0/YYgv7OAbivhnlVxSVYK6DalKWiLhY&#xa;l4CoyRlADOJ9/XSY9qQasXfUT+n75XJo0VWB4QKCcEU7CV34saaQ5kiJLSzdGk+a&#xa;sByjSFOPrHUm+rKukEb0CUYrCUT75QIKvRG43kK9JL8gXuXuQU5c9235veoUIbS9&#xa;7SguNs54p8DnCHk1asLrejTRyarV3FkYbMJ09bjiTZSM4LFvqT5n8hJLneWmMtT/&#xa;1Rj6QTK/spQ=&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script></port>
+<port protocol="tcp" portid="5357"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" product="Microsoft HTTPAPI httpd" version="2.0" extrainfo="SSDP/UPnP" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-title" output="Service Unavailable"><elem key="title">Service Unavailable</elem>
+</script><script id="http-server-header" output="Microsoft-HTTPAPI/2.0"><elem>Microsoft-HTTPAPI/2.0</elem>
+</script></port>
+<port protocol="tcp" portid="49152"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49153"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49154"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49155"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49156"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49157"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49158"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
 </ports>
+<hostscript><script id="nbstat" output="NetBIOS name: INTERNAL, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: 00:50:56:ba:6c:ec (VMware)"/><script id="clock-skew" output="mean: 1h44m59s, deviation: 3h30m00s, median: 0s"><elem key="stddev">12600</elem>
+<elem key="count">4</elem>
+<elem key="median">0</elem>
+<elem key="mean">6299</elem>
+</script><script id="smb-os-discovery" output="&#xa;  OS: Windows Server (R) 2008 Standard 6001 Service Pack 1 (Windows Server (R) 2008 Standard 6.0)&#xa;  OS CPE: cpe:/o:microsoft:windows_server_2008::sp1&#xa;  Computer name: internal&#xa;  NetBIOS computer name: INTERNAL\x00&#xa;  Workgroup: WORKGROUP\x00&#xa;  System time: 2022-09-17T11:47:41-07:00&#xa;"><elem key="os">Windows Server (R) 2008 Standard 6001 Service Pack 1</elem>
+<elem key="lanmanager">Windows Server (R) 2008 Standard 6.0</elem>
+<elem key="server">INTERNAL\x00</elem>
+<elem key="date">2022-09-17T11:47:41-07:00</elem>
+<elem key="fqdn">internal</elem>
+<elem key="domain_dns">internal</elem>
+<elem key="workgroup">WORKGROUP\x00</elem>
+<elem key="cpe">cpe:/o:microsoft:windows_server_2008::sp1</elem>
+</script><script id="smb-security-mode" output="&#xa;  account_used: guest&#xa;  authentication_level: user&#xa;  challenge_response: supported&#xa;  message_signing: disabled (dangerous, but default)"><elem key="account_used">guest</elem>
+<elem key="authentication_level">user</elem>
+<elem key="challenge_response">supported</elem>
+<elem key="message_signing">disabled</elem>
+</script><script id="smb2-time" output="&#xa;  date: 2022-09-17T18:47:41&#xa;  start_date: 2022-02-15T16:09:41"><elem key="date">2022-09-17T18:47:41</elem>
+<elem key="start_date">2022-02-15T16:09:41</elem>
+</script><script id="smb2-security-mode" output="&#xa;  2.0.2: &#xa;    Message signing enabled but not required"><table key="2.0.2">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script></hostscript><times srtt="42448" rttvar="6164" to="100000"/>
 </host>
-<runstats><finished time="1653384316" timestr="Tue May 24 10:25:16 2022" summary="Nmap done at Tue May 24 10:25:16 2022; 1 IP address (1 host up) scanned in 263.76 seconds" elapsed="263.76" exit="success"/><hosts up="1" down="0" total="1"/>
+<runstats><finished time="1663440469" timestr="Sat Sep 17 19:47:49 2022" summary="Nmap done at Sat Sep 17 19:47:49 2022; 1 IP address (1 host up) scanned in 130.84 seconds" elapsed="130.84" exit="success"/><hosts up="1" down="0" total="1"/>
 </runstats>
 </nmaprun>

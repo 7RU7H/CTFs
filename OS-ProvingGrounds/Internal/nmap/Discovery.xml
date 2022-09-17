@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Sat Sep 17 19:50:54 2022 as: nmap -&#45;script discovery -oA nmap/Discovery -min-rate 1000 -p- 192.168.141.40 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/Discovery -min-rate 1000 -p- 192.168.141.40" start="1663440654" startstr="Sat Sep 17 19:50:54 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-ipv6-multicast-mld" output="&#xa;  IP: fe80::987e:19ff:fe3e:4a41  MAC: 9a:7e:19:3e:4a:41  IFACE: usb0&#xa;&#xa;  Use -&#45;script-args=newtargets to add the results as targets"><table>
+<elem key="iface">usb0</elem>
+<elem key="address">fe80::987e:19ff:fe3e:4a41</elem>
+<elem key="mac">9a:7e:19:3e:4a:41</elem>
+</table>
+</script><script id="targets-ipv6-multicast-echo" output="&#xa;  IP: 2a01:4c8:148a:6809::4f     MAC: 9a:7e:19:3e:4a:41  IFACE: usb0&#xa;  IP: fe80::987e:19ff:fe3e:4a41  MAC: 9a:7e:19:3e:4a:41  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="targets-ipv6-multicast-invalid-dst" output="&#xa;  IP: 2a01:4c8:148a:6809::4f     MAC: 9a:7e:19:3e:4a:41  IFACE: usb0&#xa;  IP: fe80::987e:19ff:fe3e:4a41  MAC: 9a:7e:19:3e:4a:41  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="ipv6-multicast-mld-list" output="&#xa;  fe80::987e:19ff:fe3e:4a41: &#xa;    device: usb0&#xa;    mac: 9a:7e:19:3e:4a:41&#xa;    multicast_ips: &#xa;      ff02::1:ff3e:4a41         (NDP Solicited-node)&#xa;      ff02::1:ff00:0            (Solicited-Node Address)&#xa;      ff05::2                   (unknown)&#xa;      ff02::2                   (All Routers Address)&#xa;      ff02::1:ff00:4f           (Solicited-Node Address)"><table key="fe80::987e:19ff:fe3e:4a41">
+<elem key="device">usb0</elem>
+<elem key="mac">9a:7e:19:3e:4a:41</elem>
+<table key="multicast_ips">
+<table>
+<elem key="description">NDP Solicited-node</elem>
+<elem key="ip">ff02::1:ff3e:4a41</elem>
+</table>
+<table>
+<elem key="description">Solicited-Node Address</elem>
+<elem key="ip">ff02::1:ff00:0</elem>
+</table>
+<table>
+<elem key="description">unknown</elem>
+<elem key="ip">ff05::2</elem>
+</table>
+<table>
+<elem key="description">All Routers Address</elem>
+<elem key="ip">ff02::2</elem>
+</table>
+<table>
+<elem key="description">Solicited-Node Address</elem>
+<elem key="ip">ff02::1:ff00:4f</elem>
+</table>
+</table>
+</table>
+</script><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.141.40" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1663440665" endtime="1663440853"><status state="up" reason="echo-reply" reason_ttl="127"/>
+<address addr="192.168.141.40" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65522">
+<extrareasons reason="reset" count="65522" proto="tcp" ports="1-52,54-134,136-138,140-444,446-3388,3390-5356,5358-49151,49159-65535"/>
+</extraports>
+<port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="domain" method="table" conf="3"/><script id="dns-nsec-enum" output="Can&apos;t determine domain for host 192.168.141.40; use dns-nsec-enum.domains script arg."/><script id="dns-nsec3-enum" output="Can&apos;t determine domain for host 192.168.141.40; use dns-nsec3-enum.domains script arg."/><script id="dns-nsid" output="&#xa;  bind.version: Microsoft DNS 6.0.6001 (17714650)"><elem key="bind.version">Microsoft DNS 6.0.6001 (17714650)</elem>
+</script></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="netbios-ssn" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" product="Windows Server (R) 2008 Standard 6001 Service Pack 1 microsoft-ds" method="probed" conf="10"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ms-wbt-server" method="table" conf="3"/><script id="ssl-cert" output="Subject: commonName=internal&#xa;Not valid before: 2022-02-14T16:09:44&#xa;Not valid after:  2022-08-16T16:09:44"><table key="subject">
+<elem key="commonName">internal</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">internal</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">B0EE1AB2F8FB431FC3AF0CFB1B557AF28BF6853E57F35F3AB103BD3ACE9896954C3F51731DA2AD87479068F3F53ACE1D49C0E0F3EFBD05BA205E3377B55C13BC6C1E485E72F4922D543AC5BE0A35BE5E9292CDE9AF8C256EF472CCD8BBE041544B81D6594FE6DA8D5526B09B540CADA14403A7F5571911EAE01562B9CDB7E68A81F5283A6D1A6CF20D1E882F715E0EFAEDA2775703BFDF41B08A0F4B2FC2F9F8E378C8251EE49EA4A3CB53083E9E268F265A65F34817559BCB614B4492B5C7895C8D8CBA201816A73C7904A0E9BFA3493A445B6356EDDE93BC9F4CC88ACBE826D28F4CE38958FB20398B56EC93B33E8230B46A69002C65C42F7544F65868A193</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Key Encipherment, Data Encipherment</elem>
+</table>
+</table>
+<elem key="sig_algo">sha1WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2022-02-14T16:09:44</elem>
+<elem key="notAfter">2022-08-16T16:09:44</elem>
+</table>
+<elem key="md5">72e299023781e0a0b91193960c057f54</elem>
+<elem key="sha1">4a54e7756fa36f8cfcfb0e9efb8ee993aaeca29e</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIC1DCCAbygAwIBAgIQgGYH1fB4kKZA1UEJ9OBDqjANBgkqhkiG9w0BAQUFADAT&#xa;MREwDwYDVQQDEwhpbnRlcm5hbDAeFw0yMjAyMTQxNjA5NDRaFw0yMjA4MTYxNjA5&#xa;NDRaMBMxETAPBgNVBAMTCGludGVybmFsMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A&#xa;MIIBCgKCAQEAsO4asvj7Qx/Drwz7G1V68ov2hT5X8186sQO9Os6YlpVMP1FzHaKt&#xa;h0eQaPP1Os4dScDg8++9BbogXjN3tVwTvGweSF5y9JItVDrFvgo1vl6Sks3pr4wl&#xa;bvRyzNi74EFUS4HWWU/m2o1VJrCbVAytoUQDp/VXGRHq4BViuc235oqB9Sg6bRps&#xa;8g0eiC9xXg767aJ3VwO/30Gwig9LL8L5+ON4yCUe5J6ko8tTCD6eJo8mWmXzSBdV&#xa;m8thS0SStceJXI2MuiAYFqc8eQSg6b+jSTpEW2NW7d6TvJ9MyIrL6CbSj0zjiVj7&#xa;IDmLVuyTsz6CMLRqaQAsZcQvdUT2WGihkwIDAQABoyQwIjATBgNVHSUEDDAKBggr&#xa;BgEFBQcDATALBgNVHQ8EBAMCBDAwDQYJKoZIhvcNAQEFBQADggEBAAqzLe92OjJM&#xa;ktnUo0HLp1jNsVvJcTAxH1z8vioktt1CK8is0+hUvUeD/60MmvzdI83fE2I7y1iL&#xa;wkO3ZdrQzRyXejurPPVjedwf/TKi3ql2x0/YYgv7OAbivhnlVxSVYK6DalKWiLhY&#xa;l4CoyRlADOJ9/XSY9qQasXfUT+n75XJo0VWB4QKCcEU7CV34saaQ5kiJLSzdGk+a&#xa;sByjSFOPrHUm+rKukEb0CUYrCUT75QIKvRG43kK9JL8gXuXuQU5c9235veoUIbS9&#xa;7SguNs54p8DnCHk1asLrejTRyarV3FkYbMJ09bjiTZSM4LFvqT5n8hJLneWmMtT/&#xa;1Rj6QTK/spQ=&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ssl-date" output="2022-09-17T18:52:02+00:00; 0s from scanner time."><elem key="date">2022-09-17T18:52:02+00:00</elem>
+<elem key="delta">0.0</elem>
+</script><script id="rdp-enum-encryption" output="&#xa;  Security layer&#xa;    CredSSP (NLA): SUCCESS&#xa;    CredSSP with Early User Auth: SUCCESS&#xa;    Native RDP: SUCCESS&#xa;    RDSTLS: SUCCESS&#xa;    SSL: SUCCESS&#xa;  RDP Encryption level: Client Compatible&#xa;    40-bit RC4: SUCCESS&#xa;    56-bit RC4: SUCCESS&#xa;    128-bit RC4: SUCCESS&#xa;    FIPS 140-1: SUCCESS&#xa;  RDP Protocol Version:  RDP 5.x, 6.x, 7.x, or 8.x server&#xa;"/><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.0: &#xa;    ciphers: &#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_RC4_128_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - F&#xa;      TLS_RSA_WITH_RC4_128_MD5 (rsa 2048) - F&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;      Broken cipher RC4 is deprecated by RFC 7465&#xa;      Ciphersuite uses MD5 for message integrity&#xa;      Insecure certificate signature (SHA1), score capped at F&#xa;  least strength: F"><table key="TLSv1.0">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_RC4_128_SHA</elem>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="kex_info">secp256r1</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="kex_info">secp256r1</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_RC4_128_MD5</elem>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="strength">F</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+<elem>Broken cipher RC4 is deprecated by RFC 7465</elem>
+<elem>Ciphersuite uses MD5 for message integrity</elem>
+<elem>Insecure certificate signature (SHA1), score capped at F</elem>
+</table>
+</table>
+<elem key="least strength">F</elem>
+</script></port>
+<port protocol="tcp" portid="5357"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="wsdapi" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49152"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49153"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49154"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49155"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49156"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49157"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49158"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="unknown" method="table" conf="3"/></port>
+</ports>
+<hostscript><script id="nbstat" output="NetBIOS name: INTERNAL, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: 00:50:56:ba:6c:ec (VMware)"/><script id="smb-security-mode" output="&#xa;  account_used: &lt;blank&gt;&#xa;  authentication_level: user&#xa;  challenge_response: supported&#xa;  message_signing: disabled (dangerous, but default)"><elem key="account_used">&lt;blank&gt;</elem>
+<elem key="authentication_level">user</elem>
+<elem key="challenge_response">supported</elem>
+<elem key="message_signing">disabled</elem>
+</script><script id="smb2-capabilities" output="&#xa;  2.0.2: &#xa;    Distributed File System"><table key="2.0.2">
+<elem>Distributed File System</elem>
+</table>
+</script><script id="smb-mbenum" output="&#xa;  ERROR: Call to Browser Service failed with status = 2184"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;192.168.141.40&quot;; use dns-brute.domain script argument."/><script id="smb-enum-shares" output="&#xa;  note: ERROR: Enumerating shares failed, guessing at common ones (NT_STATUS_ACCESS_DENIED)&#xa;  account_used: &lt;blank&gt;&#xa;  \\192.168.141.40\ADMIN$: &#xa;    warning: Couldn&apos;t get details for share: NT_STATUS_ACCESS_DENIED&#xa;    Anonymous access: &lt;none&gt;&#xa;  \\192.168.141.40\C$: &#xa;    warning: Couldn&apos;t get details for share: NT_STATUS_ACCESS_DENIED&#xa;    Anonymous access: &lt;none&gt;&#xa;  \\192.168.141.40\IPC$: &#xa;    warning: Couldn&apos;t get details for share: NT_STATUS_ACCESS_DENIED&#xa;    Anonymous access: READ&#xa;  \\192.168.141.40\PUBLIC: &#xa;    warning: Couldn&apos;t get details for share: NT_STATUS_ACCESS_DENIED&#xa;    Anonymous access: &lt;none&gt;"><elem key="note">ERROR: Enumerating shares failed, guessing at common ones (NT_STATUS_ACCESS_DENIED)</elem>
+<elem key="account_used">&lt;blank&gt;</elem>
+<table key="\\192.168.141.40\ADMIN$">
+<elem key="warning">Couldn&apos;t get details for share: NT_STATUS_ACCESS_DENIED</elem>
+<elem key="Anonymous access">&lt;none&gt;</elem>
+</table>
+<table key="\\192.168.141.40\C$">
+<elem key="warning">Couldn&apos;t get details for share: NT_STATUS_ACCESS_DENIED</elem>
+<elem key="Anonymous access">&lt;none&gt;</elem>
+</table>
+<table key="\\192.168.141.40\IPC$">
+<elem key="warning">Couldn&apos;t get details for share: NT_STATUS_ACCESS_DENIED</elem>
+<elem key="Anonymous access">READ</elem>
+</table>
+<table key="\\192.168.141.40\PUBLIC">
+<elem key="warning">Couldn&apos;t get details for share: NT_STATUS_ACCESS_DENIED</elem>
+<elem key="Anonymous access">&lt;none&gt;</elem>
+</table>
+</script><script id="smb-os-discovery" output="&#xa;  OS: Windows Server (R) 2008 Standard 6001 Service Pack 1 (Windows Server (R) 2008 Standard 6.0)&#xa;  OS CPE: cpe:/o:microsoft:windows_server_2008::sp1&#xa;  Computer name: internal&#xa;  NetBIOS computer name: INTERNAL\x00&#xa;  Workgroup: WORKGROUP\x00&#xa;  System time: 2022-09-17T11:52:02-07:00&#xa;"><elem key="os">Windows Server (R) 2008 Standard 6001 Service Pack 1</elem>
+<elem key="lanmanager">Windows Server (R) 2008 Standard 6.0</elem>
+<elem key="server">INTERNAL\x00</elem>
+<elem key="date">2022-09-17T11:52:02-07:00</elem>
+<elem key="fqdn">internal</elem>
+<elem key="domain_dns">internal</elem>
+<elem key="workgroup">WORKGROUP\x00</elem>
+<elem key="cpe">cpe:/o:microsoft:windows_server_2008::sp1</elem>
+</script><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="smb2-security-mode" output="&#xa;  2.0.2: &#xa;    Message signing enabled but not required"><table key="2.0.2">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script><script id="smb-protocols" output="&#xa;  dialects: &#xa;    NT LM 0.12 (SMBv1) [dangerous, but default]&#xa;    2.0.2"><table key="dialects">
+<elem>NT LM 0.12 (SMBv1) [dangerous, but default]</elem>
+<elem>2.0.2</elem>
+</table>
+</script><script id="path-mtu" output="PMTU == 1500"/><script id="smb2-time" output="&#xa;  date: 2022-09-17T18:52:02&#xa;  start_date: 2022-02-15T16:09:41"><elem key="date">2022-09-17T18:52:02</elem>
+<elem key="start_date">2022-02-15T16:09:41</elem>
+</script><script id="msrpc-enum" output="NT_STATUS_ACCESS_DENIED">false</script><script id="qscan" output="&#xa;PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;1      0       42679.70   8689.28   0.0%&#xa;53     0       43160.50   8006.21   0.0%&#xa;135    0       40934.10   4329.42   0.0%&#xa;139    0       46999.40   13567.35  0.0%&#xa;445    0       44902.40   14099.42  0.0%&#xa;3389   0       40304.70   3627.76   0.0%&#xa;5357   0       44905.20   21225.71  0.0%&#xa;49152  0       40801.60   3806.14   0.0%&#xa;49153  0       38986.70   2675.44   0.0%&#xa;"/><script id="ipidseq" output="ERROR: Script execution failed (use -d to debug)"/></hostscript><times srtt="45309" rttvar="3095" to="100000"/>
+</host>
+<runstats><finished time="1663440853" timestr="Sat Sep 17 19:54:13 2022" summary="Nmap done at Sat Sep 17 19:54:13 2022; 1 IP address (1 host up) scanned in 199.12 seconds" elapsed="199.12" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
