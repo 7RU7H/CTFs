@@ -63,4 +63,4 @@ extract hashes and put into a file with
 
 ![](wgetsudo.png)
 
-just `sudo cat /root/root.txt`
+Just `sudo cat /root/root.txt`
