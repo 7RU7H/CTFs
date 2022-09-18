@@ -1,0 +1,44 @@
+# Nmap 7.92 scan initiated Sun Sep 18 21:11:57 2022 as: nmap --script vuln -oA nmap/Vuln -min-rate 1000 -p- 192.168.141.98
+Nmap scan report for 192.168.141.98
+Host is up (0.045s latency).
+Not shown: 65526 closed tcp ports (reset)
+PORT      STATE SERVICE
+22/tcp    open  ssh
+139/tcp   open  netbios-ssn
+445/tcp   open  microsoft-ds
+631/tcp   open  ipp
+|_http-vuln-cve2014-3704: ERROR: Script execution failed (use -d to debug)
+|_http-aspnet-debug: ERROR: Script execution failed (use -d to debug)
+2181/tcp  open  eforward
+2222/tcp  open  EtherNetIP-1
+8080/tcp  open  http-proxy
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|_      http://ha.ckers.org/slowloris/
+8081/tcp  open  blackice-icecap
+33937/tcp open  unknown
+
+Host script results:
+| smb-vuln-regsvc-dos: 
+|   VULNERABLE:
+|   Service regsvc in Microsoft Windows systems vulnerable to denial of service
+|     State: VULNERABLE
+|       The service regsvc in Microsoft Windows 2000 systems is vulnerable to denial of service caused by a null deference
+|       pointer. This script will crash the service if it is vulnerable. This vulnerability was discovered by Ron Bowes
+|       while working on smb-enum-sessions.
+|_          
+|_smb-vuln-ms10-061: false
+|_smb-vuln-ms10-054: false
+
+# Nmap done at Sun Sep 18 21:16:44 2022 -- 1 IP address (1 host up) scanned in 287.05 seconds

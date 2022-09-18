@@ -1,0 +1,251 @@
+# Nmap 7.92 scan initiated Sun Sep 18 20:54:00 2022 as: nmap --script discovery -oA nmap/Discovery -min-rate 1000 -p- 192.168.141.98
+Pre-scan script results:
+| ipv6-multicast-mld-list: 
+|   fe80::6080:2bff:fe01:2cc4: 
+|     device: usb0
+|     mac: 62:80:2b:01:2c:c4
+|     multicast_ips: 
+|       ff02::1:ff01:2cc4         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:a2           (Solicited-Node Address)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:148a:6809::a2     MAC: 62:80:2b:01:2c:c4  IFACE: usb0
+|   IP: fe80::6080:2bff:fe01:2cc4  MAC: 62:80:2b:01:2c:c4  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:148a:6809::a2     MAC: 62:80:2b:01:2c:c4  IFACE: usb0
+|   IP: fe80::6080:2bff:fe01:2cc4  MAC: 62:80:2b:01:2c:c4  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::6080:2bff:fe01:2cc4  MAC: 62:80:2b:01:2c:c4  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+Nmap scan report for 192.168.141.98
+Host is up (0.048s latency).
+Not shown: 65526 closed tcp ports (reset)
+PORT      STATE SERVICE
+22/tcp    open  ssh
+|_banner: SSH-2.0-OpenSSH_7.9p1 Debian-10+deb10u2
+| ssh-hostkey: 
+|   2048 a8:e1:60:68:be:f5:8e:70:70:54:b4:27:ee:9a:7e:7f (RSA)
+|   256 bb:99:9a:45:3f:35:0b:b3:49:e6:cf:11:49:87:8d:94 (ECDSA)
+|_  256 f2:eb:fc:45:d7:e9:80:77:66:a3:93:53:de:00:57:9c (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+139/tcp   open  netbios-ssn
+445/tcp   open  microsoft-ds
+631/tcp   open  ipp
+|_http-title: Forbidden - CUPS v2.2.10
+| http-headers: 
+|   Connection: close
+|   Content-Language: en_US
+|   Content-Length: 343
+|   Content-Type: text/html; charset=utf-8
+|   Date: Sun, 18 Sep 2022 19:55:31 GMT
+|   Accept-Encoding: gzip, deflate, identity
+|   Server: CUPS/2.2 IPP/2.1
+|   X-Frame-Options: DENY
+|   Content-Security-Policy: frame-ancestors 'none'
+|   
+|_  (Request type: GET)
+|_http-aspnet-debug: ERROR: Script execution failed (use -d to debug)
+|_http-chrono: Request times for /; avg: 232.66ms; min: 200.48ms; max: 301.44ms
+| http-vhosts: 
+| 126 names had status 400
+| devtest
+|_voip
+| ssl-cert: Subject: commonName=pelican/organizationName=pelican/stateOrProvinceName=Unknown/countryName=US
+| Not valid before: 2022-09-18T19:52:53
+|_Not valid after:  2032-09-15T19:52:53
+|_cups-queue-info: ERROR: Script execution failed (use -d to debug)
+|_ssl-date: TLS randomness does not represent time
+|_cups-info: ERROR: Script execution failed (use -d to debug)
+|_http-date: Sun, 18 Sep 2022 19:55:17 GMT; +1h00m00s from local time.
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: client
+|     warnings: 
+|       Forward Secrecy not supported by any cipher
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: client
+|     warnings: 
+|       Forward Secrecy not supported by any cipher
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CCM (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CCM (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: client
+|     warnings: 
+|       Forward Secrecy not supported by any cipher
+|_  least strength: A
+2181/tcp  open  eforward
+2222/tcp  open  EtherNetIP-1
+| ssh-hostkey: 
+|   2048 a8:e1:60:68:be:f5:8e:70:70:54:b4:27:ee:9a:7e:7f (RSA)
+|   256 bb:99:9a:45:3f:35:0b:b3:49:e6:cf:11:49:87:8d:94 (ECDSA)
+|_  256 f2:eb:fc:45:d7:e9:80:77:66:a3:93:53:de:00:57:9c (ED25519)
+|_banner: SSH-2.0-OpenSSH_7.9p1 Debian-10+deb10u2
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+8080/tcp  open  http-proxy
+|_http-chrono: Request times for /; avg: 209.35ms; min: 152.25ms; max: 265.29ms
+|_http-title: Error 404 Not Found
+| http-vhosts: 
+| 127 names had status 404
+|_mirror
+| http-headers: 
+|   Content-Type: text/html; charset=iso-8859-1
+|   Cache-Control: must-revalidate,no-cache,no-store
+|   Content-Length: 1365
+|   Connection: close
+|   Server: Jetty(1.0)
+|   
+|_  (Request type: GET)
+8081/tcp  open  blackice-icecap
+33937/tcp open  unknown
+
+Host script results:
+| smb-mbenum: 
+|   DFS Root
+|     PELICAN  0.0  Samba 4.9.5-Debian
+|   Potential Browser
+|     PELICAN  0.0  Samba 4.9.5-Debian
+|   Print server
+|     PELICAN  0.0  Samba 4.9.5-Debian
+|   Server
+|     PELICAN  0.0  Samba 4.9.5-Debian
+|   Server service
+|     PELICAN  0.0  Samba 4.9.5-Debian
+|   Unix server
+|     PELICAN  0.0  Samba 4.9.5-Debian
+|   Windows NT/2000/XP/2003 server
+|     PELICAN  0.0  Samba 4.9.5-Debian
+|   Workstation
+|_    PELICAN  0.0  Samba 4.9.5-Debian
+| smb-enum-sessions: 
+|_  <nobody>
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 1     0       73025.00   60587.11  10.0%
+| 22    0       55695.44   27379.44  10.0%
+| 139   0       46331.88   3988.77   20.0%
+| 445   0       49191.86   2852.09   30.0%
+| 631   0       74349.62   60426.72  20.0%
+| 2181  0       62637.12   32546.10  20.0%
+| 2222  0       74183.44   69331.28  10.0%
+| 8080  0       82644.33   92876.50  10.0%
+|_8081  0       74453.11   83699.00  10.0%
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled but not required
+|_smb-system-info: ERROR: Script execution failed (use -d to debug)
+| smb-os-discovery: 
+|   OS: Windows 6.1 (Samba 4.9.5-Debian)
+|   Computer name: pelican
+|   NetBIOS computer name: PELICAN\x00
+|   Domain name: \x00
+|   FQDN: pelican
+|_  System time: 2022-09-18T15:55:23-04:00
+|_ipidseq: ERROR: Script execution failed (use -d to debug)
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+|_dns-brute: Can't guess domain of "192.168.141.98"; use dns-brute.domain script argument.
+| smb-enum-shares: 
+|   account_used: guest
+|   \\192.168.141.98\IPC$: 
+|     Type: STYPE_IPC_HIDDEN
+|     Comment: IPC Service (Samba 4.9.5-Debian)
+|     Users: 3
+|     Max Users: <unlimited>
+|     Path: C:\tmp
+|     Anonymous access: READ/WRITE
+|     Current user access: READ/WRITE
+|   \\192.168.141.98\print$: 
+|     Type: STYPE_DISKTREE
+|     Comment: Printer Drivers
+|     Users: 0
+|     Max Users: <unlimited>
+|     Path: C:\var\lib\samba\printers
+|     Anonymous access: <none>
+|_    Current user access: <none>
+| smb-enum-domains: 
+|   Builtin
+|     Groups: n/a
+|     Users: n/a
+|     Creation time: unknown
+|     Passwords: min length: 5; min age: n/a days; max age: n/a days; history: n/a passwords
+|     Account lockout disabled
+|   PELICAN
+|     Groups: n/a
+|     Users: n/a
+|     Creation time: unknown
+|     Passwords: min length: 5; min age: n/a days; max age: n/a days; history: n/a passwords
+|_    Account lockout disabled
+|_fcrdns: FAIL (No PTR record)
+| smb2-time: 
+|   date: 2022-09-18T19:55:29
+|_  start_date: N/A
+|_msrpc-enum: NT_STATUS_OBJECT_NAME_NOT_FOUND
+|_path-mtu: PMTU == 1500
+| smb-protocols: 
+|   dialects: 
+|     NT LM 0.12 (SMBv1) [dangerous, but default]
+|     2.0.2
+|     2.1
+|     3.0
+|     3.0.2
+|_    3.1.1
+| smb2-capabilities: 
+|   2.0.2: 
+|     Distributed File System
+|   2.1: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.0.2: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3.1.1: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+
+# Nmap done at Sun Sep 18 21:02:03 2022 -- 1 IP address (1 host up) scanned in 483.70 seconds
