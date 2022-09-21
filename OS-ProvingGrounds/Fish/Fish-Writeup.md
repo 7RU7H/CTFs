@@ -1,5 +1,5 @@
-# Mice Writeup
-Name: Mice
+# Fish Writeup
+Name: Fish
 Date:  
 Difficulty:  
 Goals:  

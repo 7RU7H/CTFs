@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Wed Sep 21 19:50:03 2022 as: nmap -&#45;script vuln -oA nmap/Vuln -&#45;min-rate 1000 -p 22,80,8080 192.168.141.207 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/Vuln -&#45;min-rate 1000 -p 22,80,8080 192.168.141.207" start="1663786203" startstr="Wed Sep 21 19:50:03 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="22,80,8080"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.141.207" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1663786213" endtime="1663786238"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="192.168.141.207" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/></port>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http-proxy" method="table" conf="3"/><script id="http-git" output="&#xa;  192.168.141.207:8080/.git/&#xa;    Git repository found!&#xa;    .gitignore matched patterns &apos;secret&apos;&#xa;    .git/config matched patterns &apos;key&apos; &apos;user&apos;&#xa;    Repository description: Unnamed repository; edit this file &apos;description&apos; to name the...&#xa;    Last commit message: Added Files and .gitignore &#xa;    Project type: PHP application (guessed from .gitignore)&#xa;"><table key="192.168.141.207:8080/.git/">
+<elem key="last-commit-message">Added Files and .gitignore&#xa;</elem>
+<table key="files-found">
+<elem key=".git/description">true</elem>
+<elem key=".gitignore">true</elem>
+<elem key=".git/info/exclude">true</elem>
+<elem key=".git/config">true</elem>
+<elem key=".git/COMMIT_EDITMSG">true</elem>
+</table>
+<table key="interesting-matches">
+<table key=".gitignore">
+<elem>secret</elem>
+</table>
+<table key=".git/config">
+<elem>key</elem>
+<elem>user</elem>
+</table>
+</table>
+<table key="project-type">
+<table key=".gitignore">
+<elem>PHP application</elem>
+</table>
+</table>
+<elem key="repository-description">Unnamed repository; edit this file &apos;description&apos; to name the repository.&#xa;</elem>
+</table>
+</script><script id="http-cookie-flags" output="&#xa;  /: &#xa;    PHPSESSID: &#xa;      httponly flag not set"><table key="/">
+<table key="PHPSESSID">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+</script><script id="http-vuln-cve2017-1001000" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-enum" output="&#xa;  /.gitignore: Revision control ignore file&#xa;  /.git/HEAD: Git folder&#xa;"/></port>
+</ports>
+<times srtt="53022" rttvar="30532" to="175150"/>
+</host>
+<runstats><finished time="1663786238" timestr="Wed Sep 21 19:50:38 2022" summary="Nmap done at Wed Sep 21 19:50:38 2022; 1 IP address (1 host up) scanned in 35.56 seconds" elapsed="35.56" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

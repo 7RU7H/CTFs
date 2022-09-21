@@ -1,0 +1,22 @@
+# Nmap 7.92 scan initiated Tue Sep 20 18:52:13 2022 as: nmap --script vuln -oA nmap/Vuln -min-rate 1000 -p- 192.168.141.205
+Nmap scan report for 192.168.141.205
+Host is up (0.066s latency).
+Not shown: 65532 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.141.205
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://192.168.141.205:80/
+|     Form id: fh5co-header-subscribe
+|_    Form action: /
+| http-enum: 
+|_  /.gitignore: Revision control ignore file
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+9000/tcp open  cslistener
+
+# Nmap done at Tue Sep 20 18:55:00 2022 -- 1 IP address (1 host up) scanned in 166.36 seconds

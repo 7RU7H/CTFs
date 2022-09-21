@@ -1,0 +1,136 @@
+# Nmap 7.92 scan initiated Wed Sep 21 19:45:19 2022 as: nmap --script discovery -oA nmap/Discovery --min-rate 1000 -p 22,80,8080 192.168.141.207
+Pre-scan script results:
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:148a:6809::73     MAC: 7e:73:24:53:6a:c6  IFACE: usb0
+|   IP: fe80::7c73:24ff:fe53:6ac6  MAC: 7e:73:24:53:6a:c6  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:148a:6809::73     MAC: 7e:73:24:53:6a:c6  IFACE: usb0
+|   IP: fe80::7c73:24ff:fe53:6ac6  MAC: 7e:73:24:53:6a:c6  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::7c73:24ff:fe53:6ac6  MAC: 7e:73:24:53:6a:c6  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| ipv6-multicast-mld-list: 
+|   fe80::7c73:24ff:fe53:6ac6: 
+|     device: usb0
+|     mac: 7e:73:24:53:6a:c6
+|     multicast_ips: 
+|       ff02::1:ff53:6ac6         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:73           (Solicited-Node Address)
+Nmap scan report for 192.168.141.207
+Host is up (0.037s latency).
+
+Bug in http-security-headers: no string output.
+PORT     STATE SERVICE
+22/tcp   open  ssh
+| ssh-hostkey: 
+|   3072 c1:99:4b:95:22:25:ed:0f:85:20:d3:63:b4:48:bb:cf (RSA)
+|   256 0f:44:8b:ad:ad:95:b8:22:6a:f0:36:ac:19:d0:0e:f3 (ECDSA)
+|_  256 32:e1:2a:6c:cc:7c:e6:3e:23:f4:80:8d:33:ce:9b:3a (ED25519)
+|_banner: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.4
+| ssh2-enum-algos: 
+|   kex_algorithms: (9)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+80/tcp   open  http
+|_http-mobileversion-checker: No mobile version detected.
+|_http-title: KeyVault Password Manager &amp; Vault App with Single-Sign On ...
+|_http-date: Wed, 21 Sep 2022 18:45:42 GMT; +59m58s from local time.
+| http-headers: 
+|   Date: Wed, 21 Sep 2022 18:45:42 GMT
+|   Server: Apache/2.4.41 (Ubuntu)
+|   Last-Modified: Tue, 08 Mar 2022 17:28:36 GMT
+|   ETag: "64cb-5d9b84f961900"
+|   Accept-Ranges: bytes
+|   Content-Length: 25803
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-chrono: ERROR: Script execution failed (use -d to debug)
+| http-vhosts: 
+|_128 names had status 200
+|_http-feed: Couldn't find any feeds.
+| http-sitemap-generator: 
+|   Directory structure:
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    
+|_http-xssed: No previously reported XSS vuln.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-comments-displayer: Couldn't find any comments.
+|_http-errors: Couldn't find any error pages.
+8080/tcp open  http-proxy
+| http-open-proxy: Potentially OPEN proxy.
+|_Methods supported:CONNECTION
+| http-enum: 
+|   /.gitignore: Revision control ignore file
+|_  /.git/HEAD: Git folder
+|_http-title: KeyVault - Password Manager
+|_http-chrono: Request times for /; avg: 4514.47ms; min: 320.38ms; max: 10179.96ms
+| http-vhosts: 
+|_128 names had status 200
+| http-headers: 
+|   Date: Wed, 21 Sep 2022 18:45:32 GMT
+|   Server: Apache/2.4.41 (Ubuntu)
+|   Set-Cookie: PHPSESSID=leflqpv2j2a8ib37264m9h6dv4; path=/
+|   Expires: Thu, 19 Nov 1981 08:52:00 GMT
+|   Cache-Control: no-store, no-cache, must-revalidate
+|   Pragma: no-cache
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+|_http-date: Wed, 21 Sep 2022 18:45:31 GMT; +59m59s from local time.
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.141.207
+|   url                                    method
+|   http://192.168.141.207:8080/           FORM
+|_  http://192.168.141.207:8080/index.php  FORM
+
+Host script results:
+|_ipidseq: ERROR: Script execution failed (use -d to debug)
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 22    0       39910.10   3960.47  0.0%
+| 80    0       41240.10   5576.70  0.0%
+|_8080  0       40672.90   4733.69  0.0%
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "192.168.141.207"; use dns-brute.domain script argument.
+|_path-mtu: PMTU == 1500
+
+# Nmap done at Wed Sep 21 19:49:50 2022 -- 1 IP address (1 host up) scanned in 271.02 seconds

@@ -1,0 +1,29 @@
+# Nmap 7.92 scan initiated Wed Sep 21 19:50:03 2022 as: nmap --script vuln -oA nmap/Vuln --min-rate 1000 -p 22,80,8080 192.168.141.207
+Nmap scan report for 192.168.141.207
+Host is up (0.053s latency).
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+8080/tcp open  http-proxy
+| http-git: 
+|   192.168.141.207:8080/.git/
+|     Git repository found!
+|     .gitignore matched patterns 'secret'
+|     .git/config matched patterns 'key' 'user'
+|     Repository description: Unnamed repository; edit this file 'description' to name the...
+|     Last commit message: Added Files and .gitignore 
+|_    Project type: PHP application (guessed from .gitignore)
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|_      httponly flag not set
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+| http-enum: 
+|   /.gitignore: Revision control ignore file
+|_  /.git/HEAD: Git folder
+
+# Nmap done at Wed Sep 21 19:50:38 2022 -- 1 IP address (1 host up) scanned in 35.56 seconds
