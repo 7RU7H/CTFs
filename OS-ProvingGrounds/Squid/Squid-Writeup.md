@@ -36,8 +36,20 @@ It is windows machine
 Used hint Foothold:
 A phpMyAdmin web service can logged into with deafult credentials and "INTO OUTFILE" can be abused to gain a foothold.
 
-proxychaining through I missed from the article; then should have masscan initially...
+proxychaining through I missed from the article; then should have masscan initially...masscan has its own tcp stack and is not compatible with proxychains
+[hackwhackandsmack](https://www.hackwhackandsmack.com/?p=1021)
+```bash
+seq 1 10000 | xargs -P 50 -I{} proxychains nmap -p {} -sT -Pn --open -n --min-rate 1 --oG proxychains_nmap --append-output localhost
+```
+I tuned the above down, then tried `0 65535` and nothing..
 
+Then:
+```bash
+proxychains nmap -sT -oA nmap/proxychained-localhost-st --min-rate 1000 -F localhost
+# None open
+```
+
+Going to return to this when I am reading and see if its a weird port
 
 
 ## Exploit
