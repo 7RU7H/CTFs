@@ -1,19 +1,22 @@
 # Helpdesk Writeup
 Name: Helpdesk
-Date:  
-Difficulty:  
-Goals:  
-Learnt:
+Date:  22/09/2022
+Difficulty:  Easy
+Goals:  OSCP Prep 
+Learnt: Write all the big Shadowbrokers exploits in Golang because python is python 
 
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](Screenshots/ping.png)
-	
-## Exploit
 
-## Foothold
+![1600](nmap-lfi-and-auth.png)
 
-## PrivEsc
+![1200](smb-cve2009-3103.png)
+Nuclei [[smb-v1-detection-192.168.120.43_445]]
+
+## Exploit && Foothold && PrivEsc
+It is same as [[Internal-Writeup]]
+
 
       
