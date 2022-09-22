@@ -1,0 +1,41 @@
+# Nmap 7.92 scan initiated Thu Sep 22 11:07:38 2022 as: nmap -Pn --script discovery -oA nmap/Discovery --min-rate 1000 -p 3128 192.168.141.189
+Pre-scan script results:
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| ipv6-multicast-mld-list: 
+|   fe80::d8b0:90ff:fe35:12d9: 
+|     device: usb0
+|     mac: da:b0:90:35:12:d9
+|     multicast_ips: 
+|       ff02::1:ff35:12d9         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:d1           (Solicited-Node Address)
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:148a:6809::d1     MAC: da:b0:90:35:12:d9  IFACE: usb0
+|   IP: fe80::d8b0:90ff:fe35:12d9  MAC: da:b0:90:35:12:d9  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-echo: 
+|   IP: fe80::d8b0:90ff:fe35:12d9  MAC: da:b0:90:35:12:d9  IFACE: usb0
+|   IP: 2a01:4c8:148a:6809::d1     MAC: da:b0:90:35:12:d9  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::d8b0:90ff:fe35:12d9  MAC: da:b0:90:35:12:d9  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+Nmap scan report for 192.168.141.189
+Host is up (0.059s latency).
+
+PORT     STATE SERVICE
+3128/tcp open  squid-http
+
+Host script results:
+|_dns-brute: Can't guess domain of "192.168.141.189"; use dns-brute.domain script argument.
+|_path-mtu: PMTU == 1500
+|_ipidseq: ERROR: Script execution failed (use -d to debug)
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Thu Sep 22 11:08:01 2022 -- 1 IP address (1 host up) scanned in 22.67 seconds
