@@ -15,4 +15,4 @@ Nmap does most of the heavy lifting and this is mostly a box to check your basic
 ## Exploit && Foothold && PrivEsc
 I ended  up autopwning this with metasploit, the python scripts would have done the same I could make them work, but old python scripts seem to be a like running in field full of rakes.
 
-![](metasploit.png)
+![](OS-ProvingGrounds/Internal/Screenshots/metasploit.png)

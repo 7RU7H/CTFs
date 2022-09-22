@@ -2,7 +2,7 @@
 Name: Exghost
 Date:  04/09/2022
 Difficulty:  Easy
-Goals:  OSCP
+Goals:  OSCP Prep 3/5 machines a day testing (can use walkthrough)
 Learnt: 
 - This wordlist for ftp default creds `/usr/share/seclists/Passwords/Default-Credentials/ftp-betterdefaultpasslist.txt`
 - Importance of manual PrivEnum

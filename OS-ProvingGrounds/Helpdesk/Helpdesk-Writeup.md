@@ -2,7 +2,7 @@
 Name: Helpdesk
 Date:  22/09/2022
 Difficulty:  Easy
-Goals:  OSCP Prep 
+Goals:  OSCP Prep 2/5 machines a day testing (can use walkthrough)
 Learnt: Write all the big Shadowbrokers exploits in Golang because python is python 
 
 ## Recon
