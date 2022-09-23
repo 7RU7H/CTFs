@@ -1,0 +1,76 @@
+# Nmap 7.92 scan initiated Fri Sep 23 09:33:31 2022 as: nmap -sC -sV -oA nmap/Extensive --min-rate 1000 -p 5040,135,4443,49667,8080,21,49668,49666,3306,49669,445,49664,139,496 192.168.141.53
+Nmap scan report for 192.168.141.53
+Host is up (0.046s latency).
+
+PORT      STATE  SERVICE       VERSION
+21/tcp    open   ftp           FileZilla ftpd 0.9.41 beta
+| ftp-syst: 
+|_  SYST: UNIX emulated by FileZilla
+135/tcp   open   msrpc         Microsoft Windows RPC
+139/tcp   open   netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp   open   microsoft-ds?
+496/tcp   closed pim-rp-disc
+3306/tcp  open   mysql?
+| fingerprint-strings: 
+|   DNSVersionBindReqTCP, FourOhFourRequest, GenericLines, GetRequest, Kerberos, LANDesk-RC, LDAPBindReq, LDAPSearchReq, NULL, RTSPRequest, SIPOptions, SMBProgNeg, TerminalServer, TerminalServerCookie, X11Probe: 
+|_    Host '192.168.49.141' is not allowed to connect to this MariaDB server
+4443/tcp  open   http          Apache httpd 2.4.43 ((Win64) OpenSSL/1.1.1g PHP/7.4.6)
+|_http-server-header: Apache/2.4.43 (Win64) OpenSSL/1.1.1g PHP/7.4.6
+| http-title: Welcome to XAMPP
+|_Requested resource was http://192.168.141.53:4443/dashboard/
+5040/tcp  open   unknown
+8080/tcp  open   http          Apache httpd 2.4.43 ((Win64) OpenSSL/1.1.1g PHP/7.4.6)
+|_http-server-header: Apache/2.4.43 (Win64) OpenSSL/1.1.1g PHP/7.4.6
+|_http-open-proxy: Proxy might be redirecting requests
+| http-title: Welcome to XAMPP
+|_Requested resource was http://192.168.141.53:8080/dashboard/
+49664/tcp open   msrpc         Microsoft Windows RPC
+49666/tcp open   msrpc         Microsoft Windows RPC
+49667/tcp open   msrpc         Microsoft Windows RPC
+49668/tcp open   msrpc         Microsoft Windows RPC
+49669/tcp open   msrpc         Microsoft Windows RPC
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port3306-TCP:V=7.92%I=7%D=9/23%Time=632D6F5C%P=x86_64-pc-linux-gnu%r(NU
+SF:LL,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.141'\x20is\x20not\x20al
+SF:lowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(GenericLi
+SF:nes,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.141'\x20is\x20not\x20a
+SF:llowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(GetReque
+SF:st,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.141'\x20is\x20not\x20al
+SF:lowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(RTSPReque
+SF:st,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.141'\x20is\x20not\x20al
+SF:lowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(DNSVersio
+SF:nBindReqTCP,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.141'\x20is\x20
+SF:not\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(
+SF:TerminalServerCookie,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.141'\
+SF:x20is\x20not\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20se
+SF:rver")%r(Kerberos,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.141'\x20
+SF:is\x20not\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20serve
+SF:r")%r(SMBProgNeg,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.141'\x20i
+SF:s\x20not\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server
+SF:")%r(X11Probe,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.141'\x20is\x
+SF:20not\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%
+SF:r(FourOhFourRequest,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.141'\x
+SF:20is\x20not\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20ser
+SF:ver")%r(LDAPSearchReq,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.141'
+SF:\x20is\x20not\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20s
+SF:erver")%r(LDAPBindReq,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.141'
+SF:\x20is\x20not\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20s
+SF:erver")%r(SIPOptions,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.141'\
+SF:x20is\x20not\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20se
+SF:rver")%r(LANDesk-RC,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.141'\x
+SF:20is\x20not\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20ser
+SF:ver")%r(TerminalServer,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.49\.141
+SF:'\x20is\x20not\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20
+SF:server");
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2022-09-23T08:36:14
+|_  start_date: N/A
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Sep 23 09:36:25 2022 -- 1 IP address (1 host up) scanned in 174.34 seconds

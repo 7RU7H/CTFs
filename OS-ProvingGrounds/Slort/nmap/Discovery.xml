@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Fri Sep 23 09:36:57 2022 as: nmap -&#45;script discovery -oA nmap/Discovery -&#45;min-rate 1000 -p 5040,135,4443,49667,8080,21,49668,49666,3306,49669,445,49664,139,496 192.168.141.53 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/Discovery -&#45;min-rate 1000 -p 5040,135,4443,49667,8080,21,49668,49666,3306,49669,445,49664,139,496 192.168.141.53" start="1663922217" startstr="Fri Sep 23 09:36:57 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="14" services="21,135,139,445,496,3306,4443,5040,8080,49664,49666-49669"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="ipv6-multicast-mld-list" output="&#xa;  fe80::e49d:9eff:fe59:7ed5: &#xa;    device: usb0&#xa;    mac: e6:9d:9e:59:7e:d5&#xa;    multicast_ips: &#xa;      ff02::1:ff59:7ed5         (NDP Solicited-node)&#xa;      ff02::1:ff00:0            (Solicited-Node Address)&#xa;      ff05::2                   (unknown)&#xa;      ff02::2                   (All Routers Address)&#xa;      ff02::1:ff00:11           (Solicited-Node Address)"><table key="fe80::e49d:9eff:fe59:7ed5">
+<elem key="device">usb0</elem>
+<elem key="mac">e6:9d:9e:59:7e:d5</elem>
+<table key="multicast_ips">
+<table>
+<elem key="ip">ff02::1:ff59:7ed5</elem>
+<elem key="description">NDP Solicited-node</elem>
+</table>
+<table>
+<elem key="ip">ff02::1:ff00:0</elem>
+<elem key="description">Solicited-Node Address</elem>
+</table>
+<table>
+<elem key="ip">ff05::2</elem>
+<elem key="description">unknown</elem>
+</table>
+<table>
+<elem key="ip">ff02::2</elem>
+<elem key="description">All Routers Address</elem>
+</table>
+<table>
+<elem key="ip">ff02::1:ff00:11</elem>
+<elem key="description">Solicited-Node Address</elem>
+</table>
+</table>
+</table>
+</script><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-ipv6-multicast-echo" output="&#xa;  IP: fe80::e49d:9eff:fe59:7ed5  MAC: e6:9d:9e:59:7e:d5  IFACE: usb0&#xa;  IP: 2a01:4c8:148a:6809::11     MAC: e6:9d:9e:59:7e:d5  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="targets-ipv6-multicast-mld" output="&#xa;  IP: fe80::e49d:9eff:fe59:7ed5  MAC: e6:9d:9e:59:7e:d5  IFACE: usb0&#xa;&#xa;  Use -&#45;script-args=newtargets to add the results as targets"><table>
+<elem key="iface">usb0</elem>
+<elem key="address">fe80::e49d:9eff:fe59:7ed5</elem>
+<elem key="mac">e6:9d:9e:59:7e:d5</elem>
+</table>
+</script><script id="targets-ipv6-multicast-invalid-dst" output="&#xa;  IP: 2a01:4c8:148a:6809::11     MAC: e6:9d:9e:59:7e:d5  IFACE: usb0&#xa;  IP: fe80::e49d:9eff:fe59:7ed5  MAC: e6:9d:9e:59:7e:d5  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.141.53" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1663922229" endtime="1663922354"><status state="up" reason="echo-reply" reason_ttl="127"/>
+<address addr="192.168.141.53" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ftp" method="table" conf="3"/><script id="banner" output="220-FileZilla Server version 0.9.41 beta"/><script id="ftp-syst" output="&#xa;  SYST: UNIX emulated by FileZilla"><elem key="SYST">UNIX emulated by FileZilla</elem>
+</script></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="netbios-ssn" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="496"><state state="closed" reason="reset" reason_ttl="127"/><service name="pim-rp-disc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3306"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="mysql" method="table" conf="3"/><script id="banner" output="I\x00\x00\x01\xFFj\x04Host &apos;192.168.49.141&apos; is not allowed t...&#xa;"/><script id="mysql-vuln-cve2012-2122" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="4443"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="pharos" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5040"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http-proxy" method="table" conf="3"/><script id="http-headers" output="&#xa;  Date: Fri, 23 Sep 2022 08:37:16 GMT&#xa;  Server: Apache/2.4.43 (Win64) OpenSSL/1.1.1g PHP/7.4.6&#xa;  Last-Modified: Mon, 18 May 2020 06:55:42 GMT&#xa;  ETag: &quot;1d98-5a5e6a6bcb780&quot;&#xa;  Accept-Ranges: bytes&#xa;  Content-Length: 7576&#xa;  Connection: close&#xa;  Content-Type: text/html&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-enum" output="&#xa;  /icons/: Potentially interesting folder w/ directory listing&#xa;  /img/: Potentially interesting directory w/ listing on &apos;apache/2.4.43 (win64) openssl/1.1.1g php/7.4.6&apos;&#xa;"/><script id="http-date" output="Fri, 23 Sep 2022 08:37:16 GMT; +1h00m00s from local time."><elem key="date">2022-09-23T09:37:16+00:00</elem>
+<elem key="delta">3600.0</elem>
+</script><script id="http-open-proxy" output="Proxy might be redirecting requests"/><script id="http-vhosts" output="&#xa;128 names had status 302"/><script id="http-title" output="Welcome to XAMPP&#xa;Requested resource was http://192.168.141.53:8080/dashboard/"><elem key="title">Welcome to XAMPP</elem>
+<elem key="redirect_url">http://192.168.141.53:8080/dashboard/</elem>
+</script><script id="http-grep" output="&#xa;  (1) http://192.168.141.53:8080/dashboard/: &#xa;    (1) email: &#xa;      + fastly-logo@2x.png&#xa;  (1) http://192.168.141.53:8080/phpmyadmin/: &#xa;    (1) ip: &#xa;      + 192.168.141.53&#xa;  (2) http://192.168.141.53:8080/dashboard/phpinfo.php: &#xa;    (1) email: &#xa;      + license@php.net&#xa;    (1) ip: &#xa;      + 192.168.49.141&#xa;  (2) http://192.168.141.53:8080/dashboard/stylesheets/all.css: &#xa;    (2) email: &#xa;      + social-icons@2x.png&#xa;      + social-icons-large@2x.png&#xa;  (1) http://192.168.141.53:8080/dashboard/faq.html: &#xa;    (1) email: &#xa;      + your-gmail-username@gmail.com&#xa;  (2) http://192.168.141.53:8080/dashboard/docs/send-mail.html: &#xa;    (2) email: &#xa;      + recipients@email-address.com&#xa;      + your@email-address.com"><table key="(1) http://192.168.141.53:8080/dashboard/">
+<table key="(1) email">
+<elem>+ fastly-logo@2x.png</elem>
+</table>
+</table>
+<table key="(1) http://192.168.141.53:8080/phpmyadmin/">
+<table key="(1) ip">
+<elem>+ 192.168.141.53</elem>
+</table>
+</table>
+<table key="(2) http://192.168.141.53:8080/dashboard/phpinfo.php">
+<table key="(1) email">
+<elem>+ license@php.net</elem>
+</table>
+<table key="(1) ip">
+<elem>+ 192.168.49.141</elem>
+</table>
+</table>
+<table key="(2) http://192.168.141.53:8080/dashboard/stylesheets/all.css">
+<table key="(2) email">
+<elem>+ social-icons@2x.png</elem>
+<elem>+ social-icons-large@2x.png</elem>
+</table>
+</table>
+<table key="(1) http://192.168.141.53:8080/dashboard/faq.html">
+<table key="(1) email">
+<elem>+ your-gmail-username@gmail.com</elem>
+</table>
+</table>
+<table key="(2) http://192.168.141.53:8080/dashboard/docs/send-mail.html">
+<table key="(2) email">
+<elem>+ recipients@email-address.com</elem>
+<elem>+ your@email-address.com</elem>
+</table>
+</table>
+</script><script id="http-waf-detect" output="IDS/IPS/WAF detected:&#xa;192.168.141.53:8080/?p4yl04d3=&lt;script&gt;alert(document.cookie)&lt;/script&gt;"/><script id="http-chrono" output="Request times for /dashboard/; avg: 500.22ms; min: 283.72ms; max: 934.74ms"/><script id="http-trace" output="TRACE is enabled"/></port>
+<port protocol="tcp" portid="49664"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49666"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49667"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49668"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49669"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+</ports>
+<hostscript><script id="smb-protocols" output="&#xa;  dialects: &#xa;    2.0.2&#xa;    2.1&#xa;    3.0&#xa;    3.0.2&#xa;    3.1.1"><table key="dialects">
+<elem>2.0.2</elem>
+<elem>2.1</elem>
+<elem>3.0</elem>
+<elem>3.0.2</elem>
+<elem>3.1.1</elem>
+</table>
+</script><script id="msrpc-enum" output="Could not negotiate a connection:SMB: Failed to receive bytes: ERROR">false</script><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="path-mtu" output="PMTU == 1500"/><script id="smb2-security-mode" output="&#xa;  3.1.1: &#xa;    Message signing enabled but not required"><table key="3.1.1">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script><script id="dns-brute" output="Can&apos;t guess domain of &quot;192.168.141.53&quot;; use dns-brute.domain script argument."/><script id="smb2-time" output="&#xa;  date: 2022-09-23T08:37:28&#xa;  start_date: N/A"><elem key="date">2022-09-23T08:37:28</elem>
+<elem key="start_date">N/A</elem>
+</script><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;21    0       51864.70   15492.54  0.0%&#xa;135   0       48734.60   9772.65   0.0%&#xa;139   0       45469.90   5855.76   0.0%&#xa;445   0       46043.30   6076.87   0.0%&#xa;496   0       47485.70   12498.63  0.0%&#xa;3306  0       43285.40   5318.40   0.0%&#xa;4443  0       47540.40   8717.82   0.0%&#xa;5040  0       44322.60   6613.91   0.0%&#xa;8080  0       45299.80   8408.72   0.0%&#xa;"/><script id="smb-mbenum" output="&#xa;  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR"/><script id="smb2-capabilities" output="&#xa;  2.0.2: &#xa;    Distributed File System&#xa;  2.1: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3.0: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3.0.2: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3.1.1: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations"><table key="2.0.2">
+<elem>Distributed File System</elem>
+</table>
+<table key="2.1">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3.0">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3.0.2">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3.1.1">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+</script><script id="ipidseq" output="ERROR: Script execution failed (use -d to debug)"/></hostscript><times srtt="54609" rttvar="8669" to="100000"/>
+</host>
+<runstats><finished time="1663922354" timestr="Fri Sep 23 09:39:14 2022" summary="Nmap done at Fri Sep 23 09:39:14 2022; 1 IP address (1 host up) scanned in 136.31 seconds" elapsed="136.31" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
