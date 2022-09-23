@@ -1,67 +1,61 @@
-# Nmap 7.92 scan initiated Fri Sep 23 12:03:29 2022 as: nmap --script discovery -oA nmap/Discovery --min-rate 1000 -p 43022,8080,12445,18030 192.168.141.125
+# Nmap 7.92 scan initiated Fri Sep 23 21:38:46 2022 as: nmap --script discovery -oA nmap/Discovery --min-rate 500 -p 8080,18030 192.168.141.125
 Pre-scan script results:
 |_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::68d0:caff:fe65:425e  MAC: 6a:d0:ca:65:42:5e  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
 | ipv6-multicast-mld-list: 
-|   fe80::e49d:9eff:fe59:7ed5: 
+|   fe80::68d0:caff:fe65:425e: 
 |     device: usb0
-|     mac: e6:9d:9e:59:7e:d5
+|     mac: 6a:d0:ca:65:42:5e
 |     multicast_ips: 
-|       ff02::1:ff59:7ed5         (NDP Solicited-node)
+|       ff02::1:ff65:425e         (NDP Solicited-node)
 |       ff02::1:ff00:0            (Solicited-Node Address)
 |       ff05::2                   (unknown)
 |       ff02::2                   (All Routers Address)
-|_      ff02::1:ff00:11           (Solicited-Node Address)
-| targets-ipv6-multicast-echo: 
-|   IP: fe80::e49d:9eff:fe59:7ed5  MAC: e6:9d:9e:59:7e:d5  IFACE: usb0
-|   IP: 2a01:4c8:148a:6809::11     MAC: e6:9d:9e:59:7e:d5  IFACE: usb0
-|_  Use --script-args=newtargets to add the results as targets
+|_      ff02::1:ff00:4a           (Solicited-Node Address)
 | targets-ipv6-multicast-invalid-dst: 
-|   IP: 2a01:4c8:148a:6809::11     MAC: e6:9d:9e:59:7e:d5  IFACE: usb0
-|   IP: fe80::e49d:9eff:fe59:7ed5  MAC: e6:9d:9e:59:7e:d5  IFACE: usb0
+|   IP: fe80::68d0:caff:fe65:425e  MAC: 6a:d0:ca:65:42:5e  IFACE: usb0
+|   IP: 2a01:4c8:148a:6809::4a     MAC: 6a:d0:ca:65:42:5e  IFACE: usb0
 |_  Use --script-args=newtargets to add the results as targets
-| targets-ipv6-multicast-mld: 
-|   IP: fe80::e49d:9eff:fe59:7ed5  MAC: e6:9d:9e:59:7e:d5  IFACE: usb0
-| 
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:148a:6809::4a     MAC: 6a:d0:ca:65:42:5e  IFACE: usb0
+|   IP: fe80::68d0:caff:fe65:425e  MAC: 6a:d0:ca:65:42:5e  IFACE: usb0
 |_  Use --script-args=newtargets to add the results as targets
-|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
 | targets-asn: 
 |_  targets-asn.asn is a mandatory parameter
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
 Nmap scan report for 192.168.141.125
-Host is up (0.046s latency).
+Host is up (0.070s latency).
 
 PORT      STATE SERVICE
 8080/tcp  open  http-proxy
 | http-vhosts: 
 |_128 names had status 200
+|_http-title: My Haikus
+| http-waf-detect: IDS/IPS/WAF detected:
+|_192.168.141.125:8080/?p4yl04d3=<script>alert(document.cookie)</script>
+|_http-date: Fri, 23 Sep 2022 20:38:54 GMT; +59m55s from local time.
 | http-headers: 
 |   Content-Type: text/html;charset=UTF-8
 |   Content-Language: en-US
 |   Content-Length: 3762
-|   Date: Fri, 23 Sep 2022 11:03:39 GMT
+|   Date: Fri, 23 Sep 2022 20:38:54 GMT
 |   Connection: close
 |   
 |_  (Request type: HEAD)
-| http-waf-detect: IDS/IPS/WAF detected:
-|_192.168.141.125:8080/?p4yl04d3=<script>alert(document.cookie)</script>
-|_http-open-proxy: Proxy might be redirecting requests
-|_http-title: My Haikus
-|_http-date: Fri, 23 Sep 2022 11:03:39 GMT; +59m56s from local time.
-|_http-chrono: Request times for /; avg: 212.80ms; min: 160.84ms; max: 263.50ms
-12445/tcp open  unknown
+|_http-chrono: Request times for /; avg: 236.63ms; min: 209.63ms; max: 270.39ms
 18030/tcp open  unknown
-43022/tcp open  unknown
-|_banner: SSH-2.0-OpenSSH_8.4
 
 Host script results:
-| qscan: 
-| PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)
-| 8080   0       47543.00   6910.80   0.0%
-| 12445  0       50397.50   11886.26  0.0%
-| 18030  0       46917.56   6583.91   10.0%
-|_43022  0       48108.60   16806.36  0.0%
-|_path-mtu: PMTU == 1500
-|_dns-brute: Can't guess domain of "192.168.141.125"; use dns-brute.domain script argument.
 |_ipidseq: ERROR: Script execution failed (use -d to debug)
+|_path-mtu: PMTU == 1500
 |_fcrdns: FAIL (No PTR record)
+| qscan: 
+| PORT   FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 8080   0       47033.70   6909.67  0.0%
+|_18030  0       47415.00   8796.39  0.0%
+|_dns-brute: Can't guess domain of "192.168.141.125"; use dns-brute.domain script argument.
 
-# Nmap done at Fri Sep 23 12:05:55 2022 -- 1 IP address (1 host up) scanned in 145.87 seconds
+# Nmap done at Fri Sep 23 21:41:09 2022 -- 1 IP address (1 host up) scanned in 143.48 seconds

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-gb" dir="ltr">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<meta charset="utf-8" />
+	<base href="http://10.10.137.208/index.php/component/mailto/" />
+	<meta name="description" content="New York City tabloid newspaper" />
+	<meta name="generator" content="Joomla! - Open Source Content Management" />
+	<title>The Daily Bugle</title>
+	<link href="/templates/protostar/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+	<link href="/templates/protostar/css/template.css?787ff2be3d28e0eefd8e0930f878dbca" rel="stylesheet" />
+	<script type="application/json" class="joomla-script-options new">{"system.keepalive":{"interval":840000,"uri":"\/index.php\/component\/ajax\/?format=json"}}</script>
+	<script src="/media/system/js/core.js?787ff2be3d28e0eefd8e0930f878dbca"></script>
+	<!--[if lt IE 9]><script src="/media/system/js/polyfill.event.js?787ff2be3d28e0eefd8e0930f878dbca"></script><![endif]-->
+	<script src="/media/system/js/keepalive.js?787ff2be3d28e0eefd8e0930f878dbca"></script>
+	<script src="/media/jui/js/jquery.min.js?787ff2be3d28e0eefd8e0930f878dbca"></script>
+	<script src="/media/jui/js/jquery-noconflict.js?787ff2be3d28e0eefd8e0930f878dbca"></script>
+	<script src="/media/jui/js/jquery-migrate.min.js?787ff2be3d28e0eefd8e0930f878dbca"></script>
+	<script src="/media/jui/js/bootstrap.min.js?787ff2be3d28e0eefd8e0930f878dbca"></script>
+	<!--[if lt IE 9]><script src="/media/jui/js/html5.js?787ff2be3d28e0eefd8e0930f878dbca"></script><![endif]-->
+	<script>
+
+	Joomla.submitbutton = function(pressbutton)
+	{
+		var form = document.getElementById('mailtoForm');
+
+		// do field validation
+		if (form.mailto.value == '' || form.from.value == '')
+		{
+			alert('Please provide a valid email address.');
+			return false;
+		}
+		form.submit();
+	}
+
+	</script>
+
+</head>
+<body class="contentpane modal">
+	<div id="system-message-container">
+	</div>
+
+	
+<div id="mailto-window">
+	<h2>
+		Email this link to a friend.	</h2>
+	<div class="mailto-close">
+		<a href="javascript: void window.close()" title="Close Window">
+		 <span>Close Window </span></a>
+	</div>
+
+	<form action="http://10.10.137.208/index.php" id="mailtoForm" method="post">
+		<div class="formelm">
+			<label for="mailto_field">Email to</label>
+			<input type="text" id="mailto_field" name="mailto" class="inputbox" size="25" value=""/>
+		</div>
+		<div class="formelm">
+			<label for="sender_field">
+			Sender</label>
+			<input type="text" id="sender_field" name="sender" class="inputbox" value="" size="25" />
+		</div>
+		<div class="formelm">
+			<label for="from_field">
+			Your Email</label>
+			<input type="text" id="from_field" name="from" class="inputbox" value="" size="25" />
+		</div>
+		<div class="formelm">
+			<label for="subject_field">
+			Subject</label>
+			<input type="text" id="subject_field" name="subject" class="inputbox" value="" size="25" />
+		</div>
+		<p>
+			<button class="button" onclick="return Joomla.submitbutton('send');">
+				Send			</button>
+			<button class="button" onclick="window.close();return false;">
+				Cancel			</button>
+		</p>
+		<input type="hidden" name="layout" value="default" />
+		<input type="hidden" name="option" value="com_mailto" />
+		<input type="hidden" name="task" value="send" />
+		<input type="hidden" name="tmpl" value="component" />
+		<input type="hidden" name="link" value="ff10e8f4b573921f99abf46869f963d48f2bf5b7" />
+		<input type="hidden" name="8bf5de29392bbf8ef623fb344d0bf9ef" value="1" />
+	</form>
+</div>
+
+</body>
+</html>

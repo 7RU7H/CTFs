@@ -1,0 +1,285 @@
+# Nmap 7.92 scan initiated Fri Sep 23 18:55:33 2022 as: nmap --script discovery -oA nmap/Discovery --min-rate 500 -p 3306,80,22 10.10.137.208
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::68d0:caff:fe65:425e  MAC: 6a:d0:ca:65:42:5e  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| ipv6-multicast-mld-list: 
+|   fe80::68d0:caff:fe65:425e: 
+|     device: usb0
+|     mac: 6a:d0:ca:65:42:5e
+|     multicast_ips: 
+|       ff02::1:ff65:425e         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:4a           (Solicited-Node Address)
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:148a:6809::4a     MAC: 6a:d0:ca:65:42:5e  IFACE: usb0
+|   IP: fe80::68d0:caff:fe65:425e  MAC: 6a:d0:ca:65:42:5e  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:148a:6809::4a     MAC: 6a:d0:ca:65:42:5e  IFACE: usb0
+|   IP: fe80::68d0:caff:fe65:425e  MAC: 6a:d0:ca:65:42:5e  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+Nmap scan report for 10.10.137.208
+Host is up (0.063s latency).
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (12)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (12)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   2048 68:ed:7b:19:7f:ed:14:e6:18:98:6d:c5:88:30:aa:e9 (RSA)
+|   256 5c:d6:82:da:b2:19:e3:37:99:fb:96:82:08:70:ee:9d (ECDSA)
+|_  256 d2:a9:75:cf:2f:1e:f5:44:4f:0b:13:c2:0f:d7:37:cc (ED25519)
+|_banner: SSH-2.0-OpenSSH_7.4
+80/tcp   open  http
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-mobileversion-checker: No mobile version detected.
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.10.137.208
+|   Found the following error pages: 
+|   
+|   Error Code: 400
+|   	http://10.10.137.208:80
+|   
+|   Error Code: 403
+|   	http://10.10.137.208:80/index.php/component/mailto/
+|   
+|   Error Code: 403
+|_  	http://10.10.137.208:80/index.php/component/mailto/?tmpl=component&amp;template=protostar&amp;link=ff10e8f4b573921f99abf46869f963d48f2bf5b7
+|_http-generator: Joomla! - Open Source Content Management
+| http-backup-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.137.208
+|   http://10.10.137.208:80/index.php/2-uncategorised/index.bak
+|   http://10.10.137.208:80/index.php/2-uncategorised/index.php/2-uncategorised/1-spider-man-robs-bank~
+|   http://10.10.137.208:80/index.php/2-uncategorised/index copy.php/2-uncategorised/1-spider-man-robs-bank
+|   http://10.10.137.208:80/index.php/2-uncategorised/Copy of index.php/2-uncategorised/1-spider-man-robs-bank
+|   http://10.10.137.208:80/index.php/2-uncategorised/Copy (2) of index.php/2-uncategorised/1-spider-man-robs-bank
+|   http://10.10.137.208:80/index.php/2-uncategorised/index.php/2-uncategorised/1-spider-man-robs-bank.1
+|   http://10.10.137.208:80/index.php/2-uncategorised/index.php/2-uncategorised/1-spider-man-robs-bank.~1~
+|   http://10.10.137.208:80/index.php/2-uncategorised/index.bak
+|   http://10.10.137.208:80/index.php/2-uncategorised/index.php/2-uncategorised/1-spider-man-robs-bank~
+|   http://10.10.137.208:80/index.php/2-uncategorised/index copy.php/2-uncategorised/1-spider-man-robs-bank
+|   http://10.10.137.208:80/index.php/2-uncategorised/Copy of index.php/2-uncategorised/1-spider-man-robs-bank
+|   http://10.10.137.208:80/index.php/2-uncategorised/Copy (2) of index.php/2-uncategorised/1-spider-man-robs-bank
+|   http://10.10.137.208:80/index.php/2-uncategorised/index.php/2-uncategorised/1-spider-man-robs-bank.1
+|_  http://10.10.137.208:80/index.php/2-uncategorised/index.php/2-uncategorised/1-spider-man-robs-bank.~1~
+|_http-php-version: Version from header x-powered-by: PHP/5.6.40
+| http-robots.txt: 15 disallowed entries 
+| /joomla/administrator/ /administrator/ /bin/ /cache/ 
+| /cli/ /components/ /includes/ /installation/ /language/ 
+|_/layouts/ /libraries/ /logs/ /modules/ /plugins/ /tmp/
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.137.208
+|     
+|     Path: http://10.10.137.208:80/media/jui/js/html5.js?787ff2be3d28e0eefd8e0930f878dbca
+|     Line number: 1
+|     Comment: 
+|         /**
+|         * @preserve HTML5 Shiv 3.7.3 | @afarkas @jdalton @jon_neal @rem | MIT/GPL2 Licensed
+|         */
+|     
+|     Path: http://10.10.137.208:80/index.php?format=feed&amp;type=rss
+|     Line number: 2
+|     Comment: 
+|         <!-- generator="Joomla! - Open Source Content Management" -->
+|     
+|     Path: http://10.10.137.208:80/index.php/2-uncategorised
+|     Line number: 157
+|     Comment: 
+|         <!-- end items-leading -->
+|     
+|     Path: http://10.10.137.208:80/index.php/2-uncategorised/1-spider-man-robs-bank
+|     Line number: 72
+|     Comment: 
+|         <!-- Begin Content -->
+|     
+|     Path: http://10.10.137.208:80/templates/protostar/js/template.js?787ff2be3d28e0eefd8e0930f878dbca
+|     Line number: 1
+|     Comment: 
+|         /**
+|          * @package     Joomla.Site
+|          * @subpackage  Templates.protostar
+|          * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.
+|          * @license     GNU General Public License version 2 or later; see LICENSE.txt
+|          * @since       3.2
+|          */
+|     
+|     Path: http://10.10.137.208:80/index.php/2-uncategorised/1-spider-man-robs-bank
+|     Line number: 44
+|     Comment: 
+|         <!--[if lt IE 9]><script src="/media/jui/js/html5.js?787ff2be3d28e0eefd8e0930f878dbca"></script><![endif]-->
+|     
+|     Path: http://10.10.137.208:80/media/jui/js/jquery-migrate.min.js?787ff2be3d28e0eefd8e0930f878dbca
+|     Line number: 1
+|     Comment: 
+|         /*! jQuery Migrate v1.4.1 | (c) jQuery Foundation and other contributors | jquery.org/license */
+|     
+|     Path: http://10.10.137.208:80/index.php/2-uncategorised/1-spider-man-robs-bank
+|     Line number: 222
+|     Comment: 
+|         <!-- End Right Sidebar -->
+|     
+|     Path: http://10.10.137.208:80/media/jui/js/jquery.min.js?787ff2be3d28e0eefd8e0930f878dbca
+|     Line number: 1
+|     Comment: 
+|         /*! jQuery v1.12.4 | (c) jQuery Foundation | jquery.org/license */
+|     
+|     Path: http://10.10.137.208:80/media/jui/js/bootstrap.min.js?787ff2be3d28e0eefd8e0930f878dbca
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * Bootstrap.js by @fat & @mdo
+|          * Copyright 2012 Twitter, Inc.
+|          * http://www.apache.org/licenses/LICENSE-2.0.txt
+|          *
+|          * Custom version for Joomla!
+|          */
+|     
+|     Path: http://10.10.137.208:80/index.php/2-uncategorised/1-spider-man-robs-bank
+|     Line number: 227
+|     Comment: 
+|         <!-- Footer -->
+|     
+|     Path: http://10.10.137.208:80/index.php/2-uncategorised/1-spider-man-robs-bank
+|     Line number: 170
+|     Comment: 
+|         <!-- Begin Right Sidebar -->
+|     
+|     Path: http://10.10.137.208:80/index.php/2-uncategorised/1-spider-man-robs-bank
+|     Line number: 167
+|     Comment: 
+|         <!-- End Content -->
+|     
+|     Path: http://10.10.137.208:80/index.php/2-uncategorised/1-spider-man-robs-bank
+|     Line number: 56
+|     Comment: 
+|         <!-- Body -->
+|     
+|     Path: http://10.10.137.208:80/index.php/2-uncategorised/1-spider-man-robs-bank
+|     Line number: 59
+|     Comment: 
+|         <!-- Header -->
+|     
+|     Path: http://10.10.137.208:80/index.php/2-uncategorised/1-spider-man-robs-bank
+|     Line number: 46
+|     Comment: 
+|_        <!--[if lt IE 9]><script src="/media/system/js/polyfill.event.js?787ff2be3d28e0eefd8e0930f878dbca"></script><![endif]-->
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-chrono: Request times for /; avg: 7968.10ms; min: 599.06ms; max: 12991.63ms
+| http-grep: 
+|   (1) http://10.10.137.208:80/: 
+|     (1) ip: 
+|_      + 10.10.137.208
+| http-feed: 
+| Spidering limited to: maxpagecount=40; withinhost=10.10.137.208
+|   Found the following feeds: 
+|     RSS (version 2.0): http://10.10.137.208:80/index.php?format=feed&amp;type=atom
+|     Atom: http://10.10.137.208/index.php/2-uncategorised?format=feed&amp;type=atom
+|     Atom: http://10.10.137.208:80/index.php/2-uncategorised?format=feed&amp;type=atom
+|     RSS (version 2.0): http://10.10.137.208:80/index.php?format=feed&amp;type=rss
+|     RSS (version 2.0): http://10.10.137.208/index.php?format=feed&amp;type=rss
+|     RSS (version 2.0): http://10.10.137.208/index.php/2-uncategorised?format=feed&amp;type=rss
+|_    RSS (version 2.0): http://10.10.137.208:80/index.php/2-uncategorised?format=feed&amp;type=rss
+| http-traceroute: 
+|   last-modified
+|     Hop #1: Fri, 23 Sep 2022 17:55:48 GMT
+|     Hop #2: Fri, 23 Sep 2022 17:56:05 GMT
+|_    Hop #3: Fri, 23 Sep 2022 17:56:07 GMT
+|_http-devframework: Joomla detected. Found common traces on /
+|_http-xssed: No previously reported XSS vuln.
+| http-vhosts: 
+|_128 names had status 200
+|_http-trace: TRACE is enabled
+|_http-date: Fri, 23 Sep 2022 17:55:58 GMT; +59m52s from local time.
+| http-headers: 
+|   Date: Fri, 23 Sep 2022 17:55:55 GMT
+|   Server: Apache/2.4.6 (CentOS) PHP/5.6.40
+|   X-Powered-By: PHP/5.6.40
+|   Set-Cookie: eaa83fe8b963ab08ce9ab7d4a798de05=06q43sd3jggspr3k7ermsp9151; path=/; HttpOnly
+|   Expires: Wed, 17 Aug 2005 00:00:00 GMT
+|   Last-Modified: Fri, 23 Sep 2022 17:55:57 GMT
+|   Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+|   Pragma: no-cache
+|   Connection: close
+|   Content-Type: text/html; charset=utf-8
+|   
+|_  (Request type: HEAD)
+| http-security-headers: 
+|   Cache_Control: 
+|     Header: Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+|   Pragma: 
+|     Header: Pragma: no-cache
+|   Expires: 
+|_    Header: Expires: Wed, 17 Aug 2005 00:00:00 GMT
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; php: 1
+|     /images/
+|       jpeg: 1; png: 1
+|     /index.php/
+|       Other: 1
+|     /index.php/2-uncategorised/
+|       Other: 1
+|     /index.php/component/users/
+|       Other: 1
+|     /media/jui/js/
+|       js: 5
+|     /media/system/js/
+|       js: 3
+|     /templates/protostar/
+|       ico: 1
+|     /templates/protostar/js/
+|       js: 1
+|   Longest directory structure:
+|     Depth: 3
+|     Dir: /index.php/component/users/
+|   Total files found (by extension):
+|_    Other: 4; ico: 1; jpeg: 1; js: 9; php: 1; png: 1
+|_http-title: Home
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.137.208
+|   url                                                                            method
+|   http://10.10.137.208:80/                                                       FORM
+|   http://10.10.137.208:80/index.php/component/users/?view=reset&amp;Itemid=101   FORM
+|   http://10.10.137.208:80/index.php                                              FORM
+|   http://10.10.137.208:80/index.php/component/users/?view=remind&amp;Itemid=101  FORM
+|   http://10.10.137.208:80/index.php/2-uncategorised                              FORM
+|_  http://10.10.137.208:80/index.php/2-uncategorised/1-spider-man-robs-bank       FORM
+3306/tcp open  mysql
+|_mysql-vuln-cve2012-2122: ERROR: Script execution failed (use -d to debug)
+|_banner: e\x00\x00\x00\xFFj\x04Host 'ip-10-11-76-197.eu-west-1.comput...
+
+Host script results:
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 22    0       63634.80   9009.18  0.0%
+| 80    0       61284.40   5674.90  0.0%
+|_3306  0       60062.70   8164.69  0.0%
+|_ipidseq: ERROR: Script execution failed (use -d to debug)
+|_fcrdns: FAIL (No PTR record)
+|_path-mtu: PMTU == 1500
+|_dns-brute: Can't guess domain of "10.10.137.208"; use dns-brute.domain script argument.
+
+# Nmap done at Fri Sep 23 18:59:49 2022 -- 1 IP address (1 host up) scanned in 256.08 seconds

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Fri Sep 23 18:55:33 2022 as: nmap -&#45;script discovery -oA nmap/Discovery -&#45;min-rate 500 -p 3306,80,22 10.10.137.208 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/Discovery -&#45;min-rate 500 -p 3306,80,22 10.10.137.208" start="1663955733" startstr="Fri Sep 23 18:55:33 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="22,80,3306"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="targets-ipv6-multicast-mld" output="&#xa;  IP: fe80::68d0:caff:fe65:425e  MAC: 6a:d0:ca:65:42:5e  IFACE: usb0&#xa;&#xa;  Use -&#45;script-args=newtargets to add the results as targets"><table>
+<elem key="iface">usb0</elem>
+<elem key="address">fe80::68d0:caff:fe65:425e</elem>
+<elem key="mac">6a:d0:ca:65:42:5e</elem>
+</table>
+</script><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="ipv6-multicast-mld-list" output="&#xa;  fe80::68d0:caff:fe65:425e: &#xa;    device: usb0&#xa;    mac: 6a:d0:ca:65:42:5e&#xa;    multicast_ips: &#xa;      ff02::1:ff65:425e         (NDP Solicited-node)&#xa;      ff02::1:ff00:0            (Solicited-Node Address)&#xa;      ff05::2                   (unknown)&#xa;      ff02::2                   (All Routers Address)&#xa;      ff02::1:ff00:4a           (Solicited-Node Address)"><table key="fe80::68d0:caff:fe65:425e">
+<elem key="device">usb0</elem>
+<elem key="mac">6a:d0:ca:65:42:5e</elem>
+<table key="multicast_ips">
+<table>
+<elem key="description">NDP Solicited-node</elem>
+<elem key="ip">ff02::1:ff65:425e</elem>
+</table>
+<table>
+<elem key="description">Solicited-Node Address</elem>
+<elem key="ip">ff02::1:ff00:0</elem>
+</table>
+<table>
+<elem key="description">unknown</elem>
+<elem key="ip">ff05::2</elem>
+</table>
+<table>
+<elem key="description">All Routers Address</elem>
+<elem key="ip">ff02::2</elem>
+</table>
+<table>
+<elem key="description">Solicited-Node Address</elem>
+<elem key="ip">ff02::1:ff00:4a</elem>
+</table>
+</table>
+</table>
+</script><script id="targets-ipv6-multicast-echo" output="&#xa;  IP: 2a01:4c8:148a:6809::4a     MAC: 6a:d0:ca:65:42:5e  IFACE: usb0&#xa;  IP: fe80::68d0:caff:fe65:425e  MAC: 6a:d0:ca:65:42:5e  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="targets-ipv6-multicast-invalid-dst" output="&#xa;  IP: 2a01:4c8:148a:6809::4a     MAC: 6a:d0:ca:65:42:5e  IFACE: usb0&#xa;  IP: fe80::68d0:caff:fe65:425e  MAC: 6a:d0:ca:65:42:5e  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.137.208" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1663955745" endtime="1663955989"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.137.208" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (12)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (12)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group-exchange-sha1</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+<elem>diffie-hellman-group14-sha1</elem>
+<elem>diffie-hellman-group1-sha1</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>ssh-rsa</elem>
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+<elem>aes128-cbc</elem>
+<elem>aes192-cbc</elem>
+<elem>aes256-cbc</elem>
+<elem>blowfish-cbc</elem>
+<elem>cast128-cbc</elem>
+<elem>3des-cbc</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script><script id="ssh-hostkey" output="&#xa;  2048 68:ed:7b:19:7f:ed:14:e6:18:98:6d:c5:88:30:aa:e9 (RSA)&#xa;  256 5c:d6:82:da:b2:19:e3:37:99:fb:96:82:08:70:ee:9d (ECDSA)&#xa;  256 d2:a9:75:cf:2f:1e:f5:44:4f:0b:13:c2:0f:d7:37:cc (ED25519)"><table>
+<elem key="fingerprint">68ed7b197fed14e618986dc58830aae9</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABAQCbp89KqmXj7Xx84uhisjiT7pGPYepXVTr4MnPu1P4fnlWzevm6BjeQgDBnoRVhddsjHhI1k+xdnahjcv6kykfT3mSeljfy+jRc+2ejMB95oK2AGycavgOfF4FLPYtd5J97WqRmu2ZC2sQUvbGMUsrNaKLAVdWRIqO5OO07WIGtr3c2ZsM417TTcTsSh1Cjhx3F+gbgi0BbBAN3sQqySa91AFruPA+m0R9JnDX5rzXmhWwzAM1Y8R72c4XKXRXdQT9szyyEiEwaXyT0p6XiaaDyxT2WMXTZEBSUKOHUQiUhX7JjBaeVvuX4ITG+W8zpZ6uXUrUySytuzMXlPyfMBy8B</elem>
+<elem key="type">ssh-rsa</elem>
+<elem key="bits">2048</elem>
+</table>
+<table>
+<elem key="fingerprint">5cd682dab219e33799fb96820870ee9d</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKb+wNoVp40Na4/Ycep7p++QQiOmDvP550H86ivDdM/7XF9mqOfdhWK0rrvkwq9EDZqibDZr3vL8MtwuMVV5Src=</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="bits">256</elem>
+</table>
+<table>
+<elem key="fingerprint">d2a975cf2f1ef5444f0b13c20fd737cc</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIP4TcvlwCGpiawPyNCkuXTK5CCpat+Bv8LycyNdiTJHX</elem>
+<elem key="type">ssh-ed25519</elem>
+<elem key="bits">256</elem>
+</table>
+</script><script id="banner" output="SSH-2.0-OpenSSH_7.4"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Allowed User Agents: &#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">200</elem>
+<table key="Allowed User Agents">
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-errors" output="&#xa;Spidering limited to: maxpagecount=40; withinhost=10.10.137.208&#xa;  Found the following error pages: &#xa;  &#xa;  Error Code: 400&#xa;  &#x9;http://10.10.137.208:80&#xa;  &#xa;  Error Code: 403&#xa;  &#x9;http://10.10.137.208:80/index.php/component/mailto/&#xa;  &#xa;  Error Code: 403&#xa;  &#x9;http://10.10.137.208:80/index.php/component/mailto/?tmpl=component&amp;amp;template=protostar&amp;amp;link=ff10e8f4b573921f99abf46869f963d48f2bf5b7&#xa;"/><script id="http-generator" output="Joomla! - Open Source Content Management"/><script id="http-backup-finder" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.137.208&#xa;  http://10.10.137.208:80/index.php/2-uncategorised/index.bak&#xa;  http://10.10.137.208:80/index.php/2-uncategorised/index.php/2-uncategorised/1-spider-man-robs-bank~&#xa;  http://10.10.137.208:80/index.php/2-uncategorised/index copy.php/2-uncategorised/1-spider-man-robs-bank&#xa;  http://10.10.137.208:80/index.php/2-uncategorised/Copy of index.php/2-uncategorised/1-spider-man-robs-bank&#xa;  http://10.10.137.208:80/index.php/2-uncategorised/Copy (2) of index.php/2-uncategorised/1-spider-man-robs-bank&#xa;  http://10.10.137.208:80/index.php/2-uncategorised/index.php/2-uncategorised/1-spider-man-robs-bank.1&#xa;  http://10.10.137.208:80/index.php/2-uncategorised/index.php/2-uncategorised/1-spider-man-robs-bank.~1~&#xa;  http://10.10.137.208:80/index.php/2-uncategorised/index.bak&#xa;  http://10.10.137.208:80/index.php/2-uncategorised/index.php/2-uncategorised/1-spider-man-robs-bank~&#xa;  http://10.10.137.208:80/index.php/2-uncategorised/index copy.php/2-uncategorised/1-spider-man-robs-bank&#xa;  http://10.10.137.208:80/index.php/2-uncategorised/Copy of index.php/2-uncategorised/1-spider-man-robs-bank&#xa;  http://10.10.137.208:80/index.php/2-uncategorised/Copy (2) of index.php/2-uncategorised/1-spider-man-robs-bank&#xa;  http://10.10.137.208:80/index.php/2-uncategorised/index.php/2-uncategorised/1-spider-man-robs-bank.1&#xa;  http://10.10.137.208:80/index.php/2-uncategorised/index.php/2-uncategorised/1-spider-man-robs-bank.~1~&#xa;"/><script id="http-php-version" output="Version from header x-powered-by: PHP/5.6.40"/><script id="http-robots.txt" output="15 disallowed entries &#xa;/joomla/administrator/ /administrator/ /bin/ /cache/ &#xa;/cli/ /components/ /includes/ /installation/ /language/ &#xa;/layouts/ /libraries/ /logs/ /modules/ /plugins/ /tmp/"/><script id="http-comments-displayer" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.137.208&#xa;    &#xa;    Path: http://10.10.137.208:80/media/jui/js/html5.js?787ff2be3d28e0eefd8e0930f878dbca&#xa;    Line number: 1&#xa;    Comment: &#xa;        /**&#xa;        * @preserve HTML5 Shiv 3.7.3 | @afarkas @jdalton @jon_neal @rem | MIT/GPL2 Licensed&#xa;        */&#xa;    &#xa;    Path: http://10.10.137.208:80/index.php?format=feed&amp;amp;type=rss&#xa;    Line number: 2&#xa;    Comment: &#xa;        &lt;!-&#45; generator=&quot;Joomla! - Open Source Content Management&quot; -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.137.208:80/index.php/2-uncategorised&#xa;    Line number: 157&#xa;    Comment: &#xa;        &lt;!-&#45; end items-leading -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.137.208:80/index.php/2-uncategorised/1-spider-man-robs-bank&#xa;    Line number: 72&#xa;    Comment: &#xa;        &lt;!-&#45; Begin Content -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.137.208:80/templates/protostar/js/template.js?787ff2be3d28e0eefd8e0930f878dbca&#xa;    Line number: 1&#xa;    Comment: &#xa;        /**&#xa;         * @package     Joomla.Site&#xa;         * @subpackage  Templates.protostar&#xa;         * @copyright   Copyright (C) 2005 - 2017 Open Source Matters, Inc. All rights reserved.&#xa;         * @license     GNU General Public License version 2 or later; see LICENSE.txt&#xa;         * @since       3.2&#xa;         */&#xa;    &#xa;    Path: http://10.10.137.208:80/index.php/2-uncategorised/1-spider-man-robs-bank&#xa;    Line number: 44&#xa;    Comment: &#xa;        &lt;!-&#45;[if lt IE 9]&gt;&lt;script src=&quot;/media/jui/js/html5.js?787ff2be3d28e0eefd8e0930f878dbca&quot;&gt;&lt;/script&gt;&lt;![endif]-&#45;&gt;&#xa;    &#xa;    Path: http://10.10.137.208:80/media/jui/js/jquery-migrate.min.js?787ff2be3d28e0eefd8e0930f878dbca&#xa;    Line number: 1&#xa;    Comment: &#xa;        /*! jQuery Migrate v1.4.1 | (c) jQuery Foundation and other contributors | jquery.org/license */&#xa;    &#xa;    Path: http://10.10.137.208:80/index.php/2-uncategorised/1-spider-man-robs-bank&#xa;    Line number: 222&#xa;    Comment: &#xa;        &lt;!-&#45; End Right Sidebar -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.137.208:80/media/jui/js/jquery.min.js?787ff2be3d28e0eefd8e0930f878dbca&#xa;    Line number: 1&#xa;    Comment: &#xa;        /*! jQuery v1.12.4 | (c) jQuery Foundation | jquery.org/license */&#xa;    &#xa;    Path: http://10.10.137.208:80/media/jui/js/bootstrap.min.js?787ff2be3d28e0eefd8e0930f878dbca&#xa;    Line number: 1&#xa;    Comment: &#xa;        /*!&#xa;         * Bootstrap.js by @fat &amp; @mdo&#xa;         * Copyright 2012 Twitter, Inc.&#xa;         * http://www.apache.org/licenses/LICENSE-2.0.txt&#xa;         *&#xa;         * Custom version for Joomla!&#xa;         */&#xa;    &#xa;    Path: http://10.10.137.208:80/index.php/2-uncategorised/1-spider-man-robs-bank&#xa;    Line number: 227&#xa;    Comment: &#xa;        &lt;!-&#45; Footer -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.137.208:80/index.php/2-uncategorised/1-spider-man-robs-bank&#xa;    Line number: 170&#xa;    Comment: &#xa;        &lt;!-&#45; Begin Right Sidebar -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.137.208:80/index.php/2-uncategorised/1-spider-man-robs-bank&#xa;    Line number: 167&#xa;    Comment: &#xa;        &lt;!-&#45; End Content -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.137.208:80/index.php/2-uncategorised/1-spider-man-robs-bank&#xa;    Line number: 56&#xa;    Comment: &#xa;        &lt;!-&#45; Body -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.137.208:80/index.php/2-uncategorised/1-spider-man-robs-bank&#xa;    Line number: 59&#xa;    Comment: &#xa;        &lt;!-&#45; Header -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.137.208:80/index.php/2-uncategorised/1-spider-man-robs-bank&#xa;    Line number: 46&#xa;    Comment: &#xa;        &lt;!-&#45;[if lt IE 9]&gt;&lt;script src=&quot;/media/system/js/polyfill.event.js?787ff2be3d28e0eefd8e0930f878dbca&quot;&gt;&lt;/script&gt;&lt;![endif]-&#45;&gt;&#xa;"/><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-chrono" output="Request times for /; avg: 7968.10ms; min: 599.06ms; max: 12991.63ms"/><script id="http-grep" output="&#xa;  (1) http://10.10.137.208:80/: &#xa;    (1) ip: &#xa;      + 10.10.137.208"><table key="(1) http://10.10.137.208:80/">
+<table key="(1) ip">
+<elem>+ 10.10.137.208</elem>
+</table>
+</table>
+</script><script id="http-feed" output="&#xa;Spidering limited to: maxpagecount=40; withinhost=10.10.137.208&#xa;  Found the following feeds: &#xa;    RSS (version 2.0): http://10.10.137.208:80/index.php?format=feed&amp;amp;type=atom&#xa;    Atom: http://10.10.137.208/index.php/2-uncategorised?format=feed&amp;amp;type=atom&#xa;    Atom: http://10.10.137.208:80/index.php/2-uncategorised?format=feed&amp;amp;type=atom&#xa;    RSS (version 2.0): http://10.10.137.208:80/index.php?format=feed&amp;amp;type=rss&#xa;    RSS (version 2.0): http://10.10.137.208/index.php?format=feed&amp;amp;type=rss&#xa;    RSS (version 2.0): http://10.10.137.208/index.php/2-uncategorised?format=feed&amp;amp;type=rss&#xa;    RSS (version 2.0): http://10.10.137.208:80/index.php/2-uncategorised?format=feed&amp;amp;type=rss&#xa;"/><script id="http-traceroute" output="&#xa;  last-modified&#xa;    Hop #1: Fri, 23 Sep 2022 17:55:48 GMT&#xa;    Hop #2: Fri, 23 Sep 2022 17:56:05 GMT&#xa;    Hop #3: Fri, 23 Sep 2022 17:56:07 GMT&#xa;"/><script id="http-devframework" output="Joomla detected. Found common traces on /"/><script id="http-xssed" output="No previously reported XSS vuln."/><script id="http-vhosts" output="&#xa;128 names had status 200"/><script id="http-trace" output="TRACE is enabled"/><script id="http-date" output="Fri, 23 Sep 2022 17:55:58 GMT; +59m52s from local time."><elem key="date">2022-09-23T18:55:58+00:00</elem>
+<elem key="delta">3592.0</elem>
+</script><script id="http-headers" output="&#xa;  Date: Fri, 23 Sep 2022 17:55:55 GMT&#xa;  Server: Apache/2.4.6 (CentOS) PHP/5.6.40&#xa;  X-Powered-By: PHP/5.6.40&#xa;  Set-Cookie: eaa83fe8b963ab08ce9ab7d4a798de05=06q43sd3jggspr3k7ermsp9151; path=/; HttpOnly&#xa;  Expires: Wed, 17 Aug 2005 00:00:00 GMT&#xa;  Last-Modified: Fri, 23 Sep 2022 17:55:57 GMT&#xa;  Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0&#xa;  Pragma: no-cache&#xa;  Connection: close&#xa;  Content-Type: text/html; charset=utf-8&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-security-headers" output="&#xa;  Cache_Control: &#xa;    Header: Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0&#xa;  Pragma: &#xa;    Header: Pragma: no-cache&#xa;  Expires: &#xa;    Header: Expires: Wed, 17 Aug 2005 00:00:00 GMT"><table key="Cache_Control">
+<elem>Header: Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0</elem>
+</table>
+<table key="Pragma">
+<elem>Header: Pragma: no-cache</elem>
+</table>
+<table key="Expires">
+<elem>Header: Expires: Wed, 17 Aug 2005 00:00:00 GMT</elem>
+</table>
+</script><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      Other: 1; php: 1&#xa;    /images/&#xa;      jpeg: 1; png: 1&#xa;    /index.php/&#xa;      Other: 1&#xa;    /index.php/2-uncategorised/&#xa;      Other: 1&#xa;    /index.php/component/users/&#xa;      Other: 1&#xa;    /media/jui/js/&#xa;      js: 5&#xa;    /media/system/js/&#xa;      js: 3&#xa;    /templates/protostar/&#xa;      ico: 1&#xa;    /templates/protostar/js/&#xa;      js: 1&#xa;  Longest directory structure:&#xa;    Depth: 3&#xa;    Dir: /index.php/component/users/&#xa;  Total files found (by extension):&#xa;    Other: 4; ico: 1; jpeg: 1; js: 9; php: 1; png: 1&#xa;"/><script id="http-title" output="Home"><elem key="title">Home</elem>
+</script><script id="http-auth-finder" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.137.208&#xa;  url                                                                            method&#xa;  http://10.10.137.208:80/                                                       FORM&#xa;  http://10.10.137.208:80/index.php/component/users/?view=reset&amp;amp;Itemid=101   FORM&#xa;  http://10.10.137.208:80/index.php                                              FORM&#xa;  http://10.10.137.208:80/index.php/component/users/?view=remind&amp;amp;Itemid=101  FORM&#xa;  http://10.10.137.208:80/index.php/2-uncategorised                              FORM&#xa;  http://10.10.137.208:80/index.php/2-uncategorised/1-spider-man-robs-bank       FORM&#xa;"/></port>
+<port protocol="tcp" portid="3306"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="mysql" method="table" conf="3"/><script id="mysql-vuln-cve2012-2122" output="ERROR: Script execution failed (use -d to debug)"/><script id="banner" output="e\x00\x00\x00\xFFj\x04Host &apos;ip-10-11-76-197.eu-west-1.comput...&#xa;"/></port>
+</ports>
+<hostscript><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)&#xa;22    0       63634.80   9009.18  0.0%&#xa;80    0       61284.40   5674.90  0.0%&#xa;3306  0       60062.70   8164.69  0.0%&#xa;"/><script id="ipidseq" output="ERROR: Script execution failed (use -d to debug)"/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="path-mtu" output="PMTU == 1500"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.10.137.208&quot;; use dns-brute.domain script argument."/></hostscript><times srtt="62860" rttvar="28517" to="176928"/>
+</host>
+<runstats><finished time="1663955989" timestr="Fri Sep 23 18:59:49 2022" summary="Nmap done at Fri Sep 23 18:59:49 2022; 1 IP address (1 host up) scanned in 256.08 seconds" elapsed="256.08" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

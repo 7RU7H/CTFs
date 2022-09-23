@@ -78,6 +78,8 @@ Blunder | [Link]() | [Ippsec]
 Brainfuck | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Brainfuck)  | [Ippsec](https://www.youtube.com/watch?v=o5x1yg3JnYI)
 Reddish | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Reddish) | [Ippsec] | 
 Querier | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Retired-Machines/Querier) | [Ippsec](https://www.youtube.com/watch?v=d7ACjty4m7U)
+DevOops | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Retired-Machines/DevOops) | [Ippsec](https://www.youtube.com/watch?v=tQ34Ntkr7H4)
+
 
 #### TJNULL OSCP
 Box Name  | Recon-ed | Done | Writeup
@@ -121,9 +123,9 @@ Bart | Done | | [Link]()
 Tally | Done | | [Link]()
 Jail | Done | | [Link]()
 Falafel | Done | | [Link]()
-DevOops | | | [Link]()
+DevOops | Done | Walkthrough | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Retired-Machines/DevOops)
 Hawks | Done | | [Link]()
-Netmon | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Netmon) 
+Netmon | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Retired-Machines/Netmon) 
 Lightweight | Done | | [Link]()
 LaCasaDePapel | Done | | [Link]()
 
@@ -134,16 +136,6 @@ Sauna | Done | | [Link]()
 Active | SMBtodo | | [Link]()
 Forest | Done | Walkthrough -> Retry in Randomiser | [Link]()
 
-#### HTB AD HARDER!
-Box Name | Recon-ed | Done | Writeup
---- | --- | --- | --- 
-Blackfield | Done | | [Link]()
-Resolute | Done-Redid | | [Link]()
-Reel | SMB, smtp-enum todo | | [Link]() 
-Sizzle | Done | | [Link]()
-Mantis | SMBtodo + feroxbuster for completion(there are admin panel(s)) | | [Link]() 
-Cascade | Mostly | | [Link]()
-Multimaster | | | [Link]()
 
 #### HTB Bufferoverflow machines
 Jail and node also contains a BoF but is ranked easier than October BoF
@@ -161,12 +153,9 @@ Bankrobber | Done | | [Link]()
 Ypuffy | | | [Link]()
 Charon | | | [Link]()
 
+#### HTB  Intended method is broken - try later
+Legacy
 
-#### HTB  
-Intended method is broken - try later
-Box Name | Recon-ed | Done | Writeup
---- | --- | --- | --- 
-Legacy | Done | | [Link]()
 
 ## THM
 
@@ -228,10 +217,7 @@ Box Name  | Recon-ed | Done | Writeup
 Blueprint  | | | [Link]()
 VulnNetActive  | | | [Link]()
 Throwback  | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/Throwback)
-Attacktive Directory | Done | Done | N/A
+Attacktive Directory | N/A | Done | N/A
 Holo  | | | [Link]()
 Enterprise  | Done | | [Link]()
-
-For [AD basics](https://tryhackme.com/room/activedirectorybasics), but recently THM added loads of the subscribe Labs for:
-Enumeration, Foothold, 
-[Breaching AD](https://tryhackme.com/room/breachingad) and Exploiting.
+Red Teaming AD Module | N/A | | N/A
