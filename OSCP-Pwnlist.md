@@ -53,7 +53,7 @@ DVR4 | Done | | [Link]()
 Medjed | Done - gospider,ferox needed lost connection | | [Link]()
 Peppo | Done | | | [Link]()
 PlanetExpress | Done | Walkthrough | [Link]()
-Hunit  | Done |
+Hunit  | Done | Walkthrough | [Link]() 
 Slort | Done
 Squid | Done | Redo
 
@@ -80,7 +80,6 @@ Reddish | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Reddish) | [
 Querier | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Retired-Machines/Querier) | [Ippsec](https://www.youtube.com/watch?v=d7ACjty4m7U)
 DevOops | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Retired-Machines/DevOops) | [Ippsec](https://www.youtube.com/watch?v=tQ34Ntkr7H4)
 
-
 #### TJNULL OSCP
 Box Name  | Recon-ed | Done | Writeup
 --- | --- | --- | ---  
@@ -101,12 +100,12 @@ Sunday | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox
 Tartarsauce | Done | | [Link]()
 Irked | Done | | [Link]()
 Friendzone  | Done -not done smb | | [Link]()
-Blue | Done | | [Link]()
+Blue | Done | Python script version to do | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Retired-Machines/Blue)
 Devel | Done | | [Link]()
 Optimum | Done  | | [Link]()
 Bastard | Done  | | [Link]()
 Granny | Done | | [Link]()
-Artic | Done | WILL RETRY WITHOUT MS10-059 | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Artic)
+Artic | Done | WILL RETRY WITHOUT MS10-059 | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Retired-Machines/Artic)
 Grandpa| Done | | [Link]()
 Silo | Done | | [Link]()
 Bounty | Done | | [Link]()

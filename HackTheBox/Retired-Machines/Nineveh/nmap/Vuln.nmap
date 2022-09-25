@@ -1,16 +1,13 @@
-# Nmap 7.92 scan initiated Wed May 18 09:05:16 2022 as: nmap --script vuln -oA nmap/Vuln -p- --min-rate 5000 10.129.104.163
-Nmap scan report for 10.129.104.163
-Host is up (0.094s latency).
-Not shown: 65533 filtered tcp ports (no-response)
+# Nmap 7.92 scan initiated Sun Sep 25 18:54:21 2022 as: nmap --script vuln -oA nmap/Vuln --min-rate 500 -p 80,443 10.129.50.116
+Nmap scan report for 10.129.50.116
+Host is up (0.043s latency).
+
 PORT    STATE SERVICE
 80/tcp  open  http
 |_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
 |_http-dombased-xss: Couldn't find any DOM based XSS.
-|_http-csrf: Couldn't find any CSRF vulnerabilities.
 | http-enum: 
 |_  /info.php: Possible information file
-443/tcp open  https
-|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
 |_http-csrf: Couldn't find any CSRF vulnerabilities.
 | http-slowloris-check: 
 |   VULNERABLE:
@@ -24,8 +21,33 @@ PORT    STATE SERVICE
 |       
 |     Disclosure date: 2009-09-17
 |     References:
-|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
-|_      http://ha.ckers.org/slowloris/
+|       http://ha.ckers.org/slowloris/
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+443/tcp open  https
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       http://ha.ckers.org/slowloris/
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+| http-enum: 
+|   /db/: BlogWorx Database
+|_  /db/: Potentially interesting folder
+| http-cookie-flags: 
+|   /db/: 
+|     PHPSESSID: 
+|       secure flag not set and HTTPS in use
+|_      httponly flag not set
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
 |_http-dombased-xss: Couldn't find any DOM based XSS.
 
-# Nmap done at Wed May 18 09:12:21 2022 -- 1 IP address (1 host up) scanned in 424.93 seconds
+# Nmap done at Sun Sep 25 18:59:45 2022 -- 1 IP address (1 host up) scanned in 324.32 seconds

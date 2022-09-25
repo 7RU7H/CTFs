@@ -1,16 +1,53 @@
-# Nmap 7.92 scan initiated Wed May 18 09:00:17 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 5000 10.129.104.163
+# Nmap 7.92 scan initiated Sun Sep 25 18:46:29 2022 as: nmap --script discovery -oA nmap/Discovery --min-rate 500 -p 80,443 10.129.50.116
 Pre-scan script results:
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:148a:6809::d4    MAC: 5a:1f:08:78:1f:b6  IFACE: usb0
+|   IP: fe80::581f:8ff:fe78:1fb6  MAC: 5a:1f:08:78:1f:b6  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
 |_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-echo: 
+|   IP: fe80::581f:8ff:fe78:1fb6  MAC: 5a:1f:08:78:1f:b6  IFACE: usb0
+|   IP: 2a01:4c8:148a:6809::d4    MAC: 5a:1f:08:78:1f:b6  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
 | targets-asn: 
 |_  targets-asn.asn is a mandatory parameter
-|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
-Nmap scan report for 10.129.104.163
-Host is up (0.052s latency).
-Not shown: 65533 filtered tcp ports (no-response)
+| ipv6-multicast-mld-list: 
+|   fe80::581f:8ff:fe78:1fb6: 
+|     device: usb0
+|     mac: 5a:1f:08:78:1f:b6
+|     multicast_ips: 
+|       ff02::1:ff78:1fb6         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:d4           (Solicited-Node Address)
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::581f:8ff:fe78:1fb6  MAC: 5a:1f:08:78:1f:b6  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+Nmap scan report for 10.129.50.116
+Host is up (0.038s latency).
+
 Bug in http-security-headers: no string output.
 PORT    STATE SERVICE
 80/tcp  open  http
-|_http-mobileversion-checker: No mobile version detected.
+|_http-title: Site doesn't have a title (text/html).
+|_http-errors: Couldn't find any error pages.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1
+| http-enum: 
+|_  /info.php: Possible information file
+|_http-date: Sun, 25 Sep 2022 17:46:43 GMT; +59m59s from local time.
+|_http-xssed: No previously reported XSS vuln.
+|_http-feed: Couldn't find any feeds.
 | http-useragent-tester: 
 |   Status for browser useragent: 200
 |   Allowed User Agents: 
@@ -31,13 +68,9 @@ PORT    STATE SERVICE
 |     PECL::HTTP
 |     Wget/1.13.4 (linux-gnu)
 |_    WWW-Mechanize/1.34
-|_http-xssed: No previously reported XSS vuln.
-|_http-feed: Couldn't find any feeds.
-|_http-chrono: Request times for /; avg: 164.33ms; min: 153.60ms; max: 201.46ms
-|_http-date: Wed, 18 May 2022 08:00:50 GMT; +59m59s from local time.
-|_http-title: Site doesn't have a title (text/html).
+|_http-referer-checker: Couldn't find any cross-domain scripts.
 | http-headers: 
-|   Date: Wed, 18 May 2022 08:01:00 GMT
+|   Date: Sun, 25 Sep 2022 17:46:52 GMT
 |   Server: Apache/2.4.18 (Ubuntu)
 |   Last-Modified: Sun, 02 Jul 2017 23:49:44 GMT
 |   ETag: "b2-5535e4e04002a"
@@ -48,59 +81,14 @@ PORT    STATE SERVICE
 |   Content-Type: text/html
 |   
 |_  (Request type: HEAD)
-|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-mobileversion-checker: No mobile version detected.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
 |_http-comments-displayer: Couldn't find any comments.
+|_http-chrono: Request times for /; avg: 163.99ms; min: 152.08ms; max: 201.93ms
 | http-vhosts: 
 |_128 names had status 200
-| http-enum: 
-|_  /info.php: Possible information file
-|_http-errors: Couldn't find any error pages.
-|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
-| http-sitemap-generator: 
-|   Directory structure:
-|     /
-|       Other: 1
-|   Longest directory structure:
-|     Depth: 0
-|     Dir: /
-|   Total files found (by extension):
-|_    Other: 1
 443/tcp open  https
-| http-security-headers: 
-|   Strict_Transport_Security: 
-|_    HSTS not configured in HTTPS Server
-|_http-mobileversion-checker: No mobile version detected.
-|_http-feed: Couldn't find any feeds.
 |_ssl-date: TLS randomness does not represent time
-| http-sitemap-generator: 
-|   Directory structure:
-|     /
-|       Other: 1; png: 1
-|   Longest directory structure:
-|     Depth: 0
-|     Dir: /
-|   Total files found (by extension):
-|_    Other: 1; png: 1
-| http-useragent-tester: 
-|   Status for browser useragent: 200
-|   Allowed User Agents: 
-|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
-|     libwww
-|     lwp-trivial
-|     libcurl-agent/1.0
-|     PHP/
-|     Python-urllib/2.5
-|     GT::WWW
-|     Snoopy
-|     MFC_Tear_Sample
-|     HTTP::Lite
-|     PHPCrawl
-|     URI::Fetch
-|     Zend_Http_Client
-|     http client
-|     PECL::HTTP
-|     Wget/1.13.4 (linux-gnu)
-|_    WWW-Mechanize/1.34
 | ssl-enum-ciphers: 
 |   TLSv1.0: 
 |     ciphers: 
@@ -160,20 +148,60 @@ PORT    STATE SERVICE
 |       NULL
 |     cipher preference: client
 |_  least strength: A
+|_http-mobileversion-checker: No mobile version detected.
+|_http-chrono: Request times for /; avg: 312.56ms; min: 302.90ms; max: 316.15ms
+| http-enum: 
+|   /db/: BlogWorx Database
+|_  /db/: Potentially interesting folder
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| tls-alpn: 
+|_  http/1.1
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-errors: Couldn't find any error pages.
+| http-security-headers: 
+|   Strict_Transport_Security: 
+|_    HSTS not configured in HTTPS Server
+|_http-feed: Couldn't find any feeds.
+|_http-comments-displayer: Couldn't find any comments.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; png: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1; png: 1
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-date: Sun, 25 Sep 2022 17:46:48 GMT; +59m58s from local time.
+| http-vhosts: 
+|_128 names had status 200
 | ssl-cert: Subject: commonName=nineveh.htb/organizationName=HackTheBox Ltd/stateOrProvinceName=Athens/countryName=GR
 | Not valid before: 2017-07-01T15:03:30
 |_Not valid after:  2018-07-01T15:03:30
-|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
-| http-vhosts: 
-| mail3 : 400
-| en : 400
-| apache : 400
-| mail2 : 400
-| cdn : 400
-|_123 names had status 200
-|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-xssed: No previously reported XSS vuln.
+|_http-title: Site doesn't have a title (text/html).
 | http-headers: 
-|   Date: Wed, 18 May 2022 08:00:56 GMT
+|   Date: Sun, 25 Sep 2022 17:46:47 GMT
 |   Server: Apache/2.4.18 (Ubuntu)
 |   Last-Modified: Sun, 02 Jul 2017 23:50:02 GMT
 |   ETag: "31-5535e4f1dfd20"
@@ -183,20 +211,15 @@ PORT    STATE SERVICE
 |   Content-Type: text/html
 |   
 |_  (Request type: HEAD)
-|_http-chrono: Request times for /; avg: 336.61ms; min: 303.12ms; max: 392.42ms
-|_http-comments-displayer: Couldn't find any comments.
-|_http-title: Site doesn't have a title (text/html).
-|_http-date: Wed, 18 May 2022 08:00:54 GMT; +59m59s from local time.
-|_http-xssed: No previously reported XSS vuln.
-| http-enum: 
-|   /db/: BlogWorx Database
-|_  /db/: Potentially interesting folder
-| tls-alpn: 
-|_  http/1.1
-|_http-errors: Couldn't find any error pages.
 
 Host script results:
+|_dns-brute: Can't guess domain of "10.129.50.116"; use dns-brute.domain script argument.
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 80    0       49018.50   6900.18  0.0%
+|_443   0       44785.40   7375.45  0.0%
 |_fcrdns: FAIL (No PTR record)
-|_dns-brute: Can't guess domain of "10.129.104.163"; use dns-brute.domain script argument.
+|_ipidseq: ERROR: Script execution failed (use -d to debug)
+|_path-mtu: PMTU == 1500
 
-# Nmap done at Wed May 18 09:05:06 2022 -- 1 IP address (1 host up) scanned in 288.34 seconds
+# Nmap done at Sun Sep 25 18:50:58 2022 -- 1 IP address (1 host up) scanned in 268.86 seconds

@@ -1,50 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE nmaprun>
 <?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
-<!-- Nmap 7.92 scan initiated Wed May 18 09:00:17 2022 as: nmap -&#45;script discovery -oA nmap/Discovery -p- -&#45;min-rate 5000 10.129.104.163 -->
-<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/Discovery -p- -&#45;min-rate 5000 10.129.104.163" start="1652860817" startstr="Wed May 18 09:00:17 2022" version="7.92" xmloutputversion="1.05">
-<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<!-- Nmap 7.92 scan initiated Sun Sep 25 18:46:29 2022 as: nmap -&#45;script discovery -oA nmap/Discovery -&#45;min-rate 500 -p 80,443 10.129.50.116 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/Discovery -&#45;min-rate 500 -p 80,443 10.129.50.116" start="1664127989" startstr="Sun Sep 25 18:46:29 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="80,443"/>
 <verbose level="0"/>
 <debugging level="0"/>
-<prescript><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
-<address addr="10.129.104.163" addrtype="ipv4"/>
+<prescript><script id="targets-ipv6-multicast-invalid-dst" output="&#xa;  IP: 2a01:4c8:148a:6809::d4    MAC: 5a:1f:08:78:1f:b6  IFACE: usb0&#xa;  IP: fe80::581f:8ff:fe78:1fb6  MAC: 5a:1f:08:78:1f:b6  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-ipv6-multicast-echo" output="&#xa;  IP: fe80::581f:8ff:fe78:1fb6  MAC: 5a:1f:08:78:1f:b6  IFACE: usb0&#xa;  IP: 2a01:4c8:148a:6809::d4    MAC: 5a:1f:08:78:1f:b6  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="ipv6-multicast-mld-list" output="&#xa;  fe80::581f:8ff:fe78:1fb6: &#xa;    device: usb0&#xa;    mac: 5a:1f:08:78:1f:b6&#xa;    multicast_ips: &#xa;      ff02::1:ff78:1fb6         (NDP Solicited-node)&#xa;      ff02::1:ff00:0            (Solicited-Node Address)&#xa;      ff05::2                   (unknown)&#xa;      ff02::2                   (All Routers Address)&#xa;      ff02::1:ff00:d4           (Solicited-Node Address)"><table key="fe80::581f:8ff:fe78:1fb6">
+<elem key="device">usb0</elem>
+<elem key="mac">5a:1f:08:78:1f:b6</elem>
+<table key="multicast_ips">
+<table>
+<elem key="ip">ff02::1:ff78:1fb6</elem>
+<elem key="description">NDP Solicited-node</elem>
+</table>
+<table>
+<elem key="ip">ff02::1:ff00:0</elem>
+<elem key="description">Solicited-Node Address</elem>
+</table>
+<table>
+<elem key="ip">ff05::2</elem>
+<elem key="description">unknown</elem>
+</table>
+<table>
+<elem key="ip">ff02::2</elem>
+<elem key="description">All Routers Address</elem>
+</table>
+<table>
+<elem key="ip">ff02::1:ff00:d4</elem>
+<elem key="description">Solicited-Node Address</elem>
+</table>
+</table>
+</table>
+</script><script id="targets-ipv6-multicast-mld" output="&#xa;  IP: fe80::581f:8ff:fe78:1fb6  MAC: 5a:1f:08:78:1f:b6  IFACE: usb0&#xa;&#xa;  Use -&#45;script-args=newtargets to add the results as targets"><table>
+<elem key="address">fe80::581f:8ff:fe78:1fb6</elem>
+<elem key="mac">5a:1f:08:78:1f:b6</elem>
+<elem key="iface">usb0</elem>
+</table>
+</script></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.50.116" addrtype="ipv4"/>
 <hostnames>
 </hostnames>
 </hosthint>
-<host starttime="1652860823" endtime="1652861105"><status state="up" reason="syn-ack" reason_ttl="0"/>
-<address addr="10.129.104.163" addrtype="ipv4"/>
+<host starttime="1664128002" endtime="1664128258"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.129.50.116" addrtype="ipv4"/>
 <hostnames>
 </hostnames>
-<ports><extraports state="filtered" count="65533">
-<extrareasons reason="no-response" count="65533" proto="tcp" ports="1-79,81-442,444-65535"/>
-</extraports>
-<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" method="table" conf="3"/><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">200</elem>
-<table key="Allowed User Agents">
-<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
-<elem>libwww</elem>
-<elem>lwp-trivial</elem>
-<elem>libcurl-agent/1.0</elem>
-<elem>PHP/</elem>
-<elem>Python-urllib/2.5</elem>
-<elem>GT::WWW</elem>
-<elem>Snoopy</elem>
-<elem>MFC_Tear_Sample</elem>
-<elem>HTTP::Lite</elem>
-<elem>PHPCrawl</elem>
-<elem>URI::Fetch</elem>
-<elem>Zend_Http_Client</elem>
-<elem>http client</elem>
-<elem>PECL::HTTP</elem>
-<elem>Wget/1.13.4 (linux-gnu)</elem>
-<elem>WWW-Mechanize/1.34</elem>
-</table>
-</script><script id="http-xssed" output="No previously reported XSS vuln."/><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-chrono" output="Request times for /; avg: 164.33ms; min: 153.60ms; max: 201.46ms"/><script id="http-date" output="Wed, 18 May 2022 08:00:50 GMT; +59m59s from local time."><elem key="date">2022-05-18T09:00:50+00:00</elem>
+<ports><port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-title" output="Site doesn&apos;t have a title (text/html)."></script><script id="http-errors" output="Couldn&apos;t find any error pages."/><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      Other: 1&#xa;  Longest directory structure:&#xa;    Depth: 0&#xa;    Dir: /&#xa;  Total files found (by extension):&#xa;    Other: 1&#xa;"/><script id="http-enum" output="&#xa;  /info.php: Possible information file&#xa;"/><script id="http-date" output="Sun, 25 Sep 2022 17:46:43 GMT; +59m59s from local time."><elem key="date">2022-09-25T18:46:43+00:00</elem>
 <elem key="delta">3599.0</elem>
-</script><script id="http-title" output="Site doesn&apos;t have a title (text/html)."></script><script id="http-headers" output="&#xa;  Date: Wed, 18 May 2022 08:01:00 GMT&#xa;  Server: Apache/2.4.18 (Ubuntu)&#xa;  Last-Modified: Sun, 02 Jul 2017 23:49:44 GMT&#xa;  ETag: &quot;b2-5535e4e04002a&quot;&#xa;  Accept-Ranges: bytes&#xa;  Content-Length: 178&#xa;  Vary: Accept-Encoding&#xa;  Connection: close&#xa;  Content-Type: text/html&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-comments-displayer" output="Couldn&apos;t find any comments."/><script id="http-security-headers" output=""></script><script id="http-vhosts" output="&#xa;128 names had status 200"/><script id="http-enum" output="&#xa;  /info.php: Possible information file&#xa;"/><script id="http-errors" output="Couldn&apos;t find any error pages."/><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      Other: 1&#xa;  Longest directory structure:&#xa;    Depth: 0&#xa;    Dir: /&#xa;  Total files found (by extension):&#xa;    Other: 1&#xa;"/></port>
-<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="https" method="table" conf="3"/><script id="http-security-headers" output="&#xa;  Strict_Transport_Security: &#xa;    HSTS not configured in HTTPS Server"><table key="Strict_Transport_Security">
-<elem>HSTS not configured in HTTPS Server</elem>
-</table>
-</script><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      Other: 1; png: 1&#xa;  Longest directory structure:&#xa;    Depth: 0&#xa;    Dir: /&#xa;  Total files found (by extension):&#xa;    Other: 1; png: 1&#xa;"/><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">200</elem>
+</script><script id="http-xssed" output="No previously reported XSS vuln."/><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">200</elem>
 <table key="Allowed User Agents">
 <elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
 <elem>libwww</elem>
@@ -64,7 +68,8 @@
 <elem>Wget/1.13.4 (linux-gnu)</elem>
 <elem>WWW-Mechanize/1.34</elem>
 </table>
-</script><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.0: &#xa;    ciphers: &#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: client&#xa;  TLSv1.1: &#xa;    ciphers: &#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: client&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: client&#xa;  least strength: A"><table key="TLSv1.0">
+</script><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-headers" output="&#xa;  Date: Sun, 25 Sep 2022 17:46:52 GMT&#xa;  Server: Apache/2.4.18 (Ubuntu)&#xa;  Last-Modified: Sun, 02 Jul 2017 23:49:44 GMT&#xa;  ETag: &quot;b2-5535e4e04002a&quot;&#xa;  Accept-Ranges: bytes&#xa;  Content-Length: 178&#xa;  Vary: Accept-Encoding&#xa;  Connection: close&#xa;  Content-Type: text/html&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-comments-displayer" output="Couldn&apos;t find any comments."/><script id="http-security-headers" output=""></script><script id="http-chrono" output="Request times for /; avg: 163.99ms; min: 152.08ms; max: 201.93ms"/><script id="http-vhosts" output="&#xa;128 names had status 200"/></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="https" method="table" conf="3"/><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.0: &#xa;    ciphers: &#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: client&#xa;  TLSv1.1: &#xa;    ciphers: &#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: client&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: client&#xa;  least strength: A"><table key="TLSv1.0">
 <table key="ciphers">
 <table>
 <elem key="kex_info">dh 2048</elem>
@@ -299,7 +304,33 @@
 <elem key="cipher preference">client</elem>
 </table>
 <elem key="least strength">A</elem>
-</script><script id="ssl-cert" output="Subject: commonName=nineveh.htb/organizationName=HackTheBox Ltd/stateOrProvinceName=Athens/countryName=GR&#xa;Not valid before: 2017-07-01T15:03:30&#xa;Not valid after:  2018-07-01T15:03:30"><table key="subject">
+</script><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-chrono" output="Request times for /; avg: 312.56ms; min: 302.90ms; max: 316.15ms"/><script id="http-enum" output="&#xa;  /db/: BlogWorx Database&#xa;  /db/: Potentially interesting folder&#xa;"/><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="tls-alpn" output="&#xa;  http/1.1"><elem>http/1.1</elem>
+</script><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">200</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-errors" output="Couldn&apos;t find any error pages."/><script id="http-security-headers" output="&#xa;  Strict_Transport_Security: &#xa;    HSTS not configured in HTTPS Server"><table key="Strict_Transport_Security">
+<elem>HSTS not configured in HTTPS Server</elem>
+</table>
+</script><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-comments-displayer" output="Couldn&apos;t find any comments."/><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      Other: 1; png: 1&#xa;  Longest directory structure:&#xa;    Depth: 0&#xa;    Dir: /&#xa;  Total files found (by extension):&#xa;    Other: 1; png: 1&#xa;"/><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-date" output="Sun, 25 Sep 2022 17:46:48 GMT; +59m58s from local time."><elem key="date">2022-09-25T18:46:48+00:00</elem>
+<elem key="delta">3598.0</elem>
+</script><script id="http-vhosts" output="&#xa;128 names had status 200"/><script id="ssl-cert" output="Subject: commonName=nineveh.htb/organizationName=HackTheBox Ltd/stateOrProvinceName=Athens/countryName=GR&#xa;Not valid before: 2017-07-01T15:03:30&#xa;Not valid after:  2018-07-01T15:03:30"><table key="subject">
 <elem key="commonName">nineveh.htb</elem>
 <elem key="countryName">GR</elem>
 <elem key="emailAddress">admin@nineveh.htb</elem>
@@ -330,7 +361,7 @@
 </table>
 <table>
 <elem key="name">X509v3 Authority Key Identifier</elem>
-<elem key="value">keyid:87:46:12:7D:53:88:D3:95:B2:38:59:ED:1B:29:30:73:7F:CE:CE:B3&#xa;</elem>
+<elem key="value">87:46:12:7D:53:88:D3:95:B2:38:59:ED:1B:29:30:73:7F:CE:CE:B3</elem>
 </table>
 <table>
 <elem key="name">X509v3 Basic Constraints</elem>
@@ -345,17 +376,14 @@
 <elem key="md5">d18294b802107992bf01e802b26f8639</elem>
 <elem key="sha1">2275b03e27bd1226fdaa8b0f6de984f0113b42c0</elem>
 <elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIID+TCCAuGgAwIBAgIJANwojrkai1UOMA0GCSqGSIb3DQEBCwUAMIGSMQswCQYD&#xa;VQQGEwJHUjEPMA0GA1UECAwGQXRoZW5zMQ8wDQYDVQQHDAZBdGhlbnMxFzAVBgNV&#xa;BAoMDkhhY2tUaGVCb3ggTHRkMRAwDgYDVQQLDAdTdXBwb3J0MRQwEgYDVQQDDAtu&#xa;aW5ldmVoLmh0YjEgMB4GCSqGSIb3DQEJARYRYWRtaW5AbmluZXZlaC5odGIwHhcN&#xa;MTcwNzAxMTUwMzMwWhcNMTgwNzAxMTUwMzMwWjCBkjELMAkGA1UEBhMCR1IxDzAN&#xa;BgNVBAgMBkF0aGVuczEPMA0GA1UEBwwGQXRoZW5zMRcwFQYDVQQKDA5IYWNrVGhl&#xa;Qm94IEx0ZDEQMA4GA1UECwwHU3VwcG9ydDEUMBIGA1UEAwwLbmluZXZlaC5odGIx&#xa;IDAeBgkqhkiG9w0BCQEWEWFkbWluQG5pbmV2ZWguaHRiMIIBIjANBgkqhkiG9w0B&#xa;AQEFAAOCAQ8AMIIBCgKCAQEA+HUDrGgG769A68bslDXjV/uBaw18SaF52iEz/ui2&#xa;WwXguHnY8BS7ZetS4jAso6BOrGUZpN3+278mROPa4khQlmZ09cj8kQ4k7lOIxSlp&#xa;eZxvt+R8fkJvtA7e47nvwP4H2O6SI0nD/pGDZc05i842kOc/8Kw+gKkglotGi8ZO&#xa;GiuRgzyfdaNSWC7Lj3gTjVMCllhc6PgcQf9r7vK1KPkyFleYDUwB0dwf3taN0J2C&#xa;U2EHz/4U1l40HoIngkwfhFI+2z2J/xx2JP+iFUcsV7LQRw0x4g6Z5WFWETluWUHi&#xa;AWUZHrjMpMaXs3TZNNW81tWUP2jBulX5kv6H5CTocsXgyQIDAQABo1AwTjAdBgNV&#xa;HQ4EFgQUh0YSfVOI05WyOFntGykwc3/OzrMwHwYDVR0jBBgwFoAUh0YSfVOI05Wy&#xa;OFntGykwc3/OzrMwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAehma&#xa;AJKuLeAHqHAIcLopQg9mE28lYDGxf+3eIEuUAHmUKs0qGLs3ZTY8J77XTxmjvH1U&#xa;qYVXfZSub1IG7LgUFybLFKNl6gioKEPXXA9ofKdoJX6Bar/0G/15YRSEZGc9WXh4&#xa;Xh1Qr3rkYYZj/rJa4H5uiWoRFofSTNGMfbY8iF8X2+P2LwyEOqThypdMBKMiIt6d&#xa;7sSuqsrnQRa73OdqdoCpHxEG6antne6Vvz3ALxv4cI7SqzKiQvH1zdJ/jOhZK1g1&#xa;CxLUGYbNsjIJWSdOoSlIgRswnu+A+O612+iosxYaYdCUZ8BElgjUAXLEHzuUFtRb&#xa;KrYQgX28Ulf8OSGJuA==&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
-</script><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-vhosts" output="&#xa;mail3 : 400&#xa;en : 400&#xa;apache : 400&#xa;mail2 : 400&#xa;cdn : 400&#xa;123 names had status 200"/><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-headers" output="&#xa;  Date: Wed, 18 May 2022 08:00:56 GMT&#xa;  Server: Apache/2.4.18 (Ubuntu)&#xa;  Last-Modified: Sun, 02 Jul 2017 23:50:02 GMT&#xa;  ETag: &quot;31-5535e4f1dfd20&quot;&#xa;  Accept-Ranges: bytes&#xa;  Content-Length: 49&#xa;  Connection: close&#xa;  Content-Type: text/html&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-chrono" output="Request times for /; avg: 336.61ms; min: 303.12ms; max: 392.42ms"/><script id="http-comments-displayer" output="Couldn&apos;t find any comments."/><script id="http-title" output="Site doesn&apos;t have a title (text/html)."></script><script id="http-date" output="Wed, 18 May 2022 08:00:54 GMT; +59m59s from local time."><elem key="date">2022-05-18T09:00:54+00:00</elem>
-<elem key="delta">3599.0</elem>
-</script><script id="http-xssed" output="No previously reported XSS vuln."/><script id="http-enum" output="&#xa;  /db/: BlogWorx Database&#xa;  /db/: Potentially interesting folder&#xa;"/><script id="tls-alpn" output="&#xa;  http/1.1"><elem>http/1.1</elem>
-</script><script id="http-errors" output="Couldn&apos;t find any error pages."/></port>
+</script><script id="http-xssed" output="No previously reported XSS vuln."/><script id="http-title" output="Site doesn&apos;t have a title (text/html)."></script><script id="http-headers" output="&#xa;  Date: Sun, 25 Sep 2022 17:46:47 GMT&#xa;  Server: Apache/2.4.18 (Ubuntu)&#xa;  Last-Modified: Sun, 02 Jul 2017 23:50:02 GMT&#xa;  ETag: &quot;31-5535e4f1dfd20&quot;&#xa;  Accept-Ranges: bytes&#xa;  Content-Length: 49&#xa;  Connection: close&#xa;  Content-Type: text/html&#xa;  &#xa;  (Request type: HEAD)&#xa;"/></port>
 </ports>
-<hostscript><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<hostscript><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.129.50.116&quot;; use dns-brute.domain script argument."/><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)&#xa;80    0       49018.50   6900.18  0.0%&#xa;443   0       44785.40   7375.45  0.0%&#xa;"/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
 <elem key="status">fail</elem>
 <elem key="reason">No PTR record</elem>
 </table>
-</script><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.129.104.163&quot;; use dns-brute.domain script argument."/></hostscript><times srtt="52231" rttvar="8304" to="100000"/>
+</script><script id="ipidseq" output="ERROR: Script execution failed (use -d to debug)"/><script id="path-mtu" output="PMTU == 1500"/></hostscript><times srtt="38252" rttvar="23492" to="132220"/>
 </host>
-<runstats><finished time="1652861106" timestr="Wed May 18 09:05:06 2022" summary="Nmap done at Wed May 18 09:05:06 2022; 1 IP address (1 host up) scanned in 288.34 seconds" elapsed="288.34" exit="success"/><hosts up="1" down="0" total="1"/>
+<runstats><finished time="1664128258" timestr="Sun Sep 25 18:50:58 2022" summary="Nmap done at Sun Sep 25 18:50:58 2022; 1 IP address (1 host up) scanned in 268.86 seconds" elapsed="268.86" exit="success"/><hosts up="1" down="0" total="1"/>
 </runstats>
 </nmaprun>
