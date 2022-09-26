@@ -2,8 +2,6 @@
 Name: Sneaky
 Date:  
 Difficulty: Medium 
-Description:  
-Better Description:  
 Goals: OSCP revision, BoF, learn about IPv6 with Ippsec - do the intended way.
 Learnt: IPv6
 
@@ -27,6 +25,7 @@ sqlmap -r sqlmapwhileippsectalksipv6 -p pass --dbms mysql --level 4 --risk 3 --d
 While Ippsec talks IPv6 
 
 ![sqlmap](Screenshots/sqlmapsuccess.png)
+`sup3rstr0ngp4ssf0r4d`
 
 Check out IPv6 Defined in Archive!
 

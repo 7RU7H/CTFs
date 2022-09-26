@@ -47,6 +47,9 @@ RCE requires [creds](https://www.exploit-db.com/exploits/24044)
 
 [Multiple](https://www.exploit-db.com/exploits/39714)
 
+
+
+
 ## Exploit
 
 ## Foothold
