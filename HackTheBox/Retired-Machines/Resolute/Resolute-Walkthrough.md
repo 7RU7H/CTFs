@@ -1,7 +1,7 @@
 # Resolute Walkthrough
 
 Name: Resolute
-Date:  
+Date:  27/09/2022
 Difficulty:  Medium
 Goals:  
 - OSCP Prep, Try again to do a more intense 20min recon 20mins footholding econ in background, just to test myself - not expecting anything.
