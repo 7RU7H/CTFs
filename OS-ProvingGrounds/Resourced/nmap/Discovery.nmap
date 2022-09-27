@@ -1,16 +1,38 @@
-# Nmap 7.92 scan initiated Wed May 25 20:54:46 2022 as: nmap -Pn --script discovery -oA nmap/Discovery -p- 192.168.120.175
+# Nmap 7.92 scan initiated Tue Sep 27 07:59:45 2022 as: nmap --script discovery -oA nmap/Discovery --min-rate 500 -p 464,139,49675,49719,445,5985,49691,389,49666,636,3268,135,3389,88,593,9389,3269,49674,53,49667 192.168.141.175
 Pre-scan script results:
-|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
-|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
 | targets-asn: 
 |_  targets-asn.asn is a mandatory parameter
-Nmap scan report for 192.168.120.175
-Host is up (0.053s latency).
-Not shown: 65515 filtered tcp ports (no-response)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:148a:6809::5f     MAC: 72:78:be:ea:39:2e  IFACE: usb0
+|   IP: fe80::7078:beff:feea:392e  MAC: 72:78:be:ea:39:2e  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:148a:6809::5f     MAC: 72:78:be:ea:39:2e  IFACE: usb0
+|   IP: fe80::7078:beff:feea:392e  MAC: 72:78:be:ea:39:2e  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| ipv6-multicast-mld-list: 
+|   fe80::7078:beff:feea:392e: 
+|     device: usb0
+|     mac: 72:78:be:ea:39:2e
+|     multicast_ips: 
+|       ff02::1:ffea:392e         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:5f           (Solicited-Node Address)
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::7078:beff:feea:392e  MAC: 72:78:be:ea:39:2e  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+Nmap scan report for 192.168.141.175
+Host is up (0.091s latency).
+
 PORT      STATE SERVICE
 53/tcp    open  domain
-|_dns-nsec3-enum: Can't determine domain for host 192.168.120.175; use dns-nsec3-enum.domains script arg.
-|_dns-nsec-enum: Can't determine domain for host 192.168.120.175; use dns-nsec-enum.domains script arg.
+|_dns-nsec-enum: Can't determine domain for host 192.168.141.175; use dns-nsec-enum.domains script arg.
+|_dns-nsec3-enum: Can't determine domain for host 192.168.141.175; use dns-nsec3-enum.domains script arg.
 88/tcp    open  kerberos-sec
 135/tcp   open  msrpc
 139/tcp   open  netbios-ssn
@@ -106,11 +128,11 @@ PORT      STATE SERVICE
 |       namingContexts: DC=DomainDnsZones,DC=resourced,DC=local
 |       namingContexts: DC=ForestDnsZones,DC=resourced,DC=local
 |       isSynchronized: TRUE
-|       highestCommittedUSN: 49214
+|       highestCommittedUSN: 49217
 |       dsServiceName: CN=NTDS Settings,CN=RESOURCEDC,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=resourced,DC=local
 |       dnsHostName: ResourceDC.resourced.local
 |       defaultNamingContext: DC=resourced,DC=local
-|       currentTime: 20220525200059.0Z
+|       currentTime: 20220927065957.0Z
 |_      configurationNamingContext: CN=Configuration,DC=resourced,DC=local
 445/tcp   open  microsoft-ds
 |_smb-enum-services: ERROR: Script execution failed (use -d to debug)
@@ -121,18 +143,6 @@ PORT      STATE SERVICE
 3268/tcp  open  globalcatLDAP
 3269/tcp  open  globalcatLDAPssl
 3389/tcp  open  ms-wbt-server
-| ssl-cert: Subject: commonName=ResourceDC.resourced.local
-| Not valid before: 2022-05-24T19:46:04
-|_Not valid after:  2022-11-23T19:46:04
-| rdp-ntlm-info: 
-|   Target_Name: resourced
-|   NetBIOS_Domain_Name: resourced
-|   NetBIOS_Computer_Name: RESOURCEDC
-|   DNS_Domain_Name: resourced.local
-|   DNS_Computer_Name: ResourceDC.resourced.local
-|   DNS_Tree_Name: resourced.local
-|   Product_Version: 10.0.17763
-|_  System_Time: 2022-05-25T20:00:57+00:00
 | ssl-enum-ciphers: 
 |   TLSv1.0: 
 |     ciphers: 
@@ -181,25 +191,50 @@ PORT      STATE SERVICE
 |     warnings: 
 |       64-bit block cipher 3DES vulnerable to SWEET32 attack
 |_  least strength: C
+|_ssl-date: 2022-09-27T06:59:57+00:00; 0s from scanner time.
 | rdp-enum-encryption: 
 |   Security layer
 |     CredSSP (NLA): SUCCESS
 |     CredSSP with Early User Auth: SUCCESS
 |     RDSTLS: SUCCESS
-|_    SSL: SUCCESS
-|_ssl-date: 2022-05-25T20:00:57+00:00; 0s from scanner time.
+|     SSL: SUCCESS
+|_  RDP Protocol Version:  RDP 10.6 server
+| ssl-cert: Subject: commonName=ResourceDC.resourced.local
+| Not valid before: 2022-08-24T13:27:51
+|_Not valid after:  2023-02-23T13:27:51
+| rdp-ntlm-info: 
+|   Target_Name: resourced
+|   NetBIOS_Domain_Name: resourced
+|   NetBIOS_Computer_Name: RESOURCEDC
+|   DNS_Domain_Name: resourced.local
+|   DNS_Computer_Name: ResourceDC.resourced.local
+|   DNS_Tree_Name: resourced.local
+|   Product_Version: 10.0.17763
+|_  System_Time: 2022-09-27T07:00:02+00:00
 5985/tcp  open  wsman
 9389/tcp  open  adws
 49666/tcp open  unknown
 49667/tcp open  unknown
-49676/tcp open  unknown
+49674/tcp open  unknown
 |_banner: ncacn_http/1.0
-49677/tcp open  unknown
-49705/tcp open  unknown
-49788/tcp open  unknown
+49675/tcp open  unknown
+49691/tcp open  unknown
+49719/tcp open  unknown
 Service Info: Host: RESOURCEDC; OS: Windows
 
 Host script results:
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 53    0       63286.60   59083.66  0.0%
+| 88    0       52887.00   27321.46  0.0%
+| 135   0       45553.90   6894.14   0.0%
+| 139   0       42912.70   5344.33   0.0%
+| 389   0       47056.70   14078.95  0.0%
+| 445   0       46944.70   4316.51   0.0%
+| 464   0       44326.20   3858.92   0.0%
+|_593   0       43328.20   4806.71   0.0%
 | smb-protocols: 
 |   dialects: 
 |     2.0.2
@@ -207,11 +242,8 @@ Host script results:
 |     3.0
 |     3.0.2
 |_    3.1.1
-|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
-|_fcrdns: FAIL (No PTR record)
-| smb2-time: 
-|   date: 2022-05-25T20:01:02
-|_  start_date: N/A
+|_path-mtu: PMTU == 1500
+|_dns-brute: Can't guess domain of "192.168.141.175"; use dns-brute.domain script argument.
 | smb2-capabilities: 
 |   2.0.2: 
 |     Distributed File System
@@ -231,11 +263,14 @@ Host script results:
 |     Distributed File System
 |     Leasing
 |_    Multi-credit operations
-|_dns-brute: Can't guess domain of "192.168.120.175"; use dns-brute.domain script argument.
+| smb2-time: 
+|   date: 2022-09-27T07:00:12
+|_  start_date: N/A
+|_fcrdns: FAIL (No PTR record)
+|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_ipidseq: ERROR: Script execution failed (use -d to debug)
 | smb2-security-mode: 
 |   3.1.1: 
 |_    Message signing enabled and required
-| smb-mbenum: 
-|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
 
-# Nmap done at Wed May 25 21:02:40 2022 -- 1 IP address (1 host up) scanned in 473.66 seconds
+# Nmap done at Tue Sep 27 08:01:40 2022 -- 1 IP address (1 host up) scanned in 115.24 seconds

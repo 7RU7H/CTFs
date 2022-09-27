@@ -1,30 +1,224 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE nmaprun>
 <?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
-<!-- Nmap 7.92 scan initiated Wed May 25 20:54:46 2022 as: nmap -Pn -&#45;script discovery -oA nmap/Discovery -p- 192.168.120.175 -->
-<nmaprun scanner="nmap" args="nmap -Pn -&#45;script discovery -oA nmap/Discovery -p- 192.168.120.175" start="1653508486" startstr="Wed May 25 20:54:46 2022" version="7.92" xmloutputversion="1.05">
-<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<!-- Nmap 7.92 scan initiated Tue Sep 27 07:59:45 2022 as: nmap -&#45;script discovery -oA nmap/Discovery -&#45;min-rate 500 -p 464,139,49675,49719,445,5985,49691,389,49666,636,3268,135,3389,88,593,9389,3269,49674,53,49667 192.168.141.175 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/Discovery -&#45;min-rate 500 -p 464,139,49675,49719,445,5985,49691,389,49666,636,3268,135,3389,88,593,9389,3269,49674,53,49667 192.168.141.175" start="1664261985" startstr="Tue Sep 27 07:59:45 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="20" services="53,88,135,139,389,445,464,593,636,3268-3269,3389,5985,9389,49666-49667,49674-49675,49691,49719"/>
 <verbose level="0"/>
 <debugging level="0"/>
-<prescript><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/></prescript><host starttime="1653508492" endtime="1653508960"><status state="up" reason="user-set" reason_ttl="0"/>
-<address addr="192.168.120.175" addrtype="ipv4"/>
+<prescript><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-ipv6-multicast-echo" output="&#xa;  IP: 2a01:4c8:148a:6809::5f     MAC: 72:78:be:ea:39:2e  IFACE: usb0&#xa;  IP: fe80::7078:beff:feea:392e  MAC: 72:78:be:ea:39:2e  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="targets-ipv6-multicast-invalid-dst" output="&#xa;  IP: 2a01:4c8:148a:6809::5f     MAC: 72:78:be:ea:39:2e  IFACE: usb0&#xa;  IP: fe80::7078:beff:feea:392e  MAC: 72:78:be:ea:39:2e  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="ipv6-multicast-mld-list" output="&#xa;  fe80::7078:beff:feea:392e: &#xa;    device: usb0&#xa;    mac: 72:78:be:ea:39:2e&#xa;    multicast_ips: &#xa;      ff02::1:ffea:392e         (NDP Solicited-node)&#xa;      ff02::1:ff00:0            (Solicited-Node Address)&#xa;      ff05::2                   (unknown)&#xa;      ff02::2                   (All Routers Address)&#xa;      ff02::1:ff00:5f           (Solicited-Node Address)"><table key="fe80::7078:beff:feea:392e">
+<elem key="device">usb0</elem>
+<elem key="mac">72:78:be:ea:39:2e</elem>
+<table key="multicast_ips">
+<table>
+<elem key="ip">ff02::1:ffea:392e</elem>
+<elem key="description">NDP Solicited-node</elem>
+</table>
+<table>
+<elem key="ip">ff02::1:ff00:0</elem>
+<elem key="description">Solicited-Node Address</elem>
+</table>
+<table>
+<elem key="ip">ff05::2</elem>
+<elem key="description">unknown</elem>
+</table>
+<table>
+<elem key="ip">ff02::2</elem>
+<elem key="description">All Routers Address</elem>
+</table>
+<table>
+<elem key="ip">ff02::1:ff00:5f</elem>
+<elem key="description">Solicited-Node Address</elem>
+</table>
+</table>
+</table>
+</script><script id="targets-ipv6-multicast-mld" output="&#xa;  IP: fe80::7078:beff:feea:392e  MAC: 72:78:be:ea:39:2e  IFACE: usb0&#xa;&#xa;  Use -&#45;script-args=newtargets to add the results as targets"><table>
+<elem key="mac">72:78:be:ea:39:2e</elem>
+<elem key="address">fe80::7078:beff:feea:392e</elem>
+<elem key="iface">usb0</elem>
+</table>
+</script></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.141.175" addrtype="ipv4"/>
 <hostnames>
 </hostnames>
-<ports><extraports state="filtered" count="65515">
-<extrareasons reason="no-response" count="65515" proto="tcp" ports="1-52,54-87,89-134,136-138,140-388,390-444,446-463,465-592,594-635,637-3267,3270-3388,3390-5984,5986-9388,9390-49665,49668-49675,49678-49704,49706-49787,49789-65535"/>
-</extraports>
-<port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="domain" method="table" conf="3"/><script id="dns-nsec3-enum" output="Can&apos;t determine domain for host 192.168.120.175; use dns-nsec3-enum.domains script arg."/><script id="dns-nsec-enum" output="Can&apos;t determine domain for host 192.168.120.175; use dns-nsec-enum.domains script arg."/></port>
-<port protocol="tcp" portid="88"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="kerberos-sec" method="table" conf="3"/></port>
-<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="msrpc" method="table" conf="3"/></port>
-<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="netbios-ssn" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
-<port protocol="tcp" portid="389"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ldap" product="Microsoft Windows Active Directory LDAP" extrainfo="Domain: resourced.local, Site: Default-First-Site-Name" hostname="RESOURCEDC" ostype="Windows" method="probed" conf="10"/><script id="ldap-rootdse" output="&#xa;LDAP Results&#xa;  &lt;ROOT&gt;&#xa;      domainFunctionality: 7&#xa;      forestFunctionality: 7&#xa;      domainControllerFunctionality: 7&#xa;      rootDomainNamingContext: DC=resourced,DC=local&#xa;      ldapServiceName: resourced.local:resourcedc$@RESOURCED.LOCAL&#xa;      isGlobalCatalogReady: TRUE&#xa;      supportedSASLMechanisms: GSSAPI&#xa;      supportedSASLMechanisms: GSS-SPNEGO&#xa;      supportedSASLMechanisms: EXTERNAL&#xa;      supportedSASLMechanisms: DIGEST-MD5&#xa;      supportedLDAPVersion: 3&#xa;      supportedLDAPVersion: 2&#xa;      supportedLDAPPolicies: MaxPoolThreads&#xa;      supportedLDAPPolicies: MaxPercentDirSyncRequests&#xa;      supportedLDAPPolicies: MaxDatagramRecv&#xa;      supportedLDAPPolicies: MaxReceiveBuffer&#xa;      supportedLDAPPolicies: InitRecvTimeout&#xa;      supportedLDAPPolicies: MaxConnections&#xa;      supportedLDAPPolicies: MaxConnIdleTime&#xa;      supportedLDAPPolicies: MaxPageSize&#xa;      supportedLDAPPolicies: MaxBatchReturnMessages&#xa;      supportedLDAPPolicies: MaxQueryDuration&#xa;      supportedLDAPPolicies: MaxDirSyncDuration&#xa;      supportedLDAPPolicies: MaxTempTableSize&#xa;      supportedLDAPPolicies: MaxResultSetSize&#xa;      supportedLDAPPolicies: MinResultSets&#xa;      supportedLDAPPolicies: MaxResultSetsPerConn&#xa;      supportedLDAPPolicies: MaxNotificationPerConn&#xa;      supportedLDAPPolicies: MaxValRange&#xa;      supportedLDAPPolicies: MaxValRangeTransitive&#xa;      supportedLDAPPolicies: ThreadMemoryLimit&#xa;      supportedLDAPPolicies: SystemMemoryLimitPercent&#xa;      supportedControl: 1.2.840.113556.1.4.319&#xa;      supportedControl: 1.2.840.113556.1.4.801&#xa;      supportedControl: 1.2.840.113556.1.4.473&#xa;      supportedControl: 1.2.840.113556.1.4.528&#xa;      supportedControl: 1.2.840.113556.1.4.417&#xa;      supportedControl: 1.2.840.113556.1.4.619&#xa;      supportedControl: 1.2.840.113556.1.4.841&#xa;      supportedControl: 1.2.840.113556.1.4.529&#xa;      supportedControl: 1.2.840.113556.1.4.805&#xa;      supportedControl: 1.2.840.113556.1.4.521&#xa;      supportedControl: 1.2.840.113556.1.4.970&#xa;      supportedControl: 1.2.840.113556.1.4.1338&#xa;      supportedControl: 1.2.840.113556.1.4.474&#xa;      supportedControl: 1.2.840.113556.1.4.1339&#xa;      supportedControl: 1.2.840.113556.1.4.1340&#xa;      supportedControl: 1.2.840.113556.1.4.1413&#xa;      supportedControl: 2.16.840.1.113730.3.4.9&#xa;      supportedControl: 2.16.840.1.113730.3.4.10&#xa;      supportedControl: 1.2.840.113556.1.4.1504&#xa;      supportedControl: 1.2.840.113556.1.4.1852&#xa;      supportedControl: 1.2.840.113556.1.4.802&#xa;      supportedControl: 1.2.840.113556.1.4.1907&#xa;      supportedControl: 1.2.840.113556.1.4.1948&#xa;      supportedControl: 1.2.840.113556.1.4.1974&#xa;      supportedControl: 1.2.840.113556.1.4.1341&#xa;      supportedControl: 1.2.840.113556.1.4.2026&#xa;      supportedControl: 1.2.840.113556.1.4.2064&#xa;      supportedControl: 1.2.840.113556.1.4.2065&#xa;      supportedControl: 1.2.840.113556.1.4.2066&#xa;      supportedControl: 1.2.840.113556.1.4.2090&#xa;      supportedControl: 1.2.840.113556.1.4.2205&#xa;      supportedControl: 1.2.840.113556.1.4.2204&#xa;      supportedControl: 1.2.840.113556.1.4.2206&#xa;      supportedControl: 1.2.840.113556.1.4.2211&#xa;      supportedControl: 1.2.840.113556.1.4.2239&#xa;      supportedControl: 1.2.840.113556.1.4.2255&#xa;      supportedControl: 1.2.840.113556.1.4.2256&#xa;      supportedControl: 1.2.840.113556.1.4.2309&#xa;      supportedControl: 1.2.840.113556.1.4.2330&#xa;      supportedControl: 1.2.840.113556.1.4.2354&#xa;      supportedCapabilities: 1.2.840.113556.1.4.800&#xa;      supportedCapabilities: 1.2.840.113556.1.4.1670&#xa;      supportedCapabilities: 1.2.840.113556.1.4.1791&#xa;      supportedCapabilities: 1.2.840.113556.1.4.1935&#xa;      supportedCapabilities: 1.2.840.113556.1.4.2080&#xa;      supportedCapabilities: 1.2.840.113556.1.4.2237&#xa;      subschemaSubentry: CN=Aggregate,CN=Schema,CN=Configuration,DC=resourced,DC=local&#xa;      serverName: CN=RESOURCEDC,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=resourced,DC=local&#xa;      schemaNamingContext: CN=Schema,CN=Configuration,DC=resourced,DC=local&#xa;      namingContexts: DC=resourced,DC=local&#xa;      namingContexts: CN=Configuration,DC=resourced,DC=local&#xa;      namingContexts: CN=Schema,CN=Configuration,DC=resourced,DC=local&#xa;      namingContexts: DC=DomainDnsZones,DC=resourced,DC=local&#xa;      namingContexts: DC=ForestDnsZones,DC=resourced,DC=local&#xa;      isSynchronized: TRUE&#xa;      highestCommittedUSN: 49214&#xa;      dsServiceName: CN=NTDS Settings,CN=RESOURCEDC,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=resourced,DC=local&#xa;      dnsHostName: ResourceDC.resourced.local&#xa;      defaultNamingContext: DC=resourced,DC=local&#xa;      currentTime: 20220525200059.0Z&#xa;      configurationNamingContext: CN=Configuration,DC=resourced,DC=local&#xa;"/></port>
-<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
-<port protocol="tcp" portid="464"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="kpasswd5" method="table" conf="3"/></port>
-<port protocol="tcp" portid="593"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http-rpc-epmap" method="table" conf="3"/><script id="banner" output="ncacn_http/1.0"/></port>
-<port protocol="tcp" portid="636"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ldapssl" method="table" conf="3"/></port>
-<port protocol="tcp" portid="3268"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="globalcatLDAP" method="table" conf="3"/></port>
-<port protocol="tcp" portid="3269"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="globalcatLDAPssl" method="table" conf="3"/></port>
-<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="ms-wbt-server" method="table" conf="3"/><script id="ssl-cert" output="Subject: commonName=ResourceDC.resourced.local&#xa;Not valid before: 2022-05-24T19:46:04&#xa;Not valid after:  2022-11-23T19:46:04"><table key="subject">
+</hosthint>
+<host starttime="1664261996" endtime="1664262100"><status state="up" reason="echo-reply" reason_ttl="127"/>
+<address addr="192.168.141.175" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="domain" method="table" conf="3"/><script id="dns-nsec-enum" output="Can&apos;t determine domain for host 192.168.141.175; use dns-nsec-enum.domains script arg."/><script id="dns-nsec3-enum" output="Can&apos;t determine domain for host 192.168.141.175; use dns-nsec3-enum.domains script arg."/></port>
+<port protocol="tcp" portid="88"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="kerberos-sec" method="table" conf="3"/></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="netbios-ssn" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ldap" product="Microsoft Windows Active Directory LDAP" extrainfo="Domain: resourced.local, Site: Default-First-Site-Name" hostname="RESOURCEDC" ostype="Windows" method="probed" conf="10"/><script id="ldap-rootdse" output="&#xa;LDAP Results&#xa;  &lt;ROOT&gt;&#xa;      domainFunctionality: 7&#xa;      forestFunctionality: 7&#xa;      domainControllerFunctionality: 7&#xa;      rootDomainNamingContext: DC=resourced,DC=local&#xa;      ldapServiceName: resourced.local:resourcedc$@RESOURCED.LOCAL&#xa;      isGlobalCatalogReady: TRUE&#xa;      supportedSASLMechanisms: GSSAPI&#xa;      supportedSASLMechanisms: GSS-SPNEGO&#xa;      supportedSASLMechanisms: EXTERNAL&#xa;      supportedSASLMechanisms: DIGEST-MD5&#xa;      supportedLDAPVersion: 3&#xa;      supportedLDAPVersion: 2&#xa;      supportedLDAPPolicies: MaxPoolThreads&#xa;      supportedLDAPPolicies: MaxPercentDirSyncRequests&#xa;      supportedLDAPPolicies: MaxDatagramRecv&#xa;      supportedLDAPPolicies: MaxReceiveBuffer&#xa;      supportedLDAPPolicies: InitRecvTimeout&#xa;      supportedLDAPPolicies: MaxConnections&#xa;      supportedLDAPPolicies: MaxConnIdleTime&#xa;      supportedLDAPPolicies: MaxPageSize&#xa;      supportedLDAPPolicies: MaxBatchReturnMessages&#xa;      supportedLDAPPolicies: MaxQueryDuration&#xa;      supportedLDAPPolicies: MaxDirSyncDuration&#xa;      supportedLDAPPolicies: MaxTempTableSize&#xa;      supportedLDAPPolicies: MaxResultSetSize&#xa;      supportedLDAPPolicies: MinResultSets&#xa;      supportedLDAPPolicies: MaxResultSetsPerConn&#xa;      supportedLDAPPolicies: MaxNotificationPerConn&#xa;      supportedLDAPPolicies: MaxValRange&#xa;      supportedLDAPPolicies: MaxValRangeTransitive&#xa;      supportedLDAPPolicies: ThreadMemoryLimit&#xa;      supportedLDAPPolicies: SystemMemoryLimitPercent&#xa;      supportedControl: 1.2.840.113556.1.4.319&#xa;      supportedControl: 1.2.840.113556.1.4.801&#xa;      supportedControl: 1.2.840.113556.1.4.473&#xa;      supportedControl: 1.2.840.113556.1.4.528&#xa;      supportedControl: 1.2.840.113556.1.4.417&#xa;      supportedControl: 1.2.840.113556.1.4.619&#xa;      supportedControl: 1.2.840.113556.1.4.841&#xa;      supportedControl: 1.2.840.113556.1.4.529&#xa;      supportedControl: 1.2.840.113556.1.4.805&#xa;      supportedControl: 1.2.840.113556.1.4.521&#xa;      supportedControl: 1.2.840.113556.1.4.970&#xa;      supportedControl: 1.2.840.113556.1.4.1338&#xa;      supportedControl: 1.2.840.113556.1.4.474&#xa;      supportedControl: 1.2.840.113556.1.4.1339&#xa;      supportedControl: 1.2.840.113556.1.4.1340&#xa;      supportedControl: 1.2.840.113556.1.4.1413&#xa;      supportedControl: 2.16.840.1.113730.3.4.9&#xa;      supportedControl: 2.16.840.1.113730.3.4.10&#xa;      supportedControl: 1.2.840.113556.1.4.1504&#xa;      supportedControl: 1.2.840.113556.1.4.1852&#xa;      supportedControl: 1.2.840.113556.1.4.802&#xa;      supportedControl: 1.2.840.113556.1.4.1907&#xa;      supportedControl: 1.2.840.113556.1.4.1948&#xa;      supportedControl: 1.2.840.113556.1.4.1974&#xa;      supportedControl: 1.2.840.113556.1.4.1341&#xa;      supportedControl: 1.2.840.113556.1.4.2026&#xa;      supportedControl: 1.2.840.113556.1.4.2064&#xa;      supportedControl: 1.2.840.113556.1.4.2065&#xa;      supportedControl: 1.2.840.113556.1.4.2066&#xa;      supportedControl: 1.2.840.113556.1.4.2090&#xa;      supportedControl: 1.2.840.113556.1.4.2205&#xa;      supportedControl: 1.2.840.113556.1.4.2204&#xa;      supportedControl: 1.2.840.113556.1.4.2206&#xa;      supportedControl: 1.2.840.113556.1.4.2211&#xa;      supportedControl: 1.2.840.113556.1.4.2239&#xa;      supportedControl: 1.2.840.113556.1.4.2255&#xa;      supportedControl: 1.2.840.113556.1.4.2256&#xa;      supportedControl: 1.2.840.113556.1.4.2309&#xa;      supportedControl: 1.2.840.113556.1.4.2330&#xa;      supportedControl: 1.2.840.113556.1.4.2354&#xa;      supportedCapabilities: 1.2.840.113556.1.4.800&#xa;      supportedCapabilities: 1.2.840.113556.1.4.1670&#xa;      supportedCapabilities: 1.2.840.113556.1.4.1791&#xa;      supportedCapabilities: 1.2.840.113556.1.4.1935&#xa;      supportedCapabilities: 1.2.840.113556.1.4.2080&#xa;      supportedCapabilities: 1.2.840.113556.1.4.2237&#xa;      subschemaSubentry: CN=Aggregate,CN=Schema,CN=Configuration,DC=resourced,DC=local&#xa;      serverName: CN=RESOURCEDC,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=resourced,DC=local&#xa;      schemaNamingContext: CN=Schema,CN=Configuration,DC=resourced,DC=local&#xa;      namingContexts: DC=resourced,DC=local&#xa;      namingContexts: CN=Configuration,DC=resourced,DC=local&#xa;      namingContexts: CN=Schema,CN=Configuration,DC=resourced,DC=local&#xa;      namingContexts: DC=DomainDnsZones,DC=resourced,DC=local&#xa;      namingContexts: DC=ForestDnsZones,DC=resourced,DC=local&#xa;      isSynchronized: TRUE&#xa;      highestCommittedUSN: 49217&#xa;      dsServiceName: CN=NTDS Settings,CN=RESOURCEDC,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=resourced,DC=local&#xa;      dnsHostName: ResourceDC.resourced.local&#xa;      defaultNamingContext: DC=resourced,DC=local&#xa;      currentTime: 20220927065957.0Z&#xa;      configurationNamingContext: CN=Configuration,DC=resourced,DC=local&#xa;"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="464"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="kpasswd5" method="table" conf="3"/></port>
+<port protocol="tcp" portid="593"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http-rpc-epmap" method="table" conf="3"/><script id="banner" output="ncacn_http/1.0"/></port>
+<port protocol="tcp" portid="636"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ldapssl" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3268"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="globalcatLDAP" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3269"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="globalcatLDAPssl" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ms-wbt-server" method="table" conf="3"/><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.0: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;  TLSv1.1: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp384r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp384r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A&#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;  least strength: C"><table key="TLSv1.0">
+<table key="ciphers">
+<table>
+<elem key="kex_info">secp384r1</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+</table>
+<table>
+<elem key="kex_info">ecdh_x25519</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="strength">C</elem>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+</table>
+</table>
+<table key="TLSv1.1">
+<table key="ciphers">
+<table>
+<elem key="kex_info">secp384r1</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+</table>
+<table>
+<elem key="kex_info">ecdh_x25519</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="strength">C</elem>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+</table>
+</table>
+<table key="TLSv1.2">
+<table key="ciphers">
+<table>
+<elem key="kex_info">secp384r1</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+</table>
+<table>
+<elem key="kex_info">ecdh_x25519</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+</table>
+<table>
+<elem key="kex_info">secp384r1</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384</elem>
+</table>
+<table>
+<elem key="kex_info">ecdh_x25519</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+</table>
+<table>
+<elem key="kex_info">secp384r1</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+</table>
+<table>
+<elem key="kex_info">ecdh_x25519</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_GCM_SHA384</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_GCM_SHA256</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA256</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA256</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="strength">A</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="strength">C</elem>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+</table>
+</table>
+<elem key="least strength">C</elem>
+</script><script id="ssl-date" output="2022-09-27T06:59:57+00:00; 0s from scanner time."><elem key="date">2022-09-27T06:59:57+00:00</elem>
+<elem key="delta">0.0</elem>
+</script><script id="rdp-enum-encryption" output="&#xa;  Security layer&#xa;    CredSSP (NLA): SUCCESS&#xa;    CredSSP with Early User Auth: SUCCESS&#xa;    RDSTLS: SUCCESS&#xa;    SSL: SUCCESS&#xa;  RDP Protocol Version:  RDP 10.6 server&#xa;"/><script id="ssl-cert" output="Subject: commonName=ResourceDC.resourced.local&#xa;Not valid before: 2022-08-24T13:27:51&#xa;Not valid after:  2023-02-23T13:27:51"><table key="subject">
 <elem key="commonName">ResourceDC.resourced.local</elem>
 </table>
 <table key="issuer">
@@ -33,7 +227,7 @@
 <table key="pubkey">
 <elem key="type">rsa</elem>
 <elem key="bits">2048</elem>
-<elem key="modulus">BC5ED3F05E83B209D70D5D512C701D9C9F136E74B68C2E860B39673D7B24B04B93B2D9ED640AE538CA505A5EB8398F7219F7BB454E9D434929C2F310EA9043900497D4F33257A2BBB8D4AD260EC7DFAC4A88B7268CDB326598050516421AF726A251FC5789207033DA8DBEFA11F59D945517FA6D532BE4AFA2689625FABF23AD23440B8BB703646568CB4F7FD2B0ED908501E69D498F47395E651218BF6AF2CEA24FCD661EF6EBE19B1F0A426DA72AD48D4173ABEE67C80A12C59D31C0826E0C0F5E4897527D91FC7349C867F7751CAE371A7A49543D0FA894C9A8647C208924BAF405EF943E72C53E559D7E286ACD686947207DED6161844F22BC31CDAD8A41</elem>
+<elem key="modulus">C369CB679EF13968FBCAF651B1B64F7776B4C470C7954C2AC61DFEF24EA1B3B22E14B2D288497E230E8AA4153A2248872F6885971804CBC23A5C70949B59EF7C2DF99690D8A6ACE99BA27F29446036E00D8212A8F2CAB53D7FF4CFD7152C1A563E914534FF9634AEED9182FDDACDAE27793BBFAD6AABF85B8C6D8C895BCB95277259C78FF76F0067A614BB5C4F6BFBA2BBC4F02D50E05379829B0624B5F92AA9A6943F295581FE27E741E82DC06AD05D2DC6314157C412008E87AB515A6307C7536FA450C4A677DB1A7B602D2C1F77DBB7425D5B19F921C41BFD709A1DCDFD859C3D6C57B297E3D677EB28007A4EF6D7158B5DA2E5726B19D1C61FF21F474E49</elem>
 <elem key="exponent">65537</elem>
 </table>
 <table key="extensions">
@@ -48,205 +242,38 @@
 </table>
 <elem key="sig_algo">sha256WithRSAEncryption</elem>
 <table key="validity">
-<elem key="notBefore">2022-05-24T19:46:04</elem>
-<elem key="notAfter">2022-11-23T19:46:04</elem>
+<elem key="notBefore">2022-08-24T13:27:51</elem>
+<elem key="notAfter">2023-02-23T13:27:51</elem>
 </table>
-<elem key="md5">66e5579938146ed7383f5c333af7e76c</elem>
-<elem key="sha1">8dadfc564154835599df25b4572f5b2001ed9e77</elem>
-<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIC+DCCAeCgAwIBAgIQcTBR1BPfZJBOoyQB004kATANBgkqhkiG9w0BAQsFADAl&#xa;MSMwIQYDVQQDExpSZXNvdXJjZURDLnJlc291cmNlZC5sb2NhbDAeFw0yMjA1MjQx&#xa;OTQ2MDRaFw0yMjExMjMxOTQ2MDRaMCUxIzAhBgNVBAMTGlJlc291cmNlREMucmVz&#xa;b3VyY2VkLmxvY2FsMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvF7T&#xa;8F6DsgnXDV1RLHAdnJ8TbnS2jC6GCzlnPXsksEuTstntZArlOMpQWl64OY9yGfe7&#xa;RU6dQ0kpwvMQ6pBDkASX1PMyV6K7uNStJg7H36xKiLcmjNsyZZgFBRZCGvcmolH8&#xa;V4kgcDPajb76EfWdlFUX+m1TK+SvomiWJfq/I60jRAuLtwNkZWjLT3/SsO2QhQHm&#xa;nUmPRzleZRIYv2ryzqJPzWYe9uvhmx8KQm2nKtSNQXOr7mfIChLFnTHAgm4MD15I&#xa;l1J9kfxzSchn93UcrjcaeklUPQ+olMmoZHwgiSS69AXvlD5yxT5VnX4oas1oaUcg&#xa;fe1hYYRPIrwxza2KQQIDAQABoyQwIjATBgNVHSUEDDAKBggrBgEFBQcDATALBgNV&#xa;HQ8EBAMCBDAwDQYJKoZIhvcNAQELBQADggEBAC8f+XkfTCK+K599qJPp34VvGpmT&#xa;4/U7rB/QiHjYEai41+cnA4462kRZgRClOxOxp85JbQd4KxP0ONHBrl7AdCYkPOGf&#xa;Rlv+IAz1Z4FAo5n3EKpX4UWGDXnYpTwc+tOAjGvJXWTlPoPLTtgPicIaeYHch8C9&#xa;VfzwqEjGkfHREfBLd39avxKaSal5QWvjiiBR0da1nl3XAvCXKljJAVMGGRkLmVDM&#xa;TSY0aMlZdwMsimkJskYqcg5nmzYlkerfP9WGDdJZAlCENTL8wonMQ0ijf0tmKDgP&#xa;/+Q/h+iBF9DEXwyx4zFNYnQ5hxVGCGy6QdMiy1Sm/i7NeC+15+FYE72NnTM=&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
-</script><script id="rdp-ntlm-info" output="&#xa;  Target_Name: resourced&#xa;  NetBIOS_Domain_Name: resourced&#xa;  NetBIOS_Computer_Name: RESOURCEDC&#xa;  DNS_Domain_Name: resourced.local&#xa;  DNS_Computer_Name: ResourceDC.resourced.local&#xa;  DNS_Tree_Name: resourced.local&#xa;  Product_Version: 10.0.17763&#xa;  System_Time: 2022-05-25T20:00:57+00:00"><elem key="Target_Name">resourced</elem>
+<elem key="md5">ec70351d6f1ab911669af8e11652ebd5</elem>
+<elem key="sha1">30cef3529f5eceddb256beb7cb9183c016b9cb56</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIC+DCCAeCgAwIBAgIQHkloiBjxRLdOcGWpCNfXfTANBgkqhkiG9w0BAQsFADAl&#xa;MSMwIQYDVQQDExpSZXNvdXJjZURDLnJlc291cmNlZC5sb2NhbDAeFw0yMjA4MjQx&#xa;MzI3NTFaFw0yMzAyMjMxMzI3NTFaMCUxIzAhBgNVBAMTGlJlc291cmNlREMucmVz&#xa;b3VyY2VkLmxvY2FsMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw2nL&#xa;Z57xOWj7yvZRsbZPd3a0xHDHlUwqxh3+8k6hs7IuFLLSiEl+Iw6KpBU6IkiHL2iF&#xa;lxgEy8I6XHCUm1nvfC35lpDYpqzpm6J/KURgNuANghKo8sq1PX/0z9cVLBpWPpFF&#xa;NP+WNK7tkYL92s2uJ3k7v61qq/hbjG2MiVvLlSdyWceP928AZ6YUu1xPa/uiu8Tw&#xa;LVDgU3mCmwYktfkqqaaUPylVgf4n50HoLcBq0F0txjFBV8QSAI6Hq1FaYwfHU2+k&#xa;UMSmd9sae2AtLB9327dCXVsZ+SHEG/1wmh3N/YWcPWxXspfj1nfrKAB6TvbXFYtd&#xa;ouVyaxnRxh/yH0dOSQIDAQABoyQwIjATBgNVHSUEDDAKBggrBgEFBQcDATALBgNV&#xa;HQ8EBAMCBDAwDQYJKoZIhvcNAQELBQADggEBAGTTTHKRheKDprXMNFWxnwtjSbO1&#xa;gFyS8OL9EdQhef7NEvnLsIRD8qVEI4Tb0AXisaQ5FZa6BSDzKuPKVsJEW2iA92Vq&#xa;ZVCo8jcM6vZrAfk10yzKtacA4H4T3dU8RXO0MpcKer02Je81kv46wlMt/ZXKQGCi&#xa;zPX0RC92UfoX34958/+zbBmlaJgJYTtB9WcdW4xB6PfodQhMTgaYLLMs3p5GLWzj&#xa;ETJesWzawDqtlnAdJRreFDGPkO6ooC53Mf1u0TqUqQJhs76p/EGlOiIxaXec4c4J&#xa;7hZ9DLOyXFA6cRrdq8f7P9Wid/qsGOp1F7FD9/Hv9arx4pxqJ9PAjMbv3UY=&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="rdp-ntlm-info" output="&#xa;  Target_Name: resourced&#xa;  NetBIOS_Domain_Name: resourced&#xa;  NetBIOS_Computer_Name: RESOURCEDC&#xa;  DNS_Domain_Name: resourced.local&#xa;  DNS_Computer_Name: ResourceDC.resourced.local&#xa;  DNS_Tree_Name: resourced.local&#xa;  Product_Version: 10.0.17763&#xa;  System_Time: 2022-09-27T07:00:02+00:00"><elem key="Target_Name">resourced</elem>
 <elem key="NetBIOS_Domain_Name">resourced</elem>
 <elem key="NetBIOS_Computer_Name">RESOURCEDC</elem>
 <elem key="DNS_Domain_Name">resourced.local</elem>
 <elem key="DNS_Computer_Name">ResourceDC.resourced.local</elem>
 <elem key="DNS_Tree_Name">resourced.local</elem>
 <elem key="Product_Version">10.0.17763</elem>
-<elem key="System_Time">2022-05-25T20:00:57+00:00</elem>
-</script><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.0: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;  TLSv1.1: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp384r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp384r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A&#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;  least strength: C"><table key="TLSv1.0">
-<table key="ciphers">
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
-<elem key="kex_info">secp384r1</elem>
-</table>
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
-<elem key="kex_info">ecdh_x25519</elem>
-</table>
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
-<elem key="kex_info">rsa 2048</elem>
-</table>
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
-<elem key="kex_info">rsa 2048</elem>
-</table>
-<table>
-<elem key="strength">C</elem>
-<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
-<elem key="kex_info">rsa 2048</elem>
-</table>
-</table>
-<table key="compressors">
-<elem>NULL</elem>
-</table>
-<elem key="cipher preference">server</elem>
-<table key="warnings">
-<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
-</table>
-</table>
-<table key="TLSv1.1">
-<table key="ciphers">
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
-<elem key="kex_info">secp384r1</elem>
-</table>
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
-<elem key="kex_info">ecdh_x25519</elem>
-</table>
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
-<elem key="kex_info">rsa 2048</elem>
-</table>
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
-<elem key="kex_info">rsa 2048</elem>
-</table>
-<table>
-<elem key="strength">C</elem>
-<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
-<elem key="kex_info">rsa 2048</elem>
-</table>
-</table>
-<table key="compressors">
-<elem>NULL</elem>
-</table>
-<elem key="cipher preference">server</elem>
-<table key="warnings">
-<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
-</table>
-</table>
-<table key="TLSv1.2">
-<table key="ciphers">
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</elem>
-<elem key="kex_info">secp384r1</elem>
-</table>
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</elem>
-<elem key="kex_info">ecdh_x25519</elem>
-</table>
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_DHE_RSA_WITH_AES_256_GCM_SHA384</elem>
-<elem key="kex_info">dh 2048</elem>
-</table>
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</elem>
-<elem key="kex_info">dh 2048</elem>
-</table>
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384</elem>
-<elem key="kex_info">secp384r1</elem>
-</table>
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256</elem>
-<elem key="kex_info">ecdh_x25519</elem>
-</table>
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
-<elem key="kex_info">secp384r1</elem>
-</table>
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
-<elem key="kex_info">ecdh_x25519</elem>
-</table>
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_RSA_WITH_AES_256_GCM_SHA384</elem>
-<elem key="kex_info">rsa 2048</elem>
-</table>
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_RSA_WITH_AES_128_GCM_SHA256</elem>
-<elem key="kex_info">rsa 2048</elem>
-</table>
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA256</elem>
-<elem key="kex_info">rsa 2048</elem>
-</table>
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA256</elem>
-<elem key="kex_info">rsa 2048</elem>
-</table>
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
-<elem key="kex_info">rsa 2048</elem>
-</table>
-<table>
-<elem key="strength">A</elem>
-<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
-<elem key="kex_info">rsa 2048</elem>
-</table>
-<table>
-<elem key="strength">C</elem>
-<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
-<elem key="kex_info">rsa 2048</elem>
-</table>
-</table>
-<table key="compressors">
-<elem>NULL</elem>
-</table>
-<elem key="cipher preference">server</elem>
-<table key="warnings">
-<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
-</table>
-</table>
-<elem key="least strength">C</elem>
-</script><script id="rdp-enum-encryption" output="&#xa;  Security layer&#xa;    CredSSP (NLA): SUCCESS&#xa;    CredSSP with Early User Auth: SUCCESS&#xa;    RDSTLS: SUCCESS&#xa;    SSL: SUCCESS&#xa;"/><script id="ssl-date" output="2022-05-25T20:00:57+00:00; 0s from scanner time."><elem key="date">2022-05-25T20:00:57+00:00</elem>
-<elem key="delta">0.0</elem>
+<elem key="System_Time">2022-09-27T07:00:02+00:00</elem>
 </script></port>
-<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="wsman" method="table" conf="3"/></port>
-<port protocol="tcp" portid="9389"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="adws" method="table" conf="3"/></port>
-<port protocol="tcp" portid="49666"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
-<port protocol="tcp" portid="49667"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
-<port protocol="tcp" portid="49676"><state state="open" reason="syn-ack" reason_ttl="0"/><script id="banner" output="ncacn_http/1.0"/></port>
-<port protocol="tcp" portid="49677"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
-<port protocol="tcp" portid="49705"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
-<port protocol="tcp" portid="49788"><state state="open" reason="syn-ack" reason_ttl="0"/></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="wsman" method="table" conf="3"/></port>
+<port protocol="tcp" portid="9389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="adws" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49666"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49667"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49674"><state state="open" reason="syn-ack" reason_ttl="127"/><script id="banner" output="ncacn_http/1.0"/></port>
+<port protocol="tcp" portid="49675"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49691"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49719"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
 </ports>
-<hostscript><script id="smb-protocols" output="&#xa;  dialects: &#xa;    2.0.2&#xa;    2.1&#xa;    3.0&#xa;    3.0.2&#xa;    3.1.1"><table key="dialects">
+<hostscript><script id="smb-mbenum" output="&#xa;  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR"/><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;53    0       63286.60   59083.66  0.0%&#xa;88    0       52887.00   27321.46  0.0%&#xa;135   0       45553.90   6894.14   0.0%&#xa;139   0       42912.70   5344.33   0.0%&#xa;389   0       47056.70   14078.95  0.0%&#xa;445   0       46944.70   4316.51   0.0%&#xa;464   0       44326.20   3858.92   0.0%&#xa;593   0       43328.20   4806.71   0.0%&#xa;"/><script id="smb-protocols" output="&#xa;  dialects: &#xa;    2.0.2&#xa;    2.1&#xa;    3.0&#xa;    3.0.2&#xa;    3.1.1"><table key="dialects">
 <elem>2.0.2</elem>
 <elem>2.1</elem>
 <elem>3.0</elem>
 <elem>3.0.2</elem>
 <elem>3.1.1</elem>
 </table>
-</script><script id="msrpc-enum" output="Could not negotiate a connection:SMB: Failed to receive bytes: ERROR">false</script><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
-<elem key="status">fail</elem>
-<elem key="reason">No PTR record</elem>
-</table>
-</script><script id="smb2-time" output="&#xa;  date: 2022-05-25T20:01:02&#xa;  start_date: N/A"><elem key="date">2022-05-25T20:01:02</elem>
-<elem key="start_date">N/A</elem>
-</script><script id="smb2-capabilities" output="&#xa;  2.0.2: &#xa;    Distributed File System&#xa;  2.1: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3.0: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3.0.2: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3.1.1: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations"><table key="2.0.2">
+</script><script id="path-mtu" output="PMTU == 1500"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;192.168.141.175&quot;; use dns-brute.domain script argument."/><script id="smb2-capabilities" output="&#xa;  2.0.2: &#xa;    Distributed File System&#xa;  2.1: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3.0: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3.0.2: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3.1.1: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations"><table key="2.0.2">
 <elem>Distributed File System</elem>
 </table>
 <table key="2.1">
@@ -269,11 +296,17 @@
 <elem>Leasing</elem>
 <elem>Multi-credit operations</elem>
 </table>
-</script><script id="dns-brute" output="Can&apos;t guess domain of &quot;192.168.120.175&quot;; use dns-brute.domain script argument."/><script id="smb2-security-mode" output="&#xa;  3.1.1: &#xa;    Message signing enabled and required"><table key="3.1.1">
+</script><script id="smb2-time" output="&#xa;  date: 2022-09-27T07:00:12&#xa;  start_date: N/A"><elem key="date">2022-09-27T07:00:12</elem>
+<elem key="start_date">N/A</elem>
+</script><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="msrpc-enum" output="Could not negotiate a connection:SMB: Failed to receive bytes: ERROR">false</script><script id="ipidseq" output="ERROR: Script execution failed (use -d to debug)"/><script id="smb2-security-mode" output="&#xa;  3.1.1: &#xa;    Message signing enabled and required"><table key="3.1.1">
 <elem>Message signing enabled and required</elem>
 </table>
-</script><script id="smb-mbenum" output="&#xa;  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR"/></hostscript><times srtt="52876" rttvar="6857" to="100000"/>
+</script></hostscript><times srtt="91353" rttvar="6448" to="117145"/>
 </host>
-<runstats><finished time="1653508960" timestr="Wed May 25 21:02:40 2022" summary="Nmap done at Wed May 25 21:02:40 2022; 1 IP address (1 host up) scanned in 473.66 seconds" elapsed="473.66" exit="success"/><hosts up="1" down="0" total="1"/>
+<runstats><finished time="1664262100" timestr="Tue Sep 27 08:01:40 2022" summary="Nmap done at Tue Sep 27 08:01:40 2022; 1 IP address (1 host up) scanned in 115.24 seconds" elapsed="115.24" exit="success"/><hosts up="1" down="0" total="1"/>
 </runstats>
 </nmaprun>

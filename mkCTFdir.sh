@@ -41,6 +41,8 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 ## PrivEsc
 
       "	> $name-Writeup.md
+      echo "# Notes" > $name-Writeup.md
+
 else
 	echo $HELP
 	echo "Error Site or Name is empty $1 and $2"

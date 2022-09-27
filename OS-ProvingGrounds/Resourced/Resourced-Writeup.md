@@ -1,16 +1,20 @@
-
+# Resourced Writeup
 Name: Resourced
 Date:  
 Difficulty:  
-Description:  
-Better Description:  
 Goals:  
+- OSCP Prep 1/5 Medium Boxes in a day, writeups allowed
+- Improving Noting with BoxedName-Notes.md 
 Learnt:
 
 ## Recon
 
+The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](Screenshots/ping.png)
-	
+
+
+
+
 ## Exploit
 
 ## Foothold
