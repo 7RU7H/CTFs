@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Tue Sep 27 14:24:24 2022 as: nmap -&#45;script vuln -oA nmap/Vuln -&#45;min-rate 500 -p 21,22,25,5432,8080,8295 192.168.141.56 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/Vuln -&#45;min-rate 500 -p 21,22,25,5432,8080,8295 192.168.141.56" start="1664285064" startstr="Tue Sep 27 14:24:24 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="6" services="21-22,25,5432,8080,8295"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.141.56" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1664285075" endtime="1664285102"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="192.168.141.56" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="25"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="smtp" method="table" conf="3"/><script id="ssl-dh-params" output="&#xa;  VULNERABLE:&#xa;  Anonymous Diffie-Hellman Key Exchange MitM Vulnerability&#xa;    State: VULNERABLE&#xa;      Transport Layer Security (TLS) services that use anonymous&#xa;      Diffie-Hellman key exchange only provide protection against passive&#xa;      eavesdropping, and are vulnerable to active man-in-the-middle attacks&#xa;      which could completely compromise the confidentiality and integrity&#xa;      of any data exchanged over the resulting session.&#xa;    Check results:&#xa;      ANONYMOUS DH GROUP 1&#xa;            Cipher Suite: TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA&#xa;            Modulus Type: Safe prime&#xa;            Modulus Source: Unknown/Custom-generated&#xa;            Modulus Length: 2048&#xa;            Generator Length: 8&#xa;            Public Key Length: 2048&#xa;    References:&#xa;      https://www.ietf.org/rfc/rfc2246.txt&#xa;"><table key="NMAP-22">
+<elem key="title">Anonymous Diffie-Hellman Key Exchange MitM Vulnerability</elem>
+<elem key="state">VULNERABLE</elem>
+<table key="description">
+<elem>Transport Layer Security (TLS) services that use anonymous&#xa;Diffie-Hellman key exchange only provide protection against passive&#xa;eavesdropping, and are vulnerable to active man-in-the-middle attacks&#xa;which could completely compromise the confidentiality and integrity&#xa;of any data exchanged over the resulting session.</elem>
+</table>
+<table key="check_results">
+<elem>ANONYMOUS DH GROUP 1&#xa;      Cipher Suite: TLS_DH_anon_WITH_CAMELLIA_128_CBC_SHA&#xa;      Modulus Type: Safe prime&#xa;      Modulus Source: Unknown/Custom-generated&#xa;      Modulus Length: 2048&#xa;      Generator Length: 8&#xa;      Public Key Length: 2048</elem>
+</table>
+<table key="refs">
+<elem>https://www.ietf.org/rfc/rfc2246.txt</elem>
+</table>
+</table>
+</script><script id="smtp-vuln-cve2010-4344" output="&#xa;  The SMTP server is not Exim: NOT VULNERABLE&#xa;"/></port>
+<port protocol="tcp" portid="5432"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="postgresql" method="table" conf="3"/><script id="ssl-dh-params" output="&#xa;  VULNERABLE:&#xa;  Diffie-Hellman Key Exchange Insufficient Group Strength&#xa;    State: VULNERABLE&#xa;      Transport Layer Security (TLS) services that use Diffie-Hellman groups&#xa;      of insufficient strength, especially those using one of a few commonly&#xa;      shared groups, may be susceptible to passive eavesdropping attacks.&#xa;    Check results:&#xa;      WEAK DH GROUP 1&#xa;            Cipher Suite: TLS_DHE_RSA_WITH_AES_256_GCM_SHA384&#xa;            Modulus Type: Safe prime&#xa;            Modulus Source: Unknown/Custom-generated&#xa;            Modulus Length: 1024&#xa;            Generator Length: 8&#xa;            Public Key Length: 1024&#xa;    References:&#xa;      https://weakdh.org&#xa;"><table key="NMAP-19">
+<elem key="title">Diffie-Hellman Key Exchange Insufficient Group Strength</elem>
+<elem key="state">VULNERABLE</elem>
+<table key="description">
+<elem>Transport Layer Security (TLS) services that use Diffie-Hellman groups&#xa;of insufficient strength, especially those using one of a few commonly&#xa;shared groups, may be susceptible to passive eavesdropping attacks.</elem>
+</table>
+<table key="check_results">
+<elem>WEAK DH GROUP 1&#xa;      Cipher Suite: TLS_DHE_RSA_WITH_AES_256_GCM_SHA384&#xa;      Modulus Type: Safe prime&#xa;      Modulus Source: Unknown/Custom-generated&#xa;      Modulus Length: 1024&#xa;      Generator Length: 8&#xa;      Public Key Length: 1024</elem>
+</table>
+<table key="refs">
+<elem>https://weakdh.org</elem>
+</table>
+</table>
+</script></port>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http-proxy" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8295"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="unknown" method="table" conf="3"/></port>
+</ports>
+<times srtt="49745" rttvar="13198" to="102537"/>
+</host>
+<runstats><finished time="1664285102" timestr="Tue Sep 27 14:25:02 2022" summary="Nmap done at Tue Sep 27 14:25:02 2022; 1 IP address (1 host up) scanned in 37.91 seconds" elapsed="37.91" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
