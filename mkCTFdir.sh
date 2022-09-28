@@ -41,7 +41,13 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 ## PrivEsc
 
       "	> $name-Writeup.md
-      echo "# Notes" > $name-Notes.md
+      echo "# Notes
+
+## Todo - x
+
+#### Outcome of X
+      
+      " > $name-Notes.md
 
 else
 	echo $HELP

@@ -56,6 +56,9 @@ PlanetExpress | Done | Walkthrough | [Link]()
 Hunit  | Done | Walkthrough | [Link]() 
 Slort | Done
 Squid | Done | Redo
+Resourced | Done | Wakthrough | [Link](https://github.com/7RU7H/CTFs/tree/main/OS-ProvingGrounds/Resourced)
+
+
 
 #### OS-Proving-Grounds AD 
 Box Name  | Recon-ed | Done | Writeup
@@ -113,7 +116,6 @@ Jerry | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/
 Conceal |  | | [Link]()
 Vault | Done | | [Link]()
 
-
 #### TJNULL Harder than OSCP!
 Box Name  | Recon-ed | Done | Writeup
 --- | --- | --- | --- 
@@ -164,6 +166,8 @@ Relevant | | | [Link]()
 Internal | | | [Link]()
 Daily Bungle | | | [Link]()
 Retro | | | [Link]() - Dir made!
+
+Cut these down!
 
 Box Name | Recon-ed | Done | Writeup
 --- | --- | --- | ---

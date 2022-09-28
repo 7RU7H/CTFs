@@ -1,37 +1,50 @@
-# Nmap 7.92 scan initiated Wed May 18 21:51:10 2022 as: nmap --script vuln -oA nmap/Vuln -p- 192.168.249.145
-Nmap scan report for 192.168.249.145
-Host is up (0.051s latency).
-Not shown: 65532 filtered tcp ports (no-response)
+# Nmap 7.92 scan initiated Wed Sep 28 21:21:05 2022 as: nmap --script vuln -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Apex/nmap/Vuln --min-rate 80,445,3306 -p 80,445,3306 192.168.238.145
+Nmap scan report for 192.168.238.145
+Host is up (0.042s latency).
+
 PORT     STATE SERVICE
 80/tcp   open  http
 | http-cookie-flags: 
 |   /filemanager/: 
 |     PHPSESSID: 
 |_      httponly flag not set
+|_http-internal-ip-disclosure: ERROR: Script execution failed (use -d to debug)
 | http-csrf: 
-| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.249.145
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.238.145
 |   Found the following possible CSRF vulnerabilities: 
 |     
-|     Path: http://192.168.249.145:80/
+|     Path: http://192.168.238.145:80/
 |     Form id: name
 |     Form action: 
 |     
-|     Path: http://192.168.249.145:80/
+|     Path: http://192.168.238.145:80/
 |     Form id: name
 |     Form action: 
 |     
-|     Path: http://192.168.249.145:80/
+|     Path: http://192.168.238.145:80/
+|     Form id: 
+|     Form action: 
+|     
+|     Path: http://192.168.238.145:80/index.html
+|     Form id: name
+|     Form action: 
+|     
+|     Path: http://192.168.238.145:80/index.html
+|     Form id: name
+|     Form action: 
+|     
+|     Path: http://192.168.238.145:80/index.html
 |     Form id: 
 |_    Form action: 
-|_http-dombased-xss: Couldn't find any DOM based XSS.
-|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
-|_http-internal-ip-disclosure: ERROR: Script execution failed (use -d to debug)
 | http-enum: 
 |   /filemanager/: Potentially interesting folder
 |_  /source/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
 445/tcp  open  microsoft-ds
 3306/tcp open  mysql
 |_mysql-vuln-cve2012-2122: ERROR: Script execution failed (use -d to debug)
+|_rsa-vuln-roca: ERROR: Script execution failed (use -d to debug)
 
 Host script results:
 |_smb-vuln-ms10-054: false
@@ -45,4 +58,4 @@ Host script results:
 |       while working on smb-enum-sessions.
 |_          
 
-# Nmap done at Wed May 18 21:54:43 2022 -- 1 IP address (1 host up) scanned in 213.03 seconds
+# Nmap done at Wed Sep 28 21:22:06 2022 -- 1 IP address (1 host up) scanned in 61.64 seconds

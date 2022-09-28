@@ -1,58 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE nmaprun>
 <?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
-<!-- Nmap 7.92 scan initiated Wed May 18 21:35:35 2022 as: nmap -sC -sV -oA nmap/Extensive -p- -&#45;min-rate 5000 192.168.249.145 -->
-<nmaprun scanner="nmap" args="nmap -sC -sV -oA nmap/Extensive -p- -&#45;min-rate 5000 192.168.249.145" start="1652906135" startstr="Wed May 18 21:35:35 2022" version="7.92" xmloutputversion="1.05">
-<scaninfo type="connect" protocol="tcp" numservices="65535" services="1-65535"/>
+<!-- Nmap 7.92 scan initiated Wed Sep 28 21:14:49 2022 as: nmap -sC -sV -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Apex/nmap/Extensive -&#45;min-rate 80,445,3306 -p 80,445,3306 192.168.238.145 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Apex/nmap/Extensive -&#45;min-rate 80,445,3306 -p 80,445,3306 192.168.238.145" start="1664396089" startstr="Wed Sep 28 21:14:49 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="80,445,3306"/>
 <verbose level="0"/>
 <debugging level="0"/>
 <hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
-<address addr="192.168.249.145" addrtype="ipv4"/>
+<address addr="192.168.238.145" addrtype="ipv4"/>
 <hostnames>
 </hostnames>
 </hosthint>
-<host starttime="1652906135" endtime="1652906209"><status state="up" reason="syn-ack" reason_ttl="0"/>
-<address addr="192.168.249.145" addrtype="ipv4"/>
+<host starttime="1664396090" endtime="1664396137"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="192.168.238.145" addrtype="ipv4"/>
 <hostnames>
 </hostnames>
-<ports><extraports state="filtered" count="65532">
-<extrareasons reason="no-response" count="65532" proto="tcp" ports="1-79,81-444,446-3305,3307-65535"/>
-</extraports>
-<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="http" product="Apache httpd" version="2.4.29" extrainfo="(Ubuntu)" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.29</cpe></service><script id="http-title" output="APEX Hospital"><elem key="title">APEX Hospital</elem>
+<ports><port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="Apache httpd" version="2.4.29" extrainfo="(Ubuntu)" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.29</cpe></service><script id="http-title" output="APEX Hospital"><elem key="title">APEX Hospital</elem>
 </script><script id="http-server-header" output="Apache/2.4.29 (Ubuntu)"><elem>Apache/2.4.29 (Ubuntu)</elem>
 </script></port>
-<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="netbios-ssn" product="Samba smbd" version="4.7.6-Ubuntu" extrainfo="workgroup: WORKGROUP" hostname="APEX" method="probed" conf="10"><cpe>cpe:/a:samba:samba</cpe></service></port>
-<port protocol="tcp" portid="3306"><state state="open" reason="syn-ack" reason_ttl="0"/><service name="mysql" product="MySQL" version="5.5.5-10.1.48-MariaDB-0ubuntu0.18.04.1" method="probed" conf="10"><cpe>cpe:/a:mariadb:mariadb:5.5.5-10.1.48-mariadb-0ubuntu0.18.04.1</cpe></service><script id="mysql-info" output="&#xa;  Protocol: 10&#xa;  Version: 5.5.5-10.1.48-MariaDB-0ubuntu0.18.04.1&#xa;  Thread ID: 34&#xa;  Capabilities flags: 63487&#xa;  Some Capabilities: Support41Auth, ODBCClient, Speaks41ProtocolOld, ConnectWithDatabase, DontAllowDatabaseTableColumn, FoundRows, Speaks41ProtocolNew, IgnoreSpaceBeforeParenthesis, SupportsCompression, IgnoreSigpipes, LongPassword, InteractiveClient, SupportsTransactions, SupportsLoadDataLocal, LongColumnFlag, SupportsMultipleResults, SupportsMultipleStatments, SupportsAuthPlugins&#xa;  Status: Autocommit&#xa;  Salt: (&apos;)8~4&amp;a835Pqi&lt;.rsmH&#xa;  Auth Plugin Name: mysql_native_password"><elem key="Protocol">10</elem>
-<elem key="Version">5.5.5-10.1.48-MariaDB-0ubuntu0.18.04.1</elem>
-<elem key="Thread ID">34</elem>
-<elem key="Capabilities flags">63487</elem>
-<table key="Some Capabilities">
-<elem>Support41Auth</elem>
-<elem>ODBCClient</elem>
-<elem>Speaks41ProtocolOld</elem>
-<elem>ConnectWithDatabase</elem>
-<elem>DontAllowDatabaseTableColumn</elem>
-<elem>FoundRows</elem>
-<elem>Speaks41ProtocolNew</elem>
-<elem>IgnoreSpaceBeforeParenthesis</elem>
-<elem>SupportsCompression</elem>
-<elem>IgnoreSigpipes</elem>
-<elem>LongPassword</elem>
-<elem>InteractiveClient</elem>
-<elem>SupportsTransactions</elem>
-<elem>SupportsLoadDataLocal</elem>
-<elem>LongColumnFlag</elem>
-<elem>SupportsMultipleResults</elem>
-<elem>SupportsMultipleStatments</elem>
-<elem>SupportsAuthPlugins</elem>
-</table>
-<elem key="Status">Autocommit</elem>
-<elem key="Salt">(&apos;)8~4&amp;a835Pqi&lt;.rsmH</elem>
-<elem key="Auth Plugin Name">mysql_native_password</elem>
-</script></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="netbios-ssn" product="Samba smbd" version="4.7.6-Ubuntu" extrainfo="workgroup: WORKGROUP" hostname="APEX" method="probed" conf="10"><cpe>cpe:/a:samba:samba</cpe></service></port>
+<port protocol="tcp" portid="3306"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="mysql" product="MySQL" extrainfo="blocked - too many connection errors" method="probed" conf="10"><cpe>cpe:/a:mysql:mysql</cpe></service></port>
 </ports>
-<hostscript><script id="smb2-time" output="&#xa;  date: 2022-05-18T20:36:09&#xa;  start_date: N/A"><elem key="date">2022-05-18T20:36:09</elem>
-<elem key="start_date">N/A</elem>
+<hostscript><script id="clock-skew" output="mean: 1h20m01s, deviation: 2h18m36s, median: 0s"><elem key="stddev">8316</elem>
+<elem key="count">3</elem>
+<elem key="median">0</elem>
+<elem key="mean">4801</elem>
 </script><script id="smb-security-mode" output="&#xa;  account_used: guest&#xa;  authentication_level: user&#xa;  challenge_response: supported&#xa;  message_signing: disabled (dangerous, but default)"><elem key="account_used">guest</elem>
 <elem key="authentication_level">user</elem>
 <elem key="challenge_response">supported</elem>
@@ -60,19 +32,17 @@
 </script><script id="smb2-security-mode" output="&#xa;  3.1.1: &#xa;    Message signing enabled but not required"><table key="3.1.1">
 <elem>Message signing enabled but not required</elem>
 </table>
-</script><script id="smb-os-discovery" output="&#xa;  OS: Windows 6.1 (Samba 4.7.6-Ubuntu)&#xa;  Computer name: apex&#xa;  NetBIOS computer name: APEX\x00&#xa;  Domain name: \x00&#xa;  FQDN: apex&#xa;  System time: 2022-05-18T16:36:12-04:00&#xa;"><elem key="os">Windows 6.1</elem>
+</script><script id="smb2-time" output="&#xa;  date: 2022-09-28T20:14:59&#xa;  start_date: N/A"><elem key="date">2022-09-28T20:14:59</elem>
+<elem key="start_date">N/A</elem>
+</script><script id="smb-os-discovery" output="&#xa;  OS: Windows 6.1 (Samba 4.7.6-Ubuntu)&#xa;  Computer name: apex&#xa;  NetBIOS computer name: APEX\x00&#xa;  Domain name: \x00&#xa;  FQDN: apex&#xa;  System time: 2022-09-28T16:15:00-04:00&#xa;"><elem key="os">Windows 6.1</elem>
 <elem key="lanmanager">Samba 4.7.6-Ubuntu</elem>
 <elem key="server">APEX\x00</elem>
-<elem key="date">2022-05-18T16:36:12-04:00</elem>
+<elem key="date">2022-09-28T16:15:00-04:00</elem>
 <elem key="fqdn">apex</elem>
 <elem key="domain_dns">\x00</elem>
 <elem key="workgroup">WORKGROUP\x00</elem>
-</script><script id="clock-skew" output="mean: 1h20m00s, deviation: 2h18m36s, median: 0s"><elem key="count">3</elem>
-<elem key="mean">4800</elem>
-<elem key="median">0</elem>
-<elem key="stddev">8316</elem>
-</script></hostscript><times srtt="40826" rttvar="20239" to="121782"/>
+</script></hostscript><times srtt="47646" rttvar="23945" to="143426"/>
 </host>
-<runstats><finished time="1652906209" timestr="Wed May 18 21:36:49 2022" summary="Nmap done at Wed May 18 21:36:49 2022; 1 IP address (1 host up) scanned in 74.02 seconds" elapsed="74.02" exit="success"/><hosts up="1" down="0" total="1"/>
+<runstats><finished time="1664396137" timestr="Wed Sep 28 21:15:37 2022" summary="Nmap done at Wed Sep 28 21:15:37 2022; 1 IP address (1 host up) scanned in 48.26 seconds" elapsed="48.26" exit="success"/><hosts up="1" down="0" total="1"/>
 </runstats>
 </nmaprun>

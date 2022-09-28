@@ -1,465 +1,72 @@
-# Nmap 7.92 scan initiated Wed May 18 21:37:14 2022 as: nmap --script discovery -oA nmap/Discovery -p- --min-rate 5000 192.168.249.145
+# Nmap 7.92 scan initiated Wed Sep 28 21:15:37 2022 as: nmap --script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Apex/nmap/Discovery --min-rate 80,445,3306 -p 80,445,3306 192.168.238.145
 Pre-scan script results:
-|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
 | targets-asn: 
 |_  targets-asn.asn is a mandatory parameter
 |_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
-Nmap scan report for 192.168.249.145
-Host is up (0.043s latency).
-Not shown: 65532 filtered tcp ports (no-response)
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::18e6:f5ff:fef8:4f7d  MAC: 1a:e6:f5:f8:4f:7d  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| ipv6-multicast-mld-list: 
+|   fe80::18e6:f5ff:fef8:4f7d: 
+|     device: usb0
+|     mac: 1a:e6:f5:f8:4f:7d
+|     multicast_ips: 
+|       ff02::1:fff8:4f7d         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:e            (Solicited-Node Address)
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:1406:6b14::e      MAC: 1a:e6:f5:f8:4f:7d  IFACE: usb0
+|   IP: fe80::18e6:f5ff:fef8:4f7d  MAC: 1a:e6:f5:f8:4f:7d  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:1406:6b14::e      MAC: 1a:e6:f5:f8:4f:7d  IFACE: usb0
+|   IP: fe80::18e6:f5ff:fef8:4f7d  MAC: 1a:e6:f5:f8:4f:7d  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+Nmap scan report for 192.168.238.145
+Host is up (0.040s latency).
+
 Bug in http-security-headers: no string output.
 PORT     STATE SERVICE
 80/tcp   open  http
-| http-grep: 
-|   (5) http://192.168.249.145:80/: 
-|     (5) email: 
-|       + contact@apex.offs
-|       + wwalter@apex.offs
-|       + jsarah@apex.offs
-|       + awilliam@apex.offs
-|_      + jamanda@apex.offs
-|_http-mobileversion-checker: No mobile version detected.
-|_http-feed: Couldn't find any feeds.
-| http-vhosts: 
-| ssh
-| server
-| ns2
-| help
-| www
-|_123 names had status 200
-|_http-date: Wed, 18 May 2022 20:38:11 GMT; +59m59s from local time.
-|_http-chrono: Request times for /; avg: 423.27ms; min: 309.58ms; max: 545.76ms
-| http-enum: 
-|   /filemanager/: Potentially interesting folder
-|_  /source/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
-|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
 | http-sitemap-generator: 
 |   Directory structure:
 |     /
-|       Other: 1; html: 1
+|       Other: 1
 |     /assets/css/
 |       css: 1
 |     /assets/img/
-|       jpg: 3; png: 1
+|       jpg: 4; png: 1
 |     /assets/img/doctors/
-|       jpg: 3
+|       jpg: 1
 |     /assets/img/gallery/
 |       jpg: 5
-|     /assets/js/
+|     /assets/vendor/animate.css/
+|       css: 1
+|     /assets/vendor/jquery.easing/
 |       js: 1
-|     /assets/vendor/counterup/
+|     /assets/vendor/owl.carousel/
 |       js: 1
+|     /assets/vendor/php-email-form/
+|       js: 1
+|     /assets/vendor/remixicon/
+|       css: 1
 |     /assets/vendor/venobox/
 |       css: 1
 |   Longest directory structure:
 |     Depth: 3
 |     Dir: /assets/img/gallery/
 |   Total files found (by extension):
-|_    Other: 1; css: 2; html: 1; jpg: 11; js: 2; png: 1
-| http-comments-displayer: 
-| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.249.145
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 608
-|     Comment: 
-|         <!-- End Contact Section -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 90
-|     Comment: 
-|         <!-- End Hero -->
-|     
-|     Path: http://192.168.249.145:80/assets/vendor/animate.css/animate.min.css
-|     Line number: 1
-|     Comment: 
-|         
-|         
-|         
-|         
-|         
-|         
-|          */
-|     
-|     Path: http://192.168.249.145:80/assets/vendor/waypoints/jquery.waypoints.min.js
-|     Line number: 1
-|     Comment: 
-|         
-|         
-|         
-|         
-|         
-|         */
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 672
-|     Comment: 
-|         <!-- All the links in the footer should remain intact. -->
-|     
-|     Path: http://192.168.249.145:80/assets/vendor/venobox/venobox.css
-|     Line number: 29
-|     Comment: 
-|         /* ----- navigation ----- */
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 216
-|     Comment: 
-|         <!-- ======= Appointment Section ======= -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 612
-|     Comment: 
-|         <!-- ======= Footer ======= -->
-|     
-|     Path: http://192.168.249.145:80/assets/js/main.js
-|     Line number: 153
-|     Comment: 
-|         
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 16
-|     Comment: 
-|         <!-- Google Fonts -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 19
-|     Comment: 
-|         <!-- Vendor CSS Files -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 610
-|     Comment: 
-|         <!-- End #main -->
-|     
-|     Path: http://192.168.249.145:80/assets/vendor/remixicon/remixicon.css
-|     Line number: 14
-|     Comment: 
-|         /* IE6-IE8 */
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 81
-|     Comment: 
-|         <!-- End Header -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 455
-|     Comment: 
-|         <!-- End Doctors Section -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 692
-|     Comment: 
-|         <!-- Vendor JS Files -->
-|     
-|     Path: http://192.168.249.145:80/assets/vendor/counterup/counterup.min.js
-|     Line number: 1
-|     Comment: 
-|         
-|         
-|         
-|         
-|         
-|         
-|         
-|         
-|         
-|          */
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 65
-|     Comment: 
-|         <!-- Uncomment below if you prefer to use an image logo -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 374
-|     Comment: 
-|         <!-- ======= Doctors Section ======= -->
-|     
-|     Path: http://192.168.249.145:80/assets/js/main.js
-|     Line number: 182
-|     Comment: 
-|         
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 171
-|     Comment: 
-|         <!-- End About Section -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 12
-|     Comment: 
-|         <!-- Favicons -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 457
-|     Comment: 
-|         <!-- ======= Gallery Section ======= -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 173
-|     Comment: 
-|         <!-- ======= Counts Section ======= -->
-|     
-|     Path: http://192.168.249.145:80/assets/vendor/venobox/venobox.css
-|     Line number: 76
-|     Comment: 
-|         /* ----- Social share ----- */
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 83
-|     Comment: 
-|         <!-- ======= Hero Section ======= -->
-|     
-|     Path: http://192.168.249.145:80/assets/vendor/venobox/venobox.css
-|     Line number: 246
-|     Comment: 
-|         
-|         
-|         
-|         -------------------------------- */
-|     
-|     Path: http://192.168.249.145:80/assets/js/main.js
-|     Line number: 19
-|     Comment: 
-|         
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 675
-|     Comment: 
-|         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/ -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 139
-|     Comment: 
-|         <!-- ======= About Section ======= -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 673
-|     Comment: 
-|         <!-- You can delete the links only if you purchased the pro version. -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 79
-|     Comment: 
-|         <!-- .nav-menu -->
-|     
-|     Path: http://192.168.249.145:80/assets/js/main.js
-|     Line number: 137
-|     Comment: 
-|         
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 372
-|     Comment: 
-|         <!-- End Departments Section -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 60
-|     Comment: 
-|         <!-- ======= Header ======= -->
-|     
-|     Path: http://192.168.249.145:80/assets/js/main.js
-|     Line number: 122
-|     Comment: 
-|         
-|     
-|     Path: http://192.168.249.145:80/assets/js/main.js
-|     Line number: 88
-|     Comment: 
-|         
-|     
-|     Path: http://192.168.249.145:80/assets/js/main.js
-|     Line number: 177
-|     Comment: 
-|         
-|     
-|     Path: http://192.168.249.145:80/assets/vendor/remixicon/remixicon.css
-|     Line number: 17
-|     Comment: 
-|         /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 703
-|     Comment: 
-|         <!-- Template Main JS File -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 137
-|     Comment: 
-|         <!-- End Why Us Section -->
-|     
-|     Path: http://192.168.249.145:80/assets/vendor/owl.carousel/owl.carousel.min.js
-|     Line number: 1
-|     Comment: 
-|         
-|         
-|         
-|         
-|          */
-|     
-|     Path: http://192.168.249.145:80/assets/vendor/remixicon/remixicon.css
-|     Line number: 13
-|     Comment: 
-|         /* IE9*/
-|     
-|     Path: http://192.168.249.145:80/assets/vendor/remixicon/remixicon.css
-|     Line number: 18
-|     Comment: 
-|         /* iOS 4.1- */
-|     
-|     Path: http://192.168.249.145:80/assets/vendor/venobox/venobox.css
-|     Line number: 143
-|     Comment: 
-|         /* ------- inline window ------ */
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 280
-|     Comment: 
-|         <!-- End Appointment Section -->
-|     
-|     Path: http://192.168.249.145:80/assets/vendor/venobox/venobox.css
-|     Line number: 154
-|     Comment: 
-|         /* ------- Video & iFrames window ------ */
-|     
-|     Path: http://192.168.249.145:80/assets/vendor/venobox/venobox.css
-|     Line number: 101
-|     Comment: 
-|         /* ----- navigation ARROWS ----- */
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 66
-|     Comment: 
-|         <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-|     
-|     Path: http://192.168.249.145:80/assets/vendor/venobox/venobox.css
-|     Line number: 1
-|     Comment: 
-|         /* ------ venobox.css --------*/
-|     
-|     Path: http://192.168.249.145:80/assets/vendor/venobox/venobox.css
-|     Line number: 189
-|     Comment: 
-|         
-|         
-|         
-|         */
-|     
-|     Path: http://192.168.249.145:80/assets/js/main.js
-|     Line number: 10
-|     Comment: 
-|         
-|     
-|     Path: http://192.168.249.145:80/assets/vendor/remixicon/remixicon.css
-|     Line number: 1
-|     Comment: 
-|         
-|         
-|         
-|         
-|         
-|         
-|         
-|         
-|         
-|         */
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 29
-|     Comment: 
-|         <!-- Template Main CSS File -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 32
-|     Comment: 
-|         <!-- =======================================================
-|           * Template Name: Medilab - v2.1.1
-|           * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
-|           * Author: BootstrapMade.com
-|           * License: https://bootstrapmade.com/license/
-|           ======================================================== -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 536
-|     Comment: 
-|         <!-- End Gallery Section -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 687
-|     Comment: 
-|         <!-- End Footer -->
-|     
-|     Path: http://192.168.249.145:80/assets/js/main.js
-|     Line number: 65
-|     Comment: 
-|         
-|     
-|     Path: http://192.168.249.145:80/assets/js/main.js
-|     Line number: 159
-|     Comment: 
-|         
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 214
-|     Comment: 
-|         <!-- End Counts Section -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 538
-|     Comment: 
-|         <!-- ======= Contact Section ======= -->
-|     
-|     Path: http://192.168.249.145:80/assets/js/main.js
-|     Line number: 52
-|     Comment: 
-|         
-|     
-|     Path: http://192.168.249.145:80/assets/js/main.js
-|     Line number: 1
-|     Comment: 
-|         
-|         
-|         
-|         
-|         
-|         */
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 132
-|     Comment: 
-|         <!-- End .content-->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 674
-|     Comment: 
-|         <!-- Licensing information: https://bootstrapmade.com/license/ -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 282
-|     Comment: 
-|         <!-- ======= Departments Section ======= -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 94
-|     Comment: 
-|         <!-- ======= Why Us Section ======= -->
-|     
-|     Path: http://192.168.249.145:80/
-|     Line number: 42
-|     Comment: 
-|_        <!-- ======= Top Bar ======= -->
-| http-headers: 
-|   Date: Wed, 18 May 2022 20:38:12 GMT
-|   Server: Apache/2.4.29 (Ubuntu)
-|   Last-Modified: Mon, 17 May 2021 15:00:14 GMT
-|   ETag: "711d-5c287d9d2c6e3"
-|   Accept-Ranges: bytes
-|   Content-Length: 28957
-|   Vary: Accept-Encoding
-|   Connection: close
-|   Content-Type: text/html
-|   
-|_  (Request type: HEAD)
-|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_    Other: 1; css: 4; jpg: 10; js: 3; png: 1
+| http-vhosts: 
+|_128 names had status 200
+| http-enum: 
+|   /filemanager/: Potentially interesting folder
+|_  /source/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|_http-feed: Couldn't find any feeds.
 | http-useragent-tester: 
 |   Status for browser useragent: 200
 |   Allowed User Agents: 
@@ -480,61 +87,601 @@ PORT     STATE SERVICE
 |     PECL::HTTP
 |     Wget/1.13.4 (linux-gnu)
 |_    WWW-Mechanize/1.34
-|_http-title: APEX Hospital
-|_http-internal-ip-disclosure: ERROR: Script execution failed (use -d to debug)
-|_http-xssed: No previously reported XSS vuln.
+| http-headers: 
+|   Date: Wed, 28 Sep 2022 20:16:14 GMT
+|   Server: Apache/2.4.29 (Ubuntu)
+|   Last-Modified: Mon, 17 May 2021 15:00:14 GMT
+|   ETag: "711d-5c287d9d2c6e3"
+|   Accept-Ranges: bytes
+|   Content-Length: 28957
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
 | http-errors: 
-| Spidering limited to: maxpagecount=40; withinhost=192.168.249.145
+| Spidering limited to: maxpagecount=40; withinhost=192.168.238.145
 |   Found the following error pages: 
 |   
 |   Error Code: 404
-|_  	http://192.168.249.145:80/openemr
+|_  	http://192.168.238.145:80/openemr
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-date: Wed, 28 Sep 2022 20:16:13 GMT; +1h00m00s from local time.
+|_http-title: APEX Hospital
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.238.145
+|     
+|     Path: http://192.168.238.145:80/assets/vendor/owl.carousel/owl.carousel.min.js
+|     Line number: 1
+|     Comment: 
+|         
+|         
+|         
+|         
+|          */
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 457
+|     Comment: 
+|         <!-- ======= Gallery Section ======= -->
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 66
+|     Comment: 
+|         <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+|     
+|     Path: http://192.168.238.145:80/assets/js/main.js
+|     Line number: 159
+|     Comment: 
+|         
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 672
+|     Comment: 
+|         <!-- All the links in the footer should remain intact. -->
+|     
+|     Path: http://192.168.238.145:80/assets/js/main.js
+|     Line number: 177
+|     Comment: 
+|         
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 12
+|     Comment: 
+|         <!-- Favicons -->
+|     
+|     Path: http://192.168.238.145:80/assets/js/main.js
+|     Line number: 19
+|     Comment: 
+|         
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 374
+|     Comment: 
+|         <!-- ======= Doctors Section ======= -->
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 612
+|     Comment: 
+|         <!-- ======= Footer ======= -->
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 1324
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 94
+|     Comment: 
+|         <!-- ======= Why Us Section ======= -->
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 692
+|     Comment: 
+|         <!-- Vendor JS Files -->
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 32
+|     Comment: 
+|         <!-- =======================================================
+|           * Template Name: Medilab - v2.1.1
+|           * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
+|           * Author: BootstrapMade.com
+|           * License: https://bootstrapmade.com/license/
+|           ======================================================== -->
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 873
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.238.145:80/assets/js/main.js
+|     Line number: 137
+|     Comment: 
+|         
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 216
+|     Comment: 
+|         <!-- ======= Appointment Section ======= -->
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 915
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 83
+|     Comment: 
+|         <!-- ======= Hero Section ======= -->
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 173
+|     Comment: 
+|         <!-- ======= Counts Section ======= -->
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 81
+|     Comment: 
+|         <!-- End Header -->
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 673
+|     Comment: 
+|         <!-- You can delete the links only if you purchased the pro version. -->
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 282
+|     Comment: 
+|         <!-- ======= Departments Section ======= -->
+|     
+|     Path: http://192.168.238.145:80/assets/js/main.js
+|     Line number: 122
+|     Comment: 
+|         
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 29
+|     Comment: 
+|         <!-- Template Main CSS File -->
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 65
+|     Comment: 
+|         <!-- Uncomment below if you prefer to use an image logo -->
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 703
+|     Comment: 
+|         <!-- Template Main JS File -->
+|     
+|     Path: http://192.168.238.145:80/assets/js/main.js
+|     Line number: 182
+|     Comment: 
+|         
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 79
+|     Comment: 
+|         <!-- .nav-menu -->
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 60
+|     Comment: 
+|         <!-- ======= Header ======= -->
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 42
+|     Comment: 
+|         <!-- ======= Top Bar ======= -->
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 19
+|     Comment: 
+|         <!-- Vendor CSS Files -->
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 1087
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 528
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 139
+|     Comment: 
+|         <!-- ======= About Section ======= -->
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 447
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 158
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 201
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.238.145:80/assets/vendor/counterup/counterup.min.js
+|     Line number: 1
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|          */
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 171
+|     Comment: 
+|         <!-- End About Section -->
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 132
+|     Comment: 
+|         <!-- End .content-->
+|     
+|     Path: http://192.168.238.145:80/assets/js/main.js
+|     Line number: 10
+|     Comment: 
+|         
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 640
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 994
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 610
+|     Comment: 
+|         <!-- End #main -->
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 137
+|     Comment: 
+|         <!-- End Why Us Section -->
+|     
+|     Path: http://192.168.238.145:80/assets/vendor/venobox/venobox.min.js
+|     Line number: 1
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|          */
+|     
+|     Path: http://192.168.238.145:80/assets/vendor/php-email-form/validate.js
+|     Line number: 22
+|     Comment: 
+|         
+|     
+|     Path: http://192.168.238.145:80/assets/js/main.js
+|     Line number: 88
+|     Comment: 
+|         
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 687
+|     Comment: 
+|         <!-- End Footer -->
+|     
+|     Path: http://192.168.238.145:80/assets/vendor/php-email-form/validate.js
+|     Line number: 18
+|     Comment: 
+|         
+|     
+|     Path: http://192.168.238.145:80/assets/vendor/php-email-form/validate.js
+|     Line number: 16
+|     Comment: 
+|         
+|     
+|     Path: http://192.168.238.145:80/assets/vendor/php-email-form/validate.js
+|     Line number: 1
+|     Comment: 
+|         
+|         
+|         
+|         
+|         */
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 675
+|     Comment: 
+|         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/ -->
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 704
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 1584
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 1434
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 1417
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 1244
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 1149
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 75
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 580
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 204
+|     Comment: 
+|         /* Desktop Navigation */
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 340
+|     Comment: 
+|         /* Mobile Navigation */
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 315
+|     Comment: 
+|         /* Get Startet Button */
+|     
+|     Path: http://192.168.238.145:80/assets/vendor/waypoints/jquery.waypoints.min.js
+|     Line number: 1
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         */
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 29
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 280
+|     Comment: 
+|         <!-- End Appointment Section -->
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 108
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 372
+|     Comment: 
+|         <!-- End Departments Section -->
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 538
+|     Comment: 
+|         <!-- ======= Contact Section ======= -->
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 16
+|     Comment: 
+|         <!-- Google Fonts -->
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 8
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 536
+|     Comment: 
+|         <!-- End Gallery Section -->
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 674
+|     Comment: 
+|         <!-- Licensing information: https://bootstrapmade.com/license/ -->
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 214
+|     Comment: 
+|         <!-- End Counts Section -->
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 455
+|     Comment: 
+|         <!-- End Doctors Section -->
+|     
+|     Path: http://192.168.238.145:80/assets/css/style.css
+|     Line number: 1
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         */
+|     
+|     Path: http://192.168.238.145:80/assets/js/main.js
+|     Line number: 153
+|     Comment: 
+|         
+|     
+|     Path: http://192.168.238.145:80/assets/js/main.js
+|     Line number: 65
+|     Comment: 
+|         
+|     
+|     Path: http://192.168.238.145:80/assets/js/main.js
+|     Line number: 52
+|     Comment: 
+|         
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 90
+|     Comment: 
+|         <!-- End Hero -->
+|     
+|     Path: http://192.168.238.145:80/
+|     Line number: 608
+|     Comment: 
+|_        <!-- End Contact Section -->
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-chrono: Request times for /; avg: 311.61ms; min: 291.96ms; max: 347.64ms
+|_http-xssed: No previously reported XSS vuln.
+|_http-mobileversion-checker: No mobile version detected.
+|_http-internal-ip-disclosure: ERROR: Script execution failed (use -d to debug)
+| http-grep: 
+|   (5) http://192.168.238.145:80/: 
+|     (5) email: 
+|       + contact@apex.offs
+|       + wwalter@apex.offs
+|       + jsarah@apex.offs
+|       + awilliam@apex.offs
+|       + jamanda@apex.offs
+|   (1) http://192.168.238.145:80/openemr: 
+|     (1) ip: 
+|_      + 192.168.238.145
 445/tcp  open  microsoft-ds
 3306/tcp open  mysql
-| mysql-info: 
-|   Protocol: 10
-|   Version: 5.5.5-10.1.48-MariaDB-0ubuntu0.18.04.1
-|   Thread ID: 42
-|   Capabilities flags: 63487
-|   Some Capabilities: LongPassword, LongColumnFlag, IgnoreSpaceBeforeParenthesis, Support41Auth, Speaks41ProtocolOld, SupportsTransactions, IgnoreSigpipes, ODBCClient, DontAllowDatabaseTableColumn, FoundRows, ConnectWithDatabase, Speaks41ProtocolNew, InteractiveClient, SupportsLoadDataLocal, SupportsCompression, SupportsMultipleStatments, SupportsAuthPlugins, SupportsMultipleResults
-|   Status: Autocommit
-|   Salt: EAVl@9:W+md/]da;?k{L
-|_  Auth Plugin Name: mysql_native_password
 |_mysql-vuln-cve2012-2122: ERROR: Script execution failed (use -d to debug)
-|_banner: j\x00\x00\x00\x0A5.5.5-10.1.48-MariaDB-0ubuntu0.18.04.1\x00,...
+|_banner: l\x00\x00\x00\xFFi\x04Host '192.168.49.238' is blocked becau...
 
 Host script results:
 | smb-enum-domains: 
-|   Builtin
-|     Groups: n/a
-|     Users: n/a
-|     Creation time: unknown
-|     Passwords: min length: 5; min age: n/a days; max age: n/a days; history: n/a passwords
-|     Account lockout disabled
 |   APEX
 |     Groups: n/a
 |     Users: n/a
 |     Creation time: unknown
 |     Passwords: min length: 5; min age: n/a days; max age: n/a days; history: n/a passwords
+|     Account lockout disabled
+|   Builtin
+|     Groups: n/a
+|     Users: n/a
+|     Creation time: unknown
+|     Passwords: min length: 5; min age: n/a days; max age: n/a days; history: n/a passwords
 |_    Account lockout disabled
-| smb-enum-sessions: 
-|_  <nobody>
-| smb-ls: Volume \\192.168.249.145\docs
-| SIZE    TIME                 FILENAME
-| <DIR>   2021-04-09T15:47:12  .
-| <DIR>   2021-04-09T15:47:12  ..
-| 290738  2021-04-09T15:47:12  OpenEMR Success Stories.pdf
-| 490355  2021-04-09T15:47:12  OpenEMR Features.pdf
-|_
-| smb2-time: 
-|   date: 2022-05-18T20:38:05
-|_  start_date: N/A
-|_smb-system-info: ERROR: Script execution failed (use -d to debug)
-| smb-security-mode: 
+| smb-enum-shares: 
 |   account_used: guest
-|   authentication_level: user
-|   challenge_response: supported
-|_  message_signing: disabled (dangerous, but default)
+|   \\192.168.238.145\IPC$: 
+|     Type: STYPE_IPC_HIDDEN
+|     Comment: IPC Service (APEX server (Samba, Ubuntu))
+|     Users: 2
+|     Max Users: <unlimited>
+|     Path: C:\tmp
+|     Anonymous access: READ/WRITE
+|     Current user access: READ/WRITE
+|   \\192.168.238.145\docs: 
+|     Type: STYPE_DISKTREE
+|     Comment: Documents
+|     Users: 0
+|     Max Users: <unlimited>
+|     Path: C:\var\www\html\source\Documents
+|     Anonymous access: READ/WRITE
+|     Current user access: READ/WRITE
+|   \\192.168.238.145\print$: 
+|     Type: STYPE_DISKTREE
+|     Comment: Printer Drivers
+|     Users: 0
+|     Max Users: <unlimited>
+|     Path: C:\var\lib\samba\printers
+|     Anonymous access: <none>
+|_    Current user access: <none>
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 80    0       43630.30   8296.88  0.0%
+| 445   0       43685.00   5647.40  0.0%
+|_3306  0       43159.11   4279.41  10.0%
+| smb-os-discovery: 
+|   OS: Windows 6.1 (Samba 4.7.6-Ubuntu)
+|   Computer name: apex
+|   NetBIOS computer name: APEX\x00
+|   Domain name: \x00
+|   FQDN: apex
+|_  System time: 2022-09-28T16:16:10-04:00
 | smb-protocols: 
 |   dialects: 
 |     NT LM 0.12 (SMBv1) [dangerous, but default]
@@ -543,41 +690,49 @@ Host script results:
 |     3.0
 |     3.0.2
 |_    3.1.1
-|_dns-brute: Can't guess domain of "192.168.249.145"; use dns-brute.domain script argument.
+| smb-enum-sessions: 
+|_  <nobody>
+|_smb-system-info: ERROR: Script execution failed (use -d to debug)
 |_msrpc-enum: NT_STATUS_OBJECT_NAME_NOT_FOUND
-| smb-enum-shares: 
+|_dns-brute: Can't guess domain of "192.168.238.145"; use dns-brute.domain script argument.
+| smb-ls: Volume \\192.168.238.145\docs
+| SIZE    TIME                 FILENAME
+| <DIR>   2021-04-09T15:47:12  .
+| <DIR>   2021-04-09T15:47:12  ..
+| 290738  2021-04-09T15:47:12  OpenEMR Success Stories.pdf
+| 490355  2021-04-09T15:47:12  OpenEMR Features.pdf
+|_
+| smb-security-mode: 
 |   account_used: guest
-|   \\192.168.249.145\IPC$: 
-|     Type: STYPE_IPC_HIDDEN
-|     Comment: IPC Service (APEX server (Samba, Ubuntu))
-|     Users: 2
-|     Max Users: <unlimited>
-|     Path: C:\tmp
-|     Anonymous access: READ/WRITE
-|     Current user access: READ/WRITE
-|   \\192.168.249.145\docs: 
-|     Type: STYPE_DISKTREE
-|     Comment: Documents
-|     Users: 0
-|     Max Users: <unlimited>
-|     Path: C:\var\www\html\source\Documents
-|     Anonymous access: READ/WRITE
-|     Current user access: READ/WRITE
-|   \\192.168.249.145\print$: 
-|     Type: STYPE_DISKTREE
-|     Comment: Printer Drivers
-|     Users: 0
-|     Max Users: <unlimited>
-|     Path: C:\var\lib\samba\printers
-|     Anonymous access: <none>
-|_    Current user access: <none>
-| smb-os-discovery: 
-|   OS: Windows 6.1 (Samba 4.7.6-Ubuntu)
-|   Computer name: apex
-|   NetBIOS computer name: APEX\x00
-|   Domain name: \x00
-|   FQDN: apex
-|_  System time: 2022-05-18T16:38:08-04:00
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-time: 
+|   date: 2022-09-28T20:15:52
+|_  start_date: N/A
+| smb-mbenum: 
+|   DFS Root
+|     APEX  0.0  APEX server (Samba, Ubuntu)
+|   Master Browser
+|     APEX  0.0  APEX server (Samba, Ubuntu)
+|   Print server
+|     APEX  0.0  APEX server (Samba, Ubuntu)
+|   Server
+|     APEX  0.0  APEX server (Samba, Ubuntu)
+|   Server service
+|     APEX  0.0  APEX server (Samba, Ubuntu)
+|   Unix server
+|     APEX  0.0  APEX server (Samba, Ubuntu)
+|   Windows NT/2000/XP/2003 server
+|     APEX  0.0  APEX server (Samba, Ubuntu)
+|   Workstation
+|_    APEX  0.0  APEX server (Samba, Ubuntu)
+|_fcrdns: FAIL (No PTR record)
+|_path-mtu: PMTU == 1500
+|_ipidseq: ERROR: Script execution failed (use -d to debug)
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled but not required
 | smb2-capabilities: 
 |   2.0.2: 
 |     Distributed File System
@@ -597,26 +752,5 @@ Host script results:
 |     Distributed File System
 |     Leasing
 |_    Multi-credit operations
-| smb2-security-mode: 
-|   3.1.1: 
-|_    Message signing enabled but not required
-|_fcrdns: FAIL (No PTR record)
-| smb-mbenum: 
-|   DFS Root
-|     APEX  0.0  APEX server (Samba, Ubuntu)
-|   Master Browser
-|     APEX  0.0  APEX server (Samba, Ubuntu)
-|   Print server
-|     APEX  0.0  APEX server (Samba, Ubuntu)
-|   Server
-|     APEX  0.0  APEX server (Samba, Ubuntu)
-|   Server service
-|     APEX  0.0  APEX server (Samba, Ubuntu)
-|   Unix server
-|     APEX  0.0  APEX server (Samba, Ubuntu)
-|   Windows NT/2000/XP/2003 server
-|     APEX  0.0  APEX server (Samba, Ubuntu)
-|   Workstation
-|_    APEX  0.0  APEX server (Samba, Ubuntu)
 
-# Nmap done at Wed May 18 21:43:17 2022 -- 1 IP address (1 host up) scanned in 362.70 seconds
+# Nmap done at Wed Sep 28 21:21:05 2022 -- 1 IP address (1 host up) scanned in 327.99 seconds
