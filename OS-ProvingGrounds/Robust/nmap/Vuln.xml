@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Thu Sep 29 18:32:23 2022 as: nmap -Pn -&#45;script vuln -oA nmap/Vuln -&#45;min-rate 500 -p 22,80,7680 192.168.141.200 -->
+<nmaprun scanner="nmap" args="nmap -Pn -&#45;script vuln -oA nmap/Vuln -&#45;min-rate 500 -p 22,80,7680 192.168.141.200" start="1664472743" startstr="Thu Sep 29 18:32:23 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="22,80,7680"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<taskprogress task="NSE" time="1664472903" percent="98.03" remaining="3" etc="1664472906"/>
+<taskprogress task="NSE" time="1664472903" percent="98.03" remaining="3" etc="1664472906"/>
+<taskprogress task="NSE" time="1664472903" percent="98.03" remaining="3" etc="1664472906"/>
+<taskprogress task="NSE" time="1664472903" percent="98.03" remaining="3" etc="1664472906"/>
+<taskprogress task="NSE" time="1664472903" percent="98.03" remaining="3" etc="1664472906"/>
+<taskprogress task="NSE" time="1664472903" percent="98.03" remaining="3" etc="1664472906"/>
+<taskprogress task="NSE" time="1664472903" percent="98.03" remaining="3" etc="1664472906"/>
+<taskprogress task="NSE" time="1664472907" percent="98.03" remaining="4" etc="1664472910"/>
+<host starttime="1664472753" endtime="1664473265"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="192.168.141.200" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" method="table" conf="3"/><script id="http-slowloris-check" output="&#xa;  VULNERABLE:&#xa;  Slowloris DOS attack&#xa;    State: LIKELY VULNERABLE&#xa;    IDs:  CVE:CVE-2007-6750&#xa;      Slowloris tries to keep many connections to the target web server open and hold&#xa;      them open as long as possible.  It accomplishes this by opening connections to&#xa;      the target web server and sending a partial request. By doing so, it starves&#xa;      the http server&apos;s resources causing Denial Of Service.&#xa;      &#xa;    Disclosure date: 2009-09-17&#xa;    References:&#xa;      http://ha.ckers.org/slowloris/&#xa;      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750&#xa;"><table key="CVE-2007-6750">
+<elem key="title">Slowloris DOS attack</elem>
+<elem key="state">LIKELY VULNERABLE</elem>
+<table key="ids">
+<elem>CVE:CVE-2007-6750</elem>
+</table>
+<table key="description">
+<elem>Slowloris tries to keep many connections to the target web server open and hold&#xa;them open as long as possible.  It accomplishes this by opening connections to&#xa;the target web server and sending a partial request. By doing so, it starves&#xa;the http server&apos;s resources causing Denial Of Service.&#xa;</elem>
+</table>
+<table key="dates">
+<table key="disclosure">
+<elem key="month">09</elem>
+<elem key="year">2009</elem>
+<elem key="day">17</elem>
+</table>
+</table>
+<elem key="disclosure">2009-09-17</elem>
+<table key="exploit_results">
+</table>
+<table key="refs">
+<elem>http://ha.ckers.org/slowloris/</elem>
+<elem>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750</elem>
+</table>
+</table>
+</script><script id="http-cookie-flags" output="&#xa;  /: &#xa;    PHPSESSID: &#xa;      httponly flag not set&#xa;  /login.php: &#xa;    PHPSESSID: &#xa;      httponly flag not set"><table key="/">
+<table key="PHPSESSID">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+<table key="/login.php">
+<table key="PHPSESSID">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+</script><script id="http-enum" output="&#xa;  /login.php: Possible admin folder&#xa;"/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/></port>
+<port protocol="tcp" portid="7680"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="pando-pub" method="table" conf="3"/></port>
+</ports>
+<times srtt="42850" rttvar="32291" to="172014"/>
+</host>
+<runstats><finished time="1664473265" timestr="Thu Sep 29 18:41:05 2022" summary="Nmap done at Thu Sep 29 18:41:05 2022; 1 IP address (1 host up) scanned in 521.92 seconds" elapsed="521.92" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

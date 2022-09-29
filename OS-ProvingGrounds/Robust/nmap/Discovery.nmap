@@ -1,0 +1,125 @@
+# Nmap 7.92 scan initiated Thu Sep 29 18:25:44 2022 as: nmap -Pn --script discovery -oA nmap/Discovery --min-rate 500 -p 22,80,7680 192.168.141.200
+Pre-scan script results:
+| ipv6-multicast-mld-list: 
+|   fe80::a4a6:6fff:feae:633a: 
+|     device: usb0
+|     mac: a6:a6:6f:ae:63:3a
+|     multicast_ips: 
+|       ff02::1:ffae:633a         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:be           (Solicited-Node Address)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::a4a6:6fff:feae:633a  MAC: a6:a6:6f:ae:63:3a  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-echo: 
+|   IP: fe80::a4a6:6fff:feae:633a  MAC: a6:a6:6f:ae:63:3a  IFACE: usb0
+|   IP: 2a01:4c8:1405:857a::be     MAC: a6:a6:6f:ae:63:3a  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: fe80::a4a6:6fff:feae:633a  MAC: a6:a6:6f:ae:63:3a  IFACE: usb0
+|   IP: 2a01:4c8:1405:857a::be     MAC: a6:a6:6f:ae:63:3a  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 192.168.141.200
+Host is up (0.045s latency).
+
+PORT     STATE    SERVICE
+22/tcp   open     ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   3072 21:76:63:1c:3b:10:a6:a7:73:d6:e7:dd:1e:a2:b6:83 (RSA)
+|   256 62:a8:39:f6:ab:92:cd:26:03:bf:1e:28:25:4e:8e:7a (ECDSA)
+|_  256 02:39:7c:e2:af:6a:44:98:ec:9a:28:98:a0:8b:fe:c4 (ED25519)
+|_banner: SSH-2.0-OpenSSH_for_Windows_8.1
+80/tcp   open     http
+| http-headers: 
+|   Host: 192.168.141.200
+|   Date: Thu, 29 Sep 2022 17:26:07 GMT
+|   Connection: close
+|   X-Powered-By: PHP/7.3.33
+|   Set-Cookie: PHPSESSID=i5d8aof2qo3ggb146ejm1ek7hs; path=/
+|   Expires: Thu, 19 Nov 1981 08:52:00 GMT
+|   Cache-Control: no-store, no-cache, must-revalidate
+|   Pragma: no-cache
+|   Content-type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+|_http-errors: Couldn't find any error pages.
+| http-waf-detect: IDS/IPS/WAF detected:
+|_192.168.141.200:80/?p4yl04d3=<script>alert(document.cookie)</script>
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Redirected To: login.php
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-xssed: No previously reported XSS vuln.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1
+|_http-comments-displayer: Couldn't find any comments.
+| http-vhosts: 
+|_128 names had status 302
+| http-security-headers: 
+|   Cache_Control: 
+|     Header: Cache-Control: no-store, no-cache, must-revalidate
+|   Pragma: 
+|     Header: Pragma: no-cache
+|   Expires: 
+|_    Header: Expires: Thu, 19 Nov 1981 08:52:00 GMT
+| http-title: Site doesn't have a title (text/html; charset=UTF-8).
+|_Requested resource was login.php
+|_http-feed: Couldn't find any feeds.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-date: Thu, 29 Sep 2022 17:26:07 GMT; +59m59s from local time.
+| http-enum: 
+|_  /login.php: Possible admin folder
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-mobileversion-checker: No mobile version detected.
+|_http-chrono: Request times for /; avg: 483.51ms; min: 249.18ms; max: 695.57ms
+|_http-php-version: Version from header x-powered-by: PHP/7.3.33
+7680/tcp filtered pando-pub
+
+Host script results:
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       46802.90   8940.73   0.0%
+|_80    0       52836.40   12564.42  0.0%
+|_path-mtu: PMTU == 1500
+|_ipidseq: ERROR: Script execution failed (use -d to debug)
+|_dns-brute: Can't guess domain of "192.168.141.200"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Thu Sep 29 18:28:27 2022 -- 1 IP address (1 host up) scanned in 162.78 seconds

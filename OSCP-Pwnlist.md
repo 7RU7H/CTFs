@@ -56,9 +56,6 @@ PlanetExpress | Done | Walkthrough | [Link]()
 Hunit  | Done | Walkthrough | [Link]() 
 Slort | Done
 Squid | Done | Redo
-Resourced | Done | Wakthrough | [Link](https://github.com/7RU7H/CTFs/tree/main/OS-ProvingGrounds/Resourced)
-
-
 
 #### OS-Proving-Grounds AD 
 Box Name  | Recon-ed | Done | Writeup
@@ -66,6 +63,7 @@ Box Name  | Recon-ed | Done | Writeup
 Heist | Done  | | [Link]()
 Hutch | Done-somesmbtodo | | [Link]()
 Vault | Done-somesmbtodo | | [Link]()
+Resourced | Done | Wakthrough | [Link](https://github.com/7RU7H/CTFs/tree/main/OS-ProvingGrounds/Resourced)
 
 ## HTB
 #### HTB Walkthroughs

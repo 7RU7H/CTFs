@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Thu Sep 29 18:25:44 2022 as: nmap -Pn -&#45;script discovery -oA nmap/Discovery -&#45;min-rate 500 -p 22,80,7680 192.168.141.200 -->
+<nmaprun scanner="nmap" args="nmap -Pn -&#45;script discovery -oA nmap/Discovery -&#45;min-rate 500 -p 22,80,7680 192.168.141.200" start="1664472344" startstr="Thu Sep 29 18:25:44 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="22,80,7680"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="ipv6-multicast-mld-list" output="&#xa;  fe80::a4a6:6fff:feae:633a: &#xa;    device: usb0&#xa;    mac: a6:a6:6f:ae:63:3a&#xa;    multicast_ips: &#xa;      ff02::1:ffae:633a         (NDP Solicited-node)&#xa;      ff02::1:ff00:0            (Solicited-Node Address)&#xa;      ff05::2                   (unknown)&#xa;      ff02::2                   (All Routers Address)&#xa;      ff02::1:ff00:be           (Solicited-Node Address)"><table key="fe80::a4a6:6fff:feae:633a">
+<elem key="device">usb0</elem>
+<elem key="mac">a6:a6:6f:ae:63:3a</elem>
+<table key="multicast_ips">
+<table>
+<elem key="description">NDP Solicited-node</elem>
+<elem key="ip">ff02::1:ffae:633a</elem>
+</table>
+<table>
+<elem key="description">Solicited-Node Address</elem>
+<elem key="ip">ff02::1:ff00:0</elem>
+</table>
+<table>
+<elem key="description">unknown</elem>
+<elem key="ip">ff05::2</elem>
+</table>
+<table>
+<elem key="description">All Routers Address</elem>
+<elem key="ip">ff02::2</elem>
+</table>
+<table>
+<elem key="description">Solicited-Node Address</elem>
+<elem key="ip">ff02::1:ff00:be</elem>
+</table>
+</table>
+</table>
+</script><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-ipv6-multicast-mld" output="&#xa;  IP: fe80::a4a6:6fff:feae:633a  MAC: a6:a6:6f:ae:63:3a  IFACE: usb0&#xa;&#xa;  Use -&#45;script-args=newtargets to add the results as targets"><table>
+<elem key="iface">usb0</elem>
+<elem key="mac">a6:a6:6f:ae:63:3a</elem>
+<elem key="address">fe80::a4a6:6fff:feae:633a</elem>
+</table>
+</script><script id="targets-ipv6-multicast-echo" output="&#xa;  IP: fe80::a4a6:6fff:feae:633a  MAC: a6:a6:6f:ae:63:3a  IFACE: usb0&#xa;  IP: 2a01:4c8:1405:857a::be     MAC: a6:a6:6f:ae:63:3a  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="targets-ipv6-multicast-invalid-dst" output="&#xa;  IP: fe80::a4a6:6fff:feae:633a  MAC: a6:a6:6f:ae:63:3a  IFACE: usb0&#xa;  IP: 2a01:4c8:1405:857a::be     MAC: a6:a6:6f:ae:63:3a  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/></prescript><host starttime="1664472356" endtime="1664472507"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="192.168.141.200" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ssh" method="table" conf="3"/><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (10)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (6)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+<elem>diffie-hellman-group14-sha1</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ssh-rsa</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script><script id="ssh-hostkey" output="&#xa;  3072 21:76:63:1c:3b:10:a6:a7:73:d6:e7:dd:1e:a2:b6:83 (RSA)&#xa;  256 62:a8:39:f6:ab:92:cd:26:03:bf:1e:28:25:4e:8e:7a (ECDSA)&#xa;  256 02:39:7c:e2:af:6a:44:98:ec:9a:28:98:a0:8b:fe:c4 (ED25519)"><table>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABgQDSo4/4sSvmZFJw4FkI0ZXUaEHdusDck+pfnq5vhbEg+neSPKt7YTzbqxXm0BPrY9swmyMDwDn09k21MlA9hyLdIB6BZT1fz8nK8O+UEE+e53ghP23zVOYUyw4IjRCduUKEjuoRsW7a36wgZ8GVvPm9NGBpz2BTfIxmwoLRARjSHFBtFtPZltgRzcu/188M7JhrDtF/imIt06r6SOSdageTmcq78V/HmXUHh/+3Jnp+9Xq94z7gb4rOtxETiktR4UeIk8q9EPn/ceG/WAeja/1fjJTvAIrw60XKFLppWhwmtddpP3eC9w3lQizX9747vkhRlbxTisw43ToDYHyaTzk8tAr9/JJrPM2M1jTqXF3BesKzHkamwtbicv2kBl5EZYi+6G90/U6l316ZqPwsycSy696PCckcQeEUPMlj1KV6pFn12ciHg13zFlklkbuUcMunzbFSDhsX6zCoJFkTtEH8bq5ggOTn4/3vvlC6/ztwbW5HvVcOTV2YBw1OtkedTls=</elem>
+<elem key="fingerprint">2176631c3b10a6a773d6e7dd1ea2b683</elem>
+<elem key="bits">3072</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+<table>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI6oIWoL/ry64HgcuXuGVFdsvFnTefY9gWcxc9VzWmwMLFbg+o7F8abQFR1uCj73HGbNUocn+FwhkCLsA3ydYyg=</elem>
+<elem key="fingerprint">62a839f6ab92cd2603bf1e28254e8e7a</elem>
+<elem key="bits">256</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+</table>
+<table>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAINBQQsVvvTqPB10fWgVtV7w/qhuRYZpHoQXc524saUF+</elem>
+<elem key="fingerprint">02397ce2af6a4498ec9a2898a08bfec4</elem>
+<elem key="bits">256</elem>
+<elem key="type">ssh-ed25519</elem>
+</table>
+</script><script id="banner" output="SSH-2.0-OpenSSH_for_Windows_8.1"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" method="table" conf="3"/><script id="http-headers" output="&#xa;  Host: 192.168.141.200&#xa;  Date: Thu, 29 Sep 2022 17:26:07 GMT&#xa;  Connection: close&#xa;  X-Powered-By: PHP/7.3.33&#xa;  Set-Cookie: PHPSESSID=i5d8aof2qo3ggb146ejm1ek7hs; path=/&#xa;  Expires: Thu, 19 Nov 1981 08:52:00 GMT&#xa;  Cache-Control: no-store, no-cache, must-revalidate&#xa;  Pragma: no-cache&#xa;  Content-type: text/html; charset=UTF-8&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-errors" output="Couldn&apos;t find any error pages."/><script id="http-waf-detect" output="IDS/IPS/WAF detected:&#xa;192.168.141.200:80/?p4yl04d3=&lt;script&gt;alert(document.cookie)&lt;/script&gt;"/><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Redirected To: login.php&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">200</elem>
+<elem key="Redirected To">login.php</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-xssed" output="No previously reported XSS vuln."/><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      Other: 1&#xa;  Longest directory structure:&#xa;    Depth: 0&#xa;    Dir: /&#xa;  Total files found (by extension):&#xa;    Other: 1&#xa;"/><script id="http-comments-displayer" output="Couldn&apos;t find any comments."/><script id="http-vhosts" output="&#xa;128 names had status 302"/><script id="http-security-headers" output="&#xa;  Cache_Control: &#xa;    Header: Cache-Control: no-store, no-cache, must-revalidate&#xa;  Pragma: &#xa;    Header: Pragma: no-cache&#xa;  Expires: &#xa;    Header: Expires: Thu, 19 Nov 1981 08:52:00 GMT"><table key="Cache_Control">
+<elem>Header: Cache-Control: no-store, no-cache, must-revalidate</elem>
+</table>
+<table key="Pragma">
+<elem>Header: Pragma: no-cache</elem>
+</table>
+<table key="Expires">
+<elem>Header: Expires: Thu, 19 Nov 1981 08:52:00 GMT</elem>
+</table>
+</script><script id="http-title" output="Site doesn&apos;t have a title (text/html; charset=UTF-8).&#xa;Requested resource was login.php"><elem key="redirect_url">login.php</elem>
+</script><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-date" output="Thu, 29 Sep 2022 17:26:07 GMT; +59m59s from local time."><elem key="date">2022-09-29T18:26:07+00:00</elem>
+<elem key="delta">3599.0</elem>
+</script><script id="http-enum" output="&#xa;  /login.php: Possible admin folder&#xa;"/><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-chrono" output="Request times for /; avg: 483.51ms; min: 249.18ms; max: 695.57ms"/><script id="http-php-version" output="Version from header x-powered-by: PHP/7.3.33"/></port>
+<port protocol="tcp" portid="7680"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="pando-pub" method="table" conf="3"/></port>
+</ports>
+<hostscript><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;22    0       46802.90   8940.73   0.0%&#xa;80    0       52836.40   12564.42  0.0%&#xa;"/><script id="path-mtu" output="PMTU == 1500"/><script id="ipidseq" output="ERROR: Script execution failed (use -d to debug)"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;192.168.141.200&quot;; use dns-brute.domain script argument."/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script></hostscript><times srtt="45314" rttvar="34149" to="181910"/>
+</host>
+<runstats><finished time="1664472507" timestr="Thu Sep 29 18:28:27 2022" summary="Nmap done at Thu Sep 29 18:28:27 2022; 1 IP address (1 host up) scanned in 162.78 seconds" elapsed="162.78" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
