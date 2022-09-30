@@ -1,0 +1,24 @@
+# Nmap 7.92 scan initiated Fri Sep 30 08:21:58 2022 as: nmap --script vuln -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/MegaVolt/nmap/Vuln --min-rate 80,22 -p 80,22 192.168.141.115
+Nmap scan report for 192.168.141.115
+Host is up (0.045s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+|_http-trace: TRACE is enabled
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+| http-internal-ip-disclosure: 
+|_  Internal IP Leaked: 127.0.0.1
+| http-enum: 
+|   /account.php: Possible admin folder
+|   /.gitignore: Revision control ignore file
+|   /apps/: Potentially interesting folder w/ directory listing
+|   /css/: Potentially interesting folder w/ directory listing
+|   /icons/: Potentially interesting folder w/ directory listing
+|   /images/: Potentially interesting folder w/ directory listing
+|_  /js/: Potentially interesting folder w/ directory listing
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+
+# Nmap done at Fri Sep 30 08:22:32 2022 -- 1 IP address (1 host up) scanned in 33.09 seconds

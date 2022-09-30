@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Fri Sep 30 08:17:10 2022 as: nmap -&#45;script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/MegaVolt/nmap/Discovery -&#45;min-rate 80,22 -p 80,22 192.168.141.115 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/MegaVolt/nmap/Discovery -&#45;min-rate 80,22 -p 80,22 192.168.141.115" start="1664522230" startstr="Fri Sep 30 08:17:10 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-ipv6-multicast-invalid-dst" output="&#xa;  IP: 2a01:4c8:1405:857a::33     MAC: 42:a9:79:87:1f:d3  IFACE: usb0&#xa;  IP: fe80::40a9:79ff:fe87:1fd3  MAC: 42:a9:79:87:1f:d3  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="targets-ipv6-multicast-mld" output="&#xa;  IP: fe80::40a9:79ff:fe87:1fd3  MAC: 42:a9:79:87:1f:d3  IFACE: usb0&#xa;&#xa;  Use -&#45;script-args=newtargets to add the results as targets"><table>
+<elem key="address">fe80::40a9:79ff:fe87:1fd3</elem>
+<elem key="mac">42:a9:79:87:1f:d3</elem>
+<elem key="iface">usb0</elem>
+</table>
+</script><script id="targets-ipv6-multicast-echo" output="&#xa;  IP: fe80::40a9:79ff:fe87:1fd3  MAC: 42:a9:79:87:1f:d3  IFACE: usb0&#xa;  IP: 2a01:4c8:1405:857a::33     MAC: 42:a9:79:87:1f:d3  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="ipv6-multicast-mld-list" output="&#xa;  fe80::40a9:79ff:fe87:1fd3: &#xa;    device: usb0&#xa;    mac: 42:a9:79:87:1f:d3&#xa;    multicast_ips: &#xa;      ff02::1:ff87:1fd3         (NDP Solicited-node)&#xa;      ff02::1:ff00:0            (Solicited-Node Address)&#xa;      ff05::2                   (unknown)&#xa;      ff02::2                   (All Routers Address)&#xa;      ff02::1:ff00:33           (Solicited-Node Address)"><table key="fe80::40a9:79ff:fe87:1fd3">
+<elem key="device">usb0</elem>
+<elem key="mac">42:a9:79:87:1f:d3</elem>
+<table key="multicast_ips">
+<table>
+<elem key="ip">ff02::1:ff87:1fd3</elem>
+<elem key="description">NDP Solicited-node</elem>
+</table>
+<table>
+<elem key="ip">ff02::1:ff00:0</elem>
+<elem key="description">Solicited-Node Address</elem>
+</table>
+<table>
+<elem key="ip">ff05::2</elem>
+<elem key="description">unknown</elem>
+</table>
+<table>
+<elem key="ip">ff02::2</elem>
+<elem key="description">All Routers Address</elem>
+</table>
+<table>
+<elem key="ip">ff02::1:ff00:33</elem>
+<elem key="description">Solicited-Node Address</elem>
+</table>
+</table>
+</table>
+</script></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.141.115" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1664522241" endtime="1664522518"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="192.168.141.115" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/><script id="banner" output="SSH-2.0-OpenSSH_7.4"/><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (12)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (12)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group-exchange-sha1</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+<elem>diffie-hellman-group14-sha1</elem>
+<elem>diffie-hellman-group1-sha1</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>ssh-rsa</elem>
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+<elem>aes128-cbc</elem>
+<elem>aes192-cbc</elem>
+<elem>aes256-cbc</elem>
+<elem>blowfish-cbc</elem>
+<elem>cast128-cbc</elem>
+<elem>3des-cbc</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script><script id="ssh-hostkey" output="&#xa;  2048 9e:b3:fd:65:a2:75:72:85:01:2c:f6:74:00:0d:2f:79 (RSA)&#xa;  256 85:70:86:99:cf:a1:e3:fd:3e:2d:08:37:62:94:23:01 (ECDSA)&#xa;  256 d4:b8:fe:86:30:ec:c6:b2:02:e4:53:1e:74:b3:7d:3a (ED25519)"><table>
+<elem key="fingerprint">9eb3fd65a2757285012cf674000d2f79</elem>
+<elem key="type">ssh-rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABAQDmIyICELsaarinfCQ65Wp0OQ0pdO7NEKF7A1AuGkmJY6KpU72MN48RunqMnNGYZGjEQMTGjLsOahUQW/KvzdnW5T8zxy3ju4tjL8dgBrC4XslstkDYy/iH/sybPSblRso833tUZ13itPjaS2naJgRrHX+s6lYAezQ0cc40fb4TIKA67tGZ0aK77wJ8FL/ulOA4hgmsSOZIblVr1WNAMwN7N5LLeuixty2eD0CUS0rswsPENDw095OoCoLe0CFhLpSBF+7w8rz7zy7Ncx6C0+APA+LoOYcTpuFv+L3DKBZxh1Re/wUrxKSdvFXO+aZ1NXyCoJsaDkflZMIiYFs36nDv</elem>
+</table>
+<table>
+<elem key="fingerprint">85708699cfa1e3fd3e2d083762942301</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="bits">256</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBImU/aQ/oNhWr30L1qGPpdX8MD2ZOlX1Mudt3YyyY2Xgg8FXyDdIw6p1UYJrywLi4yZH/kgXQvIoTaW2wCQafpg=</elem>
+</table>
+<table>
+<elem key="fingerprint">d4b8fe8630ecc6b202e4531e74b37d3a</elem>
+<elem key="type">ssh-ed25519</elem>
+<elem key="bits">256</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIMldmJAFcBjZlABjPJoyQYEuWX0L6x+h1Hk6BUUhuFDv</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-enum" output="&#xa;  /account.php: Possible admin folder&#xa;  /.gitignore: Revision control ignore file&#xa;  /apps/: Potentially interesting folder w/ directory listing&#xa;  /css/: Potentially interesting folder w/ directory listing&#xa;  /icons/: Potentially interesting folder w/ directory listing&#xa;  /images/: Potentially interesting folder w/ directory listing&#xa;  /js/: Potentially interesting folder w/ directory listing&#xa;"/><script id="http-comments-displayer" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.141.115&#xa;    &#xa;    Path: http://192.168.141.115:80/assets/default/css/theme.css&#xa;    Line number: 756&#xa;    Comment: &#xa;        /* Ticket icons */&#xa;    &#xa;    Path: http://192.168.141.115:80/css/ui-lightness/jquery-ui-1.10.3.custom.min.css&#xa;    Line number: 1&#xa;    Comment: &#xa;        /*! jQuery UI - v1.10.3 - 2013-08-24&#xa;        * http://jqueryui.com&#xa;        * Includes: jquery.ui.core.css, jquery.ui.datepicker.css&#xa;        * To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Trebuchet%20MS%2CTahoma%2CVerdana%2CArial%2Csans-serif&amp;fwDefault=bold&amp;fsDefault=1.1em&amp;cornerRadius=4px&amp;bgColorHeader=f6a828&amp;bgTextureHeader=gloss_wave&amp;bgImgOpacityHeader=35&amp;borderColorHeader=e78f08&amp;fcHeader=ffffff&amp;iconColorHeader=ffffff&amp;bgColorContent=eeeeee&amp;bgTextureContent=highlight_soft&amp;bgImgOpacityContent=100&amp;borderColorContent=dddddd&amp;fcContent=333333&amp;iconColorContent=222222&amp;bgColorDefault=f6f6f6&amp;bgTextureDefault=glass&amp;bgImgOpacityDefault=100&amp;borderColorDefault=cccccc&amp;fcDefault=1c94c4&amp;iconColorDefault=ef8c08&amp;bgColorHover=fdf5ce&amp;bgTextureHover=glass&amp;bgImgOpacityHover=100&amp;borderColorHover=fbcb09&amp;fcHover=c77405&amp;iconColorHover=ef8c08&amp;bgColorActive=ffffff&amp;bgTextureActive=glass&amp;bgImgOpacityActive=65&amp;borderColorActive=fbd850&amp;fcActive=eb8f00&amp;iconColorActive=ef8c08&amp;bgColorHighlight=ffe45c&amp;bgTextureHighlight=highlight_soft&amp;bgImgOpacityHighlight=75&amp;borderColorHighlight=fed22f&amp;fcHighlight=363636&amp;iconColorHighlight=228ef1&amp;bgColorError=b81900&amp;bgTextureError=diagonals_thick&amp;bgImgOpacityError=18&amp;borderColorError=cd0a0a&amp;fcError=ffffff&amp;iconColorError=ffd27a&amp;bgColorOverlay=666666&amp;bgTextureOverlay=diagonals_thick&amp;bgImgOpacityOverlay=20&amp;opacityOverlay=50&amp;bgColorShadow=000000&amp;bgTextureShadow=flat&amp;bgImgOpacityShadow=10&amp;opacityShadow=20&amp;thicknessShadow=5px&amp;offsetTopShadow=-5px&amp;offsetLeftShadow=-5px&amp;cornerRadiusShadow=5px&#xa;        * Copyright 2013 jQuery Foundation and other contributors Licensed MIT */&#xa;    &#xa;    Path: http://192.168.141.115:80/assets/default/css/theme.css&#xa;    Line number: 136&#xa;    Comment: &#xa;        /* Helpers */&#xa;    &#xa;    Path: http://192.168.141.115:80/assets/default/css/theme.css&#xa;    Line number: 151&#xa;    Comment: &#xa;        /* Pagination */&#xa;    &#xa;    Path: http://192.168.141.115:80/assets/default/css/theme.css&#xa;    Line number: 196&#xa;    Comment: &#xa;        /* Alerts &amp; Notices */&#xa;    &#xa;    Path: http://192.168.141.115:80/assets/default/css/theme.css&#xa;    Line number: 112&#xa;    Comment: &#xa;        /* Typography */&#xa;    &#xa;    Path: http://192.168.141.115:80/assets/default/css/theme.css&#xa;    Line number: 438&#xa;    Comment: &#xa;        /* Landing page FAQ not yet implemented. */&#xa;    &#xa;    Path: http://192.168.141.115:80/open.php&#xa;    Line number: 23&#xa;    Comment: &#xa;        &lt;!-&#45; Favicons -&#45;&gt;&#xa;"/><script id="http-errors" output="&#xa;Spidering limited to: maxpagecount=40; withinhost=192.168.141.115&#xa;  Found the following error pages: &#xa;  &#xa;  Error Code: 404&#xa;  &#x9;http://192.168.141.115:80/scp/json.redirect;&#xa;  &#xa;  Error Code: 422&#xa;  &#x9;http://192.168.141.115:80/scp/index.php&#xa;  &#xa;  Error Code: 422&#xa;  &#x9;http://192.168.141.115:80/scp/login.php&#xa;  &#xa;  Error Code: 422&#xa;  &#x9;http://192.168.141.115:80/scp/&#xa;  &#xa;  Error Code: 422&#xa;  &#x9;http://192.168.141.115:80/login.php&#xa;"/><script id="http-php-version" output="Version from header x-powered-by: PHP/7.3.23"/><script id="http-vhosts" output="&#xa;128 names had status 200"/><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      Other: 1; php: 1&#xa;    /assets/default/css/&#xa;      css: 1&#xa;    /css/ui-lightness/&#xa;      css: 1&#xa;  Longest directory structure:&#xa;    Depth: 3&#xa;    Dir: /assets/default/css/&#xa;  Total files found (by extension):&#xa;    Other: 1; css: 2; php: 1&#xa;"/><script id="http-xssed" output="No previously reported XSS vuln."/><script id="http-security-headers" output="&#xa;  Content_Security_Policy: &#xa;    Header: Content-Security-Policy: frame-ancestors &apos;&apos;self&apos;&apos;;&#xa;    Description: Define from where the protected resource can be embedded in frames.&#xa;  Cache_Control: &#xa;    Header: Cache-Control: no-store, no-cache, must-revalidate&#xa;  Pragma: &#xa;    Header: Pragma: no-cache&#xa;  Expires: &#xa;    Header: Expires: Thu, 19 Nov 1981 08:52:00 GMT"><table key="Content_Security_Policy">
+<elem>Header: Content-Security-Policy: frame-ancestors &apos;&apos;self&apos;&apos;;</elem>
+<elem>Description: Define from where the protected resource can be embedded in frames.</elem>
+</table>
+<table key="Cache_Control">
+<elem>Header: Cache-Control: no-store, no-cache, must-revalidate</elem>
+</table>
+<table key="Pragma">
+<elem>Header: Pragma: no-cache</elem>
+</table>
+<table key="Expires">
+<elem>Header: Expires: Thu, 19 Nov 1981 08:52:00 GMT</elem>
+</table>
+</script><script id="http-chrono" output="Request times for /; avg: 202.46ms; min: 163.21ms; max: 233.75ms"/><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-headers" output="&#xa;  Date: Fri, 30 Sep 2022 07:17:32 GMT&#xa;  Server: Apache/2.4.6 (CentOS) PHP/7.3.23&#xa;  X-Powered-By: PHP/7.3.23&#xa;  Set-Cookie: OSTSESSID=l98i1uo9kvs70s0dvhmuu7kkqs; expires=Sat, 01-Oct-2022 07:17:32 GMT; Max-Age=86400; path=/&#xa;  Expires: Thu, 19 Nov 1981 08:52:00 GMT&#xa;  Cache-Control: no-store, no-cache, must-revalidate&#xa;  Pragma: no-cache&#xa;  Content-Security-Policy: frame-ancestors &apos;&apos;self&apos;&apos;;&#xa;  Content-Language: en-US&#xa;  Connection: close&#xa;  Content-Type: text/html; charset=UTF-8&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-title" output="Ozzie Ozzie Ozzie"><elem key="title">Ozzie Ozzie Ozzie</elem>
+</script><script id="http-date" output="Fri, 30 Sep 2022 07:17:22 GMT; +59m59s from local time."><elem key="date">2022-09-30T08:17:22+00:00</elem>
+<elem key="delta">3599.0</elem>
+</script><script id="http-internal-ip-disclosure" output="&#xa;  Internal IP Leaked: 127.0.0.1"><elem key="Internal IP Leaked">127.0.0.1</elem>
+</script><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">200</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-trace" output="TRACE is enabled"/></port>
+</ports>
+<hostscript><script id="ipidseq" output="ERROR: Script execution failed (use -d to debug)"/><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)&#xa;22    0       49842.50   7171.55  0.0%&#xa;80    0       50519.80   7673.11  0.0%&#xa;"/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="path-mtu" output="PMTU == 1500"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;192.168.141.115&quot;; use dns-brute.domain script argument."/></hostscript><times srtt="48129" rttvar="30325" to="169429"/>
+</host>
+<runstats><finished time="1664522518" timestr="Fri Sep 30 08:21:58 2022" summary="Nmap done at Fri Sep 30 08:21:58 2022; 1 IP address (1 host up) scanned in 288.90 seconds" elapsed="288.90" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

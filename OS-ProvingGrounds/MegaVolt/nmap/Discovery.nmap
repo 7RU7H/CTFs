@@ -1,0 +1,200 @@
+# Nmap 7.92 scan initiated Fri Sep 30 08:17:10 2022 as: nmap --script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/MegaVolt/nmap/Discovery --min-rate 80,22 -p 80,22 192.168.141.115
+Pre-scan script results:
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:1405:857a::33     MAC: 42:a9:79:87:1f:d3  IFACE: usb0
+|   IP: fe80::40a9:79ff:fe87:1fd3  MAC: 42:a9:79:87:1f:d3  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::40a9:79ff:fe87:1fd3  MAC: 42:a9:79:87:1f:d3  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-echo: 
+|   IP: fe80::40a9:79ff:fe87:1fd3  MAC: 42:a9:79:87:1f:d3  IFACE: usb0
+|   IP: 2a01:4c8:1405:857a::33     MAC: 42:a9:79:87:1f:d3  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| ipv6-multicast-mld-list: 
+|   fe80::40a9:79ff:fe87:1fd3: 
+|     device: usb0
+|     mac: 42:a9:79:87:1f:d3
+|     multicast_ips: 
+|       ff02::1:ff87:1fd3         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:33           (Solicited-Node Address)
+Nmap scan report for 192.168.141.115
+Host is up (0.048s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+|_banner: SSH-2.0-OpenSSH_7.4
+| ssh2-enum-algos: 
+|   kex_algorithms: (12)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (12)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   2048 9e:b3:fd:65:a2:75:72:85:01:2c:f6:74:00:0d:2f:79 (RSA)
+|   256 85:70:86:99:cf:a1:e3:fd:3e:2d:08:37:62:94:23:01 (ECDSA)
+|_  256 d4:b8:fe:86:30:ec:c6:b2:02:e4:53:1e:74:b3:7d:3a (ED25519)
+80/tcp open  http
+| http-enum: 
+|   /account.php: Possible admin folder
+|   /.gitignore: Revision control ignore file
+|   /apps/: Potentially interesting folder w/ directory listing
+|   /css/: Potentially interesting folder w/ directory listing
+|   /icons/: Potentially interesting folder w/ directory listing
+|   /images/: Potentially interesting folder w/ directory listing
+|_  /js/: Potentially interesting folder w/ directory listing
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.141.115
+|     
+|     Path: http://192.168.141.115:80/assets/default/css/theme.css
+|     Line number: 756
+|     Comment: 
+|         /* Ticket icons */
+|     
+|     Path: http://192.168.141.115:80/css/ui-lightness/jquery-ui-1.10.3.custom.min.css
+|     Line number: 1
+|     Comment: 
+|         /*! jQuery UI - v1.10.3 - 2013-08-24
+|         * http://jqueryui.com
+|         * Includes: jquery.ui.core.css, jquery.ui.datepicker.css
+|         * To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Trebuchet%20MS%2CTahoma%2CVerdana%2CArial%2Csans-serif&fwDefault=bold&fsDefault=1.1em&cornerRadius=4px&bgColorHeader=f6a828&bgTextureHeader=gloss_wave&bgImgOpacityHeader=35&borderColorHeader=e78f08&fcHeader=ffffff&iconColorHeader=ffffff&bgColorContent=eeeeee&bgTextureContent=highlight_soft&bgImgOpacityContent=100&borderColorContent=dddddd&fcContent=333333&iconColorContent=222222&bgColorDefault=f6f6f6&bgTextureDefault=glass&bgImgOpacityDefault=100&borderColorDefault=cccccc&fcDefault=1c94c4&iconColorDefault=ef8c08&bgColorHover=fdf5ce&bgTextureHover=glass&bgImgOpacityHover=100&borderColorHover=fbcb09&fcHover=c77405&iconColorHover=ef8c08&bgColorActive=ffffff&bgTextureActive=glass&bgImgOpacityActive=65&borderColorActive=fbd850&fcActive=eb8f00&iconColorActive=ef8c08&bgColorHighlight=ffe45c&bgTextureHighlight=highlight_soft&bgImgOpacityHighlight=75&borderColorHighlight=fed22f&fcHighlight=363636&iconColorHighlight=228ef1&bgColorError=b81900&bgTextureError=diagonals_thick&bgImgOpacityError=18&borderColorError=cd0a0a&fcError=ffffff&iconColorError=ffd27a&bgColorOverlay=666666&bgTextureOverlay=diagonals_thick&bgImgOpacityOverlay=20&opacityOverlay=50&bgColorShadow=000000&bgTextureShadow=flat&bgImgOpacityShadow=10&opacityShadow=20&thicknessShadow=5px&offsetTopShadow=-5px&offsetLeftShadow=-5px&cornerRadiusShadow=5px
+|         * Copyright 2013 jQuery Foundation and other contributors Licensed MIT */
+|     
+|     Path: http://192.168.141.115:80/assets/default/css/theme.css
+|     Line number: 136
+|     Comment: 
+|         /* Helpers */
+|     
+|     Path: http://192.168.141.115:80/assets/default/css/theme.css
+|     Line number: 151
+|     Comment: 
+|         /* Pagination */
+|     
+|     Path: http://192.168.141.115:80/assets/default/css/theme.css
+|     Line number: 196
+|     Comment: 
+|         /* Alerts & Notices */
+|     
+|     Path: http://192.168.141.115:80/assets/default/css/theme.css
+|     Line number: 112
+|     Comment: 
+|         /* Typography */
+|     
+|     Path: http://192.168.141.115:80/assets/default/css/theme.css
+|     Line number: 438
+|     Comment: 
+|         /* Landing page FAQ not yet implemented. */
+|     
+|     Path: http://192.168.141.115:80/open.php
+|     Line number: 23
+|     Comment: 
+|_        <!-- Favicons -->
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=192.168.141.115
+|   Found the following error pages: 
+|   
+|   Error Code: 404
+|   	http://192.168.141.115:80/scp/json.redirect;
+|   
+|   Error Code: 422
+|   	http://192.168.141.115:80/scp/index.php
+|   
+|   Error Code: 422
+|   	http://192.168.141.115:80/scp/login.php
+|   
+|   Error Code: 422
+|   	http://192.168.141.115:80/scp/
+|   
+|   Error Code: 422
+|_  	http://192.168.141.115:80/login.php
+|_http-php-version: Version from header x-powered-by: PHP/7.3.23
+| http-vhosts: 
+|_128 names had status 200
+|_http-mobileversion-checker: No mobile version detected.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; php: 1
+|     /assets/default/css/
+|       css: 1
+|     /css/ui-lightness/
+|       css: 1
+|   Longest directory structure:
+|     Depth: 3
+|     Dir: /assets/default/css/
+|   Total files found (by extension):
+|_    Other: 1; css: 2; php: 1
+|_http-xssed: No previously reported XSS vuln.
+| http-security-headers: 
+|   Content_Security_Policy: 
+|     Header: Content-Security-Policy: frame-ancestors ''self'';
+|     Description: Define from where the protected resource can be embedded in frames.
+|   Cache_Control: 
+|     Header: Cache-Control: no-store, no-cache, must-revalidate
+|   Pragma: 
+|     Header: Pragma: no-cache
+|   Expires: 
+|_    Header: Expires: Thu, 19 Nov 1981 08:52:00 GMT
+|_http-chrono: Request times for /; avg: 202.46ms; min: 163.21ms; max: 233.75ms
+|_http-feed: Couldn't find any feeds.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-headers: 
+|   Date: Fri, 30 Sep 2022 07:17:32 GMT
+|   Server: Apache/2.4.6 (CentOS) PHP/7.3.23
+|   X-Powered-By: PHP/7.3.23
+|   Set-Cookie: OSTSESSID=l98i1uo9kvs70s0dvhmuu7kkqs; expires=Sat, 01-Oct-2022 07:17:32 GMT; Max-Age=86400; path=/
+|   Expires: Thu, 19 Nov 1981 08:52:00 GMT
+|   Cache-Control: no-store, no-cache, must-revalidate
+|   Pragma: no-cache
+|   Content-Security-Policy: frame-ancestors ''self'';
+|   Content-Language: en-US
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+|_http-title: Ozzie Ozzie Ozzie
+|_http-date: Fri, 30 Sep 2022 07:17:22 GMT; +59m59s from local time.
+| http-internal-ip-disclosure: 
+|_  Internal IP Leaked: 127.0.0.1
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-trace: TRACE is enabled
+
+Host script results:
+|_ipidseq: ERROR: Script execution failed (use -d to debug)
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 22    0       49842.50   7171.55  0.0%
+|_80    0       50519.80   7673.11  0.0%
+|_fcrdns: FAIL (No PTR record)
+|_path-mtu: PMTU == 1500
+|_dns-brute: Can't guess domain of "192.168.141.115"; use dns-brute.domain script argument.
+
+# Nmap done at Fri Sep 30 08:21:58 2022 -- 1 IP address (1 host up) scanned in 288.90 seconds

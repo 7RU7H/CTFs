@@ -1,5 +1,5 @@
-# Craft2 Writeup
-Name: Craft2
+# MegaVolt Writeup
+Name: MegaVolt
 Date:  
 Difficulty:  
 Goals:  

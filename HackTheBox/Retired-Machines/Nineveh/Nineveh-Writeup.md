@@ -62,7 +62,7 @@ I am not a php person, went back to the [Ippsec video](https://www.youtube.com/w
 
 ![900](ninevehNotesninevehNotes.png)
 
-Code execution! Then I failed for half an hour to make that work so something went wrong. And  with time constraits I have
+Code execution! Then I failed for half an hour to make that work so something went wrong. And with time constraits I have
 
 
 ## Foothold
