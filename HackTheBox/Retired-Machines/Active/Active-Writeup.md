@@ -1,4 +1,3 @@
-# Active Writeup
 Name: Active
 Date:  
 Difficulty:  Easy
