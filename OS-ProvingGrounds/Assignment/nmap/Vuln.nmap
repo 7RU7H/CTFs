@@ -1,0 +1,57 @@
+# Nmap 7.92 scan initiated Tue Oct  4 17:56:15 2022 as: nmap --script vuln -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Assignment/nmap/Vuln --min-rate 80,8000,22 -p 80,8000,22 192.168.198.224
+Nmap scan report for 192.168.198.224
+Host is up (0.040s latency).
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       http://ha.ckers.org/slowloris/
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-enum: 
+|   /login.stm: Belkin G Wireless Router
+|   /login.php: Possible admin folder
+|   /login.html: Possible admin folder
+|   /login.cfm: Possible admin folder
+|   /login.asp: Possible admin folder
+|   /login.aspx: Possible admin folder
+|   /login.jsp: Possible admin folder
+|   /login/: Login page
+|   /login.htm: Login page
+|   /login.jsp: Login page
+|   /robots.txt: Robots file
+|_  /register/: Potentially interesting folder
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+8000/tcp open  http-alt
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       http://ha.ckers.org/slowloris/
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+| http-enum: 
+|   /healthcheck/: Spring Boot Actuator endpoint
+|_  /debug/: Potentially interesting folder
+
+# Nmap done at Tue Oct  4 18:04:59 2022 -- 1 IP address (1 host up) scanned in 523.66 seconds

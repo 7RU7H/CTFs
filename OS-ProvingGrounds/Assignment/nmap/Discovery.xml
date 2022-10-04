@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Tue Oct  4 17:52:58 2022 as: nmap -&#45;script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Assignment/nmap/Discovery -&#45;min-rate 80,8000,22 -p 80,8000,22 192.168.198.224 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Assignment/nmap/Discovery -&#45;min-rate 80,8000,22 -p 80,8000,22 192.168.198.224" start="1664902378" startstr="Tue Oct  4 17:52:58 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="22,80,8000"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="targets-ipv6-multicast-invalid-dst" output="&#xa;  IP: 2a01:4c8:1405:857a::7d     MAC: fa:8d:37:19:2d:d0  IFACE: usb0&#xa;  IP: fe80::f88d:37ff:fe19:2dd0  MAC: fa:8d:37:19:2d:d0  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="targets-ipv6-multicast-echo" output="&#xa;  IP: 2a01:4c8:1405:857a::7d     MAC: fa:8d:37:19:2d:d0  IFACE: usb0&#xa;  IP: fe80::f88d:37ff:fe19:2dd0  MAC: fa:8d:37:19:2d:d0  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="ipv6-multicast-mld-list" output="&#xa;  fe80::f88d:37ff:fe19:2dd0: &#xa;    device: usb0&#xa;    mac: fa:8d:37:19:2d:d0&#xa;    multicast_ips: &#xa;      ff02::1:ff19:2dd0         (NDP Solicited-node)&#xa;      ff02::1:ff00:0            (Solicited-Node Address)&#xa;      ff05::2                   (unknown)&#xa;      ff02::2                   (All Routers Address)&#xa;      ff02::1:ff00:7d           (Solicited-Node Address)"><table key="fe80::f88d:37ff:fe19:2dd0">
+<elem key="device">usb0</elem>
+<elem key="mac">fa:8d:37:19:2d:d0</elem>
+<table key="multicast_ips">
+<table>
+<elem key="ip">ff02::1:ff19:2dd0</elem>
+<elem key="description">NDP Solicited-node</elem>
+</table>
+<table>
+<elem key="ip">ff02::1:ff00:0</elem>
+<elem key="description">Solicited-Node Address</elem>
+</table>
+<table>
+<elem key="ip">ff05::2</elem>
+<elem key="description">unknown</elem>
+</table>
+<table>
+<elem key="ip">ff02::2</elem>
+<elem key="description">All Routers Address</elem>
+</table>
+<table>
+<elem key="ip">ff02::1:ff00:7d</elem>
+<elem key="description">Solicited-Node Address</elem>
+</table>
+</table>
+</table>
+</script><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-ipv6-multicast-mld" output="&#xa;  IP: fe80::f88d:37ff:fe19:2dd0  MAC: fa:8d:37:19:2d:d0  IFACE: usb0&#xa;&#xa;  Use -&#45;script-args=newtargets to add the results as targets"><table>
+<elem key="mac">fa:8d:37:19:2d:d0</elem>
+<elem key="address">fe80::f88d:37ff:fe19:2dd0</elem>
+<elem key="iface">usb0</elem>
+</table>
+</script></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.198.224" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1664902390" endtime="1664902575"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="192.168.198.224" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (9)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (6)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ssh-rsa</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script><script id="banner" output="SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.5"/><script id="ssh-hostkey" output="&#xa;  3072 62:36:1a:5c:d3:e3:7b:e1:70:f8:a3:b3:1c:4c:24:38 (RSA)&#xa;  256 ee:25:fc:23:66:05:c0:c1:ec:47:c6:bb:00:c7:4f:53 (ECDSA)&#xa;  256 83:5c:51:ac:32:e5:3a:21:7c:f6:c2:cd:93:68:58:d8 (ED25519)"><table>
+<elem key="fingerprint">62361a5cd3e37be170f8a3b31c4c2438</elem>
+<elem key="type">ssh-rsa</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABgQDFR/u8yZrrxkDWw/8gy/fNFksvT+QIL8O/6eD8zVxwKwgBURa9uRtOC8Dk6P+ktLwXJ9oSUitZeXVWjijbehpZBVHvywEOj9nc0bmk0+M/DGGbr1etS7cDvRzRATUtMPxQfYhzXqHlZe6Q2GfA0c75uybUXxOha8CTdK0Iv/maUUaiaPv3LGebQ4CpNaXNQfYVpCdsxLn5MxFi+tfenn/4CinBPn1Ahnx499V1G0ANTaKLsEETjqaMd5jnmml2wH1GmKfKf/6FevWv0Q9Ylsi3x/ipkDpcQAMRQ/aw5NuSSDrGTdo0wRuuoEf5Ybenp9haPVxUAPHbEcMI2hdcP5B3Cd03qimMhHEkFXE8sTUxRKHG+hg7cF8On1EXZsH1fsVyrFAAoHRrap5CsubmNXT93EcK7lc65DbKgeqls643x0p/4WOUiLXFstm6X4JCdEyhvWmnYtL3qDKMuQbCwrCJGeDjoaZTjHXbpjSxSnvtO04RT84x2t8MThyeYO3kSyM=</elem>
+<elem key="bits">3072</elem>
+</table>
+<table>
+<elem key="fingerprint">ee25fc236605c0c1ec47c6bb00c74f53</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNBWjceIJ9NSOLk8zk68zCychWoLxrcrsuJYy2C1pvpfOhVBrr8QBhYbJxzzGJ7DpuMT/DXiCwuLXdu0zeR4/Dk=</elem>
+<elem key="bits">256</elem>
+</table>
+<table>
+<elem key="fingerprint">835c51ac32e53a217cf6c2cd936858d8</elem>
+<elem key="type">ssh-ed25519</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIG3LJwn9us7wxvkL0E6EEgOPG3P0fa0fRVuJuXeASZvs</elem>
+<elem key="bits">256</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-grep" output="&#xa;  (1) http://192.168.198.224:80/: &#xa;    (1) email: &#xa;      + jane@notes.pg"><table key="(1) http://192.168.198.224:80/">
+<table key="(1) email">
+<elem>+ jane@notes.pg</elem>
+</table>
+</table>
+</script><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-vhosts" output="&#xa;127 names had status 200&#xa;ssh"/><script id="http-comments-displayer" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.198.224&#xa;    &#xa;    Path: http://192.168.198.224:80/&#xa;    Line number: 104&#xa;    Comment: &#xa;        &lt;!-&#45; Grid column -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.198.224:80/&#xa;    Line number: 72&#xa;    Comment: &#xa;        &lt;!-&#45; Left -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.198.224:80/&#xa;    Line number: 65&#xa;    Comment: &#xa;        &lt;!-&#45; Footer -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.198.224:80/&#xa;    Line number: 115&#xa;    Comment: &#xa;        &lt;!-&#45; Links -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.198.224:80/&#xa;    Line number: 10&#xa;    Comment: &#xa;        &lt;!-&#45; Warning !! ensure that &quot;stylesheet_pack_tag&quot; is used, line below -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.198.224:80/&#xa;    Line number: 170&#xa;    Comment: &#xa;        &lt;!-&#45; Copyright -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.198.224:80/&#xa;    Line number: 102&#xa;    Comment: &#xa;        &lt;!-&#45; Grid row -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.198.224:80/&#xa;    Line number: 67&#xa;    Comment: &#xa;        &lt;!-&#45; Section: Social media -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.198.224:80/&#xa;    Line number: 99&#xa;    Comment: &#xa;        &lt;!-&#45; Section: Links  -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.198.224:80/&#xa;    Line number: 74&#xa;    Comment: &#xa;        &lt;!-&#45; Right -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.198.224:80/&#xa;    Line number: 106&#xa;    Comment: &#xa;        &lt;!-&#45; Content -&#45;&gt;&#xa;"/><script id="http-security-headers" output="&#xa;  X_Frame_Options: &#xa;    Header: X-Frame-Options: SAMEORIGIN&#xa;    Description: The browser must not display this content in any frame from a page of different origin than the content itself.&#xa;  X_XSS_Protection: &#xa;    Header: X-XSS-Protection: 1; mode=block&#xa;    Description: The browser will prevent the rendering of the page when XSS is detected.&#xa;  X_Content_Type_Options: &#xa;    Header: X-Content-Type-Options: nosniff&#xa;    Description: Will prevent the browser from MIME-sniffing a response away from the declared content-type. &#xa;  X_Permitted_Cross_Domain_Policies: &#xa;    Header: X-Permitted-Cross-Domain-Policies: none&#xa;    Description: No policy files are allowed anywhere on the target server, including this master policy file. &#xa;  Cache_Control: &#xa;    Header: Cache-Control: max-age=0, private, must-revalidate"><table key="X_Frame_Options">
+<elem>Header: X-Frame-Options: SAMEORIGIN</elem>
+<elem>Description: The browser must not display this content in any frame from a page of different origin than the content itself.</elem>
+</table>
+<table key="X_XSS_Protection">
+<elem>Header: X-XSS-Protection: 1; mode=block</elem>
+<elem>Description: The browser will prevent the rendering of the page when XSS is detected.</elem>
+</table>
+<table key="X_Content_Type_Options">
+<elem>Header: X-Content-Type-Options: nosniff</elem>
+<elem>Description: Will prevent the browser from MIME-sniffing a response away from the declared content-type. </elem>
+</table>
+<table key="X_Permitted_Cross_Domain_Policies">
+<elem>Header: X-Permitted-Cross-Domain-Policies: none</elem>
+<elem>Description: No policy files are allowed anywhere on the target server, including this master policy file. </elem>
+</table>
+<table key="Cache_Control">
+<elem>Header: Cache-Control: max-age=0, private, must-revalidate</elem>
+</table>
+</script><script id="http-xssed" output="No previously reported XSS vuln."/><script id="http-chrono" output="Request times for /; avg: 383.25ms; min: 114.19ms; max: 1241.86ms"/><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-waf-detect" output="IDS/IPS/WAF detected:&#xa;192.168.198.224:80/?p4yl04d3=&lt;script&gt;alert(document.cookie)&lt;/script&gt;"/><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">200</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-headers" output="&#xa;  X-Frame-Options: SAMEORIGIN&#xa;  X-XSS-Protection: 1; mode=block&#xa;  X-Content-Type-Options: nosniff&#xa;  X-Download-Options: noopen&#xa;  X-Permitted-Cross-Domain-Policies: none&#xa;  Referrer-Policy: strict-origin-when-cross-origin&#xa;  Link: &lt;/packs/js/application-0a98d1e1abc2fd44621c.js&gt;; rel=preload; as=script; nopush&#xa;  Content-Type: text/html; charset=utf-8&#xa;  ETag: W/&quot;ed41280d4ee812a745964dd0cdc36df3&quot;&#xa;  Cache-Control: max-age=0, private, must-revalidate&#xa;  Set-Cookie: _simple_rails_session=fSSDBdAJ3HMN4laamI63aSJnpkMlLPON8NL3W2Vtumqgz9OqoklBfTysHt0aULl85rk4Wn9VMzKzH7VCwsO5GzCKSbh5NdoRII%2BD59oQayCJe7yxQzHPCmzeq%2Fmo2IEeUk2QslKhAYFaDB3hjhr8G%2FEIeeJI%2Boh3rMpqtgsW0p1i84QgbPXjTkVZzkoKImr3rc%2Fm8OIe2UBxISRXEpguwFDJvWVQAQ7LAvZFtah5qDJLsLifAFqLL2a4zaXHiunvqr9K3Omvn5uBUZ960xbAfFT0AKvLLEp%2B5uUZ5ws%3D-&#45;dOsBt6UZFg1biKCy-&#45;QeY6nblluMzwPtVR51I%2Fow%3D%3D; path=/; HttpOnly; SameSite=Lax&#xa;  X-Request-Id: bfcfba88-6d0d-42a2-9b17-5919bc1cd211&#xa;  X-Runtime: 0.005186&#xa;  Connection: close&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      Other: 1&#xa;  Longest directory structure:&#xa;    Depth: 0&#xa;    Dir: /&#xa;  Total files found (by extension):&#xa;    Other: 1&#xa;"/><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-enum" output="&#xa;  /login.stm: Belkin G Wireless Router&#xa;  /login.php: Possible admin folder&#xa;  /login.html: Possible admin folder&#xa;  /login.cfm: Possible admin folder&#xa;  /login.asp: Possible admin folder&#xa;  /login.aspx: Possible admin folder&#xa;  /login.jsp: Possible admin folder&#xa;  /login/: Login page&#xa;  /login.htm: Login page&#xa;  /login.jsp: Login page&#xa;  /robots.txt: Robots file&#xa;  /register/: Potentially interesting folder&#xa;"/><script id="http-errors" output="Couldn&apos;t find any error pages."/><script id="http-title" output="notes.pg"><elem key="title">notes.pg</elem>
+</script></port>
+<port protocol="tcp" portid="8000"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http-alt" method="table" conf="3"/><script id="http-vhosts" output="&#xa;128 names had status 200"/><script id="http-title" output="Gogs"><elem key="title">Gogs</elem>
+</script><script id="http-enum" output="&#xa;  /healthcheck/: Spring Boot Actuator endpoint&#xa;  /debug/: Potentially interesting folder&#xa;"/><script id="http-headers" output="&#xa;  Content-Type: text/html; charset=UTF-8&#xa;  Set-Cookie: lang=en-US; Path=/; Max-Age=2147483647&#xa;  Set-Cookie: i_like_gogs=84c8b6cacee881e0; Path=/; HttpOnly&#xa;  Set-Cookie: _csrf=dn7Rd8uMBlE6zOdwEhqxja9xsL46MTY2NDkwMjM5MjM1OTE5NzUyMw; Path=/; Domain=assignment.pg; Expires=Wed, 05 Oct 2022 16:53:12 GMT; HttpOnly&#xa;  X-Content-Type-Options: nosniff&#xa;  X-Frame-Options: DENY&#xa;  Date: Tue, 04 Oct 2022 16:53:12 GMT&#xa;  Connection: close&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-chrono" output="Request times for /; avg: 227.70ms; min: 195.84ms; max: 295.06ms"/><script id="http-date" output="Tue, 04 Oct 2022 16:53:11 GMT; +59m59s from local time."><elem key="date">2022-10-04T17:53:11+00:00</elem>
+<elem key="delta">3599.0</elem>
+</script><script id="http-open-proxy" output="Proxy might be redirecting requests"/></port>
+</ports>
+<hostscript><script id="ipidseq" output="ERROR: Script execution failed (use -d to debug)"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;192.168.198.224&quot;; use dns-brute.domain script argument."/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="path-mtu" output="PMTU == 1500"/><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;22    0       50878.30   13479.91  0.0%&#xa;80    0       43814.20   6895.51   0.0%&#xa;8000  0       51598.00   14391.86  0.0%&#xa;"/></hostscript><times srtt="40521" rttvar="18940" to="116281"/>
+</host>
+<runstats><finished time="1664902575" timestr="Tue Oct  4 17:56:15 2022" summary="Nmap done at Tue Oct  4 17:56:15 2022; 1 IP address (1 host up) scanned in 196.92 seconds" elapsed="196.92" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

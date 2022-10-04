@@ -1,0 +1,227 @@
+# Nmap 7.92 scan initiated Tue Oct  4 17:52:58 2022 as: nmap --script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Assignment/nmap/Discovery --min-rate 80,8000,22 -p 80,8000,22 192.168.198.224
+Pre-scan script results:
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:1405:857a::7d     MAC: fa:8d:37:19:2d:d0  IFACE: usb0
+|   IP: fe80::f88d:37ff:fe19:2dd0  MAC: fa:8d:37:19:2d:d0  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:1405:857a::7d     MAC: fa:8d:37:19:2d:d0  IFACE: usb0
+|   IP: fe80::f88d:37ff:fe19:2dd0  MAC: fa:8d:37:19:2d:d0  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| ipv6-multicast-mld-list: 
+|   fe80::f88d:37ff:fe19:2dd0: 
+|     device: usb0
+|     mac: fa:8d:37:19:2d:d0
+|     multicast_ips: 
+|       ff02::1:ff19:2dd0         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:7d           (Solicited-Node Address)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::f88d:37ff:fe19:2dd0  MAC: fa:8d:37:19:2d:d0  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+Nmap scan report for 192.168.198.224
+Host is up (0.041s latency).
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (9)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.5
+| ssh-hostkey: 
+|   3072 62:36:1a:5c:d3:e3:7b:e1:70:f8:a3:b3:1c:4c:24:38 (RSA)
+|   256 ee:25:fc:23:66:05:c0:c1:ec:47:c6:bb:00:c7:4f:53 (ECDSA)
+|_  256 83:5c:51:ac:32:e5:3a:21:7c:f6:c2:cd:93:68:58:d8 (ED25519)
+80/tcp   open  http
+| http-grep: 
+|   (1) http://192.168.198.224:80/: 
+|     (1) email: 
+|_      + jane@notes.pg
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-vhosts: 
+| 127 names had status 200
+|_ssh
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.198.224
+|     
+|     Path: http://192.168.198.224:80/
+|     Line number: 104
+|     Comment: 
+|         <!-- Grid column -->
+|     
+|     Path: http://192.168.198.224:80/
+|     Line number: 72
+|     Comment: 
+|         <!-- Left -->
+|     
+|     Path: http://192.168.198.224:80/
+|     Line number: 65
+|     Comment: 
+|         <!-- Footer -->
+|     
+|     Path: http://192.168.198.224:80/
+|     Line number: 115
+|     Comment: 
+|         <!-- Links -->
+|     
+|     Path: http://192.168.198.224:80/
+|     Line number: 10
+|     Comment: 
+|         <!-- Warning !! ensure that "stylesheet_pack_tag" is used, line below -->
+|     
+|     Path: http://192.168.198.224:80/
+|     Line number: 170
+|     Comment: 
+|         <!-- Copyright -->
+|     
+|     Path: http://192.168.198.224:80/
+|     Line number: 102
+|     Comment: 
+|         <!-- Grid row -->
+|     
+|     Path: http://192.168.198.224:80/
+|     Line number: 67
+|     Comment: 
+|         <!-- Section: Social media -->
+|     
+|     Path: http://192.168.198.224:80/
+|     Line number: 99
+|     Comment: 
+|         <!-- Section: Links  -->
+|     
+|     Path: http://192.168.198.224:80/
+|     Line number: 74
+|     Comment: 
+|         <!-- Right -->
+|     
+|     Path: http://192.168.198.224:80/
+|     Line number: 106
+|     Comment: 
+|_        <!-- Content -->
+| http-security-headers: 
+|   X_Frame_Options: 
+|     Header: X-Frame-Options: SAMEORIGIN
+|     Description: The browser must not display this content in any frame from a page of different origin than the content itself.
+|   X_XSS_Protection: 
+|     Header: X-XSS-Protection: 1; mode=block
+|     Description: The browser will prevent the rendering of the page when XSS is detected.
+|   X_Content_Type_Options: 
+|     Header: X-Content-Type-Options: nosniff
+|     Description: Will prevent the browser from MIME-sniffing a response away from the declared content-type. 
+|   X_Permitted_Cross_Domain_Policies: 
+|     Header: X-Permitted-Cross-Domain-Policies: none
+|     Description: No policy files are allowed anywhere on the target server, including this master policy file. 
+|   Cache_Control: 
+|_    Header: Cache-Control: max-age=0, private, must-revalidate
+|_http-xssed: No previously reported XSS vuln.
+|_http-chrono: Request times for /; avg: 383.25ms; min: 114.19ms; max: 1241.86ms
+|_http-feed: Couldn't find any feeds.
+| http-waf-detect: IDS/IPS/WAF detected:
+|_192.168.198.224:80/?p4yl04d3=<script>alert(document.cookie)</script>
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-headers: 
+|   X-Frame-Options: SAMEORIGIN
+|   X-XSS-Protection: 1; mode=block
+|   X-Content-Type-Options: nosniff
+|   X-Download-Options: noopen
+|   X-Permitted-Cross-Domain-Policies: none
+|   Referrer-Policy: strict-origin-when-cross-origin
+|   Link: </packs/js/application-0a98d1e1abc2fd44621c.js>; rel=preload; as=script; nopush
+|   Content-Type: text/html; charset=utf-8
+|   ETag: W/"ed41280d4ee812a745964dd0cdc36df3"
+|   Cache-Control: max-age=0, private, must-revalidate
+|   Set-Cookie: _simple_rails_session=fSSDBdAJ3HMN4laamI63aSJnpkMlLPON8NL3W2Vtumqgz9OqoklBfTysHt0aULl85rk4Wn9VMzKzH7VCwsO5GzCKSbh5NdoRII%2BD59oQayCJe7yxQzHPCmzeq%2Fmo2IEeUk2QslKhAYFaDB3hjhr8G%2FEIeeJI%2Boh3rMpqtgsW0p1i84QgbPXjTkVZzkoKImr3rc%2Fm8OIe2UBxISRXEpguwFDJvWVQAQ7LAvZFtah5qDJLsLifAFqLL2a4zaXHiunvqr9K3Omvn5uBUZ960xbAfFT0AKvLLEp%2B5uUZ5ws%3D--dOsBt6UZFg1biKCy--QeY6nblluMzwPtVR51I%2Fow%3D%3D; path=/; HttpOnly; SameSite=Lax
+|   X-Request-Id: bfcfba88-6d0d-42a2-9b17-5919bc1cd211
+|   X-Runtime: 0.005186
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1
+|_http-mobileversion-checker: No mobile version detected.
+| http-enum: 
+|   /login.stm: Belkin G Wireless Router
+|   /login.php: Possible admin folder
+|   /login.html: Possible admin folder
+|   /login.cfm: Possible admin folder
+|   /login.asp: Possible admin folder
+|   /login.aspx: Possible admin folder
+|   /login.jsp: Possible admin folder
+|   /login/: Login page
+|   /login.htm: Login page
+|   /login.jsp: Login page
+|   /robots.txt: Robots file
+|_  /register/: Potentially interesting folder
+|_http-errors: Couldn't find any error pages.
+|_http-title: notes.pg
+8000/tcp open  http-alt
+| http-vhosts: 
+|_128 names had status 200
+|_http-title: Gogs
+| http-enum: 
+|   /healthcheck/: Spring Boot Actuator endpoint
+|_  /debug/: Potentially interesting folder
+| http-headers: 
+|   Content-Type: text/html; charset=UTF-8
+|   Set-Cookie: lang=en-US; Path=/; Max-Age=2147483647
+|   Set-Cookie: i_like_gogs=84c8b6cacee881e0; Path=/; HttpOnly
+|   Set-Cookie: _csrf=dn7Rd8uMBlE6zOdwEhqxja9xsL46MTY2NDkwMjM5MjM1OTE5NzUyMw; Path=/; Domain=assignment.pg; Expires=Wed, 05 Oct 2022 16:53:12 GMT; HttpOnly
+|   X-Content-Type-Options: nosniff
+|   X-Frame-Options: DENY
+|   Date: Tue, 04 Oct 2022 16:53:12 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+|_http-chrono: Request times for /; avg: 227.70ms; min: 195.84ms; max: 295.06ms
+|_http-date: Tue, 04 Oct 2022 16:53:11 GMT; +59m59s from local time.
+|_http-open-proxy: Proxy might be redirecting requests
+
+Host script results:
+|_ipidseq: ERROR: Script execution failed (use -d to debug)
+|_dns-brute: Can't guess domain of "192.168.198.224"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+|_path-mtu: PMTU == 1500
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       50878.30   13479.91  0.0%
+| 80    0       43814.20   6895.51   0.0%
+|_8000  0       51598.00   14391.86  0.0%
+
+# Nmap done at Tue Oct  4 17:56:15 2022 -- 1 IP address (1 host up) scanned in 196.92 seconds
