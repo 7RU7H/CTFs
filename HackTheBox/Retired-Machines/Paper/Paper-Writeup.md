@@ -2,8 +2,6 @@
 Name: Paper
 Date:  
 Difficulty:  Easy
-Description:  
-Better Description:  
 Goals:  OSCP Preparation
 Learnt:
 

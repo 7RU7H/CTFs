@@ -2,10 +2,8 @@
 Name: Artic
 Date:  
 Difficulty:  Easy
-Description:  
-Better Description:  
 Goals:  OSCP Prep
-Learnt:
+Learnt: Old exploits and machines can be a headache
 
 ## Recon
 

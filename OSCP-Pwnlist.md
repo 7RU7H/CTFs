@@ -8,6 +8,8 @@ This is a list of completed and to finish, which I planned to finish by November
 Any HTB active box I did not complete, gets this note also here for my own reminder and commitment. This was a hopeful to completing a active box on the side of doing all the OSCP study and prep just to get points and learn more *new* tricks, techniques and building up capability so that after OSCP completion I do atleast one of these or multiple a week in 2023.
 
 
+
+
 https://github.com/7RU7H/CTFs/tree/main/
 
 ## OS-Proving-Grounds
@@ -70,6 +72,9 @@ Resourced | Done | Wakthrough | [Link](https://github.com/7RU7H/CTFs/tree/main/O
 These are machines that I used alongside OSCP.pdf and Ippsec videos while making cheatsheet, figuring out where my weak spots were. These a 5-6 hour long sessions of just pausing a video - trying stuff, reading stuff adding to Archive.
 
 Plan being to get more experience without insane timesinks of failing hard and maximise revision and metacognitive linking. Then in three months redo these machines as Writeups to challenge myself.
+
+## General Statement of thanks to put in every walkthrough video
+Ippsec is an amazing person and resource and I am subscribed and like all the videos I watch. I am rewatching this as I watched all these over a year ago from this playlist to learn how far I needed to go am still going to improve.
 
 Box Name  | Walkthrough | References
 --- | --- | ----
