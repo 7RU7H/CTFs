@@ -20,7 +20,7 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 ![](cpassword.png)
 
 ```powershell
-# SVC_TGS password  
+# SVC_TGS password cpassword
 "edBSHOwhZLTjt/QS9FeIcJ83mjWA98gw9guKOhJOdcqh+ZGMeXOsQbCpZ3xUjTLfCuNH8pG5aSVYdYw/NglVmQ"
 ```
 
