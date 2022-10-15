@@ -1,0 +1,33 @@
+# Nmap 7.93 scan initiated Fri Oct 14 12:22:39 2022 as: nmap --script vuln -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Filmsy/nmap/Vuln --min-rate 3306,80,22,43500 -p 3306,80,22,43500 192.168.125.220
+Nmap scan report for 192.168.125.220
+Host is up (0.065s latency).
+
+PORT      STATE SERVICE
+22/tcp    open  ssh
+80/tcp    open  http
+| http-vuln-cve2011-3192: 
+|   VULNERABLE:
+|   Apache byterange filter DoS
+|     State: VULNERABLE
+|     IDs:  BID:49303  CVE:CVE-2011-3192
+|       The Apache web server is vulnerable to a denial of service attack when numerous
+|       overlapping byte ranges are requested.
+|     Disclosure date: 2011-08-19
+|     References:
+|       https://seclists.org/fulldisclosure/2011/Aug/175
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
+|       https://www.securityfocus.com/bid/49303
+|_      https://www.tenable.com/plugins/nessus/55976
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.125.220
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://192.168.125.220:80/
+|     Form id: contact-form
+|_    Form action: 
+3306/tcp  open  mysql
+43500/tcp open  unknown
+
+# Nmap done at Fri Oct 14 12:25:34 2022 -- 1 IP address (1 host up) scanned in 175.40 seconds

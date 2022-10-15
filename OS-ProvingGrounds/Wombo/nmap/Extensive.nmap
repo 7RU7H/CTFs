@@ -1,0 +1,196 @@
+# Nmap 7.93 scan initiated Fri Oct 14 21:22:04 2022 as: nmap -sC -sV -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Wombo/nmap/Extensive --min-rate 27017,80,6379,8080,22 -p 27017,80,6379,8080,22 192.168.125.69
+Nmap scan report for 192.168.125.69
+Host is up (0.056s latency).
+
+PORT      STATE SERVICE    VERSION
+22/tcp    open  ssh        OpenSSH 7.4p1 Debian 10+deb9u7 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 098039ef3f61a8d9e6fb049423c9efa8 (RSA)
+|   256 83f86f507a6205aa154410f54ac2f5a6 (ECDSA)
+|_  256 1e2b13305cf13115b4e8f3d2c4e805b5 (ED25519)
+80/tcp    open  http       nginx 1.10.3
+|_http-title: Welcome to nginx!
+|_http-server-header: nginx/1.10.3
+6379/tcp  open  redis      Redis key-value store 5.0.9
+8080/tcp  open  http-proxy
+| http-robots.txt: 3 disallowed entries 
+|_/admin/ /reset/ /compose
+|_http-title: Home | NodeBB
+| fingerprint-strings: 
+|   FourOhFourRequest: 
+|     HTTP/1.1 404 Not Found
+|     X-DNS-Prefetch-Control: off
+|     X-Frame-Options: SAMEORIGIN
+|     X-Download-Options: noopen
+|     X-Content-Type-Options: nosniff
+|     X-XSS-Protection: 1; mode=block
+|     Referrer-Policy: strict-origin-when-cross-origin
+|     X-Powered-By: NodeBB
+|     set-cookie: _csrf=NjHHAXsrZBuf4CmtqDcDieR-; Path=/
+|     Content-Type: text/html; charset=utf-8
+|     Content-Length: 11098
+|     ETag: W/"2b5a-zBtcwUCbZwK9bU6HoRtaBwEp5yc"
+|     Vary: Accept-Encoding
+|     Date: Fri, 14 Oct 2022 20:22:11 GMT
+|     Connection: close
+|     <!DOCTYPE html>
+|     <html lang="en-GB" data-dir="ltr" style="direction: ltr;" >
+|     <head>
+|     <title>Not Found | NodeBB</title>
+|     <meta name="viewport" content="width&#x3D;device-width, initial-scale&#x3D;1.0" />
+|     <meta name="content-type" content="text/html; charset=UTF-8" />
+|     <meta name="apple-mobile-web-app-capable" content="yes" />
+|     <meta name="mobile-web-app-capable" content="yes" />
+|     <meta property="og:site_n
+|   GetRequest: 
+|     HTTP/1.1 200 OK
+|     X-DNS-Prefetch-Control: off
+|     X-Frame-Options: SAMEORIGIN
+|     X-Download-Options: noopen
+|     X-Content-Type-Options: nosniff
+|     X-XSS-Protection: 1; mode=block
+|     Referrer-Policy: strict-origin-when-cross-origin
+|     X-Powered-By: NodeBB
+|     set-cookie: _csrf=VnWEIYnI3B17mZaHE428NUo0; Path=/
+|     Content-Type: text/html; charset=utf-8
+|     Content-Length: 18181
+|     ETag: W/"4705-CP60KJDthnt1x1Sq6d3gZ5yhzhA"
+|     Vary: Accept-Encoding
+|     Date: Fri, 14 Oct 2022 20:22:11 GMT
+|     Connection: close
+|     <!DOCTYPE html>
+|     <html lang="en-GB" data-dir="ltr" style="direction: ltr;" >
+|     <head>
+|     <title>Home | NodeBB</title>
+|     <meta name="viewport" content="width&#x3D;device-width, initial-scale&#x3D;1.0" />
+|     <meta name="content-type" content="text/html; charset=UTF-8" />
+|     <meta name="apple-mobile-web-app-capable" content="yes" />
+|     <meta name="mobile-web-app-capable" content="yes" />
+|     <meta property="og:site_name" content
+|   HTTPOptions: 
+|     HTTP/1.1 200 OK
+|     X-DNS-Prefetch-Control: off
+|     X-Frame-Options: SAMEORIGIN
+|     X-Download-Options: noopen
+|     X-Content-Type-Options: nosniff
+|     X-XSS-Protection: 1; mode=block
+|     Referrer-Policy: strict-origin-when-cross-origin
+|     X-Powered-By: NodeBB
+|     Allow: GET,HEAD
+|     Content-Type: text/html; charset=utf-8
+|     Content-Length: 8
+|     ETag: W/"8-ZRAf8oNBS3Bjb/SU2GYZCmbtmXg"
+|     Vary: Accept-Encoding
+|     Date: Fri, 14 Oct 2022 20:22:11 GMT
+|     Connection: close
+|     GET,HEAD
+|   RTSPRequest: 
+|     HTTP/1.1 400 Bad Request
+|_    Connection: close
+27017/tcp open  mongodb    MongoDB
+| fingerprint-strings: 
+|   FourOhFourRequest, GetRequest: 
+|     HTTP/1.0 200 OK
+|     Connection: close
+|     Content-Type: text/plain
+|     Content-Length: 85
+|     looks like you are trying to access MongoDB over HTTP on the native driver port.
+|   mongodb: 
+|     errmsg
+|     command serverStatus requires authentication
+|     code
+|     codeName
+|_    Unauthorized
+| mongodb-info: 
+|   MongoDB Build info
+|     buildEnvironment
+|       target_arch = x86_64
+|       cc = /opt/mongodbtoolchain/v2/bin/gcc: gcc (GCC) 5.4.0
+|       cxx = /opt/mongodbtoolchain/v2/bin/g++: g++ (GCC) 5.4.0
+|       linkflags = -pthread -Wl,-z,now -rdynamic -Wl,--fatal-warnings -fstack-protector-strong -fuse-ld=gold -Wl,--build-id -Wl,--hash-style=gnu -Wl,-z,noexecstack -Wl,--warn-execstack -Wl,-z,relro
+|       cxxflags = -Woverloaded-virtual -Wno-maybe-uninitialized -std=c++14
+|       distmod = debian92
+|       ccflags = -fno-omit-frame-pointer -fno-strict-aliasing -ggdb -pthread -Wall -Wsign-compare -Wno-unknown-pragmas -Winvalid-pch -Werror -O2 -Wno-unused-local-typedefs -Wno-unused-function -Wno-deprecated-declarations -Wno-unused-but-set-variable -Wno-missing-braces -fstack-protector-strong -fno-builtin-memcmp
+|       target_os = linux
+|       distarch = x86_64
+|     version = 4.0.18
+|     maxBsonObjectSize = 16777216
+|     openssl
+|       compiled = OpenSSL 1.1.0l  10 Sep 2019
+|       running = OpenSSL 1.1.0l  10 Sep 2019
+|     gitVersion = 6883bdfb8b8cff32176b1fd176df04da9165fd67
+|     javascriptEngine = mozjs
+|     sysInfo = deprecated
+|     modules
+|     versionArray
+|       1 = 0
+|       0 = 4
+|       3 = 0
+|       2 = 18
+|     debug = false
+|     bits = 64
+|     storageEngines
+|       1 = ephemeralForTest
+|       0 = devnull
+|       3 = wiredTiger
+|       2 = mmapv1
+|     allocator = tcmalloc
+|     ok = 1.0
+|   Server status
+|     code = 13
+|     codeName = Unauthorized
+|     errmsg = command serverStatus requires authentication
+|_    ok = 0.0
+| mongodb-databases: 
+|   code = 13
+|   codeName = Unauthorized
+|   errmsg = command listDatabases requires authentication
+|_  ok = 0.0
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port8080-TCP:V=7.93%I=7%D=10/14%Time=6349C4F3%P=x86_64-pc-linux-gnu%r(G
+SF:etRequest,3494,"HTTP/1\.1\x20200\x20OK\r\nX-DNS-Prefetch-Control:\x20of
+SF:f\r\nX-Frame-Options:\x20SAMEORIGIN\r\nX-Download-Options:\x20noopen\r\
+SF:nX-Content-Type-Options:\x20nosniff\r\nX-XSS-Protection:\x201;\x20mode=
+SF:block\r\nReferrer-Policy:\x20strict-origin-when-cross-origin\r\nX-Power
+SF:ed-By:\x20NodeBB\r\nset-cookie:\x20_csrf=VnWEIYnI3B17mZaHE428NUo0;\x20P
+SF:ath=/\r\nContent-Type:\x20text/html;\x20charset=utf-8\r\nContent-Length
+SF::\x2018181\r\nETag:\x20W/\"4705-CP60KJDthnt1x1Sq6d3gZ5yhzhA\"\r\nVary:\
+SF:x20Accept-Encoding\r\nDate:\x20Fri,\x2014\x20Oct\x202022\x2020:22:11\x2
+SF:0GMT\r\nConnection:\x20close\r\n\r\n<!DOCTYPE\x20html>\r\n<html\x20lang
+SF:=\"en-GB\"\x20data-dir=\"ltr\"\x20style=\"direction:\x20ltr;\"\x20\x20>
+SF:\r\n<head>\r\n\t<title>Home\x20\|\x20NodeBB</title>\r\n\t<meta\x20name=
+SF:\"viewport\"\x20content=\"width&#x3D;device-width,\x20initial-scale&#x3
+SF:D;1\.0\"\x20/>\n\t<meta\x20name=\"content-type\"\x20content=\"text/html
+SF:;\x20charset=UTF-8\"\x20/>\n\t<meta\x20name=\"apple-mobile-web-app-capa
+SF:ble\"\x20content=\"yes\"\x20/>\n\t<meta\x20name=\"mobile-web-app-capabl
+SF:e\"\x20content=\"yes\"\x20/>\n\t<meta\x20property=\"og:site_name\"\x20c
+SF:ontent")%r(HTTPOptions,1BF,"HTTP/1\.1\x20200\x20OK\r\nX-DNS-Prefetch-Co
+SF:ntrol:\x20off\r\nX-Frame-Options:\x20SAMEORIGIN\r\nX-Download-Options:\
+SF:x20noopen\r\nX-Content-Type-Options:\x20nosniff\r\nX-XSS-Protection:\x2
+SF:01;\x20mode=block\r\nReferrer-Policy:\x20strict-origin-when-cross-origi
+SF:n\r\nX-Powered-By:\x20NodeBB\r\nAllow:\x20GET,HEAD\r\nContent-Type:\x20
+SF:text/html;\x20charset=utf-8\r\nContent-Length:\x208\r\nETag:\x20W/\"8-Z
+SF:RAf8oNBS3Bjb/SU2GYZCmbtmXg\"\r\nVary:\x20Accept-Encoding\r\nDate:\x20Fr
+SF:i,\x2014\x20Oct\x202022\x2020:22:11\x20GMT\r\nConnection:\x20close\r\n\
+SF:r\nGET,HEAD")%r(RTSPRequest,2F,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nC
+SF:onnection:\x20close\r\n\r\n")%r(FourOhFourRequest,1508,"HTTP/1\.1\x2040
+SF:4\x20Not\x20Found\r\nX-DNS-Prefetch-Control:\x20off\r\nX-Frame-Options:
+SF:\x20SAMEORIGIN\r\nX-Download-Options:\x20noopen\r\nX-Content-Type-Optio
+SF:ns:\x20nosniff\r\nX-XSS-Protection:\x201;\x20mode=block\r\nReferrer-Pol
+SF:icy:\x20strict-origin-when-cross-origin\r\nX-Powered-By:\x20NodeBB\r\ns
+SF:et-cookie:\x20_csrf=NjHHAXsrZBuf4CmtqDcDieR-;\x20Path=/\r\nContent-Type
+SF::\x20text/html;\x20charset=utf-8\r\nContent-Length:\x2011098\r\nETag:\x
+SF:20W/\"2b5a-zBtcwUCbZwK9bU6HoRtaBwEp5yc\"\r\nVary:\x20Accept-Encoding\r\
+SF:nDate:\x20Fri,\x2014\x20Oct\x202022\x2020:22:11\x20GMT\r\nConnection:\x
+SF:20close\r\n\r\n<!DOCTYPE\x20html>\r\n<html\x20lang=\"en-GB\"\x20data-di
+SF:r=\"ltr\"\x20style=\"direction:\x20ltr;\"\x20\x20>\r\n<head>\r\n\t<titl
+SF:e>Not\x20Found\x20\|\x20NodeBB</title>\r\n\t<meta\x20name=\"viewport\"\
+SF:x20content=\"width&#x3D;device-width,\x20initial-scale&#x3D;1\.0\"\x20/
+SF:>\n\t<meta\x20name=\"content-type\"\x20content=\"text/html;\x20charset=
+SF:UTF-8\"\x20/>\n\t<meta\x20name=\"apple-mobile-web-app-capable\"\x20cont
+SF:ent=\"yes\"\x20/>\n\t<meta\x20name=\"mobile-web-app-capable\"\x20conten
+SF:t=\"yes\"\x20/>\n\t<meta\x20property=\"og:site_n");
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Oct 14 21:23:07 2022 -- 1 IP address (1 host up) scanned in 62.13 seconds

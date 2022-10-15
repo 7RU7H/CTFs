@@ -1,0 +1,36 @@
+# Nmap 7.93 scan initiated Fri Oct 14 21:26:54 2022 as: nmap --script vuln -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Wombo/nmap/Vuln --min-rate 27017,80,6379,8080,22 -p 27017,80,6379,8080,22 192.168.125.69
+Nmap scan report for 192.168.125.69
+Host is up (0.054s latency).
+
+PORT      STATE SERVICE
+22/tcp    open  ssh
+80/tcp    open  http
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+| http-vuln-cve2011-3192: 
+|   VULNERABLE:
+|   Apache byterange filter DoS
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2011-3192  BID:49303
+|       The Apache web server is vulnerable to a denial of service attack when numerous
+|       overlapping byte ranges are requested.
+|     Disclosure date: 2011-08-19
+|     References:
+|       https://www.tenable.com/plugins/nessus/55976
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
+|       https://seclists.org/fulldisclosure/2011/Aug/175
+|_      https://www.securityfocus.com/bid/49303
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+6379/tcp  open  redis
+8080/tcp  open  http-proxy
+| http-enum: 
+|   /login/: Login page
+|   /robots.txt: Robots file
+|   /manifest.json: Manifest JSON File
+|   /api/: Potentially interesting folder
+|   /register/: Potentially interesting folder
+|_  /top/: Potentially interesting folder
+|_http-passwd: ERROR: Script execution failed (use -d to debug)
+27017/tcp open  mongod
+
+# Nmap done at Fri Oct 14 21:31:04 2022 -- 1 IP address (1 host up) scanned in 249.85 seconds

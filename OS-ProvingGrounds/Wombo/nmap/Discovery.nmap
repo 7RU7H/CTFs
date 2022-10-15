@@ -1,0 +1,212 @@
+# Nmap 7.93 scan initiated Fri Oct 14 21:23:07 2022 as: nmap --script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Wombo/nmap/Discovery --min-rate 27017,80,6379,8080,22 -p 27017,80,6379,8080,22 192.168.125.69
+Pre-scan script results:
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::885d:5bff:fee4:9cad  MAC: 8a5d5be49cad  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| ipv6-multicast-mld-list: 
+|   fe80::885d:5bff:fee4:9cad: 
+|     device: usb0
+|     mac: 8a5d5be49cad
+|     multicast_ips: 
+|       ff02::1:ffe4:9cad         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:b7           (Solicited-Node Address)
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:1400:d6b1::b7     MAC: 8a5d5be49cad  IFACE: usb0
+|   IP: fe80::885d:5bff:fee4:9cad  MAC: 8a5d5be49cad  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:1400:d6b1::b7     MAC: 8a5d5be49cad  IFACE: usb0
+|   IP: fe80::885d:5bff:fee4:9cad  MAC: 8a5d5be49cad  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+Nmap scan report for 192.168.125.69
+Host is up (0.053s latency).
+
+Bug in http-security-headers: no string output.
+PORT      STATE SERVICE
+22/tcp    open  ssh
+|_banner: SSH-2.0-OpenSSH_7.4p1 Debian-10+deb9u7
+| ssh-hostkey: 
+|   2048 098039ef3f61a8d9e6fb049423c9efa8 (RSA)
+|   256 83f86f507a6205aa154410f54ac2f5a6 (ECDSA)
+|_  256 1e2b13305cf13115b4e8f3d2c4e805b5 (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+80/tcp    open  http
+|_http-chrono: Request times for /; avg: 173.93ms; min: 99.56ms; max: 353.87ms
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-date: Fri, 14 Oct 2022 20:23:43 GMT; +1h00m00s from local time.
+|_http-errors: Couldn't find any error pages.
+|_http-title: Welcome to nginx!
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1
+| http-vhosts: 
+| erp
+| webftp
+| images
+| host
+| admin
+|_123 names had status 200
+| http-headers: 
+|   Server: nginx/1.10.3
+|   Date: Fri, 14 Oct 2022 20:23:42 GMT
+|   Content-Type: text/html
+|   Content-Length: 612
+|   Last-Modified: Fri, 24 Apr 2020 09:27:19 GMT
+|   Connection: close
+|   ETag: "5ea2b0f7-264"
+|   Accept-Ranges: bytes
+|   
+|_  (Request type: HEAD)
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-mobileversion-checker: No mobile version detected.
+|_http-comments-displayer: Couldn't find any comments.
+|_http-feed: Couldn't find any feeds.
+|_http-xssed: No previously reported XSS vuln.
+6379/tcp  open  redis
+| redis-info: 
+|   Version: 5.0.9
+|   Operating System: Linux 4.9.0-12-amd64 x86_64
+|   Architecture: 64 bits
+|   Process ID: 549
+|   Used CPU (sys): 0.208000
+|   Used CPU (user): 0.152000
+|   Connected clients: 2
+|   Connected slaves: 0
+|   Used memory: 854.62K
+|   Role: master
+|   Bind addresses: 
+|     0.0.0.0
+|   Client connections: 
+|_    192.168.49.125
+8080/tcp  open  http-proxy
+| http-enum: 
+|   /login/: Login page
+|   /robots.txt: Robots file
+|   /manifest.json: Manifest JSON File
+|   /api/: Potentially interesting folder
+|   /register/: Potentially interesting folder
+|_  /top/: Potentially interesting folder
+|_http-chrono: Request times for /; avg: 340.00ms; min: 311.54ms; max: 374.92ms
+| http-headers: 
+|   X-DNS-Prefetch-Control: off
+|   X-Frame-Options: SAMEORIGIN
+|   X-Download-Options: noopen
+|   X-Content-Type-Options: nosniff
+|   X-XSS-Protection: 1; mode=block
+|   Referrer-Policy: strict-origin-when-cross-origin
+|   X-Powered-By: NodeBB
+|   set-cookie: _csrf=MwNCTQlAS5dfrxvOlm9Z8cqu; Path=/
+|   Content-Type: text/html; charset=utf-8
+|   Content-Length: 18181
+|   ETag: W/"4705-7xZRIf5Ox/FoPRoiABTkMsG46nE"
+|   Vary: Accept-Encoding
+|   Date: Fri, 14 Oct 2022 20:23:19 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+|_http-date: Fri, 14 Oct 2022 20:23:23 GMT; +1h00m00s from local time.
+| http-robots.txt: 3 disallowed entries 
+|_/admin/ /reset/ /compose
+|_http-title: Home | NodeBB
+| http-vhosts: 
+|_128 names had status 200
+27017/tcp open  mongodb
+| mongodb-info: 
+|   MongoDB Build info
+|     sysInfo = deprecated
+|     ok = 1.0
+|     openssl
+|       compiled = OpenSSL 1.1.0l  10 Sep 2019
+|       running = OpenSSL 1.1.0l  10 Sep 2019
+|     buildEnvironment
+|       cc = /opt/mongodbtoolchain/v2/bin/gcc: gcc (GCC) 5.4.0
+|       cxx = /opt/mongodbtoolchain/v2/bin/g++: g++ (GCC) 5.4.0
+|       target_arch = x86_64
+|       target_os = linux
+|       cxxflags = -Woverloaded-virtual -Wno-maybe-uninitialized -std=c++14
+|       ccflags = -fno-omit-frame-pointer -fno-strict-aliasing -ggdb -pthread -Wall -Wsign-compare -Wno-unknown-pragmas -Winvalid-pch -Werror -O2 -Wno-unused-local-typedefs -Wno-unused-function -Wno-deprecated-declarations -Wno-unused-but-set-variable -Wno-missing-braces -fstack-protector-strong -fno-builtin-memcmp
+|       distmod = debian92
+|       distarch = x86_64
+|       linkflags = -pthread -Wl,-z,now -rdynamic -Wl,--fatal-warnings -fstack-protector-strong -fuse-ld=gold -Wl,--build-id -Wl,--hash-style=gnu -Wl,-z,noexecstack -Wl,--warn-execstack -Wl,-z,relro
+|     gitVersion = 6883bdfb8b8cff32176b1fd176df04da9165fd67
+|     maxBsonObjectSize = 16777216
+|     debug = false
+|     bits = 64
+|     versionArray
+|       1 = 0
+|       2 = 18
+|       3 = 0
+|       0 = 4
+|     javascriptEngine = mozjs
+|     storageEngines
+|       1 = ephemeralForTest
+|       2 = mmapv1
+|       3 = wiredTiger
+|       0 = devnull
+|     allocator = tcmalloc
+|     version = 4.0.18
+|     modules
+|   Server status
+|     code = 13
+|     ok = 0.0
+|     codeName = Unauthorized
+|_    errmsg = command serverStatus requires authentication
+| mongodb-databases: 
+|   code = 13
+|   ok = 0.0
+|   codeName = Unauthorized
+|_  errmsg = command listDatabases requires authentication
+
+Host script results:
+|_dns-brute: Can't guess domain of "192.168.125.69"; use dns-brute.domain script argument.
+| qscan: 
+| PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22     0       48477.89   3601.62   10.0%
+| 80     0       60676.00   35298.51  0.0%
+| 6379   0       49444.50   7158.39   0.0%
+| 8080   0       48479.25   2775.29   20.0%
+|_27017  0       47380.56   7083.01   10.0%
+|_ipidseq: All zeros
+|_path-mtu: PMTU == 1500
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Fri Oct 14 21:26:54 2022 -- 1 IP address (1 host up) scanned in 227.10 seconds

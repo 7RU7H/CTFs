@@ -1,0 +1,230 @@
+# Nmap 7.93 scan initiated Fri Oct 14 12:19:44 2022 as: nmap --script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Filmsy/nmap/Discovery --min-rate 3306,80,22,43500 -p 3306,80,22,43500 192.168.125.220
+Pre-scan script results:
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::1810:b3ff:fee3:8f7a  MAC: 1a10b3e38f7a  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| ipv6-multicast-mld-list: 
+|   fe80::1810:b3ff:fee3:8f7a: 
+|     device: usb0
+|     mac: 1a10b3e38f7a
+|     multicast_ips: 
+|       ff02::1:ffe3:8f7a         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:ec           (Solicited-Node Address)
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:1400:d6b1::ec     MAC: 1a10b3e38f7a  IFACE: usb0
+|   IP: fe80::1810:b3ff:fee3:8f7a  MAC: 1a10b3e38f7a  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:1400:d6b1::ec     MAC: 1a10b3e38f7a  IFACE: usb0
+|   IP: fe80::1810:b3ff:fee3:8f7a  MAC: 1a10b3e38f7a  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 192.168.125.220
+Host is up (0.14s latency).
+
+Bug in http-security-headers: no string output.
+PORT      STATE SERVICE
+22/tcp    open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (9)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   3072 62361a5cd3e37be170f8a3b31c4c2438 (RSA)
+|   256 ee25fc236605c0c1ec47c6bb00c74f53 (ECDSA)
+|_  256 835c51ac32e53a217cf6c2cd936858d8 (ED25519)
+|_banner: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.5
+80/tcp    open  http
+| http-grep: 
+|   (1) http://192.168.125.220:80/: 
+|     (1) email: 
+|_      + info@upright.com
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1
+|_http-mobileversion-checker: No mobile version detected.
+| http-vhosts: 
+|_128 names had status 200
+| http-headers: 
+|   Server: nginx/1.18.0 (Ubuntu)
+|   Date: Fri, 14 Oct 2022 11:20:05 GMT
+|   Content-Type: text/html
+|   Content-Length: 50895
+|   Last-Modified: Thu, 28 Apr 2022 23:20:48 GMT
+|   Connection: close
+|   ETag: "626b2150-c6cf"
+|   Accept-Ranges: bytes
+|   
+|_  (Request type: HEAD)
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-chrono: Request times for /; avg: 349.95ms; min: 284.95ms; max: 377.58ms
+|_http-xssed: No previously reported XSS vuln.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.125.220
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 659
+|     Comment: 
+|         <!-- Contact section -->
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 744
+|     Comment: 
+|         <!-- .container-fluid -->
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 747
+|     Comment: 
+|         <!-- https://pixelcog.github.io/parallax.js/ -->
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 8
+|     Comment: 
+|         <!-- https://fontawesome.com/-->
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 708
+|     Comment: 
+|         <!-- Links -->
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 742
+|     Comment: 
+|         <!-- .tm-main -->
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 701
+|     Comment: 
+|         <!-- Address -->
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 7
+|     Comment: 
+|         <!-- https://fonts.google.com/specimen/Kumbh+Sans -->
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 745
+|     Comment: 
+|         <!-- https://jquery.com/ -->
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 734
+|     Comment: 
+|         <!-- Copyright -->
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 749
+|     Comment: 
+|         <!-- https://isotope.metafizzy.co/ -->
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 448
+|     Comment: 
+|         <!-- About section -->
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 748
+|     Comment: 
+|         <!-- https://imagesloaded.desandro.com/ -->
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 154
+|     Comment: 
+|         <!-- Gallery section -->
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 743
+|     Comment: 
+|         <!-- .row -->
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 10
+|     Comment: 
+|         <!-- https://getbootstrap.com/ -->
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 19
+|     Comment: 
+|         <!-- Leftside bar -->
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 11
+|     Comment: 
+|         <!-- https://kenwheeler.github.io/slick/ -->
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 74
+|     Comment: 
+|         <!-- Home section -->
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 746
+|     Comment: 
+|         <!-- https://github.com/ChrisWojcik/single-page-nav -->
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 9
+|     Comment: 
+|         <!-- https://dimsemenov.com/plugins/magnific-popup/ -->
+|     
+|     Path: http://192.168.125.220:80/
+|     Line number: 692
+|     Comment: 
+|_        <!-- Map -->
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-date: Fri, 14 Oct 2022 11:20:06 GMT; +1h00m00s from local time.
+|_http-errors: Couldn't find any error pages.
+|_http-title: Upright
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-feed: Couldn't find any feeds.
+3306/tcp  open  mysql
+|_banner: G\x00\x00\x00\xFFj\x04Host '192.168.49.125' is not allowed t...
+43500/tcp open  unknown
+
+Host script results:
+|_path-mtu: PMTU == 1500
+|_fcrdns: FAIL (No PTR record)
+| qscan: 
+| PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22     0       51042.70   6636.87   0.0%
+| 80     0       55210.70   18379.80  0.0%
+| 3306   0       56910.40   25832.92  0.0%
+|_43500  0       52763.50   11791.17  0.0%
+|_ipidseq: All zeros
+|_dns-brute: Can't guess domain of "192.168.125.220"; use dns-brute.domain script argument.
+
+# Nmap done at Fri Oct 14 12:22:39 2022 -- 1 IP address (1 host up) scanned in 175.01 seconds

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Fri Oct 14 21:23:07 2022 as: nmap -&#45;script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Wombo/nmap/Discovery -&#45;min-rate 27017,80,6379,8080,22 -p 27017,80,6379,8080,22 192.168.125.69 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Wombo/nmap/Discovery -&#45;min-rate 27017,80,6379,8080,22 -p 27017,80,6379,8080,22 192.168.125.69" start="1665778987" startstr="Fri Oct 14 21:23:07 2022" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="5" services="22,80,6379,8080,27017"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="targets-ipv6-multicast-mld" output="&#xa;  IP: fe80::885d:5bff:fee4:9cad  MAC: 8a5d5be49cad  IFACE: usb0&#xa;&#xa;  Use -&#45;script-args=newtargets to add the results as targets"><table>
+<elem key="address">fe80::885d:5bff:fee4:9cad</elem>
+<elem key="iface">usb0</elem>
+<elem key="mac">8a5d5be49cad</elem>
+</table>
+</script><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="ipv6-multicast-mld-list" output="&#xa;  fe80::885d:5bff:fee4:9cad: &#xa;    device: usb0&#xa;    mac: 8a5d5be49cad&#xa;    multicast_ips: &#xa;      ff02::1:ffe4:9cad         (NDP Solicited-node)&#xa;      ff02::1:ff00:0            (Solicited-Node Address)&#xa;      ff05::2                   (unknown)&#xa;      ff02::2                   (All Routers Address)&#xa;      ff02::1:ff00:b7           (Solicited-Node Address)"><table key="fe80::885d:5bff:fee4:9cad">
+<elem key="device">usb0</elem>
+<elem key="mac">8a5d5be49cad</elem>
+<table key="multicast_ips">
+<table>
+<elem key="description">NDP Solicited-node</elem>
+<elem key="ip">ff02::1:ffe4:9cad</elem>
+</table>
+<table>
+<elem key="description">Solicited-Node Address</elem>
+<elem key="ip">ff02::1:ff00:0</elem>
+</table>
+<table>
+<elem key="description">unknown</elem>
+<elem key="ip">ff05::2</elem>
+</table>
+<table>
+<elem key="description">All Routers Address</elem>
+<elem key="ip">ff02::2</elem>
+</table>
+<table>
+<elem key="description">Solicited-Node Address</elem>
+<elem key="ip">ff02::1:ff00:b7</elem>
+</table>
+</table>
+</table>
+</script><script id="targets-ipv6-multicast-invalid-dst" output="&#xa;  IP: 2a01:4c8:1400:d6b1::b7     MAC: 8a5d5be49cad  IFACE: usb0&#xa;  IP: fe80::885d:5bff:fee4:9cad  MAC: 8a5d5be49cad  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="targets-ipv6-multicast-echo" output="&#xa;  IP: 2a01:4c8:1400:d6b1::b7     MAC: 8a5d5be49cad  IFACE: usb0&#xa;  IP: fe80::885d:5bff:fee4:9cad  MAC: 8a5d5be49cad  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.125.69" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1665778998" endtime="1665779214"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="192.168.125.69" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/><script id="banner" output="SSH-2.0-OpenSSH_7.4p1 Debian-10+deb9u7"/><script id="ssh-hostkey" output="&#xa;  2048 098039ef3f61a8d9e6fb049423c9efa8 (RSA)&#xa;  256 83f86f507a6205aa154410f54ac2f5a6 (ECDSA)&#xa;  256 1e2b13305cf13115b4e8f3d2c4e805b5 (ED25519)"><table>
+<elem key="fingerprint">098039ef3f61a8d9e6fb049423c9efa8</elem>
+<elem key="type">ssh-rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABAQDGBXRhQCez7/IOdnHzLYdpVtWWRMN/7bUR/C3T/W6V9DwlKUS2AfdncLdLwqnx61jODFdXDrTdEdTAtK4MHuXt/UOLDXr1SOfUHYQbZd1rmpMaeB3qOKfoVP7NMp2Ga68kT/9NvBphakYXRWw4C7RS0N+4YWU/BjSyMTIdnhJX05lC5Uyljg7FliJ7d3J/CtF98I6Oo5u/Eb2/5BB45/1IuM6R7BGCDOpIs6po1FyEk8gFktbB+INGATdBPxvmAOX6G7m/R491a9/QtaF8wrgsjS3fQftoiW8vwcaom8Bmu94xZ9pZq0Dgt9VWQz241T5dGQrp57s6Djl/V83/qGFP</elem>
+</table>
+<table>
+<elem key="fingerprint">83f86f507a6205aa154410f54ac2f5a6</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="bits">256</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLg0oQ1t4NCz+KWPtrCjgDf+qjW2Vb4oOc/eM21vT9rIPJa//rO0LFT8czDxcWFU9HMSEohfSm8emC4lShgGrY4=</elem>
+</table>
+<table>
+<elem key="fingerprint">1e2b13305cf13115b4e8f3d2c4e805b5</elem>
+<elem key="type">ssh-ed25519</elem>
+<elem key="bits">256</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIPS81xs7EU6k92rNFdmsDF7qcRDxDILJUeva18aKW1GV</elem>
+</table>
+</script><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (10)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (6)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+<elem>diffie-hellman-group14-sha1</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>ssh-rsa</elem>
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-chrono" output="Request times for /; avg: 173.93ms; min: 99.56ms; max: 353.87ms"/><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-date" output="Fri, 14 Oct 2022 20:23:43 GMT; +1h00m00s from local time."><elem key="date">2022-10-14T21:23:43+00:00</elem>
+<elem key="delta">3600.0</elem>
+</script><script id="http-errors" output="Couldn&apos;t find any error pages."/><script id="http-title" output="Welcome to nginx!"><elem key="title">Welcome to nginx!</elem>
+</script><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">200</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      Other: 1&#xa;  Longest directory structure:&#xa;    Depth: 0&#xa;    Dir: /&#xa;  Total files found (by extension):&#xa;    Other: 1&#xa;"/><script id="http-vhosts" output="&#xa;erp&#xa;webftp&#xa;images&#xa;host&#xa;admin&#xa;123 names had status 200"/><script id="http-headers" output="&#xa;  Server: nginx/1.10.3&#xa;  Date: Fri, 14 Oct 2022 20:23:42 GMT&#xa;  Content-Type: text/html&#xa;  Content-Length: 612&#xa;  Last-Modified: Fri, 24 Apr 2020 09:27:19 GMT&#xa;  Connection: close&#xa;  ETag: &quot;5ea2b0f7-264&quot;&#xa;  Accept-Ranges: bytes&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-security-headers" output=""></script><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-comments-displayer" output="Couldn&apos;t find any comments."/><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-xssed" output="No previously reported XSS vuln."/></port>
+<port protocol="tcp" portid="6379"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="redis" version="5.0.9" extrainfo="64 bits" method="probed" conf="10"><cpe>cpe:/a:redis:redis:5.0.9</cpe></service><script id="redis-info" output="&#xa;  Version: 5.0.9&#xa;  Operating System: Linux 4.9.0-12-amd64 x86_64&#xa;  Architecture: 64 bits&#xa;  Process ID: 549&#xa;  Used CPU (sys): 0.208000&#xa;  Used CPU (user): 0.152000&#xa;  Connected clients: 2&#xa;  Connected slaves: 0&#xa;  Used memory: 854.62K&#xa;  Role: master&#xa;  Bind addresses: &#xa;    0.0.0.0&#xa;  Client connections: &#xa;    192.168.49.125"><elem key="Version">5.0.9</elem>
+<elem key="Operating System">Linux 4.9.0-12-amd64 x86_64</elem>
+<elem key="Architecture">64 bits</elem>
+<elem key="Process ID">549</elem>
+<elem key="Used CPU (sys)">0.208000</elem>
+<elem key="Used CPU (user)">0.152000</elem>
+<elem key="Connected clients">2</elem>
+<elem key="Connected slaves">0</elem>
+<elem key="Used memory">854.62K</elem>
+<elem key="Role">master</elem>
+<table key="Bind addresses">
+<elem>0.0.0.0</elem>
+</table>
+<table key="Client connections">
+<elem>192.168.49.125</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http-proxy" method="table" conf="3"/><script id="http-enum" output="&#xa;  /login/: Login page&#xa;  /robots.txt: Robots file&#xa;  /manifest.json: Manifest JSON File&#xa;  /api/: Potentially interesting folder&#xa;  /register/: Potentially interesting folder&#xa;  /top/: Potentially interesting folder&#xa;"/><script id="http-chrono" output="Request times for /; avg: 340.00ms; min: 311.54ms; max: 374.92ms"/><script id="http-headers" output="&#xa;  X-DNS-Prefetch-Control: off&#xa;  X-Frame-Options: SAMEORIGIN&#xa;  X-Download-Options: noopen&#xa;  X-Content-Type-Options: nosniff&#xa;  X-XSS-Protection: 1; mode=block&#xa;  Referrer-Policy: strict-origin-when-cross-origin&#xa;  X-Powered-By: NodeBB&#xa;  set-cookie: _csrf=MwNCTQlAS5dfrxvOlm9Z8cqu; Path=/&#xa;  Content-Type: text/html; charset=utf-8&#xa;  Content-Length: 18181&#xa;  ETag: W/&quot;4705-7xZRIf5Ox/FoPRoiABTkMsG46nE&quot;&#xa;  Vary: Accept-Encoding&#xa;  Date: Fri, 14 Oct 2022 20:23:19 GMT&#xa;  Connection: close&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-date" output="Fri, 14 Oct 2022 20:23:23 GMT; +1h00m00s from local time."><elem key="date">2022-10-14T21:23:23+00:00</elem>
+<elem key="delta">3600.0</elem>
+</script><script id="http-robots.txt" output="3 disallowed entries &#xa;/admin/ /reset/ /compose"/><script id="http-title" output="Home | NodeBB"><elem key="title">Home | NodeBB</elem>
+</script><script id="http-vhosts" output="&#xa;128 names had status 200"/></port>
+<port protocol="tcp" portid="27017"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="mongodb" product="MongoDB" method="probed" conf="10"/><script id="mongodb-info" output="&#xa;  MongoDB Build info&#xa;    sysInfo = deprecated&#xa;    ok = 1.0&#xa;    openssl&#xa;      compiled = OpenSSL 1.1.0l  10 Sep 2019&#xa;      running = OpenSSL 1.1.0l  10 Sep 2019&#xa;    buildEnvironment&#xa;      cc = /opt/mongodbtoolchain/v2/bin/gcc: gcc (GCC) 5.4.0&#xa;      cxx = /opt/mongodbtoolchain/v2/bin/g++: g++ (GCC) 5.4.0&#xa;      target_arch = x86_64&#xa;      target_os = linux&#xa;      cxxflags = -Woverloaded-virtual -Wno-maybe-uninitialized -std=c++14&#xa;      ccflags = -fno-omit-frame-pointer -fno-strict-aliasing -ggdb -pthread -Wall -Wsign-compare -Wno-unknown-pragmas -Winvalid-pch -Werror -O2 -Wno-unused-local-typedefs -Wno-unused-function -Wno-deprecated-declarations -Wno-unused-but-set-variable -Wno-missing-braces -fstack-protector-strong -fno-builtin-memcmp&#xa;      distmod = debian92&#xa;      distarch = x86_64&#xa;      linkflags = -pthread -Wl,-z,now -rdynamic -Wl,-&#45;fatal-warnings -fstack-protector-strong -fuse-ld=gold -Wl,-&#45;build-id -Wl,-&#45;hash-style=gnu -Wl,-z,noexecstack -Wl,-&#45;warn-execstack -Wl,-z,relro&#xa;    gitVersion = 6883bdfb8b8cff32176b1fd176df04da9165fd67&#xa;    maxBsonObjectSize = 16777216&#xa;    debug = false&#xa;    bits = 64&#xa;    versionArray&#xa;      1 = 0&#xa;      2 = 18&#xa;      3 = 0&#xa;      0 = 4&#xa;    javascriptEngine = mozjs&#xa;    storageEngines&#xa;      1 = ephemeralForTest&#xa;      2 = mmapv1&#xa;      3 = wiredTiger&#xa;      0 = devnull&#xa;    allocator = tcmalloc&#xa;    version = 4.0.18&#xa;    modules&#xa;  Server status&#xa;    code = 13&#xa;    ok = 0.0&#xa;    codeName = Unauthorized&#xa;    errmsg = command serverStatus requires authentication&#xa;"/><script id="mongodb-databases" output="&#xa;  code = 13&#xa;  ok = 0.0&#xa;  codeName = Unauthorized&#xa;  errmsg = command listDatabases requires authentication&#xa;"/></port>
+</ports>
+<hostscript><script id="dns-brute" output="Can&apos;t guess domain of &quot;192.168.125.69&quot;; use dns-brute.domain script argument."/><script id="qscan" output="&#xa;PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;22     0       48477.89   3601.62   10.0%&#xa;80     0       60676.00   35298.51  0.0%&#xa;6379   0       49444.50   7158.39   0.0%&#xa;8080   0       48479.25   2775.29   20.0%&#xa;27017  0       47380.56   7083.01   10.0%&#xa;"/><script id="ipidseq" output="All zeros"/><script id="path-mtu" output="PMTU == 1500"/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script></hostscript><times srtt="52896" rttvar="14810" to="112136"/>
+</host>
+<runstats><finished time="1665779214" timestr="Fri Oct 14 21:26:54 2022" summary="Nmap done at Fri Oct 14 21:26:54 2022; 1 IP address (1 host up) scanned in 227.10 seconds" elapsed="227.10" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

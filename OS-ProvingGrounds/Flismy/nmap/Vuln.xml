@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Fri Oct 14 12:22:39 2022 as: nmap -&#45;script vuln -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Filmsy/nmap/Vuln -&#45;min-rate 3306,80,22,43500 -p 3306,80,22,43500 192.168.125.220 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Filmsy/nmap/Vuln -&#45;min-rate 3306,80,22,43500 -p 3306,80,22,43500 192.168.125.220" start="1665746559" startstr="Fri Oct 14 12:22:39 2022" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="4" services="22,80,3306,43500"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.125.220" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1665746569" endtime="1665746734"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="192.168.125.220" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-vuln-cve2011-3192" output="&#xa;  VULNERABLE:&#xa;  Apache byterange filter DoS&#xa;    State: VULNERABLE&#xa;    IDs:  BID:49303  CVE:CVE-2011-3192&#xa;      The Apache web server is vulnerable to a denial of service attack when numerous&#xa;      overlapping byte ranges are requested.&#xa;    Disclosure date: 2011-08-19&#xa;    References:&#xa;      https://seclists.org/fulldisclosure/2011/Aug/175&#xa;      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192&#xa;      https://www.securityfocus.com/bid/49303&#xa;      https://www.tenable.com/plugins/nessus/55976&#xa;"><table key="CVE-2011-3192">
+<elem key="title">Apache byterange filter DoS</elem>
+<elem key="state">VULNERABLE</elem>
+<table key="ids">
+<elem>BID:49303</elem>
+<elem>CVE:CVE-2011-3192</elem>
+</table>
+<table key="description">
+<elem>The Apache web server is vulnerable to a denial of service attack when numerous&#xa;overlapping byte ranges are requested.</elem>
+</table>
+<table key="dates">
+<table key="disclosure">
+<elem key="year">2011</elem>
+<elem key="month">08</elem>
+<elem key="day">19</elem>
+</table>
+</table>
+<elem key="disclosure">2011-08-19</elem>
+<table key="refs">
+<elem>https://seclists.org/fulldisclosure/2011/Aug/175</elem>
+<elem>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192</elem>
+<elem>https://www.securityfocus.com/bid/49303</elem>
+<elem>https://www.tenable.com/plugins/nessus/55976</elem>
+</table>
+</table>
+</script><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.125.220&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://192.168.125.220:80/&#xa;    Form id: contact-form&#xa;    Form action: &#xa;"/></port>
+<port protocol="tcp" portid="3306"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="mysql" method="table" conf="3"/></port>
+<port protocol="tcp" portid="43500"><state state="open" reason="syn-ack" reason_ttl="63"/></port>
+</ports>
+<times srtt="65047" rttvar="25661" to="167691"/>
+</host>
+<runstats><finished time="1665746734" timestr="Fri Oct 14 12:25:34 2022" summary="Nmap done at Fri Oct 14 12:25:34 2022; 1 IP address (1 host up) scanned in 175.40 seconds" elapsed="175.40" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
