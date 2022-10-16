@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Sat Oct 15 16:01:25 2022 as: nmap -&#45;script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Tico/nmap/Discovery -&#45;min-rate 27017,21,11211,22,8080,80 -p 27017,21,11211,22,8080,80 192.168.125.143 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Tico/nmap/Discovery -&#45;min-rate 27017,21,11211,22,8080,80 -p 27017,21,11211,22,8080,80 192.168.125.143" start="1665846085" startstr="Sat Oct 15 16:01:25 2022" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="6" services="21-22,80,8080,11211,27017"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="targets-ipv6-multicast-echo" output="&#xa;  IP: fe80::419:f8ff:fea4:1e40  MAC: 0619f8a41e40  IFACE: usb0&#xa;  IP: 2a01:4c8:1400:d6b1::ca    MAC: 0619f8a41e40  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="targets-ipv6-multicast-invalid-dst" output="&#xa;  IP: fe80::419:f8ff:fea4:1e40  MAC: 0619f8a41e40  IFACE: usb0&#xa;  IP: 2a01:4c8:1400:d6b1::ca    MAC: 0619f8a41e40  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="targets-ipv6-multicast-mld" output="&#xa;  IP: fe80::419:f8ff:fea4:1e40  MAC: 0619f8a41e40  IFACE: usb0&#xa;&#xa;  Use -&#45;script-args=newtargets to add the results as targets"><table>
+<elem key="mac">0619f8a41e40</elem>
+<elem key="address">fe80::419:f8ff:fea4:1e40</elem>
+<elem key="iface">usb0</elem>
+</table>
+</script><script id="ipv6-multicast-mld-list" output="&#xa;  fe80::419:f8ff:fea4:1e40: &#xa;    device: usb0&#xa;    mac: 0619f8a41e40&#xa;    multicast_ips: &#xa;      ff02::1:ffa4:1e40         (NDP Solicited-node)&#xa;      ff02::1:ff00:0            (Solicited-Node Address)&#xa;      ff05::2                   (unknown)&#xa;      ff02::2                   (All Routers Address)&#xa;      ff02::1:ff00:ca           (Solicited-Node Address)"><table key="fe80::419:f8ff:fea4:1e40">
+<elem key="device">usb0</elem>
+<elem key="mac">0619f8a41e40</elem>
+<table key="multicast_ips">
+<table>
+<elem key="description">NDP Solicited-node</elem>
+<elem key="ip">ff02::1:ffa4:1e40</elem>
+</table>
+<table>
+<elem key="description">Solicited-Node Address</elem>
+<elem key="ip">ff02::1:ff00:0</elem>
+</table>
+<table>
+<elem key="description">unknown</elem>
+<elem key="ip">ff05::2</elem>
+</table>
+<table>
+<elem key="description">All Routers Address</elem>
+<elem key="ip">ff02::2</elem>
+</table>
+<table>
+<elem key="description">Solicited-Node Address</elem>
+<elem key="ip">ff02::1:ff00:ca</elem>
+</table>
+</table>
+</table>
+</script><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.125.143" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1665846096" endtime="1665846253"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="192.168.125.143" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ftp" method="table" conf="3"/><script id="ftp-syst" output="&#xa;  STAT: &#xa;FTP server status:&#xa;     Connected to 192.168.49.125&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 2&#xa;     vsFTPd 3.0.3 - secure, fast, stable&#xa;End of status"><elem key="STAT">&#xa;FTP server status:&#xa;     Connected to 192.168.49.125&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 2&#xa;     vsFTPd 3.0.3 - secure, fast, stable&#xa;End of status</elem>
+</script><script id="banner" output="220 (vsFTPd 3.0.3)"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/><script id="ssh-hostkey" output="&#xa;  2048 8535fbcab34b30d8e58eb325586c6e70 (RSA)&#xa;  256 de67a232d5ff566e825b6a177de244ac (ECDSA)&#xa;  256 3aa3203b32cd836fdc23a266f90fc6d3 (ED25519)"><table>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABAQDtXHpFK7WIinYk72khOxHjkwHc2VfAlkPEEUYJH+qcg7XRETxE67aA00jkJfZqzutmsPSJaPfzoJi2WNc7wHv3V+Fq2fNR5BVjll0Gnd/l0J6tlSZ5iL80mfZHK0MbSHBG0rY/AtjKkrkSN697K/Ygpivr5uufhLHZpLVXKcnP1GMsO72BPiDzRQ2ncVsV0ZejQ/m1K2DRVTy+xsdx+pft76qnBZprh5RWuJtIsL6fA23fr4pSAiQ4ElS/vHH02DGZ6PRjJYQNREH9kbMgF6VLI1eHpQubz5vx/7o2EwvFmM9LaQ4Gqryfjye/Z8yS6L7DdJCSKAJt3aucOWjem8GJ</elem>
+<elem key="bits">2048</elem>
+<elem key="fingerprint">8535fbcab34b30d8e58eb325586c6e70</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+<table>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBGE6s/w6Ru4bHrYQLL1yGbhZa/TjQZY2q0bixGR+GF+zIijxexuZ4umQSvnQO018K8WVj73uKTcMwqKHghvSwqE=</elem>
+<elem key="bits">256</elem>
+<elem key="fingerprint">de67a232d5ff566e825b6a177de244ac</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+</table>
+<table>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIJ1s5UWvBLLeULmcvB/WiXX+COPZdgnMdJPaAOH/6V+J</elem>
+<elem key="bits">256</elem>
+<elem key="fingerprint">3aa3203b32cd836fdc23a266f90fc6d3</elem>
+<elem key="type">ssh-ed25519</elem>
+</table>
+</script><script id="banner" output="SSH-2.0-OpenSSH_7.6p1 Ubuntu-4"/><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (10)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (6)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+<elem>diffie-hellman-group14-sha1</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>ssh-rsa</elem>
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-headers" output="&#xa;  Server: nginx/1.14.0 (Ubuntu)&#xa;  Date: Sat, 15 Oct 2022 15:00:38 GMT&#xa;  Content-Type: text/html&#xa;  Content-Length: 4372&#xa;  Last-Modified: Mon, 01 Feb 2021 02:10:22 GMT&#xa;  Connection: close&#xa;  ETag: &quot;6017630e-1114&quot;&#xa;  Accept-Ranges: bytes&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-title" output="Markdown Editor"><elem key="title">Markdown Editor</elem>
+</script><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-vhosts" output="&#xa;128 names had status 200"/><script id="http-chrono" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">200</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-security-headers" output=""></script><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;  Longest directory structure:&#xa;    Depth: 0&#xa;    Dir: /&#xa;  Total files found (by extension):&#xa;    &#xa;"/><script id="http-enum" output="&#xa;  /.gitignore: Revision control ignore file&#xa;"/><script id="http-date" output="Sat, 15 Oct 2022 15:00:40 GMT; +58m49s from local time."><elem key="date">2022-10-15T16:00:40+00:00</elem>
+<elem key="delta">3529.0</elem>
+</script><script id="http-errors" output="Couldn&apos;t find any error pages."/><script id="http-comments-displayer" output="Couldn&apos;t find any comments."/><script id="http-xssed" output="No previously reported XSS vuln."/></port>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http-proxy" method="table" conf="3"/><script id="http-vhosts" output="&#xa;128 names had status 200"/><script id="http-enum" output="&#xa;  /login/: Login page&#xa;  /robots.txt: Robots file&#xa;"/><script id="http-date" output="Sat, 15 Oct 2022 15:00:27 GMT; +58m50s from local time."><elem key="date">2022-10-15T16:00:27+00:00</elem>
+<elem key="delta">3530.0</elem>
+</script><script id="http-chrono" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-headers" output="&#xa;  X-DNS-Prefetch-Control: off&#xa;  X-Frame-Options: SAMEORIGIN&#xa;  X-Download-Options: noopen&#xa;  X-Content-Type-Options: nosniff&#xa;  X-XSS-Protection: 1; mode=block&#xa;  Referrer-Policy: strict-origin-when-cross-origin&#xa;  X-Powered-By: NodeBB&#xa;  set-cookie: _csrf=xjK0BMi7XuFVN7gGQh2bxD-o; Path=/&#xa;  Content-Type: text/html; charset=utf-8&#xa;  Content-Length: 24233&#xa;  ETag: W/&quot;5ea9-VHjWff08J1TPWBipdtX4fNUOzYU&quot;&#xa;  Vary: Accept-Encoding&#xa;  Date: Sat, 15 Oct 2022 15:00:28 GMT&#xa;  Connection: close&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-robots.txt" output="3 disallowed entries &#xa;/admin/ /reset/ /compose"/><script id="http-title" output="Home | NodeBB"><elem key="title">Home | NodeBB</elem>
+</script></port>
+<port protocol="tcp" portid="11211"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="memcache" method="table" conf="3"/><script id="memcached-info" output="&#xa;  Process ID: 803&#xa;  Uptime: 2194 seconds&#xa;  Server time: 2022-09-04T16:05:58&#xa;  Architecture: 64 bit&#xa;  Used CPU (user): 0.092639&#xa;  Used CPU (system): 0.092639&#xa;  Current connections: 2&#xa;  Total connections: 4&#xa;  Maximum connections: 1024&#xa;  TCP Port: 11211&#xa;  UDP Port: 0&#xa;  Authentication: no"><elem key="Process ID">803</elem>
+<elem key="Uptime">2194 seconds</elem>
+<elem key="Server time">2022-09-04T16:05:58</elem>
+<elem key="Architecture">64 bit</elem>
+<elem key="Used CPU (user)">0.092639</elem>
+<elem key="Used CPU (system)">0.092639</elem>
+<elem key="Current connections">2</elem>
+<elem key="Total connections">4</elem>
+<elem key="Maximum connections">1024</elem>
+<elem key="TCP Port">11211</elem>
+<elem key="UDP Port">0</elem>
+<elem key="Authentication">no</elem>
+</script></port>
+<port protocol="tcp" portid="27017"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="mongodb" product="MongoDB 4.0.22" method="probed" conf="10"/><script id="mongodb-databases" output="&#xa;  code = 13&#xa;  codeName = Unauthorized&#xa;  errmsg = command listDatabases requires authentication&#xa;  ok = 0.0&#xa;"/><script id="mongodb-info" output="&#xa;  MongoDB Build info&#xa;    openssl&#xa;      running = OpenSSL 1.1.1  11 Sep 2018&#xa;      compiled = OpenSSL 1.1.1  11 Sep 2018&#xa;    buildEnvironment&#xa;      cc = /opt/mongodbtoolchain/v2/bin/gcc: gcc (GCC) 5.4.0&#xa;      distarch = x86_64&#xa;      target_os = linux&#xa;      target_arch = x86_64&#xa;      cxx = /opt/mongodbtoolchain/v2/bin/g++: g++ (GCC) 5.4.0&#xa;      distmod = ubuntu1804&#xa;      cxxflags = -Woverloaded-virtual -Wno-maybe-uninitialized -std=c++14&#xa;      ccflags = -fno-omit-frame-pointer -fno-strict-aliasing -ggdb -pthread -Wall -Wsign-compare -Wno-unknown-pragmas -Winvalid-pch -Werror -O2 -Wno-unused-local-typedefs -Wno-unused-function -Wno-deprecated-declarations -Wno-unused-but-set-variable -Wno-missing-braces -fstack-protector-strong -fno-builtin-memcmp&#xa;      linkflags = -pthread -Wl,-z,now -rdynamic -Wl,-&#45;fatal-warnings -fstack-protector-strong -fuse-ld=gold -Wl,-&#45;build-id -Wl,-&#45;hash-style=gnu -Wl,-z,noexecstack -Wl,-&#45;warn-execstack -Wl,-z,relro&#xa;    version = 4.0.22&#xa;    maxBsonObjectSize = 16777216&#xa;    versionArray&#xa;      0 = 4&#xa;      3 = 0&#xa;      2 = 22&#xa;      1 = 0&#xa;    allocator = tcmalloc&#xa;    storageEngines&#xa;      0 = devnull&#xa;      3 = wiredTiger&#xa;      2 = mmapv1&#xa;      1 = ephemeralForTest&#xa;    gitVersion = 1741806fb46c161a1d42870f6e98f5100d196315&#xa;    ok = 1.0&#xa;    javascriptEngine = mozjs&#xa;    debug = false&#xa;    bits = 64&#xa;    modules&#xa;    sysInfo = deprecated&#xa;  Server status&#xa;    code = 13&#xa;    codeName = Unauthorized&#xa;    errmsg = command serverStatus requires authentication&#xa;    ok = 0.0&#xa;"/></port>
+</ports>
+<hostscript><script id="qscan" output="&#xa;PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;21     0       46998.67   6982.02   10.0%&#xa;22     0       51685.70   9525.38   0.0%&#xa;80     0       49339.50   10650.31  0.0%&#xa;8080   0       50881.40   7384.74   0.0%&#xa;11211  0       46753.44   5622.81   10.0%&#xa;27017  0       50838.62   6805.73   20.0%&#xa;"/><script id="ipidseq" output="All zeros"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;192.168.125.143&quot;; use dns-brute.domain script argument."/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="path-mtu" output="PMTU == 1500"/></hostscript><times srtt="51747" rttvar="18960" to="127587"/>
+</host>
+<runstats><finished time="1665846253" timestr="Sat Oct 15 16:04:13 2022" summary="Nmap done at Sat Oct 15 16:04:13 2022; 1 IP address (1 host up) scanned in 168.18 seconds" elapsed="168.18" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -1,0 +1,216 @@
+# Nmap 7.93 scan initiated Sat Oct 15 16:01:25 2022 as: nmap --script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Tico/nmap/Discovery --min-rate 27017,21,11211,22,8080,80 -p 27017,21,11211,22,8080,80 192.168.125.143
+Pre-scan script results:
+| targets-ipv6-multicast-echo: 
+|   IP: fe80::419:f8ff:fea4:1e40  MAC: 0619f8a41e40  IFACE: usb0
+|   IP: 2a01:4c8:1400:d6b1::ca    MAC: 0619f8a41e40  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: fe80::419:f8ff:fea4:1e40  MAC: 0619f8a41e40  IFACE: usb0
+|   IP: 2a01:4c8:1400:d6b1::ca    MAC: 0619f8a41e40  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::419:f8ff:fea4:1e40  MAC: 0619f8a41e40  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| ipv6-multicast-mld-list: 
+|   fe80::419:f8ff:fea4:1e40: 
+|     device: usb0
+|     mac: 0619f8a41e40
+|     multicast_ips: 
+|       ff02::1:ffa4:1e40         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:ca           (Solicited-Node Address)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 192.168.125.143
+Host is up (0.052s latency).
+
+Bug in http-security-headers: no string output.
+PORT      STATE SERVICE
+21/tcp    open  ftp
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to 192.168.49.125
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      At session startup, client count was 2
+|      vsFTPd 3.0.3 - secure, fast, stable
+|_End of status
+|_banner: 220 (vsFTPd 3.0.3)
+22/tcp    open  ssh
+| ssh-hostkey: 
+|   2048 8535fbcab34b30d8e58eb325586c6e70 (RSA)
+|   256 de67a232d5ff566e825b6a177de244ac (ECDSA)
+|_  256 3aa3203b32cd836fdc23a266f90fc6d3 (ED25519)
+|_banner: SSH-2.0-OpenSSH_7.6p1 Ubuntu-4
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+80/tcp    open  http
+|_http-feed: Couldn't find any feeds.
+| http-headers: 
+|   Server: nginx/1.14.0 (Ubuntu)
+|   Date: Sat, 15 Oct 2022 15:00:38 GMT
+|   Content-Type: text/html
+|   Content-Length: 4372
+|   Last-Modified: Mon, 01 Feb 2021 02:10:22 GMT
+|   Connection: close
+|   ETag: "6017630e-1114"
+|   Accept-Ranges: bytes
+|   
+|_  (Request type: HEAD)
+|_http-title: Markdown Editor
+|_http-mobileversion-checker: No mobile version detected.
+| http-vhosts: 
+|_128 names had status 200
+|_http-chrono: ERROR: Script execution failed (use -d to debug)
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-sitemap-generator: 
+|   Directory structure:
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    
+| http-enum: 
+|_  /.gitignore: Revision control ignore file
+|_http-date: Sat, 15 Oct 2022 15:00:40 GMT; +58m49s from local time.
+|_http-errors: Couldn't find any error pages.
+|_http-comments-displayer: Couldn't find any comments.
+|_http-xssed: No previously reported XSS vuln.
+8080/tcp  open  http-proxy
+| http-vhosts: 
+|_128 names had status 200
+| http-enum: 
+|   /login/: Login page
+|_  /robots.txt: Robots file
+|_http-date: Sat, 15 Oct 2022 15:00:27 GMT; +58m50s from local time.
+|_http-chrono: ERROR: Script execution failed (use -d to debug)
+| http-headers: 
+|   X-DNS-Prefetch-Control: off
+|   X-Frame-Options: SAMEORIGIN
+|   X-Download-Options: noopen
+|   X-Content-Type-Options: nosniff
+|   X-XSS-Protection: 1; mode=block
+|   Referrer-Policy: strict-origin-when-cross-origin
+|   X-Powered-By: NodeBB
+|   set-cookie: _csrf=xjK0BMi7XuFVN7gGQh2bxD-o; Path=/
+|   Content-Type: text/html; charset=utf-8
+|   Content-Length: 24233
+|   ETag: W/"5ea9-VHjWff08J1TPWBipdtX4fNUOzYU"
+|   Vary: Accept-Encoding
+|   Date: Sat, 15 Oct 2022 15:00:28 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+| http-robots.txt: 3 disallowed entries 
+|_/admin/ /reset/ /compose
+|_http-title: Home | NodeBB
+11211/tcp open  memcache
+| memcached-info: 
+|   Process ID: 803
+|   Uptime: 2194 seconds
+|   Server time: 2022-09-04T16:05:58
+|   Architecture: 64 bit
+|   Used CPU (user): 0.092639
+|   Used CPU (system): 0.092639
+|   Current connections: 2
+|   Total connections: 4
+|   Maximum connections: 1024
+|   TCP Port: 11211
+|   UDP Port: 0
+|_  Authentication: no
+27017/tcp open  mongodb
+| mongodb-databases: 
+|   code = 13
+|   codeName = Unauthorized
+|   errmsg = command listDatabases requires authentication
+|_  ok = 0.0
+| mongodb-info: 
+|   MongoDB Build info
+|     openssl
+|       running = OpenSSL 1.1.1  11 Sep 2018
+|       compiled = OpenSSL 1.1.1  11 Sep 2018
+|     buildEnvironment
+|       cc = /opt/mongodbtoolchain/v2/bin/gcc: gcc (GCC) 5.4.0
+|       distarch = x86_64
+|       target_os = linux
+|       target_arch = x86_64
+|       cxx = /opt/mongodbtoolchain/v2/bin/g++: g++ (GCC) 5.4.0
+|       distmod = ubuntu1804
+|       cxxflags = -Woverloaded-virtual -Wno-maybe-uninitialized -std=c++14
+|       ccflags = -fno-omit-frame-pointer -fno-strict-aliasing -ggdb -pthread -Wall -Wsign-compare -Wno-unknown-pragmas -Winvalid-pch -Werror -O2 -Wno-unused-local-typedefs -Wno-unused-function -Wno-deprecated-declarations -Wno-unused-but-set-variable -Wno-missing-braces -fstack-protector-strong -fno-builtin-memcmp
+|       linkflags = -pthread -Wl,-z,now -rdynamic -Wl,--fatal-warnings -fstack-protector-strong -fuse-ld=gold -Wl,--build-id -Wl,--hash-style=gnu -Wl,-z,noexecstack -Wl,--warn-execstack -Wl,-z,relro
+|     version = 4.0.22
+|     maxBsonObjectSize = 16777216
+|     versionArray
+|       0 = 4
+|       3 = 0
+|       2 = 22
+|       1 = 0
+|     allocator = tcmalloc
+|     storageEngines
+|       0 = devnull
+|       3 = wiredTiger
+|       2 = mmapv1
+|       1 = ephemeralForTest
+|     gitVersion = 1741806fb46c161a1d42870f6e98f5100d196315
+|     ok = 1.0
+|     javascriptEngine = mozjs
+|     debug = false
+|     bits = 64
+|     modules
+|     sysInfo = deprecated
+|   Server status
+|     code = 13
+|     codeName = Unauthorized
+|     errmsg = command serverStatus requires authentication
+|_    ok = 0.0
+
+Host script results:
+| qscan: 
+| PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 21     0       46998.67   6982.02   10.0%
+| 22     0       51685.70   9525.38   0.0%
+| 80     0       49339.50   10650.31  0.0%
+| 8080   0       50881.40   7384.74   0.0%
+| 11211  0       46753.44   5622.81   10.0%
+|_27017  0       50838.62   6805.73   20.0%
+|_ipidseq: All zeros
+|_dns-brute: Can't guess domain of "192.168.125.143"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+|_path-mtu: PMTU == 1500
+
+# Nmap done at Sat Oct 15 16:04:13 2022 -- 1 IP address (1 host up) scanned in 168.18 seconds
