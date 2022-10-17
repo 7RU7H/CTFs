@@ -1,0 +1,120 @@
+# Nmap 7.93 scan initiated Mon Oct 17 10:38:37 2022 as: nmap --script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Mice/nmap/192-168-217-199-Discovery --min-rate 500 -p 1980,7680,3389,1978,1979 192.168.217.199
+Pre-scan script results:
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::c874:f2ff:febc:1111  MAC: ca74f2bc1111  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| ipv6-multicast-mld-list: 
+|   fe80::c874:f2ff:febc:1111: 
+|     device: usb0
+|     mac: ca74f2bc1111
+|     multicast_ips: 
+|       ff02::1:ffbc:1111         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:87           (Solicited-Node Address)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:1405:a204::87     MAC: ca74f2bc1111  IFACE: usb0
+|   IP: fe80::c874:f2ff:febc:1111  MAC: ca74f2bc1111  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:1405:a204::87     MAC: ca74f2bc1111  IFACE: usb0
+|   IP: fe80::c874:f2ff:febc:1111  MAC: ca74f2bc1111  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+Nmap scan report for 192.168.217.199
+Host is up (0.041s latency).
+
+PORT     STATE SERVICE
+1978/tcp open  unisql
+|_banner: SIN 15win nop nop 300
+1979/tcp open  unisql-java
+1980/tcp open  pearldoc-xact
+3389/tcp open  ms-wbt-server
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|_  least strength: C
+| rdp-enum-encryption: 
+|   Security layer
+|     CredSSP (NLA): SUCCESS
+|     CredSSP with Early User Auth: SUCCESS
+|     RDSTLS: SUCCESS
+|     SSL: SUCCESS
+|_  RDP Protocol Version: Unknown
+| ssl-cert: Subject: commonName=Remote-PC
+| Not valid before: 2022-09-05T00:43:52
+|_Not valid after:  2023-03-07T00:43:52
+|_ssl-date: 2022-10-17T09:38:49+00:00; 0s from scanner time.
+| rdp-ntlm-info: 
+|   Target_Name: REMOTE-PC
+|   NetBIOS_Domain_Name: REMOTE-PC
+|   NetBIOS_Computer_Name: REMOTE-PC
+|   DNS_Domain_Name: Remote-PC
+|   DNS_Computer_Name: Remote-PC
+|   Product_Version: 10.0.19041
+|_  System_Time: 2022-10-17T09:38:49+00:00
+7680/tcp open  pando-pub
+
+Host script results:
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 1978  0       46603.70   6376.57   0.0%
+| 1979  0       52858.80   19276.36  0.0%
+| 1980  0       45357.10   7532.74   0.0%
+| 3389  0       49092.60   7020.45   0.0%
+|_7680  0       43819.10   3690.85   0.0%
+|_ipidseq: Unknown
+|_dns-brute: Can't guess domain of "192.168.217.199"; use dns-brute.domain script argument.
+|_path-mtu: PMTU == 1500
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Mon Oct 17 10:39:20 2022 -- 1 IP address (1 host up) scanned in 43.50 seconds

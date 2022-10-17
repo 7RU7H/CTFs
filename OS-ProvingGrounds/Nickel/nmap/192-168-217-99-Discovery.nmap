@@ -1,34 +1,44 @@
-# Nmap 7.92 scan initiated Sun May 29 17:09:06 2022 as: nmap -Pn --script discovery -oA nmap/Discovery -p- --min-rate 500 192.168.117.99
+# Nmap 7.93 scan initiated Mon Oct 17 09:45:47 2022 as: nmap --script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Nickel/nmap/192-168-217-99-Discovery --min-rate 500 -p 8089,21,3389,33333,135,139 192.168.217.99
 Pre-scan script results:
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::c874:f2ff:febc:1111  MAC: ca74f2bc1111  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| ipv6-multicast-mld-list: 
+|   fe80::c874:f2ff:febc:1111: 
+|     device: usb0
+|     mac: ca74f2bc1111
+|     multicast_ips: 
+|       ff02::1:ffbc:1111         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:87           (Solicited-Node Address)
+| targets-ipv6-multicast-echo: 
+|   IP: fe80::c874:f2ff:febc:1111  MAC: ca74f2bc1111  IFACE: usb0
+|   IP: 2a01:4c8:1405:a204::87     MAC: ca74f2bc1111  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:1405:a204::87     MAC: ca74f2bc1111  IFACE: usb0
+|   IP: fe80::c874:f2ff:febc:1111  MAC: ca74f2bc1111  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
 |_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
 | targets-asn: 
 |_  targets-asn.asn is a mandatory parameter
-|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
-Nmap scan report for 192.168.117.99
-Host is up (0.049s latency).
-Not shown: 65528 filtered tcp ports (no-response)
+Nmap scan report for 192.168.217.99
+Host is up (0.052s latency).
+
 PORT      STATE SERVICE
 21/tcp    open  ftp
+|_banner: 220-FileZilla Server 0.9.60 beta\x0D\x0A220-written by Tim K...
 | ftp-syst: 
 |_  SYST: UNIX emulated by FileZilla
-|_banner: 220-FileZilla Server 0.9.60 beta\x0D\x0A220-written by Tim K...
-22/tcp    open  ssh
-| ssh2-enum-algos: 
-|   kex_algorithms: (10)
-|   server_host_key_algorithms: (5)
-|   encryption_algorithms: (6)
-|   mac_algorithms: (10)
-|_  compression_algorithms: (2)
-|_banner: SSH-2.0-OpenSSH_for_Windows_8.1
-| ssh-hostkey: 
-|   3072 86:84:fd:d5:43:27:05:cf:a7:f2:e9:e2:75:70:d5:f3 (RSA)
-|   256 9c:93:cf:48:a9:4e:70:f4:60:de:e1:a9:c2:c0:b6:ff (ECDSA)
-|_  256 00:4e:d7:3b:0f:9f:e3:74:4d:04:99:0b:b1:8b:de:a5 (ED25519)
 135/tcp   open  msrpc
 139/tcp   open  netbios-ssn
 |_smb-enum-services: ERROR: Script execution failed (use -d to debug)
 3389/tcp  open  ms-wbt-server
-|_ssl-date: 2022-05-29T16:13:16+00:00; 0s from scanner time.
+|_ssl-date: 2022-10-17T08:46:00+00:00; 0s from scanner time.
 | rdp-ntlm-info: 
 |   Target_Name: NICKEL
 |   NetBIOS_Domain_Name: NICKEL
@@ -36,15 +46,15 @@ PORT      STATE SERVICE
 |   DNS_Domain_Name: nickel
 |   DNS_Computer_Name: nickel
 |   Product_Version: 10.0.18362
-|_  System_Time: 2022-05-29T16:13:16+00:00
-| ssl-cert: Subject: commonName=nickel
-| Not valid before: 2022-05-28T16:02:29
-|_Not valid after:  2022-11-27T16:02:29
+|_  System_Time: 2022-10-17T08:46:00+00:00
 | rdp-enum-encryption: 
 |   Security layer
 |     CredSSP (NLA): SUCCESS
 |     CredSSP with Early User Auth: SUCCESS
 |_    RDSTLS: SUCCESS
+| ssl-cert: Subject: commonName=nickel
+| Not valid before: 2022-10-16T08:30:50
+|_Not valid after:  2023-04-17T08:30:50
 | ssl-enum-ciphers: 
 |   TLSv1.0: 
 |     ciphers: 
@@ -97,12 +107,22 @@ PORT      STATE SERVICE
 33333/tcp open  dgi-serv
 
 Host script results:
-|_smb2-time: ERROR: Script execution failed (use -d to debug)
-|_fcrdns: FAIL (No PTR record)
-|_dns-brute: Can't guess domain of "192.168.117.99"; use dns-brute.domain script argument.
-|_smb2-security-mode: SMB: Couldn't find a NetBIOS name that works for the server. Sorry!
-|_smb-mbenum: ERROR: Script execution failed (use -d to debug)
-|_smb2-capabilities: SMB: Couldn't find a NetBIOS name that works for the server. Sorry!
+|_dns-brute: Can't guess domain of "192.168.217.99"; use dns-brute.domain script argument.
+| qscan: 
+| PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 21     0       45482.30   8006.86   0.0%
+| 135    0       49738.60   14850.02  0.0%
+| 139    0       54423.80   39013.26  0.0%
+| 3389   0       47454.30   9257.90   0.0%
+| 8089   0       50504.10   18995.76  0.0%
+|_33333  0       43033.70   8390.77   0.0%
 |_msrpc-enum: SMB: Couldn't find a NetBIOS name that works for the server. Sorry!
+|_smb2-time: ERROR: Script execution failed (use -d to debug)
+|_smb2-capabilities: SMB: Couldn't find a NetBIOS name that works for the server. Sorry!
+|_smb-mbenum: ERROR: Script execution failed (use -d to debug)
+|_smb2-security-mode: SMB: Couldn't find a NetBIOS name that works for the server. Sorry!
+|_path-mtu: PMTU == 1500
+|_fcrdns: FAIL (No PTR record)
+|_ipidseq: Unknown
 
-# Nmap done at Sun May 29 17:13:47 2022 -- 1 IP address (1 host up) scanned in 281.04 seconds
+# Nmap done at Mon Oct 17 09:46:42 2022 -- 1 IP address (1 host up) scanned in 54.33 seconds

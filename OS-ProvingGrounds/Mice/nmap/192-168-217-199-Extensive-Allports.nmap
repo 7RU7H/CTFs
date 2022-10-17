@@ -1,0 +1,47 @@
+# Nmap 7.93 scan initiated Mon Oct 17 10:40:01 2022 as: nmap -sC -sV -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Mice/nmap/192-168-217-199-Extensive-Allports --min-rate 500 -p- 192.168.217.199
+Nmap scan report for 192.168.217.199
+Host is up (0.28s latency).
+Not shown: 65530 filtered tcp ports (no-response)
+PORT     STATE SERVICE        VERSION
+1978/tcp open  unisql?
+| fingerprint-strings: 
+|   DNSVersionBindReqTCP, FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, Help, JavaRMI, LANDesk-RC, LDAPBindReq, LDAPSearchReq, LPDString, NULL, RTSPRequest, SIPOptions, SSLSessionReq, TLSSessionReq, ms-sql-s: 
+|_    SIN 15win nop nop 300
+1979/tcp open  unisql-java?
+1980/tcp open  pearldoc-xact?
+3389/tcp open  ms-wbt-server  Microsoft Terminal Services
+| ssl-cert: Subject: commonName=Remote-PC
+| Not valid before: 2022-09-05T00:43:52
+|_Not valid after:  2023-03-07T00:43:52
+|_ssl-date: 2022-10-17T09:47:41+00:00; -1s from scanner time.
+| rdp-ntlm-info: 
+|   Target_Name: REMOTE-PC
+|   NetBIOS_Domain_Name: REMOTE-PC
+|   NetBIOS_Computer_Name: REMOTE-PC
+|   DNS_Domain_Name: Remote-PC
+|   DNS_Computer_Name: Remote-PC
+|   Product_Version: 10.0.19041
+|_  System_Time: 2022-10-17T09:47:09+00:00
+7680/tcp open  pando-pub?
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port1978-TCP:V=7.93%I=7%D=10/17%Time=634D23FF%P=x86_64-pc-linux-gnu%r(N
+SF:ULL,15,"SIN\x2015win\x20nop\x20nop\x20300")%r(GenericLines,15,"SIN\x201
+SF:5win\x20nop\x20nop\x20300")%r(GetRequest,15,"SIN\x2015win\x20nop\x20nop
+SF:\x20300")%r(HTTPOptions,15,"SIN\x2015win\x20nop\x20nop\x20300")%r(RTSPR
+SF:equest,15,"SIN\x2015win\x20nop\x20nop\x20300")%r(DNSVersionBindReqTCP,1
+SF:5,"SIN\x2015win\x20nop\x20nop\x20300")%r(Help,15,"SIN\x2015win\x20nop\x
+SF:20nop\x20300")%r(SSLSessionReq,15,"SIN\x2015win\x20nop\x20nop\x20300")%
+SF:r(TLSSessionReq,15,"SIN\x2015win\x20nop\x20nop\x20300")%r(FourOhFourReq
+SF:uest,15,"SIN\x2015win\x20nop\x20nop\x20300")%r(LPDString,15,"SIN\x2015w
+SF:in\x20nop\x20nop\x20300")%r(LDAPSearchReq,15,"SIN\x2015win\x20nop\x20no
+SF:p\x20300")%r(LDAPBindReq,15,"SIN\x2015win\x20nop\x20nop\x20300")%r(SIPO
+SF:ptions,15,"SIN\x2015win\x20nop\x20nop\x20300")%r(LANDesk-RC,15,"SIN\x20
+SF:15win\x20nop\x20nop\x20300")%r(JavaRMI,15,"SIN\x2015win\x20nop\x20nop\x
+SF:20300")%r(ms-sql-s,15,"SIN\x2015win\x20nop\x20nop\x20300");
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: -1s, deviation: 0s, median: -1s
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Oct 17 10:47:43 2022 -- 1 IP address (1 host up) scanned in 462.90 seconds

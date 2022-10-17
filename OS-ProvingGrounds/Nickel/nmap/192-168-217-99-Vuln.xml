@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Mon Oct 17 09:46:42 2022 as: nmap -&#45;script vuln -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Nickel/nmap/192-168-217-99-Vuln -&#45;min-rate 500 -p 8089,21,3389,33333,135,139 192.168.217.99 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Nickel/nmap/192-168-217-99-Vuln -&#45;min-rate 500 -p 8089,21,3389,33333,135,139 192.168.217.99" start="1665996402" startstr="Mon Oct 17 09:46:42 2022" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="6" services="21,135,139,3389,8089,33333"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.217.99" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1665996412" endtime="1665996482"><status state="up" reason="echo-reply" reason_ttl="127"/>
+<address addr="192.168.217.99" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="netbios-ssn" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ms-wbt-server" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8089"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="33333"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="dgi-serv" method="table" conf="3"/></port>
+</ports>
+<hostscript><script id="smb-vuln-ms10-061" output="SMB: Couldn&apos;t find a NetBIOS name that works for the server. Sorry!">false</script><script id="smb-vuln-cve2009-3103" output="&#xa;  VULNERABLE:&#xa;  SMBv2 exploit (CVE-2009-3103, Microsoft Security Advisory 975497)&#xa;    State: VULNERABLE&#xa;    IDs:  CVE:CVE-2009-3103&#xa;          Array index error in the SMBv2 protocol implementation in srv2.sys in Microsoft Windows Vista Gold, SP1, and SP2,&#xa;          Windows Server 2008 Gold and SP2, and Windows 7 RC allows remote attackers to execute arbitrary code or cause a&#xa;          denial of service (system crash) via an &amp; (ampersand) character in a Process ID High header field in a NEGOTIATE&#xa;          PROTOCOL REQUEST packet, which triggers an attempted dereference of an out-of-bounds memory location,&#xa;          aka &quot;SMBv2 Negotiation Vulnerability.&quot;&#xa;          &#xa;    Disclosure date: 2009-09-08&#xa;    References:&#xa;      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3103&#xa;      http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3103&#xa;"><table key="CVE-2009-3103">
+<elem key="title">SMBv2 exploit (CVE-2009-3103, Microsoft Security Advisory 975497)</elem>
+<elem key="state">VULNERABLE</elem>
+<table key="ids">
+<elem>CVE:CVE-2009-3103</elem>
+</table>
+<table key="description">
+<elem>    Array index error in the SMBv2 protocol implementation in srv2.sys in Microsoft Windows Vista Gold, SP1, and SP2,&#xa;    Windows Server 2008 Gold and SP2, and Windows 7 RC allows remote attackers to execute arbitrary code or cause a&#xa;    denial of service (system crash) via an &amp; (ampersand) character in a Process ID High header field in a NEGOTIATE&#xa;    PROTOCOL REQUEST packet, which triggers an attempted dereference of an out-of-bounds memory location,&#xa;    aka &quot;SMBv2 Negotiation Vulnerability.&quot;&#xa;    </elem>
+</table>
+<table key="dates">
+<table key="disclosure">
+<elem key="year">2009</elem>
+<elem key="month">09</elem>
+<elem key="day">08</elem>
+</table>
+</table>
+<elem key="disclosure">2009-09-08</elem>
+<table key="refs">
+<elem>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3103</elem>
+<elem>http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3103</elem>
+</table>
+</table>
+</script><script id="smb-vuln-ms10-054" output="false">false</script><script id="samba-vuln-cve-2012-1182" output="SMB: Couldn&apos;t find a NetBIOS name that works for the server. Sorry!">false</script></hostscript><times srtt="41295" rttvar="11777" to="100000"/>
+</host>
+<runstats><finished time="1665996482" timestr="Mon Oct 17 09:48:02 2022" summary="Nmap done at Mon Oct 17 09:48:02 2022; 1 IP address (1 host up) scanned in 80.52 seconds" elapsed="80.52" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Mon Oct 17 10:38:37 2022 as: nmap -&#45;script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Mice/nmap/192-168-217-199-Discovery -&#45;min-rate 500 -p 1980,7680,3389,1978,1979 192.168.217.199 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Mice/nmap/192-168-217-199-Discovery -&#45;min-rate 500 -p 1980,7680,3389,1978,1979 192.168.217.199" start="1665999517" startstr="Mon Oct 17 10:38:37 2022" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="5" services="1978-1980,3389,7680"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="targets-ipv6-multicast-mld" output="&#xa;  IP: fe80::c874:f2ff:febc:1111  MAC: ca74f2bc1111  IFACE: usb0&#xa;&#xa;  Use -&#45;script-args=newtargets to add the results as targets"><table>
+<elem key="address">fe80::c874:f2ff:febc:1111</elem>
+<elem key="mac">ca74f2bc1111</elem>
+<elem key="iface">usb0</elem>
+</table>
+</script><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="ipv6-multicast-mld-list" output="&#xa;  fe80::c874:f2ff:febc:1111: &#xa;    device: usb0&#xa;    mac: ca74f2bc1111&#xa;    multicast_ips: &#xa;      ff02::1:ffbc:1111         (NDP Solicited-node)&#xa;      ff02::1:ff00:0            (Solicited-Node Address)&#xa;      ff05::2                   (unknown)&#xa;      ff02::2                   (All Routers Address)&#xa;      ff02::1:ff00:87           (Solicited-Node Address)"><table key="fe80::c874:f2ff:febc:1111">
+<elem key="device">usb0</elem>
+<elem key="mac">ca74f2bc1111</elem>
+<table key="multicast_ips">
+<table>
+<elem key="ip">ff02::1:ffbc:1111</elem>
+<elem key="description">NDP Solicited-node</elem>
+</table>
+<table>
+<elem key="ip">ff02::1:ff00:0</elem>
+<elem key="description">Solicited-Node Address</elem>
+</table>
+<table>
+<elem key="ip">ff05::2</elem>
+<elem key="description">unknown</elem>
+</table>
+<table>
+<elem key="ip">ff02::2</elem>
+<elem key="description">All Routers Address</elem>
+</table>
+<table>
+<elem key="ip">ff02::1:ff00:87</elem>
+<elem key="description">Solicited-Node Address</elem>
+</table>
+</table>
+</table>
+</script><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-ipv6-multicast-invalid-dst" output="&#xa;  IP: 2a01:4c8:1405:a204::87     MAC: ca74f2bc1111  IFACE: usb0&#xa;  IP: fe80::c874:f2ff:febc:1111  MAC: ca74f2bc1111  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-ipv6-multicast-echo" output="&#xa;  IP: 2a01:4c8:1405:a204::87     MAC: ca74f2bc1111  IFACE: usb0&#xa;  IP: fe80::c874:f2ff:febc:1111  MAC: ca74f2bc1111  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.217.199" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1665999529" endtime="1665999560"><status state="up" reason="echo-reply" reason_ttl="127"/>
+<address addr="192.168.217.199" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="1978"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="unisql" method="table" conf="3"/><script id="banner" output="SIN 15win nop nop 300"/></port>
+<port protocol="tcp" portid="1979"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="unisql-java" method="table" conf="3"/></port>
+<port protocol="tcp" portid="1980"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="pearldoc-xact" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ms-wbt-server" method="table" conf="3"/><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.0: &#xa;    ciphers: &#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;  TLSv1.1: &#xa;    ciphers: &#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C&#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp384r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp384r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;  least strength: C"><table key="TLSv1.0">
+<table key="ciphers">
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="strength">C</elem>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="kex_info">secp384r1</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+</table>
+</table>
+<table key="TLSv1.1">
+<table key="ciphers">
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="strength">C</elem>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="kex_info">secp384r1</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+</table>
+</table>
+<table key="TLSv1.2">
+<table key="ciphers">
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="strength">C</elem>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="kex_info">secp384r1</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384</elem>
+<elem key="kex_info">secp384r1</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="kex_info">secp384r1</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+</table>
+</table>
+<elem key="least strength">C</elem>
+</script><script id="rdp-enum-encryption" output="&#xa;  Security layer&#xa;    CredSSP (NLA): SUCCESS&#xa;    CredSSP with Early User Auth: SUCCESS&#xa;    RDSTLS: SUCCESS&#xa;    SSL: SUCCESS&#xa;  RDP Protocol Version: Unknown&#xa;"/><script id="ssl-cert" output="Subject: commonName=Remote-PC&#xa;Not valid before: 2022-09-05T00:43:52&#xa;Not valid after:  2023-03-07T00:43:52"><table key="subject">
+<elem key="commonName">Remote-PC</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">Remote-PC</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">CA8336347B19264D5B723C736A150F754D9FAB32BC18C243641C8CA572EB8A8889B691ABA712E4233111A5FF811762F892C2F6563238B5E3FF313EEF3A5A813DD23FAD6336CAF41F4AAA937825F1DA30C7202AD34DAC3F58CD9B55B2F94269CB71B7D881CB85C562077CDC90481C7158F3899DBF6F8AF53B5DA4B0946098C507B3F7F4F5CDA2E6897B7E10C33340E5E86319FD1CB72B9C148D6B83013B413E23E1EB1FAB9C34423FCB384130DC284901DB80D2DC69307D465CD8B44CFA26B29561325C673D72BF9B20ECA89563676D6AD0B19C63309D3A3F7784C366DFD0DC762C9BF44FD97262CB46C1A77A643EE0B85349E9586D75607FA74842EE62892339</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Key Encipherment, Data Encipherment</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2022-09-05T00:43:52</elem>
+<elem key="notAfter">2023-03-07T00:43:52</elem>
+</table>
+<elem key="md5">910066dd9001af335dc9036a5888db8f</elem>
+<elem key="sha1">1c97d086757f3959618ff60dc9f8f3ed9d756013</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIC1jCCAb6gAwIBAgIQEuZ0HYmggpBJb5BaeKqtODANBgkqhkiG9w0BAQsFADAU&#xa;MRIwEAYDVQQDEwlSZW1vdGUtUEMwHhcNMjIwOTA1MDA0MzUyWhcNMjMwMzA3MDA0&#xa;MzUyWjAUMRIwEAYDVQQDEwlSZW1vdGUtUEMwggEiMA0GCSqGSIb3DQEBAQUAA4IB&#xa;DwAwggEKAoIBAQDKgzY0exkmTVtyPHNqFQ91TZ+rMrwYwkNkHIylcuuKiIm2kaun&#xa;EuQjMRGl/4EXYviSwvZWMji14/8xPu86WoE90j+tYzbK9B9KqpN4JfHaMMcgKtNN&#xa;rD9YzZtVsvlCactxt9iBy4XFYgd83JBIHHFY84mdv2+K9TtdpLCUYJjFB7P39PXN&#xa;ouaJe34QwzNA5ehjGf0ctyucFI1rgwE7QT4j4esfq5w0Qj/LOEEw3ChJAduA0txp&#xa;MH1GXNi0TPomspVhMlxnPXK/myDsqJVjZ21q0LGcYzCdOj93hMNm39Dcdiyb9E/Z&#xa;cmLLRsGnemQ+4LhTSelYbXVgf6dIQu5iiSM5AgMBAAGjJDAiMBMGA1UdJQQMMAoG&#xa;CCsGAQUFBwMBMAsGA1UdDwQEAwIEMDANBgkqhkiG9w0BAQsFAAOCAQEAt8nZQZyT&#xa;Nb8LyHQ3Ebxd4K83V4UKYIaUiXoZVG95BtvTk7WwKILwkKvV9J9MHoc4oYQYkecG&#xa;re6Ffhd95biScGQVp7rxPMr+Uw4A6SQczBiA6NGFZtsKD2+WcJlBLf9EGU6XdAb8&#xa;Y1Xb/IfcLrR+KojIil+yRyteyPkct9rHUWAYYQOl+8q/WG3r7wZFblKAvz8uFyIZ&#xa;iUf4fcDxsdYWEdfcynjSJkx+qbn6tt1y5MT3b4alOWRpLFCg73Vwwo8Hh3ZrGKZ/&#xa;xeqrjOaE9HVsngWxHeVbyI4N2FnrJE+J67N217EtYqWZp9z2cV6p7Ts1fX/Vu0K1&#xa;ZrjqDoQhUW2rMQ==&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ssl-date" output="2022-10-17T09:38:49+00:00; 0s from scanner time."><elem key="date">2022-10-17T09:38:49+00:00</elem>
+<elem key="delta">0.0</elem>
+</script><script id="rdp-ntlm-info" output="&#xa;  Target_Name: REMOTE-PC&#xa;  NetBIOS_Domain_Name: REMOTE-PC&#xa;  NetBIOS_Computer_Name: REMOTE-PC&#xa;  DNS_Domain_Name: Remote-PC&#xa;  DNS_Computer_Name: Remote-PC&#xa;  Product_Version: 10.0.19041&#xa;  System_Time: 2022-10-17T09:38:49+00:00"><elem key="Target_Name">REMOTE-PC</elem>
+<elem key="NetBIOS_Domain_Name">REMOTE-PC</elem>
+<elem key="NetBIOS_Computer_Name">REMOTE-PC</elem>
+<elem key="DNS_Domain_Name">Remote-PC</elem>
+<elem key="DNS_Computer_Name">Remote-PC</elem>
+<elem key="Product_Version">10.0.19041</elem>
+<elem key="System_Time">2022-10-17T09:38:49+00:00</elem>
+</script></port>
+<port protocol="tcp" portid="7680"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="pando-pub" method="table" conf="3"/></port>
+</ports>
+<hostscript><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;1978  0       46603.70   6376.57   0.0%&#xa;1979  0       52858.80   19276.36  0.0%&#xa;1980  0       45357.10   7532.74   0.0%&#xa;3389  0       49092.60   7020.45   0.0%&#xa;7680  0       43819.10   3690.85   0.0%&#xa;"/><script id="ipidseq" output="Unknown"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;192.168.217.199&quot;; use dns-brute.domain script argument."/><script id="path-mtu" output="PMTU == 1500"/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script></hostscript><times srtt="40955" rttvar="15120" to="101435"/>
+</host>
+<runstats><finished time="1665999560" timestr="Mon Oct 17 10:39:20 2022" summary="Nmap done at Mon Oct 17 10:39:20 2022; 1 IP address (1 host up) scanned in 43.50 seconds" elapsed="43.50" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

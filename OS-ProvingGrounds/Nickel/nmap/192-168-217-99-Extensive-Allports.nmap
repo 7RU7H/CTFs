@@ -1,0 +1,42 @@
+# Nmap 7.93 scan initiated Mon Oct 17 09:48:02 2022 as: nmap -sC -sV -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Nickel/nmap/192-168-217-99-Extensive-Allports --min-rate 500 -p- 192.168.217.99
+Nmap scan report for 192.168.217.99
+Host is up (0.054s latency).
+Not shown: 65528 filtered tcp ports (no-response)
+PORT      STATE SERVICE       VERSION
+21/tcp    open  ftp           FileZilla ftpd
+| ftp-syst: 
+|_  SYST: UNIX emulated by FileZilla
+22/tcp    open  ssh           OpenSSH for_Windows_8.1 (protocol 2.0)
+| ssh-hostkey: 
+|   3072 8684fdd5432705cfa7f2e9e27570d5f3 (RSA)
+|   256 9c93cf48a94e70f460dee1a9c2c0b6ff (ECDSA)
+|_  256 004ed73b0f9fe3744d04990bb18bdea5 (ED25519)
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+3389/tcp  open  ms-wbt-server Microsoft Terminal Services
+| ssl-cert: Subject: commonName=nickel
+| Not valid before: 2022-10-16T08:30:50
+|_Not valid after:  2023-04-17T08:30:50
+| rdp-ntlm-info: 
+|   Target_Name: NICKEL
+|   NetBIOS_Domain_Name: NICKEL
+|   NetBIOS_Computer_Name: NICKEL
+|   DNS_Domain_Name: nickel
+|   DNS_Computer_Name: nickel
+|   Product_Version: 10.0.18362
+|_  System_Time: 2022-10-17T08:50:31+00:00
+|_ssl-date: 2022-10-17T08:51:36+00:00; 0s from scanner time.
+8089/tcp  open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Site doesn't have a title.
+33333/tcp open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Site doesn't have a title.
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_smb2-security-mode: SMB: Couldn't find a NetBIOS name that works for the server. Sorry!
+|_smb2-time: ERROR: Script execution failed (use -d to debug)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Mon Oct 17 09:51:36 2022 -- 1 IP address (1 host up) scanned in 214.21 seconds
