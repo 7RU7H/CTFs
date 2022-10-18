@@ -1,8 +1,8 @@
 
-Name: YearOfTheFox
+Name: Year Of The Fox
 Date:  
-Difficulty:  
-Description:  
+Difficulty:  Hard
+Description:  Don't underestimate the sly old fox...
 Better Description:  
 Goals:  
 Learnt:
