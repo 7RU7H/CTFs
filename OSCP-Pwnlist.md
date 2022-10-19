@@ -104,7 +104,7 @@ Sunday | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox
 Tartarsauce | Done | | [Link]()
 Irked | Done | | [Link]()
 Friendzone  | Done -not done smb | | [Link]()
-Blue | Done | Python script version to do | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Retired-Machines/Blue)
+Blue | Done | Doneo | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Retired-Machines/Blue)
 Devel | Done | | [Link]()
 Optimum | Done  | | [Link]()
 Bastard | Done  | | [Link]()
@@ -144,7 +144,7 @@ Forest | Done | Walkthrough -> Retry in Randomiser | [Link]()
 Jail and node also contains a BoF but is ranked easier than October BoF
 Box Name | Recon-ed | Done | Writeup
 --- | --- | --- | --- 
-Sneaky  | Done | | [Link]()
+Sneaky  | Done | Walkthroughed | [Link]()
 Enterprise  | Weird | | [Link]()
 October  | | | [Link]()
 Calamity | | | [Link]()
