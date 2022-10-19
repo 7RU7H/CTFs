@@ -8,8 +8,6 @@ This is a list of completed and to finish, which I planned to finish by November
 Any HTB active box I did not complete, gets this note also here for my own reminder and commitment. This was a hopeful to completing a active box on the side of doing all the OSCP study and prep just to get points and learn more *new* tricks, techniques and building up capability so that after OSCP completion I do atleast one of these or multiple a week in 2023.
 
 
-
-
 https://github.com/7RU7H/CTFs/tree/main/
 
 ## OS-Proving-Grounds
@@ -74,7 +72,7 @@ These are machines that I used alongside OSCP.pdf and Ippsec videos while making
 Plan being to get more experience without insane timesinks of failing hard and maximise revision and metacognitive linking. Then in three months redo these machines as Writeups to challenge myself.
 
 ## General Statement of thanks to put in every walkthrough video
-Ippsec is an amazing person and resource and I am subscribed and like all the videos I watch. I am rewatching this as I watched all these over a year ago from this playlist to learn how far I needed to go am still going to improve.
+Ippsec is an amazing person and resource and I am subscribed and like all the videos I watch. I am rewatching this as I watched all these over a year ago from this playlist to learn how far I needed to go am still going to improve. [Playlist](https://www.youtube.com/playlist?list=PLidcsTyj9JXK-fnabFLVEvHinQ14Jy5tf)
 
 Box Name  | Walkthrough | References
 --- | --- | ----
@@ -101,7 +99,7 @@ Sense | Done | | [Link]()
 Solidstate | Done | | [Link]()
 Node | Done | | [Link]()
 Valentine | Done | | [Link]()
-Poison | Done | | [Link]()
+Poison | Done | Walkthrough | [Link]()
 Sunday | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Retired-Machines/Sunday)
 Tartarsauce | Done | | [Link]()
 Irked | Done | | [Link]()
@@ -118,6 +116,7 @@ Bounty | Done | | [Link]()
 Jerry | Done | Done | [Link](https://github.com/7RU7H/CTFs/tree/main/HackTheBox/Retired-Machines/Jerry)
 Conceal |  | | [Link]()
 Vault | Done | | [Link]()
+Timelapse | Done | Part-WU-WT | [Link]
 
 #### TJNULL Harder than OSCP!
 Box Name  | Recon-ed | Done | Writeup
@@ -150,15 +149,23 @@ Enterprise  | Weird | | [Link]()
 October  | | | [Link]()
 Calamity | | | [Link]()
 
-#### HTB Web and Other
-Box Name | Recon-ed | Done | Writeup
---- | --- | --- | --- 
-Bankrobber | Done | | [Link]() 
-Ypuffy | | | [Link]()
-Charon | | | [Link]()
-
 #### HTB  Intended method is broken - try later
 Legacy
+
+## HTB Other REcent I will use for Practice Exams
+
+Backdoor
+Search
+Pandora
+MEta
+Acute
+Talkative
+StreamIO
+Seventeen
+Scrambled
+
+
+
 
 
 ## THM
