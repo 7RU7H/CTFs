@@ -1,0 +1,36 @@
+# Nmap 7.93 scan initiated Thu Oct 20 11:52:58 2022 as: nmap -Pn --script vuln -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Symbolic/nmap/192-168-175-177-Vuln --min-rate 500 -p 80,22 192.168.175.177
+Nmap scan report for 192.168.175.177
+Host is up (0.048s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|_      http://ha.ckers.org/slowloris/
+| http-enum: 
+|   /logs/: Logs
+|_  /icons/: Potentially interesting folder w/ directory listing
+|_http-trace: TRACE is enabled
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.175.177
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://192.168.175.177:80/
+|     Form id: 
+|_    Form action: /Process.php
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+
+# Nmap done at Thu Oct 20 11:58:20 2022 -- 1 IP address (1 host up) scanned in 321.63 seconds

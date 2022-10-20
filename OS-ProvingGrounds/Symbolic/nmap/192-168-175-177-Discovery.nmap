@@ -1,0 +1,133 @@
+# Nmap 7.93 scan initiated Thu Oct 20 11:48:15 2022 as: nmap -Pn --script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Symbolic/nmap/192-168-175-177-Discovery --min-rate 500 -p 80,22 192.168.175.177
+Pre-scan script results:
+| ipv6-multicast-mld-list: 
+|   fe80::7a:8bff:fe87:10a5: 
+|     device: usb0
+|     mac: 027a8b8710a5
+|     multicast_ips: 
+|       ff02::1:ff87:10a5         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:a8           (Solicited-Node Address)
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::7a:8bff:fe87:10a5  MAC: 027a8b8710a5  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: fe80::7a:8bff:fe87:10a5  MAC: 027a8b8710a5  IFACE: usb0
+|   IP: 2a01:4c8:1405:a204::a8   MAC: 027a8b8710a5  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:1405:a204::a8   MAC: 027a8b8710a5  IFACE: usb0
+|   IP: fe80::7a:8bff:fe87:10a5  MAC: 027a8b8710a5  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+Nmap scan report for 192.168.175.177
+Host is up (0.046s latency).
+
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+22/tcp open  ssh
+|_banner: SSH-2.0-OpenSSH_for_Windows_7.7
+| ssh-hostkey: 
+|   2048 72e66c535086eb9114fdf99521b44006 (RSA)
+|   256 d61932128697857142d93eb9cfed400c (ECDSA)
+|_  256 e91fb360e1c0fca4beecfd32703976c7 (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (1)
+80/tcp open  http
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-enum: 
+|   /logs/: Logs
+|_  /icons/: Potentially interesting folder w/ directory listing
+|_http-trace: TRACE is enabled
+|_http-xssed: No previously reported XSS vuln.
+|_http-errors: Couldn't find any error pages.
+|_http-mobileversion-checker: No mobile version detected.
+|_http-title: WebPage to PDF
+| http-headers: 
+|   Date: Thu, 20 Oct 2022 10:48:55 GMT
+|   Server: Apache/2.4.48 (Win64) OpenSSL/1.1.1k PHP/8.0.7
+|   Last-Modified: Fri, 05 Nov 2021 06:44:58 GMT
+|   ETag: "a04-5d004fb4b0e80"
+|   Accept-Ranges: bytes
+|   Content-Length: 2564
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-date: Thu, 20 Oct 2022 10:48:45 GMT; +1h00m17s from local time.
+| http-referer-checker: 
+| Spidering limited to: maxpagecount=30
+|   https://stackpath.bootstrapcdn.com:443/bootstrap/4.3.1/js/bootstrap.bundle.min.js
+|_  https://cdnjs.cloudflare.com:443/ajax/libs/jquery/3.2.1/jquery.min.js
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; php: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1; php: 1
+| http-vhosts: 
+|_128 names had status 200
+|_http-feed: Couldn't find any feeds.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.175.177
+|     
+|     Path: http://192.168.175.177:80/
+|     Line number: 83
+|     Comment: 
+|         <!--Div for Background-->
+|     
+|     Path: http://192.168.175.177:80/
+|     Line number: 94
+|     Comment: 
+|         <!--Div for bottom Icons-->
+|     
+|     Path: http://192.168.175.177:80/
+|     Line number: 85
+|     Comment: 
+|_        <!--Div for Centered Text & Input-->
+|_http-chrono: Request times for /; avg: 126.19ms; min: 106.39ms; max: 147.67ms
+
+Host script results:
+|_dns-brute: Can't guess domain of "192.168.175.177"; use dns-brute.domain script argument.
+|_path-mtu: PMTU == 1500
+|_ipidseq: Unknown
+|_fcrdns: FAIL (No PTR record)
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       51806.60   18965.33  0.0%
+|_80    0       46627.00   5861.22   0.0%
+
+# Nmap done at Thu Oct 20 11:52:58 2022 -- 1 IP address (1 host up) scanned in 282.92 seconds
