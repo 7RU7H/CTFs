@@ -2,7 +2,7 @@
 
 import socket, time, sys
 
-ip = "10.10.70.148"
+ip = "10.10.61.109"
 
 port = 1337
 timeout = 5
@@ -24,3 +24,6 @@ while True:
     sys.exit(0)
   string += 100 * "A"
   time.sleep(1)
+
+
+
