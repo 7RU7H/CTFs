@@ -1,0 +1,42 @@
+# Nmap 7.93 scan initiated Thu Oct 20 08:45:35 2022 as: nmap --script vuln -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Wheels/nmap/192-168-175-202-Vuln --min-rate 80,22 -p 80,22 192.168.175.202
+Nmap scan report for 192.168.175.202
+Host is up (0.038s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+| http-enum: 
+|   /login.php: Possible admin folder
+|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.41 (ubuntu)'
+|   /img/: Potentially interesting directory w/ listing on 'apache/2.4.41 (ubuntu)'
+|   /js/: Potentially interesting directory w/ listing on 'apache/2.4.41 (ubuntu)'
+|_  /lib/: Potentially interesting directory w/ listing on 'apache/2.4.41 (ubuntu)'
+| http-cookie-flags: 
+|   /login.php: 
+|     PHPSESSID: 
+|_      httponly flag not set
+|_http-phpself-xss: ERROR: Script execution failed (use -d to debug)
+| http-fileupload-exploiter: 
+|   
+|     Couldn't find a file-type field.
+|   
+|_    Couldn't find a file-type field.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.175.202
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://192.168.175.202:80/portal.php
+|     Form id: 
+|     Form action: 
+|     
+|     Path: http://192.168.175.202:80/login.php
+|     Form id: 
+|     Form action: 
+|     
+|     Path: http://192.168.175.202:80/register.php
+|     Form id: 
+|_    Form action: 
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+
+# Nmap done at Thu Oct 20 08:46:36 2022 -- 1 IP address (1 host up) scanned in 60.98 seconds

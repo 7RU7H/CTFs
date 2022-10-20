@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Thu Oct 20 08:40:39 2022 as: nmap -&#45;script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Wheels/nmap/192-168-175-202-Discovery -&#45;min-rate 80,22 -p 80,22 192.168.175.202 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Wheels/nmap/192-168-175-202-Discovery -&#45;min-rate 80,22 -p 80,22 192.168.175.202" start="1666251639" startstr="Thu Oct 20 08:40:39 2022" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-ipv6-multicast-mld" output="&#xa;  IP: fe80::7a:8bff:fe87:10a5  MAC: 027a8b8710a5  IFACE: usb0&#xa;&#xa;  Use -&#45;script-args=newtargets to add the results as targets"><table>
+<elem key="mac">027a8b8710a5</elem>
+<elem key="iface">usb0</elem>
+<elem key="address">fe80::7a:8bff:fe87:10a5</elem>
+</table>
+</script><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="ipv6-multicast-mld-list" output="&#xa;  fe80::7a:8bff:fe87:10a5: &#xa;    device: usb0&#xa;    mac: 027a8b8710a5&#xa;    multicast_ips: &#xa;      ff02::1:ff87:10a5         (NDP Solicited-node)&#xa;      ff02::1:ff00:0            (Solicited-Node Address)&#xa;      ff05::2                   (unknown)&#xa;      ff02::2                   (All Routers Address)&#xa;      ff02::1:ff00:a8           (Solicited-Node Address)"><table key="fe80::7a:8bff:fe87:10a5">
+<elem key="device">usb0</elem>
+<elem key="mac">027a8b8710a5</elem>
+<table key="multicast_ips">
+<table>
+<elem key="ip">ff02::1:ff87:10a5</elem>
+<elem key="description">NDP Solicited-node</elem>
+</table>
+<table>
+<elem key="ip">ff02::1:ff00:0</elem>
+<elem key="description">Solicited-Node Address</elem>
+</table>
+<table>
+<elem key="ip">ff05::2</elem>
+<elem key="description">unknown</elem>
+</table>
+<table>
+<elem key="ip">ff02::2</elem>
+<elem key="description">All Routers Address</elem>
+</table>
+<table>
+<elem key="ip">ff02::1:ff00:a8</elem>
+<elem key="description">Solicited-Node Address</elem>
+</table>
+</table>
+</table>
+</script><script id="targets-ipv6-multicast-invalid-dst" output="&#xa;  IP: fe80::7a:8bff:fe87:10a5  MAC: 027a8b8710a5  IFACE: usb0&#xa;  IP: 2a01:4c8:1405:a204::a8   MAC: 027a8b8710a5  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="targets-ipv6-multicast-echo" output="&#xa;  IP: 2a01:4c8:1405:a204::a8   MAC: 027a8b8710a5  IFACE: usb0&#xa;  IP: fe80::7a:8bff:fe87:10a5  MAC: 027a8b8710a5  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.175.202" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1666251650" endtime="1666251935"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="192.168.175.202" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (9)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (6)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ssh-rsa</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script><script id="banner" output="SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.4"/><script id="ssh-hostkey" output="&#xa;  3072 c1994b952225ed0f8520d363b448bbcf (RSA)&#xa;  256 0f448badad95b8226af036ac19d00ef3 (ECDSA)&#xa;  256 32e12a6ccc7ce63e23f4808d33ce9b3a (ED25519)"><table>
+<elem key="type">ssh-rsa</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABgQDH6PH1/ST7TUJ4Mp/l4c7G+TM07YbX7YIsnHzq1TRpvtiBh8MQuFkL1SWW9+za+h6ZraqoZ0ewwkH+0la436t9Q+2H/Nh4CntJOrRbpLJKg4hChjgCHd5KiLCOKHhXPs/FA3mm0Zkzw1tVJLPR6RTbIkkbQiV2Zk3u8oamV5srWIJeYUY5O2XXmTnKENfrPXeHup1+3wBOkTO4Mu17wBSw6yvXyj+lleKjQ6Hnje7KozW5q4U6ijd3LmvHE34UHq/qUbCUbiwY06N2Mj0NQiZqWW8z48eTzGsuh6u1SfGIDnCCq3sWm37Y5LIUvqAFyIEJZVsC/UyrJDPBE+YIODNbN2QLD9JeBr8P4n1rkMaXbsHGywFtutdSrBZwYuRuB2W0GjIEWD/J7lxKIJ9UxRq0UxWWkZ8s3SNqUq2enfPwQt399nigtUerccskdyUD0oRKqVnhZCjEYfX3qOnlAqejr3Lpm8nA31pp6lrKNAmQEjdSO8Jxk04OR2JBxcfVNfs=</elem>
+<elem key="fingerprint">c1994b952225ed0f8520d363b448bbcf</elem>
+<elem key="bits">3072</elem>
+</table>
+<table>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBI0EdIHR7NOReMM0G7C8zxbLgwB3ump+nb2D3Pe3tXqp/6jNJ/GbU2e4Ab44njMKHJbm/PzrtYzojMjGDuBlQCg=</elem>
+<elem key="fingerprint">0f448badad95b8226af036ac19d00ef3</elem>
+<elem key="bits">256</elem>
+</table>
+<table>
+<elem key="type">ssh-ed25519</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIDCc0saExmeDXtqm5FS+D5RnDke8aJEvFq3DJIr0KZML</elem>
+<elem key="fingerprint">32e12a6ccc7ce63e23f4808d33ce9b3a</elem>
+<elem key="bits">256</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-referer-checker" output="&#xa;Spidering limited to: maxpagecount=30&#xa;  https://code.jquery.com:443/jquery-3.4.1.min.js&#xa;  https://cdn.jsdelivr.net:443/npm/bootstrap15.0.0/dist/js/bootstrap.bundle.min.js&#xa;"/><script id="http-title" output="Wheels - Car Repair Services"><elem key="title">Wheels - Car Repair Services</elem>
+</script><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      Other: 2&#xa;    /css/&#xa;      css: 2&#xa;    /img/&#xa;      jpg: 9; png: 1&#xa;    /lib/owlcarousel/assets/&#xa;      css: 1&#xa;    /lib/tempusdominus/css/&#xa;      css: 1&#xa;    /lib/tempusdominus/js/&#xa;      js: 2&#xa;    /lib/waypoints/&#xa;      js: 1&#xa;  Longest directory structure:&#xa;    Depth: 3&#xa;    Dir: /lib/tempusdominus/js/&#xa;  Total files found (by extension):&#xa;    Other: 2; css: 4; jpg: 9; js: 3; png: 1&#xa;"/><script id="http-comments-displayer" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.175.202&#xa;    &#xa;    Path: http://192.168.175.202:80/portal.php&#xa;    Line number: 44&#xa;    Comment: &#xa;        &lt;!-&#45; Spinner End -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/index.html&#xa;    Line number: 116&#xa;    Comment: &#xa;        &lt;!-&#45; Carousel End -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/portal.php&#xa;    Line number: 93&#xa;    Comment: &#xa;        &lt;!-&#45; Footer Start -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/css/bootstrap.min.css&#xa;    Line number: 6&#xa;    Comment: &#xa;        /* rtl: var(-&#45;bs-breadcrumb-divider, &quot;/&quot;) */&#xa;    &#xa;    Path: http://192.168.175.202:80/index.html&#xa;    Line number: 246&#xa;    Comment: &#xa;        &lt;!-&#45; Fact End -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/css/style.css&#xa;    Line number: 37&#xa;    Comment: &#xa;        /*** Button ***/&#xa;    &#xa;    Path: http://192.168.175.202:80/index.html&#xa;    Line number: 159&#xa;    Comment: &#xa;        &lt;!-&#45; About Start -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/portal.php&#xa;    Line number: 46&#xa;    Comment: &#xa;        &lt;!-&#45; Navbar Start -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/css/style.css&#xa;    Line number: 22&#xa;    Comment: &#xa;        /*** Spinner ***/&#xa;    &#xa;    Path: http://192.168.175.202:80/css/bootstrap.min.css&#xa;    Line number: 1&#xa;    Comment: &#xa;        /*!&#xa;         * Bootstrap v5.0.0 (https://getbootstrap.com/)&#xa;         * Copyright 2011-2021 The Bootstrap Authors&#xa;         * Copyright 2011-2021 Twitter, Inc.&#xa;         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)&#xa;         */&#xa;    &#xa;    Path: http://192.168.175.202:80/portal.php&#xa;    Line number: 33&#xa;    Comment: &#xa;        &lt;!-&#45; Template Stylesheet -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/css/style.css&#xa;    Line number: 205&#xa;    Comment: &#xa;        /*** Service ***/&#xa;    &#xa;    Path: http://192.168.175.202:80/css/style.css&#xa;    Line number: 146&#xa;    Comment: &#xa;        /*** Header ***/&#xa;    &#xa;    Path: http://192.168.175.202:80/css/style.css&#xa;    Line number: 196&#xa;    Comment: &#xa;        /*** Facts ***/&#xa;    &#xa;    Path: http://192.168.175.202:80/portal.php&#xa;    Line number: 168&#xa;    Comment: &#xa;        &lt;!-&#45; Template Javascript -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/js/main.js&#xa;    Line number: 71&#xa;    Comment: &#xa;        &#xa;    &#xa;    Path: http://192.168.175.202:80/js/main.js&#xa;    Line number: 29&#xa;    Comment: &#xa;        &#xa;    &#xa;    Path: http://192.168.175.202:80/portal.php&#xa;    Line number: 149&#xa;    Comment: &#xa;        &lt;!-&#45; Footer End -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/js/main.js&#xa;    Line number: 57&#xa;    Comment: &#xa;        &#xa;    &#xa;    Path: http://192.168.175.202:80/portal.php&#xa;    Line number: 38&#xa;    Comment: &#xa;        &lt;!-&#45; Spinner Start -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/js/main.js&#xa;    Line number: 19&#xa;    Comment: &#xa;        &#xa;    &#xa;    Path: http://192.168.175.202:80/index.html&#xa;    Line number: 119&#xa;    Comment: &#xa;        &lt;!-&#45; Service Start -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/portal.php&#xa;    Line number: 156&#xa;    Comment: &#xa;        &lt;!-&#45; JavaScript Libraries -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js&#xa;    Line number: 1&#xa;    Comment: &#xa;        /*@preserve&#xa;         * Tempus Dominus Bootstrap4 v5.1.2 (https://tempusdominus.github.io/bootstrap-4/)&#xa;         * Copyright 2016-2018 Jonathan Peterson&#xa;         * Licensed under MIT (https://github.com/tempusdominus/bootstrap-3/blob/master/LICENSE)&#xa;         */&#xa;    &#xa;    Path: http://192.168.175.202:80/index.html&#xa;    Line number: 75&#xa;    Comment: &#xa;        &#xa;    &#xa;    Path: http://192.168.175.202:80/lib/wow/wow.min.js&#xa;    Line number: 1&#xa;    Comment: &#xa;        &#xa;        &#xa;        * Copyright (c) 2016 Thomas Grainger; Licensed MIT */&#xa;    &#xa;    Path: http://192.168.175.202:80/portal.php&#xa;    Line number: 13&#xa;    Comment: &#xa;        &lt;!-&#45; Favicon -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/index.html&#xa;    Line number: 486&#xa;    Comment: &#xa;        &lt;!-&#45; Team End -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/js/main.js&#xa;    Line number: 15&#xa;    Comment: &#xa;        &#xa;    &#xa;    Path: http://192.168.175.202:80/js/main.js&#xa;    Line number: 4&#xa;    Comment: &#xa;        &#xa;    &#xa;    Path: http://192.168.175.202:80/lib/counterup/counterup.min.js&#xa;    Line number: 1&#xa;    Comment: &#xa;        /*!&#xa;         * jquery.counterup.js 2.1.0&#xa;         *&#xa;         * Copyright 2013, Benjamin Intal http://gambit.ph @bfintal&#xa;         * Released under the GPL v2 License&#xa;         *&#xa;         * Amended by Jeremy Paris, Ciro Mattia Gonano and others&#xa;         *&#xa;         * Date: Feb 24, 2017&#xa;         */&#xa;    &#xa;    Path: http://192.168.175.202:80/portal.php&#xa;    Line number: 152&#xa;    Comment: &#xa;        &lt;!-&#45; Back to Top -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/lib/waypoints/waypoints.min.js&#xa;    Line number: 1&#xa;    Comment: &#xa;        /*!&#xa;        Waypoints - 4.0.1&#xa;        Copyright \xC2\xA9 2011-2016 Caleb Troughton&#xa;        Licensed under the MIT license.&#xa;        https://github.com/imakewebthings/waypoints/blob/master/licenses.txt&#xa;        */&#xa;    &#xa;    Path: http://192.168.175.202:80/portal.php&#xa;    Line number: 16&#xa;    Comment: &#xa;        &lt;!-&#45; Google Web Fonts -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/portal.php&#xa;    Line number: 30&#xa;    Comment: &#xa;        &lt;!-&#45; Customized Bootstrap Stylesheet -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/lib/tempusdominus/js/moment.min.js&#xa;    Line number: 1&#xa;    Comment: &#xa;        /* &quot;+this._i+&quot; */&#xa;    &#xa;    Path: http://192.168.175.202:80/lib/owlcarousel/owl.carousel.min.js&#xa;    Line number: 1&#xa;    Comment: &#xa;        /**&#xa;         * Owl Carousel v2.2.1&#xa;         * Copyright 2013-2017 David Deutsch&#xa;         * Licensed under  ()&#xa;         */&#xa;    &#xa;    Path: http://192.168.175.202:80/index.html&#xa;    Line number: 156&#xa;    Comment: &#xa;        &lt;!-&#45; Service End -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/css/style.css&#xa;    Line number: 389&#xa;    Comment: &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        } */&#xa;    &#xa;    Path: http://192.168.175.202:80/css/style.css&#xa;    Line number: 315&#xa;    Comment: &#xa;        /*** Footer ***/&#xa;    &#xa;    Path: http://192.168.175.202:80/css/style.css&#xa;    Line number: 278&#xa;    Comment: &#xa;        /*** Testimonial ***/&#xa;    &#xa;    Path: http://192.168.175.202:80/portal.php&#xa;    Line number: 68&#xa;    Comment: &#xa;        &lt;!-&#45; Booking Start -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/css/style.css&#xa;    Line number: 253&#xa;    Comment: &#xa;        /*** Team ***/&#xa;    &#xa;    Path: http://192.168.175.202:80/css/style.css&#xa;    Line number: 220&#xa;    Comment: &#xa;        /*** Booking ***/&#xa;    &#xa;    Path: http://192.168.175.202:80/js/main.js&#xa;    Line number: 78&#xa;    Comment: &#xa;        &#xa;    &#xa;    Path: http://192.168.175.202:80/js/main.js&#xa;    Line number: 87&#xa;    Comment: &#xa;        &#xa;    &#xa;    Path: http://192.168.175.202:80/lib/animate/animate.min.css&#xa;    Line number: 3&#xa;    Comment: &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;         */&#xa;    &#xa;    Path: http://192.168.175.202:80/portal.php&#xa;    Line number: 64&#xa;    Comment: &#xa;        &lt;!-&#45; Navbar End -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/css/style.css&#xa;    Line number: 1&#xa;    Comment: &#xa;        /********** Template CSS **********/&#xa;    &#xa;    Path: http://192.168.175.202:80/register.php&#xa;    Line number: 73&#xa;    Comment: &#xa;        &lt;!-&#45; &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt; -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/css/style.css&#xa;    Line number: 76&#xa;    Comment: &#xa;        /*** Navbar ***/&#xa;    &#xa;    Path: http://192.168.175.202:80/css/bootstrap.min.css&#xa;    Line number: 6&#xa;    Comment: &#xa;        /* rtl:ignore */&#xa;    &#xa;    Path: http://192.168.175.202:80/index.html&#xa;    Line number: 532&#xa;    Comment: &#xa;        &lt;!-&#45; Testimonial End -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/index.html&#xa;    Line number: 65&#xa;    Comment: &#xa;        &lt;!-&#45; Carousel Start -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/index.html&#xa;    Line number: 216&#xa;    Comment: &#xa;        &lt;!-&#45; About End -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/portal.php&#xa;    Line number: 25&#xa;    Comment: &#xa;        &lt;!-&#45; Libraries Stylesheet -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/portal.php&#xa;    Line number: 88&#xa;    Comment: &#xa;        &lt;!-&#45; Booking End -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/index.html&#xa;    Line number: 489&#xa;    Comment: &#xa;        &lt;!-&#45; Testimonial Start -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/index.html&#xa;    Line number: 219&#xa;    Comment: &#xa;        &lt;!-&#45; Fact Start -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/index.html&#xa;    Line number: 411&#xa;    Comment: &#xa;        &lt;!-&#45; Team Start -&#45;&gt;&#xa;    &#xa;    Path: http://192.168.175.202:80/portal.php&#xa;    Line number: 21&#xa;    Comment: &#xa;        &lt;!-&#45; Icon Font Stylesheet -&#45;&gt;&#xa;"/><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-headers" output="&#xa;  Date: Thu, 20 Oct 2022 07:41:01 GMT&#xa;  Server: Apache/2.4.41 (Ubuntu)&#xa;  Last-Modified: Mon, 14 Mar 2022 14:54:28 GMT&#xa;  ETag: &quot;90d1-5da2edb691100&quot;&#xa;  Accept-Ranges: bytes&#xa;  Content-Length: 37073&#xa;  Vary: Accept-Encoding&#xa;  Connection: close&#xa;  Content-Type: text/html&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-security-headers" output=""></script><script id="http-date" output="Thu, 20 Oct 2022 07:41:01 GMT; +1h00m00s from local time."><elem key="date">2022-10-20T08:41:01+00:00</elem>
+<elem key="delta">3600.0</elem>
+</script><script id="http-chrono" output="Request times for /; avg: 297.26ms; min: 237.25ms; max: 367.12ms"/><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">200</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-enum" output="&#xa;  /login.php: Possible admin folder&#xa;  /css/: Potentially interesting directory w/ listing on &apos;apache/2.4.41 (ubuntu)&apos;&#xa;  /img/: Potentially interesting directory w/ listing on &apos;apache/2.4.41 (ubuntu)&apos;&#xa;  /js/: Potentially interesting directory w/ listing on &apos;apache/2.4.41 (ubuntu)&apos;&#xa;  /lib/: Potentially interesting directory w/ listing on &apos;apache/2.4.41 (ubuntu)&apos;&#xa;"/><script id="http-errors" output="&#xa;Spidering limited to: maxpagecount=40; withinhost=192.168.175.202&#xa;  Found the following error pages: &#xa;  &#xa;  Error Code: 404&#xa;  &#x9;http://192.168.175.202:80/img/favicon.ico&#xa;  &#xa;  Error Code: 404&#xa;  &#x9;http://192.168.175.202:80/style.css&#xa;"/><script id="http-xssed" output="No previously reported XSS vuln."/><script id="http-grep" output="&#xa;  (1) http://192.168.175.202:80/: &#xa;    (1) email: &#xa;      + info@wheels.serv&#xa;  (1) http://192.168.175.202:80/img/favicon.ico: &#xa;    (1) ip: &#xa;      + 192.168.175.202"><table key="(1) http://192.168.175.202:80/">
+<table key="(1) email">
+<elem>+ info@wheels.serv</elem>
+</table>
+</table>
+<table key="(1) http://192.168.175.202:80/img/favicon.ico">
+<table key="(1) ip">
+<elem>+ 192.168.175.202</elem>
+</table>
+</table>
+</script><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-auth-finder" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.175.202&#xa;  url                                     method&#xa;  http://192.168.175.202:80/login.php     FORM&#xa;  http://192.168.175.202:80/register.php  FORM&#xa;  http://192.168.175.202:80/portal.php    FORM&#xa;"/><script id="http-vhosts" output="&#xa;128 names had status 200"/><script id="http-feed" output="Couldn&apos;t find any feeds."/></port>
+</ports>
+<hostscript><script id="dns-brute" output="Can&apos;t guess domain of &quot;192.168.175.202&quot;; use dns-brute.domain script argument."/><script id="path-mtu" output="PMTU == 1500"/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="ipidseq" output="All zeros"/><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)&#xa;22    0       41771.90   4521.90  0.0%&#xa;80    0       44114.30   4678.41  0.0%&#xa;"/></hostscript><times srtt="57550" rttvar="40364" to="219006"/>
+</host>
+<runstats><finished time="1666251935" timestr="Thu Oct 20 08:45:35 2022" summary="Nmap done at Thu Oct 20 08:45:35 2022; 1 IP address (1 host up) scanned in 296.05 seconds" elapsed="296.05" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
