@@ -1,0 +1,56 @@
+# Nmap 7.93 scan initiated Fri Oct 21 20:46:40 2022 as: nmap --script discovery -oA /home/truth/7ru7hGithub/CTFs/HackTheBox/Retired-Machines/Node/nmap/10-129-26-32-Discovery --min-rate 3000,22 -p 3000,22 10.129.26.32
+Pre-scan script results:
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::94d8:15ff:fe9d:7621  MAC: 96d8159d7621  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:1405:a204::2b     MAC: 96d8159d7621  IFACE: usb0
+|   IP: fe80::94d8:15ff:fe9d:7621  MAC: 96d8159d7621  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:1405:a204::2b     MAC: 96d8159d7621  IFACE: usb0
+|   IP: fe80::94d8:15ff:fe9d:7621  MAC: 96d8159d7621  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| ipv6-multicast-mld-list: 
+|   fe80::94d8:15ff:fe9d:7621: 
+|     device: usb0
+|     mac: 96d8159d7621
+|     multicast_ips: 
+|       ff02::1:ff9d:7621         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:2b           (Solicited-Node Address)
+Nmap scan report for 10.129.26.32
+Host is up (0.076s latency).
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+| ssh-hostkey: 
+|   2048 dc5e34a625db43eceb40f4967b8ed1da (RSA)
+|_  256 d878b85d85ffad7be6e2b5da1e526236 (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (6)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_7.2p2 Ubuntu-4ubuntu2.2
+3000/tcp open  ppp
+
+Host script results:
+|_dns-brute: Can't guess domain of "10.129.26.32"; use dns-brute.domain script argument.
+|_ipidseq: All zeros
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 22    0       57522.70   9231.65  0.0%
+|_3000  0       52776.70   6435.85  0.0%
+|_path-mtu: PMTU == 1500
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Fri Oct 21 20:47:03 2022 -- 1 IP address (1 host up) scanned in 22.83 seconds
