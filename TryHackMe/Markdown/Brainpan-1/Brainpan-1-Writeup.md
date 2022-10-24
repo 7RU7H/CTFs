@@ -1,8 +1,8 @@
-# Mice Writeup
-Name: Mice
+# Brainpan-1 Writeup
+Name: Brainpan-1
 Date:  
-Difficulty:  Easy
-Goals: OSCP 
+Difficulty:  
+Goals:  
 Learnt:
 
 ## Recon

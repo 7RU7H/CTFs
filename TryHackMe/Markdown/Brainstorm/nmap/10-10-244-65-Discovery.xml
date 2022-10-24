@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Sat Oct 22 10:13:51 2022 as: nmap -Pn -&#45;script discovery -oA nmap/10-10-244-65-Discovery -&#45;min-rate 500 -p 9999,3389,21 10.10.244.65 -->
+<nmaprun scanner="nmap" args="nmap -Pn -&#45;script discovery -oA nmap/10-10-244-65-Discovery -&#45;min-rate 500 -p 9999,3389,21 10.10.244.65" start="1666430031" startstr="Sat Oct 22 10:13:51 2022" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="21,3389,9999"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="targets-ipv6-multicast-mld" output="&#xa;  IP: fe80::d810:e6ff:fe85:d15c  MAC: da10e685d15c  IFACE: usb0&#xa;&#xa;  Use -&#45;script-args=newtargets to add the results as targets"><table>
+<elem key="address">fe80::d810:e6ff:fe85:d15c</elem>
+<elem key="iface">usb0</elem>
+<elem key="mac">da10e685d15c</elem>
+</table>
+</script><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="targets-ipv6-multicast-echo" output="&#xa;  IP: 2a01:4c8:1405:a204::87     MAC: da10e685d15c  IFACE: usb0&#xa;  IP: fe80::d810:e6ff:fe85:d15c  MAC: da10e685d15c  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-ipv6-multicast-invalid-dst" output="&#xa;  IP: fe80::d810:e6ff:fe85:d15c  MAC: da10e685d15c  IFACE: usb0&#xa;  IP: 2a01:4c8:1405:a204::87     MAC: da10e685d15c  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="ipv6-multicast-mld-list" output="&#xa;  fe80::d810:e6ff:fe85:d15c: &#xa;    device: usb0&#xa;    mac: da10e685d15c&#xa;    multicast_ips: &#xa;      ff02::1:ff85:d15c         (NDP Solicited-node)&#xa;      ff02::1:ff00:0            (Solicited-Node Address)&#xa;      ff05::2                   (unknown)&#xa;      ff02::2                   (All Routers Address)&#xa;      ff02::1:ff00:87           (Solicited-Node Address)"><table key="fe80::d810:e6ff:fe85:d15c">
+<elem key="device">usb0</elem>
+<elem key="mac">da10e685d15c</elem>
+<table key="multicast_ips">
+<table>
+<elem key="description">NDP Solicited-node</elem>
+<elem key="ip">ff02::1:ff85:d15c</elem>
+</table>
+<table>
+<elem key="description">Solicited-Node Address</elem>
+<elem key="ip">ff02::1:ff00:0</elem>
+</table>
+<table>
+<elem key="description">unknown</elem>
+<elem key="ip">ff05::2</elem>
+</table>
+<table>
+<elem key="description">All Routers Address</elem>
+<elem key="ip">ff02::2</elem>
+</table>
+<table>
+<elem key="description">Solicited-Node Address</elem>
+<elem key="ip">ff02::1:ff00:87</elem>
+</table>
+</table>
+</table>
+</script></prescript><host starttime="1666430043" endtime="1666430073"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.244.65" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ftp" method="table" conf="3"/><script id="banner" output="220 Microsoft FTP Service"/><script id="ftp-syst" output="&#xa;  SYST: Windows_NT"><elem key="SYST">Windows_NT</elem>
+</script></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ms-wbt-server" method="table" conf="3"/><script id="ssl-cert" output="Subject: commonName=brainstorm&#xa;Not valid before: 2022-10-21T08:33:25&#xa;Not valid after:  2023-04-22T08:33:25"><table key="subject">
+<elem key="commonName">brainstorm</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">brainstorm</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">B211B3051C6C3BA8489BDEE122F6F9453ADA1C5CD5B4C2E2D7CE08BC776472562C2254E8B9809A59E5AEA97CA8E3FCA0F1D7CD4B9F607C0A275E1B78A1339F1D6842233BD7EC2C262CFF940BB07EE621FB20C1D060246E7A7E49A20404DA15F255805837AEC2DB59960717A67450C79C785CD8B2B7806CE9DF64C3C34230DA81E7ADD1789716533DE738C1D844E2FA5A193C54E7C494F0385EC6139DEA7E323517DCFF352022AC3E67182631AF6617FD9E33D95FA9B0059F9EFFE35F93F323FC7F373CB4AFA75C78872E61F5C738F911DBF63263586074905105AEBE06C7CF79121DF6DC833903233D9BD9ABDF5B1B1AAFBFE16CBFA48F3731A13C5CA12F1E33</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Key Encipherment, Data Encipherment</elem>
+</table>
+</table>
+<elem key="sig_algo">sha1WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2022-10-21T08:33:25</elem>
+<elem key="notAfter">2023-04-22T08:33:25</elem>
+</table>
+<elem key="md5">ddbe6358086b8c1116feb3d537a978d6</elem>
+<elem key="sha1">6279d6b60102abeda6a4d1cd03973c177b15b387</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIC2DCCAcCgAwIBAgIQZWGWot0I7rtJFZkY5uulWjANBgkqhkiG9w0BAQUFADAV&#xa;MRMwEQYDVQQDEwpicmFpbnN0b3JtMB4XDTIyMTAyMTA4MzMyNVoXDTIzMDQyMjA4&#xa;MzMyNVowFTETMBEGA1UEAxMKYnJhaW5zdG9ybTCCASIwDQYJKoZIhvcNAQEBBQAD&#xa;ggEPADCCAQoCggEBALIRswUcbDuoSJve4SL2+UU62hxc1bTC4tfOCLx3ZHJWLCJU&#xa;6LmAmlnlrql8qOP8oPHXzUufYHwKJ14beKEznx1oQiM71+wsJiz/lAuwfuYh+yDB&#xa;0GAkbnp+SaIEBNoV8lWAWDeuwttZlgcXpnRQx5x4XNiyt4Bs6d9kw8NCMNqB563R&#xa;eJcWUz3nOMHYROL6Whk8VOfElPA4XsYTnep+MjUX3P81ICKsPmcYJjGvZhf9njPZ&#xa;X6mwBZ+e/+Nfk/Mj/H83PLSvp1x4hy5h9cc4+RHb9jJjWGB0kFEFrr4Gx895Eh32&#xa;3IM5AyM9m9mr31sbGq+/4Wy/pI83MaE8XKEvHjMCAwEAAaMkMCIwEwYDVR0lBAww&#xa;CgYIKwYBBQUHAwEwCwYDVR0PBAQDAgQwMA0GCSqGSIb3DQEBBQUAA4IBAQCRr810&#xa;ZwWH37fXHLzW0aP6SnzHCTBDr1HCsakjHixobwZRr6gESflAII3pXtJYTwPz2G5u&#xa;IOLE2wGrBBzAi9ct+10ad6m5/rHtBnbhBg9ibkrn+AWVfIpg6AElgRhDv3i4I6P5&#xa;k9xa5eN1yhvAKIU9Qs83mneAFLPDDNQfkxUw3YQjVcKGe2nNMa5VMQTCHb/U7Thi&#xa;h1JxjX9hMw4yyFSsrzjScCrNTS4/GhO9zDZm4hn/EIse1S7T7OBWQ4Fp9szUef5U&#xa;DNaRgv1Rq6TA1KoJ/aGDL86CaomS/2uJuUB9WsoDE9QOCDpQqFqbSxH9wBiPh2b/&#xa;zZiReh8oK7W98ueH&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script></port>
+<port protocol="tcp" portid="9999"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="abyss" method="table" conf="3"/><script id="banner" output="Welcome to Brainstorm chat (beta)"/></port>
+</ports>
+<hostscript><script id="ipidseq" output="Unknown"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.10.244.65&quot;; use dns-brute.domain script argument."/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="path-mtu" output="PMTU == 1500"/><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)&#xa;21    0       60125.90   4956.40  0.0%&#xa;3389  0       62707.10   8683.66  0.0%&#xa;9999  0       62432.80   8231.23  0.0%&#xa;"/></hostscript><times srtt="63675" rttvar="35886" to="207219"/>
+</host>
+<runstats><finished time="1666430073" timestr="Sat Oct 22 10:14:33 2022" summary="Nmap done at Sat Oct 22 10:14:33 2022; 1 IP address (1 host up) scanned in 42.28 seconds" elapsed="42.28" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

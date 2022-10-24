@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Mon Oct 24 09:47:28 2022 as: nmap -&#45;script vuln -oA nmap/10-129-4-156-Vuln -&#45;min-rate 500 -p 80,22 10.129.4.156 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-129-4-156-Vuln -&#45;min-rate 500 -p 80,22 10.129.4.156" start="1666601248" startstr="Mon Oct 24 09:47:28 2022" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.4.156" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1666601258" endtime="1666601280"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.129.4.156" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-enum" output="&#xa;  /backup/: Backup folder w/ directory listing&#xa;  /icons/: Potentially interesting folder w/ directory listing&#xa;  /uploads/: Potentially interesting folder&#xa;"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-vuln-cve2017-1001000" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-trace" output="TRACE is enabled"/></port>
+</ports>
+<times srtt="59506" rttvar="40237" to="220454"/>
+</host>
+<runstats><finished time="1666601280" timestr="Mon Oct 24 09:48:00 2022" summary="Nmap done at Mon Oct 24 09:48:00 2022; 1 IP address (1 host up) scanned in 32.55 seconds" elapsed="32.55" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

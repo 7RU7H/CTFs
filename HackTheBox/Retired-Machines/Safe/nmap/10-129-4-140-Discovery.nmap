@@ -1,0 +1,428 @@
+# Nmap 7.93 scan initiated Mon Oct 24 09:02:18 2022 as: nmap --script discovery -oA nmap/10-129-4-140-Discovery --min-rate 500 -p 1337,80,22 10.129.4.140
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:1405:a204::38     MAC: 5a327299e624  IFACE: usb0
+|   IP: fe80::5832:72ff:fe99:e624  MAC: 5a327299e624  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| ipv6-multicast-mld-list: 
+|   fe80::5832:72ff:fe99:e624: 
+|     device: usb0
+|     mac: 5a327299e624
+|     multicast_ips: 
+|       ff02::1:ff99:e624         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:38           (Solicited-Node Address)
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:1405:a204::38     MAC: 5a327299e624  IFACE: usb0
+|   IP: fe80::5832:72ff:fe99:e624  MAC: 5a327299e624  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::5832:72ff:fe99:e624  MAC: 5a327299e624  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.129.4.140
+Host is up (0.062s latency).
+
+Bug in http-security-headers: no string output.
+PORT     STATE SERVICE
+22/tcp   open  ssh
+| ssh-hostkey: 
+|   2048 6d7c813d6a3df95f2e1f6a97e500bade (RSA)
+|   256 997e1e227672da3cc9617d74d78033d2 (ECDSA)
+|_  256 6a6bc38e4b28f76085b162ff54bcd8d6 (ED25519)
+|_banner: SSH-2.0-OpenSSH_7.4p1 Debian-10+deb9u6
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+80/tcp   open  http
+|_http-chrono: Request times for /; avg: 271.90ms; min: 176.90ms; max: 404.72ms
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /icons/
+|       png: 1
+|     /manual/
+|       Other: 1
+|     /manual/fr/
+|       html: 1
+|     /manual/tr/
+|       html: 1
+|     /manual/zh-cn/
+|       html: 1
+|   Longest directory structure:
+|     Depth: 2
+|     Dir: /manual/tr/
+|   Total files found (by extension):
+|_    Other: 2; html: 3; png: 1
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.129.4.140
+|   Found the following error pages: 
+|   
+|   Error Code: 404
+|_  	http://10.129.4.140:80/apache2;repeatmerged=0"
+| http-vhosts: 
+|_128 names had status 200
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-headers: 
+|   Date: Mon, 24 Oct 2022 08:02:41 GMT
+|   Server: Apache/2.4.25 (Debian)
+|   Last-Modified: Mon, 13 May 2019 13:21:46 GMT
+|   ETag: "2a23-588c4cc4e54b5"
+|   Accept-Ranges: bytes
+|   Content-Length: 10787
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-mobileversion-checker: No mobile version detected.
+|_http-xssed: No previously reported XSS vuln.
+|_http-date: Mon, 24 Oct 2022 08:02:40 GMT; +1h00m00s from local time.
+|_http-title: Apache2 Debian Default Page: It works
+|_http-feed: Couldn't find any feeds.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.4.140
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 3
+|     Comment: 
+|         /* SPAN elements with the classes below are added by prettyprint. */
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 18
+|     Comment: 
+|         /* a function name */
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 67
+|     Comment: 
+|         /* miscellaneous types: Options arguments, handler names etc */
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 10
+|     Comment: 
+|         /* a type name */
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 16
+|     Comment: 
+|         /* a markup attribute value */
+|     
+|     Path: http://10.129.4.140:80/manual/tr/mod/quickreference.html
+|     Line number: 1122
+|     Comment: 
+|         <!--
+|         var comments_shortname = 'httpd';
+|         var comments_identifier = 'http://httpd.apache.org/docs/2.4/mod/quickreference.html';
+|         (function(w, d) {
+|             if (w.location.hostname.toLowerCase() == "httpd.apache.org") {
+|                 d.write('<div id="comments_thread"><\/div>');
+|                 var s = d.createElement('script');
+|                 s.type = 'text/javascript';
+|                 s.async = true;
+|                 s.src = 'https://comments.apache.org/show_comments.lua?site=' + comments_shortname + '&page=' + comments_identifier;
+|                 (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(s);
+|             }
+|             else { 
+|                 d.write('<div id="comments_thread">Comments are disabled for this page at the moment.<\/div>');
+|             }
+|         })(window, document);
+|         //-->
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 38
+|     Comment: 
+|         /* IE indents via margin-left */
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 15
+|     Comment: 
+|         /* a markup attribute name */
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 7
+|     Comment: 
+|         /* string content */
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 9
+|     Comment: 
+|         /* a comment */
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 11
+|     Comment: 
+|         /* a literal value */
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 90
+|     Comment: 
+|         /* Highlighting style for Lua source code */
+|     
+|     Path: http://10.129.4.140:80/manual/tr/platform/ebcdic.html
+|     Line number: 5
+|     Comment: 
+|         <!--
+|                 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+|                       This file is generated from xml source: DO NOT EDIT
+|                 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+|               -->
+|     
+|     Path: http://10.129.4.140:80/manual/tr/platform/ebcdic.html
+|     Line number: 611
+|     Comment: 
+|         <!--
+|         if (typeof(prettyPrint) !== 'undefined') {
+|             prettyPrint();
+|         }
+|         //-->
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 12
+|     Comment: 
+|         /* punctuation, lisp open bracket, lisp close bracket */
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 34
+|     Comment: 
+|         /* Put a border around prettyprinted code snippets. */
+|     
+|     Path: http://10.129.4.140:80/manual/tr/platform/ebcdic.html
+|     Line number: 593
+|     Comment: 
+|         <!--
+|         var comments_shortname = 'httpd';
+|         var comments_identifier = 'http://httpd.apache.org/docs/2.4/platform/ebcdic.html';
+|         (function(w, d) {
+|             if (w.location.hostname.toLowerCase() == "httpd.apache.org") {
+|                 d.write('<div id="comments_thread"><\/div>');
+|                 var s = d.createElement('script');
+|                 s.type = 'text/javascript';
+|                 s.async = true;
+|                 s.src = 'https://comments.apache.org/show_comments.lua?site=' + comments_shortname + '&page=' + comments_identifier;
+|                 (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(s);
+|             }
+|             else { 
+|                 d.write('<div id="comments_thread">Comments are disabled for this page at the moment.<\/div>');
+|             }
+|         })(window, document);
+|         //-->
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 71
+|     Comment: 
+|         /* Highlighting style for C source code */
+|     
+|     Path: http://10.129.4.140:80/manual/tr/platform/ebcdic.html
+|     Line number: 609
+|     Comment: 
+|         
+|         //--><!]]></script></div><div id="footer">
+|     
+|     Path: http://10.129.4.140:80/manual/tr/howto/htaccess.html
+|     Line number: 440
+|     Comment: 
+|         <!--
+|         var comments_shortname = 'httpd';
+|         var comments_identifier = 'http://httpd.apache.org/docs/2.4/howto/htaccess.html';
+|         (function(w, d) {
+|             if (w.location.hostname.toLowerCase() == "httpd.apache.org") {
+|                 d.write('<div id="comments_thread"><\/div>');
+|                 var s = d.createElement('script');
+|                 s.type = 'text/javascript';
+|                 s.async = true;
+|                 s.src = 'https://comments.apache.org/show_comments.lua?site=' + comments_shortname + '&page=' + comments_identifier;
+|                 (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(s);
+|             }
+|             else { 
+|                 d.write('<div id="comments_thread">Comments are disabled for this page at the moment.<\/div>');
+|             }
+|         })(window, document);
+|         //-->
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 100
+|     Comment: 
+|         /* a literal (in this context; a known directive argument, a number or an IP address) */
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 17
+|     Comment: 
+|         /* a declaration; a variable name */
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 108
+|     Comment: 
+|         /* Highlighting style for Perl source code */
+|     
+|     Path: http://10.129.4.140:80/manual/tr/platform/ebcdic.html
+|     Line number: 593
+|     Comment: 
+|         <!--//-->
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 81
+|     Comment: 
+|         /* a literal */
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 64
+|     Comment: 
+|         /* enclosures */
+|     
+|     Path: http://10.129.4.140:80/manual/tr/install.html
+|     Line number: 442
+|     Comment: 
+|         <!--
+|         var comments_shortname = 'httpd';
+|         var comments_identifier = 'http://httpd.apache.org/docs/2.4/install.html';
+|         (function(w, d) {
+|             if (w.location.hostname.toLowerCase() == "httpd.apache.org") {
+|                 d.write('<div id="comments_thread"><\/div>');
+|                 var s = d.createElement('script');
+|                 s.type = 'text/javascript';
+|                 s.async = true;
+|                 s.src = 'https://comments.apache.org/show_comments.lua?site=' + comments_shortname + '&page=' + comments_identifier;
+|                 (d.getElementsByTagName('head')[0] || d.getElementsByTagName('body')[0]).appendChild(s);
+|             }
+|             else { 
+|                 d.write('<div id="comments_thread">Comments are disabled for this page at the moment.<\/div>');
+|             }
+|         })(window, document);
+|         //-->
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 8
+|     Comment: 
+|         /* a keyword */
+|     
+|     Path: http://10.129.4.140:80/
+|     Line number: 198
+|     Comment: 
+|         <!--      <div class="table_of_contents floating_element">
+|                 <div class="section_header section_header_grey">
+|                   TABLE OF CONTENTS
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#about">About</a>
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#changes">Changes</a>
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#scope">Scope</a>
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#files">Config files</a>
+|                 </div>
+|               </div>
+|         -->
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 4
+|     Comment: 
+|         /* plain text */
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 14
+|     Comment: 
+|         /* a markup tag name */
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 1
+|     Comment: 
+|         /* Pretty printing styles. Used with prettify.js. */
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 66
+|     Comment: 
+|         /* comments */
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 65
+|     Comment: 
+|         /* directives */
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 56
+|     Comment: 
+|         /* Highlighting style for Apache configuration files */
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 21
+|     Comment: 
+|         /* Use higher contrast and text-weight for printable form. */
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 47
+|     Comment: 
+|         /* Alternate shading for lines */
+|     
+|     Path: http://10.129.4.140:80/manual/style/css/prettify.css
+|     Line number: 37
+|     Comment: 
+|         /* Specify class=linenums on a pre to get line numbering */
+|     
+|     Path: http://10.129.4.140:80/
+|     Line number: 4
+|     Comment: 
+|         <!-- 'myapp' can be downloaded to analyze from here
+|              its running on port 1337 -->
+|     
+|     Path: http://10.129.4.140:80/manual/tr/platform/ebcdic.html
+|     Line number: 615
+|     Comment: 
+|         
+|_        //--><!]]></script>
+| http-enum: 
+|_  /manual/: Potentially interesting folder
+| http-grep: 
+|   (1) http://10.129.4.140:80/manual/tr/howto/htaccess.html: 
+|     (1) ip: 
+|_      + 192.168.200.51
+1337/tcp open  waste
+|_banner: 04:02:30 up 17 min,  0 users,  load average: 0.00, 0.00, 0.00
+
+Host script results:
+|_dns-brute: Can't guess domain of "10.129.4.140"; use dns-brute.domain script argument.
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 22    0       49857.80   4343.80  0.0%
+| 80    0       50057.20   3204.87  0.0%
+|_1337  0       48693.20   6095.35  0.0%
+|_ipidseq: All zeros
+|_fcrdns: FAIL (No PTR record)
+|_path-mtu: PMTU == 1500
+
+# Nmap done at Mon Oct 24 09:07:15 2022 -- 1 IP address (1 host up) scanned in 297.42 seconds

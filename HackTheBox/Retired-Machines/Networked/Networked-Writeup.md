@@ -1,8 +1,8 @@
-# Mice Writeup
-Name: Mice
+# Networked Writeup
+Name: Networked
 Date:  
-Difficulty:  Easy
-Goals: OSCP 
+Difficulty:  
+Goals:  
 Learnt:
 
 ## Recon

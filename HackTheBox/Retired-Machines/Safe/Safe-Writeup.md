@@ -1,8 +1,8 @@
-# Mice Writeup
-Name: Mice
+# Safe Writeup
+Name: Safe
 Date:  
-Difficulty:  Easy
-Goals: OSCP 
+Difficulty:  
+Goals:  
 Learnt:
 
 ## Recon

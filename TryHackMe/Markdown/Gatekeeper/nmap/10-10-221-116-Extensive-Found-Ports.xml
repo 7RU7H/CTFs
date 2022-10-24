@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Sun Oct 23 08:53:19 2022 as: nmap -sC -sV -oA nmap/10-10-221-116-Extensive-Found-Ports -&#45;min-rate 500 -p 49152,31337,445,139,49154,3389,135,49155,49161,49163,49153 10.10.221.116 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA nmap/10-10-221-116-Extensive-Found-Ports -&#45;min-rate 500 -p 49152,31337,445,139,49154,3389,135,49155,49161,49163,49153 10.10.221.116" start="1666511599" startstr="Sun Oct 23 08:53:19 2022" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="11" services="135,139,445,3389,31337,49152-49155,49161,49163"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.221.116" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1666511600" endtime="1666511765"><status state="up" reason="echo-reply" reason_ttl="127"/>
+<address addr="10.10.221.116" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="netbios-ssn" product="Microsoft Windows netbios-ssn" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" product="Windows 7 Professional 7601 Service Pack 1 microsoft-ds" extrainfo="workgroup: WORKGROUP" hostname="GATEKEEPER" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="3389"><state state="closed" reason="reset" reason_ttl="127"/><service name="ms-wbt-server" method="table" conf="3"/></port>
+<port protocol="tcp" portid="31337"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="Elite" servicefp="SF-Port31337-TCP:V=7.93%I=7%D=10/23%Time=6354F2FB%P=x86_64-pc-linux-gnu%r(GetRequest,24,&quot;Hello\x20GET\x20/\x20HTTP/1\.0\r!!!\nHello\x20\r!!!\n&quot;)%r(SIPOptions,142,&quot;Hello\x20OPTIONS\x20sip:nm\x20SIP/2\.0\r!!!\nHello\x20Via:\x20SIP/2\.0/TCP\x20nm;branch=foo\r!!!\nHello\x20From:\x20&lt;sip:nm@nm&gt;;tag=root\r!!!\nHello\x20To:\x20&lt;sip:nm2@nm2&gt;\r!!!\nHello\x20Call-ID:\x2050000\r!!!\nHello\x20CSeq:\x2042\x20OPTIONS\r!!!\nHello\x20Max-Forwards:\x2070\r!!!\nHello\x20Content-Length:\x200\r!!!\nHello\x20Contact:\x20&lt;sip:nm@nm&gt;\r!!!\nHello\x20Accept:\x20application/sdp\r!!!\nHello\x20\r!!!\n&quot;)%r(GenericLines,16,&quot;Hello\x20\r!!!\nHello\x20\r!!!\n&quot;)%r(HTTPOptions,28,&quot;Hello\x20OPTIONS\x20/\x20HTTP/1\.0\r!!!\nHello\x20\r!!!\n&quot;)%r(RTSPRequest,28,&quot;Hello\x20OPTIONS\x20/\x20RTSP/1\.0\r!!!\nHello\x20\r!!!\n&quot;)%r(Help,F,&quot;Hello\x20HELP\r!!!\n&quot;)%r(SSLSessionReq,C,&quot;Hello\x20\x16\x03!!!\n&quot;)%r(TerminalServerCookie,B,&quot;Hello\x20\x03!!!\n&quot;)%r(TLSSessionReq,C,&quot;Hello\x20\x16\x03!!!\n&quot;)%r(Kerberos,A,&quot;Hello\x20!!!\n&quot;)%r(FourOhFourRequest,47,&quot;Hello\x20GET\x20/nice%20ports%2C/Tri%6Eity\.txt%2ebak\x20HTTP/1\.0\r!!!\nHello\x20\r!!!\n&quot;)%r(LPDString,12,&quot;Hello\x20\x01default!!!\n&quot;)%r(LDAPSearchReq,17,&quot;Hello\x200\x84!!!\nHello\x20\x01!!!\n&quot;);" method="table" conf="3"/><script id="fingerprint-strings" output="&#xa;  FourOhFourRequest: &#xa;    Hello GET /nice%20ports%2C/Tri%6Eity.txt%2ebak HTTP/1.0&#xa;    Hello&#xa;  GenericLines: &#xa;    Hello &#xa;    Hello&#xa;  GetRequest: &#xa;    Hello GET / HTTP/1.0&#xa;    Hello&#xa;  HTTPOptions: &#xa;    Hello OPTIONS / HTTP/1.0&#xa;    Hello&#xa;  Help: &#xa;    Hello HELP&#xa;  Kerberos: &#xa;    Hello !!!&#xa;  LDAPSearchReq: &#xa;    Hello 0&#xa;    Hello&#xa;  LPDString: &#xa;    Hello &#xa;    default!!!&#xa;  RTSPRequest: &#xa;    Hello OPTIONS / RTSP/1.0&#xa;    Hello&#xa;  SIPOptions: &#xa;    Hello OPTIONS sip:nm SIP/2.0&#xa;    Hello Via: SIP/2.0/TCP nm;branch=foo&#xa;    Hello From: &lt;sip:nm@nm&gt;;tag=root&#xa;    Hello To: &lt;sip:nm2@nm2&gt;&#xa;    Hello Call-ID: 50000&#xa;    Hello CSeq: 42 OPTIONS&#xa;    Hello Max-Forwards: 70&#xa;    Hello Content-Length: 0&#xa;    Hello Contact: &lt;sip:nm@nm&gt;&#xa;    Hello Accept: application/sdp&#xa;    Hello&#xa;  SSLSessionReq, TLSSessionReq, TerminalServerCookie: &#xa;    Hello"><elem key="FourOhFourRequest">&#xa;    Hello GET /nice%20ports%2C/Tri%6Eity.txt%2ebak HTTP/1.0&#xa;    Hello</elem>
+<elem key="GenericLines">&#xa;    Hello &#xa;    Hello</elem>
+<elem key="GetRequest">&#xa;    Hello GET / HTTP/1.0&#xa;    Hello</elem>
+<elem key="HTTPOptions">&#xa;    Hello OPTIONS / HTTP/1.0&#xa;    Hello</elem>
+<elem key="Help">&#xa;    Hello HELP</elem>
+<elem key="Kerberos">&#xa;    Hello !!!</elem>
+<elem key="LDAPSearchReq">&#xa;    Hello 0&#xa;    Hello</elem>
+<elem key="LPDString">&#xa;    Hello &#xa;    default!!!</elem>
+<elem key="RTSPRequest">&#xa;    Hello OPTIONS / RTSP/1.0&#xa;    Hello</elem>
+<elem key="SIPOptions">&#xa;    Hello OPTIONS sip:nm SIP/2.0&#xa;    Hello Via: SIP/2.0/TCP nm;branch=foo&#xa;    Hello From: &lt;sip:nm@nm&gt;;tag=root&#xa;    Hello To: &lt;sip:nm2@nm2&gt;&#xa;    Hello Call-ID: 50000&#xa;    Hello CSeq: 42 OPTIONS&#xa;    Hello Max-Forwards: 70&#xa;    Hello Content-Length: 0&#xa;    Hello Contact: &lt;sip:nm@nm&gt;&#xa;    Hello Accept: application/sdp&#xa;    Hello</elem>
+<elem key="SSLSessionReq, TLSSessionReq, TerminalServerCookie">&#xa;    Hello</elem>
+</script></port>
+<port protocol="tcp" portid="49152"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49153"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49154"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49155"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49161"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49163"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+</ports>
+<hostscript><script id="clock-skew" output="mean: 1h19m59s, deviation: 2h18m34s, median: -1s"><elem key="count">3</elem>
+<elem key="median">-1</elem>
+<elem key="mean">4799</elem>
+<elem key="stddev">8314</elem>
+</script><script id="nbstat" output="NetBIOS name: GATEKEEPER, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: 02c53632236f (unknown)"/><script id="smb2-time" output="&#xa;  date: 2022-10-23T07:55:58&#xa;  start_date: 2022-10-23T07:47:19"><elem key="date">2022-10-23T07:55:58</elem>
+<elem key="start_date">2022-10-23T07:47:19</elem>
+</script><script id="smb2-security-mode" output="&#xa;  210: &#xa;    Message signing enabled but not required"><table key="210">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script><script id="smb-os-discovery" output="&#xa;  OS: Windows 7 Professional 7601 Service Pack 1 (Windows 7 Professional 6.1)&#xa;  OS CPE: cpe:/o:microsoft:windows_7::sp1:professional&#xa;  Computer name: gatekeeper&#xa;  NetBIOS computer name: GATEKEEPER\x00&#xa;  Workgroup: WORKGROUP\x00&#xa;  System time: 2022-10-23T03:55:58-04:00&#xa;"><elem key="os">Windows 7 Professional 7601 Service Pack 1</elem>
+<elem key="lanmanager">Windows 7 Professional 6.1</elem>
+<elem key="server">GATEKEEPER\x00</elem>
+<elem key="date">2022-10-23T03:55:58-04:00</elem>
+<elem key="fqdn">gatekeeper</elem>
+<elem key="domain_dns">gatekeeper</elem>
+<elem key="workgroup">WORKGROUP\x00</elem>
+<elem key="cpe">cpe:/o:microsoft:windows_7::sp1:professional</elem>
+</script><script id="smb-security-mode" output="&#xa;  account_used: guest&#xa;  authentication_level: user&#xa;  challenge_response: supported&#xa;  message_signing: disabled (dangerous, but default)"><elem key="account_used">guest</elem>
+<elem key="authentication_level">user</elem>
+<elem key="challenge_response">supported</elem>
+<elem key="message_signing">disabled</elem>
+</script></hostscript><times srtt="66925" rttvar="10541" to="109089"/>
+</host>
+<runstats><finished time="1666511765" timestr="Sun Oct 23 08:56:05 2022" summary="Nmap done at Sun Oct 23 08:56:05 2022; 1 IP address (1 host up) scanned in 165.22 seconds" elapsed="165.22" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

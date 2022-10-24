@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Sun Oct 23 08:54:29 2022 as: nmap -&#45;script discovery -oA nmap/10-10-43-68-Discovery -&#45;min-rate 500 -p 10000,9999 10.10.43.68 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/10-10-43-68-Discovery -&#45;min-rate 500 -p 10000,9999 10.10.43.68" start="1666511669" startstr="Sun Oct 23 08:54:29 2022" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="9999-10000"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="targets-ipv6-multicast-echo" output="&#xa;  IP: 2a01:4c8:1405:a204::da   MAC: 7ef100f2d6a5  IFACE: usb0&#xa;  IP: fe80::7cf1:ff:fef2:d6a5  MAC: 7ef100f2d6a5  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="ipv6-multicast-mld-list" output="&#xa;  fe80::7cf1:ff:fef2:d6a5: &#xa;    device: usb0&#xa;    mac: 7ef100f2d6a5&#xa;    multicast_ips: &#xa;      ff02::1:fff2:d6a5         (NDP Solicited-node)&#xa;      ff02::1:ff00:0            (Solicited-Node Address)&#xa;      ff05::2                   (unknown)&#xa;      ff02::2                   (All Routers Address)&#xa;      ff02::1:ff00:da           (Solicited-Node Address)"><table key="fe80::7cf1:ff:fef2:d6a5">
+<elem key="device">usb0</elem>
+<elem key="mac">7ef100f2d6a5</elem>
+<table key="multicast_ips">
+<table>
+<elem key="description">NDP Solicited-node</elem>
+<elem key="ip">ff02::1:fff2:d6a5</elem>
+</table>
+<table>
+<elem key="description">Solicited-Node Address</elem>
+<elem key="ip">ff02::1:ff00:0</elem>
+</table>
+<table>
+<elem key="description">unknown</elem>
+<elem key="ip">ff05::2</elem>
+</table>
+<table>
+<elem key="description">All Routers Address</elem>
+<elem key="ip">ff02::2</elem>
+</table>
+<table>
+<elem key="description">Solicited-Node Address</elem>
+<elem key="ip">ff02::1:ff00:da</elem>
+</table>
+</table>
+</table>
+</script><script id="targets-ipv6-multicast-mld" output="&#xa;  IP: fe80::7cf1:ff:fef2:d6a5  MAC: 7ef100f2d6a5  IFACE: usb0&#xa;&#xa;  Use -&#45;script-args=newtargets to add the results as targets"><table>
+<elem key="iface">usb0</elem>
+<elem key="address">fe80::7cf1:ff:fef2:d6a5</elem>
+<elem key="mac">7ef100f2d6a5</elem>
+</table>
+</script><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-ipv6-multicast-invalid-dst" output="&#xa;  IP: 2a01:4c8:1405:a204::da   MAC: 7ef100f2d6a5  IFACE: usb0&#xa;  IP: fe80::7cf1:ff:fef2:d6a5  MAC: 7ef100f2d6a5  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.43.68" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1666511681" endtime="1666511691"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.43.68" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="9999"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="abyss" method="table" conf="3"/><script id="banner" output="_|                            _|                            ...&#xa;"/></port>
+<port protocol="tcp" portid="10000"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="snet-sensor-mgmt" method="table" conf="3"/></port>
+</ports>
+<hostscript><script id="qscan" output="&#xa;PORT   FAMILY  MEAN (us)  STDDEV   LOSS (%)&#xa;9999   0       64032.30   4286.92  0.0%&#xa;10000  1       61066.00   1705.86  0.0%&#xa;"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.10.43.68&quot;; use dns-brute.domain script argument."/><script id="ipidseq" output="All zeros"/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="path-mtu" output="PMTU == 1500"/></hostscript><times srtt="68652" rttvar="41398" to="234244"/>
+</host>
+<runstats><finished time="1666511691" timestr="Sun Oct 23 08:54:51 2022" summary="Nmap done at Sun Oct 23 08:54:51 2022; 1 IP address (1 host up) scanned in 21.92 seconds" elapsed="21.92" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

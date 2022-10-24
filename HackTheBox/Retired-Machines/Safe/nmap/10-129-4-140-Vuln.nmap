@@ -1,0 +1,57 @@
+# Nmap 7.93 scan initiated Mon Oct 24 09:07:15 2022 as: nmap --script vuln -oA nmap/10-129-4-140-Vuln --min-rate 500 -p 1337,80,22 10.129.4.140
+Nmap scan report for 10.129.4.140
+Host is up (0.060s latency).
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.4.140
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.129.4.140:80/manual/en/index.html
+|     Form id: 
+|     Form action: http://www.google.com/search
+|     
+|     Path: http://10.129.4.140:80/manual/pt-br/index.html
+|     Form id: 
+|     Form action: http://www.google.com/search
+|     
+|     Path: http://10.129.4.140:80/manual/de/index.html
+|     Form id: 
+|     Form action: http://www.google.com/search
+|     
+|     Path: http://10.129.4.140:80/manual/da/index.html
+|     Form id: 
+|     Form action: http://www.google.com/search
+|     
+|     Path: http://10.129.4.140:80/manual/fr/index.html
+|     Form id: 
+|     Form action: http://www.google.com/search
+|     
+|     Path: http://10.129.4.140:80/manual/tr/index.html
+|     Form id: 
+|     Form action: http://www.google.com/search
+|     
+|     Path: http://10.129.4.140:80/manual/zh-cn/index.html
+|     Form id: 
+|     Form action: http://www.google.com/search
+|     
+|     Path: http://10.129.4.140:80/manual/ja/index.html
+|     Form id: 
+|     Form action: http://www.google.com/search
+|     
+|     Path: http://10.129.4.140:80/manual/ko/index.html
+|     Form id: 
+|     Form action: http://www.google.com/search
+|     
+|     Path: http://10.129.4.140:80/manual/es/index.html
+|     Form id: 
+|_    Form action: http://www.google.com/search
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-enum: 
+|_  /manual/: Potentially interesting folder
+1337/tcp open  waste
+
+# Nmap done at Mon Oct 24 09:07:56 2022 -- 1 IP address (1 host up) scanned in 40.32 seconds

@@ -1,9 +1,7 @@
-
-Name: Enterprise
+# Gatekeeper Writeup
+Name: Gatekeeper
 Date:  
 Difficulty:  
-Description:  
-Better Description:  
 Goals:  
 Learnt:
 

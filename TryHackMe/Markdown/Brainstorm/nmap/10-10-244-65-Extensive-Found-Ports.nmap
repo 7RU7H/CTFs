@@ -1,0 +1,68 @@
+# Nmap 7.93 scan initiated Sat Oct 22 10:10:41 2022 as: nmap -Pn -sC -sV -oA nmap/10-10-244-65-Extensive-Found-Ports --min-rate 500 -p 9999,3389,21 10.10.244.65
+Nmap scan report for 10.10.244.65
+Host is up (0.061s latency).
+
+PORT     STATE SERVICE    VERSION
+21/tcp   open  ftp        Microsoft ftpd
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_Can't get directory listing: TIMEOUT
+| ftp-syst: 
+|_  SYST: Windows_NT
+3389/tcp open  tcpwrapped
+|_ssl-date: 2022-10-22T09:13:50+00:00; 0s from scanner time.
+| ssl-cert: Subject: commonName=brainstorm
+| Not valid before: 2022-10-21T08:33:25
+|_Not valid after:  2023-04-22T08:33:25
+| rdp-ntlm-info: 
+|   Target_Name: BRAINSTORM
+|   NetBIOS_Domain_Name: BRAINSTORM
+|   NetBIOS_Computer_Name: BRAINSTORM
+|   DNS_Domain_Name: brainstorm
+|   DNS_Computer_Name: brainstorm
+|   Product_Version: 6.1.7601
+|_  System_Time: 2022-10-22T09:13:20+00:00
+9999/tcp open  abyss?
+| fingerprint-strings: 
+|   DNSStatusRequestTCP, DNSVersionBindReqTCP, FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, Help, JavaRMI, RPCCheck, RTSPRequest, SSLSessionReq, TerminalServerCookie: 
+|     Welcome to Brainstorm chat (beta)
+|     Please enter your username (max 20 characters): Write a message:
+|   NULL: 
+|     Welcome to Brainstorm chat (beta)
+|_    Please enter your username (max 20 characters):
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port9999-TCP:V=7.93%I=7%D=10/22%Time=6353B397%P=x86_64-pc-linux-gnu%r(N
+SF:ULL,52,"Welcome\x20to\x20Brainstorm\x20chat\x20\(beta\)\nPlease\x20ente
+SF:r\x20your\x20username\x20\(max\x2020\x20characters\):\x20")%r(GetReques
+SF:t,63,"Welcome\x20to\x20Brainstorm\x20chat\x20\(beta\)\nPlease\x20enter\
+SF:x20your\x20username\x20\(max\x2020\x20characters\):\x20Write\x20a\x20me
+SF:ssage:\x20")%r(HTTPOptions,63,"Welcome\x20to\x20Brainstorm\x20chat\x20\
+SF:(beta\)\nPlease\x20enter\x20your\x20username\x20\(max\x2020\x20characte
+SF:rs\):\x20Write\x20a\x20message:\x20")%r(FourOhFourRequest,63,"Welcome\x
+SF:20to\x20Brainstorm\x20chat\x20\(beta\)\nPlease\x20enter\x20your\x20user
+SF:name\x20\(max\x2020\x20characters\):\x20Write\x20a\x20message:\x20")%r(
+SF:JavaRMI,63,"Welcome\x20to\x20Brainstorm\x20chat\x20\(beta\)\nPlease\x20
+SF:enter\x20your\x20username\x20\(max\x2020\x20characters\):\x20Write\x20a
+SF:\x20message:\x20")%r(GenericLines,63,"Welcome\x20to\x20Brainstorm\x20ch
+SF:at\x20\(beta\)\nPlease\x20enter\x20your\x20username\x20\(max\x2020\x20c
+SF:haracters\):\x20Write\x20a\x20message:\x20")%r(RTSPRequest,63,"Welcome\
+SF:x20to\x20Brainstorm\x20chat\x20\(beta\)\nPlease\x20enter\x20your\x20use
+SF:rname\x20\(max\x2020\x20characters\):\x20Write\x20a\x20message:\x20")%r
+SF:(RPCCheck,63,"Welcome\x20to\x20Brainstorm\x20chat\x20\(beta\)\nPlease\x
+SF:20enter\x20your\x20username\x20\(max\x2020\x20characters\):\x20Write\x2
+SF:0a\x20message:\x20")%r(DNSVersionBindReqTCP,63,"Welcome\x20to\x20Brains
+SF:torm\x20chat\x20\(beta\)\nPlease\x20enter\x20your\x20username\x20\(max\
+SF:x2020\x20characters\):\x20Write\x20a\x20message:\x20")%r(DNSStatusReque
+SF:stTCP,63,"Welcome\x20to\x20Brainstorm\x20chat\x20\(beta\)\nPlease\x20en
+SF:ter\x20your\x20username\x20\(max\x2020\x20characters\):\x20Write\x20a\x
+SF:20message:\x20")%r(Help,63,"Welcome\x20to\x20Brainstorm\x20chat\x20\(be
+SF:ta\)\nPlease\x20enter\x20your\x20username\x20\(max\x2020\x20characters\
+SF:):\x20Write\x20a\x20message:\x20")%r(SSLSessionReq,63,"Welcome\x20to\x2
+SF:0Brainstorm\x20chat\x20\(beta\)\nPlease\x20enter\x20your\x20username\x2
+SF:0\(max\x2020\x20characters\):\x20Write\x20a\x20message:\x20")%r(Termina
+SF:lServerCookie,63,"Welcome\x20to\x20Brainstorm\x20chat\x20\(beta\)\nPlea
+SF:se\x20enter\x20your\x20username\x20\(max\x2020\x20characters\):\x20Writ
+SF:e\x20a\x20message:\x20");
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Oct 22 10:13:51 2022 -- 1 IP address (1 host up) scanned in 190.48 seconds

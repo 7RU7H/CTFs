@@ -1,0 +1,55 @@
+# Nmap 7.93 scan initiated Sat Oct 22 10:13:51 2022 as: nmap -Pn --script discovery -oA nmap/10-10-244-65-Discovery --min-rate 500 -p 9999,3389,21 10.10.244.65
+Pre-scan script results:
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::d810:e6ff:fe85:d15c  MAC: da10e685d15c  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:1405:a204::87     MAC: da10e685d15c  IFACE: usb0
+|   IP: fe80::d810:e6ff:fe85:d15c  MAC: da10e685d15c  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: fe80::d810:e6ff:fe85:d15c  MAC: da10e685d15c  IFACE: usb0
+|   IP: 2a01:4c8:1405:a204::87     MAC: da10e685d15c  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| ipv6-multicast-mld-list: 
+|   fe80::d810:e6ff:fe85:d15c: 
+|     device: usb0
+|     mac: da10e685d15c
+|     multicast_ips: 
+|       ff02::1:ff85:d15c         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:87           (Solicited-Node Address)
+Nmap scan report for 10.10.244.65
+Host is up (0.064s latency).
+
+PORT     STATE SERVICE
+21/tcp   open  ftp
+|_banner: 220 Microsoft FTP Service
+| ftp-syst: 
+|_  SYST: Windows_NT
+3389/tcp open  ms-wbt-server
+| ssl-cert: Subject: commonName=brainstorm
+| Not valid before: 2022-10-21T08:33:25
+|_Not valid after:  2023-04-22T08:33:25
+9999/tcp open  abyss
+|_banner: Welcome to Brainstorm chat (beta)
+
+Host script results:
+|_ipidseq: Unknown
+|_dns-brute: Can't guess domain of "10.10.244.65"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+|_path-mtu: PMTU == 1500
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 21    0       60125.90   4956.40  0.0%
+| 3389  0       62707.10   8683.66  0.0%
+|_9999  0       62432.80   8231.23  0.0%
+
+# Nmap done at Sat Oct 22 10:14:33 2022 -- 1 IP address (1 host up) scanned in 42.28 seconds

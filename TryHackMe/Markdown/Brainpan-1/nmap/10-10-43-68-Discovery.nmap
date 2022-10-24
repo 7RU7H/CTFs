@@ -1,0 +1,47 @@
+# Nmap 7.93 scan initiated Sun Oct 23 08:54:29 2022 as: nmap --script discovery -oA nmap/10-10-43-68-Discovery --min-rate 500 -p 10000,9999 10.10.43.68
+Pre-scan script results:
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:1405:a204::da   MAC: 7ef100f2d6a5  IFACE: usb0
+|   IP: fe80::7cf1:ff:fef2:d6a5  MAC: 7ef100f2d6a5  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| ipv6-multicast-mld-list: 
+|   fe80::7cf1:ff:fef2:d6a5: 
+|     device: usb0
+|     mac: 7ef100f2d6a5
+|     multicast_ips: 
+|       ff02::1:fff2:d6a5         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:da           (Solicited-Node Address)
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::7cf1:ff:fef2:d6a5  MAC: 7ef100f2d6a5  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:1405:a204::da   MAC: 7ef100f2d6a5  IFACE: usb0
+|   IP: fe80::7cf1:ff:fef2:d6a5  MAC: 7ef100f2d6a5  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for 10.10.43.68
+Host is up (0.069s latency).
+
+PORT      STATE SERVICE
+9999/tcp  open  abyss
+|_banner: _|                            _|                            ...
+10000/tcp open  snet-sensor-mgmt
+
+Host script results:
+| qscan: 
+| PORT   FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 9999   0       64032.30   4286.92  0.0%
+|_10000  1       61066.00   1705.86  0.0%
+|_dns-brute: Can't guess domain of "10.10.43.68"; use dns-brute.domain script argument.
+|_ipidseq: All zeros
+|_fcrdns: FAIL (No PTR record)
+|_path-mtu: PMTU == 1500
+
+# Nmap done at Sun Oct 23 08:54:51 2022 -- 1 IP address (1 host up) scanned in 21.92 seconds

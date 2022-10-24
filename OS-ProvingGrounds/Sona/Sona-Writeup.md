@@ -1,8 +1,8 @@
-# Mice Writeup
-Name: Mice
+# Sona Writeup
+Name: Sona
 Date:  
-Difficulty:  Easy
-Goals: OSCP 
+Difficulty:  
+Goals:  
 Learnt:
 
 ## Recon
