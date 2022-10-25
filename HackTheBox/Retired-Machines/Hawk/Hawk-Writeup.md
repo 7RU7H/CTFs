@@ -2,8 +2,9 @@
 Name: Hawk
 Date:  
 Difficulty:  Medium
-Goals:  
+Goals:  OSCP 
 Learnt:
+- Better weird file drilling the method
 
 NOTE rerun nuclei 8082, nikto 8082, nikto 80
 
@@ -61,6 +62,11 @@ Data%3dform_id%3duser_register_form%26_drupal_ajax%3d1%26mail[%23post_render][]%
 
 
 [[cache-poisoning-fuzz-http___10.129.95.193__9cd019c40b46d1dcffde94fa825ce5a2=1]]
+
+I forget to screenshot and potentially check
+![](filethefileidiot.png)
+
+Peeking at [0xDF](https://0xdf.gitlab.io/2018/11/30/htb-hawk.html#encrypted-file---brute-with-bash), I need to write a script presummably for the salt. My brain is chickening when I do not know something. I need to put this to one side and try another box.
 
 
 ## Exploit
