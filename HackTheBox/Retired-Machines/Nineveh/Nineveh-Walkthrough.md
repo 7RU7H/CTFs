@@ -66,7 +66,7 @@ I am not a php person, went back to the [Ippsec video](https://www.youtube.com/w
 
 Code execution! Then I failed for half an hour to make that work so something went wrong. And with time constraits I have it left it here.
 
-I then returned complete this briefly summarising everything. I gained access to phpmyadmin page which you can make sqlite databases, which the version of phpmyadmin has vulnerablity for remote php injection. While on the /department/manage.php has a lfi where the `notes=` parameter can the be given an argument to a file that has to be ninevehNotes.x file due to filtering rules with php `include()`. Reviewing what I had done and notes instead of `$_REQUEST` I used `$_GET`. 
+I then returned complete this briefly summarising everything. I gained access to phpmyadmin page which you can make sqlite databases, which the version of phpmyadmin has vulnerablity for remote php injection. While on the /department/manage.php has a lfi where the `notes=` parameter can the be given an argument to a file that has to be ninevehNotes.x file due to filtering rules with php `include()`. Reviewing what I had done and notes instead of `$_REQUEST` I used `$_GET`. And without `echo`!
 
  `$_REQUEST` An associative array that by default contains the contents of [`$_GET`](https://www.php.net/manual/en/reserved.variables.get.php), [`$_POST`](https://www.php.net/manual/en/reserved.variables.post.php)  and [`$_COOKIE`](https://www.php.net/manual/en/reserved.variables.cookies.php). Whereas `$_GET` An associative array of variables passed to the current script via the URL parameters (aka. query string). Note that the array is not only populated for GET requests, but rather for all requests with a query string. I also put it in the default value as suggested by the github article. 
 
@@ -114,3 +114,6 @@ searchsploit chkrootkit
 TL;DR:
 
 chkrootkits will execute `/tmp/update` as the function slapper should be `/tmp/.update`
+
+![](preroot.png)
+![](root.png)
