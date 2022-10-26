@@ -1,9 +1,9 @@
-
 Name: Optimum
 Date:  26/10/2022
 Difficulty:  Easy
 Goals:  OSCP Prep
 Learnt:
+- wesng might just be a privesc rabbit hole of doom
 
 ## Recon
 
@@ -33,3 +33,4 @@ WinPEAS found:
 ![](icaclshfsexe.png)
 
 ![](addkostas.png)
+But it failed.
