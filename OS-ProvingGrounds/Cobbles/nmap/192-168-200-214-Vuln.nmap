@@ -1,0 +1,39 @@
+# Nmap 7.93 scan initiated Thu Oct 27 18:16:20 2022 as: nmap --script vuln -oA nmap/192-168-200-214-Vuln --min-rate 500 -p 80,22 192.168.200.214
+Nmap scan report for 192.168.200.214
+Host is up (0.062s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       http://ha.ckers.org/slowloris/
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.200.214
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://192.168.200.214:80/
+|     Form id: login
+|     Form action: index.php
+|     
+|     Path: http://192.168.200.214:80/index.php
+|     Form id: login
+|_    Form action: index.php
+| http-enum: 
+|_  /server-status/: Potentially interesting folder
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+
+# Nmap done at Thu Oct 27 18:18:51 2022 -- 1 IP address (1 host up) scanned in 151.49 seconds
