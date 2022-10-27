@@ -48,7 +48,9 @@ Upgrade to powershell and get a reverse shell
 ![](revpsshell.png)
 
 ## PrivEsc
-
-    
+   
 
 ![](inthebin.png)
+
+
+Tried alot and alot failed. I went away to learn to compile exploits on vscode. I feel very limited.

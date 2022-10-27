@@ -32,4 +32,4 @@ Then `v -> till end yy`; replaced all the capital letters then `pp` to paste all
 
 ## PrivEsc
 
-      
+I got spoiled by looking up about Potato exploits for [[Devel-Writeup]], so I know it is Rogue Potato..
