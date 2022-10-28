@@ -44,6 +44,7 @@ This is just for fun, I cant find an exploit or a location to upload files. I do
 ![](wecanputstuffinthedom.png)
 ![](polygloting.png)
 
+Try scanning it!
 
 ## Exploit
 
