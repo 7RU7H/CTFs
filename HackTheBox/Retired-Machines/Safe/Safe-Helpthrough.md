@@ -6,7 +6,6 @@ Goals:  OSCP prep, ROP chain (re?)discovery,
 Learnt:
 Source: [Ippsec](https://www.youtube.com/watch?v=CO_g3wtC7rk)
 
-
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
@@ -33,6 +32,10 @@ Unlike ghidra we dont have a clear indicator of the buffer, but the size is the 
 ![1000](bufferoverflow.png)
 Decided that seeing as if is a initial buffer overflow. I will paused at 8:42 and finish this without the aid, because I do not need it.
 
+Learnt about gef wonders, with a built in pattern creat and pattern search.
+[guyinatuxedo](https://guyinatuxedo.github.io/index.html)
+[gef commands](https://hugsy.github.io/gef/commands/aliases/)
+![](gefisgreat.png)
 
 ## Foothold
 

@@ -27,9 +27,13 @@ Adding the below to the openemr/ and it not executing the paylaod `version()` ve
 /interface/forms/eye/js/eye_base.php?providerID=1%27,%274%27,%27title%27
 ```
 
-Exploit for 5.0.2.1 RCE needs the url changed as it gets redirected  
+Exploit for 5.0.2.1 RCE needs the url changed as it gets redirected .
+
+Fixed cookie issues and then ran into indentation issues, no CVE and not verified. It could actually be a python rabbithole. I did learn some more hardcore python debugging
 
 ## Exploit
+
+The actually exploit requires Authenicated RCE, we need to get the MySQL Credentials  another way.
 
 ## Foothold
 
