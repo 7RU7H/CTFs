@@ -1,14 +1,19 @@
 # Devel Helped-through
 
 Name: Devel
-Date:  
+Date:  30/10/2022
 Difficulty:  Easy  - Its helpthrough because I do not know how to compile C#
 Goals:  OSCP Prep
 Learnt:
 - Windows File system
-- I need to learn to compile exploits on vscode
+- I need to learn to compile exploits on VS
 - Reminder that `search suggest` in metasploit on the one use for exam 
 - VS Code != VS 
+- Dot NetNightmare for legacy code and hacking..
+- [abatchy17 is a legend](https://github.com/abatchy17/WindowsExploits)
+- precompile exploits require keyboard access or remote desktop thank you [0xdf](https://0xdf.gitlab.io/2019/03/05/htb-devel.html)
+- Old windows kernel exploits sometimes its best to use metasploit
+
 
 ## Disclaimer I did not finish this box - never compiled anything in VScode (it actually Microsoft Visual Studios) no VS code AAAAAAAAARGH! - requirement to do without metasploit -
 
@@ -75,3 +80,16 @@ Check the .NET version.
 Just because of how head-to-keyboard smashingly frustrating that is, future me - never forget:
 https://github.com/rasta-mouse/Watson
 https://github.com/abatchy17/WindowsExploits
+
+After another 23 minutes of long day dealing with now legacy .NET cannot be targeted, be default for whatever reason. So this is going to be a on going article addition to my Archive trying to make that work. 
+
+TIL compiled binaries require keyboard access
+![](wondersoflegacyprecompiledbinaries.png)
+
+I had the reverse of of 0xdf, where he got the shell, because my life is an endless string of "why what the.. ok.. right..well...\*sigh\*" it seems sometimes. I can actually code in C I just never seem to have time, but not that well. Compiling is mostly painful.
+
+![](tryingtobegood.png)
+
+Liver shot with dlls...
+![800](dlllibaries.png)
+

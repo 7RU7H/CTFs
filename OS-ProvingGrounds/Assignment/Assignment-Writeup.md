@@ -1,7 +1,7 @@
 # Assignment Writeup
 Name: Assignment
 Date:  
-Difficulty:  
+Difficulty: Easy
 Goals:  
 Learnt:
 

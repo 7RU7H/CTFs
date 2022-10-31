@@ -1,12 +1,12 @@
 # Banzai Helped-through
 Name: Banzai
-Date:  
-Difficulty:  Interme
+Date:  30/10/2022
+Difficulty:  Intermediate
 Goals:  OSCP Prep
 Learnt: 
 - Web is a pyschological rabbit hole for me.
 - Try default creds on all ftp 
-- port number matter more than I thought in 
+- port numbers because WAF exist!
 - mysql has a shell run system commands from mysql:  `\!` 
 
 

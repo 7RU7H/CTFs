@@ -43,7 +43,16 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
       "	> $name-Writeup.md
       echo "# Notes
 
-## Todo - x
+OS:
+IP:
+SERVICES:
+USERS:
+CREDENTIALS:
+
+
+## Todo - Ports
+
+## Todo X
 
 #### Outcome of X
       

