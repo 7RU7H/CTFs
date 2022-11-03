@@ -8,7 +8,7 @@ Learnt: impacket is awesome, exploit scripts come in various qualities sometimes
 
 ## Recon
 
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Netmon/Screenshots/ping.png)
 
 Quick user.txt with anonymous ftp login.
 ![ftp](Screenshots/nonftp.png)  

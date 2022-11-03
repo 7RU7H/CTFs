@@ -9,7 +9,7 @@ Learnt:
 
 ## Recon
 
-![ping](Screenshots/ping.png)
+![ping](OS-ProvingGrounds/Shiftdel/Screenshots/ping.png)
 	
 ## Exploit
 

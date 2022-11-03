@@ -9,7 +9,7 @@ Learnt:
 
 ## Recon
 
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Mantis/Screenshots/ping.png)
 	
 ## Exploit
 

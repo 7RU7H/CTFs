@@ -12,7 +12,7 @@ This is mainly a hand hold through this machine that will be redone at a later d
 ## Recon
 
 Ran some of the recon weeks ago while reading, coding and hacking, still have some to do. Regardles with the original IP I started enumeration with a ping to check Time to Live field to do OS detection and see if the box responded to ICMP packets:
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Forest/Screenshots/ping.png)
 
 `TTL for Windows is 128`, but also accept ICMP packets so no need to `-Pn` flag for nmap.
 

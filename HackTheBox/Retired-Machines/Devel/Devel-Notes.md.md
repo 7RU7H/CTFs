@@ -1,6 +1,6 @@
 
 
-From [[nmap/Discovery.nmap]] scan IIS 7.5 server disclosured, searchsploit-ed it; link for [exploitdb](www.exploit-db.com/exploits/19033). The image links to a microsoft page so that probably indicates that there is no `/images` directory. 
+From [[HackTheBox/Retired-Machines/Devel/nmap/Discovery.nmap]] scan IIS 7.5 server disclosured, searchsploit-ed it; link for [exploitdb](www.exploit-db.com/exploits/19033). The image links to a microsoft page so that probably indicates that there is no `/images` directory. 
 And with `:$i30:$INDEX_ALLOCATION` appended to the directory request gets:
 
 ```html

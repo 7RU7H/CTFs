@@ -19,7 +19,7 @@ Having a bad hardware day... Therefore to keep the proverbial paddling  of a goo
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Conceal/Screenshots/ping.png)
 
 [isakmp](https://en.wikipedia.org/wiki/Internet_Security_Association_and_Key_Management_Protocol)
 

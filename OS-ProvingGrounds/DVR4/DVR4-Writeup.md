@@ -9,7 +9,7 @@ Learnt:
 
 ## Recon
 
-![ping](Screenshots/ping.png)
+![ping](OS-ProvingGrounds/DVR4/Screenshots/ping.png)
 	
 ## Exploit
 

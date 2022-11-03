@@ -17,7 +17,7 @@ Recon went good from 12/09/2022, was doing Resourced from PG got to credentials 
 ## Recon
 
 Ran masscan, - 6 mins, prepped notes and ttl test for ping asthe time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Resolute/Screenshots/ping.png)
 
 LDAP -> DNS recon while nmap udp scan runs
 

@@ -9,7 +9,7 @@ Source: [Ippsec](https://www.youtube.com/watch?v=CO_g3wtC7rk)
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](OS-ProvingGrounds/Apex/Screenshots/ping.png)
 
 I run masscan to rapid port scan so I already found the port 1337 tcp, but page isn't working for me...
 ![](notsoleet.png)

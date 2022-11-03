@@ -13,7 +13,7 @@ Learnt:
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](OS-ProvingGrounds/Apex/Screenshots/ping.png)
 
 SSL recently has been a massive headache in alot of my venture in hoping to improve.
 ![](diffiehellmanvuln.png)  

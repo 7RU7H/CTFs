@@ -10,7 +10,7 @@ NOTE rerun nuclei 8082, nikto 8082, nikto 80
 
 ## Recon
 
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Hawk/Screenshots/ping.png)
 
 FTP - has .drupal.txt.enc
 ![](ftpgrab.png)

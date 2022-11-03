@@ -8,7 +8,7 @@ Learnt:
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Paper/Screenshots/ping.png)
 
 Nikto reveals a office.paper, add to /etc/host with:
 ```bash

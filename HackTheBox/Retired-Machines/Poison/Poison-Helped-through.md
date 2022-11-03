@@ -18,7 +18,7 @@ This has Ippsec unique way apperently so I follow along and also do the alternat
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![](ping.png)
+![](HackTheBox/Retired-Machines/Poison/Screenshots/ping.png)
 
 The nmap enumerates thathost is running a less common flavour of Linux OS I have come across in CTFs - [Freebsd](https://en.wikipedia.org/wiki/FreeBSD). 
 

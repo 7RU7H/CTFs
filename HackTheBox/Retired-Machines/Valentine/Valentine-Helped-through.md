@@ -13,7 +13,7 @@ I bailed to check why sshing after using a golang tool that I thought was being 
 
 ## Recon
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Valentine/Screenshots/ping.png)
 
 This machine is vulnerable to [Heartbleed](https://heartbleed.com/) and a good tryhackme [room](https://tryhackme.com/room/heartbleed) that demos the vulnerablity and exploit.
 ![nmapvuln](Screenshots/heartbleed-nmap.png)

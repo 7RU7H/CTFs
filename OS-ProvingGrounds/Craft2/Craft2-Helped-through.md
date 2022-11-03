@@ -14,7 +14,7 @@ Learnt:
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128. 100% packet loss so use nmap to check if it was up.
-![ping](Screenshots/ping.png)
+![ping](OS-ProvingGrounds/Craft2/Screenshots/ping.png)
 
 ![](adminemail.png)
 

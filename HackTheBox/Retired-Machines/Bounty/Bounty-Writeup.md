@@ -10,7 +10,7 @@ Learnt:
 
 ## Recon
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Bounty/Screenshots/ping.png)
 
 The `nmap/Extensive.*` scans declare IIS to be version 7.5 so probably it is a Windows Server 2008/R2.
 

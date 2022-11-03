@@ -11,7 +11,7 @@ Learnt:
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128. Prep the `-Pn`
-![ping](Screenshots/ping.png)
+![ping](OS-ProvingGrounds/Squid/Screenshots/ping.png)
 
 One port machine, ran UDP as I normally do - was none anyway , greeted with this webpage
 

@@ -9,7 +9,7 @@ Learnt:
 
 ## Recon
 
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Sizzle/Screenshots/ping.png)
 
 ![smbshares](Screenshots/smbclient-shares.png)
 

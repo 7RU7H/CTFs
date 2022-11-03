@@ -8,7 +8,7 @@ Learnt:
 ## Recon
 
 It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128. 
-![ping](Screenshots/ping.png)
+![ping](OS-ProvingGrounds/Apex/Screenshots/ping.png)
 
 ## Exploit
 

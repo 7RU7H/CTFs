@@ -7,7 +7,7 @@ Learnt:
 
 ## Recon
 
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Optimum/Screenshots/ping.png)
 
 Firstly reviewing nmap it found HFS 2.3 then quick `searchsploit HFS 2.3` found the below
 ![](nmaptosearchsploit.png)

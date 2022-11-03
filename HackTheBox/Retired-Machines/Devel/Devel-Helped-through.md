@@ -13,7 +13,7 @@ Learnt:
 - [abatchy17 is a legend](https://github.com/abatchy17/WindowsExploits)
 - precompile exploits require keyboard access or remote desktop thank you [0xdf](https://0xdf.gitlab.io/2019/03/05/htb-devel.html)
 - Old windows kernel exploits sometimes its best to use metasploit
-
+- Metasploit is insane, do not really use it, but it is insane.
 
 ## Disclaimer I did not finish this box - never compiled anything in VScode (it actually Microsoft Visual Studios) no VS code AAAAAAAAARGH! - requirement to do without metasploit -
 
@@ -26,7 +26,7 @@ Learnt:
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Devel/Screenshots/ping.png)
 	
 Anonymous FTP, which we can upload to and a directory structure called `aspnet_client`
 
@@ -93,3 +93,8 @@ I had the reverse of of 0xdf, where he got the shell, because my life is an endl
 Liver shot with dlls...
 ![800](dlllibaries.png)
 
+## Returning Fresh
+
+I just redid everything upload a meterpreter shell learnt more about modules in metasploit as I usual rarely touch metasploit to try to push myself. It feels weird after being amazed by how awesome it is to just - `use exploit/windows/local/service_permissions` , configure and run. Bonkers. 
+
+![](meterpreter.png)

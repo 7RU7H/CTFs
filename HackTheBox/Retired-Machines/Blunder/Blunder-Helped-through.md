@@ -11,7 +11,7 @@ Pre video hand holdy extraviganza I reconned the box with similar recon I would 
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Blunder/Screenshots/ping.png)
 
 Nuclei find CVE-2020-9490:
 [nvd](https://nvd.nist.gov/vuln/detail/CVE-2020-9490)

@@ -10,7 +10,7 @@ Learnt: My nmap script should be used more
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Lightweight/Screenshots/ping.png)
 
 Found futher confirmation as to the OS with `nmap --script discovery`
 ![os-header](Screenshots/header-os.png)

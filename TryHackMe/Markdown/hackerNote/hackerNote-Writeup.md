@@ -9,7 +9,7 @@ Learnt:
 
 ## Recon
 
-![ping](Screenshots/ping.png)
+![ping](TryHackMe/Markdown/hackerNote/Screenshots/ping.png)
 
 ## Making the exploit
 

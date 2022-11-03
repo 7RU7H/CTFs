@@ -8,7 +8,7 @@ Learnt:
 
 ## Recon
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](ping.png)
+![ping](HackTheBox/Retired-Machines/Sense/Screenshots/ping.png)
 
 ![lightpd](lighttpd-1-4-35.png)
 

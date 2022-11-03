@@ -9,7 +9,7 @@ Learnt:
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](TryHackMe/Markdown/Brainstorm/Screenshots/ping.png)
 
 - 2 days later I realised I made this error of not using `binary` before transfering a binary file over FTP, as I had compatbility issues possible due to corruption over file transfer... \*facepalm...
 ![](ftpgrab.png)

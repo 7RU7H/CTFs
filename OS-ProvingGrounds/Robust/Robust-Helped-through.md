@@ -15,7 +15,7 @@ Learnt:
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](OS-ProvingGrounds/Robust/Screenshots/ping.png)
 
 7680 - https://www.speedguide.net/port.php?port=7680
 

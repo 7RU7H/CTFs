@@ -9,7 +9,7 @@ Learnt:
 
 ## Recon
 
-![ping](Screenshots/ping.png)
+![ping](OS-ProvingGrounds/WebCal/Screenshots/ping.png)
 	
 ## Exploit
 

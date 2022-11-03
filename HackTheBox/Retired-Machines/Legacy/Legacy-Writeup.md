@@ -19,7 +19,7 @@ WILL REATTEMPT AT A LATER DATE
 
 For OS detection using ttl field reveals it is Windows system.
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Legacy/Screenshots/ping.png)
 ![e4l](Screenshots/EnumFourLinuxnbtstat.png)
 The after running an nmap, noticing is it XP and smbv2 is in use I did the follow nmap smb vulnerable scan:
 ![smbvuln](Screenshots/nmapsmbvuln.png)

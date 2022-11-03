@@ -10,7 +10,7 @@ Learnt:
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](OS-ProvingGrounds/Apex/Screenshots/ping.png)
 
 This machine was recon nightmare I could not find ways to interact with any of ports other than rdp, I used `nc` to no response from the box. Anyone pointer in the direction of port 1978 run RemoteMouse which is vulnerable. Lesson learn search "port x exploit". Also lean towards searchsploit over google.
 
