@@ -1,10 +1,10 @@
 
 Name: EnterpriseV2
 Date:  
-Difficulty:  
-Description:  
+Difficulty:  Hard
+Description:  You just landed in an internal network. You scan the network and there's only the Domain Controller...
 Better Description:  
-Goals:  
+Goals:  OSCP Prep
 Learnt:
 
 ## Recon
