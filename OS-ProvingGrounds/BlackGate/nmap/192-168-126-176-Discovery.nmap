@@ -1,0 +1,72 @@
+# Nmap 7.93 scan initiated Sat Nov  5 19:17:20 2022 as: nmap --script discovery -oA nmap/192-168-126-176-Discovery --min-rate 500 -p 22,6379 192.168.126.176
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| ipv6-multicast-mld-list: 
+|   fe80::40f8:f1ff:fe6c:ad3e: 
+|     device: usb0
+|     mac: 42f8f16cad3e
+|     multicast_ips: 
+|       ff02::1:ff6c:ad3e         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:40           (Solicited-Node Address)
+| targets-ipv6-multicast-echo: 
+|   IP: fe80::40f8:f1ff:fe6c:ad3e  MAC: 42f8f16cad3e  IFACE: usb0
+|   IP: 2a01:4c8:1421:9dc2::40     MAC: 42f8f16cad3e  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:1421:9dc2::40     MAC: 42f8f16cad3e  IFACE: usb0
+|   IP: fe80::40f8:f1ff:fe6c:ad3e  MAC: 42f8f16cad3e  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::40f8:f1ff:fe6c:ad3e  MAC: 42f8f16cad3e  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+Nmap scan report for 192.168.126.176
+Host is up (0.063s latency).
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+| ssh-hostkey: 
+|   3072 3721143e23e513402005f979e0820b09 (RSA)
+|   256 b98dbd90557c84cca07fa8b4d35506a7 (ECDSA)
+|_  256 0707297a4c7cf2b01f3c3f2ba1569e0a (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (9)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_8.3p1 Ubuntu-1ubuntu0.1
+6379/tcp open  redis
+| redis-info: 
+|   Version: 4.0.14
+|   Operating System: Linux 5.8.0-63-generic x86_64
+|   Architecture: 64 bits
+|   Process ID: 795
+|   Used CPU (sys): 0.71
+|   Used CPU (user): 0.24
+|   Connected clients: 2
+|   Connected slaves: 0
+|   Used memory: 899.34K
+|   Role: master
+|   Bind addresses: 
+|     0.0.0.0
+|   Client connections: 
+|_    192.168.49.126
+
+Host script results:
+|_path-mtu: PMTU == 1500
+|_dns-brute: Can't guess domain of "192.168.126.176"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+|_ipidseq: All zeros
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       54861.70   10684.43  0.0%
+|_6379  0       52411.00   6185.32   0.0%
+
+# Nmap done at Sat Nov  5 19:17:47 2022 -- 1 IP address (1 host up) scanned in 27.18 seconds

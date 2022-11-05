@@ -48,6 +48,7 @@ I got a shell on the box, but I know would I run into the same issues, but I got
 
 ## Foothold
 
-## PrivEsc
+## PrivEsc      
+https://0xdf.gitlab.io/2020/05/28/htb-grandpa.html
 
-      
+https://github.com/Re4son/Churrasco/
