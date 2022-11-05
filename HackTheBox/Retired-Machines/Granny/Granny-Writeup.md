@@ -22,6 +22,8 @@ OSCP friendly! I continued with method described in https://techvomit.net/abusin
 
 *"The WebDAVMKCOL method creates a new collection at the location specified by the Request-Uniform Resource Identifier (URI). When invoked without a request body, the collection will be created without member resources. When used with a request body, you can create members and properties on the collections or members."*
 
+Read some [Portswigger](https://portswigger.net/web-security/file-upload)
+
 ![](testdir.png)
 
 It exists
@@ -38,7 +40,9 @@ Then both aren't found:
 ![](stillsadnopage.png)
 Then reading that the only executables are html and txt... I concluding was too excited to read what did twice. So we need to then turn both into html pages. Therefore I must use the most second, after hackronomicon of Javascript that exists somewhere, most horrific and evil manual I know... the [PHP.net](https://www.php.net/manual/en/language.basic-syntax.phpmode.php) 
 
-Bad characters abound as html and php use the same lexical operators for different operability.
+Bad characters abound as html and php use the same lexical operators for different operability. 
+
+- Make a reverse shell executable html page.
 
 
 
