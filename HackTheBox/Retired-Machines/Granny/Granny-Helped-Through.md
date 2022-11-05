@@ -1,6 +1,6 @@
 
 Name: Granny
-Date:  
+Date:  5/11/2022
 Difficulty:  Easy
 Goals:  OSCP Prep 
 Learnt:
@@ -8,8 +8,8 @@ Learnt:
 - DELETE, MKCOL and EXEC Headers are real
 - Local files are not uploaded files
 - I try to hard and fast
-- Need a Pause button. 
-
+- Need a Pause button on my skull still. 
+- Also the wonders of https://lolbas-project.github.io/#/download 
 
 ## Recon
 
@@ -91,4 +91,4 @@ With all that I rather eye openingly shocked at myself. I need a pause button. A
 
 ![](metasploitable.png)
 
-And I did some cleanup for the sake of being a good person in that regard, might aswell write to remember to remember just in the future. I learn som HTTP and old HTBs that are just...
+And I did some cleanup for the sake of being a good person in that regard, might aswell write to remember to remember just in the future. I learn som HTTP and old HTBs that are just... Also the wonders of https://lolbas-project.github.io/#/download 
