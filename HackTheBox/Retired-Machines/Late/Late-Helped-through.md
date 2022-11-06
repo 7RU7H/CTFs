@@ -1,11 +1,11 @@
 # Late
 
 Name: Late 
-Date: 
+Date: 31/07/2022
 Difficulty: Easy
 Description:  
 Better Description: Image upload vuln from hell for those without patience
-Goals:  
+Goals:  OSCP Prep
 Learnt: Courier is great font as is parsable for image scanners
 
 ## Recon

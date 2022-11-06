@@ -7,9 +7,7 @@ Goals:
 	- No Archive Notes! Use Red Team Field Manual and Google
 Learnt:
 - Drupal requires a apache, php and a database - either MySQL, MariaDB, Percona, PostgreSQL, SQLite
-- XPath injection is like sql inection for XML [owasp](https://wiki.owasp.org/index.php/Testing_for_XPath_Injection_(OTG-INPVAL-010)
-
-
+- XPath injection is like sql injection for XML [owasp](https://wiki.owasp.org/index.php/Testing_for_XPath_Injection_(OTG-INPVAL-010)
 
 ## Recon
 
@@ -18,7 +16,6 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 Nikto had issues.
 ![](nikto-error-limit-reached.png)
 Reattempted later on return to this box after enumerating months and months ago, just in case my heavy handed enumeration was the problem. The result:
-
 
 Be aware of potential content-discovery migitation. Feroxbuster found: /node on 200, which just the same login page
 ![](doesnotlikedirbusting.png)
@@ -32,7 +29,7 @@ Test differences with /node and /0/ all point of wwwroot login - potetnial rabbi
 
 As you would expect if you can view it /CHANGELOG.txt will contain the version number or potential decimal of which version it might be as the developments may be sharing the change log, but updating. It is not greater than 7.54, so no RCE - unless it is 7.58, but also no sql injection.  
 ![](drupalversion.png)
-It could be a plugin or module oir website misconfiguration though..
+It could be a plugin or module or website misconfiguration though..
 ![](searchsploitdrupal.png)
  /cron.php - is forbidden like the other .txt files. The /install.php access 403 on update.php which could of potentially been used. These are rabbit holes /INSTALL.mysql.txt,/ INSTALL.pgsql.txt and /INSTALL.sqlite.txt of documentation as services arent externall facing. But does require a db internal facing so potential credentiual dumping  post exploit.
  ![](requiresadb.png) 
@@ -48,6 +45,7 @@ I could not find any initial 7.5 asp authenication bypasses or code disclosures.
 :$i30:$INDEX_ALLOCATION
 :$i30:$INDEX_ALLOCATION/phppage.php
 ```
+
 ## Exploit
 
 ## Foothold

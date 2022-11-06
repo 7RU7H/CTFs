@@ -2,7 +2,7 @@
 Name: Bart
 Date:  
 Difficulty:  Medium
-Goals:  
+Goals:  OSCP Prep
 Learnt:
 
 ## Recon

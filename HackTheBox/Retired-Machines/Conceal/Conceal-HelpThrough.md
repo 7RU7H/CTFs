@@ -62,11 +62,16 @@ conn Conceal
         rightprotoport=tcp
         authby=psk
         esp=3des-sha1
+        fragmentation=yes
         ike=3des-sha1-modp1024
         ikelifetime=8h
         auto=start
 " | sudo tee -a /etc/ipsec.conf
 
+sudo ipsec start --nofork
+# more issues change the maximum transmission unit 
+# 
+ifconfig tun0 mtu 1000 
 ```
 
 ![](wowvpninyourvpn.png)
@@ -83,7 +88,7 @@ No rcpclient, smb - retried uploading:
 
 ![](aspcmddoesnotwork.png)
 
-Tried others and with aspx and failed
+Tried others and with aspx and failed. The issue is that the configuration of the VPN require fragmentation to 
 
 ## Exploit
 
