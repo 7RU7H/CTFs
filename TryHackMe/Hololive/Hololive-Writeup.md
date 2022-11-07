@@ -13,9 +13,10 @@ Learnt:
 - More Situational Awareness or may the trench that is Dunning Kroger
 - Walk the the Webserver directory on at a time before/after/due second reverse shell
 
-Returning to this after lots of Hack the Box I decided to follow along with [Alh4zr3d](https://www.youtube.com/watch?v=PqnnKMU3XMk) purely to fit with my work schedule that include another siz hours plus after this. I need mentorship and I need practical experience that is less-head-smashing-problem-solving-stress to pace out the the marathon of learning everything for the exam I need. Some humor and Cthulu mythos is great addition to my day. 
 
-Tasks 0 - [Part 1 Al](https://www.youtube.com/watch?v=PqnnKMU3XMk)
+Returning to this after lots of Hack the Box I decided to follow along with [Alh4zr3d](https://www.youtube.com/watch?v=PqnnKMU3XMk) purely to fit with my work schedule that include another siz hours plus after this. I need mentorship and I need practical experience that is less-head-smashing-problem-solving-stress to pace out the the marathon of learning everything for the exam I need. Some humor and Cthulu mythos is great addition to my day. It was very enjoyable to do this this way. I learnt alot and loads of fun.
+
+Tasks 0 - 21 [Part 1](https://www.youtube.com/watch?v=PqnnKMU3XMk)
 
 ## Initial Recon
 
