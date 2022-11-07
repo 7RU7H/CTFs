@@ -6,6 +6,9 @@ Description: Holo is an Active Directory (AD) and Web-App attack lab that aims t
 Better Description:  
 Goals: OSCP revision, demonstrate how far I have come since Throwback..
 Learnt:
+- 
+
+Returning to this after lots of Hack the Box I decided to follow along with [Alh4zr3d](https://www.youtube.com/watch?v=PqnnKMU3XMk) purely to fit with my work schedule that include another siz hours plus after this. I need mentorship and I need practical experience that is less-head-smashing-problem-solving-stress to pace out the the marathon of learning everything for the exam I need. Some humor and Cthulu mythos is great addition to my day. 
 
 ## Initial Recon
 
@@ -61,5 +64,94 @@ git clone https://github.com/danielmiessler/SecLists.git
 ```
 
 
+#### Task 10
 
-      
+![](localpathwp.png)
+
+What file leaks the web server's current directory?
+
+```
+robots.txt
+```
+
+What file loads images for the development domain?
+
+`dev.holo.live/img.php?file=images/$file.jpg`
+
+```
+img.php
+```
+
+What is the full path of the credentials file on the administrator domain?
+
+`admin.hole.live/robots.txt`
+
+```
+/var/www/admin/supersecretdir/creds.txt
+```
+
+#### Task 11
+
+I suggest Learning about Ansible and Packer or you could use test file inclusion 
+`dev.holo.live/img.php?file=images/$file.jpg`
+
+Downloading a Ubuntu server and going back to a ToDo list of mine in the background...
+
+![1000](fileinclusion.png)
+
+#### Task 12
+
+What file is vulnerable to LFI on the development domain?
+```
+img.php
+```
+What parameter in the file is vulnerable to LFI?
+```
+file
+```
+
+What file found from the information leak returns an HTTP error code 403 on the administrator domain?
+
+- I missed this because already tried then went back to use the lfi while I download a ubuntu server to try build some Vulnerable and Safe VMs machines with packer
+
+```
+/var/www/admin/supersecretdir/creds.txt
+```
+
+Using LFI on the development domain read the above file. What are the credentials found from the file?
+```
+admin:DBManagerLogin
+```
+
+Because the lfi you can then grab all the files!
+
+![](passwordchanges.png)
+
+![](vistors.png)
+
+[Alh4zr3d](https://www.youtube.com/channel/UCz-Z-d2VPQXHGkch0-_KovA) spotted this I just LFI rather than log in
+![1000](alspottedthis.png)
+
+#### Task 13
+
+![](vulnerabledashboard.png)
+
+What file is vulnerable to RCE on the administrator domain?
+
+```
+dashboard.php
+```
+
+What parameter is vulnerable to RCE on the administrator domain?
+
+```
+cmd
+```
+
+What user is the web server running as?
+
+```
+www-data
+```
+
+At 2:11:42 - https://www.youtube.com/watch?v=PqnnKMU3XMk - I am a ahead
