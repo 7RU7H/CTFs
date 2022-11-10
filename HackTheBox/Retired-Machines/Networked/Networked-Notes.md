@@ -1,7 +1,34 @@
-# Notes
+## Intel
 
-## Todo - x
+IP: 10.129.12.250
+OS: CentOS
+Hostname:
+Machine Purpose:
+Services:
+Service Languages:
 
-#### Outcome of X
-      
-      
+
+## Objectives
+
+
+What do have in the solutions inventory to meet large network objective?
+
+## Solution Inventory Map
+Section to solve 
+ 
+
+
+## Data 
+
+#### Credentials
+
+#### Intel
+
+#### Local Inventory
+
+
+
+### Todo
+
+### Done
+
