@@ -4,6 +4,11 @@ Difficulty:  Easy
 Goals:  OSCP Prep
 Learnt:
 - wesng might just be a privesc rabbit hole of doom
+- Hell is old architecture
+- Try ports of exploits that are part of C2s!
+- If in OSCP exams its window > 10 is viable Meterpreter target:
+	- Old architecure is hell for shells, exploits, transfers
+- Check scripts for mistakes even if they are by a trusted C2 framework
 
 ## Recon
 
@@ -59,3 +64,23 @@ kostas::OPTIMUM:1122334455667788:3b3d8bac1f1ab5d127d918b5b40bd363:01010000000000
 
 
 ![](vmwareisddangerous.png)
+
+
+After researching around Unquoted Paths and FolderPerms. I concluded that the box was like the [[Devel-Helped-through]], which was its own hell. I ran to [0xdf](https://0xdf.gitlab.io/2021/03/17/htb-optimum.html)
+
+Contrary to 0xdf I modified the exploit in the original to make it, I added `\\` to escape the escaping of v of version 1 `\v`. 
+![](changes.png)
+
+```powershell
+# Check for 32 or 64 bit powershell
+C:\sysnative\windowspowershell\v1.0\powershell.exe
+[Environment]::Is64BitProcess
+```
+
+TIL: Use C2 ports of exploits
+Also general weirdness with second script, scripts have mistakes. Had my own challenges it seems, Ippsec helped with the `Invoke-MS16032` not `Invoke-MS16-032`, but for me seemed picky enough to be case sensitive with the `-command` flag.. 
+
+`-command` not `-Command`  and `Invoke-MS16032` not `Invoke-MS16-032`
+
+![](system.png)
+
