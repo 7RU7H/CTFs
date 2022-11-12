@@ -96,7 +96,7 @@ function check_file_type($file) {
 }
 ```
 
-This is thje orginal 
+This is the orginal 
 ![](originalreq.png)
 
 Amusing attempt - "Give me  file upload"
@@ -105,10 +105,20 @@ Amusing attempt - "Give me  file upload"
 Page source code pull from: "Where is the file upload"
 ![](whereitisfileupload.png)
 
-This picture...lmao. [Injecting php into jpegs](https://onestepcode.com/injecting-php-code-to-jpg/) vould be possible if the logic on extension filtering allows for .jpg.php or force it to store it as .php. 
+This picture...lmao. [Injecting php into jpegs](https://onestepcode.com/injecting-php-code-to-jpg/) vould be possible if the logic on extension filtering allows for .jpg.php or force it to store it as .php. I really want to be regex with sed. I did, but the regex is . And [this THM room that I learnt regex in cli from](https://tryhackme.com/room/catregex) has been dead for last year, going check my old notes. It used  this https://regex101.com/
 
-1. Bypass client side mime 
-1. Change the mime_content_type, channge the 
+`'/^([a-z\-]+\/[a-z0-9\-\.\+]+)(;\s.+)?$/'`
+1. `^` matches at beginning of the line 
+	1. matches one or more with `+`  chars of  `\-` and a-z all lowercase 
+2. Then  matches one or more with `[a-z0-9] and  -.+` with `+`
+3. `?` with  `(;\s.+)` match zero or one of the one-character regular expression
+
+https://www.tutorialspoint.com/unix/unix-regular-expressions.htm
+https://regex101.com/
+https://users.cs.cf.ac.uk/Dave.Marshall/Internet/NEWS/regexp.html
+
+3. Bypass client side mime 
+4. Change the mime_content_type, channge the 
 
 
 
