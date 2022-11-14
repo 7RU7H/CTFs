@@ -4,6 +4,7 @@ Date:
 Difficulty:  Easy
 Goals:  OSCP Prep
 Learnt:
+- try all alternatives
 
 ## Recon
 
@@ -23,8 +24,6 @@ tar xvf backup.tar
 ```
 
 ![](insidethebackup.png)
-
-
 
 lib.php and upload.php a
 - file_mime_type
@@ -99,6 +98,9 @@ function check_file_type($file) {
 This is the orginal 
 ![](originalreq.png)
 
+And the jpg upload to compare.
+![](jpguploadlol.png)
+
 Amusing attempt - "Give me  file upload"
 ![](kalibackgrounduploadattempt.png)
 
@@ -120,8 +122,34 @@ https://users.cs.cf.ac.uk/Dave.Marshall/Internet/NEWS/regexp.html
 3. Bypass client side mime 
 4. Change the mime_content_type, channge the 
 
+[Thought to kick off returning to this before all my jokes about php are going to come back a bite me as if someone spiked me with php](https://www.youtube.com/watch?v=GzRfvwo1iNU) Disclaimer my only exposure to PHP is through CTFs.
+![1000](modifylegit.png)
+...Did not work neither at the jpg or in the photos.php/. ...
 
+1. Filename will be auto changed
+2. Cant place the .php inside the other extension
+3. Cant append the .php or append php to the .jpegphp
 
+I then tried jhead and put `<?php system($_REQUEST['cmd']); ?>` inside the funny picture stripping the problem down to just making sure the file extension ends up as php. Somehow.
+
+1. add whitespce between the jpg .php - uploaded,but the attachment of extension occurs in lib.php 
+1. Cannot move post upload
+![](cantmovepostupload.png)
+1. Changed myfile; but possible that I am getting false positives, but if it is not empty is automatic changes it back to "myFile"
+![](weird.png)
+
+Been another hour and time is precious. I watched the [Ippsec](https://www.youtube.com/watch?v=H3t3G70bakM) video. I am confused as I place the extension inside the other an it replaced it.
+![](imgoingmadted.png)
+
+So research
+[explode](https://www.php.net/manual/en/function.explode.php) - Split a string by a string
+[array_shift](https://www.php.net/manual/en/function.array-shift.php) - Shift an element off the beginning of array
+[implode](https://www.php.net/manual/en/function.implode.php) - Join array elements with a string
+![](itplonksitbackontheend.png)
+
+The extension are being compared to the database.
+
+![](aaaaaaaaaaaaaargh.png)
 
 ## Exploit
 
