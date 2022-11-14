@@ -1,0 +1,65 @@
+# Note Template
+
+##Intel
+
+IP: 10.10.216.214
+OS: Windows
+Hostname: LAB-DC
+Domain: ENTERPRISE.THM
+Domain SID:
+Machine Purpose:
+Services: 
+- http
+- Kerberos
+- msrpc
+- smb
+-ldap
+- 445
+- rdp
+- winrm
+
+
+ 
+Service Languages:
+
+commonName=LAB-DC.LAB.ENTERPRISE.THM
+
+bitbucket https://bitbucket.org/product directories
+
+## Objective
+
+
+What do have in the solutions inventory to meet large network objective?
+
+## Solution Inventory Map
+Section to solve 
+ 
+
+
+## Data 
+
+#### Credentials
+
+atlbitbucket
+bitbucket
+LAB-ADMIN
+
+```
+$krb5tgs$23$*bitbucket$LAB.ENTERPRISE.THM$lab.enterprise.thm/bitbucket*$33b99762627777d939836c85c4e42a5a$fef3cf0f84ae8b81b1865b9566140b00dc116ce762d97a2fe2a43f600281a447dd25a00c4632429d46b0eebd4f0b3b3aec41619b21e809dcc7aeb7052131595e0718732b0cb0e8b77ee9a1577d5e9925ff11183ac6ea9d58c0798c7d980856831e6eb6a780ace3d79ca36a7e1eeeea2857602804365e240d6f34bd546f5159d756362f9f1ac485e498e854566c73e9b1f3475fdf803732374b6bcf7fd58b8754c4d6c275dbb079789440ea2d9a890603736c5eb78330afc41f9083b543d05c2fad60aaf0aa1f443717a13ada7950617e1442b9a5a18db8916e5701a5ac0e9b49ebfcc6a089d0834791fac70d71025b45aaa01ba0e99a9f5c2b1d87b2916e741fad20535a7ff1b270ed3eac3044c8067f9ca8c1a386b7e2d700ad015d38baa996041eea8ae277809b16f7f556f2004ff02c47fad0f86db291fe59630043b2d38155c9e7da37ac9a3fa785980b55ac46a598f9f7854281134d5f4609a206f530a312a07d8cd03c76dfa4a950ddf4a2d34f44ac825f2c3aa0821adf4d45a38689af5f3d6c51e72c783287fcea677608a4203be3a92dcebb16d33a5e20aabd8c57fe2b13b4be172104f47be24475e2ef6fb73af89f970aa1351a601e21409249b551d6b89c1a7696d6ec374e0cca4a35c335a45b845f363a7ae77642a6cc00c94edeac921b4a1cb654c691c30a0795d1228ee9b1d0ca84b96fcbcd8c9ad7dd891e98d5e37592673d47f174b2b88cfe520e866cae45692a24ab7bc34975a42caa39e01105d1034c656e9914b23016be0494551cbd8b5daf9dad640102e2abe50ac1c1f96730ee7b8aeef9cbc94f2b97ca7466d4ba1daea9cd6b7c3480c691b36cc176dcba1e4fc6d5c449bd7ce408baca97d27056efc8c80eb1f9ca8a7887d20c04ca3c0960325b8de0e1cea7c6c8e48da8fa60b9188c57f066b6078a0c73ccfb66e3a519067d2a89de37511d2894aadf049da4a9eda09bdd0eeb43fd5e857517785e4997eee895255fa1cd40b8bb54b5c27b2d8c9323134b9cb7367bf2bc302c6f4035e7e631559f4c69d06a31a040096bb4b1e55bc996311fb3d17e0010e7a281938450ed769a544dc3a7b340a9ee211bfe7804180a95041275d63625d8327bd21b81a284dde094332c56e5b803e16b98452d8afb6864ec470d748340de423ade43fe7c685f8c3ff9cffd94303df088e5fc3a0503c938917976be291ee5cda104b10cd03614f80c35a7383dd96fa85add2784316c4ba96a24ea4d178cb9066e20efb8b424d56f604d3319da7a019fab37b10e4476b78eabb045cb3a9fc71049c96205b6775f3b041686978b27e7b960611d02b01ef175e50bbc3de47d8104bd17edfcd722
+```
+
+`littleredbucket`
+#### Intel
+
+#### Local Inventory
+
+
+
+### Todo
+
+### Done
+
+Access to Share Users -> LAB-ADMIN
+SYSVOL is inaccessible
+
+![](dircheck.png)
