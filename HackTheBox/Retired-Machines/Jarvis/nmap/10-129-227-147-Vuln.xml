@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Tue Nov 15 12:43:31 2022 as: nmap -&#45;script vuln -oA nmap/10-129-227-147-Vuln -&#45;min-rate 500 -p 80,64999,22 10.129.227.147 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-129-227-147-Vuln -&#45;min-rate 500 -p 80,64999,22 10.129.227.147" start="1668516211" startstr="Tue Nov 15 12:43:31 2022" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="22,80,64999"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.227.147" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1668516222" endtime="1668516244"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.129.227.147" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-cookie-flags" output="&#xa;  /: &#xa;    PHPSESSID: &#xa;      httponly flag not set"><table key="/">
+<table key="PHPSESSID">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+</script><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-enum" output="&#xa;  /phpmyadmin/: phpMyAdmin&#xa;  /css/: Potentially interesting directory w/ listing on &apos;apache/2.4.25 (debian)&apos;&#xa;  /images/: Potentially interesting directory w/ listing on &apos;apache/2.4.25 (debian)&apos;&#xa;  /js/: Potentially interesting directory w/ listing on &apos;apache/2.4.25 (debian)&apos;&#xa;"/><script id="http-vuln-cve2017-1001000" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-internal-ip-disclosure" output="&#xa;  Internal IP Leaked: 127.0.0.1"><elem key="Internal IP Leaked">127.0.0.1</elem>
+</script></port>
+<port protocol="tcp" portid="64999"><state state="open" reason="syn-ack" reason_ttl="63"/></port>
+</ports>
+<times srtt="53316" rttvar="30907" to="176944"/>
+</host>
+<runstats><finished time="1668516244" timestr="Tue Nov 15 12:44:04 2022" summary="Nmap done at Tue Nov 15 12:44:04 2022; 1 IP address (1 host up) scanned in 32.86 seconds" elapsed="32.86" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

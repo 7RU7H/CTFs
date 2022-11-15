@@ -1,0 +1,25 @@
+# Nmap 7.93 scan initiated Tue Nov 15 12:43:31 2022 as: nmap --script vuln -oA nmap/10-129-227-147-Vuln --min-rate 500 -p 80,64999,22 10.129.227.147
+Nmap scan report for 10.129.227.147
+Host is up (0.053s latency).
+
+PORT      STATE SERVICE
+22/tcp    open  ssh
+80/tcp    open  http
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|_      httponly flag not set
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+| http-enum: 
+|   /phpmyadmin/: phpMyAdmin
+|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.25 (debian)'
+|   /images/: Potentially interesting directory w/ listing on 'apache/2.4.25 (debian)'
+|_  /js/: Potentially interesting directory w/ listing on 'apache/2.4.25 (debian)'
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-internal-ip-disclosure: 
+|_  Internal IP Leaked: 127.0.0.1
+64999/tcp open  unknown
+
+# Nmap done at Tue Nov 15 12:44:04 2022 -- 1 IP address (1 host up) scanned in 32.86 seconds
