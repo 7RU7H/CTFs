@@ -17,7 +17,7 @@ Learnt:
 Returning to this after lots of Hack the Box I decided to follow along with [Alh4zr3d](https://www.youtube.com/watch?v=PqnnKMU3XMk) purely to fit with my work schedule that include another siz hours plus after this. I need mentorship and I need practical experience that is less-head-smashing-problem-solving-stress to pace out the the marathon of learning everything for the exam I need. Some humor and Cthulu mythos is great addition to my day. It was very enjoyable to do this this way. I learnt alot and loads of fun.
 
 Tasks 0 - 21 [Part 1 Alh4zr3d](https://www.youtube.com/watch?v=PqnnKMU3XMk)
-Task 22 -  [Part 2 from 1:53:00 Alh4zr3d](https://www.youtube.com/watch?v=-a10dxWbp5M)
+Task 22 -  [Part 2 from 1:53:00 Alh4zr3d](https://www.youtube.com/watch?v=-a10dxWbp5M) - 
 
 
 ## Initial Recon
