@@ -30,5 +30,3 @@ Section to solve
 
 ### Done
 
-Took this to double check mailing addresses in exploit - metasploit does not 
-![](potential.png)

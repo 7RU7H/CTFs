@@ -7,6 +7,7 @@ Domain:  / Domain SID:
 Machine Purpose:
 Services:
 Service Languages:
+Email Address:
 
 
 ## Objectives
