@@ -1,0 +1,360 @@
+# Nmap 7.93 scan initiated Mon Nov 21 13:50:46 2022 as: nmap --script discovery -oA nmap/10-129-17-202-Discovery --min-rate 500 -p 4555,25,119,22,110,80 10.129.17.202
+Pre-scan script results:
+| targets-ipv6-multicast-echo: 
+|   IP: fe80::105a:43ff:fe1c:c42c  MAC: 125a431cc42c  IFACE: usb0
+|   IP: 2a01:4c8:1421:9dc2::80     MAC: 125a431cc42c  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| ipv6-multicast-mld-list: 
+|   fe80::105a:43ff:fe1c:c42c: 
+|     device: usb0
+|     mac: 125a431cc42c
+|     multicast_ips: 
+|       ff02::1:ff1c:c42c         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff02::fb                  (mDNSv6)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:80           (Solicited-Node Address)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::105a:43ff:fe1c:c42c  MAC: 125a431cc42c  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:1421:9dc2::80     MAC: 125a431cc42c  IFACE: usb0
+|   IP: fe80::105a:43ff:fe1c:c42c  MAC: 125a431cc42c  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+Nmap scan report for 10.129.17.202
+Host is up (0.055s latency).
+
+Bug in http-security-headers: no string output.
+PORT     STATE SERVICE
+22/tcp   open  ssh
+| ssh-hostkey: 
+|   2048 770084f578b9c7d354cf712e0d526d8b (RSA)
+|   256 78b83af660190691f553921d3f48ed53 (ECDSA)
+|_  256 e445e9ed074d7369435a12709dc4af76 (ED25519)
+|_banner: SSH-2.0-OpenSSH_7.4p1 Debian-10+deb9u1
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+25/tcp   open  smtp
+|_smtp-open-relay: Couldn't establish connection on port 25
+|_smtp-commands: Couldn't establish connection on port 25
+80/tcp   open  http
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-title: Home - Solid State Security
+|_http-date: Mon, 21 Nov 2022 13:52:09 GMT; +1h00m00s from local time.
+| http-headers: 
+|   Date: Mon, 21 Nov 2022 13:52:08 GMT
+|   Server: Apache/2.4.25 (Debian)
+|   Last-Modified: Sat, 23 Dec 2017 23:16:12 GMT
+|   ETag: "1e60-5610a1e7a4c9b"
+|   Accept-Ranges: bytes
+|   Content-Length: 7776
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-vhosts: 
+| exchange
+| ads
+| dns2
+| sql
+| dmz
+| web2test
+| secure
+| whois
+| demo
+|_119 names had status 200
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; html: 3
+|     /assets/css/
+|       css: 2
+|     /assets/js/
+|       js: 3
+|     /assets/js/ie/
+|       js: 1
+|     /images/
+|       jpg: 3
+|   Longest directory structure:
+|     Depth: 3
+|     Dir: /assets/js/ie/
+|   Total files found (by extension):
+|_    Other: 1; css: 2; html: 3; jpg: 3; js: 4
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.17.202
+|     
+|     Path: http://10.129.17.202:80/services.html
+|     Line number: 8
+|     Comment: 
+|         <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+|     
+|     Path: http://10.129.17.202:80/index.html
+|     Line number: 40
+|     Comment: 
+|         <!-- Banner -->
+|     
+|     Path: http://10.129.17.202:80/services.html
+|     Line number: 121
+|     Comment: 
+|         <!-- Scripts -->
+|     
+|     Path: http://10.129.17.202:80/assets/js/skel.min.js
+|     Line number: 1
+|     Comment: 
+|         /* skel.js v3.0.1 | (c) skel.io | MIT licensed */
+|     
+|     Path: http://10.129.17.202:80/assets/css/main.css
+|     Line number: 1896
+|     Comment: 
+|         /* Form */
+|     
+|     Path: http://10.129.17.202:80/assets/css/main.css
+|     Line number: 2216
+|     Comment: 
+|         /* List */
+|     
+|     Path: http://10.129.17.202:80/assets/css/main.css
+|     Line number: 1644
+|     Comment: 
+|         /* Type */
+|     
+|     Path: http://10.129.17.202:80/assets/css/main.css
+|     Line number: 2711
+|     Comment: 
+|         /* Features */
+|     
+|     Path: http://10.129.17.202:80/assets/css/main.css
+|     Line number: 2943
+|     Comment: 
+|         /* Menu */
+|     
+|     Path: http://10.129.17.202:80/assets/js/main.js
+|     Line number: 1
+|     Comment: 
+|         
+|         
+|         
+|         
+|         */
+|     
+|     Path: http://10.129.17.202:80/services.html
+|     Line number: 18
+|     Comment: 
+|         <!-- Header -->
+|     
+|     Path: http://10.129.17.202:80/assets/css/main.css
+|     Line number: 2791
+|     Comment: 
+|         /* Header */
+|     
+|     Path: http://10.129.17.202:80/index.html
+|     Line number: 90
+|     Comment: 
+|         <!-- Four -->
+|     
+|     Path: http://10.129.17.202:80/assets/css/main.css
+|     Line number: 59
+|     Comment: 
+|         /* Grid */
+|     
+|     Path: http://10.129.17.202:80/index.html
+|     Line number: 66
+|     Comment: 
+|         <!-- Two -->
+|     
+|     Path: http://10.129.17.202:80/services.html
+|     Line number: 50
+|     Comment: 
+|         <!-- Content -->
+|     
+|     Path: http://10.129.17.202:80/assets/js/ie/respond.min.js
+|     Line number: 1
+|     Comment: 
+|         /*! Respond.js v1.4.2: min/max-width media query polyfill
+|          * Copyright 2014 Scott Jehl
+|          * Licensed under MIT
+|          * http://j.mp/respondjs */
+|     
+|     Path: http://10.129.17.202:80/services.html
+|     Line number: 15
+|     Comment: 
+|         <!-- Page Wrapper -->
+|     
+|     Path: http://10.129.17.202:80/index.html
+|     Line number: 54
+|     Comment: 
+|         <!-- One -->
+|     
+|     Path: http://10.129.17.202:80/services.html
+|     Line number: 11
+|     Comment: 
+|         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+|     
+|     Path: http://10.129.17.202:80/assets/css/main.css
+|     Line number: 2162
+|     Comment: 
+|         /* Image */
+|     
+|     Path: http://10.129.17.202:80/services.html
+|     Line number: 40
+|     Comment: 
+|         <!-- Wrapper -->
+|     
+|     Path: http://10.129.17.202:80/assets/css/main.css
+|     Line number: 3098
+|     Comment: 
+|         /* Banner */
+|     
+|     Path: http://10.129.17.202:80/assets/css/main.css
+|     Line number: 4
+|     Comment: 
+|         /*
+|         	Solid State by HTML5 UP
+|         	html5up.net | @ajlkn
+|         	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+|         */
+|     
+|     Path: http://10.129.17.202:80/assets/css/main.css
+|     Line number: 51
+|     Comment: 
+|         /* Box Model */
+|     
+|     Path: http://10.129.17.202:80/assets/css/main.css
+|     Line number: 2568
+|     Comment: 
+|         /* Button */
+|     
+|     Path: http://10.129.17.202:80/index.html
+|     Line number: 78
+|     Comment: 
+|         <!-- Three -->
+|     
+|     Path: http://10.129.17.202:80/assets/css/main.css
+|     Line number: 2500
+|     Comment: 
+|         /* Table */
+|     
+|     Path: http://10.129.17.202:80/assets/css/main.css
+|     Line number: 1607
+|     Comment: 
+|         /* Basic */
+|     
+|     Path: http://10.129.17.202:80/assets/css/main.css
+|     Line number: 10
+|     Comment: 
+|         /* Reset */
+|     
+|     Path: http://10.129.17.202:80/assets/css/main.css
+|     Line number: 2120
+|     Comment: 
+|         /* Box */
+|     
+|     Path: http://10.129.17.202:80/assets/css/main.css
+|     Line number: 1890
+|     Comment: 
+|         /* Section/Article */
+|     
+|     Path: http://10.129.17.202:80/services.html
+|     Line number: 10
+|     Comment: 
+|         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+|     
+|     Path: http://10.129.17.202:80/assets/css/main.css
+|     Line number: 3721
+|     Comment: 
+|         /* Footer */
+|     
+|     Path: http://10.129.17.202:80/assets/css/main.css
+|     Line number: 3267
+|     Comment: 
+|         /* Wrapper */
+|     
+|     Path: http://10.129.17.202:80/services.html
+|     Line number: 26
+|     Comment: 
+|         <!-- Menu -->
+|     
+|     Path: http://10.129.17.202:80/services.html
+|     Line number: 126
+|     Comment: 
+|         <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+|     
+|     Path: http://10.129.17.202:80/assets/js/ie/html5shiv.js
+|     Line number: 1
+|     Comment: 
+|         /*
+|          HTML5 Shiv v3.6.2 | @afarkas @jdalton @jon_neal @rem | MIT/GPL2 Licensed
+|         */
+|     
+|     Path: http://10.129.17.202:80/services.html
+|     Line number: 82
+|     Comment: 
+|         <!-- Footer -->
+|     
+|     Path: http://10.129.17.202:80/assets/css/main.css
+|     Line number: 2141
+|     Comment: 
+|_        /* Icon */
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-chrono: Request times for /; avg: 750.78ms; min: 296.70ms; max: 1235.75ms
+|_http-traceroute: ERROR: Script execution failed (use -d to debug)
+|_http-mobileversion-checker: No mobile version detected.
+| http-grep: 
+|   (1) http://10.129.17.202:80/: 
+|     (1) email: 
+|_      + webadmin@solid-state-security.com
+|_http-feed: Couldn't find any feeds.
+|_http-errors: Couldn't find any error pages.
+|_http-xssed: No previously reported XSS vuln.
+| http-enum: 
+|   /README.txt: Interesting, a readme.
+|_  /images/: Potentially interesting directory w/ listing on 'apache/2.4.25 (debian)'
+110/tcp  open  pop3
+119/tcp  open  nntp
+4555/tcp open  rsip
+
+Host script results:
+|_ipidseq: All zeros
+|_dns-brute: Can't guess domain of "10.129.17.202"; use dns-brute.domain script argument.
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       53355.80   9702.40   0.0%
+| 25    0       50095.00   5339.06   0.0%
+| 80    0       54912.67   22748.14  10.0%
+| 110   0       50308.40   2640.97   0.0%
+| 119   0       48893.78   5077.79   10.0%
+|_4555  0       47933.33   4668.92   10.0%
+|_path-mtu: PMTU == 1500
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Mon Nov 21 14:00:27 2022 -- 1 IP address (1 host up) scanned in 581.34 seconds

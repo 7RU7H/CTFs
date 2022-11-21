@@ -1,0 +1,34 @@
+# Nmap 7.93 scan initiated Mon Nov 21 14:00:28 2022 as: nmap --script vuln -oA nmap/10-129-17-202-Vuln --min-rate 500 -p 4555,25,119,22,110,80 10.129.17.202
+Nmap scan report for 10.129.17.202
+Host is up (0.051s latency).
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+25/tcp   open  smtp
+80/tcp   open  http
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.17.202
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.129.17.202:80/
+|     Form id: name
+|     Form action: #
+|     
+|     Path: http://10.129.17.202:80/about.html
+|     Form id: name
+|     Form action: #
+|     
+|     Path: http://10.129.17.202:80/index.html
+|     Form id: name
+|_    Form action: #
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-aspnet-debug: ERROR: Script execution failed (use -d to debug)
+| http-enum: 
+|   /README.txt: Interesting, a readme.
+|_  /images/: Potentially interesting directory w/ listing on 'apache/2.4.25 (debian)'
+110/tcp  open  pop3
+119/tcp  open  nntp
+4555/tcp open  rsip
+
+# Nmap done at Mon Nov 21 14:06:28 2022 -- 1 IP address (1 host up) scanned in 360.04 seconds

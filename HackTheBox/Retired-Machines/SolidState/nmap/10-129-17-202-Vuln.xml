@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Mon Nov 21 14:00:28 2022 as: nmap -&#45;script vuln -oA nmap/10-129-17-202-Vuln -&#45;min-rate 500 -p 4555,25,119,22,110,80 10.129.17.202 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-129-17-202-Vuln -&#45;min-rate 500 -p 4555,25,119,22,110,80 10.129.17.202" start="1669039228" startstr="Mon Nov 21 14:00:28 2022" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="6" services="22,25,80,110,119,4555"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.17.202" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1669039238" endtime="1669039588"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.129.17.202" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="25"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="smtp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.17.202&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://10.129.17.202:80/&#xa;    Form id: name&#xa;    Form action: #&#xa;    &#xa;    Path: http://10.129.17.202:80/about.html&#xa;    Form id: name&#xa;    Form action: #&#xa;    &#xa;    Path: http://10.129.17.202:80/index.html&#xa;    Form id: name&#xa;    Form action: #&#xa;"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-aspnet-debug" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-enum" output="&#xa;  /README.txt: Interesting, a readme.&#xa;  /images/: Potentially interesting directory w/ listing on &apos;apache/2.4.25 (debian)&apos;&#xa;"/></port>
+<port protocol="tcp" portid="110"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="pop3" method="table" conf="3"/></port>
+<port protocol="tcp" portid="119"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="nntp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="4555"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="rsip" method="table" conf="3"/></port>
+</ports>
+<times srtt="50972" rttvar="10434" to="100000"/>
+</host>
+<runstats><finished time="1669039588" timestr="Mon Nov 21 14:06:28 2022" summary="Nmap done at Mon Nov 21 14:06:28 2022; 1 IP address (1 host up) scanned in 360.04 seconds" elapsed="360.04" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
