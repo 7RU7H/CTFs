@@ -25,7 +25,7 @@ Reading the Task 3 Access section and subsequently testing port 9999 with `ncat`
 
 ![](testing9999.png)
 
-## Exploit
+## Exploit & Foothold & PrivEsc
 
 Either:
 1. Username vulnerable - It is not
@@ -61,13 +61,16 @@ Log data, item 21
  Message=    EIP contains normal pattern : 0x31704330 (offset 2012)
 ```
 
-No bad characters... Jmp eip `0x62501535`, there are multiple address. Not sure what has gone wrong - DLL function ... Not done these. Used mona to find a jmp_esp. 
+Had issues with cheatsheet usage and manual bad character enumerated ... Jmp eip `0x62501535`, there are multiple address. Not sure what has gone wrong - DLL function ... Not done these. Used mona to find a jmp_esp. 
 
 Failure to return a shell. I did spend twenty minutes fixing my mona and immunity, so that is configured for the exam and noting it for setup script for Windows VM. I stumbled lost time on the fact I kept forgeting the "," in lists again. I improved my speed and my cheatsheet to make it more readable. 
 
+I unfortunately failed my 12 Hour test particial because I had family over and I could not and sort felt like I should not fit this around it. I failed the two hours on this box because of not knowing to put  `\n` character after the `\r`. I peaked at the TCM video my python script did not have `\r\n`. Next hint and this becomes a helpthrough. Retrying this I also failed to put a `s.recv(1024)` between sending `cmd` and `payload`. It is now giving me an offset of 2013! Re checked bad characters with mona and manually. Mona reported 2013, but actually was 2012. And ran into the same issue with final buffer overflow with shell code then it worked after I 
 
-## Foothold
+![1000](itworks.png)
+Then it did not work on the live machine. I was unsure what I have done wrong, I picked a dll function that was not protected, it has to be called. I wait for the machine. I broke the machine. I added another s.recv between s.connect() and s.send(cmd). Double checked the shellcode.
 
-## PrivEsc
+I reduced the nop sled size!
 
-      
+![](system.png)
+

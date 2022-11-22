@@ -1,6 +1,6 @@
 
 Name: SolidState
-Date:  
+Date:  21/11/2022
 Difficulty:  Medium
 Goals:  OSCP Prep
 Learnt:
@@ -8,6 +8,8 @@ Learnt:
 - Weird Ports are sometimes the  target and normality is rabbithole
 - Rick Sanchez "Measure twice, cut once" - Read twice, cut once
 - Telnet `ctrl + $escapekey` - harder than vim exiting for my brain.
+- Linpeas is not everything 
+- 
 
 Disclaimer I ran into the rsip protocol, the primilary exploit for this machine and walkthrough forgetting this a TJ Null box. I do not know the PrivEsc and di not read it. The challenge here would be very OSCP-esque recon or die; rerunning old recon attempts from long months past,  in the background being the other OSCP-esque methodological must for me returning to this box regardless of sort of knowing how the inital steps of this box are.  There is also a metasploit module for the intital phase of the box.
 
