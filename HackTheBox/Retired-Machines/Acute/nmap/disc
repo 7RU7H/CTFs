@@ -1,0 +1,158 @@
+# Nmap 7.93 scan initiated Fri Nov 25 14:42:03 2022 as: nmap --script discovery -oN nmap/disc -p 443 --min-rate 100 10.129.136.40
+Pre-scan script results:
+| broadcast-igmp-discovery: 
+|   192.168.22.155
+|     Interface: usb0
+|     Version: 2
+|     Group: 224.0.0.251
+|     Description: mDNS (rfc6762)
+|_  Use the newtargets script-arg to add the results as targets
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: fe80::3c06:1cff:fecc:f356  MAC: 3e061cccf356  IFACE: usb0
+|   IP: 2a01:4c8:1421:9dc2::ec     MAC: 3e061cccf356  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| ipv6-multicast-mld-list: 
+|   fe80::3c06:1cff:fecc:f356: 
+|     device: usb0
+|     mac: 3e061cccf356
+|     multicast_ips: 
+|       ff02::1:ffcc:f356         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:ec           (Solicited-Node Address)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::3c06:1cff:fecc:f356  MAC: 3e061cccf356  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:1421:9dc2::ec     MAC: 3e061cccf356  IFACE: usb0
+|   IP: fe80::3c06:1cff:fecc:f356  MAC: 3e061cccf356  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+Nmap scan report for 10.129.136.40
+Host is up (0.39s latency).
+
+PORT    STATE SERVICE
+443/tcp open  https
+|_http-feed: Couldn't find any feeds.
+|_ssl-date: 2022-11-25T14:42:16+00:00; -1s from scanner time.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-comments-displayer: Couldn't find any comments.
+|_http-title: Not Found
+| tls-alpn: 
+|_  http/1.1
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.129.136.40
+|   Found the following error pages: 
+|   
+|   Error Code: 404
+|_  	https://10.129.136.40:443/
+| http-headers: 
+|   Content-Type: text/html; charset=us-ascii
+|   Server: Microsoft-HTTPAPI/2.0
+|   Date: Fri, 25 Nov 2022 14:42:25 GMT
+|   Connection: close
+|   Content-Length: 315
+|   
+|_  (Request type: GET)
+| http-sitemap-generator: 
+|   Directory structure:
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    
+|_http-xssed: No previously reported XSS vuln.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| ssl-cert: Subject: commonName=atsserver.acute.local
+| Subject Alternative Name: DNS:atsserver.acute.local, DNS:atsserver
+| Not valid before: 2022-01-06T06:34:58
+|_Not valid after:  2030-01-04T06:34:58
+|_http-date: Fri, 25 Nov 2022 14:42:20 GMT; +59m57s from local time.
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|_  least strength: C
+| http-vhosts: 
+|_128 names had status 404
+| http-security-headers: 
+|   Strict_Transport_Security: 
+|_    HSTS not configured in HTTPS Server
+|_http-mobileversion-checker: No mobile version detected.
+| http-useragent-tester: 
+|   Status for browser useragent: 404
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-chrono: Request times for /; avg: 725.94ms; min: 455.98ms; max: 893.19ms
+
+Host script results:
+|_ipidseq: Random Positive Increments
+|_path-mtu: PMTU == 1500
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "10.129.136.40"; use dns-brute.domain script argument.
+
+# Nmap done at Fri Nov 25 14:58:28 2022 -- 1 IP address (1 host up) scanned in 984.83 seconds
