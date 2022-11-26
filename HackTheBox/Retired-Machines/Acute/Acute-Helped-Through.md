@@ -213,8 +213,9 @@ invoke-command -computername ATSSERVER -ConfigurationName dc_manage -Credential 
 
 ![](hurrayforps.png)
 
-windows/x64/shell_reverse_tcp
-
+Ok it really does not like being replaced more than once.
+2:30-55
+https://www.youtube.com/watch?v=IRSm7kalGPY
 
 ## PrivEsc
 
