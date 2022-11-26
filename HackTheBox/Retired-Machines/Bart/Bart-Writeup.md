@@ -55,7 +55,7 @@ Fuzz for subdomains
 ![](foundyoumonitoringme.png)
 [PHP Server Monitor PHP Server Monitor is a script that checks whether your websites and servers are up and running. It comes with a web based user interface where you can manage your services and websites, and you can manage users for each server with a mobile number and email address. This is the link to the cv3.2.1](https://github.com/phpservermon/phpservermon/tree/v3.2.1)
 
-I read the src for 3.2.1 : I am either missing a default password for the new recruit most likely - hydra is producing false falsities and I may need to reconsider syntax.  1.35 hours left 
+I read the src for 3.2.1 : I am either missing a default password for the new recruit most likely - hydra is producing false falsities and I may need to reconsider syntax.  1 hour left 
 
 ## Exploit
 
