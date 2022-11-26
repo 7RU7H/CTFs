@@ -2,11 +2,10 @@
 Name: Hawk
 Date:  
 Difficulty:  Medium
-Goals:  OSCP 
+Goals:  OSCP - Became part of the 12 hour brutal self assessment as scripting for a hour and a half or this is a Helped-Through with added yikes so on the cards otherwise
 Learnt:
 - Better weird file drilling the method
 
-NOTE rerun nuclei 8082, nikto 8082, nikto 80
 
 ## Recon
 
@@ -66,6 +65,20 @@ I forget to screenshot and potentially check
 ![](filethefileidiot.png)
 
 Peeking at [0xDF](https://0xdf.gitlab.io/2018/11/30/htb-hawk.html#encrypted-file---brute-with-bash), I need to write a script presummably for the salt. My brain is chickening when I do not know something. I need to put this to one side and try another box.
+
+Returning to script my heart out to lay waste to openssl the cryptographic headache that has spoiled my momentuum in several CTFs. And because I am actually going to be calm and slow time for making problem solving pictures.
+
+```
+U2FsdGVkX19rWSAG1JNpLTawAmzz/ckaN1oZFZewtIM+e84km3Csja3GADUg2jJb
+CmSdwTtr/IIShvTbUd0yQxfe9OuoMxxfNIUN/YPHx+vVw/6eOD+Cc1ftaiNUEiQz
+QUf9FyxmCb2fuFoOXGphAMo+Pkc2ChXgLsj4RfgX+P7DkFa8w1ZA9Yj7kR+tyZfy
+t4M0qvmWvMhAj3fuuKCCeFoXpYBOacGvUHRGywb4YCk=
+```
+
+Practicing a old problem solving technique from programing challenges till I found the repository for bruteforcing the file after *one* round of base64 decoding
+
+![2000](Hawk-Decoding-Section)
+
 
 
 ## Exploit
