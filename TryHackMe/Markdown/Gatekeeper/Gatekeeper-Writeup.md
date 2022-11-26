@@ -1,7 +1,8 @@
 # Gatekeeper Writeup
 Name: Gatekeeper
 Date:  
-Difficulty:  
+Difficulty:  Medium
+Description: Can you get past the gate and through the fire?
 Goals:  
 Learnt:
 

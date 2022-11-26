@@ -1,0 +1,53 @@
+# Nmap 7.93 scan initiated Sat Nov 26 14:32:43 2022 as: nmap -sC -sV -oN nmap/sc-sv-double-checker -p- --min-rate 100 192.168.148.172
+Nmap scan report for vault.offsec (192.168.148.172)
+Host is up (0.070s latency).
+Not shown: 65514 filtered tcp ports (no-response)
+PORT      STATE SERVICE       VERSION
+53/tcp    open  domain        Simple DNS Plus
+88/tcp    open  kerberos-sec  Microsoft Windows Kerberos (server time: 2022-11-26 14:41:52Z)
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp   open  ldap          Microsoft Windows Active Directory LDAP (Domain: vault.offsec0., Site: Default-First-Site-Name)
+445/tcp   open  microsoft-ds?
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp   open  tcpwrapped
+3268/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: vault.offsec0., Site: Default-First-Site-Name)
+3269/tcp  open  tcpwrapped
+3389/tcp  open  ms-wbt-server Microsoft Terminal Services
+|_ssl-date: 2022-11-26T14:43:21+00:00; 0s from scanner time.
+| rdp-ntlm-info: 
+|   Target_Name: VAULT
+|   NetBIOS_Domain_Name: VAULT
+|   NetBIOS_Computer_Name: DC
+|   DNS_Domain_Name: vault.offsec
+|   DNS_Computer_Name: DC.vault.offsec
+|   DNS_Tree_Name: vault.offsec
+|   Product_Version: 10.0.17763
+|_  System_Time: 2022-11-26T14:42:41+00:00
+| ssl-cert: Subject: commonName=DC.vault.offsec
+| Not valid before: 2022-09-19T08:06:36
+|_Not valid after:  2023-03-21T08:06:36
+5985/tcp  open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+9389/tcp  open  mc-nmf        .NET Message Framing
+49666/tcp open  msrpc         Microsoft Windows RPC
+49667/tcp open  msrpc         Microsoft Windows RPC
+49673/tcp open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+49674/tcp open  msrpc         Microsoft Windows RPC
+49675/tcp open  msrpc         Microsoft Windows RPC
+49701/tcp open  msrpc         Microsoft Windows RPC
+49708/tcp open  msrpc         Microsoft Windows RPC
+Service Info: Host: DC; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-time: 
+|   date: 2022-11-26T14:42:46
+|_  start_date: N/A
+| smb2-security-mode: 
+|   311: 
+|_    Message signing enabled and required
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Nov 26 14:43:23 2022 -- 1 IP address (1 host up) scanned in 639.79 seconds

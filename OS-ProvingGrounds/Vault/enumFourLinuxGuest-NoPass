@@ -1,0 +1,216 @@
+Starting enum4linux v0.9.1 ( http://labs.portcullis.co.uk/application/enum4linux/ ) on Sat Nov 26 13:53:44 2022
+
+[34m =========================================( [0m[32mTarget Information[0m[34m )=========================================
+
+[0mTarget ........... 192.168.148.172
+RID Range ........ 500-550,1000-1050
+Username ......... 'guest'
+Password ......... ''
+Known Usernames .. administrator, guest, krbtgt, domain admins, root, bin, none
+
+
+[34m ==========================( [0m[32mEnumerating Workgroup/Domain on 192.168.148.172[0m[34m )==========================
+
+[0m[33m
+[E] [0m[31mCan't find workgroup/domain
+
+[0m
+
+[34m ==============================( [0m[32mNbtstat Information for 192.168.148.172[0m[34m )==============================
+
+[0mLooking up status of 192.168.148.172
+No reply from 192.168.148.172
+
+[34m ==================================( [0m[32mSession Check on 192.168.148.172[0m[34m )==================================
+
+[0m[33m
+[+] [0m[32mServer 192.168.148.172 allows sessions using username 'guest', password ''
+
+[0m
+[34m ===============================( [0m[32mGetting domain SID for 192.168.148.172[0m[34m )===============================
+
+[0mDomain Name: VAULT
+Domain Sid: S-1-5-21-537427935-490066102-1511301751
+[33m
+[+] [0m[32mHost is part of a domain (not a workgroup)
+
+[0m
+[34m =================================( [0m[32mOS information on 192.168.148.172[0m[34m )=================================
+
+[0m[33m
+[E] [0m[31mCan't get OS info with smbclient
+
+[0m[33m
+[+] [0m[32mGot OS info for 192.168.148.172 from srvinfo: 
+[0m	192.168.148.172Wk Sv PDC Tim NT     
+	platform_id     :	500
+	os version      :	10.0
+	server type     :	0x80102b
+
+
+[34m ======================================( [0m[32mUsers on 192.168.148.172[0m[34m )======================================
+
+[0m[33m
+[E] [0m[31mCouldn't find users using querydispinfo: NT_STATUS_ACCESS_DENIED
+
+[0m
+[33m
+[E] [0m[31mCouldn't find users using enumdomusers: NT_STATUS_ACCESS_DENIED
+
+[0m
+[34m ================================( [0m[32mShare Enumeration on 192.168.148.172[0m[34m )================================
+
+[0mdo_connect: Connection to 192.168.148.172 failed (Error NT_STATUS_RESOURCE_NAME_NOT_FOUND)
+
+	Sharename       Type      Comment
+	---------       ----      -------
+	ADMIN$          Disk      Remote Admin
+	C$              Disk      Default share
+	DocumentsShare  Disk      
+	IPC$            IPC       Remote IPC
+	NETLOGON        Disk      Logon server share 
+	SYSVOL          Disk      Logon server share 
+Reconnecting with SMB1 for workgroup listing.
+Unable to connect with SMB1 -- no workgroup available
+[33m
+[+] [0m[32mAttempting to map shares on 192.168.148.172
+
+[0m//192.168.148.172/ADMIN$	[35mMapping: [0mDENIED[35m Listing: [0mN/A[35m Writing: [0mN/A
+//192.168.148.172/C$	[35mMapping: [0mDENIED[35m Listing: [0mN/A[35m Writing: [0mN/A
+//192.168.148.172/DocumentsShare	[35mMapping: [0mOK[35m Listing: [0mOK[35m Writing: [0mN/A
+[33m
+[E] [0m[31mCan't understand response:
+
+[0mNT_STATUS_NO_SUCH_FILE listing \*
+//192.168.148.172/IPC$	[35mMapping: [0mN/A[35m Listing: [0mN/A[35m Writing: [0mN/A
+//192.168.148.172/NETLOGON	[35mMapping: [0mOK[35m Listing: [0mDENIED[35m Writing: [0mN/A
+//192.168.148.172/SYSVOL	[35mMapping: [0mOK[35m Listing: [0mDENIED[35m Writing: [0mN/A
+
+[34m ==========================( [0m[32mPassword Policy Information for 192.168.148.172[0m[34m )==========================
+
+[0m[33m
+[E] [0m[31mUnexpected error from polenum:
+
+[0m
+
+[+] Attaching to 192.168.148.172 using guest
+
+[+] Trying protocol 139/SMB...
+
+	[!] Protocol failed: Cannot request session (Called Name:192.168.148.172)
+
+[+] Trying protocol 445/SMB...
+
+	[!] Protocol failed: SAMR SessionError: code: 0xc0000022 - STATUS_ACCESS_DENIED - {Access Denied} A process has requested access to an object but has not been granted those access rights.
+
+
+[33m
+[E] [0m[31mFailed to get password policy with rpcclient
+
+[0m
+
+[34m =====================================( [0m[32mGroups on 192.168.148.172[0m[34m )=====================================
+
+[0m[33m
+[+] [0m[32mGetting builtin groups:
+
+[0m[33m
+[+] [0m[32m Getting builtin group memberships:
+
+[0m[33m
+[+] [0m[32m Getting local groups:
+
+[0m[33m
+[+] [0m[32m Getting local group memberships:
+
+[0m[33m
+[+] [0m[32m Getting domain groups:
+
+[0m[33m
+[+] [0m[32m Getting domain group memberships:
+
+[0m
+[34m =================( [0m[32mUsers on 192.168.148.172 via RID cycling (RIDS: 500-550,1000-1050)[0m[34m )=================
+
+[0m[33m
+[I] [0m[36mFound new SID: 
+[0mS-1-5-21-537427935-490066102-1511301751
+[33m
+[I] [0m[36mFound new SID: 
+[0mS-1-5-21-537427935-490066102-1511301751
+[33m
+[I] [0m[36mFound new SID: 
+[0mS-1-5-32
+[33m
+[I] [0m[36mFound new SID: 
+[0mS-1-5-32
+[33m
+[I] [0m[36mFound new SID: 
+[0mS-1-5-32
+[33m
+[I] [0m[36mFound new SID: 
+[0mS-1-5-32
+[33m
+[I] [0m[36mFound new SID: 
+[0mS-1-5-32
+[33m
+[I] [0m[36mFound new SID: 
+[0mS-1-5-32
+[33m
+[I] [0m[36mFound new SID: 
+[0mS-1-5-32
+[33m
+[+] [0m[32mEnumerating users using SID S-1-5-80 and logon username 'guest', password ''
+
+[0m[33m
+[+] [0m[32mEnumerating users using SID S-1-5-80-3139157870-2983391045-3678747466-658725712 and logon username 'guest', password ''
+
+[0m[33m
+[+] [0m[32mEnumerating users using SID S-1-5-32 and logon username 'guest', password ''
+
+[0mS-1-5-32-544 BUILTIN\Administrators (Local Group)
+S-1-5-32-545 BUILTIN\Users (Local Group)
+S-1-5-32-546 BUILTIN\Guests (Local Group)
+S-1-5-32-548 BUILTIN\Account Operators (Local Group)
+S-1-5-32-549 BUILTIN\Server Operators (Local Group)
+S-1-5-32-550 BUILTIN\Print Operators (Local Group)
+[33m
+[+] [0m[32mEnumerating users using SID S-1-5-90 and logon username 'guest', password ''
+
+[0m[33m
+[+] [0m[32mEnumerating users using SID S-1-5-21-4120077281-3590700305-551003606 and logon username 'guest', password ''
+
+[0mS-1-5-21-4120077281-3590700305-551003606-500 DC\Administrator (Local User)
+S-1-5-21-4120077281-3590700305-551003606-501 DC\Guest (Local User)
+S-1-5-21-4120077281-3590700305-551003606-503 DC\DefaultAccount (Local User)
+S-1-5-21-4120077281-3590700305-551003606-504 DC\WDAGUtilityAccount (Local User)
+S-1-5-21-4120077281-3590700305-551003606-513 DC\None (Domain Group)
+[33m
+[+] [0m[32mEnumerating users using SID S-1-5-21-537427935-490066102-1511301751 and logon username 'guest', password ''
+
+[0mS-1-5-21-537427935-490066102-1511301751-500 VAULT\Administrator (Local User)
+S-1-5-21-537427935-490066102-1511301751-501 VAULT\Guest (Local User)
+S-1-5-21-537427935-490066102-1511301751-502 VAULT\krbtgt (Local User)
+S-1-5-21-537427935-490066102-1511301751-512 VAULT\Domain Admins (Domain Group)
+S-1-5-21-537427935-490066102-1511301751-513 VAULT\Domain Users (Domain Group)
+S-1-5-21-537427935-490066102-1511301751-514 VAULT\Domain Guests (Domain Group)
+S-1-5-21-537427935-490066102-1511301751-515 VAULT\Domain Computers (Domain Group)
+S-1-5-21-537427935-490066102-1511301751-516 VAULT\Domain Controllers (Domain Group)
+S-1-5-21-537427935-490066102-1511301751-517 VAULT\Cert Publishers (Local Group)
+S-1-5-21-537427935-490066102-1511301751-518 VAULT\Schema Admins (Domain Group)
+S-1-5-21-537427935-490066102-1511301751-519 VAULT\Enterprise Admins (Domain Group)
+S-1-5-21-537427935-490066102-1511301751-520 VAULT\Group Policy Creator Owners (Domain Group)
+S-1-5-21-537427935-490066102-1511301751-521 VAULT\Read-only Domain Controllers (Domain Group)
+S-1-5-21-537427935-490066102-1511301751-522 VAULT\Cloneable Domain Controllers (Domain Group)
+S-1-5-21-537427935-490066102-1511301751-525 VAULT\Protected Users (Domain Group)
+S-1-5-21-537427935-490066102-1511301751-526 VAULT\Key Admins (Domain Group)
+S-1-5-21-537427935-490066102-1511301751-527 VAULT\Enterprise Key Admins (Domain Group)
+S-1-5-21-537427935-490066102-1511301751-1000 VAULT\DC$ (Local User)
+
+[34m ==============================( [0m[32mGetting printer info for 192.168.148.172[0m[34m )==============================
+
+[0mresult was WERR_INVALID_NAME
+
+
+enum4linux complete on Sat Nov 26 14:04:52 2022
+
