@@ -1,13 +1,11 @@
 ## Intel
 
 IP:
-OS:
-Hostname:
-DNS:
-Domain: 
-Domain SID:
+OS: Windows 7 Professional 7601 Service Pack 1 (Windows 7 Professional 6.1) - 32 bit! 
+Arch: Intel 80386 - 32bit
+Hostname: GATEKEEPER
 Machine Purpose:
-Services:
+Services: 
 Service Languages:
 Email Address:
 
@@ -33,3 +31,10 @@ Section to solve
 ### Todo
 
 ### Done
+
+Arch:
+
+OS: Windows 7 Professional 7601 Service Pack 1 (Windows 7 Professional 6.1) - 32 bit! 
+Arch: Intel 80386 - 32bit
+Hostname: GATEKEEPER
+gatekeeper.exe: PE32 executable (console) Intel 80386, for MS Windows

@@ -2,6 +2,7 @@
 
 IP:
 OS:
+Arch:
 Hostname:
 DNS:
 Domain: 
@@ -9,8 +10,8 @@ Domain SID:
 Machine Purpose:
 Services:
 Service Languages:
-Email Address:
-
+Email Address & Formatting:
+Username Format:
 
 ## Objectives
 What do have in the solutions inventory to meet large network objective?

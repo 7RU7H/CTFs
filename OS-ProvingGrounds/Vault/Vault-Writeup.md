@@ -31,9 +31,7 @@ set Listener http
 execute
 ```
 
-Did not get call back, but I also did not remove it from the share, so it is not considered malicious. So it might that want something really specific.
-
-
+Did not get call back, but I also did not remove it from the share, so it is not considered malicious. So it might that want something really specific. For my 12 hour assessment - I am happy I enumerated well, will give myself the hour remaining to finish HTB Acute. 
 
 ## Exploit
 
