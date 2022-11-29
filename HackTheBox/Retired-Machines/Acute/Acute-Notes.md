@@ -14,6 +14,7 @@ Service Languages:
 Users:
 Credentials: `Password1!`
 
+https://atsserver.acute.local/Acute_Staff_Access
 Acute-PC01
 
 `acute\imonks`

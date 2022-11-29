@@ -5,7 +5,9 @@ Difficulty:  Medium
 Goals:  OSCP - Became part of the 12 hour brutal self assessment as scripting for a hour and a half or this is a Helped-Through with added yikes so on the cards otherwise
 Learnt:
 - Better weird file drilling the method
-
+- Some more xdotool is a cool extra to my life I should try use at some point 
+- Drawning eletronic pictures is go for reporting, but pen and paper is supreme speed solving utility
+- Do stuff till last argement:`$?` does not equal 0; `... > devnull 2>&1; if [[ $? -eq 0 ]]; then echo "Password: $pass"; exit; fi;`
 
 ## Recon
 
@@ -75,10 +77,41 @@ QUf9FyxmCb2fuFoOXGphAMo+Pkc2ChXgLsj4RfgX+P7DkFa8w1ZA9Yj7kR+tyZfy
 t4M0qvmWvMhAj3fuuKCCeFoXpYBOacGvUHRGywb4YCk=
 ```
 
-Practicing a old problem solving technique from programing challenges till I found the repository for bruteforcing the file after *one* round of base64 decoding
+Practicing a old problem solving technique from programing challenges till I found the repository for bruteforcing the file after *one* round of base64 decoding. [bruteforce-salted-openssl](https://github.com/glv2/bruteforce-salted-openssl) tries to find the apssword of a file thaty was enrypted with 'openssl' command. If this becomes a Helped-through post cracking the password or fail at cracking it then the *"forfeit"* is to learn C threading for an hour. As a bash script could probably just:
+
+```bash
+passwords=$(cat rockyou.txt)
+for pass in $passwords; do
+	openssl enc -aes-256-cbc -d -a -in $file.enc -out file.txt
+		xdotool type '$pass'
+		xdotool key Return
+done
+```
 
 ![2000](Hawk-Decoding-Section)
 
+
+```bash
+cat d.txt.enc | base64 -d deb64Pass.txt
+git clone https://github.com/glv2/bruteforce-salted-openssl.git
+cd bruteforce-salted-openssl
+./autogen.sh
+./configure
+make 
+# Original attempt
+./bruteforce-salted-openssl -t 4 -1 '../deb64Pass.txt' 
+# Working
+...
+```
+
+Four hours of other activities in the foreground. No crack. 30 minutes threading in C forfeit, peak at solution move on to priv escalation for 40 minutes urgent privilege escalation, before 20 minutes if required, Helped-Throughed. Peaked at 
+
+```bash
+cat /usr/share/wordlists/rockyou.txt | while read pass; do openssl enc -d -a -AES-256-CBC -in .drupal.txt.enc -k $pass > devnull 2>&1; if [[ $? -eq 0 ]]; then echo "Password: $pass"; exit; fi; done;
+```
+
+The important scripting lesson here writing the conditional and devnull to pass stderr to null.
+`... > devnull 2>&1; if [[ $? -eq 0 ]]; then echo "Password: $pass"; exit; fi;`
 
 
 ## Exploit

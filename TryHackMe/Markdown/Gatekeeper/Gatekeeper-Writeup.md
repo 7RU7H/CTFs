@@ -43,6 +43,10 @@ Weirdly my offset was two off?
 
 Also 0A is not corrupting the next byte.
 
+https://shell-storm.org/shellcode/files/shellcode-627.html - 61 byte up to command prompt, maybe just add a administrator user, but guessing by the description there is fire afterward if we did get a shell it would be machine or service account. Therefore really we would have either learn to use memory elsewhere like assembly version of malloc me from x memory from y point or use a powershell in memory download and run IEX reverse shell. 
+
+![](oof.png)
+
 ## Exploit
 
 ## Foothold

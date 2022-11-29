@@ -1,0 +1,226 @@
+# Nmap 7.93 scan initiated Tue Nov 29 09:15:06 2022 as: nmap --script discovery -oA nmap/10-10-123-108-Discovery --min-rate 500 -e tun0 -p 3389,3269,49699,135,49677,636,88,49670,5985,2049,49666,49692,49671,49709,49668,389,593,9389,49665,139,49673 10.10.123.108
+Pre-scan script results:
+|_lltd-discovery: false
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-ping: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.10.123.108
+Host is up (0.086s latency).
+
+PORT      STATE SERVICE
+88/tcp    open  kerberos-sec
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+389/tcp   open  ldap
+| ldap-rootdse: 
+| LDAP Results
+|   <ROOT>
+|       domainFunctionality: 7
+|       forestFunctionality: 7
+|       domainControllerFunctionality: 7
+|       rootDomainNamingContext: DC=raz0rblack,DC=thm
+|       ldapServiceName: raz0rblack.thm:haven-dc$@RAZ0RBLACK.THM
+|       isGlobalCatalogReady: TRUE
+|       supportedSASLMechanisms: GSSAPI
+|       supportedSASLMechanisms: GSS-SPNEGO
+|       supportedSASLMechanisms: EXTERNAL
+|       supportedSASLMechanisms: DIGEST-MD5
+|       supportedLDAPVersion: 3
+|       supportedLDAPVersion: 2
+|       supportedLDAPPolicies: MaxPoolThreads
+|       supportedLDAPPolicies: MaxPercentDirSyncRequests
+|       supportedLDAPPolicies: MaxDatagramRecv
+|       supportedLDAPPolicies: MaxReceiveBuffer
+|       supportedLDAPPolicies: InitRecvTimeout
+|       supportedLDAPPolicies: MaxConnections
+|       supportedLDAPPolicies: MaxConnIdleTime
+|       supportedLDAPPolicies: MaxPageSize
+|       supportedLDAPPolicies: MaxBatchReturnMessages
+|       supportedLDAPPolicies: MaxQueryDuration
+|       supportedLDAPPolicies: MaxDirSyncDuration
+|       supportedLDAPPolicies: MaxTempTableSize
+|       supportedLDAPPolicies: MaxResultSetSize
+|       supportedLDAPPolicies: MinResultSets
+|       supportedLDAPPolicies: MaxResultSetsPerConn
+|       supportedLDAPPolicies: MaxNotificationPerConn
+|       supportedLDAPPolicies: MaxValRange
+|       supportedLDAPPolicies: MaxValRangeTransitive
+|       supportedLDAPPolicies: ThreadMemoryLimit
+|       supportedLDAPPolicies: SystemMemoryLimitPercent
+|       supportedControl: 1.2.840.113556.1.4.319
+|       supportedControl: 1.2.840.113556.1.4.801
+|       supportedControl: 1.2.840.113556.1.4.473
+|       supportedControl: 1.2.840.113556.1.4.528
+|       supportedControl: 1.2.840.113556.1.4.417
+|       supportedControl: 1.2.840.113556.1.4.619
+|       supportedControl: 1.2.840.113556.1.4.841
+|       supportedControl: 1.2.840.113556.1.4.529
+|       supportedControl: 1.2.840.113556.1.4.805
+|       supportedControl: 1.2.840.113556.1.4.521
+|       supportedControl: 1.2.840.113556.1.4.970
+|       supportedControl: 1.2.840.113556.1.4.1338
+|       supportedControl: 1.2.840.113556.1.4.474
+|       supportedControl: 1.2.840.113556.1.4.1339
+|       supportedControl: 1.2.840.113556.1.4.1340
+|       supportedControl: 1.2.840.113556.1.4.1413
+|       supportedControl: 2.16.840.1.113730.3.4.9
+|       supportedControl: 2.16.840.1.113730.3.4.10
+|       supportedControl: 1.2.840.113556.1.4.1504
+|       supportedControl: 1.2.840.113556.1.4.1852
+|       supportedControl: 1.2.840.113556.1.4.802
+|       supportedControl: 1.2.840.113556.1.4.1907
+|       supportedControl: 1.2.840.113556.1.4.1948
+|       supportedControl: 1.2.840.113556.1.4.1974
+|       supportedControl: 1.2.840.113556.1.4.1341
+|       supportedControl: 1.2.840.113556.1.4.2026
+|       supportedControl: 1.2.840.113556.1.4.2064
+|       supportedControl: 1.2.840.113556.1.4.2065
+|       supportedControl: 1.2.840.113556.1.4.2066
+|       supportedControl: 1.2.840.113556.1.4.2090
+|       supportedControl: 1.2.840.113556.1.4.2205
+|       supportedControl: 1.2.840.113556.1.4.2204
+|       supportedControl: 1.2.840.113556.1.4.2206
+|       supportedControl: 1.2.840.113556.1.4.2211
+|       supportedControl: 1.2.840.113556.1.4.2239
+|       supportedControl: 1.2.840.113556.1.4.2255
+|       supportedControl: 1.2.840.113556.1.4.2256
+|       supportedControl: 1.2.840.113556.1.4.2309
+|       supportedControl: 1.2.840.113556.1.4.2330
+|       supportedControl: 1.2.840.113556.1.4.2354
+|       supportedCapabilities: 1.2.840.113556.1.4.800
+|       supportedCapabilities: 1.2.840.113556.1.4.1670
+|       supportedCapabilities: 1.2.840.113556.1.4.1791
+|       supportedCapabilities: 1.2.840.113556.1.4.1935
+|       supportedCapabilities: 1.2.840.113556.1.4.2080
+|       supportedCapabilities: 1.2.840.113556.1.4.2237
+|       subschemaSubentry: CN=Aggregate,CN=Schema,CN=Configuration,DC=raz0rblack,DC=thm
+|       serverName: CN=HAVEN-DC,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=raz0rblack,DC=thm
+|       schemaNamingContext: CN=Schema,CN=Configuration,DC=raz0rblack,DC=thm
+|       namingContexts: DC=raz0rblack,DC=thm
+|       namingContexts: CN=Configuration,DC=raz0rblack,DC=thm
+|       namingContexts: CN=Schema,CN=Configuration,DC=raz0rblack,DC=thm
+|       namingContexts: DC=DomainDnsZones,DC=raz0rblack,DC=thm
+|       namingContexts: DC=ForestDnsZones,DC=raz0rblack,DC=thm
+|       isSynchronized: TRUE
+|       highestCommittedUSN: 61472
+|       dsServiceName: CN=NTDS Settings,CN=HAVEN-DC,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=raz0rblack,DC=thm
+|       dnsHostName: HAVEN-DC.raz0rblack.thm
+|       defaultNamingContext: DC=raz0rblack,DC=thm
+|       currentTime: 20221129091532.0Z
+|_      configurationNamingContext: CN=Configuration,DC=raz0rblack,DC=thm
+593/tcp   open  http-rpc-epmap
+|_banner: ncacn_http/1.0
+636/tcp   open  ldapssl
+2049/tcp  open  nfs
+3269/tcp  open  globalcatLDAPssl
+3389/tcp  open  ms-wbt-server
+| rdp-ntlm-info: 
+|   Target_Name: RAZ0RBLACK
+|   NetBIOS_Domain_Name: RAZ0RBLACK
+|   NetBIOS_Computer_Name: HAVEN-DC
+|   DNS_Domain_Name: raz0rblack.thm
+|   DNS_Computer_Name: HAVEN-DC.raz0rblack.thm
+|   Product_Version: 10.0.17763
+|_  System_Time: 2022-11-29T09:15:32+00:00
+| rdp-enum-encryption: 
+|   Security layer
+|     CredSSP (NLA): SUCCESS
+|     CredSSP with Early User Auth: SUCCESS
+|_    RDSTLS: SUCCESS
+| ssl-cert: Subject: commonName=HAVEN-DC.raz0rblack.thm
+| Not valid before: 2022-11-28T09:01:06
+|_Not valid after:  2023-05-30T09:01:06
+|_ssl-date: 2022-11-29T09:15:36+00:00; 0s from scanner time.
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|_  least strength: C
+5985/tcp  open  wsman
+9389/tcp  open  adws
+49665/tcp open  unknown
+49666/tcp open  unknown
+49668/tcp open  unknown
+49670/tcp open  unknown
+|_banner: ncacn_http/1.0
+49671/tcp open  unknown
+49673/tcp open  unknown
+49677/tcp open  unknown
+49692/tcp open  unknown
+49699/tcp open  unknown
+49709/tcp open  unknown
+Service Info: Host: HAVEN-DC; OS: Windows
+
+Host script results:
+|_smb2-security-mode: SMB: Couldn't find a NetBIOS name that works for the server. Sorry!
+|_fcrdns: FAIL (No PTR record)
+|_ipidseq: Unknown
+|_msrpc-enum: SMB: Couldn't find a NetBIOS name that works for the server. Sorry!
+|_path-mtu: PMTU == 1500
+|_smb2-time: ERROR: Script execution failed (use -d to debug)
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 88    0       65084.10   7151.20   0.0%
+| 135   0       64443.60   7830.27   0.0%
+| 139   0       60427.20   5375.43   0.0%
+| 389   0       61769.10   5123.27   0.0%
+| 593   0       74205.70   28445.04  0.0%
+| 636   0       61789.80   7890.53   0.0%
+| 2049  0       66442.60   12746.99  0.0%
+|_3269  0       64440.10   7760.68   0.0%
+|_smb2-capabilities: SMB: Couldn't find a NetBIOS name that works for the server. Sorry!
+|_dns-brute: Can't guess domain of "10.10.123.108"; use dns-brute.domain script argument.
+|_smb-mbenum: ERROR: Script execution failed (use -d to debug)
+
+# Nmap done at Tue Nov 29 09:17:58 2022 -- 1 IP address (1 host up) scanned in 171.48 seconds

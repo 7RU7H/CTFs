@@ -1,0 +1,74 @@
+# Nmap 7.92 scan initiated Mon Aug  1 20:26:03 2022 as: nmap --script discovery -oA nmap/Discovery -p 22,8080 --min-rate 1000 10.129.65.195
+Pre-scan script results:
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:485:19f0::ce      MAC: fa:47:f1:30:5d:59  IFACE: usb0
+|   IP: fe80::f847:f1ff:fe30:5d59  MAC: fa:47:f1:30:5d:59  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: fe80::f847:f1ff:fe30:5d59  MAC: fa:47:f1:30:5d:59  IFACE: usb0
+|   IP: 2a01:4c8:485:19f0::ce      MAC: fa:47:f1:30:5d:59  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::f847:f1ff:fe30:5d59  MAC: fa:47:f1:30:5d:59  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| ipv6-multicast-mld-list: 
+|   fe80::f847:f1ff:fe30:5d59: 
+|     device: usb0
+|     mac: fa:47:f1:30:5d:59
+|     multicast_ips: 
+|       ff02::1:ff30:5d59         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:ce           (Solicited-Node Address)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.129.65.195
+Host is up (0.053s latency).
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (9)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   3072 48:ad:d5:b8:3a:9f:bc:be:f7:e8:20:1e:f6:bf:de:ae (RSA)
+|   256 b7:89:6c:0b:20:ed:49:b2:c1:86:7c:29:92:74:1c:1f (ECDSA)
+|_  256 18:cd:9d:08:a6:21:a8:b8:b6:f7:9f:8d:40:51:54:fb (ED25519)
+|_banner: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.5
+8080/tcp open  http-proxy
+|_http-title: Red Panda Search | Made with Spring Boot
+| http-headers: 
+|   Content-Type: text/html;charset=UTF-8
+|   Content-Language: en-US
+|   Content-Length: 1543
+|   Date: Mon, 01 Aug 2022 19:26:15 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+|_http-chrono: Request times for /; avg: 312.80ms; min: 213.77ms; max: 529.47ms
+| http-vhosts: 
+|_128 names had status 200
+|_http-date: Mon, 01 Aug 2022 19:26:15 GMT; +59m58s from local time.
+| http-waf-detect: IDS/IPS/WAF detected:
+|_10.129.65.195:8080/?p4yl04d3=<script>alert(document.cookie)</script>
+| http-enum: 
+|_  /stats/: Potentially interesting folder
+
+Host script results:
+|_ipidseq: ERROR: Script execution failed (use -d to debug)
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       65982.90   31208.08  0.0%
+|_8080  0       98786.10   82281.28  0.0%
+|_dns-brute: Can't guess domain of "10.129.65.195"; use dns-brute.domain script argument.
+|_path-mtu: PMTU == 1500
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Mon Aug  1 20:28:41 2022 -- 1 IP address (1 host up) scanned in 158.13 seconds

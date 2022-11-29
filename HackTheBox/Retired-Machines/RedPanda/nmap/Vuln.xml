@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Mon Aug  1 20:29:48 2022 as: nmap -&#45;script vuln -oA nmap/Vuln -p 22,8080 -&#45;min-rate 1000 10.129.65.195 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/Vuln -p 22,8080 -&#45;min-rate 1000 10.129.65.195" start="1659382188" startstr="Mon Aug  1 20:29:48 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,8080"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.65.195" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1659382198" endtime="1659382368"><status state="up" reason="reset" reason_ttl="63"/>
+<address addr="10.129.65.195" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http-proxy" method="table" conf="3"/><script id="http-enum" output="&#xa;  /stats/: Potentially interesting folder&#xa;"/></port>
+</ports>
+<times srtt="78298" rttvar="61158" to="322930"/>
+</host>
+<runstats><finished time="1659382368" timestr="Mon Aug  1 20:32:48 2022" summary="Nmap done at Mon Aug  1 20:32:48 2022; 1 IP address (1 host up) scanned in 179.86 seconds" elapsed="179.86" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

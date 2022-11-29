@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Mon Aug  1 20:26:03 2022 as: nmap -&#45;script discovery -oA nmap/Discovery -p 22,8080 -&#45;min-rate 1000 10.129.65.195 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/Discovery -p 22,8080 -&#45;min-rate 1000 10.129.65.195" start="1659381963" startstr="Mon Aug  1 20:26:03 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,8080"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="targets-ipv6-multicast-echo" output="&#xa;  IP: 2a01:4c8:485:19f0::ce      MAC: fa:47:f1:30:5d:59  IFACE: usb0&#xa;  IP: fe80::f847:f1ff:fe30:5d59  MAC: fa:47:f1:30:5d:59  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="targets-ipv6-multicast-invalid-dst" output="&#xa;  IP: fe80::f847:f1ff:fe30:5d59  MAC: fa:47:f1:30:5d:59  IFACE: usb0&#xa;  IP: 2a01:4c8:485:19f0::ce      MAC: fa:47:f1:30:5d:59  IFACE: usb0&#xa;  Use -&#45;script-args=newtargets to add the results as targets&#xa;"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="targets-ipv6-multicast-mld" output="&#xa;  IP: fe80::f847:f1ff:fe30:5d59  MAC: fa:47:f1:30:5d:59  IFACE: usb0&#xa;&#xa;  Use -&#45;script-args=newtargets to add the results as targets"><table>
+<elem key="address">fe80::f847:f1ff:fe30:5d59</elem>
+<elem key="iface">usb0</elem>
+<elem key="mac">fa:47:f1:30:5d:59</elem>
+</table>
+</script><script id="ipv6-multicast-mld-list" output="&#xa;  fe80::f847:f1ff:fe30:5d59: &#xa;    device: usb0&#xa;    mac: fa:47:f1:30:5d:59&#xa;    multicast_ips: &#xa;      ff02::1:ff30:5d59         (NDP Solicited-node)&#xa;      ff02::1:ff00:0            (Solicited-Node Address)&#xa;      ff05::2                   (unknown)&#xa;      ff02::2                   (All Routers Address)&#xa;      ff02::1:ff00:ce           (Solicited-Node Address)"><table key="fe80::f847:f1ff:fe30:5d59">
+<elem key="device">usb0</elem>
+<elem key="mac">fa:47:f1:30:5d:59</elem>
+<table key="multicast_ips">
+<table>
+<elem key="description">NDP Solicited-node</elem>
+<elem key="ip">ff02::1:ff30:5d59</elem>
+</table>
+<table>
+<elem key="description">Solicited-Node Address</elem>
+<elem key="ip">ff02::1:ff00:0</elem>
+</table>
+<table>
+<elem key="description">unknown</elem>
+<elem key="ip">ff05::2</elem>
+</table>
+<table>
+<elem key="description">All Routers Address</elem>
+<elem key="ip">ff02::2</elem>
+</table>
+<table>
+<elem key="description">Solicited-Node Address</elem>
+<elem key="ip">ff02::1:ff00:ce</elem>
+</table>
+</table>
+</table>
+</script><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.65.195" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1659381974" endtime="1659382121"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.129.65.195" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (9)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (6)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ssh-rsa</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script><script id="ssh-hostkey" output="&#xa;  3072 48:ad:d5:b8:3a:9f:bc:be:f7:e8:20:1e:f6:bf:de:ae (RSA)&#xa;  256 b7:89:6c:0b:20:ed:49:b2:c1:86:7c:29:92:74:1c:1f (ECDSA)&#xa;  256 18:cd:9d:08:a6:21:a8:b8:b6:f7:9f:8d:40:51:54:fb (ED25519)"><table>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABgQC82vTuN1hMqiqUfN+Lwih4g8rSJjaMjDQdhfdT8vEQ67urtQIyPszlNtkCDn6MNcBfibD/7Zz4r8lr1iNe/Afk6LJqTt3OWewzS2a1TpCrEbvoileYAl/Feya5PfbZ8mv77+MWEA+kT0pAw1xW9bpkhYCGkJQm9OYdcsEEg1i+kQ/ng3+GaFrGJjxqYaW1LXyXN1f7j9xG2f27rKEZoRO/9HOH9Y+5ru184QQXjW/ir+lEJ7xTwQA5U1GOW1m/AgpHIfI5j9aDfT/r4QMe+au+2yPotnOGBBJBz3ef+fQzj/Cq7OGRR96ZBfJ3i00B/Waw/RI19qd7+ybNXF/gBzptEYXujySQZSu92Dwi23itxJBolE6hpQ2uYVA8VBlF0KXESt3ZJVWSAsU3oguNCXtY7krjqPe6BZRy+lrbeska1bIGPZrqLEgptpKhz14UaOcH9/vpMYFdSKr24aMXvZBDK1GJg50yihZx8I9I367z0my8E89+TnjGFY2QTzxmbmU=</elem>
+<elem key="fingerprint">48add5b83a9fbcbef7e8201ef6bfdeae</elem>
+<elem key="type">ssh-rsa</elem>
+<elem key="bits">3072</elem>
+</table>
+<table>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBH2y17GUe6keBxOcBGNkWsliFwTRwUtQB3NXEhTAFLziGDfCgBV7B9Hp6GQMPGQXqMk7nnveA8vUz0D7ug5n04A=</elem>
+<elem key="fingerprint">b7896c0b20ed49b2c1867c2992741c1f</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="bits">256</elem>
+</table>
+<table>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIKfXa+OM5/utlol5mJajysEsV4zb/L0BJ1lKxMPadPvR</elem>
+<elem key="fingerprint">18cd9d08a621a8b8b6f79f8d405154fb</elem>
+<elem key="type">ssh-ed25519</elem>
+<elem key="bits">256</elem>
+</table>
+</script><script id="banner" output="SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.5"/></port>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http-proxy" method="table" conf="3"/><script id="http-title" output="Red Panda Search | Made with Spring Boot"><elem key="title">Red Panda Search | Made with Spring Boot</elem>
+</script><script id="http-headers" output="&#xa;  Content-Type: text/html;charset=UTF-8&#xa;  Content-Language: en-US&#xa;  Content-Length: 1543&#xa;  Date: Mon, 01 Aug 2022 19:26:15 GMT&#xa;  Connection: close&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-chrono" output="Request times for /; avg: 312.80ms; min: 213.77ms; max: 529.47ms"/><script id="http-vhosts" output="&#xa;128 names had status 200"/><script id="http-date" output="Mon, 01 Aug 2022 19:26:15 GMT; +59m58s from local time."><elem key="date">2022-08-01T20:26:15+00:00</elem>
+<elem key="delta">3598.0</elem>
+</script><script id="http-waf-detect" output="IDS/IPS/WAF detected:&#xa;10.129.65.195:8080/?p4yl04d3=&lt;script&gt;alert(document.cookie)&lt;/script&gt;"/><script id="http-enum" output="&#xa;  /stats/: Potentially interesting folder&#xa;"/></port>
+</ports>
+<hostscript><script id="ipidseq" output="ERROR: Script execution failed (use -d to debug)"/><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;22    0       65982.90   31208.08  0.0%&#xa;8080  0       98786.10   82281.28  0.0%&#xa;"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.129.65.195&quot;; use dns-brute.domain script argument."/><script id="path-mtu" output="PMTU == 1500"/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script></hostscript><times srtt="52886" rttvar="31027" to="176994"/>
+</host>
+<runstats><finished time="1659382121" timestr="Mon Aug  1 20:28:41 2022" summary="Nmap done at Mon Aug  1 20:28:41 2022; 1 IP address (1 host up) scanned in 158.13 seconds" elapsed="158.13" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
