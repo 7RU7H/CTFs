@@ -1,6 +1,6 @@
 
 Name: Hawk
-Date:  
+Date:  30/11/2022
 Difficulty:  Medium
 Goals:  OSCP - Became part of the 12 hour brutal self assessment as scripting for a hour and a half or this is a Helped-Through with added yikes so on the cards otherwise
 Learnt:
@@ -8,7 +8,6 @@ Learnt:
 - Some more xdotool is a cool extra to my life I should try use at some point 
 - Drawning eletronic pictures is go for reporting, but pen and paper is supreme speed solving utility
 - Do stuff till last argement:`$?` does not equal 0; `... > devnull 2>&1; if [[ $? -eq 0 ]]; then echo "Password: $pass"; exit; fi;`
-
 
 ## Recon
 
