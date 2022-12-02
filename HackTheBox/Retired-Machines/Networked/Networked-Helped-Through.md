@@ -8,6 +8,7 @@ Learnt:
 - alot about PHP
 - Level of capability code auditing languages like php and js
 - Strengthening an initial linear enumeration methodology for code audit; do this under timed circumstance meant that that which cluttered up and was irrelevant was ignored rather than checked off.
+-  I certainly try hard when it is really easy 
 
 ## Recon
 
@@ -197,7 +198,7 @@ Phpinfo is great for testnig php related vulnerabilities
 Massive overthinking lesson and not trusting original approach, which was valid 
 ![](hurrayIoverthinkhard.png)
 
-We have multiple escalations to do
+We have multiple escalations to do...
 
 ## PrivEsc
 
@@ -285,3 +286,47 @@ touch 'var/www/html/uploads/; ./tmp/shell'
 ![](eh.png)
 
 Reset the box as I think it is broken. AAAAAAAAAAAAAAAAAAARGH!
+
+Back again with a machine that works.
+![](hurray.png) 
+Call back acquire!
+![](yes.png)
+
+First check sudo -l and:
+![](sudovuln.png)
+
+Thankful it is not more php...
+![](codereview.png)
+/usr/local/sbin is not writable. It is a [network configuration script configurer](https://www.thegeekdiary.com/understanding-the-network-interface-configuration-file-etc-sysconfig-network-scripts-ifcfg-eth/). Setting these variables:
+- Name - has to be guly0
+- Proxy_Method - none or auto
+- Browser_only
+- BootProto
+Networked Variable | Property | Ifcfg-rh Variable | Default | Description
+--- | --- | --- | --- | ---
+PROXY_METHOD | method | PROXY_METHOD(+) | none | Method for proxy configuration. For "auto", WPAD is used for proxy configuration, or set the PAC file via PAC_URL or PAC_SCRIPT. **Allowed values:** none, auto
+Browser_only | browser-only  | BROWSER_ONLY(+)|  no | Whether the proxy configuration is for browser only. 
+BOOTPROTO | method | BOOTPROTO | none | Method used for IPv4 protocol configuration. **Allowed values:** none, dhcp (bootp), static, ibft, autoip, shared
+
+
+IPv4 protocol configuration. **Allowed values:** none 
+- dhcp (bootp) - dchp
+- static - A _static IP_ address is simply an address that doesn't change.
+- ibft - Istanbul Byzantine Fault Tolerant - blockchain
+- autoip - Automatic Private _IP_ Addressing, also known as APIPA or _Auto IP_, is a method of automatically assigning _IP_ addresses to networked computers and printers. A ...
+- shared - A _shared IP_ means the internet _protocol_ (_IP_) address assigned to a website or hosting account is _shared_ between several domains or websites.
+
+We dont want to hand out ips or domain names or setup a blockchain
+
+NAME guly0
+PROXY METHOD auto
+BROWSER_ONLY yes
+BOOTPROTO shared
+
+It will Hold the prompt open as it then executes /sbin/ifup to "bring the interface up", we make interface that with the variables above and does not exit. This did not work.
+
+[0xdf](https://0xdf.gitlab.io/2019/11/16/htb-networked.html#beyond-root---php-misconfiguration) and [snowscan](https://snowscan.io/htb-writeup-networked) explify to myself how weird my thinking is to these. I research how make a interface that I could access, via a browser, but after checking if there is `ifconfig` and `ip` there is not. It is just a injection attack with bash.
+
+![](makeinterfacehethoughtwhynotjustbeahackerhethought.png)
+
+Well I guess I know how to make interfaces now.. The key detail is the in bash white spcae denote segmenation between arguements and therefore the script will just exxecute anything after a space as root for one the input fields.
