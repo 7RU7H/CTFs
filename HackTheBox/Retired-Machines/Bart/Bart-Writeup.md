@@ -19,7 +19,7 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 
 ![](nmap-domainname.png)
 
-Nuclei find Linux Shell histories on a Windows box..
+Nuclei find Linux Shell histories on a Windows box..[[shell-history-http___10.129.96.185_.bash_history]], bu this is probably a troll.
 
 From the [Ippsec Sauna Video](https://www.youtube.com/watch?v=uLNpR3AnE-Y)
 1. `q` + `a` to start macro
@@ -50,12 +50,30 @@ j.dowe@bart.htb - Developer@FluffyUnicorns
 d.lamborghini 
 Daniella Lamborghini - new head of recruitment
 
+Edit - Harvey I found this after the fact.
+![](forgivemecommentctfusernames.png)
+
 Fuzz for subdomains
 
 ![](foundyoumonitoringme.png)
 [PHP Server Monitor PHP Server Monitor is a script that checks whether your websites and servers are up and running. It comes with a web based user interface where you can manage your services and websites, and you can manage users for each server with a mobile number and email address. This is the link to the cv3.2.1](https://github.com/phpservermon/phpservermon/tree/v3.2.1)
 
-I read the src for 3.2.1 : I am either missing a default password for the new recruit most likely - hydra is producing false falsities and I may need to reconsider syntax.  1 hour left 
+I read the src for 3.2.1 : I am either missing a default password for the new recruit most likely - hydra is producing false falsities and I may need to reconsider syntax.  Timewise I failed the Recon section, by  not much. Basically I got to the right place and figured out the I needed passwords. Basically it is brute force with `hydra` and rockyou.txt. I avoid these as I do not think that is realistic to OSCP preparation. harvey user with `potter` appears in rockyou.txt. - [0xdf Peaked](https://0xdf.gitlab.io/2018/07/15/htb-bart.html#monitorbarthtb) - but no further.
+
+My rationale for not prompting for Forgotten Password is that you are firstly not stealthy real world and if attempt to reset them you could have forced them to reset a simpler password, or alerting a Admin or SIEM - every publically avaliable user has just prompted for there password to be reset; regardless if you spoofed the IP for each you would have to do so over months and months just to find who has access. I do these to get good, get them done to learn. 
+
+But I did not read the source either properly as Harvey is commented out. This then even with counts as strike before I turn this into a Helped-Through.  I try a hoping for default on Daniella, which makes more sense that she would be given a default and may have not changed it.
+
+![](Ididtrythenewrecruitforadefault.png)
+
+![](neverbeenhereharvey.png)
+Server page disclose interal-01 subdomain that is a internal website
+![](interalsubdomain.png)
+
+No Harvey potter this time
+![](noharverypotterthistime.png)
+
+Seeing as thismyabe another brute forcing of another webpage..and hopeful it is not. It is not, I checked just because I do not have time, next time I need to check. This becomes a Helped-Through. It 
 
 ## Exploit
 

@@ -1,6 +1,6 @@
 # Networked Helped-Through
 Name: Networked
-Date:  
+Date:  2/12/2022
 Difficulty:  Easy
 Goals:  OSCP Prep
 Learnt:
@@ -80,7 +80,7 @@ function file_mime_type($file) {
     }
   }
   // mime_content_type Returns the MIME content type for a file as determined by using information from the magic.mime file
-  if (function_exists('mime_content_type')) //php 4 >= 4.3, 5, 7,8
+  if (functinteexists('mime_content_type')) //php 4 >= 4.3, 5, 7,8
   {
     $file_type = @mime_content_type($file['tmp_name']);
     if (strlen($file_type) > 0) // It's possible that mime_content_type() returns FALSE or an empty string
@@ -234,7 +234,7 @@ It uses getNameCheck() and check_ip from the lib.php from the backup.tar
 Check_ip()
 ![](chkip.png)
 
-[w3 php operators](https://www.w3schools.com/php/php_operators.asp) `(!($check[0]))` if is not the 0th then it an attack, you could do if len() != 1 then, it thenm uses [file_put_contents](https://www.php.net/manual/en/function.file-put-contents.php) which I think is vulnerable. And that you could then make it evaluate php code. 
+[w3 php operators](https://www.w3schools.com/php/php_operators.asp) `(!($check[0]))` if is not the 0th then it an attack, you could do if len() != 1 then, it then uses [file_put_contents](https://www.php.net/manual/en/function.file-put-contents.php) which I think is vulnerable. And that you could then make it evaluate php code. 
 ![](flagsforfileputcontents.png)
 So it appends data if it exists; lock file open till it has finished writing.
 
