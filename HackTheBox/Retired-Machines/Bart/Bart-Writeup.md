@@ -73,7 +73,7 @@ Server page disclose interal-01 subdomain that is a internal website
 No Harvey potter this time
 ![](noharverypotterthistime.png)
 
-Seeing as thismyabe another brute forcing of another webpage..and hopeful it is not. It is not, I checked just because I do not have time, next time I need to check. This becomes a Helped-Through. It 
+Seeing as thismyabe another brute forcing of another webpage..and hopeful it is not. It is not, I checked just because I do not have time, next time I need to check. This becomes a Helped-Through. It is a long content busting that is quite eye-brow raising.
 
 ## Exploit
 
