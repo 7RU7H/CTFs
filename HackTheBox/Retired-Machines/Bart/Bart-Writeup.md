@@ -75,6 +75,35 @@ No Harvey potter this time
 
 Seeing as thismyabe another brute forcing of another webpage..and hopeful it is not. It is not, I checked just because I do not have time, next time I need to check. This becomes a Helped-Through. It is a long content busting that is quite eye-brow raising.
 
+Returning after a rough four day hiatus to hacking generally, I was rather stumped other than brute forcing another login page I tried a different wordlist -  dirbuster/directory-list-lowercase-2.3-medium.txt. It reveal nothing new. I peaked at [0xd](https://0xdf.gitlab.io/2018/07/15/htb-bart.html) writeup just to regain momentuum
+
+![](raftlargeinternal.png)
+
+![](dirbuster-internal.png)
+
+This writeup suggest trying bruteforcing from the redirected page. Given the immense amount of brute forcing this box has. I will double check the writeup just because there are lots of words in lots of language and ways to format things. I want to learn that I need to use assetnote on the next CTF that contains Src as src is raft, but weirdly the directories being windows.
+
+![](knowingthewaybutfailallthesame.png)
+
+This box made me re-evaluate my methodology of Content Discovery. I know there is an extensive method to do this. If I consider this machine like a bug bounty target where the recon is endless and to me there is no time limit then wordlist are important. If I had very fast massively paralellized internet connection the problem is then solved. 
+
+```
+feroxbuster recursive root 
+gospider for end points -> strip last filepath and fuzz file name by extension
+gobuster vhost 
+xnLinkerfinder urls 
+```
+
+Questioned Based 
+
+What is Server Language
+What is Web Application Languages?
+Endpoints?
+Vulnerable Libraries?
+Purpose of the Web App and its features?
+
+
+
 ## Exploit
 
 
