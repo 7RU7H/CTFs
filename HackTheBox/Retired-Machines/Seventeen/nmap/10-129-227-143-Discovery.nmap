@@ -1,0 +1,579 @@
+# Nmap 7.93 scan initiated Thu Dec 15 18:10:47 2022 as: nmap --script discovery -oA nmap/10-129-227-143-Discovery --min-rate 500 -e tun0 -p 80,8000,22 10.129.227.143
+Pre-scan script results:
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-ping: false
+|_lltd-discovery: false
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for 10.129.227.143
+Host is up (0.057s latency).
+
+Bug in http-security-headers: no string output.
+PORT     STATE SERVICE
+22/tcp   open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.7
+| ssh-hostkey: 
+|   2048 2eb26ebb927d5e6b3693171a8209e464 (RSA)
+|   256 1f57c653fc2d8b517d304202a4d65f44 (ECDSA)
+|_  256 d5a5363819fe0d677916e6da1791ebad (ED25519)
+80/tcp   open  http
+| http-vhosts: 
+|_128 names had status 200
+|_http-mobileversion-checker: No mobile version detected.
+|_http-errors: Couldn't find any error pages.
+| http-internal-ip-disclosure: 
+|_  Internal IP Leaked: 127.0.1.1
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-grep: 
+|   (3) http://10.129.227.143:80/js/simplyCountdown.js: 
+|     (3) email: 
+|       + vincent.loy1@gmail.com
+|       + JustinB@harvest.org
+|_      + NathanS@harvest.org
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.227.143
+|     
+|     Path: http://10.129.227.143:80/css/style.css
+|     Line number: 1012
+|     Comment: 
+|         /* words */
+|     
+|     Path: http://10.129.227.143:80/css/flexslider.css
+|     Line number: 22
+|     Comment: 
+|         /* ====================================================================================================================
+|          * RESETS
+|          * ====================================================================================================================*/
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 522
+|     Comment: 
+|          //jQuery example
+|     
+|     Path: http://10.129.227.143:80/css/animate.css
+|     Line number: 1266
+|     Comment: 
+|         /*-webkit-transform: translate3d(-100%, 0, 0);
+|             transform: translate3d(-100%, 0, 0);*/
+|     
+|     Path: http://10.129.227.143:80/js/simplyCountdown.js
+|     Line number: 88
+|     Comment: 
+|         /**
+|              * Function that create full countdown DOM elements calling createCountdownElt
+|              * @param parameters
+|              * @param countdown
+|              * @returns {{days: (*|Element), hours: (*|Element), minutes: (*|Element), seconds: (*|Element)}}
+|              */
+|     
+|     Path: http://10.129.227.143:80/css/animate.css
+|     Line number: 1196
+|     Comment: 
+|         /*-webkit-transform: translate3d(0, -100%, 0);
+|             transform: translate3d(0, -100%, 0);*/
+|     
+|     Path: http://10.129.227.143:80/css/flexslider.css
+|     Line number: 1
+|     Comment: 
+|         /*
+|          * jQuery FlexSlider v2.6.0
+|          * http://www.woothemes.com/flexslider/
+|          *
+|          * Copyright 2012 WooThemes
+|          * Free to use under the GPLv2 and later license.
+|          * http://www.gnu.org/licenses/gpl-2.0.html
+|          *
+|          * Contributing author: Tyler Smith (@mbmufffin)
+|          *
+|          */
+|     
+|     Path: http://10.129.227.143:80/css/bootstrap.css
+|     Line number: 2
+|     Comment: 
+|         /*!
+|          * Bootstrap v3.3.5 (http://getbootstrap.com)
+|          * Copyright 2011-2015 Twitter, Inc.
+|          * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+|          */
+|     
+|     Path: http://10.129.227.143:80/css/bootstrap.css
+|     Line number: 6257
+|     Comment: 
+|         /*# sourceMappingURL=bootstrap.css.map */
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 489
+|     Comment: 
+|         <!-- jQuery -->
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 318
+|     Comment: 
+|         <!-- <p class="pricing__sentence">Single user license</p> -->
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 34
+|     Comment: 
+|         <!-- Owl Carousel  -->
+|     
+|     Path: http://10.129.227.143:80/css/style.css
+|     Line number: 966
+|     Comment: 
+|         /* The countdown */
+|     
+|     Path: http://10.129.227.143:80/css/style.css
+|     Line number: 987
+|     Comment: 
+|         /* countdown block inner div */
+|     
+|     Path: http://10.129.227.143:80/css/bootstrap.css
+|     Line number: 7
+|     Comment: 
+|         /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+|     
+|     Path: http://10.129.227.143:80/js/respond.min.js
+|     Line number: 2
+|     Comment: 
+|         /*! Respond.js v1.4.2: min/max-width media query polyfill * Copyright 2013 Scott Jehl
+|          * Licensed under https://github.com/scottjehl/Respond/blob/master/LICENSE-MIT
+|          *  */
+|     
+|     Path: http://10.129.227.143:80/js/simplyCountdown.js
+|     Line number: 272
+|     Comment: 
+|         /*global $, jQuery, simplyCountdown*/
+|     
+|     Path: http://10.129.227.143:80/css/flexslider.css
+|     Line number: 72
+|     Comment: 
+|         /* ====================================================================================================================
+|          * DEFAULT THEME
+|          * ====================================================================================================================*/
+|     
+|     Path: http://10.129.227.143:80/css/style.css
+|     Line number: 1641
+|     Comment: 
+|         /*# sourceMappingURL=style.css.map */
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 316
+|     Comment: 
+|         <!-- <div class="icon icon-user2"></div> -->
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 44
+|     Comment: 
+|         <!-- Theme style  -->
+|     
+|     Path: http://10.129.227.143:80/css/animate.css
+|     Line number: 1415
+|     Comment: 
+|         /*visibility: visible;*/
+|     
+|     Path: http://10.129.227.143:80/css/style.css
+|     Line number: 647
+|     Comment: 
+|         /* Better Font Rendering =========== */
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 38
+|     Comment: 
+|         <!-- Flexslider  -->
+|     
+|     Path: http://10.129.227.143:80/css/flexslider.css
+|     Line number: 263
+|     Comment: 
+|         /* ====================================================================================================================
+|          * RESPONSIVE
+|          * ====================================================================================================================*/
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 503
+|     Comment: 
+|         <!-- countTo -->
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 50
+|     Comment: 
+|         <!--[if lt IE 9]>
+|         	<script src="js/respond.min.js"></script>
+|         	<![endif]-->
+|     
+|     Path: http://10.129.227.143:80/css/animate.css
+|     Line number: 133
+|     Comment: 
+|         /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 493
+|     Comment: 
+|         <!-- Bootstrap -->
+|     
+|     Path: http://10.129.227.143:80/js/jquery.waypoints.min.js
+|     Line number: 1
+|     Comment: 
+|         /*!
+|         Waypoints - 4.0.0
+|         Copyright \xC3\x82\xC2\xA9 2011-2015 Caleb Troughton
+|         Licensed under the MIT license.
+|         https://github.com/imakewebthings/waypoints/blog/master/licenses.txt
+|         */
+|     
+|     Path: http://10.129.227.143:80/css/flexslider.css
+|     Line number: 40
+|     Comment: 
+|         /* ====================================================================================================================
+|          * BASE STYLES
+|          * ====================================================================================================================*/
+|     
+|     Path: http://10.129.227.143:80/css/style.css
+|     Line number: 1003
+|     Comment: 
+|         /* amounts */
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 28
+|     Comment: 
+|         <!-- Bootstrap  -->
+|     
+|     Path: http://10.129.227.143:80/css/style.css
+|     Line number: 998
+|     Comment: 
+|         /* amounts and words */
+|     
+|     Path: http://10.129.227.143:80/js/simplyCountdown.js
+|     Line number: 240
+|     Comment: 
+|         /* display an inline countdown into a span tag */
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 24
+|     Comment: 
+|         <!-- Animate.css -->
+|     
+|     Path: http://10.129.227.143:80/css/style.css
+|     Line number: 8
+|     Comment: 
+|         /* =======================================================
+|         *
+|         * 	Template Style 
+|         *
+|         * ======================================================= */
+|     
+|     Path: http://10.129.227.143:80/css/animate.css
+|     Line number: 1336
+|     Comment: 
+|         /*-webkit-transform: translate3d(100%, 0, 0);
+|             transform: translate3d(100%, 0, 0);*/
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 345
+|     Comment: 
+|         <!-- <div class="icon icon-store"></div> -->
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 26
+|     Comment: 
+|         <!-- Icomoon Icon Fonts-->
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 31
+|     Comment: 
+|         <!-- Magnific Popup -->
+|     
+|     Path: http://10.129.227.143:80/css/animate.css
+|     Line number: 3
+|     Comment: 
+|         /*!
+|         Animate.css - http://daneden.me/animate
+|         Licensed under the MIT license - http://opensource.org/licenses/MIT
+|         
+|         Copyright (c) 2015 Daniel Eden
+|         */
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 49
+|     Comment: 
+|         <!-- FOR IE9 below -->
+|     
+|     Path: http://10.129.227.143:80/css/bootstrap.css
+|     Line number: 225
+|     Comment: 
+|         /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+|     
+|     Path: http://10.129.227.143:80/js/bootstrap.min.js
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * Bootstrap v3.3.5 (http://getbootstrap.com)
+|          * Copyright 2011-2015 Twitter, Inc.
+|          * Licensed under the MIT license
+|          */
+|     
+|     Path: http://10.129.227.143:80/css/flexslider.css
+|     Line number: 12
+|     Comment: 
+|         /* ====================================================================================================================
+|          * FONT-FACE
+|          * ====================================================================================================================*/
+|     
+|     Path: http://10.129.227.143:80/css/style.css
+|     Line number: 972
+|     Comment: 
+|         /* coutndown blocks */
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 491
+|     Comment: 
+|         <!-- jQuery Easing -->
+|     
+|     Path: http://10.129.227.143:80/js/jquery.flexslider-min.js
+|     Line number: 1
+|     Comment: 
+|         /*
+|          * jQuery FlexSlider v2.6.0
+|          * Copyright 2012 WooThemes
+|          * Contributing Author: Tyler Smith
+|          */
+|     
+|     Path: http://10.129.227.143:80/js/simplyCountdown.js
+|     Line number: 263
+|     Comment: 
+|          // Refresh immediately to prevent a Flash of Unstyled Content
+|     
+|     Path: http://10.129.227.143:80/js/simplyCountdown.js
+|     Line number: 16
+|     Comment: 
+|          // functions
+|     
+|     Path: http://10.129.227.143:80/js/simplyCountdown.js
+|     Line number: 111
+|     Comment: 
+|         /**
+|              * simplyCountdown, create and display the coundtown.
+|              * @param elt
+|              * @param args (parameters)
+|              */
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 41
+|     Comment: 
+|         <!-- Pricing -->
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 501
+|     Comment: 
+|         <!-- Flexslider -->
+|     
+|     Path: http://10.129.227.143:80/css/animate.css
+|     Line number: 1407
+|     Comment: 
+|         /*-webkit-transform: translate3d(0, 100%, 0);
+|             transform: translate3d(0, 100%, 0);*/
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 374
+|     Comment: 
+|         <!-- <div class="icon icon-home2"></div> -->
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 495
+|     Comment: 
+|         <!-- Waypoints -->
+|     
+|     Path: http://10.129.227.143:80/js/simplyCountdown.js
+|     Line number: 52
+|     Comment: 
+|         /**
+|              * Function that create a countdown section
+|              * @param countdown
+|              * @param parameters
+|              * @param typeClass
+|              * @returns {{full: (*|Element), amount: (*|Element), word: (*|Element)}}
+|              */
+|     
+|     Path: http://10.129.227.143:80/js/simplyCountdown.js
+|     Line number: 22
+|     Comment: 
+|         /**
+|              * Function that merge user parameters with defaults one.
+|              * @param out
+|              * @returns {*|{}}
+|              */
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 515
+|     Comment: 
+|          // default example
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 497
+|     Comment: 
+|         <!-- Stellar Parallax -->
+|     
+|     Path: http://10.129.227.143:80/js/simplyCountdown.js
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * Project : simply-countdown
+|          * File : simplyCountdown
+|          * Date : 27/06/2015
+|          * License : MIT
+|          * Version : 1.3.2
+|          * Author : Vincent Loy <vincent.loy1@gmail.com>
+|          * Contributors : 
+|          *  - Justin Beasley <JustinB@harvest.org>
+|          *  - Nathan Smith <NathanS@harvest.org>
+|          */
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 510
+|     Comment: 
+|         <!-- Main -->
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 376
+|     Comment: 
+|         <!-- <p class="pricing__sentence">Unlimited users</p> -->
+|     
+|     Path: http://10.129.227.143:80/css/flexslider.css
+|     Line number: 56
+|     Comment: 
+|         /*content: "\0020";*/
+|     
+|     Path: http://10.129.227.143:80/css/flexslider.css
+|     Line number: 15
+|     Comment: 
+|         /*@font-face {
+|           font-family: 'flexslider-icon';
+|           src: url('fonts/flexslider-icon.eot');
+|           src: url('fonts/flexslider-icon.eot?#iefix') format('embedded-opentype'), url('fonts/flexslider-icon.woff') format('woff'), url('fonts/flexslider-icon.ttf') format('truetype'), url('fonts/flexslider-icon.svg#flexslider-icon') format('svg');
+|           font-weight: normal;
+|           font-style: normal;
+|         }*/
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 508
+|     Comment: 
+|         <!-- Count Down -->
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 499
+|     Comment: 
+|         <!-- Carousel -->
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 347
+|     Comment: 
+|         <!-- <p class="pricing__sentence">Up to 5 users</p> -->
+|     
+|     Path: http://10.129.227.143:80/js/simplyCountdown.js
+|     Line number: 12
+|     Comment: 
+|         /*global window, document*/
+|     
+|     Path: http://10.129.227.143:80/index.html
+|     Line number: 47
+|     Comment: 
+|_        <!-- Modernizr JS -->
+|_http-title: Let's begin your education with us! 
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-feed: Couldn't find any feeds.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; html: 1
+|     /css/
+|       css: 4
+|     /js/
+|       js: 5
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /js/
+|   Total files found (by extension):
+|_    Other: 1; css: 4; html: 1; js: 5
+|_http-date: Thu, 15 Dec 2022 18:11:11 GMT; +59m58s from local time.
+| http-headers: 
+|   Date: Thu, 15 Dec 2022 18:11:22 GMT
+|   Server: Apache/2.4.29 (Ubuntu)
+|   Last-Modified: Sun, 10 Apr 2022 05:31:57 GMT
+|   ETag: "50d1-5dc46256b75a0"
+|   Accept-Ranges: bytes
+|   Content-Length: 20689
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-chrono: Request times for /; avg: 262.29ms; min: 233.36ms; max: 314.29ms
+| http-enum: 
+|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|   /images/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|_  /js/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+8000/tcp open  http-alt
+| http-headers: 
+|   Date: Thu, 15 Dec 2022 18:11:13 GMT
+|   Server: Apache/2.4.38 (Debian)
+|   Content-Length: 281
+|   Connection: close
+|   Content-Type: text/html; charset=iso-8859-1
+|   
+|_  (Request type: GET)
+|_http-chrono: Request times for /; avg: 223.77ms; min: 160.92ms; max: 271.04ms
+| http-grep: 
+|   (1) http://10.129.227.143:8000/: 
+|     (1) ip: 
+|_      + 10.129.227.143
+| http-vhosts: 
+| 125 names had status 403
+| squid
+| blog
+|_ns2
+|_http-date: Thu, 15 Dec 2022 18:11:13 GMT; +59m58s from local time.
+|_http-title: 403 Forbidden
+
+Host script results:
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       50441.40   7159.43   0.0%
+| 80    0       53787.40   12420.09  0.0%
+|_8000  1       43717.20   5703.66   0.0%
+|_fcrdns: FAIL (No PTR record)
+|_ipidseq: All zeros
+|_path-mtu: PMTU == 1500
+|_dns-brute: Can't guess domain of "10.129.227.143"; use dns-brute.domain script argument.
+
+# Nmap done at Thu Dec 15 18:16:09 2022 -- 1 IP address (1 host up) scanned in 322.29 seconds

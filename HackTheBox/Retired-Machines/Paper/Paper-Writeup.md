@@ -1,11 +1,13 @@
 
-# Paper
+# Paper Writeup
+
 Name: Paper
-Date:  
+Date:  14/12/2022
 Difficulty:  Easy
 Goals:  OSCP Preparation
 Learnt:
 - Kick the head with the password reuse, because has always seemed alien to me 
+- Run multiple Scripts and attempts of the same script
 
 ## Recon
 
@@ -67,7 +69,7 @@ Amusing the creator of the box has Secnigma CVE-2021-3960, which failed to find.
 
 ## Returning to Root and Beyond Root
 
-To keep my head sloshing with quality Privilege Escalation experiences while I am trying to get Cloud Certified and power on through these attempts. Furthermore Beyond Root for this box is a to play with the wordpress configuration and try three modern Linux Persistence techniques. I decided to [hack and chill with the Funday Sunday (title says Funday,but apparently its Nooby Tuesday)with Alh4zr3d](https://www.youtube.com/watch?v=QeJ4IcwD9ig) to mix up my day and to finish this. I will check 3 other writeups to check for alternate route especially if Wordpress configuration is just me reading configuration files.  
+To keep my head sloshing with quality Privilege Escalation experiences while I am trying to get Cloud Certified and power on through these attempts. Furthermore Beyond Root for this box is a to play with the wordpress configuration and try three modern Linux Persistence techniques. I decided to [hack and chill with the Funday Sunday (title says Funday,but apparently its Nooby Tuesday)with Alh4zr3d](https://www.youtube.com/watch?v=QeJ4IcwD9ig) to mix up my day and to finish this. I will check 3 other writeups to check (they were all the same) for alternate route especially if Wordpress configuration is just me reading configuration files.  
 
 Alh4zr3d uses the command injection to get a reverse shell. Amusing the creator of the box has Secnigma CVE-2021-3960, which failed to find... which did not show up in my Linpeas.sh even though it did for Al and I could run another Linux Exploit suggester script. No problem.. [Here we go](https://github.com/secnigma/CVE-2021-3560-Polkit-Privilege-Esclation) 
 TL;DR - explaination of the exploit: race condition, where the exploitation beats check in polkit by sending and closing a request while polkit is still processing the request, because we are UID 0 at at the point we can write a new user and password in the wheel group (sudo group) so you can `sudo su` as that user to becom e root.
