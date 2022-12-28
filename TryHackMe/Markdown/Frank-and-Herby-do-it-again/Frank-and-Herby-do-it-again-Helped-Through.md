@@ -1,7 +1,7 @@
 # Frank-and-Herby-do-it-again Helped-Through
 
 Name: Frank-and-Herby-do-it-again
-Date: 24/12/2022  
+Date: 28/12/2022  
 Difficulty:  Medium
 Goals:  
 - Continue learning about the Kube
