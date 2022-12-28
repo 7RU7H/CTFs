@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Sat Dec 24 11:59:03 2022 as: nmap -&#45;script discovery -oA nmap/10-10-162-115-Discovery -&#45;min-rate 1000 -e tun0 -p 10259,16443,10257,30679,10255,22 10.10.162.115 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/10-10-162-115-Discovery -&#45;min-rate 1000 -e tun0 -p 10259,16443,10257,30679,10255,22 10.10.162.115" start="1671883143" startstr="Sat Dec 24 11:59:03 2022" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="6" services="22,10255,10257,10259,16443,30679"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="lltd-discovery" output="false">false</script><script id="targets-sniffer" output="Sniffed 1 address(es). &#xa;224.0.23.12"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="broadcast-ping" output="false">false</script><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.162.115" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1671883167" endtime="1671883200"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.162.115" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (9)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (6)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ssh-rsa</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script><script id="banner" output="SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.4"/><script id="ssh-hostkey" output="&#xa;  3072 99bf3f0eb2950e76e50f288ae925bdb1 (RSA)&#xa;  256 df48b7b2a2bc5a7ef9bbb8542a980309 (ECDSA)&#xa;  256 ad09e8fd583ba13e377e62d244207af2 (ED25519)"><table>
+<elem key="fingerprint">99bf3f0eb2950e76e50f288ae925bdb1</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABgQChoOOe3I9Ht5v0FymFzVpEq4xeHBDdq8Py0Yd4oNCbIcS28e6CLx8bCzhhHHqw2I2/+vhdlIj1AcwW/vASRHQqEdDNNY57GrM+Oa+O0gdv66jRw9ZREwD7VjQt8Ql1DLqWhZGHsTH06qdta2BsEzsd5ggc9iwVkt4VARKyyNrH4RoGFyDXunGXQmg1uYajiXDVEGnkMdyjoCeayd5dWbCc1KcbG5ZF/is62Nh+xFV5eKR7Z4HuvyrCe15gP+NnFEOf/tcU93v3o0NVW1ZjOTKGtue/dSz95iq0A6bEhcRjxgYZJNAgL9gCRoy9Qod1+c6p9NIW5ukmYj/hnqeyooexBFtQAxhzhYhwVElz6jjExUktlXHkFHRyXkIjIxPeK1WvXVr2uj/+LrVcwkq9JngOfDJ+Cwve/ZXmLOlVswr1wUR+Jn/noysrKKP0bYTiMo1Au1yO0NWlJ4H90JEjHQ6brpv56UgwE5n6om/yZ9lLh4Nog/Yj2KdcgfwTiaVx4A0=</elem>
+<elem key="bits">3072</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+<table>
+<elem key="fingerprint">df48b7b2a2bc5a7ef9bbb8542a980309</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBK3p0AWN289eLta3lUlj3UWvtGcdIN1QMeIFOKLinw7cy34fxhjXqA7barPIejPCCpWvkkojT7QKKtooGPb3TKw=</elem>
+<elem key="bits">256</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+</table>
+<table>
+<elem key="fingerprint">ad09e8fd583ba13e377e62d244207af2</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIGbF1S8zZY4qkuEnnU4p5SrEsstZ99cRBwkBYqJPjlKw</elem>
+<elem key="bits">256</elem>
+<elem key="type">ssh-ed25519</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="10255"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="10257"><state state="open" reason="syn-ack" reason_ttl="63"/><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA (secp256r1) - C&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;  TLSv1.3: &#xa;    ciphers: &#xa;      TLS_AKE_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A&#xa;      TLS_AKE_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A&#xa;      TLS_AKE_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - A&#xa;    cipher preference: server&#xa;  least strength: C"><table key="TLSv1.2">
+<table key="ciphers">
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">C</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">C</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+</table>
+</table>
+<table key="TLSv1.3">
+<table key="ciphers">
+<table>
+<elem key="kex_info">ecdh_x25519</elem>
+<elem key="name">TLS_AKE_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">ecdh_x25519</elem>
+<elem key="name">TLS_AKE_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">ecdh_x25519</elem>
+<elem key="name">TLS_AKE_WITH_CHACHA20_POLY1305_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+</table>
+<elem key="cipher preference">server</elem>
+</table>
+<elem key="least strength">C</elem>
+</script><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="ssl-cert" output="Subject: commonName=localhost@1671881555&#xa;Subject Alternative Name: DNS:localhost, DNS:localhost, IP Address:127.0.0.1&#xa;Not valid before: 2022-12-24T10:32:23&#xa;Not valid after:  2023-12-24T10:32:23"><table key="subject">
+<elem key="commonName">localhost@1671881555</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">localhost-ca@1671881547</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">BC6B8E024E3D7B5E33A305FAAB7ECC5274425031D04BF5073B3950F4959AF309C777F6D30EE4A0E08BED7831DC25FAB182B738C7C55D4081D922D0BD959CC2213676BE9AF1E018E8558C29065DAA3387680425BC8B542FFFD7F00990B7F719F3061165BE0E4EBEDDAAFDDB4663AB79A52F18F03AD0696F3406669DD20E3F57F6355D9BC7187CF01D0CCB7ED78DD38CA8BC73E18DE0293F45AA3FC851A2720614FFFAFD157CBA2D6864DBECC19B95B98F80443EC20D739ABF0AF81D5D591930806D1E02F6D3AA672800904C26DC6CE13704914D2D870791BD095C2CEE5F784606B04DBA566C0DCC8B38F2EA4BC420A1BC16562456F3EAFACC2E1F4E2C025279E3</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Digital Signature, Key Encipherment</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Basic Constraints</elem>
+<elem key="value">CA:FALSE</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">D6:3A:11:FF:00:5E:BA:45:B6:DA:65:5F:F9:51:65:52:EB:CF:17:8C</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:localhost, DNS:localhost, IP Address:127.0.0.1</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2022-12-24T10:32:23</elem>
+<elem key="notAfter">2023-12-24T10:32:23</elem>
+</table>
+<elem key="md5">28afa1796fc456037d8e7ebb49efd593</elem>
+<elem key="sha1">a4635b2e68124cadb88298520491c9fb82d081d8</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDOTCCAiGgAwIBAgIBAjANBgkqhkiG9w0BAQsFADAiMSAwHgYDVQQDDBdsb2Nh&#xa;bGhvc3QtY2FAMTY3MTg4MTU0NzAeFw0yMjEyMjQxMDMyMjNaFw0yMzEyMjQxMDMy&#xa;MjNaMB8xHTAbBgNVBAMMFGxvY2FsaG9zdEAxNjcxODgxNTU1MIIBIjANBgkqhkiG&#xa;9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvGuOAk49e14zowX6q37MUnRCUDHQS/UHOzlQ&#xa;9JWa8wnHd/bTDuSg4IvteDHcJfqxgrc4x8VdQIHZItC9lZzCITZ2vprx4BjoVYwp&#xa;Bl2qM4doBCW8i1Qv/9fwCZC39xnzBhFlvg5Ovt2q/dtGY6t5pS8Y8DrQaW80Bmad&#xa;0g4/V/Y1XZvHGHzwHQzLfteN04yovHPhjeApP0WqP8hRonIGFP/6/RV8ui1oZNvs&#xa;wZuVuY+ARD7CDXOavwr4HV1ZGTCAbR4C9tOqZygAkEwm3GzhNwSRTS2HB5G9CVws&#xa;7l94RgawTbpWbA3Mizjy6kvEIKG8FlYkVvPq+swuH04sAlJ54wIDAQABo30wezAO&#xa;BgNVHQ8BAf8EBAMCBaAwEwYDVR0lBAwwCgYIKwYBBQUHAwEwDAYDVR0TAQH/BAIw&#xa;ADAfBgNVHSMEGDAWgBTWOhH/AF66RbbaZV/5UWVS688XjDAlBgNVHREEHjAcggls&#xa;b2NhbGhvc3SCCWxvY2FsaG9zdIcEfwAAATANBgkqhkiG9w0BAQsFAAOCAQEAxxTn&#xa;Dc5tq7pdMgfZD2UwRcU75sno1wUNThtyEGf2FRw4aCOtONMOcux9znT7lHMVRobW&#xa;qpd1p4c+w+hSu8a9kmvHGgalqGQMwY/Tupvme1nzwi6pYTrBYcyUGmboyenXqe1o&#xa;jGjVPyJNXsuROy5MVQ0wJ8IET/nizxf3Vu6frfCLk374ZciPxhP2u/8RsEYP+hyQ&#xa;osQdrxwGCCqcFbtoapQR13zze6RwAaKEM2RE8j+l3M7EfIdjz9f5pRR6QSs+7RE6&#xa;+i+ZSNf6yz4oHCIZ0bjyU7f3Xy2wcfEwmLthGJUFX9pCwT8I5Noyjjp3knhyiQKj&#xa;GDhjBR/gyBvC66tcRg==&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="tls-alpn" output="&#xa;  h2&#xa;  http/1.1"><elem>h2</elem>
+<elem>http/1.1</elem>
+</script></port>
+<port protocol="tcp" portid="10259"><state state="open" reason="syn-ack" reason_ttl="63"/><script id="ssl-cert" output="Subject: commonName=localhost@1671881547&#xa;Subject Alternative Name: DNS:localhost, DNS:localhost, IP Address:127.0.0.1&#xa;Not valid before: 2022-12-24T10:32:23&#xa;Not valid after:  2023-12-24T10:32:23"><table key="subject">
+<elem key="commonName">localhost@1671881547</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">localhost-ca@1671881545</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">931203BAE7D7A4E1A109CBB2C4107C738D12F85B7A5579E036D3847308B901803883D548D6109F7D58D1476CDFE3CD6AEBA199F4B8BBACF05F6EB52AFEE12547388CF223C42E689E8F9955D3B4D8A7AA7471929C565DF8E89E16FAE90D728A023585B499F86F5E58839B6CAA27E124BB93FB6611DCD06011A1D731F226EAAB2CE2A56D0F023D0A258356634C0FD951CD3560EE62E0C19672478FF6D9DA4D8CF4F8BDB445CBB1DAB811DE135EA338290E802C95D8D78E30C749590E89B6EA095348C49C59FC6E09A2163B03D8195B48CECB3876DD12DCD423A49A3EEC0A9C929D453CA73F5BD249D4A670AE3011365B50EBAF08D7CF5EACA6DAF5E73F605715C5</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Digital Signature, Key Encipherment</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Basic Constraints</elem>
+<elem key="value">CA:FALSE</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">11:01:9E:B9:24:50:20:E4:2C:27:6C:61:BC:1C:94:77:44:B5:7A:E8</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:localhost, DNS:localhost, IP Address:127.0.0.1</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2022-12-24T10:32:23</elem>
+<elem key="notAfter">2023-12-24T10:32:23</elem>
+</table>
+<elem key="md5">09985bce71107a032819991f145c64a0</elem>
+<elem key="sha1">f4d26953796c64e618ee283111ff43defc790a71</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDOTCCAiGgAwIBAgIBAjANBgkqhkiG9w0BAQsFADAiMSAwHgYDVQQDDBdsb2Nh&#xa;bGhvc3QtY2FAMTY3MTg4MTU0NTAeFw0yMjEyMjQxMDMyMjNaFw0yMzEyMjQxMDMy&#xa;MjNaMB8xHTAbBgNVBAMMFGxvY2FsaG9zdEAxNjcxODgxNTQ3MIIBIjANBgkqhkiG&#xa;9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkxIDuufXpOGhCcuyxBB8c40S+Ft6VXngNtOE&#xa;cwi5AYA4g9VI1hCffVjRR2zf481q66GZ9Li7rPBfbrUq/uElRziM8iPELmiej5lV&#xa;07TYp6p0cZKcVl346J4W+ukNcooCNYW0mfhvXliDm2yqJ+Eku5P7ZhHc0GARodcx&#xa;8ibqqyzipW0PAj0KJYNWY0wP2VHNNWDuYuDBlnJHj/bZ2k2M9Pi9tEXLsdq4Ed4T&#xa;XqM4KQ6ALJXY144wx0lZDom26glTSMScWfxuCaIWOwPYGVtIzss4dt0S3NQjpJo+&#xa;7Aqckp1FPKc/W9JJ1KZwrjARNltQ668I189erKba9ec/YFcVxQIDAQABo30wezAO&#xa;BgNVHQ8BAf8EBAMCBaAwEwYDVR0lBAwwCgYIKwYBBQUHAwEwDAYDVR0TAQH/BAIw&#xa;ADAfBgNVHSMEGDAWgBQRAZ65JFAg5CwnbGG8HJR3RLV66DAlBgNVHREEHjAcggls&#xa;b2NhbGhvc3SCCWxvY2FsaG9zdIcEfwAAATANBgkqhkiG9w0BAQsFAAOCAQEAlzMu&#xa;VMcBs3XhX3MtMu/N9D3OUQaNnlQv/azhjPZEWhb0sQ0bOIK0n4KB0m1grdvwsz0v&#xa;cTaCi+rceFTVgS7VAv8KFc4vO0m7fevor+zCoAkxC2YmCAYCQM1YfsF+/xakw8l3&#xa;69xTllL81Diwl6xIC2n/m3J9ke/UWj3S2hq7+axpIxQ2xw4zNGGqZSLqaYU1tOhS&#xa;yrnUpk/LAUvgVaJQv/rDDl5QXIUpkxBfgSQdvqrmpXv6Oy4QFvPNl4/QzV6YIdux&#xa;zYjC45hW1Fpd3/vIVdY/ZCsJbsMX0ef2BP7K5Eua/L6EI9MkQk3aeGnHS6lgdPiH&#xa;Dx1VQtpP7qvRnrhAqA==&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="tls-alpn" output="&#xa;  h2&#xa;  http/1.1"><elem>h2</elem>
+<elem>http/1.1</elem>
+</script><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA (secp256r1) - C&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;  TLSv1.3: &#xa;    ciphers: &#xa;      TLS_AKE_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A&#xa;      TLS_AKE_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A&#xa;      TLS_AKE_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - A&#xa;    cipher preference: server&#xa;  least strength: C"><table key="TLSv1.2">
+<table key="ciphers">
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">C</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">C</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+</table>
+</table>
+<table key="TLSv1.3">
+<table key="ciphers">
+<table>
+<elem key="kex_info">ecdh_x25519</elem>
+<elem key="name">TLS_AKE_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">ecdh_x25519</elem>
+<elem key="name">TLS_AKE_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">ecdh_x25519</elem>
+<elem key="name">TLS_AKE_WITH_CHACHA20_POLY1305_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+</table>
+<elem key="cipher preference">server</elem>
+</table>
+<elem key="least strength">C</elem>
+</script></port>
+<port protocol="tcp" portid="16443"><state state="open" reason="syn-ack" reason_ttl="63"/><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="ssl-cert" output="Subject: commonName=127.0.0.1/organizationName=Canonical/stateOrProvinceName=Canonical/countryName=GB&#xa;Subject Alternative Name: DNS:kubernetes, DNS:kubernetes.default, DNS:kubernetes.default.svc, DNS:kubernetes.default.svc.cluster, DNS:kubernetes.default.svc.cluster.local, IP Address:127.0.0.1, IP Address:10.152.183.1, IP Address:10.10.162.115&#xa;Not valid before: 2022-12-24T11:30:55&#xa;Not valid after:  2023-12-24T11:30:55"><table key="subject">
+<elem key="commonName">127.0.0.1</elem>
+<elem key="countryName">GB</elem>
+<elem key="localityName">Canonical</elem>
+<elem key="organizationName">Canonical</elem>
+<elem key="organizationalUnitName">Canonical</elem>
+<elem key="stateOrProvinceName">Canonical</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">10.152.183.1</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">A63A5B1B48BF83CD54382352CF15842B7AC87E7061BA5CDF8A47FFD3160C879D06BC5EEE3A6F158B84E3CBF81CEDFB4505D3A8970165A457A07F3B51230ACB5624EA7E8520E732EA5E1E8344EB7771B528CCE69E6540173F3768727AD5A39E16A560092B6DDE78F44082017280455D65D17ABF3FA688D4DF84E81D3533834F857C09FFA16E06E907DAD18DDCF88E4AC01BFA1733732885E629DA8450CE821FEA97F3E17B5A12DECF04F3412AD5ACEF1097B17AF7F150484048EFDC8E2F851DFC0C680C508CBC145B894A5A38E75368F58FF23606ED2A971D9ECBEAF0EF60CE96C0B0D8A9D18D5FE8712B461B4A0C2A2C18FBF623C6C7FB3CBDBB147765E1EF81</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">keyid:5B:D6:EF:3E:1D:7D:F4:B9:81:5C:83:C5:66:D7:C5:72:9F:29:9A:C9&#xa;DirName:/CN=10.152.183.1&#xa;serial:4B:22:1C:D1:2D:4C:83:79:4F:AA:22:B8:91:EA:8D:7D:E6:F0:FF:78</elem>
+</table>
+<table>
+<elem key="name">X509v3 Basic Constraints</elem>
+<elem key="value">CA:FALSE</elem>
+</table>
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Digital Signature, Key Encipherment, Data Encipherment</elem>
+</table>
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication, TLS Web Client Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:kubernetes, DNS:kubernetes.default, DNS:kubernetes.default.svc, DNS:kubernetes.default.svc.cluster, DNS:kubernetes.default.svc.cluster.local, IP Address:127.0.0.1, IP Address:10.152.183.1, IP Address:10.10.162.115</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2022-12-24T11:30:55</elem>
+<elem key="notAfter">2023-12-24T11:30:55</elem>
+</table>
+<elem key="md5">a599908f350cb75c500e24a76316f70c</elem>
+<elem key="sha1">fd2483d3beb3d4963eb6c638fe707f3cb9440ed9</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIERTCCAy2gAwIBAgIUJHo62dCzpXCUazy6UyPZDOdgKmowDQYJKoZIhvcNAQEL&#xa;BQAwFzEVMBMGA1UEAwwMMTAuMTUyLjE4My4xMB4XDTIyMTIyNDExMzA1NVoXDTIz&#xa;MTIyNDExMzA1NVowcTELMAkGA1UEBhMCR0IxEjAQBgNVBAgMCUNhbm9uaWNhbDES&#xa;MBAGA1UEBwwJQ2Fub25pY2FsMRIwEAYDVQQKDAlDYW5vbmljYWwxEjAQBgNVBAsM&#xa;CUNhbm9uaWNhbDESMBAGA1UEAwwJMTI3LjAuMC4xMIIBIjANBgkqhkiG9w0BAQEF&#xa;AAOCAQ8AMIIBCgKCAQEApjpbG0i/g81UOCNSzxWEK3rIfnBhulzfikf/0xYMh50G&#xa;vF7uOm8Vi4Tjy/gc7ftFBdOolwFlpFegfztRIwrLViTqfoUg5zLqXh6DROt3cbUo&#xa;zOaeZUAXPzdocnrVo54WpWAJK23eePRAggFygEVdZdF6vz+miNTfhOgdNTODT4V8&#xa;Cf+hbgbpB9rRjdz4jkrAG/oXM3MoheYp2oRQzoIf6pfz4XtaEt7PBPNBKtWs7xCX&#xa;sXr38VBIQEjv3I4vhR38DGgMUIy8FFuJSlo451No9Y/yNgbtKpcdnsvq8O9gzpbA&#xa;sNip0Y1f6HErRhtKDCosGPv2I8bH+zy9uxR3ZeHvgQIDAQABo4IBLTCCASkwUgYD&#xa;VR0jBEswSYAUW9bvPh199LmBXIPFZtfFcp8pmsmhG6QZMBcxFTATBgNVBAMMDDEw&#xa;LjE1Mi4xODMuMYIUSyIc0S1Mg3lPqiK4keqNfebw/3gwCQYDVR0TBAIwADALBgNV&#xa;HQ8EBAMCBLAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMIGbBgNVHREE&#xa;gZMwgZCCCmt1YmVybmV0ZXOCEmt1YmVybmV0ZXMuZGVmYXVsdIIWa3ViZXJuZXRl&#xa;cy5kZWZhdWx0LnN2Y4Iea3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVygiRr&#xa;dWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWyHBH8AAAGHBAqYtwGH&#xa;BAoKonMwDQYJKoZIhvcNAQELBQADggEBACtSgM4UEJbXxbGFGNcEII+AaeOt2fE9&#xa;g4M/WcEV2AJ41lB7GUpTrJVbT7TqEpzT/36Ac3UeRakLBgZ8lA8OBtgpBOOmUYJu&#xa;LNLdOwU9vQEm1xOOARJe3BwRPFVlGkm49vvZXGCcEI+KF+idbAW0srGjLVT0vf2O&#xa;YYDJ52KQQijbazSY7cPiVEHQm+aQUhpuNanMACZDtcV1ysNP569wZTAlxyjneUxz&#xa;mNYqH2kRuFDaICRzwFyrc8uJ7lBd0zt6t6Y/Me2U2Pa30jjQ8Ycigzzr87/QBy8n&#xa;8vQs1xK25EqLFgbX1wgSkbKLFZymDWLo3DWa9qaUy/XAR7N6PEo44UU=&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA (secp256r1) - C&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;  TLSv1.3: &#xa;    ciphers: &#xa;      TLS_AKE_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A&#xa;      TLS_AKE_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A&#xa;      TLS_AKE_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - A&#xa;    cipher preference: server&#xa;  least strength: C"><table key="TLSv1.2">
+<table key="ciphers">
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">C</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">C</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+</table>
+</table>
+<table key="TLSv1.3">
+<table key="ciphers">
+<table>
+<elem key="kex_info">ecdh_x25519</elem>
+<elem key="name">TLS_AKE_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">ecdh_x25519</elem>
+<elem key="name">TLS_AKE_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">ecdh_x25519</elem>
+<elem key="name">TLS_AKE_WITH_CHACHA20_POLY1305_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+</table>
+<elem key="cipher preference">server</elem>
+</table>
+<elem key="least strength">C</elem>
+</script><script id="tls-alpn" output="&#xa;  h2&#xa;  http/1.1"><elem>h2</elem>
+<elem>http/1.1</elem>
+</script></port>
+<port protocol="tcp" portid="30679"><state state="open" reason="syn-ack" reason_ttl="62"/></port>
+</ports>
+<hostscript><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="qscan" output="&#xa;PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;22     0       86577.20   20430.46  0.0%&#xa;10255  0       88759.60   16768.28  0.0%&#xa;10257  0       88833.90   24367.03  0.0%&#xa;10259  0       86976.30   17532.57  0.0%&#xa;16443  0       88966.20   10990.92  0.0%&#xa;30679  0       96350.50   33280.98  0.0%&#xa;"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.10.162.115&quot;; use dns-brute.domain script argument."/><script id="ipidseq" output="All zeros"/><script id="path-mtu" output="PMTU == 1500"/></hostscript><times srtt="102384" rttvar="27988" to="214336"/>
+</host>
+<runstats><finished time="1671883200" timestr="Sat Dec 24 12:00:00 2022" summary="Nmap done at Sat Dec 24 12:00:00 2022; 1 IP address (1 host up) scanned in 56.86 seconds" elapsed="56.86" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -1,0 +1,84 @@
+# Nmap 7.93 scan initiated Wed Dec 28 11:25:00 2022 as: nmap --script vuln -oA nmap/10-129-227-156-Vuln --min-rate 500 -e tun0 -p 49718,9389,49667,135,3268,443,3269,445,49699,53,8172,464,139,49691,88,52405,593,80,49692,389,636 10.129.227.156
+Nmap scan report for 10.129.227.156
+Host is up (0.070s latency).
+
+PORT      STATE SERVICE
+53/tcp    open  domain
+80/tcp    open  http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-fileupload-exploiter: 
+|   
+|     Couldn't find a file-type field.
+|   
+|_    Couldn't find a file-type field.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.227.156
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.129.227.156:80/
+|     Form id: fname
+|     Form action: #
+|     
+|     Path: http://10.129.227.156:80/
+|     Form id: button-addon2
+|     Form action: #
+|     
+|     Path: http://10.129.227.156:80/single.html
+|     Form id: name
+|     Form action: #
+|     
+|     Path: http://10.129.227.156:80/single.html
+|     Form id: 
+|     Form action: #
+|     
+|     Path: http://10.129.227.156:80/single.html
+|     Form id: button-addon2
+|_    Form action: #
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+88/tcp    open  kerberos-sec
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+389/tcp   open  ldap
+443/tcp   open  https
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.227.156
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: https://10.129.227.156:443/
+|     Form id: fname
+|     Form action: #
+|     
+|     Path: https://10.129.227.156:443/
+|     Form id: button-addon2
+|     Form action: #
+|     
+|     Path: https://10.129.227.156:443/index.html
+|     Form id: fname
+|     Form action: #
+|     
+|     Path: https://10.129.227.156:443/index.html
+|     Form id: button-addon2
+|_    Form action: #
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+445/tcp   open  microsoft-ds
+464/tcp   open  kpasswd5
+593/tcp   open  http-rpc-epmap
+636/tcp   open  ldapssl
+3268/tcp  open  globalcatLDAP
+3269/tcp  open  globalcatLDAPssl
+8172/tcp  open  unknown
+9389/tcp  open  adws
+49667/tcp open  unknown
+49691/tcp open  unknown
+49692/tcp open  unknown
+49699/tcp open  unknown
+49718/tcp open  unknown
+52405/tcp open  unknown
+
+Host script results:
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_samba-vuln-cve-2012-1182: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+
+# Nmap done at Wed Dec 28 11:29:23 2022 -- 1 IP address (1 host up) scanned in 263.19 seconds

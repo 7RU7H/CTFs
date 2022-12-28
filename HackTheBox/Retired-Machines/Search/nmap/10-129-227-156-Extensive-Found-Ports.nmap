@@ -1,0 +1,75 @@
+# Nmap 7.93 scan initiated Wed Dec 28 11:15:35 2022 as: nmap -sC -sV -oA nmap/10-129-227-156-Extensive-Found-Ports --min-rate 500 -e tun0 -p 49718,9389,49667,135,3268,443,3269,445,49699,53,8172,464,139,49691,88,52405,593,80,49692,389,636 10.129.227.156
+Nmap scan report for 10.129.227.156
+Host is up (0.16s latency).
+
+PORT      STATE SERVICE       VERSION
+53/tcp    open  domain        Simple DNS Plus
+80/tcp    open  http          Microsoft IIS httpd 10.0
+|_http-title: Search &mdash; Just Testing IIS
+|_http-server-header: Microsoft-IIS/10.0
+| http-methods: 
+|_  Potentially risky methods: TRACE
+88/tcp    open  kerberos-sec  Microsoft Windows Kerberos (server time: 2022-12-28 11:15:54Z)
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp   open  ldap          Microsoft Windows Active Directory LDAP (Domain: search.htb0., Site: Default-First-Site-Name)
+|_ssl-date: 2022-12-28T11:17:29+00:00; 0s from scanner time.
+| ssl-cert: Subject: commonName=research
+| Not valid before: 2020-08-11T08:13:35
+|_Not valid after:  2030-08-09T08:13:35
+443/tcp   open  ssl/http      Microsoft IIS httpd 10.0
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_ssl-date: 2022-12-28T11:17:28+00:00; -1s from scanner time.
+|_http-title: Search &mdash; Just Testing IIS
+| ssl-cert: Subject: commonName=research
+| Not valid before: 2020-08-11T08:13:35
+|_Not valid after:  2030-08-09T08:13:35
+| tls-alpn: 
+|_  http/1.1
+445/tcp   open  microsoft-ds?
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp   open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: search.htb0., Site: Default-First-Site-Name)
+|_ssl-date: 2022-12-28T11:17:28+00:00; -1s from scanner time.
+| ssl-cert: Subject: commonName=research
+| Not valid before: 2020-08-11T08:13:35
+|_Not valid after:  2030-08-09T08:13:35
+3268/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: search.htb0., Site: Default-First-Site-Name)
+| ssl-cert: Subject: commonName=research
+| Not valid before: 2020-08-11T08:13:35
+|_Not valid after:  2030-08-09T08:13:35
+|_ssl-date: 2022-12-28T11:17:29+00:00; 0s from scanner time.
+3269/tcp  open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: search.htb0., Site: Default-First-Site-Name)
+| ssl-cert: Subject: commonName=research
+| Not valid before: 2020-08-11T08:13:35
+|_Not valid after:  2030-08-09T08:13:35
+|_ssl-date: 2022-12-28T11:17:28+00:00; -1s from scanner time.
+8172/tcp  open  ssl/http      Microsoft IIS httpd 10.0
+|_http-server-header: Microsoft-IIS/10.0
+|_http-title: Site doesn't have a title.
+| ssl-cert: Subject: commonName=WMSvc-SHA2-RESEARCH
+| Not valid before: 2020-04-07T09:05:25
+|_Not valid after:  2030-04-05T09:05:25
+|_ssl-date: 2022-12-28T11:17:29+00:00; -1s from scanner time.
+| tls-alpn: 
+|_  http/1.1
+9389/tcp  open  mc-nmf        .NET Message Framing
+49667/tcp open  msrpc         Microsoft Windows RPC
+49691/tcp open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+49692/tcp open  msrpc         Microsoft Windows RPC
+49699/tcp open  msrpc         Microsoft Windows RPC
+49718/tcp open  msrpc         Microsoft Windows RPC
+52405/tcp open  msrpc         Microsoft Windows RPC
+Service Info: Host: RESEARCH; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-security-mode: 
+|   311: 
+|_    Message signing enabled and required
+| smb2-time: 
+|   date: 2022-12-28T11:16:52
+|_  start_date: N/A
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Dec 28 11:17:37 2022 -- 1 IP address (1 host up) scanned in 122.55 seconds

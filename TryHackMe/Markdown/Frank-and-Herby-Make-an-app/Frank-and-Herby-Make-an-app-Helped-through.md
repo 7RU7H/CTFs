@@ -1,7 +1,7 @@
 # Frank-and-Herby-Make-an-app Helped-Through
 
 Name: Frank-and-Herby-Make-an-app
-Date:  
+Date:  24/12/2022
 Difficulty: Medium  
 Goals:  
 - Learn wtf is K8s and how to secure the K8 - gleaming the kube
@@ -10,8 +10,13 @@ Goals:
 - Whisper to AI -  [ChatGPT](https://chat.openai.com/chat)
 Learnt:
 - Why marketing called it K8 instead the Kube
-
-
+- groups made to bypass typing four letter words like sudo exist cross containerization adminstration
+- composer.json is for php projects
+- chatgtp can find some kube security stuff.
+- kubectl
+- yaml
+- yaml file prettifer
+  
 Working towards my AZ104 and Kubernetes was one of the few things I have really looked into and setup. [Alh4zr3d](https://www.youtube.com/watch?v=V6GTesdyL3k) stream about boxes containing Kubernetes was here to have fun and keep my head in OSCP-esque space over the Christmas period.
 
 ChatGTP to practice and test out from ChatGTP whispering
@@ -216,6 +221,7 @@ We escalated because of RBAC violation, but a policy may have prevented this aid
 Lazy `group` creation to avoid `sudo`  like command prepending - similiar to docker group issue  
 
 
+Consider reading:
 https://cloud.google.com/learn/what-is-kubernetes
 https://kubernetes.io/
 https://cloud.hacktricks.xyz/pentesting-cloud/kubernetes-pentesting/attacking-kubernetes-from-inside-a-pod
