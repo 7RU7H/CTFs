@@ -35,6 +35,9 @@ Beyond Root:
 	
 [Funday Sunday: HacktheBox's Search and Active Directory Gone Wild!](https://www.youtube.com/watch?v=OEu3sXFUCP0)
 
+Also I want to try a schedule of Boot2Root and then the next day Beyond Root and seeiung if that works. REENFORCEMENT LEARNING
+
+
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
@@ -127,13 +130,194 @@ Presumable this was to because Bloodhound was not maintaining the python version
 
 - Pausing here to consider my options https://www.youtube.com/watch?v=OEu3sXFUCP0 - at 1:06
 
-## Exploit
+Regardless I went back to running the [python remote based ingestor](https://github.com/fox-it/BloodHound.py), which connected and gathered data through querying the domain controller. One trick that I looked up for drag and drop activities was to use, if using kali linux default file manager: 
+```bash
+cd bloodhound-data
+thunar # default file manager
+```
 
+You can open the default file manager from the cli at your current working directory of your shell for quick drag and drop into bloodhound.  
+
+![](kerberoastableaccounts.png)
+
+Kerberoast the WEB_SVC with impacket.
+![](hopeSharpSPNsticket.png)
+This can then be cracked as it is encrypted with the WEB_SVC hash as part of the Kerberoast protocol. `@3ONEmillionbaby`. Al *"This is extremely common ... it is the function of the domain, the vulnerablity comes in when the password is not long and complex."*
+
+Hashcat rules recommend in crack long complex passwords: OneRuleToRuleThemAll and the Dive Rule.
+
+![](cmesharesWebSvc.png)
+
+Al could also have just piped raw `ls` into text file. A known active users list making idea. 
+```bash
+ls > userFromRF.txt
+```
+
+CTF sense tingling and I sprayed the recent acquired with the improved wordlist
+![](onemillionreuse.png)
+This password reuse type - web dev and web app, web dev needs to remember their password -  apparently very realistic, according to Al. He then explains about a County Government Enterprise Admin account sharing the password of the daily-driver low privilege account of the System Administrator. Rephrasing - myself for effect - from the bottom-up the Sys-Admin reuse his regular account password with his Enterprise Admin account.
+
+![](cmeedgarshare.png)
+
+Like Jason Haddix, Al uses [aquatone](https://github.com/michenriksen/aquatone). 
+
+Change in mindset from exploit-based enumerating for AD:
+
+1. How do I compromise credentials?
+2. What services can I access with those credentials?
+3. How can I abuse my permissions to get more permissions?
+
+Windows prefers IPv6 use [mitm6](https://github.com/dirkjanm/mitm6)
+
+![](edgarsdesktop.png)
+
+Openning up the document:
+![](phsihingattemptdoc.png)
+
+It is apparently this suppose to replicate internal Phishing Simulations.
+
+```bash
+mkdir Hacking-The-XLSX
+cp Phishing_Attempt.xlsx Phishing_Attempt.zip
+unzip Phishing_Attempt.xlsx
+```
+
+![](treeingtheunzippedxlsxfile.png)
+And view at the raw sheet to find any indication of protection:
+![1000](thexlsxinvim.png)
+
+Al removes this xml from the the 
+```xml
+<sheetProtection algorithmName="SHA-512" hashValue="hFq32ZstMEekuneGzHEfxeBZh3hnmO9nvv8qVHV8Ux+t+39/22E3pfr8aSuXISfrRV9UVfNEzidgv+Uvf8C5Tg==" saltValue="U9oZfaVCkz5jWdhs9AA8nA==" spinCount="100000" sheet="1" objects="1" scenarios="1"/>
+```
+
+Al was also looking for how, I tried recursively grepping 
+![](Itried.png)
+
+Al just removed the lines containing the protection. 
+![](bbbbbinvimandd.png)
+and then zipped it back together again:
+```bash
+zip -r unprotected.xlsx .
+libreoffice unprotected.xlsx
+```
+
+![](andbamherearethedomainpasswords.png)
+
+Similarly to my recursive grepping Al hunted for the next logical `'passwords'`
+![1000](thealternative.png)
+
+From Linux Hint I went to try `xmllint` default install on Kali, to find an automatable way.
+![](instantconversionissues.png)
+
+Vim nastiness aside tmux; `mousepad` works and format everything nicely were echo and vim in tmux will fail. Al demonstrates using `jq` to parse sharphound json data to extract information
+
+```bash
+# Basic starting point for CLI data extraction from a ingestor data 
+cat $bhdata_*file.json  | jq '.'
+# Get all users in a domain from ingestor data
+cat $bhdata_users.json  | jq '.data[].Properties.name' | tr -d '"' > users.txt
+# Remove @DOMAIN.TLD append  
+sed 's/@DOMAIN.TLD//g'
+```
+
+[Group Managed Service Account](https://learn.microsoft.com/en-us/windows-server/security/group-managed-service-accounts/group-managed-service-accounts-overview) is a managed domain account that provides automatic password management, simplified service principal name (SPN) management and the ability to delegate the management to other administrators, but over a multiple servers -unlike standalone Managed Service Account.
+
+```bash
+crackmapexec smb 10.129.227.156 -u bhdata_users.txt -p extractPasswords.txt
+```
 
 ## Foothold
 
+Sierra Frye! `search.htb\SIERRA.FRYE:$$49=wide=STRAIGHT=jordan=28$$18`
+![1000](sirrafryepasswordreuse.png)
+Quick checking for SMB shares with cme:
+![](cmesierrafryeshares.png)
+
+Importantly for me I went for the flag instrictively; I am trying to be more like Al and head for the next phase of hacking the box. I am not knocking capture the flag in making me this way, but this kind of small recognition and hopeful adjustment overtime is key to long term change. A example the last couple of years is password reuse, default passwords and weak passwords - it is just not sometime I worry about, because I always tried to and to check it seemed otherworldly, as it is sometime *other* people do, but that was a massive cognitive blind spot for sometime. 
+
+Changing the node to Seirra.Frye, firstly checking `Unrolled Group Mememberships`
+![](sierragroupmembership.png)
+
+then `Outbound Object Control`
+![](objectcontrol.png)
+
+GMSA is Microsoft's answer to Kerberoasting - similar to LAPs, but for service account's; the passwords are continuously rotated and randomised.
+
+Problem - we require a shell to abuse this permission
+
+Member of chat points out [GMSA dumper](https://github.com/micahvandeusen/gMSADumper)!
+Also some other nice github repositories
+https://github.com/topotam/PetitPotam
+https://github.com/knavesec/CredMaster
+https://github.com/hoangprod/AndrewSpecial
+Finally looked at this to reconsider Golang and C related futures... 
+https://github.com/byt3bl33d3r/OffensiveNim#why-nim 
+
+Personally I think Microsoft will try to make a incremental shifts in the next twenty years and use AI to port and backport everything into Cannonical Microsoft C-like language.like google's Carbon, the point that future exploitation shifts to something else. Removing it by previous generations of Windows at some point being considered *old* Microsoft code base lose the madness of always have to maintain the visibility of old code by not having to maintain use for it anymore. I have been really wanting to talk about this topic in the future with anyone as to me the issues in C are best exploiting by *knowing* C - writing it has become faster with AI. At some point there will be widespread detections measures based on compilation signatures. 
+
+Al points out that on Red Team assessments python scripts are good as there are less network signatures.
+
+![](gmsadumpstered.png)
+
+From GMSA-ADFS-GMSA we can change Tristan.Davies Passwords with `GenericAll`
+![](modifytristan.png)
+
+We don't have a shell but we could use `impacket-smbpasswd`, this does lead anywhere as the hashes for Al did not work. Given that I have heavy cold I will add this to my beyond root section. 
+
+There was also the certificate. It is encrypted - `pfx2john`  - use can identify this by `file $file.pfx` outputing that it is: `data` - cracking with `john` will result in `misspissy` as the password.
+
+`Firefox -> Settings -> Privacy and Security -> View Certificates -> Your Certificates -> Import -> <import your certificate>`
+And in Burpsuite, because the recently changed the settings - it now has a search bar! Incredible.
+
+`Burp -> Settings -> Search: Certificates -> Client TLS Certificates -> Add`, the later method did not work.
+
+![](loginscreenrelief.png)
+
+`localhost` is the computer name along with the Sierra.Frye and `$$49=wide=STRAIGHT=jordan=28$$18`
+
 ## PrivEsc
+
+![](sierraproof.png)
+
+Al helpful demonstrates a great site I did not know: [dsinternals](https://www.dsinternals.com/en/retrieving-cleartext-gmsa-passwords-from-active-directory/), also some powershell revision
+
+![](getthegmsapassword.png)
+
+```powershell
+$gmsa = Get-ADServiceAccount -Identity BIR-ADFS-GMSA -Properties 'msDS-ManagedPassword'
+$gmsaPass = $gmsa.'msDS-ManagedPassword'
+ConvertFrom-ADManagedPasswordBlob $gmsaPass
+```
+
+![](crazypassword.png)
+
+```powershell
+$credobj = ConvertFrom-ADManagedPasswordBlob $gmsaPass
+$credobj.SecureCurrentPassword
+$credential = New-Object System.Management.Automation.PSCredential BIR-ADFS-GMSA, $credobj.SecureCurrentPassword
+# Now we can invoke command
+Invoke-Command -Computername localhost -Credential $credential -Scriptblock { net user TRISTAN.DAVIES password123! /domain }
+```
+
+![](tristandaviesyourface.png)
+
+![](hurray.png)
 
 ## Beyond Root
 
+Returning the next day for the Beyond Root.
+
+
+`impacket-smbpasswd` - https://github.com/fortra/impacket/blob/master/examples/smbpasswd.py
+
       
+Harden the box with powershell
+	- Research hardening, but do atleast (prior to research):
+		- Lock down port connectivity per user - check connectivity group 
+		- Harden and or implement AMSI with powershell
+		- Configure the password policy 
+		- Create an alert based on .exe and .ps1 from PowerUP, Winpeas 
+		- Remote interaction with box that would no lead to compromise
+		- Open RDP for a new user to use Sysmon, ProcMon
+		- Get Sysinternals on box
