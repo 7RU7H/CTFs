@@ -23,6 +23,7 @@ then
 	cd $site/$name;
 	mkdir nmap && mkdir nikto && mkdir feroxbuster && mkdir masscan;
 	echo "# $name Writeup
+
 Name: $name
 Date:  
 Difficulty:  

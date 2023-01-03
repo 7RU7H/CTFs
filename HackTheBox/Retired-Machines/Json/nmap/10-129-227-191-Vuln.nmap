@@ -1,0 +1,38 @@
+# Nmap 7.93 scan initiated Tue Jan  3 23:08:14 2023 as: nmap --script vuln -oA nmap/10-129-227-191-Vuln --min-rate 500 -e tun0 -p 139,49157,80,49154,5985,49155,21,49153,49158,49156,47001,135,49152,445 10.129.227.191
+Nmap scan report for 10.129.227.191
+Host is up (0.076s latency).
+
+PORT      STATE SERVICE
+21/tcp    open  ftp
+80/tcp    open  http
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+| http-enum: 
+|_  /login.html: Possible admin folder
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-fileupload-exploiter: 
+|   
+|     Couldn't find a file-type field.
+|   
+|     Couldn't find a file-type field.
+|   
+|_    Couldn't find a file-type field.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+445/tcp   open  microsoft-ds
+5985/tcp  open  wsman
+47001/tcp open  winrm
+49152/tcp open  unknown
+49153/tcp open  unknown
+49154/tcp open  unknown
+49155/tcp open  unknown
+49156/tcp open  unknown
+49157/tcp open  unknown
+49158/tcp open  unknown
+
+Host script results:
+|_samba-vuln-cve-2012-1182: No accounts left to try
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: No accounts left to try
+
+# Nmap done at Tue Jan  3 23:14:28 2023 -- 1 IP address (1 host up) scanned in 373.58 seconds
