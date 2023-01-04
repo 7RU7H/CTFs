@@ -300,7 +300,7 @@ JDNet does have register - and ERP is enterprise resource planning...
 993 - IMAP over TLS
 995 - Pop3 over TLS
 3306 -MySQL
-
+ 
 ```bash
 ~C
 -L 488
@@ -345,15 +345,78 @@ Tried using just manual rather than my cheatsheets just practice memorising port
 # Host 
 chisel server -host 127.0.0.1 -port $serverPort
 # Seveenteen.htb
-chisel client -fingerprint $fingerprint 4873:127.0.0.1:$listenerPOrt$:10.10.14.109:$Serverport
+chisel client -fingerprint $fingerprint 4873:127.0.0.1:$listenerPort$:10.10.14.109:$Serverport
 ```
 I then ran into the upsetting revalations the I have not finished and there by mined [[Reddish-Helped-through]]... it is now on the complete ASAP list, so hopefully before the end of Janaury 2023. Regardless, I learnt openssl lolbas file transfering, plus more happy with openssl after 7 plus month head butting it for various reason in HTB boxes. Sadly I turned off the chisel server.
 
-From my note on ssh port forwarding without using the ssh subshell ~C
+From my notes on ssh port forwarding without using the ssh subshell ~C
 ```bash
 # Syntax: ssh -N -R [bind_address:]port:host:hostport [username@address]
 ssh -N -R $Attacker_IP:$Listening_port:$remotes_127-0-0-1:$port_forwarded_through attacker@$Attacker_IP
 ```
+
+But that would also involve password across the wire, so:
+```bash
+~C
+-L 4873:localhost:4873
+```
+From the localhost of the connecting ssh session use port 4873 forward the localhost of the connected to remote host 4873.
+
+[Verdaccio](https://verdaccio.org/) - *"is a simple, zero-config-required local private NPM registry. No need for an entire database just to get started..."*
+![](bigverdaccio.png)
+
+For the method:
+![](sadsploitnofindaccio.png)
+And credential reuse:
+`mark: 2020bestyearofmylife` failed
+
+The instructions are on screen, because it is a CTF. So we use the local npm.
+![](nodepocketmanger.png)
+
+Registry in this sense is the key value pair of packages stored and sharable.
+![](regsitryequalpackagemanager.png)
+db-logger is authored by target of potential privesc
+
+Abusing or legitmate use of nmp as if permissions can alter applications that use it 
+```bash
+npm install $package --registry $registry
+
+# Search a registry
+npm search ---registry http://$target:$port
+```
+
+Importantly for concious methodology - "Consider objectives(?!)":
+- How does the db-logger by the name probably logging the interactions with a db - database
+	- Database = credentials, db-to-host persistence and sometimes exploits
+	- Code that is not just-in-time access is often hardcoded
+![](butalsohardcodedcredentials.png)
+
+Mitigation for this from myself not Ippsec is to use just-in-time services to provide and manage credentials on deployment in the cloud, rather than hardcode it. 
+
+More credntial reuse with 
+`Kavi : IhateMathematics123#`
+
+## Kavi to Root
+
+![](kaviprivesc.png)
+I pause the video to flex possible creaky PrivEsc braincell - [Ippsec waitsat 51mins](https://www.youtube.com/watch?v=U-2nI6wSPOE&t=2839s)
+
+This is a script, owned by root
+![](sudothekavi.png)
+
+It requires the logger and db-logger packages from the registry. What every is downloaded will be owned by root so we need cant move a script in during the download to install them in /opt/app, which is root owned initally. But it will then run `node` as root on `index.js`
+
+![](rootvia8000.png)
+
+This will write data as root regardless, but we are using loglevel, not 
+![](appstartuplsla.png)
+It is not by default installed, but also does not matter 
+![](butisnotinstalled.png)
+Because [Node.js](https://nodejs.org/en/knowledge/getting-started/what-is-require/) `require()` allows for relative paths when we do not have the `logger` module on the filesystem we could then make a bad `logger` module of our own and force that on a `warn()` function and to be safe `debug()` to send us a shell. And because node is *"blazely fast"* \*cough\* it should not take long. 
+[Freecode camp Node.js Require() ](https://www.freecodecamp.org/news/requiring-modules-in-node-js-everything-you-need-to-know-e7fbd119be8/)
+[Honeybadger.io - Node.js Cache](https://www.honeybadger.io/blog/nodejs-caching/)
+![](badmodule.png)
+
 
 
 ## Beyond Root
