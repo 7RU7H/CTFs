@@ -422,6 +422,51 @@ Because [Node.js](https://nodejs.org/en/knowledge/getting-started/what-is-requir
 [Honeybadger.io - Node.js Cache](https://www.honeybadger.io/blog/nodejs-caching/)
 ![](badmodule.png)
 
+With:
+
+[Node.js Reverse shells](https://medium.com/dont-code-me-on-that/bunch-of-shells-nodejs-cdd6eb740f73)
+[XinYminutes JS](https://learnxinyminutes.com/docs/javascript/)
+[Javascript beautifer](https://beautifier.io/)
+[Digital Ocean Node.js Module creation](https://www.digitalocean.com/community/tutorials/how-to-create-a-node-js-module)
+
+Created:
+![](badlogger.png)
+I then `rm` the package.json as I then read that `npm init` will create it
+
+```bash
+npm init -y # Initialise
+npm install --save ../Logger
+# Verify module installation
+node 
+> module.paths 
+# Link instead of install for large depenedency and development "reasons.."
+npm link # to link the module
+```
+
+![](itsworking.png)
+
+Reviewing the code:  
+
+![](rootvia8000.png)
+- I replace the upper casing of the functions as contructors/classes conventionally are PascalCase and functions use camal case. 
+- Changed the module name as it loglevel not Logger
+- removethe warn as I dont need to target the server bricking..
+- called the reverse_shell function
+- more semi colons
+- updated the comments
+- Takes a parameter
+- return it just to provide more visibility that something has happened.
+
+Re init and installed after uninstall and ... I must of missed something
+![](musthavemissedsomething.png)
+
+No reverse shell. I stil learnt some JS. Now I understand why I am so wrong. 
+
+It is Ubuntu 18 and before sudo pulls from home not root. We need to edit the .npmrc to point to our box
+![](itactuallyworking.png)
+
+I was not really wrong I did not know how npm pulled packages. Ippsec hit my recent Dockerise bump from a couple of days ago... So will return to this after I thought and researched run docker in the best way possible.
+https://www.youtube.com/watch?v=U-2nI6wSPOE&t=2839s
 
 
 ## Beyond Root
