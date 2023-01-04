@@ -404,6 +404,11 @@ I pause the video to flex possible creaky PrivEsc braincell - [Ippsec waitsat 51
 This is a script, owned by root
 ![](sudothekavi.png)
 
+Note if we had control of directory like before then we could and pass the file in to the directory, I also want to the turn my failure to the read the `cd /opt/app` line into more Archive content. 
+```bash
+chmod 7777 $privEscFile
+```
+
 It requires the logger and db-logger packages from the registry. What every is downloaded will be owned by root so we need cant move a script in during the download to install them in /opt/app, which is root owned initally. But it will then run `node` as root on `index.js`
 
 ![](rootvia8000.png)
