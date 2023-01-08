@@ -10,11 +10,19 @@ Goals:
 - Warm up
 - JS website beyond root
 Learnt:
+- Testing for XXS if the information on the webpage is reflected to you.
+- Browser `Inspect` does not show HTML encoded characters.
+- Use multiple payloads to verify (non-)existence of XXS
+- Node has [SSTI](https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection)
+- Securing Cookies
+- Node JS
+- Wrote some Javascript
+- Object Oriented Language - Possible Deserialization Attacks? - Really any language
 Beyond Root:
 - Learn about JS webserver directory setup
 - Harden the webserver
 
-This and [[Corridor-Helped-Through]] are from [Newbie Tuesdays with Alh4zr3d](https://www.youtube.com/watch?v=2e9pGJbZpJg). I wanted to warm up while ill, get THM streak, harden some webservers mostly for the Json - mostly have fun before I before return to [[Support-Writeup]].
+This and [[Corridor-Writeup]] are from [Newbie Tuesdays with Alh4zr3d](https://www.youtube.com/watch?v=2e9pGJbZpJg). I wanted to warm up while ill, get THM streak, harden some webservers mostly for the Json - mostly have fun before I before return to [[Support-Writeup]].
 
 ## Recon
 
@@ -38,7 +46,7 @@ ffuf -u 'http://10.129.227.156/?email=FUZZ' -X POST -w /usr/share/seclists/Fuzzi
 - Node has [SSTI](https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection)
 
 
-![](xxspolyglot.png)
+![1000](xxspolyglot.png)
 
 Using common.txt
 ![](thereisadotgit.png)
@@ -66,10 +74,10 @@ This important for software to transmit and storing information to a target for 
 
 [opsecx](https://opsecx.com/index.php/2017/02/08/exploiting-node-js-deserialization-bug-for-remote-code-execution/)
 
-[Understanding PHP Object Injection  
-](https://securitycafe.ro/2015/01/05/understanding-php-object-injection/)[Java Deserialization Cheat Sheet  
-](https://github.com/GrrrDog/Java-Deserialization-Cheat-Sheet)[Rails Remote Code Execution Vulnerability Explained  
-](http://blog.codeclimate.com/blog/2013/01/10/rails-remote-code-execution-vulnerability-explained/)[Arbitrary code execution with Python pickles](https://www.cs.uic.edu/~s/musings/pickle/)
+[Understanding PHP Object Injection](https://securitycafe.ro/2015/01/05/understanding-php-object-injection/)
+[Java Deserialization Cheat Sheet](https://github.com/GrrrDog/Java-Deserialization-Cheat-Sheet)
+[Rails Remote Code Execution Vulnerability Explained](http://blog.codeclimate.com/blog/2013/01/10/rails-remote-code-execution-vulnerability-explained/)
+[Arbitrary code execution with Python pickles](https://www.cs.uic.edu/~s/musings/pickle/)
 
 Node JS (De)serialization
 ```js
@@ -311,5 +319,4 @@ if (!allowedMethods.includes(req.method)) {
         response.write($.html());
         response.end();
 }
-
 ```
