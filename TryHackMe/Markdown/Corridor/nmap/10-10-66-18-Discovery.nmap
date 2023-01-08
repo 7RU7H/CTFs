@@ -1,0 +1,81 @@
+# Nmap 7.93 scan initiated Sun Jan  8 18:12:51 2023 as: nmap --script discovery -oA nmap/10-10-66-18-Discovery --min-rate 500 -e tun0 -p 80 10.10.66.18
+Pre-scan script results:
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-ping: false
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_lltd-discovery: false
+| targets-sniffer: Sniffed 3 address(es). 
+| 224.0.23.12
+| 192.168.196.166
+|_10.10.199.14
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.10.66.18
+Host is up (0.051s latency).
+
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+80/tcp open  http
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-chrono: Request times for /; avg: 375.27ms; min: 353.27ms; max: 424.01ms
+|_http-mobileversion-checker: No mobile version detected.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 14
+|     /static/css/
+|       css: 1
+|     /static/img/
+|       png: 1
+|   Longest directory structure:
+|     Depth: 2
+|     Dir: /static/img/
+|   Total files found (by extension):
+|_    Other: 14; css: 1; png: 1
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-errors: Couldn't find any error pages.
+|_http-title: Corridor
+|_http-comments-displayer: Couldn't find any comments.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-feed: Couldn't find any feeds.
+| http-headers: 
+|   Content-Type: text/html; charset=utf-8
+|   Content-Length: 3213
+|   Server: Werkzeug/2.0.3 Python/3.10.2
+|   Date: Sun, 08 Jan 2023 18:13:25 GMT
+|   
+|_  (Request type: HEAD)
+|_http-date: Sun, 08 Jan 2023 18:13:26 GMT; +59m59s from local time.
+| http-vhosts: 
+|_128 names had status 200
+
+Host script results:
+|_dns-brute: Can't guess domain of "10.10.66.18"; use dns-brute.domain script argument.
+|_ipidseq: All zeros
+|_path-mtu: PMTU == 1500
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Sun Jan  8 18:19:45 2023 -- 1 IP address (1 host up) scanned in 414.75 seconds
