@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Mon Jan  9 12:02:45 2023 as: nmap -&#45;script vuln -oA nmap/10-129-15-171-Vuln -&#45;min-rate 500 -e tun0 -p 22,80 10.129.15.171 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-129-15-171-Vuln -&#45;min-rate 500 -e tun0 -p 22,80 10.129.15.171" start="1673265765" startstr="Mon Jan  9 12:02:45 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.15.171" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1673265789" endtime="1673265811"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.129.15.171" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/></port>
+</ports>
+<times srtt="71324" rttvar="56251" to="296328"/>
+</host>
+<runstats><finished time="1673265811" timestr="Mon Jan  9 12:03:31 2023" summary="Nmap done at Mon Jan  9 12:03:31 2023; 1 IP address (1 host up) scanned in 45.12 seconds" elapsed="45.12" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -56,7 +56,8 @@ but...
 
 ## Exploit
 
-We provide information for the cookie to give us sessions, this should mean we could customise a cookie to session hijack. This was a what surfaced from my brain during active recall. I just concatenate the hijack and cookie, part but the process of transforming the cookie to the change it and transforming it back is encapsulated in th idea.
+We provide information for the cookie to give us sessions, this should mean 
+we could customise a cookie to session hijack. This was a what surfaced from my brain during active recall. I just concatenate the hijack and cookie, part but the process of transforming the cookie to the change it and transforming it back is encapsulated in th idea.
 ![](cookiedecode.png)
 
 ```bash
@@ -105,7 +106,7 @@ serialize.unserialize(payload);
 
 [nodejsshell](https://github.com/ajinabraham/Node.Js-Security-Course/blob/master/nodejsshell.py)
 
-While AL forget a escaping and potentially a semi-colon I'll briefly address ZAP. Not that I am a shill, but ZAP is actually very powerful and in someways better than BurpSuite, for reporting and Bug Bounty hunting (Jasson Haddix recently 2022  methodolgy prefer Zap over Burp) mostly for plugin that are free are Burp Pro gatekept, as burp is multi-panel whereas ZAP is single panel UI centric - visualibity is better for tester. Also ZAP has builtin migitation and explaination text  making reporting AND recommending FIXES easier. Al's terminal color scene screws him on the escaping - the default is very good at that.
+While Al forget a escaping and potentially a semi-colon I'll briefly address ZAP. Not that I am a shill, but ZAP is actually very powerful and in someways better than BurpSuite, for reporting and Bug Bounty hunting (Jasson Haddix recently 2022  methodolgy prefer Zap over Burp) mostly for plugin that are free are Burp Pro gatekept, as burp is multi-panel whereas ZAP is single panel UI centric - visualibity is better for tester. Also ZAP has builtin migitation and explaination text  making reporting AND recommending FIXES easier. Al's terminal color scene screws him on the escaping - the default is very good at that.
 
 I would not suggest install npm, it is notorious
 ```bash
