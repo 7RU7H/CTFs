@@ -1,0 +1,39 @@
+# Nmap 7.93 scan initiated Tue Jan 10 19:06:47 2023 as: nmap --script discovery -oA nmap/10-10-220-6-Discovery --min-rate 500 -e tun0 -p 22 10.10.220.6
+Pre-scan script results:
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-ping: false
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_lltd-discovery: false
+| targets-sniffer: Sniffed 3 address(es). 
+| 224.0.23.12
+| 10.10.66.205
+|_192.168.194.190
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.10.220.6
+Host is up (0.12s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (9)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   3072 000bf9bf1d49a6c3fa9c5e08d16d8202 (RSA)
+|   256 a10c8e5df07fa532b2eb2f7abfedbf3d (ECDSA)
+|_  256 9eefc90afce99eede32db130b65fd40b (ED25519)
+|_banner: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.4
+
+Host script results:
+|_path-mtu: PMTU == 1500
+|_ipidseq: All zeros
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "10.10.220.6"; use dns-brute.domain script argument.
+
+# Nmap done at Tue Jan 10 19:07:20 2023 -- 1 IP address (1 host up) scanned in 32.66 seconds

