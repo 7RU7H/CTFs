@@ -1,0 +1,59 @@
+# Nmap 7.93 scan initiated Tue Jan 10 21:03:06 2023 as: nmap --script discovery --min-rate 100 -p 8000 -oN nmap/disc8000-slow 10.10.220.6
+Pre-scan script results:
+| ipv6-multicast-mld-list: 
+|   fe80::ccba:70ff:feca:3f12: 
+|     device: usb0
+|     mac: ceba70ca3f12
+|     multicast_ips: 
+|       ff02::1:ffca:3f12         (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:9a           (Solicited-Node Address)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::ccba:70ff:feca:3f12  MAC: ceba70ca3f12  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:1428:641d::9a     MAC: ceba70ca3f12  IFACE: usb0
+|   IP: fe80::ccba:70ff:feca:3f12  MAC: ceba70ca3f12  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:1428:641d::9a     MAC: ceba70ca3f12  IFACE: usb0
+|   IP: fe80::ccba:70ff:feca:3f12  MAC: ceba70ca3f12  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+Nmap scan report for 10.10.220.6
+Host is up (0.079s latency).
+
+PORT     STATE SERVICE
+8000/tcp open  http-alt
+|_http-title:  Login 
+|_http-chrono: Request times for /; avg: 296.97ms; min: 250.79ms; max: 360.45ms
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.220.6
+|   url                               method
+|   http://10.10.220.6:8000/          FORM
+|   http://10.10.220.6:8000/login     FORM
+|_  http://10.10.220.6:8000/register  FORM
+|_http-date: Tue, 10 Jan 2023 21:03:21 GMT; +59m59s from local time.
+| http-vhosts: 
+|_128 names had status 200
+| http-headers: 
+|   Content-Type: text/html; charset=utf-8
+|   Content-Length: 856
+|   Server: Werkzeug/2.0.2 Python/3.8.10
+|   Date: Tue, 10 Jan 2023 21:03:21 GMT
+|   
+|_  (Request type: HEAD)
+
+Host script results:
+|_fcrdns: FAIL (No PTR record)
+|_ipidseq: All zeros
+|_dns-brute: Can't guess domain of "10.10.220.6"; use dns-brute.domain script argument.
+|_path-mtu: PMTU == 1500
+
+# Nmap done at Tue Jan 10 21:10:12 2023 -- 1 IP address (1 host up) scanned in 426.52 seconds

@@ -119,7 +119,7 @@ aws --endpoint-url http://s3.bucket.htb --no-sign-request s3 cp cmd.php s3://ads
 ## Foothold
 
 ![](ready.png)
-I failed initialliy because I was target the s3. not the domain that is hosting the website
+I failed initialliy because I was targetting the s3. not the domain that is hosting the website
 ![](hurray.png)
 
 .aws in the linux fstab root directory
