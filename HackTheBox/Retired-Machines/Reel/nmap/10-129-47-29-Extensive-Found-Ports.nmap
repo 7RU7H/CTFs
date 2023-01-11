@@ -1,19 +1,19 @@
-# Nmap 7.92 scan initiated Thu May 26 09:19:45 2022 as: nmap -Pn -sC -sV -oA nmap/Extensive -p- --min-rate 500 10.129.1.151
-Nmap scan report for 10.129.1.151
-Host is up (0.047s latency).
-Not shown: 65527 filtered tcp ports (no-response)
-PORT      STATE SERVICE      VERSION
-21/tcp    open  ftp          Microsoft ftpd
+# Nmap 7.93 scan initiated Wed Jan 11 23:15:01 2023 as: nmap -sC -sV -oA nmap/10-129-47-29-Extensive-Found-Ports --min-rate 100 -e tun0 -p 25,22,21 10.129.47.29
+Nmap scan report for 10.129.47.29
+Host is up (0.076s latency).
+
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     Microsoft ftpd
 | ftp-syst: 
 |_  SYST: Windows_NT
 | ftp-anon: Anonymous FTP login allowed (FTP code 230)
-|_05-29-18  12:19AM       <DIR>          documents
-22/tcp    open  ssh          OpenSSH 7.6 (protocol 2.0)
+|_05-28-18  11:19PM       <DIR>          documents
+22/tcp open  ssh     OpenSSH 7.6 (protocol 2.0)
 | ssh-hostkey: 
-|   2048 82:20:c3:bd:16:cb:a2:9c:88:87:1d:6c:15:59:ed:ed (RSA)
-|   256 23:2b:b8:0a:8c:1c:f4:4d:8d:7e:5e:64:58:80:33:45 (ECDSA)
-|_  256 ac:8b:de:25:1d:b7:d8:38:38:9b:9c:16:bf:f6:3f:ed (ED25519)
-25/tcp    open  smtp?
+|   2048 8220c3bd16cba29c88871d6c1559eded (RSA)
+|   256 232bb80a8c1cf44d8d7e5e6458803345 (ECDSA)
+|_  256 ac8bde251db7d838389b9c16bff63fed (ED25519)
+25/tcp open  smtp?
 | smtp-commands: REEL, SIZE 20480000, AUTH LOGIN PLAIN, HELP
 |_ 211 DATA HELO EHLO MAIL NOOP QUIT RCPT RSET SAML TURN VRFY
 | fingerprint-strings: 
@@ -45,13 +45,8 @@ PORT      STATE SERVICE      VERSION
 |   TerminalServerCookie: 
 |     220 Mail Service ready
 |_    sequence of commands
-135/tcp   open  msrpc        Microsoft Windows RPC
-139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn
-445/tcp   open  microsoft-ds Windows Server 2012 R2 Standard 9600 microsoft-ds (workgroup: HTB)
-593/tcp   open  ncacn_http   Microsoft Windows RPC over HTTP 1.0
-49159/tcp open  msrpc        Microsoft Windows RPC
 1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
-SF-Port25-TCP:V=7.92%I=7%D=5/26%Time=628F38B4%P=x86_64-pc-linux-gnu%r(NULL
+SF-Port25-TCP:V=7.93%I=7%D=1/11%Time=63BF4309%P=x86_64-pc-linux-gnu%r(NULL
 SF:,18,"220\x20Mail\x20Service\x20ready\r\n")%r(Hello,3A,"220\x20Mail\x20S
 SF:ervice\x20ready\r\n501\x20EHLO\x20Invalid\x20domain\x20address\.\r\n")%
 SF:r(Help,54,"220\x20Mail\x20Service\x20ready\r\n211\x20DATA\x20HELO\x20EH
@@ -85,30 +80,7 @@ SF:ds\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequenc
 SF:e\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x20commands\r\n503\
 SF:x20Bad\x20sequence\x20of\x20commands\r\n503\x20Bad\x20sequence\x20of\x2
 SF:0commands\r\n");
-Service Info: Host: REEL; OS: Windows; CPE: cpe:/o:microsoft:windows
-
-Host script results:
-|_clock-skew: mean: -20m00s, deviation: 34m37s, median: -1s
-| smb2-security-mode: 
-|   3.0.2: 
-|_    Message signing enabled and required
-| smb-security-mode: 
-|   account_used: <blank>
-|   authentication_level: user
-|   challenge_response: supported
-|_  message_signing: required
-| smb2-time: 
-|   date: 2022-05-26T08:24:55
-|_  start_date: 2022-05-26T08:10:42
-| smb-os-discovery: 
-|   OS: Windows Server 2012 R2 Standard 9600 (Windows Server 2012 R2 Standard 6.3)
-|   OS CPE: cpe:/o:microsoft:windows_server_2012::-
-|   Computer name: REEL
-|   NetBIOS computer name: REEL\x00
-|   Domain name: HTB.LOCAL
-|   Forest name: HTB.LOCAL
-|   FQDN: REEL.HTB.LOCAL
-|_  System time: 2022-05-26T09:24:52+01:00
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-# Nmap done at Thu May 26 09:25:32 2022 -- 1 IP address (1 host up) scanned in 347.61 seconds
+# Nmap done at Wed Jan 11 23:18:07 2023 -- 1 IP address (1 host up) scanned in 185.95 seconds

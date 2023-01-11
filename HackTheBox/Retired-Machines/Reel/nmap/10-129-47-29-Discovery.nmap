@@ -1,0 +1,51 @@
+# Nmap 7.93 scan initiated Wed Jan 11 23:18:07 2023 as: nmap --script discovery -oA nmap/10-129-47-29-Discovery --min-rate 100 -e tun0 -p 25,22,21 10.129.47.29
+Pre-scan script results:
+|_lltd-discovery: false
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-ping: false
+Nmap scan report for 10.129.47.29
+Host is up (0.062s latency).
+
+PORT   STATE SERVICE
+21/tcp open  ftp
+|_banner: 220 Microsoft FTP Service
+| ftp-syst: 
+|_  SYST: Windows_NT
+22/tcp open  ssh
+| ssh-hostkey: 
+|   2048 8220c3bd16cba29c88871d6c1559eded (RSA)
+|   256 232bb80a8c1cf44d8d7e5e6458803345 (ECDSA)
+|_  256 ac8bde251db7d838389b9c16bff63fed (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (4)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (1)
+|_banner: SSH-2.0-OpenSSH_7.6
+25/tcp open  smtp
+| smtp-commands: REEL, SIZE 20480000, AUTH LOGIN PLAIN, HELP
+|_ 211 DATA HELO EHLO MAIL NOOP QUIT RCPT RSET SAML TURN VRFY
+|_banner: 220 Mail Service ready
+|_smtp-open-relay: Server is an open relay (8/16 tests)
+
+Host script results:
+|_fcrdns: FAIL (No PTR record)
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 21    0       134170.00  86238.11  0.0%
+| 22    0       100297.90  53616.69  0.0%
+|_25    0       109262.10  75577.60  0.0%
+|_ipidseq: Unknown
+|_path-mtu: PMTU == 1500
+|_dns-brute: Can't guess domain of "10.129.47.29"; use dns-brute.domain script argument.
+
+# Nmap done at Wed Jan 11 23:18:46 2023 -- 1 IP address (1 host up) scanned in 38.89 seconds
