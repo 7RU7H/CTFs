@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Fri Jan 13 20:40:14 2023 as: nmap -sC -sV -oA nmap/10-10-80-59-Extensive-Found-Ports -&#45;min-rate 100 -e tun0 -p 7,22,23,21,61337,80 10.10.80.59 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA nmap/10-10-80-59-Extensive-Found-Ports -&#45;min-rate 100 -e tun0 -p 7,22,23,21,61337,80 10.10.80.59" start="1673642414" startstr="Fri Jan 13 20:40:14 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="6" services="7,21-23,80,61337"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.80.59" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1673642428" endtime="1673642446"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.80.59" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="7"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="echo" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ftp" product="vsftpd" version="3.0.3" ostype="Unix" method="probed" conf="10"><cpe>cpe:/a:vsftpd:vsftpd:3.0.3</cpe></service></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" product="OpenSSH" version="7.6p1 Ubuntu 4ubuntu0.5" extrainfo="Ubuntu Linux; protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:7.6p1</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service><script id="ssh-hostkey" output="&#xa;  2048 9e30c56192841b246486c33bb7dc9934 (RSA)&#xa;  256 78c3c3838173cbf15041f19ad7bf3ed1 (ECDSA)&#xa;  256 ecceb8f957535663e961901215e5784a (ED25519)"><table>
+<elem key="fingerprint">9e30c56192841b246486c33bb7dc9934</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABAQDviuvddkQ0YODd4SKeFpZ+MrHKzDpz6vzQREErpzC5tZOT2AY2XKp7yiRa/XLrylST7MhJ8GhxKSuQHkz7DZczimHCCFV3eNGhNVTVUS2ZGwK1/Ff++73qlEjyTlzdLaOm4QtCceepksuf6Z51LRE79vSMv9xVyVtyRb4XWYBVO9HZmBtQwaBrk6lUCBpF0/NbA6C/LK730rEnvaxpt3N2UeOWrepA5a0OeswS05C3VAt03tfboQQ8apooZSQH798jXg7D4wv7zJMVgmU3i169De7viqGIACD+bac6wp75OsEhMzaUPXhXYY6293W+5Hkwqpq+7Mo02jRSqViEImlb</elem>
+<elem key="bits">2048</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+<table>
+<elem key="fingerprint">78c3c3838173cbf15041f19ad7bf3ed1</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJZqq+5ThS/qu9HZ+EYhZlNV4rVxxaFfP03DBU5XtAMQM0+u32hawMDfxsTr8NHps0zjcoj1gC9fHTbRg/xHggM=</elem>
+<elem key="bits">256</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+</table>
+<table>
+<elem key="fingerprint">ecceb8f957535663e961901215e5784a</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIPt1Zs9PzQV9rm3cNCQahQxaTyGaX59nzLdrgmyTg3Ee</elem>
+<elem key="bits">256</elem>
+<elem key="type">ssh-ed25519</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="23"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="telnet" product="Linux telnetd" ostype="Linux" method="probed" conf="10"><cpe>cpe:/o:linux:linux_kernel</cpe></service></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="Apache httpd" version="2.4.29" extrainfo="(Ubuntu)" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.29</cpe></service><script id="http-server-header" output="Apache/2.4.29 (Ubuntu)"><elem>Apache/2.4.29 (Ubuntu)</elem>
+</script><script id="http-title" output="Apache2 Ubuntu Default Page: It works"><elem key="title">Apache2 Ubuntu Default Page: It works</elem>
+</script></port>
+<port protocol="tcp" portid="61337"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="Werkzeug httpd" version="2.0.1" extrainfo="Python 3.6.9" method="probed" conf="10"><cpe>cpe:/a:python:python:3.6.9</cpe></service><script id="http-title" output="Site doesn&apos;t have a title (text/html; charset=utf-8).&#xa;Requested resource was http://10.10.80.59:61337/login"><elem key="redirect_url">http://10.10.80.59:61337/login</elem>
+</script></port>
+</ports>
+<times srtt="92973" rttvar="24015" to="189033"/>
+</host>
+<runstats><finished time="1673642446" timestr="Fri Jan 13 20:40:46 2023" summary="Nmap done at Fri Jan 13 20:40:46 2023; 1 IP address (1 host up) scanned in 31.57 seconds" elapsed="31.57" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

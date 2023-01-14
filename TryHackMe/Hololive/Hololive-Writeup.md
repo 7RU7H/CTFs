@@ -9,7 +9,7 @@ Learnt:
 - Tie functionality of pages together
 - deepce is linpeas for docker containers
 - Chisel
-- Golang compilation netty gritty
+- Golang compilation nitty gritty
 - More Situational Awareness or may the trench that is Dunning Kroger
 - Walk the the Webserver directory on at a time before/after/due second reverse shell
 
@@ -366,6 +366,6 @@ linux-admin linuxrulez
 
 ![](images.png)
 
-I wondered what was going on, I cant get execution but AV is actually removing it. As much as I have enjoyed the stream I will return to this probably in two days time after I have read everything in the next couple of sections as there is some divergence of path 
+I wondered what was going on, I cant get execution but AV is actually removing it. As much as I have enjoyed the stream I will return to this probably in two days time after I have read everything in the next couple of sections as there is some divergence of path.
 
 [2:57:02](https://www.youtube.com/watch?v=-a10dxWbp5M)
