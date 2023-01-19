@@ -1,0 +1,67 @@
+# Nmap 7.93 scan initiated Thu Jan 19 11:40:36 2023 as: nmap -sC -sV -oA nmap/10-10-193-71-Extensive-Found-Ports --min-rate 100 -e tun0 -p 22,80,139,443,21,445 10.10.193.71
+Nmap scan report for 10.10.193.71
+Host is up (0.058s latency).
+
+PORT    STATE SERVICE     VERSION
+21/tcp  open  ftp         vsftpd 3.0.2
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to ::ffff:10.11.3.193
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      At session startup, client count was 1
+|      vsFTPd 3.0.2 - secure, fast, stable
+|_End of status
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_drwxr-xr-x    2 0        0               6 Jun 09  2021 pub
+22/tcp  open  ssh         OpenSSH 7.4 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 092362a2186283690440623297ff3ccd (RSA)
+|   256 33663536b0680632c18af601bc4338ce (ECDSA)
+|_  256 1498e3847055e6600cc20977f8b7a61c (ED25519)
+80/tcp  open  http        Apache httpd 2.4.6 ((CentOS) OpenSSL/1.0.2k-fips)
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-title: Apache HTTP Server Test Page powered by CentOS
+|_http-server-header: Apache/2.4.6 (CentOS) OpenSSL/1.0.2k-fips
+139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+443/tcp open  ssl/http    Apache httpd 2.4.6 ((CentOS) OpenSSL/1.0.2k-fips)
+|_http-title: Apache HTTP Server Test Page powered by CentOS
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_ssl-date: TLS randomness does not represent time
+| ssl-cert: Subject: commonName=aratus/organizationName=SomeOrganization/stateOrProvinceName=SomeState/countryName=--
+| Not valid before: 2021-11-23T12:28:26
+|_Not valid after:  2022-11-23T12:28:26
+|_http-server-header: Apache/2.4.6 (CentOS) OpenSSL/1.0.2k-fips
+445/tcp open  netbios-ssn Samba smbd 4.10.16 (workgroup: WORKGROUP)
+Service Info: Host: ARATUS; OS: Unix
+
+Host script results:
+| smb-security-mode: 
+|   account_used: <blank>
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   311: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2023-01-19T11:41:03
+|_  start_date: N/A
+|_clock-skew: mean: -20m00s, deviation: 34m38s, median: -1s
+| smb-os-discovery: 
+|   OS: Windows 6.1 (Samba 4.10.16)
+|   Computer name: aratus
+|   NetBIOS computer name: ARATUS\x00
+|   Domain name: \x00
+|   FQDN: aratus
+|_  System time: 2023-01-19T12:41:02+01:00
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Jan 19 11:41:10 2023 -- 1 IP address (1 host up) scanned in 34.30 seconds

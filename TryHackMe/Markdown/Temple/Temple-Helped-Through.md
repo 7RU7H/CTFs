@@ -231,7 +231,7 @@ I tried using the [Flask API](https://flask.palletsprojects.com/en/2.2.x/api/) a
 ## Beyond Root
 
 Patch the SSTI vulnerability for the newacc 
-
+[Patch explained here](https://tryhackme.com/room/learnssti)
 
 Make a wordlists creator in golang for the serious string compute.
 
