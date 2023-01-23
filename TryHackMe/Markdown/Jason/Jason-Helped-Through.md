@@ -22,7 +22,7 @@ Beyond Root:
 - Learn about JS webserver directory setup
 - Harden the webserver
 
-This and [[Corridor-Writeup]] are from [Newbie Tuesdays with Alh4zr3d](https://www.youtube.com/watch?v=2e9pGJbZpJg). I wanted to warm up while ill, get THM streak, harden some webservers mostly for the Json - mostly have fun before I before return to [[Support-Writeup]].
+This and [[Corridor-Writeup]] are from [Newbie Tuesdays with Alh4zr3d](https://www.youtube.com/watch?v=2e9pGJbZpJg). I wanted to warm up while ill, get THM streak, harden some webservers mostly for the Json - mostly have fun before I before return to [[Support-Helped-Through]].
 
 ## Recon
 

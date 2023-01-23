@@ -1,0 +1,24 @@
+# Nmap 7.93 scan initiated Mon Jan 23 13:11:06 2023 as: nmap --script vuln -oA nmap/10-10-211-61-Vuln --min-rate 100 -e tun0 -p 80,22 10.10.211.61
+Nmap scan report for 10.10.211.61
+Host is up (0.065s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+| http-enum: 
+|_  /login.html: Possible admin folder
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.211.61
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.10.211.61:80/create.html
+|     Form id: uname
+|     Form action: /api/create
+|     
+|     Path: http://10.10.211.61:80/login.html
+|     Form id: uname
+|_    Form action: /api/login
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+
+# Nmap done at Mon Jan 23 13:14:16 2023 -- 1 IP address (1 host up) scanned in 189.59 seconds

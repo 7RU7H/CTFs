@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Mon Jan 23 13:11:06 2023 as: nmap -&#45;script vuln -oA nmap/10-10-211-61-Vuln -&#45;min-rate 100 -e tun0 -p 80,22 10.10.211.61 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-10-211-61-Vuln -&#45;min-rate 100 -e tun0 -p 80,22 10.10.211.61" start="1674479466" startstr="Mon Jan 23 13:11:06 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.211.61" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1674479489" endtime="1674479656"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.211.61" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-enum" output="&#xa;  /login.html: Possible admin folder&#xa;"/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.211.61&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://10.10.211.61:80/create.html&#xa;    Form id: uname&#xa;    Form action: /api/create&#xa;    &#xa;    Path: http://10.10.211.61:80/login.html&#xa;    Form id: uname&#xa;    Form action: /api/login&#xa;"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/></port>
+</ports>
+<times srtt="65102" rttvar="40486" to="227046"/>
+</host>
+<runstats><finished time="1674479656" timestr="Mon Jan 23 13:14:16 2023" summary="Nmap done at Mon Jan 23 13:14:16 2023; 1 IP address (1 host up) scanned in 189.59 seconds" elapsed="189.59" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

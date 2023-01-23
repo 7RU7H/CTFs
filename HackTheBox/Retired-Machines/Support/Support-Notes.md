@@ -34,4 +34,5 @@ Section to solve
 ### Done
 
 
-
+Weirdness
+![](ping-confirms-more-stealth.png)

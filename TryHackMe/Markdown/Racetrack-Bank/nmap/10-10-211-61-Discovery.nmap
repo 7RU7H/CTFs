@@ -1,0 +1,132 @@
+# Nmap 7.93 scan initiated Mon Jan 23 13:08:00 2023 as: nmap --script discovery -oA nmap/10-10-211-61-Discovery --min-rate 100 -e tun0 -p 80,22 10.10.211.61
+Pre-scan script results:
+|_broadcast-ping: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_lltd-discovery: false
+Nmap scan report for 10.10.211.61
+Host is up (0.075s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh-hostkey: 
+|   2048 519153a5af1a5a786762aed637a08e33 (RSA)
+|   256 c17072cc82c3f33e5e0a6a054ef04c3c (ECDSA)
+|_  256 a2ea537ce1d760bcd39208a99d206b7d (ED25519)
+|_banner: SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+80/tcp open  http
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.211.61
+|   url                                 method
+|   http://10.10.211.61:80/login.html   FORM
+|_  http://10.10.211.61:80/create.html  FORM
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.10.211.61
+|   Found the following error pages: 
+|   
+|   Error Code: 404
+|   	http://10.10.211.61:80/api/login
+|   
+|   Error Code: 404
+|_  	http://10.10.211.61:80/api/create
+|_http-devframework: Express detected. Found Express in X-Powered-By Header
+|_http-date: Mon, 23 Jan 2023 13:08:36 GMT; +1h00m00s from local time.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.211.61
+|     
+|     Path: http://10.10.211.61:80/bootstrap/css/bootstrap.min.css
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * Bootstrap v4.4.1 (https://getbootstrap.com/)
+|          * Copyright 2011-2019 The Bootstrap Authors
+|          * Copyright 2011-2019 Twitter, Inc.
+|          * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+|          */
+|     
+|     Path: http://10.10.211.61:80/bootstrap/css/bootstrap.min.css
+|     Line number: 7
+|     Comment: 
+|_        /*# sourceMappingURL=bootstrap.min.css.map */
+| http-vhosts: 
+|_128 names had status 200
+|_http-mobileversion-checker: No mobile version detected.
+|_http-feed: Couldn't find any feeds.
+|_http-chrono: Request times for /; avg: 145.84ms; min: 126.19ms; max: 168.89ms
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; html: 2
+|     /bootstrap/css/
+|       css: 1
+|     /images/
+|       jpg: 1
+|   Longest directory structure:
+|     Depth: 2
+|     Dir: /bootstrap/css/
+|   Total files found (by extension):
+|_    Other: 1; css: 1; html: 2; jpg: 1
+| http-security-headers: 
+|   Cache_Control: 
+|_    Header: Cache-Control: no-store
+| http-enum: 
+|_  /login.html: Possible admin folder
+|_http-title: Racetrack Bank
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-headers: 
+|   Server: nginx/1.14.0 (Ubuntu)
+|   Date: Mon, 23 Jan 2023 13:08:34 GMT
+|   Content-Type: text/html; charset=utf-8
+|   Content-Length: 1542
+|   Connection: close
+|   X-Powered-By: Express
+|   Cache-Control: no-store
+|   Set-Cookie: connect.sid=s%3AgI5s32HXVlORYHXAkJW9zyU-PessiXJT.hWDQdPD4pBWSplYrgzZwoP1oLIm8bnmfZRVUJdnRJhU; Path=/; HttpOnly
+|   
+|_  (Request type: HEAD)
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+
+Host script results:
+|_ipidseq: All zeros
+|_path-mtu: PMTU == 1500
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 22    0       62944.30   6205.88  0.0%
+|_80    0       59737.30   7610.15  0.0%
+|_dns-brute: Can't guess domain of "10.10.211.61"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Mon Jan 23 13:11:06 2023 -- 1 IP address (1 host up) scanned in 185.57 seconds

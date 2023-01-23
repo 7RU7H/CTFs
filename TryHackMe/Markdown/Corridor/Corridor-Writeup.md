@@ -12,7 +12,7 @@ Beyond Root:
 - Learn about general python webserver file directory and such
 - Harden the webserver
 
-This and [[Jason-Helped-Through]] are from [Newbie Tuesdays with Alh4zr3d](https://www.youtube.com/watch?v=2e9pGJbZpJg). I wanted to warm up while ill, get THM streak, harden some webservers mostly for the Json - mostly have fun before I before return to [[Support-Writeup]]. I just work this one out and added some bash kung fu to grab the hashes to check.
+This and [[Jason-Helped-Through]] are from [Newbie Tuesdays with Alh4zr3d](https://www.youtube.com/watch?v=2e9pGJbZpJg). I wanted to warm up while ill, get THM streak, harden some webservers mostly for the Json - mostly have fun before I before return to [[Support-Helped-Through]]. I just work this one out and added some bash kung fu to grab the hashes to check.
 
 ## Recon
 
