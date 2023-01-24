@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Tue Jan 24 19:18:44 2023 as: nmap -&#45;script vuln -oA nmap/10-129-96-157-Vuln -&#45;min-rate 100 -e tun0 -p 49669,5985,445,135,80 10.129.96.157 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-129-96-157-Vuln -&#45;min-rate 100 -e tun0 -p 49669,5985,445,135,80 10.129.96.157" start="1674587924" startstr="Tue Jan 24 19:18:44 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="5" services="80,135,445,5985,49669"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.96.157" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1674587948" endtime="1674588163"><status state="up" reason="echo-reply" reason_ttl="127"/>
+<address addr="10.129.96.157" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" method="table" conf="3"/><script id="http-phpself-xss" output="&#xa;  VULNERABLE:&#xa;  Unsafe use of $_SERVER[&quot;PHP_SELF&quot;] in PHP files&#xa;    State: VULNERABLE (Exploitable)&#xa;      PHP files are not handling safely the variable $_SERVER[&quot;PHP_SELF&quot;] causing Reflected Cross Site Scripting vulnerabilities.&#xa;             &#xa;    Extra information:&#xa;      &#xa;  Vulnerable files with proof of concept:&#xa;    http://10.129.96.157/login.php/%27%22/%3E%3Cscript%3Ealert(1)%3C/script%3E&#xa;  Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.96.157&#xa;    References:&#xa;      https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)&#xa;      http://php.net/manual/en/reserved.variables.server.php&#xa;"><table key="NMAP-8">
+<elem key="title">Unsafe use of $_SERVER[&quot;PHP_SELF&quot;] in PHP files</elem>
+<elem key="state">VULNERABLE (Exploitable)</elem>
+<table key="description">
+<elem>PHP files are not handling safely the variable $_SERVER[&quot;PHP_SELF&quot;] causing Reflected Cross Site Scripting vulnerabilities.&#xa;       </elem>
+</table>
+<table key="extra_info">
+<elem>&#xa;Vulnerable files with proof of concept:&#xa;  http://10.129.96.157/login.php/%27%22/%3E%3Cscript%3Ealert(1)%3C/script%3E&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.96.157</elem>
+</table>
+<table key="refs">
+<elem>https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)</elem>
+<elem>http://php.net/manual/en/reserved.variables.server.php</elem>
+</table>
+</table>
+</script><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-enum" output="&#xa;  /login.php: Possible admin folder&#xa;"/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.96.157&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://10.129.96.157:80/&#xa;    Form id: login_username&#xa;    Form action: /login.php&#xa;    &#xa;    Path: http://10.129.96.157:80/login.php&#xa;    Form id: login_username&#xa;    Form action: /login.php&#xa;    &#xa;    Path: http://10.129.96.157:80/login.php?guest=true&#xa;    Form id: login_username&#xa;    Form action: /login.php&#xa;"/><script id="http-cookie-flags" output="&#xa;  /: &#xa;    PHPSESSID: &#xa;      httponly flag not set&#xa;  /login.php: &#xa;    PHPSESSID: &#xa;      httponly flag not set"><table key="/">
+<table key="PHPSESSID">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+<table key="/login.php">
+<table key="PHPSESSID">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+</script></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="wsman" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49669"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+</ports>
+<hostscript><script id="smb-vuln-ms10-061" output="Could not negotiate a connection:SMB: Failed to receive bytes: ERROR">false</script><script id="samba-vuln-cve-2012-1182" output="Could not negotiate a connection:SMB: Failed to receive bytes: ERROR">false</script><script id="smb-vuln-ms10-054" output="false">false</script></hostscript><times srtt="67595" rttvar="23574" to="161891"/>
+</host>
+<runstats><finished time="1674588163" timestr="Tue Jan 24 19:22:43 2023" summary="Nmap done at Tue Jan 24 19:22:43 2023; 1 IP address (1 host up) scanned in 238.82 seconds" elapsed="238.82" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
