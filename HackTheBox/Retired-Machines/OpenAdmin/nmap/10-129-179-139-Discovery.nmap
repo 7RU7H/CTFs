@@ -1,0 +1,139 @@
+# Nmap 7.93 scan initiated Tue Jan 24 23:07:36 2023 as: nmap --script discovery -oA nmap/10-129-179-139-Discovery --min-rate 100 -e tun0 -p 80,22 10.129.179.139
+Pre-scan script results:
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-ping: false
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_lltd-discovery: false
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+Nmap scan report for 10.129.179.139
+Host is up (0.061s latency).
+
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3
+| ssh-hostkey: 
+|   2048 4b98df85d17ef03dda48cdbc9200b754 (RSA)
+|   256 dceb3dc944d118b122b4cfdebd6c7a54 (ECDSA)
+|_  256 dcadca3c11315b6fe6a489347c9be550 (ED25519)
+80/tcp open  http
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.129.179.139
+|   Found the following error pages: 
+|   
+|   Error Code: 404
+|_  	http://10.129.179.139:80/manual
+| http-headers: 
+|   Date: Tue, 24 Jan 2023 23:08:12 GMT
+|   Server: Apache/2.4.29 (Ubuntu)
+|   Last-Modified: Thu, 21 Nov 2019 14:08:45 GMT
+|   ETag: "2aa6-597dbd5dcea8b"
+|   Accept-Ranges: bytes
+|   Content-Length: 10918
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /icons/
+|       png: 1
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /icons/
+|   Total files found (by extension):
+|_    Other: 1; png: 1
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.179.139
+|     
+|     Path: http://10.129.179.139:80/
+|     Line number: 201
+|     Comment: 
+|         <!--      <div class="table_of_contents floating_element">
+|                 <div class="section_header section_header_grey">
+|                   TABLE OF CONTENTS
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#about">About</a>
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#changes">Changes</a>
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#scope">Scope</a>
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#files">Config files</a>
+|                 </div>
+|               </div>
+|         -->
+|     
+|     Path: http://10.129.179.139:80/
+|     Line number: 4
+|     Comment: 
+|         <!--
+|             Modified from the Debian original for Ubuntu
+|             Last updated: 2016-11-16
+|             See: https://launchpad.net/bugs/1288690
+|_          -->
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-date: Tue, 24 Jan 2023 23:08:11 GMT; +1h00m00s from local time.
+|_http-feed: Couldn't find any feeds.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-grep: 
+|   (1) http://10.129.179.139:80/manual: 
+|     (1) ip: 
+|_      + 10.129.179.139
+|_http-title: Apache2 Ubuntu Default Page: It works
+|_http-chrono: Request times for /; avg: 248.93ms; min: 198.42ms; max: 297.21ms
+| http-vhosts: 
+|_128 names had status 200
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-mobileversion-checker: No mobile version detected.
+
+Host script results:
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       77908.40   25715.80  0.0%
+|_80    0       66883.30   13550.18  0.0%
+|_dns-brute: Can't guess domain of "10.129.179.139"; use dns-brute.domain script argument.
+|_ipidseq: All zeros
+|_path-mtu: PMTU == 1500
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Tue Jan 24 23:14:20 2023 -- 1 IP address (1 host up) scanned in 403.90 seconds

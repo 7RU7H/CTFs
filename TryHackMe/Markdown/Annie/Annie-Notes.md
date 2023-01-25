@@ -39,7 +39,7 @@ Issues naabu output !!
 #!/bin/bash
 
 if [ "$#" -ne 3 ]; then
-        echo "Usage: $0 <IP address> <interface> <rate integer>"
+        echo "Usage: $0  <rate integer> <interface> <IP address>"
         exit
 fi
 
@@ -55,13 +55,13 @@ else
 fi
 rm /tmp/nmap-err
 dash_delimited_ip=$(echo $1 | tr -s '.' '-')
-list=$(cat naabu/$dash_delimited_ip-allports | awk -F: '{print $2}' | tr -s '\n' ',' )
+list=$(cat naabu/$dash_delimited_ip-allports-naabu | awk -F: '{print $2}' | tr -s '\n' ',' )
 ports=${list:0:${list} - 1 }
-sudo nmap $nmap_pn_flag -sC -sV -oA nmap/$dash_delimited_ip-Extensive-Found-Ports --min-rate $3 -e $2 -p $ports $1
+sudo nmap $nmap_pn_flag -sC -sV -oA nmap/$dash_delimited_ip-Extensive-Found-Ports --min-rate $1 -e $2 -p $ports $3
 wait
-sudo nmap $nmap_pn_flag --script discovery -oA nmap/$dash_delimited_ip-Discovery --min-rate $3 -e $2 -p $ports $1
+sudo nmap $nmap_pn_flag --script discovery -oA nmap/$dash_delimited_ip-Discovery --min-rate $1 -e $2 -p $ports $3
 wait
-sudo nmap $nmap_pn_flag --script vuln -oA nmap/$dash_delimited_ip-Vuln --min-rate $3 -e $2 -p $ports $1
+sudo nmap $nmap_pn_flag --script vuln -oA nmap/$dash_delimited_ip-Vuln --min-rate $1 -e $2 -p $ports $3
 wait
 echo ""
 echo "Nmap has finished all 3 Scans against $1"
