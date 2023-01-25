@@ -1,0 +1,64 @@
+# Nmap 7.93 scan initiated Wed Jan 25 13:34:35 2023 as: nmap --script vuln -oA nmap/10-129-239-84-Vuln --min-rate 100 -e tun0 -p 22,80 10.129.239.84
+Nmap scan report for 10.129.239.84
+Host is up (0.050s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.239.84
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.129.239.84:80/
+|     Form id: login-form
+|     Form action: /index.php
+|     
+|     Path: http://10.129.239.84:80/index.php/component/users/?view=reset&amp;Itemid=101
+|     Form id: user-registration
+|     Form action: /index.php/component/users/?task=reset.request&Itemid=101
+|     
+|     Path: http://10.129.239.84:80/index.php/component/users/?view=reset&amp;Itemid=101
+|     Form id: login-form
+|     Form action: /index.php/component/users/?Itemid=101
+|     
+|     Path: http://10.129.239.84:80/index.php/2-uncategorised/1-first-post-of-curling2018
+|     Form id: login-form
+|     Form action: /index.php
+|     
+|     Path: http://10.129.239.84:80/index.php
+|     Form id: login-form
+|     Form action: /index.php
+|     
+|     Path: http://10.129.239.84:80/index.php/2-uncategorised/2-curling-you-know-its-true
+|     Form id: login-form
+|     Form action: /index.php
+|     
+|     Path: http://10.129.239.84:80/index.php/2-uncategorised
+|     Form id: login-form
+|_    Form action: /index.php
+| http-dombased-xss: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.239.84
+|   Found the following indications of potential DOM based XSS: 
+|     
+|     Source: window.open(this.href,'win2','status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=640,height=480,directories=no,location=no')
+|_    Pages: http://10.129.239.84:80/, http://10.129.239.84:80/, http://10.129.239.84:80/, http://10.129.239.84:80/index.php/2-uncategorised/1-first-post-of-curling2018, http://10.129.239.84:80/index.php, http://10.129.239.84:80/index.php, http://10.129.239.84:80/index.php, http://10.129.239.84:80/index.php/2-uncategorised/2-curling-you-know-its-true, http://10.129.239.84:80/index.php/2-uncategorised, http://10.129.239.84:80/index.php/2-uncategorised, http://10.129.239.84:80/index.php/2-uncategorised
+| http-internal-ip-disclosure: 
+|_  Internal IP Leaked: 250
+| http-enum: 
+|   /administrator/: Possible admin folder
+|   /administrator/index.php: Possible admin folder
+|   /administrator/manifests/files/joomla.xml: Joomla version 3.8.8
+|   /language/en-GB/en-GB.xml: Joomla version 3.8.8
+|   /htaccess.txt: Joomla!
+|   /README.txt: Interesting, a readme.
+|   /bin/: Potentially interesting folder
+|   /cache/: Potentially interesting folder
+|   /images/: Potentially interesting folder
+|   /includes/: Potentially interesting folder
+|   /libraries/: Potentially interesting folder
+|   /modules/: Potentially interesting folder
+|   /templates/: Potentially interesting folder
+|_  /tmp/: Potentially interesting folder
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+
+# Nmap done at Wed Jan 25 13:36:09 2023 -- 1 IP address (1 host up) scanned in 93.31 seconds

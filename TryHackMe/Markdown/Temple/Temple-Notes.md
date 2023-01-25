@@ -21,6 +21,12 @@ url encode
 requote -b "\"" 
 unicode crazy word to describe using weird characters 
 escape - escape 
+lfi -e url -b "."
+```
+
+LFI filter
+```bash
+echo -ne '/../../../../../../../../../../../../' | xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g'
 ```
 
 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Wed Jan 25 11:47:46 2023 as: nmap -&#45;script discovery -oA nmap/10-129-230-132-Discovery -&#45;min-rate 100 -e tun0 -p 4386,445 10.129.230.132 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/10-129-230-132-Discovery -&#45;min-rate 100 -e tun0 -p 4386,445 10.129.230.132" start="1674647266" startstr="Wed Jan 25 11:47:46 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="445,4386"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="broadcast-ping" output="false">false</script><script id="targets-sniffer" output="Sniffed 1 address(es). &#xa;224.0.23.12"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="lltd-discovery" output="false">false</script><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.230.132" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1674647290" endtime="1674647324"><status state="up" reason="echo-reply" reason_ttl="127"/>
+<address addr="10.129.230.132" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="4386"><state state="open" reason="syn-ack" reason_ttl="127"/><script id="banner" output="HQK Reporting Service V1.2\x0D\x0A\x0D\x0A&gt;"/></port>
+</ports>
+<hostscript><script id="ipidseq" output="Incremental!"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.129.230.132&quot;; use dns-brute.domain script argument."/><script id="smb-mbenum" output="&#xa;  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR"/><script id="smb2-time" output="&#xa;  date: 2023-01-25T11:48:25&#xa;  start_date: 2023-01-25T11:00:37"><elem key="date">2023-01-25T11:48:25</elem>
+<elem key="start_date">2023-01-25T11:00:37</elem>
+</script><script id="msrpc-enum" output="Could not negotiate a connection:SMB: Failed to receive bytes: ERROR">false</script><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)&#xa;445   0       48655.40   4608.52  0.0%&#xa;4386  0       49186.50   4842.75  0.0%&#xa;"/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="path-mtu" output="PMTU == 1500"/><script id="smb2-capabilities" output="&#xa;  202: &#xa;    Distributed File System&#xa;  210: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations"><table key="202">
+<elem>Distributed File System</elem>
+</table>
+<table key="210">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+</script><script id="smb-protocols" output="&#xa;  dialects: &#xa;    202&#xa;    210"><table key="dialects">
+<elem>202</elem>
+<elem>210</elem>
+</table>
+</script><script id="smb2-security-mode" output="&#xa;  210: &#xa;    Message signing enabled but not required"><table key="210">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script></hostscript><times srtt="49226" rttvar="34309" to="186462"/>
+</host>
+<runstats><finished time="1674647324" timestr="Wed Jan 25 11:48:44 2023" summary="Nmap done at Wed Jan 25 11:48:44 2023; 1 IP address (1 host up) scanned in 58.24 seconds" elapsed="58.24" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

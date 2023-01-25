@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Wed Jan 25 13:34:35 2023 as: nmap -&#45;script vuln -oA nmap/10-129-239-84-Vuln -&#45;min-rate 100 -e tun0 -p 22,80 10.129.239.84 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-129-239-84-Vuln -&#45;min-rate 100 -e tun0 -p 22,80 10.129.239.84" start="1674653675" startstr="Wed Jan 25 13:34:35 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.239.84" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1674653699" endtime="1674653769"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.129.239.84" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.239.84&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://10.129.239.84:80/&#xa;    Form id: login-form&#xa;    Form action: /index.php&#xa;    &#xa;    Path: http://10.129.239.84:80/index.php/component/users/?view=reset&amp;amp;Itemid=101&#xa;    Form id: user-registration&#xa;    Form action: /index.php/component/users/?task=reset.request&amp;Itemid=101&#xa;    &#xa;    Path: http://10.129.239.84:80/index.php/component/users/?view=reset&amp;amp;Itemid=101&#xa;    Form id: login-form&#xa;    Form action: /index.php/component/users/?Itemid=101&#xa;    &#xa;    Path: http://10.129.239.84:80/index.php/2-uncategorised/1-first-post-of-curling2018&#xa;    Form id: login-form&#xa;    Form action: /index.php&#xa;    &#xa;    Path: http://10.129.239.84:80/index.php&#xa;    Form id: login-form&#xa;    Form action: /index.php&#xa;    &#xa;    Path: http://10.129.239.84:80/index.php/2-uncategorised/2-curling-you-know-its-true&#xa;    Form id: login-form&#xa;    Form action: /index.php&#xa;    &#xa;    Path: http://10.129.239.84:80/index.php/2-uncategorised&#xa;    Form id: login-form&#xa;    Form action: /index.php&#xa;"/><script id="http-dombased-xss" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.239.84&#xa;  Found the following indications of potential DOM based XSS: &#xa;    &#xa;    Source: window.open(this.href,&apos;win2&apos;,&apos;status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=640,height=480,directories=no,location=no&apos;)&#xa;    Pages: http://10.129.239.84:80/, http://10.129.239.84:80/, http://10.129.239.84:80/, http://10.129.239.84:80/index.php/2-uncategorised/1-first-post-of-curling2018, http://10.129.239.84:80/index.php, http://10.129.239.84:80/index.php, http://10.129.239.84:80/index.php, http://10.129.239.84:80/index.php/2-uncategorised/2-curling-you-know-its-true, http://10.129.239.84:80/index.php/2-uncategorised, http://10.129.239.84:80/index.php/2-uncategorised, http://10.129.239.84:80/index.php/2-uncategorised&#xa;"/><script id="http-internal-ip-disclosure" output="&#xa;  Internal IP Leaked: 250"><elem key="Internal IP Leaked">250</elem>
+</script><script id="http-enum" output="&#xa;  /administrator/: Possible admin folder&#xa;  /administrator/index.php: Possible admin folder&#xa;  /administrator/manifests/files/joomla.xml: Joomla version 3.8.8&#xa;  /language/en-GB/en-GB.xml: Joomla version 3.8.8&#xa;  /htaccess.txt: Joomla!&#xa;  /README.txt: Interesting, a readme.&#xa;  /bin/: Potentially interesting folder&#xa;  /cache/: Potentially interesting folder&#xa;  /images/: Potentially interesting folder&#xa;  /includes/: Potentially interesting folder&#xa;  /libraries/: Potentially interesting folder&#xa;  /modules/: Potentially interesting folder&#xa;  /templates/: Potentially interesting folder&#xa;  /tmp/: Potentially interesting folder&#xa;"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/></port>
+</ports>
+<times srtt="49710" rttvar="29661" to="168354"/>
+</host>
+<runstats><finished time="1674653769" timestr="Wed Jan 25 13:36:09 2023" summary="Nmap done at Wed Jan 25 13:36:09 2023; 1 IP address (1 host up) scanned in 93.31 seconds" elapsed="93.31" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

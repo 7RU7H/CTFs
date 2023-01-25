@@ -278,6 +278,11 @@ password = "asd"
 def create_account():	
 
 def login_and_give_gold(target_account, users_file):
+with open(users_file, "r") as f:
+users = f.readlines()
+	for user in users:
+		user = str(user.replace("\n", ""))
+	# request lib
 
 def main():
 	password = "asd"
@@ -290,6 +295,7 @@ def main():
 	create_account(target_account)		
 	
 ```
+
 
 ```python 
 import multiprocessing as mp
