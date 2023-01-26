@@ -1,4 +1,4 @@
-[# Tokyo-Ghoul Helped-Through
+# Tokyo-Ghoul Helped-Through
 
 Name:  Tokyo Ghoul
 Date:  07/05/2022
