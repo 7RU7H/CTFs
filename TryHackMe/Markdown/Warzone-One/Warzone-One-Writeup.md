@@ -1,13 +1,14 @@
 # Warzone-One Writeup
 
 Name: Warzone-One
-Date:  
+Date:  26/01/2023
 Difficulty:  Medium
 Goals:  
 - Improve my Wireshark, Brim,  Network Miner cheatsheets
 - Malware C2 netowkr traffic detection
 - Exposure to Brim and Network miner through hints; just click around
 Learnt:
+- Brim is ok for contextualising 
 Beyond Root:
 - Just improve the cheatsheet
 
