@@ -16,6 +16,9 @@ Learnt:
 Beyond Root:
 - Patch the machine to prevent a buffer overflow
 
+[XCT is a ](https://www.youtube.com/watch?v=uAvvrBO7zlk) - We will solve Attended, a 50-point machine on HackTheBox. For user, we will be sending some emails back and forth and then append a payload that exploits a Vim RCE, followed by adding a malicious ssh config. For root, we will exploit a custom OpenBSD binary that is used as an AuthorizedKeysCommand for SSH. [XCT](https://app.hackthebox.com/users/13569) is currently ranked 1 on HTB with 14 user FBs, 28 system FBs - 248 solved machiens, 7 FB on challenges with 266 total solved, also end games and fortress completions. This guy is awesome. My hope is learn from maybe 10 boxes completed by XCT for the next 5 months or so. Along with Snowscan and few other I want to try be like the best as early as possible and be more than the average Ippsec viewer - Ippsec is still awesome, I want to suppass the average ASAP.
+
+
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128. The ttl is  < 255 meaning this a freeBSD box.
