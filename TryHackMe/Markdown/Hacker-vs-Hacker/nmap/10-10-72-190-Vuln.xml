@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Sat Jan 28 14:00:33 2023 as: nmap -&#45;script vuln -oA nmap/10-10-72-190-Vuln -&#45;min-rate 100 -e tun0 -p 80,22 10.10.72.190 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-10-72-190-Vuln -&#45;min-rate 100 -e tun0 -p 80,22 10.10.72.190" start="1674914433" startstr="Sat Jan 28 14:00:33 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.72.190" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1674914457" endtime="1674914487"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.72.190" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-fileupload-exploiter" output="&#xa;  &#xa;    Failed to upload and execute a payload.&#xa;  &#xa;    Failed to upload and execute a payload.&#xa;  &#xa;    Failed to upload and execute a payload.&#xa;  &#xa;    Failed to upload and execute a payload.&#xa;  &#xa;    Failed to upload and execute a payload."><table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+<table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+<table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+<table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+<table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+</script><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.72.190&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://10.10.72.190:80/&#xa;    Form id: filetoupload&#xa;    Form action: upload.php&#xa;"/><script id="http-internal-ip-disclosure" output="&#xa;  Internal IP Leaked: 127.0.1.1"><elem key="Internal IP Leaked">127.0.1.1</elem>
+</script><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-enum" output="&#xa;  /cvs/: Possible code repository&#xa;  /css/: Potentially interesting directory w/ listing on &apos;apache/2.4.41 (ubuntu)&apos;&#xa;  /images/: Potentially interesting directory w/ listing on &apos;apache/2.4.41 (ubuntu)&apos;&#xa;"/></port>
+</ports>
+<times srtt="106031" rttvar="72838" to="397383"/>
+</host>
+<runstats><finished time="1674914487" timestr="Sat Jan 28 14:01:27 2023" summary="Nmap done at Sat Jan 28 14:01:27 2023; 1 IP address (1 host up) scanned in 54.13 seconds" elapsed="54.13" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

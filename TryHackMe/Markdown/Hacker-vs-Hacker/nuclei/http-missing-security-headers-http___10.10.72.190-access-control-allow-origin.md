@@ -1,0 +1,132 @@
+### HTTP Missing Security Headers (http-missing-security-headers:access-control-allow-origin) found on http://10.10.72.190
+---
+**Details**: **http-missing-security-headers:access-control-allow-origin**  matched at http://10.10.72.190
+
+**Protocol**: HTTP
+
+**Full URL**: http://10.10.72.190
+
+**Timestamp**: Sat Jan 28 16:07:36 +0000 GMT 2023
+
+**Template Information**
+
+| Key | Value |
+|---|---|
+| Name | HTTP Missing Security Headers |
+| Authors | socketz, geeknik, g4l1t0, convisoappsec, kurohost, dawid-czarnecki, forgedhallpass |
+| Tags | misconfig, headers, generic |
+| Severity | info |
+| Description | This template searches for missing HTTP security headers. The impact of these missing headers can vary.
+ |
+
+**Request**
+```http
+GET / HTTP/1.1
+Host: 10.10.72.190
+User-Agent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1866.237 Safari/537.36
+Connection: close
+Accept: */*
+Accept-Language: en
+Accept-Encoding: gzip
+
+
+```
+
+**Response**
+```http
+HTTP/1.1 200 OK
+Connection: close
+Accept-Ranges: bytes
+Content-Type: text/html
+Date: Sat, 28 Jan 2023 16:07:36 GMT
+Etag: "d55-5dc0dbac96680-gzip"
+Last-Modified: Thu, 07 Apr 2022 10:13:30 GMT
+Server: Apache/2.4.41 (Ubuntu)
+Vary: Accept-Encoding
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>RecruitSec: Industry Leading Infosec Recruitment</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="dist/css/normalize.css">
+  <link rel="stylesheet" href="dist/css/skeleton.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <link rel="icon" type="image/png" href="dist/images/favicon.png">
+</head>
+<body>
+
+  <div class="section hero">
+    <div class="container">
+      <div class="row">
+        <div class="one-half column">
+            <h2 class="logo">&#x1f512;RecruitSec</h2>
+          <h4 class="hero-heading">Stop coding security vulnerabilities, hire the best security consultants in the industry.</h4>
+          <a class="button button-primary" href="#contact-us">Contact Us</a>
+        </div>
+        <div class="one-half column phones">
+          <img class="phone" src="images/iphone.png">
+          <img class="phone" src="images/iphone.png">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section values">
+    <div class="container">
+      <div class="row">
+        <div class="one-third column value">
+          <h2 class="value-multiplier">3%</h2>
+          <h5 class="value-heading">Security Consultants</h5>
+          <p class="value-description">Percentage of your staff who know what the acronym 'XSS' stands for.</p>
+        </div>
+        <div class="one-third column value">
+          <h2 class="value-multiplier">90%</h2>
+          <h5 class="value-heading">Foreigners</h5>
+          <p class="value-description">Percentage of the population outside our borders involved in hacking.</p>
+        </div>
+        <div class="one-third column value">
+          <h2 class="value-multiplier">66%</h2>
+          <h5 class="value-heading">Breached Companies</h5>
+          <p class="value-description">Percentage of companies that will have a breach today.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section get-help">
+    <div class="container">
+        <a name="contact-us"></a>
+      <h3 class="section-heading">Contact Us - Coming Soon!</h3>
+      <p class="section-description">The most important piece of functionality on this brochureware site is inexplicably not developed yet.</p>
+      <!-- seriously, we need to fire that stupid developer intern -->
+    </div>
+  </div>
+
+  <div class="section categories">
+    <div class="container">
+      <h3 class="section-heading">Want to join our stable of body-shopped professionals?</h3>
+      <p class="section-description">Please upload your CV below and we will get back to you if we think your skills might earn us a profit for doing nothing beyond sending a few emails.</p>
+      <form action="upload.php" method="post" enctype="multipart/form-data">
+        <input class="button" type="file" name="fileToUpload" id="fileToUpload">
+        <input class="button-primary" type="submit" value="Upload CV" name="submit">
+        <!-- im no security expert - thats what we have a stable of nerds for - but isn't /cvs on the public website a privacy risk? -->
+      </form>
+    </div>
+  </div>
+</body>
+</html>
+```
+
+
+**CURL Command**
+```
+curl -X 'GET' -d '' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1866.237 Safari/537.36' 'http://10.10.72.190'
+```
+---
+Generated by [Nuclei 2.7.9](https://github.com/projectdiscovery/nuclei)

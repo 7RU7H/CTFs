@@ -11,7 +11,6 @@ Learnt:
 - PostGreSQL basics and practice
 - ffuf for the win!
 - Web site race condition exploits
-
 Beyond Root:
 - Being a better digital communicator; use all you have research to script out in a one-take improv of a chat discourse were you are try to explain this machine in two sentences maximum per interaction the box, self moderating tone and content.
 

@@ -1,0 +1,50 @@
+# Nmap 7.93 scan initiated Sat Jan 28 14:00:33 2023 as: nmap --script discovery -oA nmap/10-10-252-254-Discovery --min-rate 100 -e tun0 -p 8080 10.10.252.254
+Pre-scan script results:
+| targets-sniffer: Sniffed 3 address(es). 
+| 224.0.23.12
+| 224.0.0.251
+|_10.10.72.190
+|_lltd-discovery: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-ping: false
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.10.252.254
+Host is up (0.11s latency).
+
+PORT     STATE SERVICE
+8080/tcp open  http-proxy
+|_http-chrono: Request times for /; avg: 992.02ms; min: 658.82ms; max: 1633.18ms
+|_http-title: VulnNet &ndash; Your reliable news source &ndash; Try Now!
+| http-enum: 
+|_  /login/: Login page
+|_http-date: Sat, 28 Jan 2023 14:00:59 GMT; +1h00m00s from local time.
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.252.254
+|   url                              method
+|_  http://10.10.252.254:8080/login  FORM
+| http-headers: 
+|   X-Powered-By: Express
+|   Set-Cookie: session=eyJ1c2VybmFtZSI6Ikd1ZXN0IiwiaXNHdWVzdCI6dHJ1ZSwiZW5jb2RpbmciOiAidXRmLTgifQ%3D%3D; Max-Age=1200; Path=/; Expires=Sat, 28 Jan 2023 14:21:03 GMT; HttpOnly
+|   Content-Type: text/html; charset=utf-8
+|   Content-Length: 7599
+|   ETag: W/"1daf-dPXia8DLlOwYnTXebWSDo/Cj9Co"
+|   Date: Sat, 28 Jan 2023 14:01:03 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+| http-vhosts: 
+|_128 names had status 200
+|_http-open-proxy: Proxy might be redirecting requests
+
+Host script results:
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "10.10.252.254"; use dns-brute.domain script argument.
+|_path-mtu: PMTU == 1500
+|_ipidseq: All zeros
+
+# Nmap done at Sat Jan 28 14:05:10 2023 -- 1 IP address (1 host up) scanned in 277.12 seconds

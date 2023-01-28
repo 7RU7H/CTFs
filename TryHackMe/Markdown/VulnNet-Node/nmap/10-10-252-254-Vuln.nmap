@@ -1,0 +1,24 @@
+# Nmap 7.93 scan initiated Sat Jan 28 14:05:10 2023 as: nmap --script vuln -oA nmap/10-10-252-254-Vuln --min-rate 100 -e tun0 -p 8080 10.10.252.254
+Nmap scan report for 10.10.252.254
+Host is up (0.29s latency).
+
+PORT     STATE SERVICE
+8080/tcp open  http-proxy
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       http://ha.ckers.org/slowloris/
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+| http-enum: 
+|_  /login/: Login page
+
+# Nmap done at Sat Jan 28 14:14:06 2023 -- 1 IP address (1 host up) scanned in 536.07 seconds

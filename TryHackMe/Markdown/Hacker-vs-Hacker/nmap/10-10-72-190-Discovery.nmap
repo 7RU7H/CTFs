@@ -1,0 +1,754 @@
+# Nmap 7.93 scan initiated Sat Jan 28 13:51:14 2023 as: nmap --script discovery -oA nmap/10-10-72-190-Discovery --min-rate 100 -e tun0 -p 80,22 10.10.72.190
+Pre-scan script results:
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-sniffer: Sniffed 2 address(es). 
+| 10.10.252.254
+|_224.0.23.12
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-ping: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_lltd-discovery: false
+Nmap scan report for 10.10.72.190
+Host is up (0.11s latency).
+
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (9)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   3072 9fa60153923a1dbad718185c0d8e922c (RSA)
+|   256 4b60dcfb92a86ffc745364c18cbdde7c (ECDSA)
+|_  256 83d49cd09036ce83f7c7533028dfc3d5 (ED25519)
+|_banner: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.4
+80/tcp open  http
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-vhosts: 
+|_128 names had status 200
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; php: 1
+|     /css/
+|       css: 1
+|     /dist/css/
+|       css: 2
+|     /dist/images/
+|       png: 1
+|     /images/
+|       png: 1
+|   Longest directory structure:
+|     Depth: 2
+|     Dir: /dist/images/
+|   Total files found (by extension):
+|_    Other: 1; css: 3; php: 1; png: 2
+| http-internal-ip-disclosure: 
+|_  Internal IP Leaked: 127.0.1.1
+| http-enum: 
+|   /cvs/: Possible code repository
+|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.41 (ubuntu)'
+|_  /images/: Potentially interesting directory w/ listing on 'apache/2.4.41 (ubuntu)'
+|_http-mobileversion-checker: No mobile version detected.
+| http-referer-checker: 
+| Spidering limited to: maxpagecount=30
+|_  http://ajax.googleapis.com:80/ajax/libs/jquery/2.1.1/jquery.min.js
+|_http-chrono: Request times for /; avg: 243.22ms; min: 197.02ms; max: 266.38ms
+|_http-errors: Couldn't find any error pages.
+|_http-date: Sat, 28 Jan 2023 13:51:49 GMT; +59m59s from local time.
+| http-headers: 
+|   Date: Sat, 28 Jan 2023 13:51:50 GMT
+|   Server: Apache/2.4.41 (Ubuntu)
+|   Last-Modified: Thu, 07 Apr 2022 10:13:30 GMT
+|   ETag: "d55-5dc0dbac96680"
+|   Accept-Ranges: bytes
+|   Content-Length: 3413
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-title: RecruitSec: Industry Leading Infosec Recruitment
+|_http-feed: Couldn't find any feeds.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.72.190
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 207
+|     Comment: 
+|         /**
+|          * Address differences between Firefox and other browsers.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 403
+|     Comment: 
+|         /**
+|          * Don't inherit the `font-weight` (applied by a rule above).
+|          * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 395
+|     Comment: 
+|         /**
+|          * Remove default vertical scrollbar in IE 8/9/10/11.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 395
+|     Comment: 
+|         /* Media Queries
+|         \xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 140
+|     Comment: 
+|         /**
+|          * Address styling not present in IE 8/9.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 317
+|     Comment: 
+|         /**
+|          * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+|          * the UA stylesheet.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 417
+|     Comment: 
+|         /* Larger than Desktop HD */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 245
+|     Comment: 
+|         /**
+|          * 1. Correct color not being inherited.
+|          *    Known issue: affects color of disabled elements.
+|          * 2. Correct font properties not being inherited.
+|          * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 240
+|     Comment: 
+|         /**
+|          * Known limitation: by default, Chrome and Safari on OS X allow very limited
+|          * styling of `select`, unless a `border` property is set.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 130
+|     Comment: 
+|         /**
+|          * Address variable `h1` font-size and margin within `section` and `article`
+|          * contexts in Firefox 4+, Safari, and Chrome.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 118
+|     Comment: 
+|         /* NOTE
+|         html is set to 62.5% so that all the REM measurements throughout Skeleton
+|         are based on 10px sizing. So basically 1.5rem = 15px :) */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 199
+|     Comment: 
+|         /**
+|          * Address margin not present in IE 8/9 and Safari.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 383
+|     Comment: 
+|         /* Clearing
+|         \xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 10
+|     Comment: 
+|         /* 1 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 124
+|     Comment: 
+|         /* currently ems cause chrome bug misinterpreting rems on body element */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 217
+|     Comment: 
+|         /**
+|          * Contain overflow in all browsers.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 1
+|     Comment: 
+|         /*
+|         * Skeleton V2.0.4
+|         * Copyright 2014, Dave Gamache
+|         * www.getskeleton.com
+|         * Free to use under the MIT license.
+|         * http://www.opensource.org/licenses/mit-license.php
+|         * 12/29/2014
+|         */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 11
+|     Comment: 
+|         /* 2 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 338
+|     Comment: 
+|         /* Spacing
+|         \xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 113
+|     Comment: 
+|         /**
+|          * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 288
+|     Comment: 
+|         /* Lists
+|         \xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 15
+|     Comment: 
+|         /**
+|          * Remove default margin.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 62
+|     Comment: 
+|         /**
+|          * Prevent modern browsers from displaying `audio` without controls.
+|          * Remove excess height in iOS 5 devices.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 196
+|     Comment: 
+|         /* Grouping content
+|            ========================================================================== */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 340
+|     Comment: 
+|         /**
+|          * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+|          * `font-size` values of the `input`, it causes the cursor style of the
+|          * decrement button to change from `default` to `text`.
+|          */
+|     
+|     Path: http://10.10.72.190:80/css/custom.css
+|     Line number: 32
+|     Comment: 
+|         /* Values
+|         \xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 225
+|     Comment: 
+|         /**
+|          * Address odd `em`-unit font size rendering in all browsers.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 180
+|     Comment: 
+|         /**
+|          * Remove border when inside `a` element in IE 8/9/10.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 177
+|     Comment: 
+|         /* Embedded content
+|            ========================================================================== */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 44
+|     Comment: 
+|         /* For devices larger than 400px */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 85
+|     Comment: 
+|         /**
+|          * Remove the gray background color from active links in IE 10.
+|          */
+|     
+|     Path: http://10.10.72.190:80/css/custom.css
+|     Line number: 7
+|     Comment: 
+|         /* Sections
+|         \xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 122
+|     Comment: 
+|         /**
+|          * Address styling not present in Safari and Chrome.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 105
+|     Comment: 
+|         /**
+|          * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 72
+|     Comment: 
+|         /**
+|          * Address `[hidden]` styling not present in IE 8/9/10.
+|          * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 412
+|     Comment: 
+|         /* Tables
+|            ========================================================================== */
+|     
+|     Path: http://10.10.72.190:80/css/custom.css
+|     Line number: 1
+|     Comment: 
+|         /* Shared
+|         \xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 414
+|     Comment: 
+|         /* Larger than desktop */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 270
+|     Comment: 
+|         /**
+|          * Address inconsistent `text-transform` inheritance for `button` and `select`.
+|          * All other form control elements do not inherit `text-transform` values.
+|          * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+|          * Correct `select` style inheritance in Firefox.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 49
+|     Comment: 
+|         /**
+|          * 1. Correct `inline-block` display not defined in IE 8/9.
+|          * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 282
+|     Comment: 
+|         /**
+|          * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+|          *    and `video` controls.
+|          * 2. Correct inability to style clickable `input` types in iOS.
+|          * 3. Improve usability and consistency of cursor style between image-type
+|          *    `input` and others.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 385
+|     Comment: 
+|         /**
+|          * 1. Correct `color` not being inherited in IE 8/9/10/11.
+|          * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 3
+|     Comment: 
+|         /**
+|          * 1. Set default font family to sans-serif.
+|          * 2. Prevent iOS text size adjust after orientation change, without disabling
+|          *    user zoom.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 408
+|     Comment: 
+|         /* Larger than phablet (also point when grid becomes active) */
+|     
+|     Path: http://10.10.72.190:80/css/custom.css
+|     Line number: 58
+|     Comment: 
+|         /* Categories
+|         \xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 144
+|     Comment: 
+|         /* Larger than phablet */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 166
+|     Comment: 
+|         /* Buttons
+|         \xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 237
+|     Comment: 
+|         /* Forms
+|            ========================================================================== */
+|     
+|     Path: http://10.10.72.190:80/upload.php
+|     Line number: 4
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         -->
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 374
+|     Comment: 
+|         /* Misc
+|         \xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 326
+|     Comment: 
+|         /**
+|          * It's recommended that you don't attempt to style these elements.
+|          * Firefox's implementation doesn't respect box-sizing, padding, or width.
+|          *
+|          * 1. Address box sizing set to `content-box` in IE 8/9/10.
+|          * 2. Remove excess padding in IE 8/9/10.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 323
+|     Comment: 
+|         /* Tables
+|         \xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 307
+|     Comment: 
+|         /* Code
+|         \xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 82
+|     Comment: 
+|         /* Links
+|            ========================================================================== */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 244
+|     Comment: 
+|         /* Removes awkward default styles on some inputs for iOS */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 364
+|     Comment: 
+|         /**
+|          * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+|          * Safari (but not Chrome) clips the cancel button when the search input has
+|          * padding (and `textfield` appearance).
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 226
+|     Comment: 
+|         /* Forms
+|         \xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 397
+|     Comment: 
+|         /*
+|         Note: The best way to structure the use of media queries is to create the queries
+|         near the relevant code. For example, if you wanted to change the styles for buttons
+|         on small devices, paste the mobile query code up in the buttons section and style it
+|         there.
+|         */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 158
+|     Comment: 
+|         /* Links
+|         \xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 93
+|     Comment: 
+|         /**
+|          * Improve readability when focused and also mouse hovered in all browsers.
+|          */
+|     
+|     Path: http://10.10.72.190:80/css/custom.css
+|     Line number: 18
+|     Comment: 
+|         /* Hero
+|         \xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 405
+|     Comment: 
+|         /* Larger than mobile */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 11
+|     Comment: 
+|         /* Table of contents
+|         \xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93
+|         - Grid
+|         - Base Styles
+|         - Typography
+|         - Links
+|         - Buttons
+|         - Forms
+|         - Lists
+|         - Code
+|         - Tables
+|         - Spacing
+|         - Utilities
+|         - Clearing
+|         - Media Queries
+|         */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 116
+|     Comment: 
+|         /* Base Styles
+|         \xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 81
+|     Comment: 
+|         /* Offsets */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 51
+|     Comment: 
+|         /* For devices larger than 550px */
+|     
+|     Path: http://10.10.72.190:80/
+|     Line number: 72
+|     Comment: 
+|         <!-- im no security expert - thats what we have a stable of nerds for - but isn't /cvs on the public website a privacy risk? -->
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 188
+|     Comment: 
+|         /**
+|          * Correct overflow not hidden in IE 9/10/11.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 29
+|     Comment: 
+|         /* Grid
+|         \xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 131
+|     Comment: 
+|         /* Typography
+|         \xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 415
+|     Comment: 
+|         /**
+|          * Remove most spacing between table cells.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 351
+|     Comment: 
+|         /**
+|          * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+|          * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
+|          *    (include `-moz` to future-proof).
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 157
+|     Comment: 
+|         /**
+|          * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 386
+|     Comment: 
+|         /* Self Clearing Goodness */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 26
+|     Comment: 
+|         /**
+|          * Correct `block` display not defined for any HTML5 element in IE 8/9.
+|          * Correct `block` display not defined for `details` or `summary` in IE 10/11
+|          * and Firefox.
+|          * Correct `block` display not defined for `main` in IE 11.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 259
+|     Comment: 
+|         /* 3 */
+|     
+|     Path: http://10.10.72.190:80/css/custom.css
+|     Line number: 132
+|     Comment: 
+|         /* Bigger than 1000 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 102
+|     Comment: 
+|         /* Text-level semantics
+|            ========================================================================== */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 375
+|     Comment: 
+|         /**
+|          * Define consistent border, margin, and padding.
+|          */
+|     
+|     Path: http://10.10.72.190:80/css/custom.css
+|     Line number: 99
+|     Comment: 
+|         /* Bigger than 750 */
+|     
+|     Path: http://10.10.72.190:80/css/custom.css
+|     Line number: 69
+|     Comment: 
+|         /* Bigger than 550 */
+|     
+|     Path: http://10.10.72.190:80/css/custom.css
+|     Line number: 52
+|     Comment: 
+|         /* Help
+|         \xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 411
+|     Comment: 
+|         /* Larger than tablet */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 1
+|     Comment: 
+|         /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 238
+|     Comment: 
+|         /* The 6px vertically centers text on FF, ignored by Webkit */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 307
+|     Comment: 
+|         /**
+|          * Remove inner padding and border in Firefox 4+.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/skeleton.css
+|     Line number: 360
+|     Comment: 
+|         /* Utilities
+|         \xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93\xE2\x80\x93 */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 298
+|     Comment: 
+|         /**
+|          * Re-set default cursor for disabled elements.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 262
+|     Comment: 
+|         /**
+|          * Address `overflow` set to `hidden` in IE 8/9/10/11.
+|          */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 23
+|     Comment: 
+|         /* HTML5 display definitions
+|            ========================================================================== */
+|     
+|     Path: http://10.10.72.190:80/dist/css/normalize.css
+|     Line number: 149
+|     Comment: 
+|         /**
+|          * Address inconsistent and variable font size in all browsers.
+|          */
+|     
+|     Path: http://10.10.72.190:80/
+|     Line number: 61
+|     Comment: 
+|_        <!-- seriously, we need to fire that stupid developer intern -->
+
+Host script results:
+|_path-mtu: PMTU == 1500
+|_dns-brute: Can't guess domain of "10.10.72.190"; use dns-brute.domain script argument.
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       103888.70  50057.37  0.0%
+|_80    0       112388.50  55449.77  0.0%
+|_ipidseq: All zeros
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Sat Jan 28 14:00:33 2023 -- 1 IP address (1 host up) scanned in 559.03 seconds

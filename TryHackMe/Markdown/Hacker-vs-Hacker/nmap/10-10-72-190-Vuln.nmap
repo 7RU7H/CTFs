@@ -1,0 +1,35 @@
+# Nmap 7.93 scan initiated Sat Jan 28 14:00:33 2023 as: nmap --script vuln -oA nmap/10-10-72-190-Vuln --min-rate 100 -e tun0 -p 80,22 10.10.72.190
+Nmap scan report for 10.10.72.190
+Host is up (0.11s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+| http-fileupload-exploiter: 
+|   
+|     Failed to upload and execute a payload.
+|   
+|     Failed to upload and execute a payload.
+|   
+|     Failed to upload and execute a payload.
+|   
+|     Failed to upload and execute a payload.
+|   
+|_    Failed to upload and execute a payload.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.72.190
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.10.72.190:80/
+|     Form id: filetoupload
+|_    Form action: upload.php
+| http-internal-ip-disclosure: 
+|_  Internal IP Leaked: 127.0.1.1
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|   /cvs/: Possible code repository
+|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.41 (ubuntu)'
+|_  /images/: Potentially interesting directory w/ listing on 'apache/2.4.41 (ubuntu)'
+
+# Nmap done at Sat Jan 28 14:01:27 2023 -- 1 IP address (1 host up) scanned in 54.13 seconds
