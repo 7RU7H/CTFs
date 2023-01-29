@@ -1,0 +1,104 @@
+# Nmap 7.93 scan initiated Sun Jan 29 20:45:19 2023 as: nmap --script discovery -oA nmap/10-10-228-242-Discovery --min-rate 100 -e tun0 -p 53,445,49670,6379,49760,139,49669,49673,135,49668,9389,464,49666 10.10.228.242
+Pre-scan script results:
+|_lltd-discovery: false
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-ping: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-sniffer: Sniffed 2 address(es). 
+| 10.10.181.135
+|_224.0.23.12
+Nmap scan report for 10.10.228.242
+Host is up (0.066s latency).
+
+PORT      STATE SERVICE
+53/tcp    open  domain
+|_dns-nsec3-enum: Can't determine domain for host 10.10.228.242; use dns-nsec3-enum.domains script arg.
+|_dns-nsec-enum: Can't determine domain for host 10.10.228.242; use dns-nsec-enum.domains script arg.
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+445/tcp   open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+464/tcp   open  kpasswd5
+6379/tcp  open  redis
+| redis-info: 
+|   Version: 2.8.2402
+|   Operating System: Windows  
+|   Architecture: 64 bits
+|   Process ID: 2700
+|   Used CPU (sys): 0.11
+|   Used CPU (user): 0.08
+|   Connected clients: 2
+|   Connected slaves: 0
+|   Used memory: 947.50K
+|   Role: master
+|   Bind addresses: 
+|     0.0.0.0
+|   Client connections: 
+|_    10.11.3.193
+9389/tcp  open  adws
+49666/tcp open  unknown
+49668/tcp open  unknown
+49669/tcp open  unknown
+|_banner: ncacn_http/1.0
+49670/tcp open  unknown
+49673/tcp open  unknown
+49760/tcp open  unknown
+
+Host script results:
+| smb-protocols: 
+|   dialects: 
+|     202
+|     210
+|     300
+|     302
+|_    311
+| smb2-time: 
+|   date: 2023-01-29T20:45:51
+|_  start_date: N/A
+|_fcrdns: FAIL (No PTR record)
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_path-mtu: PMTU == 1500
+|_ipidseq: Unknown
+|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_dns-brute: Can't guess domain of "10.10.228.242"; use dns-brute.domain script argument.
+| qscan: 
+| PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 53     0       62599.70   8421.77   0.0%
+| 135    0       56695.40   6885.56   0.0%
+| 139    0       61315.20   4060.15   0.0%
+| 445    0       58616.40   6951.84   0.0%
+| 464    0       67675.30   24291.64  0.0%
+| 6379   0       65925.70   26003.07  0.0%
+| 9389   0       60783.40   4183.66   0.0%
+|_49666  0       60019.50   6671.24   0.0%
+| smb2-security-mode: 
+|   311: 
+|_    Message signing enabled and required
+| smb2-capabilities: 
+|   202: 
+|     Distributed File System
+|   210: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   300: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   302: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   311: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+
+# Nmap done at Sun Jan 29 20:47:40 2023 -- 1 IP address (1 host up) scanned in 140.60 seconds

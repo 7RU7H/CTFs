@@ -173,6 +173,7 @@ https://www.youtube.com/watch?v=L_9UsWabfL4
 
 ## Beyond Root
 
+Test these:
 
 ```bash
 mount -o remount,noexec,rw,nosuid,relatime /dev/shm
@@ -191,4 +192,46 @@ Kill ptys
 * * * * * root /bin/sleep 31 && for f in `/bin/ls /dev/pts`; do /usr/bin/echo nope > /dev/pts/$f && /usr/bin/pkill  -9 -t pts/$f; done
 * * * * * root /bin/sleep 41 && for f in `/bin/ls /dev/pts`; do /usr/bin/echo nope > /dev/pts/$f && /usr/bin/pkill  -9 -t pts/$f; done
 * * * * * root /bin/sleep 51 && for f in `/bin/ls /dev/pts`; do /usr/bin/echo nope > /dev/pts/$f && /usr/bin/pkill -9 -t pts/$f; done
+```
+
+
+## Operation 8008Y 7R4P
+
+adminuser only essential nc ping, vim, emac, nano, tmux=
+docker container for ssh for admin, not builtin ssh
+
+Triad Sandbox
+One sandbox escape leads to another then another and then back to the orginal sandbox.
+SELinux -> Python -> 
+
+stty is set 1 row 1 cols
+
+The circle of doom 
+```
+alias 'ls'=/bin/echo'
+alias 'echo'=/bin/cd'
+alias 'cat'=/bin/ls'
+alias 'cd'=/bin/cat'
+```
+
+Return to hell aliasing - cd to a empty very blank named directory and parent directory
+```
+$PATH 
+$ENV
+$HOME
+mkdir # massive directory 
+alias 'cd //'
+alias '~'
+alias '/'
+/directories
+
+```
+
+Randomise stdout that is base64 encoded, split base64 encoded again removed any `=` and conv to hex 
+
+## Probably well-known  Found Additions
+
+Alerts
+```
+id,whoami, sudo,ss,netstat,cat /etc/passwd,groups, chatter,lsattr,curl,wget,passwd
 ```

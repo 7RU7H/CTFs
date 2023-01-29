@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Sun Jan 29 20:45:19 2023 as: nmap -&#45;script discovery -oA nmap/10-10-228-242-Discovery -&#45;min-rate 100 -e tun0 -p 53,445,49670,6379,49760,139,49669,49673,135,49668,9389,464,49666 10.10.228.242 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/10-10-228-242-Discovery -&#45;min-rate 100 -e tun0 -p 53,445,49670,6379,49760,139,49669,49673,135,49668,9389,464,49666 10.10.228.242" start="1675025119" startstr="Sun Jan 29 20:45:19 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="13" services="53,135,139,445,464,6379,9389,49666,49668-49670,49673,49760"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="lltd-discovery" output="false">false</script><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="broadcast-ping" output="false">false</script><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="targets-sniffer" output="Sniffed 2 address(es). &#xa;10.10.181.135&#xa;224.0.23.12"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.228.242" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1675025143" endtime="1675025260"><status state="up" reason="echo-reply" reason_ttl="127"/>
+<address addr="10.10.228.242" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="domain" method="table" conf="3"/><script id="dns-nsec3-enum" output="Can&apos;t determine domain for host 10.10.228.242; use dns-nsec3-enum.domains script arg."/><script id="dns-nsec-enum" output="Can&apos;t determine domain for host 10.10.228.242; use dns-nsec-enum.domains script arg."/></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="netbios-ssn" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="464"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="kpasswd5" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6379"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="redis" version="2.8.2402" extrainfo="64 bits" method="probed" conf="10"><cpe>cpe:/a:redis:redis:2.8.2402</cpe></service><script id="redis-info" output="&#xa;  Version: 2.8.2402&#xa;  Operating System: Windows  &#xa;  Architecture: 64 bits&#xa;  Process ID: 2700&#xa;  Used CPU (sys): 0.11&#xa;  Used CPU (user): 0.08&#xa;  Connected clients: 2&#xa;  Connected slaves: 0&#xa;  Used memory: 947.50K&#xa;  Role: master&#xa;  Bind addresses: &#xa;    0.0.0.0&#xa;  Client connections: &#xa;    10.11.3.193"><elem key="Version">2.8.2402</elem>
+<elem key="Operating System">Windows  </elem>
+<elem key="Architecture">64 bits</elem>
+<elem key="Process ID">2700</elem>
+<elem key="Used CPU (sys)">0.11</elem>
+<elem key="Used CPU (user)">0.08</elem>
+<elem key="Connected clients">2</elem>
+<elem key="Connected slaves">0</elem>
+<elem key="Used memory">947.50K</elem>
+<elem key="Role">master</elem>
+<table key="Bind addresses">
+<elem>0.0.0.0</elem>
+</table>
+<table key="Client connections">
+<elem>10.11.3.193</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="9389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="adws" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49666"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49668"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49669"><state state="open" reason="syn-ack" reason_ttl="127"/><script id="banner" output="ncacn_http/1.0"/></port>
+<port protocol="tcp" portid="49670"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49673"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49760"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+</ports>
+<hostscript><script id="smb-protocols" output="&#xa;  dialects: &#xa;    202&#xa;    210&#xa;    300&#xa;    302&#xa;    311"><table key="dialects">
+<elem>202</elem>
+<elem>210</elem>
+<elem>300</elem>
+<elem>302</elem>
+<elem>311</elem>
+</table>
+</script><script id="smb2-time" output="&#xa;  date: 2023-01-29T20:45:51&#xa;  start_date: N/A"><elem key="date">2023-01-29T20:45:51</elem>
+<elem key="start_date">N/A</elem>
+</script><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="smb-mbenum" output="&#xa;  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR"/><script id="path-mtu" output="PMTU == 1500"/><script id="ipidseq" output="Unknown"/><script id="msrpc-enum" output="Could not negotiate a connection:SMB: Failed to receive bytes: ERROR">false</script><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.10.228.242&quot;; use dns-brute.domain script argument."/><script id="qscan" output="&#xa;PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;53     0       62599.70   8421.77   0.0%&#xa;135    0       56695.40   6885.56   0.0%&#xa;139    0       61315.20   4060.15   0.0%&#xa;445    0       58616.40   6951.84   0.0%&#xa;464    0       67675.30   24291.64  0.0%&#xa;6379   0       65925.70   26003.07  0.0%&#xa;9389   0       60783.40   4183.66   0.0%&#xa;49666  0       60019.50   6671.24   0.0%&#xa;"/><script id="smb2-security-mode" output="&#xa;  311: &#xa;    Message signing enabled and required"><table key="311">
+<elem>Message signing enabled and required</elem>
+</table>
+</script><script id="smb2-capabilities" output="&#xa;  202: &#xa;    Distributed File System&#xa;  210: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  300: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  302: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  311: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations"><table key="202">
+<elem>Distributed File System</elem>
+</table>
+<table key="210">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="300">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="302">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="311">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+</script></hostscript><times srtt="65722" rttvar="11682" to="112450"/>
+</host>
+<runstats><finished time="1675025260" timestr="Sun Jan 29 20:47:40 2023" summary="Nmap done at Sun Jan 29 20:47:40 2023; 1 IP address (1 host up) scanned in 140.60 seconds" elapsed="140.60" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
