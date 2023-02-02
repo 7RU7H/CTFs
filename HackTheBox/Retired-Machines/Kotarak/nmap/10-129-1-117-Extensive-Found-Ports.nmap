@@ -1,0 +1,27 @@
+# Nmap 7.93 scan initiated Thu Feb  2 12:22:03 2023 as: nmap -sC -sV -oA nmap/10-129-1-117-Extensive-Found-Ports --min-rate 100 -e tun0 -p 8080,8009,22,60000 10.129.1.117
+Nmap scan report for 10.129.1.117
+Host is up (0.060s latency).
+
+PORT      STATE SERVICE VERSION
+22/tcp    open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.2 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 e2d7ca0eb7cb0a51f72e75ea02241774 (RSA)
+|   256 e8f1c0d37d9b4373ad373bcbe1648ee9 (ECDSA)
+|_  256 6de926ad86022d68e1ebad66a06017b8 (ED25519)
+8009/tcp  open  ajp13   Apache Jserv (Protocol v1.3)
+| ajp-methods: 
+|   Supported methods: GET HEAD POST PUT DELETE OPTIONS
+|   Potentially risky methods: PUT DELETE
+|_  See https://nmap.org/nsedoc/scripts/ajp-methods.html
+8080/tcp  open  http    Apache Tomcat 8.5.5
+|_http-favicon: Apache Tomcat
+|_http-title: Apache Tomcat/8.5.5 - Error report
+| http-methods: 
+|_  Potentially risky methods: PUT DELETE
+60000/tcp open  http    Apache httpd 2.4.18 ((Ubuntu))
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+|_http-title:         Kotarak Web Hosting        
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Feb  2 12:23:13 2023 -- 1 IP address (1 host up) scanned in 70.46 seconds

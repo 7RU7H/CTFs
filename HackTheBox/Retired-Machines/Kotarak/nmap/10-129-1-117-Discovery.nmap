@@ -1,0 +1,75 @@
+# Nmap 7.93 scan initiated Thu Feb  2 12:23:13 2023 as: nmap --script discovery -oA nmap/10-129-1-117-Discovery --min-rate 100 -e tun0 -p 8080,8009,22,60000 10.129.1.117
+Pre-scan script results:
+|_lltd-discovery: false
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-ping: false
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-sniffer: Sniffed 1 address(es). 
+|_10.129.1.117
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for 10.129.1.117
+Host is up (0.052s latency).
+
+PORT      STATE SERVICE
+22/tcp    open  ssh
+|_banner: SSH-2.0-OpenSSH_7.2p2 Ubuntu-4ubuntu2.2
+| ssh2-enum-algos: 
+|   kex_algorithms: (6)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   2048 e2d7ca0eb7cb0a51f72e75ea02241774 (RSA)
+|   256 e8f1c0d37d9b4373ad373bcbe1648ee9 (ECDSA)
+|_  256 6de926ad86022d68e1ebad66a06017b8 (ED25519)
+8009/tcp  open  ajp13
+| ajp-headers: 
+|   Content-Type: text/html;charset=utf-8
+|   Content-Language: en
+|_  Content-Length: 992
+| ajp-request: 
+| AJP/1.3 404 404
+| Content-Type: text/html;charset=utf-8
+| Content-Language: en
+| Content-Length: 992
+| 
+|_<!DOCTYPE html><html><head><title>Apache Tomcat/8.5.5 - Error report</title><style type="text/css">H1 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:22px;} H2 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:16px;} H3 {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;font-size:14px;} BODY {font-family:Tahoma,Arial,sans-serif;color:black;background-color:white;} B {font-family:Tahoma,Arial,sans-serif;color:white;background-color:#525D76;} P {font-family:Tahoma,Arial,sans-serif;background:white;color:black;font-size:12px;}A {color : black;}A.name {color : black;}.line {height: 1px; background-color: #525D76; border: none;}</style> </head><body><h1>HTTP Status 404 - /</h1><div class="line"></div><p><b>type</b> Status report</p><p><b>message</b> <u>/</u></p><p><b>description</b> <u>The requested resource is not available.</u></p><hr class="line"><h3>Apache Tomcat/8.5.5</h3></body></html>
+8080/tcp  open  http-proxy
+| http-enum: 
+|   /examples/: Sample scripts
+|   /manager/html/upload: Apache Tomcat (401 )
+|_  /manager/html: Apache Tomcat (401 )
+| http-headers: 
+|   Content-Type: text/html;charset=utf-8
+|   Content-Language: en
+|   Content-Length: 992
+|   Date: Thu, 02 Feb 2023 12:23:39 GMT
+|   Connection: close
+|   
+|_  (Request type: GET)
+|_http-title: Apache Tomcat/8.5.5 - Error report
+|_http-date: Thu, 02 Feb 2023 12:23:38 GMT; +59m59s from local time.
+|_http-chrono: Request times for /; avg: 195.81ms; min: 153.91ms; max: 215.14ms
+| http-vhosts: 
+|_128 names had status 404
+|_http-favicon: Apache Tomcat
+60000/tcp open  unknown
+
+Host script results:
+|_path-mtu: PMTU == 1500
+|_dns-brute: Can't guess domain of "10.129.1.117"; use dns-brute.domain script argument.
+| qscan: 
+| PORT   FAMILY  MEAN (us)  STDDEV     LOSS (%)
+| 22     0       48842.78   3886.46    10.0%
+| 8009   0       66817.20   51271.79   0.0%
+| 8080   0       50181.44   4655.16    10.0%
+|_60000  0       93409.70   145858.08  0.0%
+|_ipidseq: All zeros
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Thu Feb  2 12:31:05 2023 -- 1 IP address (1 host up) scanned in 471.33 seconds
