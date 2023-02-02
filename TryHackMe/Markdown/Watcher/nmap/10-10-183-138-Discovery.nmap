@@ -1,0 +1,135 @@
+# Nmap 7.93 scan initiated Thu Feb  2 10:56:10 2023 as: nmap --script discovery -oA nmap/10-10-183-138-Discovery --min-rate 100 -e tun0 -p 22,80,21 10.10.183.138
+Pre-scan script results:
+|_broadcast-ping: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_lltd-discovery: false
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.10.183.138
+Host is up (0.057s latency).
+
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+21/tcp open  ftp
+|_banner: 220 (vsFTPd 3.0.3)
+22/tcp open  ssh
+| ssh-hostkey: 
+|   2048 e180ec1f269e32eb273f26acd237ba96 (RSA)
+|   256 36ff7011058ed4507a29915875ac2e76 (ECDSA)
+|_  256 48d23e45da0cf0f6654ef9789737aa8a (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3
+80/tcp open  http
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-feed: Couldn't find any feeds.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.183.138
+|     
+|     Path: http://10.10.183.138:80/css/bootstrap.min.css
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * Bootstrap v4.5.3 (https://getbootstrap.com/)
+|          * Copyright 2011-2020 The Bootstrap Authors
+|          * Copyright 2011-2020 Twitter, Inc.
+|          * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+|          */
+|     
+|     Path: http://10.10.183.138:80/css/bootstrap.min.css
+|     Line number: 7
+|     Comment: 
+|         /*# sourceMappingURL=bootstrap.min.css.map */
+|     
+|     Path: http://10.10.183.138:80/post.php?post=striped.php
+|     Line number: 31
+|     Comment: 
+|_        <!-- Custom styles for this template -->
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; php: 1
+|     /css/
+|       css: 1
+|     /images/
+|       jpg: 3
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /images/
+|   Total files found (by extension):
+|_    Other: 1; css: 1; jpg: 3; php: 1
+|_http-date: Thu, 02 Feb 2023 10:56:45 GMT; +1h00m00s from local time.
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.10.183.138
+|   Found the following error pages: 
+|   
+|   Error Code: 404
+|_  	http://10.10.183.138:80/album.css
+|_http-chrono: Request times for /; avg: 231.45ms; min: 176.44ms; max: 283.66ms
+| http-internal-ip-disclosure: 
+|_  Internal IP Leaked: 127.0.1.1
+| http-vhosts: 
+|_128 names had status 200
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-headers: 
+|   Date: Thu, 02 Feb 2023 10:56:35 GMT
+|   Server: Apache/2.4.29 (Ubuntu)
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+| http-enum: 
+|   /robots.txt: Robots file
+|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|_  /images/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|_http-title: Corkplacemats
+| http-grep: 
+|   (1) http://10.10.183.138:80/album.css: 
+|     (1) ip: 
+|_      + 10.10.183.138
+|_http-generator: Jekyll v4.1.1
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-mobileversion-checker: No mobile version detected.
+
+Host script results:
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 21    0       69973.90   30158.86  0.0%
+| 22    0       56453.20   4080.41   0.0%
+|_80    0       64026.80   10489.29  0.0%
+|_dns-brute: Can't guess domain of "10.10.183.138"; use dns-brute.domain script argument.
+|_ipidseq: All zeros
+|_fcrdns: FAIL (No PTR record)
+|_path-mtu: PMTU == 1500
+
+# Nmap done at Thu Feb  2 11:02:06 2023 -- 1 IP address (1 host up) scanned in 356.06 seconds

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Thu Feb  2 11:02:06 2023 as: nmap -&#45;script vuln -oA nmap/10-10-183-138-Vuln -&#45;min-rate 100 -e tun0 -p 22,80,21 10.10.183.138 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-10-183-138-Vuln -&#45;min-rate 100 -e tun0 -p 22,80,21 10.10.183.138" start="1675335726" startstr="Thu Feb  2 11:02:06 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="21-22,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.183.138" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1675335750" endtime="1675335772"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.183.138" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-enum" output="&#xa;  /robots.txt: Robots file&#xa;  /css/: Potentially interesting directory w/ listing on &apos;apache/2.4.29 (ubuntu)&apos;&#xa;  /images/: Potentially interesting directory w/ listing on &apos;apache/2.4.29 (ubuntu)&apos;&#xa;"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-internal-ip-disclosure" output="&#xa;  Internal IP Leaked: 127.0.1.1"><elem key="Internal IP Leaked">127.0.1.1</elem>
+</script><script id="http-vuln-cve2017-1001000" output="ERROR: Script execution failed (use -d to debug)"/></port>
+</ports>
+<times srtt="56853" rttvar="24389" to="154409"/>
+</host>
+<runstats><finished time="1675335772" timestr="Thu Feb  2 11:02:52 2023" summary="Nmap done at Thu Feb  2 11:02:52 2023; 1 IP address (1 host up) scanned in 45.39 seconds" elapsed="45.39" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -15,8 +15,9 @@ Learnt:
 - When I put capability pieces together I can actually achieve stuff!
 Beyond Root:
 - Patch the machine to prevent a buffer overflow
+- Test all my Linux Battleground counter measures as VulnNet node shells would just take more time to configure 
 
-[XCT is a ](https://www.youtube.com/watch?v=uAvvrBO7zlk) - We will solve Attended, a 50-point machine on HackTheBox. For user, we will be sending some emails back and forth and then append a payload that exploits a Vim RCE, followed by adding a malicious ssh config. For root, we will exploit a custom OpenBSD binary that is used as an AuthorizedKeysCommand for SSH. [XCT](https://app.hackthebox.com/users/13569) is currently ranked 1 on HTB with 14 user FBs, 28 system FBs - 248 solved machiens, 7 FB on challenges with 266 total solved, also end games and fortress completions. This guy is awesome. My hope is learn from maybe 10 boxes completed by XCT for the next 5 months or so. Along with Snowscan and few other I want to try be like the best as early as possible and be more than the average Ippsec viewer - Ippsec is still awesome, I want to suppass the average ASAP.
+[XCT is current top number one on HTB](https://www.youtube.com/watch?v=uAvvrBO7zlk) - We will solve Attended, a 50-point machine on HackTheBox. For user, we will be sending some emails back and forth and then append a payload that exploits a Vim RCE, followed by adding a malicious ssh config. For root, we will exploit a custom OpenBSD binary that is used as an AuthorizedKeysCommand for SSH. [XCT](https://app.hackthebox.com/users/13569) is currently ranked 1 on HTB with 14 user FBs, 28 system FBs - 248 solved machiens, 7 FB on challenges with 266 total solved, also end games and fortress completions. This guy is awesome. My hope is learn from maybe 10 boxes completed by XCT for the next 5 months or so. Along with Snowscan and few other I want to try be like the best as early as possible and be more than the average Ippsec viewer - Ippsec is still awesome, I want to suppass the average ASAP.
 
 
 ## Recon
@@ -92,7 +93,22 @@ swaks --from 'root@attended.htb' --to 'guly@attended.htb' --header "Subject: Hel
 Swaks - Swiss Army Knife SMTP, the all-purpose SMTP transaction tester
 
 I  did not get a response back 
+
 ![1080](swaksnotincoming.png)
+
+For linux reasons we need to have service running as root?
+
+![](thxforemail.png)
+
+```
+220 proudly setup by guly for attended.htb ESMTP OpenSMTPD
+250-proudly setup by guly for attended.htb Hello kali.kali [10.10.14.91], pleased to meet you
+250 2.0.0: Ok
+250 2.1.5 Destination address valid: Recipient ok
+354 Enter mail, end with "." on a line by itself
+```
+
+New host name! - attendedgw.htb
 
 ## Exploit
 
@@ -102,4 +118,81 @@ I  did not get a response back
 
 ## Beyond Root
 
-      
+#### XCT Workflow
+
+- Always visible notes
+	
+ 
+ 
+ - How can I much my display better?
+	- Where is the healthiest place for your head and neck?
+	- Can you see you notes?
+
+
+
+#### Test HvH countermeasures
+
+```bash
+mount -o remount,noexec,rw,nosuid,relatime /dev/shm
+```
+
+Remove the webshells and its process Holo or a HTB ctf did this but did not kill the process.
+```bash
+* * * * * * root /bin/sleep 10 && for f in `/bin/ls /var/www/html | grep -v .html`; do p=$(ps -aux | grep $f | awk '{print $2}') && kill $p && rm /var/www/html/$f; done
+```
+
+Kill ptys
+```bash
+* * * * * root /bin/sleep 1  && for f in `/bin/ls /dev/pts`; do /usr/bin/echo nope > /dev/pts/$f && /usr/bin/pkill  -9 -t pts/$f; done
+* * * * * root /bin/sleep 11 && for f in `/bin/ls /dev/pts`; do /usr/bin/echo nope > /dev/pts/$f && /usr/bin/pkill  -9 -t pts/$f; done
+* * * * * root /bin/sleep 21 && for f in `/bin/ls /dev/pts`; do /usr/bin/echo nope > /dev/pts/$f && /usr/bin/pkill  -9 -t pts/$f; done
+* * * * * root /bin/sleep 31 && for f in `/bin/ls /dev/pts`; do /usr/bin/echo nope > /dev/pts/$f && /usr/bin/pkill  -9 -t pts/$f; done
+* * * * * root /bin/sleep 41 && for f in `/bin/ls /dev/pts`; do /usr/bin/echo nope > /dev/pts/$f && /usr/bin/pkill  -9 -t pts/$f; done
+* * * * * root /bin/sleep 51 && for f in `/bin/ls /dev/pts`; do /usr/bin/echo nope > /dev/pts/$f && /usr/bin/pkill -9 -t pts/$f; done
+```
+
+
+#### Operation 8008Y 7R4P
+
+adminuser only essential nc ping, vim, emac, nano, tmux=
+docker container for ssh for admin, not builtin ssh
+
+Triad Sandbox
+One sandbox escape leads to another then another and then back to the orginal sandbox.
+SELinux -> Python -> 
+
+stty is set 1 row 1 cols
+```bash
+stty rows 1 cols 1
+```
+
+
+The circle of doom 
+```
+alias 'ls'=/bin/echo'
+alias 'echo'=/bin/cd'
+alias 'cat'=/bin/ls'
+alias 'cd'=/bin/cat'
+```
+
+Return to hell aliasing - cd to a empty very blank named directory and parent directory
+```
+$PATH 
+$ENV
+$HOME
+mkdir # massive directory 
+alias 'cd //'
+alias '~'
+alias '/'
+/directories
+
+```
+
+Randomise stdout that is base64 encoded, split base64 encoded again removed any `=` and conv to hex 
+
+#### Probably well-known  Found Additions
+
+Alerts
+```
+id,whoami, sudo,ss,netstat,cat /etc/passwd,groups, chatter,lsattr,curl,wget,passwd
+```

@@ -1,0 +1,20 @@
+# Nmap 7.93 scan initiated Thu Feb  2 11:02:06 2023 as: nmap --script vuln -oA nmap/10-10-183-138-Vuln --min-rate 100 -e tun0 -p 22,80,21 10.10.183.138
+Nmap scan report for 10.10.183.138
+Host is up (0.057s latency).
+
+PORT   STATE SERVICE
+21/tcp open  ftp
+22/tcp open  ssh
+80/tcp open  http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|   /robots.txt: Robots file
+|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|_  /images/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+| http-internal-ip-disclosure: 
+|_  Internal IP Leaked: 127.0.1.1
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+
+# Nmap done at Thu Feb  2 11:02:52 2023 -- 1 IP address (1 host up) scanned in 45.39 seconds

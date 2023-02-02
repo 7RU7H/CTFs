@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Thu Feb  2 10:56:10 2023 as: nmap -&#45;script discovery -oA nmap/10-10-183-138-Discovery -&#45;min-rate 100 -e tun0 -p 22,80,21 10.10.183.138 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/10-10-183-138-Discovery -&#45;min-rate 100 -e tun0 -p 22,80,21 10.10.183.138" start="1675335370" startstr="Thu Feb  2 10:56:10 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="21-22,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="broadcast-ping" output="false">false</script><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="targets-sniffer" output="Sniffed 1 address(es). &#xa;224.0.23.12"/><script id="lltd-discovery" output="false">false</script><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.183.138" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1675335395" endtime="1675335726"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.183.138" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ftp" method="table" conf="3"/><script id="banner" output="220 (vsFTPd 3.0.3)"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/><script id="ssh-hostkey" output="&#xa;  2048 e180ec1f269e32eb273f26acd237ba96 (RSA)&#xa;  256 36ff7011058ed4507a29915875ac2e76 (ECDSA)&#xa;  256 48d23e45da0cf0f6654ef9789737aa8a (ED25519)"><table>
+<elem key="bits">2048</elem>
+<elem key="fingerprint">e180ec1f269e32eb273f26acd237ba96</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABAQC7hN8ixZsMzRUvaZjiBUrqtngTVOcdko2FRpRMT0D/LTRm8x8SvtI5a52C/adoiNNreQO5/DOW8k5uxY1Rtx/HGvci9fdbplPz7RLtt+Mc9pgGHj0ZEm/X0AfhBF0P3Uwf3paiqCqeDcG1HHVceFUKpDt0YcBeiG1JJ5LZpRxqAyd0jOJsC1FBNBPZAtUA11KOEvxbg5j6pEL1rmbjwGKUVxM8HIgSuU6R6anZxTrpUPvcho9W5F3+JSxl/E+vF9f51HtIQcXaldiTNhfwLsklPcunDw7Yo9IqhqlORDrM7biQOtUnanwGZLFX7kfQL28r9HbEwpAHxdScXDFmu5wR</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+<table>
+<elem key="bits">256</elem>
+<elem key="fingerprint">36ff7011058ed4507a29915875ac2e76</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBmjWU4CISIz0mdwq6ObddQ3+hBuOm49wam2XHUdUaJkZHf4tOqzl+HVz107toZIXKn1ui58hl9+6ojTnJ6jN/Y=</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+</table>
+<table>
+<elem key="bits">256</elem>
+<elem key="fingerprint">48d23e45da0cf0f6654ef9789737aa8a</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIHb7zsrJYdPY9eb0sx8CvMphZyxajGuvbDShGXOV9MDX</elem>
+<elem key="type">ssh-ed25519</elem>
+</table>
+</script><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (10)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (6)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+<elem>diffie-hellman-group14-sha1</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>ssh-rsa</elem>
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script><script id="banner" output="SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-comments-displayer" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.183.138&#xa;    &#xa;    Path: http://10.10.183.138:80/css/bootstrap.min.css&#xa;    Line number: 1&#xa;    Comment: &#xa;        /*!&#xa;         * Bootstrap v4.5.3 (https://getbootstrap.com/)&#xa;         * Copyright 2011-2020 The Bootstrap Authors&#xa;         * Copyright 2011-2020 Twitter, Inc.&#xa;         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)&#xa;         */&#xa;    &#xa;    Path: http://10.10.183.138:80/css/bootstrap.min.css&#xa;    Line number: 7&#xa;    Comment: &#xa;        /*# sourceMappingURL=bootstrap.min.css.map */&#xa;    &#xa;    Path: http://10.10.183.138:80/post.php?post=striped.php&#xa;    Line number: 31&#xa;    Comment: &#xa;        &lt;!-&#45; Custom styles for this template -&#45;&gt;&#xa;"/><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      Other: 1; php: 1&#xa;    /css/&#xa;      css: 1&#xa;    /images/&#xa;      jpg: 3&#xa;  Longest directory structure:&#xa;    Depth: 1&#xa;    Dir: /images/&#xa;  Total files found (by extension):&#xa;    Other: 1; css: 1; jpg: 3; php: 1&#xa;"/><script id="http-date" output="Thu, 02 Feb 2023 10:56:45 GMT; +1h00m00s from local time."><elem key="date">2023-02-02T11:56:45+00:00</elem>
+<elem key="delta">3600.0</elem>
+</script><script id="http-errors" output="&#xa;Spidering limited to: maxpagecount=40; withinhost=10.10.183.138&#xa;  Found the following error pages: &#xa;  &#xa;  Error Code: 404&#xa;  &#x9;http://10.10.183.138:80/album.css&#xa;"/><script id="http-chrono" output="Request times for /; avg: 231.45ms; min: 176.44ms; max: 283.66ms"/><script id="http-internal-ip-disclosure" output="&#xa;  Internal IP Leaked: 127.0.1.1"><elem key="Internal IP Leaked">127.0.1.1</elem>
+</script><script id="http-vhosts" output="&#xa;128 names had status 200"/><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">200</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-headers" output="&#xa;  Date: Thu, 02 Feb 2023 10:56:35 GMT&#xa;  Server: Apache/2.4.29 (Ubuntu)&#xa;  Connection: close&#xa;  Content-Type: text/html; charset=UTF-8&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-enum" output="&#xa;  /robots.txt: Robots file&#xa;  /css/: Potentially interesting directory w/ listing on &apos;apache/2.4.29 (ubuntu)&apos;&#xa;  /images/: Potentially interesting directory w/ listing on &apos;apache/2.4.29 (ubuntu)&apos;&#xa;"/><script id="http-title" output="Corkplacemats"><elem key="title">Corkplacemats</elem>
+</script><script id="http-grep" output="&#xa;  (1) http://10.10.183.138:80/album.css: &#xa;    (1) ip: &#xa;      + 10.10.183.138"><table key="(1) http://10.10.183.138:80/album.css">
+<table key="(1) ip">
+<elem>+ 10.10.183.138</elem>
+</table>
+</table>
+</script><script id="http-generator" output="Jekyll v4.1.1"/><script id="http-xssed" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-security-headers" output=""></script><script id="http-mobileversion-checker" output="No mobile version detected."/></port>
+</ports>
+<hostscript><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;21    0       69973.90   30158.86  0.0%&#xa;22    0       56453.20   4080.41   0.0%&#xa;80    0       64026.80   10489.29  0.0%&#xa;"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.10.183.138&quot;; use dns-brute.domain script argument."/><script id="ipidseq" output="All zeros"/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="path-mtu" output="PMTU == 1500"/></hostscript><times srtt="56645" rttvar="26232" to="161573"/>
+</host>
+<runstats><finished time="1675335726" timestr="Thu Feb  2 11:02:06 2023" summary="Nmap done at Thu Feb  2 11:02:06 2023; 1 IP address (1 host up) scanned in 356.06 seconds" elapsed="356.06" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
