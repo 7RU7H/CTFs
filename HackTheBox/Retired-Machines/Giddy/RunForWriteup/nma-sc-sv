@@ -1,0 +1,42 @@
+# Nmap 7.93 scan initiated Sat Feb  4 10:26:54 2023 as: nmap -sC -sV -p 5985,3389,80,443 -e tun0 -oN nma-sc-sv 10.129.96.140
+Nmap scan report for 10.129.96.140
+Host is up (0.052s latency).
+
+PORT     STATE SERVICE       VERSION
+80/tcp   open  http          Microsoft IIS httpd 10.0
+|_http-title: IIS Windows Server
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-server-header: Microsoft-IIS/10.0
+443/tcp  open  ssl/http      Microsoft IIS httpd 10.0
+| http-methods: 
+|_  Potentially risky methods: TRACE
+| tls-alpn: 
+|   h2
+|_  http/1.1
+|_http-title: IIS Windows Server
+| ssl-cert: Subject: commonName=PowerShellWebAccessTestWebSite
+| Not valid before: 2018-06-16T21:28:55
+|_Not valid after:  2018-09-14T21:28:55
+|_http-server-header: Microsoft-IIS/10.0
+|_ssl-date: 2023-02-04T10:27:29+00:00; 0s from scanner time.
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+| ssl-cert: Subject: commonName=Giddy
+| Not valid before: 2023-02-03T09:54:54
+|_Not valid after:  2023-08-05T09:54:54
+| rdp-ntlm-info: 
+|   Target_Name: GIDDY
+|   NetBIOS_Domain_Name: GIDDY
+|   NetBIOS_Computer_Name: GIDDY
+|   DNS_Domain_Name: Giddy
+|   DNS_Computer_Name: Giddy
+|   Product_Version: 10.0.14393
+|_  System_Time: 2023-02-04T10:27:21+00:00
+|_ssl-date: 2023-02-04T10:27:29+00:00; 0s from scanner time.
+5985/tcp open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-title: Not Found
+|_http-server-header: Microsoft-HTTPAPI/2.0
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Feb  4 10:27:29 2023 -- 1 IP address (1 host up) scanned in 34.79 seconds
