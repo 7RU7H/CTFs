@@ -10,6 +10,7 @@ Learnt:
 - Scrapping the brain pellets together to make the connection that with internal 127.0.0.1 we can fuzz  for ports for SSRF - never done that
 Beyond Root:
 - Linux Malware in C and detections for Rootkits and Malware
+- Best FTP server
 
 [areyou0or1](https://www.youtube.com/watch?v=yOxk3JghqCk) is OSCP, OSCE, SLAE64, OSWP, CCP. OSEE and the Senior Vulnerable Machine Engineer at Offsec. She is awesome in probably every possible way. If I find anymore female youtubers like this I would be a lucky fool.
 
@@ -277,7 +278,7 @@ ebE/CJtaABiUj2TqUPYCLhmQYSzm5Iorc5bcmLL3XiqltalL961bSlZCaxqOyU2h
 45 minutes on I think this is a tad beyond me. I continue the video. I missed two things in all of this - the dns 53 and the app.log pieces!
 
 Ok OSCP - always check the versions  and BEWARE of PrivEsc rabbit holes - it is exploitable for a reason, ever piece is a hint:
-[RCE](https://www.exploit-db.com/exploits/40064) - I pause to read and try without help.
+[potential RCE](https://www.exploit-db.com/exploits/40064) - I pause to read and try without help.
 ```txt
 GNU Wget before 1.18 when supplied with a malicious URL (to a malicious or 
 compromised web server) can be tricked into saving an arbitrary remote file 
@@ -317,8 +318,24 @@ attackers-server# python -m pyftpdlib -p21 -w
 ```
 
 - Python2 exploit..
+```bash 
+# for complete research and reading sake 
+searchsploit -m linux/remote/49815.py
+searchsploit -m linux/remote/40064.txt
+```
 
-8:24 
+TL;DR - For The FeynmanWin
+
+As a server requested by a victim with the CVE-2016-4971 vulnerable version of wget, we can force the victim to arbituary file creation and write. It is not a RCE in the strictiest sense, but in the context of this machine we can:
+1. Make victim download a malicious .wgetrc 
+	- this allow us to define wget settings and therefore expanding the capability of subsequent uses of wget for our attack chain
+1. On the second download create a malicious cron job, which wil be written and run as root
+
+[40064](https://www.exploit-db.com/exploits/40064) and [49815](https://www.exploit-db.com/exploits/49815)
+[wgetrc commands documentation](https://www.gnu.org/software/wget/manual/wget.html#Wgetrc-Commands)
+
+8:24
+
 
 ## Beyond Root
 
