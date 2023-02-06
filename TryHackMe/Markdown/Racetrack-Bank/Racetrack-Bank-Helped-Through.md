@@ -264,7 +264,6 @@ What mitigations and redemiation would you write in a report fix this exploit?
 ## One Account to Rule them all!
 
 
-
 I started writing this to see if it would work
 ```python 
 import asyncio, threads, os, requests
