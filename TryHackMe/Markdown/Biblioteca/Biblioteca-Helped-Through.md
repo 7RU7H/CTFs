@@ -114,4 +114,14 @@ getcap OTHER
 getcap variant
 ```
 
+This is my third time writing this up.
 
+Apply a Presentation of a Session Transporting Network Data through Physical cables. 
+
+1. Physical
+2. Data
+3. Network
+4. Transport - Mixed up
+5. Session - Mixed Up
+6. Presentation
+7. Application

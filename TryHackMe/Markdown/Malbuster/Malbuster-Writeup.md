@@ -444,17 +444,3 @@ func main() {
 	}
 
 ```
-
-#### QueueUserAPC Injection
-
-C version
-```c
-
-
-```
-
-Go version - because 
-```go
-
-
-```
