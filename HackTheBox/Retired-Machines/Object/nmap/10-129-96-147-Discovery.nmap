@@ -1,0 +1,173 @@
+# Nmap 7.93 scan initiated Fri Feb 10 18:16:55 2023 as: nmap --script discovery -oA nmap/10-129-96-147-Discovery --min-rate 200 -e tun0 -p 80,8080,5985 10.129.96.147
+Pre-scan script results:
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-sniffer: Sniffed 2 address(es). 
+| 10.129.96.147
+|_224.0.23.12
+|_broadcast-ping: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_lltd-discovery: false
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.129.96.147
+Host is up (0.058s latency).
+
+Bug in http-security-headers: no string output.
+PORT     STATE SERVICE
+80/tcp   open  http
+|_http-date: Fri, 10 Feb 2023 18:17:20 GMT; +59m56s from local time.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.96.147
+|     
+|     Path: http://10.129.96.147:80/
+|     Line number: 19
+|     Comment: 
+|         /* Old browsers */
+|     
+|     Path: http://10.129.96.147:80/
+|     Line number: 25
+|     Comment: 
+|         /* Chrome10+,Safari5.1+ */
+|     
+|     Path: http://10.129.96.147:80/
+|     Line number: 31
+|     Comment: 
+|         /* W3C */
+|     
+|     Path: http://10.129.96.147:80/
+|     Line number: 304
+|     Comment: 
+|         
+|         // the first scene
+|     
+|     Path: http://10.129.96.147:80/
+|     Line number: 353
+|     Comment: 
+|         
+|         //master.seek("scene1+=4");
+|     
+|     Path: http://10.129.96.147:80/
+|     Line number: 23
+|     Comment: 
+|         /* Chrome,Safari4+ */
+|     
+|     Path: http://10.129.96.147:80/
+|     Line number: 21
+|     Comment: 
+|         /* FF3.6+ */
+|     
+|     Path: http://10.129.96.147:80/
+|     Line number: 27
+|     Comment: 
+|         /* Opera 12+ */
+|     
+|     Path: http://10.129.96.147:80/
+|     Line number: 279
+|     Comment: 
+|         <!--container-->
+|     
+|     Path: http://10.129.96.147:80/
+|     Line number: 29
+|     Comment: 
+|_        /* IE10+ */
+|_http-errors: Couldn't find any error pages.
+|_http-feed: Couldn't find any feeds.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1
+| http-grep: 
+|   (1) http://10.129.96.147:80/: 
+|     (1) email: 
+|_      + ideas@object.htb
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-referer-checker: 
+| Spidering limited to: maxpagecount=30
+|   https://s3-us-west-2.amazonaws.com:443/s.cdpn.io/28963/modernizr.custom.18922.js
+|   https://cdnjs.cloudflare.com:443/ajax/libs/prefixfree/1.0.7/prefixfree.min.js
+|   https://cpwebassets.codepen.io:443/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js
+|   https://cdnjs.cloudflare.com:443/ajax/libs/gsap/1.15.0/TweenMax.min.js
+|_  https://cdnjs.cloudflare.com:443/ajax/libs/jquery/2.1.3/jquery.min.js
+|_http-chrono: Request times for /; avg: 399.05ms; min: 351.35ms; max: 507.06ms
+|_http-title: Mega Engines
+| http-headers: 
+|   Content-Length: 29932
+|   Content-Type: text/html
+|   Last-Modified: Tue, 26 Oct 2021 06:21:32 GMT
+|   Accept-Ranges: bytes
+|   ETag: "61128db831cad71:0"
+|   Server: Microsoft-IIS/10.0
+|   Date: Fri, 10 Feb 2023 18:17:32 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+| http-vhosts: 
+|_128 names had status 200
+|_http-mobileversion-checker: No mobile version detected.
+5985/tcp open  wsman
+8080/tcp open  http-proxy
+| http-vhosts: 
+|_128 names had status 403
+| http-robots.txt: 1 disallowed entry 
+|_/
+|_http-title: Site doesn't have a title (text/html;charset=utf-8).
+| http-enum: 
+|_  /robots.txt: Robots file
+|_http-date: Fri, 10 Feb 2023 18:17:22 GMT; +1h00m00s from local time.
+|_http-chrono: Request times for /; avg: 298.79ms; min: 202.62ms; max: 519.11ms
+| http-headers: 
+|   Connection: close
+|   Date: Fri, 10 Feb 2023 18:17:23 GMT
+|   X-Content-Type-Options: nosniff
+|   Set-Cookie: JSESSIONID.4059a794=node01m83m5kx4eg8j1j72ywaitkowr312.node0; Path=/; HttpOnly
+|   Expires: Thu, 01 Jan 1970 00:00:00 GMT
+|   Content-Type: text/html;charset=utf-8
+|   X-Hudson: 1.395
+|   X-Jenkins: 2.317
+|   X-Jenkins-Session: 13d07277
+|   Content-Length: 548
+|   Server: Jetty(9.4.43.v20210629)
+|   
+|_  (Request type: GET)
+
+Host script results:
+|_ipidseq: Random Positive Increments
+|_path-mtu: PMTU == 1500
+|_fcrdns: FAIL (No PTR record)
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 80    0       63565.10   38123.27  0.0%
+| 5985  0       60080.10   31136.89  0.0%
+|_8080  0       64542.30   36656.68  0.0%
+|_dns-brute: Can't guess domain of "10.129.96.147"; use dns-brute.domain script argument.
+
+# Nmap done at Fri Feb 10 18:20:59 2023 -- 1 IP address (1 host up) scanned in 244.25 seconds

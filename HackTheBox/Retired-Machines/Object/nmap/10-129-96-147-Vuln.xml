@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Fri Feb 10 18:20:59 2023 as: nmap -&#45;script vuln -oA nmap/10-129-96-147-Vuln -&#45;min-rate 200 -e tun0 -p 80,8080,5985 10.129.96.147 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-129-96-147-Vuln -&#45;min-rate 200 -e tun0 -p 80,8080,5985 10.129.96.147" start="1676053259" startstr="Fri Feb 10 18:20:59 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="80,5985,8080"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.96.147" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1676053282" endtime="1676053483"><status state="up" reason="echo-reply" reason_ttl="127"/>
+<address addr="10.129.96.147" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" method="table" conf="3"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="wsman" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http-proxy" method="table" conf="3"/><script id="http-enum" output="&#xa;  /robots.txt: Robots file&#xa;"/></port>
+</ports>
+<times srtt="50534" rttvar="24869" to="150010"/>
+</host>
+<runstats><finished time="1676053483" timestr="Fri Feb 10 18:24:43 2023" summary="Nmap done at Fri Feb 10 18:24:43 2023; 1 IP address (1 host up) scanned in 224.20 seconds" elapsed="224.20" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
