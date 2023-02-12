@@ -26,7 +26,7 @@ Nmap found:
 
 
 
-```js
+```javascript
 function string_to_int_array(str) {
     const intArr = [];
     for (let i = 0; i < str.length; i++) {
@@ -173,4 +173,4 @@ chmod u+s /bin/sh
 
 ## Beyond Root
 
-      
+

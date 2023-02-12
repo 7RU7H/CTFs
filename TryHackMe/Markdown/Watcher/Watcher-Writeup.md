@@ -12,7 +12,9 @@ Beyond Root:
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](Screenshots/ping.png)
 
-Nikto and Nuclei both read the robot.txt for flag_one.txt
+Nikto and Nuclei both read the robotsexit
+.txt for flag_one.txt
+
 ```bash
 curl http://10.10.183.138/flag_1.txt
 ```

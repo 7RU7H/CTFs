@@ -20,7 +20,6 @@ Credentials:
 
 
 
-
 Encrypted version with chroot jail
 ```bash
 #!/bin/bash

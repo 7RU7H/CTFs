@@ -2,10 +2,18 @@
 
 Name: Object
 Date:  
-Difficulty:  
+Difficulty:  Hard
 Goals:  
+- Have fun and keep my head in AD hacking and Impacket etched slightly in my brain.
+- Comment atleast once per section about Azure AD to revise
+- Finish other Boxes and BRs again.
 Learnt:
 Beyond Root:
+- Windows AD Patching
+- Test my Windows Battleground/KOTH and invent another
+
+
+
 
 ## Recon
 
