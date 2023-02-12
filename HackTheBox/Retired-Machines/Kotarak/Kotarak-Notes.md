@@ -103,10 +103,15 @@ sudo chown -R ftpuser:ftpgroup /home/ftpuser
 sudo systemctl restart pure-ftpd
 ```
 
+#### FTP SFTP Battleplan
+
+Objectives
+- Dirty `python -m http.server` equivalient - test https://pypi.org/project/pyftpdlib/ more.. 
+- KOTH secure sftp
 
 
-### Done
-
-
-      
-      
+DNS and DNS server
+TLS/SSL cert
+User & Group
+Database Linking
+Chroot Jail for the directory
