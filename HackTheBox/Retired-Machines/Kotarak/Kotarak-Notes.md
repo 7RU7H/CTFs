@@ -105,9 +105,66 @@ sudo systemctl restart pure-ftpd
 
 #### FTP SFTP Battleplan
 
-Objectives
+
+#### Objectives
 - Dirty `python -m http.server` equivalient - test https://pypi.org/project/pyftpdlib/ more.. 
 - KOTH secure sftp
+
+####  Dirty option
+Authbind addition from: https://0xdf.gitlab.io/2021/05/19/htb-kotarak.html#alternative-root-via-disk
+
+```bash
+# Some OSes may require authbin to allow binding at low ports without root
+# sudo apt install authbind 
+# wait
+# FTP python module
+pip3 install pyftpdlib
+wait 
+echo "Run with: authbind python3 -m  pyftpdlib -p21 <module flags for permissions>"
+echo "Check python3 -m pyftpdlib -h for updated complete list"
+echo "Usage: python -m pyftpdlib [options]
+
+Start a stand alone anonymous FTP server.
+
+Options:
+  -h, --help
+     show this help message and exit
+
+  -i ADDRESS, --interface=ADDRESS
+     specify the interface to run on (default all interfaces)
+
+  -p PORT, --port=PORT
+     specify port number to run on (default 2121)
+
+  -w, --write
+     grants write access for logged in user (default read-only)
+
+  -d FOLDER, --directory=FOLDER
+     specify the directory to share (default current directory)
+
+  -n ADDRESS, --nat-address=ADDRESS
+     the NAT address to use for passive connections
+
+  -r FROM-TO, --range=FROM-TO
+     the range of TCP ports to use for passive connections (e.g. -r 8000-9000)
+
+  -D, --debug
+     enable DEBUG logging level
+
+  -v, --version
+     print pyftpdlib version and exit
+
+  -V, --verbose
+     activate a more verbose logging
+
+  -u USERNAME, --username=USERNAME
+     specify username to login with (anonymous login will be disabled and password required if supplied)
+
+  -P PASSWORD, --password=PASSWORD
+     specify a password to login with (username required to be useful)
+
+"
+```
 
 
 DNS and DNS server
