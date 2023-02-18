@@ -1,0 +1,38 @@
+# Nmap 7.93 scan initiated Sat Feb 18 14:58:39 2023 as: nmap --script vuln -oA nmap/10-10-116-124-Vuln --min-rate 200 -e tun0 -p 22,80 10.10.116.124
+Nmap scan report for 10.10.116.124
+Host is up (0.12s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+| http-enum: 
+|_  /login.php: Possible admin folder
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|       httponly flag not set
+|   /login.php: 
+|     PHPSESSID: 
+|_      httponly flag not set
+| http-sql-injection: 
+|   Possible sqli for forms:
+|     Form at path: /, form's action: /index.php. Fields that might be vulnerable:
+|       username
+|     Form at path: /index.php, form's action: /index.php. Fields that might be vulnerable:
+|_      username
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.116.124
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.10.116.124:80/
+|     Form id: 
+|     Form action: /index.php
+|     
+|     Path: http://10.10.116.124:80/index.php
+|     Form id: 
+|_    Form action: /index.php
+
+# Nmap done at Sat Feb 18 14:59:27 2023 -- 1 IP address (1 host up) scanned in 48.10 seconds

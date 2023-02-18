@@ -43,7 +43,7 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 ## Beyond Root
 
       "	> $name-Writeup.md
-      echo "# Notes
+echo "# Notes
 
 ## Data 
 

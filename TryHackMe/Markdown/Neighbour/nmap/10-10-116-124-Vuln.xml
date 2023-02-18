@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Sat Feb 18 14:58:39 2023 as: nmap -&#45;script vuln -oA nmap/10-10-116-124-Vuln -&#45;min-rate 200 -e tun0 -p 22,80 10.10.116.124 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-10-116-124-Vuln -&#45;min-rate 200 -e tun0 -p 22,80 10.10.116.124" start="1676732319" startstr="Sat Feb 18 14:58:39 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.116.124" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1676732343" endtime="1676732367"><status state="up" reason="reset" reason_ttl="63"/>
+<address addr="10.10.116.124" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="62"/><service name="http" method="table" conf="3"/><script id="http-enum" output="&#xa;  /login.php: Possible admin folder&#xa;"/><script id="http-cookie-flags" output="&#xa;  /: &#xa;    PHPSESSID: &#xa;      httponly flag not set&#xa;  /login.php: &#xa;    PHPSESSID: &#xa;      httponly flag not set"><table key="/">
+<table key="PHPSESSID">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+<table key="/login.php">
+<table key="PHPSESSID">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+</script><script id="http-sql-injection" output="&#xa;  Possible sqli for forms:&#xa;    Form at path: /, form&apos;s action: /index.php. Fields that might be vulnerable:&#xa;      username&#xa;    Form at path: /index.php, form&apos;s action: /index.php. Fields that might be vulnerable:&#xa;      username&#xa;"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-vuln-cve2017-1001000" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.116.124&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://10.10.116.124:80/&#xa;    Form id: &#xa;    Form action: /index.php&#xa;    &#xa;    Path: http://10.10.116.124:80/index.php&#xa;    Form id: &#xa;    Form action: /index.php&#xa;"/></port>
+</ports>
+<times srtt="123023" rttvar="128444" to="636799"/>
+</host>
+<runstats><finished time="1676732367" timestr="Sat Feb 18 14:59:27 2023" summary="Nmap done at Sat Feb 18 14:59:27 2023; 1 IP address (1 host up) scanned in 48.10 seconds" elapsed="48.10" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

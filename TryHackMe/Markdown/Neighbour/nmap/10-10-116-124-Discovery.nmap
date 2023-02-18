@@ -1,0 +1,118 @@
+# Nmap 7.93 scan initiated Sat Feb 18 14:51:55 2023 as: nmap --script discovery -oA nmap/10-10-116-124-Discovery --min-rate 200 -e tun0 -p 22,80 10.10.116.124
+Pre-scan script results:
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-sniffer: Sniffed 3 address(es). 
+| fe80::190b:db22:aa58:9bc
+| 224.0.23.12
+|_10.10.48.199
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_lltd-discovery: false
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-ping: false
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.10.116.124
+Host is up (0.083s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+|_banner: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.5
+| ssh-hostkey: 
+|   3072 abc6d9bc71dd43839aeca987fc4cfac6 (RSA)
+|   256 e1fa9e726ca69e64d2040c1dcfa8c7cb (ECDSA)
+|_  256 254e7678b4c63c081b379f18c8de3534 (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (9)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+80/tcp open  http
+| http-vhosts: 
+|_128 names had status 200
+|_http-chrono: Request times for /; avg: 372.80ms; min: 349.72ms; max: 448.06ms
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-mobileversion-checker: No mobile version detected.
+|_http-feed: Couldn't find any feeds.
+|_http-php-version: Version from header x-powered-by: PHP/8.0.19
+| http-enum: 
+|_  /login.php: Possible admin folder
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; php: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1; php: 1
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-date: Sat, 18 Feb 2023 14:52:30 GMT; +59m59s from local time.
+|_http-errors: Couldn't find any error pages.
+| http-security-headers: 
+|   Cache_Control: 
+|     Header: Cache-Control: no-store, no-cache, must-revalidate
+|   Pragma: 
+|     Header: Pragma: no-cache
+|   Expires: 
+|_    Header: Expires: Thu, 19 Nov 1981 08:52:00 GMT
+|_http-title: Login
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.116.124
+|   url                                method
+|   http://10.10.116.124:80/           FORM
+|_  http://10.10.116.124:80/index.php  FORM
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.116.124
+|     
+|     Path: http://10.10.116.124:80/index.php
+|     Line number: 34
+|     Comment: 
+|_        <!-- use guest:guest credentials until registration is fixed. "admin" user account is off limits!!!!! -->
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-headers: 
+|   Date: Sat, 18 Feb 2023 14:52:31 GMT
+|   Server: Apache/2.4.53 (Debian)
+|   X-Powered-By: PHP/8.0.19
+|   Set-Cookie: PHPSESSID=40f82345d8c16b5b2f0f9108f74278f7; path=/
+|   Expires: Thu, 19 Nov 1981 08:52:00 GMT
+|   Cache-Control: no-store, no-cache, must-revalidate
+|   Pragma: no-cache
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+
+Host script results:
+|_path-mtu: PMTU == 1500
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       115849.00  78644.62  0.0%
+|_80    0       99700.50   44996.97  0.0%
+|_fcrdns: FAIL (No PTR record)
+|_ipidseq: All zeros
+|_dns-brute: Can't guess domain of "10.10.116.124"; use dns-brute.domain script argument.
+
+# Nmap done at Sat Feb 18 14:58:39 2023 -- 1 IP address (1 host up) scanned in 404.05 seconds

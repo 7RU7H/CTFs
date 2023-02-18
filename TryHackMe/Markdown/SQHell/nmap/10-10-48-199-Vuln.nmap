@@ -1,0 +1,24 @@
+# Nmap 7.93 scan initiated Sat Feb 18 14:56:17 2023 as: nmap --script vuln -oA nmap/10-10-48-199-Vuln --min-rate 200 -e tun0 -p 80,22 10.10.48.199
+Nmap scan report for 10.10.48.199
+Host is up (0.063s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+| http-fileupload-exploiter: 
+|   
+|_    Couldn't find a file-type field.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+| http-sql-injection: 
+|   Possible sqli for queries:
+|     http://10.10.48.199:80/post?id=2%27%20OR%20sqlspider
+|     http://10.10.48.199:80/post?id=1%27%20OR%20sqlspider
+|     http://10.10.48.199:80/post?id=2%27%20OR%20sqlspider
+|_    http://10.10.48.199:80/post?id=1%27%20OR%20sqlspider
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|   /register/: Potentially interesting folder
+|_  /user/: Potentially interesting folder
+
+# Nmap done at Sat Feb 18 14:59:57 2023 -- 1 IP address (1 host up) scanned in 220.66 seconds

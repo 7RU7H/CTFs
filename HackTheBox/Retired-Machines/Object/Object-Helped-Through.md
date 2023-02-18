@@ -22,6 +22,13 @@ A brief look at Al and the length of this stream may indicate some serious maldi
 With all the standard recon scannning done ahead of time I am more following along adding to my other beyond roots.
 ![](rootweb.png)
 
+#### Azure Comment
+
+In Azure Vnet for a hosting the resource of a webserver for public access would be split with load balancers for scale sets and another for resource on a subnet that is private, unless Kubernetes is used. 
+
+#### Back To Box
+
+
 Add the hostname to /etc/hosts
 ```bash
 echo "10.129.96.147 object.htb" | sudo tee -a /etc/hosts 
@@ -48,6 +55,13 @@ We required to Web PrivEsc to access this functionality
 [Exploitdb](https://www.exploit-db.com/exploits/46572) is vulnerablity for this version of Jenkins; this exploit did not show up in `Searchsploit` - tried the metasploit version - failed
 
 ## Exploit
+
+#### Azure Comment
+
+In Azure [Jenkins](https://learn.microsoft.com/en-us/azure/developer/jenkins/overview) is marketplace resource, unlike here we would probably only want this with just-in-time authentication and on a DevOps vnet that is private, which dev request to operator. 
+
+#### Back To Box
+
 
 Ping ourselves for the PoC
 ![](pingourselvesforthepoc.png)
@@ -322,6 +336,12 @@ For some reason my hudson.util.Secret is incorrect. The password would: ` oliver
 
 ## Foothold
 
+#### Azure Comment
+
+Generally RDP would be open for users not generally being CLI users and Devs would proabbly want a visable editor if I was provisioning a DevOps Windows machine.
+
+#### Back to the box
+
 ![](olverwhoami.png)
 
 ```powershell
@@ -457,6 +477,12 @@ Maria's fine collection
 Thankfully Al has LibreOffice.
 
 ## PrivEsc Maria to Domain Admin
+
+#### Azure Comment
+
+Although this HTB box, if in Azure Subscription this section should not be Domain Joined. DevOps should stood up and down for cost, security and not accessible unless in use. It should have its only tags, Vnet and should not also be linked to on-premise AD.
+
+#### Back to the box
 
 With the  `W3llcr4ft3d_4cls`
 
