@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"sort"
+	"strings"
 )
 
 func createFile(filepath string) {
@@ -30,30 +31,53 @@ func checkFileExists(path string) bool {
 	}
 	return true
 }
+func buildSpecificMsg() {
+	fmt.Printf("Files should not contain spaces in current build \n")
+}
 
 func printAndExit() {
 	usage := "\nUsage wlSmash [options]\n-h\thelp\n-i\t a file with list of file paths to wordlists\n\t-o\tfile path to output\n"
 	fmt.Printf("%s", usage)
+	buildSpecificMsg()
 	flag.PrintDefaults()
 	os.Exit(1)
+}
 
+func covertByteToStr(b []byte) string {
+	result := string(b[:])
+	return result
+}
+
+// For file containing filepaths extract paths and return as a slice - no whitespace atm :(
+func FilePathsAsSliceFromFile(fileslist string) []string {
+	fileB, err := os.ReadFile(fileslist)
+	if err != nil {
+		fmt.Println("Error Reading file:", err)
+	}
+	fileStr := covertByteToStr(fileB)
+	filepathSlice := strings.SplitAfterN(fileStr, " ", -1)
+	return filepathSlice
 }
 
 func validFilePathsFromFile(fileslist string) bool {
-	checkFileExists(fileslist)
+	if !checkFileExists(fileslist) {
+		return false
+	}
 
-	filepaths, err := os.Open(fileslist)
-		if err != nil {
-			fmt.Println("Error opening file:", err)
-			continue
+	filepathsB, err := os.ReadFile(fileslist)
+	if err != nil {
+		fmt.Println("Error opening file:", err)
+	}
+	filepathsStr := covertByteToStr(filepathsB)
+
+	filepathSlice := strings.SplitAfterN(filepathsStr, " ", -1)
+	for _, path := range filepathSlice {
+		if checkFileExists(path) != true {
+			return false
 		}
-		// 
-		
+	}
 
-
-		defer f.Close()
-
-	return 
+	return true
 }
 
 func main() {
@@ -62,52 +86,57 @@ func main() {
 	var outputFileFlag string
 	var userInputChoice string
 	var userOutputChoice string
-	var urltypeFlag string
 
 	fmt.Printf("\n")
+
+	// Build specific message
+	buildSpecificMsg()
+
 	flag.StringVar(&helpFlag, "-h", "help", "")
 	flag.StringVar(&inputFileFlag, "-i", "needsinputfilepath", "")
 	flag.StringVar(&outputFileFlag, "-o", "needsoutputfilepath", "")
 	flag.Parse()
-	
-	args := flag.Args()
-	//argsLen := len(args)
 
-	switch os.Args[1] {
+	args := os.Args[:1]
+
+	switch args[1] {
 	case "-h":
 		printAndExit()
 	case "-o":
-		userOutputChoice = os.args[1]
+		userOutputChoice = args[1]
 	case "-i":
-		userInputChoice = os.args[1]
+		userInputChoice = args[1]
 	default:
 		//Invalid flag
 		printAndExit()
 	}
 
-	switch os.Args[2] {
+	switch args[2] {
 	case "-o":
-		userOutputChoice = os.args[2]
+		userOutputChoice = args[2]
 	case "-i":
-		userInputChoice = os.args[2]
+		userInputChoice = args[2]
 	default:
 		//Invalid flag
 		printAndExit()
 	}
 
 	// Check valid file paths
-	files := validFilePathsFromFile()
-	// Prompt if user wants to exit if some but not all files found
-
-	// Check if output file exists
-	if !checkFileExist(userOutputChoice) {
-		outputFileName = userOutputChoice
-	} else {
-		fmt.Printf("Invalid output file path, the file already exists!\n\n")
+	if validFilePathsFromFile(userInputChoice) != true {
+		fmt.Printf("Invalid intput file path, \n\n")
 		printAndExit()
 	}
 
+	// Check if output file exists
+	if checkFileExists(userOutputChoice) != true {
+		fmt.Printf("Invalid output file path, the file already exists!\n\n")
+		printAndExit()
+	}
+	fmt.Printf("All file check complete\n")
+	files := FilePathsAsSliceFromFile(userInputChoice)
+	fmt.Printf("Smashing Files together\n")
 	for _, file := range files {
+		uniqWordCounter := 0
 		f, err := os.Open(file)
 		if err != nil {
 			fmt.Println("Error opening file:", err)
@@ -118,13 +147,19 @@ func main() {
 		scanner := bufio.NewScanner(f)
 		scanner.Split(bufio.ScanWords)
 		// Create a map to store unique words
-		uniqueWords := make(map[string]bool)
+		uniqueWords := make(map[int]string)
 
 		for scanner.Scan() {
-			word := scanner.Text()
+			words := scanner.Text()
 			// Add the word to the map if it's not already there
-			if !uniqueWords[word] {
-				uniqueWords[word] = true
+			//
+			//	RUNES != Strings
+			// 
+			for i, word := range words {
+				if uniqueWords[i] != word {
+					uniqueWords[uniqWordCounter] = word
+					uniqWordCounter += 1
+				}
 			}
 		}
 
@@ -136,6 +171,7 @@ func main() {
 	// Sort the words
 	sortedWords := make([]string, 0, len(uniqueWords))
 	for word := range uniqueWords {
+
 		sortedWords = append(sortedWords, word)
 	}
 	sort.Strings(sortedWords)

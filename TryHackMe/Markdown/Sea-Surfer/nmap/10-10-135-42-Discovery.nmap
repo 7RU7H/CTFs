@@ -1,0 +1,142 @@
+# Nmap 7.93 scan initiated Thu Feb 23 10:27:22 2023 as: nmap --script discovery -oA nmap/10-10-135-42-Discovery --min-rate 200 -e tun0 -p 22,80 10.10.135.42
+Pre-scan script results:
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-ping: false
+| targets-sniffer: Sniffed 2 address(es). 
+| 10.10.239.236
+|_224.0.23.12
+|_lltd-discovery: false
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for 10.10.135.42
+Host is up (0.056s latency).
+
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (9)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   3072 87e3d432cd51d29670ef5f482250ab67 (RSA)
+|   256 27d137b0c53cb5816a7c368a2b639ab9 (ECDSA)
+|_  256 7f131bcfe64551b909439a232f503c94 (ED25519)
+|_banner: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.4
+80/tcp open  http
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /icons/
+|       png: 1
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /icons/
+|   Total files found (by extension):
+|_    Other: 1; png: 1
+| http-headers: 
+|   Date: Thu, 23 Feb 2023 10:27:56 GMT
+|   Server: Apache/2.4.41 (Ubuntu)
+|   Last-Modified: Sun, 17 Apr 2022 18:54:09 GMT
+|   ETag: "2aa6-5dcde2b3f2ff9"
+|   Accept-Ranges: bytes
+|   Content-Length: 10918
+|   Vary: Accept-Encoding
+|   X-Backend-Server: seasurfer.thm
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-feed: Couldn't find any feeds.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-title: Apache2 Ubuntu Default Page: It works
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.10.135.42
+|   Found the following error pages: 
+|   
+|   Error Code: 404
+|_  	http://10.10.135.42:80/manual
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-date: Thu, 23 Feb 2023 10:27:58 GMT; +1h00m00s from local time.
+| http-vhosts: 
+| local
+|_127 names had status 200
+| http-grep: 
+|   (1) http://10.10.135.42:80/manual: 
+|     (1) ip: 
+|_      + 10.10.135.42
+|_http-chrono: Request times for /; avg: 275.77ms; min: 249.07ms; max: 303.34ms
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.135.42
+|     
+|     Path: http://10.10.135.42:80/
+|     Line number: 201
+|     Comment: 
+|         <!--      <div class="table_of_contents floating_element">
+|                 <div class="section_header section_header_grey">
+|                   TABLE OF CONTENTS
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#about">About</a>
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#changes">Changes</a>
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#scope">Scope</a>
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#files">Config files</a>
+|                 </div>
+|               </div>
+|         -->
+|     
+|     Path: http://10.10.135.42:80/
+|     Line number: 4
+|     Comment: 
+|         <!--
+|             Modified from the Debian original for Ubuntu
+|             Last updated: 2016-11-16
+|             See: https://launchpad.net/bugs/1288690
+|_          -->
+|_http-mobileversion-checker: No mobile version detected.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+
+Host script results:
+|_ipidseq: All zeros
+|_dns-brute: Can't guess domain of "10.10.135.42"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+|_path-mtu: PMTU == 1500
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV     LOSS (%)
+| 22    0       139101.44  207438.87  10.0%
+|_80    0       89143.12   36000.65   20.0%
+
+# Nmap done at Thu Feb 23 10:34:32 2023 -- 1 IP address (1 host up) scanned in 430.18 seconds

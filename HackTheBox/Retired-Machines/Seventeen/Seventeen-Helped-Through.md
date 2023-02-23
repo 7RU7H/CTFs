@@ -480,7 +480,7 @@ sudo docker pull verdaccio/verdaccio
 # Run -it sudo tty --rm to delete when done, bind port to host
 sudo docker run -it --rm -p 4873:4873 verdaccio/verdaccio
 # Target
-nmp adduser --registery http://10.10.
+nmp adduser --registery http://10.10.14.43
 
 ```
 

@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Thu Feb 23 10:16:47 2023 as: nmap -sC -sV -oA nmap/10-10-239-236-Extensive-Found-Ports -&#45;min-rate 200 -e tun0 -p 389,49672,3268,5222,9389,7777,464,5262,49674,5223,7070,88,49695,5270,3269,5275,5276,3389,593,5263,49668,445,5985,139,7443,2179,80,9090,49673 10.10.239.236 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA nmap/10-10-239-236-Extensive-Found-Ports -&#45;min-rate 200 -e tun0 -p 389,49672,3268,5222,9389,7777,464,5262,49674,5223,7070,88,49695,5270,3269,5275,5276,3389,593,5263,49668,445,5985,139,7443,2179,80,9090,49673 10.10.239.236" start="1677147407" startstr="Thu Feb 23 10:16:47 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="29" services="80,88,139,389,445,464,593,2179,3268-3269,3389,5222-5223,5262-5263,5270,5275-5276,5985,7070,7443,7777,9090,9389,49668,49672-49674,49695"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.239.236" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1677147421" endtime="1677147552"><status state="up" reason="echo-reply" reason_ttl="127"/>
+<address addr="10.10.239.236" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" product="Microsoft IIS httpd" version="10.0" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:microsoft:internet_information_services:10.0</cpe><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-title" output="Windcorp."><elem key="title">Windcorp.</elem>
+</script><script id="http-methods" output="&#xa;  Potentially risky methods: TRACE"><table key="Potentially risky methods">
+<elem>TRACE</elem>
+</table>
+</script><script id="http-server-header" output="Microsoft-IIS/10.0"><elem>Microsoft-IIS/10.0</elem>
+</script></port>
+<port protocol="tcp" portid="88"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="kerberos-sec" product="Microsoft Windows Kerberos" extrainfo="server time: 2023-02-23 10:17:07Z" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:microsoft:kerberos</cpe><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="netbios-ssn" product="Microsoft Windows netbios-ssn" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ldap" product="Microsoft Windows Active Directory LDAP" extrainfo="Domain: windcorp.thm0., Site: Default-First-Site-Name" hostname="FIRE" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="464"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="kpasswd5" method="table" conf="3"/></port>
+<port protocol="tcp" portid="593"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ncacn_http" product="Microsoft Windows RPC over HTTP" version="1.0" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="2179"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="vmrdp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3268"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ldap" product="Microsoft Windows Active Directory LDAP" extrainfo="Domain: windcorp.thm0., Site: Default-First-Site-Name" hostname="FIRE" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="3269"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="globalcatLDAPssl" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ms-wbt-server" product="Microsoft Terminal Services" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="ssl-cert" output="Subject: commonName=Fire.windcorp.thm&#xa;Not valid before: 2023-02-22T10:10:28&#xa;Not valid after:  2023-08-24T10:10:28"><table key="subject">
+<elem key="commonName">Fire.windcorp.thm</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">Fire.windcorp.thm</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">C379EBC7E0518428B8F2F7B5E27A6074449C6BDB44F46C2E89D76F31E0455120F0D52FCDE6D7405C7E4CB8018F063AA7E0FC4B5D45A26BB9412628315B4EFAFD1ED1378B0A38B26F39BE05EAEDE8C04BA409DBC1736A347EA60D0C6F98E3EB2A8948C59F9D1F9C47A54DC6EAB378B48229DE4B889C34BB4189E43A3C6961E395582CB85F803F3BDAE27A4BA09BF1CDE818CC102DCE5E3516D53DAC6C0DE721AD927E8BDF26E92D1999738880F85D2D7BAADE86676FC59A0BAAA12E27D38C23675C7E3ED7F0659D6441805D4188DF54A50A8FDD06B562DB48085D8912BD511D3B35ED11A9154496B803DDD83B5A5681073716571710F119059C24BD2F2DA447E5</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Key Encipherment, Data Encipherment</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-02-22T10:10:28</elem>
+<elem key="notAfter">2023-08-24T10:10:28</elem>
+</table>
+<elem key="md5">6b1897676a977875e2cc515942835727</elem>
+<elem key="sha1">1050c14b0d4166bf97b94146b81d09b359f1c0d2</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIC5jCCAc6gAwIBAgIQU1xUs0AWkqRItmwalSEO2jANBgkqhkiG9w0BAQsFADAc&#xa;MRowGAYDVQQDExFGaXJlLndpbmRjb3JwLnRobTAeFw0yMzAyMjIxMDEwMjhaFw0y&#xa;MzA4MjQxMDEwMjhaMBwxGjAYBgNVBAMTEUZpcmUud2luZGNvcnAudGhtMIIBIjAN&#xa;BgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw3nrx+BRhCi48ve14npgdESca9tE&#xa;9GwuiddvMeBFUSDw1S/N5tdAXH5MuAGPBjqn4PxLXUWia7lBJigxW076/R7RN4sK&#xa;OLJvOb4F6u3owEukCdvBc2o0fqYNDG+Y4+sqiUjFn50fnEelTcbqs3i0gineS4ic&#xa;NLtBieQ6PGlh45VYLLhfgD872uJ6S6Cb8c3oGMwQLc5eNRbVPaxsDechrZJ+i98m&#xa;6S0ZmXOIgPhdLXuq3oZnb8WaC6qhLifTjCNnXH4+1/BlnWRBgF1BiN9UpQqP3Qa1&#xa;YttICF2JEr1RHTs17RGpFUSWuAPd2DtaVoEHNxZXFxDxGQWcJL0vLaRH5QIDAQAB&#xa;oyQwIjATBgNVHSUEDDAKBggrBgEFBQcDATALBgNVHQ8EBAMCBDAwDQYJKoZIhvcN&#xa;AQELBQADggEBABFQVFOqvB4EaEk9bTnGhsbwmGtZTd6sVI9gEvWAZTYvXCEkXWmE&#xa;/ihVdQyG3Pakq0hhDXTKYQ2ZzpWxJgChyOKNaf7wSOH1MOrFt6k5ydyrGmg1cvw8&#xa;S9ardydaIo2CUvG3KikWTzpHT8mhTwd6gwA4lBFRBj8bJf2vn/tWAXKZfRbdSwUo&#xa;pqQ9TeBnrukOrhfMyubPDLFigUsBQUEx8+CpNiyzUi7uQINr3CAMXwfisbl1wmyk&#xa;Ay8jQ6WoS1f1kJ166SMCiAnXmrqWfrglNx96SFChWloRX9/0UGRdc3ststkUfDD5&#xa;I16fViBWelMnVrq22PNvnSz6iA96NyVn/M4=&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ssl-date" output="2023-02-23T10:18:52+00:00; 0s from scanner time."><elem key="date">2023-02-23T10:18:52+00:00</elem>
+<elem key="delta">0.0</elem>
+</script><script id="rdp-ntlm-info" output="&#xa;  Target_Name: WINDCORP&#xa;  NetBIOS_Domain_Name: WINDCORP&#xa;  NetBIOS_Computer_Name: FIRE&#xa;  DNS_Domain_Name: windcorp.thm&#xa;  DNS_Computer_Name: Fire.windcorp.thm&#xa;  DNS_Tree_Name: windcorp.thm&#xa;  Product_Version: 10.0.17763&#xa;  System_Time: 2023-02-23T10:18:15+00:00"><elem key="Target_Name">WINDCORP</elem>
+<elem key="NetBIOS_Domain_Name">WINDCORP</elem>
+<elem key="NetBIOS_Computer_Name">FIRE</elem>
+<elem key="DNS_Domain_Name">windcorp.thm</elem>
+<elem key="DNS_Computer_Name">Fire.windcorp.thm</elem>
+<elem key="DNS_Tree_Name">windcorp.thm</elem>
+<elem key="Product_Version">10.0.17763</elem>
+<elem key="System_Time">2023-02-23T10:18:15+00:00</elem>
+</script></port>
+<port protocol="tcp" portid="5222"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="jabber" product="Ignite Realtime Openfire Jabber server" version="3.10.0 or later" method="probed" conf="10"><cpe>cpe:/a:igniterealtime:openfire</cpe></service><script id="ssl-cert" output="Subject: commonName=fire.windcorp.thm&#xa;Subject Alternative Name: DNS:fire.windcorp.thm, DNS:*.fire.windcorp.thm&#xa;Not valid before: 2020-05-01T08:39:00&#xa;Not valid after:  2025-04-30T08:39:00"><table key="subject">
+<elem key="commonName">fire.windcorp.thm</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">fire.windcorp.thm</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">A2C7D3F8F5ED155D0FC7970BED08168BC0A2A9764448CE49FD8DA492CAFFA7E0B71DC20387ED2EC8FBC8EA668FC39ED60A9F59DD8433FCCA93E666670405C4B40BF77B75383FF36B5832725C6B2156CF556A85A0CD81514F4EDF25345554463FBC4A0C79B86DCA0D9AAF5436EAC4B4594235E082D5F730CDF62F283F3D5F4E11BFFEA49F51A542AFE233C3C608B0D47F5A75589730193E4552205AF5BA1353D96505C1AA6E87596812B33CF3FC0E6BD2605EF520A053F0DB15CEA88088EDEDFE81E0029BD477D06A75B65E378E97391ACE841415D31529355CBD2F93845000F5B28DDE3D3363A4F13949F4CACA64F56BC162C3992BA0A3833749F3CB9D323F75</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:fire.windcorp.thm, DNS:*.fire.windcorp.thm</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">EB:4C:CE:A8:1F:B1:8D:75:A9:EC:19:35:F3:E3:88:BC:67:1B:29:06</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">EB:4C:CE:A8:1F:B1:8D:75:A9:EC:19:35:F3:E3:88:BC:67:1B:29:06</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2020-05-01T08:39:00</elem>
+<elem key="notAfter">2025-04-30T08:39:00</elem>
+</table>
+<elem key="md5">b715542583f3a20f75c8ca2d3353cbb7</elem>
+<elem key="sha1">97f70772a26be3247ed5bbcb5f357d74798266ae</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDLzCCAhegAwIBAgIIXUFELG7QgAIwDQYJKoZIhvcNAQELBQAwHDEaMBgGA1UE&#xa;AwwRZmlyZS53aW5kY29ycC50aG0wHhcNMjAwNTAxMDgzOTAwWhcNMjUwNDMwMDgz&#xa;OTAwWjAcMRowGAYDVQQDDBFmaXJlLndpbmRjb3JwLnRobTCCASIwDQYJKoZIhvcN&#xa;AQEBBQADggEPADCCAQoCggEBAKLH0/j17RVdD8eXC+0IFovAoql2REjOSf2NpJLK&#xa;/6fgtx3CA4ftLsj7yOpmj8Oe1gqfWd2EM/zKk+ZmZwQFxLQL93t1OD/za1gyclxr&#xa;IVbPVWqFoM2BUU9O3yU0VVRGP7xKDHm4bcoNmq9UNurEtFlCNeCC1fcwzfYvKD89&#xa;X04Rv/6kn1GlQq/iM8PGCLDUf1p1WJcwGT5FUiBa9boTU9llBcGqbodZaBKzPPP8&#xa;DmvSYF71IKBT8NsVzqiAiO3t/oHgApvUd9BqdbZeN46XORrOhBQV0xUpNVy9L5OE&#xa;UAD1so3ePTNjpPE5SfTKymT1a8Fiw5kroKODN0nzy50yP3UCAwEAAaN1MHMwMQYD&#xa;VR0RBCowKIIRZmlyZS53aW5kY29ycC50aG2CEyouZmlyZS53aW5kY29ycC50aG0w&#xa;HQYDVR0OBBYEFOtMzqgfsY11qewZNfPjiLxnGykGMB8GA1UdIwQYMBaAFOtMzqgf&#xa;sY11qewZNfPjiLxnGykGMA0GCSqGSIb3DQEBCwUAA4IBAQAHofv0VP+hE+5sg0KR&#xa;2x0Xeg4cIXEia0c5cIJ7K7bhfoLOcT7WcMKCLIN3A416PREdkB6Q610uDs8RpezJ&#xa;II/wBoIp2G0Y87X3Xo5FmNJjl9lGX5fvayen98khPXvZkurHdWdtA4m8pHOdYOrk&#xa;n8Jth6L/y4L5WlgEGL0x0HK4yvd3iz0VNrc810HugpyfVWeasChhZjgAYXUVlA8k&#xa;+QxLxyNr/PBfRumQGzw2n3msXxwfHVzaHphy56ph85PcRS35iNqgrtK0fe3Qhpq7&#xa;v5vQYKlOGq5FI6Mf9ni7S1pXSqF4U9wuqZy4q4tXWAVootmJv1DIgfSMLvXplN9T&#xa;LucP&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ssl-date" output="2023-02-23T10:18:53+00:00; 0s from scanner time."><elem key="date">2023-02-23T10:18:53+00:00</elem>
+<elem key="delta">0.0</elem>
+</script><script id="xmpp-info" output="&#xa;  STARTTLS Failed&#xa;  info: &#xa;    compression_methods: &#xa;    unknown: &#xa;    auth_mechanisms: &#xa;    xmpp: &#xa;      version: 1.0&#xa;    errors: &#xa;      invalid-namespace&#xa;      (timeout)&#xa;    features: &#xa;    stream_id: 64p9uazbyx&#xa;    capabilities: "><elem>STARTTLS Failed</elem>
+<table key="info">
+<table key="compression_methods">
+</table>
+<table key="unknown">
+</table>
+<table key="auth_mechanisms">
+</table>
+<table key="xmpp">
+<elem key="version">1.0</elem>
+</table>
+<table key="errors">
+<elem>invalid-namespace</elem>
+<elem>(timeout)</elem>
+</table>
+<table key="features">
+</table>
+<elem key="stream_id">64p9uazbyx</elem>
+<table key="capabilities">
+</table>
+</table>
+</script></port>
+<port protocol="tcp" portid="5223"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="jabber" product="Ignite Realtime Openfire Jabber server" version="3.10.0 or later" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/a:igniterealtime:openfire</cpe></service><script id="ssl-cert" output="Subject: commonName=fire.windcorp.thm&#xa;Subject Alternative Name: DNS:fire.windcorp.thm, DNS:*.fire.windcorp.thm&#xa;Not valid before: 2020-05-01T08:39:00&#xa;Not valid after:  2025-04-30T08:39:00"><table key="subject">
+<elem key="commonName">fire.windcorp.thm</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">fire.windcorp.thm</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">A2C7D3F8F5ED155D0FC7970BED08168BC0A2A9764448CE49FD8DA492CAFFA7E0B71DC20387ED2EC8FBC8EA668FC39ED60A9F59DD8433FCCA93E666670405C4B40BF77B75383FF36B5832725C6B2156CF556A85A0CD81514F4EDF25345554463FBC4A0C79B86DCA0D9AAF5436EAC4B4594235E082D5F730CDF62F283F3D5F4E11BFFEA49F51A542AFE233C3C608B0D47F5A75589730193E4552205AF5BA1353D96505C1AA6E87596812B33CF3FC0E6BD2605EF520A053F0DB15CEA88088EDEDFE81E0029BD477D06A75B65E378E97391ACE841415D31529355CBD2F93845000F5B28DDE3D3363A4F13949F4CACA64F56BC162C3992BA0A3833749F3CB9D323F75</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:fire.windcorp.thm, DNS:*.fire.windcorp.thm</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">EB:4C:CE:A8:1F:B1:8D:75:A9:EC:19:35:F3:E3:88:BC:67:1B:29:06</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">EB:4C:CE:A8:1F:B1:8D:75:A9:EC:19:35:F3:E3:88:BC:67:1B:29:06</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2020-05-01T08:39:00</elem>
+<elem key="notAfter">2025-04-30T08:39:00</elem>
+</table>
+<elem key="md5">b715542583f3a20f75c8ca2d3353cbb7</elem>
+<elem key="sha1">97f70772a26be3247ed5bbcb5f357d74798266ae</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDLzCCAhegAwIBAgIIXUFELG7QgAIwDQYJKoZIhvcNAQELBQAwHDEaMBgGA1UE&#xa;AwwRZmlyZS53aW5kY29ycC50aG0wHhcNMjAwNTAxMDgzOTAwWhcNMjUwNDMwMDgz&#xa;OTAwWjAcMRowGAYDVQQDDBFmaXJlLndpbmRjb3JwLnRobTCCASIwDQYJKoZIhvcN&#xa;AQEBBQADggEPADCCAQoCggEBAKLH0/j17RVdD8eXC+0IFovAoql2REjOSf2NpJLK&#xa;/6fgtx3CA4ftLsj7yOpmj8Oe1gqfWd2EM/zKk+ZmZwQFxLQL93t1OD/za1gyclxr&#xa;IVbPVWqFoM2BUU9O3yU0VVRGP7xKDHm4bcoNmq9UNurEtFlCNeCC1fcwzfYvKD89&#xa;X04Rv/6kn1GlQq/iM8PGCLDUf1p1WJcwGT5FUiBa9boTU9llBcGqbodZaBKzPPP8&#xa;DmvSYF71IKBT8NsVzqiAiO3t/oHgApvUd9BqdbZeN46XORrOhBQV0xUpNVy9L5OE&#xa;UAD1so3ePTNjpPE5SfTKymT1a8Fiw5kroKODN0nzy50yP3UCAwEAAaN1MHMwMQYD&#xa;VR0RBCowKIIRZmlyZS53aW5kY29ycC50aG2CEyouZmlyZS53aW5kY29ycC50aG0w&#xa;HQYDVR0OBBYEFOtMzqgfsY11qewZNfPjiLxnGykGMB8GA1UdIwQYMBaAFOtMzqgf&#xa;sY11qewZNfPjiLxnGykGMA0GCSqGSIb3DQEBCwUAA4IBAQAHofv0VP+hE+5sg0KR&#xa;2x0Xeg4cIXEia0c5cIJ7K7bhfoLOcT7WcMKCLIN3A416PREdkB6Q610uDs8RpezJ&#xa;II/wBoIp2G0Y87X3Xo5FmNJjl9lGX5fvayen98khPXvZkurHdWdtA4m8pHOdYOrk&#xa;n8Jth6L/y4L5WlgEGL0x0HK4yvd3iz0VNrc810HugpyfVWeasChhZjgAYXUVlA8k&#xa;+QxLxyNr/PBfRumQGzw2n3msXxwfHVzaHphy56ph85PcRS35iNqgrtK0fe3Qhpq7&#xa;v5vQYKlOGq5FI6Mf9ni7S1pXSqF4U9wuqZy4q4tXWAVootmJv1DIgfSMLvXplN9T&#xa;LucP&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="xmpp-info" output="&#xa;  STARTTLS Failed&#xa;  info: &#xa;    compression_methods: &#xa;    unknown: &#xa;    auth_mechanisms: &#xa;    xmpp: &#xa;    errors: &#xa;      (timeout)&#xa;    features: &#xa;    capabilities: "><elem>STARTTLS Failed</elem>
+<table key="info">
+<table key="compression_methods">
+</table>
+<table key="unknown">
+</table>
+<table key="auth_mechanisms">
+</table>
+<table key="xmpp">
+</table>
+<table key="errors">
+<elem>(timeout)</elem>
+</table>
+<table key="features">
+</table>
+<table key="capabilities">
+</table>
+</table>
+</script><script id="ssl-date" output="2023-02-23T10:18:53+00:00; 0s from scanner time."><elem key="date">2023-02-23T10:18:53+00:00</elem>
+<elem key="delta">0.0</elem>
+</script></port>
+<port protocol="tcp" portid="5262"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="jabber" product="Ignite Realtime Openfire Jabber server" version="3.10.0 or later" method="probed" conf="10"><cpe>cpe:/a:igniterealtime:openfire</cpe></service><script id="xmpp-info" output="&#xa;  STARTTLS Failed&#xa;  info: &#xa;    compression_methods: &#xa;    unknown: &#xa;    auth_mechanisms: &#xa;    xmpp: &#xa;      version: 1.0&#xa;    errors: &#xa;      invalid-namespace&#xa;      (timeout)&#xa;    features: &#xa;    stream_id: 1fwf93ii5x&#xa;    capabilities: "><elem>STARTTLS Failed</elem>
+<table key="info">
+<table key="compression_methods">
+</table>
+<table key="unknown">
+</table>
+<table key="auth_mechanisms">
+</table>
+<table key="xmpp">
+<elem key="version">1.0</elem>
+</table>
+<table key="errors">
+<elem>invalid-namespace</elem>
+<elem>(timeout)</elem>
+</table>
+<table key="features">
+</table>
+<elem key="stream_id">1fwf93ii5x</elem>
+<table key="capabilities">
+</table>
+</table>
+</script></port>
+<port protocol="tcp" portid="5263"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="jabber" product="Ignite Realtime Openfire Jabber server" version="3.10.0 or later" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/a:igniterealtime:openfire</cpe></service><script id="ssl-cert" output="Subject: commonName=fire.windcorp.thm&#xa;Subject Alternative Name: DNS:fire.windcorp.thm, DNS:*.fire.windcorp.thm&#xa;Not valid before: 2020-05-01T08:39:00&#xa;Not valid after:  2025-04-30T08:39:00"><table key="subject">
+<elem key="commonName">fire.windcorp.thm</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">fire.windcorp.thm</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">A2C7D3F8F5ED155D0FC7970BED08168BC0A2A9764448CE49FD8DA492CAFFA7E0B71DC20387ED2EC8FBC8EA668FC39ED60A9F59DD8433FCCA93E666670405C4B40BF77B75383FF36B5832725C6B2156CF556A85A0CD81514F4EDF25345554463FBC4A0C79B86DCA0D9AAF5436EAC4B4594235E082D5F730CDF62F283F3D5F4E11BFFEA49F51A542AFE233C3C608B0D47F5A75589730193E4552205AF5BA1353D96505C1AA6E87596812B33CF3FC0E6BD2605EF520A053F0DB15CEA88088EDEDFE81E0029BD477D06A75B65E378E97391ACE841415D31529355CBD2F93845000F5B28DDE3D3363A4F13949F4CACA64F56BC162C3992BA0A3833749F3CB9D323F75</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:fire.windcorp.thm, DNS:*.fire.windcorp.thm</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">EB:4C:CE:A8:1F:B1:8D:75:A9:EC:19:35:F3:E3:88:BC:67:1B:29:06</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">EB:4C:CE:A8:1F:B1:8D:75:A9:EC:19:35:F3:E3:88:BC:67:1B:29:06</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2020-05-01T08:39:00</elem>
+<elem key="notAfter">2025-04-30T08:39:00</elem>
+</table>
+<elem key="md5">b715542583f3a20f75c8ca2d3353cbb7</elem>
+<elem key="sha1">97f70772a26be3247ed5bbcb5f357d74798266ae</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDLzCCAhegAwIBAgIIXUFELG7QgAIwDQYJKoZIhvcNAQELBQAwHDEaMBgGA1UE&#xa;AwwRZmlyZS53aW5kY29ycC50aG0wHhcNMjAwNTAxMDgzOTAwWhcNMjUwNDMwMDgz&#xa;OTAwWjAcMRowGAYDVQQDDBFmaXJlLndpbmRjb3JwLnRobTCCASIwDQYJKoZIhvcN&#xa;AQEBBQADggEPADCCAQoCggEBAKLH0/j17RVdD8eXC+0IFovAoql2REjOSf2NpJLK&#xa;/6fgtx3CA4ftLsj7yOpmj8Oe1gqfWd2EM/zKk+ZmZwQFxLQL93t1OD/za1gyclxr&#xa;IVbPVWqFoM2BUU9O3yU0VVRGP7xKDHm4bcoNmq9UNurEtFlCNeCC1fcwzfYvKD89&#xa;X04Rv/6kn1GlQq/iM8PGCLDUf1p1WJcwGT5FUiBa9boTU9llBcGqbodZaBKzPPP8&#xa;DmvSYF71IKBT8NsVzqiAiO3t/oHgApvUd9BqdbZeN46XORrOhBQV0xUpNVy9L5OE&#xa;UAD1so3ePTNjpPE5SfTKymT1a8Fiw5kroKODN0nzy50yP3UCAwEAAaN1MHMwMQYD&#xa;VR0RBCowKIIRZmlyZS53aW5kY29ycC50aG2CEyouZmlyZS53aW5kY29ycC50aG0w&#xa;HQYDVR0OBBYEFOtMzqgfsY11qewZNfPjiLxnGykGMB8GA1UdIwQYMBaAFOtMzqgf&#xa;sY11qewZNfPjiLxnGykGMA0GCSqGSIb3DQEBCwUAA4IBAQAHofv0VP+hE+5sg0KR&#xa;2x0Xeg4cIXEia0c5cIJ7K7bhfoLOcT7WcMKCLIN3A416PREdkB6Q610uDs8RpezJ&#xa;II/wBoIp2G0Y87X3Xo5FmNJjl9lGX5fvayen98khPXvZkurHdWdtA4m8pHOdYOrk&#xa;n8Jth6L/y4L5WlgEGL0x0HK4yvd3iz0VNrc810HugpyfVWeasChhZjgAYXUVlA8k&#xa;+QxLxyNr/PBfRumQGzw2n3msXxwfHVzaHphy56ph85PcRS35iNqgrtK0fe3Qhpq7&#xa;v5vQYKlOGq5FI6Mf9ni7S1pXSqF4U9wuqZy4q4tXWAVootmJv1DIgfSMLvXplN9T&#xa;LucP&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ssl-date" output="2023-02-23T10:18:53+00:00; 0s from scanner time."><elem key="date">2023-02-23T10:18:53+00:00</elem>
+<elem key="delta">0.0</elem>
+</script><script id="xmpp-info" output="&#xa;  STARTTLS Failed&#xa;  info: &#xa;    compression_methods: &#xa;    unknown: &#xa;    auth_mechanisms: &#xa;    xmpp: &#xa;    errors: &#xa;      (timeout)&#xa;    features: &#xa;    capabilities: "><elem>STARTTLS Failed</elem>
+<table key="info">
+<table key="compression_methods">
+</table>
+<table key="unknown">
+</table>
+<table key="auth_mechanisms">
+</table>
+<table key="xmpp">
+</table>
+<table key="errors">
+<elem>(timeout)</elem>
+</table>
+<table key="features">
+</table>
+<table key="capabilities">
+</table>
+</table>
+</script></port>
+<port protocol="tcp" portid="5270"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="xmpp" product="Wildfire XMPP Client" tunnel="ssl" method="probed" conf="10"/><script id="ssl-date" output="2023-02-23T10:18:52+00:00; -1s from scanner time."><elem key="date">2023-02-23T10:18:52+00:00</elem>
+<elem key="delta">-1.0</elem>
+</script><script id="ssl-cert" output="Subject: commonName=fire.windcorp.thm&#xa;Subject Alternative Name: DNS:fire.windcorp.thm, DNS:*.fire.windcorp.thm&#xa;Not valid before: 2020-05-01T08:39:00&#xa;Not valid after:  2025-04-30T08:39:00"><table key="subject">
+<elem key="commonName">fire.windcorp.thm</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">fire.windcorp.thm</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">A2C7D3F8F5ED155D0FC7970BED08168BC0A2A9764448CE49FD8DA492CAFFA7E0B71DC20387ED2EC8FBC8EA668FC39ED60A9F59DD8433FCCA93E666670405C4B40BF77B75383FF36B5832725C6B2156CF556A85A0CD81514F4EDF25345554463FBC4A0C79B86DCA0D9AAF5436EAC4B4594235E082D5F730CDF62F283F3D5F4E11BFFEA49F51A542AFE233C3C608B0D47F5A75589730193E4552205AF5BA1353D96505C1AA6E87596812B33CF3FC0E6BD2605EF520A053F0DB15CEA88088EDEDFE81E0029BD477D06A75B65E378E97391ACE841415D31529355CBD2F93845000F5B28DDE3D3363A4F13949F4CACA64F56BC162C3992BA0A3833749F3CB9D323F75</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:fire.windcorp.thm, DNS:*.fire.windcorp.thm</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">EB:4C:CE:A8:1F:B1:8D:75:A9:EC:19:35:F3:E3:88:BC:67:1B:29:06</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">EB:4C:CE:A8:1F:B1:8D:75:A9:EC:19:35:F3:E3:88:BC:67:1B:29:06</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2020-05-01T08:39:00</elem>
+<elem key="notAfter">2025-04-30T08:39:00</elem>
+</table>
+<elem key="md5">b715542583f3a20f75c8ca2d3353cbb7</elem>
+<elem key="sha1">97f70772a26be3247ed5bbcb5f357d74798266ae</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDLzCCAhegAwIBAgIIXUFELG7QgAIwDQYJKoZIhvcNAQELBQAwHDEaMBgGA1UE&#xa;AwwRZmlyZS53aW5kY29ycC50aG0wHhcNMjAwNTAxMDgzOTAwWhcNMjUwNDMwMDgz&#xa;OTAwWjAcMRowGAYDVQQDDBFmaXJlLndpbmRjb3JwLnRobTCCASIwDQYJKoZIhvcN&#xa;AQEBBQADggEPADCCAQoCggEBAKLH0/j17RVdD8eXC+0IFovAoql2REjOSf2NpJLK&#xa;/6fgtx3CA4ftLsj7yOpmj8Oe1gqfWd2EM/zKk+ZmZwQFxLQL93t1OD/za1gyclxr&#xa;IVbPVWqFoM2BUU9O3yU0VVRGP7xKDHm4bcoNmq9UNurEtFlCNeCC1fcwzfYvKD89&#xa;X04Rv/6kn1GlQq/iM8PGCLDUf1p1WJcwGT5FUiBa9boTU9llBcGqbodZaBKzPPP8&#xa;DmvSYF71IKBT8NsVzqiAiO3t/oHgApvUd9BqdbZeN46XORrOhBQV0xUpNVy9L5OE&#xa;UAD1so3ePTNjpPE5SfTKymT1a8Fiw5kroKODN0nzy50yP3UCAwEAAaN1MHMwMQYD&#xa;VR0RBCowKIIRZmlyZS53aW5kY29ycC50aG2CEyouZmlyZS53aW5kY29ycC50aG0w&#xa;HQYDVR0OBBYEFOtMzqgfsY11qewZNfPjiLxnGykGMB8GA1UdIwQYMBaAFOtMzqgf&#xa;sY11qewZNfPjiLxnGykGMA0GCSqGSIb3DQEBCwUAA4IBAQAHofv0VP+hE+5sg0KR&#xa;2x0Xeg4cIXEia0c5cIJ7K7bhfoLOcT7WcMKCLIN3A416PREdkB6Q610uDs8RpezJ&#xa;II/wBoIp2G0Y87X3Xo5FmNJjl9lGX5fvayen98khPXvZkurHdWdtA4m8pHOdYOrk&#xa;n8Jth6L/y4L5WlgEGL0x0HK4yvd3iz0VNrc810HugpyfVWeasChhZjgAYXUVlA8k&#xa;+QxLxyNr/PBfRumQGzw2n3msXxwfHVzaHphy56ph85PcRS35iNqgrtK0fe3Qhpq7&#xa;v5vQYKlOGq5FI6Mf9ni7S1pXSqF4U9wuqZy4q4tXWAVootmJv1DIgfSMLvXplN9T&#xa;LucP&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script></port>
+<port protocol="tcp" portid="5275"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="jabber" product="Ignite Realtime Openfire Jabber server" version="3.10.0 or later" method="probed" conf="10"><cpe>cpe:/a:igniterealtime:openfire</cpe></service><script id="xmpp-info" output="&#xa;  STARTTLS Failed&#xa;  info: &#xa;    compression_methods: &#xa;    unknown: &#xa;    auth_mechanisms: &#xa;    xmpp: &#xa;      version: 1.0&#xa;    errors: &#xa;      invalid-namespace&#xa;      (timeout)&#xa;    features: &#xa;    stream_id: 2kp3kcombo&#xa;    capabilities: "><elem>STARTTLS Failed</elem>
+<table key="info">
+<table key="compression_methods">
+</table>
+<table key="unknown">
+</table>
+<table key="auth_mechanisms">
+</table>
+<table key="xmpp">
+<elem key="version">1.0</elem>
+</table>
+<table key="errors">
+<elem>invalid-namespace</elem>
+<elem>(timeout)</elem>
+</table>
+<table key="features">
+</table>
+<elem key="stream_id">2kp3kcombo</elem>
+<table key="capabilities">
+</table>
+</table>
+</script></port>
+<port protocol="tcp" portid="5276"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="jabber" product="Ignite Realtime Openfire Jabber server" version="3.10.0 or later" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/a:igniterealtime:openfire</cpe></service><script id="ssl-date" output="2023-02-23T10:18:53+00:00; 0s from scanner time."><elem key="date">2023-02-23T10:18:53+00:00</elem>
+<elem key="delta">0.0</elem>
+</script><script id="ssl-cert" output="Subject: commonName=fire.windcorp.thm&#xa;Subject Alternative Name: DNS:fire.windcorp.thm, DNS:*.fire.windcorp.thm&#xa;Not valid before: 2020-05-01T08:39:00&#xa;Not valid after:  2025-04-30T08:39:00"><table key="subject">
+<elem key="commonName">fire.windcorp.thm</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">fire.windcorp.thm</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">A2C7D3F8F5ED155D0FC7970BED08168BC0A2A9764448CE49FD8DA492CAFFA7E0B71DC20387ED2EC8FBC8EA668FC39ED60A9F59DD8433FCCA93E666670405C4B40BF77B75383FF36B5832725C6B2156CF556A85A0CD81514F4EDF25345554463FBC4A0C79B86DCA0D9AAF5436EAC4B4594235E082D5F730CDF62F283F3D5F4E11BFFEA49F51A542AFE233C3C608B0D47F5A75589730193E4552205AF5BA1353D96505C1AA6E87596812B33CF3FC0E6BD2605EF520A053F0DB15CEA88088EDEDFE81E0029BD477D06A75B65E378E97391ACE841415D31529355CBD2F93845000F5B28DDE3D3363A4F13949F4CACA64F56BC162C3992BA0A3833749F3CB9D323F75</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:fire.windcorp.thm, DNS:*.fire.windcorp.thm</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">EB:4C:CE:A8:1F:B1:8D:75:A9:EC:19:35:F3:E3:88:BC:67:1B:29:06</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">EB:4C:CE:A8:1F:B1:8D:75:A9:EC:19:35:F3:E3:88:BC:67:1B:29:06</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2020-05-01T08:39:00</elem>
+<elem key="notAfter">2025-04-30T08:39:00</elem>
+</table>
+<elem key="md5">b715542583f3a20f75c8ca2d3353cbb7</elem>
+<elem key="sha1">97f70772a26be3247ed5bbcb5f357d74798266ae</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDLzCCAhegAwIBAgIIXUFELG7QgAIwDQYJKoZIhvcNAQELBQAwHDEaMBgGA1UE&#xa;AwwRZmlyZS53aW5kY29ycC50aG0wHhcNMjAwNTAxMDgzOTAwWhcNMjUwNDMwMDgz&#xa;OTAwWjAcMRowGAYDVQQDDBFmaXJlLndpbmRjb3JwLnRobTCCASIwDQYJKoZIhvcN&#xa;AQEBBQADggEPADCCAQoCggEBAKLH0/j17RVdD8eXC+0IFovAoql2REjOSf2NpJLK&#xa;/6fgtx3CA4ftLsj7yOpmj8Oe1gqfWd2EM/zKk+ZmZwQFxLQL93t1OD/za1gyclxr&#xa;IVbPVWqFoM2BUU9O3yU0VVRGP7xKDHm4bcoNmq9UNurEtFlCNeCC1fcwzfYvKD89&#xa;X04Rv/6kn1GlQq/iM8PGCLDUf1p1WJcwGT5FUiBa9boTU9llBcGqbodZaBKzPPP8&#xa;DmvSYF71IKBT8NsVzqiAiO3t/oHgApvUd9BqdbZeN46XORrOhBQV0xUpNVy9L5OE&#xa;UAD1so3ePTNjpPE5SfTKymT1a8Fiw5kroKODN0nzy50yP3UCAwEAAaN1MHMwMQYD&#xa;VR0RBCowKIIRZmlyZS53aW5kY29ycC50aG2CEyouZmlyZS53aW5kY29ycC50aG0w&#xa;HQYDVR0OBBYEFOtMzqgfsY11qewZNfPjiLxnGykGMB8GA1UdIwQYMBaAFOtMzqgf&#xa;sY11qewZNfPjiLxnGykGMA0GCSqGSIb3DQEBCwUAA4IBAQAHofv0VP+hE+5sg0KR&#xa;2x0Xeg4cIXEia0c5cIJ7K7bhfoLOcT7WcMKCLIN3A416PREdkB6Q610uDs8RpezJ&#xa;II/wBoIp2G0Y87X3Xo5FmNJjl9lGX5fvayen98khPXvZkurHdWdtA4m8pHOdYOrk&#xa;n8Jth6L/y4L5WlgEGL0x0HK4yvd3iz0VNrc810HugpyfVWeasChhZjgAYXUVlA8k&#xa;+QxLxyNr/PBfRumQGzw2n3msXxwfHVzaHphy56ph85PcRS35iNqgrtK0fe3Qhpq7&#xa;v5vQYKlOGq5FI6Mf9ni7S1pXSqF4U9wuqZy4q4tXWAVootmJv1DIgfSMLvXplN9T&#xa;LucP&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="xmpp-info" output="&#xa;  STARTTLS Failed&#xa;  info: &#xa;    compression_methods: &#xa;    unknown: &#xa;    auth_mechanisms: &#xa;    xmpp: &#xa;    errors: &#xa;      (timeout)&#xa;    features: &#xa;    capabilities: "><elem>STARTTLS Failed</elem>
+<table key="info">
+<table key="compression_methods">
+</table>
+<table key="unknown">
+</table>
+<table key="auth_mechanisms">
+</table>
+<table key="xmpp">
+</table>
+<table key="errors">
+<elem>(timeout)</elem>
+</table>
+<table key="features">
+</table>
+<table key="capabilities">
+</table>
+</table>
+</script></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" product="Microsoft HTTPAPI httpd" version="2.0" extrainfo="SSDP/UPnP" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-title" output="Not Found"><elem key="title">Not Found</elem>
+</script><script id="http-server-header" output="Microsoft-HTTPAPI/2.0"><elem>Microsoft-HTTPAPI/2.0</elem>
+</script></port>
+<port protocol="tcp" portid="7070"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" product="Jetty" version="9.4.18.v20190429" method="probed" conf="10"><cpe>cpe:/a:mortbay:jetty:9.4.18.v20190429</cpe></service><script id="http-title" output="Openfire HTTP Binding Service"><elem key="title">Openfire HTTP Binding Service</elem>
+</script><script id="http-server-header" output="Jetty(9.4.18.v20190429)"><elem>Jetty(9.4.18.v20190429)</elem>
+</script></port>
+<port protocol="tcp" portid="7443"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" product="Jetty" version="9.4.18.v20190429" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/a:mortbay:jetty:9.4.18.v20190429</cpe></service><script id="ssl-cert" output="Subject: commonName=fire.windcorp.thm&#xa;Subject Alternative Name: DNS:fire.windcorp.thm, DNS:*.fire.windcorp.thm&#xa;Not valid before: 2020-05-01T08:39:00&#xa;Not valid after:  2025-04-30T08:39:00"><table key="subject">
+<elem key="commonName">fire.windcorp.thm</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">fire.windcorp.thm</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">A2C7D3F8F5ED155D0FC7970BED08168BC0A2A9764448CE49FD8DA492CAFFA7E0B71DC20387ED2EC8FBC8EA668FC39ED60A9F59DD8433FCCA93E666670405C4B40BF77B75383FF36B5832725C6B2156CF556A85A0CD81514F4EDF25345554463FBC4A0C79B86DCA0D9AAF5436EAC4B4594235E082D5F730CDF62F283F3D5F4E11BFFEA49F51A542AFE233C3C608B0D47F5A75589730193E4552205AF5BA1353D96505C1AA6E87596812B33CF3FC0E6BD2605EF520A053F0DB15CEA88088EDEDFE81E0029BD477D06A75B65E378E97391ACE841415D31529355CBD2F93845000F5B28DDE3D3363A4F13949F4CACA64F56BC162C3992BA0A3833749F3CB9D323F75</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:fire.windcorp.thm, DNS:*.fire.windcorp.thm</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">EB:4C:CE:A8:1F:B1:8D:75:A9:EC:19:35:F3:E3:88:BC:67:1B:29:06</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">EB:4C:CE:A8:1F:B1:8D:75:A9:EC:19:35:F3:E3:88:BC:67:1B:29:06</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2020-05-01T08:39:00</elem>
+<elem key="notAfter">2025-04-30T08:39:00</elem>
+</table>
+<elem key="md5">b715542583f3a20f75c8ca2d3353cbb7</elem>
+<elem key="sha1">97f70772a26be3247ed5bbcb5f357d74798266ae</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDLzCCAhegAwIBAgIIXUFELG7QgAIwDQYJKoZIhvcNAQELBQAwHDEaMBgGA1UE&#xa;AwwRZmlyZS53aW5kY29ycC50aG0wHhcNMjAwNTAxMDgzOTAwWhcNMjUwNDMwMDgz&#xa;OTAwWjAcMRowGAYDVQQDDBFmaXJlLndpbmRjb3JwLnRobTCCASIwDQYJKoZIhvcN&#xa;AQEBBQADggEPADCCAQoCggEBAKLH0/j17RVdD8eXC+0IFovAoql2REjOSf2NpJLK&#xa;/6fgtx3CA4ftLsj7yOpmj8Oe1gqfWd2EM/zKk+ZmZwQFxLQL93t1OD/za1gyclxr&#xa;IVbPVWqFoM2BUU9O3yU0VVRGP7xKDHm4bcoNmq9UNurEtFlCNeCC1fcwzfYvKD89&#xa;X04Rv/6kn1GlQq/iM8PGCLDUf1p1WJcwGT5FUiBa9boTU9llBcGqbodZaBKzPPP8&#xa;DmvSYF71IKBT8NsVzqiAiO3t/oHgApvUd9BqdbZeN46XORrOhBQV0xUpNVy9L5OE&#xa;UAD1so3ePTNjpPE5SfTKymT1a8Fiw5kroKODN0nzy50yP3UCAwEAAaN1MHMwMQYD&#xa;VR0RBCowKIIRZmlyZS53aW5kY29ycC50aG2CEyouZmlyZS53aW5kY29ycC50aG0w&#xa;HQYDVR0OBBYEFOtMzqgfsY11qewZNfPjiLxnGykGMB8GA1UdIwQYMBaAFOtMzqgf&#xa;sY11qewZNfPjiLxnGykGMA0GCSqGSIb3DQEBCwUAA4IBAQAHofv0VP+hE+5sg0KR&#xa;2x0Xeg4cIXEia0c5cIJ7K7bhfoLOcT7WcMKCLIN3A416PREdkB6Q610uDs8RpezJ&#xa;II/wBoIp2G0Y87X3Xo5FmNJjl9lGX5fvayen98khPXvZkurHdWdtA4m8pHOdYOrk&#xa;n8Jth6L/y4L5WlgEGL0x0HK4yvd3iz0VNrc810HugpyfVWeasChhZjgAYXUVlA8k&#xa;+QxLxyNr/PBfRumQGzw2n3msXxwfHVzaHphy56ph85PcRS35iNqgrtK0fe3Qhpq7&#xa;v5vQYKlOGq5FI6Mf9ni7S1pXSqF4U9wuqZy4q4tXWAVootmJv1DIgfSMLvXplN9T&#xa;LucP&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="http-title" output="Openfire HTTP Binding Service"><elem key="title">Openfire HTTP Binding Service</elem>
+</script><script id="http-server-header" output="Jetty(9.4.18.v20190429)"><elem>Jetty(9.4.18.v20190429)</elem>
+</script></port>
+<port protocol="tcp" portid="7777"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="socks5" extrainfo="No authentication; connection failed" method="probed" conf="10"/><script id="socks-auth-info" output="&#xa;  No authentication"><table>
+<elem key="name">No authentication</elem>
+<elem key="method">0</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="9090"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="zeus-admin" servicefp="SF-Port9090-TCP:V=7.93%I=7%D=2/23%Time=63F73D29%P=x86_64-pc-linux-gnu%r(GetRequest,11D,&quot;HTTP/1\.1\x20200\x20OK\r\nDate:\x20Thu,\x2023\x20Feb\x202023\x2010:17:13\x20GMT\r\nLast-Modified:\x20Fri,\x2031\x20Jan\x202020\x2017:54:10\x20GMT\r\nContent-Type:\x20text/html\r\nAccept-Ranges:\x20bytes\r\nContent-Length:\x20115\r\n\r\n&lt;html&gt;\n&lt;head&gt;&lt;title&gt;&lt;/title&gt;\n&lt;meta\x20http-equiv=\&quot;refresh\&quot;\x20content=\&quot;0;URL=index\.jsp\&quot;&gt;\n&lt;/head&gt;\n&lt;body&gt;\n&lt;/body&gt;\n&lt;/html&gt;\n\n&quot;)%r(JavaRMI,C3,&quot;HTTP/1\.1\x20400\x20Illegal\x20character\x20CNTL=0x0\r\nContent-Type:\x20text/html;charset=iso-8859-1\r\nContent-Length:\x2069\r\nConnection:\x20close\r\n\r\n&lt;h1&gt;Bad\x20Message\x20400&lt;/h1&gt;&lt;pre&gt;reason:\x20Illegal\x20character\x20CNTL=0x0&lt;/pre&gt;&quot;)%r(WMSRequest,C3,&quot;HTTP/1\.1\x20400\x20Illegal\x20character\x20CNTL=0x1\r\nContent-Type:\x20text/html;charset=iso-8859-1\r\nContent-Length:\x2069\r\nConnection:\x20close\r\n\r\n&lt;h1&gt;Bad\x20Message\x20400&lt;/h1&gt;&lt;pre&gt;reason:\x20Illegal\x20character\x20CNTL=0x1&lt;/pre&gt;&quot;)%r(ibm-db2-das,C3,&quot;HTTP/1\.1\x20400\x20Illegal\x20character\x20CNTL=0x0\r\nContent-Type:\x20text/html;charset=iso-8859-1\r\nContent-Length:\x2069\r\nConnection:\x20close\r\n\r\n&lt;h1&gt;Bad\x20Message\x20400&lt;/h1&gt;&lt;pre&gt;reason:\x20Illegal\x20character\x20CNTL=0x0&lt;/pre&gt;&quot;)%r(SqueezeCenter_CLI,9B,&quot;HTTP/1\.1\x20400\x20No\x20URI\r\nContent-Type:\x20text/html;charset=iso-8859-1\r\nContent-Length:\x2049\r\nConnection:\x20close\r\n\r\n&lt;h1&gt;Bad\x20Message\x20400&lt;/h1&gt;&lt;pre&gt;reason:\x20No\x20URI&lt;/pre&gt;&quot;)%r(informix,C3,&quot;HTTP/1\.1\x20400\x20Illegal\x20character\x20CNTL=0x0\r\nContent-Type:\x20text/html;charset=iso-8859-1\r\nContent-Length:\x2069\r\nConnection:\x20close\r\n\r\n&lt;h1&gt;Bad\x20Message\x20400&lt;/h1&gt;&lt;pre&gt;reason:\x20Illegal\x20character\x20CNTL=0x0&lt;/pre&gt;&quot;)%r(drda,C3,&quot;HTTP/1\.1\x20400\x20Illegal\x20character\x20CNTL=0x0\r\nContent-Type:\x20text/html;charset=iso-8859-1\r\nContent-Length:\x2069\r\nConnection:\x20close\r\n\r\n&lt;h1&gt;Bad\x20Message\x20400&lt;/h1&gt;&lt;pre&gt;reason:\x20Illegal\x20character\x20CNTL=0x0&lt;/pre&gt;&quot;)%r(HTTPOptions,56,&quot;HTTP/1\.1\x20200\x20OK\r\nDate:\x20Thu,\x2023\x20Feb\x202023\x2010:17:19\x20GMT\r\nAllow:\x20GET,HEAD,POST,OPTIONS\r\n\r\n&quot;);" method="table" conf="3"/><script id="fingerprint-strings" output="&#xa;  GetRequest: &#xa;    HTTP/1.1 200 OK&#xa;    Date: Thu, 23 Feb 2023 10:17:13 GMT&#xa;    Last-Modified: Fri, 31 Jan 2020 17:54:10 GMT&#xa;    Content-Type: text/html&#xa;    Accept-Ranges: bytes&#xa;    Content-Length: 115&#xa;    &lt;html&gt;&#xa;    &lt;head&gt;&lt;title&gt;&lt;/title&gt;&#xa;    &lt;meta http-equiv=&quot;refresh&quot; content=&quot;0;URL=index.jsp&quot;&gt;&#xa;    &lt;/head&gt;&#xa;    &lt;body&gt;&#xa;    &lt;/body&gt;&#xa;    &lt;/html&gt;&#xa;  HTTPOptions: &#xa;    HTTP/1.1 200 OK&#xa;    Date: Thu, 23 Feb 2023 10:17:19 GMT&#xa;    Allow: GET,HEAD,POST,OPTIONS&#xa;  JavaRMI, drda, ibm-db2-das, informix: &#xa;    HTTP/1.1 400 Illegal character CNTL=0x0&#xa;    Content-Type: text/html;charset=iso-8859-1&#xa;    Content-Length: 69&#xa;    Connection: close&#xa;    &lt;h1&gt;Bad Message 400&lt;/h1&gt;&lt;pre&gt;reason: Illegal character CNTL=0x0&lt;/pre&gt;&#xa;  SqueezeCenter_CLI: &#xa;    HTTP/1.1 400 No URI&#xa;    Content-Type: text/html;charset=iso-8859-1&#xa;    Content-Length: 49&#xa;    Connection: close&#xa;    &lt;h1&gt;Bad Message 400&lt;/h1&gt;&lt;pre&gt;reason: No URI&lt;/pre&gt;&#xa;  WMSRequest: &#xa;    HTTP/1.1 400 Illegal character CNTL=0x1&#xa;    Content-Type: text/html;charset=iso-8859-1&#xa;    Content-Length: 69&#xa;    Connection: close&#xa;    &lt;h1&gt;Bad Message 400&lt;/h1&gt;&lt;pre&gt;reason: Illegal character CNTL=0x1&lt;/pre&gt;"><elem key="GetRequest">&#xa;    HTTP/1.1 200 OK&#xa;    Date: Thu, 23 Feb 2023 10:17:13 GMT&#xa;    Last-Modified: Fri, 31 Jan 2020 17:54:10 GMT&#xa;    Content-Type: text/html&#xa;    Accept-Ranges: bytes&#xa;    Content-Length: 115&#xa;    &lt;html&gt;&#xa;    &lt;head&gt;&lt;title&gt;&lt;/title&gt;&#xa;    &lt;meta http-equiv=&quot;refresh&quot; content=&quot;0;URL=index.jsp&quot;&gt;&#xa;    &lt;/head&gt;&#xa;    &lt;body&gt;&#xa;    &lt;/body&gt;&#xa;    &lt;/html&gt;</elem>
+<elem key="HTTPOptions">&#xa;    HTTP/1.1 200 OK&#xa;    Date: Thu, 23 Feb 2023 10:17:19 GMT&#xa;    Allow: GET,HEAD,POST,OPTIONS</elem>
+<elem key="JavaRMI, drda, ibm-db2-das, informix">&#xa;    HTTP/1.1 400 Illegal character CNTL=0x0&#xa;    Content-Type: text/html;charset=iso-8859-1&#xa;    Content-Length: 69&#xa;    Connection: close&#xa;    &lt;h1&gt;Bad Message 400&lt;/h1&gt;&lt;pre&gt;reason: Illegal character CNTL=0x0&lt;/pre&gt;</elem>
+<elem key="SqueezeCenter_CLI">&#xa;    HTTP/1.1 400 No URI&#xa;    Content-Type: text/html;charset=iso-8859-1&#xa;    Content-Length: 49&#xa;    Connection: close&#xa;    &lt;h1&gt;Bad Message 400&lt;/h1&gt;&lt;pre&gt;reason: No URI&lt;/pre&gt;</elem>
+<elem key="WMSRequest">&#xa;    HTTP/1.1 400 Illegal character CNTL=0x1&#xa;    Content-Type: text/html;charset=iso-8859-1&#xa;    Content-Length: 69&#xa;    Connection: close&#xa;    &lt;h1&gt;Bad Message 400&lt;/h1&gt;&lt;pre&gt;reason: Illegal character CNTL=0x1&lt;/pre&gt;</elem>
+</script></port>
+<port protocol="tcp" portid="9389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="mc-nmf" product=".NET Message Framing" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49668"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49672"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ncacn_http" product="Microsoft Windows RPC over HTTP" version="1.0" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49673"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49674"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49695"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+</ports>
+<hostscript><script id="smb2-security-mode" output="&#xa;  311: &#xa;    Message signing enabled and required"><table key="311">
+<elem>Message signing enabled and required</elem>
+</table>
+</script><script id="smb2-time" output="&#xa;  date: 2023-02-23T10:18:14&#xa;  start_date: N/A"><elem key="date">2023-02-23T10:18:14</elem>
+<elem key="start_date">N/A</elem>
+</script></hostscript><times srtt="64639" rttvar="9624" to="103135"/>
+</host>
+<runstats><finished time="1677147552" timestr="Thu Feb 23 10:19:12 2023" summary="Nmap done at Thu Feb 23 10:19:12 2023; 1 IP address (1 host up) scanned in 144.64 seconds" elapsed="144.64" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

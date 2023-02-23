@@ -1,0 +1,243 @@
+# Nmap 7.93 scan initiated Thu Feb 23 10:16:47 2023 as: nmap -sC -sV -oA nmap/10-10-239-236-Extensive-Found-Ports --min-rate 200 -e tun0 -p 389,49672,3268,5222,9389,7777,464,5262,49674,5223,7070,88,49695,5270,3269,5275,5276,3389,593,5263,49668,445,5985,139,7443,2179,80,9090,49673 10.10.239.236
+Nmap scan report for 10.10.239.236
+Host is up (0.065s latency).
+
+PORT      STATE SERVICE           VERSION
+80/tcp    open  http              Microsoft IIS httpd 10.0
+|_http-title: Windcorp.
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-server-header: Microsoft-IIS/10.0
+88/tcp    open  kerberos-sec      Microsoft Windows Kerberos (server time: 2023-02-23 10:17:07Z)
+139/tcp   open  netbios-ssn       Microsoft Windows netbios-ssn
+389/tcp   open  ldap              Microsoft Windows Active Directory LDAP (Domain: windcorp.thm0., Site: Default-First-Site-Name)
+445/tcp   open  microsoft-ds?
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http        Microsoft Windows RPC over HTTP 1.0
+2179/tcp  open  vmrdp?
+3268/tcp  open  ldap              Microsoft Windows Active Directory LDAP (Domain: windcorp.thm0., Site: Default-First-Site-Name)
+3269/tcp  open  globalcatLDAPssl?
+3389/tcp  open  ms-wbt-server     Microsoft Terminal Services
+| ssl-cert: Subject: commonName=Fire.windcorp.thm
+| Not valid before: 2023-02-22T10:10:28
+|_Not valid after:  2023-08-24T10:10:28
+|_ssl-date: 2023-02-23T10:18:52+00:00; 0s from scanner time.
+| rdp-ntlm-info: 
+|   Target_Name: WINDCORP
+|   NetBIOS_Domain_Name: WINDCORP
+|   NetBIOS_Computer_Name: FIRE
+|   DNS_Domain_Name: windcorp.thm
+|   DNS_Computer_Name: Fire.windcorp.thm
+|   DNS_Tree_Name: windcorp.thm
+|   Product_Version: 10.0.17763
+|_  System_Time: 2023-02-23T10:18:15+00:00
+5222/tcp  open  jabber            Ignite Realtime Openfire Jabber server 3.10.0 or later
+| ssl-cert: Subject: commonName=fire.windcorp.thm
+| Subject Alternative Name: DNS:fire.windcorp.thm, DNS:*.fire.windcorp.thm
+| Not valid before: 2020-05-01T08:39:00
+|_Not valid after:  2025-04-30T08:39:00
+|_ssl-date: 2023-02-23T10:18:53+00:00; 0s from scanner time.
+| xmpp-info: 
+|   STARTTLS Failed
+|   info: 
+|     compression_methods: 
+|     unknown: 
+|     auth_mechanisms: 
+|     xmpp: 
+|       version: 1.0
+|     errors: 
+|       invalid-namespace
+|       (timeout)
+|     features: 
+|     stream_id: 64p9uazbyx
+|_    capabilities: 
+5223/tcp  open  ssl/jabber        Ignite Realtime Openfire Jabber server 3.10.0 or later
+| ssl-cert: Subject: commonName=fire.windcorp.thm
+| Subject Alternative Name: DNS:fire.windcorp.thm, DNS:*.fire.windcorp.thm
+| Not valid before: 2020-05-01T08:39:00
+|_Not valid after:  2025-04-30T08:39:00
+| xmpp-info: 
+|   STARTTLS Failed
+|   info: 
+|     compression_methods: 
+|     unknown: 
+|     auth_mechanisms: 
+|     xmpp: 
+|     errors: 
+|       (timeout)
+|     features: 
+|_    capabilities: 
+|_ssl-date: 2023-02-23T10:18:53+00:00; 0s from scanner time.
+5262/tcp  open  jabber            Ignite Realtime Openfire Jabber server 3.10.0 or later
+| xmpp-info: 
+|   STARTTLS Failed
+|   info: 
+|     compression_methods: 
+|     unknown: 
+|     auth_mechanisms: 
+|     xmpp: 
+|       version: 1.0
+|     errors: 
+|       invalid-namespace
+|       (timeout)
+|     features: 
+|     stream_id: 1fwf93ii5x
+|_    capabilities: 
+5263/tcp  open  ssl/jabber        Ignite Realtime Openfire Jabber server 3.10.0 or later
+| ssl-cert: Subject: commonName=fire.windcorp.thm
+| Subject Alternative Name: DNS:fire.windcorp.thm, DNS:*.fire.windcorp.thm
+| Not valid before: 2020-05-01T08:39:00
+|_Not valid after:  2025-04-30T08:39:00
+|_ssl-date: 2023-02-23T10:18:53+00:00; 0s from scanner time.
+| xmpp-info: 
+|   STARTTLS Failed
+|   info: 
+|     compression_methods: 
+|     unknown: 
+|     auth_mechanisms: 
+|     xmpp: 
+|     errors: 
+|       (timeout)
+|     features: 
+|_    capabilities: 
+5270/tcp  open  ssl/xmpp          Wildfire XMPP Client
+|_ssl-date: 2023-02-23T10:18:52+00:00; -1s from scanner time.
+| ssl-cert: Subject: commonName=fire.windcorp.thm
+| Subject Alternative Name: DNS:fire.windcorp.thm, DNS:*.fire.windcorp.thm
+| Not valid before: 2020-05-01T08:39:00
+|_Not valid after:  2025-04-30T08:39:00
+5275/tcp  open  jabber            Ignite Realtime Openfire Jabber server 3.10.0 or later
+| xmpp-info: 
+|   STARTTLS Failed
+|   info: 
+|     compression_methods: 
+|     unknown: 
+|     auth_mechanisms: 
+|     xmpp: 
+|       version: 1.0
+|     errors: 
+|       invalid-namespace
+|       (timeout)
+|     features: 
+|     stream_id: 2kp3kcombo
+|_    capabilities: 
+5276/tcp  open  ssl/jabber        Ignite Realtime Openfire Jabber server 3.10.0 or later
+|_ssl-date: 2023-02-23T10:18:53+00:00; 0s from scanner time.
+| ssl-cert: Subject: commonName=fire.windcorp.thm
+| Subject Alternative Name: DNS:fire.windcorp.thm, DNS:*.fire.windcorp.thm
+| Not valid before: 2020-05-01T08:39:00
+|_Not valid after:  2025-04-30T08:39:00
+| xmpp-info: 
+|   STARTTLS Failed
+|   info: 
+|     compression_methods: 
+|     unknown: 
+|     auth_mechanisms: 
+|     xmpp: 
+|     errors: 
+|       (timeout)
+|     features: 
+|_    capabilities: 
+5985/tcp  open  http              Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-title: Not Found
+|_http-server-header: Microsoft-HTTPAPI/2.0
+7070/tcp  open  http              Jetty 9.4.18.v20190429
+|_http-title: Openfire HTTP Binding Service
+|_http-server-header: Jetty(9.4.18.v20190429)
+7443/tcp  open  ssl/http          Jetty 9.4.18.v20190429
+| ssl-cert: Subject: commonName=fire.windcorp.thm
+| Subject Alternative Name: DNS:fire.windcorp.thm, DNS:*.fire.windcorp.thm
+| Not valid before: 2020-05-01T08:39:00
+|_Not valid after:  2025-04-30T08:39:00
+|_http-title: Openfire HTTP Binding Service
+|_http-server-header: Jetty(9.4.18.v20190429)
+7777/tcp  open  socks5            (No authentication; connection failed)
+| socks-auth-info: 
+|_  No authentication
+9090/tcp  open  zeus-admin?
+| fingerprint-strings: 
+|   GetRequest: 
+|     HTTP/1.1 200 OK
+|     Date: Thu, 23 Feb 2023 10:17:13 GMT
+|     Last-Modified: Fri, 31 Jan 2020 17:54:10 GMT
+|     Content-Type: text/html
+|     Accept-Ranges: bytes
+|     Content-Length: 115
+|     <html>
+|     <head><title></title>
+|     <meta http-equiv="refresh" content="0;URL=index.jsp">
+|     </head>
+|     <body>
+|     </body>
+|     </html>
+|   HTTPOptions: 
+|     HTTP/1.1 200 OK
+|     Date: Thu, 23 Feb 2023 10:17:19 GMT
+|     Allow: GET,HEAD,POST,OPTIONS
+|   JavaRMI, drda, ibm-db2-das, informix: 
+|     HTTP/1.1 400 Illegal character CNTL=0x0
+|     Content-Type: text/html;charset=iso-8859-1
+|     Content-Length: 69
+|     Connection: close
+|     <h1>Bad Message 400</h1><pre>reason: Illegal character CNTL=0x0</pre>
+|   SqueezeCenter_CLI: 
+|     HTTP/1.1 400 No URI
+|     Content-Type: text/html;charset=iso-8859-1
+|     Content-Length: 49
+|     Connection: close
+|     <h1>Bad Message 400</h1><pre>reason: No URI</pre>
+|   WMSRequest: 
+|     HTTP/1.1 400 Illegal character CNTL=0x1
+|     Content-Type: text/html;charset=iso-8859-1
+|     Content-Length: 69
+|     Connection: close
+|_    <h1>Bad Message 400</h1><pre>reason: Illegal character CNTL=0x1</pre>
+9389/tcp  open  mc-nmf            .NET Message Framing
+49668/tcp open  msrpc             Microsoft Windows RPC
+49672/tcp open  ncacn_http        Microsoft Windows RPC over HTTP 1.0
+49673/tcp open  msrpc             Microsoft Windows RPC
+49674/tcp open  msrpc             Microsoft Windows RPC
+49695/tcp open  msrpc             Microsoft Windows RPC
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port9090-TCP:V=7.93%I=7%D=2/23%Time=63F73D29%P=x86_64-pc-linux-gnu%r(Ge
+SF:tRequest,11D,"HTTP/1\.1\x20200\x20OK\r\nDate:\x20Thu,\x2023\x20Feb\x202
+SF:023\x2010:17:13\x20GMT\r\nLast-Modified:\x20Fri,\x2031\x20Jan\x202020\x
+SF:2017:54:10\x20GMT\r\nContent-Type:\x20text/html\r\nAccept-Ranges:\x20by
+SF:tes\r\nContent-Length:\x20115\r\n\r\n<html>\n<head><title></title>\n<me
+SF:ta\x20http-equiv=\"refresh\"\x20content=\"0;URL=index\.jsp\">\n</head>\
+SF:n<body>\n</body>\n</html>\n\n")%r(JavaRMI,C3,"HTTP/1\.1\x20400\x20Illeg
+SF:al\x20character\x20CNTL=0x0\r\nContent-Type:\x20text/html;charset=iso-8
+SF:859-1\r\nContent-Length:\x2069\r\nConnection:\x20close\r\n\r\n<h1>Bad\x
+SF:20Message\x20400</h1><pre>reason:\x20Illegal\x20character\x20CNTL=0x0</
+SF:pre>")%r(WMSRequest,C3,"HTTP/1\.1\x20400\x20Illegal\x20character\x20CNT
+SF:L=0x1\r\nContent-Type:\x20text/html;charset=iso-8859-1\r\nContent-Lengt
+SF:h:\x2069\r\nConnection:\x20close\r\n\r\n<h1>Bad\x20Message\x20400</h1><
+SF:pre>reason:\x20Illegal\x20character\x20CNTL=0x1</pre>")%r(ibm-db2-das,C
+SF:3,"HTTP/1\.1\x20400\x20Illegal\x20character\x20CNTL=0x0\r\nContent-Type
+SF::\x20text/html;charset=iso-8859-1\r\nContent-Length:\x2069\r\nConnectio
+SF:n:\x20close\r\n\r\n<h1>Bad\x20Message\x20400</h1><pre>reason:\x20Illega
+SF:l\x20character\x20CNTL=0x0</pre>")%r(SqueezeCenter_CLI,9B,"HTTP/1\.1\x2
+SF:0400\x20No\x20URI\r\nContent-Type:\x20text/html;charset=iso-8859-1\r\nC
+SF:ontent-Length:\x2049\r\nConnection:\x20close\r\n\r\n<h1>Bad\x20Message\
+SF:x20400</h1><pre>reason:\x20No\x20URI</pre>")%r(informix,C3,"HTTP/1\.1\x
+SF:20400\x20Illegal\x20character\x20CNTL=0x0\r\nContent-Type:\x20text/html
+SF:;charset=iso-8859-1\r\nContent-Length:\x2069\r\nConnection:\x20close\r\
+SF:n\r\n<h1>Bad\x20Message\x20400</h1><pre>reason:\x20Illegal\x20character
+SF:\x20CNTL=0x0</pre>")%r(drda,C3,"HTTP/1\.1\x20400\x20Illegal\x20characte
+SF:r\x20CNTL=0x0\r\nContent-Type:\x20text/html;charset=iso-8859-1\r\nConte
+SF:nt-Length:\x2069\r\nConnection:\x20close\r\n\r\n<h1>Bad\x20Message\x204
+SF:00</h1><pre>reason:\x20Illegal\x20character\x20CNTL=0x0</pre>")%r(HTTPO
+SF:ptions,56,"HTTP/1\.1\x20200\x20OK\r\nDate:\x20Thu,\x2023\x20Feb\x202023
+SF:\x2010:17:19\x20GMT\r\nAllow:\x20GET,HEAD,POST,OPTIONS\r\n\r\n");
+Service Info: Host: FIRE; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-security-mode: 
+|   311: 
+|_    Message signing enabled and required
+| smb2-time: 
+|   date: 2023-02-23T10:18:14
+|_  start_date: N/A
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Feb 23 10:19:12 2023 -- 1 IP address (1 host up) scanned in 144.64 seconds
