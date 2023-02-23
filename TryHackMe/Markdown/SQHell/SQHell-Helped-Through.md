@@ -1,4 +1,4 @@
-# SQHell Writeup
+# SQHell Helped-Through
 
 Name: SQHell
 Date:  18/2/2023
@@ -7,6 +7,7 @@ Description: Try and find all the flags in the SQL Injections
 Goals: OSCP Prep
 Learnt:
 - I continuely glad I live in a time after SQLmap..
+- There is alot more to SQLi
 Beyond Root:
 - Break down my understand a the details of how,where,why,which injecting(technique)
 - Break down the syntax and the whyt
@@ -287,3 +288,10 @@ exit()
 I learnt so much python with this.
 
 ## Terms and Conditions to get!
+
+TIL:
+A breadcrumb navigation provide links back to each previous page the user navigated through, and shows the user's current location in a website.]
+
+I test all the links and nothing addition is added returning to /home, /login /register
+
+There seems to be nothing the database is returning to the page

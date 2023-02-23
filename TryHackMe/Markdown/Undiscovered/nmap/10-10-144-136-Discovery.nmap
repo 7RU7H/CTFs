@@ -1,0 +1,124 @@
+# Nmap 7.93 scan initiated Thu Feb 23 09:10:52 2023 as: nmap --script discovery -oA nmap/10-10-144-136-Discovery --min-rate 200 -e tun0 -p 22,2049,46161,80,111 10.10.144.136
+Pre-scan script results:
+|_lltd-discovery: false
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_broadcast-ping: false
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for undiscovered.thm (10.10.144.136)
+Host is up (0.090s latency).
+
+Bug in http-security-headers: no string output.
+PORT      STATE SERVICE
+22/tcp    open  ssh
+| ssh-hostkey: 
+|   2048 c476814950bb6f4f0615cc088801b8f0 (RSA)
+|   256 2b39d9d9b97227a93225dddee401ed8b (ECDSA)
+|_  256 2a38ceea6182ebdec4e02b557fcc13bc (ED25519)
+|_banner: SSH-2.0-OpenSSH_7.2p2 Ubuntu-4ubuntu2.10
+| ssh2-enum-algos: 
+|   kex_algorithms: (6)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+80/tcp    open  http
+|_http-title: Site doesn't have a title (text/html; charset=UTF-8).
+|_http-feed: Couldn't find any feeds.
+|_http-errors: Couldn't find any error pages.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-chrono: Request times for /; avg: 218.67ms; min: 198.11ms; max: 249.68ms
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1
+| http-vhosts: 
+|_128 names had status 302
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=undiscovered.thm
+|     
+|     Path: http://undiscovered.thm:80/
+|     Line number: 17
+|     Comment: 
+|_        /* Preserve aspet ratio */
+|_http-date: Thu, 23 Feb 2023 09:11:18 GMT; +1h00m00s from local time.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-headers: 
+|   Date: Thu, 23 Feb 2023 09:11:15 GMT
+|   Server: Apache/2.4.18 (Ubuntu)
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-enum: 
+|_  /images/: Potentially interesting directory w/ listing on 'apache/2.4.18 (ubuntu)'
+|_http-mobileversion-checker: No mobile version detected.
+111/tcp   open  rpcbind
+| rpcinfo: 
+|   program version    port/proto  service
+|   100000  2,3,4        111/tcp   rpcbind
+|   100000  2,3,4        111/udp   rpcbind
+|   100000  3,4          111/tcp6  rpcbind
+|   100000  3,4          111/udp6  rpcbind
+|   100003  2,3,4       2049/tcp   nfs
+|   100003  2,3,4       2049/tcp6  nfs
+|   100003  2,3,4       2049/udp   nfs
+|   100003  2,3,4       2049/udp6  nfs
+|   100021  1,3,4      33852/tcp6  nlockmgr
+|   100021  1,3,4      40118/udp6  nlockmgr
+|   100021  1,3,4      46161/tcp   nlockmgr
+|   100021  1,3,4      52665/udp   nlockmgr
+|   100227  2,3         2049/tcp   nfs_acl
+|   100227  2,3         2049/tcp6  nfs_acl
+|   100227  2,3         2049/udp   nfs_acl
+|_  100227  2,3         2049/udp6  nfs_acl
+2049/tcp  open  nfs
+46161/tcp open  nlockmgr
+
+Host script results:
+| dns-brute: 
+|_  DNS Brute-force hostnames: No results.
+| qscan: 
+| PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22     0       82210.50   11745.15  0.0%
+| 80     1       67415.20   6361.35   0.0%
+| 111    1       72007.00   11874.58  0.0%
+| 2049   0       97653.60   38482.74  0.0%
+|_46161  0       75338.50   18382.24  0.0%
+|_fcrdns: FAIL (No PTR record)
+|_ipidseq: All zeros
+|_path-mtu: PMTU == 1500
+
+# Nmap done at Thu Feb 23 09:20:24 2023 -- 1 IP address (1 host up) scanned in 572.07 seconds

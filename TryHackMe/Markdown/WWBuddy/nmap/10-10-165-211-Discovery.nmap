@@ -1,0 +1,129 @@
+# Nmap 7.93 scan initiated Thu Feb 23 08:56:29 2023 as: nmap --script discovery -oA nmap/10-10-165-211-Discovery --min-rate 200 -e tun0 -p 80,22 10.10.165.211
+Pre-scan script results:
+|_lltd-discovery: false
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-sniffer: Sniffed 4 address(es). 
+| 224.0.23.12
+| 10.10.144.136
+| 91.199.212.73
+|_192.168.7.61
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-ping: false
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.10.165.211
+Host is up (0.055s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3
+| ssh-hostkey: 
+|   2048 667521b4934aa5a7dff4018019cfffad (RSA)
+|   256 a6dd303be496baab5f043b9e9e92b7c0 (ECDSA)
+|_  256 0422f0d2b03445d4e54dada27dcd0041 (ED25519)
+80/tcp open  http
+| http-title: Login
+|_Requested resource was http://10.10.165.211/login/
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-enum: 
+|   /login/: Login page
+|   /api/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|   /images/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|   /js/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|   /register/: Potentially interesting folder
+|_  /styles/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|_http-mobileversion-checker: No mobile version detected.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /login/
+|       Other: 1; php: 1
+|     /register/
+|       Other: 1; php: 1
+|     /styles/
+|       css: 1
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /login/
+|   Total files found (by extension):
+|_    Other: 2; css: 1; php: 2
+|_http-feed: Couldn't find any feeds.
+|_http-date: Thu, 23 Feb 2023 08:57:05 GMT; +1h00m00s from local time.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Redirected To: http://10.10.165.211/login/
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-waf-detect: IDS/IPS/WAF detected:
+|_10.10.165.211:80/?p4yl04d3=<script>alert(document.cookie)</script>
+| http-vhosts: 
+|_128 names had status 302
+| http-internal-ip-disclosure: 
+|_  Internal IP Leaked: 127.0.1.1
+| http-headers: 
+|   Date: Thu, 23 Feb 2023 08:57:05 GMT
+|   Server: Apache/2.4.29 (Ubuntu)
+|   Set-Cookie: PHPSESSID=tde4017ri6nv7m5fpgj01qtqmr; path=/
+|   Expires: Thu, 19 Nov 1981 08:52:00 GMT
+|   Cache-Control: no-store, no-cache, must-revalidate
+|   Pragma: no-cache
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+|_http-comments-displayer: Couldn't find any comments.
+| http-security-headers: 
+|   Cache_Control: 
+|     Header: Cache-Control: no-store, no-cache, must-revalidate
+|   Pragma: 
+|     Header: Pragma: no-cache
+|   Expires: 
+|_    Header: Expires: Thu, 19 Nov 1981 08:52:00 GMT
+|_http-errors: Couldn't find any error pages.
+|_http-chrono: Request times for /login/; avg: 208.36ms; min: 193.51ms; max: 241.19ms
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.165.211
+|   url                                         method
+|   http://10.10.165.211:80/login/              FORM
+|   http://10.10.165.211:80/login/index.php     FORM
+|   http://10.10.165.211:80/register/           FORM
+|   http://10.10.165.211:80/register/index.php  FORM
+|_  http://10.10.165.211:80/login/              FORM
+
+Host script results:
+|_dns-brute: Can't guess domain of "10.10.165.211"; use dns-brute.domain script argument.
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       66232.10   10848.70  0.0%
+|_80    1       57558.20   3386.18   0.0%
+|_path-mtu: PMTU == 1500
+|_ipidseq: All zeros
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Thu Feb 23 09:02:19 2023 -- 1 IP address (1 host up) scanned in 350.42 seconds

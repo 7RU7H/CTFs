@@ -11,7 +11,7 @@ Learnt:
 Beyond Root:
 - Finish another beyond root.
 
-[Alh4zr3d](https://www.youtube.com/watch?v=MpJasg3IQNI) Newbiew Tuesday is always a fun; thankfully AL is also doing [[SQHell-Writeup]] as Neighbour is the easiest 30 points on THM. 
+[Alh4zr3d](https://www.youtube.com/watch?v=MpJasg3IQNI) Newbiew Tuesday is always a fun; thankfully AL is also doing [[SQHell-Helped-Through]] as Neighbour is the easiest 30 points on THM. 
 
 ## Recon and Flag Solution
 

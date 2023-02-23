@@ -1,0 +1,38 @@
+# Nmap 7.93 scan initiated Thu Feb 23 09:10:42 2023 as: nmap -sC -sV -oA nmap/10-10-144-136-Extensive-Found-Ports --min-rate 200 -e tun0 -p 22,2049,46161,80,111 10.10.144.136
+Nmap scan report for undiscovered.thm (10.10.144.136)
+Host is up (0.072s latency).
+
+PORT      STATE SERVICE  VERSION
+22/tcp    open  ssh      OpenSSH 7.2p2 Ubuntu 4ubuntu2.10 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 c476814950bb6f4f0615cc088801b8f0 (RSA)
+|   256 2b39d9d9b97227a93225dddee401ed8b (ECDSA)
+|_  256 2a38ceea6182ebdec4e02b557fcc13bc (ED25519)
+80/tcp    open  http     Apache httpd 2.4.18
+|_http-title: Site doesn't have a title (text/html; charset=UTF-8).
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+111/tcp   open  rpcbind  2-4 (RPC #100000)
+| rpcinfo: 
+|   program version    port/proto  service
+|   100000  2,3,4        111/tcp   rpcbind
+|   100000  2,3,4        111/udp   rpcbind
+|   100000  3,4          111/tcp6  rpcbind
+|   100000  3,4          111/udp6  rpcbind
+|   100003  2,3,4       2049/tcp   nfs
+|   100003  2,3,4       2049/tcp6  nfs
+|   100003  2,3,4       2049/udp   nfs
+|   100003  2,3,4       2049/udp6  nfs
+|   100021  1,3,4      33852/tcp6  nlockmgr
+|   100021  1,3,4      40118/udp6  nlockmgr
+|   100021  1,3,4      46161/tcp   nlockmgr
+|   100021  1,3,4      52665/udp   nlockmgr
+|   100227  2,3         2049/tcp   nfs_acl
+|   100227  2,3         2049/tcp6  nfs_acl
+|   100227  2,3         2049/udp   nfs_acl
+|_  100227  2,3         2049/udp6  nfs_acl
+2049/tcp  open  nfs      2-4 (RPC #100003)
+46161/tcp open  nlockmgr 1-4 (RPC #100021)
+Service Info: Host: 127.0.1.1; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Feb 23 09:10:52 2023 -- 1 IP address (1 host up) scanned in 10.22 seconds

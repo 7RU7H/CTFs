@@ -27,7 +27,6 @@ Due to this box being 2.4 for good reason and it being dull also dadamnmanye hit
 
 There are 17 steps to this machine - [Ippsec](https://www.youtube.com/watch?v=U-2nI6wSPOE&t=46s) jokes. 
 
-
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
@@ -374,7 +373,7 @@ The instructions are on screen, because it is a CTF. So we use the local npm.
 ![](nodepocketmanger.png)
 
 Registry in this sense is the key value pair of packages stored and sharable.
-![](regsitryequalpackagemanager.png)
+![1080](regsitryequalpackagemanager.png)
 db-logger is authored by target of potential privesc
 
 Abusing or legitmate use of nmp as if permissions can alter applications that use it 
@@ -398,20 +397,28 @@ More credntial reuse with
 
 ## Kavi to Root
 
-![](kaviprivesc.png)
+![1080](kaviprivesc.png)
 I pause the video to flex possible creaky PrivEsc braincell - [Ippsec waitsat 51mins](https://www.youtube.com/watch?v=U-2nI6wSPOE&t=2839s)
 
 This is a script, owned by root
 ![](sudothekavi.png)
 
-Note if we had control of directory like before then we could and pass the file in to the directory, I also want to the turn my failure to the read the `cd /opt/app` line into more Archive content. 
+- Note - Ippsec tries to login as Kavi to the registry, but login is disabled. I did not try this.
+
+```bash
+cat /etc/lsb-release
+# Sudo by Ubuntu <= 18 will preserves the home directory
+```
+
+Note if we had control of directory like before then we could and pass the file in to the directory, I also want to the 
+turn my failure to the read the `cd /opt/app` line into more Archive content. 
 ```bash
 chmod 7777 $privEscFile
 ```
 
 It requires the logger and db-logger packages from the registry. What every is downloaded will be owned by root so we need cant move a script in during the download to install them in /opt/app, which is root owned initally. But it will then run `node` as root on `index.js`
 
-![](rootvia8000.png)
+![1080](rootvia8000.png)
 
 This will write data as root regardless, but we are using loglevel, not 
 ![](appstartuplsla.png)
@@ -447,7 +454,7 @@ npm link # to link the module
 
 Reviewing the code:  
 
-![](rootvia8000.png)
+![1080](rootvia8000.png)
 - I replace the upper casing of the functions as contructors/classes conventionally are PascalCase and functions use camal case. 
 - Changed the module name as it loglevel not Logger
 - removethe warn as I dont need to target the server bricking..
@@ -463,14 +470,31 @@ Re init and installed after uninstall and ... I must of missed something
 No reverse shell. I stil learnt some JS. Now I understand why I am so wrong. 
 
 It is Ubuntu 18 and before sudo pulls from home not root. We need to edit the .npmrc to point to our box
-![](itactuallyworking.png)
+![1080](itactuallyworking.png)
 
 I was not really wrong I did not know how npm pulled packages. Ippsec hit my recent Dockerise bump from a couple of days ago... So will return to this after I thought and researched run docker in the best way possible.
-https://www.youtube.com/watch?v=U-2nI6wSPOE&t=2839s
+
+```bash
+# Pull the latest version
+sudo docker pull verdaccio/verdaccio
+# Run -it sudo tty --rm to delete when done, bind port to host
+sudo docker run -it --rm -p 4873:4873 verdaccio/verdaccio
+# Target
+nmp adduser --registery http://10.10.
+
+```
+
+
+
 
 
 ## Beyond Root
 
+Cleanup
+```bash
+sed -i 's/$IP/127.0.0.1/g' /home/kavi/.npmrc
+
+```
 
 https://0xdf.gitlab.io/2022/09/24/htb-seventeen.html#box-info
 

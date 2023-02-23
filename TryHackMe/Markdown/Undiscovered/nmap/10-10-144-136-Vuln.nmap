@@ -1,0 +1,32 @@
+# Nmap 7.93 scan initiated Thu Feb 23 09:20:24 2023 as: nmap --script vuln -oA nmap/10-10-144-136-Vuln --min-rate 200 -e tun0 -p 22,2049,46161,80,111 10.10.144.136
+Nmap scan report for undiscovered.thm (10.10.144.136)
+Host is up (0.071s latency).
+
+PORT      STATE SERVICE
+22/tcp    open  ssh
+80/tcp    open  http
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-enum: 
+|_  /images/: Potentially interesting directory w/ listing on 'apache/2.4.18 (ubuntu)'
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       http://ha.ckers.org/slowloris/
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+111/tcp   open  rpcbind
+2049/tcp  open  nfs
+46161/tcp open  unknown
+
+# Nmap done at Thu Feb 23 09:25:46 2023 -- 1 IP address (1 host up) scanned in 322.09 seconds
