@@ -1,0 +1,1536 @@
+# Nmap 7.93 scan initiated Fri Feb 24 12:01:26 2023 as: nmap --script discovery -oA nmap/10-129-233-229-Discovery --min-rate 300 -e tun0 -p 80,445,135,443,6379,5985 10.129.233.229
+Pre-scan script results:
+|_lltd-discovery: false
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-ping: false
+| targets-sniffer: Sniffed 2 address(es). 
+| 10.129.233.229
+|_224.0.23.12
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.129.233.229
+Host is up (0.11s latency).
+
+Bug in http-security-headers: no string output.
+PORT     STATE SERVICE
+80/tcp   open  http
+|_http-trace: TRACE is enabled
+| http-referer-checker: 
+| Spidering limited to: maxpagecount=30
+|   https://stackpath.bootstrapcdn.com:443/bootstrap/5.0.0-alpha1/js/bootstrap.min.js
+|   https://cdn.jsdelivr.net:443/npm/popper.js11.16.0/dist/umd/popper.min.js
+|_  https://cpwebassets.codepen.io:443/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js
+|_http-errors: Couldn't find any error pages.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /images/
+|       png: 1
+|     /releases/
+|       zip: 1
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /images/
+|   Total files found (by extension):
+|_    Other: 1; png: 1; zip: 1
+|_http-title: Heed Solutions
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-mobileversion-checker: No mobile version detected.
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-enum: 
+|   /icons/: Potentially interesting folder w/ directory listing
+|_  /images/: Potentially interesting directory w/ listing on 'apache/2.4.46 (win64) openssl/1.1.1j php/7.3.27'
+| http-vhosts: 
+|_128 names had status 200
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-headers: 
+|   Date: Fri, 24 Feb 2023 12:02:33 GMT
+|   Server: Apache/2.4.46 (Win64) OpenSSL/1.1.1j PHP/7.3.27
+|   Last-Modified: Wed, 31 Mar 2021 19:41:09 GMT
+|   ETag: "1d9d-5beda4be62d6d"
+|   Accept-Ranges: bytes
+|   Content-Length: 7581
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+| http-grep: 
+|   (2) http://10.129.233.229:80/: 
+|     (2) email: 
+|       + MrR3boot@atom.htb
+|_      + popper.js@1.16
+|_http-date: Fri, 24 Feb 2023 12:02:36 GMT; +1h00m00s from local time.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.233.229
+|     
+|     Path: http://10.129.233.229:80/
+|     Line number: 172
+|     Comment: 
+|         <!-- Copyright -->
+|     
+|     Path: http://10.129.233.229:80/
+|     Line number: 136
+|     Comment: 
+|         <!-- Content -->
+|     
+|     Path: http://10.129.233.229:80/
+|     Line number: 124
+|     Comment: 
+|         <!-- Footer -->
+|     
+|     Path: http://10.129.233.229:80/
+|     Line number: 133
+|     Comment: 
+|         <!-- Grid column -->
+|     
+|     Path: http://10.129.233.229:80/
+|     Line number: 130
+|     Comment: 
+|         <!-- Grid row -->
+|     
+|     Path: http://10.129.233.229:80/
+|     Line number: 127
+|     Comment: 
+|_        <!-- Footer Text -->
+|_http-feed: Couldn't find any feeds.
+|_http-chrono: Request times for /; avg: 362.70ms; min: 249.37ms; max: 743.91ms
+135/tcp  open  msrpc
+443/tcp  open  https
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.233.229
+|     
+|     Path: https://10.129.233.229:443/
+|     Line number: 172
+|     Comment: 
+|         <!-- Copyright -->
+|     
+|     Path: https://10.129.233.229:443/
+|     Line number: 136
+|     Comment: 
+|         <!-- Content -->
+|     
+|     Path: https://10.129.233.229:443/
+|     Line number: 124
+|     Comment: 
+|         <!-- Footer -->
+|     
+|     Path: https://10.129.233.229:443/
+|     Line number: 133
+|     Comment: 
+|         <!-- Grid column -->
+|     
+|     Path: https://10.129.233.229:443/
+|     Line number: 130
+|     Comment: 
+|         <!-- Grid row -->
+|     
+|     Path: https://10.129.233.229:443/
+|     Line number: 127
+|     Comment: 
+|_        <!-- Footer Text -->
+|_http-errors: Couldn't find any error pages.
+|_http-feed: Couldn't find any feeds.
+| http-enum: 
+|   /icons/: Potentially interesting folder w/ directory listing
+|_  /images/: Potentially interesting directory w/ listing on 'apache/2.4.46 (win64) openssl/1.1.1j php/7.3.27'
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-mobileversion-checker: No mobile version detected.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /images/
+|       png: 1
+|     /releases/
+|       zip: 1
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /images/
+|   Total files found (by extension):
+|_    Other: 1; png: 1; zip: 1
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-title: Heed Solutions
+| ssl-cert: Subject: commonName=localhost
+| Not valid before: 2009-11-10T23:48:47
+|_Not valid after:  2019-11-08T23:48:47
+| http-headers: 
+|   Date: Fri, 24 Feb 2023 12:01:53 GMT
+|   Server: Apache/2.4.46 (Win64) OpenSSL/1.1.1j PHP/7.3.27
+|   Last-Modified: Wed, 31 Mar 2021 19:41:09 GMT
+|   ETag: "1d9d-5beda4be62d6d"
+|   Accept-Ranges: bytes
+|   Content-Length: 7581
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+| http-security-headers: 
+|   Strict_Transport_Security: 
+|_    HSTS not configured in HTTPS Server
+| http-grep: 
+|   (2) https://10.129.233.229:443/: 
+|     (2) email: 
+|       + MrR3boot@atom.htb
+|_      + popper.js@1.16
+| http-referer-checker: 
+| Spidering limited to: maxpagecount=30
+|   https://stackpath.bootstrapcdn.com:443/bootstrap/5.0.0-alpha1/js/bootstrap.min.js
+|   https://cdn.jsdelivr.net:443/npm/popper.js11.16.0/dist/umd/popper.min.js
+|_  https://cpwebassets.codepen.io:443/assets/common/stopExecutionOnTimeout-157cd5b220a5c80d4ff8e0e70ac069bffd87a61252088146915e8726e5d9f147.js
+| tls-alpn: 
+|_  http/1.1
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_ssl-date: TLS randomness does not represent time
+|_http-trace: TRACE is enabled
+|_http-chrono: Request times for /; avg: 332.24ms; min: 298.78ms; max: 354.54ms
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 1024) - F
+|       TLS_DHE_RSA_WITH_SEED_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_SEED_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_IDEA_CBC_SHA (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher IDEA vulnerable to SWEET32 attack
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 1024) - F
+|       TLS_DHE_RSA_WITH_SEED_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_SEED_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_IDEA_CBC_SHA (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher IDEA vulnerable to SWEET32 attack
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_256_CCM_8 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_256_CCM (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_ARIA_256_GCM_SHA384 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_ARIA_256_GCM_SHA384 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CCM_8 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CCM (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_ARIA_128_GCM_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_ARIA_128_GCM_SHA256 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_CAMELLIA_256_CBC_SHA384 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CCM_8 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CCM (rsa 1024) - F
+|       TLS_RSA_WITH_ARIA_256_GCM_SHA384 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CCM_8 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CCM (rsa 1024) - F
+|       TLS_RSA_WITH_ARIA_128_GCM_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 1024) - F
+|       TLS_DHE_RSA_WITH_SEED_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_SEED_CBC_SHA (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.3: 
+|     ciphers: 
+|       TLS_AKE_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A
+|       TLS_AKE_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - A
+|       TLS_AKE_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|     cipher preference: server
+|_  least strength: F
+| http-vhosts: 
+|_128 names had status 200
+|_http-date: Fri, 24 Feb 2023 12:01:52 GMT; +1h00m01s from local time.
+445/tcp  open  microsoft-ds
+5985/tcp open  wsman
+6379/tcp open  redis
+
+Host script results:
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 80    0       69129.80   64269.68  0.0%
+| 135   0       48248.60   8540.46   0.0%
+| 443   0       51410.70   9861.00   0.0%
+| 445   0       51176.30   6556.40   0.0%
+| 5985  0       46829.11   5998.46   10.0%
+|_6379  0       45770.10   6683.56   0.0%
+|_fcrdns: FAIL (No PTR record)
+| smb-mbenum: 
+|_  ERROR: Call to Browser Service failed with status = 2184
+|_path-mtu: PMTU == 1500
+| smb2-capabilities: 
+|   202: 
+|     Distributed File System
+|   210: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   300: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   302: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   311: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+|_dns-brute: Can't guess domain of "10.129.233.229"; use dns-brute.domain script argument.
+| smb-enum-shares: 
+|   account_used: guest
+|   \\10.129.233.229\ADMIN$: 
+|     Type: STYPE_DISKTREE_HIDDEN
+|     Comment: Remote Admin
+|     Anonymous access: <none>
+|     Current user access: <none>
+|   \\10.129.233.229\C$: 
+|     Type: STYPE_DISKTREE_HIDDEN
+|     Comment: Default share
+|     Anonymous access: <none>
+|     Current user access: <none>
+|   \\10.129.233.229\IPC$: 
+|     Type: STYPE_IPC_HIDDEN
+|     Comment: Remote IPC
+|     Anonymous access: <none>
+|     Current user access: READ/WRITE
+|   \\10.129.233.229\Software_Updates: 
+|     Type: STYPE_DISKTREE
+|     Comment: 
+|     Anonymous access: <none>
+|_    Current user access: READ/WRITE
+| msrpc-enum: 
+|   
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49664
+|     annotation: Ngc Pop Key Service
+|     uuid: 51a227ae-825b-41f2-b4a9-1ac9557a1018
+|   
+|     ncalrpc: ClipServiceTransportEndpoint-00001
+|     annotation: CLIPSVC Default RPC Interface
+|     uuid: 64d1d045-f675-460b-8a94-570246b36dab
+|   
+|     ncalrpc: LRPC-3cc6be1dc1559e1ce9
+|     annotation: LiveIdSvc RPC Interface
+|     uuid: cc105610-da03-467e-bc73-5b9e2937458d
+|   
+|     ncalrpc: LRPC-3cc6be1dc1559e1ce9
+|     annotation: OnlineProviderCert RPC Interface
+|     uuid: faf2447b-b348-4feb-8dbe-beee5b7f7778
+|   
+|     ncalrpc: liveidsvcnotify
+|     annotation: LiveIdSvcNotify RPC Interface
+|     uuid: 572e35b4-1344-4565-96a1-f5df3bfa89bb
+|   
+|     ncalrpc: LRPC-4cd446571706e07d49
+|     annotation: PcaSvc
+|     uuid: 0767a036-0d22-48aa-ba69-b619480f38cb
+|   
+|     ncalrpc: LRPC-f62743f9bee14846d6
+|     annotation: wbiosrvc
+|     uuid: c0e9671e-33c6-4438-9464-56b2e1b1c7b4
+|   
+|     ncalrpc: LRPC-f62743f9bee14846d6
+|     annotation: wbiosrvc
+|     uuid: 4be96a0f-9f52-4729-a51d-c70610f118b0
+|   
+|     ncalrpc: OLEDF0669DD7FD865597F3897B4F7DC
+|     uuid: d2716e94-25cb-4820-bc15-537866578562
+|   
+|     ncalrpc: LRPC-3b568f30ebeebdb770
+|     uuid: d2716e94-25cb-4820-bc15-537866578562
+|   
+|     ncalrpc: OLEDF0669DD7FD865597F3897B4F7DC
+|     uuid: 0c53aa2e-fb1c-49c5-bfb6-c54f8e5857cd
+|   
+|     ncalrpc: LRPC-3b568f30ebeebdb770
+|     uuid: 0c53aa2e-fb1c-49c5-bfb6-c54f8e5857cd
+|   
+|     ncalrpc: OLEDF0669DD7FD865597F3897B4F7DC
+|     uuid: 923c9623-db7f-4b34-9e6d-e86580f8ca2a
+|   
+|     ncalrpc: LRPC-3b568f30ebeebdb770
+|     uuid: 923c9623-db7f-4b34-9e6d-e86580f8ca2a
+|   
+|     ncalrpc: OLE6A778538B2AC6ECD61CF05F502EE
+|     annotation: Security Center
+|     uuid: 06bba54a-be05-49f9-b0a0-30f790261023
+|   
+|     ncalrpc: LRPC-81db763a27fd323c73
+|     annotation: Security Center
+|     uuid: 06bba54a-be05-49f9-b0a0-30f790261023
+|   
+|     ncalrpc: LRPC-dcd4e73400cbe4fc3b
+|     uuid: 7a20fcec-dec4-4c59-be57-212e8f65d3de
+|   
+|     ncalrpc: LicenseServiceEndpoint
+|     annotation: LicenseManager
+|     uuid: a4b8d482-80ce-40d6-934d-b22a01a44fe7
+|   
+|     exe: ssdpsrv ssdpsrv interface (SSDP service)
+|     ncalrpc: LRPC-865e7f1b0e1b178232
+|     uuid: 4b112204-0e19-11d3-b42b-0000f81feb9f
+|   
+|     ncalrpc: OLEBFA15B4805AC17C9708FC62C233E
+|     uuid: 8ec21e98-b5ce-4916-a3d6-449fa428a007
+|   
+|     ncalrpc: LRPC-1813d36766489a9306
+|     uuid: 8ec21e98-b5ce-4916-a3d6-449fa428a007
+|   
+|     ncalrpc: OLEBFA15B4805AC17C9708FC62C233E
+|     uuid: 0fc77b1a-95d8-4a2e-a0c0-cff54237462b
+|   
+|     ncalrpc: LRPC-1813d36766489a9306
+|     uuid: 0fc77b1a-95d8-4a2e-a0c0-cff54237462b
+|   
+|     ncalrpc: OLEBFA15B4805AC17C9708FC62C233E
+|     uuid: b1ef227e-dfa5-421e-82bb-67a6a129c496
+|   
+|     ncalrpc: LRPC-1813d36766489a9306
+|     uuid: b1ef227e-dfa5-421e-82bb-67a6a129c496
+|   
+|     ncalrpc: LRPC-ade751e6753809d3d7
+|     uuid: be6293d3-2827-4dda-8057-8588240124c9
+|   
+|     ncalrpc: LRPC-ade751e6753809d3d7
+|     uuid: 54b4c689-969a-476f-8dc2-990885e9f562
+|   
+|     ncalrpc: LRPC-b7d35ff258dc41769f
+|     uuid: 906b0ce0-c70b-1067-b317-00dd010662da
+|   
+|     ncalrpc: LRPC-b7d35ff258dc41769f
+|     uuid: 906b0ce0-c70b-1067-b317-00dd010662da
+|   
+|     ncalrpc: LRPC-b7d35ff258dc41769f
+|     uuid: 906b0ce0-c70b-1067-b317-00dd010662da
+|   
+|     ncalrpc: OLEB11B414226BE38BD2921B6063A1F
+|     uuid: 906b0ce0-c70b-1067-b317-00dd010662da
+|   
+|     ncalrpc: LRPC-64b1037cf2f5b67c07
+|     uuid: 906b0ce0-c70b-1067-b317-00dd010662da
+|   
+|     ncalrpc: WMsgKRpc09EEF1
+|     uuid: 76f226c3-ec14-4325-8a99-6a46348418af
+|   
+|     ncalrpc: WMsgKRpc09EEF1
+|     annotation: Secure Desktop LRPC interface
+|     uuid: 12e65dd8-887f-41ef-91bf-8d816c42c2e7
+|   
+|     ncalrpc: LRPC-ec85b2f3d4dfd5b58d
+|     uuid: d4051bde-9cdd-4910-b393-4aa85ec3c482
+|   
+|     ncalrpc: LRPC-ec85b2f3d4dfd5b58d
+|     uuid: 4c9dbf19-d39e-4bb9-90ee-8f7179b20283
+|   
+|     ncalrpc: LRPC-ec85b2f3d4dfd5b58d
+|     uuid: fd8be72b-a9cd-4b2c-a9ca-4ded242fbe4d
+|   
+|     ncalrpc: LRPC-ec85b2f3d4dfd5b58d
+|     uuid: 95095ec8-32ea-4eb0-a3e2-041f97b36168
+|   
+|     ncalrpc: LRPC-ec85b2f3d4dfd5b58d
+|     uuid: e38f5360-8572-473e-b696-1b46873beeab
+|   
+|     ncalrpc: LRPC-ec85b2f3d4dfd5b58d
+|     uuid: d22895ef-aff4-42c5-a5b2-b14466d34ab4
+|   
+|     ncalrpc: LRPC-ec85b2f3d4dfd5b58d
+|     uuid: 98cd761e-e77d-41c8-a3c0-0fb756d90ec2
+|   
+|     netbios: \\ATOM
+|     ncacn_np: \PIPE\ROUTER
+|     annotation: Vpn APIs
+|     uuid: 650a7e26-eab8-5533-ce43-9c1dfce11511
+|   
+|     ncalrpc: RasmanLrpc
+|     annotation: Vpn APIs
+|     uuid: 650a7e26-eab8-5533-ce43-9c1dfce11511
+|   
+|     ncalrpc: VpnikeRpc
+|     annotation: Vpn APIs
+|     uuid: 650a7e26-eab8-5533-ce43-9c1dfce11511
+|   
+|     ncalrpc: LRPC-cd6289426317b65573
+|     annotation: Vpn APIs
+|     uuid: 650a7e26-eab8-5533-ce43-9c1dfce11511
+|   
+|     ncalrpc: LRPC-35b774b37b2c8c4be5
+|     uuid: c27f3c08-92ba-478c-b446-b419c4cef0e2
+|   
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49669
+|     uuid: 367abb81-9844-35f1-ad32-98f038001003
+|   
+|     ncalrpc: LRPC-f3fa83312041e36454
+|     annotation: XactSrv service
+|     uuid: 98716d03-89ac-44c7-bb8c-285824e51c4a
+|   
+|     ncalrpc: LRPC-f3fa83312041e36454
+|     annotation: IdSegSrv service
+|     uuid: 1a0d010f-1c33-432c-b0f5-8cf4e8053099
+|   
+|     ncalrpc: LRPC-acd36e6d04cb5e98e1
+|     annotation: IP Transition Configuration endpoint
+|     uuid: 552d076a-cb29-4e44-8b6a-d15e59e2c0af
+|   
+|     ncalrpc: LRPC-acd36e6d04cb5e98e1
+|     annotation: Proxy Manager provider server endpoint
+|     uuid: 2e6035b2-e8f1-41a7-a044-656b439c4c34
+|   
+|     ncalrpc: TeredoDiagnostics
+|     annotation: Proxy Manager provider server endpoint
+|     uuid: 2e6035b2-e8f1-41a7-a044-656b439c4c34
+|   
+|     ncalrpc: TeredoControl
+|     annotation: Proxy Manager provider server endpoint
+|     uuid: 2e6035b2-e8f1-41a7-a044-656b439c4c34
+|   
+|     ncalrpc: LRPC-acd36e6d04cb5e98e1
+|     annotation: Proxy Manager client server endpoint
+|     uuid: c36be077-e14b-4fe9-8abc-e856ef4f048b
+|   
+|     ncalrpc: TeredoDiagnostics
+|     annotation: Proxy Manager client server endpoint
+|     uuid: c36be077-e14b-4fe9-8abc-e856ef4f048b
+|   
+|     ncalrpc: TeredoControl
+|     annotation: Proxy Manager client server endpoint
+|     uuid: c36be077-e14b-4fe9-8abc-e856ef4f048b
+|   
+|     ncalrpc: LRPC-acd36e6d04cb5e98e1
+|     annotation: Adh APIs
+|     uuid: c49a5a70-8a7f-4e70-ba16-1e8f1f193ef1
+|   
+|     ncalrpc: TeredoDiagnostics
+|     annotation: Adh APIs
+|     uuid: c49a5a70-8a7f-4e70-ba16-1e8f1f193ef1
+|   
+|     ncalrpc: TeredoControl
+|     annotation: Adh APIs
+|     uuid: c49a5a70-8a7f-4e70-ba16-1e8f1f193ef1
+|   
+|     ncalrpc: OLE092AE19126315ABA9BB0A8720C84
+|     annotation: Adh APIs
+|     uuid: c49a5a70-8a7f-4e70-ba16-1e8f1f193ef1
+|   
+|     ncalrpc: LRPC-0918d3f6ee356c73da
+|     uuid: b58aa02e-2884-4e97-8176-4ee06d794184
+|   
+|     ncalrpc: LRPC-6a298722105e8c1e1b
+|     annotation: Base Firewall Engine API
+|     uuid: dd490425-5325-4565-b774-7e27d6c09c24
+|   
+|     ncalrpc: LRPC-6a298722105e8c1e1b
+|     annotation: Fw APIs
+|     uuid: 7f9d11bf-7fb9-436b-a812-b2d50c5d4c03
+|   
+|     ncalrpc: LRPC-9240627374a8a2f304
+|     annotation: Fw APIs
+|     uuid: 7f9d11bf-7fb9-436b-a812-b2d50c5d4c03
+|   
+|     ncalrpc: LRPC-6a298722105e8c1e1b
+|     annotation: Fw APIs
+|     uuid: f47433c3-3e9d-4157-aad4-83aa1f5c2d4c
+|   
+|     ncalrpc: LRPC-9240627374a8a2f304
+|     annotation: Fw APIs
+|     uuid: f47433c3-3e9d-4157-aad4-83aa1f5c2d4c
+|   
+|     ncalrpc: LRPC-f19a57edad46910d64
+|     annotation: Fw APIs
+|     uuid: f47433c3-3e9d-4157-aad4-83aa1f5c2d4c
+|   
+|     ncalrpc: LRPC-6a298722105e8c1e1b
+|     annotation: Fw APIs
+|     uuid: 2fb92682-6599-42dc-ae13-bd2ca89bd11c
+|   
+|     ncalrpc: LRPC-9240627374a8a2f304
+|     annotation: Fw APIs
+|     uuid: 2fb92682-6599-42dc-ae13-bd2ca89bd11c
+|   
+|     ncalrpc: LRPC-f19a57edad46910d64
+|     annotation: Fw APIs
+|     uuid: 2fb92682-6599-42dc-ae13-bd2ca89bd11c
+|   
+|     ncalrpc: LRPC-af8a1e070bcfaf7e4f
+|     annotation: Fw APIs
+|     uuid: 2fb92682-6599-42dc-ae13-bd2ca89bd11c
+|   
+|     ncalrpc: OLEAF2342E9A020726B5DA8E71167A4
+|     uuid: abfb6ca3-0c5e-4734-9285-0aee72fe8d1c
+|   
+|     ncalrpc: LRPC-257cbd4f012a9d178b
+|     uuid: abfb6ca3-0c5e-4734-9285-0aee72fe8d1c
+|   
+|     ncalrpc: OLEAF2342E9A020726B5DA8E71167A4
+|     uuid: b37f900a-eae4-4304-a2ab-12bb668c0188
+|   
+|     ncalrpc: LRPC-257cbd4f012a9d178b
+|     uuid: b37f900a-eae4-4304-a2ab-12bb668c0188
+|   
+|     ncalrpc: OLEAF2342E9A020726B5DA8E71167A4
+|     uuid: e7f76134-9ef5-4949-a2d6-3368cc0988f3
+|   
+|     ncalrpc: LRPC-257cbd4f012a9d178b
+|     uuid: e7f76134-9ef5-4949-a2d6-3368cc0988f3
+|   
+|     ncalrpc: OLEAF2342E9A020726B5DA8E71167A4
+|     uuid: 7aeb6705-3ae6-471a-882d-f39c109edc12
+|   
+|     ncalrpc: LRPC-257cbd4f012a9d178b
+|     uuid: 7aeb6705-3ae6-471a-882d-f39c109edc12
+|   
+|     ncalrpc: OLEAF2342E9A020726B5DA8E71167A4
+|     uuid: f44e62af-dab1-44c2-8013-049a9de417d6
+|   
+|     ncalrpc: LRPC-257cbd4f012a9d178b
+|     uuid: f44e62af-dab1-44c2-8013-049a9de417d6
+|   
+|     ncalrpc: OLEAF2342E9A020726B5DA8E71167A4
+|     uuid: c2d1b5dd-fa81-4460-9dd6-e7658b85454b
+|   
+|     ncalrpc: LRPC-257cbd4f012a9d178b
+|     uuid: c2d1b5dd-fa81-4460-9dd6-e7658b85454b
+|   
+|     ncalrpc: LRPC-1c86b19b8e98b8dee3
+|     annotation: Witness Client Upcall Server
+|     uuid: f2c9b409-c1c9-4100-8639-d8ab1486694a
+|   
+|     ncalrpc: LRPC-1c86b19b8e98b8dee3
+|     annotation: Witness Client Test Interface
+|     uuid: eb081a0d-10ee-478a-a1dd-50995283e7a8
+|   
+|     ncalrpc: LRPC-1c86b19b8e98b8dee3
+|     annotation: DfsDs service
+|     uuid: 7f1343fe-50a9-4927-a778-0c5859517bac
+|   
+|     netbios: \\ATOM
+|     ncacn_np: \PIPE\wkssvc
+|     annotation: DfsDs service
+|     uuid: 7f1343fe-50a9-4927-a778-0c5859517bac
+|   
+|     ncalrpc: OLEA1DC567217AC9FD6E73A0356E38E
+|     annotation: UserMgrCli
+|     uuid: b18fbab6-56f8-4702-84e0-41053293a869
+|   
+|     ncalrpc: LRPC-1bb893db1732409eca
+|     annotation: UserMgrCli
+|     uuid: b18fbab6-56f8-4702-84e0-41053293a869
+|   
+|     ncalrpc: OLEA1DC567217AC9FD6E73A0356E38E
+|     annotation: UserMgrCli
+|     uuid: 0d3c7f20-1c8d-4654-a1b3-51563b298bda
+|   
+|     ncalrpc: LRPC-1bb893db1732409eca
+|     annotation: UserMgrCli
+|     uuid: 0d3c7f20-1c8d-4654-a1b3-51563b298bda
+|   
+|     ncalrpc: LRPC-2129302cbaea399fd1
+|     uuid: 12345678-1234-abcd-ef00-0123456789ab
+|   
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49668
+|     uuid: 12345678-1234-abcd-ef00-0123456789ab
+|   
+|     ncalrpc: LRPC-2129302cbaea399fd1
+|     uuid: 0b6edbfa-4a24-4fc6-8a23-942b1eca65d1
+|   
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49668
+|     uuid: 0b6edbfa-4a24-4fc6-8a23-942b1eca65d1
+|   
+|     ncalrpc: LRPC-2129302cbaea399fd1
+|     uuid: ae33069b-a2a8-46ee-a235-ddfd339be281
+|   
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49668
+|     uuid: ae33069b-a2a8-46ee-a235-ddfd339be281
+|   
+|     ncalrpc: LRPC-2129302cbaea399fd1
+|     uuid: 4a452661-8290-4b36-8fbe-7f4093a94978
+|   
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49668
+|     uuid: 4a452661-8290-4b36-8fbe-7f4093a94978
+|   
+|     ncalrpc: LRPC-2129302cbaea399fd1
+|     uuid: 76f03f96-cdfd-44fc-a22c-64950a001209
+|   
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49668
+|     uuid: 76f03f96-cdfd-44fc-a22c-64950a001209
+|   
+|     ncalrpc: LRPC-99c3111c6d4e80d5dc
+|     annotation: WinHttp Auto-Proxy Service
+|     uuid: 3473dd4d-2e88-4006-9cba-22570909dd10
+|   
+|     ncalrpc: 52054644-0340-420f-a96f-f795fa53ed72
+|     annotation: WinHttp Auto-Proxy Service
+|     uuid: 3473dd4d-2e88-4006-9cba-22570909dd10
+|   
+|     ncalrpc: DNSResolver
+|     annotation: NRP server endpoint
+|     uuid: 30adc50c-5cbc-46ce-9a0e-91914789e23c
+|   
+|     ncalrpc: LRPC-36c79b5a229b3368eb
+|     annotation: NRP server endpoint
+|     uuid: 30adc50c-5cbc-46ce-9a0e-91914789e23c
+|   
+|     ncalrpc: OLE22BF713A6964A6348F7CC3DD20A5
+|     uuid: 509bc7ae-77be-4ee8-b07c-0d096bb44345
+|   
+|     ncalrpc: LRPC-8adf760d6bea0e2733
+|     uuid: 509bc7ae-77be-4ee8-b07c-0d096bb44345
+|   
+|     ncalrpc: senssvc
+|     annotation: Impl friendly name
+|     uuid: c9ac6db5-82b7-4e55-ae8a-e464ed7b4277
+|   
+|     ncalrpc: LRPC-e69157f951bcee4b3d
+|     annotation: Impl friendly name
+|     uuid: c9ac6db5-82b7-4e55-ae8a-e464ed7b4277
+|   
+|     ncalrpc: nlaplg
+|     uuid: 4c8d0bef-d7f1-49f0-9102-caa05f58d114
+|   
+|     ncalrpc: nlaapi
+|     uuid: 4c8d0bef-d7f1-49f0-9102-caa05f58d114
+|   
+|     ncalrpc: IUserProfile2
+|     annotation: Impl friendly name
+|     uuid: c9ac6db5-82b7-4e55-ae8a-e464ed7b4277
+|   
+|     ncalrpc: LRPC-138c443d2a1c87b5b5
+|     uuid: 0a74ef1c-41a4-4e06-83ae-dc74fb1cdd53
+|   
+|     exe: mstask.exe atsvc interface (Scheduler service)
+|     ncalrpc: LRPC-138c443d2a1c87b5b5
+|     uuid: 1ff70682-0a51-30e8-076d-740be8cee98b
+|   
+|     exe: mstask.exe atsvc interface (Scheduler service)
+|     ncacn_np: \PIPE\atsvc
+|     uuid: 1ff70682-0a51-30e8-076d-740be8cee98b
+|     netbios: \\ATOM
+|   
+|     ncalrpc: LRPC-138c443d2a1c87b5b5
+|     uuid: 378e52b0-c0a9-11cf-822d-00aa0051e40f
+|   
+|     netbios: \\ATOM
+|     ncacn_np: \PIPE\atsvc
+|     uuid: 378e52b0-c0a9-11cf-822d-00aa0051e40f
+|   
+|     ncalrpc: LRPC-138c443d2a1c87b5b5
+|     uuid: 33d84484-3626-47ee-8c6f-e7e98b113be1
+|   
+|     netbios: \\ATOM
+|     ncacn_np: \PIPE\atsvc
+|     uuid: 33d84484-3626-47ee-8c6f-e7e98b113be1
+|   
+|     ncalrpc: ubpmtaskhostchannel
+|     uuid: 33d84484-3626-47ee-8c6f-e7e98b113be1
+|   
+|     ncalrpc: LRPC-e302352f83f92dfdea
+|     uuid: 33d84484-3626-47ee-8c6f-e7e98b113be1
+|   
+|     ncalrpc: LRPC-138c443d2a1c87b5b5
+|     uuid: 86d35949-83c9-4044-b424-db363231fd0c
+|   
+|     netbios: \\ATOM
+|     ncacn_np: \PIPE\atsvc
+|     uuid: 86d35949-83c9-4044-b424-db363231fd0c
+|   
+|     ncalrpc: ubpmtaskhostchannel
+|     uuid: 86d35949-83c9-4044-b424-db363231fd0c
+|   
+|     ncalrpc: LRPC-e302352f83f92dfdea
+|     uuid: 86d35949-83c9-4044-b424-db363231fd0c
+|   
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49667
+|     uuid: 86d35949-83c9-4044-b424-db363231fd0c
+|   
+|     ncalrpc: LRPC-138c443d2a1c87b5b5
+|     uuid: 3a9ef155-691d-4449-8d05-09ad57031823
+|   
+|     netbios: \\ATOM
+|     ncacn_np: \PIPE\atsvc
+|     uuid: 3a9ef155-691d-4449-8d05-09ad57031823
+|   
+|     ncalrpc: ubpmtaskhostchannel
+|     uuid: 3a9ef155-691d-4449-8d05-09ad57031823
+|   
+|     ncalrpc: LRPC-e302352f83f92dfdea
+|     uuid: 3a9ef155-691d-4449-8d05-09ad57031823
+|   
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49667
+|     uuid: 3a9ef155-691d-4449-8d05-09ad57031823
+|   
+|     ncalrpc: LRPC-d48dae937f8381e1cd
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: LRPC-d48dae937f8381e1cd
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: dhcpcsvc6
+|     annotation: DHCPv6 Client LRPC Endpoint
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d6
+|   
+|     ncalrpc: dhcpcsvc6
+|     annotation: DHCP Client LRPC Endpoint
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d5
+|   
+|     ncalrpc: dhcpcsvc
+|     annotation: DHCP Client LRPC Endpoint
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d5
+|   
+|     ncalrpc: LRPC-fd5e21a999c7fe01ac
+|     annotation: NSI server endpoint
+|     uuid: 7ea70bcf-48af-4f6a-8968-6a440754d5fa
+|   
+|     ncalrpc: eventlog
+|     annotation: Event log TCPIP
+|     uuid: f6beaff7-1e19-4fbb-9f8f-b89e2018337c
+|   
+|     netbios: \\ATOM
+|     ncacn_np: \pipe\eventlog
+|     annotation: Event log TCPIP
+|     uuid: f6beaff7-1e19-4fbb-9f8f-b89e2018337c
+|   
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49666
+|     annotation: Event log TCPIP
+|     uuid: f6beaff7-1e19-4fbb-9f8f-b89e2018337c
+|   
+|     ncalrpc: LRPC-e7bd50e6adc2d9d019
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: LRPC-40767695e385754d9d
+|     uuid: 5222821f-d5e2-4885-84f1-5f6185a0ec41
+|   
+|     ncalrpc: LRPC-e7bd50e6adc2d9d019
+|     annotation: KAPI Service endpoint
+|     uuid: 880fd55e-43b9-11e0-b1a8-cf4edfd72085
+|   
+|     ncalrpc: OLE7E19FE4EAD56AA58DAB3D9016E9C
+|     annotation: KAPI Service endpoint
+|     uuid: 880fd55e-43b9-11e0-b1a8-cf4edfd72085
+|   
+|     ncalrpc: LRPC-782014c478c48705e7
+|     annotation: KAPI Service endpoint
+|     uuid: 880fd55e-43b9-11e0-b1a8-cf4edfd72085
+|   
+|     ncalrpc: LRPC-9d64bdfd4ee0cce319
+|     uuid: e40f7b57-7a25-4cd3-a135-7f7d3df9d16b
+|   
+|     ncalrpc: LRPC-2f72f9eddec0216128
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: LRPC-2f72f9eddec0216128
+|     uuid: a500d4c6-0dd1-4543-bc0c-d5f93486eaf8
+|   
+|     ncalrpc: LRPC-48d2f05fa2714ba038
+|     uuid: a500d4c6-0dd1-4543-bc0c-d5f93486eaf8
+|   
+|     ncalrpc: LRPC-3195d086e0aaaadec5
+|     annotation: Impl friendly name
+|     uuid: c9ac6db5-82b7-4e55-ae8a-e464ed7b4277
+|   
+|     ncalrpc: umpo
+|     uuid: 4bec6bb8-b5c2-4b6f-b2c1-5da5cf92d0d9
+|   
+|     ncalrpc: umpo
+|     uuid: 085b0334-e454-4d91-9b8c-4134f9e793f3
+|   
+|     ncalrpc: umpo
+|     uuid: 8782d3b9-ebbd-4644-a3d8-e8725381919b
+|   
+|     ncalrpc: umpo
+|     uuid: 3b338d89-6cfa-44b8-847e-531531bc9992
+|   
+|     ncalrpc: umpo
+|     uuid: bdaa0970-413b-4a3e-9e5d-f6dc9d7e0760
+|   
+|     ncalrpc: umpo
+|     uuid: 5824833b-3c1a-4ad2-bdfd-c31d19e23ed2
+|   
+|     ncalrpc: umpo
+|     uuid: 0361ae94-0316-4c6c-8ad8-c594375800e2
+|   
+|     ncalrpc: umpo
+|     uuid: dd59071b-3215-4c59-8481-972edadc0f6a
+|   
+|     ncalrpc: actkernel
+|     uuid: dd59071b-3215-4c59-8481-972edadc0f6a
+|   
+|     ncalrpc: umpo
+|     uuid: 2d98a740-581d-41b9-aa0d-a88b9d5ce938
+|   
+|     ncalrpc: actkernel
+|     uuid: 2d98a740-581d-41b9-aa0d-a88b9d5ce938
+|   
+|     ncalrpc: LRPC-6af3932c71760c1abc
+|     uuid: 2d98a740-581d-41b9-aa0d-a88b9d5ce938
+|   
+|     ncalrpc: umpo
+|     uuid: 8bfc3be1-6def-4e2d-af74-7c47cd0ade4a
+|   
+|     ncalrpc: actkernel
+|     uuid: 8bfc3be1-6def-4e2d-af74-7c47cd0ade4a
+|   
+|     ncalrpc: LRPC-6af3932c71760c1abc
+|     uuid: 8bfc3be1-6def-4e2d-af74-7c47cd0ade4a
+|   
+|     ncalrpc: umpo
+|     uuid: 1b37ca91-76b1-4f5e-a3c7-2abfc61f2bb0
+|   
+|     ncalrpc: actkernel
+|     uuid: 1b37ca91-76b1-4f5e-a3c7-2abfc61f2bb0
+|   
+|     ncalrpc: LRPC-6af3932c71760c1abc
+|     uuid: 1b37ca91-76b1-4f5e-a3c7-2abfc61f2bb0
+|   
+|     ncalrpc: umpo
+|     uuid: c605f9fb-f0a3-4e2a-a073-73560f8d9e3e
+|   
+|     ncalrpc: actkernel
+|     uuid: c605f9fb-f0a3-4e2a-a073-73560f8d9e3e
+|   
+|     ncalrpc: LRPC-6af3932c71760c1abc
+|     uuid: c605f9fb-f0a3-4e2a-a073-73560f8d9e3e
+|   
+|     ncalrpc: umpo
+|     uuid: 0d3e2735-cea0-4ecc-a9e2-41a2d81aed4e
+|   
+|     ncalrpc: actkernel
+|     uuid: 0d3e2735-cea0-4ecc-a9e2-41a2d81aed4e
+|   
+|     ncalrpc: LRPC-6af3932c71760c1abc
+|     uuid: 0d3e2735-cea0-4ecc-a9e2-41a2d81aed4e
+|   
+|     ncalrpc: umpo
+|     uuid: 2513bcbe-6cd4-4348-855e-7efb3c336dd3
+|   
+|     ncalrpc: actkernel
+|     uuid: 2513bcbe-6cd4-4348-855e-7efb3c336dd3
+|   
+|     ncalrpc: LRPC-6af3932c71760c1abc
+|     uuid: 2513bcbe-6cd4-4348-855e-7efb3c336dd3
+|   
+|     ncalrpc: OLEB24F53A248DCE8F46329721B19D4
+|     uuid: 2513bcbe-6cd4-4348-855e-7efb3c336dd3
+|   
+|     ncalrpc: umpo
+|     uuid: 20c40295-8dba-48e6-aebf-3e78ef3bb144
+|   
+|     ncalrpc: actkernel
+|     uuid: 20c40295-8dba-48e6-aebf-3e78ef3bb144
+|   
+|     ncalrpc: LRPC-6af3932c71760c1abc
+|     uuid: 20c40295-8dba-48e6-aebf-3e78ef3bb144
+|   
+|     ncalrpc: OLEB24F53A248DCE8F46329721B19D4
+|     uuid: 20c40295-8dba-48e6-aebf-3e78ef3bb144
+|   
+|     ncalrpc: umpo
+|     uuid: 857fb1be-084f-4fb5-b59c-4b2c4be5f0cf
+|   
+|     ncalrpc: actkernel
+|     uuid: 857fb1be-084f-4fb5-b59c-4b2c4be5f0cf
+|   
+|     ncalrpc: LRPC-6af3932c71760c1abc
+|     uuid: 857fb1be-084f-4fb5-b59c-4b2c4be5f0cf
+|   
+|     ncalrpc: OLEB24F53A248DCE8F46329721B19D4
+|     uuid: 857fb1be-084f-4fb5-b59c-4b2c4be5f0cf
+|   
+|     ncalrpc: umpo
+|     uuid: 55e6b932-1979-45d6-90c5-7f6270724112
+|   
+|     ncalrpc: actkernel
+|     uuid: 55e6b932-1979-45d6-90c5-7f6270724112
+|   
+|     ncalrpc: LRPC-6af3932c71760c1abc
+|     uuid: 55e6b932-1979-45d6-90c5-7f6270724112
+|   
+|     ncalrpc: OLEB24F53A248DCE8F46329721B19D4
+|     uuid: 55e6b932-1979-45d6-90c5-7f6270724112
+|   
+|     ncalrpc: LRPC-86027ff8004cac0068
+|     uuid: 55e6b932-1979-45d6-90c5-7f6270724112
+|   
+|     ncalrpc: umpo
+|     uuid: 76c217bc-c8b4-4201-a745-373ad9032b1a
+|   
+|     ncalrpc: actkernel
+|     uuid: 76c217bc-c8b4-4201-a745-373ad9032b1a
+|   
+|     ncalrpc: LRPC-6af3932c71760c1abc
+|     uuid: 76c217bc-c8b4-4201-a745-373ad9032b1a
+|   
+|     ncalrpc: OLEB24F53A248DCE8F46329721B19D4
+|     uuid: 76c217bc-c8b4-4201-a745-373ad9032b1a
+|   
+|     ncalrpc: LRPC-86027ff8004cac0068
+|     uuid: 76c217bc-c8b4-4201-a745-373ad9032b1a
+|   
+|     ncalrpc: umpo
+|     uuid: 88abcbc3-34ea-76ae-8215-767520655a23
+|   
+|     ncalrpc: actkernel
+|     uuid: 88abcbc3-34ea-76ae-8215-767520655a23
+|   
+|     ncalrpc: LRPC-6af3932c71760c1abc
+|     uuid: 88abcbc3-34ea-76ae-8215-767520655a23
+|   
+|     ncalrpc: OLEB24F53A248DCE8F46329721B19D4
+|     uuid: 88abcbc3-34ea-76ae-8215-767520655a23
+|   
+|     ncalrpc: LRPC-86027ff8004cac0068
+|     uuid: 88abcbc3-34ea-76ae-8215-767520655a23
+|   
+|     ncalrpc: umpo
+|     uuid: 2c7fd9ce-e706-4b40-b412-953107ef9bb0
+|   
+|     ncalrpc: umpo
+|     uuid: c521facf-09a9-42c5-b155-72388595cbf0
+|   
+|     ncalrpc: umpo
+|     uuid: 1832bcf6-cab8-41d4-85d2-c9410764f75a
+|   
+|     ncalrpc: umpo
+|     uuid: 4dace966-a243-4450-ae3f-9b7bcb5315b8
+|   
+|     ncalrpc: umpo
+|     uuid: 178d84be-9291-4994-82c6-3f909aca5a03
+|   
+|     ncalrpc: umpo
+|     uuid: e53d94ca-7464-4839-b044-09a2fb8b3ae5
+|   
+|     ncalrpc: umpo
+|     uuid: fae436b0-b864-4a87-9eda-298547cd82f2
+|   
+|     ncalrpc: umpo
+|     uuid: 082a3471-31b6-422a-b931-a54401960c62
+|   
+|     ncalrpc: umpo
+|     uuid: 6982a06e-5fe2-46b1-b39c-a2c545bfa069
+|   
+|     ncalrpc: umpo
+|     uuid: 0ff1f646-13bb-400a-ab50-9a78f2b7a85a
+|   
+|     ncalrpc: umpo
+|     uuid: 4ed8abcc-f1e2-438b-981f-bb0e8abc010c
+|   
+|     ncalrpc: umpo
+|     uuid: 95406f0b-b239-4318-91bb-cea3a46ff0dc
+|   
+|     ncalrpc: umpo
+|     uuid: 0d47017b-b33b-46ad-9e18-fe96456c5078
+|   
+|     ncalrpc: umpo
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: actkernel
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: LRPC-6af3932c71760c1abc
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: OLEB24F53A248DCE8F46329721B19D4
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: LRPC-86027ff8004cac0068
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: LRPC-ce0207a8e581ff2468
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: umpo
+|     uuid: 9b008953-f195-4bf9-bde0-4471971e58ed
+|   
+|     ncalrpc: actkernel
+|     uuid: 9b008953-f195-4bf9-bde0-4471971e58ed
+|   
+|     ncalrpc: LRPC-6af3932c71760c1abc
+|     uuid: 9b008953-f195-4bf9-bde0-4471971e58ed
+|   
+|     ncalrpc: OLEB24F53A248DCE8F46329721B19D4
+|     uuid: 9b008953-f195-4bf9-bde0-4471971e58ed
+|   
+|     ncalrpc: LRPC-86027ff8004cac0068
+|     uuid: 9b008953-f195-4bf9-bde0-4471971e58ed
+|   
+|     ncalrpc: LRPC-ce0207a8e581ff2468
+|     uuid: 9b008953-f195-4bf9-bde0-4471971e58ed
+|   
+|     ncalrpc: LRPC-79d35650a7a0783366
+|     uuid: 9b008953-f195-4bf9-bde0-4471971e58ed
+|   
+|     ncalrpc: umpo
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: actkernel
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: LRPC-6af3932c71760c1abc
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: OLEB24F53A248DCE8F46329721B19D4
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: LRPC-86027ff8004cac0068
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: LRPC-ce0207a8e581ff2468
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: LRPC-79d35650a7a0783366
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: umpo
+|     uuid: 697dcda9-3ba9-4eb2-9247-e11f1901b0d2
+|   
+|     ncalrpc: actkernel
+|     uuid: 697dcda9-3ba9-4eb2-9247-e11f1901b0d2
+|   
+|     ncalrpc: LRPC-6af3932c71760c1abc
+|     uuid: 697dcda9-3ba9-4eb2-9247-e11f1901b0d2
+|   
+|     ncalrpc: OLEB24F53A248DCE8F46329721B19D4
+|     uuid: 697dcda9-3ba9-4eb2-9247-e11f1901b0d2
+|   
+|     ncalrpc: LRPC-86027ff8004cac0068
+|     uuid: 697dcda9-3ba9-4eb2-9247-e11f1901b0d2
+|   
+|     ncalrpc: LRPC-ce0207a8e581ff2468
+|     uuid: 697dcda9-3ba9-4eb2-9247-e11f1901b0d2
+|   
+|     ncalrpc: LRPC-79d35650a7a0783366
+|     uuid: 697dcda9-3ba9-4eb2-9247-e11f1901b0d2
+|   
+|     ncalrpc: LRPC-24ab7f9df1a4b3ada7
+|     uuid: 697dcda9-3ba9-4eb2-9247-e11f1901b0d2
+|   
+|     ncalrpc: umpo
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: actkernel
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: LRPC-6af3932c71760c1abc
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: OLEB24F53A248DCE8F46329721B19D4
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: LRPC-86027ff8004cac0068
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: LRPC-ce0207a8e581ff2468
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: LRPC-79d35650a7a0783366
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: LRPC-24ab7f9df1a4b3ada7
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: csebpub
+|     uuid: d09bdeb5-6171-4a34-bfe2-06fa82652568
+|   
+|     ncalrpc: umpo
+|     uuid: fc48cd89-98d6-4628-9839-86f7a3e4161a
+|   
+|     ncalrpc: actkernel
+|     uuid: fc48cd89-98d6-4628-9839-86f7a3e4161a
+|   
+|     ncalrpc: LRPC-6af3932c71760c1abc
+|     uuid: fc48cd89-98d6-4628-9839-86f7a3e4161a
+|   
+|     ncalrpc: OLEB24F53A248DCE8F46329721B19D4
+|     uuid: fc48cd89-98d6-4628-9839-86f7a3e4161a
+|   
+|     ncalrpc: LRPC-86027ff8004cac0068
+|     uuid: fc48cd89-98d6-4628-9839-86f7a3e4161a
+|   
+|     ncalrpc: LRPC-ce0207a8e581ff2468
+|     uuid: fc48cd89-98d6-4628-9839-86f7a3e4161a
+|   
+|     ncalrpc: LRPC-79d35650a7a0783366
+|     uuid: fc48cd89-98d6-4628-9839-86f7a3e4161a
+|   
+|     ncalrpc: LRPC-24ab7f9df1a4b3ada7
+|     uuid: fc48cd89-98d6-4628-9839-86f7a3e4161a
+|   
+|     ncalrpc: csebpub
+|     uuid: fc48cd89-98d6-4628-9839-86f7a3e4161a
+|   
+|     ncalrpc: dabrpc
+|     uuid: fc48cd89-98d6-4628-9839-86f7a3e4161a
+|   
+|     ncalrpc: WMsgKRpc09C1D0
+|     uuid: 76f226c3-ec14-4325-8a99-6a46348418af
+|   
+|     netbios: \\ATOM
+|     ncacn_np: \PIPE\InitShutdown
+|     uuid: 76f226c3-ec14-4325-8a99-6a46348418af
+|   
+|     ncalrpc: WindowsShutdown
+|     uuid: 76f226c3-ec14-4325-8a99-6a46348418af
+|   
+|     ncalrpc: WMsgKRpc09C1D0
+|     uuid: d95afe70-a6d5-4259-822e-2c84da1ddb0d
+|   
+|     netbios: \\ATOM
+|     ncacn_np: \PIPE\InitShutdown
+|     uuid: d95afe70-a6d5-4259-822e-2c84da1ddb0d
+|   
+|     ncalrpc: WindowsShutdown
+|     uuid: d95afe70-a6d5-4259-822e-2c84da1ddb0d
+|   
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49665
+|     uuid: d95afe70-a6d5-4259-822e-2c84da1ddb0d
+|   
+|     exe: lsass.exe samr interface
+|     ncacn_np: \pipe\lsass
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|     netbios: \\ATOM
+|   
+|     exe: lsass.exe samr interface
+|     ncalrpc: audit
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|   
+|     exe: lsass.exe samr interface
+|     ncalrpc: securityevent
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|   
+|     exe: lsass.exe samr interface
+|     ncalrpc: LSARPC_ENDPOINT
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|   
+|     exe: lsass.exe samr interface
+|     ncalrpc: lsacap
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|   
+|     exe: lsass.exe samr interface
+|     ncalrpc: LSA_IDPEXT_ENDPOINT
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|   
+|     exe: lsass.exe samr interface
+|     ncalrpc: LSA_EAS_ENDPOINT
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|   
+|     exe: lsass.exe samr interface
+|     ncalrpc: lsapolicylookup
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|   
+|     exe: lsass.exe samr interface
+|     ncalrpc: lsasspirpc
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|   
+|     exe: lsass.exe samr interface
+|     ncalrpc: protected_storage
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|   
+|     exe: lsass.exe samr interface
+|     ncalrpc: SidKey Local End Point
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|   
+|     exe: lsass.exe samr interface
+|     ncalrpc: samss lpc
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|   
+|     exe: lsass.exe samr interface
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49664
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|   
+|     netbios: \\ATOM
+|     ncacn_np: \pipe\lsass
+|     annotation: KeyIso
+|     uuid: b25a52bf-e5dd-4f4a-aea6-8ca7272a0e86
+|   
+|     ncalrpc: audit
+|     annotation: KeyIso
+|     uuid: b25a52bf-e5dd-4f4a-aea6-8ca7272a0e86
+|   
+|     ncalrpc: securityevent
+|     annotation: KeyIso
+|     uuid: b25a52bf-e5dd-4f4a-aea6-8ca7272a0e86
+|   
+|     ncalrpc: LSARPC_ENDPOINT
+|     annotation: KeyIso
+|     uuid: b25a52bf-e5dd-4f4a-aea6-8ca7272a0e86
+|   
+|     ncalrpc: lsacap
+|     annotation: KeyIso
+|     uuid: b25a52bf-e5dd-4f4a-aea6-8ca7272a0e86
+|   
+|     ncalrpc: LSA_IDPEXT_ENDPOINT
+|     annotation: KeyIso
+|     uuid: b25a52bf-e5dd-4f4a-aea6-8ca7272a0e86
+|   
+|     ncalrpc: LSA_EAS_ENDPOINT
+|     annotation: KeyIso
+|     uuid: b25a52bf-e5dd-4f4a-aea6-8ca7272a0e86
+|   
+|     ncalrpc: lsapolicylookup
+|     annotation: KeyIso
+|     uuid: b25a52bf-e5dd-4f4a-aea6-8ca7272a0e86
+|   
+|     ncalrpc: lsasspirpc
+|     annotation: KeyIso
+|     uuid: b25a52bf-e5dd-4f4a-aea6-8ca7272a0e86
+|   
+|     ncalrpc: protected_storage
+|     annotation: KeyIso
+|     uuid: b25a52bf-e5dd-4f4a-aea6-8ca7272a0e86
+|   
+|     ncalrpc: SidKey Local End Point
+|     annotation: KeyIso
+|     uuid: b25a52bf-e5dd-4f4a-aea6-8ca7272a0e86
+|   
+|     ncalrpc: samss lpc
+|     annotation: KeyIso
+|     uuid: b25a52bf-e5dd-4f4a-aea6-8ca7272a0e86
+|   
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49664
+|     annotation: KeyIso
+|     uuid: b25a52bf-e5dd-4f4a-aea6-8ca7272a0e86
+|   
+|     netbios: \\ATOM
+|     ncacn_np: \pipe\lsass
+|     annotation: Ngc Pop Key Service
+|     uuid: 8fb74744-b2ff-4c00-be0d-9ef9a191fe1b
+|   
+|     ncalrpc: audit
+|     annotation: Ngc Pop Key Service
+|     uuid: 8fb74744-b2ff-4c00-be0d-9ef9a191fe1b
+|   
+|     ncalrpc: securityevent
+|     annotation: Ngc Pop Key Service
+|     uuid: 8fb74744-b2ff-4c00-be0d-9ef9a191fe1b
+|   
+|     ncalrpc: LSARPC_ENDPOINT
+|     annotation: Ngc Pop Key Service
+|     uuid: 8fb74744-b2ff-4c00-be0d-9ef9a191fe1b
+|   
+|     ncalrpc: lsacap
+|     annotation: Ngc Pop Key Service
+|     uuid: 8fb74744-b2ff-4c00-be0d-9ef9a191fe1b
+|   
+|     ncalrpc: LSA_IDPEXT_ENDPOINT
+|     annotation: Ngc Pop Key Service
+|     uuid: 8fb74744-b2ff-4c00-be0d-9ef9a191fe1b
+|   
+|     ncalrpc: LSA_EAS_ENDPOINT
+|     annotation: Ngc Pop Key Service
+|     uuid: 8fb74744-b2ff-4c00-be0d-9ef9a191fe1b
+|   
+|     ncalrpc: lsapolicylookup
+|     annotation: Ngc Pop Key Service
+|     uuid: 8fb74744-b2ff-4c00-be0d-9ef9a191fe1b
+|   
+|     ncalrpc: lsasspirpc
+|     annotation: Ngc Pop Key Service
+|     uuid: 8fb74744-b2ff-4c00-be0d-9ef9a191fe1b
+|   
+|     ncalrpc: protected_storage
+|     annotation: Ngc Pop Key Service
+|     uuid: 8fb74744-b2ff-4c00-be0d-9ef9a191fe1b
+|   
+|     ncalrpc: SidKey Local End Point
+|     annotation: Ngc Pop Key Service
+|     uuid: 8fb74744-b2ff-4c00-be0d-9ef9a191fe1b
+|   
+|     ncalrpc: samss lpc
+|     annotation: Ngc Pop Key Service
+|     uuid: 8fb74744-b2ff-4c00-be0d-9ef9a191fe1b
+|   
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49664
+|     annotation: Ngc Pop Key Service
+|     uuid: 8fb74744-b2ff-4c00-be0d-9ef9a191fe1b
+|   
+|     netbios: \\ATOM
+|     ncacn_np: \pipe\lsass
+|     annotation: Ngc Pop Key Service
+|     uuid: 51a227ae-825b-41f2-b4a9-1ac9557a1018
+|   
+|     ncalrpc: audit
+|     annotation: Ngc Pop Key Service
+|     uuid: 51a227ae-825b-41f2-b4a9-1ac9557a1018
+|   
+|     ncalrpc: securityevent
+|     annotation: Ngc Pop Key Service
+|     uuid: 51a227ae-825b-41f2-b4a9-1ac9557a1018
+|   
+|     ncalrpc: LSARPC_ENDPOINT
+|     annotation: Ngc Pop Key Service
+|     uuid: 51a227ae-825b-41f2-b4a9-1ac9557a1018
+|   
+|     ncalrpc: lsacap
+|     annotation: Ngc Pop Key Service
+|     uuid: 51a227ae-825b-41f2-b4a9-1ac9557a1018
+|   
+|     ncalrpc: LSA_IDPEXT_ENDPOINT
+|     annotation: Ngc Pop Key Service
+|     uuid: 51a227ae-825b-41f2-b4a9-1ac9557a1018
+|   
+|     ncalrpc: LSA_EAS_ENDPOINT
+|     annotation: Ngc Pop Key Service
+|     uuid: 51a227ae-825b-41f2-b4a9-1ac9557a1018
+|   
+|     ncalrpc: lsapolicylookup
+|     annotation: Ngc Pop Key Service
+|     uuid: 51a227ae-825b-41f2-b4a9-1ac9557a1018
+|   
+|     ncalrpc: lsasspirpc
+|     annotation: Ngc Pop Key Service
+|     uuid: 51a227ae-825b-41f2-b4a9-1ac9557a1018
+|   
+|     ncalrpc: protected_storage
+|     annotation: Ngc Pop Key Service
+|     uuid: 51a227ae-825b-41f2-b4a9-1ac9557a1018
+|   
+|     ncalrpc: SidKey Local End Point
+|     annotation: Ngc Pop Key Service
+|     uuid: 51a227ae-825b-41f2-b4a9-1ac9557a1018
+|   
+|     ncalrpc: samss lpc
+|     annotation: Ngc Pop Key Service
+|_    uuid: 51a227ae-825b-41f2-b4a9-1ac9557a1018
+| smb-os-discovery: 
+|   OS: Windows 10 Pro 19042 (Windows 10 Pro 6.3)
+|   OS CPE: cpe:/o:microsoft:windows_10::-
+|   Computer name: ATOM
+|   NetBIOS computer name: ATOM\x00
+|   Workgroup: WORKGROUP\x00
+|_  System time: 2023-02-24T04:02:04-08:00
+|_ipidseq: Unknown
+| smb-ls: Volume \\10.129.233.229\Software_Updates
+| SIZE   TIME                 FILENAME
+| <DIR>  2021-03-30T20:43:48  .
+| <DIR>  2021-03-30T20:43:48  ..
+| <DIR>  2023-02-24T12:10:30  client1
+| <DIR>  2023-02-24T12:10:30  client2
+| <DIR>  2023-02-24T12:10:30  client3
+| 35202  2023-02-24T11:19:42  UAT_Testing_Procedures.pdf
+|_
+| smb-protocols: 
+|   dialects: 
+|     NT LM 0.12 (SMBv1) [dangerous, but default]
+|     202
+|     210
+|     300
+|     302
+|_    311
+| smb2-time: 
+|   date: 2023-02-24T12:02:13
+|_  start_date: N/A
+| smb2-security-mode: 
+|   311: 
+|_    Message signing enabled but not required
+
+# Nmap done at Fri Feb 24 12:10:33 2023 -- 1 IP address (1 host up) scanned in 547.49 seconds

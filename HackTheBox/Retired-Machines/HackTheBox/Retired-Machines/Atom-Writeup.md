@@ -1,6 +1,6 @@
-# Neighbour Writeup
+# Atom Writeup
 
-Name: Neighbour
+Name: Atom
 Date:  
 Difficulty:  
 Goals:  
@@ -20,4 +20,4 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 
 ## Beyond Root
 
-      
+

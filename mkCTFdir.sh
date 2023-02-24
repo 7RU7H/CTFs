@@ -19,7 +19,7 @@ then
 		*) echo $USAGE; echo "Site shorthand invalid"; exit;;
 
 	esac 
-	mkdir -p $site/$name/{nmap,nikto,feroxbuster,masscan,gobuster,ffuf,Screenshots};
+	mkdir -p $site/$name/{nmap,nikto,feroxbuster,masscan,gobuster,ffuf,Screenshots}
 	echo "# $name Writeup
 
 Name: $name
@@ -42,7 +42,7 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 
 ## Beyond Root
 
-      "	> $name-Writeup.md
+" > $site/$name-Writeup.md
 echo "# Notes
 
 ## Data 
@@ -67,11 +67,11 @@ Credentials:
 
 
       
-      " > $name-Notes.md
+" > $site/$name-Notes.md
 
 else
 	echo $HELP
 	echo "Error Site or Name is empty $1 and $2"
 	exit
 fi
-
+exit

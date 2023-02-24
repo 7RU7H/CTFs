@@ -1,0 +1,62 @@
+# Nmap 7.93 scan initiated Fri Feb 24 12:10:33 2023 as: nmap --script vuln -oA nmap/10-129-233-229-Vuln --min-rate 300 -e tun0 -p 80,445,135,443,6379,5985 10.129.233.229
+Nmap scan report for 10.129.233.229
+Host is up (0.052s latency).
+
+PORT     STATE SERVICE
+80/tcp   open  http
+|_http-trace: TRACE is enabled
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       http://ha.ckers.org/slowloris/
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|   /icons/: Potentially interesting folder w/ directory listing
+|_  /images/: Potentially interesting directory w/ listing on 'apache/2.4.46 (win64) openssl/1.1.1j php/7.3.27'
+135/tcp  open  msrpc
+443/tcp  open  https
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| ssl-dh-params: 
+|   VULNERABLE:
+|   Diffie-Hellman Key Exchange Insufficient Group Strength
+|     State: VULNERABLE
+|       Transport Layer Security (TLS) services that use Diffie-Hellman groups
+|       of insufficient strength, especially those using one of a few commonly
+|       shared groups, may be susceptible to passive eavesdropping attacks.
+|     Check results:
+|       WEAK DH GROUP 1
+|             Cipher Suite: TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+|             Modulus Type: Safe prime
+|             Modulus Source: RFC2409/Oakley Group 2
+|             Modulus Length: 1024
+|             Generator Length: 8
+|             Public Key Length: 1024
+|     References:
+|_      https://weakdh.org
+| http-enum: 
+|   /icons/: Potentially interesting folder w/ directory listing
+|_  /images/: Potentially interesting directory w/ listing on 'apache/2.4.46 (win64) openssl/1.1.1j php/7.3.27'
+|_http-trace: TRACE is enabled
+445/tcp  open  microsoft-ds
+5985/tcp open  wsman
+6379/tcp open  redis
+
+Host script results:
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: ERROR: Script execution failed (use -d to debug)
+
+# Nmap done at Fri Feb 24 12:16:09 2023 -- 1 IP address (1 host up) scanned in 335.48 seconds
