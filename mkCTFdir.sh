@@ -42,7 +42,7 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 
 ## Beyond Root
 
-" > $site/$name-Writeup.md
+" > $site/$name/$name-Writeup.md
 echo "# Notes
 
 ## Data 
@@ -67,7 +67,7 @@ Credentials:
 
 
       
-" > $site/$name-Notes.md
+" > $site/$name/$name-Notes.md
 
 else
 	echo $HELP
