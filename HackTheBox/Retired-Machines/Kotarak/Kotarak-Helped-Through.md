@@ -12,12 +12,15 @@ Beyond Root:
 - Linux Malware in C and detections for Rootkits and Malware
 - Best FTP server
 
+
+
 [areyou0or1](https://www.youtube.com/watch?v=yOxk3JghqCk) is OSCP, OSCE, SLAE64, OSWP, CCP. OSEE and the Senior Vulnerable Machine Engineer at Offsec. She is awesome in probably every possible way. If I find anymore female youtubers like this I would be a lucky fool.
 
 She is a biological female - so neurodiversity for the assimilation! 
 Her videos are less than 20 minutes long - meaning:
 - Only relevant no fluff information - no memes, just chill, pure straight forward for the jugular.
 - I have to pause a figure out how should I answer this part and or why did she think that? - Building on your own patterns of thought.  
+
 
 
 ## Recon
@@ -28,6 +31,7 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 - Webserver default Admin Login panels?
 	- Default passwords?
 
+10.129.1.117:8080/manager/html - Admin login portal
 ![](htmllogin.png)
 
 - Strange/Custom ports?
@@ -49,8 +53,8 @@ Parameter equals:
 	- CMDi? Can you execute with `& CMD` - windows  or `; CMD` - linux?
 	- IDOR? Can you deserialize or decoded data; or modify data to change your object context?  
 
-She did not mention, but I `curl`-ed the info.php for data intelligence reasons.
-![](usefulinfodotphp.png)
+She did not mention, but I `curl`-ed the info.php for data intelligence reasons. Although if found this it would be better to just copy and paste from browser for a bit more stealth
+![1080](usefulinfodotphp.png)
 
 
 ## Exploit
@@ -68,7 +72,7 @@ ffuf -u http://10.129.1.117:60000/url.php?path=http://127.0.0.1:FUZZ -fs 2 -w al
 ```
 
 Going through the ports...
-![](ssrfport90.png)
+![1080](ssrfport90.png)
 Double checked the output for a non found port:
 ![](justssrftheff.png)
 
@@ -82,13 +86,13 @@ Oooooohh yeahh
 ![](supersensitiveadmin320.png)
 
 Files to exfiltrate
-![](filetoexfil.png)
+![1080](filetoexfil.png)
 
 Port 3306 is a mysql server and port 8080 is Apache Tomcat/8.5.5
 ![](notomcaton8080.png)
 
 An SSRF private browser...
-![](anonbrowserforfree.png)
+![1080](anonbrowserforfree.png)
 
 Back to the exfil, I check the source of the parametre to get all the files
 ![](inthesource.png)
@@ -123,6 +127,16 @@ unzip kalisa.war
 
 Start playing [Primus's Tommy the cat](https://www.youtube.com/watch?v=r4OhIU-PmB8) 
 ![](wearetomcat.png)
+
+```bash
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+export TERM=screen-256color 
+# Ctrl Z
+# Check rows and cols
+stty -a
+stty -raw echo;fg
+```
+
 
 There is pentest data to be exfiltrated!
 ![](pentestintomcathomedirectory.png)
@@ -218,13 +232,13 @@ No mysql login
 - vmlinuz(.old) - boot script
 - /.config - no accessible
 - Amanda is a network backup
-![](ssh.png)
+![1080](ssh.png)
 - atanas can make disks
 - we have alot of socket control
 - root is using lxd - but we are not in the lxd group `lxc image list` - denied
-![](lxdroot.png)
+![1080](lxdroot.png)
 - atanas's path is misconfigured 
-![](misconfigPATH.png)
+![1080](misconfigPATH.png)
 
 As the beyond root I will try and understand any of these that work:
 - [CVE-2017-16995](https://www.exploit-db.com/download/45010) eBPF_verifier - Details: https://ricklarabee.blogspot.com/2018/07/ebpf-and-analysis-of-get-rekt-linux.html - Comments: CONFIG_BPF_SYSCALL needs to be set && kernel.unprivileged_bpf_disabled != 1
@@ -334,9 +348,14 @@ As a server requested by a victim with the CVE-2016-4971 vulnerable version of w
 [40064](https://www.exploit-db.com/exploits/40064) and [49815](https://www.exploit-db.com/exploits/49815)
 [wgetrc commands documentation](https://www.gnu.org/software/wget/manual/wget.html#Wgetrc-Commands)
 
-8:24
+
 
 
 ## Beyond Root
 
-      
+[Jacob Sorber Programming with Processes](https://www.youtube.com/playlist?list=PL9IEJIKnBJjFNNfpY6fHjVzAwtgRYjhPw), I watched the Sending and Handlign Signals in C video
+
+```c 
+
+sigaction
+```

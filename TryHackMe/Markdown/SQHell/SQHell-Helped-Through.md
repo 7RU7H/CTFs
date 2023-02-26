@@ -10,7 +10,7 @@ Learnt:
 - There is alot more to SQLi
 Beyond Root:
 - Break down my understand a the details of how,where,why,which injecting(technique)
-- Break down the syntax and the whyt
+- Break down the syntax and the why
 
 [Alh4zr3d](https://www.youtube.com/watch?v=MpJasg3IQNI)
 
