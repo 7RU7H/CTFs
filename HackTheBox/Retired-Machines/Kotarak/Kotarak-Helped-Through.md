@@ -12,8 +12,6 @@ Beyond Root:
 - Linux Malware in C and detections for Rootkits and Malware
 - Best FTP server
 
-
-
 [areyou0or1](https://www.youtube.com/watch?v=yOxk3JghqCk) is OSCP, OSCE, SLAE64, OSWP, CCP. OSEE and the Senior Vulnerable Machine Engineer at Offsec. She is awesome in probably every possible way. If I find anymore female youtubers like this I would be a lucky fool.
 
 She is a biological female - so neurodiversity for the assimilation! 

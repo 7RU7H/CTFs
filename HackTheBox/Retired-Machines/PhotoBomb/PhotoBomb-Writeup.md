@@ -2,9 +2,10 @@
 
 Name: PhotoBomb
 Date:  
-Difficulty:  
+Difficulty:  Easy
 Goals:  
 Learnt:
+- Add parameters - I tried injecting into what was avaliable sometimes try the null space...
 Beyond Root:
 
 ![](photobomb-apostol-unsplash.png)

@@ -8,7 +8,7 @@ OneSeclistDirectoryBustingWordlistToRuleTheCTFs
 - Stop, observe and note potential targets to start feroxbuster and ffuf from 
 	- What is actually a good target for this and what are likely middle directories that are good to recurse -  Pushing beyond the 
 		- Anything where
-			- dev, git, backup, bak
+			- dev, git, backup, bak, etc...objectives!
 - Use ffuf more ffuf vhosts, extensions, POTENTIAL pages
 - Do a slow set of feroxbusters scan over to collect and double verify 
 
