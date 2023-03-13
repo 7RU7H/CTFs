@@ -10,7 +10,7 @@ Beyond Root:
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](TryHackMe/Markdown/Watcher/Screenshots/ping.png)
 
 Nikto and Nuclei both read the robotsexit
 .txt for flag_one.txt
@@ -36,4 +36,4 @@ In this instance it looks as if we has a potential vulnerable php function.
 
 ## Beyond Root
 
-      
+

@@ -16,7 +16,7 @@ Little did I know this was going to be the equivent of Going Postal, except I ju
 
 ## Recon
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![](ping.png)
+![](HackTheBox/Retired-Machines/SolidState/Screenshots/ping.png)
 
 Considering I already knew this stuff, but is not obvious to a random person trying this box. Just wait for prompts with nc. It makes no intuitive sense regardly, but these systems seem like a begone age that stil exist in the real world behind modern tech and teams.
 

@@ -35,7 +35,7 @@ There are 17 steps to this machine - [Ippsec](https://www.youtube.com/watch?v=U-
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Seventeen/Screenshots/ping.png)
 
 It is ubuntu 18 - Ippsec - nmap from ssh openSSH 7.6; ippsec alludes to different versions of apache could mean contrainerisation like docker, also there is also debian aswell. 
 

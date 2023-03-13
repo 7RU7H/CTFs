@@ -17,7 +17,7 @@ As I have not looked into Azure AD in about month as I near doing the AZ-104 exa
 ## Recon
 
 A brief look at Al and the length of this stream may indicate some serious malding. The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Object/Screenshots/ping.png)
 
 With all the standard recon scannning done ahead of time I am more following along adding to my other beyond roots.
 ![](rootweb.png)

@@ -23,7 +23,7 @@ Beyond Root:
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128. The ttl is  < 255 meaning this a freeBSD box.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Attended/Screenshots/ping.png)
 
 ![](attendedhostname.png)
 

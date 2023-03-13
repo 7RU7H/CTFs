@@ -28,7 +28,7 @@ I did do some of this machine up to user.txt it just never got finished and I ne
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128. 
-![](ping.png)
+![](TryHackMe/Markdown/VulnNet-Node/Screenshots/ping.png)
 
 ```
 Tilo Mitra

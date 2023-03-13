@@ -1,4 +1,5 @@
 # Querier Walkthrough
+
 Name: Querier
 Date:  16/09/2022
 Difficulty:  Medium

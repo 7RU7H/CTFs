@@ -22,7 +22,7 @@ RID bruteforcing is NTLM authenication only!
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Scrambled/Screenshots/ping.png)
 
 [Jazzpizazz](https://github.com/jazzpizazz/BloodHound.py-Kerberos) needs more love!
 

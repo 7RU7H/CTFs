@@ -24,7 +24,7 @@ Her videos are less than 20 minutes long - meaning:
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Kotarak/Screenshots/ping.png)
 
 - Webserver default Admin Login panels?
 	- Default passwords?
@@ -345,7 +345,6 @@ As a server requested by a victim with the CVE-2016-4971 vulnerable version of w
 
 [40064](https://www.exploit-db.com/exploits/40064) and [49815](https://www.exploit-db.com/exploits/49815)
 [wgetrc commands documentation](https://www.gnu.org/software/wget/manual/wget.html#Wgetrc-Commands)
-
 
 
 

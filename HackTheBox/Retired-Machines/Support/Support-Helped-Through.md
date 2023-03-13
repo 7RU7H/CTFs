@@ -27,7 +27,7 @@ For a brutal self assessment after clearing my head I am returning to this box t
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Support/Screenshots/ping.png)
 Double check avaliability on common port, when a weird ping retest upon brutalExamifail attempt. 
 ![](smb-now-filtered-questionmark.png)
 

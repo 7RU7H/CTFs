@@ -31,7 +31,7 @@ Azure provides similar services, but absent of the description above is that Azu
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Bucket/Screenshots/ping.png)
 
 Just ports 22 and 80; the root webpage is bare of links
 ![](rootpage.png)

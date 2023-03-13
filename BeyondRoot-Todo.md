@@ -1,3 +1,16 @@
+
+TrustedSec Tool Lab
+https://github.com/trustedsec/social-engineer-toolkit
+Unicorn - https://github.com/trustedsec/unicorn
+
+- https://github.com/trustedsec/trevorc2
+- https://github.com/trustedsec/ptf
+- https://github.com/trustedsec/hate_crack
+
+Seatbelt compile and used
+
+Host Vulnhub box and do both Red and Blue Teaming 
+
 Smbmaze
 ```powershell
 $persistenceUser = "User1"
@@ -110,3 +123,15 @@ nobody account has bash
 
 Systemd persistence
 https://medium.com/@alexeypetrenko/systemd-user-level-persistence-25eb562d2ea8
+
+
+
+
+- Enabling RDP with cme and impacket kerboros tickets 
+	- Harden and or implement AMSI with powershell 
+- Create an alert based on .exe and .ps1 from PowerUP, Winpeas 
+- Remote interaction with box that would no lead to compromise
+- Open RDP for a new user to use Sysmon, ProcMon
+- Get Sysinternals on box
+
+https://github.com/dubs3c/sudo_sniff/blob/master/sudo_sniff.c

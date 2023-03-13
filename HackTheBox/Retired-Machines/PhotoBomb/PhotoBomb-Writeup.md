@@ -25,7 +25,7 @@ Peaking thirough the app with `CTRL+U`
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/PhotoBomb/Screenshots/ping.png)
 
 SSH x Ubunutu versioning: [Ubuntu Bionic](https://launchpad.net/ubuntu/+source/openssh/1:7.6p1-4ubuntu0.5)
 
