@@ -336,7 +336,7 @@ And
 Hardening the Azure with [MS Connect PTA security](https://docs.microsoft.com/en-us/azure/active-directory/hybrid/how-to-connect-pta-security-deep-dive) also thought about while cleaning up would it not just be cool to try arbituarly write data to disk over all locations of where the ADDecrypt.zip, ADDecrypt and its contents are stored as data for OS record keeping and the disk and how as DFIR would you counter that if you could hold any VMs or Live system in a suspended state or have a holographic file system where there is session layer of previous session and current session for dynamic analysis in Malware Analysis. 
 
 
-Discuss in Photobomb
+Discuss in [[PhotoBomb-Helped-Through]]
 - Update and fault domain 
 - Host Photobomb as an app service plan and discuss context 
 - Application Proxy and use case in Photobomb

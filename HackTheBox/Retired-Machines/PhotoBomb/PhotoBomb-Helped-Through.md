@@ -1,4 +1,4 @@
-# PhotoBomb Writeup
+# PhotoBomb Helped-Through
 
 Name: PhotoBomb
 Date:  1/3/2023
@@ -8,6 +8,7 @@ Goals:
 - Generally evaluate on a CTFy box 
 - Timeings 1hr including scans:
 	- Solo -> Solo if fail Forums -> Ippsec Intro -> Ippsec Staggered
+- Make Photobomb in Azure as I failed timings 
 Learnt:
 - WTFis Sintra
 - I need to do more Novel-For-Me stuff to improve how I overcoming new challenges
@@ -16,6 +17,20 @@ Learnt:
 - Beyond Root:
 - Make a crontab Persistence with `crontab -e`
 - The beyond root for this box is to do three htb boxes, short machine that have a web exploit, easy to practice fine tuning methodolgy on each as follow up.
+Beyond Root:
+- Azure AZ 104 contextualise
+	- Update and fault domain 
+	- Host Photobomb as an app service plan and discuss context 
+	- Application Proxy and use case in Photobomb
+	- Configure DNS for multiple vnets to host photobomb internally
+	- -EnableLargeFileShare research
+
+UPDATE: 14/3/12023
+
+Got 70 something percent on Microsoft Assesssment for testing my Azure AZ 104 knowledge post [[Monteverde-Helped-Through]]. Which is 10% on the exam attempt, so hopeful next week I will be on track to pass and return to my schedule of cleaning up my github:
+- 13 plus easy boxes - no writeups that each test my methodology 9 are mostly Web exploits I know the attack path for, but not the Privescs web or OS; one is cve for OSCPesquesness the rest are Dante path and I need one box that has MSSQL for my own exposure.
+
+#### Two weeks earlier...
 
 On peaking at the forums hinted to fuzz and injection and learning to add addition parametres, which was the big takeway from the box up to the RCE. I had not manage to get an RCE, but found where. Also I though Sintra was a user, which lead my thinking to not contextualise the box correctly. Also ruby web app frameworks exist - in my brain ruby == metasploit. There are some nice picture on this box ten minutes of playing with the download functionality to test whether I LFI or RFI lead also pick some nice wallpapers. Enjoy the thematic frame of picture and word through.
 
@@ -110,7 +125,7 @@ Novel methodology:
 - Adding a `/` in the middle of `filename.ext` to check characters
 - For [[SQHell-Helped-Through]] I wrote down what the application is doing - added a section to my note taking and methodoolgy to reenforce that. I have been trying to understand the applications I encounter
 
-Ippsec demoing this
+Ippsec demoing cmdi
 ```php
 convert -input $photo -convertto/-type $filetype; -size $dimensions
 // Is the application put the -converto in the middle and requiring us to put a 2nd ; in ;CMD (;)
@@ -124,14 +139,14 @@ convert -input $photo -size $dimensions -type $filetype;sleep 5; -
 https://portswigger.net/web-security/os-command-injection
 https://www.golinuxcloud.com/create-reverse-shell-cheat-sheet/
 
-10:11
-
 ## Exploit
 
 The reason I think this photo is hilarious is the bias in my head of people with setups where they love decluttering and miminalism because they lack character and make up for it with aesthesism. Also Camera as decoration, no mat/cooster for mug/cup, no mouse mat to scratch your mahogany table, its a mac that looks like out of the Fallout series owned by "technological advanced peoples" and lastly a keyboard I would happly melt down every single one in existence as they are horrific to type on.  There is also a cover on the camera to protect the lense while monitor camera is under covered. This picture looks like a kind of hell you can only achieve by really trying in  the West.
 ![](nathaniel-worrell-zK_az6W3xIo-unsplash_3000x2000.png)
 
 At this point I listened to the intro of the Ippsec Video. Sintra is framework. I dorked it in the second session, but me thinking it was some kind of User/Bot thing that lead nowhere had lead to me not aligning Framework -> Language RCE in that language maybe as I was trying Express.
+
+![](cmdirevshell.png)
 
 ## Foothold
 
@@ -141,7 +156,58 @@ This lead to the Download testing:
 ![](kevin-charit-XZoaTJTnB9U-unsplash_3000x2000.png)
 Contrasting white and water and the states of water make this photo make you feel cold and breath-taken-and-replaced-with-icy-Oxygen.
 
+Wizard user  
+
+![](sudowizard.png)
+
+[Paused video here](https://www.youtube.com/watch?v=-4asq6Tldf0&t=611s)
+
+Wizrad users is a created user for the box and is not a a default install or service intalled user.
+![](wizarduser.png)
+
+This user has a home directory so was created with box deployment/installation as inital user.
+![](withhomedir.png)
+
+Research 
+- env_reset
+	- Used to reset the env after completing use of sudo
+- mail_badpass
+
+We are running this as root
+```bash
+#!/bin/bash
+# /opt/cleanup.sh
+
+. /opt/.bashrc
+cd /home/wizard/photobomb
+
+# clean up log files
+if [ -s log/photobomb.log ] && ! [ -L log/photobomb.log ]
+then
+  /bin/cat log/photobomb.log > log/photobomb.log.old
+  /usr/bin/truncate -s0 log/photobomb.log
+fi
+
+# protect the priceless originals
+find source_images -type f -name '*.jpg' -exec chown root:root {} \;
+```
+
+Make a priceless shell with /bin/bash with setuid then let the script change it to be owned by root. 
+
 ## PrivEsc
+
+```bash
+cd /home/wizard/photobomb/source_images
+cp /bin/bash pricelessprivesc.jpg
+# becuase I trying to do this from memory
+# We may need more than just +s to exec or change ext
+chmod 777 pricelessprivesc.jpg
+chmod +s pricelessprivesc.jpg
+```
+
+But we need to configure the env_reset to prevent loss of sudo env
+
+Incoming... https://superuser.com/questions/232231/how-do-i-make-sudo-preserve-my-environment-variables and beyond...
 
 The colours of this photo are awesome.
 ![](mark-mc-neill-4xWHIpY2QcY-unsplash_3000x2000.png)
@@ -150,6 +216,43 @@ The colours of this photo are awesome.
 From the forum not read.
 https://systemweakness.com/linux-privilege-escalation-using-path-variable-manipulation-64325ab05469
 
+
+Add
+https://security.snyk.io/package/rubygems/sinatra
+https://github.com/sinatra
+https://cheatsheetseries.owasp.org/cheatsheets/Ruby_on_Rails_Cheat_Sheet.html
+
 ## Beyond Root
+
+Fix the CMDi vulnerability
+
+Fix the PrivEscs
+
+![](Photobomb4Azure)
+
+- Azure AZ 104 contextualise 
+	- Update and fault domains 
+	- Host Photobomb as an app service plan and discuss context 
+	- Application Proxy and use case in Photobomb
+	- Configure DNS for multiple vnets to host photobomb internally
+	- -EnableLargeFileShare research
+
+Specification reinterpretation for the web site:
+
+Internally host website with a domain name 
+
+Vnet that avaliability zone to host VMs
+
+File server for staff photos 
+
+Replication of databases, data, photos
+
+Increase the interal fileshare with powershell
+
+Also a Public version using a App server plan
+
+Add a Application proxy and discuss Application gateway use
+
+Custom DNS 
 
 
