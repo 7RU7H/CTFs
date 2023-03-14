@@ -47,7 +47,7 @@ Ippsec discuss AD Connect, which as requires PasswordWriteBack which I know is a
 
 In fairnesss and kindness to myself from last year one of the nasty curves with HTB or PG or THM at some point is the requirement that preparing for OSCP mean remain relevant to something OSCP-like and the rabbit-holing of time of exploring new technologies. OSCP is not a cloud based Cert. Someone this box in a OSCP-like list because muh-AD, but it really is not its Azure AD Connected to On-premise AD. And ultimately part of the issue is that boxes are to be solved, but not ever knowing a technology - yes researching and RTFM, but is itself a rabbithole. One of the best pieces of advice that came from Offsec or HakLuke was go pillage every single OSCP cheatsheet and use some them I found so much that would have taken along time to acquire from videos. Especially technologies, they become much less grindy and intimidating in a scheduling sense once you have the look for these things, here some important information about Wordpress or Filetransfers go!
 
-The reason why Ippsec can not find the hostname is whether in modern Azure if this is either custom DNS aor Azure DNS if the latter `A Alias`. 
+The reason why Ippsec can not find the hostname is whether in modern Azure if this is either custom DNS or Azure DNS if the latter with record aliasing.
 
 #### Azure DNS 
 
@@ -262,7 +262,7 @@ We can steal NTLM hashes with responder
 
 Adam Chester's Blog on Azure Privilege Escalation [Azure AD Connect for Red Teamers](https://blog.xpnsec.com/azuread-connect-for-redteam/)
 
-TIL; Azure AD Connect is Hybrid Cloud an some organisation want the same passwords for account on and off premises. Synchronization occur between the Cloud and On-Premise where if an attack can reach the server that synchronizes between Azure and Organization data 
+TIL; Azure AD Connect is Hybrid Cloud an some organisation want the same passwords for account on and off premises. Synchronization occur between the Cloud and On-Premise where if an attack can reach the server that synchronizes between Azure and Organization credential can be decrypted as that seerver will host decrypt.dll
 
 ```sql
 SELECT private_configuration_xml, encrypted_configuration FROM mms_management_agent WHERE ma_type = 'AD'
@@ -330,9 +330,17 @@ We need to run [VbScrub's tool](https://github.com/VbScrub/AdSyncDecrypt) from t
 ![](root.png)
 And 
 ![](azureadminpass.png)
+
 ## Beyond Root
 
 Hardening the Azure with [MS Connect PTA security](https://docs.microsoft.com/en-us/azure/active-directory/hybrid/how-to-connect-pta-security-deep-dive) also thought about while cleaning up would it not just be cool to try arbituarly write data to disk over all locations of where the ADDecrypt.zip, ADDecrypt and its contents are stored as data for OS record keeping and the disk and how as DFIR would you counter that if you could hold any VMs or Live system in a suspended state or have a holographic file system where there is session layer of previous session and current session for dynamic analysis in Malware Analysis. 
 
-...
-Incoming tomorrow
+
+Discuss in Photobomb
+- Update and fault domain 
+- Host Photobomb as an app service plan and discuss context 
+- Application Proxy and use case in Photobomb
+- Configure DNS for multiple vnets to host photobomb internally
+- -EnableLargeFileShare research
+
+
