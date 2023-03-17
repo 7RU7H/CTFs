@@ -7,12 +7,12 @@ Goals:
 - Azure Storage
 - Azure Resilience 
 - Azure Hybrid-Cloud
-
 Learnt:
 - php filter
 Beyond Root:
-- Azure Storage, Resilience and Hybrid-Cloud  Contextualization 
+- Azure Storage, Resilience and Hybrid-Cloud  Contextualization - Expand on [[PhotoBomb-Helped-Through]]
 - php filter research and remediation
+- Make a crontab Persistence with `crontab -e`
 
 For the [[]]
 - Governance Contextualization
@@ -63,7 +63,7 @@ https://www.php.net/manual/en/filter.filters.flags.php
 I also want to try read the entire file system with ffuf using SecLists and the post.php and tdo the smart thing of using a burpsuit request as a file with ffuf
 ![](addtheFUZZ.png)
 
-Initial attempts failig and troubleshooting why tried som of the list
+Initial attempts failing and troubleshooting why tried som of the list
 ![](disallowedlist.png)
 
 2422 is the size of the original webpage. Useing [DragonJAR's wordlist](https://github.com/DragonJAR/Security-Wordlist)
@@ -80,6 +80,9 @@ see watcherfilesys-enum, from this although more PoC than
 ![](busterwefoundthebuster.png)
 buster.
 
+https://github.com/ajkhoury 
+https://github.com/0vercl0k - looks insane https://github.com/0vercl0k/clairvoyance
+and the 
 
 ## Exploit
 
