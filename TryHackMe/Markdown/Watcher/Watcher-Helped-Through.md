@@ -98,3 +98,6 @@ https://www.youtube.com/watch?v=26Sgu9RwBpQ - 40:32
 ## Beyond Root
 
 - `sed` against special characters-and-multiline-into-one-line on the ffuf file challenge
+
+https://www.youtube.com/watch?v=9lXW0obOGOY
+https://www.youtube.com/watch?v=26Sgu9RwBpQ

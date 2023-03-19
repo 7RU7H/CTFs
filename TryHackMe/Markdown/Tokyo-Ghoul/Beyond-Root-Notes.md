@@ -189,8 +189,10 @@ if __name__ == "__main__":
     main()
 ```
 
-
 ## References
 
 [Hacktricks](https://book.hacktricks.xyz/generic-methodologies-and-resources/python/bypass-python-sandboxes)
 
+
+Alh4zr3d says sliver is better than empire 
+https://github.com/BishopFox/sliver
