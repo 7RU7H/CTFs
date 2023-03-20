@@ -18,6 +18,7 @@ For the [[Sharp-Helped-Through]]
 - Governance Contextualization
 - Azure AD
 
+I did the entire PrivEsc solo after the first brain fart and break...
 
 Given the lucrious amount of non computer work have this week and the poor state of my previous day off I decided to warm up with turning this TryHackMe machine into a helped-through with the [Alh4zr3d's Funday Sunday](https://www.youtube.com/watch?v=26Sgu9RwBpQ). Secondly to make sure I do not burnout on Microsoft Azure related details into adminstrating the cloud and ODing with Azure written prepending every item and word in 100 metre radius, this will beyond with a another recontextualization. I want then connect the [[PhotoBomb-Helped-Through]] recontextualization and another Box for Sunday as I anticipate a hellscape of a day and almost certianly bare-almost-braindead levels of cognitive functioning.
 
@@ -407,3 +408,12 @@ visudo
 #### Azure 
 
 Azure Storage, Resilience and Hybrid-Cloud  Contextualization - Expand on [[PhotoBomb-Helped-Through]]
+
+1. First remove FTP for file storage and use Azure Files and if it must be FTP atleast be SFTP.
+	1. If it must be SFTP then segment out on-premise pipeline from the Web application to prevent LFI
+2. Remediate the LFI by:
+	1. Containerizing the website and segementing workload on seperate machines
+	2. PHP blacklist functions and php://filter as it is not needed by the application
+	3. Add a check to `post.php` to check only include currect directory files.
+
+ ![1080](Photobomb4Azure)

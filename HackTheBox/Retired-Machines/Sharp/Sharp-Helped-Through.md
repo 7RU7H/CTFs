@@ -6,7 +6,7 @@ Difficulty:  Hard
 Goals:  
 - Azure Revision 
 - Follow along and push head were possible
-
+- Less handholding 
 Learnt:
 - C\#  - BinaryFormatter is insecure 
 Beyond Root:

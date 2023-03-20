@@ -1,0 +1,76 @@
+# Nmap 7.93 scan initiated Sun Mar 19 18:53:27 2023 as: nmap --script discovery -oA nmap/10-129-96-64-Discovery --min-rate 400 -e tun0 -p 5985,135,8888,139,445,8889 10.129.96.64
+Pre-scan script results:
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-ping: false
+|_lltd-discovery: false
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for 10.129.96.64
+Host is up (0.063s latency).
+
+PORT     STATE SERVICE
+135/tcp  open  msrpc
+139/tcp  open  netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+445/tcp  open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+5985/tcp open  wsman
+8888/tcp open  sun-answerbook
+8889/tcp open  ddi-tcp-2
+
+Host script results:
+| smb-protocols: 
+|   dialects: 
+|     202
+|     210
+|     300
+|     302
+|_    311
+|_ipidseq: Incremental!
+|_fcrdns: FAIL (No PTR record)
+| smb2-security-mode: 
+|   311: 
+|_    Message signing enabled but not required
+|_path-mtu: PMTU == 1500
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_dns-brute: Can't guess domain of "10.129.96.64"; use dns-brute.domain script argument.
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 135   0       60455.10   19301.89  0.0%
+| 139   0       67849.60   33939.13  0.0%
+| 445   0       52391.00   8797.57   0.0%
+| 5985  0       56170.10   5904.67   0.0%
+| 8888  0       56935.80   11031.20  0.0%
+|_8889  0       57781.50   4351.13   0.0%
+|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+| smb2-capabilities: 
+|   202: 
+|     Distributed File System
+|   210: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   300: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   302: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   311: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+| smb2-time: 
+|   date: 2023-03-19T18:54:08
+|_  start_date: N/A
+
+# Nmap done at Sun Mar 19 18:54:33 2023 -- 1 IP address (1 host up) scanned in 66.14 seconds

@@ -1,0 +1,18 @@
+# Nmap 7.93 scan initiated Sun Mar 19 18:54:33 2023 as: nmap --script vuln -oA nmap/10-129-96-64-Vuln --min-rate 400 -e tun0 -p 5985,135,8888,139,445,8889 10.129.96.64
+Nmap scan report for 10.129.96.64
+Host is up (0.057s latency).
+
+PORT     STATE SERVICE
+135/tcp  open  msrpc
+139/tcp  open  netbios-ssn
+445/tcp  open  microsoft-ds
+5985/tcp open  wsman
+8888/tcp open  sun-answerbook
+8889/tcp open  ddi-tcp-2
+
+Host script results:
+|_smb-vuln-ms10-054: false
+|_samba-vuln-cve-2012-1182: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_smb-vuln-ms10-061: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+
+# Nmap done at Sun Mar 19 18:55:13 2023 -- 1 IP address (1 host up) scanned in 39.47 seconds
