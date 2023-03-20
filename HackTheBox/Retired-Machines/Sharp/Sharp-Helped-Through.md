@@ -10,7 +10,9 @@ Goals:
 Learnt:
 - C\#  - BinaryFormatter is insecure 
 Beyond Root:
-- Turn Sharp into a Azure AD setup for  [[PhotoBomb-Helped-Through]] and [[Watcher-Helped-Through]]
+- Turn Sharp into a Azure AD setup for [[PhotoBomb-Helped-Through]] and [[Watcher-Helped-Through]]
+	- Governance Contextualization
+	- Azure AD
 - Finish off some of the most relevant [[BeyondRoot-Todo]]s
 
 [Alh4zr3d](https://www.twitch.tv/alh4zr3d)
@@ -98,6 +100,7 @@ Create a user
 ## Beyond Root
 
 Write  C\# called Progam.exe that pops a message box and says 0day found with some funny GUI stuff.
+https://stackoverflow.com/questions/31930452/are-cortana-apis-available-for-desktop-applications
 
 Azure Recontextualization AD 
 

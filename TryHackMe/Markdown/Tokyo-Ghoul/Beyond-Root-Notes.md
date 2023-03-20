@@ -5,6 +5,8 @@
 [python-execution-without-calls](https://book.hacktricks.xyz/generic-methodologies-and-resources/python/bypass-python-sandboxes#python-execution-without-calls)
 [search for malicious libraries](https://book.hacktricks.xyz/generic-methodologies-and-resources/python/bypass-python-sandboxes#finding-dangerous-libraries-loaded)
 
+
+
 ```python
 import argparse
 
@@ -194,5 +196,3 @@ if __name__ == "__main__":
 [Hacktricks](https://book.hacktricks.xyz/generic-methodologies-and-resources/python/bypass-python-sandboxes)
 
 
-Alh4zr3d says sliver is better than empire 
-https://github.com/BishopFox/sliver

