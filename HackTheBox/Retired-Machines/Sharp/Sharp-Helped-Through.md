@@ -13,6 +13,9 @@ Beyond Root:
 - Turn Sharp into a Azure AD setup for [[PhotoBomb-Helped-Through]] and [[Watcher-Helped-Through]]
 	- Governance Contextualization
 	- Azure AD
+	- Hybrid Cloud
+	- App Service Plan and Vnets expansions
+	- Add a Application proxy (need to use it practically)
 - Finish off some of the most relevant [[BeyondRoot-Todo]]s
 
 [Alh4zr3d](https://www.twitch.tv/alh4zr3d)
@@ -104,3 +107,61 @@ https://stackoverflow.com/questions/31930452/are-cortana-apis-available-for-desk
 
 Azure Recontextualization AD 
 
+- Governance Contextualization
+
+- Devs from Domain photobomb and watcher-blogs can not access each others domain or DevOps storage accounts, repositories, clusters
+- All Dev compute is Azure K8 and moved off premises to centralize and control costing 
+- Access to Azure Files strictly internal/external usage by seperate storage account with no connection
+- Internal Files are only all readable if are Sharp.com wide information else by subdomain subscription RBAC
+- All Dev workflow either from VPN from remote device to Azure no AD BYOD, or Workstations on-premise 
+- No BYOD for Developers, either SAS 
+
+- App service plan Customer data
+	- Segmented between apps
+	- Data compliance and strict access controls
+	- GRS Retention   
+
+Users from the box.
+```c
+// Sharp custom users
+lars
+debug // removed
+dev // removed
+// Photobomb custom users
+wizard
+// Watcher custom users
+mat
+toby
+will
+```
+
+Changes - Azure Connect and sync with X.sharp.com
+```c
+// sharpoffices.sharp.com - sharp box as a domain
+employees.txt - bulk upload
+// Create a Custom Admin user that is the owner of local/cloud machines of non technical users - easier for monitor anti-patterns also for honeypotting the non technical users 
+
+
+// photobomb.sharp.com - 
+// Only devs for the photobomb
+admin // For sudo usage, no sudo for devs
+
+// watcher-blogs.sharp.com - 
+// Only devs for the watcher blogs 
+admin // For sudo usage
+will // will seems to be the only dev others are moved to the offices - no sudo
+
+```
+Any developer work is done in the cloud in Azure DevOps through Azure Connect.
+
+Any B2B will require Azure AD B2B account
+
+- Azure AD and Azure Connect
+	- Hybrid Cloud
+		- WAN
+		- Point to site VPNs per domain 
+	- SSPR and password synchronzation with cloud
+- Azure AD replicated seperation with custom DNS 
+
+- App Service Plan and Vnets expansions
+- Add a Application proxy (need to use it practically)

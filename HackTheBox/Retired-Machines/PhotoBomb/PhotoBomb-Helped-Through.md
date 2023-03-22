@@ -330,8 +330,6 @@ Increase the interal fileshare with powershell
 
 Also a Public version using a App server plan
 
-Add a Application proxy and discuss Application gateway use
-
 Custom DNS 
 
 Fix the website recap - TIL Azure DevOps, Azure IAM with SAS and SSPR, while creating a Azure K8 for testing:

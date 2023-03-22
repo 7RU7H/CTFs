@@ -11,12 +11,13 @@ Learnt:
 - `php://filter` details
 - Linux Persistence - systemd.
 Beyond Root:
-- Azure Storage, Resilience and Hybrid-Cloud  Contextualization - Expand on [[PhotoBomb-Helped-Through]]
+- Azure Storage, Resilience - Expand on [[PhotoBomb-Helped-Through]]
 - php filter research and remediation
 - Make a crontab Persistence with `crontab -e`
 For the [[Sharp-Helped-Through]]
 - Governance Contextualization
 - Azure AD
+- Hybrid-Cloud 
 
 I did the entire PrivEsc solo after the first brain fart and break...
 
@@ -407,7 +408,7 @@ visudo
 
 #### Azure 
 
-Azure Storage, Resilience and Hybrid-Cloud  Contextualization - Expand on [[PhotoBomb-Helped-Through]]
+Azure Storage
 
 1. First remove FTP for file storage and use Azure Files and if it must be FTP atleast be SFTP.
 	1. If it must be SFTP then segment out on-premise pipeline from the Web application to prevent LFI
@@ -415,5 +416,22 @@ Azure Storage, Resilience and Hybrid-Cloud  Contextualization - Expand on [[Phot
 	1. Containerizing the website and segementing workload on seperate machines
 	2. PHP blacklist functions and php://filter as it is not needed by the application
 	3. Add a check to `post.php` to check only include currect directory files.
-
+3.  Create another File share: called PictureShare for Cow.jpg  
  ![1080](Photobomb4Azure)
+Resilience 
+- Azure Backups 
+1. Create Recovery Service Vault
+2. MABS and Azure Site Recovery for Sharp.com
+3. MARS agent on workstations
+- Azure Disks
+4. Create a Disk for each user and VM per-user
+	1. Removing the avaliability of root and sudo for each - Admin user will be Sys-Admin account the box owner will have a low-privilege user.
+		 - Sudo for will, but only for very specific per-request to whitelist - no sudo python 
+- GRS for Cow.jpg and Azure Files
+	- A - East US
+	- B - Europe
+
+Additional - Watcher Blogs
+1. Additional DNS zone
+
+In [[Sharp-Helped-Through]] I will go through expansion of the App Service Plan and Vnets
