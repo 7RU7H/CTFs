@@ -22,7 +22,21 @@ Beyond Root:
 
 https://0xdf.gitlab.io/2021/05/01/htb-sharp.html#shell-as-system
 https://www.youtube.com/watch?v=lxjAZELJ96Q
-https://www.youtube.com/watch?v=HBERg8jsx4U
+
+
+[xct](https://www.youtube.com/watch?v=HBERg8jsx4U)
+Instead of dnSpy use `grep`
+```bash
+grep -ira "Password" .
+```
+Then decrypts just using cyberchef after reading the [https://www.exploit-db.com/exploits/4...](https://www.exploit-db.com/exploits/49409)  Cyberchef continues to wow me as a application.
+
+He need use dnSpy just for an overview of the code the directs us to [https://www.tiraniddo.dev/2014/11/stu...](https://www.tiraniddo.dev/2014/11/stupid-is-as-stupid-does-when-it-comes.html)
+
+
+• • [https://labs.f-secure.com/advisories/...](https://labs.withsecure.com/advisories/milestone-xprotect-net-deserialization-vulnerability) 
+
+I want to make something like this: [https://github.com/xct/xc](https://github.com/xct/xc)
 
 ## Recon
 
