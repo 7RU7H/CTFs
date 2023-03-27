@@ -124,3 +124,9 @@ Alh4zr3d says sliver is better than empire
 https://github.com/BishopFox/sliver
 
 https://github.com/0vercl0k - looks insane https://github.com/0vercl0k/clairvoyance
+
+
+#### Window Commands from Network Chuck
+
+https://www.youtube.com/watch?v=prVHU1fLR20
+https://www.youtube.com/watch?v=Jfvg3CS1X3A
