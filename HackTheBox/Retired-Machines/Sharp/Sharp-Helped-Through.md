@@ -8,7 +8,7 @@ Goals:
 - Follow along and push head were possible
 - Less handholding 
 Learnt:
-- C\#  - BinaryFormatter is insecure 
+- C\# - BinaryFormatter is insecure 
 Beyond Root:
 - Turn Sharp into a Azure AD setup for [[PhotoBomb-Helped-Through]] and [[Watcher-Helped-Through]]
 	- Governance Contextualization

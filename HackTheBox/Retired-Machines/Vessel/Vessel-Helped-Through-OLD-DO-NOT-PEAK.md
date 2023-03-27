@@ -5,8 +5,48 @@ Date:
 Difficulty:  Hard
 Goals: 
 - Terrible previous week come back with a vengence
+- Exploit Dev
+- Containers and namespace
 Learnt:
 Beyond Root:
+
+
+Watching the first minute of Ippsec explain the awesomeness of this box and that it was CVE focused, but required you to write the exploits. I have decided that I will revisit this box once I have forgotten while leaving the  what I have done to be put to one side.  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Recon
 
