@@ -16,52 +16,7 @@ Seatbelt compile and used
 
 Host Vulnhub box and do both Red and Blue Teaming 
 
-Smbmaze
-```powershell
-$persistenceUser = "User1"
 
-for ($i=0; $i -lt 26; $i++) {
-  $driveLetter = [char]($i + 65) + ":"
-  if (!(Get-Volume | Where-Object DriveLetter -eq $driveLetter)) {
-    $newDisk = New-VirtualDisk -DriveLetter $driveLetter -Size 10MB
-    $acl = Get-Acl -Path $newDisk.DriveLetter
-    $persistenceUserRights = [System.Security.AccessControl.FileSystemRights]"FullControl"
-    $persistenceUserAccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($persistenceUser, $persistenceUserRights, "Allow")
-    $acl.SetAccessRule($persistenceUserAccessRule)
-    $otherUsersRights = [System.Security.AccessControl.FileSystemRights]"FullControl"
-    $otherUsersAccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule("Administrator", $otherUsersRights, "Deny")
-    $acl.SetAccessRule($otherUsersAccessRule)
-    Set-Acl -Path $newDisk.DriveLetter -AclObject $acl
-  }
-}
-
-```
-
-Create a file share - the longer the path for copy and paste and shell nightmares
-```powershell
-#
-
-# -ConcurrentUserLimit to prevent hacky breaking into destroy the share 
-
-New-SmbShare -Name MyFileShare -Path $goodPath -FullAccess $persistenceUser -EncryptData $True -ConcurrentUserLimit 1 -ContinuouslyAvailable -Temporary
-# You can set up an inital connection to a remote host with output from
-#  New-CimSession Get-CimSession
--Cim-Session 
-
-
-# Add to known adversary accounts -NoAccess Administrator
-
-$Parameters = @{
-    Name = '$Name'
-    Path = $goodPath
-    FullAccess = 'Contoso\Administrator', 'Contoso\Contoso-HV1$'
-    EncryptData = $True
-    Temporary = $True
-    ContinuouslyAvailable = $True
-    NoAccess = 'Administrator' # Prevent access administrator - create persistence user to access
-}
-New-SmbShare @Parameters
-```
 
 
 
@@ -125,8 +80,3 @@ https://github.com/BishopFox/sliver
 
 https://github.com/0vercl0k - looks insane https://github.com/0vercl0k/clairvoyance
 
-
-#### Window Commands from Network Chuck
-
-https://www.youtube.com/watch?v=prVHU1fLR20
-https://www.youtube.com/watch?v=Jfvg3CS1X3A
