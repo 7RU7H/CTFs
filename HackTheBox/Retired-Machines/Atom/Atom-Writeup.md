@@ -32,7 +32,14 @@ impacket-rpcdump -target-ip 10.129.233.229 -p 135
 RID brute force with CME - CME that is Jason.. Atom:
 ![](jcthatjasonAtom.png)
 
+MrR3boot@atom.htb
+
+Download the Heed
+
 ## Exploit
+
+https://github.com/cube0x0
+https://github.com/cube0x0/CVE-2021-1675
 
 ## Foothold
 
@@ -40,4 +47,5 @@ RID brute force with CME - CME that is Jason.. Atom:
 
 ## Beyond Root
 
-
+https://github.com/realoriginal/angryorchard
+https://github.com/realoriginal/blacklotus

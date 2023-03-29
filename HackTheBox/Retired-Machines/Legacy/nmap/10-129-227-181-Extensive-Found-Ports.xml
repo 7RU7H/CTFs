@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Tue Mar 28 18:09:30 2023 as: nmap -sC -sV -oA nmap/10-129-227-181-Extensive-Found-Ports -&#45;min-rate 400 -e tun0 -p 135,139,445 10.129.227.181 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA nmap/10-129-227-181-Extensive-Found-Ports -&#45;min-rate 400 -e tun0 -p 135,139,445 10.129.227.181" start="1680023370" startstr="Tue Mar 28 18:09:30 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="135,139,445"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.227.181" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1680023383" endtime="1680023400"><status state="up" reason="echo-reply" reason_ttl="127"/>
+<address addr="10.129.227.181" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="netbios-ssn" product="Microsoft Windows netbios-ssn" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" product="Windows XP microsoft-ds" ostype="Windows XP" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows_xp</cpe></service></port>
+</ports>
+<hostscript><script id="smb-security-mode" output="&#xa;  account_used: &lt;blank&gt;&#xa;  authentication_level: user&#xa;  challenge_response: supported&#xa;  message_signing: disabled (dangerous, but default)"><elem key="account_used">&lt;blank&gt;</elem>
+<elem key="authentication_level">user</elem>
+<elem key="challenge_response">supported</elem>
+<elem key="message_signing">disabled</elem>
+</script><script id="nbstat" output="NetBIOS name: LEGACY, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: 00505696b962 (VMware)"/><script id="smb-os-discovery" output="&#xa;  OS: Windows XP (Windows 2000 LAN Manager)&#xa;  OS CPE: cpe:/o:microsoft:windows_xp::-&#xa;  Computer name: legacy&#xa;  NetBIOS computer name: LEGACY\x00&#xa;  Workgroup: HTB\x00&#xa;  System time: 2023-04-02T22:07:29+03:00&#xa;"><elem key="os">Windows 5.1</elem>
+<elem key="lanmanager">Windows 2000 LAN Manager</elem>
+<elem key="server">LEGACY\x00</elem>
+<elem key="date">2023-04-02T22:07:29+03:00</elem>
+<elem key="fqdn">legacy</elem>
+<elem key="domain_dns">legacy</elem>
+<elem key="workgroup">HTB\x00</elem>
+<elem key="cpe">cpe:/o:microsoft:windows_xp::-</elem>
+</script><script id="smb2-time" output="Protocol negotiation failed (SMB2)"/><script id="clock-skew" output="mean: 5d00h27m38s, deviation: 2h07m16s, median: 4d22h57m38s"><elem key="stddev">7636</elem>
+<elem key="median">428258</elem>
+<elem key="mean">433658</elem>
+<elem key="count">2</elem>
+</script></hostscript><times srtt="52278" rttvar="29156" to="168902"/>
+</host>
+<runstats><finished time="1680023400" timestr="Tue Mar 28 18:10:00 2023" summary="Nmap done at Tue Mar 28 18:10:00 2023; 1 IP address (1 host up) scanned in 30.27 seconds" elapsed="30.27" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

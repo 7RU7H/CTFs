@@ -80,3 +80,8 @@ https://github.com/BishopFox/sliver
 
 https://github.com/0vercl0k - looks insane https://github.com/0vercl0k/clairvoyance
 
+
+Procmon something and follow along
+
+Atomic wannabe APT 
+https://github.com/redcanaryco/invoke-atomicredteam

@@ -1,0 +1,67 @@
+# Nmap 7.93 scan initiated Tue Mar 28 18:10:00 2023 as: nmap --script discovery -oA nmap/10-129-227-181-Discovery --min-rate 400 -e tun0 -p 135,139,445 10.129.227.181
+Pre-scan script results:
+|_broadcast-ping: false
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_lltd-discovery: false
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.129.227.181
+Host is up (0.076s latency).
+
+PORT    STATE SERVICE
+135/tcp open  msrpc
+139/tcp open  netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+445/tcp open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+
+Host script results:
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 135   0       79648.90   77094.80  0.0%
+| 139   0       47085.30   8265.49   0.0%
+|_445   0       51748.00   7131.74   0.0%
+|_smb-mbenum: ERROR: Script execution failed (use -d to debug)
+|_fcrdns: FAIL (No PTR record)
+|_smb2-time: Protocol negotiation failed (SMB2)
+|_smb2-capabilities: SMB 2+ not supported
+| smb-os-discovery: 
+|   OS: Windows XP (Windows 2000 LAN Manager)
+|   OS CPE: cpe:/o:microsoft:windows_xp::-
+|   Computer name: legacy
+|   NetBIOS computer name: LEGACY\x00
+|   Workgroup: HTB\x00
+|_  System time: 2023-04-02T22:08:04+03:00
+| smb-security-mode: 
+|   account_used: <blank>
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb-enum-shares: 
+|   note: ERROR: Enumerating shares failed, guessing at common ones (NT_STATUS_ACCESS_DENIED)
+|   account_used: <blank>
+|   \\10.129.227.181\ADMIN$: 
+|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
+|     Anonymous access: <none>
+|   \\10.129.227.181\C$: 
+|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
+|     Anonymous access: <none>
+|   \\10.129.227.181\IPC$: 
+|     warning: Couldn't get details for share: NT_STATUS_ACCESS_DENIED
+|_    Anonymous access: READ
+|_msrpc-enum: NT_STATUS_ACCESS_DENIED
+|_dns-brute: Can't guess domain of "10.129.227.181"; use dns-brute.domain script argument.
+|_path-mtu: PMTU == 1500
+|_ipidseq: Unknown
+|_nbstat: NetBIOS name: LEGACY, NetBIOS user: <unknown>, NetBIOS MAC: 00505696b962 (VMware)
+| smb-protocols: 
+|   dialects: 
+|_    NT LM 0.12 (SMBv1) [dangerous, but default]
+
+# Nmap done at Tue Mar 28 18:11:28 2023 -- 1 IP address (1 host up) scanned in 88.33 seconds
