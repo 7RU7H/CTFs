@@ -1,0 +1,42 @@
+# Nmap 7.93 scan initiated Sat Apr  1 19:53:52 2023 as: nmap --script discovery -oA nmap/10-10-90-32-Discovery --min-rate 100 -e tun0 -p 5000,22 10.10.90.32
+Pre-scan script results:
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_lltd-discovery: false
+|_broadcast-ping: false
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.10.90.32
+Host is up (0.055s latency).
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+|_banner: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.5
+| ssh-hostkey: 
+|   3072 c9727bf5b62ed5995614de43093a6492 (RSA)
+|   256 0b75585ab9f75ba9ffefad71c1090a33 (ECDSA)
+|_  256 7df9c9f867f9954e016823a47b8c9830 (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (9)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+5000/tcp open  upnp
+
+Host script results:
+|_dns-brute: Can't guess domain of "10.10.90.32"; use dns-brute.domain script argument.
+|_path-mtu: PMTU == 1500
+|_ipidseq: All zeros
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       66750.10   9420.56   0.0%
+|_5000  0       63880.90   11137.99  0.0%
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Sat Apr  1 19:54:26 2023 -- 1 IP address (1 host up) scanned in 34.75 seconds

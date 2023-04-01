@@ -1,0 +1,89 @@
+# Nmap 7.93 scan initiated Sat Apr  1 19:52:01 2023 as: nmap -sC -sV -oA nmap/10-10-90-32-Extensive-Found-Ports --min-rate 100 -e tun0 -p 5000,22 10.10.90.32
+Nmap scan report for 10.10.90.32
+Host is up (0.063s latency).
+
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 c9727bf5b62ed5995614de43093a6492 (RSA)
+|   256 0b75585ab9f75ba9ffefad71c1090a33 (ECDSA)
+|_  256 7df9c9f867f9954e016823a47b8c9830 (ED25519)
+5000/tcp open  upnp?
+| fingerprint-strings: 
+|   GetRequest: 
+|     HTTP/1.1 200 OK
+|     Server: Werkzeug/2.1.2 Python/3.8.10
+|     Date: Sat, 01 Apr 2023 18:52:21 GMT
+|     Content-Type: text/html; charset=utf-8
+|     Content-Length: 4486
+|     Connection: close
+|     <!doctype html>
+|     <html lang="en">
+|     <head>
+|     <meta charset="utf-8">
+|     <meta name="viewport" content="width=device-width, initial-scale=1">
+|     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+|     <title>Math</title>
+|     </head>
+|     <body>
+|     id="title">Math Formulas</p>
+|     <main>
+|     <section> <!-- Sections within the main -->
+|     id="titles"> Feel free to use any of the calculators below:</h3>
+|     <br>
+|     <article> <!-- Sections within the section -->
+|     id="titles">Quadratic formula</h4> 
+|     <form met
+|   RTSPRequest: 
+|     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+|     "http://www.w3.org/TR/html4/strict.dtd">
+|     <html>
+|     <head>
+|     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+|     <title>Error response</title>
+|     </head>
+|     <body>
+|     <h1>Error response</h1>
+|     <p>Error code: 400</p>
+|     <p>Message: Bad request version ('RTSP/1.0').</p>
+|     <p>Error code explanation: HTTPStatus.BAD_REQUEST - Bad request syntax or unsupported method.</p>
+|     </body>
+|_    </html>
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port5000-TCP:V=7.93%I=7%D=4/1%Time=64287D65%P=x86_64-pc-linux-gnu%r(Get
+SF:Request,1235,"HTTP/1\.1\x20200\x20OK\r\nServer:\x20Werkzeug/2\.1\.2\x20
+SF:Python/3\.8\.10\r\nDate:\x20Sat,\x2001\x20Apr\x202023\x2018:52:21\x20GM
+SF:T\r\nContent-Type:\x20text/html;\x20charset=utf-8\r\nContent-Length:\x2
+SF:04486\r\nConnection:\x20close\r\n\r\n<!doctype\x20html>\n<html\x20lang=
+SF:\"en\">\n\x20\x20<head>\n\x20\x20\x20\x20<meta\x20charset=\"utf-8\">\n\
+SF:x20\x20\x20\x20<meta\x20name=\"viewport\"\x20content=\"width=device-wid
+SF:th,\x20initial-scale=1\">\n\n\x20\x20\x20\x20<link\x20href=\"https://cd
+SF:n\.jsdelivr\.net/npm/bootstrap@5\.0\.1/dist/css/bootstrap\.min\.css\"\x
+SF:20rel=\"stylesheet\"\x20integrity=\"sha384-\+0n0xVW2eSR5OomGNYDnhzAbDsO
+SF:XxcvSN1TPprVMTNDbiYZCxYbOOl7\+AMvyTG2x\"\x20crossorigin=\"anonymous\">\
+SF:n\n\x20\x20\x20\x20<title>Math</title>\n\x20\x20</head>\n\x20\x20<body>
+SF:\n\x20\x20\x20\x20<p\x20id=\"title\">Math\x20Formulas</p>\n\n\x20\x20\x
+SF:20\x20<main>\n\x20\x20\x20\x20\x20\x20<section>\x20\x20<!--\x20Sections
+SF:\x20within\x20the\x20main\x20-->\n\n\t\t\t\t<h3\x20id=\"titles\">\x20Fe
+SF:el\x20free\x20to\x20use\x20any\x20of\x20the\x20calculators\x20below:</h
+SF:3>\n\x20\x20\x20\x20\x20\x20\x20\x20<br>\n\t\t\t\t<article>\x20<!--\x20
+SF:Sections\x20within\x20the\x20section\x20-->\n\t\t\t\t\t\n\x20\x20\x20\x
+SF:20\x20\x20\x20\x20\x20\x20<h4\x20id=\"titles\">Quadratic\x20formula</h4
+SF:>\x20\n\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\n\x20\x20\x20\x20\x20\x
+SF:20\x20\x20\x20\x20<form\x20met")%r(RTSPRequest,1F4,"<!DOCTYPE\x20HTML\x
+SF:20PUBLIC\x20\"-//W3C//DTD\x20HTML\x204\.01//EN\"\n\x20\x20\x20\x20\x20\
+SF:x20\x20\x20\"http://www\.w3\.org/TR/html4/strict\.dtd\">\n<html>\n\x20\
+SF:x20\x20\x20<head>\n\x20\x20\x20\x20\x20\x20\x20\x20<meta\x20http-equiv=
+SF:\"Content-Type\"\x20content=\"text/html;charset=utf-8\">\n\x20\x20\x20\
+SF:x20\x20\x20\x20\x20<title>Error\x20response</title>\n\x20\x20\x20\x20</
+SF:head>\n\x20\x20\x20\x20<body>\n\x20\x20\x20\x20\x20\x20\x20\x20<h1>Erro
+SF:r\x20response</h1>\n\x20\x20\x20\x20\x20\x20\x20\x20<p>Error\x20code:\x
+SF:20400</p>\n\x20\x20\x20\x20\x20\x20\x20\x20<p>Message:\x20Bad\x20reques
+SF:t\x20version\x20\('RTSP/1\.0'\)\.</p>\n\x20\x20\x20\x20\x20\x20\x20\x20
+SF:<p>Error\x20code\x20explanation:\x20HTTPStatus\.BAD_REQUEST\x20-\x20Bad
+SF:\x20request\x20syntax\x20or\x20unsupported\x20method\.</p>\n\x20\x20\x2
+SF:0\x20</body>\n</html>\n");
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Apr  1 19:53:52 2023 -- 1 IP address (1 host up) scanned in 110.83 seconds
