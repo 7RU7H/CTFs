@@ -349,7 +349,7 @@ chisel server -host 127.0.0.1 -port $serverPort
 # Seveenteen.htb
 chisel client -fingerprint $fingerprint 4873:127.0.0.1:$listenerPort$:10.10.14.109:$Serverport
 ```
-I then ran into the upsetting revalations the I have not finished and there by mined [[Reddish-Helped-through]]... it is now on the complete ASAP list, so hopefully before the end of Janaury 2023. Regardless, I learnt openssl lolbas file transfering, plus more happy with openssl after 7 plus month head butting it for various reason in HTB boxes. Sadly I turned off the chisel server.
+I then ran into the upsetting revalations the I have not finished and there by mined [[aa]]... it is now on the complete ASAP list, so hopefully before the end of Janaury 2023. Regardless, I learnt openssl lolbas file transfering, plus more happy with openssl after 7 plus month head butting it for various reason in HTB boxes. Sadly I turned off the chisel server.
 
 From my notes on ssh port forwarding without using the ssh subshell ~C
 ```bash
