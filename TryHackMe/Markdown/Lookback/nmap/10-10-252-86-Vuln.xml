@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Thu Apr  6 23:06:40 2023 as: nmap -&#45;script vuln -oA nmap/10-10-252-86-Vuln -&#45;min-rate 300 -e tun0 -p 3389,443,80 10.10.252.86 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-10-252-86-Vuln -&#45;min-rate 300 -e tun0 -p 3389,443,80 10.10.252.86" start="1680818800" startstr="Thu Apr  6 23:06:40 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="80,443,3389"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.252.86" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1680818824" endtime="1680819465"><status state="up" reason="syn-ack" reason_ttl="127"/>
+<address addr="10.10.252.86" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" method="table" conf="3"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="https" method="table" conf="3"/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="ssl-ccs-injection" output="No reply from server (TIMEOUT)"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ms-wbt-server" method="table" conf="3"/><script id="ssl-ccs-injection" output="No reply from server (TIMEOUT)"/></port>
+</ports>
+<times srtt="69351" rttvar="41605" to="235771"/>
+</host>
+<runstats><finished time="1680819465" timestr="Thu Apr  6 23:17:45 2023" summary="Nmap done at Thu Apr  6 23:17:45 2023; 1 IP address (1 host up) scanned in 665.19 seconds" elapsed="665.19" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

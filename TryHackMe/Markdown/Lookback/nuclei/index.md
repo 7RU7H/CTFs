@@ -1,0 +1,32 @@
+|Hostname/IP|Finding|Severity|
+|-|-|-|
+|[10.10.252.86](self-signed-ssl-10.10.252.86_443.md)|self-signed-ssl |low|
+|[10.10.252.86](ssl-dns-names-10.10.252.86_443.md)|ssl-dns-names |info|
+|[https://10.10.252.86](tech-detect-https___10.10.252.86_owa_auth_logon.aspx_url=https%3a%2f%2f10.10.252.86%2fowa%2f&reason=0-ms-iis.md)|tech-detect ms-iis|info|
+|[https://10.10.252.86](fingerprinthub-web-fingerprints-https___10.10.252.86_owa_auth_logon.aspx_url=https%3a%2f%2f10.10.252.86%2fowa%2f&reason=0-microsoft-exchange.md)|fingerprinthub-web-fingerprints microsoft-exchange|info|
+|[https://10.10.252.86](tech-detect-https___10.10.252.86_owa_-ms-iis.md)|tech-detect ms-iis|info|
+|[https://10.10.252.86](tech-detect-https___10.10.252.86-ms-iis.md)|tech-detect ms-iis|info|
+|[https://10.10.252.86](ms-exchange-server-https___10.10.252.86_owa_auth_logon.aspx.md)|ms-exchange-server |info|
+|[https://10.10.252.86](iis-internal-ip-disclosure-https___10.10.252.86.md)|iis-internal-ip-disclosure |info|
+|[https://10.10.252.86](http-missing-security-headers-https___10.10.252.86_owa_auth_logon.aspx_url=https%3a%2f%2f10.10.252.86%2fowa%2f&reason=0-x-permitted-cross-domain-policies.md)|http-missing-security-headers x-permitted-cross-domain-policies|info|
+|[https://10.10.252.86](http-missing-security-headers-https___10.10.252.86_owa_auth_logon.aspx_url=https%3a%2f%2f10.10.252.86%2fowa%2f&reason=0-cross-origin-embedder-policy.md)|http-missing-security-headers cross-origin-embedder-policy|info|
+|[https://10.10.252.86](http-missing-security-headers-https___10.10.252.86_owa_auth_logon.aspx_url=https%3a%2f%2f10.10.252.86%2fowa%2f&reason=0-cross-origin-resource-policy.md)|http-missing-security-headers cross-origin-resource-policy|info|
+|[https://10.10.252.86](http-missing-security-headers-https___10.10.252.86_owa_auth_logon.aspx_url=https%3a%2f%2f10.10.252.86%2fowa%2f&reason=0-access-control-allow-origin.md)|http-missing-security-headers access-control-allow-origin|info|
+|[https://10.10.252.86](http-missing-security-headers-https___10.10.252.86_owa_auth_logon.aspx_url=https%3a%2f%2f10.10.252.86%2fowa%2f&reason=0-access-control-allow-methods.md)|http-missing-security-headers access-control-allow-methods|info|
+|[https://10.10.252.86](http-missing-security-headers-https___10.10.252.86_owa_auth_logon.aspx_url=https%3a%2f%2f10.10.252.86%2fowa%2f&reason=0-content-security-policy.md)|http-missing-security-headers content-security-policy|info|
+|[https://10.10.252.86](http-missing-security-headers-https___10.10.252.86_owa_auth_logon.aspx_url=https%3a%2f%2f10.10.252.86%2fowa%2f&reason=0-strict-transport-security.md)|http-missing-security-headers strict-transport-security|info|
+|[https://10.10.252.86](http-missing-security-headers-https___10.10.252.86_owa_auth_logon.aspx_url=https%3a%2f%2f10.10.252.86%2fowa%2f&reason=0-x-content-type-options.md)|http-missing-security-headers x-content-type-options|info|
+|[https://10.10.252.86](http-missing-security-headers-https___10.10.252.86_owa_auth_logon.aspx_url=https%3a%2f%2f10.10.252.86%2fowa%2f&reason=0-referrer-policy.md)|http-missing-security-headers referrer-policy|info|
+|[https://10.10.252.86](http-missing-security-headers-https___10.10.252.86_owa_auth_logon.aspx_url=https%3a%2f%2f10.10.252.86%2fowa%2f&reason=0-cross-origin-opener-policy.md)|http-missing-security-headers cross-origin-opener-policy|info|
+|[https://10.10.252.86](http-missing-security-headers-https___10.10.252.86_owa_auth_logon.aspx_url=https%3a%2f%2f10.10.252.86%2fowa%2f&reason=0-access-control-allow-headers.md)|http-missing-security-headers access-control-allow-headers|info|
+|[https://10.10.252.86](http-missing-security-headers-https___10.10.252.86_owa_auth_logon.aspx_url=https%3a%2f%2f10.10.252.86%2fowa%2f&reason=0-permissions-policy.md)|http-missing-security-headers permissions-policy|info|
+|[https://10.10.252.86](http-missing-security-headers-https___10.10.252.86_owa_auth_logon.aspx_url=https%3a%2f%2f10.10.252.86%2fowa%2f&reason=0-clear-site-data.md)|http-missing-security-headers clear-site-data|info|
+|[https://10.10.252.86](http-missing-security-headers-https___10.10.252.86_owa_auth_logon.aspx_url=https%3a%2f%2f10.10.252.86%2fowa%2f&reason=0-access-control-allow-credentials.md)|http-missing-security-headers access-control-allow-credentials|info|
+|[https://10.10.252.86](http-missing-security-headers-https___10.10.252.86_owa_auth_logon.aspx_url=https%3a%2f%2f10.10.252.86%2fowa%2f&reason=0-access-control-expose-headers.md)|http-missing-security-headers access-control-expose-headers|info|
+|[https://10.10.252.86](http-missing-security-headers-https___10.10.252.86_owa_auth_logon.aspx_url=https%3a%2f%2f10.10.252.86%2fowa%2f&reason=0-access-control-max-age.md)|http-missing-security-headers access-control-max-age|info|
+|[10.10.252.86:443](rdp-detect-10.10.252.86_3389-win2016.md)|rdp-detect win2016|info|
+|[https://10.10.252.86](microsoft-exchange-panel-https___10.10.252.86_owa_auth_logon.aspx_replaceCurrent=1&url=https___10.10.252.86_ecp.md)|microsoft-exchange-panel |info|
+|[https://10.10.252.86](CVE-2021-34473-https___10.10.252.86_autodiscover_autodiscover.json_@test.com_owa__&Email=autodiscover_autodiscover.json%3F@test.com.md)|CVE-2021-34473 |critical|
+|[https://10.10.252.86](CVE-2021-34473-https___10.10.252.86_autodiscover_autodiscover.json_@test.com_mapi_nspi__&Email=autodiscover_autodiscover.json%3F@test.com.md)|CVE-2021-34473 |critical|
+|[10.10.252.86](tls-version-10.10.252.86_443.md)|tls-version |info|
+|[https://10.10.252.86](CVE-2021-31195-https___10.10.252.86_owa_auth_frowny.aspx_app=people&esrc=MasterPage&et=ServerError&refurl=}}}alert(document.domain)__&te=\.md)|CVE-2021-31195 |high|

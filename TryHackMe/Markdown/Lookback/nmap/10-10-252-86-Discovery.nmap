@@ -1,0 +1,641 @@
+# Nmap 7.93 scan initiated Thu Apr  6 22:55:12 2023 as: nmap --script discovery -oA nmap/10-10-252-86-Discovery --min-rate 300 -e tun0 -p 3389,443,80 10.10.252.86
+Pre-scan script results:
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-ping: false
+|_lltd-discovery: false
+Nmap scan report for 10.10.252.86
+Host is up (0.057s latency).
+
+Bug in http-security-headers: no string output.
+PORT     STATE SERVICE
+80/tcp   open  http
+| http-headers: 
+|   Server: Microsoft-IIS/10.0
+|   Date: Thu, 06 Apr 2023 21:55:49 GMT
+|   Connection: close
+|   Content-Length: 0
+|   
+|_  (Request type: GET)
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-feed: Couldn't find any feeds.
+| http-sitemap-generator: 
+|   Directory structure:
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    
+|_http-chrono: Request times for /; avg: 229.68ms; min: 202.62ms; max: 256.69ms
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-date: Thu, 06 Apr 2023 21:55:45 GMT; +59m59s from local time.
+| http-vhosts: 
+|_128 names had status 403
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.10.252.86
+|   Found the following error pages: 
+|   
+|   Error Code: 403
+|_  	http://10.10.252.86:80/
+|_http-comments-displayer: Couldn't find any comments.
+|_http-title: Site doesn't have a title.
+|_http-mobileversion-checker: No mobile version detected.
+| http-useragent-tester: 
+|   Status for browser useragent: 403
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+443/tcp  open  https
+| http-headers: 
+|   Cache-Control: no-cache, no-store
+|   Pragma: no-cache
+|   Content-Type: text/html; charset=utf-8
+|   Expires: -1
+|   Server: Microsoft-IIS/10.0
+|   request-id: 08150a6e-2312-4d6e-a2ab-fcb300a775d8
+|   X-Frame-Options: SAMEORIGIN
+|   X-AspNet-Version: 4.0.30319
+|   X-Powered-By: ASP.NET
+|   Date: Thu, 06 Apr 2023 21:55:43 GMT
+|   Connection: close
+|   Content-Length: 58712
+|   
+|_  (Request type: GET)
+| http-grep: 
+|   (1) https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0: 
+|     (1) ip: 
+|_      + 10.10.252.86
+| http-security-headers: 
+|   Strict_Transport_Security: 
+|_    HSTS not configured in HTTPS Server
+| http-title: Outlook
+|_Requested resource was https://10.10.252.86/owa/auth/logon.aspx?url=https%3a%2f%2f10.10.252.86%2fowa%2f&reason=0
+|_http-errors: Couldn't find any error pages.
+|_http-feed: Couldn't find any feeds.
+| http-vhosts: 
+|_128 names had status 302
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Redirected To: https://10.10.252.86/owa/auth/logon.aspx?url=https%3a%2f%2f10.10.252.86%2fowa%2f&reason=0
+|   Allowed User Agents: 
+|     libcurl-agent/1.0
+|     GT::WWW
+|     HTTP::Lite
+|     PHPCrawl
+|   Change in Status Code: 
+|     WWW-Mechanize/1.34: false
+|     libwww: false
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html): false
+|     URI::Fetch: false
+|     Wget/1.13.4 (linux-gnu): false
+|     Snoopy: false
+|     http client: false
+|     PECL::HTTP: false
+|     MFC_Tear_Sample: false
+|     Zend_Http_Client: false
+|     PHP/: false
+|     Python-urllib/2.5: false
+|_    lwp-trivial: false
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.252.86
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 376
+|     Comment: 
+|         /* language page specific styles */
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 892
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 824
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 5
+|     Comment: 
+|         <!-- {57A118C6-2DA9-419d-BE9A-F92B0F9A418B} -->
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 1028
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 50
+|     Comment: 
+|         /* min iPad1 dimension */
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 834
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 746
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 1047
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 888
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 872
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 866
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 662
+|     Comment: 
+|         
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 1335
+|     Comment: 
+|         <!-- Default to mouse class, so that things don't look wacky if the script somehow doesn't apply a class -->
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 697
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 695
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 855
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 806
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 747
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 1211
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         	-->
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 975
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 842
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 715
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 699
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 1107
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 839
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 969
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 852
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 883
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 666
+|     Comment: 
+|         
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 853
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 964
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 779
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 847
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 766
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 1027
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 1097
+|     Comment: 
+|         
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 828
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 1195
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 2
+|     Comment: 
+|         <!-- Copyright (c) 2011 Microsoft Corporation.  All rights reserved. -->
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 674
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 670
+|     Comment: 
+|         
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 702
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 678
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 673
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 1203
+|     Comment: 
+|         
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 1279
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 698
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 663
+|     Comment: 
+|         
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 1106
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 82
+|     Comment: 
+|         /* Logo aligns left for both ltr & rtl */
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 840
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 1064
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 748
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 791
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 858
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 876
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 1012
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 985
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 805
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 708
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 694
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 762
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 950
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 668
+|     Comment: 
+|         
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 1043
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 761
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 793
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 692
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 407
+|     Comment: 
+|         /* logoff page specific styles */
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 33
+|     Comment: 
+|         /*Copyright (c) 2003-2006 Microsoft Corporation.  All rights reserved.*/
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 854
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 637
+|     Comment: 
+|         /* Needed for RTL, doesnt hurt to add this for LTR as well */
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 851
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 3
+|     Comment: 
+|         <!-- OwaPage = ASP.auth_logon_aspx -->
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 792
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 1042
+|     Comment: 
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 664
+|     Comment: 
+|         
+|         
+|     
+|     Path: https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0
+|     Line number: 693
+|     Comment: 
+|_        
+| ssl-cert: Subject: commonName=WIN-12OUO7A66M7
+| Subject Alternative Name: DNS:WIN-12OUO7A66M7, DNS:WIN-12OUO7A66M7.thm.local
+| Not valid before: 2023-01-25T21:34:02
+|_Not valid after:  2028-01-25T21:34:02
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-default-accounts: 
+|   [Arris 2307] at /logo_t.gif
+|_    <blank>:<blank>
+| http-waf-detect: IDS/IPS/WAF detected:
+|_10.10.252.86:443/?p4yl04d3=<script>alert(document.cookie)</script>
+|_http-unsafe-output-escaping: ERROR: Script execution failed (use -d to debug)
+|_http-chrono: Request times for /owa/auth/logon.aspx; avg: 566.94ms; min: 547.92ms; max: 629.92ms
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /owa/auth/
+|       aspx: 1
+|   Longest directory structure:
+|     Depth: 2
+|     Dir: /owa/auth/
+|   Total files found (by extension):
+|_    aspx: 1
+|_http-mobileversion-checker: No mobile version detected.
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.252.86
+|   url                                                                                            method
+|_  https://10.10.252.86:443/owa/auth/logon.aspx?url=https%3A%2F%2F10.10.252.86%2Fowa%2F&reason=0  FORM
+|_http-devframework: ASP.NET detected. Found related header.
+3389/tcp open  ms-wbt-server
+| rdp-enum-encryption: 
+|   Security layer
+|     CredSSP (NLA): SUCCESS
+|     CredSSP with Early User Auth: SUCCESS
+|_    RDSTLS: SUCCESS
+| ssl-cert: Subject: commonName=WIN-12OUO7A66M7.thm.local
+| Not valid before: 2023-01-25T21:12:51
+|_Not valid after:  2023-07-27T21:12:51
+| rdp-ntlm-info: 
+|   Target_Name: THM
+|   NetBIOS_Domain_Name: THM
+|   NetBIOS_Computer_Name: WIN-12OUO7A66M7
+|   DNS_Domain_Name: thm.local
+|   DNS_Computer_Name: WIN-12OUO7A66M7.thm.local
+|   DNS_Tree_Name: thm.local
+|   Product_Version: 10.0.17763
+|_  System_Time: 2023-04-06T21:55:39+00:00
+
+Host script results:
+|_ipidseq: Unknown
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 80    0       62468.30   7620.96   0.0%
+| 443   0       61327.67   6542.58   10.0%
+|_3389  0       74322.20   47133.38  0.0%
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "10.10.252.86"; use dns-brute.domain script argument.
+|_path-mtu: PMTU == 1500
+
+# Nmap done at Thu Apr  6 23:06:40 2023 -- 1 IP address (1 host up) scanned in 687.89 seconds

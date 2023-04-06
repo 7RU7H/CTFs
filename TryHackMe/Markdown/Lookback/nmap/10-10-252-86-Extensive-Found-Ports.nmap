@@ -1,0 +1,31 @@
+# Nmap 7.93 scan initiated Thu Apr  6 22:54:16 2023 as: nmap -sC -sV -oA nmap/10-10-252-86-Extensive-Found-Ports --min-rate 300 -e tun0 -p 3389,443,80 10.10.252.86
+Nmap scan report for 10.10.252.86
+Host is up (0.058s latency).
+
+PORT     STATE SERVICE       VERSION
+80/tcp   open  http          Microsoft IIS httpd 10.0
+|_http-title: Site doesn't have a title.
+|_http-server-header: Microsoft-IIS/10.0
+443/tcp  open  ssl/https
+|_http-server-header: Microsoft-IIS/10.0
+| ssl-cert: Subject: commonName=WIN-12OUO7A66M7
+| Subject Alternative Name: DNS:WIN-12OUO7A66M7, DNS:WIN-12OUO7A66M7.thm.local
+| Not valid before: 2023-01-25T21:34:02
+|_Not valid after:  2028-01-25T21:34:02
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+| ssl-cert: Subject: commonName=WIN-12OUO7A66M7.thm.local
+| Not valid before: 2023-01-25T21:12:51
+|_Not valid after:  2023-07-27T21:12:51
+| rdp-ntlm-info: 
+|   Target_Name: THM
+|   NetBIOS_Domain_Name: THM
+|   NetBIOS_Computer_Name: WIN-12OUO7A66M7
+|   DNS_Domain_Name: thm.local
+|   DNS_Computer_Name: WIN-12OUO7A66M7.thm.local
+|   DNS_Tree_Name: thm.local
+|   Product_Version: 10.0.17763
+|_  System_Time: 2023-04-06T21:55:07+00:00
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Apr  6 22:55:12 2023 -- 1 IP address (1 host up) scanned in 56.51 seconds

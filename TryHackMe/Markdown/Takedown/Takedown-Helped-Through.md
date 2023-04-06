@@ -8,12 +8,16 @@ Goals:
 - Have fun and enjoy an Alh4zr3d stream while it is all RE4 remake
 - Experience what THM insane means
 Learnt:
+- Some Ghidra 
+- Nim
+- Rootkits
+- C2 Frameworks
 Beyond Root:
+- Full cyber C2 
 
 Following along after a long week and I got above 70 on AZ 104 Microsoft assessment so I wanted to reward and celebrate a very long week.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/sFRjRfH-rMA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
 
 
 ## Recon
@@ -23,11 +27,7 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 
 [[robots-txt-endpoint-http___10.10.112.119_favicon.ico]] is rather strange to be in robots.txt
 
-- someone@infinitysite.com
-- info@infinitysite.com
-
-
-gobuster .gitattributes
+gobuster finds .gitattributes
 
 ```bash
 curl http://10.10.104.157/favicon.ico -o data/favicon.ico
@@ -37,14 +37,12 @@ curl http://10.10.104.157/favicon.ico -o data/favicon.ico
 
 ![](wayaheadofaltoday.png)
 
-Al makes us do what professionals do https://www.virustotal.com/gui/file/80e19a10aca1fd48388735a8e2cfc8021724312e1899a1ed8829db9003c2b2dc/community
-
+Al makes us do what professionals do, which being is to use virustotal to check the hash [VirusTotal](https://www.virustotal.com/gui/file/80e19a10aca1fd48388735a8e2cfc8021724312e1899a1ed8829db9003c2b2dc/community)
 ![](wehaveregistersinthestrings.png)
 
-Also it is [Nim]()
+Also it is [Nim](https://nim-lang.org/). Nim is converted into C and then compiled.
 
-Nim converted into C and then compiled.
-
+`Window -> Strings`
 ![1080](faviconreversingone.png)
 
 It does not actually look like C...
@@ -115,7 +113,7 @@ GEt informantion about the process you are running in - Good for LFI
 I tried to get it
 ![](stickysituation.png)
 
-Hack the c2 server action on objectives!
+Hack the C2 server action on objectives!
 ![](hackthec2server.png)
 
 C2 Source Code!
@@ -377,7 +375,7 @@ def post_server_exec():
         abort(404)
 ```
 
-so back to burpsuite and:
+So back to burpsuite and:
 ![](gatewaytimeout.png)
 
 and...
@@ -457,9 +455,10 @@ Dh/fO8Q/W1tDmTAAAAHXdlYmFkbWluLWxvd3ByaXZAd3d3LWluZmluaXR5AQIDBAU=
 -----END OPENSSH PRIVATE KEY-----
 ```
 
+Inside the `/dev/shm`
 ![](Ifounddiamorphineindevshm.png)
 
-
+Running `pspy64`
 ![](runningdiamorphine.png)
 
 Rootkit is malware the subverts the operating system.. by sits between the kernel and os. - Al says this an oversimplified defination.
@@ -477,7 +476,7 @@ Rootkit is malware the subverts the operating system.. by sits between the kerne
 
 RUST C2 with Golang Webserver and API - barebones nothing fancy does the job if it was 2005 where everything is vunberable.
 
-Along the wayt found:
+Along the way found:
 https://github.com/dmgk/faker for your [Sam Reigel Cringe](https://www.youtube.com/watch?v=tGHtplCN1_A)
 
 python Drone Customizer
@@ -651,7 +650,6 @@ func establishConnection() error {
 
 Golang TeamServer
 ```go
-
 // HTTPs Webserver 
 
 // Password

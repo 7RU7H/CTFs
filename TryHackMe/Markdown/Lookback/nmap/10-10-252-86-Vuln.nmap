@@ -1,0 +1,18 @@
+# Nmap 7.93 scan initiated Thu Apr  6 23:06:40 2023 as: nmap --script vuln -oA nmap/10-10-252-86-Vuln --min-rate 300 -e tun0 -p 3389,443,80 10.10.252.86
+Nmap scan report for 10.10.252.86
+Host is up (0.069s latency).
+
+PORT     STATE SERVICE
+80/tcp   open  http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+443/tcp  open  https
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_ssl-ccs-injection: No reply from server (TIMEOUT)
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+3389/tcp open  ms-wbt-server
+|_ssl-ccs-injection: No reply from server (TIMEOUT)
+
+# Nmap done at Thu Apr  6 23:17:45 2023 -- 1 IP address (1 host up) scanned in 665.19 seconds
