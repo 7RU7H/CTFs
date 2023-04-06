@@ -105,7 +105,8 @@ We are simulating a bad guy talking to the teamserver
 Me first thought was docker
 ![](weareindocker.png)
 
-```
+GEt informantion about the process you are running in - Good for LFI
+```bash
 /proc/self/environ
 ```
 
@@ -476,32 +477,260 @@ Rootkit is malware the subverts the operating system.. by sits between the kerne
 
 RUST C2 with Golang Webserver and API - barebones nothing fancy does the job if it was 2005 where everything is vunberable.
 
-Rust Drone
-```rust
+Along the wayt found:
+https://github.com/dmgk/faker for your [Sam Reigel Cringe](https://www.youtube.com/watch?v=tGHtplCN1_A)
+
+python Drone Customizer
+```python 
+import os
+
+class 
+
+# Replace customVars
 
 
-// Rust HTTP Callback
+replacable_customUploader
+replacable_customDownloader
+replacable_customListener 
+replacable_customExecution 
+replacable_customDelete
+replacable_customID
+replacable_customRegister
+replacable_customDeactivate
+replacable_customActivate
+
+# Replace customVars
+"// var customUploader", 
+"// var customDownloader",
+"// var customListener", 
+"// var customExecution", 
+"// var customDelete",
+"// var customID",
+"// var customRegister",
+"// var customDeactivate",
+"// var customActivate", 
+
+
+
+def replace_Command():
+	
+
+def custom_Uploader():
+def custom_Downloader():
+def custom_Listener():
+def custom_Execution():
+def custom_Compile():
+
+def main():
+# Handle Args
+
+# Copy drone.go
+
+# Replace customVars
+"// var customUploader", 
+"// var customDownloader",
+"// var customListener", 
+"// var customExecution", 
+"// var customDelete",
+"// var customID",
+"// var customRegister",
+"// var customDeactivate",
+"// var customActivate", 
+
+
+custom_Compile()
+os.exit()
+
 ```
 
+Default compilation
+```bash
+
+# Compile Teamserver
+
+# Compile Client and UPX
+
+upx 
+
+# Compile Drone
+
+# Compile Rootkit
+
+```
+
+
+go Drone x-drone
 ```rust
+
+// var customUploader
+// var customDownloader
+// var customListener
+// var customExecution
+// var customDelete
+// var customID
+// var customRegister
+// var customDeactivate
+// var customActivate
+
+// Upload url
+// Download url
+// Listener port
+// Execute cmd
+// Delete
+// ID 
+// Register
+// Activate
+// Deactivate
+
+handleCmd() {
+
+}
+
+```
+
+? x-Client - https://simjue.pages.dev/post/2018/07-01-go-unix-shell/
+```go
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"os/exec"
+	"strings"
+)
+
+func main() {
+    reader := bufio.NewReader(os.Stdin)
+    for {
+        fmt.Print("$ ")
+        // Read the keyboad input.
+        input, err := reader.ReadString('\n')
+        if err != nil {
+            fmt.Fprintln(os.Stderr, err)
+        }
+
+        // Handle the execution of the input.
+        if err = execInput(input); err != nil {
+            fmt.Fprintln(os.Stderr, err)
+        }
+    }
+    os.Exit(0)
+}
+
+
+func handleInput(input string) error {
+	// Remove the newline character.
+	input = strings.TrimSuffix(input, "\n")
+	// Split the input to separate the command and the arguments.
+	args := strings.Split(input, " ")
+	
+	// Check for built-in commands.
+	switch args[0] {
+	case "connect":
+		establishConnection()
+	case "help":
+		printHelp()	
+	case "exit":
+    		os.Exit(0)
+	}
+}
+
+func printHelp() {
+	fmt.Println("USAGE:\t<command> <arguments>")
+	fmt.Println("\t\tconnect <teamserver address>")
+	fmt.Println("\t\thelp: get some help")
+	fmt.Println("\t\texit to exit")
+}
+
+func establishConnection() error {
+
+}
 
 ```
 
 Golang TeamServer
 ```go
 
-// Create Drone ID
+// HTTPs Webserver 
+
+// Password
+
+// Generate a custom cert
+
+// API
+
+// /clients
+// /cmds
+// /drones
+
+// Generate Tokens,IDs,Routes, CMD, Keys
+
+// Generate: API Route 
+
+// Generate: Token creation
+
+// Generate: IDs
+
+// Generate: CMD 
+
+// Generate: Keys
+
+// Commmands
+
+struct droneCommands {
+// Upload
+// Download
+// Listener
+// Execute
+// Delete
+// ID
+// Register
+}
+
+struct clientCommands {
+}
+
+// Drone
+// Drone: Upload
+// Drone: Download
+// Drone: Listener
+// Drone: Execute
+// Drone: Delete
+// Drone: ID
+// Drone: Register
+
+
+// Client
+
+// Client: TLS Handsake
+
+// Client: Connections
+
+// Client: Handle commands 
+
+// Delete 
 
 ```
 
+Rust RootKit xkit framework
+```rust
+// Embed
+// Evade
+// Shell <shellname>
+// Delete <self,shell pid and artificats>
+// Timebomb-Delete <secs> <delete-type>
+```
 
+Check this out: https://github.com/m0nad/awesome-privilege-escalation
 
+https://github.com/codecrafters-io/build-your-own-x
 
-
-upload 
-download
-cmd
-
-
-https://github.com/m0nad/awesome-privilege-escalation
-
+https://blog.holbertonschool.com/hack-the-virtual-memory-c-strings-proc/
+https://beej.us/guide/bgnet/
+https://github.com/EmilHernvall/dnsguide/blob/master/README.md
+https://kasvith.me/posts/lets-create-a-simple-lb-go/
+https://mattgathu.github.io/2017/08/29/writing-cli-app-rust.html
+https://rust-cli.github.io/book/index.html
+https://flaviocopes.com/go-tutorial-lolcat/ - rainbox cli
+http://www.saminiir.com/lets-code-tcp-ip-stack-1-ethernet-arp/
