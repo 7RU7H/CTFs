@@ -1,0 +1,154 @@
+# Nmap 7.93 scan initiated Fri Apr  7 09:40:21 2023 as: nmap --script vuln -oA nmap/10-10-84-67-Vuln --min-rate 300 -e tun0 -p 135,445,139,49154,49152,49166,49167,8080,80,49165,443,3306,49153 10.10.84.67
+Nmap scan report for 10.10.84.67
+Host is up (0.32s latency).
+
+PORT      STATE SERVICE
+80/tcp    open  http
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+443/tcp   open  https
+| http-sql-injection: 
+|   Possible sqli for queries:
+|     https://10.10.84.67:443/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=N%3BO%3DD%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=D%3BO%3DD%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=M%3BO%3DD%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=S%3BO%3DD%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/?C=N%3BO%3DD%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=N%3BO%3DD%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/docs/?C=N%3BO%3DD%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/docs/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/docs/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/docs/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/?C=D%3BO%3DD%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/?C=M%3BO%3DD%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/?C=S%3BO%3DD%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/docs/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/docs/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/docs/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/docs/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/docs/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/docs/?C=S%3BO%3DD%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/docs/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/docs/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/docs/?C=D%3BO%3DD%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/docs/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://10.10.84.67:443/oscommerce-2.3.4/docs/?C=N%3BO%3DA%27%20OR%20sqlspider
+|_    https://10.10.84.67:443/oscommerce-2.3.4/docs/?C=M%3BO%3DA%27%20OR%20sqlspider
+| http-enum: 
+|_  /: Root directory w/ listing on 'apache/2.4.23 (win32) openssl/1.0.2h php/5.6.28'
+|_http-trace: TRACE is enabled
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.84.67
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: https://10.10.84.67:443/oscommerce-2.3.4/catalog/
+|     Form id: 
+|     Form action: http://localhost:8080/oscommerce-2.3.4/catalog/index.php
+|     
+|     Path: https://10.10.84.67:443/oscommerce-2.3.4/catalog/
+|     Form id: 
+|     Form action: http://localhost:8080/oscommerce-2.3.4/catalog/advanced_search_result.php
+|     
+|     Path: https://10.10.84.67:443/oscommerce-2.3.4/catalog/
+|     Form id: 
+|_    Form action: http://localhost:8080/oscommerce-2.3.4/catalog/index.php
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| ssl-dh-params: 
+|   VULNERABLE:
+|   Diffie-Hellman Key Exchange Insufficient Group Strength
+|     State: VULNERABLE
+|       Transport Layer Security (TLS) services that use Diffie-Hellman groups
+|       of insufficient strength, especially those using one of a few commonly
+|       shared groups, may be susceptible to passive eavesdropping attacks.
+|     Check results:
+|       WEAK DH GROUP 1
+|             Cipher Suite: TLS_DHE_RSA_WITH_AES_256_GCM_SHA384
+|             Modulus Type: Safe prime
+|             Modulus Source: RFC2409/Oakley Group 2
+|             Modulus Length: 1024
+|             Generator Length: 8
+|             Public Key Length: 1024
+|     References:
+|_      https://weakdh.org
+445/tcp   open  microsoft-ds
+3306/tcp  open  mysql
+8080/tcp  open  http-proxy
+| http-enum: 
+|   /: Root directory w/ listing on 'apache/2.4.23 (win32) openssl/1.0.2h php/5.6.28'
+|   /icons/: Potentially interesting folder w/ directory listing
+|   /server-info/: Potentially interesting folder
+|_  /server-status/: Potentially interesting folder
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       http://ha.ckers.org/slowloris/
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|_http-trace: TRACE is enabled
+49152/tcp open  unknown
+49153/tcp open  unknown
+49154/tcp open  unknown
+49165/tcp open  unknown
+49166/tcp open  unknown
+49167/tcp open  unknown
+
+Host script results:
+|_smb-vuln-ms10-061: NT_STATUS_OBJECT_NAME_NOT_FOUND
+|_smb-vuln-ms10-054: false
+
+# Nmap done at Fri Apr  7 09:54:30 2023 -- 1 IP address (1 host up) scanned in 849.20 seconds

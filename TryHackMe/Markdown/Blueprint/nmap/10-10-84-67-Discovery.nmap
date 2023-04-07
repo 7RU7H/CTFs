@@ -1,0 +1,1006 @@
+# Nmap 7.93 scan initiated Fri Apr  7 08:58:34 2023 as: nmap --script discovery -oA nmap/10-10-84-67-Discovery --min-rate 300 -e tun0 -p 135,445,139,49154,49152,49166,49167,8080,80,49165,443,3306,49153 10.10.84.67
+Pre-scan script results:
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_lltd-discovery: false
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-ping: false
+| targets-sniffer: Sniffed 1 address(es). 
+|_10.10.84.67
+Nmap scan report for 10.10.84.67
+Host is up (0.35s latency).
+
+Bug in http-security-headers: no string output.
+PORT      STATE SERVICE
+80/tcp    open  http
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.10.84.67
+|   Found the following error pages: 
+|   
+|   Error Code: 404
+|_  	http://10.10.84.67:80/
+| http-vhosts: 
+|_128 names had status 404
+|_http-date: Fri, 07 Apr 2023 07:58:54 GMT; +59m49s from local time.
+|_http-mobileversion-checker: No mobile version detected.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.84.67
+|     
+|     Path: http://10.10.84.67:80/
+|     Line number: 7
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|_        -->
+|_http-feed: Couldn't find any feeds.
+|_http-title: 404 - File or directory not found.
+| http-sitemap-generator: 
+|   Directory structure:
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    
+| http-headers: 
+|   Server: Microsoft-IIS/7.5
+|   Date: Fri, 07 Apr 2023 08:01:29 GMT
+|   Connection: close
+|   Content-Length: 1245
+|   
+|_  (Request type: GET)
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-chrono: Request times for /; avg: 707.26ms; min: 449.78ms; max: 901.72ms
+| http-useragent-tester: 
+|   Status for browser useragent: 404
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+443/tcp   open  https
+|_http-chrono: Request times for /; avg: 1874.48ms; min: 1419.50ms; max: 3197.05ms
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-headers: 
+|   Date: Fri, 07 Apr 2023 07:59:03 GMT
+|   Server: Apache/2.4.23 (Win32) OpenSSL/1.0.2h PHP/5.6.28
+|   Content-Length: 799
+|   Connection: close
+|   Content-Type: text/html;charset=UTF-8
+|   
+|_  (Request type: GET)
+| ssl-cert: Subject: commonName=localhost
+| Not valid before: 2009-11-10T23:48:47
+|_Not valid after:  2019-11-08T23:48:47
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.84.67
+|     
+|     Path: https://10.10.84.67:443/oscommerce-2.3.4/catalog/
+|     Line number: 59
+|     Comment: 
+|         <!-- bodyContent //-->
+|     
+|     Path: https://10.10.84.67:443/oscommerce-2.3.4/catalog/stylesheet.css
+|     Line number: 392
+|     Comment: 
+|         /* input requirement */
+|     
+|     Path: https://10.10.84.67:443/oscommerce-2.3.4/catalog/stylesheet.css
+|     Line number: 386
+|     Comment: 
+|         /* message box */
+|     
+|     Path: https://10.10.84.67:443/oscommerce-2.3.4/catalog/
+|     Line number: 92
+|     Comment: 
+|         <!-- bodyWrapper //-->
+|     
+|     Path: https://10.10.84.67:443/oscommerce-2.3.4/catalog/stylesheet.css
+|     Line number: 396
+|     Comment: 
+|         /* buttons */
+|     
+|     Path: https://10.10.84.67:443/oscommerce-2.3.4/catalog/stylesheet.css
+|     Line number: 402
+|     Comment: 
+|         /* account link list */
+|     
+|     Path: https://10.10.84.67:443/oscommerce-2.3.4/catalog/
+|     Line number: 59
+|     Comment: 
+|          //-->
+|     
+|     Path: https://10.10.84.67:443/oscommerce-2.3.4/catalog/stylesheet.css
+|     Line number: 1
+|     Comment: 
+|         /*
+|           $Id$
+|         
+|           osCommerce, Open Source E-Commerce Solutions
+|           http://www.oscommerce.com
+|         
+|           Copyright (c) 2010 osCommerce
+|         
+|           Released under the GNU General Public License
+|_        */
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 1024) - F
+|       TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA (secp256r1) - F
+|       TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|       TLS_DHE_RSA_WITH_SEED_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_SEED_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_IDEA_CBC_SHA (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       64-bit block cipher IDEA vulnerable to SWEET32 attack
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 1024) - F
+|       TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA (secp256r1) - F
+|       TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|       TLS_DHE_RSA_WITH_SEED_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_SEED_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_IDEA_CBC_SHA (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       64-bit block cipher IDEA vulnerable to SWEET32 attack
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - F
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - F
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 1024) - F
+|       TLS_ECDHE_RSA_WITH_3DES_EDE_CBC_SHA (secp256r1) - F
+|       TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|       TLS_DHE_RSA_WITH_SEED_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_SEED_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_IDEA_CBC_SHA (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       64-bit block cipher IDEA vulnerable to SWEET32 attack
+|       Insecure certificate signature (SHA1), score capped at F
+|_  least strength: F
+| http-vhosts: 
+| 22 names had status 200
+|_106 names had status 400
+| tls-alpn: 
+|_  http/1.1
+| http-waf-detect: IDS/IPS/WAF detected:
+|_10.10.84.67:443/?p4yl04d3=<script>alert(document.cookie)</script>
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-default-accounts: 
+|   [Arris 2307] at /logo_t.gif
+|_    <blank>:<blank>
+| http-ls: Volume /
+| SIZE  TIME              FILENAME
+| -     2019-04-11 22:52  oscommerce-2.3.4/
+| -     2019-04-11 22:52  oscommerce-2.3.4/catalog/
+| -     2019-04-11 22:52  oscommerce-2.3.4/docs/
+|_
+| http-wordpress-enum: 
+| Search limited to top 100 themes/plugins
+|   themes
+|     twentyeleven
+|     twentytwelve
+|     twentyten
+|     twentythirteen
+|     twentyfourteen
+|     twentyfifteen
+|     responsive
+|     customizr
+|     zerif-lite
+|     virtue
+|     storefront
+|     atahualpa
+|     twentysixteen
+|     vantage
+|     hueman
+|     spacious
+|     evolve
+|     colorway
+|     graphene
+|     sydney
+|     ifeature
+|     mh-magazine-lite
+|     generatepress
+|     mantra
+|     omega
+|     onetone
+|     coraline
+|     pinboard
+|     thematic
+|     sparkling
+|     catch-box
+|     make
+|     colormag
+|     enigma
+|     custom-community
+|     mystique
+|     alexandria
+|     delicate
+|     lightword
+|     attitude
+|     inove
+|     magazine-basic
+|     raindrops
+|     minamaze
+|     zbench
+|     point
+|     eclipse
+|     portfolio-press
+|     twentyseventeen
+|     travelify
+|     swift-basic
+|     iconic-one
+|     arcade-basic
+|     bouquet
+|     pixel
+|     sliding-door
+|     pilcrow
+|     simple-catch
+|     tempera
+|     destro
+|     p2
+|     sunspot
+|     sundance
+|     dusk-to-dawn
+|     onepress
+|     moesia
+|     dynamic-news-lite
+|     parabola
+|     parament
+|     dazzling
+|     accesspress-lite
+|     optimizer
+|     one-page
+|     chaostheory
+|     business-lite
+|     duster
+|     constructor
+|     nirvana
+|     sixteen
+|     esquire
+|     beach
+|     next-saturday
+|     flat
+|     hatch
+|     minimatica
+|     radiate
+|     accelerate
+|     oxygen
+|     accesspress-parallax
+|     swift
+|     spun
+|     wp-creativix
+|     suevafree
+|     hemingway
+|     pink-touch-2
+|     motion
+|     fruitful
+|     steira
+|     news
+|_    llorix-one-lite
+|_http-feed: Couldn't find any feeds.
+|_ssl-date: TLS randomness does not represent time
+| http-security-headers: 
+|   Strict_Transport_Security: 
+|     HSTS not configured in HTTPS Server
+|   Expires: 
+|_    Header: Expires: Fri, 07 Apr 2023 07:59:00 GMT
+|_http-errors: ERROR: Script execution failed (use -d to debug)
+| http-grep: 
+|   (1) https://10.10.84.67:443/: 
+|     (1) ip: 
+|_      + 10.10.84.67
+| http-useragent-tester: 
+|   Status for browser useragent: 400
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|     WWW-Mechanize/1.34
+|   Change in Status Code: 
+|     MFC_Tear_Sample: 200
+|_    HTTP::Lite: 200
+|_http-title: Index of /
+|_http-date: Fri, 07 Apr 2023 07:58:54 GMT; +59m51s from local time.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /icons/
+|       gif: 3
+|     /oscommerce-2.3.4/
+|       Other: 1
+|     /oscommerce-2.3.4/catalog/
+|       Other: 1
+|     /oscommerce-2.3.4/docs/
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 2
+|     Dir: /oscommerce-2.3.4/docs/
+|   Total files found (by extension):
+|_    Other: 4; gif: 3
+|_http-mobileversion-checker: No mobile version detected.
+445/tcp   open  microsoft-ds
+3306/tcp  open  mysql
+|_banner: e\x00\x00\x00\xFFj\x04Host 'ip-10-14-43-145.eu-west-1.comput...
+8080/tcp  open  http-proxy
+| http-enum: 
+|   /: Root directory w/ listing on 'apache/2.4.23 (win32) openssl/1.0.2h php/5.6.28'
+|   /icons/: Potentially interesting folder w/ directory listing
+|   /server-info/: Potentially interesting folder
+|_  /server-status/: Potentially interesting folder
+| http-headers: 
+|   Date: Fri, 07 Apr 2023 07:58:54 GMT
+|   Server: Apache/2.4.23 (Win32) OpenSSL/1.0.2h PHP/5.6.28
+|   Connection: close
+|   Content-Type: text/html;charset=UTF-8
+|   
+|_  (Request type: HEAD)
+|_http-date: Fri, 07 Apr 2023 07:58:59 GMT; +59m51s from local time.
+|_http-title: Index of /
+| http-apache-server-status: 
+|   Heading: Apache Server Status for 10.10.84.67 (via 10.10.84.67)
+|   Server Version: Apache/2.4.23 (Win32) OpenSSL/1.0.2h PHP/5.6.28
+|   Server Uptime: 22 minutes 9 seconds
+|   Server Load: -1.00 -1.00 -1.00
+|   VHosts: 
+|     localhost:8080
+|_    www.example.com:443
+|_http-trace: TRACE is enabled
+| http-ls: Volume /
+| SIZE  TIME              FILENAME
+| -     2019-04-11 22:52  oscommerce-2.3.4/
+| -     2019-04-11 22:52  oscommerce-2.3.4/catalog/
+| -     2019-04-11 22:52  oscommerce-2.3.4/docs/
+|_
+|_http-chrono: Request times for /; avg: 942.40ms; min: 657.96ms; max: 1244.77ms
+| http-vhosts: 
+|_128 names had status 200
+| http-grep: 
+|   (1) http://10.10.84.67:8080/: 
+|     (1) ip: 
+|_      + 10.10.84.67
+49152/tcp open  unknown
+49153/tcp open  unknown
+49154/tcp open  unknown
+49165/tcp open  unknown
+49166/tcp open  unknown
+49167/tcp open  unknown
+
+Host script results:
+|_nbstat: NetBIOS name: BLUEPRINT, NetBIOS user: <unknown>, NetBIOS MAC: 02b0d42bbf81 (unknown)
+|_fcrdns: FAIL (No PTR record)
+| qscan: 
+| PORT   FAMILY  MEAN (us)  STDDEV     LOSS (%)
+| 80     0       240478.50  86388.93   0.0%
+| 135    0       288920.00  163349.32  0.0%
+| 139    1       354717.10  148105.10  0.0%
+| 443    1       326343.60  109584.74  0.0%
+| 445    0       257357.80  81834.43   0.0%
+| 3306   0       210912.67  83852.71   10.0%
+| 8080   0       266060.30  160384.75  0.0%
+|_49152  0       244540.60  81273.24   0.0%
+| msrpc-enum: 
+|   
+|     uuid: d95afe70-a6d5-4259-822e-2c84da1ddb0d
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49152
+|   
+|     uuid: 4b112204-0e19-11d3-b42b-0000f81feb9f
+|     ncalrpc: LRPC-62ed6fedda73984091
+|     exe: ssdpsrv ssdpsrv interface (SSDP service)
+|   
+|     uuid: 6b5bdd1e-528c-422c-af8c-a4079be4fe48
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49167
+|     annotation: Remote Fw APIs
+|   
+|     uuid: 12345678-1234-abcd-ef00-0123456789ab
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49167
+|     annotation: IPSec Policy agent endpoint
+|   
+|     uuid: 12345678-1234-abcd-ef00-0123456789ab
+|     annotation: IPSec Policy agent endpoint
+|     ncalrpc: LRPC-ca2c77e38b8a08191c
+|   
+|     ncacn_np: \pipe\lsass
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|     netbios: \\BLUEPRINT
+|     exe: lsass.exe samr interface
+|   
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|     ncalrpc: LRPC-321388081734de1a58
+|     exe: lsass.exe samr interface
+|   
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|     ncalrpc: audit
+|     exe: lsass.exe samr interface
+|   
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|     ncalrpc: securityevent
+|     exe: lsass.exe samr interface
+|   
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|     ncalrpc: LSARPC_ENDPOINT
+|     exe: lsass.exe samr interface
+|   
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|     ncalrpc: lsapolicylookup
+|     exe: lsass.exe samr interface
+|   
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|     ncalrpc: lsasspirpc
+|     exe: lsass.exe samr interface
+|   
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|     ncalrpc: protected_storage
+|     exe: lsass.exe samr interface
+|   
+|     ncacn_np: \PIPE\protected_storage
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|     netbios: \\BLUEPRINT
+|     exe: lsass.exe samr interface
+|   
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|     ncalrpc: samss lpc
+|     exe: lsass.exe samr interface
+|   
+|     uuid: 12345778-1234-abcd-ef00-0123456789ac
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49166
+|     exe: lsass.exe samr interface
+|   
+|     uuid: 367abb81-9844-35f1-ad32-98f038001003
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49165
+|   
+|     uuid: dd490425-5325-4565-b774-7e27d6c09c24
+|     annotation: Base Firewall Engine API
+|     ncalrpc: LRPC-f2c293cf4b1117183c
+|   
+|     uuid: 7f9d11bf-7fb9-436b-a812-b2d50c5d4c03
+|     annotation: Fw APIs
+|     ncalrpc: LRPC-f2c293cf4b1117183c
+|   
+|     uuid: 2fb92682-6599-42dc-ae13-bd2ca89bd11c
+|     annotation: Fw APIs
+|     ncalrpc: LRPC-f2c293cf4b1117183c
+|   
+|     uuid: 0b6edbfa-4a24-4fc6-8a23-942b1eca65d1
+|     annotation: Spooler function endpoint
+|     ncalrpc: spoolss
+|   
+|     uuid: ae33069b-a2a8-46ee-a235-ddfd339be281
+|     annotation: Spooler base remote object endpoint
+|     ncalrpc: spoolss
+|   
+|     uuid: 4a452661-8290-4b36-8fbe-7f4093a94978
+|     annotation: Spooler function endpoint
+|     ncalrpc: spoolss
+|   
+|     uuid: 7ea70bcf-48af-4f6a-8968-6a440754d5fa
+|     annotation: NSI server endpoint
+|     ncalrpc: OLE5D47EB492575431BA788FF40B468
+|   
+|     uuid: 7ea70bcf-48af-4f6a-8968-6a440754d5fa
+|     annotation: NSI server endpoint
+|     ncalrpc: LRPC-40149971618b6f4a55
+|   
+|     uuid: 3473dd4d-2e88-4006-9cba-22570909dd10
+|     annotation: WinHttp Auto-Proxy Service
+|     ncalrpc: OLE5D47EB492575431BA788FF40B468
+|   
+|     uuid: 3473dd4d-2e88-4006-9cba-22570909dd10
+|     annotation: WinHttp Auto-Proxy Service
+|     ncalrpc: LRPC-40149971618b6f4a55
+|   
+|     uuid: 24019106-a203-4642-b88d-82dae9158929
+|     ncalrpc: LRPC-a3519aa0e8c6511b2b
+|   
+|     uuid: c9ac6db5-82b7-4e55-ae8a-e464ed7b4277
+|     annotation: Impl friendly name
+|     ncalrpc: IUserProfile2
+|   
+|     uuid: c9ac6db5-82b7-4e55-ae8a-e464ed7b4277
+|     annotation: Impl friendly name
+|     ncalrpc: IUserProfile2
+|   
+|     uuid: 2eb08e3e-639f-4fba-97b1-14f878961076
+|     ncalrpc: IUserProfile2
+|   
+|     uuid: 2eb08e3e-639f-4fba-97b1-14f878961076
+|     ncalrpc: OLEC0D6A224F81F46D6BEA6063838AE
+|   
+|     uuid: c9ac6db5-82b7-4e55-ae8a-e464ed7b4277
+|     annotation: Impl friendly name
+|     ncalrpc: IUserProfile2
+|   
+|     uuid: c9ac6db5-82b7-4e55-ae8a-e464ed7b4277
+|     annotation: Impl friendly name
+|     ncalrpc: OLEC0D6A224F81F46D6BEA6063838AE
+|   
+|     uuid: c9ac6db5-82b7-4e55-ae8a-e464ed7b4277
+|     annotation: Impl friendly name
+|     ncalrpc: senssvc
+|   
+|     uuid: 0a74ef1c-41a4-4e06-83ae-dc74fb1cdd53
+|     ncalrpc: IUserProfile2
+|   
+|     uuid: 0a74ef1c-41a4-4e06-83ae-dc74fb1cdd53
+|     ncalrpc: OLEC0D6A224F81F46D6BEA6063838AE
+|   
+|     uuid: 0a74ef1c-41a4-4e06-83ae-dc74fb1cdd53
+|     ncalrpc: senssvc
+|   
+|     uuid: 1ff70682-0a51-30e8-076d-740be8cee98b
+|     ncalrpc: IUserProfile2
+|     exe: mstask.exe atsvc interface (Scheduler service)
+|   
+|     uuid: 1ff70682-0a51-30e8-076d-740be8cee98b
+|     ncalrpc: OLEC0D6A224F81F46D6BEA6063838AE
+|     exe: mstask.exe atsvc interface (Scheduler service)
+|   
+|     uuid: 1ff70682-0a51-30e8-076d-740be8cee98b
+|     ncalrpc: senssvc
+|     exe: mstask.exe atsvc interface (Scheduler service)
+|   
+|     ncacn_np: \PIPE\atsvc
+|     uuid: 1ff70682-0a51-30e8-076d-740be8cee98b
+|     netbios: \\BLUEPRINT
+|     exe: mstask.exe atsvc interface (Scheduler service)
+|   
+|     uuid: 378e52b0-c0a9-11cf-822d-00aa0051e40f
+|     ncalrpc: IUserProfile2
+|   
+|     uuid: 378e52b0-c0a9-11cf-822d-00aa0051e40f
+|     ncalrpc: OLEC0D6A224F81F46D6BEA6063838AE
+|   
+|     uuid: 378e52b0-c0a9-11cf-822d-00aa0051e40f
+|     ncalrpc: senssvc
+|   
+|     ncacn_np: \PIPE\atsvc
+|     uuid: 378e52b0-c0a9-11cf-822d-00aa0051e40f
+|     netbios: \\BLUEPRINT
+|   
+|     uuid: 86d35949-83c9-4044-b424-db363231fd0c
+|     ncalrpc: IUserProfile2
+|   
+|     uuid: 86d35949-83c9-4044-b424-db363231fd0c
+|     ncalrpc: OLEC0D6A224F81F46D6BEA6063838AE
+|   
+|     uuid: 86d35949-83c9-4044-b424-db363231fd0c
+|     ncalrpc: senssvc
+|   
+|     ncacn_np: \PIPE\atsvc
+|     uuid: 86d35949-83c9-4044-b424-db363231fd0c
+|     netbios: \\BLUEPRINT
+|   
+|     uuid: 86d35949-83c9-4044-b424-db363231fd0c
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49154
+|   
+|     uuid: a398e520-d59a-4bdd-aa7a-3c1e0303a511
+|     annotation: IKE/Authip API
+|     ncalrpc: IUserProfile2
+|   
+|     uuid: a398e520-d59a-4bdd-aa7a-3c1e0303a511
+|     annotation: IKE/Authip API
+|     ncalrpc: OLEC0D6A224F81F46D6BEA6063838AE
+|   
+|     uuid: a398e520-d59a-4bdd-aa7a-3c1e0303a511
+|     annotation: IKE/Authip API
+|     ncalrpc: senssvc
+|   
+|     ncacn_np: \PIPE\atsvc
+|     uuid: a398e520-d59a-4bdd-aa7a-3c1e0303a511
+|     annotation: IKE/Authip API
+|     netbios: \\BLUEPRINT
+|   
+|     uuid: a398e520-d59a-4bdd-aa7a-3c1e0303a511
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49154
+|     annotation: IKE/Authip API
+|   
+|     uuid: 98716d03-89ac-44c7-bb8c-285824e51c4a
+|     annotation: XactSrv service
+|     ncalrpc: IUserProfile2
+|   
+|     uuid: 98716d03-89ac-44c7-bb8c-285824e51c4a
+|     annotation: XactSrv service
+|     ncalrpc: OLEC0D6A224F81F46D6BEA6063838AE
+|   
+|     uuid: 98716d03-89ac-44c7-bb8c-285824e51c4a
+|     annotation: XactSrv service
+|     ncalrpc: senssvc
+|   
+|     ncacn_np: \PIPE\atsvc
+|     uuid: 98716d03-89ac-44c7-bb8c-285824e51c4a
+|     annotation: XactSrv service
+|     netbios: \\BLUEPRINT
+|   
+|     uuid: 98716d03-89ac-44c7-bb8c-285824e51c4a
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49154
+|     annotation: XactSrv service
+|   
+|     uuid: 552d076a-cb29-4e44-8b6a-d15e59e2c0af
+|     annotation: IP Transition Configuration endpoint
+|     ncalrpc: IUserProfile2
+|   
+|     uuid: 552d076a-cb29-4e44-8b6a-d15e59e2c0af
+|     annotation: IP Transition Configuration endpoint
+|     ncalrpc: OLEC0D6A224F81F46D6BEA6063838AE
+|   
+|     uuid: 552d076a-cb29-4e44-8b6a-d15e59e2c0af
+|     annotation: IP Transition Configuration endpoint
+|     ncalrpc: senssvc
+|   
+|     ncacn_np: \PIPE\atsvc
+|     uuid: 552d076a-cb29-4e44-8b6a-d15e59e2c0af
+|     annotation: IP Transition Configuration endpoint
+|     netbios: \\BLUEPRINT
+|   
+|     uuid: 552d076a-cb29-4e44-8b6a-d15e59e2c0af
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49154
+|     annotation: IP Transition Configuration endpoint
+|   
+|     ncacn_np: \PIPE\srvsvc
+|     uuid: 552d076a-cb29-4e44-8b6a-d15e59e2c0af
+|     annotation: IP Transition Configuration endpoint
+|     netbios: \\BLUEPRINT
+|   
+|     uuid: f6beaff7-1e19-4fbb-9f8f-b89e2018337c
+|     annotation: Event log TCPIP
+|     ncalrpc: eventlog
+|   
+|     ncacn_np: \pipe\eventlog
+|     uuid: f6beaff7-1e19-4fbb-9f8f-b89e2018337c
+|     annotation: Event log TCPIP
+|     netbios: \\BLUEPRINT
+|   
+|     uuid: f6beaff7-1e19-4fbb-9f8f-b89e2018337c
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49153
+|     annotation: Event log TCPIP
+|   
+|     uuid: 30adc50c-5cbc-46ce-9a0e-91914789e23c
+|     annotation: NRP server endpoint
+|     ncalrpc: eventlog
+|   
+|     ncacn_np: \pipe\eventlog
+|     uuid: 30adc50c-5cbc-46ce-9a0e-91914789e23c
+|     annotation: NRP server endpoint
+|     netbios: \\BLUEPRINT
+|   
+|     uuid: 30adc50c-5cbc-46ce-9a0e-91914789e23c
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49153
+|     annotation: NRP server endpoint
+|   
+|     uuid: 30adc50c-5cbc-46ce-9a0e-91914789e23c
+|     annotation: NRP server endpoint
+|     ncalrpc: AudioClientRpc
+|   
+|     uuid: 30adc50c-5cbc-46ce-9a0e-91914789e23c
+|     annotation: NRP server endpoint
+|     ncalrpc: Audiosrv
+|   
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d5
+|     annotation: DHCP Client LRPC Endpoint
+|     ncalrpc: eventlog
+|   
+|     ncacn_np: \pipe\eventlog
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d5
+|     annotation: DHCP Client LRPC Endpoint
+|     netbios: \\BLUEPRINT
+|   
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d5
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49153
+|     annotation: DHCP Client LRPC Endpoint
+|   
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d5
+|     annotation: DHCP Client LRPC Endpoint
+|     ncalrpc: AudioClientRpc
+|   
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d5
+|     annotation: DHCP Client LRPC Endpoint
+|     ncalrpc: Audiosrv
+|   
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d5
+|     annotation: DHCP Client LRPC Endpoint
+|     ncalrpc: dhcpcsvc
+|   
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d6
+|     annotation: DHCPv6 Client LRPC Endpoint
+|     ncalrpc: eventlog
+|   
+|     ncacn_np: \pipe\eventlog
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d6
+|     annotation: DHCPv6 Client LRPC Endpoint
+|     netbios: \\BLUEPRINT
+|   
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d6
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49153
+|     annotation: DHCPv6 Client LRPC Endpoint
+|   
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d6
+|     annotation: DHCPv6 Client LRPC Endpoint
+|     ncalrpc: AudioClientRpc
+|   
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d6
+|     annotation: DHCPv6 Client LRPC Endpoint
+|     ncalrpc: Audiosrv
+|   
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d6
+|     annotation: DHCPv6 Client LRPC Endpoint
+|     ncalrpc: dhcpcsvc
+|   
+|     uuid: 3c4728c5-f0ab-448b-bda1-6ce01eb0a6d6
+|     annotation: DHCPv6 Client LRPC Endpoint
+|     ncalrpc: dhcpcsvc6
+|   
+|     uuid: 06bba54a-be05-49f9-b0a0-30f790261023
+|     annotation: Security Center
+|     ncalrpc: eventlog
+|   
+|     ncacn_np: \pipe\eventlog
+|     uuid: 06bba54a-be05-49f9-b0a0-30f790261023
+|     annotation: Security Center
+|     netbios: \\BLUEPRINT
+|   
+|     uuid: 06bba54a-be05-49f9-b0a0-30f790261023
+|     ip_addr: 0.0.0.0
+|     tcp_port: 49153
+|     annotation: Security Center
+|   
+|     uuid: 06bba54a-be05-49f9-b0a0-30f790261023
+|     annotation: Security Center
+|     ncalrpc: AudioClientRpc
+|   
+|     uuid: 06bba54a-be05-49f9-b0a0-30f790261023
+|     annotation: Security Center
+|     ncalrpc: Audiosrv
+|   
+|     uuid: 06bba54a-be05-49f9-b0a0-30f790261023
+|     annotation: Security Center
+|     ncalrpc: dhcpcsvc
+|   
+|     uuid: 06bba54a-be05-49f9-b0a0-30f790261023
+|     annotation: Security Center
+|     ncalrpc: dhcpcsvc6
+|   
+|     uuid: 06bba54a-be05-49f9-b0a0-30f790261023
+|     annotation: Security Center
+|     ncalrpc: OLE78838C0E9A5E4824A7478124CC00
+|   
+|     uuid: 76f226c3-ec14-4325-8a99-6a46348418af
+|     ncalrpc: WMsgKRpc04B391
+|   
+|     uuid: c9ac6db5-82b7-4e55-ae8a-e464ed7b4277
+|     annotation: Impl friendly name
+|     ncalrpc: LRPC-e0f80ba3f82d3712ce
+|   
+|     uuid: 76f226c3-ec14-4325-8a99-6a46348418af
+|     ncalrpc: WMsgKRpc04B0A0
+|   
+|     ncacn_np: \PIPE\InitShutdown
+|     uuid: 76f226c3-ec14-4325-8a99-6a46348418af
+|     netbios: \\BLUEPRINT
+|   
+|     uuid: 76f226c3-ec14-4325-8a99-6a46348418af
+|     ncalrpc: WindowsShutdown
+|   
+|     uuid: d95afe70-a6d5-4259-822e-2c84da1ddb0d
+|     ncalrpc: WMsgKRpc04B0A0
+|   
+|     ncacn_np: \PIPE\InitShutdown
+|     uuid: d95afe70-a6d5-4259-822e-2c84da1ddb0d
+|     netbios: \\BLUEPRINT
+|   
+|     uuid: d95afe70-a6d5-4259-822e-2c84da1ddb0d
+|_    ncalrpc: WindowsShutdown
+|_dns-brute: Can't guess domain of "10.10.84.67"; use dns-brute.domain script argument.
+| smb-ls: Volume \\10.10.84.67\Users
+| SIZE   TIME                 FILENAME
+| <DIR>  2009-07-14T02:37:05  .
+| <DIR>  2009-07-14T02:37:05  ..
+| <DIR>  2009-07-14T02:37:05  Public
+| <DIR>  2009-07-14T02:37:05  Public\Documents
+| <DIR>  2009-07-14T02:37:05  Public\Downloads
+| <DIR>  2009-07-14T02:37:05  Public\Music
+| <DIR>  2009-07-14T02:37:05  Public\Pictures
+| <DIR>  2009-07-14T02:37:05  Public\Videos
+|_
+|_path-mtu: PMTU == 1500
+| smb-enum-groups: 
+|   BLUEPRINT\TelnetClients (RID: 1001): <empty>
+|   Builtin\Administrators (RID: 544): Administrator
+|   Builtin\Users (RID: 545): Lab
+|   Builtin\Guests (RID: 546): Guest
+|   Builtin\Performance Monitor Users (RID: 558): <empty>
+|   Builtin\Performance Log Users (RID: 559): <empty>
+|   Builtin\Distributed COM Users (RID: 562): <empty>
+|   Builtin\IIS_IUSRS (RID: 568): <empty>
+|_  Builtin\Event Log Readers (RID: 573): <empty>
+| smb-protocols: 
+|   dialects: 
+|     NT LM 0.12 (SMBv1) [dangerous, but default]
+|     202
+|_    210
+| smb-mbenum: 
+|   Master Browser
+|     BLUEPRINT  6.1  
+|   Potential Browser
+|     BLUEPRINT  6.1  
+|   Server service
+|     BLUEPRINT  6.1  
+|   Windows NT/2000/XP/2003 server
+|     BLUEPRINT  6.1  
+|   Workstation
+|_    BLUEPRINT  6.1  
+| smb-os-discovery: 
+|   OS: Windows 7 Home Basic 7601 Service Pack 1 (Windows 7 Home Basic 6.1)
+|   OS CPE: cpe:/o:microsoft:windows_7::sp1
+|   Computer name: BLUEPRINT
+|   NetBIOS computer name: BLUEPRINT\x00
+|   Workgroup: WORKGROUP\x00
+|_  System time: 2023-04-07T08:59:23+01:00
+| smb2-security-mode: 
+|   210: 
+|_    Message signing enabled but not required
+| smb-enum-shares: 
+|   account_used: guest
+|   \\10.10.84.67\ADMIN$: 
+|     Type: STYPE_DISKTREE_HIDDEN
+|     Comment: Remote Admin
+|     Anonymous access: <none>
+|     Current user access: <none>
+|   \\10.10.84.67\C$: 
+|     Type: STYPE_DISKTREE_HIDDEN
+|     Comment: Default share
+|     Anonymous access: <none>
+|     Current user access: <none>
+|   \\10.10.84.67\IPC$: 
+|     Type: STYPE_IPC_HIDDEN
+|     Comment: Remote IPC
+|     Anonymous access: READ
+|     Current user access: READ/WRITE
+|   \\10.10.84.67\Users: 
+|     Type: STYPE_DISKTREE
+|     Comment: 
+|     Anonymous access: <none>
+|     Current user access: READ
+|   \\10.10.84.67\Windows: 
+|     Type: STYPE_DISKTREE
+|     Comment: 
+|     Anonymous access: <none>
+|_    Current user access: READ
+|_ipidseq: Unknown
+| smb-enum-domains: 
+|   BLUEPRINT
+|     Groups: TelnetClients
+|     Users: Administrator, Guest, Lab
+|     Creation time: 2009-07-14T04:34:12
+|     Passwords: min length: n/a; min age: n/a days; max age: n/a days; history: n/a passwords
+|     Account lockout disabled
+|   Builtin
+|     Groups: Administrators, Distributed COM Users, Event Log Readers, Guests, IIS_IUSRS, Performance Log Users, Performance Monitor Users, Users
+|     Users: n/a
+|     Creation time: 2009-07-14T04:34:12
+|     Passwords: min length: n/a; min age: n/a days; max age: 42 days; history: n/a passwords
+|_    Account lockout disabled
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-capabilities: 
+|   202: 
+|     Distributed File System
+|   210: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+| smb2-time: 
+|   date: 2023-04-07T07:59:52
+|_  start_date: 2023-04-07T07:36:55
+
+# Nmap done at Fri Apr  7 09:24:05 2023 -- 1 IP address (1 host up) scanned in 1530.58 seconds
