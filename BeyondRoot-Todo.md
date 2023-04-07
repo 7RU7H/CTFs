@@ -353,3 +353,8 @@ https://mattgathu.github.io/2017/08/29/writing-cli-app-rust.html
 https://rust-cli.github.io/book/index.html
 https://flaviocopes.com/go-tutorial-lolcat/ - rainbox cli
 http://www.saminiir.com/lets-code-tcp-ip-stack-1-ethernet-arp/
+
+#### The Chisel-Shadow Network
+
+Revision
+![1080](reddish-experiemental-chisel-shadow-network.excalidraw)
