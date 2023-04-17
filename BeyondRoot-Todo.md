@@ -17,9 +17,6 @@ Seatbelt compile and used
 Host Vulnhub box and do both Red and Blue Teaming 
 
 
-
-
-
 Firewall fun
 ```powershell
 # Check Profile
@@ -85,9 +82,6 @@ Procmon something and follow along
 
 Atomic wannabe APT 
 https://github.com/redcanaryco/invoke-atomicredteam
-
-
-
 
 
 A memory safe rust rootkits - [Diamorphine](https://github.com/m0nad/Diamorphine/blob/master/README.md) and [Kris Nova's boopkit](https://github.com/krisnova/boopkit)
@@ -208,7 +202,7 @@ handleCmd() {
 
 ```
 
-? x-Client - https://simjue.pages.dev/post/2018/07-01-go-unix-shell/
+? nix-x-Client - https://simjue.pages.dev/post/2018/07-01-go-unix-shell/
 ```go
 package main
 
@@ -266,7 +260,6 @@ func printHelp() {
 func establishConnection() error {
 
 }
-
 ```
 
 Golang TeamServer
@@ -354,7 +347,77 @@ https://rust-cli.github.io/book/index.html
 https://flaviocopes.com/go-tutorial-lolcat/ - rainbox cli
 http://www.saminiir.com/lets-code-tcp-ip-stack-1-ethernet-arp/
 
+During Reddish the idea of Go HTTPS server + BackdoorShell = Easy Way Back In
+
+Would it not just be nice to have chisel that has a shell or a webserver that has a shell.
+```go
+
+// Hide in Plain WebApp - redirect to actual Webserver  
+
+// Hide inandthrough  - symlink - rk controlled directory - backup 
+// --custom-backup-loc  
+
+// Persistence scripts to load as modules 
+// default persistence - Linux - chattr etc
+
+// --persistence  
+
+// If Header X (Key) , Agent Y (Almost legitimate Agent string) , Header Z (Cmd:A |Shell:B )  Do -> Open Backdoor and respond with fingerprint for ssl-age 
+// Header U: upload binary to server and execute - putty.exe, etc
+
+// Open Backdoor 
+// process .exe
+// proc gnuintegrity
+```
+
+
+
 #### The Chisel-Shadow Network
+
+Requires the the Go HTTPS + backdoor server
 
 Revision
 ![1080](reddish-experiemental-chisel-shadow-network.excalidraw)
+
+
+## Temple Ideas
+
+Make a wordlists creator in golang for the serious string compute.
+
+OneSeclistDirectoryBustingWordlistToRuleTheCTFs
+
+- Go back to gobuster for inital directories
+- Stop, observe and note potential targets to start feroxbuster and ffuf from 
+	- What is actually a good target for this and what are likely middle directories that are good to recurse -  Pushing beyond the 
+		- Anything where
+			- dev, git, backup, bak, etc...objectives!
+- Use ffuf more ffuf vhosts, extensions, POTENTIAL pages
+- Do a slow set of feroxbusters scan over to collect and double verify 
+
+
+GSSF - GoSmokeSomeFilters.go - convert strings to filter evading strings. 
+```go
+cmds:
+hex -b Bad Characters
+url encode
+requote -b "\"" 
+unicode crazy word to describe using weird characters 
+escape - escape 
+lfi -e url -b "."
+```
+
+LFI filter
+```bash
+echo -ne '/../../../../../../../../../../../../' | xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g'
+```
+
+
+```go
+```
+
+
+#### Mad Idea 2 - Flow: One to take control of all network routes from inside a network  
+
+How?
+```
+```

