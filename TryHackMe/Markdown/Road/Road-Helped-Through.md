@@ -13,6 +13,8 @@ Beyond Root:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/yYw3ysOdNt8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+[Alh4zr3d - VOD](https://www.youtube.com/embed/yYw3ysOdNt8)
+
 This Helped-Through is partnered with: [[]]
 
 51:

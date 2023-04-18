@@ -1,0 +1,31 @@
+# Nmap 7.93 scan initiated Tue Apr 18 11:01:12 2023 as: nmap --script vuln -oA nmap/10-10-75-48-Vuln --min-rate 500 -e tun0 -p 80,22 10.10.75.48
+Nmap scan report for 10.10.75.48
+Host is up (0.068s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|_  /phpMyAdmin/: phpMyAdmin
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.75.48
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.10.75.48:80/
+|     Form id: filter
+|     Form action: /v2/admin/track_orders
+|     
+|     Path: http://10.10.75.48:80/v2/admin/login.html
+|     Form id: 
+|_    Form action: register.html
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-fileupload-exploiter: 
+|   
+|     Couldn't find a file-type field.
+|   
+|     Couldn't find a file-type field.
+|   
+|_    Couldn't find a file-type field.
+
+# Nmap done at Tue Apr 18 11:01:57 2023 -- 1 IP address (1 host up) scanned in 44.60 seconds
