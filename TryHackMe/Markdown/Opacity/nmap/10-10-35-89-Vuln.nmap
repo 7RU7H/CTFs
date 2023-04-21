@@ -1,0 +1,34 @@
+# Nmap 7.93 scan initiated Fri Apr 21 17:09:09 2023 as: nmap --script vuln -oA nmap/10-10-35-89-Vuln --min-rate 500 -e tun0 -p 80,139,22,445 10.10.35.89
+Nmap scan report for 10.10.35.89
+Host is up (0.071s latency).
+
+PORT    STATE SERVICE
+22/tcp  open  ssh
+80/tcp  open  http
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|       httponly flag not set
+|   /login.php: 
+|     PHPSESSID: 
+|_      httponly flag not set
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|_  /login.php: Possible admin folder
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.35.89
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.10.35.89:80/
+|     Form id: 
+|_    Form action: 
+139/tcp open  netbios-ssn
+445/tcp open  microsoft-ds
+
+Host script results:
+|_smb-vuln-ms10-061: Could not negotiate a connection:SMB: ERROR: Server returned less data than it was supposed to (one or more fields are missing); aborting [9]
+|_smb-vuln-ms10-054: false
+|_samba-vuln-cve-2012-1182: Could not negotiate a connection:SMB: ERROR: Server returned less data than it was supposed to (one or more fields are missing); aborting [9]
+
+# Nmap done at Fri Apr 21 17:10:14 2023 -- 1 IP address (1 host up) scanned in 65.65 seconds

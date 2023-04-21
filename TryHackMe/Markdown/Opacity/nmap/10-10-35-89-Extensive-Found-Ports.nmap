@@ -1,0 +1,33 @@
+# Nmap 7.93 scan initiated Fri Apr 21 17:02:40 2023 as: nmap -sC -sV -oA nmap/10-10-35-89-Extensive-Found-Ports --min-rate 500 -e tun0 -p 80,139,22,445 10.10.35.89
+Nmap scan report for 10.10.35.89
+Host is up (0.085s latency).
+
+PORT    STATE SERVICE     VERSION
+22/tcp  open  ssh         OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 0fee2910d98e8c53e64de3670c6ebee3 (RSA)
+|   256 9542cdfc712799392d0049ad1be4cf0e (ECDSA)
+|_  256 edfe9c94ca9c086ff25ca6cf4d3c8e5b (ED25519)
+80/tcp  open  http        Apache httpd 2.4.41 ((Ubuntu))
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|_      httponly flag not set
+| http-title: Login
+|_Requested resource was login.php
+|_http-server-header: Apache/2.4.41 (Ubuntu)
+139/tcp open  netbios-ssn Samba smbd 4.6.2
+445/tcp open  netbios-ssn Samba smbd 4.6.2
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+| smb2-time: 
+|   date: 2023-04-21T16:03:05
+|_  start_date: N/A
+| smb2-security-mode: 
+|   311: 
+|_    Message signing enabled but not required
+|_nbstat: NetBIOS name: OPACITY, NetBIOS user: <unknown>, NetBIOS MAC: 000000000000 (Xerox)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Apr 21 17:03:07 2023 -- 1 IP address (1 host up) scanned in 27.13 seconds

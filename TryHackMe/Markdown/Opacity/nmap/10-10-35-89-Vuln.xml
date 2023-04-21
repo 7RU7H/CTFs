@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Fri Apr 21 17:09:09 2023 as: nmap -&#45;script vuln -oA nmap/10-10-35-89-Vuln -&#45;min-rate 500 -e tun0 -p 80,139,22,445 10.10.35.89 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-10-35-89-Vuln -&#45;min-rate 500 -e tun0 -p 80,139,22,445 10.10.35.89" start="1682093349" startstr="Fri Apr 21 17:09:09 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="4" services="22,80,139,445"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.35.89" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1682093372" endtime="1682093414"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.35.89" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-cookie-flags" output="&#xa;  /: &#xa;    PHPSESSID: &#xa;      httponly flag not set&#xa;  /login.php: &#xa;    PHPSESSID: &#xa;      httponly flag not set"><table key="/">
+<table key="PHPSESSID">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+<table key="/login.php">
+<table key="PHPSESSID">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+</script><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-enum" output="&#xa;  /login.php: Possible admin folder&#xa;"/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.35.89&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://10.10.35.89:80/&#xa;    Form id: &#xa;    Form action: &#xa;"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="netbios-ssn" method="table" conf="3"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="microsoft-ds" method="table" conf="3"/></port>
+</ports>
+<hostscript><script id="smb-vuln-ms10-061" output="Could not negotiate a connection:SMB: ERROR: Server returned less data than it was supposed to (one or more fields are missing); aborting [9]">false</script><script id="smb-vuln-ms10-054" output="false">false</script><script id="samba-vuln-cve-2012-1182" output="Could not negotiate a connection:SMB: ERROR: Server returned less data than it was supposed to (one or more fields are missing); aborting [9]">false</script></hostscript><times srtt="70521" rttvar="30473" to="192413"/>
+</host>
+<runstats><finished time="1682093414" timestr="Fri Apr 21 17:10:14 2023" summary="Nmap done at Fri Apr 21 17:10:14 2023; 1 IP address (1 host up) scanned in 65.65 seconds" elapsed="65.65" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
