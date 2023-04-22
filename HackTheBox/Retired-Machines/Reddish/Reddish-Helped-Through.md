@@ -835,6 +835,9 @@ cp /etc/cron.d/shell /mnt/etc/cron.d/
 The box is actually externally facing! so no chisel is actually required - went full chisel and not thinking that are on the host that has to be externally facing and we do not need to go through the virtualised network 
 ![](rootroot.png)
 
+Finally a map of Reddish
+![1080](Reddish-ImprovedThinking)
+
 
 ## Beyond Root
 
