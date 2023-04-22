@@ -91,7 +91,22 @@ Administrator:G2@$btRSHJYTarg
 lars:G123HHrth234gRG
 ```
 
-Whereas Ippsec tries to break the application. Due to it be a configuration of a state containing a password that is backed-up, he replaces Adminstrator we Ippsec and removes the password so that when deleteing the non-.bak file the application will reload with the backup containing a black password for ippsec. Then the tool lets you hide passwords and view them! This prompted me to try another Application Pentest CTF challenge no HTB.
+Whereas Ippsec tries to break the application. Due to it be a configuration of a state containing a password that is backed-up, he replaces Adminstrator we Ippsec and removes the password so that when deleteing the non-.bak file the application will reload with the backup containing a black password for ippsec. Then the tool lets you hide passwords and view them! This prompted me to try ano// Hide in Plain WebApp - redirect to actual Webserver  
+
+// Hide inandthrough  - symlink - rk controlled directory - backup 
+// --custom-backup-loc  
+
+// Persistence scripts to load as modules 
+// default persistence - Linux - chattr etc
+
+// --persistence  
+
+// If Header X (Key) , Agent Y (Almost legitimate Agent string) , Header Z (Cmd:A |Shell:B )  Do -> Open Backdoor and respond with fingerprint for ssl-age 
+// Header U: upload binary to server and execute - putty.exe, etc
+
+// Open Backdoor 
+// process .exe
+// proc gnuintegrityther Application Pentest CTF challenge no HTB.
 
 - Find an Application?
 	- Recreate environment, observe how it runs

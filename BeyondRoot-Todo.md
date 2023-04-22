@@ -16,6 +16,10 @@ Seatbelt compile and used
 
 Host Vulnhub box and do both Red and Blue Teaming 
 
+Alternative to nohup on Windows preferable dos and powershell - [For Windows consider](https://learn.microsoft.com/en-US/troubleshoot/windows-client/deployment/create-user-defined-service)
+
+Socat proxy
+
 
 Firewall fun
 ```powershell
@@ -370,7 +374,7 @@ Would it not just be nice to have chisel that has a shell or a webserver that ha
 // proc gnuintegrity
 ```
 
-
+## Putty Backdoor and Tunnel 
 
 #### The Chisel-Shadow Network
 
@@ -421,3 +425,7 @@ echo -ne '/../../../../../../../../../../../../' | xxd -plain | tr -d '\n' | sed
 How?
 ```
 ```
+
+
+
+[How to build a tcp proxy](https://robertheaton.com/2018/08/31/how-to-build-a-tcp-proxy-1/)
