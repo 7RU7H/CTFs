@@ -29,6 +29,12 @@ Goals:
 Learnt:
 Beyond Root:
 
+- [[$name-Notes.md]]
+- [[$name-CMD-by-CMD.md]]
+
+
+![]($name-map.excalidraw.md)
+
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
@@ -40,10 +46,12 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 
 ## PrivEsc
 
+![]($name-map.excalidraw.md)
+
 ## Beyond Root
 
 " > $site/$name/$name-Writeup.md
-echo "# Notes
+echo "# $name Notes
 
 ## Data 
 
@@ -59,18 +67,30 @@ Credentials:
 
 ## Objectives
 
+## Target Map
+
+![]($name-map.excalidraw.md)
+
 ## Solution Inventory Map
+
 
 ### Todo 
 
 ### Done
-
-
       
 " > $site/$name/$name-Notes.md
-echo "# CMD-by-CMDs
+echo "# $name CMD-by-CMDs
+
+\`\`\`bash
+sed -i 's/$oldip/$newip/g' *-CMD-by-CMDs.md
+\`\`\`
+
+\`\`\`
+\`\`\`
 
 " > $site/$name/$name-CMD-by-CMDs.md
+
+touch Excalidraw/$name-map.excalidraw.md
 
 else
 	echo $HELP

