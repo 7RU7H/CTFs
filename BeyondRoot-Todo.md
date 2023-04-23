@@ -88,248 +88,15 @@ Atomic wannabe APT
 https://github.com/redcanaryco/invoke-atomicredteam
 
 
-A memory safe rust rootkits - [Diamorphine](https://github.com/m0nad/Diamorphine/blob/master/README.md) and [Kris Nova's boopkit](https://github.com/krisnova/boopkit)
-
 Bootkit
 
 A C polymorphic code
 https://github.com/m0nad/PSG/blob/master/psg.c
 
-
-RUST, python And Golang C2 with Rootkit - barebones nothing fancy extra customisable
-
-python Drone Customizer
-```python 
-import os
-
-class 
-
-# Replace customVars
-
-
-replacable_customUploader
-replacable_customDownloader
-replacable_customListener 
-replacable_customExecution 
-replacable_customDelete
-replacable_customID
-replacable_customRegister
-replacable_customDeactivate
-replacable_customActivate
-
-# Replace customVars
-"// var customUploader", 
-"// var customDownloader",
-"// var customListener", 
-"// var customExecution", 
-"// var customDelete",
-"// var customID",
-"// var customRegister",
-"// var customDeactivate",
-"// var customActivate", 
-
-
-
-def replace_Command():
-	
-
-def custom_Uploader():
-def custom_Downloader():
-def custom_Listener():
-def custom_Execution():
-def custom_Compile():
-
-def main():
-# Handle Args
-
-# Copy drone.go
-
-# Replace customVars
-"// var customUploader", 
-"// var customDownloader",
-"// var customListener", 
-"// var customExecution", 
-"// var customDelete",
-"// var customID",
-"// var customRegister",
-"// var customDeactivate",
-"// var customActivate", 
-
-
-custom_Compile()
-os.exit()
-
-```
-
-Default compilation
-```bash
-
-# Compile Teamserver
-
-# Compile Client and UPX
-
-upx 
-
-# Compile Drone
-
-# Compile Rootkit
-
-```
-
-
-go Drone x-drone
-```rust
-
-// var customUploader
-// var customDownloader
-// var customListener
-// var customExecution
-// var customDelete
-// var customID
-// var customRegister
-// var customDeactivate
-// var customActivate
-
-// Upload url
-// Download url
-// Listener port
-// Execute cmd
-// Delete
-// ID 
-// Register
-// Activate
-// Deactivate
-
-handleCmd() {
-
-}
-
-```
-
-? nix-x-Client - https://simjue.pages.dev/post/2018/07-01-go-unix-shell/
-```go
-package main
-
-import (
-	"bufio"
-	"fmt"
-	"os"
-	"os/exec"
-	"strings"
-)
-
-func main() {
-    reader := bufio.NewReader(os.Stdin)
-    for {
-        fmt.Print("$ ")
-        // Read the keyboad input.
-        input, err := reader.ReadString('\n')
-        if err != nil {
-            fmt.Fprintln(os.Stderr, err)
-        }
-
-        // Handle the execution of the input.
-        if err = execInput(input); err != nil {
-            fmt.Fprintln(os.Stderr, err)
-        }
-    }
-    os.Exit(0)
-}
-
-
-func handleInput(input string) error {
-	// Remove the newline character.
-	input = strings.TrimSuffix(input, "\n")
-	// Split the input to separate the command and the arguments.
-	args := strings.Split(input, " ")
-	
-	// Check for built-in commands.
-	switch args[0] {
-	case "connect":
-		establishConnection()
-	case "help":
-		printHelp()	
-	case "exit":
-    		os.Exit(0)
-	}
-}
-
-func printHelp() {
-	fmt.Println("USAGE:\t<command> <arguments>")
-	fmt.Println("\t\tconnect <teamserver address>")
-	fmt.Println("\t\thelp: get some help")
-	fmt.Println("\t\texit to exit")
-}
-
-func establishConnection() error {
-
-}
-```
-
-Golang TeamServer
-```go
-// HTTPs Webserver 
-
-// Password
-
-// Generate a custom cert
-
-// API
-
-// /clients
-// /cmds
-// /drones
-
-// Generate Tokens,IDs,Routes, CMD, Keys
-
-// Generate: API Route 
-
-// Generate: Token creation
-
-// Generate: IDs
-
-// Generate: CMD 
-
-// Generate: Keys
-
-// Commmands
-
-struct droneCommands {
-// Upload
-// Download
-// Listener
-// Execute
-// Delete
-// ID
-// Register
-}
-
-struct clientCommands {
-}
-
-// Drone
-// Drone: Upload
-// Drone: Download
-// Drone: Listener
-// Drone: Execute
-// Drone: Delete
-// Drone: ID
-// Drone: Register
-
-
-// Client
-
-// Client: TLS Handsake
-
-// Client: Connections
-
-// Client: Handle commands 
-
-// Delete 
-
-```
-
 Rust RootKit xkit framework
+
+A memory safe rust rootkits - [Diamorphine](https://github.com/m0nad/Diamorphine/blob/master/README.md) and [Kris Nova's boopkit](https://github.com/krisnova/boopkit)
+
 ```rust
 // Embed
 // Evade
@@ -351,28 +118,7 @@ https://rust-cli.github.io/book/index.html
 https://flaviocopes.com/go-tutorial-lolcat/ - rainbox cli
 http://www.saminiir.com/lets-code-tcp-ip-stack-1-ethernet-arp/
 
-During Reddish the idea of Go HTTPS server + BackdoorShell = Easy Way Back In
 
-Would it not just be nice to have chisel that has a shell or a webserver that has a shell.
-```go
-
-// Hide in Plain WebApp - redirect to actual Webserver  
-
-// Hide inandthrough  - symlink - rk controlled directory - backup 
-// --custom-backup-loc  
-
-// Persistence scripts to load as modules 
-// default persistence - Linux - chattr etc
-
-// --persistence  
-
-// If Header X (Key) , Agent Y (Almost legitimate Agent string) , Header Z (Cmd:A |Shell:B )  Do -> Open Backdoor and respond with fingerprint for ssl-age 
-// Header U: upload binary to server and execute - putty.exe, etc
-
-// Open Backdoor 
-// process .exe
-// proc gnuintegrity
-```
 
 ## Putty Backdoor and Tunnel 
 
@@ -429,3 +175,10 @@ How?
 
 
 [How to build a tcp proxy](https://robertheaton.com/2018/08/31/how-to-build-a-tcp-proxy-1/)
+
+
+Watch this xct do this on seperate machines
+- https://www.youtube.com/watch?v=FYWGhdaDcZo&list=PLPBVZbjvnjVkIgFavcRiBKbDSricFJeoD
+To prep for dante -> and beyond!
+
+- Pay for patreon and do Shinra in a years time 

