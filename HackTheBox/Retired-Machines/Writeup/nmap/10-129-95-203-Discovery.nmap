@@ -1,0 +1,38 @@
+# Nmap 7.93 scan initiated Tue Apr 25 13:00:08 2023 as: nmap --script discovery -oA nmap/10-129-95-203-Discovery --min-rate 500 -e tun0 -p 22,80 10.129.95.203
+Pre-scan script results:
+|_broadcast-ping: false
+|_lltd-discovery: false
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.129.95.203
+Host is up (0.077s latency).
+
+PORT   STATE    SERVICE
+22/tcp open     ssh
+|_banner: SSH-2.0-OpenSSH_7.4p1 Debian-10+deb9u6
+| ssh-hostkey: 
+|   2048 dd5310700bd0470ae27e4ab6429823c7 (RSA)
+|   256 372e1468aeb9c2342b6ed992bcbfbd28 (ECDSA)
+|_  256 93eaa84042c1a83385b35600621ca0ab (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+80/tcp filtered http
+
+Host script results:
+|_path-mtu: PMTU == 1500
+|_ipidseq: All zeros
+|_dns-brute: Can't guess domain of "10.129.95.203"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Tue Apr 25 13:00:41 2023 -- 1 IP address (1 host up) scanned in 32.90 seconds
