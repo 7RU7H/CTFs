@@ -1,0 +1,63 @@
+# Nmap 7.93 scan initiated Tue Apr 25 14:41:45 2023 as: nmap --script vuln -oA nmap/10-129-198-211-Vuln --min-rate 500 -e tun0 -p 80 10.129.198.211
+Nmap scan report for 10.129.198.211
+Host is up (0.046s latency).
+
+PORT   STATE SERVICE
+80/tcp open  http
+| http-dombased-xss: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.198.211
+|   Found the following indications of potential DOM based XSS: 
+|     
+|     Source: window.open(this.href,'win2','status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=640,height=480,directories=no,location=no')
+|_    Pages: http://10.129.198.211:80/, http://10.129.198.211:80/, http://10.129.198.211:80/, http://10.129.198.211:80/index.php/2-uncategorised/3-what-s-the-object-of-curling, http://10.129.198.211:80/index.php/2-uncategorised/2-curling-you-know-its-true
+| http-enum: 
+|   /administrator/: Possible admin folder
+|   /administrator/index.php: Possible admin folder
+|   /administrator/manifests/files/joomla.xml: Joomla version 3.8.8
+|   /language/en-GB/en-GB.xml: Joomla version 3.8.8
+|   /htaccess.txt: Joomla!
+|   /README.txt: Interesting, a readme.
+|   /bin/: Potentially interesting folder
+|   /cache/: Potentially interesting folder
+|   /images/: Potentially interesting folder
+|   /includes/: Potentially interesting folder
+|   /libraries/: Potentially interesting folder
+|   /modules/: Potentially interesting folder
+|   /templates/: Potentially interesting folder
+|_  /tmp/: Potentially interesting folder
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.198.211
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.129.198.211:80/
+|     Form id: login-form
+|     Form action: /index.php
+|     
+|     Path: http://10.129.198.211:80/index.php/2-uncategorised/3-what-s-the-object-of-curling
+|     Form id: login-form
+|     Form action: /index.php
+|     
+|     Path: http://10.129.198.211:80/index.php/component/users/?view=reset&amp;Itemid=101
+|     Form id: user-registration
+|     Form action: /index.php/component/users/?task=reset.request&Itemid=101
+|     
+|     Path: http://10.129.198.211:80/index.php/component/users/?view=reset&amp;Itemid=101
+|     Form id: login-form
+|     Form action: /index.php/component/users/?Itemid=101
+|     
+|     Path: http://10.129.198.211:80/index.php/2-uncategorised/2-curling-you-know-its-true
+|     Form id: login-form
+|     Form action: /index.php
+|     
+|     Path: http://10.129.198.211:80/index.php/component/users/?view=remind&amp;Itemid=101
+|     Form id: user-registration
+|     Form action: /index.php/component/users/?task=remind.remind&Itemid=101
+|     
+|     Path: http://10.129.198.211:80/index.php/component/users/?view=remind&amp;Itemid=101
+|     Form id: login-form
+|_    Form action: /index.php/component/users/?Itemid=101
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-internal-ip-disclosure: 
+|_  Internal IP Leaked: 250
+
+# Nmap done at Tue Apr 25 14:42:40 2023 -- 1 IP address (1 host up) scanned in 55.18 seconds

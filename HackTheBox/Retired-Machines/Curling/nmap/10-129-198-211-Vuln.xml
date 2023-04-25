@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Tue Apr 25 14:41:45 2023 as: nmap -&#45;script vuln -oA nmap/10-129-198-211-Vuln -&#45;min-rate 500 -e tun0 -p 80 10.129.198.211 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-129-198-211-Vuln -&#45;min-rate 500 -e tun0 -p 80 10.129.198.211" start="1682430105" startstr="Tue Apr 25 14:41:45 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.198.211" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1682430128" endtime="1682430160"><status state="up" reason="reset" reason_ttl="63"/>
+<address addr="10.129.198.211" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-dombased-xss" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.198.211&#xa;  Found the following indications of potential DOM based XSS: &#xa;    &#xa;    Source: window.open(this.href,&apos;win2&apos;,&apos;status=no,toolbar=no,scrollbars=yes,titlebar=no,menubar=no,resizable=yes,width=640,height=480,directories=no,location=no&apos;)&#xa;    Pages: http://10.129.198.211:80/, http://10.129.198.211:80/, http://10.129.198.211:80/, http://10.129.198.211:80/index.php/2-uncategorised/3-what-s-the-object-of-curling, http://10.129.198.211:80/index.php/2-uncategorised/2-curling-you-know-its-true&#xa;"/><script id="http-enum" output="&#xa;  /administrator/: Possible admin folder&#xa;  /administrator/index.php: Possible admin folder&#xa;  /administrator/manifests/files/joomla.xml: Joomla version 3.8.8&#xa;  /language/en-GB/en-GB.xml: Joomla version 3.8.8&#xa;  /htaccess.txt: Joomla!&#xa;  /README.txt: Interesting, a readme.&#xa;  /bin/: Potentially interesting folder&#xa;  /cache/: Potentially interesting folder&#xa;  /images/: Potentially interesting folder&#xa;  /includes/: Potentially interesting folder&#xa;  /libraries/: Potentially interesting folder&#xa;  /modules/: Potentially interesting folder&#xa;  /templates/: Potentially interesting folder&#xa;  /tmp/: Potentially interesting folder&#xa;"/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.198.211&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://10.129.198.211:80/&#xa;    Form id: login-form&#xa;    Form action: /index.php&#xa;    &#xa;    Path: http://10.129.198.211:80/index.php/2-uncategorised/3-what-s-the-object-of-curling&#xa;    Form id: login-form&#xa;    Form action: /index.php&#xa;    &#xa;    Path: http://10.129.198.211:80/index.php/component/users/?view=reset&amp;amp;Itemid=101&#xa;    Form id: user-registration&#xa;    Form action: /index.php/component/users/?task=reset.request&amp;Itemid=101&#xa;    &#xa;    Path: http://10.129.198.211:80/index.php/component/users/?view=reset&amp;amp;Itemid=101&#xa;    Form id: login-form&#xa;    Form action: /index.php/component/users/?Itemid=101&#xa;    &#xa;    Path: http://10.129.198.211:80/index.php/2-uncategorised/2-curling-you-know-its-true&#xa;    Form id: login-form&#xa;    Form action: /index.php&#xa;    &#xa;    Path: http://10.129.198.211:80/index.php/component/users/?view=remind&amp;amp;Itemid=101&#xa;    Form id: user-registration&#xa;    Form action: /index.php/component/users/?task=remind.remind&amp;Itemid=101&#xa;    &#xa;    Path: http://10.129.198.211:80/index.php/component/users/?view=remind&amp;amp;Itemid=101&#xa;    Form id: login-form&#xa;    Form action: /index.php/component/users/?Itemid=101&#xa;"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-internal-ip-disclosure" output="&#xa;  Internal IP Leaked: 250"><elem key="Internal IP Leaked">250</elem>
+</script></port>
+</ports>
+<times srtt="46131" rttvar="35364" to="187587"/>
+</host>
+<runstats><finished time="1682430160" timestr="Tue Apr 25 14:42:40 2023" summary="Nmap done at Tue Apr 25 14:42:40 2023; 1 IP address (1 host up) scanned in 55.18 seconds" elapsed="55.18" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

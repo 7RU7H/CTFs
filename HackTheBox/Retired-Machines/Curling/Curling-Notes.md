@@ -1,4 +1,4 @@
-# Notes
+# Curling Notes
 
 ## Data 
 
@@ -14,12 +14,15 @@ Credentials:
 
 ## Objectives
 
+## Target Map
+
+![](Curling-map.excalidraw.md)
+
 ## Solution Inventory Map
+
 
 ### Todo 
 
 ### Done
-
-
       
-      
+
