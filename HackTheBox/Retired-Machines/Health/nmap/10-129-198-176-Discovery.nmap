@@ -1,0 +1,363 @@
+# Nmap 7.93 scan initiated Tue Apr 25 10:01:12 2023 as: nmap --script discovery -oA nmap/10-129-198-176-Discovery --min-rate 500 -e tun0 -p 22,80 10.129.198.176
+Pre-scan script results:
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_lltd-discovery: false
+|_broadcast-ping: false
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.129.198.176
+Host is up (0.077s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   2048 32b7f4d42f45d330ee123b0367bbe631 (RSA)
+|   256 86e15d8c2939acd7e815e649e235ed0c (ECDSA)
+|_  256 ef6bad64d5e45b3e667949f4ec4c239f (ED25519)
+|_banner: SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.7
+80/tcp open  http
+| http-vhosts: 
+|_128 names had status 200
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-errors: ERROR: Script execution failed (use -d to debug)
+| http-enum: 
+|_  /robots.txt: Robots file
+| http-headers: 
+|   Date: Tue, 25 Apr 2023 09:01:46 GMT
+|   Server: Apache/2.4.29 (Ubuntu)
+|   Cache-Control: no-cache, private
+|   Set-Cookie: XSRF-TOKEN=eyJpdiI6IjhwYnk5S3VxazBnMDVkaHFnV0tObEE9PSIsInZhbHVlIjoiM2o0YVV4RmFMMTduL0tHeXBPUk9tekZzeGw5N0ZoZEJtT3U5WDZONEhlYWE1WWR5UHdQSENkNjNKTkxVa3FtdUtKa3BBczcrdDQ1YjY4SzlmRXMwVU85bkRYVzJLMlk2T2tiaVE5dnkwUkFMa3Q5SUNiUnl6OVdTN0hoQVZ0U2siLCJtYWMiOiIxNTQ5YzQ4MWUzYzVmNTAyOWNmNDIzODg3NTZkMjFiYjI1YTE0OGE5OTk4MGM1ZTNlN2Y0NjUwYWIzNmEwNjBlIiwidGFnIjoiIn0%3D; expires=Tue, 25-Apr-2023 11:01:46 GMT; Max-Age=7200; path=/; samesite=lax
+|   Set-Cookie: laravel_session=eyJpdiI6IjR6RVJpc256eUxGcTRBSlZYV2ZOSkE9PSIsInZhbHVlIjoiZVVHM09MNGtWdGthdFRHQnBXY0dVMW5zMlFCQ2ZrY0pNbjhHcnJnSk5qcERWVy9NcXBIZnFaYTlEc0hUVkVWR3gzODMrWU5HaHJyTTZrU3RST1BpN1NaZzF1WHpTSXFBamMydllaRCtWMDZSVlhzc1Y4UzRlUXowZVFmU0U1MXYiLCJtYWMiOiJhNDI4YTgxMjAzMjRjNTc4Mzg1NmI2NTFmYWE0M2Q2ZjZmYzVjM2YyYWU1ZjdkNWI5MmYyZjNjZDgyNDNmY2E1IiwidGFnIjoiIn0%3D; expires=Tue, 25-Apr-2023 11:01:46 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.198.176
+|     
+|     Path: http://10.129.198.176:80/
+|     Line number: 86
+|     Comment: 
+|         <!-- Section: Social media -->
+|     
+|     Path: http://10.129.198.176:80/
+|     Line number: 121
+|     Comment: 
+|         <!-- Grid row -->
+|     
+|     Path: http://10.129.198.176:80/
+|     Line number: 134
+|     Comment: 
+|         <!-- Links -->
+|     
+|     Path: http://10.129.198.176:80/
+|     Line number: 91
+|     Comment: 
+|         <!-- Left -->
+|     
+|     Path: http://10.129.198.176:80/
+|     Line number: 195
+|     Comment: 
+|         <!-- Copyright -->
+|     
+|     Path: http://10.129.198.176:80/
+|     Line number: 125
+|     Comment: 
+|         <!-- Content -->
+|     
+|     Path: http://10.129.198.176:80/
+|     Line number: 84
+|     Comment: 
+|         <!-- Footer -->
+|     
+|     Path: http://10.129.198.176:80/
+|     Line number: 93
+|     Comment: 
+|         <!-- Right -->
+|     
+|     Path: http://10.129.198.176:80/
+|     Line number: 123
+|     Comment: 
+|         <!-- Grid column -->
+|     
+|     Path: http://10.129.198.176:80/
+|     Line number: 118
+|     Comment: 
+|_        <!-- Section: Links  -->
+| http-security-headers: 
+|   Cache_Control: 
+|_    Header: Cache-Control: no-cache, private
+|_http-mobileversion-checker: No mobile version detected.
+|_http-chrono: Request times for /; avg: 273.86ms; min: 250.20ms; max: 301.09ms
+|_http-title: HTTP Monitoring Tool
+|_http-feed: Couldn't find any feeds.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-date: Tue, 25 Apr 2023 09:01:47 GMT; +59m59s from local time.
+| http-grep: 
+|   (2) http://10.129.198.176:80/: 
+|     (1) email: 
+|       + contact@health.htb
+|     (1) ip: 
+|_      + 10.129.198.176
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /css/
+|       css: 1
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /css/
+|   Total files found (by extension):
+|_    Other: 1; css: 1
+| http-wordpress-enum: 
+| Search limited to top 100 themes/plugins
+|   themes
+|     twentyeleven
+|     twentytwelve
+|     twentyten
+|     twentythirteen
+|     twentyfourteen
+|     twentyfifteen
+|     responsive
+|     customizr
+|     zerif-lite
+|     virtue
+|     storefront
+|     atahualpa
+|     twentysixteen
+|     vantage
+|     hueman
+|     spacious
+|     evolve
+|     colorway
+|     graphene
+|     sydney
+|     ifeature
+|     mh-magazine-lite
+|     generatepress
+|     mantra
+|     omega
+|     onetone
+|     coraline
+|     pinboard
+|     thematic
+|     sparkling
+|     catch-box
+|     make
+|     colormag
+|     enigma
+|     custom-community
+|     mystique
+|     alexandria
+|     delicate
+|     lightword
+|     attitude
+|     inove
+|     magazine-basic
+|     raindrops
+|     minamaze
+|     zbench
+|     point
+|     eclipse
+|     portfolio-press
+|     twentyseventeen
+|     travelify
+|     swift-basic
+|     iconic-one
+|     arcade-basic
+|     bouquet
+|     pixel
+|     sliding-door
+|     pilcrow
+|     simple-catch
+|     tempera
+|     destro
+|     p2
+|     sunspot
+|     sundance
+|     dusk-to-dawn
+|     onepress
+|     moesia
+|     dynamic-news-lite
+|     parabola
+|     parament
+|     dazzling
+|     accesspress-lite
+|     optimizer
+|     one-page
+|     chaostheory
+|     business-lite
+|     duster
+|     constructor
+|     nirvana
+|     sixteen
+|     esquire
+|     beach
+|     next-saturday
+|     flat
+|     hatch
+|     minimatica
+|     radiate
+|     accelerate
+|     oxygen
+|     accesspress-parallax
+|     swift
+|     spun
+|     wp-creativix
+|     suevafree
+|     hemingway
+|     pink-touch-2
+|     motion
+|     fruitful
+|     steira
+|     news
+|     llorix-one-lite
+|   plugins
+|     akismet
+|     contact-form-7
+|     wordpress-seo
+|     jetpack
+|     all-in-one-seo-pack
+|     wordfence
+|     woocommerce
+|     google-sitemap-generator
+|     wordpress-importer
+|     nextgen-gallery
+|     google-analytics-for-wordpress
+|     wp-super-cache
+|     tinymce-advanced
+|     wptouch
+|     better-wp-security
+|     siteorigin-panels
+|     updraftplus
+|     w3-total-cache
+|     google-analytics-dashboard-for-wp
+|     wp-pagenavi
+|     si-contact-form
+|     advanced-custom-fields
+|     mailchimp-for-wp
+|     the-events-calendar
+|     add-to-any
+|     duplicator
+|     wysija-newsletters
+|     ninja-forms
+|     wp-smushit
+|     buddypress
+|     ewww-image-optimizer
+|     so-widgets-bundle
+|     really-simple-captcha
+|     ml-slider
+|     black-studio-tinymce-widget
+|     photo-gallery
+|     broken-link-checker
+|     regenerate-thumbnails
+|     google-analyticator
+|     redirection
+|     captcha
+|     duplicate-post
+|     breadcrumb-navxt
+|     backwpup
+|     user-role-editor
+|     yet-another-related-posts-plugin
+|     contact-form-plugin
+|     newsletter
+|     bbpress
+|     all-in-one-wp-security-and-firewall
+|     disable-comments
+|     social-networks-auto-poster-facebook-twitter-g
+|     wp-optimize
+|     addthis
+|     wp-statistics
+|     wp-e-commerce
+|     all-in-one-wp-migration
+|     backupwordpress
+|     si-captcha-for-wordpress
+|     wp-slimstat
+|     wp-google-maps
+|     wp-spamshield
+|     wp-maintenance-mode
+|     googleanalytics
+|     worker
+|     yith-woocommerce-wishlist
+|     wp-multibyte-patch
+|     wp-to-twitter
+|     image-widget
+|     wp-db-backup
+|     shortcodes-ultimate
+|     ultimate-tinymce
+|     share-this
+|     disqus-comment-system
+|     gallery-bank
+|     types
+|     wp-polls
+|     custom-post-type-ui
+|     shareaholic
+|     polylang
+|     post-types-order
+|     gtranslate
+|     bulletproof-security
+|     wp-fastest-cache
+|     facebook
+|     sociable
+|     iwp-client
+|     nextgen-facebook
+|     seo-ultimate
+|     wp-postviews
+|     formidable
+|     squirrly-seo
+|     wp-mail-smtp
+|     tablepress
+|     redux-framework
+|     page-links-to
+|     youtube-embed-plus
+|     contact-bank
+|     maintenance
+|_    wp-retina-2x
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-aspnet-debug: 
+|_  status: DEBUG is enabled
+
+Host script results:
+|_dns-brute: Can't guess domain of "10.129.198.176"; use dns-brute.domain script argument.
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 22    0       43979.50   8319.93  0.0%
+|_80    0       43643.70   6761.76  0.0%
+|_fcrdns: FAIL (No PTR record)
+|_path-mtu: PMTU == 1500
+|_ipidseq: All zeros
+
+# Nmap done at Tue Apr 25 10:06:12 2023 -- 1 IP address (1 host up) scanned in 300.39 seconds

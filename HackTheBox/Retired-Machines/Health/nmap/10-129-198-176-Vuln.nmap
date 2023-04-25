@@ -1,0 +1,16 @@
+# Nmap 7.93 scan initiated Tue Apr 25 10:06:12 2023 as: nmap --script vuln -oA nmap/10-129-198-176-Vuln --min-rate 500 -e tun0 -p 22,80 10.129.198.176
+Nmap scan report for 10.129.198.176
+Host is up (0.054s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|_  /robots.txt: Robots file
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+| http-aspnet-debug: 
+|_  status: DEBUG is enabled
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+
+# Nmap done at Tue Apr 25 10:10:41 2023 -- 1 IP address (1 host up) scanned in 269.26 seconds

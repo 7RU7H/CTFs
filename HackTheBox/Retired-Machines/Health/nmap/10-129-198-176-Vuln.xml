@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Tue Apr 25 10:06:12 2023 as: nmap -&#45;script vuln -oA nmap/10-129-198-176-Vuln -&#45;min-rate 500 -e tun0 -p 22,80 10.129.198.176 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-129-198-176-Vuln -&#45;min-rate 500 -e tun0 -p 22,80 10.129.198.176" start="1682413572" startstr="Tue Apr 25 10:06:12 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.198.176" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1682413595" endtime="1682413841"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.129.198.176" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-enum" output="&#xa;  /robots.txt: Robots file&#xa;"/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-aspnet-debug" output="&#xa;  status: DEBUG is enabled"><elem key="status">DEBUG is enabled</elem>
+</script><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/></port>
+</ports>
+<times srtt="53998" rttvar="32630" to="184518"/>
+</host>
+<runstats><finished time="1682413841" timestr="Tue Apr 25 10:10:41 2023" summary="Nmap done at Tue Apr 25 10:10:41 2023; 1 IP address (1 host up) scanned in 269.26 seconds" elapsed="269.26" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
