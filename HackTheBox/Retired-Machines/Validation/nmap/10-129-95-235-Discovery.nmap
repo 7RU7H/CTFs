@@ -1,0 +1,42 @@
+# Nmap 7.93 scan initiated Tue Apr 25 13:48:58 2023 as: nmap --script discovery -oA nmap/10-129-95-235-Discovery --min-rate 500 -e tun0 -p 4566,22 10.129.95.235
+Pre-scan script results:
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_lltd-discovery: false
+|_broadcast-ping: false
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.129.95.235
+Host is up (0.053s latency).
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (9)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   3072 d8f5efd2d3f98dadc6cf24859426ef7a (RSA)
+|   256 463d6bcba819eb6ad06886948673e172 (ECDSA)
+|_  256 7032d7e377c14acf472adee5087af87a (ED25519)
+|_banner: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.3
+4566/tcp open  kwtc
+
+Host script results:
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "10.129.95.235"; use dns-brute.domain script argument.
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 22    0       48491.60   4922.04  0.0%
+|_4566  0       46737.00   6141.38  0.0%
+|_ipidseq: All zeros
+|_path-mtu: PMTU == 1500
+
+# Nmap done at Tue Apr 25 13:49:36 2023 -- 1 IP address (1 host up) scanned in 38.15 seconds

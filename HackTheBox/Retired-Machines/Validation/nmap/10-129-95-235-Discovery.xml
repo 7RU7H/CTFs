@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Tue Apr 25 13:48:58 2023 as: nmap -&#45;script discovery -oA nmap/10-129-95-235-Discovery -&#45;min-rate 500 -e tun0 -p 4566,22 10.129.95.235 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/10-129-95-235-Discovery -&#45;min-rate 500 -e tun0 -p 4566,22 10.129.95.235" start="1682426938" startstr="Tue Apr 25 13:48:58 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,4566"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="targets-sniffer" output="Sniffed 1 address(es). &#xa;224.0.23.12"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/><script id="lltd-discovery" output="false">false</script><script id="broadcast-ping" output="false">false</script><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.95.235" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1682426962" endtime="1682426976"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.129.95.235" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (9)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (6)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ssh-rsa</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script><script id="ssh-hostkey" output="&#xa;  3072 d8f5efd2d3f98dadc6cf24859426ef7a (RSA)&#xa;  256 463d6bcba819eb6ad06886948673e172 (ECDSA)&#xa;  256 7032d7e377c14acf472adee5087af87a (ED25519)"><table>
+<elem key="bits">3072</elem>
+<elem key="type">ssh-rsa</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABgQCgSpafkjRVogAlgtxt6cFN7sU4sRTiGYC01QloBpbOwerqFUoYNyhCdNP/9rvdhwFpXomoMhDxioWQZb1RTSbR5aCwkzwDRnLz5PKN/7faaoEVjFM1vSnjGwWxzPZJw4Xy8wEbvMDlNZQbWu44UMWhLH+Vp63egRsut0SkTpUy3Ovp/yb3uAeT/4sUPG+LvDgzXD2QY+O1SV0Y3pE+pRmL3UfRKr2ltMfpcc7y7423+3oRSONHfy1upVUcUZkRIKrl9Qb4CDpxbVi/hYfAFQcOYH+IawAounkeiTMMEtOYbzDysEzVrFcCiGPWOX5+7tu4H7jYnZiel39ka/TFODVA+m2ZJiz2NoKLKTVhouVAGkH7adYtotM62JEtow8MW0HCZ9+cX6ki5cFK9WQhN++KZej2fEZDkxV7913KaIa4HCbiDq1Sfr5j7tFAWnNDo097UHXgN5A0mL1zNqwfTBCHQTEga/ztpDE0pmTKS4rkBne9EDn6GpVhSuabX9S/BLk=</elem>
+<elem key="fingerprint">d8f5efd2d3f98dadc6cf24859426ef7a</elem>
+</table>
+<table>
+<elem key="bits">256</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJ9LolyD5tnJ06EqjRR6bFX/7oOoTeFPw2TKsP1KCHJcsPSVfZIafOYEsWkaq67dsCvOdIZ8VQiNAKfnGiaBLOo=</elem>
+<elem key="fingerprint">463d6bcba819eb6ad06886948673e172</elem>
+</table>
+<table>
+<elem key="bits">256</elem>
+<elem key="type">ssh-ed25519</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIJOP8cvEQVqCwuWYT06t/DEGxy6sNajp7CzuvfJzrCRZ</elem>
+<elem key="fingerprint">7032d7e377c14acf472adee5087af87a</elem>
+</table>
+</script><script id="banner" output="SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.3"/></port>
+<port protocol="tcp" portid="4566"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="kwtc" method="table" conf="3"/></port>
+</ports>
+<hostscript><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.129.95.235&quot;; use dns-brute.domain script argument."/><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)&#xa;22    0       48491.60   4922.04  0.0%&#xa;4566  0       46737.00   6141.38  0.0%&#xa;"/><script id="ipidseq" output="All zeros"/><script id="path-mtu" output="PMTU == 1500"/></hostscript><times srtt="53234" rttvar="38867" to="208702"/>
+</host>
+<runstats><finished time="1682426976" timestr="Tue Apr 25 13:49:36 2023" summary="Nmap done at Tue Apr 25 13:49:36 2023; 1 IP address (1 host up) scanned in 38.15 seconds" elapsed="38.15" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
