@@ -30,7 +30,7 @@ Learnt:
 Beyond Root:
 
 - [[$name-Notes.md]]
-- [[$name-CMD-by-CMD.md]]
+- [[$name-CMD-by-CMDs.md]]
 
 
 ![]($name-map.excalidraw.md)
@@ -76,6 +76,8 @@ Credentials:
 
 ### Todo 
 
+Make Excalidraw
+
 ### Done
       
 " > $site/$name/$name-Notes.md
@@ -89,8 +91,6 @@ sed -i 's/$oldip/$newip/g' *-CMD-by-CMDs.md
 \`\`\`
 
 " > $site/$name/$name-CMD-by-CMDs.md
-
-touch Excalidraw/$name-map.excalidraw.md
 
 else
 	echo $HELP
