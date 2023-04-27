@@ -1,0 +1,327 @@
+# Nmap 7.93 scan initiated Thu Apr 27 09:34:42 2023 as: nmap --script discovery -oA nmap/10-129-227-180-Discovery --min-rate 500 -e tun0 -p 80,25,53,22 10.129.227.180
+Pre-scan script results:
+|_lltd-discovery: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-ping: false
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.129.227.180
+Host is up (0.059s latency).
+
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+22/tcp open  ssh
+|_banner: SSH-2.0-OpenSSH_7.9p1 Debian-10+deb10u2
+| ssh-hostkey: 
+|   2048 61ff293b36bd9dacfbde1f56884cae2d (RSA)
+|   256 9ecdf2406196ea21a6ce2602af759a78 (ECDSA)
+|_  256 7293f91158de34ad12b54b4a7364b970 (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+25/tcp open  smtp
+|_smtp-commands: Couldn't establish connection on port 25
+|_smtp-open-relay: Couldn't establish connection on port 25
+53/tcp open  domain
+|_dns-nsec-enum: Can't determine domain for host 10.129.227.180; use dns-nsec-enum.domains script arg.
+| dns-nsid: 
+|_  bind.version: 9.11.5-P4-5.1+deb10u7-Debian
+|_dns-nsec3-enum: Can't determine domain for host 10.129.227.180; use dns-nsec3-enum.domains script arg.
+80/tcp open  http
+|_http-feed: Couldn't find any feeds.
+|_http-title: Coming Soon - Start Bootstrap Theme
+|_http-errors: Couldn't find any error pages.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-referer-checker: 
+| Spidering limited to: maxpagecount=30
+|   https://cdn.jsdelivr.net:443/npm/bootstrap15.1.3/dist/js/bootstrap.bundle.min.js
+|   https://use.fontawesome.com:443/releases/v6.1.0/js/all.js
+|_  https://cdn.startbootstrap.com:443/sb-forms-latest.js
+| http-vhosts: 
+|_128 names had status 200
+|_http-mobileversion-checker: No mobile version detected.
+|_http-date: Thu, 27 Apr 2023 08:35:36 GMT; +59m59s from local time.
+|_http-chrono: Request times for /; avg: 498.94ms; min: 247.57ms; max: 841.07ms
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.227.180
+|     
+|     Path: http://10.129.227.180:80/css/styles.css
+|     Line number: 7717
+|     Comment: 
+|         /* rtl:end:remove */
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 32
+|     Comment: 
+|         <!-- To make this form functional, sign up at-->
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 22
+|     Comment: 
+|         <!-- Masthead-->
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 20
+|     Comment: 
+|         <!-- Background Video-->
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 16
+|     Comment: 
+|         <!-- Core theme CSS (includes Bootstrap)-->
+|     
+|     Path: http://10.129.227.180:80/css/styles.css
+|     Line number: 6118
+|     Comment: 
+|         /* rtl:options: {
+|           "autoRename": true,
+|           "stringMap":[ {
+|             "name"    : "prev-next",
+|             "search"  : "prev",
+|             "replace" : "next"
+|           } ]
+|         } */
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 45
+|     Comment: 
+|         <!-- This is what your users will see when the form-->
+|     
+|     Path: http://10.129.227.180:80/js/scripts.js
+|     Line number: 6
+|     Comment: 
+|         
+|         // This file is intentionally blank
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 31
+|     Comment: 
+|         <!-- This form is pre-integrated with SB Forms.-->
+|     
+|     Path: http://10.129.227.180:80/css/styles.css
+|     Line number: 6042
+|     Comment: 
+|         /* rtl:end:ignore */
+|     
+|     Path: http://10.129.227.180:80/css/styles.css
+|     Line number: 441
+|     Comment: 
+|         /* rtl:raw:
+|         [type="tel"],
+|         [type="url"],
+|         [type="email"],
+|         [type="number"] {
+|           direction: ltr;
+|         }
+|         */
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 12
+|     Comment: 
+|         <!-- Google fonts-->
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 58
+|     Comment: 
+|         <!-- an error submitting the form-->
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 77
+|     Comment: 
+|         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 75
+|     Comment: 
+|         <!-- Core theme JS-->
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 28
+|     Comment: 
+|         <!-- * * * * * * * * * * * * * * *-->
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 33
+|     Comment: 
+|         <!-- https://startbootstrap.com/solution/contact-forms-->
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 78
+|     Comment: 
+|         <!-- * *                               SB Forms JS                               * *-->
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 64
+|     Comment: 
+|         <!-- Social Icons-->
+|     
+|     Path: http://10.129.227.180:80/css/styles.css
+|     Line number: 7
+|     Comment: 
+|         /*!
+|          * Bootstrap v5.1.3 (https://getbootstrap.com/)
+|          * Copyright 2011-2021 The Bootstrap Authors
+|          * Copyright 2011-2021 Twitter, Inc.
+|          * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+|          */
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 43
+|     Comment: 
+|         <!-- Submit success message-->
+|     
+|     Path: http://10.129.227.180:80/css/styles.css
+|     Line number: 4792
+|     Comment: 
+|         /* rtl: var(--bs-breadcrumb-divider, "/") */
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 57
+|     Comment: 
+|         <!-- This is what your users will see when there is-->
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 34
+|     Comment: 
+|         <!-- to get an API token!-->
+|     
+|     Path: http://10.129.227.180:80/css/styles.css
+|     Line number: 257
+|     Comment: 
+|         /* rtl:ignore */
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 36
+|     Comment: 
+|         <!-- Email address input-->
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 29
+|     Comment: 
+|         <!-- * * SB Forms Contact Form * *-->
+|     
+|     Path: http://10.129.227.180:80/css/styles.css
+|     Line number: 7711
+|     Comment: 
+|         /* rtl:begin:remove */
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 55
+|     Comment: 
+|         <!-- Submit error message-->
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 44
+|     Comment: 
+|         <!---->
+|     
+|     Path: http://10.129.227.180:80/css/styles.css
+|     Line number: 6031
+|     Comment: 
+|         /* rtl:begin:ignore */
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 79
+|     Comment: 
+|         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 73
+|     Comment: 
+|         <!-- Bootstrap core JS-->
+|     
+|     Path: http://10.129.227.180:80/js/scripts.js
+|     Line number: 1
+|     Comment: 
+|         /*!
+|         * Start Bootstrap - Coming Soon v6.0.6 (https://startbootstrap.com/theme/coming-soon)
+|         * Copyright 2013-2022 Start Bootstrap
+|         * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-coming-soon/blob/master/LICENSE)
+|         */
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 10
+|     Comment: 
+|         <!-- Font Awesome icons (free version)-->
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 46
+|     Comment: 
+|         <!-- has successfully submitted-->
+|     
+|     Path: http://10.129.227.180:80/
+|     Line number: 65
+|     Comment: 
+|_        <!-- For more icon options, visit https://fontawesome.com/icons?d=gallery&p=2&s=brands-->
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /assets/
+|       ico: 1
+|     /assets/mp4/
+|       mp4: 1
+|     /css/
+|       css: 1
+|     /js/
+|       js: 1
+|   Longest directory structure:
+|     Depth: 2
+|     Dir: /assets/mp4/
+|   Total files found (by extension):
+|_    Other: 1; css: 1; ico: 1; js: 1; mp4: 1
+| http-headers: 
+|   Server: nginx/1.14.2
+|   Date: Thu, 27 Apr 2023 08:35:45 GMT
+|   Content-Type: text/html
+|   Content-Length: 5480
+|   Last-Modified: Wed, 23 Mar 2022 16:34:04 GMT
+|   Connection: close
+|   ETag: "623b4bfc-1568"
+|   Accept-Ranges: bytes
+|   
+|_  (Request type: HEAD)
+
+Host script results:
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV     LOSS (%)
+| 22    0       161402.00  150476.90  0.0%
+| 25    0       166852.22  174976.81  10.0%
+| 53    0       130242.56  121623.80  10.0%
+|_80    0       149296.67  149816.77  10.0%
+|_path-mtu: PMTU == 1500
+|_ipidseq: All zeros
+|_dns-brute: Can't guess domain of "10.129.227.180"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Thu Apr 27 09:39:04 2023 -- 1 IP address (1 host up) scanned in 262.21 seconds

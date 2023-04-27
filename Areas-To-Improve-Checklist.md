@@ -7,6 +7,8 @@
 	 - Requirements lists for exploitation chains
 	 - Add comments to the modified exploit code so that I understand and have questioned what it is doing in the context of the box.
 - Read exploit twice and once after changes
+- When Living in Burp sublive in the devtools 
+
 
 ```bash
 echo "
