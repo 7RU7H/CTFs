@@ -1,0 +1,175 @@
+# Nmap 7.93 scan initiated Thu Apr 27 11:15:42 2023 as: nmap --script discovery -oA nmap/10-129-198-26-Discovery --min-rate 500 -e tun0 -p 445,135,80,5985,49669 10.129.198.26
+Pre-scan script results:
+|_lltd-discovery: false
+|_broadcast-ping: false
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+Nmap scan report for 10.129.198.26
+Host is up (0.045s latency).
+
+PORT      STATE SERVICE
+80/tcp    open  http
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; php: 1
+|     /css/
+|       css: 1
+|     /js/
+|       js: 1
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /js/
+|   Total files found (by extension):
+|_    Other: 1; css: 1; js: 1; php: 1
+| http-waf-detect: IDS/IPS/WAF detected:
+|_10.129.198.26:80/?p4yl04d3=<script>alert(document.cookie)</script>
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Redirected To: login.php
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-php-version: Version from header x-powered-by: PHP/7.3.1
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.198.26
+|   url                                           method
+|   http://10.129.198.26:80/                      FORM
+|   http://10.129.198.26:80/login.php?guest=true  FORM
+|_  http://10.129.198.26:80/login.php             FORM
+|_http-errors: Couldn't find any error pages.
+| http-referer-checker: 
+| Spidering limited to: maxpagecount=30
+|   https://cdn.jsdelivr.net:443/particles.js/2.0.0/particles.min.js
+|_  https://cdnjs.cloudflare.com:443/ajax/libs/jquery/3.1.1/jquery.min.js
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-chrono: Request times for /; avg: 484.49ms; min: 198.09ms; max: 861.40ms
+| http-vhosts: 
+|_128 names had status 302
+| http-security-headers: 
+|   Cache_Control: 
+|     Header: Cache-Control: no-store, no-cache, must-revalidate
+|   Pragma: 
+|     Header: Pragma: no-cache
+|   Expires: 
+|_    Header: Expires: Thu, 19 Nov 1981 08:52:00 GMT
+|_http-date: Thu, 27 Apr 2023 10:16:22 GMT; +59m59s from local time.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.198.26
+|     
+|     Path: http://10.129.198.26:80/css/style.css
+|     Line number: 160
+|     Comment: 
+|         /*   background: cornflowerblue; */
+|     
+|     Path: http://10.129.198.26:80/js/index.js
+|     Line number: 1
+|     Comment: 
+|         /* ---- particles.js config ---- */
+|     
+|     Path: http://10.129.198.26:80/js/index.js
+|     Line number: 76
+|     Comment: 
+|         /* ---- stats.js config ---- */
+|     
+|     Path: http://10.129.198.26:80/css/style.css
+|     Line number: 36
+|     Comment: 
+|_        /******* Login Page *******/
+|_http-feed: Couldn't find any feeds.
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-enum: 
+|_  /login.php: Possible admin folder
+| http-headers: 
+|   Cache-Control: no-store, no-cache, must-revalidate
+|   Pragma: no-cache
+|   Content-Length: 0
+|   Content-Type: text/html; charset=UTF-8
+|   Expires: Thu, 19 Nov 1981 08:52:00 GMT
+|   Server: Microsoft-IIS/10.0
+|   X-Powered-By: PHP/7.3.1
+|   Set-Cookie: PHPSESSID=gvnldpq6naplrs508bs2admog0; path=/
+|   Date: Thu, 27 Apr 2023 10:16:46 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+|_http-mobileversion-checker: No mobile version detected.
+| http-title: Support Login Page
+|_Requested resource was login.php
+135/tcp   open  msrpc
+445/tcp   open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+5985/tcp  open  wsman
+49669/tcp open  unknown
+
+Host script results:
+| smb-protocols: 
+|   dialects: 
+|     202
+|     210
+|     300
+|     302
+|_    311
+| smb2-security-mode: 
+|   311: 
+|_    Message signing enabled but not required
+|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_path-mtu: PMTU == 1500
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_dns-brute: Can't guess domain of "10.129.198.26"; use dns-brute.domain script argument.
+|_ipidseq: Unknown
+|_fcrdns: FAIL (No PTR record)
+| smb2-capabilities: 
+|   202: 
+|     Distributed File System
+|   210: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   300: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   302: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   311: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+| smb2-time: 
+|   date: 2023-04-27T10:16:23
+|_  start_date: N/A
+| qscan: 
+| PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 80     0       57936.80   35525.87  0.0%
+| 135    0       51603.90   13382.48  0.0%
+| 445    0       44412.40   5271.58   0.0%
+| 5985   0       46793.50   9623.47   0.0%
+|_49669  0       66674.90   38701.73  0.0%
+
+# Nmap done at Thu Apr 27 11:19:34 2023 -- 1 IP address (1 host up) scanned in 232.12 seconds

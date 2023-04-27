@@ -1,4 +1,4 @@
-# Notes
+# Heist Notes
 
 ## Data 
 
@@ -14,12 +14,18 @@ Credentials:
 
 ## Objectives
 
+## Target Map
+
+![](Heist-map.excalidraw.md)
+
 ## Solution Inventory Map
+
 
 ### Todo 
 
+Make Excalidraw
+
 ### Done
-
-
       
-      
+
+httponly flag not set

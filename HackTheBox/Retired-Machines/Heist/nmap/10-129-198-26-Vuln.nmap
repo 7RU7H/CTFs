@@ -1,0 +1,57 @@
+# Nmap 7.93 scan initiated Thu Apr 27 11:19:34 2023 as: nmap --script vuln -oA nmap/10-129-198-26-Vuln --min-rate 500 -e tun0 -p 445,135,80,5985,49669 10.129.198.26
+Nmap scan report for 10.129.198.26
+Host is up (0.055s latency).
+
+PORT      STATE SERVICE
+80/tcp    open  http
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.198.26
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.129.198.26:80/
+|     Form id: login_username
+|     Form action: /login.php
+|     
+|     Path: http://10.129.198.26:80/login.php
+|     Form id: login_username
+|     Form action: /login.php
+|     
+|     Path: http://10.129.198.26:80/login.php?guest=true
+|     Form id: login_username
+|_    Form action: /login.php
+| http-enum: 
+|_  /login.php: Possible admin folder
+| http-phpself-xss: 
+|   VULNERABLE:
+|   Unsafe use of $_SERVER["PHP_SELF"] in PHP files
+|     State: VULNERABLE (Exploitable)
+|       PHP files are not handling safely the variable $_SERVER["PHP_SELF"] causing Reflected Cross Site Scripting vulnerabilities.
+|              
+|     Extra information:
+|       
+|   Vulnerable files with proof of concept:
+|     http://10.129.198.26/login.php/%27%22/%3E%3Cscript%3Ealert(1)%3C/script%3E
+|   Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.198.26
+|     References:
+|       http://php.net/manual/en/reserved.variables.server.php
+|_      https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|       httponly flag not set
+|   /login.php: 
+|     PHPSESSID: 
+|_      httponly flag not set
+135/tcp   open  msrpc
+445/tcp   open  microsoft-ds
+5985/tcp  open  wsman
+49669/tcp open  unknown
+
+Host script results:
+|_smb-vuln-ms10-061: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_samba-vuln-cve-2012-1182: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_smb-vuln-ms10-054: false
+
+# Nmap done at Thu Apr 27 11:24:56 2023 -- 1 IP address (1 host up) scanned in 322.30 seconds
