@@ -145,27 +145,6 @@ OneSeclistDirectoryBustingWordlistToRuleTheCTFs
 - Do a slow set of feroxbusters scan over to collect and double verify 
 
 
-GSSF - GoSmokeSomeFilters.go - convert strings to filter evading strings. 
-```go
-cmds:
-hex -b Bad Characters
-url encode
-requote -b "\"" 
-unicode crazy word to describe using weird characters 
-escape - escape 
-lfi -e url -b "."
-```
-
-LFI filter
-```bash
-echo -ne '/../../../../../../../../../../../../' | xxd -plain | tr -d '\n' | sed 's/\(..\)/%\1/g'
-```
-
-
-```go
-```
-
-
 #### Mad Idea 2 - Flow: One to take control of all network routes from inside a network  
 
 How?

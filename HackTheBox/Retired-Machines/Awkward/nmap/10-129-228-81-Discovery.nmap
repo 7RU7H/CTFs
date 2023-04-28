@@ -1,0 +1,94 @@
+# Nmap 7.93 scan initiated Fri Apr 28 10:57:06 2023 as: nmap --script discovery -oA nmap/10-129-228-81-Discovery --min-rate 500 -e tun0 -p 22,80 10.129.228.81
+Pre-scan script results:
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-ping: false
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_lltd-discovery: false
+Nmap scan report for 10.129.228.81
+Host is up (0.048s latency).
+
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh-hostkey: 
+|   256 7254afbaf6e2835941b7cd611c2f418b (ECDSA)
+|_  256 59365bba3c7821e326b37d23605aec38 (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (4)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_8.9p1 Ubuntu-3
+80/tcp open  http
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-chrono: Request times for /; avg: 206.82ms; min: 159.02ms; max: 264.41ms
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1
+| http-headers: 
+|   Server: nginx/1.18.0 (Ubuntu)
+|   Date: Fri, 28 Apr 2023 09:57:41 GMT
+|   Content-Type: text/html
+|   Content-Length: 132
+|   Last-Modified: Thu, 15 Sep 2022 12:33:07 GMT
+|   Connection: close
+|   ETag: "63231b83-84"
+|   Accept-Ranges: bytes
+|   
+|_  (Request type: HEAD)
+| http-vhosts: 
+|_128 names had status 200
+|_http-errors: Couldn't find any error pages.
+|_http-feed: Couldn't find any feeds.
+|_http-date: Fri, 28 Apr 2023 09:57:31 GMT; +1h00m00s from local time.
+|_http-comments-displayer: Couldn't find any comments.
+|_http-mobileversion-checker: No mobile version detected.
+|_http-title: Site doesn't have a title (text/html).
+
+Host script results:
+|_ipidseq: All zeros
+|_fcrdns: FAIL (No PTR record)
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       87851.20   35544.14  0.0%
+|_80    0       84958.50   67032.00  0.0%
+|_dns-brute: Can't guess domain of "10.129.228.81"; use dns-brute.domain script argument.
+|_path-mtu: PMTU == 1500
+
+# Nmap done at Fri Apr 28 11:01:15 2023 -- 1 IP address (1 host up) scanned in 248.96 seconds
