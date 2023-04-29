@@ -1,0 +1,50 @@
+# Nmap 7.93 scan initiated Sat Apr 29 09:29:13 2023 as: nmap --script vuln -oA nmap/10-129-196-158-Vuln --min-rate 500 -e tun0 -p 80 10.129.196.158
+Nmap scan report for 10.129.196.158
+Host is up (0.056s latency).
+
+PORT   STATE SERVICE
+80/tcp open  http
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.196.158
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.129.196.158:80/
+|     Form id: contact-name
+|_    Form action: empty.html
+| http-vuln-cve2011-3192: 
+|   VULNERABLE:
+|   Apache byterange filter DoS
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2011-3192  BID:49303
+|       The Apache web server is vulnerable to a denial of service attack when numerous
+|       overlapping byte ranges are requested.
+|     Disclosure date: 2011-08-19
+|     References:
+|       https://www.securityfocus.com/bid/49303
+|       https://www.tenable.com/plugins/nessus/55976
+|       https://seclists.org/fulldisclosure/2011/Aug/175
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|_      http://ha.ckers.org/slowloris/
+| http-enum: 
+|   /css/: Potentially interesting folder w/ directory listing
+|   /icons/: Potentially interesting folder w/ directory listing
+|   /img/: Potentially interesting folder w/ directory listing
+|   /js/: Potentially interesting folder w/ directory listing
+|_  /lib/: Potentially interesting folder w/ directory listing
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+
+# Nmap done at Sat Apr 29 09:33:50 2023 -- 1 IP address (1 host up) scanned in 276.76 seconds
