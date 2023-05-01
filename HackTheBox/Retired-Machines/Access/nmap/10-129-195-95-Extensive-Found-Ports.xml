@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Mon May  1 09:31:10 2023 as: nmap -sC -sV -oA nmap/10-129-195-95-Extensive-Found-Ports -&#45;min-rate 500 -e tun0 -p 21,80,23 10.129.195.95 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA nmap/10-129-195-95-Extensive-Found-Ports -&#45;min-rate 500 -e tun0 -p 21,80,23 10.129.195.95" start="1682929870" startstr="Mon May  1 09:31:10 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="21,23,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.195.95" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1682929883" endtime="1682930061"><status state="up" reason="echo-reply" reason_ttl="127"/>
+<address addr="10.129.195.95" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ftp" product="Microsoft ftpd" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:microsoft:ftp_service</cpe><cpe>cpe:/o:microsoft:windows</cpe></service><script id="ftp-anon" output="Anonymous FTP login allowed (FTP code 230)&#xa;Can&apos;t get directory listing: PASV failed: 425 Cannot open data connection."/><script id="ftp-syst" output="&#xa;  SYST: Windows_NT"><elem key="SYST">Windows_NT</elem>
+</script></port>
+<port protocol="tcp" portid="23"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="telnet" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" product="Microsoft IIS httpd" version="7.5" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:microsoft:internet_information_services:7.5</cpe><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-title" output="MegaCorp"><elem key="title">MegaCorp</elem>
+</script><script id="http-methods" output="&#xa;  Potentially risky methods: TRACE"><table key="Potentially risky methods">
+<elem>TRACE</elem>
+</table>
+</script><script id="http-server-header" output="Microsoft-IIS/7.5"><elem>Microsoft-IIS/7.5</elem>
+</script></port>
+</ports>
+<times srtt="49667" rttvar="26210" to="154507"/>
+</host>
+<runstats><finished time="1682930061" timestr="Mon May  1 09:34:21 2023" summary="Nmap done at Mon May  1 09:34:21 2023; 1 IP address (1 host up) scanned in 191.50 seconds" elapsed="191.50" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -1,0 +1,94 @@
+# Nmap 7.93 scan initiated Mon May  1 09:34:21 2023 as: nmap --script discovery -oA nmap/10-129-195-95-Discovery --min-rate 500 -e tun0 -p 21,80,23 10.129.195.95
+Pre-scan script results:
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-ping: false
+| targets-sniffer: Sniffed 2 address(es). 
+| 224.0.23.12
+|_10.129.195.95
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_lltd-discovery: false
+Nmap scan report for 10.129.195.95
+Host is up (0.050s latency).
+
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+21/tcp open  ftp
+| ftp-syst: 
+|_  SYST: Windows_NT
+|_banner: 220 Microsoft FTP Service
+23/tcp open  telnet
+80/tcp open  http
+|_http-date: Mon, 01 May 2023 08:34:55 GMT; +59m59s from local time.
+|_http-comments-displayer: Couldn't find any comments.
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-errors: Couldn't find any error pages.
+|_http-devframework: ASP.NET detected. Found related header.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-headers: 
+|   Content-Length: 391
+|   Content-Type: text/html
+|   Last-Modified: Thu, 23 Aug 2018 23:33:43 GMT
+|   Accept-Ranges: bytes
+|   ETag: "44a87bb393bd41:0"
+|   Server: Microsoft-IIS/7.5
+|   X-Powered-By: ASP.NET
+|   Date: Mon, 01 May 2023 08:34:56 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+| http-vhosts: 
+| 125 names had status 200
+| mta
+| xml
+|_crs
+|_http-mobileversion-checker: No mobile version detected.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; jpg: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1; jpg: 1
+|_http-feed: Couldn't find any feeds.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-chrono: Request times for /; avg: 127.70ms; min: 87.82ms; max: 152.27ms
+|_http-title: MegaCorp
+
+Host script results:
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 21    0       45684.80   6083.41   0.0%
+| 23    0       47891.60   13004.36  0.0%
+|_80    0       74352.70   84288.62  0.0%
+|_dns-brute: Can't guess domain of "10.129.195.95"; use dns-brute.domain script argument.
+|_ipidseq: Unknown
+|_fcrdns: FAIL (No PTR record)
+|_path-mtu: PMTU == 1500
+
+# Nmap done at Mon May  1 09:37:24 2023 -- 1 IP address (1 host up) scanned in 182.77 seconds
