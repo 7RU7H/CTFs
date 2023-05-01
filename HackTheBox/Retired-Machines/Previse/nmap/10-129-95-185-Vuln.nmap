@@ -1,0 +1,29 @@
+# Nmap 7.93 scan initiated Mon May  1 12:39:50 2023 as: nmap --script vuln -oA nmap/10-129-95-185-Vuln --min-rate 500 -e tun0 -p 22,80 10.129.95.185
+Nmap scan report for 10.129.95.185
+Host is up (0.052s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+| http-enum: 
+|   /login.php: Possible admin folder
+|   /css/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+|_  /js/: Potentially interesting directory w/ listing on 'apache/2.4.29 (ubuntu)'
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|       httponly flag not set
+|   /login.php: 
+|     PHPSESSID: 
+|_      httponly flag not set
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.95.185
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.129.95.185:80/
+|     Form id: 
+|_    Form action: login.php
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+
+# Nmap done at Mon May  1 12:40:35 2023 -- 1 IP address (1 host up) scanned in 45.41 seconds

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Mon May  1 12:39:50 2023 as: nmap -&#45;script vuln -oA nmap/10-129-95-185-Vuln -&#45;min-rate 500 -e tun0 -p 22,80 10.129.95.185 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-129-95-185-Vuln -&#45;min-rate 500 -e tun0 -p 22,80 10.129.95.185" start="1682941190" startstr="Mon May  1 12:39:50 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.95.185" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1682941213" endtime="1682941235"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.129.95.185" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-enum" output="&#xa;  /login.php: Possible admin folder&#xa;  /css/: Potentially interesting directory w/ listing on &apos;apache/2.4.29 (ubuntu)&apos;&#xa;  /js/: Potentially interesting directory w/ listing on &apos;apache/2.4.29 (ubuntu)&apos;&#xa;"/><script id="http-cookie-flags" output="&#xa;  /: &#xa;    PHPSESSID: &#xa;      httponly flag not set&#xa;  /login.php: &#xa;    PHPSESSID: &#xa;      httponly flag not set"><table key="/">
+<table key="PHPSESSID">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+<table key="/login.php">
+<table key="PHPSESSID">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+</script><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.95.185&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://10.129.95.185:80/&#xa;    Form id: &#xa;    Form action: login.php&#xa;"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/></port>
+</ports>
+<times srtt="52156" rttvar="30674" to="174852"/>
+</host>
+<runstats><finished time="1682941235" timestr="Mon May  1 12:40:35 2023" summary="Nmap done at Mon May  1 12:40:35 2023; 1 IP address (1 host up) scanned in 45.41 seconds" elapsed="45.41" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
