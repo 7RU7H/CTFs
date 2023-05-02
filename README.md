@@ -28,10 +28,27 @@ These distinctly without any aid from anyone else - pure normal writeups.
   
 ## `<CTF-NAME>-Helped-through.*`     
 
-These are any where I failed to meet a time limit for myself or was just stumped or I just want to learn about something or be mentored through a box with a writeup or video - just hands on keyboard, but with less about challenge and more on practical and getting stuff done. As of 2023 I have got a formula for Helped-Throughs down , after much testing and realised that Helped-Throughs should either be:
-1. Stop and Start; Push till stuck and another 30 minutes, then stop and peak
+These are any where I failed to meet a time limit for myself or was just stumped or I just want to learn about something or be mentored through a box with a writeup or video - just hands on keyboard, but with less about challenge and more on practical and getting stuff done. As of 2023 I have got a formula for Helped-Throughs, after much testing and realised that Helped-Throughs should either be:
+
+Personal Requirements: 
+1. Balance in all things. Do not do just one or the other, if you must lean more to doing Writeups especially the more experienced you are. 
+1. Writeups are not Helped-Throughouts 
+	- Writeup are solo or team solving of a CTF
+	- Help-Throughout are way to remove most of the challenge to incourage experiementation, research, indepth focus, postivity in succeeding to learn not learning out of the pain failure
+
+Benefits:
+1. Note taking the process
+2. Writing will improve your weaknesses and flaws through discovery of them
+3. A better way to enjoy and important learn content creator and expose all the other great hackers out there.
+	-  Watching the video without try what is happening is good, but as good as personally practical experiences
+4. Have a better learning curve expand research and understand without claiming to be awesome
+5. Beat the imposter syndrome, by make it about learning not fail, but do not mix challenge - but do challenging content without help
+
+Types:
+1. Stop and Start; Push till stuck - 2 hours max **and then** - walk it out then try again for another 30 minutes, then stop and peak. And only peak.
 	1. Beyond root should be box related and one or two tasks that take a maxium of 1 hour each 
-2. Like a full on-project:
+	2. After completion you must review atleast three writeups both video and written of the diagic learning
+2. Like a full project - llike (must be) extensive walkthrough or bootcamp in you favourite location:
 	- Multiple Writeups both video and written
 	- One section must be challenge to try without support in an area of weakness - 1 hour maximum
 	- It must document what you have learnt about your weaknesses and mistakes 
