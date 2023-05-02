@@ -23,26 +23,26 @@ Everything else WILL NOT - YOU HAVE BEEN WARNED - SOME NOTES WILL CONTAIN HASHES
 Generally now as of late 2022, there are screenshots, code snippets, links, segmented scans in the directories. Everything is much, much better than a year ago. Although beware pre-2022 are entirely `.txt`, nothing special. The formatting <s>will</s> has improved with screenshots and nicer looking file formats. I still don't plan to retroactively prettify although may general editorial work to make them actually readable. These `.txt` will only be from THM boxes were I wanted to learn and while trying to improve my writing in various ways in an actually realistic timeframe. I will archive them accordly:
 
 ## `<CTF-NAME>-Writeup.*`    
-These distinctly without any aid from anyone else writeups.
+
+These distinctly without any aid from anyone else - pure normal writeups.
   
 ## `<CTF-NAME>-Helped-through.*`     
-These are any where I failed to meet a time limit for myself or was just stumped or I just want to learn about something or be mentored through a box with a writeup or video - just hadns on keyboard, but with less about challenge and more on practical and getting stuff done. 
+
+These are any where I failed to meet a time limit for myself or was just stumped or I just want to learn about something or be mentored through a box with a writeup or video - just hands on keyboard, but with less about challenge and more on practical and getting stuff done. As of 2023 I have got a formula for Helped-Throughs down , after much testing and realised that Helped-Throughs should either be:
+1. Stop and Start; Push till stuck and another 30 minutes, then stop and peak
+	1. Beyond root should be box related and one or two tasks that take a maxium of 1 hour each 
+2. Like a full on-project:
+	- Multiple Writeups both video and written
+	- One section must be challenge to try without support in an area of weakness - 1 hour maximum
+	- It must document what you have learnt about your weaknesses and mistakes 
+	- It must takes at atleast 12 hours on one machine and its topics
+	- Research of surrounding relevant information must occur at depth
+	- Beyond root should be extensive
 
 - I changed these from walkthroughs because it just seemed more fitting and more honest to what they sometimes are.
 
 ##  `<CTF-NAME>-Notes.txt`
- These are raw note taking, some of which will be pre-notetaking application usage and will not have screenshots
- 
- 
-## Contents:
 
--- HacktheBox
-  
--- Offsec Proving Ground
-  
--- Tryhackme 
-  1. Code Challenges
-  1. CTFs Writeups, Walkthroughs, Notes
-  1. Throwback 
-  
+ These are raw note taking, some of which will be pre-notetaking application usage and will not have screenshots. These are more from my initial steps into writing about ethical hacking and ethical hacking in general. 
+ 
   

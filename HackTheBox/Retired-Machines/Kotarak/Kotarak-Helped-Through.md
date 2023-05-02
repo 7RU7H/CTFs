@@ -542,15 +542,9 @@ p.interactive()
 
 [[Kotarak-Server-Plan]]
 
-https://www.youtube.com/playlist?list=PL9IEJIKnBJjFNNfpY6fHjVzAwtgRYjhPw
-https://www.youtube.com/playlist?list=PL9IEJIKnBJjH_zM5LnovnoaKlXML5qh17
+
 
 [Jacob Sorber Programming with Processes](https://www.youtube.com/playlist?list=PL9IEJIKnBJjFNNfpY6fHjVzAwtgRYjhPw), I watched the Sending and Handling Signals in C video
-
-```c 
-
-sigaction
-```
 
 ####  tsf 
 

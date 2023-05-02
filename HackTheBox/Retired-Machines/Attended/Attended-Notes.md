@@ -21,5 +21,12 @@ Credentials:
 ### Done
 
 
+## CMD-by-CMDs
+
+```bash
+sed -i 's///g' *-CMD-by-CMDs.md
+```
       
-      
+```bash
+echo "10.129.176.146 attended.htb" | sudo tee -a /etc/hosts
+```

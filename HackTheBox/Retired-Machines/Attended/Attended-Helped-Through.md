@@ -3,7 +3,7 @@
 Name: Attended
 Date:  
 Difficulty:  Insane
-Goals:  
+Original Goals:  
 - Understand what it takes to be this good
 - Analyse xct workflow
 - Buffer overflow revision, but also gleen some tips
@@ -11,28 +11,103 @@ Goals:
 - Perform "racing mind practice" -  a term that I likened to practicing play music at speed - it is fluid continous attempt to remain at at most peak for endurance  - 
 - Finish in hour and a half. - SPOIL it did not happen I know it could have if naabu had worked, I was not correctly second guessing XCT on the smtp-user-enum "solution", also got impatient on the email call back from the attended.htb - then I reset the box incase I spammed the swaks too much
 Learnt:
-- Better smtp TTPs!
+- Better SMTP TTPs!
 - When I put capability pieces together I can actually achieve stuff!
 Beyond Root:
 - Patch the machine to prevent a buffer overflow
 - Test all my Linux Battleground counter measures as VulnNet node shells would just take more time to configure 
 
-[XCT is current top number one on HTB](https://www.youtube.com/watch?v=uAvvrBO7zlk) - We will solve Attended, a 50-point machine on HackTheBox. For user, we will be sending some emails back and forth and then append a payload that exploits a Vim RCE, followed by adding a malicious ssh config. For root, we will exploit a custom OpenBSD binary that is used as an AuthorizedKeysCommand for SSH. [XCT](https://app.hackthebox.com/users/13569) is currently ranked 1 on HTB with 14 user FBs, 28 system FBs - 248 solved machiens, 7 FB on challenges with 266 total solved, also end games and fortress completions. This guy is awesome. My hope is learn from maybe 10 boxes completed by XCT for the next 5 months or so. Along with Snowscan and few other I want to try be like the best as early as possible and be more than the average Ippsec viewer - Ippsec is still awesome, I want to suppass the average ASAP.
 
+
+[XCT is current top number one on HTB](https://www.youtube.com/watch?v=uAvvrBO7zlk) - *"We will solve Attended, a 50-point machine on HackTheBox. For user, we will be sending some emails back and forth and then append a payload that exploits a Vim RCE, followed by adding a malicious ssh config. For root, we will exploit a custom OpenBSD binary that is used as an AuthorizedKeysCommand for SSH"*. [XCT](https://app.hackthebox.com/users/13569) is currently ranked 1 on HTB with 14 user FBs, 28 system FBs - 248 solved machiens, 7 FB on challenges with 266 total solved, also end games and fortress completions. This guy is awesome. My hope is learn from maybe 10 boxes completed by XCT for the next 5 months or so. Along with Snowscan and few other I want to try be like the best as early as possible and be more than the average Ippsec viewer - Ippsec is still awesome, I want to suppass the average ASAP. 
+
+Returning to finish this due to watching the Ippsec introduction to his video after being reminded how awesome this machine would be at the current point of time. I realised that I need to watch both as I am currently cleaning up my github projects one is a C2 framework - Ippsec makes his own. I also need to replace Empire with Sliver usage. Iptables defensive setup and usage for Battlegrounds and KOTH has been on my beyond roots. 
+
+Because as part of testing my Helped-Through discourse the only written writeup that I trust is [0xdf](https://0xdf.gitlab.io/2021/05/08/htb-attended.html)
+
+- Revised Goals
+	- Sliver Usage
+	- Improve my c2 project
+	- Understand what it takes to be this good - Analyse XCT's tactics and workflow
+	- ROP-Chain improve my understanding of binary exploitation beyond old-OSCP stackbased buffer overflow
+	- Write a Iptables defense 
+
+As of 2023 I have got a formula for Helped-Throughs down , after much testing and realised that Helped-Throughs should either be:
+1. Stop and Start; Push till stuck and another 30 minutes, then stop and peak
+	1. Beyond root should be box related and one or two tasks that take a maxium of 1 hour each 
+2. Like a full on-project:
+	- Multiple Writeups both video and written
+	- One section must be challenge to try without support in an area of weakness - 1 hour maximum
+	- It must document what you have learnt about your weaknesses and mistakes 
+	- It must takes at atleast 12 hours on one machine and its topics
+	- Research of surrounding relevant information must occur at depth
+	- Beyond root should be extensive
 
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128. The ttl is  < 255 meaning this a freeBSD box.
 ![ping](HackTheBox/Retired-Machines/Attended/Screenshots/ping.png)
 
+I also desparately tried naabu to no end as at the time Naabu was going through some development issues.  I got it to work with:
+```bash
+# Beware there is both the golang-go and official way to install go
+# only way would be manually and granular control everything, but I think golang-go is ok I am just not sure which is actually the best - golang-go is not current most current pre dev branch of go 
+sudo apt install -y libpcap-dev # naabu
+# go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
+echo "\n#Naabu portscanner alias\nalias naabu='sudo ~/go/bin/naabu'" >> ~/.zshrc
+source ~/.zshrc
+```
+
+Knowing that only port 22 and 25 are open on this machine helps in testing.
+```bash
+naabu -host 10.129.194.221 -p 0-25 -silent -o naabu-test
+```
+
+I also tried the golang-go version with `apt install naabu`. I also found it is network dependent, Naabu is not good when the rate limit has to drop to say 200. 
+```bash
+sudo naabu -host 10.129.176.146 -p 0-65535 -i tun0 -nmap-cli 'nmap -sV -sC -e tun0'
+```
+
+
+[Ippsec and viewers make tmux and clipboard copy and paste more affective](https://www.youtube.com/watch?v=ABVR8EgXsQU) 
+
+```bash
+cat $file | xsel --clipboard
+cat $file | xclip -selection clipboard
+
+# Tmux workflow Ippsec
+
+
+```
+
+
+
+Discovery nmap script displays the banner for SMTP including 
 ![](attendedhostname.png)
+Ippsec also points out the bugs@openbsd.org! 
 
 ```bash
 echo "10.129.176.146 attended.htb" | sudo tee -a /etc/hosts
 ```
 
-We can enumerate 
+Ippsec discusses Iptables - XCT used tcpdump to check connections back
 ```bash
+# Show when box initiates a connection to our box
+sudo iptables -A INPUT -p tcp -m state --state NEW -j LOG --log-prefix "IPTables New-Connection: " -i tun0
+# Check the rules 
+sudo iptables -L
+# Check any messages 
+sudo grep iptables /var/log/messages
+```
+
+Ippsec explains that the way that the email is sent directly to our IP is strange.
+```bash
+sudo python3 -m smtpd -n -c DebuggingServer $htbTun0:25 
+```
+
+We can enumerate manually with exchange of commands and data:
+```bash
+EHLO nvm
 MAIL FROM:<>
 # Manual user enumeration with RCPT as the email server will indicate if the user exists
 # Test if we can send mail
@@ -48,11 +123,8 @@ Message goes here
 Emailing the hard way.
 ![](emailingthehardway.png)
 
-```bash
-sudo naabu -host 10.129.176.146 -p 0-65535 -i tun0 -nmap-cli 'nmap -sV -sC -e tun0'
-```
-
-- Tools dont work use wireshark to visualize traffic. 
+- Tools dont work use wireshark or tcpdump to capture and visualize traffic. 
+- Secondly as I am newer to insane machines were there is actual automated interaction of pseudo users these tools become even more vital as we need to check if automate user has connected back.
 
 smpt-user-enum cannot enumerate the users as the
 
@@ -88,16 +160,19 @@ Listener for emails and use SWAKS
 # sudo sh -c 'rlwrap nc -lvnp 25'
 rlwrap nc -lvnp 25
 # use swaks to automate the email sending
-swaks --from 'root@attended.htb' --to 'guly@attended.htb' --header "Subject: Hello there" --body 'XCT and I are coming for your emails hide user and root' --server attended.htb
+swaks --from 'root@attended.htb' --to 'guly@attended.htb' --header "Subject: Hello there" --body 'XCT, Ippsec and I are coming for your emails hide your user and root' --server attended.htb
 ```
-Swaks - Swiss Army Knife SMTP, the all-purpose SMTP transaction tester
+Swaks - Swiss Army Knife SMTP, the all-purpose SMTP transaction tester. Returning to this with the Ippsec video,  I instead decided the python3 smtpd much like the  [[Kotarak-Helped-Through]] dev-rabbit-hole of wonder of ftp and servers general that the python3 modules are very robust and simple.  
+
+```bash
+sudo python3 -m smtpd -n -c DebuggingServer $htbTun0:25 
+
+```
 
 I  did not get a response back 
-
 ![1080](swaksnotincoming.png)
 
 For linux reasons we need to have service running as root?
-
 ![](thxforemail.png)
 
 ```
@@ -110,6 +185,12 @@ For linux reasons we need to have service running as root?
 
 New host name! - attendedgw.htb
 
+Ippsec discovers through the full email exchange, whereas 0xdf used the OSINT part of the brain and remembered the `freshness` is the other author of this bopx. 
+
+https://www.youtube.com/watch?v=ABVR8EgXsQU
+https://0xdf.gitlab.io/2021/05/08/htb-attended.html
+https://www.youtube.com/watch?v=uAvvrBO7zlk
+
 ## Exploit
 
 ## Foothold
@@ -121,7 +202,7 @@ New host name! - attendedgw.htb
 #### XCT Workflow
 
 - Always visible notes
-	
+- Simplist possible way first to objective 
  
  
  - How can I much my display better?
@@ -196,3 +277,6 @@ Alerts
 ```
 id,whoami, sudo,ss,netstat,cat /etc/passwd,groups, chatter,lsattr,curl,wget,passwd
 ```
+
+
+https://michaelkoczwara.medium.com/sliver-c2-implant-analysis-62773928097f

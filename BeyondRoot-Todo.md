@@ -76,8 +76,7 @@ powershell -c Get-NetFirewallRule -Direction Outbound -Enabled True -Action Allo
 https://github.com/dubs3c/sudo_sniff/blob/master/sudo_sniff.c
 
 
-Alh4zr3d says sliver is better than empire 
-https://github.com/BishopFox/sliver
+
 
 https://github.com/0vercl0k - looks insane https://github.com/0vercl0k/clairvoyance
 
@@ -119,6 +118,12 @@ https://flaviocopes.com/go-tutorial-lolcat/ - rainbox cli
 http://www.saminiir.com/lets-code-tcp-ip-stack-1-ethernet-arp/
 
 
+### Monolith 
+
+Starting point
+https://www.youtube.com/playlist?list=PL9IEJIKnBJjFNNfpY6fHjVzAwtgRYjhPw
+https://www.youtube.com/playlist?list=PL9IEJIKnBJjH_zM5LnovnoaKlXML5qh17
+
 
 ## Putty Backdoor and Tunnel 
 
@@ -139,7 +144,7 @@ OneSeclistDirectoryBustingWordlistToRuleTheCTFs
 - Go back to gobuster for inital directories
 - Stop, observe and note potential targets to start feroxbuster and ffuf from 
 	- What is actually a good target for this and what are likely middle directories that are good to recurse -  Pushing beyond the 
-		- Anything where
+		- Anything wherehttps://www.patreon.com/xct
 			- dev, git, backup, bak, etc...objectives!
 - Use ffuf more ffuf vhosts, extensions, POTENTIAL pages
 - Do a slow set of feroxbusters scan over to collect and double verify 
@@ -156,8 +161,16 @@ How?
 [How to build a tcp proxy](https://robertheaton.com/2018/08/31/how-to-build-a-tcp-proxy-1/)
 
 
-Watch this xct do this on seperate machines
+Watch this xct do this on seperate machines - https://www.patreon.com/xct 8.50 not including VAT
 - https://www.youtube.com/watch?v=FYWGhdaDcZo&list=PLPBVZbjvnjVkIgFavcRiBKbDSricFJeoD
-To prep for dante -> and beyond!
+To prep for dante -> and beyond!https://www.patreon.com/xct
 
 - Pay for patreon and do Shinra in a years time 
+
+Alh4zr3d says sliver is better than empire 
+https://github.com/BishopFox/sliver
+
+
+
+Dockerise one of my github projects
+https://tryhackme.com/room/introtodockerk8pdqk

@@ -9,6 +9,11 @@
 - Read exploit twice and once after changes
 - When Living in Burp sublive in the devtools 
 
+- 
+- "racing mind practice"
+- Helpthrough
+
+
 
 ```bash
 echo "
