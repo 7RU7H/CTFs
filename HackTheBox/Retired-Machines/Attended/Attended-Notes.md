@@ -28,5 +28,7 @@ sed -i 's///g' *-CMD-by-CMDs.md
 ```
       
 ```bash
-echo "10.129.176.146 attended.htb" | sudo tee -a /etc/hosts
+echo "10.10.10.221 attended.htb" | sudo tee -a /etc/hosts
+# Setup SMTP server with python3 modules
+python3 -m smtpd -n -c DebuggingServer 10.10.14.6:25
 ```

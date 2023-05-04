@@ -27,10 +27,11 @@ Because as part of testing my Helped-Through discourse the only written writeup 
 
 - Revised Goals
 	- Sliver Usage
-	- Improve my c2 project
+	- Improve my C2 project
 	- Understand what it takes to be this good - Analyse XCT's tactics and workflow
-	- ROP-Chain improve my understanding of binary exploitation beyond old-OSCP stackbased buffer overflow
+	- Learn ROP-Chains improve my understanding of binary exploitation beyond old-OSCP stackbased buffer overflow
 	- Write a Iptables defense 
+	- SMTP
 
 As of 2023 I have got a formula for Helped-Throughs down , after much testing and realised that Helped-Throughs should either be:
 1. Stop and Start; Push till stuck and another 30 minutes, then stop and peak
@@ -74,12 +75,8 @@ sudo naabu -host 10.129.176.146 -p 0-65535 -i tun0 -nmap-cli 'nmap -sV -sC -e tu
 ```bash
 cat $file | xsel --clipboard
 cat $file | xclip -selection clipboard
-
 # Tmux workflow Ippsec
-
-
 ```
-
 
 
 Discovery nmap script displays the banner for SMTP including 
@@ -209,7 +206,16 @@ https://www.youtube.com/watch?v=uAvvrBO7zlk
 	- Where is the healthiest place for your head and neck?
 	- Can you see you notes?
 
+#### Things I need to do more
 
+Log commands and clipboard dump them
+
+```bash
+
+tcpdump 
+exiftool
+
+```
 
 #### Test HvH countermeasures
 
