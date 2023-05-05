@@ -24,8 +24,6 @@ security@accesscontrolsystems.com
 
 WTF is LON-MC6 
 
-
-
 telnet clients group
 
 ```powershell
@@ -36,6 +34,8 @@ C:\ZKTeco\ZKAccess3.5
 ```
 
 ### Todo 
+
+https://learn.microsoft.com/en-us/previous-versions/windows/desktop/policy/group-policy-objects
 
 WTF is LON-MC6 router?
 yawcam is security camera - faq mentions port forwarding - but no binaries are aloud
@@ -48,8 +48,6 @@ icalcs C:\ZKTeco\ZKAccess3.5
 ```
 
 icaclzkaccessexes.png
-
-
 
 
 But we cant modify dlls or write dll unless we can find phantom dlls that get loaded [hacktricks](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/dll-hijacking)
