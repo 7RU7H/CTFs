@@ -7,7 +7,7 @@ Goals:
 Learnt:
 Beyond Root:
 
-- [[Access-Notes.md]]
+- [[Access-Notes]]
 - [[Access-CMD-by-CMDs.md]]
 
 
@@ -29,3 +29,32 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 ## Beyond Root
 
 
+![](2diffs.png)
+![](dumpingftp.png)
+![](JET4.png)
+![](afavouriteword.png)
+![](creds.png)
+![](3333s.png)
+![](passwordaccountandversions.png)
+![](johncarter.png)
+![](security-4Cc3ssC0ntr0ller.png)
+![](yawcam.png)
+![](systeminfo.png)
+![](netdogssaddogs.png)
+![](ZKTeco.png)
+![](no172conn.png)
+![](alotsofperms.png)
+![](icaclzkaccessexes.png)
+![](dllhijackingtypes.png)
+![](tasklistforntsystem.png)
+![](pantherunatttendxmltroll.png)
+![](bingobangobongo.png)
+![](hashcapturewithresponder.png)
+![](ehports.png)
+![](revengineertears.png)
+![](notcoolenough.png)
+![](notup.png)
+![](noyawcamprocess.png)
+![](therewassystemcmdbutnoanymore.png)
+![](whynotsliver.png)
+![](cat.png)
