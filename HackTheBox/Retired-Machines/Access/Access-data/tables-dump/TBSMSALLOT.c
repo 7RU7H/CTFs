@@ -1,0 +1,13 @@
+/******************************************************************/
+/* THIS IS AN AUTOMATICALLY GENERATED FILE.  DO NOT EDIT IT!!!!!! */
+/******************************************************************/
+
+#include <stdio.h>
+#include "types.h"
+#include "dump.h"
+
+const TBSMSALLOT TBSMSALLOT_array [] = {
+
+};
+
+const int TBSMSALLOT_array_length = 0;
