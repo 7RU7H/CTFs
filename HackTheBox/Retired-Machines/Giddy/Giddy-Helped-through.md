@@ -1,4 +1,5 @@
 # Giddy Walkthrough
+
 Name: Giddy
 Date:  
 Difficulty:  Medium
