@@ -21,8 +21,13 @@ Credentials:
 ## Solution Inventory Map
 
 
+
+
 ### Todo 
 
 ### Done
       
+rossmoistmaker.png
+comingformonicasmoistmaker.png
 
+https://raw.githubusercontent.com/r3nt0n/keepass4brute/master/keepass4brute.sh
