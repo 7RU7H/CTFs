@@ -1,0 +1,300 @@
+# Nmap 7.93 scan initiated Wed May 10 20:05:20 2023 as: nmap --script discovery -oA nmap/10-10-10-180-Discovery --min-rate 500 -e tun0 -p 21,49667,2049,49666,49665,111,47001,5985,49679,49678,135,445,139,49664,49680,80 10.10.10.180
+Pre-scan script results:
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-sniffer: Sniffed 2 address(es). 
+| 10.10.10.180
+|_224.0.23.12
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_lltd-discovery: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-ping: false
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.10.10.180
+Host is up (0.11s latency).
+
+PORT      STATE SERVICE
+21/tcp    open  ftp
+| ftp-syst: 
+|_  SYST: Windows_NT
+|_banner: 220 Microsoft FTP Service
+80/tcp    open  http
+|_http-title: Home - Acme Widgets
+|_http-errors: Couldn't find any error pages.
+|_http-chrono: Request times for /; avg: 243.39ms; min: 198.03ms; max: 268.43ms
+| http-enum: 
+|   /blog/: Blog
+|   /home.aspx: Possible admin folder
+|   /contact/: Potentially interesting folder
+|   /home/: Potentially interesting folder
+|_  /intranet/: Potentially interesting folder
+| http-headers: 
+|   Cache-Control: private
+|   Content-Length: 6693
+|   Content-Type: text/html; charset=utf-8
+|   Date: Wed, 10 May 2023 19:07:52 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+| http-security-headers: 
+|   Cache_Control: 
+|_    Header: Cache-Control: private
+|_http-feed: Couldn't find any feeds.
+| http-vhosts: 
+|_128 names had status 200
+|_http-mobileversion-checker: No mobile version detected.
+| http-referer-checker: 
+| Spidering limited to: maxpagecount=30
+|   https://code.jquery.com:443/jquery-3.1.0.min.js
+|   https://ajax.aspnetcdn.com:443/ajax/jquery.validate/1.13.1/jquery.validate.min.js
+|_  https://ajax.aspnetcdn.com:443/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.10.180
+|     
+|     Path: http://10.10.10.180:80/people/
+|     Line number: 72
+|     Comment: 
+|         <!--
+|                 <nav class="nav-bar nav-bar--center nav-bar--air-bottom">
+|                     <a class="nav-link nav-link--black nav-link--active" href="">All</a>
+|                     <a class="nav-link nav-link--black" href="">Marketing</a>
+|                     <a class="nav-link nav-link--black" href="">Package People</a>
+|                     <a class="nav-link nav-link--black" href="">Designers</a>
+|                     <a class="nav-link nav-link--black" href="">Other</a>
+|                 </nav>
+|                 -->
+|     
+|     Path: http://10.10.10.180:80/blog/another-one/
+|     Line number: 115
+|     Comment: 
+|         <!-- todo: implement discus comments -->
+|     
+|     Path: http://10.10.10.180:80/products/biker-jacket/
+|     Line number: 61
+|     Comment: 
+|         <!-- for the section we want to show the shop header -->
+|     
+|     Path: http://10.10.10.180:80/products/
+|     Line number: 72
+|     Comment: 
+|         <!--
+|                     <nav class="nav-bar nav-bar--center nav-bar--air-bottom">
+|                         <a class="nav-link nav-link--black nav-link--active" href="">All</a>
+|                         <a class="nav-link nav-link--black" href="">Clothing</a>
+|                         <a class="nav-link nav-link--black" href="">Instruments</a>
+|                         <a class="nav-link nav-link--black" href="">Accessories</a>
+|                         <a class="nav-link nav-link--black" href="">Other</a>
+|                     </nav>
+|                 -->
+|     
+|     Path: http://10.10.10.180:80/contact/
+|     Line number: 97
+|     Comment: 
+|         <!-- When Umbraco Forms is installed, uncomment this line -->
+|     
+|     Path: http://10.10.10.180:80/blog/?page=1
+|     Line number: 22
+|     Comment: 
+|         <!-- uncomment this line if you don't want it to appear in the top navigation -->
+|     
+|     Path: http://10.10.10.180:80/people/
+|     Line number: 71
+|     Comment: 
+|         <!-- todo: implement department filter -->
+|     
+|     Path: http://10.10.10.180:80/products/biker-jacket/
+|     Line number: 103
+|     Comment: 
+|         <!-- todo: Check if grid is empty via a property value converter -->
+|     
+|     Path: http://10.10.10.180:80/products/
+|     Line number: 71
+|     Comment: 
+|         <!-- todo: implement category selector -->
+|     
+|     Path: http://10.10.10.180:80/blog/?page=1
+|     Line number: 77
+|     Comment: 
+|_        <!-- TODO: Add links to categories-->
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-date: Wed, 10 May 2023 19:07:53 GMT; +1h00m00s from local time.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /about-us/
+|       Other: 1
+|     /about-us/about-this-starter-kit/
+|       Other: 1
+|     /about-us/todo-list-for-the-starter-kit/
+|       Other: 1
+|     /blog/
+|       Other: 1
+|     /blog/another-one/
+|       Other: 1
+|     /blog/my-blog-post/
+|       Other: 1
+|     /blog/this-will-be-great/
+|       Other: 1
+|     /contact/
+|       Other: 1
+|     /css/
+|       css: 1
+|     /intranet/
+|       Other: 1
+|     /media/1001/
+|       jpg: 1
+|     /media/1002/
+|       jpg: 1
+|     /people/
+|       Other: 1
+|     /products/
+|       Other: 1
+|     /products/biker-jacket/
+|       Other: 1
+|     /products/jumpsuit/
+|       Other: 1
+|     /products/ping-pong-ball/
+|       Other: 1
+|     /products/unicorn/
+|       Other: 1
+|     /scripts/
+|       js: 1
+|   Longest directory structure:
+|     Depth: 2
+|     Dir: /blog/this-will-be-great/
+|   Total files found (by extension):
+|_    Other: 16; css: 1; jpg: 2; js: 1
+111/tcp   open  rpcbind
+| rpcinfo: 
+|   program version    port/proto  service
+|   100000  2,3,4        111/tcp   rpcbind
+|   100000  2,3,4        111/tcp6  rpcbind
+|   100000  2,3,4        111/udp   rpcbind
+|   100000  2,3,4        111/udp6  rpcbind
+|   100003  2,3         2049/udp   nfs
+|   100003  2,3         2049/udp6  nfs
+|   100003  2,3,4       2049/tcp   nfs
+|   100003  2,3,4       2049/tcp6  nfs
+|   100005  1,2,3       2049/tcp   mountd
+|   100005  1,2,3       2049/tcp6  mountd
+|   100005  1,2,3       2049/udp   mountd
+|   100005  1,2,3       2049/udp6  mountd
+|   100021  1,2,3,4     2049/tcp   nlockmgr
+|   100021  1,2,3,4     2049/tcp6  nlockmgr
+|   100021  1,2,3,4     2049/udp   nlockmgr
+|   100021  1,2,3,4     2049/udp6  nlockmgr
+|   100024  1           2049/tcp   status
+|   100024  1           2049/tcp6  status
+|   100024  1           2049/udp   status
+|_  100024  1           2049/udp6  status
+| nfs-statfs: 
+|   Filesystem     1K-blocks   Used        Available   Use%  Maxfilesize  Maxlink
+|_  /site_backups  24827900.0  11729740.0  13098160.0  48%   16.0T        1023
+| nfs-ls: Volume /site_backups
+|   access: Read Lookup NoModify NoExtend NoDelete NoExecute
+| PERMISSION  UID         GID         SIZE   TIME                 FILENAME
+| rwx------   4294967294  4294967294  4096   2020-02-23T18:35:48  .
+| ??????????  ?           ?           ?      ?                    ..
+| rwx------   4294967294  4294967294  64     2020-02-20T17:16:39  App_Browsers
+| rwx------   4294967294  4294967294  4096   2020-02-20T17:17:19  App_Data
+| rwx------   4294967294  4294967294  4096   2020-02-20T17:16:40  App_Plugins
+| rwx------   4294967294  4294967294  8192   2020-02-20T17:16:42  Config
+| rwx------   4294967294  4294967294  64     2020-02-20T17:16:40  aspnet_client
+| rwx------   4294967294  4294967294  49152  2020-02-20T17:16:42  bin
+| rwx------   4294967294  4294967294  64     2020-02-20T17:16:42  css
+| rwx------   4294967294  4294967294  152    2018-11-01T17:06:44  default.aspx
+|_
+| nfs-showmount: 
+|_  /site_backups 
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+445/tcp   open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+2049/tcp  open  mountd
+5985/tcp  open  wsman
+47001/tcp open  winrm
+49664/tcp open  unknown
+49665/tcp open  unknown
+49666/tcp open  unknown
+49667/tcp open  unknown
+49678/tcp open  unknown
+49679/tcp open  unknown
+49680/tcp open  unknown
+
+Host script results:
+| smb2-capabilities: 
+|   202: 
+|     Distributed File System
+|   210: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   300: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   302: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   311: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV     LOSS (%)
+| 21    0       47478.50   8041.01    0.0%
+| 80    0       45848.90   10099.09   0.0%
+| 111   0       49433.10   12157.09   0.0%
+| 135   0       70439.40   85874.53   0.0%
+| 139   0       59678.10   57112.56   0.0%
+| 445   0       82331.30   113050.53  0.0%
+| 2049  0       44346.30   7754.14    0.0%
+|_5985  0       45302.70   2893.93    0.0%
+| smb2-security-mode: 
+|   311: 
+|_    Message signing enabled but not required
+|_fcrdns: FAIL (No PTR record)
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+| smb-protocols: 
+|   dialects: 
+|     202
+|     210
+|     300
+|     302
+|_    311
+|_ipidseq: Unknown
+|_dns-brute: Can't guess domain of "10.10.10.180"; use dns-brute.domain script argument.
+| smb2-time: 
+|   date: 2023-05-10T19:05:56
+|_  start_date: N/A
+|_path-mtu: PMTU == 1500
+
+# Nmap done at Wed May 10 20:12:19 2023 -- 1 IP address (1 host up) scanned in 418.92 seconds

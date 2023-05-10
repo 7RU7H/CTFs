@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Wed May 10 20:05:20 2023 as: nmap -&#45;script discovery -oA nmap/10-10-10-180-Discovery -&#45;min-rate 500 -e tun0 -p 21,49667,2049,49666,49665,111,47001,5985,49679,49678,135,445,139,49664,49680,80 10.10.10.180 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/10-10-10-180-Discovery -&#45;min-rate 500 -e tun0 -p 21,49667,2049,49666,49665,111,47001,5985,49679,49678,135,445,139,49664,49680,80 10.10.10.180" start="1683745520" startstr="Wed May 10 20:05:20 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="16" services="21,80,111,135,139,445,2049,5985,47001,49664-49667,49678-49680"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-sniffer" output="Sniffed 2 address(es). &#xa;10.10.10.180&#xa;224.0.23.12"/><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="lltd-discovery" output="false">false</script><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="broadcast-ping" output="false">false</script><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.10.180" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1683745544" endtime="1683745939"><status state="up" reason="echo-reply" reason_ttl="127"/>
+<address addr="10.10.10.180" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ftp" method="table" conf="3"/><script id="ftp-syst" output="&#xa;  SYST: Windows_NT"><elem key="SYST">Windows_NT</elem>
+</script><script id="banner" output="220 Microsoft FTP Service"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" method="table" conf="3"/><script id="http-title" output="Home - Acme Widgets"><elem key="title">Home - Acme Widgets</elem>
+</script><script id="http-errors" output="Couldn&apos;t find any error pages."/><script id="http-chrono" output="Request times for /; avg: 243.39ms; min: 198.03ms; max: 268.43ms"/><script id="http-enum" output="&#xa;  /blog/: Blog&#xa;  /home.aspx: Possible admin folder&#xa;  /contact/: Potentially interesting folder&#xa;  /home/: Potentially interesting folder&#xa;  /intranet/: Potentially interesting folder&#xa;"/><script id="http-headers" output="&#xa;  Cache-Control: private&#xa;  Content-Length: 6693&#xa;  Content-Type: text/html; charset=utf-8&#xa;  Date: Wed, 10 May 2023 19:07:52 GMT&#xa;  Connection: close&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-security-headers" output="&#xa;  Cache_Control: &#xa;    Header: Cache-Control: private"><table key="Cache_Control">
+<elem>Header: Cache-Control: private</elem>
+</table>
+</script><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-vhosts" output="&#xa;128 names had status 200"/><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-referer-checker" output="&#xa;Spidering limited to: maxpagecount=30&#xa;  https://code.jquery.com:443/jquery-3.1.0.min.js&#xa;  https://ajax.aspnetcdn.com:443/ajax/jquery.validate/1.13.1/jquery.validate.min.js&#xa;  https://ajax.aspnetcdn.com:443/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js&#xa;"/><script id="http-comments-displayer" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.10.180&#xa;    &#xa;    Path: http://10.10.10.180:80/people/&#xa;    Line number: 72&#xa;    Comment: &#xa;        &lt;!-&#45;&#xa;                &lt;nav class=&quot;nav-bar nav-bar-&#45;center nav-bar-&#45;air-bottom&quot;&gt;&#xa;                    &lt;a class=&quot;nav-link nav-link-&#45;black nav-link-&#45;active&quot; href=&quot;&quot;&gt;All&lt;/a&gt;&#xa;                    &lt;a class=&quot;nav-link nav-link-&#45;black&quot; href=&quot;&quot;&gt;Marketing&lt;/a&gt;&#xa;                    &lt;a class=&quot;nav-link nav-link-&#45;black&quot; href=&quot;&quot;&gt;Package People&lt;/a&gt;&#xa;                    &lt;a class=&quot;nav-link nav-link-&#45;black&quot; href=&quot;&quot;&gt;Designers&lt;/a&gt;&#xa;                    &lt;a class=&quot;nav-link nav-link-&#45;black&quot; href=&quot;&quot;&gt;Other&lt;/a&gt;&#xa;                &lt;/nav&gt;&#xa;                -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.10.180:80/blog/another-one/&#xa;    Line number: 115&#xa;    Comment: &#xa;        &lt;!-&#45; todo: implement discus comments -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.10.180:80/products/biker-jacket/&#xa;    Line number: 61&#xa;    Comment: &#xa;        &lt;!-&#45; for the section we want to show the shop header -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.10.180:80/products/&#xa;    Line number: 72&#xa;    Comment: &#xa;        &lt;!-&#45;&#xa;                    &lt;nav class=&quot;nav-bar nav-bar-&#45;center nav-bar-&#45;air-bottom&quot;&gt;&#xa;                        &lt;a class=&quot;nav-link nav-link-&#45;black nav-link-&#45;active&quot; href=&quot;&quot;&gt;All&lt;/a&gt;&#xa;                        &lt;a class=&quot;nav-link nav-link-&#45;black&quot; href=&quot;&quot;&gt;Clothing&lt;/a&gt;&#xa;                        &lt;a class=&quot;nav-link nav-link-&#45;black&quot; href=&quot;&quot;&gt;Instruments&lt;/a&gt;&#xa;                        &lt;a class=&quot;nav-link nav-link-&#45;black&quot; href=&quot;&quot;&gt;Accessories&lt;/a&gt;&#xa;                        &lt;a class=&quot;nav-link nav-link-&#45;black&quot; href=&quot;&quot;&gt;Other&lt;/a&gt;&#xa;                    &lt;/nav&gt;&#xa;                -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.10.180:80/contact/&#xa;    Line number: 97&#xa;    Comment: &#xa;        &lt;!-&#45; When Umbraco Forms is installed, uncomment this line -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.10.180:80/blog/?page=1&#xa;    Line number: 22&#xa;    Comment: &#xa;        &lt;!-&#45; uncomment this line if you don&apos;t want it to appear in the top navigation -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.10.180:80/people/&#xa;    Line number: 71&#xa;    Comment: &#xa;        &lt;!-&#45; todo: implement department filter -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.10.180:80/products/biker-jacket/&#xa;    Line number: 103&#xa;    Comment: &#xa;        &lt;!-&#45; todo: Check if grid is empty via a property value converter -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.10.180:80/products/&#xa;    Line number: 71&#xa;    Comment: &#xa;        &lt;!-&#45; todo: implement category selector -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.10.180:80/blog/?page=1&#xa;    Line number: 77&#xa;    Comment: &#xa;        &lt;!-&#45; TODO: Add links to categories-&#45;&gt;&#xa;"/><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">200</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-date" output="Wed, 10 May 2023 19:07:53 GMT; +1h00m00s from local time."><elem key="date">2023-05-10T20:07:53+00:00</elem>
+<elem key="delta">3600.0</elem>
+</script><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-xssed" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      Other: 1&#xa;    /about-us/&#xa;      Other: 1&#xa;    /about-us/about-this-starter-kit/&#xa;      Other: 1&#xa;    /about-us/todo-list-for-the-starter-kit/&#xa;      Other: 1&#xa;    /blog/&#xa;      Other: 1&#xa;    /blog/another-one/&#xa;      Other: 1&#xa;    /blog/my-blog-post/&#xa;      Other: 1&#xa;    /blog/this-will-be-great/&#xa;      Other: 1&#xa;    /contact/&#xa;      Other: 1&#xa;    /css/&#xa;      css: 1&#xa;    /intranet/&#xa;      Other: 1&#xa;    /media/1001/&#xa;      jpg: 1&#xa;    /media/1002/&#xa;      jpg: 1&#xa;    /people/&#xa;      Other: 1&#xa;    /products/&#xa;      Other: 1&#xa;    /products/biker-jacket/&#xa;      Other: 1&#xa;    /products/jumpsuit/&#xa;      Other: 1&#xa;    /products/ping-pong-ball/&#xa;      Other: 1&#xa;    /products/unicorn/&#xa;      Other: 1&#xa;    /scripts/&#xa;      js: 1&#xa;  Longest directory structure:&#xa;    Depth: 2&#xa;    Dir: /blog/this-will-be-great/&#xa;  Total files found (by extension):&#xa;    Other: 16; css: 1; jpg: 2; js: 1&#xa;"/></port>
+<port protocol="tcp" portid="111"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="rpcbind" version="2-4" extrainfo="RPC #100000" method="probed" conf="10"/><script id="rpcinfo" output="&#xa;  program version    port/proto  service&#xa;  100000  2,3,4        111/tcp   rpcbind&#xa;  100000  2,3,4        111/tcp6  rpcbind&#xa;  100000  2,3,4        111/udp   rpcbind&#xa;  100000  2,3,4        111/udp6  rpcbind&#xa;  100003  2,3         2049/udp   nfs&#xa;  100003  2,3         2049/udp6  nfs&#xa;  100003  2,3,4       2049/tcp   nfs&#xa;  100003  2,3,4       2049/tcp6  nfs&#xa;  100005  1,2,3       2049/tcp   mountd&#xa;  100005  1,2,3       2049/tcp6  mountd&#xa;  100005  1,2,3       2049/udp   mountd&#xa;  100005  1,2,3       2049/udp6  mountd&#xa;  100021  1,2,3,4     2049/tcp   nlockmgr&#xa;  100021  1,2,3,4     2049/tcp6  nlockmgr&#xa;  100021  1,2,3,4     2049/udp   nlockmgr&#xa;  100021  1,2,3,4     2049/udp6  nlockmgr&#xa;  100024  1           2049/tcp   status&#xa;  100024  1           2049/tcp6  status&#xa;  100024  1           2049/udp   status&#xa;  100024  1           2049/udp6  status&#xa;"><table key="100000">
+<table key="tcp">
+<table key="version">
+<elem>2</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="addr">0.0.0.0</elem>
+<elem key="owner">superuser</elem>
+<elem key="port">111</elem>
+</table>
+<table key="udp">
+<table key="version">
+<elem>2</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="addr">0.0.0.0</elem>
+<elem key="owner">superuser</elem>
+<elem key="port">111</elem>
+</table>
+<table key="udp6">
+<table key="version">
+<elem>2</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="addr">::</elem>
+<elem key="owner">superuser</elem>
+<elem key="port">111</elem>
+</table>
+<table key="tcp6">
+<table key="version">
+<elem>2</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="addr">::</elem>
+<elem key="owner">superuser</elem>
+<elem key="port">111</elem>
+</table>
+</table>
+<table key="100021">
+<table key="tcp">
+<table key="version">
+<elem>1</elem>
+<elem>2</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="addr">0.0.0.0</elem>
+<elem key="owner">superuser</elem>
+<elem key="port">2049</elem>
+</table>
+<table key="udp">
+<table key="version">
+<elem>1</elem>
+<elem>2</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="addr">0.0.0.0</elem>
+<elem key="owner">superuser</elem>
+<elem key="port">2049</elem>
+</table>
+<table key="udp6">
+<table key="version">
+<elem>1</elem>
+<elem>2</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="addr">::</elem>
+<elem key="owner">superuser</elem>
+<elem key="port">2049</elem>
+</table>
+<table key="tcp6">
+<table key="version">
+<elem>1</elem>
+<elem>2</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="addr">::</elem>
+<elem key="owner">superuser</elem>
+<elem key="port">2049</elem>
+</table>
+</table>
+<table key="100024">
+<table key="tcp">
+<table key="version">
+<elem>1</elem>
+</table>
+<elem key="addr">0.0.0.0</elem>
+<elem key="owner">superuser</elem>
+<elem key="port">2049</elem>
+</table>
+<table key="udp">
+<table key="version">
+<elem>1</elem>
+</table>
+<elem key="addr">0.0.0.0</elem>
+<elem key="owner">superuser</elem>
+<elem key="port">2049</elem>
+</table>
+<table key="udp6">
+<table key="version">
+<elem>1</elem>
+</table>
+<elem key="addr">::</elem>
+<elem key="owner">superuser</elem>
+<elem key="port">2049</elem>
+</table>
+<table key="tcp6">
+<table key="version">
+<elem>1</elem>
+</table>
+<elem key="addr">::</elem>
+<elem key="owner">superuser</elem>
+<elem key="port">2049</elem>
+</table>
+</table>
+<table key="100005">
+<table key="tcp">
+<table key="version">
+<elem>1</elem>
+<elem>2</elem>
+<elem>3</elem>
+</table>
+<elem key="addr">0.0.0.0</elem>
+<elem key="owner">superuser</elem>
+<elem key="port">2049</elem>
+</table>
+<table key="udp">
+<table key="version">
+<elem>1</elem>
+<elem>2</elem>
+<elem>3</elem>
+</table>
+<elem key="addr">0.0.0.0</elem>
+<elem key="owner">superuser</elem>
+<elem key="port">2049</elem>
+</table>
+<table key="udp6">
+<table key="version">
+<elem>1</elem>
+<elem>2</elem>
+<elem>3</elem>
+</table>
+<elem key="addr">::</elem>
+<elem key="owner">superuser</elem>
+<elem key="port">2049</elem>
+</table>
+<table key="tcp6">
+<table key="version">
+<elem>1</elem>
+<elem>2</elem>
+<elem>3</elem>
+</table>
+<elem key="addr">::</elem>
+<elem key="owner">superuser</elem>
+<elem key="port">2049</elem>
+</table>
+</table>
+<table key="100003">
+<table key="tcp">
+<table key="version">
+<elem>2</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="addr">0.0.0.0</elem>
+<elem key="owner">superuser</elem>
+<elem key="port">2049</elem>
+</table>
+<table key="udp">
+<table key="version">
+<elem>2</elem>
+<elem>3</elem>
+</table>
+<elem key="addr">0.0.0.0</elem>
+<elem key="owner">superuser</elem>
+<elem key="port">2049</elem>
+</table>
+<table key="udp6">
+<table key="version">
+<elem>2</elem>
+<elem>3</elem>
+</table>
+<elem key="addr">::</elem>
+<elem key="owner">superuser</elem>
+<elem key="port">2049</elem>
+</table>
+<table key="tcp6">
+<table key="version">
+<elem>2</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="addr">::</elem>
+<elem key="owner">superuser</elem>
+<elem key="port">2049</elem>
+</table>
+</table>
+</script><script id="nfs-statfs" output="&#xa;  Filesystem     1K-blocks   Used        Available   Use%  Maxfilesize  Maxlink&#xa;  /site_backups  24827900.0  11729740.0  13098160.0  48%   16.0T        1023&#xa;"/><script id="nfs-ls" output="Volume /site_backups&#xa;  access: Read Lookup NoModify NoExtend NoDelete NoExecute&#xa;PERMISSION  UID         GID         SIZE   TIME                 FILENAME&#xa;rwx-&#45;&#45;&#45;&#45;&#45;   4294967294  4294967294  4096   2020-02-23T18:35:48  .&#xa;??????????  ?           ?           ?      ?                    ..&#xa;rwx-&#45;&#45;&#45;&#45;&#45;   4294967294  4294967294  64     2020-02-20T17:16:39  App_Browsers&#xa;rwx-&#45;&#45;&#45;&#45;&#45;   4294967294  4294967294  4096   2020-02-20T17:17:19  App_Data&#xa;rwx-&#45;&#45;&#45;&#45;&#45;   4294967294  4294967294  4096   2020-02-20T17:16:40  App_Plugins&#xa;rwx-&#45;&#45;&#45;&#45;&#45;   4294967294  4294967294  8192   2020-02-20T17:16:42  Config&#xa;rwx-&#45;&#45;&#45;&#45;&#45;   4294967294  4294967294  64     2020-02-20T17:16:40  aspnet_client&#xa;rwx-&#45;&#45;&#45;&#45;&#45;   4294967294  4294967294  49152  2020-02-20T17:16:42  bin&#xa;rwx-&#45;&#45;&#45;&#45;&#45;   4294967294  4294967294  64     2020-02-20T17:16:42  css&#xa;rwx-&#45;&#45;&#45;&#45;&#45;   4294967294  4294967294  152    2018-11-01T17:06:44  default.aspx&#xa;&#xa;"><table key="volumes">
+<table>
+<elem key="volume">/site_backups</elem>
+<table key="files">
+<table>
+<elem key="uid">4294967294</elem>
+<elem key="time">2020-02-23T18:35:48</elem>
+<elem key="permission">rwx-&#45;&#45;&#45;&#45;&#45;</elem>
+<elem key="filename">.</elem>
+<elem key="gid">4294967294</elem>
+<elem key="size">4096</elem>
+</table>
+<table>
+<elem key="uid">?</elem>
+<elem key="time">?</elem>
+<elem key="permission">??????????</elem>
+<elem key="filename">..</elem>
+<elem key="gid">?</elem>
+<elem key="size">?</elem>
+</table>
+<table>
+<elem key="uid">4294967294</elem>
+<elem key="time">2020-02-20T17:16:39</elem>
+<elem key="permission">rwx-&#45;&#45;&#45;&#45;&#45;</elem>
+<elem key="filename">App_Browsers</elem>
+<elem key="gid">4294967294</elem>
+<elem key="size">64</elem>
+</table>
+<table>
+<elem key="uid">4294967294</elem>
+<elem key="time">2020-02-20T17:17:19</elem>
+<elem key="permission">rwx-&#45;&#45;&#45;&#45;&#45;</elem>
+<elem key="filename">App_Data</elem>
+<elem key="gid">4294967294</elem>
+<elem key="size">4096</elem>
+</table>
+<table>
+<elem key="uid">4294967294</elem>
+<elem key="time">2020-02-20T17:16:40</elem>
+<elem key="permission">rwx-&#45;&#45;&#45;&#45;&#45;</elem>
+<elem key="filename">App_Plugins</elem>
+<elem key="gid">4294967294</elem>
+<elem key="size">4096</elem>
+</table>
+<table>
+<elem key="uid">4294967294</elem>
+<elem key="time">2020-02-20T17:16:42</elem>
+<elem key="permission">rwx-&#45;&#45;&#45;&#45;&#45;</elem>
+<elem key="filename">Config</elem>
+<elem key="gid">4294967294</elem>
+<elem key="size">8192</elem>
+</table>
+<table>
+<elem key="uid">4294967294</elem>
+<elem key="time">2020-02-20T17:16:40</elem>
+<elem key="permission">rwx-&#45;&#45;&#45;&#45;&#45;</elem>
+<elem key="filename">aspnet_client</elem>
+<elem key="gid">4294967294</elem>
+<elem key="size">64</elem>
+</table>
+<table>
+<elem key="uid">4294967294</elem>
+<elem key="time">2020-02-20T17:16:42</elem>
+<elem key="permission">rwx-&#45;&#45;&#45;&#45;&#45;</elem>
+<elem key="filename">bin</elem>
+<elem key="gid">4294967294</elem>
+<elem key="size">49152</elem>
+</table>
+<table>
+<elem key="uid">4294967294</elem>
+<elem key="time">2020-02-20T17:16:42</elem>
+<elem key="permission">rwx-&#45;&#45;&#45;&#45;&#45;</elem>
+<elem key="filename">css</elem>
+<elem key="gid">4294967294</elem>
+<elem key="size">64</elem>
+</table>
+<table>
+<elem key="uid">4294967294</elem>
+<elem key="time">2018-11-01T17:06:44</elem>
+<elem key="permission">rwx-&#45;&#45;&#45;&#45;&#45;</elem>
+<elem key="filename">default.aspx</elem>
+<elem key="gid">4294967294</elem>
+<elem key="size">152</elem>
+</table>
+</table>
+<table key="info">
+<elem>access: Read Lookup NoModify NoExtend NoDelete NoExecute</elem>
+</table>
+</table>
+</table>
+<table key="total">
+<elem key="files">10</elem>
+<elem key="bytes">69976</elem>
+</table>
+</script><script id="nfs-showmount" output="&#xa;  /site_backups &#xa;"/></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="netbios-ssn" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="2049"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="mountd" version="1-3" extrainfo="RPC #100005" method="probed" conf="10"/></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="wsman" method="table" conf="3"/></port>
+<port protocol="tcp" portid="47001"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="winrm" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49664"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49665"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49666"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49667"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49678"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="unknown" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49679"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49680"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+</ports>
+<hostscript><script id="smb2-capabilities" output="&#xa;  202: &#xa;    Distributed File System&#xa;  210: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  300: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  302: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  311: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations"><table key="202">
+<elem>Distributed File System</elem>
+</table>
+<table key="210">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="300">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="302">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="311">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+</script><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV     LOSS (%)&#xa;21    0       47478.50   8041.01    0.0%&#xa;80    0       45848.90   10099.09   0.0%&#xa;111   0       49433.10   12157.09   0.0%&#xa;135   0       70439.40   85874.53   0.0%&#xa;139   0       59678.10   57112.56   0.0%&#xa;445   0       82331.30   113050.53  0.0%&#xa;2049  0       44346.30   7754.14    0.0%&#xa;5985  0       45302.70   2893.93    0.0%&#xa;"/><script id="smb2-security-mode" output="&#xa;  311: &#xa;    Message signing enabled but not required"><table key="311">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="smb-mbenum" output="&#xa;  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR"/><script id="msrpc-enum" output="Could not negotiate a connection:SMB: Failed to receive bytes: ERROR">false</script><script id="smb-protocols" output="&#xa;  dialects: &#xa;    202&#xa;    210&#xa;    300&#xa;    302&#xa;    311"><table key="dialects">
+<elem>202</elem>
+<elem>210</elem>
+<elem>300</elem>
+<elem>302</elem>
+<elem>311</elem>
+</table>
+</script><script id="ipidseq" output="Unknown"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.10.10.180&quot;; use dns-brute.domain script argument."/><script id="smb2-time" output="&#xa;  date: 2023-05-10T19:05:56&#xa;  start_date: N/A"><elem key="date">2023-05-10T19:05:56</elem>
+<elem key="start_date">N/A</elem>
+</script><script id="path-mtu" output="PMTU == 1500"/></hostscript><times srtt="105009" rttvar="25753" to="208021"/>
+</host>
+<runstats><finished time="1683745939" timestr="Wed May 10 20:12:19 2023" summary="Nmap done at Wed May 10 20:12:19 2023; 1 IP address (1 host up) scanned in 418.92 seconds" elapsed="418.92" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Wed May 10 18:05:28 2023 as: nmap -&#45;script discovery -oA nmap/10-10-11-136-Discovery -&#45;min-rate 500 -e tun0 -p 22,80 10.10.11.136 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/10-10-11-136-Discovery -&#45;min-rate 500 -e tun0 -p 22,80 10.10.11.136" start="1683738328" startstr="Wed May 10 18:05:28 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="lltd-discovery" output="false">false</script><script id="broadcast-ping" output="false">false</script><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="targets-sniffer" output="Sniffed 1 address(es). &#xa;224.0.23.12"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.11.136" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1683738353" endtime="1683738691"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.11.136" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/><script id="banner" output="SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.3"/><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (9)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (6)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ssh-rsa</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script><script id="ssh-hostkey" output="&#xa;  3072 24c295a5c30b3ff3173c68d7af2b5338 (RSA)&#xa;  256 b1417799469a6c5dd2982fc0329ace03 (ECDSA)&#xa;  256 e736433ba9478a190158b2bc89f65108 (ED25519)"><table>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABgQDPIYGoHvNFwTTboYexVGcZzbSLJQsxKopZqrHVTeF8oEIu0iqn7E5czwVkxRO/icqaDqM+AB3QQVcZSDaz//XoXsT/NzNIbb9SERrcK/n8n9or4IbXBEtXhRvltS8NABsOTuhiNo/2fdPYCVJ/HyF5YmbmtqUPols6F5y/MK2Yl3eLMOdQQeax4AWSKVAsR+issSZlN2rADIvpboV7YMoo3ktlHKz4hXlX6FWtfDN/ZyokDNNpgBbr7N8zJ87+QfmNuuGgmcZzxhnzJOzihBHIvdIM4oMm4IetfquYm1WKG3s5q70jMFrjp4wCyEVbxY+DcJ54xjqbaNHhVwiSWUZnAyWe4gQGziPdZH2ULY+n3iTze+8E4a6rxN3l38d1r4THoru88G56QESiy/jQ8m5+Ang77rSEaT3Fnr6rnAF5VG1+kiA36rMIwLabnxQbAWnApRX9CHBpMdBj7v8oLhCRn7ZEoPDcD1P2AASdaDJjRMuR52YPDlUSDd8TnI/DFFs=</elem>
+<elem key="fingerprint">24c295a5c30b3ff3173c68d7af2b5338</elem>
+<elem key="type">ssh-rsa</elem>
+<elem key="bits">3072</elem>
+</table>
+<table>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBNNJGh4HcK3rlrsvCbu0kASt7NLMvAUwB51UnianAKyr9H0UBYZnOkVZhIjDea3F/CxfOQeqLpanqso/EqXcT9w=</elem>
+<elem key="fingerprint">b1417799469a6c5dd2982fc0329ace03</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="bits">256</elem>
+</table>
+<table>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIOCMYY9DMj/I+Rfosf+yMuevI7VFIeeQfZSxq67EGxsb</elem>
+<elem key="fingerprint">e736433ba9478a190158b2bc89f65108</elem>
+<elem key="type">ssh-ed25519</elem>
+<elem key="bits">256</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-grep" output="&#xa;  (3) http://10.10.11.136:80/: &#xa;    (3) email: &#xa;      + support@panda.htb&#xa;      + contact@panda.htb&#xa;      + example@yourmail.com"><table key="(3) http://10.10.11.136:80/">
+<table key="(3) email">
+<elem>+ support@panda.htb</elem>
+<elem>+ contact@panda.htb</elem>
+<elem>+ example@yourmail.com</elem>
+</table>
+</table>
+</script><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">200</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-chrono" output="Request times for /; avg: 302.11ms; min: 262.24ms; max: 355.73ms"/><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-devframework" output="Wordpress detected. Found common traces on /"/><script id="http-vhosts" output="&#xa;128 names had status 200"/><script id="http-comments-displayer" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.11.136&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 211&#xa;    Comment: &#xa;        &lt;!-&#45; ====== Pricing Start ====== -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 116&#xa;    Comment: &#xa;        &lt;!-&#45; ====== Hero End ====== -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/ud-styles.css&#xa;    Line number: 663&#xa;    Comment: &#xa;        /* ===== Features CSS ===== */&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 864&#xa;    Comment: &#xa;         // ==== for menu scroll&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 27&#xa;    Comment: &#xa;        &lt;!-&#45;====== Favicon Icon ======-&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/animate.css&#xa;    Line number: 3&#xa;    Comment: &#xa;        /*!&#xa;         * animate.css -https://daneden.github.io/animate.css/&#xa;         * Version - 3.7.2&#xa;         * Licensed under the MIT license - http://opensource.org/licenses/MIT&#xa;         *&#xa;         * Copyright (c) 2019 Daniel Eden&#xa;         */&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/js/bootstrap.bundle.min.js&#xa;    Line number: 1&#xa;    Comment: &#xa;        /*!&#xa;          * Bootstrap v5.1.0 (https://getbootstrap.com/)&#xa;          * Copyright 2011-2021 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)&#xa;          * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)&#xa;          */&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/lineicons.css&#xa;    Line number: 40&#xa;    Comment: &#xa;        /* absolute units */&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 857&#xa;    Comment: &#xa;        &lt;!-&#45; ====== Back To Top End ====== -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/ud-styles.css&#xa;    Line number: 1&#xa;    Comment: &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        &#xa;        ======== */&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 118&#xa;    Comment: &#xa;        &lt;!-&#45; ====== Features Start ====== -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 308&#xa;    Comment: &#xa;        &lt;!-&#45; ====== FAQ Start ====== -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 188&#xa;    Comment: &#xa;        &lt;!-&#45; ====== Features End ====== -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 450&#xa;    Comment: &#xa;        &lt;!-&#45; ====== Testimonials Start ====== -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/ud-styles.css&#xa;    Line number: 877&#xa;    Comment: &#xa;        /* ===== Pricing CSS ===== */&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/ud-styles.css&#xa;    Line number: 1783&#xa;    Comment: &#xa;        /* ====== Blog CSS ====== */&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/ud-styles.css&#xa;    Line number: 1212&#xa;    Comment: &#xa;        /* ===== Team CSS ===== */&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/lineicons.css&#xa;    Line number: 80&#xa;    Comment: &#xa;        /*-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#xa;        &#x9;icons&#xa;        -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;*/&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 9&#xa;    Comment: &#xa;        &lt;!-&#45; Primary Meta Tags -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 853&#xa;    Comment: &#xa;        &lt;!-&#45; ====== Back To Top Start ====== -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/ud-styles.css&#xa;    Line number: 1883&#xa;    Comment: &#xa;        /* ====== Blog Details CSS ====== */&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/js/main.js&#xa;    Line number: 61&#xa;    Comment: &#xa;        &#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/lineicons.css&#xa;    Line number: 62&#xa;    Comment: &#xa;        /*-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#xa;          rotated/flipped icons&#xa;        -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;*/&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/ud-styles.css&#xa;    Line number: 2613&#xa;    Comment: &#xa;        /*# sourceMappingURL=ud-styles.css.map */&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 20&#xa;    Comment: &#xa;        &lt;!-&#45; Twitter -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/lineicons.css&#xa;    Line number: 26&#xa;    Comment: &#xa;        /* Better Font Rendering */&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 209&#xa;    Comment: &#xa;        &lt;!-&#45; ====== About End ====== -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/lineicons.css&#xa;    Line number: 33&#xa;    Comment: &#xa;        /* relative units */&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 306&#xa;    Comment: &#xa;        &lt;!-&#45; ====== Pricing End ====== -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 190&#xa;    Comment: &#xa;        &lt;!-&#45; ====== About Start ====== -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/js/main.js&#xa;    Line number: 50&#xa;    Comment: &#xa;        &#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/ud-styles.css&#xa;    Line number: 1663&#xa;    Comment: &#xa;        /* ====== Login CSS ====== */&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/ud-styles.css&#xa;    Line number: 10&#xa;    Comment: &#xa;        &#xa;        &#xa;        ===========================*/&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/lineicons.css&#xa;    Line number: 30&#xa;    Comment: &#xa;        /*-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#xa;          change icon size&#xa;        -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;*/&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/ud-styles.css&#xa;    Line number: 1464&#xa;    Comment: &#xa;        /* ===== Footer CSS ===== */&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/lineicons.css&#xa;    Line number: 14&#xa;    Comment: &#xa;        /*-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#xa;        &#x9;base class definition&#xa;        -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;*/&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 78&#xa;    Comment: &#xa;        &lt;!-&#45; ====== Header End ====== -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 691&#xa;    Comment: &#xa;        &lt;!-&#45; ====== Contact End ====== -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 601&#xa;    Comment: &#xa;        &lt;!-&#45; ====== Testimonials End ====== -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/js/main.js&#xa;    Line number: 58&#xa;    Comment: &#xa;        &#xa;    &#xa;    Path: http://10.10.11.136:80/assets/js/main.js&#xa;    Line number: 35&#xa;    Comment: &#xa;        &#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 80&#xa;    Comment: &#xa;        &lt;!-&#45; ====== Hero Start ====== -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/ud-styles.css&#xa;    Line number: 1096&#xa;    Comment: &#xa;        /* ===== Testimonials CSS ===== */&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/ud-styles.css&#xa;    Line number: 2493&#xa;    Comment: &#xa;        /* ====== Error 404 CSS ======= */&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/js/main.js&#xa;    Line number: 23&#xa;    Comment: &#xa;        &#xa;    &#xa;    Path: http://10.10.11.136:80/assets/js/main.js&#xa;    Line number: 16&#xa;    Comment: &#xa;        &#xa;    &#xa;    Path: http://10.10.11.136:80/assets/js/main.js&#xa;    Line number: 4&#xa;    Comment: &#xa;        &#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/bootstrap.min.css&#xa;    Line number: 7&#xa;    Comment: &#xa;        /*# sourceMappingURL=bootstrap.min.css.map */&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/ud-styles.css&#xa;    Line number: 507&#xa;    Comment: &#xa;        /* ===== Hero CSS ===== */&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 448&#xa;    Comment: &#xa;        &lt;!-&#45; ====== FAQ End ====== -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/ud-styles.css&#xa;    Line number: 139&#xa;    Comment: &#xa;        /*===== All Button Style =====*/&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/ud-styles.css&#xa;    Line number: 1310&#xa;    Comment: &#xa;        /* ===== Contact CSS ===== */&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/bootstrap.min.css&#xa;    Line number: 1&#xa;    Comment: &#xa;        /*!&#xa;         * Bootstrap v5.1.0 (https://getbootstrap.com/)&#xa;         * Copyright 2011-2021 The Bootstrap Authors&#xa;         * Copyright 2011-2021 Twitter, Inc.&#xa;         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)&#xa;         */&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/lineicons.css&#xa;    Line number: 1&#xa;    Comment: &#xa;        /*-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#xa;        &#xa;        LineIcons Web Font&#xa;        Author: lineicons.com&#xa;        &#xa;        -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; */&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/ud-styles.css&#xa;    Line number: 998&#xa;    Comment: &#xa;        /* ===== FAQ CSS ===== */&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 859&#xa;    Comment: &#xa;        &lt;!-&#45; ====== All Javascript Files ====== -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 851&#xa;    Comment: &#xa;        &lt;!-&#45; ====== Footer End ====== -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 877&#xa;    Comment: &#xa;         // section menu active&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/lineicons.css&#xa;    Line number: 48&#xa;    Comment: &#xa;        /*-&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#xa;          spinning icons&#xa;        -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;*/&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 693&#xa;    Comment: &#xa;        &lt;!-&#45; ====== Footer Start ====== -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 603&#xa;    Comment: &#xa;        &lt;!-&#45; ====== Contact Start ====== -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 13&#xa;    Comment: &#xa;        &lt;!-&#45; Open Graph / Facebook -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/js/wow.min.js&#xa;    Line number: 1&#xa;    Comment: &#xa;        &#xa;        &#xa;        * Copyright (c) 2016 Thomas Grainger; Licensed MIT */&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 34&#xa;    Comment: &#xa;        &lt;!-&#45; ===== All CSS files ===== -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/ud-styles.css&#xa;    Line number: 1640&#xa;    Comment: &#xa;        /* ====== Banner CSS ======= */&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/ud-styles.css&#xa;    Line number: 786&#xa;    Comment: &#xa;        /* ===== About CSS ===== */&#xa;    &#xa;    Path: http://10.10.11.136:80/assets/css/ud-styles.css&#xa;    Line number: 204&#xa;    Comment: &#xa;        /* ===== Header CSS ===== */&#xa;    &#xa;    Path: http://10.10.11.136:80/index.html&#xa;    Line number: 41&#xa;    Comment: &#xa;        &lt;!-&#45; ====== Header Start ====== -&#45;&gt;&#xa;"/><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      Other: 1&#xa;    /assets/css/&#xa;      css: 3&#xa;    /assets/images/about/&#xa;      svg: 1&#xa;    /assets/images/brands/&#xa;      svg: 4&#xa;    /assets/images/footer/&#xa;      svg: 3&#xa;    /assets/images/hero/&#xa;      svg: 2&#xa;    /assets/images/logo/&#xa;      svg: 1&#xa;    /assets/images/testimonials/&#xa;      png: 2&#xa;    /assets/js/&#xa;      js: 3&#xa;  Longest directory structure:&#xa;    Depth: 3&#xa;    Dir: /assets/images/testimonials/&#xa;  Total files found (by extension):&#xa;    Other: 1; css: 3; js: 3; png: 2; svg: 11&#xa;"/><script id="http-title" output="Play | Landing"><elem key="title">Play | Landing</elem>
+</script><script id="http-xssed" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-headers" output="&#xa;  Date: Wed, 10 May 2023 17:06:02 GMT&#xa;  Server: Apache/2.4.41 (Ubuntu)&#xa;  Last-Modified: Fri, 03 Dec 2021 14:00:31 GMT&#xa;  ETag: &quot;8318-5d23e548bc656&quot;&#xa;  Accept-Ranges: bytes&#xa;  Content-Length: 33560&#xa;  Vary: Accept-Encoding&#xa;  Connection: close&#xa;  Content-Type: text/html&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-errors" output="Couldn&apos;t find any error pages."/><script id="http-internal-ip-disclosure" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-date" output="Wed, 10 May 2023 17:05:53 GMT; +59m59s from local time."><elem key="date">2023-05-10T18:05:53+00:00</elem>
+<elem key="delta">3599.0</elem>
+</script><script id="http-security-headers" output=""></script></port>
+</ports>
+<hostscript><script id="ipidseq" output="All zeros"/><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;22    0       67498.80   30114.19  0.0%&#xa;80    0       72623.70   38740.28  0.0%&#xa;"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.10.11.136&quot;; use dns-brute.domain script argument."/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="path-mtu" output="PMTU == 1500"/></hostscript><times srtt="68606" rttvar="69608" to="347038"/>
+</host>
+<runstats><finished time="1683738691" timestr="Wed May 10 18:11:31 2023" summary="Nmap done at Wed May 10 18:11:31 2023; 1 IP address (1 host up) scanned in 363.30 seconds" elapsed="363.30" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

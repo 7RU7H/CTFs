@@ -1,0 +1,502 @@
+# Nmap 7.93 scan initiated Wed May 10 18:05:28 2023 as: nmap --script discovery -oA nmap/10-10-11-136-Discovery --min-rate 500 -e tun0 -p 22,80 10.10.11.136
+Pre-scan script results:
+|_lltd-discovery: false
+|_broadcast-ping: false
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.10.11.136
+Host is up (0.069s latency).
+
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+22/tcp open  ssh
+|_banner: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.3
+| ssh2-enum-algos: 
+|   kex_algorithms: (9)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   3072 24c295a5c30b3ff3173c68d7af2b5338 (RSA)
+|   256 b1417799469a6c5dd2982fc0329ace03 (ECDSA)
+|_  256 e736433ba9478a190158b2bc89f65108 (ED25519)
+80/tcp open  http
+| http-grep: 
+|   (3) http://10.10.11.136:80/: 
+|     (3) email: 
+|       + support@panda.htb
+|       + contact@panda.htb
+|_      + example@yourmail.com
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-chrono: Request times for /; avg: 302.11ms; min: 262.24ms; max: 355.73ms
+|_http-mobileversion-checker: No mobile version detected.
+|_http-feed: Couldn't find any feeds.
+|_http-devframework: Wordpress detected. Found common traces on /
+| http-vhosts: 
+|_128 names had status 200
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.11.136
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 211
+|     Comment: 
+|         <!-- ====== Pricing Start ====== -->
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 116
+|     Comment: 
+|         <!-- ====== Hero End ====== -->
+|     
+|     Path: http://10.10.11.136:80/assets/css/ud-styles.css
+|     Line number: 663
+|     Comment: 
+|         /* ===== Features CSS ===== */
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 864
+|     Comment: 
+|          // ==== for menu scroll
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 27
+|     Comment: 
+|         <!--====== Favicon Icon ======-->
+|     
+|     Path: http://10.10.11.136:80/assets/css/animate.css
+|     Line number: 3
+|     Comment: 
+|         /*!
+|          * animate.css -https://daneden.github.io/animate.css/
+|          * Version - 3.7.2
+|          * Licensed under the MIT license - http://opensource.org/licenses/MIT
+|          *
+|          * Copyright (c) 2019 Daniel Eden
+|          */
+|     
+|     Path: http://10.10.11.136:80/assets/js/bootstrap.bundle.min.js
+|     Line number: 1
+|     Comment: 
+|         /*!
+|           * Bootstrap v5.1.0 (https://getbootstrap.com/)
+|           * Copyright 2011-2021 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+|           * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+|           */
+|     
+|     Path: http://10.10.11.136:80/assets/css/lineicons.css
+|     Line number: 40
+|     Comment: 
+|         /* absolute units */
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 857
+|     Comment: 
+|         <!-- ====== Back To Top End ====== -->
+|     
+|     Path: http://10.10.11.136:80/assets/css/ud-styles.css
+|     Line number: 1
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         ======== */
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 118
+|     Comment: 
+|         <!-- ====== Features Start ====== -->
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 308
+|     Comment: 
+|         <!-- ====== FAQ Start ====== -->
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 188
+|     Comment: 
+|         <!-- ====== Features End ====== -->
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 450
+|     Comment: 
+|         <!-- ====== Testimonials Start ====== -->
+|     
+|     Path: http://10.10.11.136:80/assets/css/ud-styles.css
+|     Line number: 877
+|     Comment: 
+|         /* ===== Pricing CSS ===== */
+|     
+|     Path: http://10.10.11.136:80/assets/css/ud-styles.css
+|     Line number: 1783
+|     Comment: 
+|         /* ====== Blog CSS ====== */
+|     
+|     Path: http://10.10.11.136:80/assets/css/ud-styles.css
+|     Line number: 1212
+|     Comment: 
+|         /* ===== Team CSS ===== */
+|     
+|     Path: http://10.10.11.136:80/assets/css/lineicons.css
+|     Line number: 80
+|     Comment: 
+|         /*------------------------
+|         	icons
+|         -------------------------*/
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 9
+|     Comment: 
+|         <!-- Primary Meta Tags -->
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 853
+|     Comment: 
+|         <!-- ====== Back To Top Start ====== -->
+|     
+|     Path: http://10.10.11.136:80/assets/css/ud-styles.css
+|     Line number: 1883
+|     Comment: 
+|         /* ====== Blog Details CSS ====== */
+|     
+|     Path: http://10.10.11.136:80/assets/js/main.js
+|     Line number: 61
+|     Comment: 
+|         
+|     
+|     Path: http://10.10.11.136:80/assets/css/lineicons.css
+|     Line number: 62
+|     Comment: 
+|         /*------------------------
+|           rotated/flipped icons
+|         -------------------------*/
+|     
+|     Path: http://10.10.11.136:80/assets/css/ud-styles.css
+|     Line number: 2613
+|     Comment: 
+|         /*# sourceMappingURL=ud-styles.css.map */
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 20
+|     Comment: 
+|         <!-- Twitter -->
+|     
+|     Path: http://10.10.11.136:80/assets/css/lineicons.css
+|     Line number: 26
+|     Comment: 
+|         /* Better Font Rendering */
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 209
+|     Comment: 
+|         <!-- ====== About End ====== -->
+|     
+|     Path: http://10.10.11.136:80/assets/css/lineicons.css
+|     Line number: 33
+|     Comment: 
+|         /* relative units */
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 306
+|     Comment: 
+|         <!-- ====== Pricing End ====== -->
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 190
+|     Comment: 
+|         <!-- ====== About Start ====== -->
+|     
+|     Path: http://10.10.11.136:80/assets/js/main.js
+|     Line number: 50
+|     Comment: 
+|         
+|     
+|     Path: http://10.10.11.136:80/assets/css/ud-styles.css
+|     Line number: 1663
+|     Comment: 
+|         /* ====== Login CSS ====== */
+|     
+|     Path: http://10.10.11.136:80/assets/css/ud-styles.css
+|     Line number: 10
+|     Comment: 
+|         
+|         
+|         ===========================*/
+|     
+|     Path: http://10.10.11.136:80/assets/css/lineicons.css
+|     Line number: 30
+|     Comment: 
+|         /*------------------------
+|           change icon size
+|         -------------------------*/
+|     
+|     Path: http://10.10.11.136:80/assets/css/ud-styles.css
+|     Line number: 1464
+|     Comment: 
+|         /* ===== Footer CSS ===== */
+|     
+|     Path: http://10.10.11.136:80/assets/css/lineicons.css
+|     Line number: 14
+|     Comment: 
+|         /*------------------------
+|         	base class definition
+|         -------------------------*/
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 78
+|     Comment: 
+|         <!-- ====== Header End ====== -->
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 691
+|     Comment: 
+|         <!-- ====== Contact End ====== -->
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 601
+|     Comment: 
+|         <!-- ====== Testimonials End ====== -->
+|     
+|     Path: http://10.10.11.136:80/assets/js/main.js
+|     Line number: 58
+|     Comment: 
+|         
+|     
+|     Path: http://10.10.11.136:80/assets/js/main.js
+|     Line number: 35
+|     Comment: 
+|         
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 80
+|     Comment: 
+|         <!-- ====== Hero Start ====== -->
+|     
+|     Path: http://10.10.11.136:80/assets/css/ud-styles.css
+|     Line number: 1096
+|     Comment: 
+|         /* ===== Testimonials CSS ===== */
+|     
+|     Path: http://10.10.11.136:80/assets/css/ud-styles.css
+|     Line number: 2493
+|     Comment: 
+|         /* ====== Error 404 CSS ======= */
+|     
+|     Path: http://10.10.11.136:80/assets/js/main.js
+|     Line number: 23
+|     Comment: 
+|         
+|     
+|     Path: http://10.10.11.136:80/assets/js/main.js
+|     Line number: 16
+|     Comment: 
+|         
+|     
+|     Path: http://10.10.11.136:80/assets/js/main.js
+|     Line number: 4
+|     Comment: 
+|         
+|     
+|     Path: http://10.10.11.136:80/assets/css/bootstrap.min.css
+|     Line number: 7
+|     Comment: 
+|         /*# sourceMappingURL=bootstrap.min.css.map */
+|     
+|     Path: http://10.10.11.136:80/assets/css/ud-styles.css
+|     Line number: 507
+|     Comment: 
+|         /* ===== Hero CSS ===== */
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 448
+|     Comment: 
+|         <!-- ====== FAQ End ====== -->
+|     
+|     Path: http://10.10.11.136:80/assets/css/ud-styles.css
+|     Line number: 139
+|     Comment: 
+|         /*===== All Button Style =====*/
+|     
+|     Path: http://10.10.11.136:80/assets/css/ud-styles.css
+|     Line number: 1310
+|     Comment: 
+|         /* ===== Contact CSS ===== */
+|     
+|     Path: http://10.10.11.136:80/assets/css/bootstrap.min.css
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * Bootstrap v5.1.0 (https://getbootstrap.com/)
+|          * Copyright 2011-2021 The Bootstrap Authors
+|          * Copyright 2011-2021 Twitter, Inc.
+|          * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+|          */
+|     
+|     Path: http://10.10.11.136:80/assets/css/lineicons.css
+|     Line number: 1
+|     Comment: 
+|         /*--------------------------------
+|         
+|         LineIcons Web Font
+|         Author: lineicons.com
+|         
+|         -------------------------------- */
+|     
+|     Path: http://10.10.11.136:80/assets/css/ud-styles.css
+|     Line number: 998
+|     Comment: 
+|         /* ===== FAQ CSS ===== */
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 859
+|     Comment: 
+|         <!-- ====== All Javascript Files ====== -->
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 851
+|     Comment: 
+|         <!-- ====== Footer End ====== -->
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 877
+|     Comment: 
+|          // section menu active
+|     
+|     Path: http://10.10.11.136:80/assets/css/lineicons.css
+|     Line number: 48
+|     Comment: 
+|         /*------------------------
+|           spinning icons
+|         -------------------------*/
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 693
+|     Comment: 
+|         <!-- ====== Footer Start ====== -->
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 603
+|     Comment: 
+|         <!-- ====== Contact Start ====== -->
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 13
+|     Comment: 
+|         <!-- Open Graph / Facebook -->
+|     
+|     Path: http://10.10.11.136:80/assets/js/wow.min.js
+|     Line number: 1
+|     Comment: 
+|         
+|         
+|         * Copyright (c) 2016 Thomas Grainger; Licensed MIT */
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 34
+|     Comment: 
+|         <!-- ===== All CSS files ===== -->
+|     
+|     Path: http://10.10.11.136:80/assets/css/ud-styles.css
+|     Line number: 1640
+|     Comment: 
+|         /* ====== Banner CSS ======= */
+|     
+|     Path: http://10.10.11.136:80/assets/css/ud-styles.css
+|     Line number: 786
+|     Comment: 
+|         /* ===== About CSS ===== */
+|     
+|     Path: http://10.10.11.136:80/assets/css/ud-styles.css
+|     Line number: 204
+|     Comment: 
+|         /* ===== Header CSS ===== */
+|     
+|     Path: http://10.10.11.136:80/index.html
+|     Line number: 41
+|     Comment: 
+|_        <!-- ====== Header Start ====== -->
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /assets/css/
+|       css: 3
+|     /assets/images/about/
+|       svg: 1
+|     /assets/images/brands/
+|       svg: 4
+|     /assets/images/footer/
+|       svg: 3
+|     /assets/images/hero/
+|       svg: 2
+|     /assets/images/logo/
+|       svg: 1
+|     /assets/images/testimonials/
+|       png: 2
+|     /assets/js/
+|       js: 3
+|   Longest directory structure:
+|     Depth: 3
+|     Dir: /assets/images/testimonials/
+|   Total files found (by extension):
+|_    Other: 1; css: 3; js: 3; png: 2; svg: 11
+|_http-title: Play | Landing
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-headers: 
+|   Date: Wed, 10 May 2023 17:06:02 GMT
+|   Server: Apache/2.4.41 (Ubuntu)
+|   Last-Modified: Fri, 03 Dec 2021 14:00:31 GMT
+|   ETag: "8318-5d23e548bc656"
+|   Accept-Ranges: bytes
+|   Content-Length: 33560
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-errors: Couldn't find any error pages.
+|_http-internal-ip-disclosure: ERROR: Script execution failed (use -d to debug)
+|_http-date: Wed, 10 May 2023 17:05:53 GMT; +59m59s from local time.
+
+Host script results:
+|_ipidseq: All zeros
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       67498.80   30114.19  0.0%
+|_80    0       72623.70   38740.28  0.0%
+|_dns-brute: Can't guess domain of "10.10.11.136"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+|_path-mtu: PMTU == 1500
+
+# Nmap done at Wed May 10 18:11:31 2023 -- 1 IP address (1 host up) scanned in 363.30 seconds
