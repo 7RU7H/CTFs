@@ -1,30 +1,15 @@
 # Red-Team-Capstone-Challenge Notes
 
-## Data 
-
-IP: 
-OS:
-Hostname:
-Domain:  / Domain SID:
-Machine Purpose: 
-Services:
-Service Languages:
-Users:
-Credentials:
-
-## Objectives
-
-## Target Map
-
-![](Red-Team-Capstone-Challenge-map.excalidraw.md)
-
-## Solution Inventory Map
+## Current Objectives
 
 
-### Todo 
+## Inventory of ToDo
 
-Make Excalidraw
+Cookie
+```
+{"iv":"EPQ0\/Sazdv5CQPK5hf2vUw==","value":"nkLpPod23yxTUpcEHAAGANwRPm7rHDfERLQWMhjDokKZnebjm7eKWnVRKR1GZQuVdBBHzoW8gda7ghcERlarWCd2OW\/eA5SCYD+r6NB1NDJFdJggDXbcO5lTIZ8J5UR2","mac":"f5edadc6779af48f790256524566d7f9c208a8997b6794a7e44c4bea439de59b"}
+```      
 
-### Done
-      
+feroxbuster
 
+Sort out Thunderbird
