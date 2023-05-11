@@ -1,0 +1,124 @@
+# Nmap 7.93 scan initiated Thu May 11 21:01:57 2023 as: nmap -sC -sV -oA 10-200-121-11/nmap/10-200-121-11-Extensive-Found-Ports --min-rate 300 -e capstone -p 135,22,49674,49664,139,3389,3306,5985,143,49666,25,49668,110,33060,49667,49681,587,80,49669,49665,445,47001 10.200.121.11
+Nmap scan report for 10.200.121.11
+Host is up (0.099s latency).
+
+PORT      STATE SERVICE       VERSION
+22/tcp    open  ssh           OpenSSH for_Windows_7.7 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 f36c52d27fe90e1cc1c7ac962cd1ec2d (RSA)
+|   256 c2563cedc4b069a8e7ad3c310505e985 (ECDSA)
+|_  256 d3e5f07375d520d9c0bb4199e7afa000 (ED25519)
+25/tcp    open  smtp          hMailServer smtpd
+| smtp-commands: MAIL, SIZE 20480000, AUTH LOGIN, HELP
+|_ 211 DATA HELO EHLO MAIL NOOP QUIT RCPT RSET SAML TURN VRFY
+80/tcp    open  http          Microsoft IIS httpd 10.0
+|_http-server-header: Microsoft-IIS/10.0
+|_http-title: IIS Windows Server
+| http-methods: 
+|_  Potentially risky methods: TRACE
+110/tcp   open  pop3          hMailServer pop3d
+|_pop3-capabilities: USER UIDL TOP
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+143/tcp   open  imap          hMailServer imapd
+|_imap-capabilities: QUOTA SORT IMAP4 completed CAPABILITY RIGHTS=texkA0001 ACL NAMESPACE OK IMAP4rev1 CHILDREN IDLE
+445/tcp   open  microsoft-ds?
+587/tcp   open  smtp          hMailServer smtpd
+| smtp-commands: MAIL, SIZE 20480000, AUTH LOGIN, HELP
+|_ 211 DATA HELO EHLO MAIL NOOP QUIT RCPT RSET SAML TURN VRFY
+3306/tcp  open  mysql         MySQL 8.0.31
+|_ssl-date: TLS randomness does not represent time
+| ssl-cert: Subject: commonName=MySQL_Server_8.0.31_Auto_Generated_Server_Certificate
+| Not valid before: 2023-01-10T07:46:11
+|_Not valid after:  2033-01-07T07:46:11
+| mysql-info: 
+|   Protocol: 10
+|   Version: 8.0.31
+|   Thread ID: 337
+|   Capabilities flags: 65535
+|   Some Capabilities: Speaks41ProtocolNew, InteractiveClient, Support41Auth, SupportsLoadDataLocal, ODBCClient, LongPassword, SwitchToSSLAfterHandshake, Speaks41ProtocolOld, FoundRows, ConnectWithDatabase, SupportsTransactions, IgnoreSigpipes, LongColumnFlag, DontAllowDatabaseTableColumn, IgnoreSpaceBeforeParenthesis, SupportsCompression, SupportsMultipleResults, SupportsMultipleStatments, SupportsAuthPlugins
+|   Status: Autocommit
+|   Salt: e\x14J~5x\x17kpa\x12\x06Pg1s!*\x0DF
+|_  Auth Plugin Name: caching_sha2_password
+3389/tcp  open  ms-wbt-server Microsoft Terminal Services
+| ssl-cert: Subject: commonName=MAIL.thereserve.loc
+| Not valid before: 2023-01-09T06:02:42
+|_Not valid after:  2023-07-11T06:02:42
+| rdp-ntlm-info: 
+|   Target_Name: THERESERVE
+|   NetBIOS_Domain_Name: THERESERVE
+|   NetBIOS_Computer_Name: MAIL
+|   DNS_Domain_Name: thereserve.loc
+|   DNS_Computer_Name: MAIL.thereserve.loc
+|   DNS_Tree_Name: thereserve.loc
+|   Product_Version: 10.0.17763
+|_  System_Time: 2023-05-11T20:03:12+00:00
+|_ssl-date: 2023-05-11T20:03:22+00:00; -2s from scanner time.
+5985/tcp  open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-title: Not Found
+|_http-server-header: Microsoft-HTTPAPI/2.0
+33060/tcp open  mysqlx?
+| fingerprint-strings: 
+|   DNSStatusRequestTCP, LDAPSearchReq, NotesRPC, SSLSessionReq, TLSSessionReq, X11Probe, afp: 
+|     Invalid message"
+|     HY000
+|   LDAPBindReq: 
+|     *Parse error unserializing protobuf message"
+|     HY000
+|   oracle-tns: 
+|     Invalid message-frame."
+|_    HY000
+47001/tcp open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+49664/tcp open  msrpc         Microsoft Windows RPC
+49665/tcp open  msrpc         Microsoft Windows RPC
+49666/tcp open  msrpc         Microsoft Windows RPC
+49667/tcp open  msrpc         Microsoft Windows RPC
+49668/tcp open  msrpc         Microsoft Windows RPC
+49669/tcp open  msrpc         Microsoft Windows RPC
+49674/tcp open  msrpc         Microsoft Windows RPC
+49681/tcp open  msrpc         Microsoft Windows RPC
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port33060-TCP:V=7.93%I=7%D=5/11%Time=645D49CE%P=x86_64-pc-linux-gnu%r(G
+SF:enericLines,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(GetRequest,9,"\x05\0\0\
+SF:0\x0b\x08\x05\x1a\0")%r(HTTPOptions,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r
+SF:(RTSPRequest,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(RPCCheck,9,"\x05\0\0\0
+SF:\x0b\x08\x05\x1a\0")%r(DNSVersionBindReqTCP,9,"\x05\0\0\0\x0b\x08\x05\x
+SF:1a\0")%r(DNSStatusRequestTCP,2B,"\x05\0\0\0\x0b\x08\x05\x1a\0\x1e\0\0\0
+SF:\x01\x08\x01\x10\x88'\x1a\x0fInvalid\x20message\"\x05HY000")%r(Help,9,"
+SF:\x05\0\0\0\x0b\x08\x05\x1a\0")%r(SSLSessionReq,2B,"\x05\0\0\0\x0b\x08\x
+SF:05\x1a\0\x1e\0\0\0\x01\x08\x01\x10\x88'\x1a\x0fInvalid\x20message\"\x05
+SF:HY000")%r(TerminalServerCookie,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(TLSS
+SF:essionReq,2B,"\x05\0\0\0\x0b\x08\x05\x1a\0\x1e\0\0\0\x01\x08\x01\x10\x8
+SF:8'\x1a\x0fInvalid\x20message\"\x05HY000")%r(Kerberos,9,"\x05\0\0\0\x0b\
+SF:x08\x05\x1a\0")%r(SMBProgNeg,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(X11Pro
+SF:be,2B,"\x05\0\0\0\x0b\x08\x05\x1a\0\x1e\0\0\0\x01\x08\x01\x10\x88'\x1a\
+SF:x0fInvalid\x20message\"\x05HY000")%r(FourOhFourRequest,9,"\x05\0\0\0\x0
+SF:b\x08\x05\x1a\0")%r(LPDString,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(LDAPS
+SF:earchReq,2B,"\x05\0\0\0\x0b\x08\x05\x1a\0\x1e\0\0\0\x01\x08\x01\x10\x88
+SF:'\x1a\x0fInvalid\x20message\"\x05HY000")%r(LDAPBindReq,46,"\x05\0\0\0\x
+SF:0b\x08\x05\x1a\x009\0\0\0\x01\x08\x01\x10\x88'\x1a\*Parse\x20error\x20u
+SF:nserializing\x20protobuf\x20message\"\x05HY000")%r(LANDesk-RC,9,"\x05\0
+SF:\0\0\x0b\x08\x05\x1a\0")%r(TerminalServer,9,"\x05\0\0\0\x0b\x08\x05\x1a
+SF:\0")%r(NCP,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(NotesRPC,2B,"\x05\0\0\0\
+SF:x0b\x08\x05\x1a\0\x1e\0\0\0\x01\x08\x01\x10\x88'\x1a\x0fInvalid\x20mess
+SF:age\"\x05HY000")%r(JavaRMI,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(WMSReque
+SF:st,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(oracle-tns,32,"\x05\0\0\0\x0b\x0
+SF:8\x05\x1a\0%\0\0\0\x01\x08\x01\x10\x88'\x1a\x16Invalid\x20message-frame
+SF:\.\"\x05HY000")%r(ms-sql-s,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(afp,2B,"
+SF:\x05\0\0\0\x0b\x08\x05\x1a\0\x1e\0\0\0\x01\x08\x01\x10\x88'\x1a\x0fInva
+SF:lid\x20message\"\x05HY000")%r(giop,9,"\x05\0\0\0\x0b\x08\x05\x1a\0");
+Service Info: Host: MAIL; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-time: 
+|   date: 2023-05-11T20:03:13
+|_  start_date: N/A
+| smb2-security-mode: 
+|   311: 
+|_    Message signing enabled but not required
+|_clock-skew: mean: -1s, deviation: 0s, median: -1s
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu May 11 21:03:28 2023 -- 1 IP address (1 host up) scanned in 90.63 seconds

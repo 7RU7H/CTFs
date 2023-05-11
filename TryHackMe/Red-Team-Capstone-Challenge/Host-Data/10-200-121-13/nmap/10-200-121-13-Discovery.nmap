@@ -1,0 +1,108 @@
+# Nmap 7.93 scan initiated Thu May 11 19:44:54 2023 as: nmap --script discovery -oA 10-200-121-13/nmap/10-200-121-13-Discovery --min-rate 300 -e capstone -p 22,80 10.200.121.13
+Pre-scan script results:
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_lltd-discovery: false
+|_broadcast-ping: false
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+Nmap scan report for 10.200.121.13
+Host is up (0.072s latency).
+
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+22/tcp open  ssh
+|_banner: SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.7
+| ssh-hostkey: 
+|   2048 dd21db000cbfe2dd7bc83eb02606add6 (RSA)
+|   256 aacbaffde5bdda5d3c3fea13bcb47594 (ECDSA)
+|_  256 37b5f2227828aac561be7a7061a6c82a (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+80/tcp open  http
+| http-vhosts: 
+|_128 names had status 200
+|_http-errors: Couldn't find any error pages.
+|_http-feed: Couldn't find any feeds.
+| http-enum: 
+|_  /info.php: Possible information file
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-chrono: Request times for /; avg: 397.77ms; min: 328.02ms; max: 496.36ms
+| http-headers: 
+|   Date: Thu, 11 May 2023 18:45:31 GMT
+|   Server: Apache/2.4.29 (Ubuntu)
+|   Last-Modified: Sun, 30 Apr 2023 14:46:56 GMT
+|   ETag: "18f-5fa8ec718a96d"
+|   Accept-Ranges: bytes
+|   Content-Length: 399
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-date: Thu, 11 May 2023 18:45:31 GMT; +59m59s from local time.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1
+|_http-title: Site doesn't have a title (text/html).
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.200.121.13
+|     
+|     Path: http://10.200.121.13:80/
+|     Line number: 4
+|     Comment: 
+|         <!--
+|             Modified from the Debian original for Ubuntu
+|             Last updated: 2016-11-16
+|             See: https://launchpad.net/bugs/1288690
+|_          -->
+|_http-mobileversion-checker: No mobile version detected.
+
+Host script results:
+|_path-mtu: PMTU == 1500
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "10.200.121.13"; use dns-brute.domain script argument.
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       171948.00  68165.23  0.0%
+|_80    0       165417.00  49367.80  0.0%
+|_ipidseq: All zeros
+
+# Nmap done at Thu May 11 20:02:47 2023 -- 1 IP address (1 host up) scanned in 1072.88 seconds

@@ -1,0 +1,42 @@
+# Nmap 7.93 scan initiated Thu May 11 19:43:27 2023 as: nmap --script discovery -oA 10-200-121-12/nmap/10-200-121-12-Discovery --min-rate 300 -e capstone -p 1194,22 10.200.121.12
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_lltd-discovery: false
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-ping: false
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+Nmap scan report for 10.200.121.12
+Host is up (0.069s latency).
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+| ssh-hostkey: 
+|   2048 d58036189ae2a968a63d95a0eb1d85f0 (RSA)
+|   256 a509d26562d4b715b66cf546516abf56 (ECDSA)
+|_  256 b0f5970716c9adabdf314bc8e43f31ac (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.5
+1194/tcp open  openvpn
+
+Host script results:
+|_ipidseq: All zeros
+|_path-mtu: PMTU == 1500
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       89694.90   37266.29  0.0%
+|_1194  0       101326.40  45670.11  0.0%
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "10.200.121.12"; use dns-brute.domain script argument.
+
+# Nmap done at Thu May 11 19:44:02 2023 -- 1 IP address (1 host up) scanned in 35.25 seconds

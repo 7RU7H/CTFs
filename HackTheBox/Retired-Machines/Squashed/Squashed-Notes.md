@@ -2,7 +2,7 @@
 
 ## Data 
 
-IP: 
+IP: 10.10.11.191
 OS:
 Hostname:
 Domain:  / Domain SID:
@@ -11,6 +11,10 @@ Services:
 Service Languages:
 Users:
 Credentials:
+
+## DO NOT LOOK AT WRITEUP
+## FAILS - Learnt always Rescan a box!
+
 
 ## Objectives
 
@@ -27,7 +31,3 @@ Credentials:
 
 ### Done
       
-rossmoistmaker.png
-comingformonicasmoistmaker.png
-
-https://raw.githubusercontent.com/r3nt0n/keepass4brute/master/keepass4brute.sh
