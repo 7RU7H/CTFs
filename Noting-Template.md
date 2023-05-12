@@ -13,6 +13,12 @@ Service Languages:
 Email Address & Formatting:
 Username Format:
 
+Report writing help
+\`\`\`
+ls -1 Screenshots | awk '{print"![]("$1")"}'
+\`\`\`
+
+
 ## Objectives
 What do have in the solutions inventory to meet large network objective?
 
