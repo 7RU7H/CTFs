@@ -69,9 +69,9 @@ tasklist /FI "USERNAME ne NT AUTHORITY\SYSTEM" /FI "STATUS eq running"
 
 dir /S /B *pass*.txt == *pass*.xml == *pass*.ini == *cred* == *vnc* == *.config*
 
-dir /s *sysprep.inf *sysprep.xml *unattended.xml *unattend.xml *unattend.txt 2>nuldir /s *sysprep.inf *sysprep.xml *unattended.xml *unattend.xml *unattend.txt 2>nul
+dir /s *sysprep.inf *sysprep.xml *unattended.xml *unattend.xml *unattend.txt 2>nul
 
-findstr /si password *.xml *.ini *.txt *.configfindstr /si password *.xml *.ini *.txt *.config
+findstr /si password *.xml *.ini *.txt *.config
 
 REG QUERY HKLM /F "password" /t REG_SZ /S /K
 REG QUERY HKCU /F "password" /t REG_SZ /S /K

@@ -1,6 +1,6 @@
-# Red-Team-Capstone-Challenge Writeup
+# Red-Team-Capstone-Challenge Helped-Through
 
-Name: Red-Team-Capstone-Challenge
+Name: Red Team Capstone Challenge 
 Date:  
 Difficulty:  Hard
 Goals:  
@@ -20,7 +20,6 @@ Learnt:
 ![](cooltext.png)
 
 ## OSINT  
-
 
 ```
 crackmapexec <proto> 10.200.121.0/24 -u '' -p ''
