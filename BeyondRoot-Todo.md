@@ -20,16 +20,22 @@ Alternative to nohup on Windows preferable dos and powershell - [For Windows con
 
 Socat proxy
 
+pwnkit
+lsa dump
 
 
 
 
 
-- Enabling RDP with cme and impacket kerboros tickets 
+
+- 8`\`\````
+```nabling RDP with cme and impacket kerboros tickets 
 	- Harden and or implement AMSI with powershell 
 - Create an alert based on .exe and .ps1 from PowerUP, Winpeas 
-- Remote interaction with box that would no lead to compromise
+	- Remote interaction with box that would no lead to compromise
 - Open RDP for a new user and Get Sysinternals on box
+	- procdump
+	- procmon
 
 
 https://github.com/dubs3c/sudo_sniff/blob/master/sudo_sniff.c

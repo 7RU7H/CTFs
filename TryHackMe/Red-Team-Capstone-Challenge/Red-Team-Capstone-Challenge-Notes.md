@@ -2,6 +2,7 @@
 
 ## Current Objectives
 
+Modern Wordlist generator are bad in many really annoying ways - mentalist is old but good.
 
 ## Inventory of ToDo
 
