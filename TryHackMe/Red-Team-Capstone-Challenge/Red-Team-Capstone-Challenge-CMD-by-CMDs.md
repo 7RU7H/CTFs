@@ -13,7 +13,7 @@ The password policy for TheReserve is the following:
 * At least 8 characters long
 * At least 1 number
 * At least 1 special character
-* Special Characters: `  !@#$%^  ``
+* Special Characters: `  !@#$%^  `
 ```
 
 ```

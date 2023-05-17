@@ -4,9 +4,9 @@ Name: Vault
 Date:  10/5/2023
 Difficulty: Hard  
 Goals:  
-- Previous OSCP practice exam 
+- Previous OSCP practice exam attmpt
 Learnt:
-- Some Practice machines are not for OSCP.
+- Some Practice machines are not for OSCP. Sad 
 
 Previously I tried to do this machine as part of a practice OSCP exam attempt. Little did I know that this machine required responder. Although I really excelled in finding and combing through machines it also really hurt my chances with stress and that made me reconsider long term plans. Hopeful the later half of this year will bring a better life in many respects. One very important event was discovery and really trying to emulate and understand hackers like [XCT](https://www.youtube.com/watch?v=fRbVdbY1d28), prior to the recent rank changes of HTB seasons was top 1 on HTB. The rankinug which will move to official post beta phase in less than 30 days. I have set my sights on atleast getting Silver rank out of Bronze, Silver, Ruby, Platinum and Holo, but go for Ruby. I think I could maybe get one hard machine in a week, but I doubt it and I would have to get lucky.
 
@@ -100,6 +100,8 @@ I ran the latest winpeas
 Remote [Bloodhound.py](https://github.com/fox-it/BloodHound.py)
 ```bash
 sudo python3 bloodhound.py -c all -d vault.offsec -ns 192.168.156.172 -u 'anirudh' -p 'SecureHM'
+ulimit -
+
 ```
 
 

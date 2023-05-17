@@ -110,8 +110,79 @@ Then credentials
 
 [[Red-Team-Capstone-Challenge-Credentials]]
 
+Inspired by response time talking point about burpsuite pro - Poor Man's Reponse Curlculator
+```bash
+#!/bin/bash
 
+if [ "$#" -ne 0 ]; then
+        echo "Usage: $0 no arguments required as you are required to paste in full curl commands"
+        exit
+fi
 
+echo "Inital full curl command is required"
+echo ""
+read -p 'Paste in your first full payload now: ' CURL1
+echo ""
+echo "Second full curl command is required..."
+echo ""
+read -p 'Paste in your first full payload now: ' CURL2
+
+TIME0=$(date +"%T.%N")
+echo "Sending first curl to $CURL1"
+$CURL1
+wait
+TIME1=$(date +"%T.%N")
+echo ""
+sleep 3
+TIME2=$(date +"%T.%N")
+echo "Sending first curl to $CURL1"
+$CURL2
+wait
+TIME3=$(date +"%T.%N")
+echo ""
+echo ""
+echo ""
+echo ""
+echo "First curl started at: $TIME0"
+echo "First curl ended at: $TIME1"
+echo "Second curl started at: $TIME2"
+echo "Second curl ended at: $TIME3"
+exit
+```
+
+Just as I was catching up on the progress made by at [Tyler](https://www.youtube.com/watch?v=xrh3g5VjY6Y&t=5277s) this point he discovers a VPN key. Unlike Al or Tibs who went with a target approach - Web server and Email server plus password spray. Tyler went for a similiar approach to I originally set out with holistic scan and enumerate anything and everything and list out threads of where to pull of the next stages of the overall engagement.
+
+I guess corperation just like leaving free vpn keys lying around on the vpn gateway..
+![1080](thefaceofamanwhohasfoundvpnfreetouse.png)
+
+Without having paid much attention just verifying steps made. 
+![1080](vpnkeydirectory.png)
+
+This could also indicate a naming convention for vpn key that we may steal from the employees to by able to securely pivot through the later firewalls. Remember to always read and fix where required
+![](remembertofix.png)
+And fixing it we get a legitmate way in. 
+![](corpUserinterface.png)
+
+Given that Tyler does know what `-e` flag for nmap does and I also want to be more red team given there are firewalls and EDRs and all that. Using nmap could be a bad idea. To solve this I checked if `-sS`  would show up as nmap packet that can be parsed as such
+![](doublechecksshasnonmap.png)
+
+While I was being to overthink the addressing part
+![](vpninternalnetworksexplained.png)
+It is just in the vpn output.
+
+```bash
+sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,389,443,445,464,636,3306,3389,5000,9389 -e tun0 172.32.5.21/32
+
+sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,389,443,445,464,636,3306,3389,5000,9389 -e tun0 172.32.5.22/32
+# The alternative would be to try resolve over netbios 
+```
+
+A temporary wordlist to the wordlist problem of problems solution for < 38K words. 
+```bash
+cat /usr/share/wordlists/seclists/Discovery/Web-Content/raft-small-words.txt | cat /usr/share/wordlists/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt| cat /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt |  uniq | sort > betterRaftandDirb.txt
+```
+
+There is a vpns directory to fuzz. If we have a username format we can fuzz it. I forgot to reset the network and then the vpn key 
 
 ## Perimeter Breach
 ## Initial Compromise of Active Directory
