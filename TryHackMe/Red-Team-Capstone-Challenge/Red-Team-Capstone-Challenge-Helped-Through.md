@@ -37,6 +37,7 @@ General disclaimer, this is more a documentation of my following along with Stre
 Firstly connecting to have a pretend domain squated email.
 ![](cooltext.png)
 
+
 ## OSINT  
 
 ```

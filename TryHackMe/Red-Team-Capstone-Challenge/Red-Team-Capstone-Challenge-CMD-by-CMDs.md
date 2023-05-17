@@ -28,6 +28,7 @@ IP Range: 10.200.121.0/24
 =======================================
 ```
 
+
 Initial
 ```bash
 curl http://10.200.121.13/october/themes/demo/assets/images/ -o images
