@@ -184,6 +184,10 @@ cat /usr/share/wordlists/seclists/Discovery/Web-Content/raft-small-words.txt && 
 
 There is a vpns directory to fuzz. If we have a username format we can fuzz it. I forgot to reset the network and then the vpn key  1:40 tyler
 
+Alh4zr3d goes full sliver and re-introduces me to the wonder of [ScareCrow](https://github.com/optiv/ScareCrow) - need to play with this 
+
+- https://github.com/BishopFox/sliver/wiki/Pivots
+
 ## Perimeter Breach
 ## Initial Compromise of Active Directory
 ## Full Compromise of CORP Domain

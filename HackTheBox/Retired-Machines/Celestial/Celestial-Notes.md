@@ -49,7 +49,7 @@ archive0.png
 and
 archive1.png
 
-[Hacktricks Deserialization article](https://book.hacktricks.xyz/pentesting-web/deserialization#nodejs)'s section on DEserialization attacks
+[Hacktricks Deserialization article](https://book.hacktricks.xyz/pentesting-web/deserialization#nodejs)'s section on Deserialization attacks for [Nodejs](https://nodejs.org/en)
 
 Test to see what is evaluated base on what reflected back to us first - make Node do maths
 decodechangeandencodepoc.png
@@ -114,5 +114,10 @@ line49.png
 
 lines7475.png
 
+Check:
+https://github.com/swisskyrepo/PayloadsAllTheThings/blob/f85f2cb4c60c5d4c869794f04c409826dc52ae86/Insecure%20Deserialization/Node.md?plain=1#L1
+
 
 https://attack.mitre.org/techniques/T1059/007/  [Chaes](https://attack.mitre.org/software/S0631) is a multistage information stealer written in several programming languages that collects login credentials, credit card numbers, and other financial information. Ialso uses NodeJS Puppeer npm package.
+
+https://www.cybereason.com/hubfs/dam/collateral/reports/11-2020-Chaes-e-commerce-malware-research.pdf
