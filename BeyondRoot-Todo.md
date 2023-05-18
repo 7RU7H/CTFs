@@ -1,4 +1,6 @@
 
+Use in context https://www.youtube.com/watch?v=o_XaJdDqQA0
+
 Cleaning up in a more professional manner and a too professional manner
 Windows/Linux - Go?
 
@@ -28,8 +30,7 @@ lsa dump
 
 
 
-- 8`\`\````
-```nabling RDP with cme and impacket kerboros tickets 
+- enabling RDP with cme and impacket kerboros tickets 
 	- Harden and or implement AMSI with powershell 
 - Create an alert based on .exe and .ps1 from PowerUP, Winpeas 
 	- Remote interaction with box that would no lead to compromise

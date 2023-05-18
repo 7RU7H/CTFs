@@ -179,10 +179,10 @@ sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,389,443,445,464,6
 
 A temporary wordlist to the wordlist problem of problems solution for < 38K words. 
 ```bash
-cat /usr/share/wordlists/seclists/Discovery/Web-Content/raft-small-words.txt | cat /usr/share/wordlists/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt| cat /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt |  uniq | sort > betterRaftandDirb.txt
+cat /usr/share/wordlists/seclists/Discovery/Web-Content/raft-small-words.txt && cat /usr/share/wordlists/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt #&& cat /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt |  sort -u > betterRaftandDirb.txt
 ```
 
-There is a vpns directory to fuzz. If we have a username format we can fuzz it. I forgot to reset the network and then the vpn key 
+There is a vpns directory to fuzz. If we have a username format we can fuzz it. I forgot to reset the network and then the vpn key  1:40 tyler
 
 ## Perimeter Breach
 ## Initial Compromise of Active Directory
