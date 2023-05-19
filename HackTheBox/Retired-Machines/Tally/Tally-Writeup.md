@@ -5,6 +5,8 @@ Difficulty:
 Description:  
 Better Description:  
 Goals:  
+- LonelyPotato usage
+- Ebowla, ScareCrow
 Learnt:
 
 ## Recon

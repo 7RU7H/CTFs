@@ -28,6 +28,18 @@ IP Range: 10.200.121.0/24
 =======================================
 ```
 
+Host management - update addDomainsToEctHosts.sh 
+```bash
+#!/bin/bash
+
+echo "10.200.89.11 mail.thereserve.loc MAIL.thereserve.loc  " | sudo tee -a /etc/hosts
+echo "10.200.89.12 thereserve.loc " | sudo tee -a /etc/hosts
+echo "10.200.89.13 web.thereserve.loc WEB.thereserve.loc " | sudo tee -a /etc/hosts
+# vpn key required
+echo "10.200.89.21 WRK1.corp.thereserve.loc" | sudo tee -a /etc/hosts
+echo "10.200.89.22 WRK2.corp.thereserve.loc " | sudo tee -a /etc/hosts
+```
+
 
 Initial
 ```bash
@@ -39,11 +51,9 @@ echo "patrick.edwards" >> users.txt
 cat users.txt | awk '{print $1"@corp.thereserve.loc"}' >> emails.txt
 echo "applications@corp.thereserve.loc" >> email.txt
 crackmapexec <proto> 10.200.121.0/24 -u '' -p ''
-
-echo "10.200.121.11 mail.thereserve.loc MAIL.thereserve.loc  " | sudo tee -a /etc/hosts
-echo "10.200.121.12 thereserve.loc " | sudo tee -a /etc/hosts
-echo "10.200.121.13 web.thereserve.loc WEB.thereserve.loc " | sudo tee -a /etc/hosts
 ```
+
+
 
 New
 ```bash

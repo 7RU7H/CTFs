@@ -16,15 +16,17 @@ WebMail ^G9X3bDen
 
 DMZ-FW ^DCFWNGSh
 
-172.32.5.21/32 ^SG5EYbYP
+172.32.5.21/32
+10.200.X.21 ^SG5EYbYP
 
-172.32.5.22/32 ^To96jIB8
+172.32.5.22/32
+10.200.X.22 ^To96jIB8
 
-10.200.121.11 ^v4sMrTNj
+10.200.X.11 ^v4sMrTNj
 
-10.200.121.12 ^v1iridnz
+10.200.X.12 ^v1iridnz
 
-10.200.121.13 ^1LKglmEr
+10.200.X.13 ^1LKglmEr
 
 %%
 # Drawing
@@ -672,8 +674,8 @@ DMZ-FW ^DCFWNGSh
 		},
 		{
 			"type": "line",
-			"version": 18,
-			"versionNonce": 468321748,
+			"version": 25,
+			"versionNonce": 110542870,
 			"isDeleted": false,
 			"id": "3vO3gY7x8O4jxIAb6JpQ-",
 			"fillStyle": "hachure",
@@ -686,13 +688,13 @@ DMZ-FW ^DCFWNGSh
 			"y": -390.2633364898991,
 			"strokeColor": "#000000",
 			"backgroundColor": "transparent",
-			"width": 18,
-			"height": 140,
+			"width": 23.47600290933417,
+			"height": 141.82533430311128,
 			"seed": 137911020,
 			"groupIds": [],
 			"strokeSharpness": "round",
 			"boundElements": [],
-			"updated": 1683823561256,
+			"updated": 1684522992045,
 			"link": null,
 			"locked": false,
 			"startBinding": null,
@@ -706,8 +708,8 @@ DMZ-FW ^DCFWNGSh
 					0
 				],
 				[
-					-18,
-					140
+					-23.47600290933417,
+					141.82533430311128
 				]
 			]
 		},
@@ -1206,44 +1208,44 @@ DMZ-FW ^DCFWNGSh
 			"originalText": "DMZ-FW"
 		},
 		{
-			"id": "SG5EYbYP",
 			"type": "text",
-			"x": -89.66474234690224,
-			"y": -553.7936592954798,
-			"width": 124,
-			"height": 21,
-			"angle": 0,
-			"strokeColor": "#000000",
-			"backgroundColor": "#fa5252",
+			"version": 66,
+			"versionNonce": 410823702,
+			"isDeleted": false,
+			"id": "SG5EYbYP",
 			"fillStyle": "cross-hatch",
 			"strokeWidth": 1,
 			"strokeStyle": "solid",
 			"roughness": 1,
 			"opacity": 100,
+			"angle": 0,
+			"x": -91.49007665001363,
+			"y": -533.7149819612545,
+			"strokeColor": "#000000",
+			"backgroundColor": "#fa5252",
+			"width": 123,
+			"height": 42,
+			"seed": 1768315283,
 			"groupIds": [],
 			"strokeSharpness": "sharp",
-			"seed": 1768315283,
-			"version": 40,
-			"versionNonce": 1231091,
-			"isDeleted": false,
-			"boundElements": null,
-			"updated": 1684338059799,
+			"boundElements": [],
+			"updated": 1684522971323,
 			"link": null,
 			"locked": false,
-			"text": "172.32.5.21/32",
-			"rawText": "172.32.5.21/32",
 			"fontSize": 16.876635671814455,
 			"fontFamily": 1,
+			"text": "172.32.5.21/32\n10.200.X.21",
+			"rawText": "172.32.5.21/32\n10.200.X.21",
+			"baseline": 36,
 			"textAlign": "left",
 			"verticalAlign": "top",
-			"baseline": 15,
 			"containerId": null,
-			"originalText": "172.32.5.21/32"
+			"originalText": "172.32.5.21/32\n10.200.X.21"
 		},
 		{
 			"type": "text",
-			"version": 87,
-			"versionNonce": 712030813,
+			"version": 103,
+			"versionNonce": 713069014,
 			"isDeleted": false,
 			"id": "To96jIB8",
 			"fillStyle": "cross-hatch",
@@ -1252,33 +1254,33 @@ DMZ-FW ^DCFWNGSh
 			"roughness": 1,
 			"opacity": 100,
 			"angle": 0,
-			"x": -92.76411038959975,
+			"x": -90.9387760864883,
 			"y": -594.024423794942,
 			"strokeColor": "#000000",
 			"backgroundColor": "#fa5252",
-			"width": 127,
-			"height": 20,
+			"width": 126,
+			"height": 40,
 			"seed": 1279065523,
 			"groupIds": [],
 			"strokeSharpness": "sharp",
 			"boundElements": [],
-			"updated": 1684338062728,
+			"updated": 1684522970053,
 			"link": null,
 			"locked": false,
 			"fontSize": 16.24793265865711,
 			"fontFamily": 1,
-			"text": "172.32.5.22/32",
-			"rawText": "172.32.5.22/32",
-			"baseline": 14,
+			"text": "172.32.5.22/32\n10.200.X.22",
+			"rawText": "172.32.5.22/32\n10.200.X.22",
+			"baseline": 34,
 			"textAlign": "left",
 			"verticalAlign": "top",
 			"containerId": null,
-			"originalText": "172.32.5.22/32"
+			"originalText": "172.32.5.22/32\n10.200.X.22"
 		},
 		{
 			"type": "text",
-			"version": 142,
-			"versionNonce": 1917967443,
+			"version": 146,
+			"versionNonce": 20391382,
 			"isDeleted": false,
 			"id": "v4sMrTNj",
 			"fillStyle": "cross-hatch",
@@ -1291,29 +1293,29 @@ DMZ-FW ^DCFWNGSh
 			"y": -727.1734451054923,
 			"strokeColor": "#000000",
 			"backgroundColor": "#fa5252",
-			"width": 84,
+			"width": 74,
 			"height": 18,
 			"seed": 1931820371,
 			"groupIds": [],
 			"strokeSharpness": "sharp",
 			"boundElements": [],
-			"updated": 1684338066599,
+			"updated": 1684522986027,
 			"link": null,
 			"locked": false,
 			"fontSize": 14.41053583703837,
 			"fontFamily": 1,
-			"text": "10.200.121.11",
-			"rawText": "10.200.121.11",
+			"text": "10.200.X.11",
+			"rawText": "10.200.X.11",
 			"baseline": 13,
 			"textAlign": "left",
 			"verticalAlign": "top",
 			"containerId": null,
-			"originalText": "10.200.121.11"
+			"originalText": "10.200.X.11"
 		},
 		{
 			"type": "text",
-			"version": 176,
-			"versionNonce": 1536167165,
+			"version": 180,
+			"versionNonce": 77510166,
 			"isDeleted": false,
 			"id": "v1iridnz",
 			"fillStyle": "cross-hatch",
@@ -1326,29 +1328,29 @@ DMZ-FW ^DCFWNGSh
 			"y": -564.5067989411564,
 			"strokeColor": "#000000",
 			"backgroundColor": "#fa5252",
-			"width": 90,
+			"width": 81,
 			"height": 18,
 			"seed": 2038892125,
 			"groupIds": [],
 			"strokeSharpness": "sharp",
 			"boundElements": [],
-			"updated": 1684338078492,
+			"updated": 1684522981643,
 			"link": null,
 			"locked": false,
 			"fontSize": 14.41053583703837,
 			"fontFamily": 1,
-			"text": "10.200.121.12",
-			"rawText": "10.200.121.12",
+			"text": "10.200.X.12",
+			"rawText": "10.200.X.12",
 			"baseline": 13,
 			"textAlign": "left",
 			"verticalAlign": "top",
 			"containerId": null,
-			"originalText": "10.200.121.12"
+			"originalText": "10.200.X.12"
 		},
 		{
 			"type": "text",
-			"version": 181,
-			"versionNonce": 1147449789,
+			"version": 185,
+			"versionNonce": 1591473290,
 			"isDeleted": false,
 			"id": "1LKglmEr",
 			"fillStyle": "cross-hatch",
@@ -1361,24 +1363,24 @@ DMZ-FW ^DCFWNGSh
 			"y": -403.8097042560096,
 			"strokeColor": "#000000",
 			"backgroundColor": "#fa5252",
-			"width": 90,
+			"width": 80,
 			"height": 18,
 			"seed": 1319965683,
 			"groupIds": [],
 			"strokeSharpness": "sharp",
 			"boundElements": [],
-			"updated": 1684338081411,
+			"updated": 1684522975625,
 			"link": null,
 			"locked": false,
 			"fontSize": 14.41053583703837,
 			"fontFamily": 1,
-			"text": "10.200.121.13",
-			"rawText": "10.200.121.13",
+			"text": "10.200.X.13",
+			"rawText": "10.200.X.13",
 			"baseline": 13,
 			"textAlign": "left",
 			"verticalAlign": "top",
 			"containerId": null,
-			"originalText": "10.200.121.13"
+			"originalText": "10.200.X.13"
 		}
 	],
 	"appState": {

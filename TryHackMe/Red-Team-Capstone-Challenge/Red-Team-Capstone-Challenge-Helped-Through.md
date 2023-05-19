@@ -5,12 +5,16 @@ Date:
 Difficulty:  Hard
 Goals:  
 - Red Teaming with the any Community 
+	- Subbed to 0xTiberious
+	- Joined the Work Harder Group
+- Get as many feasible perspectives and tricks
+- Watch the speedrun 
 - Get the badge!
 Learnt:
 - Limitations and pitfall of Wordlist generators 
 - Wordlist generator alternative tools
 - Setup Local Email for Red Reasons
-- AlH4zr3d's  Phishing and Spearphishing SE leafy-bug strat 
+- AlH4zr3d's Phishing and Spearphishing SE leafy-bug strat 
 
 
 
@@ -40,6 +44,7 @@ Firstly connecting to have a pretend domain squated email.
 
 ## OSINT  
 
+Alh4zr3d inital steps while enumerating in the background begin with crackmapexec.
 ```
 crackmapexec <proto> 10.200.121.0/24 -u '' -p ''
 ```
@@ -163,6 +168,9 @@ This could also indicate a naming convention for vpn key that we may steal from 
 And fixing it we get a legitmate way in. 
 ![](corpUserinterface.png)
 
+Quick test to figure out username format. 
+![](usernameformattingdeduction.png)
+
 Given that Tyler does know what `-e` flag for nmap does and I also want to be more red team given there are firewalls and EDRs and all that. Using nmap could be a bad idea. To solve this I checked if `-sS`  would show up as nmap packet that can be parsed as such
 ![](doublechecksshasnonmap.png)
 
@@ -175,6 +183,12 @@ sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,389,443,445,464,6
 
 sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,389,443,445,464,636,3306,3389,5000,9389 -e tun0 172.32.5.22/32
 # The alternative would be to try resolve over netbios 
+# 
+sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,389,443,445,464,636,3306,3389,5000 --min-rate 200 -e tun0 12.100.1.0/24 -v
+
+sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,389,443,445,464,636,3306,3389,5000 --min-rate 200 -e tun0 # -v
+
+
 ```
 
 A temporary wordlist to the wordlist problem of problems solution for < 38K words. 
@@ -187,6 +201,10 @@ There is a vpns directory to fuzz. If we have a username format we can fuzz it. 
 Alh4zr3d goes full sliver and re-introduces me to the wonder of [ScareCrow](https://github.com/optiv/ScareCrow) - need to play with this 
 
 - https://github.com/BishopFox/sliver/wiki/Pivots
+- https://dominicbreuker.com/post/learning_sliver_c2_10_sideload/
+
+Tyler references [Orange-Cyberdefense Mindmaps](https://github.com/Orange-Cyberdefense/ocd-mindmaps/blob/main/img/pentest_ad_dark_2023_02.svg), which is a extensive mindmap of AD attacks.
+
 
 ## Perimeter Breach
 ## Initial Compromise of Active Directory
