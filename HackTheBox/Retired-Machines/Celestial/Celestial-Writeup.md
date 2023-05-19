@@ -1,18 +1,18 @@
 # Celestial Writeup
 
 Name: Celestial
-Date:  
-Difficulty:  
+Date:  19/5/2023
+Difficulty: Medium  
 Goals:  
+- On the list to do list
+- With minimal understanding of the direction finish it quickish
 Learnt:
+- Once again the python2 script comes through
 Beyond Root:
+- Reead some APT stuff
 
 - [[Celestial-Notes.md]]
 - [[Celestial-CMD-by-CMDs.md]]
-
-
-![](Celestial-map.excalidraw.md)
-
 
 I watch the Ippsec video over my lunch break and it being on my list of Helped-Throughs I though I would just try it out. I know it involves Node deserialization and a cronjob that upset Ippsec. 
 
