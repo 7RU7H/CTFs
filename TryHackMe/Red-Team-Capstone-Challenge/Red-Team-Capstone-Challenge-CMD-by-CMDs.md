@@ -53,7 +53,11 @@ echo "applications@corp.thereserve.loc" >> email.txt
 crackmapexec <proto> 10.200.121.0/24 -u '' -p ''
 ```
 
+Silver and EDR bypassing Scarecrow
+```go
 
+
+```
 
 New
 ```bash
