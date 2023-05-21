@@ -7,16 +7,10 @@ Goals:
 Learnt:
 Beyond Root:
 
-- [[Nest-Notes.md]]
-- [[Nest-CMD-by-CMDs.md]]
-
-
-![](Nest-map.excalidraw.md)
-
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](OS-ProvingGrounds/Apex/Screenshots/ping.png)
 	
 ## Exploit
 
@@ -24,8 +18,6 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 
 ## PrivEsc
 
-![](Nest-map.excalidraw.md)
-
 ## Beyond Root
 
-
+      

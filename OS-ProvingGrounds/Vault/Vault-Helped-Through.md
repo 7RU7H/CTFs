@@ -214,6 +214,8 @@ Although if this was OSCP we actually need a shell as administrator.
 
 ## Beyond Root
 
+- Get OS writeup aswell!!
+
 #### Unintended Ways
 
 Use SeBackupPrivilege and SeRestorePrivilege

@@ -32,7 +32,7 @@ General disclaimer, this is more a documentation of my following along with Stre
 - [Tib3rius - Youtube](https://www.youtube.com/@Tib3rius) / []
 - [alh4zr3d3 - Youtube](https://www.youtube.com/@alh4zr3d3) / [alh4zr3d3 - Twitch](https://www.twitch.tv/videos/1817405607)
 - [TylerRamsbey](https://www.youtube.com/@TylerRamsbey)
-	- https://www.youtube.com/watch?v=xrh3g5VjY6Y
+	- Full playlist:  https://www.youtube.com/watch?v=xrh3g5VjY6Y&list=PLMoaZm9nyKaOrmj6SQH2b8lP6VN7Z4OD-
 
 
 #### My Map
@@ -206,7 +206,7 @@ Alh4zr3d goes full sliver and re-introduces me to the wonder of [ScareCrow](http
 
 Tyler references [Orange-Cyberdefense Mindmaps](https://github.com/Orange-Cyberdefense/ocd-mindmaps/blob/main/img/pentest_ad_dark_2023_02.svg), which is a extensive mindmap of AD attacks.
 
-At this point after watching [Alh4zr3d live](https://www.twitch.tv/videos/1823317510) I decided to approach this by preparing to be able to bypass EDR, AV first before continuing with The VPN route. I want to follow both methods and check Tib3rious's way in before getting the second domain controller. As objective go the main problem is that I neither have to time or experience over the coming weeks to dedicate to bypassing EDR for the first time without some tried a true way. I acknowledge the hand-holding to success with dedicating a significant amount of write and research work for my Archive Project to learn as much from others sturggles. To save myself time in the future struggle of HTB ProLabs that I will hopeful do next year. Guessing that Tyler will probably gain a foothold I started by considering my options before going through other paths with [Part 2 of Tyler RTCC video](https://www.youtube.com/watch?v=TUyYUSr0O_Y&t=536s). [am03bam4n](https://tryhackme.com/p/am03bam4n) was present on this stream and explained that the VPN instability is reflective of the real world - what I took from this is that actually we need away from using the corpusername.ovpn as soon as possible.
+At this point after watching [Alh4zr3d live](https://www.twitch.tv/videos/1823317510) I decided to approach this by preparing to be able to bypass EDR, AV first before continuing with The VPN route. I want to follow both methods and check Tib3rious's way in before getting the second domain controller. As objective go the main problem is that I neither have to time or experience over the coming weeks to dedicate to bypassing EDR for the first time without some tried a true way. I acknowledge the hand-holding to success with dedicating a significant amount of write and research work for my Archive Project to learn as much from others sturggles. To save myself time in the future struggle of HTB ProLabs that I will hopeful do next year. Guessing that Tyler will probably gain a foothold I started by considering my options before going through other paths with [Part 2 of Tyler RTCC video](https://www.youtube.com/watch?v=TUyYUSr0O_Y&t=536s). [am03bam4n](https://tryhackme.com/p/am03bam4n) was present on this stream and explained that the VPN instability is reflective of the real world - what I took from this is that actually we need away from using the corpusername.ovpn as soon as possible. 
 
 `fping` is better than `ping`
 ```bash
@@ -227,6 +227,7 @@ nmcli
 Tyler went deep into the web application:
 ![](wehaveuserenum.png)
 
+51 minutes  in..
 
 ## Perimeter Breach
 ## Initial Compromise of Active Directory

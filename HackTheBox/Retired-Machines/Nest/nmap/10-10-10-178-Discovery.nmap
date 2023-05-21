@@ -1,0 +1,54 @@
+# Nmap 7.93 scan initiated Sun May 21 08:57:11 2023 as: nmap --script discovery -oA nmap/10-10-10-178-Discovery --min-rate 500 -e tun0 -p 445,4386 10.10.10.178
+Pre-scan script results:
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-ping: false
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_lltd-discovery: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-sniffer: Sniffed 2 address(es). 
+| 10.10.10.178
+|_224.0.23.12
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.10.10.178
+Host is up (0.044s latency).
+
+PORT     STATE SERVICE
+445/tcp  open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+4386/tcp open  unknown
+|_banner: HQK Reporting Service V1.2
+
+Host script results:
+| smb-protocols: 
+|   dialects: 
+|     202
+|_    210
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_ipidseq: Incremental!
+|_dns-brute: Can't guess domain of "10.10.10.178"; use dns-brute.domain script argument.
+|_path-mtu: PMTU == 1500
+| smb2-capabilities: 
+|   202: 
+|     Distributed File System
+|   210: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+| smb2-time: 
+|   date: 2023-05-21T07:57:43
+|_  start_date: 2023-05-21T07:45:12
+|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_fcrdns: FAIL (No PTR record)
+| smb2-security-mode: 
+|   210: 
+|_    Message signing enabled but not required
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 445   0       47964.80   6415.48  0.0%
+|_4386  1       56105.00   6287.64  0.0%
+
+# Nmap done at Sun May 21 08:58:08 2023 -- 1 IP address (1 host up) scanned in 57.40 seconds
