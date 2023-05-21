@@ -136,7 +136,7 @@ Sort of... we lack access
 }
 ```
 
-Xargs is the wind
+Xargs is the CLI-wind
 ```bash
 find . -type f -name *.xml 2>/dev/null | xargs -I {} cat {}
 ```
@@ -162,10 +162,31 @@ ftezafydoz1yzkqhqkh6gqfykp1xy5hm7bjop86yyxe=
 fTEzAfYDoz1YzkqhQkH6GQFYKp1XY5hm7bjOP86yYxE=
 }13=XJBAX*Wcf?βc
 FTEZAFYDOZ1YZKQHQKH6GQFYKP1XY5HM7BJOP86YYXE=
-1V9Xd@X(WcN?Θaq
+# This breaks CME:  1V9Xd@X(WcN?Θaq
 ftezafydoz1yzkqhqkh6gqfykp1xy5hm7bjop86yyxe=
-~׳i=rJHzq˘fβ
+# This breaks CME: ~׳i=rJHzq˘fβ
 
 ```
 
+The password does not work for smb 
 carlsmith.png
+
+usersshare.png
+
+Search Engine Dorking my way out of spoilers ... 
+```
+RU Scanner passwords -HTB -HackTheBox
+```
+
+spoiledmyself.png
+
+
+hkreportingrabbithole.png
+
+Maybe we can traverse directories or set a betetr directory
+setdirtowin.png
+
+We cant actual runquery on anything, probably need a password
+wecanlisteverythingthough.png
+
+Documentation for this reporting software seems elusive. The password in either format does not work for smb or HQK.
