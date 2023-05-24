@@ -190,3 +190,4 @@ We cant actual runquery on anything, probably need a password
 wecanlisteverythingthough.png
 
 Documentation for this reporting software seems elusive. The password in either format does not work for smb or HQK.
+`DEBUG <password>` 
