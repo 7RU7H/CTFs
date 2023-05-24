@@ -19,7 +19,7 @@ add swift.bank.thereserve.loc
 # General Project Details Reminder
 
 
-## The Tranfer - swift.bank.thereserve.loc
+## The Transfers - swift.bank.thereserve.loc
 
 To transfer funds:  
 
