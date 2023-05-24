@@ -25,7 +25,7 @@ Learnt:
 - [[Red-Team-Capstone-Challenge-CMD-by-CMDs.md]]
 - [[Red-Team-Capstone-Challenge-Credentials]]
 
-General disclaimer, this is more a documentation of my following along with Streamer and other where could. I am here to learn and have no really possiblity of getting this done solo without alot of time off work and more capabilities. I am hope to earn and learn some here. 
+General disclaimer, this is more a documentation of my following along with Streamer and other where could. I am here to learn and have no really possibility of getting this done solo without a lot of time off work and more capabilities. I am hope to earn and learn some here. 
 
 #### Content Creators I watched during this...
 
@@ -257,8 +257,8 @@ Then the machine shutdown.
 Then al finds cmd injection
 ![](alhappywecansleeptheserver.png)
 
-My suspicioon of the multitude of hole in the bank to poke at are many
-![](alfindcmdi.png)
+My suspicions of the multitude of hole in the bank to poke at are many
+![1080](alfindcmdi.png)
 
 Password in DB connect
 ![](dbconnect.png)
@@ -285,17 +285,21 @@ sudo cp authorized_keys /root/.ssh/authorized_keys
 
 ![](cpintoroot.png)
 
-Went on a bit of tangent with how Proxychains works
+Went on a bit of tangent with how Proxychains works; SSH tunnel - but we are on a multi-hacker network so everyone using ssh is a really danger.
 
-SSH tunnel 
+![](vpnarpcache.png)
+
+```bash
+cat vpn-interal-thm-free-packed-lunch-in-the-lands.nmap | grep 'scan report' | awk '{print $6}' | tr -d '()' > ~/RedTeamCapStoneChallenge/internalHosts.txt
+```
 
 Proxychains
 
 Crackmap Exec
 
 Certipy - 101 with Al
-```
-proxychains certipy find -u 'lisa.moore' -p 'Scientist2006' -dc-ip 10.200.X.102
+```bash
+proxychains certipy find -u 'lisa.moore' -p 'Scientist2006' -dc-ip 10.200.113.102
 ```
 
 Web Enrollment is web-based builtin interface to enrollment, which uses ntlm authentication.
