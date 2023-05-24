@@ -7,6 +7,7 @@
 ```
 
 ```
+admin : password1!
 lisa.moore : Scientist2006
 ```
 
