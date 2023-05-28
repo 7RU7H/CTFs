@@ -12,6 +12,21 @@ lisa.moore : Scientist2006
 ```
 
 
+```
+SMB         10.200.117.31   445    SERVER1          CORP.THERESERVE.LOC/Administrator:$DCC2$10240#Administrator#b08785ec00370a4f7d02ef8bd9b798ca
+SMB         10.200.117.31   445    SERVER1          CORP.THERESERVE.LOC/svcScanning:$DCC2$10240#svcScanning#d53a09b9e4646451ab823c37056a0d6b
+SMB         10.200.117.31   445    SERVER1          CORP\SERVER1$:aes256-cts-hmac-sha1-96:f16f08c1ecbec4aefaeed138fe19a350d25dc79ee574e9b2ec824bcb8bd895ae
+SMB         10.200.117.31   445    SERVER1          CORP\SERVER1$:aes128-cts-hmac-sha1-96:ffc3ff1485f10fa447eec35db4175b8f
+SMB         10.200.117.31   445    SERVER1          CORP\SERVER1$:des-cbc-md5:514c5be6a2f7a298
+SMB         10.200.117.31   445    SERVER1          CORP\SERVER1$:plain_password_hex:b7c8375454a3c7331e6d2bca1612421c7820eb3ad08438baa869aea9680861b1cba919defae2ed3973fe8a0cba087383906b0d0220d14c8eab7ac29aa0b20fd2d8285cb52154a3d24385b514f666474ef4f6d62301a82201c3f33af12990c64b0171fd6a6f94e2e8e01f9458f2ae0d77dfb77acf67ebb83ab8e9592d3fcb467e41b429b925301d3e4177ea3b935333e44ab911eb0df5549f80cb26b9d0d3224ae8335279ce24c0376d34b838022e8321f7334e910faf93bfc2fdd30b34cd1e6eb6a569ecf3ca2211a66efffd35813477e7815b3341d128a7debe2a68b03a5f9d438699d77bc6f520ff846bbbad872803
+SMB         10.200.117.31   445    SERVER1          CORP\SERVER1$:aad3b435b51404eeaad3b435b51404ee:ee0b312ba706c567436e6a9e08fa3951:::
+SMB         10.200.117.31   445    SERVER1          dpapi_machinekey:0xb4cfb5032a98c1b279c92264915da1fd3d8b1a0d
+dpapi_userkey:0x3cddfc2ba786e51edf1c732a21ffa1f3d19aa382
+SMB         10.200.117.31   445    SERVER1          NL$KM:8dd28e67545889b1c953b95b46a2b366d43b9580927d6778b71df92da555b7a361aa4d8695854386e3129ec491cf9a5bd8bb0daefad341e0d8663d1975a2d1b2
+SMB         10.200.117.31   445    SERVER1          svcBackups@corp.thereserve.loc:q9nzssaFtGHdqUV3Qv6G
+```
+
+
 
 corpUserrname.ovpn
 ```
@@ -20,7 +35,7 @@ dev tun
 proto tcp
 sndbuf 0
 rcvbuf 0
-remote 10.200.121.12 1194
+remote 10.200.121.12.117
 resolv-retry infinite
 nobind
 persist-key
