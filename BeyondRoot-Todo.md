@@ -144,3 +144,12 @@ https://tryhackme.com/room/introtodockerk8pdqk
 
 go full cyber 
 https://github.com/hlldz/Phant0m
+
+
+Start stuff in the backgound on the cli and then make stealthier 
+
+Start a process in the background
+```powershell
+Invoke-CimMethod -ClassName win32_process -MethodName create
+ -Arguments @{ commandline = $YOURXGOESHERENO$; ProcessStartupInformation = New-CimInstance -CimClass ( Get-CimClass Win32_ProcessStartup) -Property @{ShowWindow=0} -Local;     CurrentDirectory = $null}
+```

