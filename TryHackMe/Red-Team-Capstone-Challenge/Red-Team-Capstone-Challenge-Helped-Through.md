@@ -188,7 +188,7 @@ echo "Second curl ended at: $TIME3"
 exit
 ```
 
-Just as I was catching up on the progress made by at [Tyler](https://www.youtube.com/watch?v=xrh3g5VjY6Y&t=5277s) this point he discovers a VPN key. Unlike Alh4zr3d or Tib3rios who went with a target approach - Web server and Email server plus password spray. Tyler went for a similar approach to I originally set out with holistic scanning and enumerate anything and everything and list out threads of where to pull of the next stages of the overall engagement. 
+Just as I was catching up on the progress made by [Tyler](https://www.youtube.com/watch?v=xrh3g5VjY6Y&t=5277s) at this point he discovers a VPN key. Unlike Alh4zr3d or Tib3rios who went with a target approach - Web server and Email server plus password spray. Tyler went for a similar approach to I originally set out with holistic scanning and enumerate anything and everything and list out threads of where to pull of the next stages of the overall engagement. 
 
 A real APT is probably going to sit down and have targets on packet economy, what fake accounts do OSINT from where and so on and target a way in with an objective like ours, but without actual users, administrators or a SOC, CTI or IR. 
 
