@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Fri May 19 20:31:11 2023 as: nmap -Pn -e tun0 -p 5985,445,22,135,3389,139 -sV -sC -oA nmap/10-200-89-21-sc-sv 10.200.89.21 -->
+<nmaprun scanner="nmap" args="nmap -Pn -e tun0 -p 5985,445,22,135,3389,139 -sV -sC -oA nmap/10-200-89-21-sc-sv 10.200.89.21" start="1684524671" startstr="Fri May 19 20:31:11 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="6" services="22,135,139,445,3389,5985"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1684524671" endtime="1684524790"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.200.89.21" addrtype="ipv4"/>
+<hostnames>
+<hostname name="WRK1.corp.thereserve.loc" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ssh" product="OpenSSH" version="for_Windows_7.7" extrainfo="protocol 2.0" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:for_windows_7.7</cpe></service><script id="ssh-hostkey" output="&#xa;  256 e0f7b667c993b5740f0a83ffef55c89a (ECDSA)"><table>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBGTVkKUTbc1kFf3Sqy9QxyFtdAKt5qqbnlC/6jyENT1izOxvDLADl3Iyhq57doaoCK412eRNYqTI2+q73tI2NfM=</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="fingerprint">e0f7b667c993b5740f0a83ffef55c89a</elem>
+<elem key="bits">256</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="netbios-ssn" product="Microsoft Windows netbios-ssn" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ms-wbt-server" product="Microsoft Terminal Services" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="rdp-ntlm-info" output="&#xa;  Target_Name: CORP&#xa;  NetBIOS_Domain_Name: CORP&#xa;  NetBIOS_Computer_Name: WRK1&#xa;  DNS_Domain_Name: corp.thereserve.loc&#xa;  DNS_Computer_Name: WRK1.corp.thereserve.loc&#xa;  DNS_Tree_Name: thereserve.loc&#xa;  Product_Version: 10.0.17763&#xa;  System_Time: 2023-05-19T19:31:32+00:00"><elem key="Target_Name">CORP</elem>
+<elem key="NetBIOS_Domain_Name">CORP</elem>
+<elem key="NetBIOS_Computer_Name">WRK1</elem>
+<elem key="DNS_Domain_Name">corp.thereserve.loc</elem>
+<elem key="DNS_Computer_Name">WRK1.corp.thereserve.loc</elem>
+<elem key="DNS_Tree_Name">thereserve.loc</elem>
+<elem key="Product_Version">10.0.17763</elem>
+<elem key="System_Time">2023-05-19T19:31:32+00:00</elem>
+</script><script id="ssl-cert" output="Subject: commonName=WRK1.corp.thereserve.loc&#xa;Not valid before: 2023-01-09T05:17:03&#xa;Not valid after:  2023-07-11T05:17:03"><table key="subject">
+<elem key="commonName">WRK1.corp.thereserve.loc</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">WRK1.corp.thereserve.loc</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">D2BBE61C61C2A02B0ED288909BB7D542E011DFA4CBFDC122EFAC7E74015143B24DCA351D646D13F1FA34F03721D8C92CC5EE0660B993BD731C0A7C44FD03C10F9C683A70095F2B01403ABDB2B15067AEF005C1EBAC14BFA746D503CC086EBAE15E17D40693EB4F79C1CC57680756F6A3BDF94FDC39E3FE8F0BC250EE30668DEE47C94F66ECF12720F77C2EB1FD5D276A7BBEB00C24FC4E6C49B991D70BEC4B23BF5CCB164E4961AADE4238DA56151BE3CFF579FF7CFBBFD7152F14FDF940155125B6576F8FD62FA178C04F4AD4CAA9031A0D052BB55DB3D77B4A594E5C10B12B947FAFFC51276A107932B1BCC3E53EFD5A3A091A2C7D9BB101DAE0711E844A6D</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Key Encipherment, Data Encipherment</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-01-09T05:17:03</elem>
+<elem key="notAfter">2023-07-11T05:17:03</elem>
+</table>
+<elem key="md5">8612925b386b3596fb63147a726d3ed9</elem>
+<elem key="sha1">e2e414b45b2f199346acbe099775317d0272aa5a</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIC9DCCAdygAwIBAgIQUOQBLhgDQ7tFQgE72XiL5jANBgkqhkiG9w0BAQsFADAj&#xa;MSEwHwYDVQQDExhXUksxLmNvcnAudGhlcmVzZXJ2ZS5sb2MwHhcNMjMwMTA5MDUx&#xa;NzAzWhcNMjMwNzExMDUxNzAzWjAjMSEwHwYDVQQDExhXUksxLmNvcnAudGhlcmVz&#xa;ZXJ2ZS5sb2MwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDSu+YcYcKg&#xa;Kw7SiJCbt9VC4BHfpMv9wSLvrH50AVFDsk3KNR1kbRPx+jTwNyHYySzF7gZguZO9&#xa;cxwKfET9A8EPnGg6cAlfKwFAOr2ysVBnrvAFweusFL+nRtUDzAhuuuFeF9QGk+tP&#xa;ecHMV2gHVvajvflP3Dnj/o8LwlDuMGaN7kfJT2bs8Scg93wusf1dJ2p7vrAMJPxO&#xa;bEm5kdcL7Esjv1zLFk5JYareQjjaVhUb48/1ef98+7/XFS8U/flAFVEltldvj9Yv&#xa;oXjAT0rUyqkDGg0FK7Vds9d7SllOXBCxK5R/r/xRJ2oQeTKxvMPlPv1aOgkaLH2b&#xa;sQHa4HEehEptAgMBAAGjJDAiMBMGA1UdJQQMMAoGCCsGAQUFBwMBMAsGA1UdDwQE&#xa;AwIEMDANBgkqhkiG9w0BAQsFAAOCAQEANUPOP1dbEZ4/xli6RBpJfwMgANvR2I9X&#xa;cUZuPb/e451jyq8Q+CP5DunH/TAQVBNGuChYFJWznhJDqh+WxCE0Hb1RXqgMFDLY&#xa;0jWDBAtjPAD632ZjUJPSKhvZP+vO5fMlKkWdrnkIrUkznv8CpFyZ4TU+VYb831De&#xa;m7Ls2fykuSnxNEXNb7xtghszXid39p/X55zhDxz4zdPEdIJKE1/ry1CTc8Pwab9I&#xa;NvbcN48DQYX6AOlZ5jDFXB+HEn/k4/qef/ATu3wnPt2Q9xbVC11UT9ZkuiUX5pmd&#xa;1NTrp1IyfhD9H6dKzQh+P8o/Wbetg8+Cg7NBnYSpsRnoG25Jw5MDog==&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ssl-date" output="2023-05-19T19:33:04+00:00; -6s from scanner time."><elem key="date">2023-05-19T19:33:04+00:00</elem>
+<elem key="delta">-6.0</elem>
+</script></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" product="Microsoft HTTPAPI httpd" version="2.0" extrainfo="SSDP/UPnP" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-title" output="Not Found"><elem key="title">Not Found</elem>
+</script></port>
+</ports>
+<hostscript><script id="clock-skew" output="mean: -5s, deviation: 0s, median: -6s"><elem key="count">3</elem>
+<elem key="median">-6</elem>
+<elem key="stddev">0</elem>
+<elem key="mean">-5</elem>
+</script><script id="smb2-time" output="&#xa;  date: 2023-05-19T19:31:36&#xa;  start_date: N/A"><elem key="date">2023-05-19T19:31:36</elem>
+<elem key="start_date">N/A</elem>
+</script><script id="smb2-security-mode" output="&#xa;  311: &#xa;    Message signing enabled but not required"><table key="311">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script></hostscript><times srtt="208515" rttvar="122705" to="699335"/>
+</host>
+<runstats><finished time="1684524790" timestr="Fri May 19 20:33:10 2023" summary="Nmap done at Fri May 19 20:33:10 2023; 1 IP address (1 host up) scanned in 118.43 seconds" elapsed="118.43" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

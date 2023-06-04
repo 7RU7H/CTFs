@@ -1,0 +1,40 @@
+# Nmap 7.93 scan initiated Fri May 19 20:31:11 2023 as: nmap -Pn -e tun0 -p 5985,445,22,135,3389,139 -sV -sC -oA nmap/10-200-89-21-sc-sv 10.200.89.21
+Nmap scan report for WRK1.corp.thereserve.loc (10.200.89.21)
+Host is up (0.21s latency).
+
+PORT     STATE SERVICE       VERSION
+22/tcp   open  ssh           OpenSSH for_Windows_7.7 (protocol 2.0)
+| ssh-hostkey: 
+|_  256 e0f7b667c993b5740f0a83ffef55c89a (ECDSA)
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds?
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+| rdp-ntlm-info: 
+|   Target_Name: CORP
+|   NetBIOS_Domain_Name: CORP
+|   NetBIOS_Computer_Name: WRK1
+|   DNS_Domain_Name: corp.thereserve.loc
+|   DNS_Computer_Name: WRK1.corp.thereserve.loc
+|   DNS_Tree_Name: thereserve.loc
+|   Product_Version: 10.0.17763
+|_  System_Time: 2023-05-19T19:31:32+00:00
+| ssl-cert: Subject: commonName=WRK1.corp.thereserve.loc
+| Not valid before: 2023-01-09T05:17:03
+|_Not valid after:  2023-07-11T05:17:03
+|_ssl-date: 2023-05-19T19:33:04+00:00; -6s from scanner time.
+5985/tcp open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-title: Not Found
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: -5s, deviation: 0s, median: -6s
+| smb2-time: 
+|   date: 2023-05-19T19:31:36
+|_  start_date: N/A
+| smb2-security-mode: 
+|   311: 
+|_    Message signing enabled but not required
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri May 19 20:33:10 2023 -- 1 IP address (1 host up) scanned in 118.43 seconds

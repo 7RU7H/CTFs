@@ -1,0 +1,1195 @@
+====== ScheduledTasks ======
+
+Non Microsoft scheduled tasks (via WMI)
+
+  Name                              :   Server Initial Configuration Task
+  Principal                         :
+      GroupId                       :
+      Id                            :   LocalSystem
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_HIGHEST
+      UserId                        :   SYSTEM
+  Author                            :   $(@%systemroot%\system32\SrvInitConfig.exe,-100)
+  Description                       :   $(@%systemroot%\system32\SrvInitConfig.exe,-101)
+  Source                            :
+  State                             :   Disabled
+  SDDL                              :
+  Enabled                           :   False
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   True
+  ExecutionTimeLimit                :   PT72H
+  StopIfGoingOnBatteries            :   True
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      Arguments                     :   /disableconfigtask
+      Execute                       :   %windir%\system32\srvinitconfig.exe
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskBootTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      ------------------------------
+
+  Name                              :   .NET Framework NGEN v4.0.30319
+  Principal                         :
+      GroupId                       :
+      Id                            :   Author
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Ready
+  SDDL                              :   D:(A;OICI;FA;;;BA)(A;OICI;FA;;;SY)(A;OICI;GR;;;AU)(A;;FRFX;;;LS)
+  Enabled                           :   True
+  Date                              :   9/30/2010 2:53:37 PM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   True
+  ExecutionTimeLimit                :   PT2H
+  StopIfGoingOnBatteries            :   True
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      ClassId                       :   {84F0FAE1-C27B-4F6F-807B-28CF6F96287D}
+      Data                          :   /RuntimeWide
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+
+  Name                              :   .NET Framework NGEN v4.0.30319 64
+  Principal                         :
+      GroupId                       :
+      Id                            :   Author
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Ready
+  SDDL                              :   D:(A;OICI;FA;;;BA)(A;OICI;FA;;;SY)(A;OICI;GR;;;AU)(A;;FRFX;;;LS)
+  Enabled                           :   True
+  Date                              :   9/30/2010 2:53:37 PM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   True
+  ExecutionTimeLimit                :   PT2H
+  StopIfGoingOnBatteries            :   True
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      ClassId                       :   {429BC048-379E-45E0-80E4-EB1977941B5C}
+      Data                          :   /RuntimeWide
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+
+  Name                              :   .NET Framework NGEN v4.0.30319 64 Critical
+  Principal                         :
+      GroupId                       :
+      Id                            :   Author
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Disabled
+  SDDL                              :   D:(A;OICI;FA;;;BA)(A;OICI;FA;;;SY)(A;OICI;GR;;;AU)(A;;FRFX;;;LS)
+  Enabled                           :   False
+  Date                              :   9/30/2010 2:53:37 PM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   PT2H
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      ClassId                       :   {613FBA38-A3DF-4AB8-9674-5604984A299A}
+      Data                          :   /RuntimeWide
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskIdleTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      ------------------------------
+
+  Name                              :   .NET Framework NGEN v4.0.30319 Critical
+  Principal                         :
+      GroupId                       :
+      Id                            :   Author
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Disabled
+  SDDL                              :   D:(A;OICI;FA;;;BA)(A;OICI;FA;;;SY)(A;OICI;GR;;;AU)(A;;FRFX;;;LS)
+  Enabled                           :   False
+  Date                              :   9/30/2010 2:53:37 PM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   PT2H
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      ClassId                       :   {DE434264-8FE9-4C0B-A83B-89EBEEBFF78E}
+      Data                          :   /RuntimeWide
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskIdleTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      ------------------------------
+
+  Name                              :   ProgramDataUpdater
+  Principal                         :
+      GroupId                       :
+      Id                            :   LocalSystem
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :   SYSTEM
+  Author                            :   $(@%SystemRoot%\system32\invagent.dll,-701)
+  Description                       :   $(@%SystemRoot%\system32\invagent.dll,-702)
+  Source                            :   $(@%SystemRoot%\system32\invagent.dll,-701)
+  State                             :   Ready
+  SDDL                              :   D:(A;;GA;;;BA)(A;;GA;;;SY)(A;;FRFX;;;LS)
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   True
+  ExecutionTimeLimit                :   PT72H
+  StopIfGoingOnBatteries            :   True
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      Arguments                     :   -maintenance
+      Execute                       :   %windir%\system32\compattelrunner.exe
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+
+  Name                              :   Pre-staged app cleanup
+  Principal                         :
+      GroupId                       :
+      Id                            :   LocalSystem
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Disabled
+  SDDL                              :   D:(A;;GA;;;SY)(A;;FRFX;;;LS)(A;;FA;;;BA)
+  Enabled                           :   False
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   True
+  ExecutionTimeLimit                :   PT0S
+  StopIfGoingOnBatteries            :   True
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      Arguments                     :   %windir%\system32\AppxDeploymentClient.dll,AppxPreStageCleanupRunTask
+      Execute                       :   %windir%\system32\rundll32.exe
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskLogonTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      Delay                         :   PT1H
+      ------------------------------
+
+  Name                              :   BitLocker Encrypt All Drives
+  Principal                         :
+      GroupId                       :   INTERACTIVE
+      Id                            :   Users
+      LogonType                     :   Batch
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Ready
+  SDDL                              :   D:P(A;;FRFX;;;AU)(A;;FA;;;SY)
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   PT72H
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      ClassId                       :   {61BCD1B9-340C-40EC-9D41-D7F1C0632F05}
+      Data                          :   BitLockerEncryptAllDrives
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      ------------------------------
+
+  Name                              :   BitLocker MDM policy Refresh
+  Principal                         :
+      GroupId                       :   INTERACTIVE
+      Id                            :   Users
+      LogonType                     :   Batch
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Ready
+  SDDL                              :   D:P(A;;FRFX;;;AU)(A;;FA;;;SY)
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   PT72H
+  StopIfGoingOnBatteries            :   True
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      ClassId                       :   {61BCD1B9-340C-40EC-9D41-D7F1C0632F05}
+      Data                          :   BitLockerPolicy
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      ------------------------------
+
+  Name                              :   SyspartRepair
+  Principal                         :
+      GroupId                       :
+      Id                            :   LocalSystem
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Ready
+  SDDL                              :   D:P(A;;FR;;;AU)(A;;FA;;;SY)
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   PT72H
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      Arguments                     :   %windir% /sysrepair
+      Execute                       :   %windir%\system32\bcdboot.exe
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      ------------------------------
+
+  Name                              :   CreateObjectTask
+  Principal                         :
+      GroupId                       :
+      Id                            :   LocalSystem
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Ready
+  SDDL                              :   D:(A;;FA;;;SY)(A;;FRFX;;;IU)
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   PT1H
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      ClassId                       :   {E4544ABA-62BF-4C54-AAB2-EC246342626C}
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+
+  Name                              :   Device
+  Principal                         :
+      GroupId                       :
+      Id                            :   LocalSystem
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Ready
+  SDDL                              :   D:(A;;GA;;;BA)(A;;GA;;;SY)(A;;FRFX;;;LS)
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   P4D
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      Execute                       :   %windir%\system32\devicecensus.exe
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskTimeTrigger
+      Enabled                       :   True
+      StartBoundary                 :   2008-09-01T03:00:00
+      Interval                      :   P1D
+      StopAtDurationEnd             :   False
+      RandomDelay                   :   PT2H
+      ------------------------------
+      Type                          :   MSFT_TaskTrigger
+      Enabled                       :   False
+      StopAtDurationEnd             :   False
+      ------------------------------
+
+  Name                              :   DXGIAdapterCache
+  Principal                         :
+      GroupId                       :
+      Id                            :   LocalSystem
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_HIGHEST
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Ready
+  SDDL                              :   D:(A;;FA;;;BA)(A;;FA;;;SY)
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   False
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   PT72H
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      Execute                       :   %windir%\system32\dxgiadaptercache.exe
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      ------------------------------
+      Type                          :   MSFT_TaskTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      ------------------------------
+
+  Name                              :   Diagnostics
+  Principal                         :
+      GroupId                       :
+      Id                            :   System
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_HIGHEST
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Ready
+  SDDL                              :
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   True
+  ExecutionTimeLimit                :   PT1H
+  StopIfGoingOnBatteries            :   True
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      Arguments                     :   -z
+      Execute                       :   %windir%\system32\disksnapshot.exe
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+
+  Name                              :   StorageSense
+  Principal                         :
+      GroupId                       :   Users
+      Id                            :   Authenticated Users
+      LogonType                     :   Batch
+      RunLevel                      :   TASK_RUNLEVEL_HIGHEST
+      UserId                        :
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Ready
+  SDDL                              :
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   True
+  ExecutionTimeLimit                :   PT1H
+  StopIfGoingOnBatteries            :   True
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      ClassId                       :   {AB2A519B-03B0-43CE-940A-A73DF850B49A}
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+
+  Name                              :   EDP App Launch Task
+  Principal                         :
+      GroupId                       :   INTERACTIVE
+      Id                            :   Users
+      LogonType                     :   Batch
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Ready
+  SDDL                              :   D:P(A;;FRFX;;;AU)(A;;FA;;;SY)
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   PT72H
+  StopIfGoingOnBatteries            :   True
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      ClassId                       :   {61BCD1B9-340C-40EC-9D41-D7F1C0632F05}
+      Data                          :   AppLaunch
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      ------------------------------
+
+  Name                              :   EDP Auth Task
+  Principal                         :
+      GroupId                       :   INTERACTIVE
+      Id                            :   Users
+      LogonType                     :   Batch
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Ready
+  SDDL                              :   D:P(A;;FRFX;;;AU)(A;;FA;;;SY)
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   PT72H
+  StopIfGoingOnBatteries            :   True
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      ClassId                       :   {61BCD1B9-340C-40EC-9D41-D7F1C0632F05}
+      Data                          :   ReAuth
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      ------------------------------
+
+  Name                              :   EDP Inaccessible Credentials Task
+  Principal                         :
+      GroupId                       :   INTERACTIVE
+      Id                            :   Users
+      LogonType                     :   Batch
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Ready
+  SDDL                              :   D:P(A;;FRFX;;;AU)(A;;FA;;;SY)
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   PT72H
+  StopIfGoingOnBatteries            :   True
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      ClassId                       :   {61BCD1B9-340C-40EC-9D41-D7F1C0632F05}
+      Data                          :   MissingCredentials
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      ------------------------------
+
+  Name                              :   StorageCardEncryption Task
+  Principal                         :
+      GroupId                       :   INTERACTIVE
+      Id                            :   Users
+      LogonType                     :   Batch
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Ready
+  SDDL                              :   D:P(A;;FRFX;;;AU)(A;;FA;;;SY)
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   PT72H
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      ClassId                       :   {61BCD1B9-340C-40EC-9D41-D7F1C0632F05}
+      Data                          :   SDCardEncryptionPolicy
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      ------------------------------
+
+  Name                              :   ScanForUpdates
+  Principal                         :
+      GroupId                       :
+      Id                            :   LocalSystem
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Disabled
+  SDDL                              :   D:(A;;FA;;;SY)(A;;FRFX;;;BA)
+  Enabled                           :   False
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   PT4H
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      ClassId                       :   {A558C6A5-B42B-4C98-B610-BF9559143139}
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskTimeTrigger
+      Enabled                       :   True
+      StartBoundary                 :   2014-01-01T00:00:00+00:00
+      Interval                      :   P1D
+      StopAtDurationEnd             :   False
+      RandomDelay                   :   P1D
+      ------------------------------
+      Type                          :   MSFT_TaskTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      ------------------------------
+      Type                          :   MSFT_TaskTimeTrigger
+      Enabled                       :   False
+      StartBoundary                 :   2014-01-01T00:00:00+00:00
+      StopAtDurationEnd             :   False
+      ------------------------------
+
+  Name                              :   ScanForUpdatesAsUser
+  Principal                         :
+      GroupId                       :   INTERACTIVE
+      Id                            :   AllUsers
+      LogonType                     :   Batch
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Disabled
+  SDDL                              :   D:(A;;FA;;;SY)(A;;FA;;;BA)(A;;FRFX;;;IU)
+  Enabled                           :   False
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   PT4H
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      ClassId                       :   {DDAFAEA2-8842-4E96-BADE-D44A8D676FDB}
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+
+  Name                              :   WakeUpAndContinueUpdates
+  Principal                         :
+      GroupId                       :
+      Id                            :   LocalSystem
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Disabled
+  SDDL                              :   D:(A;;FA;;;SY)(A;;FRFX;;;BA)
+  Enabled                           :   False
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   True
+  ExecutionTimeLimit                :   PT4H
+  StopIfGoingOnBatteries            :   True
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      ClassId                       :   {0DC331EE-8438-49D5-A721-E10B937CE459}
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+
+  Name                              :   WakeUpAndScanForUpdates
+  Principal                         :
+      GroupId                       :
+      Id                            :   LocalSystem
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Disabled
+  SDDL                              :   D:(A;;FA;;;SY)(A;;FRFX;;;BA)
+  Enabled                           :   False
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   True
+  ExecutionTimeLimit                :   PT4H
+  StopIfGoingOnBatteries            :   True
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      ClassId                       :   {D5A04D91-6FE6-4FE4-A98A-FEB4500C5AF7}
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskTimeTrigger
+      Enabled                       :   True
+      StartBoundary                 :   2014-01-01T00:00:00+00:00
+      Interval                      :   P1D
+      StopAtDurationEnd             :   False
+      RandomDelay                   :   P1D
+      ------------------------------
+
+  Name                              :   Notifications
+  Principal                         :
+      GroupId                       :   Authenticated Users
+      Id                            :   Creator
+      LogonType                     :   Batch
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :
+  Author                            :
+  Description                       :   Location Notification
+  Source                            :
+  State                             :   Ready
+  SDDL                              :   D:(A;;FA;;;BA)(A;;FA;;;SY)(A;;FRFX;;;AU)
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   PT0S
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      Execute                       :   %windir%\System32\LocationNotificationWindows.exe
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      ------------------------------
+
+  Name                              :   WindowsActionDialog
+  Principal                         :
+      GroupId                       :   Authenticated Users
+      Id                            :   Creator
+      LogonType                     :   Batch
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :
+  Author                            :
+  Description                       :   Location Notification
+  Source                            :
+  State                             :   Ready
+  SDDL                              :   D:(A;;FA;;;BA)(A;;FA;;;SY)(A;;FRFX;;;AU)
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   PT0S
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      Execute                       :   %windir%\System32\WindowsActionDialog.exe
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      ------------------------------
+
+  Name                              :   SystemSoundsService
+  Principal                         :
+      GroupId                       :   Users
+      Id                            :   Group
+      LogonType                     :   Batch
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :
+  Author                            :
+  Description                       :   System Sounds User Mode Agent
+  Source                            :   Microsoft Corporation
+  State                             :   Disabled
+  SDDL                              :   D:P(A;;FA;;;BA)(A;;FA;;;SY)(A;;FR;;;AU)
+  Enabled                           :   False
+  Date                              :   6/23/2005 9:48:00 PM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   PT0S
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      ClassId                       :   {2DEA658F-54C1-4227-AF9B-260AB5FC3543}
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskLogonTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      ------------------------------
+
+  Name                              :   StartComponentCleanup
+  Principal                         :
+      GroupId                       :
+      Id                            :   System
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_HIGHEST
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Ready
+  SDDL                              :
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   True
+  ExecutionTimeLimit                :   PT1H
+  StopIfGoingOnBatteries            :   True
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      ClassId                       :   {752073A1-23F2-4396-85F0-8FDB879ED0ED}
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+
+  Name                              :   Account Cleanup
+  Principal                         :
+      GroupId                       :
+      Id                            :   Author
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_HIGHEST
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Disabled
+  SDDL                              :
+  Enabled                           :   False
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   True
+  ExecutionTimeLimit                :   PT30M
+  StopIfGoingOnBatteries            :   True
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      Arguments                     :   %windir%\System32\Windows.SharedPC.AccountManager.dll,StartMaintenance
+      Execute                       :   %windir%\System32\rundll32.exe
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+
+  Name                              :   Collection
+  Principal                         :
+      GroupId                       :
+      Id                            :   LocalSystem
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Disabled
+  SDDL                              :   D:P(A;;FA;;;BA)(A;;FA;;;SY)(A;;FR;;;BU)
+  Enabled                           :   False
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   False
+  DisallowStartIfOnBatteries        :   True
+  ExecutionTimeLimit                :   PT10M
+  StopIfGoingOnBatteries            :   True
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      Arguments                     :   /d /c %systemroot%\system32\silcollector.cmd publish
+      Execute                       :   %systemroot%\system32\cmd.exe
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskTimeTrigger
+      Enabled                       :   True
+      StartBoundary                 :   2000-01-01T03:00:00
+      Interval                      :   PT1H
+      StopAtDurationEnd             :   False
+      RandomDelay                   :   PT30M
+      ------------------------------
+
+  Name                              :   Configuration
+  Principal                         :
+      GroupId                       :
+      Id                            :   LocalSystem
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_HIGHEST
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Ready
+  SDDL                              :   D:P(A;;FA;;;BA)(A;;FA;;;SY)(A;;FR;;;BU)
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   False
+  DisallowStartIfOnBatteries        :   True
+  ExecutionTimeLimit                :   PT2M
+  StopIfGoingOnBatteries            :   True
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      Arguments                     :   /d /c %systemroot%\system32\silcollector.cmd configure
+      Execute                       :   %systemroot%\system32\cmd.exe
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskBootTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      Delay                         :   PT1M
+      ------------------------------
+
+  Name                              :   SpaceManagerTask
+  Principal                         :
+      GroupId                       :
+      Id                            :   LocalSystem
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_HIGHEST
+      UserId                        :   SYSTEM
+  Author                            :   $(@%SystemRoot%\system32\spaceman.exe,-2)
+  Description                       :   $(@%SystemRoot%\system32\spaceman.exe,-3)
+  Source                            :   $(@%SystemRoot%\system32\spaceman.exe,-1)
+  State                             :   Ready
+  SDDL                              :   D:(A;;FA;;;BA)(A;;FA;;;SY)
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   PT0S
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      Arguments                     :   /Work
+      Execute                       :   %windir%\system32\spaceman.exe
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskBootTrigger
+      Enabled                       :   False
+      StopAtDurationEnd             :   False
+      Delay                         :   PT2M
+      ------------------------------
+      Type                          :   MSFT_TaskTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      ------------------------------
+
+  Name                              :   HeadsetButtonPress
+  Principal                         :
+      GroupId                       :   INTERACTIVE
+      Id                            :   Users
+      LogonType                     :   Batch
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :
+  Author                            :
+  Description                       :
+  Source                            :
+  State                             :   Ready
+  SDDL                              :   D:AI(A;;FA;;;BA)(A;;FA;;;SY)(A;;FA;;;AU)
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   PT72H
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      Arguments                     :   StartedFromTask
+      Execute                       :   %windir%\system32\speech_onecore\common\SpeechRuntime.exe
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      ------------------------------
+
+  Name                              :   MsCtfMonitor
+  Principal                         :
+      GroupId                       :   Users
+      Id                            :   AnyUser
+      LogonType                     :   Batch
+      RunLevel                      :   TASK_RUNLEVEL_LUA
+      UserId                        :
+  Author                            :
+  Description                       :   TextServicesFramework monitor task
+  Source                            :   Microsoft Corporation
+  State                             :   Ready
+  SDDL                              :   D:(A;;FA;;;BA)(A;;FA;;;SY)(A;;FR;;;BU)
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   PT0S
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      ClassId                       :   {01575CFE-9A55-4003-A5E1-F38D1EBDCBE1}
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskLogonTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      ------------------------------
+
+  Name                              :   Windows Defender Cache Maintenance
+  Principal                         :
+      GroupId                       :
+      Id                            :   LocalSystem
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_HIGHEST
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :   Periodic maintenance task.
+  Source                            :
+  State                             :   Ready
+  SDDL                              :
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   True
+  ExecutionTimeLimit                :   PT72H
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      Arguments                     :   -IdleTask -TaskName WdCacheMaintenance
+      Execute                       :   C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.2304.8-0\MpCmdRun.exe
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+
+  Name                              :   Windows Defender Cleanup
+  Principal                         :
+      GroupId                       :
+      Id                            :   LocalSystem
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_HIGHEST
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :   Periodic cleanup task.
+  Source                            :
+  State                             :   Ready
+  SDDL                              :
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   True
+  ExecutionTimeLimit                :   PT72H
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      Arguments                     :   -IdleTask -TaskName WdCleanup
+      Execute                       :   C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.2304.8-0\MpCmdRun.exe
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+
+  Name                              :   Windows Defender Scheduled Scan
+  Principal                         :
+      GroupId                       :
+      Id                            :   LocalSystem
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_HIGHEST
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :   Periodic scan task.
+  Source                            :
+  State                             :   Ready
+  SDDL                              :
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   True
+  ExecutionTimeLimit                :   PT72H
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      Arguments                     :   Scan -ScheduleJob -ScanTrigger 55 -IdleScheduledJob
+      Execute                       :   C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.2304.8-0\MpCmdRun.exe
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskDailyTrigger
+      Enabled                       :   True
+      StartBoundary                 :   2000-01-01T02:07:38
+      EndBoundary                   :   2100-01-01T00:00:00
+      StopAtDurationEnd             :   False
+      DaysInterval                  :   1
+      ------------------------------
+
+  Name                              :   Windows Defender Verification
+  Principal                         :
+      GroupId                       :
+      Id                            :   LocalSystem
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_HIGHEST
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :   Periodic verification task.
+  Source                            :
+  State                             :   Ready
+  SDDL                              :
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   True
+  ExecutionTimeLimit                :   PT72H
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      Arguments                     :   -IdleTask -TaskName WdVerification
+      Execute                       :   C:\ProgramData\Microsoft\Windows Defender\Platform\4.18.2304.8-0\MpCmdRun.exe
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+
+  Name                              :   Automatic-Device-Join
+  Principal                         :
+      GroupId                       :
+      Id                            :   LocalSystem
+      LogonType                     :   Service
+      RunLevel                      :   TASK_RUNLEVEL_HIGHEST
+      UserId                        :   SYSTEM
+  Author                            :
+  Description                       :   Register this computer if the computer is already joined to an Active Directory domain.
+  Source                            :
+  State                             :   Ready
+  SDDL                              :   D:AI(A;;FA;;;NS)(A;;GA;;;SY)(A;ID;FA;;;BA)(A;ID;GRGX;;;AU)
+  Enabled                           :   True
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   PT5M
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      Arguments                     :   $(Arg0) $(Arg1) $(Arg2)
+      Execute                       :   %SystemRoot%\System32\dsregcmd.exe
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskLogonTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      Delay                         :   PT1M
+      ------------------------------
+      Type                          :   MSFT_TaskEventTrigger
+      Enabled                       :   True
+      Duration                      :   P1D
+      Interval                      :   PT1H
+      StopAtDurationEnd             :   False
+      Subscription                  :   <QueryList><Query Id="0" Path="Microsoft-Windows-User Device Registration/Admin"><Select Path="Microsoft-Windows-User Device Registration/Admin">*[System[Provider[@Name='Microsoft-Windows-User Device Registration'] and EventID=4096]]</Select></Query></QueryList>
+      ------------------------------
+
+  Name                              :   Recovery-Check
+  Principal                         :
+      GroupId                       :   INTERACTIVE
+      Id                            :   InteractiveUsers
+      LogonType                     :   Batch
+      RunLevel                      :   TASK_RUNLEVEL_HIGHEST
+      UserId                        :
+  Author                            :
+  Description                       :   Performs recovery check.
+  Source                            :
+  State                             :   Disabled
+  SDDL                              :   D:AI(A;;FA;;;NS)(A;;GA;;;SY)(A;ID;FA;;;BA)(A;ID;GRGX;;;AU)
+  Enabled                           :   False
+  Date                              :   1/1/0001 12:00:00 AM
+  AllowDemandStart                  :   True
+  DisallowStartIfOnBatteries        :   False
+  ExecutionTimeLimit                :   PT2H
+  StopIfGoingOnBatteries            :   False
+  Actions                           :
+      ------------------------------
+      Type                          :   MSFT_TaskAction
+      Arguments                     :   /checkrecovery
+      Execute                       :   %SystemRoot%\System32\dsregcmd.exe
+      ------------------------------
+  Triggers                          :
+      ------------------------------
+      Type                          :   MSFT_TaskLogonTrigger
+      Enabled                       :   True
+      StopAtDurationEnd             :   False
+      ------------------------------
+

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Fri May 19 20:31:05 2023 as: nmap -Pn -e tun0 -sV -sC -oA nmap/10-200-89-22-sc-sv -p 3389,22,139,135,445,5985 10.200.89.22 -->
+<nmaprun scanner="nmap" args="nmap -Pn -e tun0 -sV -sC -oA nmap/10-200-89-22-sc-sv -p 3389,22,139,135,445,5985 10.200.89.22" start="1684524665" startstr="Fri May 19 20:31:05 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="6" services="22,135,139,445,3389,5985"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1684524665" endtime="1684524790"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.200.89.22" addrtype="ipv4"/>
+<hostnames>
+<hostname name="WRK2.corp.thereserve.loc" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ssh" product="OpenSSH" version="for_Windows_7.7" extrainfo="protocol 2.0" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:for_windows_7.7</cpe></service><script id="ssh-hostkey" output="&#xa;  2048 e6f0fb5b24286813daddc55f674ebe4f (RSA)"><table>
+<elem key="fingerprint">e6f0fb5b24286813daddc55f674ebe4f</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABAQDExuc7yv7hjaXwUGXsCuGzOqTWqQMejQTOkGoTiGMpjtk1qW4+R35KBFT1rspFzpO5mg1R8x/LNJYngKv789zVKds49fo0JBb0xIizf5hAhVYsfI5SF1YlUIGzN0pXY5e2gXVrbrxqSD74bPv4akWwwykKjwbv6tk5Dk0SKd7a/4laXG1dK9/1BRth6hy8RVfMvNFM4TA+gz+RAB4JUzNR/qZPLXM3RAi8W1+U5a8t/sLwRHpNeZyYaCkvBHHUhycq348/hf06IJfO5QI/RfNiBHbXvAKhJ95BTMQPzaEkfXkRJmTTlYG/j3Z+4JtgZkNhymzTpHfuKdFEMxOTnnVT</elem>
+<elem key="bits">2048</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="netbios-ssn" product="Microsoft Windows netbios-ssn" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ms-wbt-server" product="Microsoft Terminal Services" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="ssl-cert" output="Subject: commonName=WRK2.corp.thereserve.loc&#xa;Not valid before: 2023-01-09T05:19:12&#xa;Not valid after:  2023-07-11T05:19:12"><table key="subject">
+<elem key="commonName">WRK2.corp.thereserve.loc</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">WRK2.corp.thereserve.loc</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">DEEE282B85C921552C27B7F0192DE3470D114E5E441DAE5A8E40E0644F4493928A896B857528288F0DBF9DB72152BA5893FF1A6E5F95E16726ED664613F4182238250AF59934D0C51A538FA3CE6525A8A1C8AC57D24EAFF71D997E5EAC42A4DA62AEB6B3BE8EFE1AF64D6D86E7525320B61A4E2C14E0BCFDBEFCFE1AD17A712BC26000462478684EFAFBC5F20637FE5167DC5C9D5279A5A557BE4579B93E709CD36F02C6380310BA53D189659E4AE1A33F1FF6802C426F2601A8A8AC6DA9A40C48EB13FDEAD9FEFC3AB9C25CEED9A44F94FF49040EF4A3004BE7E947E9AC84708390BD0F0A8145C6F5A39E03044DEEBF7EC71D0DFF7B6734D692B1DB74CE2B29</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Key Encipherment, Data Encipherment</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-01-09T05:19:12</elem>
+<elem key="notAfter">2023-07-11T05:19:12</elem>
+</table>
+<elem key="md5">edc9ba63c267012e8a994f783ece745a</elem>
+<elem key="sha1">db28b36099ff417750733f7cf97a919e38f84c04</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIC9DCCAdygAwIBAgIQY6WlWVOmn4VEVnvZYpOjqTANBgkqhkiG9w0BAQsFADAj&#xa;MSEwHwYDVQQDExhXUksyLmNvcnAudGhlcmVzZXJ2ZS5sb2MwHhcNMjMwMTA5MDUx&#xa;OTEyWhcNMjMwNzExMDUxOTEyWjAjMSEwHwYDVQQDExhXUksyLmNvcnAudGhlcmVz&#xa;ZXJ2ZS5sb2MwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDe7igrhckh&#xa;VSwnt/AZLeNHDRFOXkQdrlqOQOBkT0STkoqJa4V1KCiPDb+dtyFSuliT/xpuX5Xh&#xa;ZybtZkYT9BgiOCUK9Zk00MUaU4+jzmUlqKHIrFfSTq/3HZl+XqxCpNpirrazvo7+&#xa;GvZNbYbnUlMgthpOLBTgvP2+/P4a0XpxK8JgAEYkeGhO+vvF8gY3/lFn3FydUnml&#xa;pVe+RXm5PnCc028CxjgDELpT0Yllnkrhoz8f9oAsQm8mAaiorG2ppAxI6xP96tn+&#xa;/Dq5wlzu2aRPlP9JBA70owBL5+lH6ayEcIOQvQ8KgUXG9aOeAwRN7r9+xx0N/3tn&#xa;NNaSsdt0zispAgMBAAGjJDAiMBMGA1UdJQQMMAoGCCsGAQUFBwMBMAsGA1UdDwQE&#xa;AwIEMDANBgkqhkiG9w0BAQsFAAOCAQEAeUs2k3V4c671Lqo394Uz56EQKgOB+uDj&#xa;9gmsrzMtHOgyKqBJqssz9e92IcgwNBmQEhwQU/ahg2KryDNB1SroTYWtVNqTyyne&#xa;sCFXGRp83P9JRRB1teaxYKHDEzuJbrh9+Rf7HPySWxb957dt+Nut/nVW9um7vimT&#xa;qv9w5GWdyP9AoorrUAApVkWJ+VdtjFIrKm6gJGA3XUiSlrPpdPwvOh8Yum8zHhJj&#xa;Rxwcr0myXL0ji/RzM+a0cakZoVUb9L+u3ct8duN9xDKhWyDt+nUwewTNEgPlyjgL&#xa;XPPXDI9ysJAmbDqwEUfMwXq1/nYG+Mw6oBWrhOYWr9gJswCjQgpz7w==&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ssl-date" output="2023-05-19T19:33:04+00:00; -6s from scanner time."><elem key="delta">-6.0</elem>
+<elem key="date">2023-05-19T19:33:04+00:00</elem>
+</script><script id="rdp-ntlm-info" output="&#xa;  Target_Name: CORP&#xa;  NetBIOS_Domain_Name: CORP&#xa;  NetBIOS_Computer_Name: WRK2&#xa;  DNS_Domain_Name: corp.thereserve.loc&#xa;  DNS_Computer_Name: WRK2.corp.thereserve.loc&#xa;  DNS_Tree_Name: thereserve.loc&#xa;  Product_Version: 10.0.17763&#xa;  System_Time: 2023-05-19T19:31:18+00:00"><elem key="Target_Name">CORP</elem>
+<elem key="NetBIOS_Domain_Name">CORP</elem>
+<elem key="NetBIOS_Computer_Name">WRK2</elem>
+<elem key="DNS_Domain_Name">corp.thereserve.loc</elem>
+<elem key="DNS_Computer_Name">WRK2.corp.thereserve.loc</elem>
+<elem key="DNS_Tree_Name">thereserve.loc</elem>
+<elem key="Product_Version">10.0.17763</elem>
+<elem key="System_Time">2023-05-19T19:31:18+00:00</elem>
+</script></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" product="Microsoft HTTPAPI httpd" version="2.0" extrainfo="SSDP/UPnP" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-title" output="Not Found"><elem key="title">Not Found</elem>
+</script></port>
+</ports>
+<hostscript><script id="clock-skew" output="mean: -5s, deviation: 0s, median: -5s"><elem key="stddev">0</elem>
+<elem key="count">3</elem>
+<elem key="mean">-5</elem>
+<elem key="median">-5</elem>
+</script><script id="smb2-security-mode" output="&#xa;  311: &#xa;    Message signing enabled but not required"><table key="311">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script><script id="smb2-time" output="&#xa;  date: 2023-05-19T19:31:23&#xa;  start_date: N/A"><elem key="date">2023-05-19T19:31:23</elem>
+<elem key="start_date">N/A</elem>
+</script></hostscript><times srtt="240168" rttvar="93003" to="612180"/>
+</host>
+<runstats><finished time="1684524790" timestr="Fri May 19 20:33:10 2023" summary="Nmap done at Fri May 19 20:33:10 2023; 1 IP address (1 host up) scanned in 125.42 seconds" elapsed="125.42" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

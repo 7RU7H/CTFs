@@ -1,0 +1,1750 @@
+{
+  "Certificate Authorities": {
+    "0": {
+      "CA Name": "THERESERVE-CA",
+      "DNS Name": "CORPDC.corp.thereserve.loc",
+      "Certificate Subject": "CN=THERESERVE-CA, DC=corp, DC=thereserve, DC=loc",
+      "Certificate Serial Number": "21536581B5F3F0A94ADEE56472FAC9D1",
+      "Certificate Validity Start": "2023-02-14 18:46:18+00:00",
+      "Certificate Validity End": "2033-02-14 18:56:18+00:00",
+      "Web Enrollment": "Disabled",
+      "User Specified SAN": "Disabled",
+      "Request Disposition": "Issue",
+      "Enforce Encryption for Requests": "Enabled",
+      "Permissions": {
+        "Owner": "CORP.THERESERVE.LOC\\Administrators",
+        "Access Rights": {
+          "1": [
+            "CORP.THERESERVE.LOC\\Administrators",
+            "CORP.THERESERVE.LOC\\Domain Admins",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "2": [
+            "CORP.THERESERVE.LOC\\Administrators",
+            "CORP.THERESERVE.LOC\\Domain Admins",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "512": [
+            "CORP.THERESERVE.LOC\\Authenticated Users"
+          ]
+        }
+      }
+    }
+  },
+  "Certificate Templates": {
+    "0": {
+      "Template Name": "WebManualEnroll",
+      "Display Name": "Web Manual Enroll",
+      "Certificate Authorities": [
+        "THERESERVE-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        "EnrolleeSuppliesSubject"
+      ],
+      "Enrollment Flag": [
+        "PublishToDs"
+      ],
+      "Extended Key Usage": [
+        "Server Authentication",
+        "Client Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "2 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "CORP.THERESERVE.LOC\\SERVER1",
+            "CORP.THERESERVE.LOC\\CORPDC",
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-500",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519",
+            "S-1-5-21-1255581842-1300659601-3764024703-500"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519",
+            "S-1-5-21-1255581842-1300659601-3764024703-500"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519",
+            "S-1-5-21-1255581842-1300659601-3764024703-500"
+          ]
+        }
+      }
+    },
+    "1": {
+      "Template Name": "KerberosAuthentication",
+      "Display Name": "Kerberos Authentication",
+      "Certificate Authorities": [
+        "THERESERVE-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireDomainDns",
+        "SubjectAltRequireDns"
+      ],
+      "Enrollment Flag": [
+        "AutoEnrollment"
+      ],
+      "Extended Key Usage": [
+        "Client Authentication",
+        "Server Authentication",
+        "Smart Card Logon",
+        "KDC Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-498",
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-516",
+            "S-1-5-21-1255581842-1300659601-3764024703-519",
+            "CORP.THERESERVE.LOC\\Enterprise Domain Controllers"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "2": {
+      "Template Name": "OCSPResponseSigning",
+      "Display Name": "OCSP Response Signing",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireDns",
+        "SubjectRequireDnsAsCn"
+      ],
+      "Enrollment Flag": [
+        "AddOcspNocheck",
+        "Norevocationinfoinissuedcerts"
+      ],
+      "Extended Key Usage": [
+        "OCSP Signing"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "2 weeks",
+      "Renewal Period": "2 days",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "3": {
+      "Template Name": "RASAndIASServer",
+      "Display Name": "RAS and IAS Server",
+      "Enabled": false,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireDns",
+        "SubjectRequireCommonName"
+      ],
+      "Enrollment Flag": [
+        "AutoEnrollment"
+      ],
+      "Extended Key Usage": [
+        "Client Authentication",
+        "Server Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519",
+            "S-1-5-21-1255581842-1300659601-3764024703-553"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "4": {
+      "Template Name": "Workstation",
+      "Display Name": "Workstation Authentication",
+      "Enabled": false,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireDns"
+      ],
+      "Enrollment Flag": [
+        "AutoEnrollment"
+      ],
+      "Extended Key Usage": [
+        "Client Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-515",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "5": {
+      "Template Name": "DirectoryEmailReplication",
+      "Display Name": "Directory Email Replication",
+      "Certificate Authorities": [
+        "THERESERVE-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireDirectoryGuid",
+        "SubjectAltRequireDns"
+      ],
+      "Enrollment Flag": [
+        "IncludeSymmetricAlgorithms",
+        "PublishToDs",
+        "AutoEnrollment"
+      ],
+      "Extended Key Usage": [
+        "Directory Service Email Replication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-498",
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-516",
+            "S-1-5-21-1255581842-1300659601-3764024703-519",
+            "CORP.THERESERVE.LOC\\Enterprise Domain Controllers"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "6": {
+      "Template Name": "DomainControllerAuthentication",
+      "Display Name": "Domain Controller Authentication",
+      "Certificate Authorities": [
+        "THERESERVE-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireDns"
+      ],
+      "Enrollment Flag": [
+        "AutoEnrollment"
+      ],
+      "Extended Key Usage": [
+        "Client Authentication",
+        "Server Authentication",
+        "Smart Card Logon"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-498",
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-516",
+            "S-1-5-21-1255581842-1300659601-3764024703-519",
+            "CORP.THERESERVE.LOC\\Enterprise Domain Controllers"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "7": {
+      "Template Name": "KeyRecoveryAgent",
+      "Display Name": "Key Recovery Agent",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireUpn",
+        "SubjectRequireDirectoryPath"
+      ],
+      "Enrollment Flag": [
+        "IncludeSymmetricAlgorithms",
+        "PendAllRequests",
+        "PublishToKraContainer",
+        "AutoEnrollment"
+      ],
+      "Private Key Flag": [
+        "ExportableKey"
+      ],
+      "Extended Key Usage": [
+        "Key Recovery Agent"
+      ],
+      "Requires Manager Approval": true,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "2 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "8": {
+      "Template Name": "CAExchange",
+      "Display Name": "CA Exchange",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        "EnrolleeSuppliesSubject"
+      ],
+      "Enrollment Flag": [
+        "IncludeSymmetricAlgorithms"
+      ],
+      "Extended Key Usage": [
+        "Private Key Archival"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "1 week",
+      "Renewal Period": "1 day",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "9": {
+      "Template Name": "CrossCA",
+      "Display Name": "Cross Certification Authority",
+      "Enabled": false,
+      "Client Authentication": true,
+      "Enrollment Agent": true,
+      "Any Purpose": true,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        "EnrolleeSuppliesSubject"
+      ],
+      "Enrollment Flag": [
+        "PublishToDs"
+      ],
+      "Private Key Flag": [
+        "ExportableKey"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 1,
+      "Validity Period": "5 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "10": {
+      "Template Name": "ExchangeUserSignature",
+      "Display Name": "Exchange Signature Only",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        "EnrolleeSuppliesSubject"
+      ],
+      "Extended Key Usage": [
+        "Secure Email"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "11": {
+      "Template Name": "ExchangeUser",
+      "Display Name": "Exchange User",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        "EnrolleeSuppliesSubject"
+      ],
+      "Enrollment Flag": [
+        "IncludeSymmetricAlgorithms"
+      ],
+      "Private Key Flag": [
+        "ExportableKey"
+      ],
+      "Extended Key Usage": [
+        "Secure Email"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "12": {
+      "Template Name": "CEPEncryption",
+      "Display Name": "CEP Encryption",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": true,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        "EnrolleeSuppliesSubject"
+      ],
+      "Extended Key Usage": [
+        "Certificate Request Agent"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "2 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "13": {
+      "Template Name": "OfflineRouter",
+      "Display Name": "Router (Offline request)",
+      "Enabled": false,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        "EnrolleeSuppliesSubject"
+      ],
+      "Extended Key Usage": [
+        "Client Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "2 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "14": {
+      "Template Name": "IPSECIntermediateOffline",
+      "Display Name": "IPSec (Offline request)",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        "EnrolleeSuppliesSubject"
+      ],
+      "Extended Key Usage": [
+        "IP security IKE intermediate"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "2 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "15": {
+      "Template Name": "IPSECIntermediateOnline",
+      "Display Name": "IPSec",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireDns",
+        "SubjectRequireDnsAsCn"
+      ],
+      "Enrollment Flag": [
+        "AutoEnrollment"
+      ],
+      "Extended Key Usage": [
+        "IP security IKE intermediate"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "2 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-515",
+            "S-1-5-21-1255581842-1300659601-3764024703-516",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "16": {
+      "Template Name": "SubCA",
+      "Display Name": "Subordinate Certification Authority",
+      "Certificate Authorities": [
+        "THERESERVE-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": true,
+      "Enrollment Agent": true,
+      "Any Purpose": true,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        "EnrolleeSuppliesSubject"
+      ],
+      "Private Key Flag": [
+        "ExportableKey"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "5 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "17": {
+      "Template Name": "CA",
+      "Display Name": "Root Certification Authority",
+      "Enabled": false,
+      "Client Authentication": true,
+      "Enrollment Agent": true,
+      "Any Purpose": true,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        "EnrolleeSuppliesSubject"
+      ],
+      "Private Key Flag": [
+        "ExportableKey"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "5 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "18": {
+      "Template Name": "WebServer",
+      "Display Name": "Web Server",
+      "Certificate Authorities": [
+        "THERESERVE-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        "EnrolleeSuppliesSubject"
+      ],
+      "Extended Key Usage": [
+        "Server Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "2 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "19": {
+      "Template Name": "DomainController",
+      "Display Name": "Domain Controller",
+      "Certificate Authorities": [
+        "THERESERVE-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireDirectoryGuid",
+        "SubjectAltRequireDns",
+        "SubjectRequireDnsAsCn"
+      ],
+      "Enrollment Flag": [
+        "IncludeSymmetricAlgorithms",
+        "PublishToDs",
+        "AutoEnrollment"
+      ],
+      "Extended Key Usage": [
+        "Client Authentication",
+        "Server Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-498",
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-516",
+            "S-1-5-21-1255581842-1300659601-3764024703-519",
+            "CORP.THERESERVE.LOC\\Enterprise Domain Controllers"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "20": {
+      "Template Name": "Machine",
+      "Display Name": "Computer",
+      "Certificate Authorities": [
+        "THERESERVE-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireDns",
+        "SubjectRequireDnsAsCn"
+      ],
+      "Enrollment Flag": [
+        "AutoEnrollment"
+      ],
+      "Extended Key Usage": [
+        "Client Authentication",
+        "Server Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-515",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "21": {
+      "Template Name": "MachineEnrollmentAgent",
+      "Display Name": "Enrollment Agent (Computer)",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": true,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireDns",
+        "SubjectRequireDnsAsCn"
+      ],
+      "Enrollment Flag": [
+        "AutoEnrollment"
+      ],
+      "Extended Key Usage": [
+        "Certificate Request Agent"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "2 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "22": {
+      "Template Name": "EnrollmentAgentOffline",
+      "Display Name": "Exchange Enrollment Agent (Offline request)",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": true,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": true,
+      "Certificate Name Flag": [
+        "EnrolleeSuppliesSubject"
+      ],
+      "Extended Key Usage": [
+        "Certificate Request Agent"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "2 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "23": {
+      "Template Name": "EnrollmentAgent",
+      "Display Name": "Enrollment Agent",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": true,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireUpn",
+        "SubjectRequireDirectoryPath"
+      ],
+      "Enrollment Flag": [
+        "AutoEnrollment"
+      ],
+      "Extended Key Usage": [
+        "Certificate Request Agent"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "2 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "24": {
+      "Template Name": "CTLSigning",
+      "Display Name": "Trust List Signing",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireUpn",
+        "SubjectRequireDirectoryPath"
+      ],
+      "Enrollment Flag": [
+        "AutoEnrollment"
+      ],
+      "Extended Key Usage": [
+        "Microsoft Trust List Signing"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "25": {
+      "Template Name": "CodeSigning",
+      "Display Name": "Code Signing",
+      "Enabled": false,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireUpn",
+        "SubjectRequireDirectoryPath"
+      ],
+      "Enrollment Flag": [
+        "AutoEnrollment"
+      ],
+      "Extended Key Usage": [
+        "Code Signing"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "26": {
+      "Template Name": "EFSRecovery",
+      "Display Name": "EFS Recovery Agent",
+      "Certificate Authorities": [
+        "THERESERVE-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireUpn",
+        "SubjectRequireDirectoryPath"
+      ],
+      "Enrollment Flag": [
+        "IncludeSymmetricAlgorithms",
+        "AutoEnrollment"
+      ],
+      "Private Key Flag": [
+        "ExportableKey"
+      ],
+      "Extended Key Usage": [
+        "File Recovery"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "5 years",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "27": {
+      "Template Name": "Administrator",
+      "Display Name": "Administrator",
+      "Certificate Authorities": [
+        "THERESERVE-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireUpn",
+        "SubjectAltRequireEmail",
+        "SubjectRequireEmail",
+        "SubjectRequireDirectoryPath"
+      ],
+      "Enrollment Flag": [
+        "IncludeSymmetricAlgorithms",
+        "PublishToDs",
+        "AutoEnrollment"
+      ],
+      "Private Key Flag": [
+        "ExportableKey"
+      ],
+      "Extended Key Usage": [
+        "Microsoft Trust List Signing",
+        "Encrypting File System",
+        "Secure Email",
+        "Client Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "28": {
+      "Template Name": "EFS",
+      "Display Name": "Basic EFS",
+      "Certificate Authorities": [
+        "THERESERVE-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": false,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireUpn",
+        "SubjectRequireDirectoryPath"
+      ],
+      "Enrollment Flag": [
+        "IncludeSymmetricAlgorithms",
+        "PublishToDs",
+        "AutoEnrollment"
+      ],
+      "Private Key Flag": [
+        "ExportableKey"
+      ],
+      "Extended Key Usage": [
+        "Encrypting File System"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-513",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "29": {
+      "Template Name": "SmartcardLogon",
+      "Display Name": "Smartcard Logon",
+      "Enabled": false,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireUpn",
+        "SubjectRequireDirectoryPath"
+      ],
+      "Extended Key Usage": [
+        "Client Authentication",
+        "Smart Card Logon"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "30": {
+      "Template Name": "ClientAuth",
+      "Display Name": "Authenticated Session",
+      "Enabled": false,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireUpn",
+        "SubjectRequireDirectoryPath"
+      ],
+      "Enrollment Flag": [
+        "AutoEnrollment"
+      ],
+      "Extended Key Usage": [
+        "Client Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-513",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "31": {
+      "Template Name": "SmartcardUser",
+      "Display Name": "Smartcard User",
+      "Enabled": false,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireUpn",
+        "SubjectAltRequireEmail",
+        "SubjectRequireEmail",
+        "SubjectRequireDirectoryPath"
+      ],
+      "Enrollment Flag": [
+        "IncludeSymmetricAlgorithms",
+        "PublishToDs"
+      ],
+      "Extended Key Usage": [
+        "Secure Email",
+        "Client Authentication",
+        "Smart Card Logon"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "32": {
+      "Template Name": "UserSignature",
+      "Display Name": "User Signature Only",
+      "Enabled": false,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireUpn",
+        "SubjectAltRequireEmail",
+        "SubjectRequireEmail",
+        "SubjectRequireDirectoryPath"
+      ],
+      "Enrollment Flag": [
+        "AutoEnrollment"
+      ],
+      "Extended Key Usage": [
+        "Secure Email",
+        "Client Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-513",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    },
+    "33": {
+      "Template Name": "User",
+      "Display Name": "User",
+      "Certificate Authorities": [
+        "THERESERVE-CA"
+      ],
+      "Enabled": true,
+      "Client Authentication": true,
+      "Enrollment Agent": false,
+      "Any Purpose": false,
+      "Enrollee Supplies Subject": false,
+      "Certificate Name Flag": [
+        "SubjectAltRequireUpn",
+        "SubjectAltRequireEmail",
+        "SubjectRequireEmail",
+        "SubjectRequireDirectoryPath"
+      ],
+      "Enrollment Flag": [
+        "IncludeSymmetricAlgorithms",
+        "PublishToDs",
+        "AutoEnrollment"
+      ],
+      "Private Key Flag": [
+        "ExportableKey"
+      ],
+      "Extended Key Usage": [
+        "Encrypting File System",
+        "Secure Email",
+        "Client Authentication"
+      ],
+      "Requires Manager Approval": false,
+      "Requires Key Archival": false,
+      "Authorized Signatures Required": 0,
+      "Validity Period": "1 year",
+      "Renewal Period": "6 weeks",
+      "Minimum RSA Key Length": 2048,
+      "Permissions": {
+        "Enrollment Permissions": {
+          "Enrollment Rights": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-513",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        },
+        "Object Control Permissions": {
+          "Owner": "S-1-5-21-1255581842-1300659601-3764024703-519",
+          "Write Owner Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Dacl Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ],
+          "Write Property Principals": [
+            "S-1-5-21-1255581842-1300659601-3764024703-512",
+            "S-1-5-21-1255581842-1300659601-3764024703-519"
+          ]
+        }
+      }
+    }
+  }
+}
