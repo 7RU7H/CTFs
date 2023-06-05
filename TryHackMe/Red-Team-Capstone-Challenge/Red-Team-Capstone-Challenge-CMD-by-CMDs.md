@@ -50,7 +50,7 @@ Initial
 ```bash
 curl http://10.200.116.13/october/themes/demo/assets/images/ -o images
 cat images | cut -d '"' -f 8 | grep '.jpeg' | sed 's/.jpeg//g' > users.txt
-# Developer on the root webapge.
+# Developer on the root webpage.
 echo "aimee.walker" >> users.txt
 echo "patrick.edwards" >> users.txt
 cat users.txt | awk '{print $1"@corp.thereserve.loc"}' >> emails.txt
