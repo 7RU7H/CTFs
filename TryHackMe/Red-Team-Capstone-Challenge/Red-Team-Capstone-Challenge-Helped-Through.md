@@ -1743,7 +1743,7 @@ https://0x00-0x00.github.io/research/2018/10/31/How-to-bypass-UAC-in-newer-Windo
 https://www.crowdstrike.com/blog/how-to-detect-and-prevent-impackets-wmiexec/
 https://www.thehacker.recipes/ad/movement/kerberos/forged-tickets/golden
 https://www.thehacker.recipes/ad/movement/kerberos/forged-tickets/sapphire
-
+https://dominicbreuker.com/post/learning_sliver_c2_10_sideload/
 
 ## Appendix
 

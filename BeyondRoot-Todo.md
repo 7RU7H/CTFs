@@ -1,4 +1,9 @@
 
+Write ups from top 50 to consider
+https://app.hackthebox.com/users/357237
+
+
+
 Use in context https://www.youtube.com/watch?v=o_XaJdDqQA0
 
 Cleaning up in a more professional manner and a too professional manner
