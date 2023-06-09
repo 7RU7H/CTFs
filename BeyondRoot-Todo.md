@@ -158,3 +158,6 @@ Start a process in the background
 Invoke-CimMethod -ClassName win32_process -MethodName create
  -Arguments @{ commandline = $YOURXGOESHERENO$; ProcessStartupInformation = New-CimInstance -CimClass ( Get-CimClass Win32_ProcessStartup) -Property @{ShowWindow=0} -Local;     CurrentDirectory = $null}
 ```
+
+
+Add a backdoor to custom source code in a weird language swift backdoor

