@@ -86,7 +86,7 @@ Parameter equals:
 	- CMDi? Can you execute with `& CMD` - windows  or `; CMD` - linux?
 	- IDOR? Can you deserialize or decoded data; or modify data to change your object context?  
 
-She did not mention, but I `curl`-ed the info.php for data intelligence reasons. Although if found this it would be better to just copy and paste from browser for a bit more stealth
+She did not mention, but I `curl`-ed the info.php for data intelligence reasons. Although if found this it would be better to just copy and paste from browser for a bit more stealth.
 ![1080](usefulinfodotphp.png)
 
 
@@ -115,7 +115,7 @@ Books on the POP3
 Hello world...
 ![](helloworld200.png)
 
-Oooooohh yeahh
+Oooooohh yeah
 ![](supersensitiveadmin320.png)
 
 Files to exfiltrate
@@ -282,8 +282,8 @@ No mysql login
 
 As the beyond root I will try and understand any of these that work:
 - [CVE-2017-16995](https://www.exploit-db.com/download/45010) eBPF_verifier - Details: https://ricklarabee.blogspot.com/2018/07/ebpf-and-analysis-of-get-rekt-linux.html - Comments: CONFIG_BPF_SYSCALL needs to be set && kernel.unprivileged_bpf_disabled != 1
-- [CVE-2016-5195](https://www.exploit-db.com/download/40611) dirtycow -   Details: https://github.com/dirtycow/dirtycow.github.io/wiki/VulnerabilityDetails
-- [CVE-2016-5195](https://www.exploit-db.com/download/40839) dirtycow 2 -   Details: https://github.com/dirtycow/dirtycow.github.io/wiki/VulnerabilityDetails
+- [CVE-2016-5195](https://www.exploit-db.com/download/40611) dirtycow -  Details: https://github.com/dirtycow/dirtycow.github.io/wiki/VulnerabilityDetails
+- [CVE-2016-5195](https://www.exploit-db.com/download/40839) dirtycow 2 -  Details: https://github.com/dirtycow/dirtycow.github.io/wiki/VulnerabilityDetails
 - CVE-2021-4034 PwnKit - Details: https://www.qualys.com/2022/01/25/cve-2021-4034/pwnkit.txt
 - Vulnerable to CVE-2021-4034
 
