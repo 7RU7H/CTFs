@@ -9,7 +9,7 @@ Learnt:
 - Some Practice machines are not for OSCP. Sad 
 - Some tools exist that are better than the Bloodhound instruction - use them 
 	- Bloodhound -> Resources -> Tools if possible else Bloodhound instructions 
-- b33f and xct are awesome.e 
+- b33f and xct are awesome. 
 
 Previously I tried to do this machine as part of a practice OSCP exam attempt. Little did I know that this machine required `responder`. Although I really excelled in finding and combing through machines it also really hurt my chances with stress and that made me reconsider long term plans. Hopeful the later half of this year will bring a better life in many respects. One very important event was discovery and really trying to emulate and understand hackers like [XCT](https://www.youtube.com/watch?v=fRbVdbY1d28), prior to the recent rank changes of HTB seasons was top 1 on HTB. The ranking which will move to official post beta phase in less than 30 days. I have set my sights on at least getting Silver rank out of Bronze, Silver, Ruby, Platinum and Holo, but go for Ruby. I think I could maybe get one hard machine in a week, but I doubt it and I would have to get lucky.
 
@@ -26,11 +26,11 @@ smbmap show permissions
 Bang on the [Tamil music to stay culturally enriched](https://www.youtube.com/watch?v=V8R1aZf1-AU). Anirudh is a tamil name on first google. 
 ![](bruteridsanirudh.png)
 
-We have a writable share, a username - need a password and means of execution. After considering everything I went for both enumeration hint - it is ballbuster because it declare the the share is writable and the second is that there is a scripted user that will click shortlinks.
+We have a writable share, a username - need a password and means of execution. After considering everything I went for both enumeration hint - it is ball-buster because it declare the the share is writable and the second is that there is a scripted user that will click shortlinks.
 
 "Mount a client-side attack by uploading a shortcut file to the SMB share. A user will view the share and render file icons in it."
 
-After some checking. This is definately not a OSCP like machine. So I am going to use metasploit or some C2  as I thought that this would not involve fake social engineering practice. Basically to keep the process clean and not mental fazzle myself doing this machine. Also [pentesterlab](https://pentestlab.blog/2019/10/08/persistence-shortcut-modification/) suggests we can use Empire which is OSCP related.
+After some checking. This is definitely not a OSCP like machine. So I am going to use Metasploit or some C2  as I thought that this would not involve fake social engineering practice. Basically to keep the process clean and not mentally frazzle myself doing this machine. Also [pentesterlab](https://pentestlab.blog/2019/10/08/persistence-shortcut-modification/) suggests we can use Empire which is OSCP related.
 
 Edited from the article
 ```python

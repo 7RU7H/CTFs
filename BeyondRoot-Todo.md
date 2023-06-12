@@ -2,6 +2,7 @@
 Write ups from top 50 to consider
 https://app.hackthebox.com/users/357237
 
+sliver portfwd 
 
 
 Use in context https://www.youtube.com/watch?v=o_XaJdDqQA0
@@ -138,8 +139,7 @@ To prep for dante -> and beyond!https://www.patreon.com/xct
 
 - Pay for patreon and do Shinra in a years time 
 
-Alh4zr3d says sliver is better than empire 
-https://github.com/BishopFox/sliver
+
 
 
 
