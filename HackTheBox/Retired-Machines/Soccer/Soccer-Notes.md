@@ -18,7 +18,7 @@ Credentials:
 
 ### Todo 
 
-- 9091 - we have a email registeration on soc-player
+- 9091 - we have a email registration on soc-player
 - 33060,
 - 3306
 
