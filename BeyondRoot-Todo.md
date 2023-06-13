@@ -2,7 +2,6 @@
 Write ups from top 50 to consider
 https://app.hackthebox.com/users/357237
 
-sliver portfwd 
 
 
 Use in context https://www.youtube.com/watch?v=o_XaJdDqQA0
