@@ -44,7 +44,7 @@ As a general note to any unsuspecting readers, this a continuation of trying and
 
 ## Recon
 
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](HackTheBox/Retired-Machines/Reddish/Screenshots/ping.png)
 
 #### Note to self...
@@ -912,7 +912,7 @@ find . -type f -name "*.*onf*" | xargs grep -ie 'passw'
 #### Omni-Tooling - Port Redirection and Pivoting through a network
 https://0xdf.gitlab.io/2020/08/10/tunneling-with-chisel-and-ssf-update.html
 https://0xdf.gitlab.io/2019/01/28/pwk-notes-tunneling-update1.html
-- sshhuttle - read into this but inital issues are python and installation method so...
+- sshhuTTLe - read into this but inital issues are python and installation method so...
 - ssh
 	- 0xDF instuction 2.  Copy an ssh client to nodered, and ssh back into my kali box with a reverse tunnel.
 

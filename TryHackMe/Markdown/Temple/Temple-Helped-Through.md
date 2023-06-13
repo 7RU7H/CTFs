@@ -23,7 +23,7 @@ I really enjoy Al's streams. The communal atmosphere where I always learn someth
 
 ## Recon
 
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](TryHackMe/Markdown/Temple/Screenshots/ping.png)
 
 The echo ports 

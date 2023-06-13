@@ -11,11 +11,11 @@ Learnt:
 	- Bloodhound -> Resources -> Tools if possible else Bloodhound instructions 
 - b33f and xct are awesome. 
 
-Previously I tried to do this machine as part of a practice OSCP exam attempt. Little did I know that this machine required `responder`. Although I really excelled in finding and combing through machines it also really hurt my chances with stress and that made me reconsider long term plans. Hopeful the later half of this year will bring a better life in many respects. One very important event was discovery and really trying to emulate and understand hackers like [XCT](https://www.youtube.com/watch?v=fRbVdbY1d28), prior to the recent rank changes of HTB seasons was top 1 on HTB. The ranking which will move to official post beta phase in less than 30 days. I have set my sights on at least getting Silver rank out of Bronze, Silver, Ruby, Platinum and Holo, but go for Ruby. I think I could maybe get one hard machine in a week, but I doubt it and I would have to get lucky.
+Previously I tried to do this machine as part of a practice OSCP exam attempt. LiTTLe did I know that this machine required `responder`. Although I really excelled in finding and combing through machines it also really hurt my chances with stress and that made me reconsider long term plans. Hopeful the later half of this year will bring a better life in many respects. One very important event was discovery and really trying to emulate and understand hackers like [XCT](https://www.youtube.com/watch?v=fRbVdbY1d28), prior to the recent rank changes of HTB seasons was top 1 on HTB. The ranking which will move to official post beta phase in less than 30 days. I have set my sights on at least getting Silver rank out of Bronze, Silver, Ruby, Platinum and Holo, but go for Ruby. I think I could maybe get one hard machine in a week, but I doubt it and I would have to get lucky.
 
 ## Recon - Previous Attempt
 
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](OS-ProvingGrounds/Vault/Screenshots/ping.png)
 
 There are shares

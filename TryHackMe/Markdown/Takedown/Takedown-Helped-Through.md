@@ -22,7 +22,7 @@ Following along after a long week and I got above 70 on AZ 104 Microsoft assessm
 
 ## Recon
 
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](Screenshots/ping.png)
 
 [[robots-txt-endpoint-http___10.10.112.119_favicon.ico]] is rather strange to be in robots.txt

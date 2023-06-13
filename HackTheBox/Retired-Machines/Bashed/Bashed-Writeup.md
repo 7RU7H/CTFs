@@ -12,9 +12,9 @@ Learnt: Sometimes metasploit multi/handler is not the answer.
 ```bash
 ping 10.129.107.29                  
 PING 10.129.107.29 (10.129.107.29) 56(84) bytes of data.
-64 bytes from 10.129.107.29: icmp_seq=1 ttl=63 time=42.1 ms
-64 bytes from 10.129.107.29: icmp_seq=2 ttl=63 time=37.5 ms
-64 bytes from 10.129.107.29: icmp_seq=3 ttl=63 time=40.9 ms
+64 bytes from 10.129.107.29: icmp_seq=1 TTL=63 time=42.1 ms
+64 bytes from 10.129.107.29: icmp_seq=2 TTL=63 time=37.5 ms
+64 bytes from 10.129.107.29: icmp_seq=3 TTL=63 time=40.9 ms
 ^C
 --- 10.129.107.29 ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 2003ms

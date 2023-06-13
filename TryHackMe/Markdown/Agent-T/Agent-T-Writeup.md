@@ -2,7 +2,7 @@
 
 Name: Agent-T
 Date:  09/01/2023
-Description: Something seems a little off with the server.
+Description: Something seems a liTTLe off with the server.
 Better Description: Backdoor o'clock
 Difficulty:  Easy
 Goals:  
@@ -14,7 +14,7 @@ Beyond Root:
 
 ## Recon
 
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](TryHackMe/Markdown/Agent-T/Screenshots/ping.png)
 
 ![](nmapscan.png)

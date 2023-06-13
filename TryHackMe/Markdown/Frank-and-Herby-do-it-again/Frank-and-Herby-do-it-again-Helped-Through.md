@@ -16,7 +16,7 @@ This is the continuation of [[Frank-and-Herby-Make-an-app-Helped-through]] with 
 
 ## Recon
 
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](TryHackMe/Markdown/Frank-and-Herby-do-it-again/Screenshots/ping.png)
 
 FRANK RULEZZ HTTP website on port 30679:

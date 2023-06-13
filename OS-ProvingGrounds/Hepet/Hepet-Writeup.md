@@ -3,9 +3,9 @@
 ```bash
 ping -c 3 192.168.80.140
 PING 192.168.80.140 (192.168.80.140) 56(84) bytes of data.
-64 bytes from 192.168.80.140: icmp_seq=1 ttl=127 time=53.9 ms
-64 bytes from 192.168.80.140: icmp_seq=2 ttl=127 time=54.7 ms
-64 bytes from 192.168.80.140: icmp_seq=3 ttl=127 time=50.5 ms
+64 bytes from 192.168.80.140: icmp_seq=1 TTL=127 time=53.9 ms
+64 bytes from 192.168.80.140: icmp_seq=2 TTL=127 time=54.7 ms
+64 bytes from 192.168.80.140: icmp_seq=3 TTL=127 time=50.5 ms
 
 --- 192.168.80.140 ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 2004ms

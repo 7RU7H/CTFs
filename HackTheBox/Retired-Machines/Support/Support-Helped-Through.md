@@ -26,7 +26,7 @@ For a brutal self assessment after clearing my head I am returning to this box t
 
 ## Recon
 
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](HackTheBox/Retired-Machines/Support/Screenshots/ping.png)
 Double check avaliability on common port, when a weird ping retest upon brutalExamifail attempt. 
 ![](smb-now-filtered-questionmark.png)
@@ -296,7 +296,7 @@ Different strings encoding may reveal different hardcoded credentials on poor de
 strings -e s # 7-bit byte (used for ASCII, ISO 8859) - Default
 strings -e S # 8-bit byte
 strings -e b # 16-bit bigendian
-strings -e l # 16-bit littleendian
+strings -e l # 16-bit liTTLeendian
 ```
 
 #### DotNET

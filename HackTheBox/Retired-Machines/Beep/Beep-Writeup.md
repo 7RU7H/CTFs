@@ -6,13 +6,13 @@ Goals:  OSCP Prep
 Learnt: Sometimes hacky hacking of old exploits and manually doing things is better than dealing with python modules.. chose Go for exploit development.
 
 ## Recon
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ```bash
 ping -c 3 10.129.1.226
 PING 10.129.1.226 (10.129.1.226) 56(84) bytes of data.
-64 bytes from 10.129.1.226: icmp_seq=1 ttl=63 time=38.8 ms
-64 bytes from 10.129.1.226: icmp_seq=2 ttl=63 time=35.6 ms
-64 bytes from 10.129.1.226: icmp_seq=3 ttl=63 time=42.6 ms
+64 bytes from 10.129.1.226: icmp_seq=1 TTL=63 time=38.8 ms
+64 bytes from 10.129.1.226: icmp_seq=2 TTL=63 time=35.6 ms
+64 bytes from 10.129.1.226: icmp_seq=3 TTL=63 time=42.6 ms
 
 --- 10.129.1.226 ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 2002ms

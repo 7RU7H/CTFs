@@ -10,9 +10,9 @@ Learnt:
 ```bash
 root@ip-10-10-254-124:~# ping -c 3 10.10.93.146
 PING 10.10.93.146 (10.10.93.146) 56(84) bytes of data.
-64 bytes from 10.10.93.146: icmp_seq=1 ttl=64 time=0.741 ms
-64 bytes from 10.10.93.146: icmp_seq=2 ttl=64 time=0.430 ms
-64 bytes from 10.10.93.146: icmp_seq=3 ttl=64 time=11.6 ms
+64 bytes from 10.10.93.146: icmp_seq=1 TTL=64 time=0.741 ms
+64 bytes from 10.10.93.146: icmp_seq=2 TTL=64 time=0.430 ms
+64 bytes from 10.10.93.146: icmp_seq=3 TTL=64 time=11.6 ms
 
 --- 10.10.93.146 ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 2039ms

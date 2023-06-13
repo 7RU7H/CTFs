@@ -41,7 +41,7 @@ Regardless I am going to back to this machine that I discovered was Azure after 
 
 From what Ippsec tells us it is it does not have a Web server. So actually this is really cruel of fate itself as Azure has an additional DNS record. `A Alias` record that is use to resolve domains in Azure. DNS seems for some reason to be such a kick in the preverbals for me. I am als unsure as to why. DNS Recon seems like using string to pull a tiny key through a lock to then have to make sense of what that key could be for, if it does not just domain transfer.
 
-Ippsec discuss AD Connect, which as requires PasswordWriteBack which I know is a way of synchronizing between On-Premise AD and Azure AD. The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+Ippsec discuss AD Connect, which as requires PasswordWriteBack which I know is a way of synchronizing between On-Premise AD and Azure AD. The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 
 ![ping](HackTheBox/Retired-Machines/Monteverde/Screenshots/ping.png)
 

@@ -7,7 +7,7 @@ Learnt: Write all the big Shadowbrokers exploits in Golang because python is pyt
 
 ## Recon
 
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](OS-ProvingGrounds/Helpdesk/Screenshots/ping.png)
 
 ![1600](nmap-lfi-and-auth.png)

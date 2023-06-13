@@ -12,7 +12,7 @@ Learnt:
 - Practiced Empire
 - killing pty /dev/pts prevents some privilege escalation
 Beyond Root:
-- Booby traps for battlegrounds
+- Booby traps for baTTLegrounds
 - Better \*-shells for persistence - not the shell code just location, naming, parametres
 
 ![1080](thememes.png)
@@ -22,7 +22,7 @@ The server of this recruitment company appears to have been hacked, and the hack
 ## Recon
 
 
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](TryHackMe/Markdown/Hacker-vs-Hacker/Screenshots/ping.png)
 
 THM machine and the comments on the webpages

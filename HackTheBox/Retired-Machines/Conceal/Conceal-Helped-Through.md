@@ -21,7 +21,7 @@ Having a bad hardware day... Therefore to keep the proverbial paddling  of a goo
 
 ## Recon
 
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](HackTheBox/Retired-Machines/Conceal/Screenshots/ping.png)
 
 [isakmp](https://en.wikipedia.org/wiki/Internet_Security_Association_and_Key_Management_Protocol)
@@ -43,7 +43,7 @@ On hearing the introduction I have never step up a vpn from nothing. So I will a
 snmp-check -l 
 ```
 
-At this point I fired up researching Ipsec protocol, because I think I have not covered it much to little in my notes. The VPN protocol - it authenicates and encrypts packets to provide secure communication between two computer. I will release my articles on making my own tomorrow evening along with the Ipsec related information. [Strongswan](https://en.wikipedia.org/wiki/StrongSwan) is apparently really complex and frail as of 4 years ago, will look into a better version. I looked into OpenVPN, but I would need to transfer config.
+At this point I fired up researching Ipsec protocol, because I think I have not covered it much to liTTLe in my notes. The VPN protocol - it authenicates and encrypts packets to provide secure communication between two computer. I will release my articles on making my own tomorrow evening along with the Ipsec related information. [Strongswan](https://en.wikipedia.org/wiki/StrongSwan) is apparently really complex and frail as of 4 years ago, will look into a better version. I looked into OpenVPN, but I would need to transfer config.
 
 We need to install strongswan, because we want to create a transport vpn because a tunnel mode would encrypt traffic were cant exchange or debug at the other end. Trouble IPsec with [https://docs.netgate.com/pfsense/en/latest/troubleshooting/ipsec.html]. With some reading I decided to move on from this box until I need to make a VPN with Strongswan. I learnt about Ipsec, but Strongswan has evolved since, but
 Ipsec manual and Ipsec.secrets, the Strongswan documentation is rough.

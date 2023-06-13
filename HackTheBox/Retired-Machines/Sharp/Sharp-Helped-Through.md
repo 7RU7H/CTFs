@@ -41,7 +41,7 @@ I want to make something like this: [https://github.com/xct/xc](https://github.c
 
 ## Recon
 
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](HackTheBox/Retired-Machines/Sharp/Screenshots/ping.png)
 
 Nmap port 8888:
@@ -275,7 +275,7 @@ Kris Nova raided Al and I checked her out wanna watch this soon - mine deeply an
 	- Infosec twitter is also on mastodon
 
 
-#### KOTH/Battleground weapons testing!
+#### KOTH/BaTTLeground weapons testing!
 
 1. Smbmaze - fix this:
 ```powershell
@@ -324,7 +324,7 @@ $Parameters = @{
 New-SmbShare @Parameters
 ```
 
-2. I saw the first of the latest video and thought how unsafe Network Chuck explaining how to make every terminal a Administrator terminal and then though after being a person shouting into void about how dangerous that tip was. Now turn some the commands into weaponized hopeful battleground/koth winning very unsafeness.
+2. I saw the first of the latest video and thought how unsafe Network Chuck explaining how to make every terminal a Administrator terminal and then though after being a person shouting into void about how dangerous that tip was. Now turn some the commands into weaponized hopeful baTTLeground/koth winning very unsafeness.
 
 Window Commands from Network Chuck
 https://www.youtube.com/watch?v=prVHU1fLR20

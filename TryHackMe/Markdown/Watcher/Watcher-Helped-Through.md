@@ -25,7 +25,7 @@ Given the lucrious amount of non computer work have this week and the poor state
 
 ## Recon
 
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](TryHackMe/Markdown/Watcher/Screenshots/ping.png)
 
 Nikto and Nuclei both read the robots.txt. .txt for flag_one.txt.

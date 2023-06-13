@@ -11,9 +11,9 @@ Learnt:
 ```bash
 ping -c 3 192.168.55.132                  
 PING 192.168.55.132 (192.168.55.132) 56(84) bytes of data.
-64 bytes from 192.168.55.132: icmp_seq=1 ttl=63 time=38.5 ms
-64 bytes from 192.168.55.132: icmp_seq=2 ttl=63 time=36.2 ms
-64 bytes from 192.168.55.132: icmp_seq=3 ttl=63 time=61.8 ms
+64 bytes from 192.168.55.132: icmp_seq=1 TTL=63 time=38.5 ms
+64 bytes from 192.168.55.132: icmp_seq=2 TTL=63 time=36.2 ms
+64 bytes from 192.168.55.132: icmp_seq=3 TTL=63 time=61.8 ms
 
 --- 192.168.55.132 ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 2003ms

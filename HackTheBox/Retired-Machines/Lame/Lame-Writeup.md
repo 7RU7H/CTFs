@@ -8,13 +8,13 @@ Learnt: Check all the versions!
 Research the versions the box.
 
 ## Recon
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ```bash
 ping -c 3 10.129.103.233 
 PING 10.129.103.233 (10.129.103.233) 56(84) bytes of data.
-64 bytes from 10.129.103.233: icmp_seq=1 ttl=63 time=38.0 ms
-64 bytes from 10.129.103.233: icmp_seq=2 ttl=63 time=47.0 ms
-64 bytes from 10.129.103.233: icmp_seq=3 ttl=63 time=86.1 ms
+64 bytes from 10.129.103.233: icmp_seq=1 TTL=63 time=38.0 ms
+64 bytes from 10.129.103.233: icmp_seq=2 TTL=63 time=47.0 ms
+64 bytes from 10.129.103.233: icmp_seq=3 TTL=63 time=86.1 ms
 
 --- 10.129.103.233 ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 2002ms

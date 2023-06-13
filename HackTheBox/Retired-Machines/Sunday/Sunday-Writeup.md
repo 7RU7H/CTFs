@@ -11,7 +11,7 @@ It is a 1.4 Star box...
 
 ## Recon
 
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128, but in this case it is Solaris.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128, but in this case it is Solaris.
 ![](HackTheBox/Retired-Machines/Sunday/Screenshots/ping.png)
 
 Solaris 11.3 or .4

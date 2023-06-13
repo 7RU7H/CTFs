@@ -6,13 +6,13 @@ Goals:  OSCP Prep, rewrite a python exploit
 Learnt: https://github.com/offensive-security/exploitdb-bin-sploits/raw/master/bin-sploits/42315.py exists and I am grateful to Tyler from https://www.wirebiters.com/
 
 ## Recon
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ```bash
 ping -c 3 10.129.105.18  
 PING 10.129.105.18 (10.129.105.18) 56(84) bytes of data.
-64 bytes from 10.129.105.18: icmp_seq=1 ttl=127 time=232 ms
-64 bytes from 10.129.105.18: icmp_seq=2 ttl=127 time=233 ms
-64 bytes from 10.129.105.18: icmp_seq=3 ttl=127 time=221 ms
+64 bytes from 10.129.105.18: icmp_seq=1 TTL=127 time=232 ms
+64 bytes from 10.129.105.18: icmp_seq=2 TTL=127 time=233 ms
+64 bytes from 10.129.105.18: icmp_seq=3 TTL=127 time=221 ms
 
 --- 10.129.105.18 ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 2002ms

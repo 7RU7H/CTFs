@@ -74,7 +74,7 @@ My OSINT is crippled by my learning of this with CTFs, one day I will be good, b
 ![1000](cmetoasty.png)
 
 ![1080](kerberoast.png)
-`littleredbucket`; HTTP/LAB-DC; bitbucket - also bitbucket is a member of sensitive-account
+`liTTLeredbucket`; HTTP/LAB-DC; bitbucket - also bitbucket is a member of sensitive-account
 
 Both nik and bitbucket have similar share access
 ![1000](bbsmbshares.png)

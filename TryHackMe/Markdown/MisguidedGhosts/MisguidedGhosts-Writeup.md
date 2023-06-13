@@ -13,9 +13,9 @@ Learnt:
 ```bash
 ping -c 3 10.10.113.7      
 PING 10.10.113.7 (10.10.113.7) 56(84) bytes of data.
-64 bytes from 10.10.113.7: icmp_seq=1 ttl=63 time=70.4 ms
-64 bytes from 10.10.113.7: icmp_seq=2 ttl=63 time=60.3 ms
-64 bytes from 10.10.113.7: icmp_seq=3 ttl=63 time=62.3 ms
+64 bytes from 10.10.113.7: icmp_seq=1 TTL=63 time=70.4 ms
+64 bytes from 10.10.113.7: icmp_seq=2 TTL=63 time=60.3 ms
+64 bytes from 10.10.113.7: icmp_seq=3 TTL=63 time=62.3 ms
 
 --- 10.10.113.7 ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 2003ms

@@ -22,7 +22,7 @@ Watching along for the big giveaway on the [Alh4zr3d stream](https://www.twitch.
 
 ## Recon
 
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](HackTheBox/Retired-Machines/Acute/Screenshots/ping.png)
 
 My inital masscan failed so all more my automated recon goes full manual till I get port information regardless of knowing that this is AD machine. I the time it takes to recon a machine should bear some realism helpful while sort out a couple issues remaining before I start watching the stream. Nmap finishes while I am prepping myself - it is just a website. 

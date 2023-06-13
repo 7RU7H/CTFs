@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.93 scan initiated Tue Mar 28 08:40:31 2023 as: nmap -&#45;script vuln -oA nmap/10-129-235-249-Vuln -&#45;min-rate 100 -e tun0 -p 22,80,9091 10.129.235.249 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-129-235-249-Vuln -&#45;min-rate 100 -e tun0 -p 22,80,9091 10.129.235.249" start="1679989231" startstr="Tue Mar 28 08:40:31 2023" version="7.93" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="22,80,9091"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.235.249" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1679989241" endtime="1679989389"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.129.235.249" addrtype="ipv4"/>
+<hostnames>
+<hostname name="soccer.htb" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-vuln-cve2011-3192" output="&#xa;  VULNERABLE:&#xa;  Apache byterange filter DoS&#xa;    State: VULNERABLE&#xa;    IDs:  CVE:CVE-2011-3192  BID:49303&#xa;      The Apache web server is vulnerable to a denial of service attack when numerous&#xa;      overlapping byte ranges are requested.&#xa;    Disclosure date: 2011-08-19&#xa;    References:&#xa;      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192&#xa;      https://seclists.org/fulldisclosure/2011/Aug/175&#xa;      https://www.tenable.com/plugins/nessus/55976&#xa;      https://www.securityfocus.com/bid/49303&#xa;"><table key="CVE-2011-3192">
+<elem key="title">Apache byterange filter DoS</elem>
+<elem key="state">VULNERABLE</elem>
+<table key="ids">
+<elem>CVE:CVE-2011-3192</elem>
+<elem>BID:49303</elem>
+</table>
+<table key="description">
+<elem>The Apache web server is vulnerable to a denial of service attack when numerous&#xa;overlapping byte ranges are requested.</elem>
+</table>
+<table key="dates">
+<table key="disclosure">
+<elem key="year">2011</elem>
+<elem key="month">08</elem>
+<elem key="day">19</elem>
+</table>
+</table>
+<elem key="disclosure">2011-08-19</elem>
+<table key="refs">
+<elem>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192</elem>
+<elem>https://seclists.org/fulldisclosure/2011/Aug/175</elem>
+<elem>https://www.tenable.com/plugins/nessus/55976</elem>
+<elem>https://www.securityfocus.com/bid/49303</elem>
+</table>
+</table>
+</script><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/></port>
+<port protocol="tcp" portid="9091"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="xmltec-xmlmail" method="table" conf="3"/></port>
+</ports>
+<times srtt="45053" rttvar="24839" to="144409"/>
+</host>
+<runstats><finished time="1679989389" timestr="Tue Mar 28 08:43:09 2023" summary="Nmap done at Tue Mar 28 08:43:09 2023; 1 IP address (1 host up) scanned in 158.25 seconds" elapsed="158.25" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

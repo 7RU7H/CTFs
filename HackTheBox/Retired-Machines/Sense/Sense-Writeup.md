@@ -7,7 +7,7 @@ Learnt:
 - When you get banned learn how to proxy!
 
 ## Recon
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](HackTheBox/Retired-Machines/Sense/Screenshots/ping.png)
 
 ![lightpd](lighttpd-1-4-35.png)

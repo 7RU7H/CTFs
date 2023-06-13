@@ -12,7 +12,7 @@ Learnt:
 
 ## Recon
 
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](HackTheBox/Retired-Machines/Grandpa/Screenshots/ping.png)
 
 [[CVE-2000-0114-http___10.129.95.233__vti_inf.html]] is 0 in severity, but 

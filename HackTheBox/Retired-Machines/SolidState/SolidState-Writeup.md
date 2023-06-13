@@ -12,10 +12,10 @@ Learnt:
 
 Disclaimer I ran into the rsip protocol, the primilary exploit for this machine and walkthrough forgetting this a TJ Null box. I do not know the PrivEsc and di not read it. The challenge here would be very OSCP-esque recon or die; rerunning old recon attempts from long months past,  in the background being the other OSCP-esque methodological must for me returning to this box regardless of sort of knowing how the inital steps of this box are.  There is also a metasploit module for the intital phase of the box.
 
-Little did I know this was going to be the equivent of Going Postal, except I just get kept in the cell till I eat the walls away with learn how to email people -  like real life. I am not an email person. Maybe one day I will be. Hopeful soon I will ajust to the discord server post covid world.
+LiTTLe did I know this was going to be the equivent of Going Postal, except I just get kept in the cell till I eat the walls away with learn how to email people -  like real life. I am not an email person. Maybe one day I will be. Hopeful soon I will ajust to the discord server post covid world.
 
 ## Recon
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![](HackTheBox/Retired-Machines/SolidState/Screenshots/ping.png)
 
 Considering I already knew this stuff, but is not obvious to a random person trying this box. Just wait for prompts with nc. It makes no intuitive sense regardly, but these systems seem like a begone age that stil exist in the real world behind modern tech and teams.

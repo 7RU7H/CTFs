@@ -6,9 +6,9 @@
 ```bash
 ping -c 3 10.10.113.121    
 PING 10.10.113.121 (10.10.113.121) 56(84) bytes of data.
-64 bytes from 10.10.113.121: icmp_seq=1 ttl=63 time=62.1 ms
-64 bytes from 10.10.113.121: icmp_seq=2 ttl=63 time=52.0 ms
-64 bytes from 10.10.113.121: icmp_seq=3 ttl=63 time=62.0 ms
+64 bytes from 10.10.113.121: icmp_seq=1 TTL=63 time=62.1 ms
+64 bytes from 10.10.113.121: icmp_seq=2 TTL=63 time=52.0 ms
+64 bytes from 10.10.113.121: icmp_seq=3 TTL=63 time=62.0 ms
 
 --- 10.10.113.121 ping statistics ---
 3 packets transmitted, 3 received, 0% packet loss, time 2002ms

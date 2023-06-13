@@ -1,0 +1,26 @@
+# Nmap 7.93 scan initiated Tue Mar 28 08:40:31 2023 as: nmap --script vuln -oA nmap/10-129-235-249-Vuln --min-rate 100 -e tun0 -p 22,80,9091 10.129.235.249
+Nmap scan report for soccer.htb (10.129.235.249)
+Host is up (0.045s latency).
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-vuln-cve2011-3192: 
+|   VULNERABLE:
+|   Apache byterange filter DoS
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2011-3192  BID:49303
+|       The Apache web server is vulnerable to a denial of service attack when numerous
+|       overlapping byte ranges are requested.
+|     Disclosure date: 2011-08-19
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
+|       https://seclists.org/fulldisclosure/2011/Aug/175
+|       https://www.tenable.com/plugins/nessus/55976
+|_      https://www.securityfocus.com/bid/49303
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+9091/tcp open  xmltec-xmlmail
+
+# Nmap done at Tue Mar 28 08:43:09 2023 -- 1 IP address (1 host up) scanned in 158.25 seconds

@@ -30,7 +30,7 @@ Azure provides similar services, but absent of the description above is that Azu
 
 ## Recon
 
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](HackTheBox/Retired-Machines/Bucket/Screenshots/ping.png)
 
 Just ports 22 and 80; the root webpage is bare of links
@@ -235,7 +235,7 @@ sed -i 's/exec(/passthru(/g' $file
 sed -i 's/system(/passthru(/g' $file
 ```
 
-As I was testing my battleground hopes and commands to run
+As I was testing my baTTLeground hopes and commands to run
 ![](withthesshforwarding.png)
 ```bash
 [SHIFT ~ C] # to drop to ssh shell
