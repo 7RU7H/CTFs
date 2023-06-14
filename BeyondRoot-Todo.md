@@ -9,7 +9,7 @@ Use in context https://www.youtube.com/watch?v=o_XaJdDqQA0
 Cleaning up in a more professional manner and a too professional manner
 Windows/Linux - Go?
 
-- try arbituarly write data to disk over all locations of where the ADDecrypt.zip, ADDecrypt and its contents are stored as data for OS record keeping and the disk and how as DFIR would you counter that if you could hold any VMs or Live system in a suspended state or have a holographic file system where there is session layer of previous session and current session for dynamic analysis in Malware Analysis. 
+- try arbitrarily write data to disk over all locations of where the ADDecrypt.zip, ADDecrypt and its contents are stored as data for OS record keeping and the disk and how as DFIR would you counter that if you could hold any VMs or Live system in a suspended state or have a holographic file system where there is session layer of previous session and current session for dynamic analysis in Malware Analysis. 
 
 TrustedSec Tool Lab
 https://github.com/trustedsec/social-engineer-toolkit
