@@ -11,7 +11,7 @@ Beyond Root:
 ## Recon
 
 The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](TryHackMe/Markdown/Lookback/Screenshots/ping.png)
 
 Nuclei found:
 [[CVE-2021-34473-https___10.10.252.86_autodiscover_autodiscover.json_@test.com_owa__&Email=autodiscover_autodiscover.json%3F@test.com]]

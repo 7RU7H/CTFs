@@ -20,7 +20,7 @@ Beyond Root:
 ## Recon
 
 The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](TryHackMe/Markdown/Road/Screenshots/ping.png)
 
 Nuclei finds [[phpmyadmin-panel-http___10.10.75.48_phpMyAdmin_]]
 

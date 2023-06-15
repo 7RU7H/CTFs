@@ -9,7 +9,7 @@ Learnt:
 
 ## Recon
 
-![ping](HackTheBox/Retired-Machines/Friendzone/Falafel/Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Falafel/Screenshots/ping.png)
 	
 ## Exploit
 

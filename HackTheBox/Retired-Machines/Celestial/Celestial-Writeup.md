@@ -19,7 +19,7 @@ I watch the Ippsec video over my lunch break and it being on my list of Helped-T
 ## Recon
 
 The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Celestial/Screenshots/ping.png)
 	
 
 Masscan did not work :/, but evenutally I found: 

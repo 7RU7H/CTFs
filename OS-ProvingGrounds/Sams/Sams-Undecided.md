@@ -21,7 +21,7 @@ This started as a newbie tuesday Proving Ground play Helped-Through enjoying a r
 
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](OS-ProvingGrounds/Sams/Screenshots/ping.png)
 
 
 161  misconfigurations abound!

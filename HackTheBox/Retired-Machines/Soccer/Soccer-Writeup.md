@@ -26,7 +26,7 @@ If I require the any hints or Writeups I will turn this to a Helped-Through my g
 ## Recon
 
 The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](OS-ProvingGrounds/Apex/Screenshots/ping.png)
 
 I seemed concerned by a WAF and created a reading list for the Beyond root section along with Nginxc 
 ![](possiblewaf.png)
