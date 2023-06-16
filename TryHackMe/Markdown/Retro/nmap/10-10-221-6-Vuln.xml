@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Fri Jun 16 18:07:33 2023 as: nmap -Pn -&#45;script vuln -oA nmap/10-10-221-6-Vuln -&#45;min-rate 500 -e tun0 -p 3389,80 10.10.221.6 -->
+<nmaprun scanner="nmap" args="nmap -Pn -&#45;script vuln -oA nmap/10-10-221-6-Vuln -&#45;min-rate 500 -e tun0 -p 3389,80 10.10.221.6" start="1686935253" startstr="Fri Jun 16 18:07:33 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="80,3389"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1686935276" endtime="1686935492"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.221.6" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" method="table" conf="3"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ms-wbt-server" method="table" conf="3"/></port>
+</ports>
+<times srtt="94981" rttvar="71251" to="379985"/>
+</host>
+<runstats><finished time="1686935492" timestr="Fri Jun 16 18:11:32 2023" summary="Nmap done at Fri Jun 16 18:11:32 2023; 1 IP address (1 host up) scanned in 239.45 seconds" elapsed="239.45" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
