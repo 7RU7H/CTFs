@@ -1,0 +1,17 @@
+# Nmap 7.94 scan initiated Sat Jun 17 16:56:29 2023 as: nmap --script vuln -oA nmap/10-129-163-174-Vuln --min-rate 500 -e tun0 -p 80,22 10.129.163.174
+Nmap scan report for 10.129.163.174
+Host is up (0.038s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-internal-ip-disclosure: ERROR: Script execution failed (use -d to debug)
+| http-fileupload-exploiter: 
+|   
+|_    Couldn't find a file-type field.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+
+# Nmap done at Sat Jun 17 16:57:14 2023 -- 1 IP address (1 host up) scanned in 44.97 seconds

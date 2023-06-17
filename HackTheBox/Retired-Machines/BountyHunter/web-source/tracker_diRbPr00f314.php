@@ -1,0 +1,19 @@
+If DB were ready, would have added:
+<table>
+  <tr>
+    <td>Title:</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>CWE:</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Score:</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Reward:</td>
+    <td></td>
+  </tr>
+</table>

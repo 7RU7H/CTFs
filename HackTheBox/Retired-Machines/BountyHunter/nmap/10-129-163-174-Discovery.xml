@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Sat Jun 17 16:51:42 2023 as: nmap -&#45;script discovery -oA nmap/10-129-163-174-Discovery -&#45;min-rate 500 -e tun0 -p 80,22 10.129.163.174 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/10-129-163-174-Discovery -&#45;min-rate 500 -e tun0 -p 80,22 10.129.163.174" start="1687017102" startstr="Sat Jun 17 16:51:42 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="broadcast-ping" output="false">false</script><script id="lltd-discovery" output="false">false</script><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-sniffer" output="Sniffed 1 address(es). &#xa;10.129.163.174"/><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.163.174" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<taskprogress task="Parallel DNS resolution of 1 host." time="1687017123" percent="0.00"/>
+<host starttime="1687017126" endtime="1687017389"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.129.163.174" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (9)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (6)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ssh-rsa</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script><script id="banner" output="SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.2"/><script id="ssh-hostkey" output="&#xa;  3072 d4:4c:f5:79:9a:79:a3:b0:f1:66:25:52:c9:53:1f:e1 (RSA)&#xa;  256 a2:1e:67:61:8d:2f:7a:37:a7:ba:3b:51:08:e8:89:a6 (ECDSA)&#xa;  256 a5:75:16:d9:69:58:50:4a:14:11:7a:42:c1:b6:23:44 (ED25519)"><table>
+<elem key="bits">3072</elem>
+<elem key="fingerprint">d44cf5799a79a3b0f1662552c9531fe1</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABgQDLosZOXFZWvSPhPmfUE7v+PjfXGErY0KCPmAWrTUkyyFWRFO3gwHQMQqQUIcuZHmH20xMb+mNC6xnX2TRmsyaufPXLmib9Wn0BtEYbVDlu2mOdxWfr+LIO8yvB+kg2Uqg+QHJf7SfTvdO606eBjF0uhTQ95wnJddm7WWVJlJMng7+/1NuLAAzfc0ei14XtyS1u6gDvCzXPR5xus8vfJNSp4n4B5m4GUPqI7odyXG2jK89STkoI5MhDOtzbrQydR0ZUg2PRd5TplgpmapDzMBYCIxH6BwYXFgSU3u3dSxPJnIrbizFVNIbc9ezkF39K+xJPbc9CTom8N59eiNubf63iDOck9yMH+YGk8HQof8ovp9FAT7ao5dfeb8gH9q9mRnuMOOQ9SxYwIxdtgg6mIYh4PRqHaSD5FuTZmsFzPfdnvmurDWDqdjPZ6/CsWAkrzENv45b0F04DFiKYNLwk8xaXLum66w61jz4Lwpko58Hh+m0i4bs25wTH1VDMkguJ1js=</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+<table>
+<elem key="bits">256</elem>
+<elem key="fingerprint">a21e67618d2f7a37a7ba3b5108e889a6</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKlGEKJHQ/zTuLAvcemSaOeKfnvOC4s1Qou1E0o9Z0gWONGE1cVvgk1VxryZn7A0L1htGGQqmFe50002LfPQfmY=</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+</table>
+<table>
+<elem key="bits">256</elem>
+<elem key="fingerprint">a57516d96958504a14117a42c1b62344</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIJeoMhM6lgQjk6hBf+Lw/sWR4b1h8AEiDv+HAbTNk4J3</elem>
+<elem key="type">ssh-ed25519</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-chrono" output="Request times for /; avg: 332.77ms; min: 186.78ms; max: 742.05ms"/><script id="http-title" output="Bounty Hunters"><elem key="title">Bounty Hunters</elem>
+</script><script id="http-security-headers" output=""></script><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">200</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-comments-displayer" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.163.174&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 241&#xa;    Comment: &#xa;        &lt;!-&#45; Portfolio Modal 3-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 70&#xa;    Comment: &#xa;        &lt;!-&#45; About Section Button-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 9&#xa;    Comment: &#xa;        &lt;!-&#45; Favicon-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 57&#xa;    Comment: &#xa;        &lt;!-&#45; About Section Heading-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 44&#xa;    Comment: &#xa;        &lt;!-&#45; Icon Divider-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 207&#xa;    Comment: &#xa;        &lt;!-&#45; Portfolio Modal 2-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 135&#xa;    Comment: &#xa;        &lt;!-&#45; Footer Location-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 13&#xa;    Comment: &#xa;        &lt;!-&#45; Google fonts-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 385&#xa;    Comment: &#xa;        &lt;!-&#45; Core theme JS-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 275&#xa;    Comment: &#xa;        &lt;!-&#45; Portfolio Modal 4-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 377&#xa;    Comment: &#xa;        &lt;!-&#45; Bootstrap core JS-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 144&#xa;    Comment: &#xa;        &lt;!-&#45; Footer Social Icons-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 79&#xa;    Comment: &#xa;        &lt;!-&#45; Contact Section-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 82&#xa;    Comment: &#xa;        &lt;!-&#45; Contact Section Heading-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 382&#xa;    Comment: &#xa;        &lt;!-&#45; Contact form JS-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 131&#xa;    Comment: &#xa;        &lt;!-&#45; Footer-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 20&#xa;    Comment: &#xa;        &lt;!-&#45; Navigation-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 380&#xa;    Comment: &#xa;        &lt;!-&#45; Third party plugin JS-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 65&#xa;    Comment: &#xa;        &lt;!-&#45; About Section Content-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 343&#xa;    Comment: &#xa;        &lt;!-&#45; Portfolio Modal 6-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 184&#xa;    Comment: &#xa;        &lt;!-&#45; Portfolio Modal - Title-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 152&#xa;    Comment: &#xa;        &lt;!-&#45; Footer About Text-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 50&#xa;    Comment: &#xa;        &lt;!-&#45; Masthead Subheading-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 37&#xa;    Comment: &#xa;        &lt;!-&#45; Masthead-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 194&#xa;    Comment: &#xa;        &lt;!-&#45; Portfolio Modal - Text-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 173&#xa;    Comment: &#xa;        &lt;!-&#45; Portfolio Modal 1-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 54&#xa;    Comment: &#xa;        &lt;!-&#45; About Section-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 164&#xa;    Comment: &#xa;        &lt;!-&#45; Copyright Section-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 309&#xa;    Comment: &#xa;        &lt;!-&#45; Portfolio Modal 5-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 93&#xa;    Comment: &#xa;        &lt;!-&#45; To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19.-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 42&#xa;    Comment: &#xa;        &lt;!-&#45; Masthead Heading-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 192&#xa;    Comment: &#xa;        &lt;!-&#45; Portfolio Modal - Image-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 11&#xa;    Comment: &#xa;        &lt;!-&#45; Font Awesome icons (free version)-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 90&#xa;    Comment: &#xa;        &lt;!-&#45; Contact Section Form-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 40&#xa;    Comment: &#xa;        &lt;!-&#45; Masthead Avatar Image-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 168&#xa;    Comment: &#xa;        &lt;!-&#45; Scroll to Top Button (Only visible on small and extra-small screen sizes)-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 16&#xa;    Comment: &#xa;        &lt;!-&#45; Core theme CSS (includes Bootstrap)-&#45;&gt;&#xa;    &#xa;    Path: http://10.129.163.174:80/&#xa;    Line number: 172&#xa;    Comment: &#xa;        &lt;!-&#45; Portfolio Modals-&#45;&gt;&#xa;"/><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-errors" output="&#xa;Spidering limited to: maxpagecount=40; withinhost=10.129.163.174&#xa;  Found the following error pages: &#xa;  &#xa;  Error Code: 404&#xa;  &#x9;http://10.129.163.174:80/assets/mail/contact_me.js&#xa;  &#xa;  Error Code: 404&#xa;  &#x9;http://10.129.163.174:80/assets/mail/jqBootstrapValidation.js&#xa;"/><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-headers" output="&#xa;  Date: Sat, 17 Jun 2023 15:51:45 GMT&#xa;  Server: Apache/2.4.41 (Ubuntu)&#xa;  Connection: close&#xa;  Content-Type: text/html; charset=UTF-8&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-xssed" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-date" output="Sat, 17 Jun 2023 15:51:45 GMT; +59m28s from local time."><elem key="date">2023-06-17T16:51:45+00:00</elem>
+<elem key="delta">3568.0</elem>
+</script><script id="http-internal-ip-disclosure" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      Other: 1&#xa;    /resources/&#xa;      js: 1&#xa;  Longest directory structure:&#xa;    Depth: 1&#xa;    Dir: /resources/&#xa;  Total files found (by extension):&#xa;    Other: 1; js: 1&#xa;"/><script id="http-vhosts" output="&#xa;128 names had status 200"/></port>
+</ports>
+<hostscript><script id="ipidseq" output="All zeros"/><script id="path-mtu" output="PMTU == 1500"/><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;22    0       47080.20   5484.91   0.0%&#xa;80    0       83387.50   88690.05  0.0%&#xa;"/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.129.163.174&quot;; use dns-brute.domain script argument."/></hostscript><times srtt="39936" rttvar="32310" to="169176"/>
+</host>
+<runstats><finished time="1687017389" timestr="Sat Jun 17 16:56:29 2023" summary="Nmap done at Sat Jun 17 16:56:29 2023; 1 IP address (1 host up) scanned in 286.85 seconds" elapsed="286.85" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
