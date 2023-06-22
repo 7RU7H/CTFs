@@ -160,3 +160,114 @@ Invoke-CimMethod -ClassName win32_process -MethodName create
 
 
 Add a backdoor to custom source code in a weird language swift backdoor
+
+
+#### Firewall fun with netsh for legacy Windows and Powershell for modern Windows
+
+Firewall fun has been sitting in my to do list for beyond root.
+
+####  Netsh for Windows 7, Server 2008 (R2), Vista
+
+[Netsh command is deprecated for - Windows 7, Server 2008 (R2), Vista](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc771920(v=ws.10))
+```powershell
+# Check Profile
+netsh advfirewall show currentprofile
+
+# Turn off the Firewall
+NetSh Advfirewall set allprofiles state off
+
+# Modify a Firewall Rule for a program
+netsh advfirewall firewall add rule name="<Rule Name>" program="<FilePath>" protocol=tcp dir=in enable=yes action=allow profile=Private
+netsh advfirewall firewall add rule name="<Rule Name>" program="<FilePath>" protocol=tcp dir=out enable=yes action=allow profile=Private
+# Delete a rule
+netsh.exe advfirewall firewall delete rule "<Rule Name>"
+```
+[test](https://www.itninja.com/blog/view/how-to-add-firewall-rules-using-netsh-exe-advanced-way)
+
+#### Powershell Window 10 and Server 2016 onwards
+
+```powershell
+powershell -c Get-NetFirewallRule -Direction Outbound -Enabled True -Action Block 
+```
+
+```powershell
+powershell -c "Get-NetFirewallRule -Direction Outbound -Enabled True -Action Block | Format-Table -Property 
+DisplayName, @{Name='Protocol';Expression={($PSItem | Get-NetFirewallPortFilter).Protocol}}, @{Name='LocalPort';Expression={($PSItem | Get-NetFirewallPortFilter).LocalPort}}, @{Name='RemotePort';Expression={($PSItem | Get-NetFirewallPortFilter).RemotePort}}, @{Name='RemoteAddress';Expression={($PSItem | Get-NetFirewallAddressFilter).RemoteAddress}}, Enabled, Profile, Direction, Action"
+```
+
+```powershell
+powershell -c "Get-NetFirewallRule -Direction Outbound -Enabled True -Action Block | Format-Table -Property DisplayName,@{Name='Protocol';Expression={($PSItem | Get-NetFirewallPortFilter).Protocol}},@{Name='LocalPort';Expression={($PSItem | Get-NetFirewallPortFilter).LocalP#### Firewall fun with netsh for legacy Windows and Powershell for modern Windows
+
+Firewall fun has been sitting in my to do list for beyond root.
+
+####  Netsh for Windows 7, Server 2008 (R2), Vista
+
+[Netsh command is deprecated for - Windows 7, Server 2008 (R2), Vista](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc771920(v=ws.10))
+```powershell
+# Check Profile
+netsh advfirewall show currentprofile
+
+# Turn off the Firewall
+NetSh Advfirewall set allprofiles state off
+
+# Modify a Firewall Rule for a program
+netsh advfirewall firewall add rule name="<Rule Name>" program="<FilePath>" protocol=tcp dir=in enable=yes action=allow profile=Private
+netsh advfirewall firewall add rule name="<Rule Name>" program="<FilePath>" protocol=tcp dir=out enable=yes action=allow profile=Private
+# Delete a rule
+netsh.exe advfirewall firewall delete rule "<Rule Name>"
+```
+[test](https://www.itninja.com/blog/view/how-to-add-firewall-rules-using-netsh-exe-advanced-way)
+
+#### Powershell Window 10 and Server 2016 onwards
+
+```powershell
+powershell -c Get-NetFirewallRule -Direction Outbound -Enabled True -Action Block 
+```
+
+```powershell
+powershell -c "Get-NetFirewallRule -Direction Outbound -Enabled True -Action Block | Format-Table -Property 
+DisplayName, @{Name='Protocol';Expression={($PSItem | Get-NetFirewallPortFilter).Protocol}}, @{Name='LocalPort';Expression={($PSItem | Get-NetFirewallPortFilter).LocalPort}}, @{Name='RemotePort';Expression={($PSItem | Get-NetFirewallPortFilter).RemotePort}}, @{Name='RemoteAddress';Expression={($PSItem | Get-NetFirewallAddressFilter).RemoteAddress}}, Enabled, Profile, Direction, Action"
+```
+
+```powershell
+powershell -c "Get-NetFirewallRule -Direction Outbound -Enabled True -Action Block | Format-Table -Property DisplayName,@{Name='Protocol';Expression={($PSItem | Get-NetFirewallPortFilter).Protocol}},@{Name='LocalPort';Expression={($PSItem | Get-NetFirewallPortFilter).LocalPort}},@{Name='RemotePort';Expression={($PSItem | Get-NetFirewallPortFilter).RemotePort}},@{Name='RemoteAddress';Expression={($PSItem | Get-NetFirewallAddressFilter).RemoteAddress}}, Enabled, Profile,Direction,Action"
+
+```
+
+```powershell
+powershell -c Get-NetFirewallRule -Direction Outbound -Enabled True -Action Allow
+```
+
+Enable Window Defender Firewall
+```powershell
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True
+```
+Disable Window Defender Firewall
+```powershell
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+```
+
+
+```powershell
+Set-NetFirewallProfile -DefaultInboundAction Block -DefaultOutboundAction Allow –NotifyOnListen True -AllowUnicastResponseToMulticast True –LogFileName %SystemRoot%\System32\LogFiles\Firewall\pfirewall.log
+```ort}},@{Name='RemotePort';Expression={($PSItem | Get-NetFirewallPortFilter).RemotePort}},@{Name='RemoteAddress';Expression={($PSItem | Get-NetFirewallAddressFilter).RemoteAddress}}, Enabled, Profile,Direction,Action"
+
+```
+
+```powershell
+powershell -c Get-NetFirewallRule -Direction Outbound -Enabled True -Action Allow
+```
+
+Enable Window Defender Firewall
+```powershell
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True
+```
+Disable Window Defender Firewall
+```powershell
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+```
+
+
+```powershell
+Set-NetFirewallProfile -DefaultInboundAction Block -DefaultOutboundAction Allow –NotifyOnListen True -AllowUnicastResponseToMulticast True –LogFileName %SystemRoot%\System32\LogFiles\Firewall\pfirewall.log
+```

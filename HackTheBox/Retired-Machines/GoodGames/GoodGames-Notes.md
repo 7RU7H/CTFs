@@ -45,3 +45,5 @@ justwow.png
 nosubdomains.png
 
 apidisclosure.png
+
+[Fuzzing to greedly and deeply...into the mines of API fuzzing we go... ](https://www.youtube.com/watch?v=PfhZB7rQ7iA)
