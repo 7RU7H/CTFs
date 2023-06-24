@@ -30,7 +30,7 @@ Socat proxy
 pwnkit
 lsa dump
 
-https://github.com/iphelix/dnschef
+https://github.com/iphelix/dnschef or modern alternative
 
 
 

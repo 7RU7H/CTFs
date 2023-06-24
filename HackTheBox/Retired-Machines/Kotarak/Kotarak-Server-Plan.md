@@ -1,4 +1,6 @@
 
+- These plans are for evidence many highly recommend https://github.com/iphelix/dnschef
+
 Encrypted version with chroot jail
 ```bash
 #!/bin/bash
