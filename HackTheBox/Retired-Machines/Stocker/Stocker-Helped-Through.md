@@ -8,8 +8,12 @@ Goals:
 - Request smuggling broader than just json, I know of but have not done a HTTP request smuggle 
 - Revise nosql injections
 Learnt:
+- Nested json
+- Change the CONTENT TYPE PLEASE!
+- 
 Beyond Root:
 - Write a malicious iframe for a project
+- more..add
 
 Both.. 
 - [[Stocker-Notes.md]]
