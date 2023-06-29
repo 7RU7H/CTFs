@@ -1,0 +1,581 @@
+# Nmap 7.94 scan initiated Thu Jun 29 20:40:49 2023 as: nmap --script discovery -oA nmap/10-129-228-64-Discovery --min-rate 300 -e tun0 -p 80,47001,139,3269,49693,49664,49714,636,445,49704,49692,88,49673,593,49699,464,3268,49718,53,49665,389,135,49668,9389,5985,49666 10.129.228.64
+Pre-scan script results:
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_broadcast-ping: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_lltd-discovery: false
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.129.228.64
+Host is up (0.049s latency).
+
+Bug in http-security-headers: no string output.
+PORT      STATE SERVICE
+53/tcp    open  domain
+|_dns-nsec3-enum: Can't determine domain for host 10.129.228.64; use dns-nsec3-enum.domains script arg.
+|_dns-nsec-enum: Can't determine domain for host 10.129.228.64; use dns-nsec-enum.domains script arg.
+80/tcp    open  http
+|_http-errors: Couldn't find any error pages.
+| http-headers: 
+|   Content-Length: 2909
+|   Content-Type: text/html
+|   Last-Modified: Tue, 07 Jun 2022 19:29:10 GMT
+|   Accept-Ranges: bytes
+|   ETag: "0877fdca47ad81:0"
+|   Server: Microsoft-IIS/10.0
+|   Date: Fri, 30 Jun 2023 02:43:47 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+|_http-chrono: Request times for /; avg: 138.05ms; min: 124.65ms; max: 160.16ms
+|_http-date: Fri, 30 Jun 2023 02:43:11 GMT; +7h59m17s from local time.
+|_http-mobileversion-checker: No mobile version detected.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-title: Absolute
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-feed: Couldn't find any feeds.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /css/
+|       css: 4
+|     /fonts/icomoon/
+|       css: 1
+|     /images/
+|       jpg: 6
+|     /js/
+|       js: 5
+|   Longest directory structure:
+|     Depth: 2
+|     Dir: /fonts/icomoon/
+|   Total files found (by extension):
+|_    Other: 1; css: 5; jpg: 6; js: 5
+| http-vhosts: 
+|_128 names had status 200
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.228.64
+|     
+|     Path: http://10.129.228.64:80/css/bootstrap.min.css
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * Bootstrap v4.5.3 (https://getbootstrap.com/)
+|          * Copyright 2011-2020 The Bootstrap Authors
+|          * Copyright 2011-2020 Twitter, Inc.
+|          * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+|          */
+|     
+|     Path: http://10.129.228.64:80/
+|     Line number: 22
+|     Comment: 
+|         <!-- Style -->
+|     
+|     Path: http://10.129.228.64:80/js/main.js
+|     Line number: 11
+|     Comment: 
+|          //    autoplayHoverPause: true,
+|     
+|     Path: http://10.129.228.64:80/js/main.js
+|     Line number: 6
+|     Comment: 
+|          //    margin:0,
+|     
+|     Path: http://10.129.228.64:80/fonts/icomoon/style.css
+|     Line number: 22
+|     Comment: 
+|         /* Better Font Rendering =========== */
+|     
+|     Path: http://10.129.228.64:80/js/owl.carousel.min.js
+|     Line number: 1
+|     Comment: 
+|         /**
+|          * Owl Carousel v2.3.4
+|          * Copyright 2013-2018 David Deutsch
+|          * Licensed under: SEE LICENSE IN https://github.com/OwlCarousel2/OwlCarousel2/blob/master/LICENSE
+|          */
+|     
+|     Path: http://10.129.228.64:80/js/main.js
+|     Line number: 7
+|     Comment: 
+|          //    nav:true,
+|     
+|     Path: http://10.129.228.64:80/js/
+|     Line number: 7
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         -->
+|     
+|     Path: http://10.129.228.64:80/css/style.css
+|     Line number: 27
+|     Comment: 
+|         /* 10 */
+|     
+|     Path: http://10.129.228.64:80/fonts/icomoon/style.css
+|     Line number: 13
+|     Comment: 
+|         /* use !important to prevent issues with browser extensions that change fonts */
+|     
+|     Path: http://10.129.228.64:80/
+|     Line number: 19
+|     Comment: 
+|         <!-- Bootstrap CSS -->
+|     
+|     Path: http://10.129.228.64:80/js/jquery-3.3.1.min.js
+|     Line number: 1
+|     Comment: 
+|         /*! jQuery v3.3.1 | (c) JS Foundation and other contributors | jquery.org/license */
+|     
+|     Path: http://10.129.228.64:80/css/animate.css
+|     Line number: 115
+|     Comment: 
+|         /* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
+|     
+|     Path: http://10.129.228.64:80/js/main.js
+|     Line number: 12
+|     Comment: 
+|          //    navText: ['<span class="icon-keyboard_arrow_left">', '<span class="icon-keyboard_arrow_right">']
+|     
+|     Path: http://10.129.228.64:80/js/main.js
+|     Line number: 10
+|     Comment: 
+|          //    autoplay: true,
+|     
+|     Path: http://10.129.228.64:80/js/popper.min.js
+|     Line number: 1
+|     Comment: 
+|         /*
+|          Copyright (C) Federico Zivolo 2019
+|          Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
+|          */
+|     
+|     Path: http://10.129.228.64:80/js/main.js
+|     Line number: 8
+|     Comment: 
+|          //    items: 1,
+|     
+|     Path: http://10.129.228.64:80/
+|     Line number: 74
+|     Comment: 
+|         <!-- END .site-blocks-cover -->
+|     
+|     Path: http://10.129.228.64:80/css/animate.css
+|     Line number: 3
+|     Comment: 
+|         /*!
+|          * animate.css -https://daneden.github.io/animate.css/
+|          * Version - 3.7.2
+|          * Licensed under the MIT license - http://opensource.org/licenses/MIT
+|          *
+|          * Copyright (c) 2019 Daniel Eden
+|          */
+|     
+|     Path: http://10.129.228.64:80/css/bootstrap.min.css
+|     Line number: 7
+|     Comment: 
+|         /*# sourceMappingURL=bootstrap.min.css.map */
+|     
+|     Path: http://10.129.228.64:80/js/bootstrap.min.js
+|     Line number: 1
+|     Comment: 
+|         /*!
+|           * Bootstrap v4.5.3 (https://getbootstrap.com/)
+|           * Copyright 2011-2020 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+|           * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+|           */
+|     
+|     Path: http://10.129.228.64:80/
+|     Line number: 4
+|     Comment: 
+|         <!-- Required meta tags -->
+|     
+|     Path: http://10.129.228.64:80/js/main.js
+|     Line number: 5
+|     Comment: 
+|          //    loop:true,
+|     
+|     Path: http://10.129.228.64:80/js/main.js
+|     Line number: 9
+|     Comment: 
+|_         //    smartSpeed: 1000,
+88/tcp    open  kerberos-sec
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+389/tcp   open  ldap
+|_ssl-date: 2023-06-30T02:41:02+00:00; +6h59m18s from scanner time.
+| ssl-cert: Subject: commonName=dc.absolute.htb
+| Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::<unsupported>, DNS:dc.absolute.htb
+| Not valid before: 2022-06-09T08:14:24
+|_Not valid after:  2023-06-09T08:14:24
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp384r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - F
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp384r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Insecure certificate signature (SHA1), score capped at F
+|_  least strength: F
+| ldap-rootdse: 
+| LDAP Results
+|   <ROOT>
+|       domainFunctionality: 7
+|       forestFunctionality: 7
+|       domainControllerFunctionality: 7
+|       rootDomainNamingContext: DC=absolute,DC=htb
+|       ldapServiceName: absolute.htb:dc$@ABSOLUTE.HTB
+|       isGlobalCatalogReady: TRUE
+|       supportedSASLMechanisms: GSSAPI
+|       supportedSASLMechanisms: GSS-SPNEGO
+|       supportedSASLMechanisms: EXTERNAL
+|       supportedSASLMechanisms: DIGEST-MD5
+|       supportedLDAPVersion: 3
+|       supportedLDAPVersion: 2
+|       supportedLDAPPolicies: MaxPoolThreads
+|       supportedLDAPPolicies: MaxPercentDirSyncRequests
+|       supportedLDAPPolicies: MaxDatagramRecv
+|       supportedLDAPPolicies: MaxReceiveBuffer
+|       supportedLDAPPolicies: InitRecvTimeout
+|       supportedLDAPPolicies: MaxConnections
+|       supportedLDAPPolicies: MaxConnIdleTime
+|       supportedLDAPPolicies: MaxPageSize
+|       supportedLDAPPolicies: MaxBatchReturnMessages
+|       supportedLDAPPolicies: MaxQueryDuration
+|       supportedLDAPPolicies: MaxDirSyncDuration
+|       supportedLDAPPolicies: MaxTempTableSize
+|       supportedLDAPPolicies: MaxResultSetSize
+|       supportedLDAPPolicies: MinResultSets
+|       supportedLDAPPolicies: MaxResultSetsPerConn
+|       supportedLDAPPolicies: MaxNotificationPerConn
+|       supportedLDAPPolicies: MaxValRange
+|       supportedLDAPPolicies: MaxValRangeTransitive
+|       supportedLDAPPolicies: ThreadMemoryLimit
+|       supportedLDAPPolicies: SystemMemoryLimitPercent
+|       supportedControl: 1.2.840.113556.1.4.319
+|       supportedControl: 1.2.840.113556.1.4.801
+|       supportedControl: 1.2.840.113556.1.4.473
+|       supportedControl: 1.2.840.113556.1.4.528
+|       supportedControl: 1.2.840.113556.1.4.417
+|       supportedControl: 1.2.840.113556.1.4.619
+|       supportedControl: 1.2.840.113556.1.4.841
+|       supportedControl: 1.2.840.113556.1.4.529
+|       supportedControl: 1.2.840.113556.1.4.805
+|       supportedControl: 1.2.840.113556.1.4.521
+|       supportedControl: 1.2.840.113556.1.4.970
+|       supportedControl: 1.2.840.113556.1.4.1338
+|       supportedControl: 1.2.840.113556.1.4.474
+|       supportedControl: 1.2.840.113556.1.4.1339
+|       supportedControl: 1.2.840.113556.1.4.1340
+|       supportedControl: 1.2.840.113556.1.4.1413
+|       supportedControl: 2.16.840.1.113730.3.4.9
+|       supportedControl: 2.16.840.1.113730.3.4.10
+|       supportedControl: 1.2.840.113556.1.4.1504
+|       supportedControl: 1.2.840.113556.1.4.1852
+|       supportedControl: 1.2.840.113556.1.4.802
+|       supportedControl: 1.2.840.113556.1.4.1907
+|       supportedControl: 1.2.840.113556.1.4.1948
+|       supportedControl: 1.2.840.113556.1.4.1974
+|       supportedControl: 1.2.840.113556.1.4.1341
+|       supportedControl: 1.2.840.113556.1.4.2026
+|       supportedControl: 1.2.840.113556.1.4.2064
+|       supportedControl: 1.2.840.113556.1.4.2065
+|       supportedControl: 1.2.840.113556.1.4.2066
+|       supportedControl: 1.2.840.113556.1.4.2090
+|       supportedControl: 1.2.840.113556.1.4.2205
+|       supportedControl: 1.2.840.113556.1.4.2204
+|       supportedControl: 1.2.840.113556.1.4.2206
+|       supportedControl: 1.2.840.113556.1.4.2211
+|       supportedControl: 1.2.840.113556.1.4.2239
+|       supportedControl: 1.2.840.113556.1.4.2255
+|       supportedControl: 1.2.840.113556.1.4.2256
+|       supportedControl: 1.2.840.113556.1.4.2309
+|       supportedControl: 1.2.840.113556.1.4.2330
+|       supportedControl: 1.2.840.113556.1.4.2354
+|       supportedCapabilities: 1.2.840.113556.1.4.800
+|       supportedCapabilities: 1.2.840.113556.1.4.1670
+|       supportedCapabilities: 1.2.840.113556.1.4.1791
+|       supportedCapabilities: 1.2.840.113556.1.4.1935
+|       supportedCapabilities: 1.2.840.113556.1.4.2080
+|       supportedCapabilities: 1.2.840.113556.1.4.2237
+|       subschemaSubentry: CN=Aggregate,CN=Schema,CN=Configuration,DC=absolute,DC=htb
+|       serverName: CN=DC,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=absolute,DC=htb
+|       schemaNamingContext: CN=Schema,CN=Configuration,DC=absolute,DC=htb
+|       namingContexts: DC=absolute,DC=htb
+|       namingContexts: CN=Configuration,DC=absolute,DC=htb
+|       namingContexts: CN=Schema,CN=Configuration,DC=absolute,DC=htb
+|       namingContexts: DC=DomainDnsZones,DC=absolute,DC=htb
+|       namingContexts: DC=ForestDnsZones,DC=absolute,DC=htb
+|       isSynchronized: TRUE
+|       highestCommittedUSN: 168121
+|       dsServiceName: CN=NTDS Settings,CN=DC,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=absolute,DC=htb
+|       dnsHostName: dc.absolute.htb
+|       defaultNamingContext: DC=absolute,DC=htb
+|       currentTime: 20230630024031.0Z
+|_      configurationNamingContext: CN=Configuration,DC=absolute,DC=htb
+445/tcp   open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+464/tcp   open  kpasswd5
+593/tcp   open  http-rpc-epmap
+|_banner: ncacn_http/1.0
+636/tcp   open  ldapssl
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp384r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - F
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp384r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Insecure certificate signature (SHA1), score capped at F
+|_  least strength: F
+|_ssl-date: 2023-06-30T02:40:34+00:00; +6h59m17s from scanner time.
+| ssl-cert: Subject: commonName=dc.absolute.htb
+| Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::<unsupported>, DNS:dc.absolute.htb
+| Not valid before: 2022-06-09T08:14:24
+|_Not valid after:  2023-06-09T08:14:24
+3268/tcp  open  globalcatLDAP
+3269/tcp  open  globalcatLDAPssl
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp384r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - F
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp384r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Insecure certificate signature (SHA1), score capped at F
+|_  least strength: F
+|_ssl-date: 2023-06-30T02:40:45+00:00; +6h59m18s from scanner time.
+| ssl-cert: Subject: commonName=dc.absolute.htb
+| Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::<unsupported>, DNS:dc.absolute.htb
+| Not valid before: 2022-06-09T08:14:24
+|_Not valid after:  2023-06-09T08:14:24
+5985/tcp  open  wsman
+9389/tcp  open  adws
+47001/tcp open  winrm
+49664/tcp open  unknown
+49665/tcp open  unknown
+49666/tcp open  unknown
+49668/tcp open  unknown
+49673/tcp open  unknown
+49692/tcp open  unknown
+|_banner: ncacn_http/1.0
+49693/tcp open  unknown
+49699/tcp open  unknown
+49704/tcp open  unknown
+49714/tcp open  unknown
+49718/tcp open  unknown
+Service Info: Host: DC; OS: Windows
+
+Host script results:
+|_ipidseq: Unknown
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled and required
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+| smb2-capabilities: 
+|   2:0:2: 
+|     Distributed File System
+|   2:1:0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:0:0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:0:2: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:1:1: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+| smb-protocols: 
+|   dialects: 
+|     2:0:2
+|     2:1:0
+|     3:0:0
+|     3:0:2
+|_    3:1:1
+|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_path-mtu: PMTU == 1500
+|_dns-brute: Can't guess domain of "10.129.228.64"; use dns-brute.domain script argument.
+| smb2-time: 
+|   date: 2023-06-30T02:40:43
+|_  start_date: N/A
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 53    0       48902.70   6384.83   0.0%
+| 80    0       52481.50   11174.21  0.0%
+| 88    0       48637.40   5316.66   0.0%
+| 135   1       53094.00   4183.44   0.0%
+| 139   0       48274.50   5025.12   0.0%
+| 389   0       50298.70   5388.57   0.0%
+| 445   0       50443.90   9074.30   0.0%
+|_464   0       48682.40   2958.94   0.0%
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Thu Jun 29 20:47:24 2023 -- 1 IP address (1 host up) scanned in 395.68 seconds

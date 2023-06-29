@@ -1,0 +1,41 @@
+# Nmap 7.94 scan initiated Thu Jun 29 20:47:24 2023 as: nmap --script vuln -oA nmap/10-129-228-64-Vuln --min-rate 300 -e tun0 -p 80,47001,139,3269,49693,49664,49714,636,445,49704,49692,88,49673,593,49699,464,3268,49718,53,49665,389,135,49668,9389,5985,49666 10.129.228.64
+Nmap scan report for 10.129.228.64
+Host is up (0.048s latency).
+
+PORT      STATE SERVICE
+53/tcp    open  domain
+80/tcp    open  http
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+88/tcp    open  kerberos-sec
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+389/tcp   open  ldap
+445/tcp   open  microsoft-ds
+464/tcp   open  kpasswd5
+593/tcp   open  http-rpc-epmap
+636/tcp   open  ldapssl
+3268/tcp  open  globalcatLDAP
+3269/tcp  open  globalcatLDAPssl
+5985/tcp  open  wsman
+9389/tcp  open  adws
+47001/tcp open  winrm
+49664/tcp open  unknown
+49665/tcp open  unknown
+49666/tcp open  unknown
+49668/tcp open  unknown
+49673/tcp open  unknown
+49692/tcp open  unknown
+49693/tcp open  unknown
+49699/tcp open  unknown
+49704/tcp open  unknown
+49714/tcp open  unknown
+49718/tcp open  unknown
+
+Host script results:
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_samba-vuln-cve-2012-1182: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+
+# Nmap done at Thu Jun 29 20:53:24 2023 -- 1 IP address (1 host up) scanned in 359.18 seconds

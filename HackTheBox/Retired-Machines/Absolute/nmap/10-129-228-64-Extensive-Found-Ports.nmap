@@ -1,0 +1,72 @@
+# Nmap 7.94 scan initiated Thu Jun 29 20:39:24 2023 as: nmap -sC -sV -oA nmap/10-129-228-64-Extensive-Found-Ports --min-rate 300 -e tun0 -p 80,47001,139,3269,49693,49664,49714,636,445,49704,49692,88,49673,593,49699,464,3268,49718,53,49665,389,135,49668,9389,5985,49666 10.129.228.64
+Nmap scan report for 10.129.228.64
+Host is up (0.048s latency).
+
+PORT      STATE SERVICE       VERSION
+53/tcp    open  domain        Simple DNS Plus
+80/tcp    open  http          Microsoft IIS httpd 10.0
+|_http-title: Absolute
+|_http-server-header: Microsoft-IIS/10.0
+| http-methods: 
+|_  Potentially risky methods: TRACE
+88/tcp    open  kerberos-sec  Microsoft Windows Kerberos (server time: 2023-06-30 02:39:01Z)
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp   open  ldap          Microsoft Windows Active Directory LDAP (Domain: absolute.htb0., Site: Default-First-Site-Name)
+| ssl-cert: Subject: commonName=dc.absolute.htb
+| Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::<unsupported>, DNS:dc.absolute.htb
+| Not valid before: 2022-06-09T08:14:24
+|_Not valid after:  2023-06-09T08:14:24
+|_ssl-date: 2023-06-30T02:40:06+00:00; +6h59m17s from scanner time.
+445/tcp   open  microsoft-ds?
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp   open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: absolute.htb0., Site: Default-First-Site-Name)
+| ssl-cert: Subject: commonName=dc.absolute.htb
+| Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::<unsupported>, DNS:dc.absolute.htb
+| Not valid before: 2022-06-09T08:14:24
+|_Not valid after:  2023-06-09T08:14:24
+|_ssl-date: 2023-06-30T02:40:05+00:00; +6h59m16s from scanner time.
+3268/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: absolute.htb0., Site: Default-First-Site-Name)
+|_ssl-date: 2023-06-30T02:40:06+00:00; +6h59m17s from scanner time.
+| ssl-cert: Subject: commonName=dc.absolute.htb
+| Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::<unsupported>, DNS:dc.absolute.htb
+| Not valid before: 2022-06-09T08:14:24
+|_Not valid after:  2023-06-09T08:14:24
+3269/tcp  open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: absolute.htb0., Site: Default-First-Site-Name)
+| ssl-cert: Subject: commonName=dc.absolute.htb
+| Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::<unsupported>, DNS:dc.absolute.htb
+| Not valid before: 2022-06-09T08:14:24
+|_Not valid after:  2023-06-09T08:14:24
+|_ssl-date: 2023-06-30T02:40:05+00:00; +6h59m16s from scanner time.
+5985/tcp  open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+9389/tcp  open  mc-nmf        .NET Message Framing
+47001/tcp open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+49664/tcp open  msrpc         Microsoft Windows RPC
+49665/tcp open  msrpc         Microsoft Windows RPC
+49666/tcp open  msrpc         Microsoft Windows RPC
+49668/tcp open  msrpc         Microsoft Windows RPC
+49673/tcp open  msrpc         Microsoft Windows RPC
+49692/tcp open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+49693/tcp open  msrpc         Microsoft Windows RPC
+49699/tcp open  msrpc         Microsoft Windows RPC
+49704/tcp open  msrpc         Microsoft Windows RPC
+49714/tcp open  msrpc         Microsoft Windows RPC
+49718/tcp open  msrpc         Microsoft Windows RPC
+Service Info: Host: DC; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: 6h59m16s, deviation: 0s, median: 6h59m16s
+| smb2-time: 
+|   date: 2023-06-30T02:39:58
+|_  start_date: N/A
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled and required
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Jun 29 20:40:49 2023 -- 1 IP address (1 host up) scanned in 85.05 seconds
