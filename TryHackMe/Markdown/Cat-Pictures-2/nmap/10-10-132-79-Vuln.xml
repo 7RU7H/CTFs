@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Sat Jul  1 18:30:21 2023 as: nmap -&#45;script vuln -oA nmap/10-10-132-79-Vuln -&#45;min-rate 300 -e tun0 -p 80,3000,1337,222,8080,22 10.10.132.79 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-10-132-79-Vuln -&#45;min-rate 300 -e tun0 -p 80,3000,1337,222,8080,22 10.10.132.79" start="1688232621" startstr="Sat Jul  1 18:30:21 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="6" services="22,80,222,1337,3000,8080"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.132.79" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1688232645" endtime="1688233147"><status state="up" reason="reset" reason_ttl="63"/>
+<address addr="10.10.132.79" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="62"/><service name="http" method="table" conf="3"/><script id="http-fileupload-exploiter" output="&#xa;  &#xa;    Couldn&apos;t find a file-type field."><table>
+<elem>Couldn&apos;t find a file-type field.</elem>
+</table>
+</script><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-git" output="&#xa;  10.10.132.79:80/.git/&#xa;    Git repository found!&#xa;    Repository description: Unnamed repository; edit this file &apos;description&apos; to name the...&#xa;    Remotes:&#xa;      https://github.com/electerious/Lychee.git&#xa;    Project type: PHP application (guessed from .gitignore)&#xa;"><table key="10.10.132.79:80/.git/">
+<table key="remotes">
+<elem>https://github.com/electerious/Lychee.git</elem>
+</table>
+<table key="project-type">
+<table key=".gitignore">
+<elem>PHP application</elem>
+</table>
+</table>
+<table key="files-found">
+<elem key=".git/info/exclude">true</elem>
+<elem key=".git/COMMIT_EDITMSG">false</elem>
+<elem key=".git/description">true</elem>
+<elem key=".git/config">true</elem>
+<elem key=".gitignore">true</elem>
+</table>
+<elem key="repository-description">Unnamed repository; edit this file &apos;description&apos; to name the repository.&#xa;</elem>
+</table>
+</script><script id="http-enum" output="&#xa;  /robots.txt: Robots file&#xa;  /.gitignore: Revision control ignore file&#xa;  /.htaccess: Incorrect permissions on .htaccess or .htpasswd files&#xa;  /.git/HEAD: Git folder&#xa;"/><script id="http-vuln-cve2011-3192" output="&#xa;  VULNERABLE:&#xa;  Apache byterange filter DoS&#xa;    State: VULNERABLE&#xa;    IDs:  BID:49303  CVE:CVE-2011-3192&#xa;      The Apache web server is vulnerable to a denial of service attack when numerous&#xa;      overlapping byte ranges are requested.&#xa;    Disclosure date: 2011-08-19&#xa;    References:&#xa;      https://www.tenable.com/plugins/nessus/55976&#xa;      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192&#xa;      https://seclists.org/fulldisclosure/2011/Aug/175&#xa;      https://www.securityfocus.com/bid/49303&#xa;"><table key="CVE-2011-3192">
+<elem key="title">Apache byterange filter DoS</elem>
+<elem key="state">VULNERABLE</elem>
+<table key="ids">
+<elem>BID:49303</elem>
+<elem>CVE:CVE-2011-3192</elem>
+</table>
+<table key="description">
+<elem>The Apache web server is vulnerable to a denial of service attack when numerous&#xa;overlapping byte ranges are requested.</elem>
+</table>
+<table key="dates">
+<table key="disclosure">
+<elem key="month">08</elem>
+<elem key="day">19</elem>
+<elem key="year">2011</elem>
+</table>
+</table>
+<elem key="disclosure">2011-08-19</elem>
+<table key="refs">
+<elem>https://www.tenable.com/plugins/nessus/55976</elem>
+<elem>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192</elem>
+<elem>https://seclists.org/fulldisclosure/2011/Aug/175</elem>
+<elem>https://www.securityfocus.com/bid/49303</elem>
+</table>
+</table>
+</script></port>
+<port protocol="tcp" portid="222"><state state="open" reason="syn-ack" reason_ttl="62"/><service name="rsh-spx" method="table" conf="3"/></port>
+<port protocol="tcp" portid="1337"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="waste" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3000"><state state="open" reason="syn-ack" reason_ttl="62"/><service name="ppp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http-proxy" method="table" conf="3"/></port>
+</ports>
+<times srtt="58367" rttvar="12340" to="107727"/>
+</host>
+<runstats><finished time="1688233147" timestr="Sat Jul  1 18:39:07 2023" summary="Nmap done at Sat Jul  1 18:39:07 2023; 1 IP address (1 host up) scanned in 525.30 seconds" elapsed="525.30" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

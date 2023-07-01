@@ -1,0 +1,169 @@
+# Nmap 7.94 scan initiated Sat Jul  1 18:22:51 2023 as: nmap -sC -sV -oA nmap/10-10-132-79-Extensive-Found-Ports --min-rate 300 -e tun0 -p 80,3000,1337,222,8080,22 10.10.132.79
+Nmap scan report for 10.10.132.79
+Host is up (0.056s latency).
+
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.7 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 33:f0:03:36:26:36:8c:2f:88:95:2c:ac:c3:bc:64:65 (RSA)
+|   256 4f:f3:b3:f2:6e:03:91:b2:7c:c0:53:d5:d4:03:88:46 (ECDSA)
+|_  256 13:7c:47:8b:6f:f8:f4:6b:42:9a:f2:d5:3d:34:13:52 (ED25519)
+80/tcp   open  http    nginx 1.4.6 (Ubuntu)
+| http-robots.txt: 7 disallowed entries 
+|_/data/ /dist/ /docs/ /php/ /plugins/ /src/ /uploads/
+|_http-title: Lychee
+| http-git: 
+|   10.10.132.79:80/.git/
+|     Git repository found!
+|     Repository description: Unnamed repository; edit this file 'description' to name the...
+|     Remotes:
+|       https://github.com/electerious/Lychee.git
+|_    Project type: PHP application (guessed from .gitignore)
+|_http-server-header: nginx/1.4.6 (Ubuntu)
+222/tcp  open  ssh     OpenSSH 9.0 (protocol 2.0)
+| ssh-hostkey: 
+|   256 be:cb:06:1f:33:0f:60:06:a0:5a:06:bf:06:53:33:c0 (ECDSA)
+|_  256 9f:07:98:92:6e:fd:2c:2d:b0:93:fa:fe:e8:95:0c:37 (ED25519)
+1337/tcp open  waste?
+| fingerprint-strings: 
+|   GenericLines: 
+|     HTTP/1.1 400 Bad Request
+|     Content-Type: text/plain; charset=utf-8
+|     Connection: close
+|     Request
+|   GetRequest, HTTPOptions: 
+|     HTTP/1.0 200 OK
+|     Accept-Ranges: bytes
+|     Content-Length: 3858
+|     Content-Type: text/html; charset=utf-8
+|     Date: Sat, 01 Jul 2023 17:22:26 GMT
+|     Last-Modified: Wed, 19 Oct 2022 15:30:49 GMT
+|     <!DOCTYPE html>
+|     <html>
+|     <head>
+|     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+|     <title>OliveTin</title>
+|     <link rel = "stylesheet" type = "text/css" href = "style.css" />
+|     <link rel = "shortcut icon" type = "image/png" href = "OliveTinLogo.png" />
+|     <link rel = "apple-touch-icon" sizes="57x57" href="OliveTinLogo-57px.png" />
+|     <link rel = "apple-touch-icon" sizes="120x120" href="OliveTinLogo-120px.png" />
+|     <link rel = "apple-touch-icon" sizes="180x180" href="OliveTinLogo-180px.png" />
+|     </head>
+|     <body>
+|     <main title = "main content">
+|     <fieldset id = "section-switcher" title = "Sections">
+|     <button id = "showActions">Actions</button>
+|_    <button id = "showLogs">Logs</but
+3000/tcp open  ppp?
+| fingerprint-strings: 
+|   GenericLines, Help, RTSPRequest: 
+|     HTTP/1.1 400 Bad Request
+|     Content-Type: text/plain; charset=utf-8
+|     Connection: close
+|     Request
+|   GetRequest: 
+|     HTTP/1.0 200 OK
+|     Cache-Control: no-store, no-transform
+|     Content-Type: text/html; charset=UTF-8
+|     Set-Cookie: i_like_gitea=e9214322330dc1c9; Path=/; HttpOnly; SameSite=Lax
+|     Set-Cookie: _csrf=ZEVmBSA53-Qcd_iTesJat_fu4p06MTY4ODIzMjE0NjY0NTE5MTM3OQ; Path=/; Expires=Sun, 02 Jul 2023 17:22:26 GMT; HttpOnly; SameSite=Lax
+|     Set-Cookie: macaron_flash=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax
+|     X-Frame-Options: SAMEORIGIN
+|     Date: Sat, 01 Jul 2023 17:22:26 GMT
+|     <!DOCTYPE html>
+|     <html lang="en-US" class="theme-">
+|     <head>
+|     <meta charset="utf-8">
+|     <meta name="viewport" content="width=device-width, initial-scale=1">
+|     <title> Gitea: Git with a cup of tea</title>
+|     <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiR2l0ZWE6IEdpdCB3aXRoIGEgY3VwIG9mIHRlYSIsInNob3J0X25hbWUiOiJHaXRlYTogR2l0IHdpdGggYSBjdXAgb2YgdGVhIiwic3RhcnRfdXJsIjoiaHR0cDovL2xvY2FsaG9zdDozMDAwLyIsImljb25zIjpbeyJzcmMiOiJodHRwOi
+|   HTTPOptions: 
+|     HTTP/1.0 405 Method Not Allowed
+|     Cache-Control: no-store, no-transform
+|     Set-Cookie: i_like_gitea=be9106f138f7ba05; Path=/; HttpOnly; SameSite=Lax
+|     Set-Cookie: _csrf=ss6b88Rqy_9Xppqbde6ATQ68IzY6MTY4ODIzMjE1MjAxODc1NDQ3NA; Path=/; Expires=Sun, 02 Jul 2023 17:22:32 GMT; HttpOnly; SameSite=Lax
+|     Set-Cookie: macaron_flash=; Path=/; Max-Age=0; HttpOnly; SameSite=Lax
+|     X-Frame-Options: SAMEORIGIN
+|     Date: Sat, 01 Jul 2023 17:22:32 GMT
+|_    Content-Length: 0
+8080/tcp open  http    SimpleHTTPServer 0.6 (Python 3.6.9)
+|_http-server-header: SimpleHTTP/0.6 Python/3.6.9
+|_http-title: Welcome to nginx!
+2 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port1337-TCP:V=7.94%I=7%D=7/1%Time=64A060FE%P=x86_64-pc-linux-gnu%r(Gen
+SF:ericLines,67,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20te
+SF:xt/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x2
+SF:0Request")%r(GetRequest,FCC,"HTTP/1\.0\x20200\x20OK\r\nAccept-Ranges:\x
+SF:20bytes\r\nContent-Length:\x203858\r\nContent-Type:\x20text/html;\x20ch
+SF:arset=utf-8\r\nDate:\x20Sat,\x2001\x20Jul\x202023\x2017:22:26\x20GMT\r\
+SF:nLast-Modified:\x20Wed,\x2019\x20Oct\x202022\x2015:30:49\x20GMT\r\n\r\n
+SF:<!DOCTYPE\x20html>\n\n<html>\n\t<head>\n\n\t\t<meta\x20name=\"viewport\
+SF:"\x20content=\"width=device-width,\x20initial-scale=1\.0\">\n\n\t\t<tit
+SF:le>OliveTin</title>\n\t\t<link\x20rel\x20=\x20\"stylesheet\"\x20type\x2
+SF:0=\x20\"text/css\"\x20href\x20=\x20\"style\.css\"\x20/>\n\t\t<link\x20r
+SF:el\x20=\x20\"shortcut\x20icon\"\x20type\x20=\x20\"image/png\"\x20href\x
+SF:20=\x20\"OliveTinLogo\.png\"\x20/>\n\n\t\t<link\x20rel\x20=\x20\"apple-
+SF:touch-icon\"\x20sizes=\"57x57\"\x20href=\"OliveTinLogo-57px\.png\"\x20/
+SF:>\n\t\t<link\x20rel\x20=\x20\"apple-touch-icon\"\x20sizes=\"120x120\"\x
+SF:20href=\"OliveTinLogo-120px\.png\"\x20/>\n\t\t<link\x20rel\x20=\x20\"ap
+SF:ple-touch-icon\"\x20sizes=\"180x180\"\x20href=\"OliveTinLogo-180px\.png
+SF:\"\x20/>\n\t</head>\n\n\t<body>\n\t\t<main\x20title\x20=\x20\"main\x20c
+SF:ontent\">\n\t\t\t<fieldset\x20id\x20=\x20\"section-switcher\"\x20title\
+SF:x20=\x20\"Sections\">\n\t\t\t\t<button\x20id\x20=\x20\"showActions\">Ac
+SF:tions</button>\n\t\t\t\t<button\x20id\x20=\x20\"showLogs\">Logs</but")%
+SF:r(HTTPOptions,FCC,"HTTP/1\.0\x20200\x20OK\r\nAccept-Ranges:\x20bytes\r\
+SF:nContent-Length:\x203858\r\nContent-Type:\x20text/html;\x20charset=utf-
+SF:8\r\nDate:\x20Sat,\x2001\x20Jul\x202023\x2017:22:26\x20GMT\r\nLast-Modi
+SF:fied:\x20Wed,\x2019\x20Oct\x202022\x2015:30:49\x20GMT\r\n\r\n<!DOCTYPE\
+SF:x20html>\n\n<html>\n\t<head>\n\n\t\t<meta\x20name=\"viewport\"\x20conte
+SF:nt=\"width=device-width,\x20initial-scale=1\.0\">\n\n\t\t<title>OliveTi
+SF:n</title>\n\t\t<link\x20rel\x20=\x20\"stylesheet\"\x20type\x20=\x20\"te
+SF:xt/css\"\x20href\x20=\x20\"style\.css\"\x20/>\n\t\t<link\x20rel\x20=\x2
+SF:0\"shortcut\x20icon\"\x20type\x20=\x20\"image/png\"\x20href\x20=\x20\"O
+SF:liveTinLogo\.png\"\x20/>\n\n\t\t<link\x20rel\x20=\x20\"apple-touch-icon
+SF:\"\x20sizes=\"57x57\"\x20href=\"OliveTinLogo-57px\.png\"\x20/>\n\t\t<li
+SF:nk\x20rel\x20=\x20\"apple-touch-icon\"\x20sizes=\"120x120\"\x20href=\"O
+SF:liveTinLogo-120px\.png\"\x20/>\n\t\t<link\x20rel\x20=\x20\"apple-touch-
+SF:icon\"\x20sizes=\"180x180\"\x20href=\"OliveTinLogo-180px\.png\"\x20/>\n
+SF:\t</head>\n\n\t<body>\n\t\t<main\x20title\x20=\x20\"main\x20content\">\
+SF:n\t\t\t<fieldset\x20id\x20=\x20\"section-switcher\"\x20title\x20=\x20\"
+SF:Sections\">\n\t\t\t\t<button\x20id\x20=\x20\"showActions\">Actions</but
+SF:ton>\n\t\t\t\t<button\x20id\x20=\x20\"showLogs\">Logs</but");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port3000-TCP:V=7.94%I=7%D=7/1%Time=64A060FE%P=x86_64-pc-linux-gnu%r(Gen
+SF:ericLines,67,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20te
+SF:xt/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x2
+SF:0Request")%r(GetRequest,14FC,"HTTP/1\.0\x20200\x20OK\r\nCache-Control:\
+SF:x20no-store,\x20no-transform\r\nContent-Type:\x20text/html;\x20charset=
+SF:UTF-8\r\nSet-Cookie:\x20i_like_gitea=e9214322330dc1c9;\x20Path=/;\x20Ht
+SF:tpOnly;\x20SameSite=Lax\r\nSet-Cookie:\x20_csrf=ZEVmBSA53-Qcd_iTesJat_f
+SF:u4p06MTY4ODIzMjE0NjY0NTE5MTM3OQ;\x20Path=/;\x20Expires=Sun,\x2002\x20Ju
+SF:l\x202023\x2017:22:26\x20GMT;\x20HttpOnly;\x20SameSite=Lax\r\nSet-Cooki
+SF:e:\x20macaron_flash=;\x20Path=/;\x20Max-Age=0;\x20HttpOnly;\x20SameSite
+SF:=Lax\r\nX-Frame-Options:\x20SAMEORIGIN\r\nDate:\x20Sat,\x2001\x20Jul\x2
+SF:02023\x2017:22:26\x20GMT\r\n\r\n<!DOCTYPE\x20html>\n<html\x20lang=\"en-
+SF:US\"\x20class=\"theme-\">\n<head>\n\t<meta\x20charset=\"utf-8\">\n\t<me
+SF:ta\x20name=\"viewport\"\x20content=\"width=device-width,\x20initial-sca
+SF:le=1\">\n\t<title>\x20Gitea:\x20Git\x20with\x20a\x20cup\x20of\x20tea</t
+SF:itle>\n\t<link\x20rel=\"manifest\"\x20href=\"data:application/json;base
+SF:64,eyJuYW1lIjoiR2l0ZWE6IEdpdCB3aXRoIGEgY3VwIG9mIHRlYSIsInNob3J0X25hbWUi
+SF:OiJHaXRlYTogR2l0IHdpdGggYSBjdXAgb2YgdGVhIiwic3RhcnRfdXJsIjoiaHR0cDovL2x
+SF:vY2FsaG9zdDozMDAwLyIsImljb25zIjpbeyJzcmMiOiJodHRwOi")%r(Help,67,"HTTP/1
+SF:\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20charset
+SF:=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request")%r(HTTPOpt
+SF:ions,1C2,"HTTP/1\.0\x20405\x20Method\x20Not\x20Allowed\r\nCache-Control
+SF::\x20no-store,\x20no-transform\r\nSet-Cookie:\x20i_like_gitea=be9106f13
+SF:8f7ba05;\x20Path=/;\x20HttpOnly;\x20SameSite=Lax\r\nSet-Cookie:\x20_csr
+SF:f=ss6b88Rqy_9Xppqbde6ATQ68IzY6MTY4ODIzMjE1MjAxODc1NDQ3NA;\x20Path=/;\x2
+SF:0Expires=Sun,\x2002\x20Jul\x202023\x2017:22:32\x20GMT;\x20HttpOnly;\x20
+SF:SameSite=Lax\r\nSet-Cookie:\x20macaron_flash=;\x20Path=/;\x20Max-Age=0;
+SF:\x20HttpOnly;\x20SameSite=Lax\r\nX-Frame-Options:\x20SAMEORIGIN\r\nDate
+SF::\x20Sat,\x2001\x20Jul\x202023\x2017:22:32\x20GMT\r\nContent-Length:\x2
+SF:00\r\n\r\n")%r(RTSPRequest,67,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nCo
+SF:ntent-Type:\x20text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n
+SF:\r\n400\x20Bad\x20Request");
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Jul  1 18:24:39 2023 -- 1 IP address (1 host up) scanned in 108.10 seconds

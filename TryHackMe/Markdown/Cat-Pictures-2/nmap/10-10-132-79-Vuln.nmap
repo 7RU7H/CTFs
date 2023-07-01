@@ -1,0 +1,44 @@
+# Nmap 7.94 scan initiated Sat Jul  1 18:30:21 2023 as: nmap --script vuln -oA nmap/10-10-132-79-Vuln --min-rate 300 -e tun0 -p 80,3000,1337,222,8080,22 10.10.132.79
+Nmap scan report for 10.10.132.79
+Host is up (0.058s latency).
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+| http-fileupload-exploiter: 
+|   
+|_    Couldn't find a file-type field.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-git: 
+|   10.10.132.79:80/.git/
+|     Git repository found!
+|     Repository description: Unnamed repository; edit this file 'description' to name the...
+|     Remotes:
+|       https://github.com/electerious/Lychee.git
+|_    Project type: PHP application (guessed from .gitignore)
+| http-enum: 
+|   /robots.txt: Robots file
+|   /.gitignore: Revision control ignore file
+|   /.htaccess: Incorrect permissions on .htaccess or .htpasswd files
+|_  /.git/HEAD: Git folder
+| http-vuln-cve2011-3192: 
+|   VULNERABLE:
+|   Apache byterange filter DoS
+|     State: VULNERABLE
+|     IDs:  BID:49303  CVE:CVE-2011-3192
+|       The Apache web server is vulnerable to a denial of service attack when numerous
+|       overlapping byte ranges are requested.
+|     Disclosure date: 2011-08-19
+|     References:
+|       https://www.tenable.com/plugins/nessus/55976
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
+|       https://seclists.org/fulldisclosure/2011/Aug/175
+|_      https://www.securityfocus.com/bid/49303
+222/tcp  open  rsh-spx
+1337/tcp open  waste
+3000/tcp open  ppp
+8080/tcp open  http-proxy
+
+# Nmap done at Sat Jul  1 18:39:07 2023 -- 1 IP address (1 host up) scanned in 525.30 seconds

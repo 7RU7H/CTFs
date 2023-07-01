@@ -1,0 +1,189 @@
+# Nmap 7.94 scan initiated Sat Jul  1 18:24:39 2023 as: nmap --script discovery -oA nmap/10-10-132-79-Discovery --min-rate 300 -e tun0 -p 80,3000,1337,222,8080,22 10.10.132.79
+Pre-scan script results:
+|_lltd-discovery: false
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-sniffer: Sniffed 2 address(es). 
+| 10.10.132.79
+|_224.0.23.12
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-ping: false
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.10.132.79
+Host is up (0.068s latency).
+
+Bug in http-security-headers: no string output.
+PORT     STATE SERVICE
+22/tcp   open  ssh
+| ssh-hostkey: 
+|   2048 33:f0:03:36:26:36:8c:2f:88:95:2c:ac:c3:bc:64:65 (RSA)
+|   256 4f:f3:b3:f2:6e:03:91:b2:7c:c0:53:d5:d4:03:88:46 (ECDSA)
+|_  256 13:7c:47:8b:6f:f8:f4:6b:42:9a:f2:d5:3d:34:13:52 (ED25519)
+|_banner: SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.7
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+80/tcp   open  http
+|_http-date: Sat, 01 Jul 2023 17:24:32 GMT; +59m15s from local time.
+| http-vhosts: 
+|_128 names had status 200
+| http-grep: 
+|   (10) http://10.10.132.79:80/: 
+|     (10) ip: 
+|       + 06.034.094.094
+|       + 1.031.26.26
+|       + 1.5.75.75
+|       + 04.13.204.25
+|       + 14.11.25.25
+|       + 03.1.075.213
+|       + 1.05.181.085
+|       + 212.037.25.063
+|       + 11.077.188.188
+|_      + 1.219.58.66
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-feed: Couldn't find any feeds.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.132.79
+|     
+|     Path: http://10.10.132.79:80/
+|     Line number: 32
+|     Comment: 
+|         <!-- Header -->
+|     
+|     Path: http://10.10.132.79:80/
+|     Line number: 124
+|     Comment: 
+|         <!-- ImageView -->
+|     
+|     Path: http://10.10.132.79:80/
+|     Line number: 121
+|     Comment: 
+|         <!-- Content -->
+|     
+|     Path: http://10.10.132.79:80/
+|     Line number: 135
+|     Comment: 
+|         <!-- Upload -->
+|     
+|     Path: http://10.10.132.79:80/
+|     Line number: 27
+|     Comment: 
+|         <!-- endinject -->
+|     
+|     Path: http://10.10.132.79:80/
+|     Line number: 127
+|     Comment: 
+|         <!-- Sidebar -->
+|     
+|     Path: http://10.10.132.79:80/
+|     Line number: 140
+|     Comment: 
+|         <!-- JS -->
+|     
+|     Path: http://10.10.132.79:80/
+|     Line number: 24
+|     Comment: 
+|         <!-- inject:svg -->
+|     
+|     Path: http://10.10.132.79:80/
+|     Line number: 29
+|     Comment: 
+|_        <!-- Loading -->
+| http-robots.txt: 7 disallowed entries 
+|_/data/ /dist/ /docs/ /php/ /plugins/ /src/ /uploads/
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-mobileversion-checker: No mobile version detected.
+| http-enum: 
+|   /robots.txt: Robots file
+|   /.gitignore: Revision control ignore file
+|   /.htaccess: Incorrect permissions on .htaccess or .htpasswd files
+|_  /.git/HEAD: Git folder
+|_http-errors: Couldn't find any error pages.
+| http-headers: 
+|   Server: nginx/1.4.6 (Ubuntu)
+|   Date: Sat, 01 Jul 2023 17:24:34 GMT
+|   Content-Type: text/html
+|   Content-Length: 60906
+|   Last-Modified: Sun, 05 Jun 2016 14:51:28 GMT
+|   Connection: close
+|   ETag: "57543c70-edea"
+|   Accept-Ranges: bytes
+|   
+|_  (Request type: HEAD)
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; ico: 1
+|     /dist/
+|       css: 1; js: 1
+|     /src/images/
+|       png: 3
+|   Longest directory structure:
+|     Depth: 2
+|     Dir: /src/images/
+|   Total files found (by extension):
+|_    Other: 1; css: 1; ico: 1; js: 1; png: 3
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-title: Lychee
+|_http-chrono: Request times for /; avg: 443.71ms; min: 410.25ms; max: 496.77ms
+222/tcp  open  rsh-spx
+|_banner: SSH-2.0-OpenSSH_9.0
+1337/tcp open  waste
+3000/tcp open  ppp
+8080/tcp open  http-proxy
+| http-headers: 
+|   Server: SimpleHTTP/0.6 Python/3.6.9
+|   Date: Sat, 01 Jul 2023 17:24:20 GMT
+|   Content-type: text/html
+|   Content-Length: 612
+|   Last-Modified: Mon, 13 Mar 2023 16:33:15 GMT
+|   
+|_  (Request type: HEAD)
+| http-vhosts: 
+| 33 names had status ERROR
+|_95 names had status 200
+|_http-title: Welcome to nginx!
+|_http-chrono: Request times for /; avg: 2188.30ms; min: 256.80ms; max: 9906.81ms
+|_http-date: Sat, 01 Jul 2023 17:24:20 GMT; +59m15s from local time.
+
+Host script results:
+|_ipidseq: All zeros
+|_dns-brute: Can't guess domain of "10.10.132.79"; use dns-brute.domain script argument.
+|_path-mtu: PMTU == 1500
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       61200.70   10192.74  0.0%
+| 80    0       72392.00   37643.25  0.0%
+| 222   0       55593.20   3657.31   0.0%
+| 1337  0       71017.90   18888.59  0.0%
+| 3000  0       75777.56   26674.54  10.0%
+|_8080  0       62522.30   10924.97  0.0%
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Sat Jul  1 18:30:21 2023 -- 1 IP address (1 host up) scanned in 342.42 seconds
