@@ -271,3 +271,6 @@ Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 ```powershell
 Set-NetFirewallProfile -DefaultInboundAction Block -DefaultOutboundAction Allow –NotifyOnListen True -AllowUnicastResponseToMulticast True –LogFileName %SystemRoot%\System32\LogFiles\Firewall\pfirewall.log
 ```
+
+https://owasp.org/www-community/attacks/Clickjacking
+https://portswigger.net/web-security/clickjacking

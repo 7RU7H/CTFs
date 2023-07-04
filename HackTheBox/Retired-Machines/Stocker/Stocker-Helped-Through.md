@@ -235,10 +235,13 @@ if not, you will at least have wich path the bot is accessing -->
 <html><pd4ml:attachment src="/etc/passwd" description="attachment sample" icon="Paperclip"/></html>
 ```
 
-https://book.hacktricks.xyz/pentesting-web/xss-cross-site-scripting/iframes-in-xss-and-csp
-https://www.invicti.com/blog/web-security/frame-injection-attacks/
-https://owasp.org/www-community/attacks/Clickjacking
-https://portswigger.net/web-security/clickjacking
+Read [Hacktrick Iframes in XSS, CSP, and SOP](https://book.hacktricks.xyz/pentesting-web/xss-cross-site-scripting/iframes-in-xss-and-csp) 
+
+
+[invicti - Frame Injection Attacks](https://www.invicti.com/blog/web-security/frame-injection-attacks/) 
+	https://owasp.org/www-community/attacks/Cross_Frame_Scripting
+
+
 https://blog.logrocket.com/the-ultimate-guide-to-iframes/
 
 html injection
