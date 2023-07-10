@@ -2,28 +2,26 @@
 
 ## Data 
 
-IP: 
-OS:
-Hostname:
-Domain:  / Domain SID:
+IP: 10.129.147.44
+OS: 
+Hostname: 
+Domain: absolute.htb
+Domain SID:
 Machine Purpose: 
-Services:
+Services: 53,88,445
 Service Languages:
-Users:
+Users: 
 Credentials:
 
 ## Objectives
 
 ## Target Map
 
-![](Absolute-map.excalidraw.md)
-
 ## Solution Inventory Map
 
 
 ### Todo 
 
-Make Excalidraw
 
 ### Done
       
