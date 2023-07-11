@@ -224,14 +224,20 @@ crackmapexec smb -u smb_svc -p '' -k  --shares
 
 Check Bloodhound for smb_svc permissions and groups.
 
-https://www.twitch.tv/videos/1855594279 1:57:00
-
-Alh4zr3d: 
+Alh4zr3d - but did not work: 
 ```bash
-# -k is deprecated for smbclient, --use-kerberos
-smbclient //absolute.htb/Shared -U 'svc_smb' --use-kerberos
-# Try manual use kinit
-sudo vim /etc/krb5
+# -k is deprecated for smbclient, --use-kerberos=required|desired|off
+smbclient //absolute.htb/Shared -U 'svc_smb' --use-kerberos=required
+```
+
+Alh4zr3d Kinit and impacket-smbclient
+```bash
+# Kinit
+sudo apt-get install krb5-user
+
+# sudo vim /etc/krb5.conf
+
+impacket-smbclient -dc-ip $IP -k absolute.htb/smb@smb_svc@dc.absolute.htb/Shared
 ```
 
 
@@ -242,7 +248,6 @@ kinit d.klay
 /etc/hosts # must have dc.absolute.htb first
 ldapsearch -H ldap://dc.absolute.htb -Y GSSAPI -b="cn=users,dc=absolute,dc=htb" "users" "description"
 ```
-
 
 Ippsec: Get a ticket for svc_smb account
 ```bash
@@ -267,6 +272,12 @@ pip install .
 ```
 
 
+Before transfering to a Windows VM Alh4zr3d did:
+```bash
+file test.exe
+string test.exe
+```
+
 Ippsec: Sharing VPN with Window guest to your Linux guest 
 ```bash
 # Check if IP fowarding is enabled 
@@ -290,17 +301,32 @@ Ippsec:
 route add 10.10.10.0/23 mask 255.255.254.0 gw $LINUXIP
 ```
 
-Ippsec: Ippsec reconfigures a network adapter, but you could also add entries into /etc/hosts on windows
+Ippsec: Ippsec reconfigured a network adaptor, but you could also add entries into /etc/hosts on windows
 ```powershell
 C:\Windows\System32\drivers\etc\hosts
 ```
 
-Ippsec: Wireshark
+Ippsec and Alh4zr3d: Wireshark
 
+Alh4zr3d:
+```powershell
+# DNS blackhole test.exe
+# Administrator terminal
+powershell.exe  
+echo "127.0.0.1 dc.absolute.htb absolute.htb" >> C:\Windows\System32\drivers\etc\hosts
+# test.exe is not using the hosts file
+```
 
+Packet capture with `netsh`
 ```powershell
 netsh
 ```
+
+
+
+
+
+
 
 
 Ippsec: DACLEdit
