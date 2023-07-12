@@ -5,7 +5,7 @@
 IP: 10.129.147.44
 OS: 
 Hostname: 
-Domain: absolute.htb
+Domain:  dc.absolute.htb absolute.htb
 Domain SID:
 Machine Purpose: 
 Services: 53,88,445

