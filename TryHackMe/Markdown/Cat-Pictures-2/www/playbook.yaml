@@ -1,0 +1,16 @@
+---
+- name: Test 
+  hosts: all                                  # Define all the hosts
+  remote_user: bismuth                                  
+  # Defining the Ansible task
+  tasks:             
+    - name: get the username running the deploy
+      become: false
+      command: whoami
+      register: username_on_the_host
+      changed_when: false
+
+    - debug: var=username_on_the_host
+
+    - name: Test
+      shell: echo hi
