@@ -151,11 +151,14 @@ import (
 // https://pkg.go.dev/regexp#MatchString - check
 // https://go.dev/blog/json
 // https://golangtutorial.dev/tips/http-post-json-go/
+// https://zetcode.com/golang/writefile/
+// https://pkg.go.dev/encoding/base64#NewDecoder
 
 type apiFetchReq struct {
 	url            string
 	url_digest     string
 	method         string
+	session        string
 	session_digest string
 }
 
@@ -180,22 +183,24 @@ func getDigest(fetchThisURL string) (string, error) {
 	}
 	request.AddCookie(cookie)
 
-	response, err := client.Do(req)
+	response, err := client.Do(request)
 	if err != nil {
 		log.Fatalf("Error occured. Error is: %s", err.Error())
+
 	}
 	defer response.Body.Close()
 
 	reEx := regexp.MustCompile(`'session_digest':'(0-9a-f)*'`)
-	getSessionDigest := reEx.Find([]byte(response.ext))
+	getSessionDigest := reEx.Find([]byte(response.Body))
 	fmt.Println("Session Digest: %s", getSessionDigest)
 
 	return getSessionDigest
 }
 
 func downloadURL(fetchThisURL string) error {
-	urlDigest := getDigest(url)
-	payload := apiFetchReq{fetchThisURL, urlDigest, "GET", session, sessionDigest}
+	urlDigest, err := getDigest(url)
+	// urlDigest, "GET", session, sessionDigest}
+	payload := apiFetchReq{fetchThisURL, "12345678", "GET", "12345678", "12345678"}
 	jsonPayload, err := json.Marshal(payload)
 	if err != nil {
 		log.Fatalf("Got error %s", err.Error())
@@ -230,8 +235,9 @@ func downloadURL(fetchThisURL string) error {
 		log.Fatalf("Got error %s", err.Error())
 	}
 
-	return nil
+	return response.Body
 }
+
 
 ```
 
