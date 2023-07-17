@@ -421,3 +421,5 @@ OSCP level Windows and Active Directory Jungle Gym
 - Make uber vulnerable switch once completed
 - Ascii Art of completion
 
+test ad-init-recon and psrev-obfus scripts
+test dns-axfr and improve

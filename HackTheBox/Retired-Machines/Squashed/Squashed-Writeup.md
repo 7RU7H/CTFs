@@ -60,4 +60,4 @@ https://book.hacktricks.xyz/network-services-pentesting/nfs-service-pentesting
 
 ## My Bad.
 
-Because of this I am going to leave this machine for a month to forget how of accessing this 
+Because of this I am going to leave this machine for a month to forget how of accessing this test VulnApp2Searchsploit.sh

@@ -237,8 +237,6 @@ func downloadURL(fetchThisURL string) error {
 
 	return response.Body
 }
-
-
 ```
 
 https://www.youtube.com/watch?v=-t1UAvTxB94 24:00
