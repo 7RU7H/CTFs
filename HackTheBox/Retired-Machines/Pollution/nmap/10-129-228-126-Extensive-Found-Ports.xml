@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Tue Jul 18 20:18:06 2023 as: nmap -sC -sV -oA nmap/10-129-228-126-Extensive-Found-Ports -&#45;min-rate 300 -e tun0 -p 80,6379,22 10.129.228.126 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA nmap/10-129-228-126-Extensive-Found-Ports -&#45;min-rate 300 -e tun0 -p 80,6379,22 10.129.228.126" start="1689707886" startstr="Tue Jul 18 20:18:06 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="22,80,6379"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.228.126" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1689707899" endtime="1689707920"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.129.228.126" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" product="OpenSSH" version="8.4p1 Debian 5+deb11u1" extrainfo="protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:8.4p1</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service><script id="ssh-hostkey" output="&#xa;  3072 db:1d:5c:65:72:9b:c6:43:30:a5:2b:a0:f0:1a:d5:fc (RSA)&#xa;  256 4f:79:56:c5:bf:20:f9:f1:4b:92:38:ed:ce:fa:ac:78 (ECDSA)&#xa;  256 df:47:55:4f:4a:d1:78:a8:9d:cd:f8:a0:2f:c0:fc:a9 (ED25519)"><table>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABgQDMui8XsKyVnrUBcuXeZU88nULgmdJ08nPvDUTXgwL2A1dtQy2YKhqzg4HVQkI8nceWJbCJ/3wKd5PiVeA8L8uBU3DhRpjIMfK3A08aXPtSXpN/lM5GlZztC1AroPGfB8tDce158l5p8vNYkv6my2qxa8CBhiLjO5F2HBVwWY1jHZBPdkigzYKzscvqpbHBk/T4dG64OCEmm79DH01Hq8SA95xLln1xxwuPhQ68s+exCSTB/f/taLnzHoT2qh5wAoWqF912JUMKn1Ojvv5SpJDFNUNBAFgaLHf20GQpO8UxYqw/ZFZfHhKPf7Rz3bhhoKv/ZL0xYN4MleEFxFpej05oADTpHfrABzbkX2C0w6KmzNZIsZaxx1kO9DIDeQprRErTdXKXZD6Ym9CZ1cAPbilwMS945UvZigCLHhFri0iLhoYpdEFBX4kKraqTvxncUQNHibA1Y3rnavpB9XVd/Pdkd5PevNy2UEK253S+Mx/dr4VWB94xwx7C3QCjAQXE5V8=</elem>
+<elem key="bits">3072</elem>
+<elem key="fingerprint">db1d5c65729bc64330a52ba0f01ad5fc</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+<table>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBElwFQd0JPcl/MeO0FRD3rz9Fic4TamcO+q2eUjp2HIDCf6HEE+saKGVUmnue904NvlnyyhJJCAZ3MV3yEJnhds=</elem>
+<elem key="bits">256</elem>
+<elem key="fingerprint">4f7956c5bf20f9f14b9238edcefaac78</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+</table>
+<table>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIDnd0IxAYF7SPECTCC3VhgzZJa4ZUpSQ/6DYR6fXIXRz</elem>
+<elem key="bits">256</elem>
+<elem key="fingerprint">df47554f4ad178a89dcdf8a02fc0fca9</elem>
+<elem key="type">ssh-ed25519</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="Apache httpd" version="2.4.54" extrainfo="(Debian)" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.54</cpe></service><script id="http-server-header" output="Apache/2.4.54 (Debian)"><elem>Apache/2.4.54 (Debian)</elem>
+</script><script id="http-cookie-flags" output="&#xa;  /: &#xa;    PHPSESSID: &#xa;      httponly flag not set"><table key="/">
+<table key="PHPSESSID">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+</script><script id="http-title" output="Home"><elem key="title">Home</elem>
+</script></port>
+<port protocol="tcp" portid="6379"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="redis" product="Redis key-value store" method="probed" conf="10"/></port>
+</ports>
+<times srtt="55227" rttvar="24266" to="152291"/>
+</host>
+<runstats><finished time="1689707920" timestr="Tue Jul 18 20:18:40 2023" summary="Nmap done at Tue Jul 18 20:18:40 2023; 1 IP address (1 host up) scanned in 34.46 seconds" elapsed="34.46" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

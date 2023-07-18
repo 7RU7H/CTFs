@@ -1,0 +1,35 @@
+# Nmap 7.94 scan initiated Tue Jul 18 20:24:34 2023 as: nmap --script vuln -oA nmap/10-129-228-126-Vuln --min-rate 300 -e tun0 -p 80,6379,22 10.129.228.126
+Nmap scan report for 10.129.228.126
+Host is up (0.070s latency).
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|_      httponly flag not set
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.228.126
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.129.228.126:80/
+|     Form id: contact
+|     Form action: #
+|     
+|     Path: http://10.129.228.126:80/
+|     Form id: contact
+|     Form action: 
+|     
+|     Path: http://10.129.228.126:80/login
+|     Form id: floatinginput
+|     Form action: /login
+|     
+|     Path: http://10.129.228.126:80/register
+|     Form id: floatinginput
+|_    Form action: /register
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+6379/tcp open  redis
+
+# Nmap done at Tue Jul 18 20:26:12 2023 -- 1 IP address (1 host up) scanned in 97.90 seconds

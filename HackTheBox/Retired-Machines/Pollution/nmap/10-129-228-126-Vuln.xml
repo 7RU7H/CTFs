@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Tue Jul 18 20:24:34 2023 as: nmap -&#45;script vuln -oA nmap/10-129-228-126-Vuln -&#45;min-rate 300 -e tun0 -p 80,6379,22 10.129.228.126 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-129-228-126-Vuln -&#45;min-rate 300 -e tun0 -p 80,6379,22 10.129.228.126" start="1689708274" startstr="Tue Jul 18 20:24:34 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="22,80,6379"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.228.126" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1689708297" endtime="1689708372"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.129.228.126" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-cookie-flags" output="&#xa;  /: &#xa;    PHPSESSID: &#xa;      httponly flag not set"><table key="/">
+<table key="PHPSESSID">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+</script><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.228.126&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://10.129.228.126:80/&#xa;    Form id: contact&#xa;    Form action: #&#xa;    &#xa;    Path: http://10.129.228.126:80/&#xa;    Form id: contact&#xa;    Form action: &#xa;    &#xa;    Path: http://10.129.228.126:80/login&#xa;    Form id: floatinginput&#xa;    Form action: /login&#xa;    &#xa;    Path: http://10.129.228.126:80/register&#xa;    Form id: floatinginput&#xa;    Form action: /register&#xa;"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/></port>
+<port protocol="tcp" portid="6379"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="redis" method="table" conf="3"/></port>
+</ports>
+<times srtt="69821" rttvar="38580" to="224141"/>
+</host>
+<runstats><finished time="1689708372" timestr="Tue Jul 18 20:26:12 2023" summary="Nmap done at Tue Jul 18 20:26:12 2023; 1 IP address (1 host up) scanned in 97.90 seconds" elapsed="97.90" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
