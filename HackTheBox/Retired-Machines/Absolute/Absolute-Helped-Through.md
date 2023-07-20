@@ -8,11 +8,13 @@ Goals:
 Learnt:
 - [tron for Cleaning you Windows](https://github.com/bmrf/tron)
 - `grep -B $LinesBefore -A $LinesAfter `
+- `ntpdate -s` multiple times to be very very safe!  
+	- Actually over and over and over again
 Beyond Root:
 - Silver, Golden, Diamond and Sapphire Tickets
 - Author and manage a Azure Policy for Kerberos and research that
 - Make a DC for a Vulnerable machine I want to make - plus the: 
-	- Docker containerise windows work station and kubernetes a web app for Vulnerable machine I want to template out and make
+	- Docker containerise windows work station and Kubernetes a web app for Vulnerable machine I want to template out and make
 	- Windows Privilege Escalation HTB academy for Workstation
 
 Twinned with [[Response-Helped-Through]]
@@ -24,7 +26,6 @@ Twinned with [[Response-Helped-Through]]
 [Ippsec Video](https://www.youtube.com/watch?v=rfAmMQV_wss)
 [Alh4zr3d Stream](https://www.twitch.tv/videos/1855594279)
 [0xDF Written Writeup](https://0xdf.gitlab.io/2023/05/27/htb-absolute.html)
-
 
 ## Recon
 
@@ -47,13 +48,14 @@ sudo nmap -sU -p- -oG nmap/udp-full $IP --min-rate 300
 DNS recon
 ```bash
 nslookup
-dig axfr dc.absolute.htb @10.129.228.64
-dig axfr absolute.htb @10.129.228.64
+dig axfr dc.absolute.htb @10.129.138.0
+dig axfr absolute.htb @10.129.138.0
 ```
 
 And the outputs:
 ![](nslookup.png)
 
+No Domain Transfer:
 ![](nodomaintransfer.png)
 
 All:
@@ -112,9 +114,9 @@ sudo ntpdate -s dc.absolute.htb
 # Reset with
 ```
 
-Ippsec and Alh4zr3d: Kerbrute to enumerate users and get potential ASREProastable users
+Ippsec and Alh4zr3d: [Kerbrute](https://github.com/ropnop/kerbrute) to enumerate users and get potential ASREProastable users
 ```bash
-git clone
+git clone https://github.com/ropnop/kerbrute.git
 cd kerbrute 
 go build
 
@@ -161,30 +163,61 @@ d.klay : Darkmoonsky248girl
 Then used with cme to prove sync date and time is important
 ![](provedateandtime.png)
 
-
-
 Ippsec and Alh4zr3d: 
 ```bash
 # cme -k kerberos authentication
-crackmapexec smb 10.129.228.64 -k -u d.klay -p 'Darkmoonsky248girl' 
+crackmapexec smb 10.129.138.0 -k -u d.klay -p 'Darkmoonsky248girl' 
 # Either this is protect users account or more likely ntlm is disabled - it is a protected users account
-crackmapexec smb 10.129.228.64 -k -u d.klay -p 'Darkmoonsky248girl' --shares
-crackmapexec smb 10.129.228.64 -k -u d.klay -p 'Darkmoonsky248girl' --rid-brute
+crackmapexec smb 10.129.138.0 -k -u d.klay -p 'Darkmoonsky248girl' --shares
+crackmapexec smb 10.129.138.0 -k -u d.klay -p 'Darkmoonsky248girl' --rid-brute
 
-crackmapexec ldap 10.129.228.64 -k -u d.klay -p 'Darkmoonsky248girl' --bloodhound -ns 10.129.228.64 --collection All
+# crackmapexec ldap 10.129.138.0 -k -u d.klay -p 'Darkmoonsky248girl' --bloodhound -ns 10.129.138.0 --collection All
 ```
+
+No crackmapexec bloodhound
+![1080](nocmebloodhound.png)
 
 Ippsec: Get TGT for d.klay
 ```bash
-impacket-getTGT
+impacket-getTGT -dc-ip 10.129.138.0 absolute.htb/d.klay:Darkmoonsky248girl
 ```
 
 Ippsec and Alh4zr3d: BloodHound.py
 ```bash
-KRB5CCNAME=d.klay.ccache python3 /opt/Bloodhound.py/bloodhound.py -k -dc dc.absolute.htb -ns $IP -c all -d absolute.htb -u d.klay > /tmp/
+KRB5CCNAME=d.klay.ccache /opt/BloodHound.py/bloodhound.py -k -dc dc.absolute.htb -ns 10.129.138.0 -c all -d absolute.htb -u d.klay -p 'Darkmoonsky248girl' --zip
 ```
 
-Check BloodHound as knowing the path ahead helps guide us.  Ippsec mentions manual parsing and his video: [Manually Parse Bloodhound Data with JQ to Create Lists of Potentially Vulnerable Users and Computers](https://www.youtube.com/watch?v=o3W4H0UfDmQ)
+I ran into issues with LDAP and Bloodhound.py - [IBM Support article](https://www.ibm.com/support/pages/authentication-ldap-fails-acceptsecuritycontext-error) *"The problem is the LDAP is not setup for anonymous binds. To resolve this problem, either change the LDAP to allow anonymous binds, or specify a Bind Distinguished Name and Bind password in the WebSphere Application Server LDAP User Registry settings."*
+
+This being the latest version of bloodhound.py
+![1080](badsadldaptroubleshooting.png)
+
+The offending code:
+![1080](theoffendingcode.png)
+
+I tried the simple OSCP option of resetting the box just in case before heading down the biggest rabbit hole of my life with configuring python Ldap.core code...
+
+![](installingwithpip.png)
+
+Also three weeks ago [CME forked from original - now deprecated](https://github.com/mpgn/CrackMapExec) and [Kali is still 5.4... as of 20/07/2023](https://www.kali.org/tools/crackmapexec/)
+
+Potentially as 0xdf use the dockerised version: Dockerise the problems... fretted away
+```bash
+# Build container  
+docker build -t bloodhound .
+# Run container  
+docker run -v ${PWD}:/bloodhound-data -it bloodhound  
+# After that you can run `bloodhound-python` inside the container, all data will be stored in the path from where you start the container.
+```
+
+I was inspired to reset the time
+![](timescrew.png)
+
+I had tried sync previous  - TIL try over and over! There is also no verbose or debug output!! YIKES
+![](tilntpdateMULTIPLETIMES.png)
+
+
+Check BloodHound as knowing the path ahead helps guide us. Ippsec mentions manual parsing and his video: [Manually Parse Bloodhound Data with JQ to Create Lists of Potentially Vulnerable Users and Computers](https://www.youtube.com/watch?v=o3W4H0UfDmQ)
 
 Bloodhound Debug mode to show Cipher Query
 `Settings -> Tick Debug Mode`
@@ -259,31 +292,66 @@ Ippsec: Get the password
 cat user.json | jq '.data[].Properties | select( .enabled == true) | select( .description != null) | .name + " " + .description'
 ```
 
+![1080](absolutesmbservices.png)
+
 Target the winrm_user account and there was a password for smb_svc in the description ...
+```bash
+# for easy copy and pasting:
+cat 20230721045100_users.json | jq '.data[].Properties | select( .enabled == true) | select( .description != null) | .name + " " + .description' | tr -d '"'
 ```
- : 
+
+Credentials!
+```
+SVC_SMB@ABSOLUTE.HTB : AbsoluteSMBService123!
 ```
 
 Alh4zr3d: 
 ```bash
-crackmapexec smb -u smb_svc -p '' 
-crackmapexec smb -u smb_svc -p '' -k  --shares
+crackmapexec smb 10.129.138.0 -u svc_smb -p 'AbsoluteSMBService123!' 
+crackmapexec smb 10.129.138.0 -u svc_smb -p 'AbsoluteSMBService123!' -k  --shares
 ```
+I tried:
+![](svcsmbcmesmbshares.png)
+By comparison:
+![](notsureabooutcmeatm.png)
 
-Check Bloodhound for smb_svc permissions and groups.
+Got a TGT for SVC_smb
+![](clockscrewageandticket.png)
+
+Clock-screwage-abound! Then I toyed with the idea of the environment variable before the probably requirement for the future of updating crackmapexec to be ahead of Kali, presuming that 
+![](cmewithenvvar.png)
+
+Check Bloodhound for svc_smb permissions and groups. I do have kinit install before hand which may have contributed. As I remind yourself for the third in the second push for completion that this box is a nightmare-ad-pentest-where all the tools do not work and you have understand and fix the configurations of tools and system utilities on the fly. This made this box an absolute priority to do as a Helped-Through as there is nothing more time consuming or finikity than linux-windows-plus-kerberos configurations and kerberos-tool local-maintenance. Patching is something I could do, but I would rather understand the choke points of problems as to where
+
+Have you checked?:
+- Step 0): is `/etc/hosts` configured `$DCipv4Address dc.$domain.$tld $domain.$tld` in this order!
+- Step 1): Continuously re-synced to the DC: `sudo ntpdate -s $targetDC.$domain.$tld` 
+- Step 2): Do you need to reTGT after re-synced to the DC: Step 1)
+- Step 3): Is Kinit configured properly? 
+- Step 4): Are you running latest Tool versions!
 
 Alh4zr3d - but did not work: 
 ```bash
 # -k is deprecated for smbclient, --use-kerberos=required|desired|off
 smbclient //absolute.htb/Shared -U 'svc_smb' --use-kerberos=required
+# Also 
+smbclient //dc.absolute.htb/Shared -U 'svc_smb' --use-kerberos=required
+Password for [WORKGROUP\svc_smb]:
+# Failed:
+Kinit for svc_smb@WORKGROUP to access dc.absolute.htb failed: Cannot contact any KDC for requested realm
+session setup failed: NT_STATUS_NO_LOGON_SERVERS
 ```
+
+- https://www.twitch.tv/videos/1855594279 2:00 Kinit conifguration do additional research!
 
 Alh4zr3d Kinit and impacket-smbclient
 ```bash
 # Kinit
 sudo apt-get install krb5-user
-
+# Al put:
+# Default Realm absolute.htb, Servers for your realm 10.129.138.0, Hostname for Krb realm dc.absolute.htb
 # sudo vim /etc/krb5.conf
+
 
 impacket-smbclient -dc-ip $IP -k absolute.htb/smb@smb_svc@dc.absolute.htb/Shared
 ```
@@ -409,6 +477,14 @@ What are shadow credentials - https://www.thehacker.recipes/ad/movement/kerberos
 
 Create and configure a DNS server  `dnscmd`
 https://learn.microsoft.com/en-us/windows-server/networking/dns/quickstart-install-configure-dns-server?tabs=powershell
+
+#### Silver Ticket
+
+#### Golden Ticket
+
+#### Diamond Ticket
+
+#### Sapphire Ticket
 
 
 ## Testing to then design of Vulnerable Machine(s)

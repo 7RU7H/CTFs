@@ -16,8 +16,6 @@ Credentials:
 
 ## Target Map
 
-![](Response-map.excalidraw.md)
-
 ## Solution Inventory Map
 
 
