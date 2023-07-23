@@ -4,7 +4,9 @@ Name: Absolute
 Date:  
 Difficulty:  Insane - but not hard as when released due to AD hacking Tool issues
 Goals:  
+- Azure AD changes overhaul
 - Silver, Golden, Diamond and Sapphire Tickets 
+- VS Code / Codium and snyk plugin is must to have!
 Learnt:
 - [tron for Cleaning you Windows](https://github.com/bmrf/tron)
 - `grep -B $LinesBefore -A $LinesAfter `
@@ -17,7 +19,7 @@ Beyond Root:
 	- Docker containerise windows work station and Kubernetes a web app for Vulnerable machine I want to template out and make
 	- Windows Privilege Escalation HTB academy for Workstation
 
-Twinned with [[Response-Helped-Through]]
+Tripletted with [[Response-Helped-Through]] and [[Dynstr-Helped-Through]]
 
 - [[Absolute-Notes.md]]
 - [[Absolute-CMD-by-CMDs.md]]
@@ -225,7 +227,7 @@ Bloodhound Debug mode to show Cipher Query
 Ippsec: Think like a list instead of a graph
 ```bash
 # Convert Integers
-(INT|tostring)
+(.DotSomethingThatIsAnINT|tostring)
 # Display all json nicely
 cat user.json | jq .
 # Put query at the end of the syntax

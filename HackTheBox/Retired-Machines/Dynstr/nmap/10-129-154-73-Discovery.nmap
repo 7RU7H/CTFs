@@ -1,0 +1,370 @@
+# Nmap 7.94 scan initiated Sun Jul 23 17:32:57 2023 as: nmap --script discovery -oA nmap/10-129-154-73-Discovery --min-rate 300 -e tun0 -p 22,53,80 10.129.154.73
+Pre-scan script results:
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-ping: false
+|_lltd-discovery: false
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.129.154.73
+Host is up (0.094s latency).
+
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (9)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   3072 05:7c:5e:b1:83:f9:4f:ae:2f:08:e1:33:ff:f5:83:9e (RSA)
+|   256 3f:73:b4:95:72:ca:5e:33:f6:8a:8f:46:cf:43:35:b9 (ECDSA)
+|_  256 cc:0a:41:b7:a1:9a:43:da:1b:68:f5:2a:f8:2a:75:2c (ED25519)
+|_banner: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.2
+53/tcp open  domain
+| dns-nsid: 
+|_  bind.version: 9.16.1-Ubuntu
+|_dns-nsec3-enum: Can't determine domain for host 10.129.154.73; use dns-nsec3-enum.domains script arg.
+|_dns-nsec-enum: Can't determine domain for host 10.129.154.73; use dns-nsec-enum.domains script arg.
+80/tcp open  http
+|_http-title: Dyna DNS
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.129.154.73
+|   Found the following error pages: 
+|   
+|   Error Code: 404
+|_  	http://10.129.154.73:80/assets/img/favicon.ico
+|_http-mobileversion-checker: No mobile version detected.
+|_http-chrono: Request times for /; avg: 213.13ms; min: 143.33ms; max: 286.60ms
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /assets/css/
+|       css: 1
+|     /assets/img/logo/
+|       png: 1
+|   Longest directory structure:
+|     Depth: 3
+|     Dir: /assets/img/logo/
+|   Total files found (by extension):
+|_    Other: 1; css: 1; png: 1
+|_http-feed: Couldn't find any feeds.
+| http-grep: 
+|   (1) http://10.129.154.73:80/: 
+|     (1) email: 
+|_      + dns@dyna.htb
+| http-referer-checker: 
+| Spidering limited to: maxpagecount=30
+|   https://oss.maxcdn.com:443/libs/respond.js/1.3.0/respond.min.js
+|   https://maps.googleapis.com:443/maps/api/js?key=AIzaSyCWDPCiH080dNCTYC-uprmLOn2mt2BMSUk&amp;sensor=true
+|_  https://oss.maxcdn.com:443/libs/html5shiv/3.7.0/html5shiv.js
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.154.73
+|     
+|     Path: http://10.129.154.73:80/
+|     Line number: 58
+|     Comment: 
+|         <!-- END NAV -->
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 6
+|     Comment: 
+|         
+|         // |____/|_|___/\__|_|_| |_|\___|\__|_| \_/ \___||_| |_| |_|\___|_| |_| |_|\___||___/
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 117
+|     Comment: 
+|          // Bind event listener
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 194
+|     Comment: 
+|         /*  SEARCH BAR
+|         /*-----------------------------------------------------------------------------------*/
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 4
+|     Comment: 
+|         
+|         // | | | | / __| __| | '_ \ / __| __| \ \ / / _ \| | | '_ \ / _ \ '_ ` _ \ / _ \/ __|
+|     
+|     Path: http://10.129.154.73:80/
+|     Line number: 241
+|     Comment: 
+|         <!-- MAIN FOOTER -->
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 22
+|     Comment: 
+|          //goto top
+|     
+|     Path: http://10.129.154.73:80/
+|     Line number: 204
+|     Comment: 
+|         <!-- CLIENTS LOGOS -->
+|     
+|     Path: http://10.129.154.73:80/
+|     Line number: 80
+|     Comment: 
+|         <!-- MAIN IMAGE SECTION -->
+|     
+|     Path: http://10.129.154.73:80/
+|     Line number: 90
+|     Comment: 
+|         <!-- /container -->
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 223
+|     Comment: 
+|         /*  PRELOADER
+|         /*-----------------------------------------------------------------------------------*/
+|     
+|     Path: http://10.129.154.73:80/
+|     Line number: 128
+|     Comment: 
+|         <!--
+|         				<div class="row">
+|         					<div class="col-lg-1 col-md-1 col-sm-1 centered bounce-in">
+|         						<span class="pe-7s-chat icon"></span>
+|         					</div>
+|         					<div class="col-lg-3 col-md-3 col-sm-3 fade-up">
+|         						<h3>Quality Design</h3>
+|         						<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+|         					</div>
+|         
+|         					<div class="col-lg-1 col-md-1 col-sm-1 centered bounce-in">
+|         						<i class="fa fa-question-circle"></i>
+|         					</div>
+|         					<div class="col-lg-3 col-md-3 col-sm-3 fade-up">
+|         						<h3>Awesome Support</h3>
+|         						<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+|         					</div>			
+|         				
+|         					<div class="col-lg-1 col-md-1 col-sm-1 centered bounce-in">
+|         						<i class="fa fa-globe"></i>
+|         					</div>
+|         					<div class="col-lg-3 col-md-3 col-sm-3 fade-up">
+|         						<h3>Global Services</h3>
+|         						<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+|         					</div>				
+|         				</div>
+|         				-->
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 161
+|     Comment: 
+|         /*  NICESCROLL
+|         /*-----------------------------------------------------------------------------------*/
+|     
+|     Path: http://10.129.154.73:80/
+|     Line number: 271
+|     Comment: 
+|         <!-- Bootstrap core JavaScript
+|             ================================================== -->
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 141
+|     Comment: 
+|          // ADD SLIDEUP ANIMATION TO DROPDOWN //
+|     
+|     Path: http://10.129.154.73:80/
+|     Line number: 246
+|     Comment: 
+|         <!--col-lg-4-->
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 124
+|     Comment: 
+|         /*  FUNCTIONS
+|         /*-----------------------------------------------------------------------------------*/
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 2
+|     Comment: 
+|         
+|         //  ____  _     _   _            _   _          _____ _                              
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 243
+|     Comment: 
+|          //Set AutoPlay to 3 seconds 
+|     
+|     Path: http://10.129.154.73:80/
+|     Line number: 236
+|     Comment: 
+|         <!-- dg -->
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 235
+|     Comment: 
+|          // Show next and prev buttons
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 10
+|     Comment: 
+|         /*  BACKGROUNDS
+|         /*-----------------------------------------------------------------------------------*/
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 150
+|     Comment: 
+|          //Pretty Photo
+|     
+|     Path: http://10.129.154.73:80/
+|     Line number: 273
+|     Comment: 
+|         <!-- Placed at the end of the document so the pages load faster -->
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 74
+|     Comment: 
+|         /*  ANIMATE
+|         /*-----------------------------------------------------------------------------------*/
+|     
+|     Path: http://10.129.154.73:80/
+|     Line number: 155
+|     Comment: 
+|         <!-- container -->
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 1
+|     Comment: 
+|         /* ==================================================
+|         //  ____  _     _   _            _   _          _____ _                              
+|         // |  _ \(_)___| |_(_)_ __   ___| |_(_)_   ____|_   _| |__   ___ _ __ ___   ___  ___ 
+|         // | | | | / __| __| | '_ \ / __| __| \ \ / / _ \| | | '_ \ / _ \ '_ ` _ \ / _ \/ __|
+|         // | |_| | \__ \ |_| | | | | (__| |_| |\ V /  __/| | | | | |  __/ | | | | |  __/\__ \
+|         // |____/|_|___/\__|_|_| |_|\___|\__|_| \_/ \___||_| |_| |_|\___|_| |_| |_|\___||___/
+|         //
+|         /* ==================================================
+|         /*-----------------------------------------------------------------------------------*/
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 115
+|     Comment: 
+|          // Execute on load
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 255
+|     Comment: 
+|         /*  CONTACT FORM
+|         /*-----------------------------------------------------------------------------------*/
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 175
+|     Comment: 
+|         /*  SNOOOOOOOOTH SCROLL - SO SMOOTH
+|         /*-----------------------------------------------------------------------------------*/
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 9
+|     Comment: 
+|         /*-----------------------------------------------------------------------------------*/
+|     
+|     Path: http://10.129.154.73:80/
+|     Line number: 269
+|     Comment: 
+|         <!-- END MAIN FOOTER -->
+|     
+|     Path: http://10.129.154.73:80/
+|     Line number: 94
+|     Comment: 
+|         <!-- /headerwrap -->
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 12
+|     Comment: 
+|         /* Slide Sync to Carousel */
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 136
+|     Comment: 
+|          // ADD SLIDEDOWN ANIMATION TO DROPDOWN //
+|     
+|     Path: http://10.129.154.73:80/
+|     Line number: 89
+|     Comment: 
+|         <!-- row -->
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 85
+|     Comment: 
+|          //if the window is greater than 440px wide then turn on jScrollPane..
+|     
+|     Path: http://10.129.154.73:80/assets/js/init.js
+|     Line number: 49
+|     Comment: 
+|         /*  PORTFOLIO
+|         /*-----------------------------------------------------------------------------------*/
+|     
+|     Path: http://10.129.154.73:80/
+|     Line number: 18
+|     Comment: 
+|         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+|     
+|     Path: http://10.129.154.73:80/
+|     Line number: 19
+|     Comment: 
+|         <!--[if lt IE 9]>
+|         	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+|         	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+|_        	<![endif]-->
+|_http-date: Sun, 23 Jul 2023 16:33:37 GMT; +59m51s from local time.
+| http-vhosts: 
+|_128 names had status 200
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-headers: 
+|   Date: Sun, 23 Jul 2023 16:33:36 GMT
+|   Server: Apache/2.4.41 (Ubuntu)
+|   Last-Modified: Sat, 13 Mar 2021 10:34:00 GMT
+|   ETag: "2a9d-5bd688dfd7600"
+|   Accept-Ranges: bytes
+|   Content-Length: 10909
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+
+Host script results:
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       68121.60   46592.56  0.0%
+| 53    0       73800.90   58936.37  0.0%
+|_80    0       66627.40   35639.61  0.0%
+|_fcrdns: FAIL (No PTR record)
+|_ipidseq: All zeros
+|_path-mtu: PMTU == 1500
+|_dns-brute: Can't guess domain of "10.129.154.73"; use dns-brute.domain script argument.
+
+# Nmap done at Sun Jul 23 17:38:06 2023 -- 1 IP address (1 host up) scanned in 308.39 seconds

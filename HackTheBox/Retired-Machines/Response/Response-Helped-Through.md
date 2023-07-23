@@ -7,22 +7,21 @@ Goals:
 - Python, Go and C programming personal improvements 
 - Azure Application hosting for AZ104 and beyond..
 - Shadow IT to be a better Sys Admin 
-- VS Code / Codium snyk plugin is must to have!
+- VS Code / Codium and snyk plugin is must to have!
 Learnt:
 - API hacking - Burpsuite best practices regarding forking requests 
 - Session and Cookie hacking - key expose signing reuse to the then control json field that use that key
 Beyond Root:
-- Golang  version of the web server and spawn a another webserver for vulnerabale machine
+- Golang  version of the web server and spawn a another webserver for vulnerable machine
 - Implement a server with
 	- Azure App Service
 	- Docker containerise windows work station and kubernetes a web app for Vuln machine I want to template out and make
 	- Application gateway for routes and OWASP top 10
 	- Private DNS endpoint
 	- TLS/SSL implementation for CSPA twinned with HTB academy TLS/SSL module
-- Rogue DNS setup 
 
 
-Twinned with [[Absolute-Helped-Through]]
+Tripletted with [[Absolute-Helped-Through]] and [[Dynstr-Helped-Through]]
 
 - [[Response-Notes.md]]
 - [[Response-CMD-by-CMDs.md]]

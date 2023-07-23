@@ -2,7 +2,10 @@
 Write ups from top 50 to consider
 https://app.hackthebox.com/users/357237
 
+```
 
+netsh trace start capturetype=physical capture=yes maxSize=1024 overwrite=yes tracefile=C:\Windows\Temp\rite-NetTrace.etl filemode=single ipv4.address=$beaconingIpv4Addr
+```
 
 Use in context https://www.youtube.com/watch?v=o_XaJdDqQA0
 
