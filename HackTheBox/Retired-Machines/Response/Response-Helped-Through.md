@@ -250,6 +250,8 @@ https://www.youtube.com/watch?v=-t1UAvTxB94 24:00
 
 ## Beyond Root
 
+https://github.com/Azure/azure-quickstart-templates
+
 Proxy code 
 ```python 
 ```
@@ -264,3 +266,4 @@ OSCP level Windows and Active Directory Jungle Gym
 - Make the Kubernetes, docker container only for pivoting not for escaping
 - Make uber vulnerable switch once completed
 - Ascii Art of completion
+

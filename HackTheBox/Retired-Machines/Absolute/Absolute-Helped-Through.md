@@ -50,8 +50,8 @@ sudo nmap -sU -p- -oG nmap/udp-full $IP --min-rate 300
 DNS recon
 ```bash
 nslookup
-dig axfr dc.absolute.htb @10.129.138.0
-dig axfr absolute.htb @10.129.138.0
+dig axfr dc.absolute.htb @10.129.229.59
+dig axfr absolute.htb @10.129.229.59
 ```
 
 And the outputs:
@@ -168,12 +168,12 @@ Then used with cme to prove sync date and time is important
 Ippsec and Alh4zr3d: 
 ```bash
 # cme -k kerberos authentication
-crackmapexec smb 10.129.138.0 -k -u d.klay -p 'Darkmoonsky248girl' 
+crackmapexec smb 10.129.229.59 -k -u d.klay -p 'Darkmoonsky248girl' 
 # Either this is protect users account or more likely ntlm is disabled - it is a protected users account
-crackmapexec smb 10.129.138.0 -k -u d.klay -p 'Darkmoonsky248girl' --shares
-crackmapexec smb 10.129.138.0 -k -u d.klay -p 'Darkmoonsky248girl' --rid-brute
+crackmapexec smb 10.129.229.59 -k -u d.klay -p 'Darkmoonsky248girl' --shares
+crackmapexec smb 10.129.229.59 -k -u d.klay -p 'Darkmoonsky248girl' --rid-brute
 
-# crackmapexec ldap 10.129.138.0 -k -u d.klay -p 'Darkmoonsky248girl' --bloodhound -ns 10.129.138.0 --collection All
+# crackmapexec ldap 10.129.229.59 -k -u d.klay -p 'Darkmoonsky248girl' --bloodhound -ns 10.129.229.59 --collection All
 ```
 
 No crackmapexec bloodhound
@@ -181,12 +181,12 @@ No crackmapexec bloodhound
 
 Ippsec: Get TGT for d.klay
 ```bash
-impacket-getTGT -dc-ip 10.129.138.0 absolute.htb/d.klay:Darkmoonsky248girl
+impacket-getTGT -dc-ip 10.129.229.59 absolute.htb/d.klay:Darkmoonsky248girl
 ```
 
 Ippsec and Alh4zr3d: BloodHound.py
 ```bash
-KRB5CCNAME=d.klay.ccache /opt/BloodHound.py/bloodhound.py -k -dc dc.absolute.htb -ns 10.129.138.0 -c all -d absolute.htb -u d.klay -p 'Darkmoonsky248girl' --zip
+KRB5CCNAME=d.klay.ccache /opt/BloodHound.py/bloodhound.py -k -dc dc.absolute.htb -ns 10.129.229.59 -c all -d absolute.htb -u d.klay -p 'Darkmoonsky248girl' --zip
 ```
 
 I ran into issues with LDAP and Bloodhound.py - [IBM Support article](https://www.ibm.com/support/pages/authentication-ldap-fails-acceptsecuritycontext-error) *"The problem is the LDAP is not setup for anonymous binds. To resolve this problem, either change the LDAP to allow anonymous binds, or specify a Bind Distinguished Name and Bind password in the WebSphere Application Server LDAP User Registry settings."*
@@ -309,8 +309,8 @@ SVC_SMB@ABSOLUTE.HTB : AbsoluteSMBService123!
 
 Alh4zr3d: 
 ```bash
-crackmapexec smb 10.129.138.0 -u svc_smb -p 'AbsoluteSMBService123!' 
-crackmapexec smb 10.129.138.0 -u svc_smb -p 'AbsoluteSMBService123!' -k  --shares
+crackmapexec smb 10.129.229.59 -u svc_smb -p 'AbsoluteSMBService123!' 
+crackmapexec smb 10.129.229.59 -u svc_smb -p 'AbsoluteSMBService123!' -k  --shares
 ```
 I tried:
 ![](svcsmbcmesmbshares.png)
@@ -326,11 +326,13 @@ Clock-screwage-abound! Then I toyed with the idea of the environment variable be
 Check Bloodhound for svc_smb permissions and groups. I do have kinit install before hand which may have contributed. As I remind yourself for the third in the second push for completion that this box is a nightmare-ad-pentest-where all the tools do not work and you have understand and fix the configurations of tools and system utilities on the fly. This made this box an absolute priority to do as a Helped-Through as there is nothing more time consuming or finikity than linux-windows-plus-kerberos configurations and kerberos-tool local-maintenance. Patching is something I could do, but I would rather understand the choke points of problems as to where
 
 Have you checked?:
+- Step -1): Are *you* mentally prepared and ready to deal with the issue abound... 
 - Step 0): is `/etc/hosts` configured `$DCipv4Address dc.$domain.$tld $domain.$tld` in this order!
-- Step 1): Continuously re-synced to the DC: `sudo ntpdate -s $targetDC.$domain.$tld` 
-- Step 2): Do you need to reTGT after re-synced to the DC: Step 1)
-- Step 3): Is Kinit configured properly? 
+- Step 1): Continuously re-synced to the DC: `sudo ntpdate -s $targetDC.$domain.$tld
+- Step 2): Is Kinit configured properly?
+- Step 3): Do you need to **(re)**TGT after re-synced to the DC: go to Step 1)
 - Step 4): Are you running latest Tool versions!
+
 
 Alh4zr3d - but did not work: 
 ```bash
@@ -351,11 +353,64 @@ Alh4zr3d Kinit and impacket-smbclient
 # Kinit
 sudo apt-get install krb5-user
 # Al put:
-# Default Realm absolute.htb, Servers for your realm 10.129.138.0, Hostname for Krb realm dc.absolute.htb
-# sudo vim /etc/krb5.conf
+# Default Realm absolute.htb, Servers for your realm 10.129.229.59, Hostname for Krb realm dc.absolute.htb
 
 
-impacket-smbclient -dc-ip $IP -k absolute.htb/smb@smb_svc@dc.absolute.htb/Shared
+sudo sed -i 's//absolute.htb = {\n\t\tkdc = dc.absolute.htb\n\t\tadmin_server = dc.absolute.htb/'
+
+```
+
+manageKRB5Conf.sh
+```bash
+#!/bin/bash
+
+# Author: 7ru7h
+
+if [ "$#" -ne 4 ]; then
+        echo "Usage: $0 <cmd: add / remove>/ setup <realm> <kdc> <admin_server>"
+        echo "run \`sudo apt-get install krb5-user\' - put: \`KALI\` as default in all capitals, no \` for adding and removing a default realm"
+        exit
+fi
+
+CMD=$1
+
+function addToKRB5Conf ()
+{
+        REALM=$1
+        KDC=$2
+        ADM=$3
+        echo "Adding: $@"
+        # add realm
+        sudo sed -i 's/default_realm = KALI/default_realm = $REALM/g' /etc/krb5.conf
+        sudo sed -i 's/\n\tKALI = {\n\t\tkdc = KALI\n\t\tadmin_server = KALI\n\t}/\n\t$REALM = {\n\t\tkdc = $KDC\n\t\tadmin_server = $ADM\n\t}/g' /etc/krb5.conf
+        cat /etc/krb5.conf
+        return
+}
+
+function removeFromKRB5Conf ()
+{
+        REALM=$1
+        KDC=$2
+        ADM=$3
+        echo "Remove and replacing back to default KALI every field: $@"
+        sudo sed -i 's/default_realm = $REALM/default_realm = KALI/g' /etc/krb5.conf
+        sudo sed -i 's/\n\t$REALM = {\n\t\tkdc = $KDC\n\t\tadmin_server = $ADM\n\t}/\n\tKALI = {\n\t\tkdc = KALI\n\t\tadmin_server = KALI\n\t}/g' /etc/krb5.conf
+        cat /etc/krb5.conf
+        return
+}
+
+case $CMD in
+        "add") addToKRB5Conf $2 $3 $4 ;;
+        "remove") removeFromKRB5Conf $2 $3 $4 ;;
+        "setup") echo "run \`sudo apt-get install krb5-user\' - put: KALI as default in all capitals for adding and removing a  default realm"
+        *) echo $CMD " is invalid" ;;
+esac
+exit
+```
+
+
+```bash
+impacket-smbclient -dc-ip 10.129.229.59 -k absolute.htb/smb_svc@dc.absolute.htb/Shared
 ```
 
 
@@ -487,6 +542,10 @@ https://learn.microsoft.com/en-us/windows-server/networking/dns/quickstart-insta
 #### Diamond Ticket
 
 #### Sapphire Ticket
+
+
+
+https://github.com/Azure/azure-quickstart-templates
 
 
 ## Testing to then design of Vulnerable Machine(s)

@@ -42,3 +42,18 @@ Rehost DNS web application utility from Dynstr various ways in Azure.
 - Azure DNS
 - Azure Backup
 - Make a Log workspace
+
+
+https://github.com/Azure/azure-quickstart-templates
+
+
+## Testing to then design of Vulnerable Machine(s)
+
+OSCP level Windows and Active Directory Jungle Gym
+
+- Make OSCP level 
+- Have good theme
+- Make the Kubernetes, docker container only for pivoting not for escaping
+- Make uber vulnerable switch once completed
+- Ascii Art of completion
+

