@@ -33,7 +33,7 @@ Fixed cookie issues and then ran into indentation issues, no CVE and not verifie
 
 ## Exploit
 
-The actually exploit requires Authenicated RCE, we need to get the MySQL Credentials  another way.
+The actually exploit requires Authenticated RCE, we need to get the MySQL Credentials  another way.
 
 ## Foothold
 

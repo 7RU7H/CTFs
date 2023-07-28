@@ -550,13 +550,15 @@ https://github.com/Azure/azure-quickstart-templates
 
 ## Testing to then design of Vulnerable Machine(s)
 
-OSCP level Windows and Active Directory Jungle Gym
+OSCP level Windows and Active Directory Jungle Gym - Brainforest
 
 - Make OSCP level 
 - Have good theme
-- Make the Kubenetes, docker container only for pivoting not for escaping
+- Make the Kubenetes, docker container only for pivoting not for escaping especially important for the other planned boxes
 - Make uber vulnerable switch once completed
 - Ascii Art of completion
 
 test ad-init-recon and psrev-obfus scripts
 test dns-axfr and improve
+
+

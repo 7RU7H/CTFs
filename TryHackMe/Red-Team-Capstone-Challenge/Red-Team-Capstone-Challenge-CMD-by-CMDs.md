@@ -304,7 +304,7 @@ curl https://sliver.sh/install|sudo bash
 
 sudo apt install thunderbird remmina neo4j ntpdate bloodhound certipy-ad -y
 # 
-# Authenicate
+# Authenticate
 # ssh e-citizen@10.200.116.250 - stabilitythroughcurrency
 thunderbird
 # nvm : nvm@corp.th3reserve.loc $somePassword

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Fri Jul 28 19:14:16 2023 as: nmap -sC -sV -oA nmap/10-10-177-94-Extensive-Found-Ports -&#45;min-rate 300 -e tun0 -p 6443,111,5000,22,3000 10.10.177.94 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA nmap/10-10-177-94-Extensive-Found-Ports -&#45;min-rate 300 -e tun0 -p 6443,111,5000,22,3000 10.10.177.94" start="1690568056" startstr="Fri Jul 28 19:14:16 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="5" services="22,111,3000,5000,6443"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.177.94" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1690568069" endtime="1690568172"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.177.94" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" product="OpenSSH" version="7.6p1 Ubuntu 4ubuntu0.3" extrainfo="Ubuntu Linux; protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:7.6p1</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service><script id="ssh-hostkey" output="&#xa;  2048 e2:35:e1:4f:4e:87:45:9e:5f:2c:97:e0:da:a9:df:d5 (RSA)&#xa;  256 b2:fd:9b:75:1c:9e:80:19:5d:13:4e:8d:a0:83:7b:f9 (ECDSA)&#xa;  256 75:20:0b:43:14:a9:8a:49:1a:d9:29:33:e1:b9:1a:b6 (ED25519)"><table>
+<elem key="fingerprint">e235e14f4e87459e5f2c97e0daa9dfd5</elem>
+<elem key="bits">2048</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABAQDTRQx4ZmXMByEs6dg4VTz+UtM9X9Ljxt6SU3oceqRUlV+ohx56xdD0ZPbvD0IcYwUrrqcruMG0xxgRxWuzV+FQAJVQe76ED966+lwrwAnUsVFQ5apw3N+WKnD53eldUZRq7/2nGQQizrefY7UjAGX/EZonSVOWZyhVyONu2VBBwg0B0yA3UBZV+yg+jGsrZ9ETEmfNbQRkbodEAwoZrGQ87UEdTkfj+5TGmfzqgukmBvvVV7KoXgSQIZNkqRmkAVKKXeEfydnOR37KMglBUXIR/50jkIswxWbNk2OtS6fz6UiPeEY39f4f0gwLx/HwUyel9yzH4dkDb+LBS6X/X9b9</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+<table>
+<elem key="fingerprint">b2fd9b751c9e80195d134e8da0837bf9</elem>
+<elem key="bits">256</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBAqCgW5Mlx2VpC61acc0G4VMZUAauQDoK5xIzdHzdDLPXt0GqsoIw1fuwTSSzSy8RFmGU5PNHiWn0egoUwlXdc4=</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+</table>
+<table>
+<elem key="fingerprint">75200b4314a98a491ad92933e1b91ab6</elem>
+<elem key="bits">256</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIFZ/jrfDX1aK1I0A/sLRVb2qoCF9xHWbVW+gBCV8dSmg</elem>
+<elem key="type">ssh-ed25519</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="111"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="rpcbind" version="2-4" extrainfo="RPC #100000" method="probed" conf="10"/><script id="rpcinfo" output="&#xa;  program version    port/proto  service&#xa;  100000  2,3,4        111/tcp   rpcbind&#xa;  100000  2,3,4        111/udp   rpcbind&#xa;  100000  3,4          111/tcp6  rpcbind&#xa;  100000  3,4          111/udp6  rpcbind&#xa;"><table key="100000">
+<table key="udp">
+<table key="version">
+<elem>2</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="port">111</elem>
+<elem key="owner">superuser</elem>
+<elem key="addr">0.0.0.0</elem>
+</table>
+<table key="local">
+<table key="version">
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="owner">superuser</elem>
+<elem key="addr">/run/rpcbind.sock</elem>
+</table>
+<table key="udp6">
+<table key="version">
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="port">111</elem>
+<elem key="owner">superuser</elem>
+<elem key="addr">::</elem>
+</table>
+<table key="tcp6">
+<table key="version">
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="port">111</elem>
+<elem key="owner">superuser</elem>
+<elem key="addr">::</elem>
+</table>
+<table key="tcp">
+<table key="version">
+<elem>2</elem>
+<elem>3</elem>
+<elem>4</elem>
+</table>
+<elem key="port">111</elem>
+<elem key="owner">superuser</elem>
+<elem key="addr">0.0.0.0</elem>
+</table>
+</table>
+</script></port>
+<port protocol="tcp" portid="3000"><state state="open" reason="syn-ack" reason_ttl="62"/><service name="ppp" servicefp="SF-Port3000-TCP:V=7.94%I=7%D=7/28%Time=64C4058C%P=x86_64-pc-linux-gnu%r(GenericLines,67,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request&quot;)%r(GetRequest,174,&quot;HTTP/1\.0\x20302\x20Found\r\nCache-Control:\x20no-cache\r\nContent-Type:\x20text/html;\x20charset=utf-8\r\nExpires:\x20-1\r\nLocation:\x20/login\r\nPragma:\x20no-cache\r\nSet-Cookie:\x20redirect_to=%2F;\x20Path=/;\x20HttpOnly;\x20SameSite=Lax\r\nX-Content-Type-Options:\x20nosniff\r\nX-Frame-Options:\x20deny\r\nX-Xss-Protection:\x201;\x20mode=block\r\nDate:\x20Fri,\x2028\x20Jul\x202023\x2018:14:22\x20GMT\r\nContent-Length:\x2029\r\n\r\n&lt;a\x20href=\&quot;/login\&quot;&gt;Found&lt;/a&gt;\.\n\n&quot;)%r(Help,67,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request&quot;)%r(HTTPOptions,12E,&quot;HTTP/1\.0\x20302\x20Found\r\nCache-Control:\x20no-cache\r\nExpires:\x20-1\r\nLocation:\x20/login\r\nPragma:\x20no-cache\r\nSet-Cookie:\x20redirect_to=%2F;\x20Path=/;\x20HttpOnly;\x20SameSite=Lax\r\nX-Content-Type-Options:\x20nosniff\r\nX-Frame-Options:\x20deny\r\nX-Xss-Protection:\x201;\x20mode=block\r\nDate:\x20Fri,\x2028\x20Jul\x202023\x2018:14:28\x20GMT\r\nContent-Length:\x200\r\n\r\n&quot;)%r(RTSPRequest,67,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request&quot;)%r(SSLSessionReq,67,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request&quot;)%r(TerminalServerCookie,67,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request&quot;)%r(TLSSessionReq,67,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request&quot;)%r(Kerberos,67,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request&quot;)%r(FourOhFourRequest,1A1,&quot;HTTP/1\.0\x20302\x20Found\r\nCache-Control:\x20no-cache\r\nContent-Type:\x20text/html;\x20charset=utf-8\r\nExpires:\x20-1\r\nLocation:\x20/login\r\nPragma:\x20no-cache\r\nSet-Cookie:\x20redirect_to=%2Fnice%2520ports%252C%2FTri%256Eity\.txt%252ebak;\x20Path=/;\x20HttpOnly;\x20SameSite=Lax\r\nX-Content-Type-Options:\x20nosniff\r\nX-Frame-Options:\x20deny\r\nX-Xss-Protection:\x201;\x20mode=block\r\nDate:\x20Fri,\x2028\x20Jul\x202023\x2018:14:54\x20GMT\r\nContent-Length:\x2029\r\n\r\n&lt;a\x20href=\&quot;/login\&quot;&gt;Found&lt;/a&gt;\.\n\n&quot;);" method="table" conf="3"/><script id="fingerprint-strings" output="&#xa;  FourOhFourRequest: &#xa;    HTTP/1.0 302 Found&#xa;    Cache-Control: no-cache&#xa;    Content-Type: text/html; charset=utf-8&#xa;    Expires: -1&#xa;    Location: /login&#xa;    Pragma: no-cache&#xa;    Set-Cookie: redirect_to=%2Fnice%2520ports%252C%2FTri%256Eity.txt%252ebak; Path=/; HttpOnly; SameSite=Lax&#xa;    X-Content-Type-Options: nosniff&#xa;    X-Frame-Options: deny&#xa;    X-Xss-Protection: 1; mode=block&#xa;    Date: Fri, 28 Jul 2023 18:14:54 GMT&#xa;    Content-Length: 29&#xa;    href=&quot;/login&quot;&gt;Found&lt;/a&gt;.&#xa;  GenericLines, Help, Kerberos, RTSPRequest, SSLSessionReq, TLSSessionReq, TerminalServerCookie: &#xa;    HTTP/1.1 400 Bad Request&#xa;    Content-Type: text/plain; charset=utf-8&#xa;    Connection: close&#xa;    Request&#xa;  GetRequest: &#xa;    HTTP/1.0 302 Found&#xa;    Cache-Control: no-cache&#xa;    Content-Type: text/html; charset=utf-8&#xa;    Expires: -1&#xa;    Location: /login&#xa;    Pragma: no-cache&#xa;    Set-Cookie: redirect_to=%2F; Path=/; HttpOnly; SameSite=Lax&#xa;    X-Content-Type-Options: nosniff&#xa;    X-Frame-Options: deny&#xa;    X-Xss-Protection: 1; mode=block&#xa;    Date: Fri, 28 Jul 2023 18:14:22 GMT&#xa;    Content-Length: 29&#xa;    href=&quot;/login&quot;&gt;Found&lt;/a&gt;.&#xa;  HTTPOptions: &#xa;    HTTP/1.0 302 Found&#xa;    Cache-Control: no-cache&#xa;    Expires: -1&#xa;    Location: /login&#xa;    Pragma: no-cache&#xa;    Set-Cookie: redirect_to=%2F; Path=/; HttpOnly; SameSite=Lax&#xa;    X-Content-Type-Options: nosniff&#xa;    X-Frame-Options: deny&#xa;    X-Xss-Protection: 1; mode=block&#xa;    Date: Fri, 28 Jul 2023 18:14:28 GMT&#xa;    Content-Length: 0"><elem key="FourOhFourRequest">&#xa;    HTTP/1.0 302 Found&#xa;    Cache-Control: no-cache&#xa;    Content-Type: text/html; charset=utf-8&#xa;    Expires: -1&#xa;    Location: /login&#xa;    Pragma: no-cache&#xa;    Set-Cookie: redirect_to=%2Fnice%2520ports%252C%2FTri%256Eity.txt%252ebak; Path=/; HttpOnly; SameSite=Lax&#xa;    X-Content-Type-Options: nosniff&#xa;    X-Frame-Options: deny&#xa;    X-Xss-Protection: 1; mode=block&#xa;    Date: Fri, 28 Jul 2023 18:14:54 GMT&#xa;    Content-Length: 29&#xa;    href=&quot;/login&quot;&gt;Found&lt;/a&gt;.</elem>
+<elem key="GenericLines, Help, Kerberos, RTSPRequest, SSLSessionReq, TLSSessionReq, TerminalServerCookie">&#xa;    HTTP/1.1 400 Bad Request&#xa;    Content-Type: text/plain; charset=utf-8&#xa;    Connection: close&#xa;    Request</elem>
+<elem key="GetRequest">&#xa;    HTTP/1.0 302 Found&#xa;    Cache-Control: no-cache&#xa;    Content-Type: text/html; charset=utf-8&#xa;    Expires: -1&#xa;    Location: /login&#xa;    Pragma: no-cache&#xa;    Set-Cookie: redirect_to=%2F; Path=/; HttpOnly; SameSite=Lax&#xa;    X-Content-Type-Options: nosniff&#xa;    X-Frame-Options: deny&#xa;    X-Xss-Protection: 1; mode=block&#xa;    Date: Fri, 28 Jul 2023 18:14:22 GMT&#xa;    Content-Length: 29&#xa;    href=&quot;/login&quot;&gt;Found&lt;/a&gt;.</elem>
+<elem key="HTTPOptions">&#xa;    HTTP/1.0 302 Found&#xa;    Cache-Control: no-cache&#xa;    Expires: -1&#xa;    Location: /login&#xa;    Pragma: no-cache&#xa;    Set-Cookie: redirect_to=%2F; Path=/; HttpOnly; SameSite=Lax&#xa;    X-Content-Type-Options: nosniff&#xa;    X-Frame-Options: deny&#xa;    X-Xss-Protection: 1; mode=block&#xa;    Date: Fri, 28 Jul 2023 18:14:28 GMT&#xa;    Content-Length: 0</elem>
+</script></port>
+<port protocol="tcp" portid="5000"><state state="open" reason="syn-ack" reason_ttl="62"/><service name="http" product="Werkzeug httpd" version="2.0.2" extrainfo="Python 3.8.12" method="probed" conf="10"><cpe>cpe:/a:python:python:3.8.12</cpe></service><script id="http-title" output="Etch a Sketch"><elem key="title">Etch a Sketch</elem>
+</script></port>
+<port protocol="tcp" portid="6443"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="sun-sr-https" servicefp="SF-Port6443-TCP:V=7.94%T=SSL%I=7%D=7/28%Time=64C40592%P=x86_64-pc-linux-gnu%r(GenericLines,67,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request&quot;)%r(GetRequest,14A,&quot;HTTP/1\.0\x20401\x20Unauthorized\r\nAudit-Id:\x201945cd0d-b3bf-4529-b2d4-9c972f5d7b7b\r\nCache-Control:\x20no-cache,\x20private\r\nContent-Type:\x20application/json\r\nDate:\x20Fri,\x2028\x20Jul\x202023\x2018:14:28\x20GMT\r\nContent-Length:\x20129\r\n\r\n{\&quot;kind\&quot;:\&quot;Status\&quot;,\&quot;apiVersion\&quot;:\&quot;v1\&quot;,\&quot;metadata\&quot;:{},\&quot;status\&quot;:\&quot;Failure\&quot;,\&quot;message\&quot;:\&quot;Unauthorized\&quot;,\&quot;reason\&quot;:\&quot;Unauthorized\&quot;,\&quot;code\&quot;:401}\n&quot;)%r(HTTPOptions,14A,&quot;HTTP/1\.0\x20401\x20Unauthorized\r\nAudit-Id:\x20e52f69c5-8edc-4d60-b556-52e45299e0c5\r\nCache-Control:\x20no-cache,\x20private\r\nContent-Type:\x20application/json\r\nDate:\x20Fri,\x2028\x20Jul\x202023\x2018:14:29\x20GMT\r\nContent-Length:\x20129\r\n\r\n{\&quot;kind\&quot;:\&quot;Status\&quot;,\&quot;apiVersion\&quot;:\&quot;v1\&quot;,\&quot;metadata\&quot;:{},\&quot;status\&quot;:\&quot;Failure\&quot;,\&quot;message\&quot;:\&quot;Unauthorized\&quot;,\&quot;reason\&quot;:\&quot;Unauthorized\&quot;,\&quot;code\&quot;:401}\n&quot;)%r(RTSPRequest,67,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request&quot;)%r(Help,67,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request&quot;)%r(SSLSessionReq,67,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request&quot;)%r(TerminalServerCookie,67,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request&quot;)%r(TLSSessionReq,67,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request&quot;)%r(Kerberos,67,&quot;HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x20Request&quot;)%r(FourOhFourRequest,14A,&quot;HTTP/1\.0\x20401\x20Unauthorized\r\nAudit-Id:\x20f594f2ed-5e9a-4053-aa82-dc8fd41950dd\r\nCache-Control:\x20no-cache,\x20private\r\nContent-Type:\x20application/json\r\nDate:\x20Fri,\x2028\x20Jul\x202023\x2018:14:57\x20GMT\r\nContent-Length:\x20129\r\n\r\n{\&quot;kind\&quot;:\&quot;Status\&quot;,\&quot;apiVersion\&quot;:\&quot;v1\&quot;,\&quot;metadata\&quot;:{},\&quot;status\&quot;:\&quot;Failure\&quot;,\&quot;message\&quot;:\&quot;Unauthorized\&quot;,\&quot;reason\&quot;:\&quot;Unauthorized\&quot;,\&quot;code\&quot;:401}\n&quot;);" tunnel="ssl" method="table" conf="3"/><script id="ssl-cert" output="Subject: commonName=kubernetes/organizationName=kubernetes&#xa;Subject Alternative Name: DNS:kubernetes, DNS:kubernetes.default, DNS:kubernetes.default.svc, DNS:kubernetes.default.svc.cluster, DNS:kubernetes.svc.cluster.local, DNS:localhost, IP Address:127.0.0.1, IP Address:10.10.177.94, IP Address:FE80:0:0:0:0:62FF:FEB6:FE11, IP Address:10.96.0.1&#xa;Not valid before: 2023-07-28T17:54:00&#xa;Not valid after:  2024-07-27T17:54:00"><table key="subject">
+<elem key="commonName">kubernetes</elem>
+<elem key="organizationName">kubernetes</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">kubernetes-ca</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">CACDF005F7D836C59E43CD428C5AAF6EADDA65C926F882F4D74ADE938CED1A1FA1E0D66A744DF43B4B2AA6767EC721CBABF43F45BA1F038EFBB9CF354E5B4E84CF7776B05C8608DE88847159D24726519DF53786B932883CA00D8D110E06A73BA3F95BEDE5A92A37265271ED0612EBFBB2E0BF55CBC9881D8B0732FD9E3917F5D072ADEF4032E63728A4B2ADF737B503E6ECBE2BD7A093212C43728EDCD3221AAFB71642991AA6B617D72AF042ED132CD1E6797CD6A1147F425473B41395137E83B8DC9E82C2B79B37D045183B758C1CC207A869E7749BD629782A105D1FF3A4464B610BAD2528A552B92C66DBFAB8D59A5E5E78BB42491F84B83F8E404E22C1</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Digital Signature, Key Encipherment</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication, TLS Web Client Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Basic Constraints</elem>
+<elem key="value">CA:FALSE</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">EB:50:CE:9B:28:A6:AA:F1:E2:B5:4D:01:60:40:D6:C8:DE:D9:45:EC</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">50:65:5A:D9:C4:2A:94:4D:DD:0C:26:5B:9D:70:69:C7:FE:A2:8B:30</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:kubernetes, DNS:kubernetes.default, DNS:kubernetes.default.svc, DNS:kubernetes.default.svc.cluster, DNS:kubernetes.svc.cluster.local, DNS:localhost, IP Address:127.0.0.1, IP Address:10.10.177.94, IP Address:FE80:0:0:0:0:62FF:FEB6:FE11, IP Address:10.96.0.1</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-07-28T17:54:00</elem>
+<elem key="notAfter">2024-07-27T17:54:00</elem>
+</table>
+<elem key="md5">a53b4e4e5369b5805bb41e1e270519ab</elem>
+<elem key="sha1">48a927e9c18c6ce4cd2c98d4a3c94b15e58e59ec</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIEBjCCAu6gAwIBAgIUYiWTXCzUoF5BznYAOofN0tNJXqcwDQYJKoZIhvcNAQEL&#xa;BQAwGDEWMBQGA1UEAxMNa3ViZXJuZXRlcy1jYTAeFw0yMzA3MjgxNzU0MDBaFw0y&#xa;NDA3MjcxNzU0MDBaMCoxEzARBgNVBAoTCmt1YmVybmV0ZXMxEzARBgNVBAMTCmt1&#xa;YmVybmV0ZXMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDKzfAF99g2&#xa;xZ5DzUKMWq9urdplySb4gvTXSt6TjO0aH6Hg1mp0TfQ7Syqmdn7HIcur9D9Fuh8D&#xa;jvu5zzVOW06Ez3d2sFyGCN6IhHFZ0kcmUZ31N4a5Mog8oA2NEQ4Gpzuj+Vvt5akq&#xa;NyZSce0GEuv7suC/VcvJiB2LBzL9njkX9dByre9AMuY3KKSyrfc3tQPm7L4r16CT&#xa;ISxDco7c0yIar7cWQpkaprYX1yrwQu0TLNHmeXzWoRR/QlRztBOVE36DuNyegsK3&#xa;mzfQRRg7dYwcwgeoaed0m9YpeCoQXR/zpEZLYQutJSilUrksZtv6uNWaXl54u0JJ&#xa;H4S4P45ATiLBAgMBAAGjggE0MIIBMDAOBgNVHQ8BAf8EBAMCBaAwHQYDVR0lBBYw&#xa;FAYIKwYBBQUHAwEGCCsGAQUFBwMCMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFOtQ&#xa;zpsopqrx4rVNAWBA1sje2UXsMB8GA1UdIwQYMBaAFFBlWtnEKpRN3QwmW51wacf+&#xa;ooswMIGwBgNVHREEgagwgaWCCmt1YmVybmV0ZXOCEmt1YmVybmV0ZXMuZGVmYXVs&#xa;dIIWa3ViZXJuZXRlcy5kZWZhdWx0LnN2Y4Iea3ViZXJuZXRlcy5kZWZhdWx0LnN2&#xa;Yy5jbHVzdGVyghxrdWJlcm5ldGVzLnN2Yy5jbHVzdGVyLmxvY2Fsgglsb2NhbGhv&#xa;c3SHBH8AAAGHBAoKsV6HEP6AAAAAAAAAAABi//62/hGHBApgAAEwDQYJKoZIhvcN&#xa;AQELBQADggEBAEfLH9WJSkJoHj/2JbqpoxgNo5N9tbPtTqeWOQziNJ7rf/DO6JJR&#xa;f2Hn70eSdlgUNyT9YBgWs/cZNWonJPkjbokiaHJNJlS8CE2bAMdEZKDmVpPp6fZj&#xa;pUW3wcfUBqHuOjGbQv0GkmfxFljgtHl1eoiFh7Tnm11/19kItQKTg3sqOaGodRSf&#xa;2b7e8np4Z2597gqe7yjKUyxvhQFl2EzxizKfAE3xee1IRPzC7ZKfVdL6gr0j4e2f&#xa;lx54oTJPXuzYx7cQbkcKz0T6TeHUG8SbC0vHU94uNkHuBSO0wPJySg0DjVTQUapn&#xa;G4FtmLPSLCwKjkHYrdwq99pBfKH9yoFL6Lo=&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="fingerprint-strings" output="&#xa;  FourOhFourRequest: &#xa;    HTTP/1.0 401 Unauthorized&#xa;    Audit-Id: f594f2ed-5e9a-4053-aa82-dc8fd41950dd&#xa;    Cache-Control: no-cache, private&#xa;    Content-Type: application/json&#xa;    Date: Fri, 28 Jul 2023 18:14:57 GMT&#xa;    Content-Length: 129&#xa;    {&quot;kind&quot;:&quot;Status&quot;,&quot;apiVersion&quot;:&quot;v1&quot;,&quot;metadata&quot;:{},&quot;status&quot;:&quot;Failure&quot;,&quot;message&quot;:&quot;Unauthorized&quot;,&quot;reason&quot;:&quot;Unauthorized&quot;,&quot;code&quot;:401}&#xa;  GenericLines, Help, Kerberos, RTSPRequest, SSLSessionReq, TLSSessionReq, TerminalServerCookie: &#xa;    HTTP/1.1 400 Bad Request&#xa;    Content-Type: text/plain; charset=utf-8&#xa;    Connection: close&#xa;    Request&#xa;  GetRequest: &#xa;    HTTP/1.0 401 Unauthorized&#xa;    Audit-Id: 1945cd0d-b3bf-4529-b2d4-9c972f5d7b7b&#xa;    Cache-Control: no-cache, private&#xa;    Content-Type: application/json&#xa;    Date: Fri, 28 Jul 2023 18:14:28 GMT&#xa;    Content-Length: 129&#xa;    {&quot;kind&quot;:&quot;Status&quot;,&quot;apiVersion&quot;:&quot;v1&quot;,&quot;metadata&quot;:{},&quot;status&quot;:&quot;Failure&quot;,&quot;message&quot;:&quot;Unauthorized&quot;,&quot;reason&quot;:&quot;Unauthorized&quot;,&quot;code&quot;:401}&#xa;  HTTPOptions: &#xa;    HTTP/1.0 401 Unauthorized&#xa;    Audit-Id: e52f69c5-8edc-4d60-b556-52e45299e0c5&#xa;    Cache-Control: no-cache, private&#xa;    Content-Type: application/json&#xa;    Date: Fri, 28 Jul 2023 18:14:29 GMT&#xa;    Content-Length: 129&#xa;    {&quot;kind&quot;:&quot;Status&quot;,&quot;apiVersion&quot;:&quot;v1&quot;,&quot;metadata&quot;:{},&quot;status&quot;:&quot;Failure&quot;,&quot;message&quot;:&quot;Unauthorized&quot;,&quot;reason&quot;:&quot;Unauthorized&quot;,&quot;code&quot;:401}"><elem key="FourOhFourRequest">&#xa;    HTTP/1.0 401 Unauthorized&#xa;    Audit-Id: f594f2ed-5e9a-4053-aa82-dc8fd41950dd&#xa;    Cache-Control: no-cache, private&#xa;    Content-Type: application/json&#xa;    Date: Fri, 28 Jul 2023 18:14:57 GMT&#xa;    Content-Length: 129&#xa;    {&quot;kind&quot;:&quot;Status&quot;,&quot;apiVersion&quot;:&quot;v1&quot;,&quot;metadata&quot;:{},&quot;status&quot;:&quot;Failure&quot;,&quot;message&quot;:&quot;Unauthorized&quot;,&quot;reason&quot;:&quot;Unauthorized&quot;,&quot;code&quot;:401}</elem>
+<elem key="GenericLines, Help, Kerberos, RTSPRequest, SSLSessionReq, TLSSessionReq, TerminalServerCookie">&#xa;    HTTP/1.1 400 Bad Request&#xa;    Content-Type: text/plain; charset=utf-8&#xa;    Connection: close&#xa;    Request</elem>
+<elem key="GetRequest">&#xa;    HTTP/1.0 401 Unauthorized&#xa;    Audit-Id: 1945cd0d-b3bf-4529-b2d4-9c972f5d7b7b&#xa;    Cache-Control: no-cache, private&#xa;    Content-Type: application/json&#xa;    Date: Fri, 28 Jul 2023 18:14:28 GMT&#xa;    Content-Length: 129&#xa;    {&quot;kind&quot;:&quot;Status&quot;,&quot;apiVersion&quot;:&quot;v1&quot;,&quot;metadata&quot;:{},&quot;status&quot;:&quot;Failure&quot;,&quot;message&quot;:&quot;Unauthorized&quot;,&quot;reason&quot;:&quot;Unauthorized&quot;,&quot;code&quot;:401}</elem>
+<elem key="HTTPOptions">&#xa;    HTTP/1.0 401 Unauthorized&#xa;    Audit-Id: e52f69c5-8edc-4d60-b556-52e45299e0c5&#xa;    Cache-Control: no-cache, private&#xa;    Content-Type: application/json&#xa;    Date: Fri, 28 Jul 2023 18:14:29 GMT&#xa;    Content-Length: 129&#xa;    {&quot;kind&quot;:&quot;Status&quot;,&quot;apiVersion&quot;:&quot;v1&quot;,&quot;metadata&quot;:{},&quot;status&quot;:&quot;Failure&quot;,&quot;message&quot;:&quot;Unauthorized&quot;,&quot;reason&quot;:&quot;Unauthorized&quot;,&quot;code&quot;:401}</elem>
+</script></port>
+</ports>
+<times srtt="83621" rttvar="24874" to="183117"/>
+</host>
+<runstats><finished time="1690568172" timestr="Fri Jul 28 19:16:12 2023" summary="Nmap done at Fri Jul 28 19:16:12 2023; 1 IP address (1 host up) scanned in 115.72 seconds" elapsed="115.72" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
