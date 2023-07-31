@@ -12,6 +12,7 @@ Learnt:
 - `grep -B $LinesBefore -A $LinesAfter `
 - `ntpdate -s` multiple times to be very very safe!  
 	- Actually over and over and over again
+- [Skew-whiff](https://dictionary.cambridge.org/dictionary/english/skew-whiff)  is hyphenated and again the clock Skew is just a every time before anything command
 Beyond Root:
 - Silver, Golden, Diamond and Sapphire Tickets
 - Author and manage a Azure Policy for Kerberos and research that
@@ -23,7 +24,6 @@ Tripletted with [[Response-Helped-Through]] and [[Dynstr-Helped-Through]]
 
 - [[Absolute-Notes.md]]
 - [[Absolute-CMD-by-CMDs.md]]
-
 
 [Ippsec Video](https://www.youtube.com/watch?v=rfAmMQV_wss)
 [Alh4zr3d Stream](https://www.twitch.tv/videos/1855594279)
@@ -164,7 +164,7 @@ d.klay : Darkmoonsky248girl
 
 Then used with cme to prove sync date and time is important
 ![](provedateandtime.png)
-
+everytime
 Ippsec and Alh4zr3d: 
 ```bash
 # cme -k kerberos authentication
@@ -201,7 +201,7 @@ I tried the simple OSCP option of resetting the box just in case before heading 
 
 ![](installingwithpip.png)
 
-Also three weeks ago [CME forked from original - now deprecated](https://github.com/mpgn/CrackMapExec) and [Kali is still 5.4... as of 20/07/2023](https://www.kali.org/tools/crackmapexec/)
+Also three weeks ago [CME forked from original - now deprecated](https://github.com/mpgn/CrackMapExec) and [Kali is still 5.4... as of 20/07/2023](https://www.kali.org/tools/crackmapexec/). as of 31/7/2023 either I was not hammer the `sudo ntpdate -s dc.absolute.htb` over and over again. 
 
 Potentially as 0xdf use the dockerised version: Dockerise the problems... fretted away
 ```bash
@@ -333,7 +333,6 @@ Have you checked?:
 - Step 3): Do you need to **(re)**TGT after re-synced to the DC: go to Step 1)
 - Step 4): Are you running latest Tool versions!
 
-
 Alh4zr3d - but did not work: 
 ```bash
 # -k is deprecated for smbclient, --use-kerberos=required|desired|off
@@ -348,16 +347,33 @@ session setup failed: NT_STATUS_NO_LOGON_SERVERS
 
 - https://www.twitch.tv/videos/1855594279 2:00 Kinit conifguration do additional research!
 
+Returning about a week later before I wrote the script below I installed the stable version of bloodhound.py from kali tools
+```bash
+KRB5CCNAME=d.klay.ccache bloodhound-python -k -dc dc.absolute.htb -ns 10.129.229.59 -c all -d absolute.htb -u d.klay -p 'Darkmoonsky248girl' --zip
+```
+![](atleasttherrorsaredifferent.png)
+
+Just failed to authenticate with Kerberos instead of erroring out over LDAP connectivity because of clock skew madness. I did get user.json with 0 again.
+![](wowweirdhairniceclick.png)
+
+Now back to what was doing which was the dance of `ntpdate -> Kerberos -> sudo ntpdate -> $Bloodhound(py)varients`. Instead I wanted use `SVC_SMB@ABSOLUTE.HTB : AbsoluteSMBService123!` just in case LDAP authentication was not available for the `d.klay` account.  
+
+```bash
+sudo ntpdate -s dc.absolute.htb
+impacket-getTGT -dc-ip 10.129.229.59 absolute.htb/SVC_SMB:AbsoluteSMBService123!
+sudo ntpdate -s dc.absolute.htb
+/opt/BloodHound.py/bloodhound.py -k -dc dc.absolute.htb -ns 10.129.229.59 -c all -d absolute.htb -u SVC_SMB -p 'AbsoluteSMBService123!' --zip
+```
+
+Instead I let run just in case it is that bloodhound is just failing to make some checks to `LDAP`, but getting everything else.
+
 Alh4zr3d Kinit and impacket-smbclient
 ```bash
 # Kinit
 sudo apt-get install krb5-user
 # Al put:
 # Default Realm absolute.htb, Servers for your realm 10.129.229.59, Hostname for Krb realm dc.absolute.htb
-
-
-sudo sed -i 's//absolute.htb = {\n\t\tkdc = dc.absolute.htb\n\t\tadmin_server = dc.absolute.htb/'
-
+#sudo sed -i 's//absolute.htb = {\n\t\tkdc = dc.absolute.htb\n\t\tadmin_server = dc.absolute.htb/'
 ```
 
 manageKRB5Conf.sh
@@ -408,10 +424,86 @@ esac
 exit
 ```
 
+While I let Bloodhound.py try for 30 minutes otherwise I will try `--auth-method ntlm`
+![](limitations.png)
+
+[Good news everyone!](https://www.youtube.com/watch?v=g8IVI0sZ6F8) CME is unskew-wiffed! 
+![](skew.png)
+
+Decided on packet capture with `tcpdump` and viewing it in `wireshark`, without `KRB5CCNAME=` set
+
+![](invalidCredential49.png)
+
+With `KRB5CCNAME=`
+```bash
+sudo ntpdate -s dc.absolute.htb
+# Continuous sudo ntpdate -s dc.absolute.htb till it works!
+KRB5CCNAME=SVC_SMB.ccache /opt/BloodHound.py/bloodhound.py -k -dc dc.absolute.htb -ns 10.129.229.59 -c all -d absolute.htb -u SVC_SMB -p 'AbsoluteSMBService123!'
+```
+
+SUCCESS!
+![](HURRAYbhworked.png)
+
+With `tcpdump` and `wireshark` for visuals on the successful authentication 
+![1080](sasl.png)
+
+GSS-API is Generic Security Service API (RFC 2744). It provides a common interface for accessing different security services. **One of the most popular security services available for GSS-API is the Kerberos v5** - [Oracle Help Center](https://docs.oracle.com/javase/jndi/tutorial/ldap/security/gssapi.html)
 
 ```bash
-impacket-smbclient -dc-ip 10.129.229.59 -k absolute.htb/smb_svc@dc.absolute.htb/Shared
+#!/bin/bash
+
+# Author: 7ru7h
+
+if [ "$#" -ne 4 ]; then
+        echo "Usage: $0 <cmd: add / remove>/ setup <realm> <kdc> <admin_server>"
+        echo "run \`sudo apt-get install krb5-user\' - put: \`KALI\` as default in all capitals, no \` for adding and removing a default realm"
+        exit
+fi
+
+CMD=$1
+
+function addToKRB5Conf ()
+{
+        REALM=$1
+        KDC=$2
+        ADM=$3
+        echo "Adding: $@"
+        # add realm
+        sudo sed -i "s/admin_server = KALI/admin_server = $ADM/g" /etc/krb5.conf
+        sudo sed -i "s/kdc = KALI/kdc = $KDC/g" /etc/krb5.conf
+        sudo sed -i "s/KALI/$REALM/g" /etc/krb5.conf
+        cat /etc/krb5.conf
+        return
+}
+
+function removeFromKRB5Conf ()
+{
+        REALM=$1
+        KDC=$2
+        ADM=$3
+        echo "Remove and replacing back to default KALI every field: $@"
+        sudo sed -i "s/kdc = $KDC/kdc = KALI/g" /etc/krb5.conf
+        sudo sed -i "s/admin_server = $ADM/admin_server = KALI/g" /etc/krb5.conf
+        sudo sed -i "s/$REALM/KALI/g" /etc/krb5.conf
+        cat /etc/krb5.conf
+        return
+}
+
+case "$CMD" in
+        add) addToKRB5Conf $2 $3 $4 ;;
+        remove) removeFromKRB5Conf $2 $3 $4 ;;
+        setup) echo "run \`sudo apt-get install krb5-user\' - put: KALI as default in all capitals for adding and removing a  default realm" ;;
+        *) echo "$CMD is invalid" ;;
+esac
+exit
 ```
+
+
+Did not work and Kinit is the way
+```bash
+KRB5CCNAME=SVC_SMB.ccache impacket-smbclient -dc-ip 10.129.229.59 -k absolute.htb/smb_svc@dc.absolute.htb/Shared
+```
+
 
 
 Ippsec: LDAPsearch
@@ -445,7 +537,7 @@ pip install .
 ```
 
 
-Before transfering to a Windows VM Alh4zr3d did:
+Before transferring to a Windows VM Alh4zr3d did:
 ```bash
 file test.exe
 string test.exe
