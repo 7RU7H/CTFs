@@ -449,6 +449,7 @@ With `tcpdump` and `wireshark` for visuals on the successful authentication
 
 GSS-API is Generic Security Service API (RFC 2744). It provides a common interface for accessing different security services. **One of the most popular security services available for GSS-API is the Kerberos v5** - [Oracle Help Center](https://docs.oracle.com/javase/jndi/tutorial/ldap/security/gssapi.html)
 
+Simplified my script to deal with `$var` and `\escapes` replacements, but learn how `sed` can handle variable just not with some characters
 ```bash
 #!/bin/bash
 

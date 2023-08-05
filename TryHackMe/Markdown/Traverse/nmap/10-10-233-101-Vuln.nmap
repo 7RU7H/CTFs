@@ -1,0 +1,88 @@
+# Nmap 7.94 scan initiated Sat Aug  5 11:33:22 2023 as: nmap --script vuln -oA nmap/10-10-233-101-Vuln --min-rate 300 -e tun0 -p 80,22 10.10.233.101
+Nmap scan report for 10.10.233.101
+Host is up (0.072s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|       httponly flag not set
+|   /client/: 
+|     PHPSESSID: 
+|_      httponly flag not set
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+| http-sql-injection: 
+|   Possible sqli for queries:
+|     http://10.10.233.101:80/logs/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=N%3BO%3DD%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=N%3BO%3DD%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=D%3BO%3DD%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=M%3BO%3DD%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=S%3BO%3DD%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=M%3BO%3DD%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=D%3BO%3DD%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=S%3BO%3DD%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=N%3BO%3DD%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/logs/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=N%3BO%3DD%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.233.101:80/img/?C=D%3BO%3DA%27%20OR%20sqlspider
+|_    http://10.10.233.101:80/img/?C=S%3BO%3DA%27%20OR%20sqlspider
+| http-enum: 
+|   /logs/: Logs
+|   /phpmyadmin/: phpMyAdmin
+|   /api/: Potentially interesting folder
+|   /client/: Potentially interesting folder
+|_  /img/: Potentially interesting directory w/ listing on 'apache/2.4.41 (ubuntu)'
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+
+# Nmap done at Sat Aug  5 11:34:08 2023 -- 1 IP address (1 host up) scanned in 46.95 seconds
