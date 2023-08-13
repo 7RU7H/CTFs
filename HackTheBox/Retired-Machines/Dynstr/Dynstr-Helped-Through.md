@@ -21,10 +21,9 @@ Tripletted with [[Response-Helped-Through]] and [[Absolute-Helped-Through]] to s
 
 Having never managed a DNS server and looking into here and there especially from the [[Kotarak-Helped-Through]] - beyond root of making a DNS server and once required a Rogue DNS server at some point for another box. From what I have read and can assume seems like a good idea from the point on study the AZ-104 that is much easier to manage. No record management without some kind of versioning like `git` for software seems like a nightmare. Especially from what I understand that incorrect record keeping can then expose domains that are suppose be in some network perimeter and not accessible by the public internet.
 
-
 ## Recon
 
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](Screenshots/ping.png)
 
 Nuclei: [[generic-tokens-http___10.129.154.73_]]
@@ -38,6 +37,22 @@ Nuclei states that the same key is a Google API keys wtf..is..`AIzaSyCWDPCiH080d
 ## Privilege Escalation
 
 ## Beyond Root
+
+Get VS codium for the zero telemetry on Kali
+```bash
+#!/bin/bash
+
+wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
+    | gpg --dearmor \
+    | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
+wait
+echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' \
+    | sudo tee /etc/apt/sources.list.d/vscodium.list
+wait
+sudo apt update && sudo apt install codium
+```
+
+
 
 Rehost DNS web application utility from Dynstr various ways in Azure.
 

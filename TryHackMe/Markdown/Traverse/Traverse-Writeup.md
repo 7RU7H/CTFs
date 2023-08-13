@@ -337,7 +337,7 @@ I am going for Azure exams soon so adding this here to justify doing the CTF eve
 	- Create an App Service
 		- Export the App Plan as an Azure Resource Manager (ARM) template
 		- Manual or Automated
-	- Configure certificates and TLS for an App Service reate a free App Service managed certificate
+	- Configure certificates and TLS for an App Service create a free App Service managed certificate
 	- Map an existing custom DNS name to an App Service
 		- `Search -> App Services -> Custom Domains`
 	- Configure backup for an App Service
