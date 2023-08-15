@@ -637,6 +637,47 @@ https://learn.microsoft.com/en-us/windows-server/networking/dns/quickstart-insta
 #### Sapphire Ticket
 
 
+## Azure
+
+Instead of Azure AD / Entra ID as I confident in this area revision for Azure Bastion, Builtin Roles considerations and Storage is then 
+
+    Implement Azure Bastion
+
+  Manage built-in Azure roles for resources
+
+- 
+
+    Create and configure a file share in Azure Storage
+
+    Create and configure a container in Blob Storage
+
+    Configure storage tiers
+
+    Configure snapshots and soft delete for Azure Files
+
+    Configure blob lifecycle management
+
+    Configure blob versioning
+
+
+    Configure stored access policies
+
+    Manage access keys - [[Dynstr-Helped-Through]]
+
+    Configure identity-based access for Azure Files
+
+- Create and configure storage accounts
+
+    Configure Azure Storage redundancy
+
+    Configure object replication
+
+    Configure storage account encryption
+
+    Manage data by using Azure Storage Explorer and AzCopy
+
+
+
 
 https://github.com/Azure/azure-quickstart-templates
 

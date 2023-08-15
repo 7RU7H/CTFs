@@ -27,12 +27,7 @@ dynadns : sndanyd
 
 ### Todo 
 
-Services?
-```
-- dnsalias.htb
-- dynamicdns.htb
-- no-ip.htb
-```
+
 
 `key=AIzaSyCWDPCiH080dNCTYC-uprmLOn2mt2BMSUk,Password: sndanyd`
 ### Done
@@ -64,3 +59,37 @@ We could use it to point to a rogue DNS server
 - Really would rather have BiS tool than anything else
 
 We have credentials, but how to use them? On chance that Dynamic DNS is a thing [Wikipedia Dynamic DNS](https://en.wikipedia.org/wiki/Dynamic_DNS) it does.. so the other hostnames are hosted on the same nameserver...
+
+Services?
+```
+- dnsalias.htb
+- dynamicdns.htb
+- no-ip.htb
+```
+
+Services?
+```bash
+# Add each domain to our /etc/hosts file with sed 
+sudo sed -i 's/10.129.121.237 dyna.htb/10.129.120.38 dyna.htb dnsalias.htb dynamicdns.htb no-ip.htb/g' /etc/hosts
+
+```
+
+Failed script... - Golang tools, 
+```bash
+#!/bin/bash
+
+# Automate DynStr dynamic hosts while I do other things
+
+DynStrHosts=(dnsalias dynamicdns no-ip)
+for host in $DynStrHosts; do
+        echo $host | xargs -I {} nikto -h {}.htb -o nikto/{}.txt;
+        wait
+        echo $host | xargs -I {} ~/go/bin/nuclei -u http://{}.htb -me nuclei-{};
+        wait
+        echo $host | xargs -I {} gospider -d 0 -s 'http://{}.htb' -a -d 5 -c 5 --sitemap --robots --blacklist jpg,jpeg,gif,css,tif,tiff,png,ttf,woff,woff2,ico,pdf,svg,txt  -o gospider-{};
+        wait
+        echo $host | xargs -I {} feroxbuster --url 'http://{}.htb' -w /usr/share/seclists/Discovery/Web-Content/raft-medium-words-lowercase.txt --auto-tune -r -A -o feroxbuster/{}-rmwlc;
+        wait
+done
+```
+

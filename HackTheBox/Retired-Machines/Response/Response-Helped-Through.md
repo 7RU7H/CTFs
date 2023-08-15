@@ -14,7 +14,7 @@ Learnt:
 Beyond Root:
 - Golang  version of the web server and spawn a another webserver for vulnerable machine
 - Implement a server with
-	- Azure App Service
+	- Azure App Service - Completed for [[Traverse-Writeup]]
 	- Docker containerise windows work station and kubernetes a web app for Vuln machine I want to template out and make
 	- Application gateway for routes and OWASP top 10
 	- Private DNS endpoint
@@ -267,3 +267,16 @@ OSCP level Windows and Active Directory Jungle Gym
 - Make uber vulnerable switch once completed
 - Ascii Art of completion
 
+## Azure
+
+
+
+	Create and manage an Azure container registry
+     Provision a container by using Azure Container Instances
+     Provision a container by using Azure Container Apps
+     Manage sizing and scaling for containers, including Azure Container Instances and Azure Container Apps
+
+ - Interpret metrics in Azure Monitor
+ - Configure log settings in Azure Monitor
+ - Query and analyze logs in Azure Monitor
+- Configure and interpret monitoring of virtual machines, storage accounts, and networks by using Azure Monitor Insights

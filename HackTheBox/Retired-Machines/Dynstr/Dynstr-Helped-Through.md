@@ -8,6 +8,7 @@ Goals:
 - Rogue DNS setup 
 - VS Code / Codium and Snyk plugin is must to have!
 Learnt:
+- Automating with the power of x[ar](https://www.youtube.com/watch?v=b9VrnCMhJsQ)gs 
 Beyond Root:
 - Azure DNS
 - Azure Backup
@@ -29,6 +30,8 @@ The time to live(TTL) indicates its OS. It is a decrementation from each hop bac
 Nuclei: [[generic-tokens-http___10.129.154.73_]]
 `key=AIzaSyCWDPCiH080dNCTYC-uprmLOn2mt2BMSUk,Password: sndanyd`
 Nuclei states that the same key is a Google API keys wtf..is..`AIzaSyCWDPCiH080dNCTYC-uprmLOn2mt2BMSUk` from Nuclei [[google-api-key-http___10.129.154.73_]]
+
+[DT's xargs video is a must watch!](https://www.youtube.com/watch?v=rp7jLi_kgPg)
 
 ## Exploit
 
@@ -52,14 +55,87 @@ wait
 sudo apt update && sudo apt install codium
 ```
 
+#### Azure
 
-
-Rehost DNS web application utility from Dynstr various ways in Azure.
-
-
+Original Goal - Rehost DNS web application utility from Dynstr various ways in Azure.
+- Make a Log workspace
 - Azure DNS
 - Azure Backup
-- Make a Log workspace
+
+Syllabus Revision: 
+
+Assumptions:
+- We are operating on East Coast US 
+- We are hosting `dnsalias dynamicdns no-ip` and not worrying about considering configuring DynStr as PaaS
+- Not using Azure App services as I have already revised that with [[Traverse-Writeup]]
+- We have an Azure Gateway for VPN access
+
+Firstly as the main security vulnerability on DynStr is the password for Dynamic DNS and the outdated DNS BIND service moving to Azure DNS to manage keys with Keys Vaults and using some option regarding hosting DNS for Azure. If DynStr.org was hosting three differing internal websites in the cloud with sub companies dnsalias, dynamicdns and no-ip then Azure Private Resolver would be useful for centralising applications and allow Azure WAN cross-region access via DNS resolution. 
+
+It would also be alot for work to maintain three different domains with custom DNS, but if that ws required we would need to make:
+
+- Three resource groups
+- Three VNets
+- Three DNS VMs 
+- Four Traffic Manage Load Balancers ( DNS Load Balancers )
+	- One Parent DNS Load to route to each domain
+	- One each for preventing DoS via DNS request-ad-infinitum 
+- Business Logic VMS
+- 2 Private Links per network 
+	- One for Backup via Private Link
+	- One that Links internal access from Azure Gateway (if these internally hosted)
+	
+If we are hosting for the Public then Public DNS otherwise Custom DNS or Private DNS managed by Azure.
+
+Key Vault is would be in the Manage access keys section for [[Absolute-Helped-Through]], but for the security vulnerability. For more Azure Storage revision view that page.
+
+On the syllabus changes the one line of Azure DNS does not really do justice to the amount of DNS related configurations and options there are as well as requiring a good fundamental understanding of DNS at the System Administrator level
+- Configure Azure DNS
+	- Custom DNS
+	- Private DNS
+	- Public DNS
+	- Azure Managed and Subscriber managed DNS
+	- Azure Private Resolver is for resolve domains in Hybrid cloud
+
+- Configure service endpoints for Azure platform as a service (PaaS)
+
+- Configure private endpoints for Azure PaaS
+
+- Configure name resolution and load balancing
+
+
+
+Backup related
+- Create a Recovery Services vault
+	- `Search -> Recovery Services vaults -> + Create`
+- Create an Azure Backup vault
+	- `Search -> Backup vaults -> + Create`
+- Create and configure a backup policy
+	- `Search Backup Center -> Policies`
+	- `Search -> Policy -> Definitions -> Category Drop -> untick All and retick Backup Policies`
+- Perform backup and restore operations by using Azure Backup
+	- `Search -> Backup center Alerts`
+- Configure Azure Site Recovery for Azure resources
+	- 
+- Perform a failover to a secondary region by using Site Recovery
+	`$SiteRecoveryvault -> select Recovery Plans -> $recoveryplan_name -> Failover`
+	`$SiteRecoveryvault -> select Recovery Plans -> $recoveryplan_name -> Reprotect`
+- Configure and interpret reports and alerts for backups
+	- `Search -> Backup center Alerts`
+
+`Search -> Recovery Services vaults -> + Create`
+- West Coast for our East Coast services of dnsalias dynamicdns no-ip
+	- GRS
+- Immutability for the RSV would be restrictive as the web applications would be continuous updated - hopefully.
+- Deny Public Access to the RSV
+- Creating a Private Endpoint for the backup policy and update - policy initiative 
+
+Failover to West US in a Disaster and reprotect back to East US. In a reprotect scenario we may want custom instead of last processed if there is a webshell in the recovery vault!
+
+
+
+
+- Update and Fault domain revision calculation 
 
 
 https://github.com/Azure/azure-quickstart-templates
