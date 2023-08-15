@@ -1,0 +1,92 @@
+# Nmap 7.94 scan initiated Tue Aug 15 17:31:05 2023 as: nmap --script discovery -oA nmap/10-129-120-110-Discovery --min-rate 200 -e tun0 -p 22,80 10.129.120.110
+Pre-scan script results:
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-ping: false
+|_lltd-discovery: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.129.120.110
+Host is up (0.052s latency).
+
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh-hostkey: 
+|   3072 e9:a4:39:4a:fb:06:5d:57:82:fc:4a:0e:0b:e4:6b:25 (RSA)
+|   256 a3:23:e4:98:df:b6:91:1b:f2:ac:2f:1c:c1:46:9b:15 (ECDSA)
+|_  256 fb:10:5f:da:55:a6:6b:95:3d:f2:e8:5c:03:36:ff:31 (ED25519)
+|_banner: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.4
+| ssh2-enum-algos: 
+|   kex_algorithms: (9)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+80/tcp open  http
+|_http-feed: Couldn't find any feeds.
+| http-headers: 
+|   Server: nginx/1.21.6
+|   Date: Tue, 15 Aug 2023 16:31:41 GMT
+|   Content-Type: text/html
+|   Content-Length: 145
+|   Connection: close
+|   Location: http://www.response.htb
+|   
+|_  (Request type: GET)
+|_http-comments-displayer: Couldn't find any comments.
+|_http-mobileversion-checker: No mobile version detected.
+|_http-title: Did not follow redirect to http://www.response.htb
+| http-useragent-tester: 
+|   Status for browser useragent: false
+|   Redirected To: http://www.response.htb
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-vhosts: 
+|_128 names had status 302
+| http-sitemap-generator: 
+|   Directory structure:
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    
+|_http-chrono: ERROR: Script execution failed (use -d to debug)
+|_http-errors: Couldn't find any error pages.
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-date: Tue, 15 Aug 2023 16:31:40 GMT; +1h00m00s from local time.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+
+Host script results:
+|_fcrdns: FAIL (No PTR record)
+|_ipidseq: All zeros
+|_dns-brute: Can't guess domain of "10.129.120.110"; use dns-brute.domain script argument.
+|_path-mtu: PMTU == 1500
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 22    0       51430.80   3211.24  0.0%
+|_80    1       47564.30   5942.10  0.0%
+
+# Nmap done at Tue Aug 15 17:33:45 2023 -- 1 IP address (1 host up) scanned in 160.57 seconds

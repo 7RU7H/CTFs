@@ -10,7 +10,7 @@ Goals:
 - VS Code / Codium and snyk plugin is must to have!
 Learnt:
 - API hacking - Burpsuite best practices regarding forking requests 
-- Session and Cookie hacking - key expose signing reuse to the then control json field that use that key
+- Session and Cookie hacking - key expose signing reuse to the then control JSON field that use that key
 Beyond Root:
 - Golang  version of the web server and spawn a another webserver for vulnerable machine
 - Implement a server with
@@ -119,7 +119,20 @@ with open("chat_source.zip", "wb") as f:
 print(r.json())
 ```
 
-VS code / Codium:
+Codium installation :
+```bash
+#!/bin/bash
+
+wget -qO - https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg \
+    | gpg --dearmor \
+    | sudo dd of=/usr/share/keyrings/vscodium-archive-keyring.gpg
+wait
+echo 'deb [ signed-by=/usr/share/keyrings/vscodium-archive-keyring.gpg ] https://download.vscodium.com/debs vscodium main' \
+    | sudo tee /etc/apt/sources.list.d/vscodium.list
+wait
+sudo apt update && sudo apt install codium
+wait
+```
 
 Set a breakpoint:
 - `Click in the margin by the line number` - a red dot will appear
@@ -244,7 +257,7 @@ https://www.youtube.com/watch?v=-t1UAvTxB94 24:00
 ## Exploit
 
 ## Foothold
-
+compaonions
 ## PrivEsc
 
 
@@ -269,14 +282,45 @@ OSCP level Windows and Active Directory Jungle Gym
 
 ## Azure
 
+Assumption that Response.htb service and require utilities are part of a DockerFile 
 
+- Create and manage an Azure container registry
 
-	Create and manage an Azure container registry
-     Provision a container by using Azure Container Instances
-     Provision a container by using Azure Container Apps
-     Manage sizing and scaling for containers, including Azure Container Instances and Azure Container Apps
+Create an Azure Container registry
+```bash
+az group create --name Response-ACR-rg --location WestUS
+az acr create --resource-group Response-ACR-rg --name ResponseACR --sku Premium
+# Build an Image
+az acr build --registry ResponseACR --image Response:v1
+# Verify Image
+az acr repository list --name ResponseACR --output table
+# Enable the registry account
+az acr update -n ResponseACR --admin-enabled true
+az acr credential show --name ResponseACR
+```
+ 
+ -  Provision a container by using Azure Container Instances
+
+ ```bash
+name=test123ResponseHTB
+# Deploy
+az container create \
+    --resource-group Response-ACR-rg \
+    --name $name \
+    --image ResponseACR.azurecr.io/Response:v1 \
+    --registry-login-server ResponseACR.azurecr.io \
+    --ip-address Public \
+    --location WestUS \
+    --registry-username $adminUsername \
+    --registry-password $adminPassword 
+# Get IP
+az container show --resource-group  Response-ACR-rg --name $name --query ipAddress.ip --output table
+```
+     
+- Provision a container by using Azure Container Apps
+    - Manage sizing and scaling for containers, including Azure Container Instances and Azure Container Apps
 
  - Interpret metrics in Azure Monitor
  - Configure log settings in Azure Monitor
- - Query and analyze logs in Azure Monitor
+ - Query and analyse logs in Azure Monitor
 - Configure and interpret monitoring of virtual machines, storage accounts, and networks by using Azure Monitor Insights
