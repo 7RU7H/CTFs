@@ -639,45 +639,90 @@ https://learn.microsoft.com/en-us/windows-server/networking/dns/quickstart-insta
 
 ## Azure
 
-Instead of Azure AD / Entra ID as I confident in this area revision for Azure Bastion, Builtin Roles considerations and Storage is then 
+Instead of Azure AD / Entra ID as I confident in this area revision for Azure Bastion, Builtin Roles considerations and Storage.
 
-    Implement Azure Bastion
+Assumptions:
+- Hybrid cloud
+- Azure Connect is live
+- Azure Gateway and VPN ready
+- VNets configured as requirements to make this section of the syllabus
 
+
+
+
+Resource Group
+Storage Group 
+
+of Azure File 
+
+
+
+- Implement Azure Bastion
+	- Subnet required 
+	- `Search -> $VNet -> Bastion`
   Manage built-in Azure roles for resources
 
-- 
+- Create and configure a file share in Azure Storage
+	- Open port 445 - check Firewall!
+- Create and configure a container in Blob Storage
+	- `Azure Storage accounts -> + Container -> Name and Change "Public Access Level"`
+- Configure storage tiers
+	- Hot, Cold, Archive - 
+- Configure snapshots and soft delete for Azure Files
+	- `Storage Account -> $storage_account -> File Shares -> $file_share -> Snapshots
 
-    Create and configure a file share in Azure Storage
+- Configure blob lifecycle management
+	- `Storage Account -> $storage_account -> Lifecycle Management`
+	- Rule-based run scheduling
+	- Rule-based condition to resource(s)
+		- 30 to cold
+		- 90 days to Archive
+- Configure blob versioning
+	- 
 
-    Create and configure a container in Blob Storage
+For each office network set aside two servers Windows for MABS and to ensure File Sync to cloud. 
+1. Deploy the Storage Sync Service
+	- Configure:
+		- The deployment name for the Storage Sync Service
+		- The Azure subscription ID to use for the deployment
+		- A Resource Group for the deployment
+		- The deployment location
+2. Prepare Windows Server(s)
+	1. Install Azure File Sync agent
+	2. Register servers with Storage Sync Service
+		- The Storage Sync Service deployment name
+		- The Resource Group for the deployment
 
-    Configure storage tiers
+- File share for day-to-day low-priv document sharing
+- File share per management group per tier of PPI data 
 
-    Configure snapshots and soft delete for Azure Files
+- Policy for File Share snapshotting non-sensitive shares as sensitive shares are to share - backup will cloud GRS-read only and storage of sensitive data will on-site. Get your premium Azure backbone access!
 
-    Configure blob lifecycle management
+Create file share snapshots
 
-    Configure blob versioning
+- Configure stored access policies
+	- `Storage Accounts -> $storage_account -> Container -> Access Policy`
 
 
-    Configure stored access policies
-
-    Manage access keys - [[Dynstr-Helped-Through]]
-
-    Configure identity-based access for Azure Files
-
+- Configure identity-based access for Azure Files
+	- 
 - Create and configure storage accounts
 
     Configure Azure Storage redundancy
 
-    Configure object replication
+- Configure object replication
+	- Requires:
+	- Versioning enabled
+	- Does not support snapshots
+	- Replication Policy
+- Configure storage account encryption
 
-    Configure storage account encryption
-
-    Manage data by using Azure Storage Explorer and AzCopy
+- Manage data by using Azure Storage Explorer and AzCopy
 
 
+Regarding compliance over any PPI data of employee or App users all File shares will require
 
+Manage access keys - [[Dynstr-Helped-Through]]
 
 https://github.com/Azure/azure-quickstart-templates
 
@@ -688,7 +733,7 @@ OSCP level Windows and Active Directory Jungle Gym - Brainforest
 
 - Make OSCP level 
 - Have good theme
-- Make the Kubenetes, docker container only for pivoting not for escaping especially important for the other planned boxes
+- Make the Kubernetes, docker container only for pivoting not for escaping especially important for the other planned boxes
 - Make uber vulnerable switch once completed
 - Ascii Art of completion
 

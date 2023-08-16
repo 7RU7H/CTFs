@@ -93,16 +93,33 @@ On the syllabus changes the one line of Azure DNS does not really do justice to 
 - Configure Azure DNS
 	- Custom DNS
 	- Private DNS
+		- Add Virtual Network Linking (add VNet to a Zone): `Resource groups -> $resourceGroup -> $domain -> select Virtual Network Links` - provide VNet, Sub and a `Link name`  
+		- Create an additional DNS Record in the correct DNS Zone
+`Search -> Private DNS Zones -> Create`
+- Subscription, Resource Group and Instance Name
+- Link VNet Name `$PrivateDNSZone -> Settings -> Virtual Network Links -> Add` Link name, Sub, Vnet
+	 - Then Registration and Resolution - can auto- registrate
 	- Public DNS
 	- Azure Managed and Subscriber managed DNS
 	- Azure Private Resolver is for resolve domains in Hybrid cloud
+
+
 
 - Configure service endpoints for Azure platform as a service (PaaS)
 
 - Configure private endpoints for Azure PaaS
 
 - Configure name resolution and load balancing
-
+	- Traffic Manager to Load balncer and route DNS 
+		- `Search -> Traffic Manager -> Create a `
+		- Name, Routing Method, Subscription, Resource Group
+			- Routing Methods:
+				- Performance
+				- Weighted
+				- Priority
+				- Geographic
+				- MultiValue
+				- Subnet
 
 
 Backup related
@@ -133,9 +150,12 @@ Backup related
 Failover to West US in a Disaster and reprotect back to East US. In a reprotect scenario we may want custom instead of last processed if there is a webshell in the recovery vault!
 
 
-
-
-- Update and Fault domain revision calculation 
+- Update and Fault domain revision calculation 20 VMs
+	- 2 Fault
+	- 8 Update Domains
+How many will run on update and on fault
+- 10 on Fault
+- Max 3 down on update
 
 
 https://github.com/Azure/azure-quickstart-templates
