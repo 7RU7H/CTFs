@@ -646,20 +646,16 @@ Assumptions:
 - Azure Connect is live
 - Azure Gateway and VPN ready
 - VNets configured as requirements to make this section of the syllabus
-
-
-
-
-Resource Group
-Storage Group 
-
-of Azure File 
-
-
+- Existing with no IP address clashes:
+	- Resource Group
+	- Storage Group 
+	- Vnet
+ 
 
 - Implement Azure Bastion
 	- Subnet required 
 	- `Search -> $VNet -> Bastion`
+
   Manage built-in Azure roles for resources
 
 - Create and configure a file share in Azure Storage
@@ -673,12 +669,13 @@ of Azure File
 
 - Configure blob lifecycle management
 	- `Storage Account -> $storage_account -> Lifecycle Management`
+	- `Search Storage Account -> $storageAccount -> Data Management -> Lifecycle Management -> List View | Add rules`
 	- Rule-based run scheduling
 	- Rule-based condition to resource(s)
 		- 30 to cold
 		- 90 days to Archive
 - Configure blob versioning
-	- 
+	- `$blob -> Data protection -> Versioning -> click Enabled`
 
 For each office network set aside two servers Windows for MABS and to ensure File Sync to cloud. 
 1. Deploy the Storage Sync Service
@@ -698,11 +695,18 @@ For each office network set aside two servers Windows for MABS and to ensure Fil
 
 - Policy for File Share snapshotting non-sensitive shares as sensitive shares are to share - backup will cloud GRS-read only and storage of sensitive data will on-site. Get your premium Azure backbone access!
 
-Create file share snapshots
+- Create file share snapshots
+	- `Storage Account -> $storage_account -> File Shares -> $file_share -> Snapshots
 
 - Configure stored access policies
 	- `Storage Accounts -> $storage_account -> Container -> Access Policy`
-
+	- Create a SAS:
+		- `Storage Accounts -> $storage_account -> search SAS` configure and `Generate SAS and connection string`. Used for:
+		- Connection strings
+		- SAS Token
+		- Blob service SAS URL
+		- Queue service SAS URL
+		- Table service SAS URL
 
 - Configure identity-based access for Azure Files
 	- 

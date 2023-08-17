@@ -72,7 +72,7 @@ Assumptions:
 
 Firstly as the main security vulnerability on DynStr is the password for Dynamic DNS and the outdated DNS BIND service moving to Azure DNS to manage keys with Keys Vaults and using some option regarding hosting DNS for Azure. If DynStr.org was hosting three differing internal websites in the cloud with sub companies dnsalias, dynamicdns and no-ip then Azure Private Resolver would be useful for centralising applications and allow Azure WAN cross-region access via DNS resolution. 
 
-It would also be alot for work to maintain three different domains with custom DNS, but if that ws required we would need to make:
+It would also be a lot for work to maintain three different domains with custom DNS, but if that ws required we would need to make:
 
 - Three resource groups
 - Three VNets
@@ -91,23 +91,34 @@ Key Vault is would be in the Manage access keys section for [[Absolute-Helped-Th
 
 On the syllabus changes the one line of Azure DNS does not really do justice to the amount of DNS related configurations and options there are as well as requiring a good fundamental understanding of DNS at the System Administrator level
 - Configure Azure DNS
-	- Custom DNS
 	- Private DNS
 		- Add Virtual Network Linking (add VNet to a Zone): `Resource groups -> $resourceGroup -> $domain -> select Virtual Network Links` - provide VNet, Sub and a `Link name`  
-		- Create an additional DNS Record in the correct DNS Zone
-`Search -> Private DNS Zones -> Create`
-- Subscription, Resource Group and Instance Name
-- Link VNet Name `$PrivateDNSZone -> Settings -> Virtual Network Links -> Add` Link name, Sub, Vnet
-	 - Then Registration and Resolution - can auto- registrate
+		- Create an additional DNS Record in the correct DNS Zone `Search -> Private DNS Zones -> Create`
+		- Subscription, Resource Group and Instance Name
+		- Link VNet Name `$PrivateDNSZone -> Settings -> Virtual Network Links -> Add` Link name, Sub, Vnet
+		- Then Registration and Resolution - can auto- registrate
 	- Public DNS
-	- Azure Managed and Subscriber managed DNS
+	- Custom DNS  - VM 
 	- Azure Private Resolver is for resolve domains in Hybrid cloud
 
-
+If we are directly hosting their sites and data for small businesses that do not have an IT team we could segment Vnets and subnets based on resource access by the VM(s) hosting the site to backend services and infrastructure for backups.   
 
 - Configure service endpoints for Azure platform as a service (PaaS)
+	- Change subnet settings
+	- Create outbound NSG and associate with subnet
+
+For the alternative to meet my revision syllabus requirements and the most real world use of cloud for Dynamic DNS in relvance to the Dynstr machine - Dynstr setup is a Platform as a service. Organisations ask Dynstr.org to host their and manage their DNS and routing to their assets.  If for example it was collaborative effort between child companies of parent company for some larger goal the use of Private Endpoint as a PaaS (Self-Service I suppose) could then be used to connect VNets across regions - If Dynstr was the parent and the subdomains were the child company all requiring decentralisation of information, but cross-company access to some employees with shipping sensitive data to the cloud. An Addition VPN gateway and VPN for employees involved would reduce attack surface and creating gaps between other on-premise and cloud activities.
 
 - Configure private endpoints for Azure PaaS
+	- `Private Link Center -> Private Links`;
+	- `Private Link Center -> Private Endpoints`;
+		- Vnet configuration`:
+			- Beware of Dynamic | Static IP allocation
+			- Beware Private Endpoint DNS if required!
+	
+Additional Load balancers 
+
+Troubleshoot Load balancers
 
 - Configure name resolution and load balancing
 	- Traffic Manager to Load balncer and route DNS 
@@ -133,7 +144,8 @@ Backup related
 - Perform backup and restore operations by using Azure Backup
 	- `Search -> Backup center Alerts`
 - Configure Azure Site Recovery for Azure resources
-	- 
+	- Continuous availability during outages 
+		- Local, Zonal, Regional redundancy - also do need only read access  
 - Perform a failover to a secondary region by using Site Recovery
 	`$SiteRecoveryvault -> select Recovery Plans -> $recoveryplan_name -> Failover`
 	`$SiteRecoveryvault -> select Recovery Plans -> $recoveryplan_name -> Reprotect`

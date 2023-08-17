@@ -257,7 +257,7 @@ https://www.youtube.com/watch?v=-t1UAvTxB94 24:00
 ## Exploit
 
 ## Foothold
-compaonions
+
 ## PrivEsc
 
 
@@ -283,8 +283,6 @@ OSCP level Windows and Active Directory Jungle Gym
 ## Azure
 
 Assumption that Response.htb service and require utilities are part of a DockerFile 
-
-- Create and manage an Azure container registry
 
 Create an Azure Container registry
 ```bash
@@ -319,8 +317,48 @@ az container show --resource-group  Response-ACR-rg --name $name --query ipAddre
      
 - Provision a container by using Azure Container Apps
     - Manage sizing and scaling for containers, including Azure Container Instances and Azure Container Apps
+	    - `Search Container Apps -> $ContainerApp -> Scale and replicas -> Scale -> Edit and deploy -> Scale -> Add Scale rule`
 
- - Interpret metrics in Azure Monitor
- - Configure log settings in Azure Monitor
- - Query and analyse logs in Azure Monitor
+- Interpret metrics in Azure Monitor
+	- `Monitor -> Metrics -> Scope -> 
+- Configure log settings in Azure Monitor
+	- `Monitor -> Logs -> Scope -> Choice!`
+- Query and analyse logs in Azure Monitor
+`| row`
+```
+col
+|
+```
+
 - Configure and interpret monitoring of virtual machines, storage accounts, and networks by using Azure Monitor Insights
+	- Know your Azure Agents and Extensions!
+	- `Search Monitor -> Insights -> $byResource | $byService
+
+... Know your Azure Agents and Extensions:
+- Agents and Extension disambiguation
+	-  Extensions
+		-  Virtual machine extensions:
+			- Small applications that automate the tasks of creating, maintaining, and removing virtual machines.
+		- Azure Custom Script Extension
+			- is used for post-deployment configuration, software installation, or any other configuration or management task.
+		- Desired State Configuration (DSC) 
+			- is a management platform to manage an IT and development infrastructure with configuration as code.
+		- Azure VMAccess extension
+			- acts as a KVM switch that allows you to access the console to reset access to Linux or perform disk-level maintenance.
+	- Agents
+		- Azure Monitor Agent - Collects monitoring data 
+			- Will replace the both Log Analytics Agent and Azure diagnostic at some point:
+			- (LEGACY - here for disambiguation- Azure Diagnostic Extension - Enables customers to receive extra data from guest OSes and Workload on Azure resource
+			- Log Analytics agent - Collects logs and performance data for Azure Resources
+				- for Linux as part of a solution to collect JSON output
+		- Dependency Agent 
+			- Collects discovered data about certain processes to maps all dependencies between virtual machines and any external process dependencies.
+
+- Use Azure Network Watcher and Connection Monitor
+	- One NW per region with:
+		- IP flow: internet or on-premise connection
+		- Next hop: routing configuration 
+		- VPN troubleshoot: VPN gateway or connection
+		- NSG flow logs: to map IP traffic through a NSG
+		- Connection Troubleshoot: Connective issues in Azure 
+		- Connection Monitor: end-to-end connection monitoring
