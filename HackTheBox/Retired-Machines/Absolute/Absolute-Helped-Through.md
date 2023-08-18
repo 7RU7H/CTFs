@@ -738,9 +738,19 @@ Snapshotting relevant file shares, but if data is sensitive it needs to remain o
 Key Vault for everything - key expiration policy to enforce the rotation of keys
 
 - Manage data by using Azure Storage Explorer and AzCopy
- Either :
-- Move Data to, from, or within Azure Storage
-`Storage Accounts -> $storage_account -> Diagnose and solve problems
+- Azure Storage Explorer
+	- Requires: 	
+		- (Azure Resource Manager)
+	- Connect to storage accounts associated with your Azure subscriptions.
+	- Connect to storage accounts and services that are shared from other Azure subscriptions.
+	- Connect to and manage local storage by using the Azure Storage Emulator.
+		- Sign-in through `StorageExplorer.exe` with an Azure Account
+		- Add a resource via Azure AD, choosing the Azure tenant and the associated account
+	- Or SAS
+		- Then find connection node: `Local & attached > Storage Accounts > Attached Container > Service`
+	- Or with Storage account name and key
+	- For Data Lake Storage Gen1:
+		-  URI associated with the data lake
 
 With azcopy
 ```powershell
