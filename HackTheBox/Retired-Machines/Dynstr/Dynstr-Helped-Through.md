@@ -98,7 +98,6 @@ On the syllabus changes the one line of Azure DNS does not really do justice to 
 		- Link VNet Name `$PrivateDNSZone -> Settings -> Virtual Network Links -> Add` Link name, Sub, Vnet
 		- Then Registration and Resolution - can auto- registrate
 	- Public DNS
-	- Custom DNS  - VM 
 	- Azure Private Resolver is for resolve domains in Hybrid cloud
 
 If we are directly hosting their sites and data for small businesses that do not have an IT team we could segment Vnets and subnets based on resource access by the VM(s) hosting the site to backend services and infrastructure for backups.   
@@ -119,6 +118,10 @@ For the alternative to meet my revision syllabus requirements and the most real 
 Additional Load balancers 
 
 Troubleshoot Load balancers
+- VM health probes
+- Load balancer health
+- Azure Resource Explorer for failed state
+- Resource Health Cehck for connectivity
 
 - Configure name resolution and load balancing
 	- Traffic Manager to Load balncer and route DNS 

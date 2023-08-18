@@ -656,7 +656,17 @@ Assumptions:
 	- Subnet required 
 	- `Search -> $VNet -> Bastion`
 
-  Manage built-in Azure roles for resources
+- Manage built-in Azure roles for resources
+	- Remember that you filter by tenant!
+		- Tiering from Global Admins to lesser Admins in Azure, Azure AD, AD and Host machine
+			- Ownership and Role - [Microsoft Entra ID builtin Roles](https://learn.microsoft.com/en-us/azure/active-directory/roles/permissions-reference)
+				- What can be owned? - think CRUD
+					- Users, Groups, Devices, Resources, Authentication, Policy, Services, Configuration
+						- External or Internal relative to X
+						- Context - Dynamic Devices or Guest User are temporary therefore think PoLP
+			- The assign machine to user the default Admin is that Use - most likely requires change
+		- Microsoft Entra ID Registered != Microsoft Entra ID Joined 
+		- Access policy! 
 
 - Create and configure a file share in Azure Storage
 	- Open port 445 - check Firewall!
@@ -699,34 +709,57 @@ For each office network set aside two servers Windows for MABS and to ensure Fil
 	- `Storage Account -> $storage_account -> File Shares -> $file_share -> Snapshots
 
 - Configure stored access policies
-	- `Storage Accounts -> $storage_account -> Container -> Access Policy`
-	- Create a SAS:
-		- `Storage Accounts -> $storage_account -> search SAS` configure and `Generate SAS and connection string`. Used for:
-		- Connection strings
-		- SAS Token
-		- Blob service SAS URL
-		- Queue service SAS URL
-		- Table service SAS URL
-
+	 - ``
 - Configure identity-based access for Azure Files
-	- 
+	- Configure Azure AD DS or Kerberos authentication for file shares
 - Create and configure storage accounts
+	- `Search -> Storage Account ->  + create`
 
-    Configure Azure Storage redundancy
+As we assume hybrid cloud Azure connect setup, Domain and Password write to extend user permissions to file shares replicated into the cloud and on per File Share basis configure:
+- kerberos for restrict to groups or specif users
+- regular DS authentication for non guest or non-privilege shares that are read only.
+
+- Configure Azure Storage redundancy
+	- LRS, ZRS, GRS or Read-only GRS
+
+Snapshotting relevant file shares, but if data is sensitive it needs to remain on premise or part of SAS token per file requests if sensitive files are required to be replicated to the cloud. 
+
+
 
 - Configure object replication
 	- Requires:
-	- Versioning enabled
-	- Does not support snapshots
-	- Replication Policy
+		- Versioning enabled
+		- Does not support snapshots
+		- Replication Policy
+
 - Configure storage account encryption
+	- `$SA -> Security and Networking -> Encryption`
+
+Key Vault for everything - key expiration policy to enforce the rotation of keys
 
 - Manage data by using Azure Storage Explorer and AzCopy
+ Either :
+- Move Data to, from, or within Azure Storage
+`Storage Accounts -> $storage_account -> Diagnose and solve problems
 
+With azcopy
+```powershell
+# Make file shares
+azcopy make 'https://<storage-account-name>.file.core.windows.net/<file-share-name><SAS-token>'
+
+# Upload files or directories
+# Suport wildcard 
+azcopy copy $localpath $remotepath # upload
+# Download
+azcopy copy $remotepath $localpath # download
+azcopy login # create URI to login
+
+# Supported by not recommended - doesn't support differential copies at scale
+# Useful in Temporary File deletion and Syncing between Shares
+azcopy sync $localpath $remotepath --delete-desitnation true
+```
 
 Regarding compliance over any PPI data of employee or App users all File shares will require
-
-Manage access keys - [[Dynstr-Helped-Through]]
 
 https://github.com/Azure/azure-quickstart-templates
 
