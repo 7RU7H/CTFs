@@ -1,0 +1,323 @@
+# Nmap 7.94 scan initiated Sat Aug 19 21:21:56 2023 as: nmap --script discovery -oA nmap/10-10-240-89-Discovery --min-rate 300 -e tun0 -p 51337,443,80,22 10.10.240.89
+Pre-scan script results:
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-ping: false
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_lltd-discovery: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-sniffer: Sniffed 1 address(es). 
+|_10.10.190.89
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.10.240.89
+Host is up (0.061s latency).
+
+Bug in http-security-headers: no string output.
+PORT      STATE SERVICE
+22/tcp    open  ssh
+|_banner: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.3
+| ssh-hostkey: 
+|   3072 de:0f:f9:5d:52:14:83:a5:5d:d0:b8:47:42:f3:17:7b (RSA)
+|   256 22:4f:8d:82:ca:13:9a:c6:c9:ab:b9:5e:6c:98:54:4f (ECDSA)
+|_  256 3c:f2:f7:14:26:f7:1d:b2:83:9e:d3:cd:da:87:5a:e7 (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (9)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+80/tcp    open  http
+| http-vhosts: 
+|_128 names had status 200
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-date: Sat, 19 Aug 2023 20:22:34 GMT; +59m57s from local time.
+|_http-chrono: Request times for /; avg: 272.19ms; min: 257.07ms; max: 302.86ms
+|_http-mobileversion-checker: No mobile version detected.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /icons/
+|       png: 1
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /icons/
+|   Total files found (by extension):
+|_    Other: 1; png: 1
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-feed: Couldn't find any feeds.
+|_http-title: Apache2 Ubuntu Default Page: It works
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-grep: 
+|   (1) http://10.10.240.89:80/manual: 
+|     (1) ip: 
+|_      + 10.10.240.89
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.240.89
+|     
+|     Path: http://10.10.240.89:80/
+|     Line number: 4
+|     Comment: 
+|         <!--
+|             Modified from the Debian original for Ubuntu
+|             Last updated: 2014-03-19
+|             See: https://launchpad.net/bugs/1288690
+|           -->
+|     
+|     Path: http://10.10.240.89:80/
+|     Line number: 201
+|     Comment: 
+|         <!--      <div class="table_of_contents floating_element">
+|                 <div class="section_header section_header_grey">
+|                   TABLE OF CONTENTS
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#about">About</a>
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#changes">Changes</a>
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#scope">Scope</a>
+|                 </div>
+|                 <div class="table_of_contents_item floating_element">
+|                   <a href="#files">Config files</a>
+|                 </div>
+|               </div>
+|_        -->
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.10.240.89
+|   Found the following error pages: 
+|   
+|   Error Code: 404
+|_  	http://10.10.240.89:80/manual
+| http-headers: 
+|   Date: Sat, 19 Aug 2023 20:22:32 GMT
+|   Server: Apache/2.4.41 (Ubuntu)
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+443/tcp   open  https
+|_http-date: Sat, 19 Aug 2023 20:22:21 GMT; +59m58s from local time.
+| ssl-enum-ciphers: 
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CCM (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CCM_8 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CCM (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CCM_8 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_ARIA_128_GCM_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_ARIA_256_GCM_SHA384 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (dh 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_ARIA_128_GCM_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_ARIA_256_GCM_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_CAMELLIA_256_CBC_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (secp256r1) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CCM (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CCM_8 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CCM (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CCM_8 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_ARIA_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_ARIA_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256 (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: client
+|   TLSv1.3: 
+|     ciphers: 
+|       TLS_AKE_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|       TLS_AKE_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A
+|       TLS_AKE_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - A
+|     cipher preference: client
+|_  least strength: A
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-vhosts: 
+|_128 names had status 403
+| http-security-headers: 
+|   Strict_Transport_Security: 
+|_    HSTS not configured in HTTPS Server
+| http-grep: 
+|   (1) https://10.10.240.89:443/: 
+|     (1) ip: 
+|_      + 10.10.240.89
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-headers: 
+|   Date: Sat, 19 Aug 2023 20:22:24 GMT
+|   Server: Apache/2.4.41 (Ubuntu)
+|   Content-Length: 278
+|   Connection: close
+|   Content-Type: text/html; charset=iso-8859-1
+|   
+|_  (Request type: GET)
+|_ssl-date: TLS randomness does not represent time
+| ssl-cert: Subject: commonName=grep.thm/organizationName=SearchME/stateOrProvinceName=Some-State/countryName=US
+| Not valid before: 2023-06-14T13:03:09
+|_Not valid after:  2024-06-13T13:03:09
+| http-sitemap-generator: 
+|   Directory structure:
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    
+| tls-alpn: 
+|_  http/1.1
+|_http-title: 403 Forbidden
+|_http-comments-displayer: Couldn't find any comments.
+|_http-mobileversion-checker: No mobile version detected.
+|_http-feed: Couldn't find any feeds.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.10.240.89
+|   Found the following error pages: 
+|   
+|   Error Code: 403
+|_  	https://10.10.240.89:443/
+|_http-chrono: Request times for /; avg: 319.75ms; min: 263.94ms; max: 373.03ms
+| http-useragent-tester: 
+|   Status for browser useragent: 403
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+51337/tcp open  unknown
+| tls-alpn: 
+|_  http/1.1
+| ssl-cert: Subject: commonName=leakchecker.grep.thm/organizationName=Internet Widgits Pty Ltd/stateOrProvinceName=Some-State/countryName=AU
+| Not valid before: 2023-06-14T12:58:31
+|_Not valid after:  2024-06-13T12:58:31
+|_ssl-date: TLS randomness does not represent time
+| ssl-enum-ciphers: 
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CCM (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CCM_8 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CCM (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CCM_8 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_ARIA_128_GCM_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_ARIA_256_GCM_SHA384 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (dh 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_ARIA_128_GCM_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_ARIA_256_GCM_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_CAMELLIA_256_CBC_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (secp256r1) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CCM (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CCM_8 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CCM (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CCM_8 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_ARIA_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_ARIA_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256 (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: client
+|   TLSv1.3: 
+|     ciphers: 
+|       TLS_AKE_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|       TLS_AKE_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A
+|       TLS_AKE_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - A
+|     cipher preference: client
+|_  least strength: A
+
+Host script results:
+|_dns-brute: Can't guess domain of "10.10.240.89"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+| qscan: 
+| PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22     0       68070.60   10208.42  0.0%
+| 80     0       70231.30   5052.88   0.0%
+| 443    0       65615.60   6920.86   0.0%
+|_51337  0       63338.10   9215.15   0.0%
+|_path-mtu: PMTU == 1500
+|_ipidseq: All zeros
+
+# Nmap done at Sat Aug 19 21:30:00 2023 -- 1 IP address (1 host up) scanned in 483.98 seconds

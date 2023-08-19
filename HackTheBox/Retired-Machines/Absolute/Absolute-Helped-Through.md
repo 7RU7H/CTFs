@@ -23,8 +23,8 @@ Beyond Root:
 Tripletted with [[Response-Helped-Through]] and [[Dynstr-Helped-Through]]
 
 - [[Absolute-Notes.md]]
-- [[Ab`solute-CMD-by-CMDs.md]]
-`
+- [[Absolute-CMD-by-CMDs.md]]
+
 [Ippsec Video](https://www.youtube.com/watch?v=rfAmMQV_wss)
 [Alh4zr3d Stream](https://www.twitch.tv/videos/1855594279)
 [0xDF Written Writeup](https://0xdf.gitlab.io/2023/05/27/htb-absolute.html)

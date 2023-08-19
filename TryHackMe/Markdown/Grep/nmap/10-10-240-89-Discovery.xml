@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Sat Aug 19 21:21:56 2023 as: nmap -&#45;script discovery -oA nmap/10-10-240-89-Discovery -&#45;min-rate 300 -e tun0 -p 51337,443,80,22 10.10.240.89 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/10-10-240-89-Discovery -&#45;min-rate 300 -e tun0 -p 51337,443,80,22 10.10.240.89" start="1692476516" startstr="Sat Aug 19 21:21:56 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="4" services="22,80,443,51337"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="broadcast-ping" output="false">false</script><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/><script id="lltd-discovery" output="false">false</script><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="targets-sniffer" output="Sniffed 1 address(es). &#xa;10.10.190.89"/><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.240.89" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1692476540" endtime="1692477000"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.240.89" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/><script id="banner" output="SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.3"/><script id="ssh-hostkey" output="&#xa;  3072 de:0f:f9:5d:52:14:83:a5:5d:d0:b8:47:42:f3:17:7b (RSA)&#xa;  256 22:4f:8d:82:ca:13:9a:c6:c9:ab:b9:5e:6c:98:54:4f (ECDSA)&#xa;  256 3c:f2:f7:14:26:f7:1d:b2:83:9e:d3:cd:da:87:5a:e7 (ED25519)"><table>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABgQCuwn/a0C7LI8hjYOEyG5RKouK2ZPQSmjHnaRCFXthMg7ra6qrtOJo/o5OeJGBye8m3w54OjwpVBKsWC2kb7MIGLyZ+57106IV3BAZEclQBaVp/Fi68DAMcitCjiwNoAveULbp1eSgFmFVD8XFicIOrVi3qIBZ5HR7B58fIiA3ve6A20ktQNL79jtmrwOVlkV6+Z3gv+Z04elqMG0M7HiLgDEJeYnIyhurDAbzpyl+uNfrmTdQpmn2/COZF5VKwPBUXM28nMR/2zZydxdwz1H5U8YC7WeDRG7tzbh6FP7+Y9gReaI/ZSVJ6+c+sard1bdJytEjXJa2k15aU8Jj7/gqyld+0ttDY1gVQmfyy5fwd7rJI/c7TmZfuJTAESn5TMDIVB+NNlx8eT18POK85zGc73AWaFdVldrKKbhQ0MMC6gLd8Btoo7W0hKhHLlAG+xKW6QoP7xty/9eeQKBuMtFRIPo7N5lJmE1Pcusm/sRI26AvurdNyK3FQHdv+buNIkN0=</elem>
+<elem key="type">ssh-rsa</elem>
+<elem key="fingerprint">de0ff95d521483a55dd0b84742f3177b</elem>
+<elem key="bits">3072</elem>
+</table>
+<table>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJKbyEWdd4aalEtktxIfjVp2LkmnMQrVxkASBEOlZLFqgbOE1s/W498rGuWuo3VQnogRfOI2atNnEu8Ptt2S1bU=</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="fingerprint">224f8d82ca139ac6c9abb95e6c98544f</elem>
+<elem key="bits">256</elem>
+</table>
+<table>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAILeX0ELi0ULmnxgD26122zH9ko5ATqDB1c89XFXrYonF</elem>
+<elem key="type">ssh-ed25519</elem>
+<elem key="fingerprint">3cf2f71426f71db2839ed3cdda875ae7</elem>
+<elem key="bits">256</elem>
+</table>
+</script><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (9)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (6)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ssh-rsa</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-vhosts" output="&#xa;128 names had status 200"/><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-date" output="Sat, 19 Aug 2023 20:22:34 GMT; +59m57s from local time."><elem key="date">2023-08-19T21:22:34+00:00</elem>
+<elem key="delta">3597.0</elem>
+</script><script id="http-chrono" output="Request times for /; avg: 272.19ms; min: 257.07ms; max: 302.86ms"/><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      Other: 1&#xa;    /icons/&#xa;      png: 1&#xa;  Longest directory structure:&#xa;    Depth: 1&#xa;    Dir: /icons/&#xa;  Total files found (by extension):&#xa;    Other: 1; png: 1&#xa;"/><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-title" output="Apache2 Ubuntu Default Page: It works"><elem key="title">Apache2 Ubuntu Default Page: It works</elem>
+</script><script id="http-security-headers" output=""></script><script id="http-xssed" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">200</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-grep" output="&#xa;  (1) http://10.10.240.89:80/manual: &#xa;    (1) ip: &#xa;      + 10.10.240.89"><table key="(1) http://10.10.240.89:80/manual">
+<table key="(1) ip">
+<elem>+ 10.10.240.89</elem>
+</table>
+</table>
+</script><script id="http-comments-displayer" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.240.89&#xa;    &#xa;    Path: http://10.10.240.89:80/&#xa;    Line number: 4&#xa;    Comment: &#xa;        &lt;!-&#45;&#xa;            Modified from the Debian original for Ubuntu&#xa;            Last updated: 2014-03-19&#xa;            See: https://launchpad.net/bugs/1288690&#xa;          -&#45;&gt;&#xa;    &#xa;    Path: http://10.10.240.89:80/&#xa;    Line number: 201&#xa;    Comment: &#xa;        &lt;!-&#45;      &lt;div class=&quot;table_of_contents floating_element&quot;&gt;&#xa;                &lt;div class=&quot;section_header section_header_grey&quot;&gt;&#xa;                  TABLE OF CONTENTS&#xa;                &lt;/div&gt;&#xa;                &lt;div class=&quot;table_of_contents_item floating_element&quot;&gt;&#xa;                  &lt;a href=&quot;#about&quot;&gt;About&lt;/a&gt;&#xa;                &lt;/div&gt;&#xa;                &lt;div class=&quot;table_of_contents_item floating_element&quot;&gt;&#xa;                  &lt;a href=&quot;#changes&quot;&gt;Changes&lt;/a&gt;&#xa;                &lt;/div&gt;&#xa;                &lt;div class=&quot;table_of_contents_item floating_element&quot;&gt;&#xa;                  &lt;a href=&quot;#scope&quot;&gt;Scope&lt;/a&gt;&#xa;                &lt;/div&gt;&#xa;                &lt;div class=&quot;table_of_contents_item floating_element&quot;&gt;&#xa;                  &lt;a href=&quot;#files&quot;&gt;Config files&lt;/a&gt;&#xa;                &lt;/div&gt;&#xa;              &lt;/div&gt;&#xa;        -&#45;&gt;&#xa;"/><script id="http-errors" output="&#xa;Spidering limited to: maxpagecount=40; withinhost=10.10.240.89&#xa;  Found the following error pages: &#xa;  &#xa;  Error Code: 404&#xa;  &#x9;http://10.10.240.89:80/manual&#xa;"/><script id="http-headers" output="&#xa;  Date: Sat, 19 Aug 2023 20:22:32 GMT&#xa;  Server: Apache/2.4.41 (Ubuntu)&#xa;  Connection: close&#xa;  Content-Type: text/html; charset=UTF-8&#xa;  &#xa;  (Request type: HEAD)&#xa;"/></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="https" method="table" conf="3"/><script id="http-date" output="Sat, 19 Aug 2023 20:22:21 GMT; +59m58s from local time."><elem key="date">2023-08-19T21:22:21+00:00</elem>
+<elem key="delta">3598.0</elem>
+</script><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CCM (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CCM_8 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CCM (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CCM_8 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_ARIA_128_GCM_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_ARIA_256_GCM_SHA384 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_ARIA_128_GCM_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_ARIA_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_CAMELLIA_256_CBC_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (secp256r1) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CCM (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CCM_8 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CCM (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CCM_8 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A&#xa;      TLS_RSA_WITH_ARIA_128_GCM_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_ARIA_256_GCM_SHA384 (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256 (rsa 2048) - A&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: client&#xa;  TLSv1.3: &#xa;    ciphers: &#xa;      TLS_AKE_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A&#xa;      TLS_AKE_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A&#xa;      TLS_AKE_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - A&#xa;    cipher preference: client&#xa;  least strength: A"><table key="TLSv1.2">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CCM</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CCM_8</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CCM</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CCM_8</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_ARIA_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_ARIA_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_ARIA_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_ARIA_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_CAMELLIA_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_CAMELLIA_256_CBC_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CCM</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CCM_8</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CCM</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CCM_8</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_ARIA_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_ARIA_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_CAMELLIA_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_CAMELLIA_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">client</elem>
+</table>
+<table key="TLSv1.3">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_AKE_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_AKE_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_AKE_WITH_CHACHA20_POLY1305_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+</table>
+<elem key="cipher preference">client</elem>
+</table>
+<elem key="least strength">A</elem>
+</script><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-vhosts" output="&#xa;128 names had status 403"/><script id="http-security-headers" output="&#xa;  Strict_Transport_Security: &#xa;    HSTS not configured in HTTPS Server"><table key="Strict_Transport_Security">
+<elem>HSTS not configured in HTTPS Server</elem>
+</table>
+</script><script id="http-grep" output="&#xa;  (1) https://10.10.240.89:443/: &#xa;    (1) ip: &#xa;      + 10.10.240.89"><table key="(1) https://10.10.240.89:443/">
+<table key="(1) ip">
+<elem>+ 10.10.240.89</elem>
+</table>
+</table>
+</script><script id="http-xssed" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-headers" output="&#xa;  Date: Sat, 19 Aug 2023 20:22:24 GMT&#xa;  Server: Apache/2.4.41 (Ubuntu)&#xa;  Content-Length: 278&#xa;  Connection: close&#xa;  Content-Type: text/html; charset=iso-8859-1&#xa;  &#xa;  (Request type: GET)&#xa;"/><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="ssl-cert" output="Subject: commonName=grep.thm/organizationName=SearchME/stateOrProvinceName=Some-State/countryName=US&#xa;Not valid before: 2023-06-14T13:03:09&#xa;Not valid after:  2024-06-13T13:03:09"><table key="subject">
+<elem key="commonName">grep.thm</elem>
+<elem key="countryName">US</elem>
+<elem key="organizationName">SearchME</elem>
+<elem key="stateOrProvinceName">Some-State</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">grep.thm</elem>
+<elem key="countryName">US</elem>
+<elem key="organizationName">SearchME</elem>
+<elem key="stateOrProvinceName">Some-State</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">B620CDC3063D211D87003332E82440C223C7D2CF1D20E1463EB6D809B2F37C3288594465733CCE966829B1C37F6071E9B7A3F9CB050F2C69CC2B7BA461A83BC5351897EBE695E7539C3F6879B9C9EAA0F0785170759F21CAC213CAF0B21A0A9C639D891369C1B55363EBF2F5EA267AD0A2A4A3CA2936C4C4E48623FEC52D3EC3B178D895DE8AA939478AB5925B9FB2ACB1DE0A0709D1A9349495794F5F37918A90225B9499657A3A2B861E2D586D5E52CFB4F5AC302D1F8F5E830C3B712E5666BEEDC9E68F5E829FDE4695A6BCA58868A439ED8D0C281F3F82CA3C171C57362458F4DAEED02DC30946DCFF15F2C10F69206B7F5E2AFEF9A5E1CB10A2206876D9</elem>
+<elem key="exponent">65537</elem>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-06-14T13:03:09</elem>
+<elem key="notAfter">2024-06-13T13:03:09</elem>
+</table>
+<elem key="md5">72958ef07c16221c3b0a40ee913c766c</elem>
+<elem key="sha1">38c23ba334b1851af1d4ee0a37bd701a830c7dd8</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDFzCCAf8CFGTWwbbVKaNSN8fhUdtf0QT84zCSMA0GCSqGSIb3DQEBCwUAMEgx&#xa;CzAJBgNVBAYTAlVTMRMwEQYDVQQIDApTb21lLVN0YXRlMREwDwYDVQQKDAhTZWFy&#xa;Y2hNRTERMA8GA1UEAwwIZ3JlcC50aG0wHhcNMjMwNjE0MTMwMzA5WhcNMjQwNjEz&#xa;MTMwMzA5WjBIMQswCQYDVQQGEwJVUzETMBEGA1UECAwKU29tZS1TdGF0ZTERMA8G&#xa;A1UECgwIU2VhcmNoTUUxETAPBgNVBAMMCGdyZXAudGhtMIIBIjANBgkqhkiG9w0B&#xa;AQEFAAOCAQ8AMIIBCgKCAQEAtiDNwwY9IR2HADMy6CRAwiPH0s8dIOFGPrbYCbLz&#xa;fDKIWURlczzOlmgpscN/YHHpt6P5ywUPLGnMK3ukYag7xTUYl+vmledTnD9oebnJ&#xa;6qDweFFwdZ8hysITyvCyGgqcY52JE2nBtVNj6/L16iZ60KKko8opNsTE5IYj/sUt&#xa;PsOxeNiV3oqpOUeKtZJbn7Kssd4KBwnRqTSUlXlPXzeRipAiW5SZZXo6K4YeLVht&#xa;XlLPtPWsMC0fj16DDDtxLlZmvu3J5o9egp/eRpWmvKWIaKQ57Y0MKB8/gso8FxxX&#xa;NiRY9Nru0C3DCUbc/xXywQ9pIGt/Xir++aXhyxCiIGh22QIDAQABMA0GCSqGSIb3&#xa;DQEBCwUAA4IBAQCzhJu52dIY7V/qQleDMEQ1oBLrQoFhHD6+UbvH0ELMAtL5Dc8A&#xa;LGDdyFkgsx04TaZtJ20dyrjYD+tcAgu9Yb7eEYbfqqD5w4XSzvdEuTW2aVL86aT6&#xa;IBbN8SMkX2zfILjHTOR1F7WAoHaIssH0yZltg+lQEEnAeb+XoIZm9cIW2bTNKoO2&#xa;MeHgvSKkQkjROO29XQQ3mTbxFG86UsTwyGHdddnkfiWilXqgfh+wGxbY/wCdhU0C&#xa;TnuXn4IEVdCBn16rCg51kEZZC1EWPcJpv0/InUNfcgumcVY033EXF/HgW4eNDD6H&#xa;XmLEGKfScUWcO0//STDZGZXwf9gt30DqoMSf&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;  Longest directory structure:&#xa;    Depth: 0&#xa;    Dir: /&#xa;  Total files found (by extension):&#xa;    &#xa;"/><script id="tls-alpn" output="&#xa;  http/1.1"><elem>http/1.1</elem>
+</script><script id="http-title" output="403 Forbidden"><elem key="title">403 Forbidden</elem>
+</script><script id="http-comments-displayer" output="Couldn&apos;t find any comments."/><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-errors" output="&#xa;Spidering limited to: maxpagecount=40; withinhost=10.10.240.89&#xa;  Found the following error pages: &#xa;  &#xa;  Error Code: 403&#xa;  &#x9;https://10.10.240.89:443/&#xa;"/><script id="http-chrono" output="Request times for /; avg: 319.75ms; min: 263.94ms; max: 373.03ms"/><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 403&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">403</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="51337"><state state="open" reason="syn-ack" reason_ttl="63"/><script id="tls-alpn" output="&#xa;  http/1.1"><elem>http/1.1</elem>
+</script><script id="ssl-cert" output="Subject: commonName=leakchecker.grep.thm/organizationName=Internet Widgits Pty Ltd/stateOrProvinceName=Some-State/countryName=AU&#xa;Not valid before: 2023-06-14T12:58:31&#xa;Not valid after:  2024-06-13T12:58:31"><table key="subject">
+<elem key="commonName">leakchecker.grep.thm</elem>
+<elem key="countryName">AU</elem>
+<elem key="organizationName">Internet Widgits Pty Ltd</elem>
+<elem key="stateOrProvinceName">Some-State</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">leakchecker.grep.thm</elem>
+<elem key="countryName">AU</elem>
+<elem key="organizationName">Internet Widgits Pty Ltd</elem>
+<elem key="stateOrProvinceName">Some-State</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">B620CDC3063D211D87003332E82440C223C7D2CF1D20E1463EB6D809B2F37C3288594465733CCE966829B1C37F6071E9B7A3F9CB050F2C69CC2B7BA461A83BC5351897EBE695E7539C3F6879B9C9EAA0F0785170759F21CAC213CAF0B21A0A9C639D891369C1B55363EBF2F5EA267AD0A2A4A3CA2936C4C4E48623FEC52D3EC3B178D895DE8AA939478AB5925B9FB2ACB1DE0A0709D1A9349495794F5F37918A90225B9499657A3A2B861E2D586D5E52CFB4F5AC302D1F8F5E830C3B712E5666BEEDC9E68F5E829FDE4695A6BCA58868A439ED8D0C281F3F82CA3C171C57362458F4DAEED02DC30946DCFF15F2C10F69206B7F5E2AFEF9A5E1CB10A2206876D9</elem>
+<elem key="exponent">65537</elem>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-06-14T12:58:31</elem>
+<elem key="notAfter">2024-06-13T12:58:31</elem>
+</table>
+<elem key="md5">d9a2b1f12dddd1d5f54f98f4d797fd6a</elem>
+<elem key="sha1">3f7053de354bd41c1d0900b3b6033c55b0dc1390</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDTzCCAjcCFCzf/mtdaBGiKKpO7gdtpdVG9u6iMA0GCSqGSIb3DQEBCwUAMGQx&#xa;CzAJBgNVBAYTAkFVMRMwEQYDVQQIDApTb21lLVN0YXRlMSEwHwYDVQQKDBhJbnRl&#xa;cm5ldCBXaWRnaXRzIFB0eSBMdGQxHTAbBgNVBAMMFGxlYWtjaGVja2VyLmdyZXAu&#xa;dGhtMB4XDTIzMDYxNDEyNTgzMVoXDTI0MDYxMzEyNTgzMVowZDELMAkGA1UEBhMC&#xa;QVUxEzARBgNVBAgMClNvbWUtU3RhdGUxITAfBgNVBAoMGEludGVybmV0IFdpZGdp&#xa;dHMgUHR5IEx0ZDEdMBsGA1UEAwwUbGVha2NoZWNrZXIuZ3JlcC50aG0wggEiMA0G&#xa;CSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC2IM3DBj0hHYcAMzLoJEDCI8fSzx0g&#xa;4UY+ttgJsvN8MohZRGVzPM6WaCmxw39gcem3o/nLBQ8sacwre6RhqDvFNRiX6+aV&#xa;51OcP2h5ucnqoPB4UXB1nyHKwhPK8LIaCpxjnYkTacG1U2Pr8vXqJnrQoqSjyik2&#xa;xMTkhiP+xS0+w7F42JXeiqk5R4q1klufsqyx3goHCdGpNJSVeU9fN5GKkCJblJll&#xa;ejorhh4tWG1eUs+09awwLR+PXoMMO3EuVma+7cnmj16Cn95Glaa8pYhopDntjQwo&#xa;Hz+CyjwXHFc2JFj02u7QLcMJRtz/FfLBD2kga39eKv75peHLEKIgaHbZAgMBAAEw&#xa;DQYJKoZIhvcNAQELBQADggEBAJIlfMmC0KqBPG7/54bkNknBCo+z6ck1oAOmHqrj&#xa;IPUSCvSomgP/wuXuzOlspp9Qta8hA3DM+L0Q4/jE5Jt+IXU2TeBgvFsZx3IJGipf&#xa;/LyO8C2MzoKWXO3CwP8WIREzCckaSZIXsrBMixWzKoGnLxl/zvYmhM00C8aJ/8cf&#xa;3gsVcFtiuudzfctad7a5gzcSGLhkATZTcuFDto3uzC4LszSXr8WiFBcSGbwyBkY9&#xa;VZOfpN/kbjmxZIUXovF9BwHY9GWbDauuAkyCD4caUbbq7wdfTFH0A8lSw0ggzvzK&#xa;hn9+V7DBwrPr4Y/gdkrUP6zWMZWnPybIYsmvbo2aKi9UJ+8=&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CCM (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CCM_8 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CCM (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CCM_8 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_ARIA_128_GCM_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_ARIA_256_GCM_SHA384 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_ARIA_128_GCM_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_ARIA_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_CAMELLIA_256_CBC_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (secp256r1) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CCM (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CCM_8 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CCM (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CCM_8 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A&#xa;      TLS_RSA_WITH_ARIA_128_GCM_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_ARIA_256_GCM_SHA384 (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256 (rsa 2048) - A&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: client&#xa;  TLSv1.3: &#xa;    ciphers: &#xa;      TLS_AKE_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A&#xa;      TLS_AKE_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A&#xa;      TLS_AKE_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - A&#xa;    cipher preference: client&#xa;  least strength: A"><table key="TLSv1.2">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CCM</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CCM_8</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CCM</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CCM_8</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_ARIA_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_ARIA_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_ARIA_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_ARIA_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_CAMELLIA_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_CAMELLIA_256_CBC_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CCM</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CCM_8</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CCM</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CCM_8</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_ARIA_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_ARIA_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_CAMELLIA_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_CAMELLIA_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">client</elem>
+</table>
+<table key="TLSv1.3">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_AKE_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_AKE_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_AKE_WITH_CHACHA20_POLY1305_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+</table>
+<elem key="cipher preference">client</elem>
+</table>
+<elem key="least strength">A</elem>
+</script></port>
+</ports>
+<hostscript><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.10.240.89&quot;; use dns-brute.domain script argument."/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="qscan" output="&#xa;PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;22     0       68070.60   10208.42  0.0%&#xa;80     0       70231.30   5052.88   0.0%&#xa;443    0       65615.60   6920.86   0.0%&#xa;51337  0       63338.10   9215.15   0.0%&#xa;"/><script id="path-mtu" output="PMTU == 1500"/><script id="ipidseq" output="All zeros"/></hostscript><times srtt="60740" rttvar="22828" to="152052"/>
+</host>
+<runstats><finished time="1692477000" timestr="Sat Aug 19 21:30:00 2023" summary="Nmap done at Sat Aug 19 21:30:00 2023; 1 IP address (1 host up) scanned in 483.98 seconds" elapsed="483.98" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

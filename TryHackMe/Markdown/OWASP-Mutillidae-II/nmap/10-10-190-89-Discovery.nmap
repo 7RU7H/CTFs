@@ -1,0 +1,564 @@
+# Nmap 7.94 scan initiated Sat Aug 19 21:25:16 2023 as: nmap --script discovery -oA nmap/10-10-190-89-Discovery --min-rate 300 -e tun0 -p 22,80 10.10.190.89
+Pre-scan script results:
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-ping: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+| targets-sniffer: Sniffed 3 address(es). 
+| 10.10.240.89
+| 224.0.23.12
+|_128.31.0.62
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_lltd-discovery: false
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.10.190.89
+Host is up (0.065s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3
+| ssh-hostkey: 
+|   2048 01:3f:cd:00:c3:f3:f8:c7:ff:94:de:3f:a1:cd:85:5a (RSA)
+|   256 71:ec:1b:30:b9:66:f0:3e:f5:41:44:5b:86:d1:a9:f9 (ECDSA)
+|_  256 1c:05:4d:c9:08:b7:b7:d2:e6:26:3a:1b:a7:72:c7:0f (ED25519)
+80/tcp open  http
+| http-robots.txt: 8 disallowed entries 
+| passwords/ config.inc classes/ javascript/ 
+|_owasp-esapi-php/ documentation/ phpmyadmin/ includes/
+|_http-feed: Couldn't find any feeds.
+| http-security-headers: 
+|   Strict_Transport_Security: 
+|     Header: Strict-Transport-Security: max-age=0
+|   X_XSS_Protection: 
+|     Header: X-XSS-Protection: 0
+|_    Description: The XSS filter is disabled.
+|_http-date: Sat, 19 Aug 2023 20:25:40 GMT; +59m59s from local time.
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.190.89
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 2
+|     Comment: 
+|         
+|         //** Script Download/ instructions page: http://www.dynamicdrive.com/dynamicindex1/ddlevelsmenu/
+|     
+|     Path: http://10.10.190.89:80/index.php?page=view-user-privilege-level.php&iv=6bc24fc1ab650b25b4114e93a98f1eba
+|     Line number: 914
+|     Comment: 
+|         <!-- Begin Content -->
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 82
+|     Comment: 
+|          //insert shadow DIV and set it to parent node for the next shadow div
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 28
+|     Comment: 
+|          //detect WebKit browsers (Safari, Chrome etc)
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 62
+|     Comment: 
+|          //loop through each LI header
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 63
+|     Comment: 
+|          //reference current LI header
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 9
+|     Comment: 
+|         
+|         //** May 1st, 09" (v1.3):
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 69
+|     Comment: 
+|          //add arrow images
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 74
+|     Comment: 
+|          //if shadows enabled and browser doesn't support CSS3 box shadows
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 120
+|     Comment: 
+|          //end hover
+|     
+|     Path: http://10.10.190.89:80/index.php?page=view-user-privilege-level.php&iv=6bc24fc1ab650b25b4114e93a98f1eba
+|     Line number: 916
+|     Comment: 
+|         <!-- Bubble hints code -->
+|     
+|     Path: http://10.10.190.89:80/index.php?page=edit-account-profile.php
+|     Line number: 1022
+|     Comment: 
+|         <!--
+|         	var lValidateInput = "FALSE"
+|         
+|         	function onSubmitOfForm(/*HTMLFormElement*/ theForm){
+|         		try{
+|         			if(lValidateInput == "TRUE"){
+|         				var lUnsafeCharacters = /[`~!@#$%^&*()-_=+\[\]{}\\|;':",./<>?]/;
+|         				if (theForm.username.value.length > 15 || 
+|         					theForm.password.value.length > 15){
+|         						alert('Username too long. We dont want to allow too many characters.\n\nSomeone might have enough room to enter a hack attempt.');
+|         						return false;
+|         				};// end if
+|         				
+|         				if (theForm.username.value.search(lUnsafeCharacters) > -1 || 
+|         					theForm.password.value.search(lUnsafeCharacters) > -1){
+|         						alert('Dangerous characters detected. We can\'t allow these. This all powerful blacklist will stop such attempts.\n\nMuch like padlocks, filtering cannot be defeated.\n\nBlacklisting is l33t like l33tspeak.');
+|         						return false;
+|         				};// end if
+|         			};// end if(lValidateInput)
+|         			
+|         			return true;
+|         		}catch(e){
+|         			alert("Error: " + e.message);
+|         		};// end catch
+|         	};// end function onSubmitOfLoginForm(/*HTMLFormElement*/ theForm)
+|         //-->
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 87
+|     Comment: 
+|          //reference header LI as DOM object
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 147
+|     Comment: 
+|          //else if markup menu
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 125
+|     Comment: 
+|          //possible vendor specific CSS3 shadow properties
+|     
+|     Path: http://10.10.190.89:80/index.php?page=view-user-privilege-level.php&iv=6bc24fc1ab650b25b4114e93a98f1eba
+|     Line number: 999
+|     Comment: 
+|         /* Try to close currently open hint */
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 153
+|     Comment: 
+|          //end ddsmoothmenu variable
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 11
+|     Comment: 
+|         
+|         //** 2) In IE6, shadows are now always disabled
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 124
+|     Comment: 
+|          //construct CSS3 box-shadow value
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 33
+|     Comment: 
+|          //reference empty div on page that will hold menu
+|     
+|     Path: http://10.10.190.89:80/index.php?page=view-user-privilege-level.php&iv=6bc24fc1ab650b25b4114e93a98f1eba
+|     Line number: 978
+|     Comment: 
+|         /* Try to remember this hint is open */
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 36
+|     Comment: 
+|          //path to external menu file
+|     
+|     Path: http://10.10.190.89:80/webservices/soap/ws-user-account.php
+|     Line number: 70
+|     Comment: 
+|          // Hides message
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 93
+|     Comment: 
+|          //if 1 or less queued animations
+|     
+|     Path: http://10.10.190.89:80/webservices/soap/ws-user-account.php
+|     Line number: 32
+|     Comment: 
+|          //Browsercheck (needed)
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 32
+|     Comment: 
+|          //function to fetch external page containing the panel DIVs
+|     
+|     Path: http://10.10.190.89:80/index.php?page=view-user-privilege-level.php&iv=6bc24fc1ab650b25b4114e93a98f1eba
+|     Line number: 965
+|     Comment: 
+|         /*HTML-ELEMENT*/
+|     
+|     Path: http://10.10.190.89:80/index.php?page=view-user-privilege-level.php&iv=6bc24fc1ab650b25b4114e93a98f1eba
+|     Line number: 14
+|     Comment: 
+|         
+|     
+|     Path: http://10.10.190.89:80/index.php?do=toggle-enforce-ssl&page=/usr/share/nginx/html/mutillidae/home.php
+|     Line number: 1167
+|     Comment: 
+|         
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 16
+|     Comment: 
+|         
+|         //** Dec 17th, 10" (v1.5): Updated menu shadow to use CSS3 box shadows when the browser is FF3.5+, IE9+, Opera9.5+, or Safari3+/Chrome. Only .js file changed.
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 86
+|     Comment: 
+|          //reference UL to reveal
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 24
+|     Comment: 
+|          //set delay in milliseconds before sub menus appear and disappear, respectively
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 26
+|     Comment: 
+|         
+|         ///////Stop configuring beyond here///////////////////////////
+|     
+|     Path: http://10.10.190.89:80/?page=add-to-your-blog.php
+|     Line number: 929
+|     Comment: 
+|         <!-- BEGIN HTML OUTPUT  -->
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 5
+|     Comment: 
+|         
+|         //** Dec 12th, 08" (v1.01): Fixed Shadow issue when multiple LIs within the same UL (level) contain sub menus: http://www.dynamicdrive.com/forums/showthread.php?t=39177&highlight=smooth
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 92
+|     Comment: 
+|          //calculate this sub menu's offsets from its parent
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 20
+|     Comment: 
+|         
+|         //Specify full URL to down and right arrow images (23 is padding-right added to top level LIs with drop downs):
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 7
+|     Comment: 
+|         
+|         //** Feb 11th, 09" (v1.02): The currently active main menu item (LI A) now gets a CSS class of ".selected", including sub menu items.
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 122
+|     Comment: 
+|          //if shadows enabled and browser supports CSS3 shadows
+|     
+|     Path: http://10.10.190.89:80/webservices/soap/ws-user-account.php
+|     Line number: 30
+|     Comment: 
+|         <!--
+|         		// POP-UP CAPTIONS...
+|         		function lib_bwcheck(){ //Browsercheck (needed)
+|         		    this.ver=navigator.appVersion
+|         		    this.agent=navigator.userAgent
+|         		    this.dom=document.getElementById?1:0
+|         		    this.opera5=this.agent.indexOf("Opera 5")>-1
+|         		    this.ie5=(this.ver.indexOf("MSIE 5")>-1 && this.dom && !this.opera5)?1:0;
+|         		    this.ie6=(this.ver.indexOf("MSIE 6")>-1 && this.dom && !this.opera5)?1:0;
+|         		    this.ie4=(document.all && !this.dom && !this.opera5)?1:0;
+|         		    this.ie=this.ie4||this.ie5||this.ie6
+|         		    this.mac=this.agent.indexOf("Mac")>-1
+|         		    this.ns6=(this.dom && parseInt(this.ver) >= 5) ?1:0;
+|         		    this.ns4=(document.layers && !this.dom)?1:0;
+|         		    this.bw=(this.ie6 || this.ie5 || this.ie4 || this.ns4 || this.ns6 || this.opera5)
+|         		    return this
+|         		}
+|         		var bw = new lib_bwcheck()
+|         		//Makes crossbrowser object.
+|         		function makeObj(obj){
+|         		    this.evnt=bw.dom? document.getElementById(obj):bw.ie4?document.all[obj]:bw.ns4?document.layers[obj]:0;
+|         		    if(!this.evnt) return false
+|         		    this.css=bw.dom||bw.ie4?this.evnt.style:bw.ns4?this.evnt:0;
+|         		    this.wref=bw.dom||bw.ie4?this.evnt:bw.ns4?this.css.document:0;
+|         		    this.writeIt=b_writeIt;
+|         		    return this
+|         		}
+|         		// A unit of measure that will be added when setting the position of a layer.
+|         		//var px = bw.ns4||window.opera?"":"px";
+|         		function b_writeIt(text){
+|         		    if (bw.ns4){this.wref.write(text);this.wref.close()}
+|         		    else this.wref.innerHTML = text
+|         		}
+|         		//Shows the messages
+|         		var oDesc;
+|         		function popup(divid){
+|         		    if(oDesc = new makeObj(divid)){
+|         			oDesc.css.visibility = "visible"
+|         		    }
+|         		}
+|         		function popout(){ // Hides message
+|         		    if(oDesc) oDesc.css.visibility = "hidden"
+|         		}
+|         		//-->
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 143
+|     Comment: 
+|          //ajax menu?
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 22
+|     Comment: 
+|          //duration of slide in/ out animation, in milliseconds
+|     
+|     Path: http://10.10.190.89:80/index.php?page=view-user-privilege-level.php&iv=6bc24fc1ab650b25b4114e93a98f1eba
+|     Line number: 1033
+|     Comment: 
+|         <!-- Diagnostics: Request Parameters - array(2) {
+|           ["page"]=>
+|           string(29) "view-user-privilege-level.php"
+|           ["iv"]=>
+|           string(32) "6bc24fc1ab650b25b4114e93a98f1eba"
+|         }
+|         -->
+|     
+|     Path: http://10.10.190.89:80/index.php?page=view-user-privilege-level.php&iv=6bc24fc1ab650b25b4114e93a98f1eba
+|     Line number: 1087
+|     Comment: 
+|         <!-- I think the database password is set to blank or perhaps samurai.
+|         			It depends on whether you installed this web app from irongeeks site or
+|         			are using it inside Kevin Johnsons Samurai web testing framework.
+|         			It is ok to put the password in HTML comments because no user will ever see
+|         			this comment. I remember that security instructor saying we should use the
+|         			framework comment symbols (ASP.NET, JAVA, PHP, Etc.)
+|         			rather than HTML comments, but we all know those
+|         			security instructors are just making all this up. -->
+|     
+|     Path: http://10.10.190.89:80/?page=add-to-your-blog.php
+|     Line number: 931
+|     Comment: 
+|         /* HTMLForm */
+|     
+|     Path: http://10.10.190.89:80/index.php?page=edit-account-profile.php
+|     Line number: 1047
+|     Comment: 
+|         
+|         //-->
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 67
+|     Comment: 
+|          //is top level header?
+|     
+|     Path: http://10.10.190.89:80/index.php?page=view-user-privilege-level.php&iv=6bc24fc1ab650b25b4114e93a98f1eba
+|     Line number: 15
+|     Comment: 
+|         
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 142
+|     Comment: 
+|          //in IE6, always disable shadow
+|     
+|     Path: http://10.10.190.89:80/index.php?page=edit-account-profile.php
+|     Line number: 1025
+|     Comment: 
+|         /*HTMLFormElement*/
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 23
+|     Comment: 
+|          //enable shadow?
+|     
+|     Path: http://10.10.190.89:80/index.php?do=toggle-enforce-ssl&page=/usr/share/nginx/html/mutillidae/home.php
+|     Line number: 1165
+|     Comment: 
+|         
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 113
+|     Comment: 
+|          //in WebKit browsers, set first child shadow's opacity to 0, as "overflow:hidden" doesn't work in them
+|     
+|     Path: http://10.10.190.89:80/index.php?page=view-user-privilege-level.php&iv=6bc24fc1ab650b25b4114e93a98f1eba
+|     Line number: 1094
+|     Comment: 
+|         <!-- End Content -->
+|     
+|     Path: http://10.10.190.89:80/index.php?page=view-user-privilege-level.php&iv=6bc24fc1ab650b25b4114e93a98f1eba
+|     Line number: 1136
+|     Comment: 
+|         /* Do nothing. Older browsers do not support HTML5 web storage */
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 13
+|     Comment: 
+|         
+|         //** July 27th, 09" (v1.31): Fixed bug so shadows can be disabled if desired.
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 30
+|     Comment: 
+|          //detect browsers that support CSS3 box shadows (ie9+ or FF3.5+, Safari3+, Chrome etc)
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 51
+|     Comment: 
+|          //reference main menu UL
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 75
+|     Comment: 
+|          //store this shadow's offsets
+|     
+|     Path: http://10.10.190.89:80/index.php?page=view-user-privilege-level.php&iv=6bc24fc1ab650b25b4114e93a98f1eba
+|     Line number: 17
+|     Comment: 
+|         
+|     
+|     Path: http://10.10.190.89:80/index.php?page=view-user-privilege-level.php&iv=6bc24fc1ab650b25b4114e93a98f1eba
+|     Line number: 13
+|     Comment: 
+|         
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 98
+|     Comment: 
+|          //in WebKit browsers, restore shadow's opacity to full
+|     
+|     Path: http://10.10.190.89:80/index.php?page=view-user-privilege-level.php&iv=6bc24fc1ab650b25b4114e93a98f1eba
+|     Line number: 972
+|     Comment: 
+|         /*HTML-IMG-ELEMENT*/
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 144
+|     Comment: 
+|          //if external ajax menu
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 121
+|     Comment: 
+|          //end $headers.each()
+|     
+|     Path: http://10.10.190.89:80/javascript/ddsmoothmenu/ddsmoothmenu.js
+|     Line number: 134
+|     Comment: 
+|          //override default menu colors (default/hover) with custom set?
+|     
+|     Path: http://10.10.190.89:80/index.php?do=toggle-enforce-ssl&page=/usr/share/nginx/html/mutillidae/home.php
+|     Line number: 1163
+|     Comment: 
+|_        
+| http-internal-ip-disclosure: 
+|_  Internal IP Leaked: 172.17.0.2
+| http-headers: 
+|   Server: nginx/1.18.0
+|   Date: Sat, 19 Aug 2023 20:25:50 GMT
+|   Content-Type: text/html;charset=UTF-8
+|   Connection: close
+|   X-Powered-By: PHP/7.4.13
+|   Set-Cookie: PHPSESSID=ngq0392q8q7r5hst5oklm31o9r; path=/
+|   Set-Cookie: showhints=1
+|   Logged-In-User: 
+|   X-XSS-Protection: 0
+|   Strict-Transport-Security: max-age=0
+|   
+|_  (Request type: HEAD)
+|_http-errors: ERROR: Script execution failed (use -d to debug)
+| http-vhosts: 
+|_128 names had status 200
+| http-unsafe-output-escaping: 
+|   Characters [> " '] reflected in parameter page at http://10.10.190.89:80/index.php?page=user-poll.php
+|   Characters [> " '] reflected in parameter page at http://10.10.190.89:80/index.php?page=documentation/usage-instructions.php
+|   Characters [> " '] reflected in parameter page at http://10.10.190.89:80/index.php?page=cache-control.php
+|   Characters [> " '] reflected in parameter page at http://10.10.190.89:80/index.php?page=framer.html
+|   Characters ['] reflected in parameter level1HintIncludeFile at http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=59
+|   Characters [> " '] reflected in parameter page at http://10.10.190.89:80/index.php?page=edit-account-profile.php
+|   Characters [> " '] reflected in parameter page at http://10.10.190.89:80/index.php?page=robots-txt.php
+|   Characters [> " '] reflected in parameter page at http://10.10.190.89:80/index.php?page=home.php&popUpNotificationCode=HPH0
+|   Characters [> " '] reflected in parameter page at http://10.10.190.89:80/index.php?page=directory-browsing.php
+|   Characters [> " '] reflected in parameter page at http://10.10.190.89:80/index.php?page=phpmyadmin.php
+|   Characters [> " '] reflected in parameter page at http://10.10.190.89:80/?page=add-to-your-blog.php
+|   Characters [> " '] reflected in parameter page at http://10.10.190.89:80/?page=credits.php
+|   Characters [> " '] reflected in parameter page at http://10.10.190.89:80/index.php?page=view-user-privilege-level.php&iv=6bc24fc1ab650b25b4114e93a98f1eba
+|_  Characters [> " '] reflected in parameter iv at http://10.10.190.89:80/index.php?page=view-user-privilege-level.php&iv=6bc24fc1ab650b25b4114e93a98f1eba
+|_http-mobileversion-checker: No mobile version detected.
+|_http-php-version: Version from header x-powered-by: PHP/7.4.13
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; php: 4
+|     /images/
+|       png: 1
+|     /javascript/ddsmoothmenu/
+|       js: 1
+|     /webservices/rest/
+|       php: 1
+|     /webservices/soap/
+|       php: 1
+|   Longest directory structure:
+|     Depth: 2
+|     Dir: /webservices/rest/
+|   Total files found (by extension):
+|_    Other: 1; js: 1; php: 6; png: 1
+|_http-chrono: Request times for /; avg: 450.32ms; min: 373.83ms; max: 574.64ms
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-title: Site doesn't have a title (text/html;charset=UTF-8).
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.190.89
+|   url                                                             method
+|_  http://10.10.190.89:80/index.php?page=edit-account-profile.php  FORM
+
+Host script results:
+|_path-mtu: PMTU == 1500
+|_dns-brute: Can't guess domain of "10.10.190.89"; use dns-brute.domain script argument.
+|_ipidseq: All zeros
+|_fcrdns: FAIL (No PTR record)
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       73008.80   19133.32  0.0%
+|_80    0       68749.30   9721.11   0.0%
+
+# Nmap done at Sat Aug 19 21:27:40 2023 -- 1 IP address (1 host up) scanned in 144.08 seconds

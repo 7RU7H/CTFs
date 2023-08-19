@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Sat Aug 19 21:21:24 2023 as: nmap -sC -sV -oA nmap/10-10-240-89-Extensive-Found-Ports -&#45;min-rate 300 -e tun0 -p 51337,443,80,22 10.10.240.89 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA nmap/10-10-240-89-Extensive-Found-Ports -&#45;min-rate 300 -e tun0 -p 51337,443,80,22 10.10.240.89" start="1692476484" startstr="Sat Aug 19 21:21:24 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="4" services="22,80,443,51337"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.240.89" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1692476497" endtime="1692476516"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.240.89" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" product="OpenSSH" version="8.2p1 Ubuntu 4ubuntu0.3" extrainfo="Ubuntu Linux; protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:8.2p1</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service><script id="ssh-hostkey" output="&#xa;  3072 de:0f:f9:5d:52:14:83:a5:5d:d0:b8:47:42:f3:17:7b (RSA)&#xa;  256 22:4f:8d:82:ca:13:9a:c6:c9:ab:b9:5e:6c:98:54:4f (ECDSA)&#xa;  256 3c:f2:f7:14:26:f7:1d:b2:83:9e:d3:cd:da:87:5a:e7 (ED25519)"><table>
+<elem key="type">ssh-rsa</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABgQCuwn/a0C7LI8hjYOEyG5RKouK2ZPQSmjHnaRCFXthMg7ra6qrtOJo/o5OeJGBye8m3w54OjwpVBKsWC2kb7MIGLyZ+57106IV3BAZEclQBaVp/Fi68DAMcitCjiwNoAveULbp1eSgFmFVD8XFicIOrVi3qIBZ5HR7B58fIiA3ve6A20ktQNL79jtmrwOVlkV6+Z3gv+Z04elqMG0M7HiLgDEJeYnIyhurDAbzpyl+uNfrmTdQpmn2/COZF5VKwPBUXM28nMR/2zZydxdwz1H5U8YC7WeDRG7tzbh6FP7+Y9gReaI/ZSVJ6+c+sard1bdJytEjXJa2k15aU8Jj7/gqyld+0ttDY1gVQmfyy5fwd7rJI/c7TmZfuJTAESn5TMDIVB+NNlx8eT18POK85zGc73AWaFdVldrKKbhQ0MMC6gLd8Btoo7W0hKhHLlAG+xKW6QoP7xty/9eeQKBuMtFRIPo7N5lJmE1Pcusm/sRI26AvurdNyK3FQHdv+buNIkN0=</elem>
+<elem key="fingerprint">de0ff95d521483a55dd0b84742f3177b</elem>
+<elem key="bits">3072</elem>
+</table>
+<table>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJKbyEWdd4aalEtktxIfjVp2LkmnMQrVxkASBEOlZLFqgbOE1s/W498rGuWuo3VQnogRfOI2atNnEu8Ptt2S1bU=</elem>
+<elem key="fingerprint">224f8d82ca139ac6c9abb95e6c98544f</elem>
+<elem key="bits">256</elem>
+</table>
+<table>
+<elem key="type">ssh-ed25519</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAILeX0ELi0ULmnxgD26122zH9ko5ATqDB1c89XFXrYonF</elem>
+<elem key="fingerprint">3cf2f71426f71db2839ed3cdda875ae7</elem>
+<elem key="bits">256</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="Apache httpd" version="2.4.41" extrainfo="(Ubuntu)" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.41</cpe></service><script id="http-server-header" output="Apache/2.4.41 (Ubuntu)"><elem>Apache/2.4.41 (Ubuntu)</elem>
+</script><script id="http-title" output="Apache2 Ubuntu Default Page: It works"><elem key="title">Apache2 Ubuntu Default Page: It works</elem>
+</script></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="Apache httpd" version="2.4.41" hostname="ip-10-10-240-89.eu-west-1.compute.internal" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.41</cpe></service><script id="http-title" output="403 Forbidden"><elem key="title">403 Forbidden</elem>
+</script><script id="tls-alpn" output="&#xa;  http/1.1"><elem>http/1.1</elem>
+</script><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="ssl-cert" output="Subject: commonName=grep.thm/organizationName=SearchME/stateOrProvinceName=Some-State/countryName=US&#xa;Not valid before: 2023-06-14T13:03:09&#xa;Not valid after:  2024-06-13T13:03:09"><table key="subject">
+<elem key="commonName">grep.thm</elem>
+<elem key="countryName">US</elem>
+<elem key="organizationName">SearchME</elem>
+<elem key="stateOrProvinceName">Some-State</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">grep.thm</elem>
+<elem key="countryName">US</elem>
+<elem key="organizationName">SearchME</elem>
+<elem key="stateOrProvinceName">Some-State</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">B620CDC3063D211D87003332E82440C223C7D2CF1D20E1463EB6D809B2F37C3288594465733CCE966829B1C37F6071E9B7A3F9CB050F2C69CC2B7BA461A83BC5351897EBE695E7539C3F6879B9C9EAA0F0785170759F21CAC213CAF0B21A0A9C639D891369C1B55363EBF2F5EA267AD0A2A4A3CA2936C4C4E48623FEC52D3EC3B178D895DE8AA939478AB5925B9FB2ACB1DE0A0709D1A9349495794F5F37918A90225B9499657A3A2B861E2D586D5E52CFB4F5AC302D1F8F5E830C3B712E5666BEEDC9E68F5E829FDE4695A6BCA58868A439ED8D0C281F3F82CA3C171C57362458F4DAEED02DC30946DCFF15F2C10F69206B7F5E2AFEF9A5E1CB10A2206876D9</elem>
+<elem key="exponent">65537</elem>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-06-14T13:03:09</elem>
+<elem key="notAfter">2024-06-13T13:03:09</elem>
+</table>
+<elem key="md5">72958ef07c16221c3b0a40ee913c766c</elem>
+<elem key="sha1">38c23ba334b1851af1d4ee0a37bd701a830c7dd8</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDFzCCAf8CFGTWwbbVKaNSN8fhUdtf0QT84zCSMA0GCSqGSIb3DQEBCwUAMEgx&#xa;CzAJBgNVBAYTAlVTMRMwEQYDVQQIDApTb21lLVN0YXRlMREwDwYDVQQKDAhTZWFy&#xa;Y2hNRTERMA8GA1UEAwwIZ3JlcC50aG0wHhcNMjMwNjE0MTMwMzA5WhcNMjQwNjEz&#xa;MTMwMzA5WjBIMQswCQYDVQQGEwJVUzETMBEGA1UECAwKU29tZS1TdGF0ZTERMA8G&#xa;A1UECgwIU2VhcmNoTUUxETAPBgNVBAMMCGdyZXAudGhtMIIBIjANBgkqhkiG9w0B&#xa;AQEFAAOCAQ8AMIIBCgKCAQEAtiDNwwY9IR2HADMy6CRAwiPH0s8dIOFGPrbYCbLz&#xa;fDKIWURlczzOlmgpscN/YHHpt6P5ywUPLGnMK3ukYag7xTUYl+vmledTnD9oebnJ&#xa;6qDweFFwdZ8hysITyvCyGgqcY52JE2nBtVNj6/L16iZ60KKko8opNsTE5IYj/sUt&#xa;PsOxeNiV3oqpOUeKtZJbn7Kssd4KBwnRqTSUlXlPXzeRipAiW5SZZXo6K4YeLVht&#xa;XlLPtPWsMC0fj16DDDtxLlZmvu3J5o9egp/eRpWmvKWIaKQ57Y0MKB8/gso8FxxX&#xa;NiRY9Nru0C3DCUbc/xXywQ9pIGt/Xir++aXhyxCiIGh22QIDAQABMA0GCSqGSIb3&#xa;DQEBCwUAA4IBAQCzhJu52dIY7V/qQleDMEQ1oBLrQoFhHD6+UbvH0ELMAtL5Dc8A&#xa;LGDdyFkgsx04TaZtJ20dyrjYD+tcAgu9Yb7eEYbfqqD5w4XSzvdEuTW2aVL86aT6&#xa;IBbN8SMkX2zfILjHTOR1F7WAoHaIssH0yZltg+lQEEnAeb+XoIZm9cIW2bTNKoO2&#xa;MeHgvSKkQkjROO29XQQ3mTbxFG86UsTwyGHdddnkfiWilXqgfh+wGxbY/wCdhU0C&#xa;TnuXn4IEVdCBn16rCg51kEZZC1EWPcJpv0/InUNfcgumcVY033EXF/HgW4eNDD6H&#xa;XmLEGKfScUWcO0//STDZGZXwf9gt30DqoMSf&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="http-server-header" output="Apache/2.4.41 (Ubuntu)"><elem>Apache/2.4.41 (Ubuntu)</elem>
+</script></port>
+<port protocol="tcp" portid="51337"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="Apache httpd" version="2.4.41" hostname="ip-10-10-240-89.eu-west-1.compute.internal" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.41</cpe></service><script id="http-title" output="400 Bad Request"><elem key="title">400 Bad Request</elem>
+</script><script id="http-server-header" output="Apache/2.4.41 (Ubuntu)"><elem>Apache/2.4.41 (Ubuntu)</elem>
+</script></port>
+</ports>
+<times srtt="55945" rttvar="25136" to="156489"/>
+</host>
+<runstats><finished time="1692476516" timestr="Sat Aug 19 21:21:56 2023" summary="Nmap done at Sat Aug 19 21:21:56 2023; 1 IP address (1 host up) scanned in 32.47 seconds" elapsed="32.47" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

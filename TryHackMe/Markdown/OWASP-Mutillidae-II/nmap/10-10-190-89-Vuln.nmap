@@ -1,0 +1,215 @@
+# Nmap 7.94 scan initiated Sat Aug 19 21:27:40 2023 as: nmap --script vuln -oA nmap/10-10-190-89-Vuln --min-rate 300 -e tun0 -p 22,80 10.10.190.89
+Nmap scan report for 10.10.190.89
+Host is up (0.061s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+| http-internal-ip-disclosure: 
+|_  Internal IP Leaked: 172.17.0.2
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-fileupload-exploiter: 
+|   
+|_    Couldn't find a file-type field.
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|_      httponly flag not set
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.190.89
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.10.190.89:80/
+|     Form id: 
+|     Form action: https://www.paypal.com/cgi-bin/webscr
+|     
+|     Path: http://10.10.190.89:80/index.php
+|     Form id: 
+|     Form action: https://www.paypal.com/cgi-bin/webscr
+|     
+|     Path: http://10.10.190.89:80/index.php?page=phpmyadmin.php
+|     Form id: 
+|     Form action: https://www.paypal.com/cgi-bin/webscr
+|     
+|     Path: http://10.10.190.89:80/index.php?page=cache-control.php
+|     Form id: 
+|     Form action: https://www.paypal.com/cgi-bin/webscr
+|     
+|     Path: http://10.10.190.89:80/index.php?page=set-background-color.php
+|     Form id: 
+|     Form action: https://www.paypal.com/cgi-bin/webscr
+|     
+|     Path: http://10.10.190.89:80/index.php?page=set-background-color.php
+|     Form id: id-bad-cred-tr
+|     Form action: index.php?page=set-background-color.php
+|     
+|     Path: http://10.10.190.89:80/index.php?page=robots-txt.php
+|     Form id: 
+|     Form action: https://www.paypal.com/cgi-bin/webscr
+|     
+|     Path: http://10.10.190.89:80/index.php?page=user-info-xpath.php
+|     Form id: 
+|     Form action: https://www.paypal.com/cgi-bin/webscr
+|     
+|     Path: http://10.10.190.89:80/index.php?page=user-info-xpath.php
+|     Form id: id-bad-cred-tr
+|     Form action: ./index.php?page=user-info-xpath.php
+|     
+|     Path: http://10.10.190.89:80/index.php?page=user-poll.php
+|     Form id: 
+|     Form action: https://www.paypal.com/cgi-bin/webscr
+|     
+|     Path: http://10.10.190.89:80/index.php?page=framing.php
+|     Form id: 
+|     Form action: https://www.paypal.com/cgi-bin/webscr
+|     
+|     Path: http://10.10.190.89:80/index.php?page=sqlmap-targets.php
+|     Form id: 
+|     Form action: https://www.paypal.com/cgi-bin/webscr
+|     
+|     Path: http://10.10.190.89:80/index.php?page=home.php&popUpNotificationCode=HPH0
+|     Form id: 
+|     Form action: https://www.paypal.com/cgi-bin/webscr
+|     
+|     Path: http://10.10.190.89:80/index.php?page=login.php
+|     Form id: 
+|     Form action: https://www.paypal.com/cgi-bin/webscr
+|     
+|     Path: http://10.10.190.89:80/index.php?page=login.php
+|     Form id: idloginform
+|     Form action: index.php?page=login.php
+|     
+|     Path: http://10.10.190.89:80/index.php?page=pen-test-tool-lookup-ajax.php
+|     Form id: 
+|     Form action: https://www.paypal.com/cgi-bin/webscr
+|     
+|     Path: http://10.10.190.89:80/index.php?page=captured-data.php
+|     Form id: 
+|     Form action: https://www.paypal.com/cgi-bin/webscr
+|     
+|     Path: http://10.10.190.89:80/index.php?page=source-viewer.php
+|     Form id: 
+|     Form action: https://www.paypal.com/cgi-bin/webscr
+|     
+|     Path: http://10.10.190.89:80/index.php?page=source-viewer.php
+|     Form id: id-bad-cred-tr
+|_    Form action: index.php?page=source-viewer.php
+| http-sql-injection: 
+|   Possible sqli for queries:
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=59%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=40%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=9%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=39%27%20OR%20sqlspider
+|     http://10.10.190.89:80/includes/pop-up-help-context-generator.php?pagename=%2Fusr%2Fshare%2Fnginx%2Fhtml%2Fmutillidae%2Fhome.php%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=62%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=1%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=56%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=57%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=61%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=60%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=59%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=40%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=9%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=39%27%20OR%20sqlspider
+|     http://10.10.190.89:80/includes/pop-up-help-context-generator.php?pagename=%2Fusr%2Fshare%2Fnginx%2Fhtml%2Fmutillidae%2Fhome.php%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=62%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=1%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=56%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=57%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=61%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=60%27%20OR%20sqlspider
+|     http://10.10.190.89:80/includes/pop-up-help-context-generator.php?pagename=cache-control.php%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=12%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=59%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=56%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=55%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=11%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=33%27%20OR%20sqlspider
+|     http://10.10.190.89:80/includes/pop-up-help-context-generator.php?pagename=set-background-color.php%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=29%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=59%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=9%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=56%27%20OR%20sqlspider
+|     http://10.10.190.89:80/includes/pop-up-help-context-generator.php?pagename=robots-txt.php%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=43%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=12%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=58%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=11%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=55%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=59%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=56%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=13%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=30%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=49%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=1%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=54%27%20OR%20sqlspider
+|     http://10.10.190.89:80/includes/pop-up-help-context-generator.php?pagename=user-info-xpath.php%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=12%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=10%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=59%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=21%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=30%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=11%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=56%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=14%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=55%27%20OR%20sqlspider
+|     http://10.10.190.89:80/includes/pop-up-help-context-generator.php?pagename=user-poll.php%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=54%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=53%27%20OR%20sqlspider
+|     http://10.10.190.89:80/includes/pop-up-help-context-generator.php?pagename=framing.php%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=59%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=56%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=22%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=10%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=59%27%20OR%20sqlspider
+|     http://10.10.190.89:80/includes/pop-up-help-context-generator.php?pagename=sqlmap-targets.php%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=56%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=53%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=59%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=40%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=9%27%20OR%20sqlspider
+|     http://10.10.190.89:80/includes/pop-up-help-context-generator.php?pagename=home.php%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=39%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=62%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=1%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=56%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=57%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=61%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=60%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=12%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=10%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=59%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=11%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=55%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=13%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=25%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=56%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=1%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=48%27%20OR%20sqlspider
+|     http://10.10.190.89:80/includes/pop-up-help-context-generator.php?pagename=login.php%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=54%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=60%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=53%27%20OR%20sqlspider
+|     http://10.10.190.89:80/includes/pop-up-help-context-generator.php?pagename=pen-test-tool-lookup-ajax.php%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=26%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=59%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=56%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=12%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=59%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=56%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=55%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=11%27%20OR%20sqlspider
+|     http://10.10.190.89:80/includes/pop-up-help-context-generator.php?pagename=captured-data.php%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=12%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=59%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=40%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=39%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=56%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=11%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=55%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=48%27%20OR%20sqlspider
+|     http://10.10.190.89:80/hints-page-wrapper.php?level1HintIncludeFile=16%27%20OR%20sqlspider
+|_    http://10.10.190.89:80/includes/pop-up-help-context-generator.php?pagename=source-viewer.php%27%20OR%20sqlspider
+
+# Nmap done at Sat Aug 19 21:33:08 2023 -- 1 IP address (1 host up) scanned in 328.26 seconds

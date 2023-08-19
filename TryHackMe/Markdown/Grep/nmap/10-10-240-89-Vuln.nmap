@@ -1,0 +1,18 @@
+# Nmap 7.94 scan initiated Sat Aug 19 21:30:00 2023 as: nmap --script vuln -oA nmap/10-10-240-89-Vuln --min-rate 300 -e tun0 -p 51337,443,80,22 10.10.240.89
+Nmap scan report for 10.10.240.89
+Host is up (0.072s latency).
+
+PORT      STATE SERVICE
+22/tcp    open  ssh
+80/tcp    open  http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+443/tcp   open  https
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+51337/tcp open  unknown
+
+# Nmap done at Sat Aug 19 21:30:47 2023 -- 1 IP address (1 host up) scanned in 46.76 seconds
