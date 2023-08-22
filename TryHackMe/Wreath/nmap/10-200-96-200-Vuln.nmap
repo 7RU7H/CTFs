@@ -1,0 +1,77 @@
+# Nmap 7.94 scan initiated Tue Aug 22 11:24:05 2023 as: nmap --script vuln -oA nmap/10-200-96-200-Vuln --min-rate 100 -e tun0 -p 80,443,22,10000 10.200.96.200
+Nmap scan report for 10.200.96.200
+Host is up (0.078s latency).
+
+PORT      STATE SERVICE
+22/tcp    open  ssh
+80/tcp    open  http
+|_http-vuln-cve2013-7091: ERROR: Script execution failed (use -d to debug)
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-passwd: ERROR: Script execution failed (use -d to debug)
+443/tcp   open  https
+|_http-trace: TRACE is enabled
+| http-sql-injection: 
+|   Possible sqli for queries:
+|     https://10.200.96.200:443/js/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=N%3BO%3DD%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=S%3BO%3DD%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=M%3BO%3DD%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=D%3BO%3DD%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=N%3BO%3DD%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     https://10.200.96.200:443/js/?C=S%3BO%3DA%27%20OR%20sqlspider
+|_    https://10.200.96.200:443/js/?C=D%3BO%3DA%27%20OR%20sqlspider
+| http-enum: 
+|   /css/: Potentially interesting folder w/ directory listing
+|   /icons/: Potentially interesting folder w/ directory listing
+|   /img/: Potentially interesting folder w/ directory listing
+|_  /js/: Potentially interesting folder w/ directory listing
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+10000/tcp open  snet-sensor-mgmt
+| http-vuln-cve2006-3392: 
+|   VULNERABLE:
+|   Webmin File Disclosure
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2006-3392
+|       Webmin before 1.290 and Usermin before 1.220 calls the simplify_path function before decoding HTML.
+|       This allows arbitrary files to be read, without requiring authentication, using "..%01" sequences
+|       to bypass the removal of "../" directory traversal sequences.
+|       
+|     Disclosure date: 2006-06-29
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2006-3392
+|       http://www.exploit-db.com/exploits/1997/
+|_      http://www.rapid7.com/db/modules/auxiliary/admin/webmin/file_disclosure
+
+# Nmap done at Tue Aug 22 11:24:58 2023 -- 1 IP address (1 host up) scanned in 53.69 seconds

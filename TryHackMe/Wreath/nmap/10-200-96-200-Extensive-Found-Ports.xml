@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Tue Aug 22 11:16:57 2023 as: nmap -sC -sV -oA nmap/10-200-96-200-Extensive-Found-Ports -&#45;min-rate 100 -e tun0 -p 80,443,22,10000 10.200.96.200 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA nmap/10-200-96-200-Extensive-Found-Ports -&#45;min-rate 100 -e tun0 -p 80,443,22,10000 10.200.96.200" start="1692699417" startstr="Tue Aug 22 11:16:57 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="4" services="22,80,443,10000"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.200.96.200" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1692699430" endtime="1692699475"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.200.96.200" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" product="OpenSSH" version="8.0" extrainfo="protocol 2.0" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:8.0</cpe></service><script id="ssh-hostkey" output="&#xa;  3072 9c:1b:d4:b4:05:4d:88:99:ce:09:1f:c1:15:6a:d4:7e (RSA)&#xa;  256 93:55:b4:d9:8b:70:ae:8e:95:0d:c2:b6:d2:03:89:a4 (ECDSA)&#xa;  256 f0:61:5a:55:34:9b:b7:b8:3a:46:ca:7d:9f:dc:fa:12 (ED25519)"><table>
+<elem key="type">ssh-rsa</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABgQDfKbbFLiRV9dqsrYQifAghp85qmXpYEHf2g4JJqDKUL316TcAoGj62aamfhx5isIJHtQsA0hVmzD+4pVH4r8ANkuIIRs6j9cnBrLGpjk8xz9+BE1Vvd8lmORGxCqTv+9LgrpB7tcfoEkIOSG7zeY182kOR72igUERpy0JkzxJm2gIGb7Caz1s5/ScHEOhGX8VhNT4clOhDc9dLePRQvRooicIsENqQsLckE0eJB7rTSxemWduL+twySqtwN80a7pRzS7dzR4f6fkhVBAhYflJBW3iZ46zOItZcwT2u0wReCrFzxvDxEOewH7YHFpvOvb+Exuf3W6OuSjCHF64S7iU6z92aINNf+dSROACXbmGnBhTlGaV57brOXzujsWDylivWZ7CVVj1gB6mrNfEpBNE983qZskyVk4eTNT5cUD+3I/IPOz1bOtOWiraZCevFYaQR5AxNmx8sDIgo1z4VcxOMhrczc7RC/s3KWcoIkI2cI5+KUnDtaOfUClXPBCgYE50=</elem>
+<elem key="fingerprint">9c1bd4b4054d8899ce091fc1156ad47e</elem>
+<elem key="bits">3072</elem>
+</table>
+<table>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFccvYHwpGWYUsw9mTk/mEvzyrY4ghhX2D6o3n/upTLFXbhJPV6ls4C8O0wH6TyGq7ClV3XpVa7zevngNoqlwzM=</elem>
+<elem key="fingerprint">9355b4d98b70ae8e950dc2b6d20389a4</elem>
+<elem key="bits">256</elem>
+</table>
+<table>
+<elem key="type">ssh-ed25519</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAINLfVtZHSGvCy3JP5GX0Dgzcxz+Y9In0TcQc3vhvMXCP</elem>
+<elem key="fingerprint">f0615a55349bb7b83a46ca7d9fdcfa12</elem>
+<elem key="bits">256</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="Apache httpd" version="2.4.37" extrainfo="(centos) OpenSSL/1.1.1c" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.37</cpe></service><script id="http-title" output="Did not follow redirect to https://thomaswreath.thm"><elem key="redirect_url">https://thomaswreath.thm</elem>
+</script><script id="http-server-header" output="Apache/2.4.37 (centos) OpenSSL/1.1.1c"><elem>Apache/2.4.37 (centos) OpenSSL/1.1.1c</elem>
+</script></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="Apache httpd" version="2.4.37" extrainfo="(centos) OpenSSL/1.1.1c" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.37</cpe></service><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="http-title" output="Thomas Wreath | Developer"><elem key="title">Thomas Wreath | Developer</elem>
+</script><script id="tls-alpn" output="&#xa;  http/1.1"><elem>http/1.1</elem>
+</script><script id="http-methods" output="&#xa;  Potentially risky methods: TRACE"><table key="Potentially risky methods">
+<elem>TRACE</elem>
+</table>
+</script><script id="http-server-header" output="Apache/2.4.37 (centos) OpenSSL/1.1.1c"><elem>Apache/2.4.37 (centos) OpenSSL/1.1.1c</elem>
+</script><script id="ssl-cert" output="Subject: commonName=thomaswreath.thm/organizationName=Thomas Wreath Development/stateOrProvinceName=East Riding Yorkshire/countryName=GB&#xa;Not valid before: 2023-08-22T09:14:15&#xa;Not valid after:  2024-08-21T09:14:15"><table key="subject">
+<elem key="commonName">thomaswreath.thm</elem>
+<elem key="countryName">GB</elem>
+<elem key="emailAddress">me@thomaswreath.thm</elem>
+<elem key="localityName">Easingwold</elem>
+<elem key="organizationName">Thomas Wreath Development</elem>
+<elem key="stateOrProvinceName">East Riding Yorkshire</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">thomaswreath.thm</elem>
+<elem key="countryName">GB</elem>
+<elem key="emailAddress">me@thomaswreath.thm</elem>
+<elem key="localityName">Easingwold</elem>
+<elem key="organizationName">Thomas Wreath Development</elem>
+<elem key="stateOrProvinceName">East Riding Yorkshire</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">AE9E7D73AE187F2C7F4C6E5E4960359DCA1231C4DFA480D38D2742AD6B093DEA9E4A260959115FC1173A1A3720D2C514DA3C55DBB83CCA737BA808C2A0036E4473D781E97719438A8347DB5322F61831856BF30BDAB0CB70B093386DF430B43CEAE892DBF7B66A2CA4075BA01154E8B9C344B0C795E699DBA11908C03711FDFE1E521AF37E47C962412C7D76079D82AB2032F782C627A56FC5AFB20A56DB7273B017AF740D51614EE46D8C66980F726F0ED29AFD5AE2B250A594F7B1DD24F857AF0B3A87F7F86514A5DA9E597780B6D573DC84B5BAE484CB1D4D27D756ED61C6D8478F4697C452962816802F7C70B369645D620BAB166228B8E3379E3032CB9B</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">C9:AA:BA:D1:CB:BD:08:81:F6:12:B8:D5:86:54:B7:7A:6D:F9:C2:13</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">C9:AA:BA:D1:CB:BD:08:81:F6:12:B8:D5:86:54:B7:7A:6D:F9:C2:13</elem>
+</table>
+<table>
+<elem key="name">X509v3 Basic Constraints</elem>
+<elem key="value">CA:TRUE</elem>
+<elem key="critical">true</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-08-22T09:14:15</elem>
+<elem key="notAfter">2024-08-21T09:14:15</elem>
+</table>
+<elem key="md5">c1f1d3b110abaa7a111df567764c344b</elem>
+<elem key="sha1">dcf504b86c966cf56803105ec2d3dbd293dbc77c</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIELTCCAxWgAwIBAgIUDkOVONQn5w0uB5/Luw7d1/lCDR8wDQYJKoZIhvcNAQEL&#xa;BQAwgaUxCzAJBgNVBAYTAkdCMR4wHAYDVQQIDBVFYXN0IFJpZGluZyBZb3Jrc2hp&#xa;cmUxEzARBgNVBAcMCkVhc2luZ3dvbGQxIjAgBgNVBAoMGVRob21hcyBXcmVhdGgg&#xa;RGV2ZWxvcG1lbnQxGTAXBgNVBAMMEHRob21hc3dyZWF0aC50aG0xIjAgBgkqhkiG&#xa;9w0BCQEWE21lQHRob21hc3dyZWF0aC50aG0wHhcNMjMwODIyMDkxNDE1WhcNMjQw&#xa;ODIxMDkxNDE1WjCBpTELMAkGA1UEBhMCR0IxHjAcBgNVBAgMFUVhc3QgUmlkaW5n&#xa;IFlvcmtzaGlyZTETMBEGA1UEBwwKRWFzaW5nd29sZDEiMCAGA1UECgwZVGhvbWFz&#xa;IFdyZWF0aCBEZXZlbG9wbWVudDEZMBcGA1UEAwwQdGhvbWFzd3JlYXRoLnRobTEi&#xa;MCAGCSqGSIb3DQEJARYTbWVAdGhvbWFzd3JlYXRoLnRobTCCASIwDQYJKoZIhvcN&#xa;AQEBBQADggEPADCCAQoCggEBAK6efXOuGH8sf0xuXklgNZ3KEjHE36SA040nQq1r&#xa;CT3qnkomCVkRX8EXOho3INLFFNo8Vdu4PMpze6gIwqADbkRz14HpdxlDioNH21Mi&#xa;9hgxhWvzC9qwy3Cwkzht9DC0POroktv3tmospAdboBFU6LnDRLDHleaZ26EZCMA3&#xa;Ef3+HlIa835HyWJBLH12B52CqyAy94LGJ6Vvxa+yClbbcnOwF690DVFhTuRtjGaY&#xa;D3JvDtKa/VrislCllPex3ST4V68LOof3+GUUpdqeWXeAttVz3IS1uuSEyx1NJ9dW&#xa;7WHG2EePRpfEUpYoFoAvfHCzaWRdYgurFmIouOM3njAyy5sCAwEAAaNTMFEwHQYD&#xa;VR0OBBYEFMmqutHLvQiB9hK41YZUt3pt+cITMB8GA1UdIwQYMBaAFMmqutHLvQiB&#xa;9hK41YZUt3pt+cITMA8GA1UdEwEB/wQFMAMBAf8wDQYJKoZIhvcNAQELBQADggEB&#xa;ABIBaQKfXVZNa5qk5H4b3tQ7AiBEdDaK0F8ClMmKo1cF4S+IpwOCrRRy2IWGA96I&#xa;xTitP6E12cWPdPPV9C9i4xHbw3XKmzwfwAujS7eElnWWTkbZa0CB2kYGsCNvmwl9&#xa;/j+2cmlo0JjXmm9VaMx7widZ7uscdqSnfNcCeEVGhWY2hKQ0JqQEvFH5rQAXltnl&#xa;j58KCJcMRzLv88prldm51d/qu9R++wjtP4Nm3VBI0707aA97+o+lJY1/dZRq0tI+&#xa;S0Ww32WQjNuKwb3Bcr9cHQxhCyF3PJFiyM2il5F0KoysGrym4hvIetBnJcf2gotY&#xa;WjmIw3SVFOMP2yTwhx5tcnU=&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script></port>
+<port protocol="tcp" portid="10000"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="MiniServ" version="1.890" extrainfo="Webmin httpd" method="probed" conf="10"/><script id="http-title" output="Site doesn&apos;t have a title (text/html; Charset=iso-8859-1)."></script></port>
+</ports>
+<times srtt="79323" rttvar="37245" to="228303"/>
+</host>
+<runstats><finished time="1692699475" timestr="Tue Aug 22 11:17:55 2023" summary="Nmap done at Tue Aug 22 11:17:55 2023; 1 IP address (1 host up) scanned in 58.10 seconds" elapsed="58.10" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Tue Aug 22 11:24:05 2023 as: nmap -&#45;script vuln -oA nmap/10-200-96-200-Vuln -&#45;min-rate 100 -e tun0 -p 80,443,22,10000 10.200.96.200 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-200-96-200-Vuln -&#45;min-rate 100 -e tun0 -p 80,443,22,10000 10.200.96.200" start="1692699845" startstr="Tue Aug 22 11:24:05 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="4" services="22,80,443,10000"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.200.96.200" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1692699868" endtime="1692699898"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.200.96.200" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-vuln-cve2013-7091" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-passwd" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="https" method="table" conf="3"/><script id="http-trace" output="TRACE is enabled"/><script id="http-sql-injection" output="&#xa;  Possible sqli for queries:&#xa;    https://10.200.96.200:443/js/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=N%3BO%3DD%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=S%3BO%3DD%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=M%3BO%3DD%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=D%3BO%3DD%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=N%3BO%3DD%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    https://10.200.96.200:443/js/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;"/><script id="http-enum" output="&#xa;  /css/: Potentially interesting folder w/ directory listing&#xa;  /icons/: Potentially interesting folder w/ directory listing&#xa;  /img/: Potentially interesting folder w/ directory listing&#xa;  /js/: Potentially interesting folder w/ directory listing&#xa;"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/></port>
+<port protocol="tcp" portid="10000"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="snet-sensor-mgmt" method="table" conf="3"/><script id="http-vuln-cve2006-3392" output="&#xa;  VULNERABLE:&#xa;  Webmin File Disclosure&#xa;    State: VULNERABLE (Exploitable)&#xa;    IDs:  CVE:CVE-2006-3392&#xa;      Webmin before 1.290 and Usermin before 1.220 calls the simplify_path function before decoding HTML.&#xa;      This allows arbitrary files to be read, without requiring authentication, using &quot;..%01&quot; sequences&#xa;      to bypass the removal of &quot;../&quot; directory traversal sequences.&#xa;      &#xa;    Disclosure date: 2006-06-29&#xa;    References:&#xa;      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2006-3392&#xa;      http://www.exploit-db.com/exploits/1997/&#xa;      http://www.rapid7.com/db/modules/auxiliary/admin/webmin/file_disclosure&#xa;"><table key="CVE-2006-3392">
+<elem key="title">Webmin File Disclosure</elem>
+<elem key="state">VULNERABLE (Exploitable)</elem>
+<table key="ids">
+<elem>CVE:CVE-2006-3392</elem>
+</table>
+<table key="description">
+<elem>Webmin before 1.290 and Usermin before 1.220 calls the simplify_path function before decoding HTML.&#xa;This allows arbitrary files to be read, without requiring authentication, using &quot;..%01&quot; sequences&#xa;to bypass the removal of &quot;../&quot; directory traversal sequences.&#xa;</elem>
+</table>
+<table key="dates">
+<table key="disclosure">
+<elem key="day">29</elem>
+<elem key="year">2006</elem>
+<elem key="month">06</elem>
+</table>
+</table>
+<elem key="disclosure">2006-06-29</elem>
+<table key="refs">
+<elem>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2006-3392</elem>
+<elem>http://www.exploit-db.com/exploits/1997/</elem>
+<elem>http://www.rapid7.com/db/modules/auxiliary/admin/webmin/file_disclosure</elem>
+</table>
+</table>
+</script></port>
+</ports>
+<times srtt="78163" rttvar="40416" to="239827"/>
+</host>
+<runstats><finished time="1692699898" timestr="Tue Aug 22 11:24:58 2023" summary="Nmap done at Tue Aug 22 11:24:58 2023; 1 IP address (1 host up) scanned in 53.69 seconds" elapsed="53.69" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -24,7 +24,7 @@ Having never managed a DNS server and looking into here and there especially fro
 
 ## Recon
 
-The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+The time to live (TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](Screenshots/ping.png)
 
 Nuclei: [[generic-tokens-http___10.129.154.73_]]
@@ -41,7 +41,7 @@ Nuclei states that the same key is a Google API keys wtf..is..`AIzaSyCWDPCiH080d
 
 ## Beyond Root
 
-Get VS codium for the zero telemetry on Kali
+Get VS Codium for the zero telemetry on Kali
 ```bash
 #!/bin/bash
 
