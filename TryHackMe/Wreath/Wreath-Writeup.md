@@ -14,6 +14,7 @@ Learnt:
 - Flexing changing it up and feeling good while flexing changing up on the fly!
 - Making python virtual environments is just that easy
 - Thomas Wreath is as haunting as Alh4zr3d described.
+- Serious ShadowIT-Defined-Routes wins!
 Beyond Root:
 - Do the report like a professional
 - Prep reporting for further Offsec certs 2023!
@@ -126,6 +127,8 @@ source .venv/bin/activate
 pip3 install .
 python3 CVE-2019-15107.py $IP
 ```
+
+#### Answers to the next section...
 
 #### Task 6 Webserver Exploitation
 
@@ -303,29 +306,24 @@ You are trying to use sshuttle to connect to 172.16.0.100.  You want to forward
 
 ## C2 Choices Diverge...
 
-From this point I will use silver instead of PowerShell Empire.
-
-#### Task 22 Command and Control Introduction
-
-#### Task 23 Command and Control Empire: Installation
-
+From this point I will use silver instead of PowerShell Empire here are the answers.
 #### Task 24 Command and Control Empire: Overview
 
-#### Task 25 Command and Control Empire: Listeners
-
-#### Task 26 Command and Control Empire: Stagers
+Can we get an agent back from the git server directly (Aye/Nay)?
+```
+Nay
+```
 
 #### Task 27 Command and Control Empire: Agents
 
-#### Task 28 Command and Control Empire: Hop Listeners
+Using the `help` command for guidance: in Empire CLI, how would we run the `whoami` command inside an agent?
+```
+shell whoami
+```
 
-#### Task 29 Command and Control Git Server
+## Return with Sliver
 
-#### Task 30 Command and Control Empire: Modules
 
-#### Task 31 Command and Control Empire: Interactive Shell
-
-#### Task 32 Command and Control Conclusion
 
 #### Task 33 Personal PC Enumeration
 
