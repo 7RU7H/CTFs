@@ -1,30 +1,47 @@
+# AuthBy Writeup
 
 Name: AuthBy
 Date:  
 Difficulty:  
-Description:  
-Better Description:  
 Goals:  
 Learnt:
+Beyond Root:
+
+- [[AuthBy-Notes.md]]
+- [[AuthBy-CMD-by-CMDs.md]]
 
 ## Recon
 
-```bash
-ping -c 3 192.168.249.46 
-PING 192.168.249.46 (192.168.249.46) 56(84) bytes of data.
-64 bytes from 192.168.249.46: icmp_seq=1 TTL=127 time=41.3 ms
-64 bytes from 192.168.249.46: icmp_seq=2 TTL=127 time=45.3 ms
-64 bytes from 192.168.249.46: icmp_seq=3 TTL=127 time=41.9 ms
+The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+![ping](Screenshots/ping.png)
 
---- 192.168.249.46 ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 2003ms
-rtt min/avg/max/mdev = 41.298/42.827/45.300/1.764 ms
+![](hydraftp.png)
+
 ```
-	
+wget -r ftp://admin:admin@192.168.174.46/
+```
+
+![](htpasswd.png)
+
+![](apache1hash.png)
+
+![](hashcatcracked.png)
+
+![](offseceliteforwebpage.png)
+
+![](webadeshell.png)
+
+https://sushant747.gitbooks.io/total-oscp-guide/content/webshell.html
+
+![](nowebshellsadness.png)
 ## Exploit
 
 ## Foothold
 
 ## PrivEsc
 
-      
+![](AuthBy-map.excalidraw.md)
+
+## Beyond Root
+
+

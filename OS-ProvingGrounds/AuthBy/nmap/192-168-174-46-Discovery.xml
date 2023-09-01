@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Fri Sep  1 19:25:12 2023 as: nmap -&#45;script discovery -oA nmap/192-168-174-46-Discovery -&#45;min-rate 300 -e tun0 -p 3389,3145,242,21 192.168.174.46 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/192-168-174-46-Discovery -&#45;min-rate 300 -e tun0 -p 3389,3145,242,21 192.168.174.46" start="1693592712" startstr="Fri Sep  1 19:25:12 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="4" services="21,242,3145,3389"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="broadcast-ping" output="false">false</script><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="lltd-discovery" output="false">false</script><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-sniffer" output="Sniffed 2 address(es). &#xa;224.0.23.12&#xa;192.168.174.46"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.174.46" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1693592736" endtime="1693592761"><status state="up" reason="echo-reply" reason_ttl="125"/>
+<address addr="192.168.174.46" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="ftp" method="table" conf="3"/><script id="banner" output="220 zFTPServer v6.0, build 2011-10-17 15:25 ready."/></port>
+<port protocol="tcp" portid="242"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="direct" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3145"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="csi-lfap" method="table" conf="3"/><script id="banner" output="220 ."/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="ms-wbt-server" method="table" conf="3"/><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.0: &#xa;    ciphers: &#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_RC4_128_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - F&#xa;      TLS_RSA_WITH_RC4_128_MD5 (rsa 2048) - F&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;      Broken cipher RC4 is deprecated by RFC 7465&#xa;      Ciphersuite uses MD5 for message integrity&#xa;      Insecure certificate signature (SHA1), score capped at F&#xa;  least strength: F"><table key="TLSv1.0">
+<table key="ciphers">
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_RC4_128_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_RC4_128_MD5</elem>
+<elem key="strength">F</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+<elem>Broken cipher RC4 is deprecated by RFC 7465</elem>
+<elem>Ciphersuite uses MD5 for message integrity</elem>
+<elem>Insecure certificate signature (SHA1), score capped at F</elem>
+</table>
+</table>
+<elem key="least strength">F</elem>
+</script><script id="rdp-enum-encryption" output="&#xa;  Security layer&#xa;    CredSSP (NLA): SUCCESS&#xa;    CredSSP with Early User Auth: SUCCESS&#xa;    Native RDP: SUCCESS&#xa;    RDSTLS: SUCCESS&#xa;    SSL: SUCCESS&#xa;  RDP Encryption level: Client Compatible&#xa;    40-bit RC4: SUCCESS&#xa;    56-bit RC4: SUCCESS&#xa;    128-bit RC4: SUCCESS&#xa;    FIPS 140-1: SUCCESS&#xa;  RDP Protocol Version:  RDP 5.x, 6.x, 7.x, or 8.x server&#xa;"/><script id="rdp-ntlm-info" output="&#xa;  Target_Name: LIVDA&#xa;  NetBIOS_Domain_Name: LIVDA&#xa;  NetBIOS_Computer_Name: LIVDA&#xa;  DNS_Domain_Name: LIVDA&#xa;  DNS_Computer_Name: LIVDA&#xa;  Product_Version: 6.0.6001&#xa;  System_Time: 2023-09-01T18:25:23+00:00"><elem key="Target_Name">LIVDA</elem>
+<elem key="NetBIOS_Domain_Name">LIVDA</elem>
+<elem key="NetBIOS_Computer_Name">LIVDA</elem>
+<elem key="DNS_Domain_Name">LIVDA</elem>
+<elem key="DNS_Computer_Name">LIVDA</elem>
+<elem key="Product_Version">6.0.6001</elem>
+<elem key="System_Time">2023-09-01T18:25:23+00:00</elem>
+</script><script id="ssl-cert" output="Subject: commonName=LIVDA&#xa;Not valid before: 2023-01-28T03:26:23&#xa;Not valid after:  2023-07-30T03:26:23"><table key="subject">
+<elem key="commonName">LIVDA</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">LIVDA</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">A248212AFE470F744504BD3C45F963D5AF8D3241930BEA72A44A8245A155F8E916F6613D64819DBB6E4D053CD81CA6A44A142C9C21845476EAD05A42C63AFFFFFE9CC0FB4D6466861F5903A4B9E70EC5F18CD6937ABEA0E8D36ECADCA3E300590A3AFC96D7055F8CB1B8A4CB8D4F4F98F6D11C5115708D9AB59AD786D76A3B28F384C77CDAEDE4E1A08C56DF95C269C772CAEEE60B82271A575CC28AE5C3F8B32DD3505BB59BBEFFAA8B7AF3CD9CEB18758564F592D414E81836B77113BA15AF38A38A0B8ABEFF53B8298A09DF4E3F82889828EF18A454475232D11AD408415B72E50A36DB1CB43537ACBBAF807A3C94C9CE0B23B5C163ABCEDC713992955AF5</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Key Encipherment, Data Encipherment</elem>
+</table>
+</table>
+<elem key="sig_algo">sha1WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-01-28T03:26:23</elem>
+<elem key="notAfter">2023-07-30T03:26:23</elem>
+</table>
+<elem key="md5">847cb7edb8cdb27003c3faeae819e57b</elem>
+<elem key="sha1">f0eb9a3ecff4e904b13d929919e9ca011c92e248</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIICzjCCAbagAwIBAgIQbJWOqc9O6L9D37/GihsqmTANBgkqhkiG9w0BAQUFADAQ&#xa;MQ4wDAYDVQQDEwVMSVZEQTAeFw0yMzAxMjgwMzI2MjNaFw0yMzA3MzAwMzI2MjNa&#xa;MBAxDjAMBgNVBAMTBUxJVkRBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC&#xa;AQEAokghKv5HD3RFBL08Rflj1a+NMkGTC+pypEqCRaFV+OkW9mE9ZIGdu25NBTzY&#xa;HKakShQsnCGEVHbq0FpCxjr///6cwPtNZGaGH1kDpLnnDsXxjNaTer6g6NNuytyj&#xa;4wBZCjr8ltcFX4yxuKTLjU9PmPbRHFEVcI2atZrXhtdqOyjzhMd82u3k4aCMVt+V&#xa;wmnHcsru5guCJxpXXMKK5cP4sy3TUFu1m77/qot6882c6xh1hWT1ktQU6Bg2t3ET&#xa;uhWvOKOKC4q+/1O4KYoJ304/goiYKO8YpFRHUjLRGtQIQVty5Qo22xy0NTesu6+A&#xa;ejyUyc4LI7XBY6vO3HE5kpVa9QIDAQABoyQwIjATBgNVHSUEDDAKBggrBgEFBQcD&#xa;ATALBgNVHQ8EBAMCBDAwDQYJKoZIhvcNAQEFBQADggEBAIP4t/SuhwWSM5GyZmNu&#xa;cGGsbcQK/Z0w0lWrPBk6YmCf65Y7eA0FKbtojz7MLsf5QMooUT4xIG5Y9esIOdMy&#xa;SViD1iX8h8PuAoNqvLu8TpWcHmb1+qTH/pTzmAYeWeHEdTKPryb3ZuHwn2UCvB3w&#xa;J9Sr0efgyQSXVNCSugwXUE8/TzuTYlAHPzwVsfHfdVMih4y2HpIGO98sqEti5Px6&#xa;zKXPtRinMdxBN5IasuF99+voPAAwlH1xH3Z+u53Pe4pHoBqUDWUzZ3V1z2HDuX9d&#xa;92av5hKOJDZZcdcx5XhhJHaVpt2u5VMajJWP3Q9pHC3gVBCAJLOIyVRkDhjl7Tqf&#xa;tHI=&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ssl-date" output="2023-09-01T18:25:23+00:00; -13s from scanner time."><elem key="delta">-13.0</elem>
+<elem key="date">2023-09-01T18:25:23+00:00</elem>
+</script></port>
+</ports>
+<hostscript><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="path-mtu" output="PMTU == 1500"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;192.168.174.46&quot;; use dns-brute.domain script argument."/><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;21    0       50778.80   6947.86   0.0%&#xa;242   0       50660.20   3923.12   0.0%&#xa;3145  0       48519.89   4772.78   10.0%&#xa;3389  0       57994.70   18719.36  0.0%&#xa;"/><script id="ipidseq" output="Unknown"/></hostscript><times srtt="62715" rttvar="33479" to="196631"/>
+</host>
+<runstats><finished time="1693592761" timestr="Fri Sep  1 19:26:01 2023" summary="Nmap done at Fri Sep  1 19:26:01 2023; 1 IP address (1 host up) scanned in 48.63 seconds" elapsed="48.63" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Fri Sep  1 19:26:01 2023 as: nmap -&#45;script vuln -oA nmap/192-168-174-46-Vuln -&#45;min-rate 300 -e tun0 -p 3389,3145,242,21 192.168.174.46 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/192-168-174-46-Vuln -&#45;min-rate 300 -e tun0 -p 3389,3145,242,21 192.168.174.46" start="1693592761" startstr="Fri Sep  1 19:26:01 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="4" services="21,242,3145,3389"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.174.46" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1693592784" endtime="1693592844"><status state="up" reason="echo-reply" reason_ttl="125"/>
+<address addr="192.168.174.46" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="242"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="direct" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3145"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="csi-lfap" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="ms-wbt-server" method="table" conf="3"/><script id="ssl-ccs-injection" output="No reply from server (TIMEOUT)"/></port>
+</ports>
+<times srtt="49361" rttvar="20958" to="133193"/>
+</host>
+<runstats><finished time="1693592844" timestr="Fri Sep  1 19:27:24 2023" summary="Nmap done at Fri Sep  1 19:27:24 2023; 1 IP address (1 host up) scanned in 83.78 seconds" elapsed="83.78" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
