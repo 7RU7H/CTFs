@@ -628,10 +628,82 @@ shell whoami
 
 #### Task 37 Personal PC Exploit PoC
 
+## AV Evasion Notes for the Archive and answers for the Write-up
+
+- In-Memory Evasion 
+	- Saving to memory and executing from memory
+	- Until **A**nti-**M**alware **S**can **I**nterface(AMSI), bypassing with `IEX` executing in-memory was enough
+	- AMSI scans scripts as it is loaded into memory	
+	- AMSI provides hooks for AV publishers to use
+- On-Disk Evasion
+	- Saving to disk and executing from Disk
+
+- Fingerprint AV to determine vendor 
+	- Some tools with identification capacity:
+	- [SharpEDRChecker](https://github.com/PwnDexter/SharpEDRChecker)
+	- [Seatbelt](https://github.com/GhostPack/Seatbelt) 
+- Replication 
+	- Prevent AV from transmitting data out of the VM
+		- Always disable cloud-based protection in AV settings
+		- Disconnect the internet 
+		- Always snapshot before doing anything else!
+	- Discern detection mechanisms - combinations exist beware
+		- Understand the compute trade-offs AV makes to be commercial software by...
+			- Constrained to a percentage usage of the CPU
+			- Requirement for speed
+		- Therefore limitations of..
+			- Sandboxing on hosts
+				- Resource intensive
+				- Is not going to re-sandbox new malware so waiting out the sandbox 
+				- Sandboxing has its own signatures for MalDevs to fingerprint
+			- AV Vendor copy-catting (VirusTotal signatures) 
+				- Brittle signatures (changing it is easy to bypass)
+				- Same signatures means if it bypass one leading AV vendor it will probably bypass others
+			- Signature and Pre-defined Dynamic Detection Rule definition sizes and complexity 
+				- Sets of rules for computers to define checks are explicit and can not interpreted with discreet semantic qualities, either more rules or complex rules or few very clever rules. If this problem could be solved with a few clever rules then AV evasion would not exist.   
+			- Hashing 
+				- Hashing is compute intensive process 
+			- Answers quickly and cheaply
+				- Waiting out the sandbox
+			- Password Protected files.. AV does have the password
+		- Mechanisms 
+			- Static Detection 
+			- Dynamic / Heuristic / Behavioural Detection
+
+[Online php-obfuscator](https://www.gaijin.at/en/tools/php-obfuscator)
+
 #### Task 38 AV Evasion Introduction
+
+Which category of evasion covers uploading a file to the storage on the target before executing it?  
+```
+On-Disk Evasion
+```
+What does AMSI stand for?  
+```
+AntiMalware Scan Interface
+```
+Which category of evasion does AMSI affect?
+```
+In-Memory Evasion
+```
 
 #### Task 39 AV Evasion AV Detection Methods
 
+What other name can be used for Dynamic/Heuristic detection methods?  
+```
+Behavioural
+```
+If AV software splits a program into small chunks and hashes them, checking the results against a database, is this a static or dynamic analysis method?  
+```
+Static
+```
+When dynamically analysing a suspicious file using a line-by-line analysis of the program, what would antivirus software check against to see if the behaviour is malicious?  
+```
+```
+What could be added to a file to ensure that only a user can open it (preventing AV from executing the payload)?
+```
+Password
+```
 #### Task 40 AV Evasion PHP Payload Obfuscation
 
 #### Task 41 AV Evasion Compiling Netcat & Reverse Shell!
