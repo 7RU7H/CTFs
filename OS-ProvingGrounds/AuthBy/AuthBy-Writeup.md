@@ -34,6 +34,8 @@ wget -r ftp://admin:admin@192.168.174.46/
 https://sushant747.gitbooks.io/total-oscp-guide/content/webshell.html
 
 ![](nowebshellsadness.png)
+
+[Online php-obfuscator](https://www.gaijin.at/en/tools/php-obfuscator) from [[Wreath-Writeup]] may also help
 ## Exploit
 
 ## Foothold
