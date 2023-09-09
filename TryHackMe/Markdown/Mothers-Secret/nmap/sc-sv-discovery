@@ -1,0 +1,130 @@
+# Nmap 7.94 scan initiated Sat Sep  9 20:46:02 2023 as: nmap -p 22,80 -script discovery -oN nmap/sc-sv-discovery -e tun0 --min-rate 100 10.10.21.178
+Pre-scan script results:
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-ping: false
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_lltd-discovery: false
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.10.21.178
+Host is up (0.067s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh-hostkey: 
+|   3072 0a:49:2b:5e:f7:bb:d3:08:ad:17:9a:90:80:15:12:4f (RSA)
+|   256 66:38:94:37:94:71:f4:fc:f7:1e:2a:01:aa:48:66:82 (ECDSA)
+|_  256 59:b1:bf:95:78:ff:a9:6a:31:3f:95:b6:c0:f9:48:d1 (ED25519)
+|_banner: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.9
+| ssh2-enum-algos: 
+|   kex_algorithms: (9)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+80/tcp open  http
+| http-headers: 
+|   X-Powered-By: Express
+|   Accept-Ranges: bytes
+|   Cache-Control: public, max-age=0
+|   Last-Modified: Tue, 22 Aug 2023 19:46:18 GMT
+|   ETag: W/"435-18a1ec89b6d"
+|   Content-Type: text/html; charset=UTF-8
+|   Content-Length: 1077
+|   Vary: Accept-Encoding
+|   Date: Sat, 09 Sep 2023 19:46:29 GMT
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+| http-vhosts: 
+|_128 names had status 200
+|_http-chrono: Request times for /; avg: 253.75ms; min: 193.52ms; max: 294.67ms
+|_http-devframework: Express detected. Found Express in X-Powered-By Header
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; js: 1
+|     /style/
+|       css: 1
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /style/
+|   Total files found (by extension):
+|_    Other: 1; css: 1; js: 1
+| http-referer-checker: 
+| Spidering limited to: maxpagecount=30
+|   https://cdn.socket.io:443/4.4.1/socket.io.min.js
+|_  https://kit.fontawesome.com:443/4f572bc49d.js
+|_http-title: Mothers Secret
+|_http-feed: Couldn't find any feeds.
+|_http-date: Sat, 09 Sep 2023 19:46:28 GMT; +59m41s from local time.
+| http-security-headers: 
+|   Cache_Control: 
+|_    Header: Cache-Control: public, max-age=0
+|_http-errors: Couldn't find any error pages.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.21.178
+|     
+|     Path: http://10.10.21.178:80/style/style.css
+|     Line number: 215
+|     Comment: 
+|         /* Track */
+|     
+|     Path: http://10.10.21.178:80/style/style.css
+|     Line number: 210
+|     Comment: 
+|         /* width */
+|     
+|     Path: http://10.10.21.178:80/style/style.css
+|     Line number: 228
+|     Comment: 
+|         /*# sourceMappingURL=style.css.map */
+|     
+|     Path: http://10.10.21.178:80/style/style.css
+|     Line number: 225
+|     Comment: 
+|         /* Handle on hover */
+|     
+|     Path: http://10.10.21.178:80/style/style.css
+|     Line number: 220
+|     Comment: 
+|_        /* Handle */
+|_http-mobileversion-checker: No mobile version detected.
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+
+Host script results:
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 22    0       66366.00   5978.79  0.0%
+|_80    0       68011.50   4443.43  0.0%
+|_ipidseq: All zeros
+|_dns-brute: Can't guess domain of "10.10.21.178"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+|_path-mtu: PMTU == 1500
+
+# Nmap done at Sat Sep  9 20:52:16 2023 -- 1 IP address (1 host up) scanned in 373.52 seconds
