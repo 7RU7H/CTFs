@@ -1,5 +1,7 @@
 Do grey-box and white box SAST testing
 
+https://github.com/leebaird/discover use them ffs on a CTF
+
 Write ups from top 50 to consider
 https://app.hackthebox.com/users/357237
 

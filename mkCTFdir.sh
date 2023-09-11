@@ -57,34 +57,49 @@ echo "# $name Notes
 
 IP: 
 OS:
+Arch:
 Hostname:
+DNS:
 Domain:  / Domain SID:
 Machine Purpose: 
 Services:
 Service Languages:
 Users:
+Email and Username Formatting:
 Credentials:
 
 ## Objectives
 
-## Target Map
+\`\#\# Target Map ![]($name-map.excalidraw.md)\`
 
-![]($name-map.excalidraw.md)
+#### Machine Connects to list and reason:
 
-## Solution Inventory Map
+[[]] - Reason X
+
+## Data Collected
+
+#### Credentials
+\`\`\`
+\`\`\`
+
+#### HUMINT
 
 
-### Todo 
+#### Solution Inventory Map
 
-Make Excalidraw
 
-### Done
+#### Todo 
+
+
+#### Timeline of tasks complete
       
 " > $site/$name/$name-Notes.md
 echo "# $name CMD-by-CMDs
 
 \`\`\`bash
 sed -i 's/$oldip/$newip/g' *-CMD-by-CMDs.md
+
+ls -1 Screenshots | awk '{print"![]("$1")"}'
 \`\`\`
 
 \`\`\`
