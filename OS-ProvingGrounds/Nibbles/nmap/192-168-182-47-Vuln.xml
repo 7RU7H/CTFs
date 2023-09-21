@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Wed Sep 20 10:21:42 2023 as: nmap -&#45;script vuln -oA nmap/192-168-182-47-Vuln -&#45;min-rate 300 -e tun0 -p 80,22,5437,21 192.168.182.47 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/192-168-182-47-Vuln -&#45;min-rate 300 -e tun0 -p 80,22,5437,21 192.168.182.47" start="1695201702" startstr="Wed Sep 20 10:21:42 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="4" services="21-22,80,5437"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.182.47" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1695201725" endtime="1695201747"><status state="up" reason="echo-reply" reason_ttl="61"/>
+<address addr="192.168.182.47" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="http" method="table" conf="3"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/></port>
+<port protocol="tcp" portid="5437"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="pmip6-data" method="table" conf="3"/></port>
+</ports>
+<times srtt="93826" rttvar="71661" to="380470"/>
+</host>
+<runstats><finished time="1695201747" timestr="Wed Sep 20 10:22:27 2023" summary="Nmap done at Wed Sep 20 10:22:27 2023; 1 IP address (1 host up) scanned in 45.20 seconds" elapsed="45.20" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
