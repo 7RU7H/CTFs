@@ -2,8 +2,8 @@
 
 ## Data 
 
-IP: 192.168.174.46
-OS: 
+IP: 192.168.224.46
+OS: Windows
 Hostname:
 Domain:  / Domain SID:
 Machine Purpose: 
