@@ -1,0 +1,34 @@
+# Nmap 7.94 scan initiated Fri Sep 22 09:52:01 2023 as: nmap --script vuln -oA nmap/192-168-207-229-Vuln --min-rate 300 -e tun0 -p 22,80 192.168.207.229
+Nmap scan report for 192.168.207.229
+Host is up (0.053s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.207.229
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://192.168.207.229:80/
+|     Form id: 
+|     Form action: 
+|     
+|     Path: http://192.168.207.229:80/index.php?file=home
+|     Form id: 
+|_    Form action: 
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+| http-fileupload-exploiter: 
+|   
+|     Couldn't find a file-type field.
+|   
+|     Failed to upload and execute a payload.
+|   
+|     Couldn't find a file-type field.
+|   
+|     Failed to upload and execute a payload.
+|   
+|_    Failed to upload and execute a payload.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+
+# Nmap done at Fri Sep 22 09:52:53 2023 -- 1 IP address (1 host up) scanned in 51.47 seconds

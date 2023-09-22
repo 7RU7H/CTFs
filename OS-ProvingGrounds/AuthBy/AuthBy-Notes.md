@@ -26,5 +26,7 @@ Credentials:
 Make Excalidraw
 
 ### Done
-      
+
+- No LFI or DT for `index.php?file=../...`
+- No LFI or DT for `/uploads/../...`
 

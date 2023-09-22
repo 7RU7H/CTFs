@@ -99,7 +99,7 @@ echo "# $name CMD-by-CMDs
 \`\`\`bash
 sed -i 's/$oldip/$newip/g' *-CMD-by-CMDs.md
 
-ls -1 Screenshots | awk '{print"![]("$1")"}'
+ls -1 Screenshots | awk '{print\"![](\"\$1\")\"}'
 \`\`\`
 
 \`\`\`
