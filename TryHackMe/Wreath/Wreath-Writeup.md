@@ -34,7 +34,7 @@ Beyond Root:
 
 ![](Wreath-map.excalidraw.md)
 
-##
+## Introduction
 
 #### Lab Scope
 

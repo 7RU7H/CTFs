@@ -1,15 +1,22 @@
+# DVR4 Writeup
 
 Name: DVR4
 Date:  
 Difficulty:  
-Description:  
-Better Description:  
 Goals:  
 Learnt:
+Beyond Root:
+
+- [[DVR4-Notes.md]]
+- [[DVR4-CMD-by-CMDs.md]]
+
+
+![](DVR4-map.excalidraw.md)
 
 ## Recon
 
-![ping](OS-ProvingGrounds/DVR4/Screenshots/ping.png)
+The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
+![ping](Screenshots/ping.png)
 	
 ## Exploit
 
@@ -17,4 +24,8 @@ Learnt:
 
 ## PrivEsc
 
-      
+![](DVR4-map.excalidraw.md)
+
+## Beyond Root
+
+

@@ -16,8 +16,6 @@ Credentials:
 
 ## Target Map
 
-![](AuthBy-map.excalidraw.md)
-
 ## Solution Inventory Map
 
 
