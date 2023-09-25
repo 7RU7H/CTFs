@@ -499,11 +499,14 @@ esac
 exit
 ```
 
-
 Did not work and Kinit is the way
 ```bash
 KRB5CCNAME=SVC_SMB.ccache impacket-smbclient -dc-ip 10.129.229.59 -k absolute.htb/smb_svc@dc.absolute.htb/Shared
 ```
+
+
+
+
 
 
 
@@ -529,7 +532,7 @@ KRB5CCNAME=svc_smb.ccache impacket-smbclient -K absolute.htb/svc_smb@dc.absolute
 
 Ippsec: Python Virtual environments to manage impacket libraries and versioning
 ```python
-python3 -m venv vmenv
+python3 -m venv venv
 
 source .env/bin/activate 
 pip install .
