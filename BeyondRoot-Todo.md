@@ -38,7 +38,8 @@ lsa dump
 
 https://github.com/iphelix/dnschef or modern alternative
 
-
+Create and configure a DNS server  `dnscmd`
+https://learn.microsoft.com/en-us/windows-server/networking/dns/quickstart-install-configure-dns-server?tabs=powershell
 
 
 - enabling RDP with cme and impacket kerboros tickets 
