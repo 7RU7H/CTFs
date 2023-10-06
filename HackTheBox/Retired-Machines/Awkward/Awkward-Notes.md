@@ -4,27 +4,40 @@
 
 IP: 
 OS:
+Arch:
 Hostname:
+DNS:
 Domain:  / Domain SID:
 Machine Purpose: 
 Services:
 Service Languages:
 Users:
+Email and Username Formatting:
 Credentials:
 
 ## Objectives
 
-## Target Map
+`\#\# Target Map ![](Awkward-map.excalidraw.md)`
 
-![](Awkward-map.excalidraw.md)
+#### Machine Connects to list and reason:
 
-## Solution Inventory Map
+[[]] - Reason X
+
+## Data Collected
+
+#### Credentials
+```
+```
+
+#### HUMINT
 
 
-### Todo 
+#### Solution Inventory Map
 
-Make Excalidraw
 
-### Done
+#### Todo 
+
+
+#### Timeline of tasks complete
       
 

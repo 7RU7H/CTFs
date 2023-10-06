@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE nmaprun>
 <?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
-<!-- Nmap 7.93 scan initiated Fri Apr 28 11:01:15 2023 as: nmap -&#45;script vuln -oA nmap/10-129-228-81-Vuln -&#45;min-rate 500 -e tun0 -p 22,80 10.129.228.81 -->
-<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-129-228-81-Vuln -&#45;min-rate 500 -e tun0 -p 22,80 10.129.228.81" start="1682676075" startstr="Fri Apr 28 11:01:15 2023" version="7.93" xmloutputversion="1.05">
+<!-- Nmap 7.94 scan initiated Fri Oct  6 20:04:36 2023 as: nmap -&#45;script vuln -oA nmap/10-129-228-81-Vuln -&#45;min-rate 500 -e tun0 -p 80,22 10.129.228.81 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-129-228-81-Vuln -&#45;min-rate 500 -e tun0 -p 80,22 10.129.228.81" start="1696619076" startstr="Fri Oct  6 20:04:36 2023" version="7.94" xmloutputversion="1.05">
 <scaninfo type="syn" protocol="tcp" numservices="2" services="22,80"/>
 <verbose level="0"/>
 <debugging level="0"/>
@@ -11,12 +11,12 @@
 <hostnames>
 </hostnames>
 </hosthint>
-<host starttime="1682676099" endtime="1682676334"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<host starttime="1696619099" endtime="1696619269"><status state="up" reason="reset" reason_ttl="63"/>
 <address addr="10.129.228.81" addrtype="ipv4"/>
 <hostnames>
 </hostnames>
 <ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
-<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-vuln-cve2011-3192" output="&#xa;  VULNERABLE:&#xa;  Apache byterange filter DoS&#xa;    State: VULNERABLE&#xa;    IDs:  BID:49303  CVE:CVE-2011-3192&#xa;      The Apache web server is vulnerable to a denial of service attack when numerous&#xa;      overlapping byte ranges are requested.&#xa;    Disclosure date: 2011-08-19&#xa;    References:&#xa;      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192&#xa;      https://seclists.org/fulldisclosure/2011/Aug/175&#xa;      https://www.tenable.com/plugins/nessus/55976&#xa;      https://www.securityfocus.com/bid/49303&#xa;"><table key="CVE-2011-3192">
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-vuln-cve2011-3192" output="&#xa;  VULNERABLE:&#xa;  Apache byterange filter DoS&#xa;    State: VULNERABLE&#xa;    IDs:  BID:49303  CVE:CVE-2011-3192&#xa;      The Apache web server is vulnerable to a denial of service attack when numerous&#xa;      overlapping byte ranges are requested.&#xa;    Disclosure date: 2011-08-19&#xa;    References:&#xa;      https://www.tenable.com/plugins/nessus/55976&#xa;      https://seclists.org/fulldisclosure/2011/Aug/175&#xa;      https://www.securityfocus.com/bid/49303&#xa;      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192&#xa;"><table key="CVE-2011-3192">
 <elem key="title">Apache byterange filter DoS</elem>
 <elem key="state">VULNERABLE</elem>
 <table key="ids">
@@ -28,23 +28,23 @@
 </table>
 <table key="dates">
 <table key="disclosure">
+<elem key="year">2011</elem>
 <elem key="month">08</elem>
 <elem key="day">19</elem>
-<elem key="year">2011</elem>
 </table>
 </table>
 <elem key="disclosure">2011-08-19</elem>
 <table key="refs">
-<elem>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192</elem>
-<elem>https://seclists.org/fulldisclosure/2011/Aug/175</elem>
 <elem>https://www.tenable.com/plugins/nessus/55976</elem>
+<elem>https://seclists.org/fulldisclosure/2011/Aug/175</elem>
 <elem>https://www.securityfocus.com/bid/49303</elem>
+<elem>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192</elem>
 </table>
 </table>
-</script><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/></port>
+</script><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/></port>
 </ports>
-<times srtt="71393" rttvar="55730" to="294313"/>
+<times srtt="69669" rttvar="48508" to="263701"/>
 </host>
-<runstats><finished time="1682676334" timestr="Fri Apr 28 11:05:34 2023" summary="Nmap done at Fri Apr 28 11:05:34 2023; 1 IP address (1 host up) scanned in 258.48 seconds" elapsed="258.48" exit="success"/><hosts up="1" down="0" total="1"/>
+<runstats><finished time="1696619269" timestr="Fri Oct  6 20:07:49 2023" summary="Nmap done at Fri Oct  6 20:07:49 2023; 1 IP address (1 host up) scanned in 193.35 seconds" elapsed="193.35" exit="success"/><hosts up="1" down="0" total="1"/>
 </runstats>
 </nmaprun>

