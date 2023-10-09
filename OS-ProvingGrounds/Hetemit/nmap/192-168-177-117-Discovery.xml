@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Mon Oct  9 16:39:54 2023 as: nmap -&#45;script discovery -oA nmap/192-168-177-117-Discovery -&#45;min-rate 500 -e tun0 -p 21,139,80,50000,445,18000,22 192.168.177.117 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/192-168-177-117-Discovery -&#45;min-rate 500 -e tun0 -p 21,139,80,50000,445,18000,22 192.168.177.117" start="1696865994" startstr="Mon Oct  9 16:39:54 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="7" services="21-22,80,139,445,18000,50000"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="lltd-discovery" output="false">false</script><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/><script id="broadcast-ping" output="false">false</script><script id="targets-sniffer" output="Sniffed 1 address(es). &#xa;192.168.177.117"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.177.117" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1696866017" endtime="1696866418"><status state="up" reason="echo-reply" reason_ttl="61"/>
+<address addr="192.168.177.117" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="ftp" method="table" conf="3"/><script id="ftp-syst" output="&#xa;  STAT: &#xa;FTP server status:&#xa;     Connected to 192.168.45.164&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 2&#xa;     vsFTPd 3.0.3 - secure, fast, stable&#xa;End of status"><elem key="STAT">&#xa;FTP server status:&#xa;     Connected to 192.168.45.164&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 2&#xa;     vsFTPd 3.0.3 - secure, fast, stable&#xa;End of status</elem>
+</script><script id="banner" output="220 (vsFTPd 3.0.3)"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="ssh" method="table" conf="3"/><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (11)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (7)&#xa;  mac_algorithms: (8)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group-exchange-sha1</elem>
+<elem>diffie-hellman-group14-sha1</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ssh-rsa</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>aes256-gcm@openssh.com</elem>
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes256-ctr</elem>
+<elem>aes256-cbc</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes128-cbc</elem>
+</table>
+<table key="mac_algorithms">
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha1</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-512</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script><script id="banner" output="SSH-2.0-OpenSSH_8.0"/><script id="ssh-hostkey" output="&#xa;  3072 b1:e2:9d:f1:f8:10:db:a5:aa:5a:22:94:e8:92:61:65 (RSA)&#xa;  256 74:dd:fa:f2:51:dd:74:38:2b:b2:ec:82:e5:91:82:28 (ECDSA)&#xa;  256 48:bc:9d:eb:bd:4d:ac:b3:0b:5d:67:da:56:54:2b:a0 (ED25519)"><table>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABgQDH2Cap49zuKy70lHzXsOn9iOap0h1Dnwk14D6PNKugueOqGpYoffwCGCA0wF4cI3+MRjuHz4xGznmtTIP3vOBZINZvT5PsNcvu6ef0SDfDOMFbzsEirhpQuoBYvgmEuJ4u1VMiwNaYQ0jw9t+nsR2MAIym/wdKt+ghYm4qlB3WvLMV41uCu0F7OQadRX8GWrLWLucjSQ1f80tkV7mc7ZfuTm8YdsAOkNQufHkVE+Alk0NpHdqLh/6FHxmEqYwP0jX6HS/lg+MfczIbIQ91v7+ljvo3qgdSZPqqulUtQuj/Rb/gmIfItzFZIxTzLQ6FuKKmoTMXaR/tXf93+91z+kBdDaZe/5eu6fLCdGuFyioB97LdZGJq8uFbM0BpNeBYc0i/DOFwxWBhO8/zzv1uaTUKuS1B+bny1iUTiQoJj6GVRQmvgk/2Km5SanF3Cp4PSSJMQ112Umjg1T61ah/i//KXAyZ25xOznolBw/aoCc9cremrkycUp7dmuATBNCgHFS0=</elem>
+<elem key="bits">3072</elem>
+<elem key="fingerprint">b1e29df1f810dba5aa5a2294e8926165</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+<table>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPTMpDGmoKZ96W+Ivvw7sQmnD1U41OY34oAzJ5Z1/AP/iVj+TpKO6lCKPxDq+9nbJJU4dtQx8X+KjQqUtpYIUhw=</elem>
+<elem key="bits">256</elem>
+<elem key="fingerprint">74ddfaf251dd74382bb2ec82e5918228</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+</table>
+<table>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIEUnTSrfkvL2AJJsozjPtXIWf/6Z7UB9WptTiOOX93m4</elem>
+<elem key="bits">256</elem>
+<elem key="fingerprint">48bc9debbd4dacb30b5d67da56542ba0</elem>
+<elem key="type">ssh-ed25519</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="http" method="table" conf="3"/><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-enum" output="&#xa;  /icons/: Potentially interesting folder w/ directory listing&#xa;"/><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 403&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">403</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-date" output="Mon, 09 Oct 2023 15:40:52 GMT; +59m42s from local time."><elem key="date">2023-10-09T16:40:52+00:00</elem>
+<elem key="delta">3582.0</elem>
+</script><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-headers" output="&#xa;  Date: Mon, 09 Oct 2023 15:40:54 GMT&#xa;  Server: Apache/2.4.37 (centos)&#xa;  Content-Location: index.html.zh-CN&#xa;  Vary: negotiate,accept-language&#xa;  TCN: choice&#xa;  Last-Modified: Fri, 14 Jun 2019 03:37:43 GMT&#xa;  ETag: &quot;fa6-58b405e7d6fc0;5b403c649d14f&quot;&#xa;  Accept-Ranges: bytes&#xa;  Content-Length: 4006&#xa;  Connection: close&#xa;  Content-Type: text/html; charset=UTF-8&#xa;  Content-Language: zh-cn&#xa;  &#xa;  (Request type: GET)&#xa;"/><script id="http-security-headers" output=""></script><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /noindex/common/css/&#xa;      css: 2&#xa;    /noindex/common/images/&#xa;      png: 2&#xa;  Longest directory structure:&#xa;    Depth: 3&#xa;    Dir: /noindex/common/css/&#xa;  Total files found (by extension):&#xa;    css: 2; png: 2&#xa;"/><script id="http-trace" output="TRACE is enabled"/><script id="http-xssed" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-grep" output="&#xa;  (1) http://192.168.177.117:80/: &#xa;    (1) email: &#xa;      + webmaster@example.com"><table key="(1) http://192.168.177.117:80/">
+<table key="(1) email">
+<elem>+ webmaster@example.com</elem>
+</table>
+</table>
+</script><script id="http-vhosts" output="&#xa;128 names had status 403"/><script id="http-title" output="CentOS \xE6\x8F\x90\xE4\xBE\x9B\xE7\x9A\x84 Apache HTTP \xE6\x9C\x8D\xE5\x8A\xA1\xE5\x99\xA8\xE6\xB5\x8B\xE8\xAF\x95\xE9\xA1\xB5"><elem key="title">CentOS \xE6\x8F\x90\xE4\xBE\x9B\xE7\x9A\x84 Apache HTTP \xE6\x9C\x8D\xE5\x8A\xA1\xE5\x99\xA8\xE6\xB5\x8B\xE8\xAF\x95\xE9\xA1\xB5</elem>
+</script><script id="http-chrono" output="Request times for /; avg: 240.03ms; min: 126.70ms; max: 443.96ms"/><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-errors" output="&#xa;Spidering limited to: maxpagecount=40; withinhost=192.168.177.117&#xa;  Found the following error pages: &#xa;  &#xa;  Error Code: 403&#xa;  &#x9;http://192.168.177.117:80/&#xa;"/><script id="http-comments-displayer" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.177.117&#xa;    &#xa;    Path: http://192.168.177.117:80/noindex/common/css/bootstrap.min.css&#xa;    Line number: 7&#xa;    Comment: &#xa;        /*! normalize.css v2.1.3 | MIT License | git.io/normalize */&#xa;    &#xa;    Path: http://192.168.177.117:80/noindex/common/css/styles.css&#xa;    Line number: 17&#xa;    Comment: &#xa;        /* Typography */&#xa;    &#xa;    Path: http://192.168.177.117:80/noindex/common/css/bootstrap.min.css&#xa;    Line number: 1&#xa;    Comment: &#xa;        /*!&#xa;         * Bootstrap v3.0.3 (http://getbootstrap.com)&#xa;         * Copyright 2013 Twitter, Inc.&#xa;         * Licensed under http://www.apache.org/licenses/LICENSE-2.0&#xa;         */&#xa;    &#xa;    Path: http://192.168.177.117:80/noindex/common/css/styles.css&#xa;    Line number: 13&#xa;    Comment: &#xa;        /*&#xa;         * Global &amp; Overrides&#xa;        ==========================*/&#xa;    &#xa;    Path: http://192.168.177.117:80/noindex/common/css/styles.css&#xa;    Line number: 66&#xa;    Comment: &#xa;        /*&#xa;         * Fonts&#xa;        ==========================*/&#xa;    &#xa;    Path: http://192.168.177.117:80/noindex/common/css/styles.css&#xa;    Line number: 80&#xa;    Comment: &#xa;        /*&#xa;         * Banner&#xa;        ==========================*/&#xa;    &#xa;    Path: http://192.168.177.117:80/noindex/common/css/styles.css&#xa;    Line number: 86&#xa;    Comment: &#xa;        /* Default: dark blue */&#xa;    &#xa;    Path: http://192.168.177.117:80/noindex/common/css/styles.css&#xa;    Line number: 1&#xa;    Comment: &#xa;        /*&#xa;         * Normalize &amp; Bootstrap&#xa;        ==========================*/&#xa;"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="netbios-ssn" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="microsoft-ds" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="18000"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="biimenu" method="table" conf="3"/></port>
+<port protocol="tcp" portid="50000"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="ibm-db2" method="table" conf="3"/></port>
+</ports>
+<hostscript><script id="smb-protocols" output="&#xa;  dialects: &#xa;    2:0:2&#xa;    2:1:0&#xa;    3:0:0&#xa;    3:0:2&#xa;    3:1:1"><table key="dialects">
+<elem>2:0:2</elem>
+<elem>2:1:0</elem>
+<elem>3:0:0</elem>
+<elem>3:0:2</elem>
+<elem>3:1:1</elem>
+</table>
+</script><script id="smb2-security-mode" output="&#xa;  3:1:1: &#xa;    Message signing enabled but not required"><table key="3:1:1">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="ipidseq" output="All zeros"/><script id="smb2-capabilities" output="&#xa;  2:0:2: &#xa;    Distributed File System&#xa;  2:1:0: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3:0:0: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3:0:2: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3:1:1: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations"><table key="2:0:2">
+<elem>Distributed File System</elem>
+</table>
+<table key="2:1:0">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3:0:0">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3:0:2">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3:1:1">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+</script><script id="dns-brute" output="Can&apos;t guess domain of &quot;192.168.177.117&quot;; use dns-brute.domain script argument."/><script id="smb-mbenum" output="&#xa;  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: ERROR: Server returned less data than it was supposed to (one or more fields are missing); aborting [9]"/><script id="qscan" output="&#xa;PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;21     0       54352.20   7501.84   0.0%&#xa;22     0       57239.90   15124.92  0.0%&#xa;80     0       58963.70   28944.77  0.0%&#xa;139    0       52059.30   3313.38   0.0%&#xa;445    0       52725.90   2995.79   0.0%&#xa;18000  0       52259.20   6390.68   0.0%&#xa;50000  0       51436.50   4832.08   0.0%&#xa;"/><script id="msrpc-enum" output="Could not negotiate a connection:SMB: ERROR: Server returned less data than it was supposed to (one or more fields are missing); aborting [9]">false</script><script id="path-mtu" output="PMTU == 1500"/><script id="smb2-time" output="&#xa;  date: 2023-10-09T15:40:28&#xa;  start_date: N/A"><elem key="date">2023-10-09T15:40:28</elem>
+<elem key="start_date">N/A</elem>
+</script></hostscript><times srtt="56259" rttvar="13505" to="110279"/>
+</host>
+<runstats><finished time="1696866418" timestr="Mon Oct  9 16:46:58 2023" summary="Nmap done at Mon Oct  9 16:46:58 2023; 1 IP address (1 host up) scanned in 424.89 seconds" elapsed="424.89" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

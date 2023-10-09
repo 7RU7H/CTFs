@@ -158,6 +158,14 @@ This is another vulnerability - does not require cookie from the refresh button.
 
 [To learn APIs and Golang I followed along with video](https://www.youtube.com/watch?v=2v11Ym6Ct9Q) and [repository is here](https://github.com/kubucation/go-rollercoaster-api)
 
+From [THM API 1](https://tryhackme.com/room/owaspapisecuritytop105w) and [THM API 2](https://tryhackme.com/room/owaspapisecuritytop10d0) and reading OWASP I made [API-Hacking](https://github.com/7RU7H/Archive/blob/main/Development/APIs/API-Hacking.md) as start before potential fleshing out a file per vulnerability as I have done with others. 
+Watched [Top 10 API Bugs and where to find them](https://www.youtube.com/watch?v=aQGbYfalRTA)
+
+[And got side tracked by this!](https://tryhackme.com/room/looneytunes) - The ld.so dynamic loader for most modern Linux -  [qualys](https://www.qualys.com/2023/10/03/cve-2023-4911/looney-tunables-local-privilege-escalation-glibc-ld-so.txt)
+
+[API Recon](https://www.youtube.com/watch?v=fvcKwUS4PTE&list=PLbyncTkpno5HqX1h2MnV6Qt4wvTb8Mpol&index=4)
+
+[THM Bookstore](https://tryhackme.com/room/bookstoreoc) is a to do flesh out 
 ## Exploit
 
 
