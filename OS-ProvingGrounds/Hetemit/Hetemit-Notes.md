@@ -34,13 +34,26 @@ Credentials:
 
 #### Solution Inventory Map
 
+- cmeeks user
 
 #### Todo 
 
-FTP anonymous
+
+- 18000 register and upload a web shell - comment on webp exploit
+- Versioning of all the ruby packages
+
+- Theere is a web-console somewhere
+- rack - potential https://security.snyk.io/vuln/SNYK-RUBY-RACK-2848599 if I find how oto interact with it
+- /users/:id(.:format) routes what is this formatting - I jget redirect on /user/:0/edit
 
 #### Timeline of tasks complete
 
 - samba version not vuln 
-- 
+- ftp rabbit hole human-timeout service with FTP anonymous
+- 50000 SSTI - seems very bare? 
 
+- 18000 - is ruby application
+	- Cookie is jibberish
+	- Invite injection - it check for invite key, but do not have
+	- File upload - cant upload without the invite key
+	- Redirect on RCE system("whoami3")
