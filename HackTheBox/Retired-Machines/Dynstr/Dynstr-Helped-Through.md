@@ -192,17 +192,7 @@ What I have tried not to do over the years is just use these with a request with
 
 if so concatenate - https://gabb4r.gitbook.io/oscp-notes/cheatsheet/command-injection-cheatsheet
 
-
-https://portswigger.net/web-security/os-command-injection
-
-https://github.com/payloadbox - for each ?
-https://github.com/swisskyrepo/PayloadsAllTheThings
-
-https://www.cobalt.io/blog/a-pentesters-guide-to-command-injection
-https://github.com/carlospolop/hacktricks/blob/master/pentesting-web/command-injection.md
-https://portswigger.net/kb/issues/00100100_os-command-injection
-
-https://portswigger.net/web-security/os-command-injection
+Reread [Portswigger](https://portswigger.net/web-security/os-command-injection) article and read [Portswigger issues 00100100](https://portswigger.net/kb/issues/00100100_os-command-injection), [Github - Hacktricks](https://github.com/carlospolop/hacktricks/blob/master/pentesting-web/command-injection.md), [Busra Demir's cobalt.io CMDi Article](https://www.cobalt.io/blog/a-pentesters-guide-to-command-injection), [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings). Finally I review the https://github.com/payloadbox - For each? The answer NO. Big NO. The list contains lots of very dangerous commands, which you could empirically verify if they worked and would cause actual harm to systems that did end up executing them. Interesting is the ways that are not documented from the other sources to actually work. There is also shellshock in the Windows List..
 
 https://www.youtube.com/watch?v=ppYNkvlR9jM
 ## Foothold
