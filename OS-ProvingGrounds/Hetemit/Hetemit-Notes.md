@@ -57,3 +57,5 @@ Credentials:
 	- Invite injection - it check for invite key, but do not have
 	- File upload - cant upload without the invite key
 	- Redirect on RCE system("whoami3")
+
+https://cheatsheetseries.owasp.org/cheatsheets/Ruby_on_Rails_Cheat_Sheet.html
