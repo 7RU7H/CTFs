@@ -7,6 +7,7 @@ Goals:
 - Azure DNS 
 - Rogue DNS setup 
 - VS Code / Codium and Snyk plugin is must to have!
+- DNS general
 Learnt:
 - Automating with the power of x[ar](https://www.youtube.com/watch?v=b9VrnCMhJsQ)gs 
 Beyond Root:
@@ -14,14 +15,14 @@ Beyond Root:
 - Azure Backup
 - Make a Log workspace
 
+![](bg1.jpg)
+
 - [[Dynstr-Notes.md]]
 - [[Dynstr-CMD-by-CMDs.md]]
-
 
 Tripletted with [[Response-Helped-Through]] and [[Absolute-Helped-Through]] to secure my understanding of Azure Backup and DNS implementations.
 
 Having never managed a DNS server and looking into here and there especially from the [[Kotarak-Helped-Through]] - beyond root of making a DNS server and once required a Rogue DNS server at some point for another box. From what I have read and can assume seems like a good idea from the point on study the AZ-104 that is much easier to manage. No record management without some kind of versioning like `git` for software seems like a nightmare. Especially from what I understand that incorrect record keeping can then expose domains that are suppose be in some network perimeter and not accessible by the public internet.
-
 ## Recon
 
 The time to live (TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
@@ -33,8 +34,177 @@ Nuclei states that the same key is a Google API keys wtf..is..`AIzaSyCWDPCiH080d
 
 [DT's xargs video is a must watch!](https://www.youtube.com/watch?v=rp7jLi_kgPg)
 
+The hostname on the web page
+![](dynahostname.png)
+
+add to `/etc/hosts`
+```bash
+echo "10.129.121.237 dyna.htb" | sudo tee -a /etc/hosts
+```
+
+Trying out `dnsrecon`
+![](dnsreconattempt.png)
+
+DNS Recon including the manual usage of `dig`
+```bash
+dig axfr dyna.htb @10.129.121.237
+
+dnsrecon -t axfr -d dyna.htb -n 10.129.121.237
+```
+
+Default passwords?
+![](betapassword.png)
+
+Thisd `key=AIzaSyCWDPCiH080dNCTYC-uprmLOn2mt2BMSUk,Password: sndanyd` was found by [[google-api-key-http___10.129.154.73_]]
+
+
+Reviewing nmap for version of DNS as website is bare, DNS recon is going no where.. There is a vulnerability - https://www.rapid7.com/db/vulnerabilities/dns-bind-cve-2020-8619/
+
+*Unless a nameserver is providing authoritative service for one or more zones and at least one zone contains an empty non-terminal entry containing an asterisk ("\*") character, this defect cannot be encountered. A would-be attacker who is allowed to change zone content could theoretically introduce such a record in order to exploit this condition to cause denial of service, though we consider the use of this vector unlikely because any such attack would require a significant privilege level and be easily traceable.*
+
+We could use it to point to a rogue DNS server 
+- Really would rather have BiS tool than anything else
+
+We have credentials, but how to use them? On chance that Dynamic DNS is a thing [Wikipedia Dynamic DNS](https://en.wikipedia.org/wiki/Dynamic_DNS) it does.. so the other hostnames are hosted on the same nameserver...
+
+Services?
+```
+- dnsalias.htb
+- dynamicdns.htb
+- no-ip.htb
+```
+
+Services?
+```bash
+# Add each domain to our /etc/hosts file with sed 
+sudo sed -i 's/10.129.121.237 dyna.htb/10.129.120.38 dyna.htb dnsalias.htb dynamicdns.htb no-ip.htb/g' /etc/hosts
+```
+
+## From this point...
+
+I had finished my Beyond Root of Azure DNS revision and continued with Writeups to learn as much DNS information I could. Basically using this machine to justify doing some HackTheBox sent the correct direction of learn Azure. What I missed (from inference of note taking)
+
+- no-ip.com API sharing -> API (dork: `noip.com api`)
+![](apiipno.png)
+From this page:
+```
+http://username:password@dynupdate.no-ip.com/nic/update?hostname=mytest.example.com&myip=192.0.2.25
+```
+Modifying it to match box information
+```
+curl http://dynadns:sndanyd@no-ip.htb/nic/update?hostname=nvm.no-ip.htb&myip=10.10.14.70
+```
+It works
+![](good.png)
+
+Test what happens if it does not - changed the password
+![](badpassword.png)
+
+Consider implementation:
+- `hostname=nvm.no-ip.htb&myip=10.10.14.70` is pass to a program that then updates the DNS on the DynStr machine
+
+```
+curl http://dynadns:sndanyd@no-ip.htb/nic/update?hostname=nvm.no-ip.htb&myip=10.10.14.70 --proxy http://127.0.0.1:8080
+```
+
 ## Exploit
 
+```bash
+# base64 cookie:
+ZHluYWRuczpzbmRhbnlk : dynadns:sndanyd
+```
+![](toburpsuite.png)
+
+CMDi is suggest by XCT - I paused the video I tried for CMDi
+![](miliseconuponnewline.png)
+I could not replicate the the same temporal delay on the `\n` to inject.
+
+
+Not being methodical enough - STOP: 
+- Create List
+- Question How it works
+	- it is doing to concatenate both parameters and append to a file resolv.conf is  
+
+... 
+
+Went down the list of how it could be added to a file
+![](somelinuxdnsfiles.png)
+
+[/etc/bind.conf files](https://mirror.apps.cam.ac.uk/pub/doc/redhat/redhat7.3/rhl-rg-en-7.3/s1-bind-configuration.html)
+
+```bash
+# Same line
+$ip  $hostname
+
+# Multi-line as variables
+hostname $hostname
+address $ip
+
+# Bind conf 
+zone "domain.com" {
+  type slave;
+  file "domain.com.zone";
+  masters { 192.168.0.1; };
+};
+
+# records 
+server1      IN     A       10.0.1.5
+www          IN     CNAME   server1
+```
+
+- Input 
+	- Software that modifies records
+	- Either as sets of Linux commands:
+		- Inject input into Template
+		- Two commands to modify the file 
+		- Concatenation of input -> to modify the file  
+- Checks hostname
+
+
+![](eh.png)
+
+At the front
+![](nsupdatefailed.png)
+
+At the back 
+![](wrongdomain.png)
+
+I decided the list format is not good as a entirely text based.
+
+- List of Actions:
+	- Command Injection `hostname=nvm.no-ip.htb&myip=10.10.14.70` 
+	- Methods list:
+		- METHOD X - picture
+
+Becomes:
+
+- List of Actions:
+	- Command Injection `hostname=nvm.no-ip.htb&myip=10.10.14.70` 
+	- Methods list:
+		- Append to hostname input  -  picture.png
+
+Decided to improve my CMDi Cheatsheet before continuing
+
+
+Improving my CMDi cheatsheet, setup and thinking
+
+What I have tried not to do over the years is just use these with a request with `ffuf` with https://github.com/payloadbox/command-injection-payload-list and not understand. There is a niggling feeling of am I missing things and also HOW AM I GOING TO KEEP track of what I have done in visual media that does not take forever to add on to limited time factors....  
+
+if so concatenate - https://gabb4r.gitbook.io/oscp-notes/cheatsheet/command-injection-cheatsheet
+
+
+https://portswigger.net/web-security/os-command-injection
+
+https://github.com/payloadbox - for each ?
+https://github.com/swisskyrepo/PayloadsAllTheThings
+
+https://www.cobalt.io/blog/a-pentesters-guide-to-command-injection
+https://github.com/carlospolop/hacktricks/blob/master/pentesting-web/command-injection.md
+https://portswigger.net/kb/issues/00100100_os-command-injection
+
+https://portswigger.net/web-security/os-command-injection
+
+https://www.youtube.com/watch?v=ppYNkvlR9jM
 ## Foothold
 
 ## Privilege Escalation
@@ -171,20 +341,5 @@ Failover to West US in a Disaster and reprotect back to East US. In a reprotect 
 How many will run on update and on fault
 - 10 on Fault
 - Max 3 down on update
-
-
-https://github.com/Azure/azure-quickstart-templates
-
-
-## Testing to then design of Vulnerable Machine(s)
-
-OSCP level Windows and Active Directory Jungle Gym
-
-- Make OSCP level 
-- Have good theme
-- Make the Kubernetes, docker container only for pivoting not for escaping
-- Make uber vulnerable switch once completed
-- Ascii Art of completion
-
 
 
