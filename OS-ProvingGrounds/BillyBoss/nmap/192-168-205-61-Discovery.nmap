@@ -1,0 +1,86 @@
+# Nmap 7.94 scan initiated Thu Oct 12 11:31:41 2023 as: nmap --script discovery -oA nmap/192-168-205-61-Discovery --min-rate 500 -e tun0 -p 49667,49664,49669,8081,49668,445,5040,49665,139,49666,21 192.168.205.61
+Pre-scan script results:
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_lltd-discovery: false
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-ping: false
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 192.168.205.61
+Host is up (0.075s latency).
+
+PORT      STATE SERVICE
+21/tcp    open  ftp
+| ftp-syst: 
+|_  SYST: Windows_NT
+|_banner: 220 Microsoft FTP Service
+139/tcp   open  netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+445/tcp   open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+5040/tcp  open  unknown
+8081/tcp  open  blackice-icecap
+49664/tcp open  unknown
+49665/tcp open  unknown
+49666/tcp open  unknown
+49667/tcp open  unknown
+49668/tcp open  unknown
+49669/tcp open  unknown
+
+Host script results:
+|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled but not required
+| smb2-capabilities: 
+|   2:0:2: 
+|     Distributed File System
+|   2:1:0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:0:0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:0:2: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:1:1: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+| qscan: 
+| PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 21     0       60506.20   6589.49   0.0%
+| 139    0       64723.33   25095.72  10.0%
+| 445    0       64949.70   28748.70  0.0%
+| 5040   0       61428.10   11011.63  0.0%
+| 8081   0       58376.20   9058.08   0.0%
+| 49664  0       63736.70   9349.19   0.0%
+| 49665  0       60071.60   12111.78  0.0%
+|_49666  0       64415.60   11642.10  0.0%
+| smb2-time: 
+|   date: 2023-10-12T10:31:47
+|_  start_date: N/A
+| smb-protocols: 
+|   dialects: 
+|     2:0:2
+|     2:1:0
+|     3:0:0
+|     3:0:2
+|_    3:1:1
+|_ipidseq: Unknown
+|_dns-brute: Can't guess domain of "192.168.205.61"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_path-mtu: 1006 <= PMTU < 1492
+
+# Nmap done at Thu Oct 12 11:33:46 2023 -- 1 IP address (1 host up) scanned in 125.84 seconds

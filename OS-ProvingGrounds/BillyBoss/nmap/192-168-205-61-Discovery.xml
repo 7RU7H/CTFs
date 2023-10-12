@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Thu Oct 12 11:31:41 2023 as: nmap -&#45;script discovery -oA nmap/192-168-205-61-Discovery -&#45;min-rate 500 -e tun0 -p 49667,49664,49669,8081,49668,445,5040,49665,139,49666,21 192.168.205.61 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/192-168-205-61-Discovery -&#45;min-rate 500 -e tun0 -p 49667,49664,49669,8081,49668,445,5040,49665,139,49666,21 192.168.205.61" start="1697106701" startstr="Thu Oct 12 11:31:41 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="11" services="21,139,445,5040,8081,49664-49669"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="targets-sniffer" output="Sniffed 1 address(es). &#xa;224.0.23.12"/><script id="lltd-discovery" output="false">false</script><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="broadcast-ping" output="false">false</script><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.205.61" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1697106724" endtime="1697106826"><status state="up" reason="echo-reply" reason_ttl="125"/>
+<address addr="192.168.205.61" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="ftp" method="table" conf="3"/><script id="ftp-syst" output="&#xa;  SYST: Windows_NT"><elem key="SYST">Windows_NT</elem>
+</script><script id="banner" output="220 Microsoft FTP Service"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="netbios-ssn" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="microsoft-ds" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="5040"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+<port protocol="tcp" portid="8081"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="blackice-icecap" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49664"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+<port protocol="tcp" portid="49665"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+<port protocol="tcp" portid="49666"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+<port protocol="tcp" portid="49667"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+<port protocol="tcp" portid="49668"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+<port protocol="tcp" portid="49669"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+</ports>
+<hostscript><script id="msrpc-enum" output="Could not negotiate a connection:SMB: Failed to receive bytes: ERROR">false</script><script id="smb2-security-mode" output="&#xa;  3:1:1: &#xa;    Message signing enabled but not required"><table key="3:1:1">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script><script id="smb2-capabilities" output="&#xa;  2:0:2: &#xa;    Distributed File System&#xa;  2:1:0: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3:0:0: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3:0:2: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3:1:1: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations"><table key="2:0:2">
+<elem>Distributed File System</elem>
+</table>
+<table key="2:1:0">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3:0:0">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3:0:2">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3:1:1">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+</script><script id="qscan" output="&#xa;PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;21     0       60506.20   6589.49   0.0%&#xa;139    0       64723.33   25095.72  10.0%&#xa;445    0       64949.70   28748.70  0.0%&#xa;5040   0       61428.10   11011.63  0.0%&#xa;8081   0       58376.20   9058.08   0.0%&#xa;49664  0       63736.70   9349.19   0.0%&#xa;49665  0       60071.60   12111.78  0.0%&#xa;49666  0       64415.60   11642.10  0.0%&#xa;"/><script id="smb2-time" output="&#xa;  date: 2023-10-12T10:31:47&#xa;  start_date: N/A"><elem key="date">2023-10-12T10:31:47</elem>
+<elem key="start_date">N/A</elem>
+</script><script id="smb-protocols" output="&#xa;  dialects: &#xa;    2:0:2&#xa;    2:1:0&#xa;    3:0:0&#xa;    3:0:2&#xa;    3:1:1"><table key="dialects">
+<elem>2:0:2</elem>
+<elem>2:1:0</elem>
+<elem>3:0:0</elem>
+<elem>3:0:2</elem>
+<elem>3:1:1</elem>
+</table>
+</script><script id="ipidseq" output="Unknown"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;192.168.205.61&quot;; use dns-brute.domain script argument."/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="smb-mbenum" output="&#xa;  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR"/><script id="path-mtu" output="1006 &lt;= PMTU &lt; 1492"/></hostscript><times srtt="74782" rttvar="7440" to="104542"/>
+</host>
+<runstats><finished time="1697106826" timestr="Thu Oct 12 11:33:46 2023" summary="Nmap done at Thu Oct 12 11:33:46 2023; 1 IP address (1 host up) scanned in 125.84 seconds" elapsed="125.84" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
