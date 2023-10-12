@@ -199,3 +199,4 @@ Almost went down a `/dependents?package=` injection rabbit hole - we already hav
 ## Beyond Root
 
 
+https://thehackernews.com/2021/07/dozens-of-vulnerable-nuget-packages.html

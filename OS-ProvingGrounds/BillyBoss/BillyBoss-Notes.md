@@ -65,6 +65,6 @@ RCE Auth on 8081 - https://www.exploit-db.com/exploits/49385
 - API man enumerations
 - Check the js running on  80 - obfuscated js is webpack dependecy bundler 
 - Did not Ffuf for vhosts billyboss is a domain? - no tld
-- favicon enumeration requires python mm3, codecs and shodan - or github  
+- favicon enumeration requires python mm3, codecs and shodan - or github   - https://medium.com/@Asm0d3us/weaponizing-favicon-ico-for-bugbounties-osint-and-what-not-ace3c214e139
 - gospidered is good
 - No /v2|3/readme

