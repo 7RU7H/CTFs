@@ -311,6 +311,8 @@ nomem.local
 192.168.178.27 tsftp.infra.dyna.htb
 
 ![](noresolutiononinfra.png)
+
+Check for passwords in the likely places
 ## Privilege Escalation
 
 ## Beyond Root
