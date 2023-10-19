@@ -40,11 +40,13 @@ Credentials:
 
 
 - 18000 register and upload a web shell - comment on webp exploit
-- Versioning of all the ruby packages
+- Versioning of all the ruby packages 
 
 - There is a web-console somewhere
-- rack - potential https://security.snyk.io/vuln/SNYK-RUBY-RACK-2848599 if I find how oto interact with it
-- /users/:id(.:format) routes what is this formatting - I jget redirect on /user/:0/edit
+- rack - potential https://security.snyk.io/vuln/SNYK-RUBY-RACK-2848599 if I find how to interact with it
+- /users/:id(.:format) routes what is this formatting - I get redirect on /user/:0/edit
+
+- cmeeks is user on the machine.
 
 #### Timeline of tasks complete
 
@@ -59,3 +61,11 @@ Credentials:
 	- Redirect on RCE system("whoami")
 
 https://cheatsheetseries.owasp.org/cheatsheets/Ruby_on_Rails_Cheat_Sheet.html
+
+Failed API routes checks
+- users/cmeeks
+- /rails/active_storage/direct_uploads:/home/cmeeks/.bashrc
+
+
+- Foothold 
+	- No crontab
