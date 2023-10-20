@@ -54,7 +54,7 @@ https://learn.microsoft.com/en-us/windows-server/networking/dns/quickstart-insta
 https://github.com/dubs3c/sudo_sniff/blob/master/sudo_sniff.c
 
 
-
+webp exploit
 
 https://github.com/0vercl0k - looks insane https://github.com/0vercl0k/clairvoyance
 

@@ -312,7 +312,7 @@ nomem.local
 
 ![](noresolutiononinfra.png)
 
-Check for passwords in the likely places
+Check for passwords in the likely places. It is almost certainly in the hex of strace as we need a password to create the key.
 ## Privilege Escalation
 
 ## Beyond Root
@@ -382,7 +382,7 @@ If we are directly hosting their sites and data for small businesses that do not
 	- Change subnet settings
 	- Create outbound NSG and associate with subnet
 
-For the alternative to meet my revision syllabus requirements and the most real world use of cloud for Dynamic DNS in relvance to the Dynstr machine - Dynstr setup is a Platform as a service. Organisations ask Dynstr.org to host their and manage their DNS and routing to their assets.  If for example it was collaborative effort between child companies of parent company for some larger goal the use of Private Endpoint as a PaaS (Self-Service I suppose) could then be used to connect VNets across regions - If Dynstr was the parent and the subdomains were the child company all requiring decentralisation of information, but cross-company access to some employees with shipping sensitive data to the cloud. An Addition VPN gateway and VPN for employees involved would reduce attack surface and creating gaps between other on-premise and cloud activities.
+For the alternative to meet my revision syllabus requirements and the most real world use of cloud for Dynamic DNS in relevance to the Dynstr machine - Dynstr setup is a Platform as a service. Organisations ask Dynstr.org to host their and manage their DNS and routing to their assets.  If for example it was collaborative effort between child companies of parent company for some larger goal the use of Private Endpoint as a PaaS (Self-Service I suppose) could then be used to connect VNets across regions - If Dynstr was the parent and the subdomains were the child company all requiring decentralisation of information, but cross-company access to some employees with shipping sensitive data to the cloud. An Addition VPN gateway and VPN for employees involved would reduce attack surface and creating gaps between other on-premise and cloud activities.
 
 - Configure private endpoints for Azure PaaS
 	- `Private Link Center -> Private Links`;

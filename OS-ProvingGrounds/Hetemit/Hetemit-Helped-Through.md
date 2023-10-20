@@ -13,8 +13,8 @@ Learnt:
 - I am trying harder, but the list of Rabbit Holes is immense on Proving Ground machines
 - Note taking style changes required
 Beyond Root:
-- Webp 2023 maddness
 - Reflective post mortem rabbit holage
+- Rbenv and Jenvs
 
 - [[Hetemit-Notes.md]]
 - [[Hetemit-CMD-by-CMDs.md]]
@@ -168,7 +168,7 @@ SSTI
 Fuzzing for CMDi
 ![](triedfuzzingforcmdi.png)
 
-## Helped-Through Convention
+## Helped-Through Convertion
 
 Its been 6 hours of this machine and I need to finish this and figure what I am missing. Converting this to a Helped-Through.
 
@@ -331,7 +331,6 @@ Weirded out by `sssd` Its just the [SSSD - System Security Services Daemon - sss
 
 If we can actual reboot we maybe able to set boot flag with Grub which would be awesome.
 ```
-
 -rwsr-xr-x. 1 root root 12K Jul 28  2020 /usr/sbin/grub2-set-bootflag (Unknown SUID binary!)
 ```
 
@@ -350,7 +349,7 @@ No postgres access
 
 psql vulnerabilities - https://www.cvedetails.com/vulnerability-list/vendor_id-336/product_id-575/version_id-499361/Postgresql-Postgresql-9.2.html
 
-I am now pushing an addition 2 hours. I wen bakc to the writeup and another silly error this time not reading the group for 
+I am now pushing an addition 2 hours. I wen back to the writeup and another silly error this time not reading the group for 
 `/etc/systemd/system/pythonapp.service` which is writable. We can:
 ```
 cat <<'EOT'> /etc/systemd/system/pythonapp.service
@@ -388,12 +387,47 @@ I was happy that I got some of the pieces, annoyed that I did not spot that file
 ![](chmodthefileidiot.png)
 ## Beyond Root
 
-Read https://kashz.gitbook.io/proving-grounds-writeups/pg-boxes/hetemit/8-box-enum-cmeeks
+Reading https://kashz.gitbook.io/proving-grounds-writeups/pg-boxes/hetemit/8-box-enum-cmeeks
 - I did not smbclient
 - Also this style of note taking seems to common among older Ippsec, Siren
 
-Ruby and Java Virtual environments exist: https://medium.com/@bhagavathidhass/virtual-environments-for-python-ruby-and-java-87743478ae38
+## Reflective Post Mortem
+
+Due to the maximum Rabbit Holage of this machine was high, but partly on my end I need a written reflective post-mortem on this machine as I think that the things I missed or and I have done in the past and am not doing now deserve self examination. I am try hard, but the trying smart to do harder machines and counter detail oversights is important.
+
+0. Notes directory - Have a main note and staged note per port and phase
+	- Information is contained and more organised
+	- It can be referenced in timeline of action improvements that I have made
+	- Stop rabbit holes and contain them quicker, by segmenting it per document
+1. I need to use `curl` to not make stupid mistakes like that, with `--proxy` flag to Burp Suite so that `curl` automatically provides headers that I would miss.
+2. Exfil Linpeas is great, but screenshot everything. 
+3. The multiple API machines just as I know I am not that strong no them 
+
+#### Ruby and Java Virtual Environments
+
+Ruby and Java Virtual environments exist: 
+
+[Ruby Virtual Environment Rbenv](https://medium.com/@bhagavathidhass/virtual-environments-for-python-ruby-and-java-87743478ae38):
+```bash
+rbenv init   # initialize rbenv  
+rbenv install -l  # list all available versions  
+rbenv install 2.0.0-p247 # install a Ruby version  
+rbenv local 1.9.3-p327 # sets the local ruby version  
+rbenv local -unset # unset the local version  
+rbenv global 1.9.3-p327 # set the global system version of ruby  
+rbenv versions # list all ruby versions known to rbenv  
+rbenv shell 1.9.3 # set shell specific ruby.
+```
+
+[Java Virtual Environment Jenv](https://medium.com/@bhagavathidhass/virtual-environments-for-python-ruby-and-java-87743478ae38):
+```bash
+jenv versions # shows all the jenv added versions  
+jenv global oracle64-1.6.0.39 # Configure global version  
+jenv local oracle64-1.6.0.39 # Configure local version (per directory)  
+jenv shell oracle64-1.6.0.39 # Configure shell instance version
+```
 
 #### Is CVE-2022-30123 a way? - TIL = No another rabbit hole
 
 [Most minimal PacketStorm article I have ever seen](https://packetstormsecurity.com/files/cve/CVE-2022-30123), [Snyk](https://security.snyk.io/vuln/SNYK-RUBY-RACK-2848599)  says its 9.8. The web app are running a cmeeks. There is no inject point. 
+
