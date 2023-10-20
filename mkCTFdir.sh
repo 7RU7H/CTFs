@@ -19,7 +19,8 @@ then
 		*) echo $USAGE; echo "Site shorthand invalid"; exit;;
 
 	esac 
-	mkdir -p $site/$name/{data,nmap,nikto,feroxbuster,masscan,gobuster,ffuf,Screenshots}
+	mkdir -p $site/$name/{data,Notes,nmap,nikto,feroxbuster,masscan,gobuster,ffuf,Screenshots}
+	touch $site/$name/Notes/0.md
 	echo "# $name Writeup
 
 Name: $name
@@ -93,7 +94,7 @@ Credentials:
 
 #### Timeline of tasks complete
       
-" > $site/$name/$name-Notes.md
+" > $site/$name/Notes/$name-Notes.md
 echo "# $name CMD-by-CMDs
 
 \`\`\`bash
