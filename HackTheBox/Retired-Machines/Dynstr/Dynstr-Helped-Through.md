@@ -292,8 +292,6 @@ There is internal DNS
 
 ![](passwd.png)
 
-
-
 Support-case is custom directory
 ![](homedirectories.png)
 
@@ -550,4 +548,75 @@ How many will run on update and on fault
 - 10 on Fault
 - Max 3 down on update
 
+## Rogue DNS and Regular DNS
+
+Watch!! [Computerfile DNS Cache Poison](https://www.youtube.com/watch?v=7MT1F0O3_Yw) and read https://owasp.org/www-pdf-archive/DNS_Cache_Poisoning(OWASP_GHANA).pdf
+
+Read https://www.digitalocean.com/community/tutorials/how-to-configure-bind-as-a-private-network-dns-server-on-ubuntu-20-04 and hope to automate a Rogue and Regular configuration while learning DNS server system administration.
+
+READ NEXT https://opensource.com/article/17/4/build-your-own-name-server and find other, ask phind 
+
+Starting with BIND9 
+```bash
+#!/bin/bash
+
+sudo apt update -y
+wait
+sudo apt install bind9 bind9utils bind9-doc -y
+wait
+sudo sed -i 's/OPTIONS="-u bind"/OPTIONS="-u bind -4"/g' /etc/default/named
+sudo systemctl restart bind9
+wait
+exit
+```
+
+
+`sudo vim /etc/bind/named.conf.options`
+1. Configure Access Control List block  `acl "trusted" { $IPv4Address; };`
+    - Only add servers that you want to allow recursive DNS queries for
+    - Beware recursive queries from illegitimate source could poison the DNS cache - very bad!
+2. Configure the `option { directory "/var/cache/bind ..."` with the following options, beware options and your objectives
+```bash
+        recursion yes;                 # enables recursive queries
+        allow-recursion { trusted; };  # allows recursive queries from "trusted" clients
+        listen-on { 11.22.33.44; };   # ns1 private IP address - listen on private network only
+        allow-transfer { none; };      # disable zone transfers by default
+# forwarders reduce traffic over links to external nameserver
+# BIND can allow forwarders to allow queries from non-internet connected servers
+# DigitalOcean article:Public IP address for name servers can work# Beware!
+        forwarders {
+                                8.8.8.8;
+                8.8.4.4;
+        };
+```
+
+3. Specify forward and reverse zones in `sudo vim /etc/bind/named.conf.local`
+```bash
+zone "$sub.$domain.$tld" {
+        type primary;
+        file "/etc/bind/zones/db.$sub.$domain.$tld"; # zone file path
+        allow-transer { $nameserver2PrivateIP; }; # ns2 private IP address - secondary
+};
+# Reversed the CIDR range from octect(s)
+# 10.11.0.0 -> 11.10.in-addr.arpa
+zone "$ReversedOctets.in-addr.arpa" {
+        type primary;
+        file "/etc/bind/zones/db.$octetsNonReversed"; # zone file path
+        allow-transer { $nameserver2PrivateIP; }; # ns2 private IP address - secondary
+};
+```
+4. Create the Forward Zone file
+```bash
+sudo mkdir /etc/bind/zones
+sudo cp /etc/bind/db.local /etc/bind/zones/db.$sub.$domain.$tld
+```
+5. Edit Forward Zone file `sudo vim /etc/bind/zones/db.$sub.$domain.$tld
+- Increment `Serial` value for every edit of this file
+- Replace the first `localhost` with ns1's FQDN and `root.localhost.` with `admin.$sub.$domain.$tld.`
+- Delete the lines marked with comments `Delete this line`
+- Append NS records
+```bash
+        IN      NS      ns1.$sub.$domain.$tld
+        IN      NS      ns2.$sub.$domain.$tld
+```
 
