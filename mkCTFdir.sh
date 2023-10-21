@@ -45,7 +45,9 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 
 ## Foothold
 
-## PrivEsc
+## Privilege Escalation
+
+## Post-Root-Reflection  
 
 ![]($name-map.excalidraw.md)
 
