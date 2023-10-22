@@ -8,13 +8,13 @@ Difficulty:
 Goals:  
 - Solidify Pivoting skills
 - PWK HERE WE GO!
-- 
+- AV confidence not Scarecrow and Sliver for the sake of ease
 Learnt:
 - Masscan does miss - Check on the naabu / rustscan alternative question again 
 - Flexing changing it up and feeling good while flexing changing up on the fly!
 - Making python virtual environments is just that easy
 - Thomas Wreath is as haunting as Alh4zr3d described.
-- Serious ShadowIT-Defined-Routes wins!
+- Serious Noob-Persistent-Thunk-Defined-Routes wins!
 - Exploit with DOS line endings?
 ```bash
 dos2unix $file
@@ -613,9 +613,7 @@ Using the `help` command for guidance: in Empire CLI, how would we run the `whoa
 ```
 shell whoami
 ```
-
 ## Return with Sliver
-
 
 ```powershell
 foreach ($port in 80,138,139,443,445,3389) { Test-NetConnection -ComputerName 10.200.96.100 -Port $port -InformationLevel 'Detailed' >> output.txt }
@@ -629,7 +627,7 @@ From a stealth perspective if we where it is important to note that the .100 and
 
 Much like my `nohup $cmd &` trick need a trick for background processes while never having to worry about losing the shell
 
-Backgrounding in PowerShell - [the wonder of Start-Job](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/start-job?view=powershell-7.3)
+Backgrounding in PowerShell - [the wonders of Start-Job](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/start-job?view=powershell-7.3)
 ```powershell
 start-job { .\chisel.exe client 10.200.96.150:10007 R:10007:127.0.0.10008:socks }
 # Control the job with a identification number 
@@ -640,7 +638,14 @@ remove-job -id $int32
 
 #### Task 33 Personal PC Enumeration
 
+Scan the top 50 ports of the last IP address you found in Task 17. Which ports are open (lowest to highest, separated by commas)?
+```
+80,3389
+```
 #### Task 34 Personal PC Pivoting
+
+For some reason my sliver beacon broke, but it was not Windows Defender as the file had not been quantined
+
 
 #### Task 35 Personal PC The Wonders of Git
 

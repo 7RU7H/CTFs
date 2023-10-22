@@ -2,12 +2,12 @@
 
 ## Data 
 
-IP: 
-OS:
+IP: 192.168.173.137
+OS: Ubuntu Focal 20.04
 Arch:
 Hostname:
 DNS:
-Domain:  / Domain SID:
+Domain:  postfish.off/
 Machine Purpose: 
 Services:
 Service Languages:
@@ -40,4 +40,3 @@ Credentials:
 
 #### Timeline of tasks complete
       
-

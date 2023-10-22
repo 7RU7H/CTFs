@@ -15,7 +15,7 @@ Learnt:
 - When I put capability pieces together I can actually achieve stuff!
 Beyond Root:
 - Patch the machine to prevent a buffer overflow
-- Test all my Linux BaTTLeground counter measures as VulnNet node shells would just take more time to configure 
+- Test all my Linux BattLeground counter measures as VulnNet node shells would just take more time to configure 
 
 
 
@@ -30,12 +30,12 @@ Because as part of testing my Helped-Through discourse the only written writeup 
 	- Improve my C2 project
 	- Understand what it takes to be this good - Analyse XCT's tactics and workflow
 	- Learn ROP-Chains improve my understanding of binary exploitation beyond old-OSCP stackbased buffer overflow
-	- Write a Iptables defense 
+	- Write a Iptables defence 
 	- SMTP
 
 As of 2023 I have got a formula for Helped-Throughs down , after much testing and realised that Helped-Throughs should either be:
 1. Stop and Start; Push till stuck and another 30 minutes, then stop and peak
-	1. Beyond root should be box related and one or two tasks that take a maxium of 1 hour each 
+	1. Beyond root should be box related and one or two tasks that take a maximum of 1 hour each 
 2. Like a full on-project:
 	- Multiple Writeups both video and written
 	- One section must be challenge to try without support in an area of weakness - 1 hour maximum
@@ -44,6 +44,7 @@ As of 2023 I have got a formula for Helped-Throughs down , after much testing an
 	- Research of surrounding relevant information must occur at depth
 	- Beyond root should be extensive
 
+Will be twinned with [[Attended-Helped-Through]], and other phishing boxes for phishing-for-2-weeks-24-7 banaza.
 ## Recon
 
 The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128. The TTL is  < 255 meaning this a freeBSD box.

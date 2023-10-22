@@ -20,7 +20,7 @@ then
 
 	esac 
 	mkdir -p $site/$name/{data,Notes,nmap,nikto,feroxbuster,masscan,gobuster,ffuf,Screenshots}
-	touch $site/$name/Notes/0.md
+	echo "# 0 - TEMPLATE" > $site/$name/Notes/0-$name-Notes.md
 	echo "# $name Writeup
 
 Name: $name
