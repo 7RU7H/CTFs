@@ -858,7 +858,6 @@ Finally a map of Reddish
 
 ## Beyond Root
 
-
 ####  RSync and Xargs ...its a Long time coming
 
 Priming my brain with some Dual-media - video first and then manual second:

