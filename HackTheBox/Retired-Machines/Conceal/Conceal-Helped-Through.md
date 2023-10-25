@@ -1,4 +1,4 @@
-# Conceal HelpThrough
+# Conceal Helped-Through
 
 Name: Conceal
 Date:  13/11/2022
