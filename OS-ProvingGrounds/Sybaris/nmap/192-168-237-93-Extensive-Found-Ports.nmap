@@ -1,0 +1,43 @@
+# Nmap 7.94 scan initiated Thu Oct 26 15:37:41 2023 as: nmap -sC -sV -oA nmap/192-168-237-93-Extensive-Found-Ports --min-rate 500 -e tun0 -p 22,80,21,6379 192.168.237.93
+Nmap scan report for 192.168.237.93
+Host is up (0.095s latency).
+
+PORT     STATE SERVICE VERSION
+21/tcp   open  ftp     vsftpd 3.0.2
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to 192.168.45.169
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      At session startup, client count was 3
+|      vsFTPd 3.0.2 - secure, fast, stable
+|_End of status
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_drwxrwxrwx    2 0        0               6 Apr 01  2020 pub [NSE: writeable]
+22/tcp   open  ssh     OpenSSH 7.4 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 21:94:de:d3:69:64:a8:4d:a8:f0:b5:0a:ea:bd:02:ad (RSA)
+|   256 67:42:45:19:8b:f5:f9:a5:a4:cf:fb:87:48:a2:66:d0 (ECDSA)
+|_  256 f3:e2:29:a3:41:1e:76:1e:b1:b7:46:dc:0b:b9:91:77 (ED25519)
+80/tcp   open  http    Apache httpd 2.4.6 ((CentOS) PHP/7.3.22)
+|_http-generator: HTMLy v2.7.5
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|_      httponly flag not set
+| http-robots.txt: 11 disallowed entries 
+| /config/ /system/ /themes/ /vendor/ /cache/ 
+| /changelog.txt /composer.json /composer.lock /composer.phar /search/ 
+|_/admin/
+|_http-title: Sybaris - Just another HTMLy blog
+|_http-server-header: Apache/2.4.6 (CentOS) PHP/7.3.22
+6379/tcp open  redis   Redis key-value store 5.0.9
+Service Info: OS: Unix
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Oct 26 15:38:09 2023 -- 1 IP address (1 host up) scanned in 28.04 seconds

@@ -1,0 +1,36 @@
+# Nmap 7.94 scan initiated Thu Oct 26 15:49:22 2023 as: nmap --script vuln -oA nmap/192-168-237-93-Vuln --min-rate 500 -e tun0 -p 22,80,21,6379 192.168.237.93
+Nmap scan report for 192.168.237.93
+Host is up (0.22s latency).
+
+PORT     STATE SERVICE
+21/tcp   open  ftp
+22/tcp   open  ssh
+80/tcp   open  http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-trace: TRACE is enabled
+| http-fileupload-exploiter: 
+|   
+|_    Couldn't find a file-type field.
+| http-phpmyadmin-dir-traversal: 
+|   VULNERABLE:
+|   phpMyAdmin grab_globals.lib.php subform Parameter Traversal Local File Inclusion
+|     State: UNKNOWN (unable to test)
+|     IDs:  CVE:CVE-2005-3299
+|       PHP file inclusion vulnerability in grab_globals.lib.php in phpMyAdmin 2.6.4 and 2.6.4-pl1 allows remote attackers to include local files via the $__redirect parameter, possibly involving the subform array.
+|       
+|     Disclosure date: 2005-10-nil
+|     Extra information:
+|       ../../../../../etc/passwd :
+|   
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2005-3299
+|_      http://www.exploit-db.com/exploits/1244/
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|_      httponly flag not set
+6379/tcp open  redis
+
+# Nmap done at Thu Oct 26 15:51:52 2023 -- 1 IP address (1 host up) scanned in 150.11 seconds

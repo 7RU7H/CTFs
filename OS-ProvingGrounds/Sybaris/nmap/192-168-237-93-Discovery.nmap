@@ -1,0 +1,329 @@
+# Nmap 7.94 scan initiated Thu Oct 26 15:38:09 2023 as: nmap --script discovery -oA nmap/192-168-237-93-Discovery --min-rate 500 -e tun0 -p 22,80,21,6379 192.168.237.93
+Pre-scan script results:
+|_broadcast-ping: false
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-sniffer: Sniffed 2 address(es). 
+| 224.0.23.12
+|_192.168.237.93
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_lltd-discovery: false
+Nmap scan report for 192.168.237.93
+Host is up (0.082s latency).
+
+PORT     STATE SERVICE
+21/tcp   open  ftp
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to 192.168.45.169
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      At session startup, client count was 2
+|      vsFTPd 3.0.2 - secure, fast, stable
+|_End of status
+|_banner: 220 (vsFTPd 3.0.2)
+22/tcp   open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (12)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (12)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_7.4
+| ssh-hostkey: 
+|   2048 21:94:de:d3:69:64:a8:4d:a8:f0:b5:0a:ea:bd:02:ad (RSA)
+|   256 67:42:45:19:8b:f5:f9:a5:a4:cf:fb:87:48:a2:66:d0 (ECDSA)
+|_  256 f3:e2:29:a3:41:1e:76:1e:b1:b7:46:dc:0b:b9:91:77 (ED25519)
+80/tcp   open  http
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.237.93
+|     
+|     Path: http://192.168.237.93:80/themes/twentysixteen/js/skip-link-focus-fix.js
+|     Line number: 1
+|     Comment: 
+|         /**
+|          * Makes "skip to content" link work correctly in IE9, Chrome, and Opera
+|          * for better accessibility.
+|          *
+|          * @link http://www.nczonline.net/blog/2013/01/15/fixing-skip-to-content-links/
+|          */
+|     
+|     Path: http://192.168.237.93:80/themes/twentysixteen/css/ie.css
+|     Line number: 1
+|     Comment: 
+|         /*
+|         Theme Name: Twenty Sixteen
+|         Description: Global Styles for older IE versions (previous to IE10).
+|         */
+|     
+|     Path: http://192.168.237.93:80/
+|     Line number: 63
+|     Comment: 
+|         <!-- .content-area -->
+|     
+|     Path: http://192.168.237.93:80/themes/twentysixteen/genericons/genericons.css
+|     Line number: 37
+|     Comment: 
+|         /**
+|          * All Genericons
+|          */
+|     
+|     Path: http://192.168.237.93:80/
+|     Line number: 62
+|     Comment: 
+|         <!-- .site-main -->
+|     
+|     Path: http://192.168.237.93:80/
+|     Line number: 103
+|     Comment: 
+|         <!-- .sidebar .widget-area -->
+|     
+|     Path: http://192.168.237.93:80/
+|     Line number: 40
+|     Comment: 
+|         <!-- .site-branding -->
+|     
+|     Path: http://192.168.237.93:80/
+|     Line number: 105
+|     Comment: 
+|         <!-- .site-content -->
+|     
+|     Path: http://192.168.237.93:80/
+|     Line number: 52
+|     Comment: 
+|         <!-- .site-header -->
+|     
+|     Path: http://192.168.237.93:80/
+|     Line number: 127
+|     Comment: 
+|         <!-- .site -->
+|     
+|     Path: http://192.168.237.93:80/themes/twentysixteen/genericons/genericons.css
+|     Line number: 109
+|     Comment: 
+|         /**
+|          * Individual icons
+|          */
+|     
+|     Path: http://192.168.237.93:80/themes/twentysixteen/genericons/genericons.css
+|     Line number: 1
+|     Comment: 
+|         /**
+|         
+|         	Genericons
+|         
+|         */
+|     
+|     Path: http://192.168.237.93:80/themes/twentysixteen/genericons/genericons.css
+|     Line number: 61
+|     Comment: 
+|         /**
+|          * Helper classes
+|          */
+|     
+|     Path: http://192.168.237.93:80/themes/twentysixteen/genericons/genericons.css
+|     Line number: 8
+|     Comment: 
+|         /* IE8 and below use EOT and allow cross-site embedding. 
+|            IE9 uses WOFF which is base64 encoded to allow cross-site embedding.
+|            So unfortunately, IE9 will throw a console error, but it'll still work.
+|            When the font is base64 encoded, cross-site embedding works in Firefox */
+|     
+|     Path: http://192.168.237.93:80/
+|     Line number: 125
+|     Comment: 
+|         <!-- .site-footer -->
+|     
+|     Path: http://192.168.237.93:80/
+|     Line number: 48
+|     Comment: 
+|         <!-- .main-navigation -->
+|     
+|     Path: http://192.168.237.93:80/
+|     Line number: 22
+|     Comment: 
+|         <!--[if lt IE 9]>
+|             <link rel="stylesheet" id="twentysixteen-ie8-css"  href="/themes/twentysixteen/css/ie8.css" type="text/css" media="all" />
+|             <![endif]-->
+|     
+|     Path: http://192.168.237.93:80/
+|     Line number: 62
+|     Comment: 
+|         <!-- #post-## -->
+|     
+|     Path: http://192.168.237.93:80/
+|     Line number: 49
+|     Comment: 
+|         <!-- .site-header-menu -->
+|     
+|     Path: http://192.168.237.93:80/
+|     Line number: 138
+|     Comment: 
+|         /* ]]> */
+|     
+|     Path: http://192.168.237.93:80/
+|     Line number: 136
+|     Comment: 
+|         /* <![CDATA[ */
+|     
+|     Path: http://192.168.237.93:80/
+|     Line number: 129
+|     Comment: 
+|         <!--[if lt IE 9]>
+|             <script type="text/javascript" src="/themes/twentysixteen/js/html5.js"></script>
+|             <![endif]-->
+|     
+|     Path: http://192.168.237.93:80/
+|     Line number: 126
+|     Comment: 
+|         <!-- .site-inner -->
+|     
+|     Path: http://192.168.237.93:80/
+|     Line number: 25
+|     Comment: 
+|         <!--[if lt IE 8]>
+|             <link rel="stylesheet" id="twentysixteen-ie7-css"  href="/themes/twentysixteen/css/ie7.css" type="text/css" media="all" />
+|             <![endif]-->
+|     
+|     Path: http://192.168.237.93:80/
+|     Line number: 61
+|     Comment: 
+|         <!-- .entry-header -->
+|     
+|     Path: http://192.168.237.93:80/
+|     Line number: 51
+|     Comment: 
+|         <!-- .site-header-main -->
+|     
+|     Path: http://192.168.237.93:80/
+|     Line number: 19
+|     Comment: 
+|         <!--[if lt IE 10]>
+|             <link rel="stylesheet" id="twentysixteen-ie-css"  href="/themes/twentysixteen/css/ie.css" type="text/css" media="all" />
+|             <![endif]-->
+|     
+|     Path: http://192.168.237.93:80/
+|     Line number: 124
+|     Comment: 
+|_        <!-- .site-info -->
+| http-security-headers: 
+|   Cache_Control: 
+|     Header: Cache-Control: no-store, no-cache, must-revalidate
+|   Pragma: 
+|     Header: Pragma: no-cache
+|   Expires: 
+|_    Header: Expires: Thu, 19 Nov 1981 08:52:00 GMT
+|_http-php-version: Version from header x-powered-by: PHP/7.3.22
+|_http-mobileversion-checker: No mobile version detected.
+|_http-title: Sybaris - Just another HTMLy blog
+| http-robots.txt: 11 disallowed entries 
+| /config/ /system/ /themes/ /vendor/ /cache/ 
+| /changelog.txt /composer.json /composer.lock /composer.phar /search/ 
+|_/admin/
+|_http-errors: Couldn't find any error pages.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /themes/twentysixteen/css/
+|       css: 1
+|     /themes/twentysixteen/genericons/
+|       css: 1
+|     /themes/twentysixteen/js/
+|       js: 1
+|   Longest directory structure:
+|     Depth: 3
+|     Dir: /themes/twentysixteen/js/
+|   Total files found (by extension):
+|_    Other: 1; css: 2; js: 1
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-trace: TRACE is enabled
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-chrono: Request times for /; avg: 281.96ms; min: 237.30ms; max: 348.38ms
+|_http-date: Thu, 26 Oct 2023 14:38:52 GMT; +59m53s from local time.
+| http-vhosts: 
+|_128 names had status 500
+| http-headers: 
+|   Date: Thu, 26 Oct 2023 14:38:52 GMT
+|   Server: Apache/2.4.6 (CentOS) PHP/7.3.22
+|   X-Powered-By: PHP/7.3.22
+|   Set-Cookie: PHPSESSID=mmb4l0gveelh7p0o4p4lo0mb8r; path=/
+|   Expires: Thu, 19 Nov 1981 08:52:00 GMT
+|   Cache-Control: no-store, no-cache, must-revalidate
+|   Pragma: no-cache
+|   Vary: Accept-Encoding
+|   Content-Length: 7884
+|   Connection: close
+|   Content-Type: text/html; charset=utf-8
+|   
+|_  (Request type: GET)
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-feed: 
+| Spidering limited to: maxpagecount=40; withinhost=192.168.237.93
+|   Found the following feeds: 
+|     RSS (version 2.0): /feed/rss
+|_    RSS (version 2.0): http://192.168.237.93:80/feed/rss
+|_http-generator: HTMLy v2.7.5
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-enum: 
+|   /robots.txt: Robots file
+|   /icons/: Potentially interesting folder w/ directory listing
+|_  /index/: Potentially interesting folder
+6379/tcp open  redis
+| redis-info: 
+|   Version: 5.0.9
+|   Operating System: Linux 3.10.0-1127.19.1.el7.x86_64 x86_64
+|   Architecture: 64 bits
+|   Process ID: 904
+|   Used CPU (sys): 0.262617
+|   Used CPU (user): 0.202793
+|   Connected clients: 2
+|   Connected slaves: 0
+|   Used memory: 582.62K
+|   Role: master
+|   Bind addresses: 
+|     0.0.0.0
+|   Client connections: 
+|_    192.168.45.169
+
+Host script results:
+|_dns-brute: Can't guess domain of "192.168.237.93"; use dns-brute.domain script argument.
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV     LOSS (%)
+| 21    0       236052.44  123735.29  10.0%
+| 22    0       214934.12  145800.20  20.0%
+| 80    0       350817.75  201926.94  20.0%
+|_6379  0       323379.29  207488.18  30.0%
+|_fcrdns: FAIL (No PTR record)
+|_ipidseq: All zeros
+|_path-mtu: PMTU == 1500
+
+# Nmap done at Thu Oct 26 15:49:22 2023 -- 1 IP address (1 host up) scanned in 673.26 seconds

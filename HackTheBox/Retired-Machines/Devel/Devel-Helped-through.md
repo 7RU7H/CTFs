@@ -15,7 +15,7 @@ Learnt:
 - Old windows kernel exploits sometimes its best to use metasploit
 - Metasploit is insane, do not really use it, but it is insane.
 
-## Disclaimer I did not finish this box - never compiled anything in VScode (it actually Microsoft Visual Studios) no VS code AAAAAAAAARGH! - requirement to do without metasploit -
+## Disclaimer I did not finish this box - never compiled anything in VScode (its actually Microsoft Visual Studios) no VS code AAAAAAAAARGH! - requirement to do without metasploit -
 
 
  Why is the only acronym that search enigines and everything Americans say and use not matter when is Visual Studio Code  and Microsoft Visual Studios? !@!#$!$%@#$B%^B#@ AAAAAAAAAAAAAAAAARGH!!!****
