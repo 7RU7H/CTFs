@@ -13,7 +13,7 @@ Services:
 - IIS 10,
 - FTP
 - smb 139,445 
-- SANS STorm center port 5040
+- SANS Storm center port 5040
 - 8081 Nexus 3.21.0-05 
 Service Languages:
 Users:

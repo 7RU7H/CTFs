@@ -77,6 +77,10 @@ Resulting compression is from 3342 to 1412 bytes - potential signature based on 
 		- Inject into the fields 
 		- Inject into the names that will break 
 
+I took the first hint:
+> Discovering an upload for zips, the ability to retrieve zip files, and identifying an LFI can be chained together to achieve RCE
+
+I need to discover the LFI. Almost certianly given the way the application retrieve files must be vulnerable some how.
 ## Exploit
 
 ## Foothold

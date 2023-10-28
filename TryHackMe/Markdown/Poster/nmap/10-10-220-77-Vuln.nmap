@@ -1,0 +1,40 @@
+# Nmap 7.94 scan initiated Sat Oct 28 11:46:42 2023 as: nmap --script vuln -oA nmap/10-10-220-77-Vuln --min-rate 500 -e tun0 -p 5432,22,80 10.10.220.77
+Nmap scan report for 10.10.220.77
+Host is up (0.11s latency).
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.220.77
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.10.220.77:80/
+|     Form id: signup-form
+|_    Form action: #
+| http-enum: 
+|_  /images/: Potentially interesting directory w/ listing on 'apache/2.4.18 (ubuntu)'
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-internal-ip-disclosure: 
+|_  Internal IP Leaked: 127.0.1.1
+5432/tcp open  postgresql
+| ssl-dh-params: 
+|   VULNERABLE:
+|   Diffie-Hellman Key Exchange Insufficient Group Strength
+|     State: VULNERABLE
+|       Transport Layer Security (TLS) services that use Diffie-Hellman groups
+|       of insufficient strength, especially those using one of a few commonly
+|       shared groups, may be susceptible to passive eavesdropping attacks.
+|     Check results:
+|       WEAK DH GROUP 1
+|             Cipher Suite: TLS_DHE_RSA_WITH_AES_256_CBC_SHA
+|             Modulus Type: Safe prime
+|             Modulus Source: Unknown/Custom-generated
+|             Modulus Length: 1024
+|             Generator Length: 8
+|             Public Key Length: 1024
+|     References:
+|_      https://weakdh.org
+
+# Nmap done at Sat Oct 28 11:52:17 2023 -- 1 IP address (1 host up) scanned in 335.03 seconds

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Sat Oct 28 11:46:42 2023 as: nmap -&#45;script vuln -oA nmap/10-10-220-77-Vuln -&#45;min-rate 500 -e tun0 -p 5432,22,80 10.10.220.77 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/10-10-220-77-Vuln -&#45;min-rate 500 -e tun0 -p 5432,22,80 10.10.220.77" start="1698490002" startstr="Sat Oct 28 11:46:42 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="22,80,5432"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.220.77" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1698490026" endtime="1698490337"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.220.77" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.220.77&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://10.10.220.77:80/&#xa;    Form id: signup-form&#xa;    Form action: #&#xa;"/><script id="http-enum" output="&#xa;  /images/: Potentially interesting directory w/ listing on &apos;apache/2.4.18 (ubuntu)&apos;&#xa;"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-internal-ip-disclosure" output="&#xa;  Internal IP Leaked: 127.0.1.1"><elem key="Internal IP Leaked">127.0.1.1</elem>
+</script></port>
+<port protocol="tcp" portid="5432"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="postgresql" method="table" conf="3"/><script id="ssl-dh-params" output="&#xa;  VULNERABLE:&#xa;  Diffie-Hellman Key Exchange Insufficient Group Strength&#xa;    State: VULNERABLE&#xa;      Transport Layer Security (TLS) services that use Diffie-Hellman groups&#xa;      of insufficient strength, especially those using one of a few commonly&#xa;      shared groups, may be susceptible to passive eavesdropping attacks.&#xa;    Check results:&#xa;      WEAK DH GROUP 1&#xa;            Cipher Suite: TLS_DHE_RSA_WITH_AES_256_CBC_SHA&#xa;            Modulus Type: Safe prime&#xa;            Modulus Source: Unknown/Custom-generated&#xa;            Modulus Length: 1024&#xa;            Generator Length: 8&#xa;            Public Key Length: 1024&#xa;    References:&#xa;      https://weakdh.org&#xa;"><table key="NMAP-10">
+<elem key="title">Diffie-Hellman Key Exchange Insufficient Group Strength</elem>
+<elem key="state">VULNERABLE</elem>
+<table key="description">
+<elem>Transport Layer Security (TLS) services that use Diffie-Hellman groups&#xa;of insufficient strength, especially those using one of a few commonly&#xa;shared groups, may be susceptible to passive eavesdropping attacks.</elem>
+</table>
+<table key="check_results">
+<elem>WEAK DH GROUP 1&#xa;      Cipher Suite: TLS_DHE_RSA_WITH_AES_256_CBC_SHA&#xa;      Modulus Type: Safe prime&#xa;      Modulus Source: Unknown/Custom-generated&#xa;      Modulus Length: 1024&#xa;      Generator Length: 8&#xa;      Public Key Length: 1024</elem>
+</table>
+<table key="refs">
+<elem>https://weakdh.org</elem>
+</table>
+</table>
+</script></port>
+</ports>
+<times srtt="105552" rttvar="55101" to="325956"/>
+</host>
+<runstats><finished time="1698490337" timestr="Sat Oct 28 11:52:17 2023" summary="Nmap done at Sat Oct 28 11:52:17 2023; 1 IP address (1 host up) scanned in 335.03 seconds" elapsed="335.03" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
