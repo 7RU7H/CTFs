@@ -39,6 +39,8 @@ Beyond Root:
 
 #### Lab Scope
 
+![](tomeyes.png)
+
 `toolname-username` - Shared network naming conventions
 
 #### Brief
@@ -863,6 +865,9 @@ Password
 #### Task 45 Conclusion Debrief & Report
 
 ## Beyond Root
+
+
+![](tomeyes.png)
 
 #### Socat proxy
 
