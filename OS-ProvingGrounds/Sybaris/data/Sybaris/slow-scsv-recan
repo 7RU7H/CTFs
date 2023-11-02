@@ -1,0 +1,55 @@
+# Nmap 7.94 scan initiated Wed Nov  1 19:11:00 2023 as: nmap -sC -sV -p 20,21,22,53,80,6379,10091,10092,10093,10094,10095,10096,10097,10098,10099,10100 -oN slow-scsv-recan 192.168.231.93
+Nmap scan report for 192.168.231.93
+Host is up (0.065s latency).
+
+PORT      STATE  SERVICE   VERSION
+20/tcp    closed ftp-data
+21/tcp    open   ftp       vsftpd 3.0.2
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_drwxrwxrwx    2 0        0               6 Apr 01  2020 pub [NSE: writeable]
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to 192.168.45.245
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      At session startup, client count was 3
+|      vsFTPd 3.0.2 - secure, fast, stable
+|_End of status
+22/tcp    open   ssh       OpenSSH 7.4 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 21:94:de:d3:69:64:a8:4d:a8:f0:b5:0a:ea:bd:02:ad (RSA)
+|   256 67:42:45:19:8b:f5:f9:a5:a4:cf:fb:87:48:a2:66:d0 (ECDSA)
+|_  256 f3:e2:29:a3:41:1e:76:1e:b1:b7:46:dc:0b:b9:91:77 (ED25519)
+53/tcp    closed domain
+80/tcp    open   http      Apache httpd 2.4.6 ((CentOS) PHP/7.3.22)
+|_http-server-header: Apache/2.4.6 (CentOS) PHP/7.3.22
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|_      httponly flag not set
+|_http-generator: HTMLy v2.7.5
+|_http-title: Sybaris - Just another HTMLy blog
+| http-robots.txt: 11 disallowed entries 
+| /config/ /system/ /themes/ /vendor/ /cache/ 
+| /changelog.txt /composer.json /composer.lock /composer.phar /search/ 
+|_/admin/
+6379/tcp  open   redis     Redis key-value store 5.0.9
+10091/tcp closed unknown
+10092/tcp closed unknown
+10093/tcp closed unknown
+10094/tcp closed unknown
+10095/tcp closed unknown
+10096/tcp closed unknown
+10097/tcp closed unknown
+10098/tcp closed unknown
+10099/tcp closed unknown
+10100/tcp closed itap-ddtp
+Service Info: OS: Unix
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Nov  1 19:11:12 2023 -- 1 IP address (1 host up) scanned in 12.59 seconds
