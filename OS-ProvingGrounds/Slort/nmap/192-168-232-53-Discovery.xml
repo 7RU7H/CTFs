@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Fri Nov  3 17:20:12 2023 as: nmap -&#45;script discovery -oA nmap/192-168-232-53-Discovery -&#45;min-rate 500 -e tun0 -p 139,21,49666,49668,7680,4443,49669,8080,5040,3306,49667,49664,49665 192.168.232.53 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/192-168-232-53-Discovery -&#45;min-rate 500 -e tun0 -p 139,21,49666,49668,7680,4443,49669,8080,5040,3306,49667,49664,49665 192.168.232.53" start="1699032012" startstr="Fri Nov  3 17:20:12 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="13" services="21,139,3306,4443,5040,7680,8080,49664-49669"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="broadcast-ping" output="false">false</script><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="lltd-discovery" output="false">false</script><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/><script id="targets-sniffer" output="Sniffed 2 address(es). &#xa;192.168.232.53&#xa;224.0.23.12"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.232.53" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1699032035" endtime="1699032156"><status state="up" reason="echo-reply" reason_ttl="125"/>
+<address addr="192.168.232.53" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="ftp" method="table" conf="3"/><script id="ftp-syst" output="&#xa;  SYST: UNIX emulated by FileZilla"><elem key="SYST">UNIX emulated by FileZilla</elem>
+</script><script id="banner" output="220-FileZilla Server version 0.9.41 beta\x0D\x0A220-written ...&#xa;"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="netbios-ssn" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="3306"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="mysql" method="table" conf="3"/><script id="banner" output="I\x00\x00\x01\xFFj\x04Host &apos;192.168.45.155&apos; is not allowed t...&#xa;"/></port>
+<port protocol="tcp" portid="4443"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="pharos" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5040"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+<port protocol="tcp" portid="7680"><state state="closed" reason="reset" reason_ttl="125"/><service name="pando-pub" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="http-proxy" method="table" conf="3"/><script id="http-chrono" output="Request times for /dashboard/; avg: 422.70ms; min: 319.54ms; max: 551.65ms"/><script id="http-open-proxy" output="Proxy might be redirecting requests"/><script id="http-grep" output="&#xa;  (1) http://192.168.232.53:8080/dashboard/: &#xa;    (1) email: &#xa;      + fastly-logo@2x.png&#xa;  (3) http://192.168.232.53:8080/dashboard/phpinfo.php: &#xa;    (2) ip: &#xa;      + 192.168.232.53&#xa;      + 192.168.45.155&#xa;    (1) email: &#xa;      + license@php.net&#xa;  (2) http://192.168.232.53:8080/dashboard/stylesheets/all.css: &#xa;    (2) email: &#xa;      + social-icons@2x.png&#xa;      + social-icons-large@2x.png&#xa;  (1) http://192.168.232.53:8080/dashboard/faq.html: &#xa;    (1) email: &#xa;      + your-gmail-username@gmail.com"><table key="(1) http://192.168.232.53:8080/dashboard/">
+<table key="(1) email">
+<elem>+ fastly-logo@2x.png</elem>
+</table>
+</table>
+<table key="(3) http://192.168.232.53:8080/dashboard/phpinfo.php">
+<table key="(2) ip">
+<elem>+ 192.168.232.53</elem>
+<elem>+ 192.168.45.155</elem>
+</table>
+<table key="(1) email">
+<elem>+ license@php.net</elem>
+</table>
+</table>
+<table key="(2) http://192.168.232.53:8080/dashboard/stylesheets/all.css">
+<table key="(2) email">
+<elem>+ social-icons@2x.png</elem>
+<elem>+ social-icons-large@2x.png</elem>
+</table>
+</table>
+<table key="(1) http://192.168.232.53:8080/dashboard/faq.html">
+<table key="(1) email">
+<elem>+ your-gmail-username@gmail.com</elem>
+</table>
+</table>
+</script><script id="http-date" output="Fri, 03 Nov 2023 17:20:34 GMT; +59m46s from local time."><elem key="date">2023-11-03T18:20:34+00:00</elem>
+<elem key="delta">3586.0</elem>
+</script><script id="http-vhosts" output="&#xa;dns0&#xa;crs&#xa;mx&#xa;125 names had status 302"/><script id="http-trace" output="TRACE is enabled"/><script id="http-headers" output="&#xa;  Date: Fri, 03 Nov 2023 17:20:32 GMT&#xa;  Server: Apache/2.4.43 (Win64) OpenSSL/1.1.1g PHP/7.4.6&#xa;  Last-Modified: Mon, 18 May 2020 06:55:42 GMT&#xa;  ETag: &quot;1d98-5a5e6a6bcb780&quot;&#xa;  Accept-Ranges: bytes&#xa;  Content-Length: 7576&#xa;  Connection: close&#xa;  Content-Type: text/html&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-title" output="Welcome to XAMPP&#xa;Requested resource was http://192.168.232.53:8080/dashboard/"><elem key="title">Welcome to XAMPP</elem>
+<elem key="redirect_url">http://192.168.232.53:8080/dashboard/</elem>
+</script><script id="http-waf-detect" output="IDS/IPS/WAF detected:&#xa;192.168.232.53:8080/?p4yl04d3=&lt;script&gt;alert(document.cookie)&lt;/script&gt;"/><script id="http-enum" output="&#xa;  /icons/: Potentially interesting folder w/ directory listing&#xa;  /img/: Potentially interesting directory w/ listing on &apos;apache/2.4.43 (win64) openssl/1.1.1g php/7.4.6&apos;&#xa;"/></port>
+<port protocol="tcp" portid="49664"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+<port protocol="tcp" portid="49665"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+<port protocol="tcp" portid="49666"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+<port protocol="tcp" portid="49667"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+<port protocol="tcp" portid="49668"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+<port protocol="tcp" portid="49669"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+</ports>
+<hostscript><script id="smb-mbenum" output="ERROR: Script execution failed (use -d to debug)"/><script id="msrpc-enum" output="SMB: Couldn&apos;t find a NetBIOS name that works for the server. Sorry!">false</script><script id="path-mtu" output="1006 &lt;= PMTU &lt; 1492"/><script id="qscan" output="&#xa;PORT   FAMILY  MEAN (us)  STDDEV     LOSS (%)&#xa;21     0       73014.40   20444.30   0.0%&#xa;139    0       62753.40   6505.49    0.0%&#xa;3306   0       90334.80   105213.91  0.0%&#xa;4443   0       61651.80   12439.68   0.0%&#xa;5040   0       63144.20   9382.80    0.0%&#xa;7680   0       66919.80   27102.93   0.0%&#xa;8080   1       57700.60   8193.08    0.0%&#xa;49664  0       61865.10   11401.13   0.0%&#xa;49665  0       62161.30   11120.12   0.0%&#xa;"/><script id="smb2-time" output="ERROR: Script execution failed (use -d to debug)"/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="dns-brute" output="Can&apos;t guess domain of &quot;192.168.232.53&quot;; use dns-brute.domain script argument."/><script id="ipidseq" output="Unknown"/><script id="smb2-capabilities" output="SMB: Couldn&apos;t find a NetBIOS name that works for the server. Sorry!">false</script><script id="smb2-security-mode" output="SMB: Couldn&apos;t find a NetBIOS name that works for the server. Sorry!">false</script></hostscript><times srtt="62832" rttvar="7829" to="100000"/>
+</host>
+<runstats><finished time="1699032156" timestr="Fri Nov  3 17:22:36 2023" summary="Nmap done at Fri Nov  3 17:22:36 2023; 1 IP address (1 host up) scanned in 144.64 seconds" elapsed="144.64" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

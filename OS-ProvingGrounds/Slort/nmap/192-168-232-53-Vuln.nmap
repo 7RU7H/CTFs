@@ -1,0 +1,30 @@
+# Nmap 7.94 scan initiated Fri Nov  3 17:22:36 2023 as: nmap --script vuln -oA nmap/192-168-232-53-Vuln --min-rate 500 -e tun0 -p 139,21,49666,49668,7680,4443,49669,8080,5040,3306,49667,49664,49665 192.168.232.53
+Nmap scan report for 192.168.232.53
+Host is up (0.12s latency).
+
+PORT      STATE  SERVICE
+21/tcp    open   ftp
+139/tcp   open   netbios-ssn
+3306/tcp  open   mysql
+4443/tcp  open   pharos
+5040/tcp  open   unknown
+7680/tcp  closed pando-pub
+8080/tcp  open   http-proxy
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+|_http-trace: TRACE is enabled
+| http-enum: 
+|   /icons/: Potentially interesting folder w/ directory listing
+|_  /img/: Potentially interesting directory w/ listing on 'apache/2.4.43 (win64) openssl/1.1.1g php/7.4.6'
+49664/tcp open   unknown
+49665/tcp open   unknown
+49666/tcp open   unknown
+49667/tcp open   unknown
+49668/tcp open   unknown
+49669/tcp open   unknown
+
+Host script results:
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: SMB: Couldn't find a NetBIOS name that works for the server. Sorry!
+|_samba-vuln-cve-2012-1182: SMB: Couldn't find a NetBIOS name that works for the server. Sorry!
+
+# Nmap done at Fri Nov  3 17:28:12 2023 -- 1 IP address (1 host up) scanned in 335.68 seconds

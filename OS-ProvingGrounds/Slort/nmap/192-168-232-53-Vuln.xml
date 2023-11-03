@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Fri Nov  3 17:22:36 2023 as: nmap -&#45;script vuln -oA nmap/192-168-232-53-Vuln -&#45;min-rate 500 -e tun0 -p 139,21,49666,49668,7680,4443,49669,8080,5040,3306,49667,49664,49665 192.168.232.53 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/192-168-232-53-Vuln -&#45;min-rate 500 -e tun0 -p 139,21,49666,49668,7680,4443,49669,8080,5040,3306,49667,49664,49665 192.168.232.53" start="1699032156" startstr="Fri Nov  3 17:22:36 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="13" services="21,139,3306,4443,5040,7680,8080,49664-49669"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.232.53" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1699032180" endtime="1699032492"><status state="up" reason="reset" reason_ttl="125"/>
+<address addr="192.168.232.53" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="netbios-ssn" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3306"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="mysql" method="table" conf="3"/></port>
+<port protocol="tcp" portid="4443"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="pharos" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5040"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+<port protocol="tcp" portid="7680"><state state="closed" reason="reset" reason_ttl="125"/><service name="pando-pub" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="http-proxy" method="table" conf="3"/><script id="http-vuln-cve2017-1001000" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-trace" output="TRACE is enabled"/><script id="http-enum" output="&#xa;  /icons/: Potentially interesting folder w/ directory listing&#xa;  /img/: Potentially interesting directory w/ listing on &apos;apache/2.4.43 (win64) openssl/1.1.1g php/7.4.6&apos;&#xa;"/></port>
+<port protocol="tcp" portid="49664"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+<port protocol="tcp" portid="49665"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+<port protocol="tcp" portid="49666"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+<port protocol="tcp" portid="49667"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+<port protocol="tcp" portid="49668"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+<port protocol="tcp" portid="49669"><state state="open" reason="syn-ack" reason_ttl="125"/></port>
+</ports>
+<hostscript><script id="smb-vuln-ms10-054" output="false">false</script><script id="smb-vuln-ms10-061" output="SMB: Couldn&apos;t find a NetBIOS name that works for the server. Sorry!">false</script><script id="samba-vuln-cve-2012-1182" output="SMB: Couldn&apos;t find a NetBIOS name that works for the server. Sorry!">false</script></hostscript><times srtt="115474" rttvar="10966" to="159338"/>
+</host>
+<runstats><finished time="1699032492" timestr="Fri Nov  3 17:28:12 2023" summary="Nmap done at Fri Nov  3 17:28:12 2023; 1 IP address (1 host up) scanned in 335.68 seconds" elapsed="335.68" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

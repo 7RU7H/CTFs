@@ -1,0 +1,70 @@
+# Nmap 7.94 scan initiated Fri Nov  3 17:17:00 2023 as: nmap -sC -sV -oA nmap/192-168-232-53-Extensive-Found-Ports --min-rate 500 -e tun0 -p 139,21,49666,49668,7680,4443,49669,8080,5040,3306,49667,49664,49665 192.168.232.53
+Nmap scan report for 192.168.232.53
+Host is up (0.079s latency).
+
+PORT      STATE  SERVICE     VERSION
+21/tcp    open   ftp         FileZilla ftpd 0.9.41 beta
+| ftp-syst: 
+|_  SYST: UNIX emulated by FileZilla
+139/tcp   open   netbios-ssn Microsoft Windows netbios-ssn
+3306/tcp  open   mysql?
+| fingerprint-strings: 
+|   DNSVersionBindReqTCP, FourOhFourRequest, GetRequest, HTTPOptions, Help, Kerberos, LDAPSearchReq, NULL, RPCCheck, RTSPRequest, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServerCookie, X11Probe: 
+|_    Host '192.168.45.155' is not allowed to connect to this MariaDB server
+4443/tcp  open   http        Apache httpd 2.4.43 ((Win64) OpenSSL/1.1.1g PHP/7.4.6)
+|_http-server-header: Apache/2.4.43 (Win64) OpenSSL/1.1.1g PHP/7.4.6
+| http-title: Welcome to XAMPP
+|_Requested resource was http://192.168.232.53:4443/dashboard/
+5040/tcp  open   unknown
+7680/tcp  closed pando-pub
+8080/tcp  open   http        Apache httpd 2.4.43 ((Win64) OpenSSL/1.1.1g PHP/7.4.6)
+|_http-open-proxy: Proxy might be redirecting requests
+| http-title: Welcome to XAMPP
+|_Requested resource was http://192.168.232.53:8080/dashboard/
+|_http-server-header: Apache/2.4.43 (Win64) OpenSSL/1.1.1g PHP/7.4.6
+49664/tcp open   msrpc       Microsoft Windows RPC
+49665/tcp open   msrpc       Microsoft Windows RPC
+49666/tcp open   msrpc       Microsoft Windows RPC
+49667/tcp open   msrpc       Microsoft Windows RPC
+49668/tcp open   msrpc       Microsoft Windows RPC
+49669/tcp open   msrpc       Microsoft Windows RPC
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port3306-TCP:V=7.94%I=7%D=11/3%Time=65452B1A%P=x86_64-pc-linux-gnu%r(NU
+SF:LL,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.45\.155'\x20is\x20not\x20al
+SF:lowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(GetReques
+SF:t,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.45\.155'\x20is\x20not\x20all
+SF:owed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(HTTPOption
+SF:s,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.45\.155'\x20is\x20not\x20all
+SF:owed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(RTSPReques
+SF:t,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.45\.155'\x20is\x20not\x20all
+SF:owed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(RPCCheck,4
+SF:D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.45\.155'\x20is\x20not\x20allowe
+SF:d\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(DNSVersionBin
+SF:dReqTCP,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.45\.155'\x20is\x20not\
+SF:x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(Help
+SF:,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.45\.155'\x20is\x20not\x20allo
+SF:wed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(SSLSessionR
+SF:eq,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.45\.155'\x20is\x20not\x20al
+SF:lowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(TerminalS
+SF:erverCookie,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.45\.155'\x20is\x20
+SF:not\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(
+SF:TLSSessionReq,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.45\.155'\x20is\x
+SF:20not\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%
+SF:r(Kerberos,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.45\.155'\x20is\x20n
+SF:ot\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(S
+SF:MBProgNeg,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.45\.155'\x20is\x20no
+SF:t\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(X1
+SF:1Probe,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.45\.155'\x20is\x20not\x
+SF:20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r(FourO
+SF:hFourRequest,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.45\.155'\x20is\x2
+SF:0not\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server")%r
+SF:(LDAPSearchReq,4D,"I\0\0\x01\xffj\x04Host\x20'192\.168\.45\.155'\x20is\
+SF:x20not\x20allowed\x20to\x20connect\x20to\x20this\x20MariaDB\x20server");
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_smb2-security-mode: SMB: Couldn't find a NetBIOS name that works for the server. Sorry!
+|_smb2-time: ERROR: Script execution failed (use -d to debug)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Fri Nov  3 17:20:11 2023 -- 1 IP address (1 host up) scanned in 191.20 seconds
