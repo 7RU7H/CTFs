@@ -1,0 +1,42 @@
+# Nmap 7.94 scan initiated Sat Nov  4 19:40:01 2023 as: nmap --script discovery -oA nmap/192-168-191-134-Discovery --min-rate 500 -e tun0 -p 13337,22 192.168.191.134
+Pre-scan script results:
+|_lltd-discovery: false
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_broadcast-ping: false
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 192.168.191.134
+Host is up (0.055s latency).
+
+PORT      STATE SERVICE
+22/tcp    open  ssh
+|_banner: SSH-2.0-OpenSSH_7.9p1 Debian-10+deb10u2
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   2048 74:ba:20:23:89:92:62:02:9f:e7:3d:3b:83:d4:d9:6c (RSA)
+|   256 54:8f:79:55:5a:b0:3a:69:5a:d5:72:39:64:fd:07:4e (ECDSA)
+|_  256 7f:5d:10:27:62:ba:75:e9:bc:c8:4f:e2:72:87:d4:e2 (ED25519)
+13337/tcp open  unknown
+
+Host script results:
+|_dns-brute: Can't guess domain of "192.168.191.134"; use dns-brute.domain script argument.
+|_ipidseq: All zeros
+| qscan: 
+| PORT   FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 22     0       54857.10   4450.72  0.0%
+|_13337  0       54285.80   4639.82  0.0%
+|_fcrdns: FAIL (No PTR record)
+|_path-mtu: PMTU == 1500
+
+# Nmap done at Sat Nov  4 19:40:40 2023 -- 1 IP address (1 host up) scanned in 39.07 seconds

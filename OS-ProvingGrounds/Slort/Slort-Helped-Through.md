@@ -12,7 +12,6 @@ Learnt:
 - Check ALL THE DATA YOU HAVE before moving forward
 
 Beyond Root:
-
 - [[Slort-Notes.md]]
 - [[Slort-CMD-by-CMDs.md]]
 
