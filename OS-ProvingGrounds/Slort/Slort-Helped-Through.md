@@ -15,8 +15,6 @@ Beyond Root:
 - [[Slort-Notes.md]]
 - [[Slort-CMD-by-CMDs.md]]
 
-
-
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](Screenshots/ping.png)
 

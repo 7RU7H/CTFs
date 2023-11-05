@@ -29,10 +29,6 @@ Seatbelt compile and used
 
 Host Vulnhub box and do both Red and Blue Teaming 
 
-Alternative to nohup on Windows preferable dos and powershell - [For Windows consider](https://learn.microsoft.com/en-US/troubleshoot/windows-client/deployment/create-user-defined-service)
-
-
-
 pwnkit
 lsa dump
 
