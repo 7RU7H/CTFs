@@ -64,6 +64,7 @@ appendodt.png
 
 waititis.png
 
+[[missing-sri-http___192.168.180.169_]] https://www.tenable.com/plugins/was/98647
 
 oneminutetopwnagainthen.png
 
@@ -73,6 +74,10 @@ libreoffice_macro_exec.png
 
 
 https://dominicbreuker.com/post/htb_re/
+
+https://www.infosecmatter.com/metasploit-module-library/?mm=exploit/multi/fileformat/libreoffice_macro_exec
+
+https://www.rapid7.com/blog/post/2017/03/08/attacking-microsoft-office-openoffice-with-metasploit-macro-exploits/
 
 https://books.libreoffice.org/en/GS70/GS7013-GettingStartedWithMacros.html
 1. Open any LibreOffice application.
@@ -98,3 +103,5 @@ ITWORKS.png
 
 But no beacon or session.
 nobaconorsausage.png
+
+
