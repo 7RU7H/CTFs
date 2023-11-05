@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Sun Nov  5 21:15:13 2023 as: nmap -Pn -&#45;script vuln -oA nmap/192-168-180-169-Vuln -&#45;min-rate 500 -e tun0 -p 80 192.168.180.169 -->
+<nmaprun scanner="nmap" args="nmap -Pn -&#45;script vuln -oA nmap/192-168-180-169-Vuln -&#45;min-rate 500 -e tun0 -p 80 192.168.180.169" start="1699218913" startstr="Sun Nov  5 21:15:13 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="1" services="80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1699218936" endtime="1699219249"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="192.168.180.169" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="http" method="table" conf="3"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.180.169&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://192.168.180.169:80/&#xa;    Form id: &#xa;    Form action: upload.php&#xa;"/><script id="http-enum" output="&#xa;  /css/: Potentially interesting directory w/ listing on &apos;apache/2.4.48 (win64) openssl/1.1.1k php/8.0.7&apos;&#xa;  /icons/: Potentially interesting folder w/ directory listing&#xa;  /js/: Potentially interesting directory w/ listing on &apos;apache/2.4.48 (win64) openssl/1.1.1k php/8.0.7&apos;&#xa;  /uploads/: Potentially interesting directory w/ listing on &apos;apache/2.4.48 (win64) openssl/1.1.1k php/8.0.7&apos;&#xa;"/><script id="http-vuln-cve2017-1001000" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-trace" output="TRACE is enabled"/><script id="http-fileupload-exploiter" output="&#xa;  &#xa;    Failed to upload and execute a payload.&#xa;  &#xa;    Failed to upload and execute a payload.&#xa;  &#xa;    Failed to upload and execute a payload.&#xa;  &#xa;    Failed to upload and execute a payload.&#xa;  &#xa;    Failed to upload and execute a payload."><table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+<table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+<table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+<table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+<table>
+<elem>Failed to upload and execute a payload.</elem>
+</table>
+</script></port>
+</ports>
+<times srtt="82266" rttvar="82266" to="411330"/>
+</host>
+<runstats><finished time="1699219249" timestr="Sun Nov  5 21:20:49 2023" summary="Nmap done at Sun Nov  5 21:20:49 2023; 1 IP address (1 host up) scanned in 335.87 seconds" elapsed="335.87" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

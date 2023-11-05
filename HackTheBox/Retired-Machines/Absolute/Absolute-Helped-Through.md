@@ -702,7 +702,7 @@ string test.exe
 ```bash
 # Check if IP fowarding is enabled 
 cat /proc/sys/net/ipv4/ip_forward
-# Enable IP forwardpip3 install .
+# Enable IP forwarding
 sudo echo 1 > /proc/sys/net/ipv4/ip_forward
 # Iptables rules 
 # INTERFACE is whatever network device that is providing internet to your nic from `ip a`
