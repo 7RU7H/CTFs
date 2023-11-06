@@ -8,6 +8,7 @@ Difficulty:  Intermediate
 Goals:  
 - TJNULLage
 Learnt:
+- Picking events careful as you could overwrite your own beacon
 Beyond Root:
 
 - [[Craft-Notes.md]]

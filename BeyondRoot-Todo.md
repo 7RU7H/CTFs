@@ -1,3 +1,12 @@
+# Beyond Root Todo
+
+#### Backlog
+
+[[XposedAPI-Writeup]] + [[BillyBoss-Writeup]] + [[Slort-Helped-Through]] + [[Sybaris-Helped-Through]] (C) related
+
+#### Ideas LIst
+
+
 Do grey-box and white box SAST testing
 
 https://github.com/leebaird/discover use them ffs on a CTF
