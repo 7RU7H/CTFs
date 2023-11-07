@@ -135,11 +135,21 @@ feroxbuster --url 'http://192.168.232.53:8080/dashboard/' -w /usr/share/wordlist
 
 ## Privilege Escalation
 
+
+
 ## Post-Root-Reflection  
 
 On the bleak positive side: I could may find real bugs in actually applications through enumeration of versioning and being persistent - not the same evidence of manually exploitation of weird new bugs
 
+Not trusting myself and creating the tree and the woods trying to enumerate the machine. 
 
+I could not find the scheduled task so moved on. Then I had some life issues, which led to a mental blank on just replacing the TFTP.exe 
 ## Beyond Root
 
+Sliver C2 infrastructure 
+
+SSH server -> Sliver multiplayer-server running in daemon mode 
+- https://github.com/BishopFox/sliver/wiki/Configuration-Files#server-configuration
+- https://github.com/BishopFox/sliver/wiki/Daemon-Mode
+- https://github.com/BishopFox/sliver/wiki/Multiplayer-Mode
 

@@ -100,3 +100,8 @@ This seems like rabbit hole territory where I am missing somethings:
 - dont have a username
 - web services seem weirdly bland 
 - smbv1 without signing massive EXPLOIT HERE - I have not done that many relay attacks. 
+- no ippsec smb relay or ntlm relay attacks
+
+After consideration it is probably then the web -> smb pivot somehow. Another additional hour required before I fold to hint. 
+- Check rdp versioning and exploitation that does exist.
+https://book.hacktricks.xyz/network-services-pentesting/pentesting-rdp

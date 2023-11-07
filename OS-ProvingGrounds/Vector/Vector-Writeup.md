@@ -22,6 +22,8 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 	
 ## Exploit
 
+
+
 ## Foothold
 
 ## Privilege Escalation
@@ -33,3 +35,4 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 ## Beyond Root
 
 
+Try getting the reverse shell with hoaxshell
