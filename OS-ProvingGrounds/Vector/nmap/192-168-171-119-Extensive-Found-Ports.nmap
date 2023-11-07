@@ -1,0 +1,55 @@
+# Nmap 7.94 scan initiated Tue Nov  7 11:50:34 2023 as: nmap -sC -sV -oA nmap/192-168-171-119-Extensive-Found-Ports --min-rate 500 -e tun0 -p 445,135,139,2290,5985,3389,80,21 192.168.171.119
+Nmap scan report for 192.168.171.119
+Host is up (0.063s latency).
+
+PORT     STATE SERVICE       VERSION
+21/tcp   open  ftp           Microsoft ftpd
+| ftp-syst: 
+|_  SYST: Windows_NT
+80/tcp   open  http          Microsoft IIS httpd 10.0
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-server-header: Microsoft-IIS/10.0
+|_http-title: Site doesn't have a title (text/html; charset=utf-8).
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds  Microsoft Windows Server 2008 R2 - 2012 microsoft-ds
+2290/tcp open  http          Microsoft IIS httpd 10.0
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-title: Site doesn't have a title (text/html; charset=utf-8).
+|_http-server-header: Microsoft-IIS/10.0
+3389/tcp open  ms-wbt-server Microsoft Terminal Services
+|_ssl-date: 2023-11-07T11:51:23+00:00; -17s from scanner time.
+| ssl-cert: Subject: commonName=vector
+| Not valid before: 2023-11-06T11:45:57
+|_Not valid after:  2024-05-07T11:45:57
+| rdp-ntlm-info: 
+|   Target_Name: VECTOR
+|   NetBIOS_Domain_Name: VECTOR
+|   NetBIOS_Computer_Name: VECTOR
+|   DNS_Domain_Name: vector
+|   DNS_Computer_Name: vector
+|   Product_Version: 10.0.17763
+|_  System_Time: 2023-11-07T11:50:44+00:00
+5985/tcp open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-title: Not Found
+|_http-server-header: Microsoft-HTTPAPI/2.0
+Service Info: OSs: Windows, Windows Server 2008 R2 - 2012; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled but not required
+|_clock-skew: mean: -16s, deviation: 0s, median: -17s
+| smb2-time: 
+|   date: 2023-11-07T11:50:46
+|_  start_date: N/A
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Tue Nov  7 11:51:40 2023 -- 1 IP address (1 host up) scanned in 66.31 seconds

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Tue Nov  7 11:55:49 2023 as: nmap -&#45;script vuln -oA nmap/192-168-171-119-Vuln -&#45;min-rate 500 -e tun0 -p 445,135,139,2290,5985,3389,80,21 192.168.171.119 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/192-168-171-119-Vuln -&#45;min-rate 500 -e tun0 -p 445,135,139,2290,5985,3389,80,21 192.168.171.119" start="1699358149" startstr="Tue Nov  7 11:55:49 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="8" services="21,80,135,139,445,2290,3389,5985"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.171.119" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1699358172" endtime="1699358459"><status state="up" reason="echo-reply" reason_ttl="125"/>
+<address addr="192.168.171.119" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="ftp" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="http" method="table" conf="3"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.171.119&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://192.168.171.119:80/&#xa;    Form id: myform&#xa;    Form action: ./&#xa;"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="msrpc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="netbios-ssn" method="table" conf="3"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="2290"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="sonus-logging" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="ms-wbt-server" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="125"/><service name="wsman" method="table" conf="3"/></port>
+</ports>
+<hostscript><script id="smb-vuln-ms10-061" output="No accounts left to try">false</script><script id="smb-vuln-ms10-054" output="false">false</script><script id="samba-vuln-cve-2012-1182" output="No accounts left to try">false</script></hostscript><times srtt="50935" rttvar="13589" to="105291"/>
+</host>
+<runstats><finished time="1699358459" timestr="Tue Nov  7 12:00:59 2023" summary="Nmap done at Tue Nov  7 12:00:59 2023; 1 IP address (1 host up) scanned in 309.66 seconds" elapsed="309.66" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

