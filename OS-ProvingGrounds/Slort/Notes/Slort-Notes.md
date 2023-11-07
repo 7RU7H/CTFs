@@ -205,3 +205,6 @@ arpandipconfig.png
 Had some life issues and lost focus and had mental blank returning to Backup directory after getting `arp` cache and `ipconfig` to consider the network infastructure
 
 administrator.png
+
+schtask require administrator to view all
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks
