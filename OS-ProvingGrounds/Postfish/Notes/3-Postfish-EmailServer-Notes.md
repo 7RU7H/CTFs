@@ -64,15 +64,3 @@ smtp-user-enum -M VRFY -U potential-email-addresses.txt -t $TargetIP -p $PORT | 
 cat smtp-user-enum-25.out | grep exists | awk -F: '{print $2}' | sed 's/ exists//g'| tr -d ' ' > valid-emails.txt
 ```
 
-smtpuserenumwithpentestmonkey.png
-
-
-checkerror.png
-
-requiresphishing.png
-
-Will be twinned with [[Attended-Helped-Through]], and other phishing boxes for phishing-for-2-weeks-24-7 banaza
-
-
-Hydra to testing top 2000 on all four valid emails
-2000krockyouonvalidemailsfailed.png

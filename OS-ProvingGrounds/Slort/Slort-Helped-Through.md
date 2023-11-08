@@ -10,7 +10,6 @@ Learnt:
 - Brute forcing a proxy was not a mad idea apparently - I presume Ippsec said something at some point 
 - If their is a http-proxy does not just mean it implements the correct access controls to the content it prohibits. As the hint being that `localhost:80` - which is why burpsuite is behaving weird as ssl is not actually implemented as the `localhost:80` => is proxied thought `IP:8080` to `IP:4443`.
 - Check ALL THE DATA YOU HAVE before moving forward
-
 Beyond Root:
 - [[Slort-Notes.md]]
 - [[Slort-CMD-by-CMDs.md]]
