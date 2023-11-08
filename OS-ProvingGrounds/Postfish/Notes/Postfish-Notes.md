@@ -15,7 +15,7 @@ Users:
 Email and Username Formatting:
 Credentials:
 
-## Objectives
+## Objectivespostfish
 
 `\#\# Target Map ![](Postfish-map.excalidraw.md)`
 
@@ -78,7 +78,6 @@ it@postfish.off
 sales@postfish.off
 legal@postfish.off
 ```
-
 
 ```bash
 smtp-user-enum -M RCPT -U departments.txt -t postfish.off
@@ -225,7 +224,7 @@ tomuchgoof.png
 
 weareFILTER.png
 
-We can use mail without a password and suo
+We can use mail without a password and sudo
 https://linux.die.net/man/1/mail
 
 [Mail - GTFObin for sudo mail ]

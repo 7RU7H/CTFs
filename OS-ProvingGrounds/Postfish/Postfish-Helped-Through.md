@@ -29,4 +29,6 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 
 ## Beyond Root
 
+Finish the [[Attended-Helped-Through]]
 
+https://github.com/HanzCoder/Offensive-Security-OSCP-Cheatsheets/blob/master/offensive-security/red-team-infrastructure/smtp.md
