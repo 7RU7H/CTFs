@@ -1,0 +1,34 @@
+# Nmap 7.94 scan initiated Thu Nov  9 20:55:47 2023 as: nmap --script vuln -oA nmap/192-168-198-208-Vuln --min-rate 500 -e tun0 -p 80,10000,22 192.168.198.208
+Nmap scan report for lite (192.168.198.208)
+Host is up (0.081s latency).
+
+PORT      STATE SERVICE
+22/tcp    open  ssh
+80/tcp    open  http
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=lite
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://lite:80/
+|     Form id: contact-form
+|_    Form action: assets/contact.php
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-internal-ip-disclosure: ERROR: Script execution failed (use -d to debug)
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+10000/tcp open  snet-sensor-mgmt
+| http-vuln-cve2006-3392: 
+|   VULNERABLE:
+|   Webmin File Disclosure
+|     State: VULNERABLE (Exploitable)
+|     IDs:  CVE:CVE-2006-3392
+|       Webmin before 1.290 and Usermin before 1.220 calls the simplify_path function before decoding HTML.
+|       This allows arbitrary files to be read, without requiring authentication, using "..%01" sequences
+|       to bypass the removal of "../" directory traversal sequences.
+|       
+|     Disclosure date: 2006-06-29
+|     References:
+|       http://www.rapid7.com/db/modules/auxiliary/admin/webmin/file_disclosure
+|       http://www.exploit-db.com/exploits/1997/
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2006-3392
+
+# Nmap done at Thu Nov  9 21:02:13 2023 -- 1 IP address (1 host up) scanned in 386.13 seconds
