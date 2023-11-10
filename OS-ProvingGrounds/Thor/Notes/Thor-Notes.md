@@ -103,3 +103,20 @@ Hint 1 taken: *A webservice has a login page that can be brute forced*
 - It is not 10000, because that IP blocks and 7080 10k passwords from rockyou.txt is more than enough time
 - Password managling jfoster and other words - todo
 - Try jfoster as the account for 7080 - todo
+
+Jane Foster as password password list
+```bash
+mp32 --custom-charset1='!@#$%^' janefoster?d?1 > mp32-passwd.lst
+mp32 --custom-charset1='!@#$%^' jfoster?d?1 >> mp32-passwd.lst
+mp32 --custom-charset1='!@#$%^' janefoster?d?1 >> mp32-passwd.lst
+mp32 --custom-charset1='!@#$%^' Janefoster?d?1 >> mp32-passwd.lst
+mp32 --custom-charset1='!@#$%^' Jfoster?d?1 >> mp32-passwd.lst
+mp32 --custom-charset1='!@#$%^' JFoster?d?1 >> mp32-passwd.lst
+mp32 --custom-charset1='!@#$%^' JaneFoster?d?1 >> mp32-passwd.lst
+cat mp32-passwd.lst | wc -l
+```
+
+9k~ password attempt on rockyou with jfoster
+hydraverysadrockyou.png
+
+nojanefosterpasswordswriteupitisthen.png

