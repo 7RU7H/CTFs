@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Sat Nov 11 19:16:28 2023 as: nmap -&#45;script vuln -oA nmap/192-168-217-41-Vuln -&#45;min-rate 500 -e tun0 -p 22,23,3306,80 192.168.217.41 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/192-168-217-41-Vuln -&#45;min-rate 500 -e tun0 -p 22,23,3306,80 192.168.217.41" start="1699730188" startstr="Sat Nov 11 19:16:28 2023" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="4" services="22-23,80,3306"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="192.168.217.41" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1699730211" endtime="1699730271"><status state="up" reason="echo-reply" reason_ttl="61"/>
+<address addr="192.168.217.41" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="23"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="telnet" method="table" conf="3"/><script id="ssl-poodle" output="&#xa;  VULNERABLE:&#xa;  SSL POODLE information leak&#xa;    State: VULNERABLE&#xa;    IDs:  BID:70574  CVE:CVE-2014-3566&#xa;          The SSL protocol 3.0, as used in OpenSSL through 1.0.1i and other&#xa;          products, uses nondeterministic CBC padding, which makes it easier&#xa;          for man-in-the-middle attackers to obtain cleartext data via a&#xa;          padding-oracle attack, aka the &quot;POODLE&quot; issue.&#xa;    Disclosure date: 2014-10-14&#xa;    Check results:&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA&#xa;    References:&#xa;      https://www.imperialviolet.org/2014/10/14/poodle.html&#xa;      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566&#xa;      https://www.openssl.org/~bodo/ssl-poodle.pdf&#xa;      https://www.securityfocus.com/bid/70574&#xa;"><table key="CVE-2014-3566">
+<elem key="title">SSL POODLE information leak</elem>
+<elem key="state">VULNERABLE</elem>
+<table key="ids">
+<elem>BID:70574</elem>
+<elem>CVE:CVE-2014-3566</elem>
+</table>
+<table key="description">
+<elem>    The SSL protocol 3.0, as used in OpenSSL through 1.0.1i and other&#xa;    products, uses nondeterministic CBC padding, which makes it easier&#xa;    for man-in-the-middle attackers to obtain cleartext data via a&#xa;    padding-oracle attack, aka the &quot;POODLE&quot; issue.</elem>
+</table>
+<table key="dates">
+<table key="disclosure">
+<elem key="year">2014</elem>
+<elem key="day">14</elem>
+<elem key="month">10</elem>
+</table>
+</table>
+<elem key="disclosure">2014-10-14</elem>
+<table key="check_results">
+<elem>TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+</table>
+<table key="refs">
+<elem>https://www.imperialviolet.org/2014/10/14/poodle.html</elem>
+<elem>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3566</elem>
+<elem>https://www.openssl.org/~bodo/ssl-poodle.pdf</elem>
+<elem>https://www.securityfocus.com/bid/70574</elem>
+</table>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="http" method="table" conf="3"/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-enum" output="&#xa;  /test/: Test page&#xa;  /icons/: Potentially interesting folder w/ directory listing&#xa;"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/></port>
+<port protocol="tcp" portid="3306"><state state="open" reason="syn-ack" reason_ttl="61"/><service name="mysql" method="table" conf="3"/></port>
+</ports>
+<times srtt="58582" rttvar="34283" to="195714"/>
+</host>
+<runstats><finished time="1699730271" timestr="Sat Nov 11 19:17:51 2023" summary="Nmap done at Sat Nov 11 19:17:51 2023; 1 IP address (1 host up) scanned in 82.64 seconds" elapsed="82.64" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
