@@ -1,0 +1,790 @@
+# Nmap 7.94SVN scan initiated Wed Nov 15 11:42:16 2023 as: nmap --script discovery -oA nmap/192-168-229-39-Discovery --min-rate 500 -e tun0 -p 993,80,22,139,143,110,445,995 192.168.229.39
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-sniffer: Sniffed 2 address(es). 
+| 224.0.23.12
+|_192.168.229.39
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_lltd-discovery: false
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-ping: false
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 192.168.229.39
+Host is up (0.73s latency).
+
+PORT    STATE SERVICE
+22/tcp  open  ssh
+|_ssh-hostkey: ERROR: Script execution failed (use -d to debug)
+| ssh2-enum-algos: 
+|   kex_algorithms: (4)
+|   server_host_key_algorithms: (2)
+|   encryption_algorithms: (13)
+|   mac_algorithms: (6)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_4.6p1 Debian-5build1
+80/tcp  open  http
+|_http-errors: Couldn't find any error pages.
+|_http-title: CS-Cart. Powerful PHP shopping cart software
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; php: 1
+|     /skins/new_vision_blue/customer/
+|       css: 1
+|   Longest directory structure:
+|     Depth: 3
+|     Dir: /skins/new_vision_blue/customer/
+|   Total files found (by extension):
+|_    Other: 1; css: 1; php: 1
+|_http-chrono: Request times for /; avg: 4589.82ms; min: 3397.45ms; max: 5905.99ms
+| http-internal-ip-disclosure: 
+|_  Internal IP Leaked: 127.0.0.1
+| http-traceroute: 
+|   last-modified
+|     Hop #1: Wed, 15 Nov 2023 11:43:27 GMT
+|     Hop #2: Wed, 15 Nov 2023 11:43:58 GMT
+|_    Hop #3: Wed, 15 Nov 2023 11:44:10 GMT
+| http-php-version: Versions from credits query (more accurate): 5.2.3 - 5.2.5, 5.2.6RC3
+|_Version from header x-powered-by: PHP/5.2.3-1ubuntu6
+| http-security-headers: 
+|   Cache_Control: 
+|     Header: Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+|   Pragma: 
+|     Header: Pragma: no-cache
+|   Expires: 
+|_    Header: Expires: -1
+|_http-feed: Couldn't find any feeds.
+|_http-trace: TRACE is enabled
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.229.39
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 617
+|     Comment: 
+|         /* buttons */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 549
+|     Comment: 
+|         /* bestsellers side box */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 557
+|     Comment: 
+|         /* Notification box */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 584
+|     Comment: 
+|         /* Warning message */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 408
+|     Comment: 
+|         /* Site info side box */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 766
+|     Comment: 
+|         /* form styles */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 352
+|     Comment: 
+|         /* /Main boxes styles */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 597
+|     Comment: 
+|         /* /Notification box */
+|     
+|     Path: http://192.168.229.39:80/index.php?target=categories&amp;category_id=114
+|     Line number: 13
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         -->
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 599
+|     Comment: 
+|         /* Section in main box */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 495
+|     Comment: 
+|         /*  /authentication side box */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 785
+|     Comment: 
+|         /* checkout pages */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 673
+|     Comment: 
+|         /* eMenu */
+|     
+|     Path: http://192.168.229.39:80/index.php?target=categories&amp;category_id=114
+|     Line number: 602
+|     Comment: 
+|         
+|         
+|         -->
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 354
+|     Comment: 
+|         /* categories side box */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 205
+|     Comment: 
+|         /* Footer styles */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 671
+|     Comment: 
+|         /* /buttons */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 687
+|     Comment: 
+|         /* category page */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 406
+|     Comment: 
+|         /* /categories side box */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 1
+|     Comment: 
+|         /* General styles */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 203
+|     Comment: 
+|         /* /Header styles */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 814
+|     Comment: 
+|         /* all levels inner */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 469
+|     Comment: 
+|         /* /Site info side box */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 685
+|     Comment: 
+|         /* /eMenu */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 497
+|     Comment: 
+|         /* Search side box */
+|     
+|     Path: http://192.168.229.39:80/index.php?target=categories&amp;category_id=114
+|     Line number: 265
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         	-->
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 913
+|     Comment: 
+|         /* manufacturers style */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 315
+|     Comment: 
+|         /* /Side boxes styles */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 558
+|     Comment: 
+|         /* Notification message */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 821
+|     Comment: 
+|         /* all levels outer */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 258
+|     Comment: 
+|         /* Side boxes styles */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 806
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|         */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 547
+|     Comment: 
+|         /* /Search side box */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 571
+|     Comment: 
+|         /* error message */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 256
+|     Comment: 
+|         /* /Footer styles */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 472
+|     Comment: 
+|         /* authentication side box */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 132
+|     Comment: 
+|         /* Header styles */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 130
+|     Comment: 
+|         /* /General styles */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 555
+|     Comment: 
+|         /* /bestsellers side box */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 335
+|     Comment: 
+|         /* Main boxes styles */
+|     
+|     Path: http://192.168.229.39:80/skins/new_vision_blue/customer/styles.css
+|     Line number: 917
+|     Comment: 
+|_        /* \manufacturers style */
+|_http-apache-negotiation: mod_negotiation enabled.
+|_http-date: Wed, 15 Nov 2023 11:43:55 GMT; +59m29s from local time.
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.229.39
+|   url                                                                                                 method
+|   http://192.168.229.39:80/                                                                           FORM
+|   http://192.168.229.39:80/index.php?target=pages&amp;page_id=about                                   FORM
+|   http://192.168.229.39:80/index.php?target=search                                                    FORM
+|   http://192.168.229.39:80/index.php?target=pages&amp;page_id=what_is_cs                              FORM
+|   http://192.168.229.39:80/index.php?target=sitemap                                                   FORM
+|   http://192.168.229.39:80/index.php?target=exceptions&no_page&csid=57ab8da99b4d3516e40b93d80464f2f0  FORM
+|   http://192.168.229.39:80/index.php?mode=catalog                                                     FORM
+|   http://192.168.229.39:80/index.php?target=cart                                                      FORM
+|   http://192.168.229.39:80/index.php?target=auth&amp;mode=login_form                                  FORM
+|   http://192.168.229.39:80/index.php?target=topics&amp;topic_id=9                                     FORM
+|   http://192.168.229.39:80/index.php?target=auth&amp;mode=recover_password                            FORM
+|   http://192.168.229.39:80/index.php?target=pages&amp;page_id=privacy_policy                          FORM
+|   http://192.168.229.39:80/index.php                                                                  FORM
+|   http://192.168.229.39:80/index.php?target=cart&csid=a62f5db401a2860a7b7b189e02544d3c                FORM
+|   http://192.168.229.39:80/index.php?target=pages&page_id=what_is_cs                                  FORM
+|   http://192.168.229.39:80/index.php?target=wishlist                                                  FORM
+|   http://192.168.229.39:80/index.php?target=categories&amp;category_id=119                            FORM
+|   http://192.168.229.39:80/index.php?target=pages&page_id=about                                       FORM
+|_  http://192.168.229.39:80/index.php?target=categories&amp;category_id=114                            FORM
+| http-headers: 
+|   Date: Wed, 15 Nov 2023 11:44:16 GMT
+|   Server: Apache/2.2.4 (Ubuntu) PHP/5.2.3-1ubuntu6
+|   X-Powered-By: PHP/5.2.3-1ubuntu6
+|   Expires: -1
+|   Last-Modified: Wed, 15 Nov 2023 11:44:16 GMT
+|   Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+|   Pragma: no-cache
+|   Set-Cookie: csid=9641f2ab2a807ac9d1a3799944a31407; expires=Wed, 15-Nov-2023 13:44:16 GMT; path=/; domain=.192.168.229.39
+|   Set-Cookie: csid=9641f2ab2a807ac9d1a3799944a31407; path=/; domain=.192.168.229.39
+|   Set-Cookie: cart_languageC=EN; domain=.192.168.229.39
+|   Set-Cookie: cart_languageC=EN; domain=.192.168.229.39
+|   Set-Cookie: secondary_currencyC=usd; domain=.192.168.229.39
+|   Set-Cookie: secondary_currencyC=usd; domain=.192.168.229.39
+|   Connection: close
+|   Content-Type: text/html
+|   
+|_  (Request type: HEAD)
+|_http-mobileversion-checker: No mobile version detected.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-vhosts: 
+| secure
+|_127 names had status 200
+|_http-unsafe-output-escaping: ERROR: Script execution failed (use -d to debug)
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-enum: 
+|   /admin.php: Possible admin folder
+|   /admin/: Possible admin folder
+|   /admin/admin/: Possible admin folder
+|   /admin/account.php: Possible admin folder
+|   /admin/index.php: Possible admin folder
+|   /admin/login.php: Possible admin folder
+|   /admin/admin.php: Possible admin folder
+|   /admin/index.html: Possible admin folder
+|   /admin/login.html: Possible admin folder
+|   /admin/admin.html: Possible admin folder
+|   /admin/home.php: Possible admin folder
+|   /admin/controlpanel.php: Possible admin folder
+|   /admin/account.html: Possible admin folder
+|   /admin/admin_login.html: Possible admin folder
+|   /admin/cp.php: Possible admin folder
+|   /admin/admin_login.php: Possible admin folder
+|   /admin/admin-login.php: Possible admin folder
+|   /admin/home.html: Possible admin folder
+|   /admin/admin-login.html: Possible admin folder
+|   /admin/adminLogin.html: Possible admin folder
+|   /admin/controlpanel.html: Possible admin folder
+|   /admin/cp.html: Possible admin folder
+|   /admin/adminLogin.php: Possible admin folder
+|   /admin/account.cfm: Possible admin folder
+|   /admin/index.cfm: Possible admin folder
+|   /admin/login.cfm: Possible admin folder
+|   /admin/admin.cfm: Possible admin folder
+|   /admin/admin_login.cfm: Possible admin folder
+|   /admin/controlpanel.cfm: Possible admin folder
+|   /admin/cp.cfm: Possible admin folder
+|   /admin/adminLogin.cfm: Possible admin folder
+|   /admin/admin-login.cfm: Possible admin folder
+|   /admin/home.cfm: Possible admin folder
+|   /admin/account.asp: Possible admin folder
+|   /admin/index.asp: Possible admin folder
+|   /admin/login.asp: Possible admin folder
+|   /admin/admin.asp: Possible admin folder
+|   /admin/home.asp: Possible admin folder
+|   /admin/controlpanel.asp: Possible admin folder
+|   /admin/admin-login.asp: Possible admin folder
+|   /admin/cp.asp: Possible admin folder
+|   /admin/admin_login.asp: Possible admin folder
+|   /admin/adminLogin.asp: Possible admin folder
+|   /admin/account.aspx: Possible admin folder
+|   /admin/index.aspx: Possible admin folder
+|   /admin/login.aspx: Possible admin folder
+|   /admin/admin.aspx: Possible admin folder
+|   /admin/home.aspx: Possible admin folder
+|   /admin/controlpanel.aspx: Possible admin folder
+|   /admin/admin-login.aspx: Possible admin folder
+|   /admin/cp.aspx: Possible admin folder
+|   /admin/admin_login.aspx: Possible admin folder
+|   /admin/adminLogin.aspx: Possible admin folder
+|   /admin/index.jsp: Possible admin folder
+|   /admin/login.jsp: Possible admin folder
+|   /admin/admin.jsp: Possible admin folder
+|   /admin/home.jsp: Possible admin folder
+|   /admin/controlpanel.jsp: Possible admin folder
+|   /admin/admin-login.jsp: Possible admin folder
+|   /admin/cp.jsp: Possible admin folder
+|   /admin/account.jsp: Possible admin folder
+|   /admin/admin_login.jsp: Possible admin folder
+|   /admin/adminLogin.jsp: Possible admin folder
+|   /admin/backup/: Possible backup
+|   /admin/download/backup.sql: Possible database backup
+|   /admin/upload.php: Admin File Upload
+|   /admin/CiscoAdmin.jhtml: Cisco Collaboration Server
+|   /config/public/usergrp.gif: AXIS StorPoint
+|   /admin/libraries/ajaxfilemanager/ajaxfilemanager.php: Log1 CMS
+|   /admin/view/javascript/fckeditor/editor/filemanager/connectors/test.html: OpenCart/FCKeditor File upload
+|   /admin/includes/tiny_mce/plugins/tinybrowser/upload.php: CompactCMS or B-Hind CMS/FCKeditor File upload
+|   /admin/includes/FCKeditor/editor/filemanager/upload/test.html: ASP Simple Blog / FCKeditor File Upload
+|   /admin/jscript/upload.php: Lizard Cart/Remote File upload
+|   /admin/jscript/upload.html: Lizard Cart/Remote File upload
+|   /admin/jscript/upload.pl: Lizard Cart/Remote File upload
+|   /admin/jscript/upload.asp: Lizard Cart/Remote File upload
+|   /admin/environment.xml: Moodle files
+|   /catalog/: Potentially interesting directory w/ listing on 'apache/2.2.4 (ubuntu) php/5.2.3-1ubuntu6'
+|   /classes/: Potentially interesting directory w/ listing on 'apache/2.2.4 (ubuntu) php/5.2.3-1ubuntu6'
+|   /config/: Potentially interesting folder
+|   /icons/: Potentially interesting directory w/ listing on 'apache/2.2.4 (ubuntu) php/5.2.3-1ubuntu6'
+|   /image/: Potentially interesting folder
+|   /index/: Potentially interesting folder
+|   /install/: Potentially interesting folder
+|_  /payments/: Potentially interesting folder
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+110/tcp open  pop3
+|_banner: +OK Dovecot ready.
+| ssl-enum-ciphers: 
+|   SSLv3: 
+|     ciphers: 
+|       TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA (dh 512) - F
+|       TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA (dh 512) - F
+|       TLS_DH_anon_EXPORT_WITH_RC4_40_MD5 (dh 512) - F
+|       TLS_DH_anon_WITH_RC4_128_MD5 (dh 1024) - F
+|       TLS_RSA_EXPORT_WITH_DES40_CBC_SHA (rsa 64) - F
+|       TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5 (rsa 64) - F
+|       TLS_RSA_EXPORT_WITH_RC4_40_MD5 (rsa 64) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - F
+|     compressors: 
+|       DEFLATE
+|       NULL
+|     cipher preference: client
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       64-bit block cipher DES40 vulnerable to SWEET32 attack
+|       64-bit block cipher RC2 vulnerable to SWEET32 attack
+|       Anonymous key exchange, score capped at F
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       CBC-mode cipher in SSLv3 (CVE-2014-3566)
+|       Ciphersuite uses MD5 for message integrity
+|       Export key exchange
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA (dh 512) - F
+|       TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA (dh 512) - F
+|       TLS_DH_anon_EXPORT_WITH_RC4_40_MD5 (dh 512) - F
+|       TLS_DH_anon_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_RC4_128_MD5 (dh 1024) - F
+|       TLS_RSA_EXPORT_WITH_DES40_CBC_SHA (rsa 64) - F
+|       TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5 (rsa 64) - F
+|       TLS_RSA_EXPORT_WITH_RC4_40_MD5 (rsa 64) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - F
+|     compressors: 
+|       DEFLATE
+|       NULL
+|     cipher preference: client
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       64-bit block cipher DES40 vulnerable to SWEET32 attack
+|       64-bit block cipher RC2 vulnerable to SWEET32 attack
+|       Anonymous key exchange, score capped at F
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|       Export key exchange
+|       Insecure certificate signature (SHA1), score capped at F
+|_  least strength: F
+|_pop3-capabilities: TOP CAPA PIPELINING UIDL STLS SASL RESP-CODES
+|_ssl-date: 2023-11-15T11:42:49+00:00; -18s from scanner time.
+139/tcp open  netbios-ssn
+143/tcp open  imap
+|_banner: * OK Dovecot ready.
+| ssl-enum-ciphers: 
+|   SSLv3: 
+|     ciphers: 
+|       TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA (dh 512) - F
+|       TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA (dh 512) - F
+|       TLS_DH_anon_EXPORT_WITH_RC4_40_MD5 (dh 512) - F
+|       TLS_DH_anon_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_RC4_128_MD5 (dh 1024) - F
+|       TLS_RSA_EXPORT_WITH_DES40_CBC_SHA (rsa 64) - F
+|       TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5 (rsa 64) - F
+|       TLS_RSA_EXPORT_WITH_RC4_40_MD5 (rsa 64) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - F
+|     compressors: 
+|       DEFLATE
+|       NULL
+|     cipher preference: client
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       64-bit block cipher DES40 vulnerable to SWEET32 attack
+|       64-bit block cipher RC2 vulnerable to SWEET32 attack
+|       Anonymous key exchange, score capped at F
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       CBC-mode cipher in SSLv3 (CVE-2014-3566)
+|       Ciphersuite uses MD5 for message integrity
+|       Export key exchange
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA (dh 512) - F
+|       TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA (dh 512) - F
+|       TLS_DH_anon_EXPORT_WITH_RC4_40_MD5 (dh 512) - F
+|       TLS_DH_anon_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_RC4_128_MD5 (dh 1024) - F
+|       TLS_RSA_EXPORT_WITH_DES40_CBC_SHA (rsa 64) - F
+|       TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5 (rsa 64) - F
+|       TLS_RSA_EXPORT_WITH_RC4_40_MD5 (rsa 64) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - F
+|     compressors: 
+|       DEFLATE
+|       NULL
+|     cipher preference: client
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       64-bit block cipher DES40 vulnerable to SWEET32 attack
+|       64-bit block cipher RC2 vulnerable to SWEET32 attack
+|       Anonymous key exchange, score capped at F
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|       Export key exchange
+|       Insecure certificate signature (SHA1), score capped at F
+|_  least strength: F
+| ssl-cert: Subject: commonName=ubuntu01/organizationName=OCOSA/stateOrProvinceName=There is no such thing outside US/countryName=XX
+| Not valid before: 2008-04-25T02:02:48
+|_Not valid after:  2008-05-25T02:02:48
+|_ssl-date: 2023-11-15T11:43:34+00:00; -18s from scanner time.
+445/tcp open  microsoft-ds
+993/tcp open  imaps
+| ssl-cert: Subject: commonName=ubuntu01/organizationName=OCOSA/stateOrProvinceName=There is no such thing outside US/countryName=XX
+| Not valid before: 2008-04-25T02:02:48
+|_Not valid after:  2008-05-25T02:02:48
+|_ssl-date: 2023-11-15T11:42:31+00:00; -19s from scanner time.
+| ssl-enum-ciphers: 
+|   SSLv3: 
+|     ciphers: 
+|       TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA (dh 512) - F
+|       TLS_DH_anon_EXPORT_WITH_RC4_40_MD5 (dh 512) - F
+|       TLS_DH_anon_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_RC4_128_MD5 (dh 1024) - F
+|       TLS_RSA_EXPORT_WITH_DES40_CBC_SHA (rsa 64) - F
+|       TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5 (rsa 64) - F
+|       TLS_RSA_EXPORT_WITH_RC4_40_MD5 (rsa 64) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - F
+|     compressors: 
+|       DEFLATE
+|       NULL
+|     cipher preference: client
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       64-bit block cipher DES40 vulnerable to SWEET32 attack
+|       64-bit block cipher RC2 vulnerable to SWEET32 attack
+|       Anonymous key exchange, score capped at F
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       CBC-mode cipher in SSLv3 (CVE-2014-3566)
+|       Ciphersuite uses MD5 for message integrity
+|       Export key exchange
+|       Forward Secrecy not supported by any cipher
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA (dh 512) - F
+|       TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA (dh 512) - F
+|       TLS_DH_anon_EXPORT_WITH_RC4_40_MD5 (dh 512) - F
+|       TLS_DH_anon_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_RC4_128_MD5 (dh 1024) - F
+|       TLS_RSA_EXPORT_WITH_DES40_CBC_SHA (rsa 64) - F
+|     compressors: 
+|       DEFLATE
+|       NULL
+|     cipher preference: client
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       64-bit block cipher DES40 vulnerable to SWEET32 attack
+|       Anonymous key exchange, score capped at F
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|       Export key exchange
+|       Insecure certificate signature (SHA1), score capped at F
+|_  least strength: F
+|_banner: * OK Dovecot ready.
+995/tcp open  pop3s
+|_banner: +OK Dovecot ready.
+| ssl-enum-ciphers: 
+|   SSLv3: 
+|     ciphers: 
+|       TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA (dh 512) - F
+|       TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA (dh 512) - F
+|       TLS_DH_anon_EXPORT_WITH_RC4_40_MD5 (dh 512) - F
+|       TLS_DH_anon_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_RC4_128_MD5 (dh 1024) - F
+|       TLS_RSA_EXPORT_WITH_DES40_CBC_SHA (rsa 64) - F
+|       TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5 (rsa 64) - F
+|       TLS_RSA_EXPORT_WITH_RC4_40_MD5 (rsa 64) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 1024) - F
+|     compressors: 
+|       DEFLATE
+|       NULL
+|     cipher preference error: Error when comparing TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA and TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       64-bit block cipher DES40 vulnerable to SWEET32 attack
+|       64-bit block cipher RC2 vulnerable to SWEET32 attack
+|       Anonymous key exchange, score capped at F
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       CBC-mode cipher in SSLv3 (CVE-2014-3566)
+|       Ciphersuite uses MD5 for message integrity
+|       Export key exchange
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA (dh 512) - F
+|       TLS_DHE_RSA_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_EXPORT_WITH_DES40_CBC_SHA (dh 512) - F
+|       TLS_DH_anon_EXPORT_WITH_RC4_40_MD5 (dh 512) - F
+|       TLS_DH_anon_WITH_3DES_EDE_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DH_anon_WITH_RC4_128_MD5 (dh 1024) - F
+|       TLS_RSA_EXPORT_WITH_DES40_CBC_SHA (rsa 64) - F
+|       TLS_RSA_EXPORT_WITH_RC2_CBC_40_MD5 (rsa 64) - F
+|       TLS_RSA_EXPORT_WITH_RC4_40_MD5 (rsa 64) - F
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_MD5 (rsa 1024) - F
+|       TLS_RSA_WITH_RC4_128_SHA (rsa 1024) - F
+|     compressors: 
+|       DEFLATE
+|       NULL
+|     cipher preference: client
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|       64-bit block cipher DES40 vulnerable to SWEET32 attack
+|       64-bit block cipher RC2 vulnerable to SWEET32 attack
+|       Anonymous key exchange, score capped at F
+|       Broken cipher RC4 is deprecated by RFC 7465
+|       Ciphersuite uses MD5 for message integrity
+|       Export key exchange
+|       Insecure certificate signature (SHA1), score capped at F
+|_  least strength: F
+|_ssl-date: 2023-11-15T11:42:37+00:00; -19s from scanner time.
+| ssl-cert: Subject: commonName=ubuntu01/organizationName=OCOSA/stateOrProvinceName=There is no such thing outside US/countryName=XX
+| Not valid before: 2008-04-25T02:02:48
+|_Not valid after:  2008-05-25T02:02:48
+
+Host script results:
+|_smb2-time: Protocol negotiation failed (SMB2)
+| smb-os-discovery: 
+|   OS: Unix (Samba 3.0.26a)
+|   Computer name: payday
+|   NetBIOS computer name: 
+|   Domain name: 
+|   FQDN: payday
+|_  System time: 2023-11-15T06:42:52-05:00
+|_msrpc-enum: NT_STATUS_OBJECT_NAME_NOT_FOUND
+|_smb-system-info: ERROR: Script execution failed (use -d to debug)
+| smb-protocols: 
+|   dialects: 
+|_    NT LM 0.12 (SMBv1) [dangerous, but default]
+|_ipidseq: All zeros
+| smb-mbenum: 
+|   DFS Root
+|     PAYDAY  0.0  payday server (Samba, Ubuntu)
+|   Potential Browser
+|     PAYDAY  0.0  payday server (Samba, Ubuntu)
+|   Print server
+|     PAYDAY  0.0  payday server (Samba, Ubuntu)
+|   Server
+|     PAYDAY  0.0  payday server (Samba, Ubuntu)
+|   Server service
+|     PAYDAY  0.0  payday server (Samba, Ubuntu)
+|   Unix server
+|     PAYDAY  0.0  payday server (Samba, Ubuntu)
+|   Windows NT/2000/XP/2003 server
+|     PAYDAY  0.0  payday server (Samba, Ubuntu)
+|   Workstation
+|_    PAYDAY  0.0  payday server (Samba, Ubuntu)
+|_fcrdns: FAIL (No PTR record)
+| smb-security-mode: 
+|   account_used: <blank>
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| qscan: 
+| PORT  FAMILY  MEAN (us)   STDDEV      LOSS (%)
+| 22    0       1789293.10  1744883.63  0.0%
+| 80    0       1129522.70  1272632.13  0.0%
+| 110   0       1293635.89  1092044.97  10.0%
+| 139   0       1835003.00  2050827.64  0.0%
+| 143   0       1049828.30  984055.18   0.0%
+| 445   0       1130387.40  1167785.21  0.0%
+| 993   0       2448431.70  3497267.53  0.0%
+|_995   0       1953868.70  2016031.75  0.0%
+|_smb-enum-sessions: ERROR: Script execution failed (use -d to debug)
+|_dns-brute: Can't guess domain of "192.168.229.39"; use dns-brute.domain script argument.
+|_smb2-capabilities: SMB 2+ not supported
+|_path-mtu: PMTU == 1500
+
+# Nmap done at Wed Nov 15 11:53:06 2023 -- 1 IP address (1 host up) scanned in 649.90 seconds
