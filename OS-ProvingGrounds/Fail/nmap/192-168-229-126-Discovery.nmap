@@ -1,0 +1,45 @@
+# Nmap 7.94SVN scan initiated Thu Nov 16 17:30:37 2023 as: nmap --script discovery -oA /home/truth/7ru7hGithub/CTFs/OS-ProvingGrounds/Fail/nmap/192-168-229-126-Discovery --min-rate 1000 -e tun0 -p 22,873 192.168.229.126
+Pre-scan script results:
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-ping: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_lltd-discovery: false
+Nmap scan report for 192.168.229.126
+Host is up (0.16s latency).
+
+PORT    STATE SERVICE
+22/tcp  open  ssh
+| ssh-hostkey: 
+|   2048 74:ba:20:23:89:92:62:02:9f:e7:3d:3b:83:d4:d9:6c (RSA)
+|   256 54:8f:79:55:5a:b0:3a:69:5a:d5:72:39:64:fd:07:4e (ECDSA)
+|_  256 7f:5d:10:27:62:ba:75:e9:bc:c8:4f:e2:72:87:d4:e2 (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_7.9p1 Debian-10+deb10u2
+873/tcp open  rsync
+| rsync-list-modules: 
+|_  fox            	fox home
+|_banner: @RSYNCD: 31.0
+
+Host script results:
+|_fcrdns: FAIL (No PTR record)
+|_ipidseq: All zeros
+|_path-mtu: 1006 <= PMTU < 1492
+|_dns-brute: Can't guess domain of "192.168.229.126"; use dns-brute.domain script argument.
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       154760.40  16279.10  0.0%
+|_873   0       153049.22  17049.81  10.0%
+
+# Nmap done at Thu Nov 16 17:31:14 2023 -- 1 IP address (1 host up) scanned in 36.96 seconds
