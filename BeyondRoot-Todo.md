@@ -1,9 +1,17 @@
 # Beyond Root Todo
 
+
 #### Backlog
 
 [[XposedAPI-Writeup]] + [[BillyBoss-Writeup]] + [[Slort-Helped-Through]] + [[Sybaris-Helped-Through]] (C) related
 
+Stick my head in the boot and slam my idiot brain till I feel those deep waters of way out of my depth till NASM is at least approachable.
+- https://www.ired.team/miscellaneous-reversing-forensics/windows-kernel-internals/writing-a-custom-bootloader
+
+
+int0x80 and savant seem very good - packet econmics was discuss in this video as if it is potential savants idea 
+https://www.irongeek.com/i.php?page=videos/derbycon7/t113-full-contact-recon-int0x80-of-dual-core-savant
+https://www.youtube.com/watch?v=XBqmvpzrNfs
 #### Ideas LIst
 
 
