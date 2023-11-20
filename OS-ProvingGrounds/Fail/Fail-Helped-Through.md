@@ -1,8 +1,8 @@
-# Fail Writeup
+# Fail Helped-Through
 
 Name: Fail
 Date:  
-Difficulty:  
+Difficulty:  Intermediate
 Goals:  
 Learnt:
 Beyond Root:
