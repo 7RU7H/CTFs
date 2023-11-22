@@ -55,7 +55,7 @@ API Vulnerability that leads to credentials?
 
 
 RCE Auth on 8081 - https://www.exploit-db.com/exploits/49385
-#### Timeline of tasks complete
+#### Timeline of tasks completed
       
 - Nikto get crazy output
 - Found the api from upload 

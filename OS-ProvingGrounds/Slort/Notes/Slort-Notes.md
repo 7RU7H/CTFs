@@ -45,7 +45,7 @@ username
 Check 
 - Filezilla
 - windows/dos/1336.cpp
-#### Timeline of tasks complete
+#### Timeline of tasks completed
 
 - Years around recon
 - ftp no rupert : rupert

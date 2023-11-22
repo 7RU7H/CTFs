@@ -38,7 +38,7 @@ Credentials:
 #### Todo 
 
 
-#### Timeline of tasks complete
+#### Timeline of tasks completed
       
 ```json
 {"user" :"gunicorn", "url":  "/logs",}

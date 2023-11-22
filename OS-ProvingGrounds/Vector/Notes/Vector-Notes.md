@@ -46,7 +46,7 @@ try impacket-smbrelayx and ntlmrelayx as signing is disabled
 
 - https://gist.github.com/CyberSKR/a2a8c76174578605af7bdbf53acebe1b sonus logging RCE
 
-#### Timeline of tasks complete
+#### Timeline of tasks completed
 
 - smbv1, no signing on 445
 cme.png

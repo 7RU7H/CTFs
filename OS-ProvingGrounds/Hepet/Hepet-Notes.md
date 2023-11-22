@@ -37,9 +37,6 @@ Credentials:
 #### Todo 
 
 
-#### Timeline of tasks complete
+#### Timeline of tasks completed
       
 
-https://book.hacktricks.xyz/network-services-pentesting/pentesting-finger
-adminuser79fingerproto.png
-20001ftp.png

@@ -9,10 +9,10 @@ Stick my head in the boot and slam my idiot brain till I feel those deep waters 
 - https://www.ired.team/miscellaneous-reversing-forensics/windows-kernel-internals/writing-a-custom-bootloader
 
 
-int0x80 and savant seem very good - packet econmics was discuss in this video as if it is potential savants idea 
+int0x80 and savant seem very good - packet economics was discuss in this video as if it is potential savants idea 
 https://www.irongeek.com/i.php?page=videos/derbycon7/t113-full-contact-recon-int0x80-of-dual-core-savant
 https://www.youtube.com/watch?v=XBqmvpzrNfs
-#### Ideas LIst
+#### Ideas List
 
 
 Do grey-box and white box SAST testing
@@ -22,8 +22,7 @@ https://github.com/leebaird/discover use them ffs on a CTF
 Write ups from top 50 to consider
 https://app.hackthebox.com/users/357237
 
-```
-
+```powershell
 netsh trace start capturetype=physical capture=yes maxSize=1024 overwrite=yes tracefile=C:\Windows\Temp\rite-NetTrace.etl filemode=single ipv4.address=$beaconingIpv4Addr
 ```
 

@@ -38,7 +38,7 @@ Credentials:
 #### Todo 
 
 
-#### Timeline of tasks complete
+#### Timeline of tasks completed
       
 nmapwinx64.png
 craftadmin.png

@@ -38,7 +38,7 @@ Credentials:
 #### Todo 
 
 
-#### Timeline of tasks complete
+#### Timeline of tasks completed
       
 
 Beyond root - turn off nuclei autoexploitation of LFIs and also manual enumerate this LFI

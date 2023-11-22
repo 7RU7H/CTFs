@@ -115,7 +115,7 @@ COPY cmd_exec FROM PROGRAM 'cat /etc/hosts |base64 ';
 - write id_rsa, shell onto the box and use nohup to execute it so that it does not try to send stdout to the table
 
 
-#### Timeline of tasks complete
+#### Timeline of tasks completed
 
 - Automated Recon
 - Searchsploited:

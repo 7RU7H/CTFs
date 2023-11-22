@@ -48,7 +48,7 @@ Credentials:
 
 - cmeeks is user on the machine.
 
-#### Timeline of tasks complete
+#### Timeline of tasks completed
 
 - samba version not vuln 
 - ftp rabbit hole human-timeout service with FTP anonymous

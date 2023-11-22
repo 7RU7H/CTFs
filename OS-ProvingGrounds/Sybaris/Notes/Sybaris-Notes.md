@@ -40,7 +40,7 @@ Credentials:
 
 - Find a directory 
 
-#### Timeline of tasks complete
+#### Timeline of tasks completed
 
 nmapftpanon.png
 ftpwritablepubdir.png

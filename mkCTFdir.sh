@@ -94,7 +94,7 @@ Credentials:
 #### Todo 
 
 
-#### Timeline of tasks complete
+#### Timeline of tasks completed
       
 " > $site/$name/Notes/$name-Notes.md
 echo "# $name CMD-by-CMDs
