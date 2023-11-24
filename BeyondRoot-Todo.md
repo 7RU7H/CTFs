@@ -5,8 +5,13 @@
 
 [[XposedAPI-Writeup]] + [[BillyBoss-Writeup]] + [[Slort-Helped-Through]] + [[Sybaris-Helped-Through]] (C) related
 
+Setup MFA service
+
 Stick my head in the boot and slam my idiot brain till I feel those deep waters of way out of my depth till NASM is at least approachable.
 - https://www.ired.team/miscellaneous-reversing-forensics/windows-kernel-internals/writing-a-custom-bootloader
+
+- ssh server for sliver setup and multiplayer 
+	- fail2ban setup 
 
 
 int0x80 and savant seem very good - packet economics was discuss in this video as if it is potential savants idea 

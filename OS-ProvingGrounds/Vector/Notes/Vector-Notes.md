@@ -105,3 +105,6 @@ This seems like rabbit hole territory where I am missing somethings:
 After consideration it is probably then the web -> smb pivot somehow. Another additional hour required before I fold to hint. 
 - Check rdp versioning and exploitation that does exist.
 https://book.hacktricks.xyz/network-services-pentesting/pentesting-rdp
+
+
+It is not smbv1 almost certainly not - get writeup I failed.

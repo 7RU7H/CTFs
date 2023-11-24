@@ -232,6 +232,10 @@ Modifiable values
 
 ALL PHIND - rewrite check and consider
 
+Ask phind 
+```
+What are limitations of fail2ban for linux with regard to isolating vpn traffic with conditional?
+```
 
 
 Fail2Ban is a log-parsing application that monitors system logs for symptoms of an automated attack. It can be configured to protect any service that uses log files and can be subject to a compromise. However, there are some limitations when it comes to isolating VPN traffic with conditional rules [linode](https://www.linode.com/docs/guides/using-fail2ban-to-secure-your-server-a-tutorial/).
@@ -253,3 +257,11 @@ As a Privilege Escalation Vector
 Preventable with read only configuration files and root only control over the service to prevent restart 
 
 Could be a useful last chance honey pot if attack has no way to spawn a shell to migrate too and therefore requires a reverse shell, which you could then monitor for changes to log and drop the jump box call back. Good for an initial breach honey pot one time use maybe.  
+
+
+
+https://www.linode.com/docs/guides/using-fail2ban-to-secure-your-server-a-tutorial/
+
+https://news.ycombinator.com/item?id=37795100
+
+https://juggernaut-sec.com/fail2ban-lpe/
