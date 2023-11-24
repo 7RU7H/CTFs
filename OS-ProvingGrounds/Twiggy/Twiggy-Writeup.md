@@ -136,10 +136,10 @@ And the /etc/shadow file has weird permission so we could add records to the sha
 Copied the `/etc/nginx/nginx.conf` file to remember the location. Give everything we cant actually run anything in the mezz user context, but given the lose file permission of the both passwd and shadow files we can just upload our own.
 
 Learnt that python uses relative paths
-![](relativepythonpaths.png)
+![1080](relativepythonpaths.png)
 
 Upload a new a shadow and passwd file to login
-![](r00tedintheshadowfile.png)
+![1080](r00tedintheshadowfile.png)
 
 And ssh in!
 ![](iamr00t.png)
