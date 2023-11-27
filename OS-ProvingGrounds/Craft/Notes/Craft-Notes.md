@@ -248,8 +248,13 @@ echo "$SLIVER_TEAM_SERVER_IP ." | tee -a /etc/hosts
 
 # Add users 
 # tunnel for tunneling with some tool
-adduser tunnel rbash
-adduser honeypot rbash
+groupadd tunnel
+groupadd honeypot
+
+useradd -u tunnel -g $(getent group tunnel | cut -d: -f3) -p tunnel -s $(which rbash) -m /tunnel
+useradd -u honeypot -g $(getent group honeypot | cut -d: -f3) -p honeypot -s $(which rbash) -m /honeypot
+
+
 # Put honeypot, tunnel user in a jail just in case 
 # add jail configuration instruction per tool for root/admin to make only on behalf of tunnel
 
@@ -308,7 +313,11 @@ systemctl status sshd
 netstat -tulnp | grep ssh
 ufw status=
 
-
+echo ""
+echo ""
+echo "CHANGE THE honeypot : honeypot and tunnel : tunnel user passwords from the defaults displayed!"
+echo ""
+echo ""
 ```
 
 

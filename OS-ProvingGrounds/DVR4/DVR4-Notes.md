@@ -5,7 +5,7 @@
 IP: 192.168.181.179
 OS: Windows 10.0 Build 19041 x64 
 Arch:
-Hostname: domain:DVR4
+Hostname: DVR4
 DNS:
 Domain: DVR4
 Machine Purpose: 
