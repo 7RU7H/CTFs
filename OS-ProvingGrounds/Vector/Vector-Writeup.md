@@ -93,7 +93,7 @@ The cat picture makes more sense now that this a potential a weak cryptography s
 Returning to understand what and how the PKCS7 works
 ![](wehavemissingcomponents.png)
 
-Coudl just feroxbuster till I get a cert.p7b extension
+Could just feroxbuster till I get a cert.p7b extension - [p7b](https://en.wikipedia.org/wiki/PKCS_7)
 ![](findthep7bextension.png)
 
 Release the FeroxDoSclusterBustering! Using brain on the wordlist choice...
@@ -111,7 +111,8 @@ I also cross check the versions of nuclei I have been using big oof 1 major vers
 [Microsoft Windows 10 < build 17763 - AppXSvc Hard Link Privilege Escalation (Metasploit)](https://www.exploit-db.com/exploits/47128)
 [dualfade gist](https://gist.github.com/dualfade/48c45fb47ff273a3996c9a4f10ac9d72)
 
-Pass the Hash 
+
+
 
 ## Exploit
 

@@ -110,3 +110,8 @@ rdpenum.png
 
 
 It is not smbv1 almost certainly not - get writeup I failed.
+
+Try 
+- Pass the Hash- Pretty sure you can pass aes keys Mimikatz has aes keys 
+- .p7b with common certificate names fuzz
+- 
