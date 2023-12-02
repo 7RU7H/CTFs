@@ -45,7 +45,7 @@ OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
 
 OpenSMTPD 2.0.0
 
-nginx 1.14.0 (Ubuntu) https://www.exploit-db.com/exploits/32277 - wtf is theis
+nginx 1.14.0 (Ubuntu) https://www.exploit-db.com/exploits/32277 - wtf is this
 
 Samba 4.7.6-Ubuntu
 ```

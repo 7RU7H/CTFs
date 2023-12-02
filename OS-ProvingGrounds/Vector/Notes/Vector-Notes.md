@@ -83,7 +83,7 @@ http80loginadminadmin.png
 
 grumpycatpicturenoleaking.png
 
-Very non descript sonus logging exploit.
+Very non descriptive sonus logging exploit. But the word "vector" is used. 
 https://gist.github.com/CyberSKR/a2a8c76174578605af7bdbf53acebe1b
 
 desperatehydra.png
@@ -105,6 +105,8 @@ This seems like rabbit hole territory where I am missing somethings:
 After consideration it is probably then the web -> smb pivot somehow. Another additional hour required before I fold to hint. 
 - Check rdp versioning and exploitation that does exist.
 https://book.hacktricks.xyz/network-services-pentesting/pentesting-rdp
+
+rdpenum.png
 
 
 It is not smbv1 almost certainly not - get writeup I failed.
