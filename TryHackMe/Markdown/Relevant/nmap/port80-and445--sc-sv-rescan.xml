@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Thu Dec  7 14:49:43 2023 as: nmap -Pn -sC -sV -vvv -p 80,445 -&#45;min-rate 10 -e tun0 -oA nmap/port80-and445-&#45;sc-sv-rescan 10.10.15.133 -->
+<nmaprun scanner="nmap" args="nmap -Pn -sC -sV -vvv -p 80,445 -&#45;min-rate 10 -e tun0 -oA nmap/port80-and445-&#45;sc-sv-rescan 10.10.15.133" start="1701960583" startstr="Thu Dec  7 14:49:43 2023" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="80,445"/>
+<verbose level="3"/>
+<debugging level="0"/>
+<taskbegin task="NSE" time="1701960584"/>
+<taskprogress task="NSE" time="1701960584" percent="0.00"/>
+<taskend task="NSE" time="1701960584"/>
+<taskbegin task="NSE" time="1701960584"/>
+<taskend task="NSE" time="1701960584"/>
+<taskbegin task="NSE" time="1701960584"/>
+<taskend task="NSE" time="1701960584"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1701960584"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1701960597"/>
+<taskbegin task="SYN Stealth Scan" time="1701960597"/>
+<taskend task="SYN Stealth Scan" time="1701960597" extrainfo="2 total ports"/>
+<taskbegin task="Service scan" time="1701960597"/>
+<taskend task="Service scan" time="1701960605" extrainfo="2 services on 1 host"/>
+<taskbegin task="NSE" time="1701960605"/>
+<taskprogress task="NSE" time="1701960636" percent="99.65" remaining="1" etc="1701960636"/>
+<taskend task="NSE" time="1701960646"/>
+<taskbegin task="NSE" time="1701960646"/>
+<taskend task="NSE" time="1701960647"/>
+<taskbegin task="NSE" time="1701960647"/>
+<taskend task="NSE" time="1701960647"/>
+<host starttime="1701960597" endtime="1701960647"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="10.10.15.133" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" product="Microsoft IIS httpd" version="10.0" ostype="Windows" method="probed" conf="10"><cpe>cpe:/a:microsoft:internet_information_services:10.0</cpe><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-title" output="IIS Windows Server"><elem key="title">IIS Windows Server</elem>
+</script><script id="http-server-header" output="Microsoft-IIS/10.0"><elem>Microsoft-IIS/10.0</elem>
+</script><script id="http-methods" output="&#xa;  Supported Methods: OPTIONS TRACE GET HEAD POST&#xa;  Potentially risky methods: TRACE"><table key="Supported Methods">
+<elem>OPTIONS</elem>
+<elem>TRACE</elem>
+<elem>GET</elem>
+<elem>HEAD</elem>
+<elem>POST</elem>
+</table>
+<table key="Potentially risky methods">
+<elem>TRACE</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" product="Windows Server 2016 Standard Evaluation 14393 microsoft-ds" ostype="Windows Server 2008 R2 - 2012" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+</ports>
+<hostscript><script id="smb-os-discovery" output="&#xa;  OS: Windows Server 2016 Standard Evaluation 14393 (Windows Server 2016 Standard Evaluation 6.3)&#xa;  Computer name: Relevant&#xa;  NetBIOS computer name: RELEVANT\x00&#xa;  Workgroup: WORKGROUP\x00&#xa;  System time: 2023-12-07T06:49:28-08:00&#xa;"><elem key="os">Windows Server 2016 Standard Evaluation 14393</elem>
+<elem key="lanmanager">Windows Server 2016 Standard Evaluation 6.3</elem>
+<elem key="server">RELEVANT\x00</elem>
+<elem key="date">2023-12-07T06:49:28-08:00</elem>
+<elem key="fqdn">Relevant</elem>
+<elem key="domain_dns">Relevant</elem>
+<elem key="workgroup">WORKGROUP\x00</elem>
+</script><script id="p2p-conficker" output="&#xa;  Checking for Conficker.C or higher...&#xa;  Check 1 (port 38584/tcp): CLEAN (Timeout)&#xa;  Check 2 (port 24684/tcp): CLEAN (Timeout)&#xa;  Check 3 (port 61171/udp): CLEAN (Timeout)&#xa;  Check 4 (port 15053/udp): CLEAN (Timeout)&#xa;  0/4 checks are positive: Host is CLEAN or ports are blocked&#xa;"/><script id="smb2-security-mode" output="&#xa;  3:1:1: &#xa;    Message signing enabled but not required"><table key="3:1:1">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script><script id="clock-skew" output="mean: 2h39m18s, deviation: 4h37m11s, median: -43s"><elem key="count">3</elem>
+<elem key="mean">9558</elem>
+<elem key="stddev">16631</elem>
+<elem key="median">-43</elem>
+</script><script id="smb-security-mode" output="&#xa;  account_used: guest&#xa;  authentication_level: user&#xa;  challenge_response: supported&#xa;  message_signing: disabled (dangerous, but default)"><elem key="account_used">guest</elem>
+<elem key="authentication_level">user</elem>
+<elem key="challenge_response">supported</elem>
+<elem key="message_signing">disabled</elem>
+</script><script id="smb2-time" output="&#xa;  date: 2023-12-07T14:49:30&#xa;  start_date: 2023-12-07T14:22:58"><elem key="date">2023-12-07T14:49:30</elem>
+<elem key="start_date">2023-12-07T14:22:58</elem>
+</script></hostscript><times srtt="119483" rttvar="89623" to="477975"/>
+</host>
+<taskbegin task="NSE" time="1701960647"/>
+<taskend task="NSE" time="1701960647"/>
+<taskbegin task="NSE" time="1701960647"/>
+<taskend task="NSE" time="1701960647"/>
+<taskbegin task="NSE" time="1701960647"/>
+<taskend task="NSE" time="1701960647"/>
+<runstats><finished time="1701960647" timestr="Thu Dec  7 14:50:47 2023" summary="Nmap done at Thu Dec  7 14:50:47 2023; 1 IP address (1 host up) scanned in 63.98 seconds" elapsed="63.98" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

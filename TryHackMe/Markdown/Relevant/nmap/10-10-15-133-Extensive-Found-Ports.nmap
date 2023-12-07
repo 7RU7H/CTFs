@@ -1,0 +1,36 @@
+# Nmap 7.94SVN scan initiated Thu Dec  7 14:28:04 2023 as: nmap -sC -sV -oA /home/truth/7ru7hGithub/CTFs/TryHackMe/Markdown/Relevant/nmap/10-10-15-133-Extensive-Found-Ports --min-rate 500 -e tun0 -p 135,139,3389,49663,49667,49669 10.10.15.133
+Nmap scan report for 10.10.15.133
+Host is up (0.094s latency).
+
+PORT      STATE SERVICE       VERSION
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+3389/tcp  open  ms-wbt-server Microsoft Terminal Services
+|_ssl-date: 2023-12-07T14:29:10+00:00; -44s from scanner time.
+| rdp-ntlm-info: 
+|   Target_Name: RELEVANT
+|   NetBIOS_Domain_Name: RELEVANT
+|   NetBIOS_Computer_Name: RELEVANT
+|   DNS_Domain_Name: Relevant
+|   DNS_Computer_Name: Relevant
+|   Product_Version: 10.0.14393
+|_  System_Time: 2023-12-07T14:28:31+00:00
+| ssl-cert: Subject: commonName=Relevant
+| Not valid before: 2023-12-06T14:22:38
+|_Not valid after:  2024-06-06T14:22:38
+49663/tcp open  http          Microsoft IIS httpd 10.0
+|_http-title: IIS Windows Server
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-server-header: Microsoft-IIS/10.0
+49667/tcp open  msrpc         Microsoft Windows RPC
+49669/tcp open  msrpc         Microsoft Windows RPC
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_smb2-time: ERROR: Script execution failed (use -d to debug)
+|_smb2-security-mode: SMB: Couldn't find a NetBIOS name that works for the server. Sorry!
+|_clock-skew: mean: -43s, deviation: 0s, median: -44s
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Dec  7 14:29:54 2023 -- 1 IP address (1 host up) scanned in 109.77 seconds

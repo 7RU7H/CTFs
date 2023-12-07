@@ -54,7 +54,7 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 ## Beyond Root
 
 " > $site/$name/$name-Writeup.md
-echo '# $name Notes
+echo "# $name Notes
 
 ## Data 
 
@@ -97,10 +97,11 @@ Credentials:
 
 #### Todo List
 
-' > $site/$name/$name-Notes.md
+" > $site/$name/$name-Notes.md
 
 echo '# $dash_delimited_ip Meta-Notes
-
+' > $site/$name/$name-Meta-Notes.md
+echo '
 ## Machine Connects list and reason:
 
 [[]] - Reason X

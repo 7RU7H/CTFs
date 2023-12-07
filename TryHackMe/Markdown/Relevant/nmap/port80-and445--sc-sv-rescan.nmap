@@ -1,0 +1,45 @@
+# Nmap 7.94SVN scan initiated Thu Dec  7 14:49:43 2023 as: nmap -Pn -sC -sV -vvv -p 80,445 --min-rate 10 -e tun0 -oA nmap/port80-and445--sc-sv-rescan 10.10.15.133
+Nmap scan report for 10.10.15.133
+Host is up, received user-set (0.12s latency).
+Scanned at 2023-12-07 14:49:57 GMT for 50s
+
+PORT    STATE SERVICE      REASON          VERSION
+80/tcp  open  http         syn-ack ttl 127 Microsoft IIS httpd 10.0
+|_http-title: IIS Windows Server
+|_http-server-header: Microsoft-IIS/10.0
+| http-methods: 
+|   Supported Methods: OPTIONS TRACE GET HEAD POST
+|_  Potentially risky methods: TRACE
+445/tcp open  microsoft-ds syn-ack ttl 127 Windows Server 2016 Standard Evaluation 14393 microsoft-ds
+Service Info: OSs: Windows, Windows Server 2008 R2 - 2012; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb-os-discovery: 
+|   OS: Windows Server 2016 Standard Evaluation 14393 (Windows Server 2016 Standard Evaluation 6.3)
+|   Computer name: Relevant
+|   NetBIOS computer name: RELEVANT\x00
+|   Workgroup: WORKGROUP\x00
+|_  System time: 2023-12-07T06:49:28-08:00
+| p2p-conficker: 
+|   Checking for Conficker.C or higher...
+|   Check 1 (port 38584/tcp): CLEAN (Timeout)
+|   Check 2 (port 24684/tcp): CLEAN (Timeout)
+|   Check 3 (port 61171/udp): CLEAN (Timeout)
+|   Check 4 (port 15053/udp): CLEAN (Timeout)
+|_  0/4 checks are positive: Host is CLEAN or ports are blocked
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled but not required
+|_clock-skew: mean: 2h39m18s, deviation: 4h37m11s, median: -43s
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-time: 
+|   date: 2023-12-07T14:49:30
+|_  start_date: 2023-12-07T14:22:58
+
+Read data files from: /usr/bin/../share/nmap
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Dec  7 14:50:47 2023 -- 1 IP address (1 host up) scanned in 63.98 seconds
