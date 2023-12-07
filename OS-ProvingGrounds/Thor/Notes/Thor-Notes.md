@@ -169,6 +169,8 @@ Password guessing - calculate Time if automated by number of attempt to remember
 - `NameYEAR`
 - `NameSEASON`
 
+
+#### updated in archive 
 Wordlist generation questions
 - Profiling
 	- Are you accounting for the stupid inclusive of positional possibilities 

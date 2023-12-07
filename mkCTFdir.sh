@@ -54,7 +54,7 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 ## Beyond Root
 
 " > $site/$name/$name-Writeup.md
-echo "# $name Notes
+echo '# $name Notes
 
 ## Data 
 
@@ -71,32 +71,68 @@ Users:
 Email and Username Formatting:
 Credentials:
 
-## Objectives
 
-\`\#\# Target Map ![]($name-map.excalidraw.md)\`
 
-#### Machine Connects to list and reason:
+#### Mindmap-per Service
+
+- OS detect, run generate noting for nmap
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+
+
+
+#### Todo List
+
+' > $site/$name/$name-Notes.md
+
+echo '# $dash_delimited_ip Meta-Notes
+
+## Machine Connects list and reason:
 
 [[]] - Reason X
+
+## Objectives
+What do have in the solutions inventory to meet larger objective?
+
+- Excalidraw maps!
+
+## Solution Inventory Map
+What edges do you have?
+
+
 
 ## Data Collected
 
 #### Credentials
-\`\`\`
-\`\`\`
+
+```
+
+```
 
 #### HUMINT
 
+#### Local Inventory
 
-#### Solution Inventory Map
-
-
-#### Todo 
-
+#### Todo List
 
 #### Timeline of tasks completed
-      
-" > $site/$name/Notes/$name-Notes.md
+
+' > $site/$name/$name-Meta-Notes.md
+
 echo "# $name CMD-by-CMDs
 
 \`\`\`bash
