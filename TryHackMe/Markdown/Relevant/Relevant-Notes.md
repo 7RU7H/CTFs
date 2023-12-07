@@ -48,3 +48,7 @@ xsel -b  | sed 's/|.//g' > weird.cert
 
 
 Note - Nothing in this room requires Metasploit
+`echo Qm9iIC0gIVBAJCRXMHJEITEyMw== | base64 -d
+Bob - !P@$$W0rD!123`
+`echo QmlsbCAtIEp1dzRubmFNNG40MjA2OTY5NjkhJCQk | base64 -d
+Bill - Juw4nnaM4n420696969!$$$`
