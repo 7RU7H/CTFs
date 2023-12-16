@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Tue Dec 12 12:29:37 2023 as: nmap -p- -vv -&#45;min-rate 300 -e tun0 -oA /home/none/7ru7hGithub/CTFs/TryHackMe/Markdown/Jurassic-Park/nmap/10-10-56-155-All-TCP-Ports 10.10.56.155 -->
+<nmaprun scanner="nmap" args="nmap -p- -vv -&#45;min-rate 300 -e tun0 -oA /home/none/7ru7hGithub/CTFs/TryHackMe/Markdown/Jurassic-Park/nmap/10-10-56-155-All-TCP-Ports 10.10.56.155" start="1702384177" startstr="Tue Dec 12 12:29:37 2023" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="Ping Scan" time="1702384177"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.56.155" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<taskend task="Ping Scan" time="1702384177" extrainfo="1 total hosts"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1702384177"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1702384190"/>
+<taskbegin task="SYN Stealth Scan" time="1702384190"/>
+<taskprogress task="SYN Stealth Scan" time="1702384221" percent="11.37" remaining="242" etc="1702384463"/>
+<taskprogress task="SYN Stealth Scan" time="1702384251" percent="23.33" remaining="201" etc="1702384451"/>
+<taskprogress task="SYN Stealth Scan" time="1702384281" percent="35.86" remaining="163" etc="1702384444"/>
+<taskprogress task="SYN Stealth Scan" time="1702384311" percent="47.74" remaining="133" etc="1702384443"/>
+<taskprogress task="SYN Stealth Scan" time="1702384341" percent="59.04" remaining="105" etc="1702384446"/>
+<taskprogress task="SYN Stealth Scan" time="1702384371" percent="70.50" remaining="76" etc="1702384447"/>
+<taskprogress task="SYN Stealth Scan" time="1702384401" percent="82.56" remaining="45" etc="1702384446"/>
+<taskend task="SYN Stealth Scan" time="1702384454" extrainfo="65535 total ports"/>
+<host starttime="1702384191" endtime="1702384454"><status state="up" reason="reset" reason_ttl="63"/>
+<address addr="10.10.56.155" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65533">
+<extrareasons reason="reset" count="65533" proto="tcp" ports="1-21,23-79,81-65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/></port>
+</ports>
+<times srtt="208715" rttvar="31264" to="333771"/>
+</host>
+<runstats><finished time="1702384454" timestr="Tue Dec 12 12:34:14 2023" summary="Nmap done at Tue Dec 12 12:34:14 2023; 1 IP address (1 host up) scanned in 276.81 seconds" elapsed="276.81" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

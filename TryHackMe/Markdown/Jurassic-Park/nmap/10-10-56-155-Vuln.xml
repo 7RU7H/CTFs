@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Tue Dec 12 12:35:46 2023 as: nmap -&#45;script vuln -oA /home/none/7ru7hGithub/CTFs/TryHackMe/Markdown/Jurassic-Park/nmap/10-10-56-155-Vuln -&#45;min-rate 300 -e tun0 -p 22,80 10.10.56.155 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA /home/none/7ru7hGithub/CTFs/TryHackMe/Markdown/Jurassic-Park/nmap/10-10-56-155-Vuln -&#45;min-rate 300 -e tun0 -p 22,80 10.10.56.155" start="1702384546" startstr="Tue Dec 12 12:35:46 2023" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.56.155" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1702384570" endtime="1702384891"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.56.155" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-vuln-cve2017-1001000" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-slowloris-check" output="&#xa;  VULNERABLE:&#xa;  Slowloris DOS attack&#xa;    State: LIKELY VULNERABLE&#xa;    IDs:  CVE:CVE-2007-6750&#xa;      Slowloris tries to keep many connections to the target web server open and hold&#xa;      them open as long as possible.  It accomplishes this by opening connections to&#xa;      the target web server and sending a partial request. By doing so, it starves&#xa;      the http server&apos;s resources causing Denial Of Service.&#xa;      &#xa;    Disclosure date: 2009-09-17&#xa;    References:&#xa;      http://ha.ckers.org/slowloris/&#xa;      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750&#xa;"><table key="CVE-2007-6750">
+<elem key="title">Slowloris DOS attack</elem>
+<elem key="state">LIKELY VULNERABLE</elem>
+<table key="ids">
+<elem>CVE:CVE-2007-6750</elem>
+</table>
+<table key="description">
+<elem>Slowloris tries to keep many connections to the target web server open and hold&#xa;them open as long as possible.  It accomplishes this by opening connections to&#xa;the target web server and sending a partial request. By doing so, it starves&#xa;the http server&apos;s resources causing Denial Of Service.&#xa;</elem>
+</table>
+<table key="dates">
+<table key="disclosure">
+<elem key="month">09</elem>
+<elem key="day">17</elem>
+<elem key="year">2009</elem>
+</table>
+</table>
+<elem key="disclosure">2009-09-17</elem>
+<table key="exploit_results">
+</table>
+<table key="refs">
+<elem>http://ha.ckers.org/slowloris/</elem>
+<elem>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750</elem>
+</table>
+</table>
+</script><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-enum" output="&#xa;  /robots.txt: Robots file&#xa;"/><script id="http-sql-injection" output="&#xa;  Possible sqli for queries:&#xa;    http://10.10.56.155:80/item.php?id=1%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/item.php?id=2%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/item.php?id=3%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=N%3BO%3DD%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=S%3BO%3DD%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=D%3BO%3DD%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=M%3BO%3DD%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=N%3BO%3DD%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=S%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=D%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=M%3BO%3DA%27%20OR%20sqlspider&#xa;    http://10.10.56.155:80/assets/?C=N%3BO%3DA%27%20OR%20sqlspider&#xa;"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-fileupload-exploiter" output="&#xa;  &#xa;    Couldn&apos;t find a file-type field.&#xa;  &#xa;    Couldn&apos;t find a file-type field."><table>
+<elem>Couldn&apos;t find a file-type field.</elem>
+</table>
+<table>
+<elem>Couldn&apos;t find a file-type field.</elem>
+</table>
+</script></port>
+</ports>
+<times srtt="613599" rttvar="456131" to="2438123"/>
+</host>
+<runstats><finished time="1702384891" timestr="Tue Dec 12 12:41:31 2023" summary="Nmap done at Tue Dec 12 12:41:31 2023; 1 IP address (1 host up) scanned in 345.78 seconds" elapsed="345.78" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
