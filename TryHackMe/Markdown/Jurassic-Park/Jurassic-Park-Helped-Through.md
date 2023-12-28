@@ -14,8 +14,8 @@ Goals:
 - https://tryhackme.com/room/gallery666
 Learnt:
 - `nuclei` needs `-etags cve` to prevent autoexploiting
-- The meme are very strong with this box
-- Start smaller in sql injection
+- The memes are very strong with this box
+- Start smaller in SQL injection
 - THE NO LOGIC REQUIRED IS THE ISSUE - WHY PHIND WHY?!
 	- AND combine 
 - AI has some good ideas and some really weird ideas. 
@@ -199,10 +199,10 @@ More failed imagination and usage of [PayloadsAllTheThings](https://github.com/s
 Wildcard Jugular for those Man Jugs and Body-Neck combo.
 ![](MyDenisNegreyIsBEINGtooGOoodFORME.png)
 
-
+IDeas 
 ![](SEQUENCEOFSQLI.png)
 
-
+...equal Passwords without usernames...
 ```
 ID | password
 1 D0nt3ATM3 
@@ -280,7 +280,6 @@ Things that worked - URL decode
 ```
 
 
-https://perspectiverisk.com/mysql-sql-injection-practical-cheat-sheet/
 ## Beyond Root
 
 Phind says this
