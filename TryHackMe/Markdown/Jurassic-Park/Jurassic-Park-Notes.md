@@ -27,19 +27,8 @@ Credentials:
 		- blacklisting  `' -- # %23 @`
 		- usable ` | ! , . ()` 
 		- breaks:  \` 
--
--
--
--
--
--
--
--
--
--
--
--
--
+
+- At this point I just went from `ls -1tr Screenshots` and figured it out be screenshot what was going on - going naming convention for Screenshots helped as they do
 
 Key takeaways
 - Always play guess the SQL query
