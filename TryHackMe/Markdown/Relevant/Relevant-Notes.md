@@ -75,3 +75,13 @@ administrator S-1-5-21-3981879597-1135670737-2718083060-500 (User: 1)
 ```
 
 Windows Server 2016 Standard Evaluation 14393 x64 (name:RELEVANT) (domain:Relevant) (signing:False) (SMBv1:True)
+
+Mid way through the artcil
+```python
+python3 -m venv .venv
+
+source .venv/bin/activate 
+pip3 install .
+
+# deactivate # To deactivate virtual environment
+```

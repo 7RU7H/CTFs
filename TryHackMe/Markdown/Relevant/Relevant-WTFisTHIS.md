@@ -1,4 +1,4 @@
-# Relevant Writeup
+# Relevant WTFisTHIS
 
 Name: Relevant
 Date:  
@@ -45,12 +45,13 @@ RDP:
 ![](cmerid.png)
 
 
-
+I started clucking at straws given how network connection to this machine was over multiple.  
 ![](certchecking.png)
 
 Bob can connect to RPC:
 ![](bobspassword.png)
 
+Running all of my cheatsheets worth of rpc the first time
 ![](bobisrpcclientstacked.png)
 
 Bill cannot connect to RPC
@@ -81,7 +82,7 @@ Proof that Bill is not a honeypot account, but there must be some defensive mech
 
 With all the re-re-re-re-re-returning eyebrow raising this box has induced. RPC the only way. HTTP   could be behind `:49663/aspnet_client/` 
 
-
+Running all of my cheatsheets worth of rpc the second time
 ```powershell
 rpcclient -U bob 10.10.177.186
 Password for [WORKGROUP\bob]:
@@ -233,16 +234,30 @@ Reconsidering my rcpclient cheatsheet is not great and this probably not a DC or
 Well at least I am not going to be irrelevant I suppose.
 ![](morepainmorepain.png)
 
+We have SMB read/write... v1 and is not signed...
+![](isthisjusteternalblue.png)
 
+After some considerations and various attempt. I have had too much time with this room to the point of frustration over multiple years returning. The network connective was absurd. This box is actually absurdly easy. The contextual I have changed this machine to WTFisTHIS, because after skipping to what next to do in the official video and him just browsing to the web page first time. Like the last 5 months meant nothing, same the as the year before... 
+
+... 
 ## Exploit
+
+WE can just upload a webshell to the http server running on port 49663.... 
+![](loopdelooping.png)
+
+![](hurray.png)
 
 ## Foothold
 
+![](netstatyourmindintothewtf.png)
+
+40.127.240.158
 ## Privilege Escalation
 
 ## Post-Root-Reflection  
 
-![](Relevant-map.excalidraw.md)
+- Sometimes it is not you 
+- Sometimes the boxes are robot.txt levels of WTF.
 
 ## Beyond Root
 
@@ -252,4 +267,8 @@ Update my rpc cheatsheet
 - https://www.hackingarticles.in/active-directory-enumeration-rpcclient/
 
 
+- https://black.vercel.app/ python formatter
+
 Note - Nothing in this room requires Metasploit
+
+THM{fdk4ka34vk346ksxfr21tg789ktf45}
