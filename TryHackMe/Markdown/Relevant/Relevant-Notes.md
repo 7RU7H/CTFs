@@ -48,7 +48,30 @@ xsel -b  | sed 's/|.//g' > weird.cert
 
 
 Note - Nothing in this room requires Metasploit
-`echo Qm9iIC0gIVBAJCRXMHJEITEyMw== | base64 -d
-Bob - !P@$$W0rD!123`
-`echo QmlsbCAtIEp1dzRubmFNNG40MjA2OTY5NjkhJCQk | base64 -d
-Bill - Juw4nnaM4n420696969!$$$`
+
+```bash
+echo Qm9iIC0gIVBAJCRXMHJEITEyMw== | base64 -d
+Bob - !P@$$W0rD!123
+
+echo QmlsbCAtIEp1dzRubmFNNG40MjA2OTY5NjkhJCQk | base64 -d
+Bill - Juw4nnaM4n420696969!$$$
+```
+
+
+```
+echo Qm9iIC0gIVBAJCRXMHJEITEyMw== | base64 -d && echo "" && echo QmlsbCAtIEp1dzRubmFNNG40MjA2OTY5NjkhJCQk | base64 -d
+
+Bob - !P@$$W0rD!123
+Bill - Juw4nnaM4n420696969!$$$
+
+```
+
+
+```
+rpcclient $> lookupnames bob
+bob S-1-5-21-3981879597-1135670737-2718083060-1002 (User: 1)
+rpcclient $> lookupnames administrator
+administrator S-1-5-21-3981879597-1135670737-2718083060-500 (User: 1)
+```
+
+Windows Server 2016 Standard Evaluation 14393 x64 (name:RELEVANT) (domain:Relevant) (signing:False) (SMBv1:True)
