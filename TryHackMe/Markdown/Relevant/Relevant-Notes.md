@@ -44,7 +44,7 @@ Credentials:
 xsel -b  | sed 's/|.//g' > weird.cert
 ```
 
-#### Todo List
+#### To do List
 
 
 Note - Nothing in this room requires Metasploit
