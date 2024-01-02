@@ -2,10 +2,14 @@
 
 Name: Relevant
 Date:  
-Difficulty:  
+Difficulty:  Medium
 Goals:  
 - Finish Offensive Path on THM 
+- AV Evade 
+- Evade internet restrictions eating patience 
 Learnt:
+- I am jaded
+- 
 Beyond Root:
 
 - [[Relevant-Notes.md]]
@@ -277,6 +281,59 @@ Having to check every shoelace, PowerShell does work this time....
 
 
 ![](mshtafail.png)
+
+There is AV on the box eating my binaries and being generally bad for my footholding
+
+## AV Evasion - The Real Beyond Root Begins here 
+
+And I do not even have to start the machine to have fun... or use the internet to do that much.
+
+- Binary patch something with shellcode
+- Automate the AV evasion - think about it
+- Shellter a sliver binary
+- Mimikatz manually consider how an application would do this and cool ideas
+
+IDEAS
+- All filename names for:
+	- modules
+- Remove all comments after replace just to have some chunk and so it does not look very stripped
+- Add comments:
+- AI generate conversation in comments 
+	- `This need fucking fixed {X person}`
+	- `WTF does this do {Y person}`
+- AI generate junk descriptions
+- Remove all frenchness ` coffee =kdbg_coffee`, replace with getTheNuts c stdout silly file 
+- Add Junk code that will never be called
+- Add some encrypted to add to entropy but not be a significant percentage
+- Or be cool and: 
+	- encrypt all the calls
+	- Add a function  decrypt and then run them
+	-  Encrypt all of the 
+
+What I would need to do to make the golang app 
+```go 
+
+// Directories to remove
+// all files to a temporary directory
+
+// For all Source files
+	// enum for language has these files - ATSOMEPOINT
+	// enum for keywords,etc of the language - KWOLX
+	// strings | uniq
+	// gurl -v all KWOLX (do not remove line, and then split everything
+	// uniq everything again 
+	// buffer into TARGETSmap and FANCYmap(int id int propindex) (word string  tranformto string,  string linenumbers int count, entrpy! string   ) -fanacy map 
+	// generate a file that is dictionary of what is transform to what with dictionary TARGETmap 
+
+	// modfiy files 
+
+```
+
+- Finish my gurl project add:
+	- do not remove line
+	- `-v` exclude option
+
+
 ## Privilege Escalation
 
 ## Post-Root-Reflection  
@@ -398,4 +455,215 @@ Response.Write("</pre>");
 <!-- "Improvements" by 7ru7h and Phind model for button position guessing--->
 <!-- Contributed by Dominic Chell (http://digitalapocalypse.blogspot.com/) -->
 <!--    http://michaeldaw.org   04/2007    -->
+```
+
+
+#### Mimikatz
+
+#### List the words to replace in order across all files 
+
+- All filename names for:
+	- modules
+
+
+Remove all commentsa after replace just to have some chunk and so it does not look very stripped
+
+- Add comments:
+- AI generate conversation in comments 
+	- `This need fucking fixed {X person}`
+	- `WTF does this do {Y person}`
+- AI generate junk descriptions
+
+- Remvoe all frenchness ` coffee =kdbg_coffee`, replace with getTheNuts c stdout silly file 
+
+Replace in mimikatz.c
+```
+/*	Benjamin DELPY `gentilkiwi`
+	https://blog.gentilkiwi.com
+	benjamin@gentilkiwi.com
+	Licence : https://creativecommons.org/licenses/by/4.0/
+*/
+
+		L"  .#####.   " MIMIKATZ_FULL L"\n"
+		L" .## ^ ##.  " MIMIKATZ_SECOND L" - (oe.eo)\n"
+		L" ## / \\ ##  /*** Benjamin DELPY `gentilkiwi` ( benjamin@gentilkiwi.com )\n"
+		L" ## \\ / ##       > https://blog.gentilkiwi.com/mimikatz\n"
+		L" '## v ##'       Vincent LE TOUX             ( vincent.letoux@gmail.com )\n"
+		L"  '#####'        > https://pingcastle.com / https://mysmartlogon.com ***/\n");
+
+POWERKATZ
+
+mimikatz
+
+MIMIKATZ
+
+powershell
+
+POWERSHELL
+
+```
+
+
+miimlib
+- dll renames
+
+```
+/*	Benjamin DELPY `gentilkiwi`
+	https://blog.gentilkiwi.com
+	benjamin@gentilkiwi.com
+
+	Vincent LE TOUX
+	http://pingcastle.com / http://mysmartlogon.com
+	vincent.letoux@gmail.com
+
+	Licence : https://creativecommons.org/licenses/by/4.0/
+*/
+
+
+Password
+Domain
+CREDENTIALS
+CREDENTIAL
+Credential
+Authentication
+Authenticate
+AUTHENT
+
+// ksub.c
+const BYTE myHash[LM_NTLM_HASH_LENGTH] = {0xea, 0x37, 0x0c, 0xb7, 0xb9, 0x44, 0x70, 0x2c, 0x09, 0x68, 0x30, 0xdf, 0xc3, 0x53, 0xe7, 0x02}; // Waza1234/admin
+
+Authent
+
+KIWI
+
+// AFTER FULL WORDS
+CRED
+Cred
+
+kiwi
+
+Kiwi
+LOGON_SESSION
+LogonSession
+
+Lsass
+
+
+
+	PackageInfo->Name       = L"KiwiSSP";
+	PackageInfo->Comment    = L"Kiwi Security Support Provider";
+
+const wchar_t * KUHL_M_SEKURLSA_LOGON_TYPE[] = {
+	L"UndefinedLogonType",
+	L"Unknown !",
+	L"Interactive",
+	L"Network",
+	L"Batch",
+	L"Service",
+	L"Proxy",
+	L"Unlock",
+	L"NetworkCleartext",
+	L"NewCredentials",
+	L"RemoteInteractive",
+	L"CachedInteractive",
+	L"CachedRemoteInteractive",
+	L"CachedUnlock",
+};
+```
+
+Add Junk code that will never be called
+
+Add some encrypted to add to entropy but not be a significant percentage
+
+Or be cool and: 
+- encrypt all the calls
+- Add a function  decrypt and then run them
+-  Encrypt all of the 
+
+mimilove
+```
+
+	kprintf(L"\n"
+		L"  .#####.   " MIMILOVE_FULL L"\n"
+		L" .## ^ ##.  " MIMILOVE_SECOND L"\n"
+		L" ## / \\ ##  /* * *\n"
+		L" ## \\ / ##   Benjamin DELPY `gentilkiwi` ( benjamin@gentilkiwi.com )\n"
+		L" '## v ##'   https://blog.gentilkiwi.com/mimikatz             (oe.eo)\n"
+		L"  '#####'    " MIMILOVE_SPECIAL L"* * */\n\n");
+
+kull
+kuhl
+
+
+mimilove
+love
+LOVE
+
+lsasrv
+kerberos
+
+	kprintf(L"========================================\n"
+		L"LSASRV Credentials (MSV1_0, ...)\n"
+		L"========================================\n\n"
+		);
+
+
+Kiwi
+LOGON_SESSION
+LogonSession
+
+sekurlsa
+
+VeryBasicModuleInformationsForName
+
+
+miKerberos 
+paKerberos
+KerbLogonSessionList
+
+PKERB_HASHPASSWORD_5
+KERBEROS_KEYS_LIST_5
+KERB_HASHPASSWORD_5
+KIWI_KERBEROS_KEYS_LIST_5
+
+
+PCWCHAR mimilove_kerberos_etype(LONG eType)
+{
+	PCWCHAR type;
+	switch(eType)
+	{
+	case KERB_ETYPE_NULL:							type = L"null             "; break;
+	case KERB_ETYPE_DES_PLAIN:						type = L"des_plain        "; break;
+	case KERB_ETYPE_DES_CBC_CRC:					type = L"des_cbc_crc      "; break;
+	case KERB_ETYPE_DES_CBC_MD4:					type = L"des_cbc_md4      "; break;
+	case KERB_ETYPE_DES_CBC_MD5:					type = L"des_cbc_md5      "; break;
+	case KERB_ETYPE_DES_CBC_MD5_NT:					type = L"des_cbc_md5_nt   "; break;
+	case KERB_ETYPE_RC4_PLAIN:						type = L"rc4_plain        "; break;
+	case KERB_ETYPE_RC4_PLAIN2:						type = L"rc4_plain2       "; break;
+	case KERB_ETYPE_RC4_PLAIN_EXP:					type = L"rc4_plain_exp    "; break;
+	case KERB_ETYPE_RC4_LM:							type = L"rc4_lm           "; break;
+	case KERB_ETYPE_RC4_MD4:						type = L"rc4_md4          "; break;
+	case KERB_ETYPE_RC4_SHA:						type = L"rc4_sha          "; break;
+	case KERB_ETYPE_RC4_HMAC_NT:					type = L"rc4_hmac_nt      "; break;
+	case KERB_ETYPE_RC4_HMAC_NT_EXP:				type = L"rc4_hmac_nt_exp  "; break;
+	case KERB_ETYPE_RC4_PLAIN_OLD:					type = L"rc4_plain_old    "; break;
+	case KERB_ETYPE_RC4_PLAIN_OLD_EXP:				type = L"rc4_plain_old_exp"; break;
+	case KERB_ETYPE_RC4_HMAC_OLD:					type = L"rc4_hmac_old     "; break;
+	case KERB_ETYPE_RC4_HMAC_OLD_EXP:				type = L"rc4_hmac_old_exp "; break;
+	case KERB_ETYPE_AES128_CTS_HMAC_SHA1_96_PLAIN:	type = L"aes128_hmac_plain"; break;
+	case KERB_ETYPE_AES256_CTS_HMAC_SHA1_96_PLAIN:	type = L"aes256_hmac_plain"; break;
+	case KERB_ETYPE_AES128_CTS_HMAC_SHA1_96:		type = L"aes128_hmac      "; break;
+	case KERB_ETYPE_AES256_CTS_HMAC_SHA1_96:		type = L"aes256_hmac      "; break;
+	default:										type = L"unknow           "; break;
+	}
+	return type;
+}
+```
+
+```
+LM_NTLM_HASH
+LSA_
+Tickets
+VERY_BASIC_MODULE_INFORMATION
+PKULL_M_MINI_PATTERN
 ```
