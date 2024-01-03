@@ -6,22 +6,22 @@ Difficulty:  Insane
 Original Goals:  
 - Understand what it takes to be this good
 - Analyse xct workflow
-- Buffer overflow revision, but also gleen some tips
-- Try smallest amount of recon possible and not any of my automated data collection for massive data crunking at some point.
-- Perform "racing mind practice" -  a term that I likened to practicing play music at speed - it is fluid continous attempt to remain at at most peak for endurance  - 
+- Buffer overflow revision, but also glean some tips
+- Try smallest amount of recon possible and not any of my automated data collection for massive data crunching at some point.
+- Perform "racing mind practice" -  a term that I likened to practising play music at speed - it is fluid continuous attempt to remain at at most peak for endurance  - 
 - Finish in hour and a half. - SPOIL it did not happen I know it could have if naabu had worked, I was not correctly second guessing XCT on the smtp-user-enum "solution", also got impatient on the email call back from the attended.htb - then I reset the box incase I spammed the swaks too much
 Learnt:
 - Better SMTP TTPs!
 - When I put capability pieces together I can actually achieve stuff!
 Beyond Root:
 - Patch the machine to prevent a buffer overflow
-- Test all my Linux BattLeground counter measures as VulnNet node shells would just take more time to configure 
+- Test all my Linux Battleground counter measures as VulnNet node shells would just take more time to configure 
 
 
 
-[XCT is current top number one on HTB](https://www.youtube.com/watch?v=uAvvrBO7zlk) - *"We will solve Attended, a 50-point machine on HackTheBox. For user, we will be sending some emails back and forth and then append a payload that exploits a Vim RCE, followed by adding a malicious ssh config. For root, we will exploit a custom OpenBSD binary that is used as an AuthorizedKeysCommand for SSH"*. [XCT](https://app.hackthebox.com/users/13569) is currently ranked 1 on HTB with 14 user FBs, 28 system FBs - 248 solved machiens, 7 FB on challenges with 266 total solved, also end games and fortress completions. This guy is awesome. My hope is learn from maybe 10 boxes completed by XCT for the next 5 months or so. Along with Snowscan and few other I want to try be like the best as early as possible and be more than the average Ippsec viewer - Ippsec is still awesome, I want to suppass the average ASAP. 
+[XCT is current top number one on HTB](https://www.youtube.com/watch?v=uAvvrBO7zlk) - *"We will solve Attended, a 50-point machine on HackTheBox. For user, we will be sending some emails back and forth and then append a payload that exploits a Vim RCE, followed by adding a malicious ssh config. For root, we will exploit a custom OpenBSD binary that is used as an AuthorizedKeysCommand for SSH"*. [XCT](https://app.hackthebox.com/users/13569) is currently ranked 1 on HTB with 14 user FBs, 28 system FBs - 248 solved machiens, 7 FB on challenges with 266 total solved, also end games and fortress completions. This guy is awesome. My hope is learn from maybe 10 boxes completed by XCT for the next 5 months or so. Along with Snowscan and few other I want to try be like the best as early as possible and be more than the average Ippsec viewer - Ippsec is still awesome, I want to surpass the average ASAP. 
 
-Returning to finish this due to watching the Ippsec introduction to his video after being reminded how awesome this machine would be at the current point of time. I realised that I need to watch both as I am currently cleaning up my github projects one is a C2 framework - Ippsec makes his own. I also need to replace Empire with Sliver usage. Iptables defensive setup and usage for BaTTLegrounds and KOTH has been on my beyond roots. 
+Returning to finish this due to watching the Ippsec introduction to his video after being reminded how awesome this machine would be at the current point of time. I realised that I need to watch both as I am currently cleaning up my github projects one is a C2 framework - Ippsec makes his own. I also need to replace Empire with Sliver usage. Iptables defensive setup and usage for Battlegrounds and KOTH has been on my beyond roots. 
 
 Because as part of testing my Helped-Through discourse the only written writeup that I trust is [0xdf](https://0xdf.gitlab.io/2021/05/08/htb-attended.html)
 

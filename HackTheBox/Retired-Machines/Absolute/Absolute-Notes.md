@@ -54,15 +54,14 @@ KRB5CCNAME=d.klay.ccache $bloodhoundPythonInstallMethod -k -dc dc.absolute.htb -
 VM requires
 ```bash
 cd /opt/
-git clone https://github.com/ropnop/kerbrute.git
+sudo git clone https://github.com/ropnop/kerbrute.git
 wait
 cd kerbrute/
-go build
+sudo go build
 wait
 cd /opt/
 echo "\n# Kerbrute Alias" | tee -a ~/.zshrc
 echo "alias kerbrute='/opt/kerbrute/kerbrute" | tee -a ~/.zshrc
-
 
 source ~/.zshrc
 ```

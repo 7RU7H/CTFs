@@ -1,0 +1,1674 @@
+[33m
+[V] [0m[35mDependent program "nmblookup" found in /usr/bin/nmblookup
+
+[0m[33m
+[V] [0m[35mDependent program "net" found in /usr/bin/net
+
+[0m[33m
+[V] [0m[35mDependent program "rpcclient" found in /usr/bin/rpcclient
+
+[0m[33m
+[V] [0m[35mDependent program "smbclient" found in /usr/bin/smbclient
+
+[0m[33m
+[V] [0m[35mDependent program "polenum" found in /usr/bin/polenum
+
+[0m[33m
+[V] [0m[35mDependent program "ldapsearch" found in /usr/bin/ldapsearch
+
+[0mStarting enum4linux v0.9.1 ( http://labs.portcullis.co.uk/application/enum4linux/ ) on Wed Jan  3 17:41:12 2024
+
+[34m =========================================( [0m[32mTarget Information[0m[34m )=========================================
+
+[0mTarget ........... 10.129.229.17
+RID Range ........ 500-550,1000-1050
+Username ......... 'support'
+Password ......... '#00^BlackKnight'
+Known Usernames .. administrator, guest, krbtgt, domain admins, root, bin, none
+
+
+[34m ===========================( [0m[32mEnumerating Workgroup/Domain on 10.129.229.17[0m[34m )===========================
+
+[0m[33m
+[V] [0m[35mAttempting to get domain name with command: nmblookup -A '10.129.229.17'
+
+[0m[33m
+[E] [0m[31mCan't find workgroup/domain
+
+[0m
+
+[34m ===============================( [0m[32mNbtstat Information for 10.129.229.17[0m[34m )===============================
+
+[0mLooking up status of 10.129.229.17
+No reply from 10.129.229.17
+
+[34m ===================================( [0m[32mSession Check on 10.129.229.17[0m[34m )===================================
+
+[0m[33m
+[V] [0m[35mAttempting to make null session using command: smbclient -W 'WORKGROUP' //'10.129.229.17'/ipc$ -U'support'%'#00^BlackKnight' -c 'help' 2>&1
+
+[0m[33m
+[+] [0m[32mServer 10.129.229.17 allows sessions using username 'support', password '#00^BlackKnight'
+
+[0m
+[34m ===========================( [0m[32mGetting information via LDAP for 10.129.229.17[0m[34m )===========================
+
+[0m[33m
+[V] [0m[35mAttempting to long domain name: ldapsearch -x -h '10.129.229.17' -p 389 -s base namingContexts 2>&1
+
+[0m[33m
+[+] [0m[32m10.129.229.17 appears to be a child DC
+
+[0m
+[34m ================================( [0m[32mGetting domain SID for 10.129.229.17[0m[34m )================================
+
+[0m[33m
+[V] [0m[35mAttempting to get domain SID with command: rpcclient -W 'WORKGROUP' -U'support'%'#00^BlackKnight' 10.129.229.17 -c 'lsaquery' 2>&1
+
+[0mDomain Name: BLACKFIELD
+Domain Sid: S-1-5-21-4194615774-2175524697-3563712290
+[33m
+[+] [0m[32mHost is part of a domain (not a workgroup)
+
+[0m
+[34m ==================================( [0m[32mOS information on 10.129.229.17[0m[34m )==================================
+
+[0m[33m
+[V] [0m[35mAttempting to get OS info with command: smbclient -W 'WORKGROUP' //'10.129.229.17'/ipc$ -U'support'%'#00^BlackKnight' -c 'q' 2>&1
+
+[0m[33m
+[E] [0m[31mCan't get OS info with smbclient
+
+[0m[33m
+[V] [0m[35mAttempting to get OS info with command: rpcclient -W 'WORKGROUP' -U'support'%'#00^BlackKnight' -c 'srvinfo' '10.129.229.17' 2>&1
+
+[0m[33m
+[+] [0m[32mGot OS info for 10.129.229.17 from srvinfo: 
+[0m	10.129.229.17  Wk Sv PDC Tim NT     
+	platform_id     :	500
+	os version      :	10.0
+	server type     :	0x80102b
+
+
+[34m =======================================( [0m[32mUsers on 10.129.229.17[0m[34m )=======================================
+
+[0m[33m
+[V] [0m[35mAttempting to get userlist with command: rpcclient -W 'WORKGROUP' -c querydispinfo -U'support'%'#00^BlackKnight' '10.129.229.17' 2>&1
+
+[0mindex: 0xeda RID: 0x1f4 acb: 0x00000210 Account: Administrator	Name: (null)	Desc: Built-in account for administering the computer/domain
+index: 0xfb0 RID: 0x44f acb: 0x00000210 Account: audit2020	Name: (null)	Desc: (null)
+index: 0x10a7 RID: 0x546 acb: 0x00020010 Account: BLACKFIELD103974	Name: Josefvon Moorehendrickson	Desc: (null)
+index: 0x103f RID: 0x4de acb: 0x00020010 Account: BLACKFIELD106360	Name: Grozdan Gomane	Desc: (null)
+index: 0x104d RID: 0x4ec acb: 0x00020010 Account: BLACKFIELD107197	Name: Phouvieng Tesik	Desc: (null)
+index: 0x10a9 RID: 0x548 acb: 0x00020010 Account: BLACKFIELD112766	Name: Jeaninne Sebaali	Desc: (null)
+index: 0xffc RID: 0x49b acb: 0x00020010 Account: BLACKFIELD114762	Name: Oleguer Hardybala	Desc: (null)
+index: 0x1032 RID: 0x4d1 acb: 0x00020010 Account: BLACKFIELD115148	Name: Franchester Reffey	Desc: (null)
+index: 0xfda RID: 0x479 acb: 0x00020010 Account: BLACKFIELD118321	Name: Maqbool Brambini	Desc: (null)
+index: 0x104b RID: 0x4ea acb: 0x00020010 Account: BLACKFIELD128775	Name: Betsye Samkoses	Desc: (null)
+index: 0xfc6 RID: 0x465 acb: 0x00020010 Account: BLACKFIELD129328	Name: Natashja Pulido	Desc: (null)
+index: 0x1030 RID: 0x4cf acb: 0x00020010 Account: BLACKFIELD129387	Name: Irmengard Santosi	Desc: (null)
+index: 0x1024 RID: 0x4c3 acb: 0x00020010 Account: BLACKFIELD131771	Name: Mrigank Kermarrec	Desc: (null)
+index: 0x10a8 RID: 0x547 acb: 0x00020010 Account: BLACKFIELD135403	Name: Abdoul Biemiller	Desc: (null)
+index: 0x105c RID: 0x4fb acb: 0x00020010 Account: BLACKFIELD135990	Name: Franselly Lasokowski	Desc: (null)
+index: 0x10ac RID: 0x54b acb: 0x00020010 Account: BLACKFIELD136203	Name: Vipinbhai Fuscca	Desc: (null)
+index: 0xfd5 RID: 0x474 acb: 0x00020010 Account: BLACKFIELD136813	Name: Krupen Pregnolato	Desc: (null)
+index: 0xfd1 RID: 0x470 acb: 0x00020010 Account: BLACKFIELD137694	Name: Santhia Hauht	Desc: (null)
+index: 0x106d RID: 0x50c acb: 0x00020010 Account: BLACKFIELD146200	Name: Beny Mannise	Desc: (null)
+index: 0x1060 RID: 0x4ff acb: 0x00020010 Account: BLACKFIELD148067	Name: Daffenie Paskalev	Desc: (null)
+index: 0x10c4 RID: 0x563 acb: 0x00020010 Account: BLACKFIELD150357	Name: Vionka Olaosun	Desc: (null)
+index: 0x101c RID: 0x4bb acb: 0x00020010 Account: BLACKFIELD160610	Name: Charvette Kijauskas	Desc: (null)
+index: 0x107a RID: 0x519 acb: 0x00020010 Account: BLACKFIELD160820	Name: Resham Weatherl	Desc: (null)
+index: 0xfbc RID: 0x45b acb: 0x00020010 Account: BLACKFIELD163183	Name: Senkeh Krulig	Desc: (null)
+index: 0xfd9 RID: 0x478 acb: 0x00020010 Account: BLACKFIELD169035	Name: Pargan Parakat	Desc: (null)
+index: 0x10c3 RID: 0x562 acb: 0x00020010 Account: BLACKFIELD169876	Name: Farryl Deblaquire	Desc: (null)
+index: 0x106f RID: 0x50e acb: 0x00020010 Account: BLACKFIELD171624	Name: Zhiraz Wausik	Desc: (null)
+index: 0xfc2 RID: 0x461 acb: 0x00020010 Account: BLACKFIELD175204	Name: Vizma Mamchuk	Desc: (null)
+index: 0x1047 RID: 0x4e6 acb: 0x00020010 Account: BLACKFIELD184482	Name: Mouane Sichkar	Desc: (null)
+index: 0x10cc RID: 0x56b acb: 0x00020010 Account: BLACKFIELD184493	Name: Verench Bublavy	Desc: (null)
+index: 0xfe0 RID: 0x47f acb: 0x00020010 Account: BLACKFIELD186980	Name: Rafik Bochare	Desc: (null)
+index: 0xfb4 RID: 0x453 acb: 0x00020010 Account: BLACKFIELD189208	Name: Lemetria Tindall	Desc: (null)
+index: 0x100b RID: 0x4aa acb: 0x00020010 Account: BLACKFIELD191416	Name: Crushonna Argyropolous	Desc: (null)
+index: 0x103e RID: 0x4dd acb: 0x00020010 Account: BLACKFIELD192642	Name: Xhyla Debes	Desc: (null)
+index: 0x100a RID: 0x4a9 acb: 0x00020010 Account: BLACKFIELD194732	Name: Novlett Schepkie	Desc: (null)
+index: 0xffe RID: 0x49d acb: 0x00020010 Account: BLACKFIELD195757	Name: Alyona Cheretei	Desc: (null)
+index: 0x1052 RID: 0x4f1 acb: 0x00020010 Account: BLACKFIELD195953	Name: Marchella Makhsous	Desc: (null)
+index: 0xfd0 RID: 0x46f acb: 0x00020010 Account: BLACKFIELD196444	Name: Pakeerathan Vinkovich	Desc: (null)
+index: 0x10c2 RID: 0x561 acb: 0x00020010 Account: BLACKFIELD198927	Name: Kerubai Masloch	Desc: (null)
+index: 0x1056 RID: 0x4f5 acb: 0x00020010 Account: BLACKFIELD199889	Name: Rexor Szewczuga	Desc: (null)
+index: 0x10a1 RID: 0x540 acb: 0x00020010 Account: BLACKFIELD201655	Name: Katherane Vlahopoulos	Desc: (null)
+index: 0x10a5 RID: 0x544 acb: 0x00020010 Account: BLACKFIELD202900	Name: Fatiyah Alirezai	Desc: (null)
+index: 0x10d2 RID: 0x571 acb: 0x00020010 Account: BLACKFIELD204805	Name: Darnelle Cwilich	Desc: (null)
+index: 0xfef RID: 0x48e acb: 0x00020010 Account: BLACKFIELD219324	Name: Athasithi Barteski	Desc: (null)
+index: 0x10b7 RID: 0x556 acb: 0x00020010 Account: BLACKFIELD219914	Name: Lorenm Krioua	Desc: (null)
+index: 0xfe2 RID: 0x481 acb: 0x00020010 Account: BLACKFIELD220786	Name: Emelya Palislamovic	Desc: (null)
+index: 0x10d7 RID: 0x576 acb: 0x00020010 Account: BLACKFIELD224839	Name: Yibet Kozlicki	Desc: (null)
+index: 0xfc4 RID: 0x463 acb: 0x00020010 Account: BLACKFIELD227380	Name: Payce Bourrat	Desc: (null)
+index: 0x108d RID: 0x52c acb: 0x00020010 Account: BLACKFIELD228442	Name: Gerónimo Batowski	Desc: (null)
+index: 0xff9 RID: 0x498 acb: 0x00020010 Account: BLACKFIELD229506	Name: Luwayne Birer	Desc: (null)
+index: 0x1041 RID: 0x4e0 acb: 0x00020010 Account: BLACKFIELD230515	Name: Araro Sischo	Desc: (null)
+index: 0x10bd RID: 0x55c acb: 0x00020010 Account: BLACKFIELD235930	Name: Talayeh Galeazza	Desc: (null)
+index: 0x1095 RID: 0x534 acb: 0x00020010 Account: BLACKFIELD236467	Name: Chuntai Makutenas	Desc: (null)
+index: 0x10be RID: 0x55d acb: 0x00020010 Account: BLACKFIELD246388	Name: Shlomis Tousignaut	Desc: (null)
+index: 0x10d9 RID: 0x578 acb: 0x00020010 Account: BLACKFIELD247450	Name: Alcia Takach	Desc: (null)
+index: 0x1078 RID: 0x517 acb: 0x00020010 Account: BLACKFIELD250576	Name: Lygie Michoud	Desc: (null)
+index: 0xfc5 RID: 0x464 acb: 0x00020010 Account: BLACKFIELD251003	Name: Caitán Gronk	Desc: (null)
+index: 0xfe8 RID: 0x487 acb: 0x00020010 Account: BLACKFIELD251977	Name: Sulistiyani Whyte	Desc: (null)
+index: 0x103a RID: 0x4d9 acb: 0x00020010 Account: BLACKFIELD252379	Name: Kurishinkal Langfur	Desc: (null)
+index: 0x1013 RID: 0x4b2 acb: 0x00020010 Account: BLACKFIELD253047	Name: Naijie Genevro	Desc: (null)
+index: 0xfc1 RID: 0x460 acb: 0x00020010 Account: BLACKFIELD253541	Name: Helia Gougen	Desc: (null)
+index: 0xffa RID: 0x499 acb: 0x00020010 Account: BLACKFIELD256791	Name: Liouba Druge	Desc: (null)
+index: 0xfec RID: 0x48b acb: 0x00020010 Account: BLACKFIELD266096	Name: Oveta Rbabka	Desc: (null)
+index: 0x102d RID: 0x4cc acb: 0x00020010 Account: BLACKFIELD267457	Name: Lieyong Bobelis	Desc: (null)
+index: 0xfd3 RID: 0x472 acb: 0x00020010 Account: BLACKFIELD268320	Name: Sidthi Reppond	Desc: (null)
+index: 0xfd8 RID: 0x477 acb: 0x00020010 Account: BLACKFIELD269538	Name: Dpaul Chintalapalli	Desc: (null)
+index: 0x10c6 RID: 0x565 acb: 0x00020010 Account: BLACKFIELD274109	Name: Kanddy Parvankova	Desc: (null)
+index: 0x10ae RID: 0x54d acb: 0x00020010 Account: BLACKFIELD274367	Name: Evony Wojtila	Desc: (null)
+index: 0x107f RID: 0x51e acb: 0x00020010 Account: BLACKFIELD274577	Name: Delfo Rusanovskaya	Desc: (null)
+index: 0x10d6 RID: 0x575 acb: 0x00020010 Account: BLACKFIELD286615	Name: Anthwaune Twardowski	Desc: (null)
+index: 0x1082 RID: 0x521 acb: 0x00020010 Account: BLACKFIELD289513	Name: Prany Branti	Desc: (null)
+index: 0xfcd RID: 0x46c acb: 0x00020010 Account: BLACKFIELD290325	Name: Gokulasankar Forshalger	Desc: (null)
+index: 0x10da RID: 0x579 acb: 0x00020010 Account: BLACKFIELD290582	Name: Ainisha Sanwardeker	Desc: (null)
+index: 0x1074 RID: 0x513 acb: 0x00020010 Account: BLACKFIELD291678	Name: Ymmer Bleasdale	Desc: (null)
+index: 0x10df RID: 0x57e acb: 0x00020010 Account: BLACKFIELD307633	Name: Angua Jaquemai	Desc: (null)
+index: 0x10dc RID: 0x57b acb: 0x00020010 Account: BLACKFIELD314351	Name: Hilit Conforto	Desc: (null)
+index: 0x1005 RID: 0x4a4 acb: 0x00020010 Account: BLACKFIELD315276	Name: Yolena Zarpentine	Desc: (null)
+index: 0x10c8 RID: 0x567 acb: 0x00020010 Account: BLACKFIELD316850	Name: Valorra Papalouca	Desc: (null)
+index: 0x1081 RID: 0x520 acb: 0x00020010 Account: BLACKFIELD318077	Name: Amamnda Worsey	Desc: (null)
+index: 0x10b5 RID: 0x554 acb: 0x00020010 Account: BLACKFIELD318250	Name: Judithk Danten	Desc: (null)
+index: 0xfbe RID: 0x45d acb: 0x00020010 Account: BLACKFIELD319016	Name: Lidong Chippel	Desc: (null)
+index: 0xffd RID: 0x49c acb: 0x00020010 Account: BLACKFIELD321206	Name: Gerread Maroufkhani	Desc: (null)
+index: 0x10ca RID: 0x569 acb: 0x00020010 Account: BLACKFIELD327610	Name: Fidor Degeorgio	Desc: (null)
+index: 0x1029 RID: 0x4c8 acb: 0x00020010 Account: BLACKFIELD328983	Name: Hildred Kostova	Desc: (null)
+index: 0xfdd RID: 0x47c acb: 0x00020010 Account: BLACKFIELD329802	Name: Purita Virding	Desc: (null)
+index: 0xfed RID: 0x48c acb: 0x00020010 Account: BLACKFIELD334058	Name: Krisda Amavisca	Desc: (null)
+index: 0x1083 RID: 0x522 acb: 0x00020010 Account: BLACKFIELD336573	Name: Ungtae Crofskey	Desc: (null)
+index: 0x10b0 RID: 0x54f acb: 0x00020010 Account: BLACKFIELD339143	Name: Makella Killberg	Desc: (null)
+index: 0xfcf RID: 0x46e acb: 0x00020010 Account: BLACKFIELD348433	Name: Parvika Masulla	Desc: (null)
+index: 0x1058 RID: 0x4f7 acb: 0x00020010 Account: BLACKFIELD348835	Name: Apryle Alleni	Desc: (null)
+index: 0x102b RID: 0x4ca acb: 0x00020010 Account: BLACKFIELD350809	Name: Samwin Sicliano	Desc: (null)
+index: 0x109f RID: 0x53e acb: 0x00020010 Account: BLACKFIELD356727	Name: Thaiese Badenbach	Desc: (null)
+index: 0x1099 RID: 0x538 acb: 0x00020010 Account: BLACKFIELD357023	Name: Emilee Jenoriki	Desc: (null)
+index: 0xfd6 RID: 0x475 acb: 0x00020010 Account: BLACKFIELD358090	Name: Kohung Atolikian	Desc: (null)
+index: 0x1062 RID: 0x501 acb: 0x00020010 Account: BLACKFIELD359278	Name: Adriraj Lamerz	Desc: (null)
+index: 0x109a RID: 0x539 acb: 0x00020010 Account: BLACKFIELD362337	Name: Gareld Smocker	Desc: (null)
+index: 0x1039 RID: 0x4d8 acb: 0x00020010 Account: BLACKFIELD371669	Name: Khylee Brokinn	Desc: (null)
+index: 0x1063 RID: 0x502 acb: 0x00020010 Account: BLACKFIELD375924	Name: Zaunna Timofeeff	Desc: (null)
+index: 0x1009 RID: 0x4a8 acb: 0x00020010 Account: BLACKFIELD382769	Name: Raeka Vallandas	Desc: (null)
+index: 0x10b4 RID: 0x553 acb: 0x00020010 Account: BLACKFIELD383108	Name: Parkerw Bozzelle	Desc: (null)
+index: 0x1016 RID: 0x4b5 acb: 0x00020010 Account: BLACKFIELD385719	Name: Kishona Sojdelius	Desc: (null)
+index: 0x107b RID: 0x51a acb: 0x00020010 Account: BLACKFIELD385928	Name: Celie Aldhowaihi	Desc: (null)
+index: 0x1061 RID: 0x500 acb: 0x00020010 Account: BLACKFIELD390179	Name: Deivy Metych	Desc: (null)
+index: 0x1088 RID: 0x527 acb: 0x00020010 Account: BLACKFIELD390192	Name: Siyanda Bonaparte	Desc: (null)
+index: 0x1092 RID: 0x531 acb: 0x00020010 Account: BLACKFIELD395725	Name: Elidee Sachhitello	Desc: (null)
+index: 0x10d4 RID: 0x573 acb: 0x00020010 Account: BLACKFIELD397679	Name: Walterwally Saldat	Desc: (null)
+index: 0x10bc RID: 0x55b acb: 0x00020010 Account: BLACKFIELD402639	Name: Godwin Quinniey	Desc: (null)
+index: 0xfee RID: 0x48d acb: 0x00020010 Account: BLACKFIELD404213	Name: Perci Weinkaus	Desc: (null)
+index: 0xfb5 RID: 0x454 acb: 0x00020010 Account: BLACKFIELD404458	Name: Danubia Vellela	Desc: (null)
+index: 0x102c RID: 0x4cb acb: 0x00020010 Account: BLACKFIELD405242	Name: Krishnas Tambourgi	Desc: (null)
+index: 0x10de RID: 0x57d acb: 0x00020010 Account: BLACKFIELD410243	Name: Yarel Predestin	Desc: (null)
+index: 0x104a RID: 0x4e9 acb: 0x00020010 Account: BLACKFIELD411132	Name: Eilaine Eulau	Desc: (null)
+index: 0xfe5 RID: 0x484 acb: 0x00020010 Account: BLACKFIELD411740	Name: Tawanah Knupke	Desc: (null)
+index: 0xff0 RID: 0x48f acb: 0x00020010 Account: BLACKFIELD412798	Name: Xiangou Rykiel	Desc: (null)
+index: 0xfea RID: 0x489 acb: 0x00020010 Account: BLACKFIELD413242	Name: Hamk Colantino	Desc: (null)
+index: 0xff4 RID: 0x493 acb: 0x00020010 Account: BLACKFIELD415829	Name: Merdis Naciri	Desc: (null)
+index: 0x1034 RID: 0x4d3 acb: 0x00020010 Account: BLACKFIELD416532	Name: Vercie Butziger	Desc: (null)
+index: 0xfe1 RID: 0x480 acb: 0x00020010 Account: BLACKFIELD419600	Name: Fian Laginja	Desc: (null)
+index: 0x1072 RID: 0x511 acb: 0x00020010 Account: BLACKFIELD428532	Name: Lynnea Knade	Desc: (null)
+index: 0x1003 RID: 0x4a2 acb: 0x00020010 Account: BLACKFIELD429587	Name: Vadhusara Litschauer	Desc: (null)
+index: 0xfe9 RID: 0x488 acb: 0x00020010 Account: BLACKFIELD430864	Name: Danaka Zwinak	Desc: (null)
+index: 0x1050 RID: 0x4ef acb: 0x00020010 Account: BLACKFIELD433476	Name: Xinghao Bemelen	Desc: (null)
+index: 0x10dd RID: 0x57c acb: 0x00020010 Account: BLACKFIELD434395	Name: Luci Baligand	Desc: (null)
+index: 0x10e5 RID: 0x584 acb: 0x00020010 Account: BLACKFIELD438814	Name: Xiaochang Konegni	Desc: (null)
+index: 0x1093 RID: 0x532 acb: 0x00020010 Account: BLACKFIELD438923	Name: Eduwardo Turgano	Desc: (null)
+index: 0xff1 RID: 0x490 acb: 0x00020010 Account: BLACKFIELD441593	Name: Laveria Bajewsky	Desc: (null)
+index: 0x1021 RID: 0x4c0 acb: 0x00020010 Account: BLACKFIELD441759	Name: Piyawan Doreste	Desc: (null)
+index: 0x1000 RID: 0x49f acb: 0x00020010 Account: BLACKFIELD446463	Name: Shagha Solsbak	Desc: (null)
+index: 0x1080 RID: 0x51f acb: 0x00020010 Account: BLACKFIELD448641	Name: Jehovan Luthner	Desc: (null)
+index: 0x10b8 RID: 0x557 acb: 0x00020010 Account: BLACKFIELD454313	Name: Rachelkohshi Nemnich	Desc: (null)
+index: 0x10b9 RID: 0x558 acb: 0x00020010 Account: BLACKFIELD460131	Name: Ziwang Miick	Desc: (null)
+index: 0xfeb RID: 0x48a acb: 0x00020010 Account: BLACKFIELD464763	Name: Chandalin Acherman	Desc: (null)
+index: 0x1055 RID: 0x4f4 acb: 0x00020010 Account: BLACKFIELD465267	Name: Deolindo Garbatiuc	Desc: (null)
+index: 0x1057 RID: 0x4f6 acb: 0x00020010 Account: BLACKFIELD468839	Name: Chimah Schandall	Desc: (null)
+index: 0x10a3 RID: 0x542 acb: 0x00020010 Account: BLACKFIELD478410	Name: Miesje Athilakshmi	Desc: (null)
+index: 0x102f RID: 0x4ce acb: 0x00020010 Account: BLACKFIELD478828	Name: Yackoob Vonebers	Desc: (null)
+index: 0x105d RID: 0x4fc acb: 0x00020010 Account: BLACKFIELD484290	Name: RuA Krnjaic	Desc: (null)
+index: 0x101b RID: 0x4ba acb: 0x00020010 Account: BLACKFIELD488531	Name: Kellely Cockeril	Desc: (null)
+index: 0x10b6 RID: 0x555 acb: 0x00020010 Account: BLACKFIELD496547	Name: Gordana Wiegard	Desc: (null)
+index: 0x1070 RID: 0x50f acb: 0x00020010 Account: BLACKFIELD497216	Name: Zakkiya Malaab	Desc: (null)
+index: 0x10d0 RID: 0x56f acb: 0x00020010 Account: BLACKFIELD500073	Name: Oliviacfbv Lunas	Desc: (null)
+index: 0x1090 RID: 0x52f acb: 0x00020010 Account: BLACKFIELD512331	Name: Let Cominelli	Desc: (null)
+index: 0x10a4 RID: 0x543 acb: 0x00020010 Account: BLACKFIELD518316	Name: Cesly Tolmie	Desc: (null)
+index: 0x10af RID: 0x54e acb: 0x00020010 Account: BLACKFIELD520852	Name: Islaine Koledo	Desc: (null)
+index: 0x1037 RID: 0x4d6 acb: 0x00020010 Account: BLACKFIELD522135	Name: Lucila Choffin	Desc: (null)
+index: 0x10e2 RID: 0x581 acb: 0x00020010 Account: BLACKFIELD532412	Name: Krishnarao Koesno	Desc: (null)
+index: 0x1064 RID: 0x503 acb: 0x00020010 Account: BLACKFIELD533060	Name: Shauana Gtlinas	Desc: (null)
+index: 0xfc8 RID: 0x467 acb: 0x00020010 Account: BLACKFIELD533551	Name: Sharhabeel Helregel	Desc: (null)
+index: 0xfd2 RID: 0x471 acb: 0x00020010 Account: BLACKFIELD533886	Name: Aletia Kubale	Desc: (null)
+index: 0x1065 RID: 0x504 acb: 0x00020010 Account: BLACKFIELD534196	Name: Amen Spruce	Desc: (null)
+index: 0x1004 RID: 0x4a3 acb: 0x00020010 Account: BLACKFIELD534956	Name: Kallye Zyballa	Desc: (null)
+index: 0xfb3 RID: 0x452 acb: 0x00020010 Account: BLACKFIELD538365	Name: Mikashitakichika Shanmugarajah	Desc: (null)
+index: 0x10e1 RID: 0x580 acb: 0x00020010 Account: BLACKFIELD541148	Name: Avilash Taueg	Desc: (null)
+index: 0x1031 RID: 0x4d0 acb: 0x00020010 Account: BLACKFIELD544934	Name: Chieung Hoytal	Desc: (null)
+index: 0x100d RID: 0x4ac acb: 0x00020010 Account: BLACKFIELD546640	Name: Youngrok Huftalin	Desc: (null)
+index: 0x103c RID: 0x4db acb: 0x00020010 Account: BLACKFIELD548394	Name: Girlyn Merewether	Desc: (null)
+index: 0x108e RID: 0x52d acb: 0x00020010 Account: BLACKFIELD548464	Name: Pankul Curtz	Desc: (null)
+index: 0xfe4 RID: 0x483 acb: 0x00020010 Account: BLACKFIELD549571	Name: Tedann Slupka	Desc: (null)
+index: 0xfb8 RID: 0x457 acb: 0x00020010 Account: BLACKFIELD553715	Name: Saranette Maskil	Desc: (null)
+index: 0x1046 RID: 0x4e5 acb: 0x00020010 Account: BLACKFIELD558867	Name: Breckh Lostal	Desc: (null)
+index: 0xfd7 RID: 0x476 acb: 0x00020010 Account: BLACKFIELD561870	Name: Anakin Maceldon	Desc: (null)
+index: 0x1085 RID: 0x524 acb: 0x00020010 Account: BLACKFIELD566117	Name: Jumel Behmoiras	Desc: (null)
+index: 0x100e RID: 0x4ad acb: 0x00020010 Account: BLACKFIELD569313	Name: Erdit Sariotti	Desc: (null)
+index: 0x1019 RID: 0x4b8 acb: 0x00020010 Account: BLACKFIELD569653	Name: Mynga Hoerauf	Desc: (null)
+index: 0xfcc RID: 0x46b acb: 0x00020010 Account: BLACKFIELD573498	Name: Salahaldin Hederian	Desc: (null)
+index: 0x1043 RID: 0x4e2 acb: 0x00020010 Account: BLACKFIELD576233	Name: Maryvette Attravanam	Desc: (null)
+index: 0x109c RID: 0x53b acb: 0x00020010 Account: BLACKFIELD579344	Name: Thyre Ferencdo	Desc: (null)
+index: 0x1001 RID: 0x4a0 acb: 0x00020010 Account: BLACKFIELD579980	Name: Luisete Ezepek	Desc: (null)
+index: 0x10d1 RID: 0x570 acb: 0x00020010 Account: BLACKFIELD584113	Name: Sheanagh Abdulagatov	Desc: (null)
+index: 0x108f RID: 0x52e acb: 0x00020010 Account: BLACKFIELD586592	Name: Desiderato Kemesies	Desc: (null)
+index: 0x101d RID: 0x4bc acb: 0x00020010 Account: BLACKFIELD586934	Name: Jennalyn Djouka	Desc: (null)
+index: 0x10ce RID: 0x56d acb: 0x00020010 Account: BLACKFIELD591846	Name: Agita Masalunga	Desc: (null)
+index: 0xfdb RID: 0x47a acb: 0x00020010 Account: BLACKFIELD592556	Name: Tanyetta Kauten	Desc: (null)
+index: 0x10c5 RID: 0x564 acb: 0x00020010 Account: BLACKFIELD594619	Name: Marielis Arcynski	Desc: (null)
+index: 0xfbf RID: 0x45e acb: 0x00020010 Account: BLACKFIELD600999	Name: Jan Angvall	Desc: (null)
+index: 0xfcb RID: 0x46a acb: 0x00020010 Account: BLACKFIELD601590	Name: Jongluck Shuselvt	Desc: (null)
+index: 0x1028 RID: 0x4c7 acb: 0x00020010 Account: BLACKFIELD602567	Name: Rikha Stuehringer	Desc: (null)
+index: 0xff2 RID: 0x491 acb: 0x00020010 Account: BLACKFIELD606328	Name: Svanhvít Moyta	Desc: (null)
+index: 0x1015 RID: 0x4b4 acb: 0x00020010 Account: BLACKFIELD606964	Name: Bjørnar Zandonella	Desc: (null)
+index: 0xff8 RID: 0x497 acb: 0x00020010 Account: BLACKFIELD607290	Name: Casma Morcillo	Desc: (null)
+index: 0x1018 RID: 0x4b7 acb: 0x00020010 Account: BLACKFIELD608914	Name: Aadra Bekesz	Desc: (null)
+index: 0x1091 RID: 0x530 acb: 0x00020010 Account: BLACKFIELD609423	Name: Aeza Champken	Desc: (null)
+index: 0x103d RID: 0x4dc acb: 0x00020010 Account: BLACKFIELD611993	Name: Bipen Erdossy	Desc: (null)
+index: 0x10ba RID: 0x559 acb: 0x00020010 Account: BLACKFIELD613771	Name: Soribel Raustiala	Desc: (null)
+index: 0xfc7 RID: 0x466 acb: 0x00020010 Account: BLACKFIELD616527	Name: Soonu Dellabitta	Desc: (null)
+index: 0x1086 RID: 0x525 acb: 0x00020010 Account: BLACKFIELD617630	Name: Zariyati Krenselewski	Desc: (null)
+index: 0xfdc RID: 0x47b acb: 0x00020010 Account: BLACKFIELD618519	Name: Romkaew Poretsky	Desc: (null)
+index: 0xfba RID: 0x459 acb: 0x00020010 Account: BLACKFIELD622501	Name: Flordelia Baldwind	Desc: (null)
+index: 0x1075 RID: 0x514 acb: 0x00020010 Account: BLACKFIELD623122	Name: Abdulasis Rotella	Desc: (null)
+index: 0x1059 RID: 0x4f8 acb: 0x00020010 Account: BLACKFIELD624385	Name: Sheneda Lewrie	Desc: (null)
+index: 0x10cd RID: 0x56c acb: 0x00020010 Account: BLACKFIELD631162	Name: Haehling Blaziewske	Desc: (null)
+index: 0x10d8 RID: 0x577 acb: 0x00020010 Account: BLACKFIELD631599	Name: Esfir Kmilanovic	Desc: (null)
+index: 0x10bb RID: 0x55a acb: 0x00020010 Account: BLACKFIELD632329	Name: Touti Caffo	Desc: (null)
+index: 0x10ad RID: 0x54c acb: 0x00020010 Account: BLACKFIELD634593	Name: Keeva Mibach	Desc: (null)
+index: 0x10a2 RID: 0x541 acb: 0x00020010 Account: BLACKFIELD635996	Name: Tonnii Lintlop	Desc: (null)
+index: 0x1066 RID: 0x505 acb: 0x00020010 Account: BLACKFIELD639103	Name: Lisanka Barhamand	Desc: (null)
+index: 0x1051 RID: 0x4f0 acb: 0x00020010 Account: BLACKFIELD644281	Name: Mohanakrish Tipirneni	Desc: (null)
+index: 0x109b RID: 0x53a acb: 0x00020010 Account: BLACKFIELD651599	Name: Dontaiz Priporov	Desc: (null)
+index: 0x1089 RID: 0x528 acb: 0x00020010 Account: BLACKFIELD652779	Name: Sacaura Alguwaihes	Desc: (null)
+index: 0x10e4 RID: 0x583 acb: 0x00020010 Account: BLACKFIELD653097	Name: Emad Caratenuto	Desc: (null)
+index: 0x10db RID: 0x57a acb: 0x00020010 Account: BLACKFIELD657263	Name: Johnalee Leytushsenior	Desc: (null)
+index: 0x108a RID: 0x529 acb: 0x00020010 Account: BLACKFIELD665997	Name: Gaindaa Belithe	Desc: (null)
+index: 0x1045 RID: 0x4e4 acb: 0x00020010 Account: BLACKFIELD673073	Name: Anntrees Csonaki	Desc: (null)
+index: 0x1044 RID: 0x4e3 acb: 0x00020010 Account: BLACKFIELD676303	Name: Toreyan Cassalom	Desc: (null)
+index: 0x1035 RID: 0x4d4 acb: 0x00020010 Account: BLACKFIELD680939	Name: Nikela Bellibas	Desc: (null)
+index: 0x107d RID: 0x51c acb: 0x00020010 Account: BLACKFIELD682842	Name: Lindi Loeradeavilez	Desc: (null)
+index: 0x10c7 RID: 0x566 acb: 0x00020010 Account: BLACKFIELD682949	Name: Shubhro Chatin	Desc: (null)
+index: 0x104f RID: 0x4ee acb: 0x00020010 Account: BLACKFIELD683323	Name: Mirikate Lapesh	Desc: (null)
+index: 0x10b1 RID: 0x550 acb: 0x00020010 Account: BLACKFIELD684814	Name: Isheeta Kotecky	Desc: (null)
+index: 0x102e RID: 0x4cd acb: 0x00020010 Account: BLACKFIELD686428	Name: Taqim Stausland	Desc: (null)
+index: 0x1054 RID: 0x4f3 acb: 0x00020010 Account: BLACKFIELD690642	Name: Samyukta Golds	Desc: (null)
+index: 0x1094 RID: 0x533 acb: 0x00020010 Account: BLACKFIELD691480	Name: Afkham Chiucarello	Desc: (null)
+index: 0x1026 RID: 0x4c5 acb: 0x00020010 Account: BLACKFIELD694429	Name: Brihgid Novrotsky	Desc: (null)
+index: 0xff6 RID: 0x495 acb: 0x00020010 Account: BLACKFIELD695166	Name: Yangchi Kivlen	Desc: (null)
+index: 0x1073 RID: 0x512 acb: 0x00020010 Account: BLACKFIELD697473	Name: Timotej Tim Musselli	Desc: (null)
+index: 0x1077 RID: 0x516 acb: 0x00020010 Account: BLACKFIELD701303	Name: Achalesh Pustulka	Desc: (null)
+index: 0x104c RID: 0x4eb acb: 0x00020010 Account: BLACKFIELD704154	Name: Marysue Merezio	Desc: (null)
+index: 0xfb6 RID: 0x455 acb: 0x00020010 Account: BLACKFIELD706381	Name: Yafreisy Seturino	Desc: (null)
+index: 0x1098 RID: 0x537 acb: 0x00020010 Account: BLACKFIELD710285	Name: Ibrahiym Christijr	Desc: (null)
+index: 0x1023 RID: 0x4c2 acb: 0x00020010 Account: BLACKFIELD713470	Name: Kamaldei Cyster	Desc: (null)
+index: 0x1087 RID: 0x526 acb: 0x00020010 Account: BLACKFIELD717683	Name: Sobhie Dhodapkar	Desc: (null)
+index: 0x1048 RID: 0x4e7 acb: 0x00020010 Account: BLACKFIELD724669	Name: Zukukachishikimiku Scozzari	Desc: (null)
+index: 0xfc3 RID: 0x462 acb: 0x00020010 Account: BLACKFIELD727512	Name: Althaf Neusse	Desc: (null)
+index: 0x1036 RID: 0x4d5 acb: 0x00020010 Account: BLACKFIELD732035	Name: Myte Vanarsdel	Desc: (null)
+index: 0x10c0 RID: 0x55f acb: 0x00020010 Account: BLACKFIELD739227	Name: Kuregiy Shievitz	Desc: (null)
+index: 0x1010 RID: 0x4af acb: 0x00020010 Account: BLACKFIELD739659	Name: Tomecia Oust	Desc: (null)
+index: 0x101f RID: 0x4be acb: 0x00020010 Account: BLACKFIELD739765	Name: Unjum Marylebone	Desc: (null)
+index: 0x100f RID: 0x4ae acb: 0x00020010 Account: BLACKFIELD744790	Name: Utka Pyrke	Desc: (null)
+index: 0xfde RID: 0x47d acb: 0x00020010 Account: BLACKFIELD753480	Name: Alexadra Wangenheim	Desc: (null)
+index: 0x1033 RID: 0x4d2 acb: 0x00020010 Account: BLACKFIELD753537	Name: Afrina Kruppe	Desc: (null)
+index: 0x10e0 RID: 0x57f acb: 0x00020010 Account: BLACKFIELD758945	Name: Sujah Fadrigalan	Desc: (null)
+index: 0xff7 RID: 0x496 acb: 0x00020010 Account: BLACKFIELD759042	Name: Shoichi Grifasi	Desc: (null)
+index: 0x101a RID: 0x4b9 acb: 0x00020010 Account: BLACKFIELD759079	Name: Raghdan Wissore	Desc: (null)
+index: 0x1022 RID: 0x4c1 acb: 0x00020010 Account: BLACKFIELD763893	Name: Claudace Akbari	Desc: (null)
+index: 0xfb2 RID: 0x451 acb: 0x00020010 Account: BLACKFIELD764430	Name: Nwenna Mrdirk	Desc: (null)
+index: 0x1049 RID: 0x4e8 acb: 0x00020010 Account: BLACKFIELD765350	Name: Nontakam Ronges	Desc: (null)
+index: 0x1076 RID: 0x515 acb: 0x00020010 Account: BLACKFIELD765982	Name: Dongxin Matuka	Desc: (null)
+index: 0x10a6 RID: 0x545 acb: 0x00020010 Account: BLACKFIELD767498	Name: Nashib Vanpraet	Desc: (null)
+index: 0xfe3 RID: 0x482 acb: 0x00020010 Account: BLACKFIELD767820	Name: Eugenne Pryar	Desc: (null)
+index: 0xfe6 RID: 0x485 acb: 0x00020010 Account: BLACKFIELD768095	Name: Tesea Eiselt	Desc: (null)
+index: 0x105f RID: 0x4fe acb: 0x00020010 Account: BLACKFIELD773118	Name: Bernou Geminski	Desc: (null)
+index: 0x1038 RID: 0x4d7 acb: 0x00020010 Account: BLACKFIELD773423	Name: Yamisi Skoropada	Desc: (null)
+index: 0x1042 RID: 0x4e1 acb: 0x00020010 Account: BLACKFIELD774376	Name: Nikcole Goddanti	Desc: (null)
+index: 0x1002 RID: 0x4a1 acb: 0x00020010 Account: BLACKFIELD775126	Name: Noerah Dikoka	Desc: (null)
+index: 0xfce RID: 0x46d acb: 0x00020010 Account: BLACKFIELD775986	Name: Aphay Zigmunt	Desc: (null)
+index: 0x106a RID: 0x509 acb: 0x00020010 Account: BLACKFIELD781404	Name: Junet Kondziola	Desc: (null)
+index: 0xfbb RID: 0x45a acb: 0x00020010 Account: BLACKFIELD787464	Name: Marlon Tonuri	Desc: (null)
+index: 0x106b RID: 0x50a acb: 0x00020010 Account: BLACKFIELD787995	Name: Sungchang Silex	Desc: (null)
+index: 0x1097 RID: 0x536 acb: 0x00020010 Account: BLACKFIELD788523	Name: Paparao Mendlinger	Desc: (null)
+index: 0x109e RID: 0x53d acb: 0x00020010 Account: BLACKFIELD789969	Name: Aendenne Shadaia	Desc: (null)
+index: 0x10b2 RID: 0x551 acb: 0x00020010 Account: BLACKFIELD792484	Name: Agisilaos Benzies	Desc: (null)
+index: 0x1025 RID: 0x4c4 acb: 0x00020010 Account: BLACKFIELD793029	Name: Zorione Alatti	Desc: (null)
+index: 0xff3 RID: 0x492 acb: 0x00020010 Account: BLACKFIELD796301	Name: Anang Kollolli	Desc: (null)
+index: 0x1027 RID: 0x4c6 acb: 0x00020010 Account: BLACKFIELD802251	Name: Huiyao Cunnally	Desc: (null)
+index: 0x10b3 RID: 0x552 acb: 0x00020010 Account: BLACKFIELD802875	Name: Anzej Klado	Desc: (null)
+index: 0x107e RID: 0x51d acb: 0x00020010 Account: BLACKFIELD813266	Name: Torill Zumpella	Desc: (null)
+index: 0x105a RID: 0x4f9 acb: 0x00020010 Account: BLACKFIELD818863	Name: Eursella Frixione	Desc: (null)
+index: 0x101e RID: 0x4bd acb: 0x00020010 Account: BLACKFIELD819822	Name: Valerija Marija Chiuccariello	Desc: (null)
+index: 0xff5 RID: 0x494 acb: 0x00020010 Account: BLACKFIELD820995	Name: Sandtrell Bouzane	Desc: (null)
+index: 0x106e RID: 0x50d acb: 0x00020010 Account: BLACKFIELD826622	Name: Lakeitha Kirousis	Desc: (null)
+index: 0x10c1 RID: 0x560 acb: 0x00020010 Account: BLACKFIELD827906	Name: Subhek Wynigear	Desc: (null)
+index: 0x103b RID: 0x4da acb: 0x00020010 Account: BLACKFIELD828826	Name: Jaquelina Shoenherr	Desc: (null)
+index: 0xfe7 RID: 0x486 acb: 0x00020010 Account: BLACKFIELD835725	Name: Chunhong Selters	Desc: (null)
+index: 0xfdf RID: 0x47e acb: 0x00020010 Account: BLACKFIELD837541	Name: Benayga Bakajza	Desc: (null)
+index: 0x1017 RID: 0x4b6 acb: 0x00020010 Account: BLACKFIELD838710	Name: Lynnsi Karabag	Desc: (null)
+index: 0x1071 RID: 0x510 acb: 0x00020010 Account: BLACKFIELD839613	Name: Francis Broj	Desc: (null)
+index: 0xfb9 RID: 0x458 acb: 0x00020010 Account: BLACKFIELD840481	Name: Armatha Koffenburger	Desc: (null)
+index: 0x10d5 RID: 0x574 acb: 0x00020010 Account: BLACKFIELD842438	Name: Suvondra Ajowi	Desc: (null)
+index: 0x10d3 RID: 0x572 acb: 0x00020010 Account: BLACKFIELD842593	Name: Chelise Kolbo	Desc: (null)
+index: 0x1007 RID: 0x4a6 acb: 0x00020010 Account: BLACKFIELD843883	Name: Dorgia Meherek	Desc: (null)
+index: 0x107c RID: 0x51b acb: 0x00020010 Account: BLACKFIELD848660	Name: Bethzaida Carmitcheal	Desc: (null)
+index: 0x109d RID: 0x53c acb: 0x00020010 Account: BLACKFIELD859776	Name: Eimis Boley	Desc: (null)
+index: 0x1053 RID: 0x4f2 acb: 0x00020010 Account: BLACKFIELD868068	Name: Rittenband Baliukonis	Desc: (null)
+index: 0xfbd RID: 0x45c acb: 0x00020010 Account: BLACKFIELD869335	Name: Learose Yturbe	Desc: (null)
+index: 0x10ab RID: 0x54a acb: 0x00020010 Account: BLACKFIELD871753	Name: Ekkart Featherling	Desc: (null)
+index: 0x1020 RID: 0x4bf acb: 0x00020010 Account: BLACKFIELD875008	Name: Weicai Zelazny	Desc: (null)
+index: 0x1008 RID: 0x4a7 acb: 0x00020010 Account: BLACKFIELD876916	Name: Stephaniee Eulert	Desc: (null)
+index: 0xfff RID: 0x49e acb: 0x00020010 Account: BLACKFIELD877328	Name: Dynell Vogleson	Desc: (null)
+index: 0xfc9 RID: 0x468 acb: 0x00020010 Account: BLACKFIELD883784	Name: Partchapol Provencer	Desc: (null)
+index: 0x10c9 RID: 0x568 acb: 0x00020010 Account: BLACKFIELD884808	Name: Yitschak Nyirenda	Desc: (null)
+index: 0xfc0 RID: 0x45f acb: 0x00020010 Account: BLACKFIELD894905	Name: Bliksem Consultant	Desc: (null)
+index: 0x1096 RID: 0x535 acb: 0x00020010 Account: BLACKFIELD895235	Name: Poying Gegnas	Desc: (null)
+index: 0x10cf RID: 0x56e acb: 0x00020010 Account: BLACKFIELD896715	Name: Daile Cecere	Desc: (null)
+index: 0x105e RID: 0x4fd acb: 0x00020010 Account: BLACKFIELD898237	Name: Kshama Mahalik	Desc: (null)
+index: 0x10cb RID: 0x56a acb: 0x00020010 Account: BLACKFIELD899238	Name: Eliberta Katkowsky	Desc: (null)
+index: 0x1014 RID: 0x4b3 acb: 0x00020010 Account: BLACKFIELD899433	Name: Ahmard Navay	Desc: (null)
+index: 0x1068 RID: 0x507 acb: 0x00020010 Account: BLACKFIELD907614	Name: Absylom Okleshen	Desc: (null)
+index: 0xfca RID: 0x469 acb: 0x00020010 Account: BLACKFIELD908329	Name: Fauna Pflum	Desc: (null)
+index: 0xfd4 RID: 0x473 acb: 0x00020010 Account: BLACKFIELD909590	Name: Kimiyoshi Coltart	Desc: (null)
+index: 0x106c RID: 0x50b acb: 0x00020010 Account: BLACKFIELD911926	Name: Kayty Rasmor	Desc: (null)
+index: 0x1011 RID: 0x4b0 acb: 0x00020010 Account: BLACKFIELD926559	Name: Baotai Beloucif	Desc: (null)
+index: 0x100c RID: 0x4ab acb: 0x00020010 Account: BLACKFIELD932709	Name: Bronwin Rigiero	Desc: (null)
+index: 0x1067 RID: 0x506 acb: 0x00020010 Account: BLACKFIELD933887	Name: Cymen Dufrasne	Desc: (null)
+index: 0xfb7 RID: 0x456 acb: 0x00020010 Account: BLACKFIELD937395	Name: Olasoji Bushey	Desc: (null)
+index: 0x105b RID: 0x4fa acb: 0x00020010 Account: BLACKFIELD939200	Name: Tekajitofu Awaysheh	Desc: (null)
+index: 0x1040 RID: 0x4df acb: 0x00020010 Account: BLACKFIELD939243	Name: Laupule Hyungkim	Desc: (null)
+index: 0x10bf RID: 0x55e acb: 0x00020010 Account: BLACKFIELD946435	Name: Govnd Roswurm	Desc: (null)
+index: 0x108c RID: 0x52b acb: 0x00020010 Account: BLACKFIELD946509	Name: Xavierre Dadant	Desc: (null)
+index: 0x1084 RID: 0x523 acb: 0x00020010 Account: BLACKFIELD962495	Name: Mohamediqbal Temko	Desc: (null)
+index: 0x10a0 RID: 0x53f acb: 0x00020010 Account: BLACKFIELD962999	Name: Mokhtar Hatziantoniou	Desc: (null)
+index: 0x1012 RID: 0x4b1 acb: 0x00020010 Account: BLACKFIELD969352	Name: Juror Scima	Desc: (null)
+index: 0x1079 RID: 0x518 acb: 0x00020010 Account: BLACKFIELD971417	Name: Ateequlla Nesterova	Desc: (null)
+index: 0x10aa RID: 0x549 acb: 0x00020010 Account: BLACKFIELD978938	Name: Jathy Pistachio	Desc: (null)
+index: 0x102a RID: 0x4c9 acb: 0x00020010 Account: BLACKFIELD990638	Name: Kausalai Dorney	Desc: (null)
+index: 0x1069 RID: 0x508 acb: 0x00020010 Account: BLACKFIELD991588	Name: Gadea Hisek	Desc: (null)
+index: 0x104e RID: 0x4ed acb: 0x00020010 Account: BLACKFIELD994577	Name: Abdulwali Higchens	Desc: (null)
+index: 0x1006 RID: 0x4a5 acb: 0x00020010 Account: BLACKFIELD995218	Name: Warline Verzhbytska	Desc: (null)
+index: 0x10e3 RID: 0x582 acb: 0x00020010 Account: BLACKFIELD996878	Name: Oceana Belghazi	Desc: (null)
+index: 0xffb RID: 0x49a acb: 0x00020010 Account: BLACKFIELD997545	Name: Dawnielle Medeme	Desc: (null)
+index: 0x108b RID: 0x52a acb: 0x00020010 Account: BLACKFIELD998321	Name: Priyankar Capperella	Desc: (null)
+index: 0xedb RID: 0x1f5 acb: 0x00000214 Account: Guest	Name: (null)	Desc: Built-in account for guest access to the computer/domain
+index: 0xf10 RID: 0x1f6 acb: 0x00020011 Account: krbtgt	Name: (null)	Desc: Key Distribution Center Service Account
+index: 0x10eb RID: 0x586 acb: 0x00000210 Account: lydericlefebvre	Name: Lydéric aas. Lefebvre	Desc: @lydericlefebvre - VM Creator
+index: 0xfb1 RID: 0x450 acb: 0x00010210 Account: support	Name: (null)	Desc: (null)
+index: 0x10e6 RID: 0x585 acb: 0x00000210 Account: svc_backup	Name: (null)	Desc: (null)
+
+[33m
+[V] [0m[35mAttempting to get userlist with command: rpcclient -W 'WORKGROUP' -c enumdomusers -U'support'%'#00^BlackKnight' '10.129.229.17' 2>&1
+
+[0muser:[Administrator] rid:[0x1f4]
+user:[Guest] rid:[0x1f5]
+user:[krbtgt] rid:[0x1f6]
+user:[audit2020] rid:[0x44f]
+user:[support] rid:[0x450]
+user:[BLACKFIELD764430] rid:[0x451]
+user:[BLACKFIELD538365] rid:[0x452]
+user:[BLACKFIELD189208] rid:[0x453]
+user:[BLACKFIELD404458] rid:[0x454]
+user:[BLACKFIELD706381] rid:[0x455]
+user:[BLACKFIELD937395] rid:[0x456]
+user:[BLACKFIELD553715] rid:[0x457]
+user:[BLACKFIELD840481] rid:[0x458]
+user:[BLACKFIELD622501] rid:[0x459]
+user:[BLACKFIELD787464] rid:[0x45a]
+user:[BLACKFIELD163183] rid:[0x45b]
+user:[BLACKFIELD869335] rid:[0x45c]
+user:[BLACKFIELD319016] rid:[0x45d]
+user:[BLACKFIELD600999] rid:[0x45e]
+user:[BLACKFIELD894905] rid:[0x45f]
+user:[BLACKFIELD253541] rid:[0x460]
+user:[BLACKFIELD175204] rid:[0x461]
+user:[BLACKFIELD727512] rid:[0x462]
+user:[BLACKFIELD227380] rid:[0x463]
+user:[BLACKFIELD251003] rid:[0x464]
+user:[BLACKFIELD129328] rid:[0x465]
+user:[BLACKFIELD616527] rid:[0x466]
+user:[BLACKFIELD533551] rid:[0x467]
+user:[BLACKFIELD883784] rid:[0x468]
+user:[BLACKFIELD908329] rid:[0x469]
+user:[BLACKFIELD601590] rid:[0x46a]
+user:[BLACKFIELD573498] rid:[0x46b]
+user:[BLACKFIELD290325] rid:[0x46c]
+user:[BLACKFIELD775986] rid:[0x46d]
+user:[BLACKFIELD348433] rid:[0x46e]
+user:[BLACKFIELD196444] rid:[0x46f]
+user:[BLACKFIELD137694] rid:[0x470]
+user:[BLACKFIELD533886] rid:[0x471]
+user:[BLACKFIELD268320] rid:[0x472]
+user:[BLACKFIELD909590] rid:[0x473]
+user:[BLACKFIELD136813] rid:[0x474]
+user:[BLACKFIELD358090] rid:[0x475]
+user:[BLACKFIELD561870] rid:[0x476]
+user:[BLACKFIELD269538] rid:[0x477]
+user:[BLACKFIELD169035] rid:[0x478]
+user:[BLACKFIELD118321] rid:[0x479]
+user:[BLACKFIELD592556] rid:[0x47a]
+user:[BLACKFIELD618519] rid:[0x47b]
+user:[BLACKFIELD329802] rid:[0x47c]
+user:[BLACKFIELD753480] rid:[0x47d]
+user:[BLACKFIELD837541] rid:[0x47e]
+user:[BLACKFIELD186980] rid:[0x47f]
+user:[BLACKFIELD419600] rid:[0x480]
+user:[BLACKFIELD220786] rid:[0x481]
+user:[BLACKFIELD767820] rid:[0x482]
+user:[BLACKFIELD549571] rid:[0x483]
+user:[BLACKFIELD411740] rid:[0x484]
+user:[BLACKFIELD768095] rid:[0x485]
+user:[BLACKFIELD835725] rid:[0x486]
+user:[BLACKFIELD251977] rid:[0x487]
+user:[BLACKFIELD430864] rid:[0x488]
+user:[BLACKFIELD413242] rid:[0x489]
+user:[BLACKFIELD464763] rid:[0x48a]
+user:[BLACKFIELD266096] rid:[0x48b]
+user:[BLACKFIELD334058] rid:[0x48c]
+user:[BLACKFIELD404213] rid:[0x48d]
+user:[BLACKFIELD219324] rid:[0x48e]
+user:[BLACKFIELD412798] rid:[0x48f]
+user:[BLACKFIELD441593] rid:[0x490]
+user:[BLACKFIELD606328] rid:[0x491]
+user:[BLACKFIELD796301] rid:[0x492]
+user:[BLACKFIELD415829] rid:[0x493]
+user:[BLACKFIELD820995] rid:[0x494]
+user:[BLACKFIELD695166] rid:[0x495]
+user:[BLACKFIELD759042] rid:[0x496]
+user:[BLACKFIELD607290] rid:[0x497]
+user:[BLACKFIELD229506] rid:[0x498]
+user:[BLACKFIELD256791] rid:[0x499]
+user:[BLACKFIELD997545] rid:[0x49a]
+user:[BLACKFIELD114762] rid:[0x49b]
+user:[BLACKFIELD321206] rid:[0x49c]
+user:[BLACKFIELD195757] rid:[0x49d]
+user:[BLACKFIELD877328] rid:[0x49e]
+user:[BLACKFIELD446463] rid:[0x49f]
+user:[BLACKFIELD579980] rid:[0x4a0]
+user:[BLACKFIELD775126] rid:[0x4a1]
+user:[BLACKFIELD429587] rid:[0x4a2]
+user:[BLACKFIELD534956] rid:[0x4a3]
+user:[BLACKFIELD315276] rid:[0x4a4]
+user:[BLACKFIELD995218] rid:[0x4a5]
+user:[BLACKFIELD843883] rid:[0x4a6]
+user:[BLACKFIELD876916] rid:[0x4a7]
+user:[BLACKFIELD382769] rid:[0x4a8]
+user:[BLACKFIELD194732] rid:[0x4a9]
+user:[BLACKFIELD191416] rid:[0x4aa]
+user:[BLACKFIELD932709] rid:[0x4ab]
+user:[BLACKFIELD546640] rid:[0x4ac]
+user:[BLACKFIELD569313] rid:[0x4ad]
+user:[BLACKFIELD744790] rid:[0x4ae]
+user:[BLACKFIELD739659] rid:[0x4af]
+user:[BLACKFIELD926559] rid:[0x4b0]
+user:[BLACKFIELD969352] rid:[0x4b1]
+user:[BLACKFIELD253047] rid:[0x4b2]
+user:[BLACKFIELD899433] rid:[0x4b3]
+user:[BLACKFIELD606964] rid:[0x4b4]
+user:[BLACKFIELD385719] rid:[0x4b5]
+user:[BLACKFIELD838710] rid:[0x4b6]
+user:[BLACKFIELD608914] rid:[0x4b7]
+user:[BLACKFIELD569653] rid:[0x4b8]
+user:[BLACKFIELD759079] rid:[0x4b9]
+user:[BLACKFIELD488531] rid:[0x4ba]
+user:[BLACKFIELD160610] rid:[0x4bb]
+user:[BLACKFIELD586934] rid:[0x4bc]
+user:[BLACKFIELD819822] rid:[0x4bd]
+user:[BLACKFIELD739765] rid:[0x4be]
+user:[BLACKFIELD875008] rid:[0x4bf]
+user:[BLACKFIELD441759] rid:[0x4c0]
+user:[BLACKFIELD763893] rid:[0x4c1]
+user:[BLACKFIELD713470] rid:[0x4c2]
+user:[BLACKFIELD131771] rid:[0x4c3]
+user:[BLACKFIELD793029] rid:[0x4c4]
+user:[BLACKFIELD694429] rid:[0x4c5]
+user:[BLACKFIELD802251] rid:[0x4c6]
+user:[BLACKFIELD602567] rid:[0x4c7]
+user:[BLACKFIELD328983] rid:[0x4c8]
+user:[BLACKFIELD990638] rid:[0x4c9]
+user:[BLACKFIELD350809] rid:[0x4ca]
+user:[BLACKFIELD405242] rid:[0x4cb]
+user:[BLACKFIELD267457] rid:[0x4cc]
+user:[BLACKFIELD686428] rid:[0x4cd]
+user:[BLACKFIELD478828] rid:[0x4ce]
+user:[BLACKFIELD129387] rid:[0x4cf]
+user:[BLACKFIELD544934] rid:[0x4d0]
+user:[BLACKFIELD115148] rid:[0x4d1]
+user:[BLACKFIELD753537] rid:[0x4d2]
+user:[BLACKFIELD416532] rid:[0x4d3]
+user:[BLACKFIELD680939] rid:[0x4d4]
+user:[BLACKFIELD732035] rid:[0x4d5]
+user:[BLACKFIELD522135] rid:[0x4d6]
+user:[BLACKFIELD773423] rid:[0x4d7]
+user:[BLACKFIELD371669] rid:[0x4d8]
+user:[BLACKFIELD252379] rid:[0x4d9]
+user:[BLACKFIELD828826] rid:[0x4da]
+user:[BLACKFIELD548394] rid:[0x4db]
+user:[BLACKFIELD611993] rid:[0x4dc]
+user:[BLACKFIELD192642] rid:[0x4dd]
+user:[BLACKFIELD106360] rid:[0x4de]
+user:[BLACKFIELD939243] rid:[0x4df]
+user:[BLACKFIELD230515] rid:[0x4e0]
+user:[BLACKFIELD774376] rid:[0x4e1]
+user:[BLACKFIELD576233] rid:[0x4e2]
+user:[BLACKFIELD676303] rid:[0x4e3]
+user:[BLACKFIELD673073] rid:[0x4e4]
+user:[BLACKFIELD558867] rid:[0x4e5]
+user:[BLACKFIELD184482] rid:[0x4e6]
+user:[BLACKFIELD724669] rid:[0x4e7]
+user:[BLACKFIELD765350] rid:[0x4e8]
+user:[BLACKFIELD411132] rid:[0x4e9]
+user:[BLACKFIELD128775] rid:[0x4ea]
+user:[BLACKFIELD704154] rid:[0x4eb]
+user:[BLACKFIELD107197] rid:[0x4ec]
+user:[BLACKFIELD994577] rid:[0x4ed]
+user:[BLACKFIELD683323] rid:[0x4ee]
+user:[BLACKFIELD433476] rid:[0x4ef]
+user:[BLACKFIELD644281] rid:[0x4f0]
+user:[BLACKFIELD195953] rid:[0x4f1]
+user:[BLACKFIELD868068] rid:[0x4f2]
+user:[BLACKFIELD690642] rid:[0x4f3]
+user:[BLACKFIELD465267] rid:[0x4f4]
+user:[BLACKFIELD199889] rid:[0x4f5]
+user:[BLACKFIELD468839] rid:[0x4f6]
+user:[BLACKFIELD348835] rid:[0x4f7]
+user:[BLACKFIELD624385] rid:[0x4f8]
+user:[BLACKFIELD818863] rid:[0x4f9]
+user:[BLACKFIELD939200] rid:[0x4fa]
+user:[BLACKFIELD135990] rid:[0x4fb]
+user:[BLACKFIELD484290] rid:[0x4fc]
+user:[BLACKFIELD898237] rid:[0x4fd]
+user:[BLACKFIELD773118] rid:[0x4fe]
+user:[BLACKFIELD148067] rid:[0x4ff]
+user:[BLACKFIELD390179] rid:[0x500]
+user:[BLACKFIELD359278] rid:[0x501]
+user:[BLACKFIELD375924] rid:[0x502]
+user:[BLACKFIELD533060] rid:[0x503]
+user:[BLACKFIELD534196] rid:[0x504]
+user:[BLACKFIELD639103] rid:[0x505]
+user:[BLACKFIELD933887] rid:[0x506]
+user:[BLACKFIELD907614] rid:[0x507]
+user:[BLACKFIELD991588] rid:[0x508]
+user:[BLACKFIELD781404] rid:[0x509]
+user:[BLACKFIELD787995] rid:[0x50a]
+user:[BLACKFIELD911926] rid:[0x50b]
+user:[BLACKFIELD146200] rid:[0x50c]
+user:[BLACKFIELD826622] rid:[0x50d]
+user:[BLACKFIELD171624] rid:[0x50e]
+user:[BLACKFIELD497216] rid:[0x50f]
+user:[BLACKFIELD839613] rid:[0x510]
+user:[BLACKFIELD428532] rid:[0x511]
+user:[BLACKFIELD697473] rid:[0x512]
+user:[BLACKFIELD291678] rid:[0x513]
+user:[BLACKFIELD623122] rid:[0x514]
+user:[BLACKFIELD765982] rid:[0x515]
+user:[BLACKFIELD701303] rid:[0x516]
+user:[BLACKFIELD250576] rid:[0x517]
+user:[BLACKFIELD971417] rid:[0x518]
+user:[BLACKFIELD160820] rid:[0x519]
+user:[BLACKFIELD385928] rid:[0x51a]
+user:[BLACKFIELD848660] rid:[0x51b]
+user:[BLACKFIELD682842] rid:[0x51c]
+user:[BLACKFIELD813266] rid:[0x51d]
+user:[BLACKFIELD274577] rid:[0x51e]
+user:[BLACKFIELD448641] rid:[0x51f]
+user:[BLACKFIELD318077] rid:[0x520]
+user:[BLACKFIELD289513] rid:[0x521]
+user:[BLACKFIELD336573] rid:[0x522]
+user:[BLACKFIELD962495] rid:[0x523]
+user:[BLACKFIELD566117] rid:[0x524]
+user:[BLACKFIELD617630] rid:[0x525]
+user:[BLACKFIELD717683] rid:[0x526]
+user:[BLACKFIELD390192] rid:[0x527]
+user:[BLACKFIELD652779] rid:[0x528]
+user:[BLACKFIELD665997] rid:[0x529]
+user:[BLACKFIELD998321] rid:[0x52a]
+user:[BLACKFIELD946509] rid:[0x52b]
+user:[BLACKFIELD228442] rid:[0x52c]
+user:[BLACKFIELD548464] rid:[0x52d]
+user:[BLACKFIELD586592] rid:[0x52e]
+user:[BLACKFIELD512331] rid:[0x52f]
+user:[BLACKFIELD609423] rid:[0x530]
+user:[BLACKFIELD395725] rid:[0x531]
+user:[BLACKFIELD438923] rid:[0x532]
+user:[BLACKFIELD691480] rid:[0x533]
+user:[BLACKFIELD236467] rid:[0x534]
+user:[BLACKFIELD895235] rid:[0x535]
+user:[BLACKFIELD788523] rid:[0x536]
+user:[BLACKFIELD710285] rid:[0x537]
+user:[BLACKFIELD357023] rid:[0x538]
+user:[BLACKFIELD362337] rid:[0x539]
+user:[BLACKFIELD651599] rid:[0x53a]
+user:[BLACKFIELD579344] rid:[0x53b]
+user:[BLACKFIELD859776] rid:[0x53c]
+user:[BLACKFIELD789969] rid:[0x53d]
+user:[BLACKFIELD356727] rid:[0x53e]
+user:[BLACKFIELD962999] rid:[0x53f]
+user:[BLACKFIELD201655] rid:[0x540]
+user:[BLACKFIELD635996] rid:[0x541]
+user:[BLACKFIELD478410] rid:[0x542]
+user:[BLACKFIELD518316] rid:[0x543]
+user:[BLACKFIELD202900] rid:[0x544]
+user:[BLACKFIELD767498] rid:[0x545]
+user:[BLACKFIELD103974] rid:[0x546]
+user:[BLACKFIELD135403] rid:[0x547]
+user:[BLACKFIELD112766] rid:[0x548]
+user:[BLACKFIELD978938] rid:[0x549]
+user:[BLACKFIELD871753] rid:[0x54a]
+user:[BLACKFIELD136203] rid:[0x54b]
+user:[BLACKFIELD634593] rid:[0x54c]
+user:[BLACKFIELD274367] rid:[0x54d]
+user:[BLACKFIELD520852] rid:[0x54e]
+user:[BLACKFIELD339143] rid:[0x54f]
+user:[BLACKFIELD684814] rid:[0x550]
+user:[BLACKFIELD792484] rid:[0x551]
+user:[BLACKFIELD802875] rid:[0x552]
+user:[BLACKFIELD383108] rid:[0x553]
+user:[BLACKFIELD318250] rid:[0x554]
+user:[BLACKFIELD496547] rid:[0x555]
+user:[BLACKFIELD219914] rid:[0x556]
+user:[BLACKFIELD454313] rid:[0x557]
+user:[BLACKFIELD460131] rid:[0x558]
+user:[BLACKFIELD613771] rid:[0x559]
+user:[BLACKFIELD632329] rid:[0x55a]
+user:[BLACKFIELD402639] rid:[0x55b]
+user:[BLACKFIELD235930] rid:[0x55c]
+user:[BLACKFIELD246388] rid:[0x55d]
+user:[BLACKFIELD946435] rid:[0x55e]
+user:[BLACKFIELD739227] rid:[0x55f]
+user:[BLACKFIELD827906] rid:[0x560]
+user:[BLACKFIELD198927] rid:[0x561]
+user:[BLACKFIELD169876] rid:[0x562]
+user:[BLACKFIELD150357] rid:[0x563]
+user:[BLACKFIELD594619] rid:[0x564]
+user:[BLACKFIELD274109] rid:[0x565]
+user:[BLACKFIELD682949] rid:[0x566]
+user:[BLACKFIELD316850] rid:[0x567]
+user:[BLACKFIELD884808] rid:[0x568]
+user:[BLACKFIELD327610] rid:[0x569]
+user:[BLACKFIELD899238] rid:[0x56a]
+user:[BLACKFIELD184493] rid:[0x56b]
+user:[BLACKFIELD631162] rid:[0x56c]
+user:[BLACKFIELD591846] rid:[0x56d]
+user:[BLACKFIELD896715] rid:[0x56e]
+user:[BLACKFIELD500073] rid:[0x56f]
+user:[BLACKFIELD584113] rid:[0x570]
+user:[BLACKFIELD204805] rid:[0x571]
+user:[BLACKFIELD842593] rid:[0x572]
+user:[BLACKFIELD397679] rid:[0x573]
+user:[BLACKFIELD842438] rid:[0x574]
+user:[BLACKFIELD286615] rid:[0x575]
+user:[BLACKFIELD224839] rid:[0x576]
+user:[BLACKFIELD631599] rid:[0x577]
+user:[BLACKFIELD247450] rid:[0x578]
+user:[BLACKFIELD290582] rid:[0x579]
+user:[BLACKFIELD657263] rid:[0x57a]
+user:[BLACKFIELD314351] rid:[0x57b]
+user:[BLACKFIELD434395] rid:[0x57c]
+user:[BLACKFIELD410243] rid:[0x57d]
+user:[BLACKFIELD307633] rid:[0x57e]
+user:[BLACKFIELD758945] rid:[0x57f]
+user:[BLACKFIELD541148] rid:[0x580]
+user:[BLACKFIELD532412] rid:[0x581]
+user:[BLACKFIELD996878] rid:[0x582]
+user:[BLACKFIELD653097] rid:[0x583]
+user:[BLACKFIELD438814] rid:[0x584]
+user:[svc_backup] rid:[0x585]
+user:[lydericlefebvre] rid:[0x586]
+
+[34m =================================( [0m[32mShare Enumeration on 10.129.229.17[0m[34m )=================================
+
+[0m[33m
+[V] [0m[35mAttempting to get share list using authentication
+
+[0mdo_connect: Connection to 10.129.229.17 failed (Error NT_STATUS_IO_TIMEOUT)
+
+	Sharename       Type      Comment
+	---------       ----      -------
+	ADMIN$          Disk      Remote Admin
+	C$              Disk      Default share
+	forensic        Disk      Forensic / Audit share.
+	IPC$            IPC       Remote IPC
+	NETLOGON        Disk      Logon server share 
+	profiles$       Disk      
+	SYSVOL          Disk      Logon server share 
+Reconnecting with SMB1 for workgroup listing.
+Unable to connect with SMB1 -- no workgroup available
+[33m
+[+] [0m[32mAttempting to map shares on 10.129.229.17
+
+[0m[33m
+[V] [0m[35mAttempting map to share //10.129.229.17/ADMIN$ with command: smbclient -W 'WORKGROUP' //'10.129.229.17'/'ADMIN$' -U'support'%'#00^BlackKnight' -c dir 2>&1
+
+[0m//10.129.229.17/ADMIN$	[35mMapping: [0mDENIED[35m Listing: [0mN/A[35m Writing: [0mN/A
+[33m
+[V] [0m[35mAttempting map to share //10.129.229.17/C$ with command: smbclient -W 'WORKGROUP' //'10.129.229.17'/'C$' -U'support'%'#00^BlackKnight' -c dir 2>&1
+
+[0m//10.129.229.17/C$	[35mMapping: [0mDENIED[35m Listing: [0mN/A[35m Writing: [0mN/A
+[33m
+[V] [0m[35mAttempting map to share //10.129.229.17/forensic with command: smbclient -W 'WORKGROUP' //'10.129.229.17'/'forensic' -U'support'%'#00^BlackKnight' -c dir 2>&1
+
+[0mtesting write access forensic
+[33m
+[V] [0m[35mChecking write access to share //10.129.229.17/forensic with command: smbclient -W 'WORKGROUP' //'10.129.229.17'/'forensic' -U'support'%'#00^BlackKnight' -c 'mkdir Doas0q5z' 2>&1
+
+[0m//10.129.229.17/forensic	[35mMapping: [0mOK[35m Listing: [0mDENIED[35m Writing: [0mDENIED
+[33m
+[V] [0m[35mAttempting map to share //10.129.229.17/IPC$ with command: smbclient -W 'WORKGROUP' //'10.129.229.17'/'IPC$' -U'support'%'#00^BlackKnight' -c dir 2>&1
+
+[0m[33m
+[E] [0m[31mCan't understand response:
+
+[0mNT_STATUS_NO_SUCH_FILE listing \*
+//10.129.229.17/IPC$	[35mMapping: [0mN/A[35m Listing: [0mN/A[35m Writing: [0mN/A
+[33m
+[V] [0m[35mAttempting map to share //10.129.229.17/NETLOGON with command: smbclient -W 'WORKGROUP' //'10.129.229.17'/'NETLOGON' -U'support'%'#00^BlackKnight' -c dir 2>&1
+
+[0mtesting write access NETLOGON
+[33m
+[V] [0m[35mChecking write access to share //10.129.229.17/NETLOGON with command: smbclient -W 'WORKGROUP' //'10.129.229.17'/'NETLOGON' -U'support'%'#00^BlackKnight' -c 'mkdir RZPEnQjH' 2>&1
+
+[0m//10.129.229.17/NETLOGON	[35mMapping: [0mOK[35m Listing: [0mOK[35m Writing: [0mDENIED
+[33m
+[V] [0m[35mAttempting map to share //10.129.229.17/profiles$ with command: smbclient -W 'WORKGROUP' //'10.129.229.17'/'profiles$' -U'support'%'#00^BlackKnight' -c dir 2>&1
+
+[0mtesting write access profiles$
+[33m
+[V] [0m[35mChecking write access to share //10.129.229.17/profiles$ with command: smbclient -W 'WORKGROUP' //'10.129.229.17'/'profiles$' -U'support'%'#00^BlackKnight' -c 'mkdir LAGEFfZT' 2>&1
+
+[0m//10.129.229.17/profiles$	[35mMapping: [0mOK[35m Listing: [0mOK[35m Writing: [0mDENIED
+[33m
+[V] [0m[35mAttempting map to share //10.129.229.17/SYSVOL with command: smbclient -W 'WORKGROUP' //'10.129.229.17'/'SYSVOL' -U'support'%'#00^BlackKnight' -c dir 2>&1
+
+[0mtesting write access SYSVOL
+[33m
+[V] [0m[35mChecking write access to share //10.129.229.17/SYSVOL with command: smbclient -W 'WORKGROUP' //'10.129.229.17'/'SYSVOL' -U'support'%'#00^BlackKnight' -c 'mkdir AHPZkaqB' 2>&1
+
+[0m//10.129.229.17/SYSVOL	[35mMapping: [0mOK[35m Listing: [0mOK[35m Writing: [0mDENIED
+
+[34m ===========================( [0m[32mPassword Policy Information for 10.129.229.17[0m[34m )===========================
+
+[0m[33m
+[V] [0m[35mAttempting to get Password Policy info with command: polenum 'support':'#00^BlackKnight'@'10.129.229.17' 2>&1
+
+[0m
+
+[+] Attaching to 10.129.229.17 using support:#00^BlackKnight
+
+[+] Trying protocol 139/SMB...
+
+	[!] Protocol failed: [Errno Connection error (10.129.229.17:139)] timed out
+
+[+] Trying protocol 445/SMB...
+
+[+] Found domain(s):
+
+	[+] BLACKFIELD
+	[+] Builtin
+
+[+] Password Info for Domain: BLACKFIELD
+
+	[+] Minimum password length: 7
+	[+] Password history length: 24
+	[+] Maximum password age: 41 days 23 hours 53 minutes 
+	[+] Password Complexity Flags: 000001
+
+		[+] Domain Refuse Password Change: 0
+		[+] Domain Password Store Cleartext: 0
+		[+] Domain Password Lockout Admins: 0
+		[+] Domain Password No Clear Change: 0
+		[+] Domain Password No Anon Change: 0
+		[+] Domain Password Complex: 1
+
+	[+] Minimum password age: 1 day 4 minutes 
+	[+] Reset Account Lockout Counter: 30 minutes 
+	[+] Locked Account Duration: 30 minutes 
+	[+] Account Lockout Threshold: None
+	[+] Forced Log off Time: Not Set
+
+[33m
+[V] [0m[35mAttempting to get Password Policy info with command: rpcclient -W 'WORKGROUP' -U'support'%'#00^BlackKnight' '10.129.229.17' -c "getdompwinfo" 2>&1
+
+[0m
+[33m
+[+] [0m[32mRetieved partial password policy with rpcclient:
+
+
+[0mPassword Complexity: Enabled
+Minimum Password Length: 7
+
+
+[34m ======================================( [0m[32mGroups on 10.129.229.17[0m[34m )======================================
+
+[0m[33m
+[V] [0m[35mGetting builtin groups with command: rpcclient -W 'WORKGROUP' -U'support'%'#00^BlackKnight' '10.129.229.17' -c 'enumalsgroups builtin' 2>&1
+
+[0m[33m
+[+] [0m[32mGetting builtin groups:
+
+[0mgroup:[Server Operators] rid:[0x225]
+group:[Account Operators] rid:[0x224]
+group:[Pre-Windows 2000 Compatible Access] rid:[0x22a]
+group:[Incoming Forest Trust Builders] rid:[0x22d]
+group:[Windows Authorization Access Group] rid:[0x230]
+group:[Terminal Server License Servers] rid:[0x231]
+group:[Administrators] rid:[0x220]
+group:[Users] rid:[0x221]
+group:[Guests] rid:[0x222]
+group:[Print Operators] rid:[0x226]
+group:[Backup Operators] rid:[0x227]
+group:[Replicator] rid:[0x228]
+group:[Remote Desktop Users] rid:[0x22b]
+group:[Network Configuration Operators] rid:[0x22c]
+group:[Performance Monitor Users] rid:[0x22e]
+group:[Performance Log Users] rid:[0x22f]
+group:[Distributed COM Users] rid:[0x232]
+group:[IIS_IUSRS] rid:[0x238]
+group:[Cryptographic Operators] rid:[0x239]
+group:[Event Log Readers] rid:[0x23d]
+group:[Certificate Service DCOM Access] rid:[0x23e]
+group:[RDS Remote Access Servers] rid:[0x23f]
+group:[RDS Endpoint Servers] rid:[0x240]
+group:[RDS Management Servers] rid:[0x241]
+group:[Hyper-V Administrators] rid:[0x242]
+group:[Access Control Assistance Operators] rid:[0x243]
+group:[Remote Management Users] rid:[0x244]
+group:[Storage Replica Administrators] rid:[0x246]
+[33m
+[+] [0m[32m Getting builtin group memberships:
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Account Operators' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Cryptographic Operators' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Access Control Assistance Operators' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Storage Replica Administrators' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Event Log Readers' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Backup Operators' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[35mGroup: [0mBackup Operators' (RID: 551) has member: BLACKFIELD\svc_backup
+[33m
+[V] [0m[35mRunning command: net rpc group members 'Remote Management Users' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[35mGroup: [0mRemote Management Users' (RID: 580) has member: BLACKFIELD\svc_backup
+[33m
+[V] [0m[35mRunning command: net rpc group members 'Incoming Forest Trust Builders' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Administrators' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[35mGroup: [0mAdministrators' (RID: 544) has member: BLACKFIELD\Administrator
+[35mGroup: [0mAdministrators' (RID: 544) has member: BLACKFIELD\Enterprise Admins
+[35mGroup: [0mAdministrators' (RID: 544) has member: BLACKFIELD\Domain Admins
+[33m
+[V] [0m[35mRunning command: net rpc group members 'Hyper-V Administrators' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Replicator' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Network Configuration Operators' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'RDS Management Servers' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Guests' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[35mGroup: [0mGuests' (RID: 546) has member: BLACKFIELD\Guest
+[35mGroup: [0mGuests' (RID: 546) has member: BLACKFIELD\Domain Guests
+[33m
+[V] [0m[35mRunning command: net rpc group members 'Server Operators' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Print Operators' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Windows Authorization Access Group' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[35mGroup: [0mWindows Authorization Access Group' (RID: 560) has member: NT AUTHORITY\ENTERPRISE DOMAIN CONTROLLERS
+[33m
+[V] [0m[35mRunning command: net rpc group members 'Remote Desktop Users' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Performance Log Users' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'RDS Endpoint Servers' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Distributed COM Users' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Pre-Windows 2000 Compatible Access' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[35mGroup: [0mPre-Windows 2000 Compatible Access' (RID: 554) has member: NT AUTHORITY\Authenticated Users
+[33m
+[V] [0m[35mRunning command: net rpc group members 'RDS Remote Access Servers' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'IIS_IUSRS' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[35mGroup: [0mIIS_IUSRS' (RID: 568) has member: NT AUTHORITY\IUSR
+[33m
+[V] [0m[35mRunning command: net rpc group members 'Users' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[35mGroup: [0mUsers' (RID: 545) has member: NT AUTHORITY\INTERACTIVE
+[35mGroup: [0mUsers' (RID: 545) has member: NT AUTHORITY\Authenticated Users
+[35mGroup: [0mUsers' (RID: 545) has member: BLACKFIELD\Domain Users
+[33m
+[V] [0m[35mRunning command: net rpc group members 'Terminal Server License Servers' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Performance Monitor Users' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Certificate Service DCOM Access' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mGetting local groups with command: rpcclient -W 'WORKGROUP' -U'support'%'#00^BlackKnight' '10.129.229.17' -c 'enumalsgroups domain' 2>&1
+
+[0m[33m
+[+] [0m[32m Getting local groups:
+
+[0mgroup:[Cert Publishers] rid:[0x205]
+group:[RAS and IAS Servers] rid:[0x229]
+group:[Allowed RODC Password Replication Group] rid:[0x23b]
+group:[Denied RODC Password Replication Group] rid:[0x23c]
+group:[DnsAdmins] rid:[0x44d]
+[33m
+[+] [0m[32m Getting local group memberships:
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'DnsAdmins' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Cert Publishers' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Allowed RODC Password Replication Group' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Denied RODC Password Replication Group' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[35mGroup: [0mDenied RODC Password Replication Group' (RID: 572) has member: BLACKFIELD\krbtgt
+[35mGroup: [0mDenied RODC Password Replication Group' (RID: 572) has member: BLACKFIELD\Domain Controllers
+[35mGroup: [0mDenied RODC Password Replication Group' (RID: 572) has member: BLACKFIELD\Schema Admins
+[35mGroup: [0mDenied RODC Password Replication Group' (RID: 572) has member: BLACKFIELD\Enterprise Admins
+[35mGroup: [0mDenied RODC Password Replication Group' (RID: 572) has member: BLACKFIELD\Cert Publishers
+[35mGroup: [0mDenied RODC Password Replication Group' (RID: 572) has member: BLACKFIELD\Domain Admins
+[35mGroup: [0mDenied RODC Password Replication Group' (RID: 572) has member: BLACKFIELD\Group Policy Creator Owners
+[35mGroup: [0mDenied RODC Password Replication Group' (RID: 572) has member: BLACKFIELD\Read-only Domain Controllers
+[33m
+[V] [0m[35mRunning command: net rpc group members 'RAS and IAS Servers' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mGetting domain groups with command: rpcclient -W 'WORKGROUP' -U'support'%'#00^BlackKnight' '10.129.229.17' -c "enumdomgroups" 2>&1
+
+[0m[33m
+[+] [0m[32m Getting domain groups:
+
+[0mgroup:[Enterprise Read-only Domain Controllers] rid:[0x1f2]
+group:[Domain Admins] rid:[0x200]
+group:[Domain Users] rid:[0x201]
+group:[Domain Guests] rid:[0x202]
+group:[Domain Computers] rid:[0x203]
+group:[Domain Controllers] rid:[0x204]
+group:[Schema Admins] rid:[0x206]
+group:[Enterprise Admins] rid:[0x207]
+group:[Group Policy Creator Owners] rid:[0x208]
+group:[Read-only Domain Controllers] rid:[0x209]
+group:[Cloneable Domain Controllers] rid:[0x20a]
+group:[Protected Users] rid:[0x20d]
+group:[Key Admins] rid:[0x20e]
+group:[Enterprise Key Admins] rid:[0x20f]
+group:[DnsUpdateProxy] rid:[0x44e]
+[33m
+[+] [0m[32m Getting domain group memberships:
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Group Policy Creator Owners' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[35mGroup: [0m'Group Policy Creator Owners' (RID: 520) has member: BLACKFIELD\Administrator
+[33m
+[V] [0m[35mRunning command: net rpc group members 'Domain Guests' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[35mGroup: [0m'Domain Guests' (RID: 514) has member: BLACKFIELD\Guest
+[33m
+[V] [0m[35mRunning command: net rpc group members 'Domain Computers' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[35mGroup: [0m'Domain Computers' (RID: 515) has member: BLACKFIELD\PC01$
+[35mGroup: [0m'Domain Computers' (RID: 515) has member: BLACKFIELD\PC02$
+[35mGroup: [0m'Domain Computers' (RID: 515) has member: BLACKFIELD\PC03$
+[35mGroup: [0m'Domain Computers' (RID: 515) has member: BLACKFIELD\PC04$
+[35mGroup: [0m'Domain Computers' (RID: 515) has member: BLACKFIELD\PC05$
+[35mGroup: [0m'Domain Computers' (RID: 515) has member: BLACKFIELD\PC06$
+[35mGroup: [0m'Domain Computers' (RID: 515) has member: BLACKFIELD\PC07$
+[35mGroup: [0m'Domain Computers' (RID: 515) has member: BLACKFIELD\PC08$
+[35mGroup: [0m'Domain Computers' (RID: 515) has member: BLACKFIELD\PC09$
+[35mGroup: [0m'Domain Computers' (RID: 515) has member: BLACKFIELD\PC10$
+[35mGroup: [0m'Domain Computers' (RID: 515) has member: BLACKFIELD\PC11$
+[35mGroup: [0m'Domain Computers' (RID: 515) has member: BLACKFIELD\PC12$
+[35mGroup: [0m'Domain Computers' (RID: 515) has member: BLACKFIELD\PC13$
+[35mGroup: [0m'Domain Computers' (RID: 515) has member: BLACKFIELD\SRV-WEB$
+[35mGroup: [0m'Domain Computers' (RID: 515) has member: BLACKFIELD\SRV-FILE$
+[35mGroup: [0m'Domain Computers' (RID: 515) has member: BLACKFIELD\SRV-EXCHANGE$
+[35mGroup: [0m'Domain Computers' (RID: 515) has member: BLACKFIELD\SRV-INTRANET$
+[33m
+[V] [0m[35mRunning command: net rpc group members 'Domain Controllers' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[35mGroup: [0m'Domain Controllers' (RID: 516) has member: BLACKFIELD\DC01$
+[33m
+[V] [0m[35mRunning command: net rpc group members 'Protected Users' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Enterprise Admins' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[35mGroup: [0m'Enterprise Admins' (RID: 519) has member: BLACKFIELD\Administrator
+[33m
+[V] [0m[35mRunning command: net rpc group members 'Enterprise Read-only Domain Controllers' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Cloneable Domain Controllers' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Key Admins' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Enterprise Key Admins' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Schema Admins' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[35mGroup: [0m'Schema Admins' (RID: 518) has member: BLACKFIELD\Administrator
+[33m
+[V] [0m[35mRunning command: net rpc group members 'Domain Users' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\Administrator
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\krbtgt
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\audit2020
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\support
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD764430
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD538365
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD189208
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD404458
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD706381
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD937395
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD553715
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD840481
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD622501
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD787464
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD163183
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD869335
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD319016
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD600999
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD894905
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD253541
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD175204
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD727512
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD227380
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD251003
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD129328
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD616527
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD533551
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD883784
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD908329
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD601590
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD573498
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD290325
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD775986
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD348433
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD196444
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD137694
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD533886
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD268320
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD909590
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD136813
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD358090
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD561870
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD269538
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD169035
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD118321
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD592556
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD618519
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD329802
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD753480
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD837541
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD186980
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD419600
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD220786
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD767820
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD549571
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD411740
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD768095
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD835725
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD251977
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD430864
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD413242
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD464763
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD266096
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD334058
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD404213
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD219324
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD412798
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD441593
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD606328
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD796301
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD415829
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD820995
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD695166
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD759042
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD607290
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD229506
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD256791
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD997545
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD114762
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD321206
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD195757
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD877328
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD446463
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD579980
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD775126
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD429587
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD534956
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD315276
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD995218
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD843883
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD876916
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD382769
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD194732
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD191416
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD932709
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD546640
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD569313
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD744790
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD739659
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD926559
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD969352
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD253047
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD899433
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD606964
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD385719
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD838710
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD608914
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD569653
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD759079
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD488531
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD160610
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD586934
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD819822
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD739765
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD875008
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD441759
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD763893
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD713470
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD131771
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD793029
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD694429
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD802251
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD602567
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD328983
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD990638
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD350809
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD405242
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD267457
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD686428
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD478828
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD129387
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD544934
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD115148
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD753537
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD416532
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD680939
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD732035
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD522135
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD773423
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD371669
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD252379
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD828826
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD548394
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD611993
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD192642
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD106360
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD939243
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD230515
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD774376
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD576233
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD676303
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD673073
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD558867
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD184482
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD724669
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD765350
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD411132
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD128775
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD704154
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD107197
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD994577
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD683323
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD433476
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD644281
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD195953
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD868068
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD690642
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD465267
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD199889
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD468839
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD348835
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD624385
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD818863
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD939200
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD135990
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD484290
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD898237
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD773118
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD148067
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD390179
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD359278
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD375924
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD533060
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD534196
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD639103
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD933887
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD907614
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD991588
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD781404
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD787995
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD911926
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD146200
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD826622
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD171624
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD497216
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD839613
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD428532
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD697473
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD291678
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD623122
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD765982
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD701303
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD250576
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD971417
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD160820
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD385928
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD848660
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD682842
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD813266
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD274577
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD448641
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD318077
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD289513
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD336573
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD962495
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD566117
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD617630
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD717683
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD390192
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD652779
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD665997
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD998321
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD946509
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD228442
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD548464
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD586592
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD512331
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD609423
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD395725
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD438923
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD691480
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD236467
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD895235
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD788523
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD710285
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD357023
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD362337
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD651599
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD579344
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD859776
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD789969
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD356727
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD962999
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD201655
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD635996
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD478410
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD518316
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD202900
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD767498
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD103974
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD135403
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD112766
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD978938
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD871753
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD136203
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD634593
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD274367
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD520852
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD339143
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD684814
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD792484
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD802875
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD383108
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD318250
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD496547
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD219914
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD454313
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD460131
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD613771
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD632329
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD402639
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD235930
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD246388
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD946435
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD739227
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD827906
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD198927
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD169876
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD150357
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD594619
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD274109
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD682949
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD316850
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD884808
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD327610
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD899238
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD184493
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD631162
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD591846
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD896715
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD500073
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD584113
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD204805
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD842593
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD397679
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD842438
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD286615
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD224839
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD631599
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD247450
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD290582
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD657263
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD314351
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD434395
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD410243
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD307633
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD758945
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD541148
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD532412
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD996878
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD653097
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\BLACKFIELD438814
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\svc_backup
+[35mGroup: [0m'Domain Users' (RID: 513) has member: BLACKFIELD\lydericlefebvre
+[33m
+[V] [0m[35mRunning command: net rpc group members 'Read-only Domain Controllers' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'DnsUpdateProxy' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[33m
+[V] [0m[35mRunning command: net rpc group members 'Domain Admins' -W 'WORKGROUP' -I '10.129.229.17' -U'support'%'#00^BlackKnight' 2>&1
+
+
+[0m[35mGroup: [0m'Domain Admins' (RID: 512) has member: BLACKFIELD\Administrator
+
+[34m ==================( [0m[32mUsers on 10.129.229.17 via RID cycling (RIDS: 500-550,1000-1050)[0m[34m )==================
+
+[0m[33m
+[V] [0m[35mAttempting to get SID from 10.129.229.17 with command: rpcclient -W 'WORKGROUP' -U'support'%'#00^BlackKnight' '10.129.229.17' -c 'lookupnames administrator' 2>&1
+
+[0m[33m
+[V] [0m[35mAssuming that user "administrator" exists
+
+[0m[33m
+[V] [0m[35mAttempting to get SID from 10.129.229.17 with command: rpcclient -W 'WORKGROUP' -U'support'%'#00^BlackKnight' '10.129.229.17' -c 'lookupnames guest' 2>&1
+
+[0m[33m
+[V] [0m[35mAssuming that user "guest" exists
+
+[0m[33m
+[I] [0m[36mFound new SID: 
+[0mS-1-5-21-4194615774-2175524697-3563712290
+[33m
+[V] [0m[35mAttempting to get SID from 10.129.229.17 with command: rpcclient -W 'WORKGROUP' -U'support'%'#00^BlackKnight' '10.129.229.17' -c 'lookupnames krbtgt' 2>&1
+
+[0m[33m
+[V] [0m[35mAssuming that user "krbtgt" exists
+
+[0m[33m
+[I] [0m[36mFound new SID: 
+[0mS-1-5-21-4194615774-2175524697-3563712290
+[33m
+[V] [0m[35mAttempting to get SID from 10.129.229.17 with command: rpcclient -W 'WORKGROUP' -U'support'%'#00^BlackKnight' '10.129.229.17' -c 'lookupnames domain admins' 2>&1
+
+[0m[33m
+[V] [0m[35mAssuming that user "domain admins" exists
+
+[0m[33m
+[V] [0m[35mUser "domain admins" doesn't exist.  User enumeration should be possible, but SID needed...
+
+[0m[33m
+[V] [0m[35mAttempting to get SID from 10.129.229.17 with command: rpcclient -W 'WORKGROUP' -U'support'%'#00^BlackKnight' '10.129.229.17' -c 'lookupnames root' 2>&1
+
+[0m[33m
+[V] [0m[35mAssuming that user "root" exists
+
+[0m[33m
+[V] [0m[35mUser "root" doesn't exist.  User enumeration should be possible, but SID needed...
+
+[0m[33m
+[V] [0m[35mAttempting to get SID from 10.129.229.17 with command: rpcclient -W 'WORKGROUP' -U'support'%'#00^BlackKnight' '10.129.229.17' -c 'lookupnames bin' 2>&1
+
+[0m[33m
+[V] [0m[35mAssuming that user "bin" exists
+
+[0m[33m
+[V] [0m[35mUser "bin" doesn't exist.  User enumeration should be possible, but SID needed...
+
+[0m[33m
+[V] [0m[35mAttempting to get SID from 10.129.229.17 with command: rpcclient -W 'WORKGROUP' -U'support'%'#00^BlackKnight' '10.129.229.17' -c 'lookupnames none' 2>&1
+
+[0m[33m
+[V] [0m[35mAssuming that user "none" exists
+
+[0m[33m
+[V] [0m[35mAttempting to get SIDs from 10.129.229.17 with command: rpcclient -W 'WORKGROUP' -U'support'%'#00^BlackKnight' '10.129.229.17' -c lsaenumsid 2>&1
+
+[0m[33m
+[V] [0m[35mProcessing SID S-1-5-90-0
+
+[0m[33m
+[V] [0m[35mProcessing SID S-1-5-9
+
+[0m[33m
+[V] [0m[35mProcessing SID S-1-5-80-3139157870-2983391045-3678747466-658725712-1809340420
+
+[0m[33m
+[V] [0m[35mProcessing SID S-1-5-80-0
+
+[0m[33m
+[V] [0m[35mProcessing SID S-1-5-6
+
+[0m[33m
+[V] [0m[35mProcessing SID S-1-5-32-559
+
+[0m[33m
+[V] [0m[35mProcessing SID S-1-5-32-554
+
+[0m[33m
+[I] [0m[36mFound new SID: 
+[0mS-1-5-32
+[33m
+[V] [0m[35mProcessing SID S-1-5-32-551
+
+[0m[33m
+[I] [0m[36mFound new SID: 
+[0mS-1-5-32
+[33m
+[V] [0m[35mProcessing SID S-1-5-32-550
+
+[0m[33m
+[I] [0m[36mFound new SID: 
+[0mS-1-5-32
+[33m
+[V] [0m[35mProcessing SID S-1-5-32-549
+
+[0m[33m
+[I] [0m[36mFound new SID: 
+[0mS-1-5-32
+[33m
+[V] [0m[35mProcessing SID S-1-5-32-548
+
+[0m[33m
+[I] [0m[36mFound new SID: 
+[0mS-1-5-32
+[33m
+[V] [0m[35mProcessing SID S-1-5-32-545
+
+[0m[33m
+[I] [0m[36mFound new SID: 
+[0mS-1-5-32
+[33m
+[V] [0m[35mProcessing SID S-1-5-32-544
+
+[0m[33m
+[I] [0m[36mFound new SID: 
+[0mS-1-5-32
+[33m
+[V] [0m[35mProcessing SID S-1-5-20
+
+[0m[33m
+[V] [0m[35mProcessing SID S-1-5-19
+
+[0m[33m
+[V] [0m[35mProcessing SID S-1-5-11
+
+[0m[33m
+[V] [0m[35mProcessing SID S-1-1-0
+
+[0m[33m
+[+] [0m[32mEnumerating users using SID S-1-5-90 and logon username 'support', password '#00^BlackKnight'
+
+[0m[33m
+[+] [0m[32mEnumerating users using SID S-1-5-80 and logon username 'support', password '#00^BlackKnight'
+
+[0m[33m
+[+] [0m[32mEnumerating users using SID S-1-5-21-4194615774-2175524697-3563712290 and logon username 'support', password '#00^BlackKnight'
+
+[0mS-1-5-21-4194615774-2175524697-3563712290-500 BLACKFIELD\Administrator (Local User)
+S-1-5-21-4194615774-2175524697-3563712290-501 BLACKFIELD\Guest (Local User)
+S-1-5-21-4194615774-2175524697-3563712290-502 BLACKFIELD\krbtgt (Local User)
+S-1-5-21-4194615774-2175524697-3563712290-512 BLACKFIELD\Domain Admins (Domain Group)
+S-1-5-21-4194615774-2175524697-3563712290-513 BLACKFIELD\Domain Users (Domain Group)
+S-1-5-21-4194615774-2175524697-3563712290-514 BLACKFIELD\Domain Guests (Domain Group)
+S-1-5-21-4194615774-2175524697-3563712290-515 BLACKFIELD\Domain Computers (Domain Group)
+S-1-5-21-4194615774-2175524697-3563712290-516 BLACKFIELD\Domain Controllers (Domain Group)
+S-1-5-21-4194615774-2175524697-3563712290-517 BLACKFIELD\Cert Publishers (Local Group)
+S-1-5-21-4194615774-2175524697-3563712290-518 BLACKFIELD\Schema Admins (Domain Group)
+S-1-5-21-4194615774-2175524697-3563712290-519 BLACKFIELD\Enterprise Admins (Domain Group)
+S-1-5-21-4194615774-2175524697-3563712290-520 BLACKFIELD\Group Policy Creator Owners (Domain Group)
+S-1-5-21-4194615774-2175524697-3563712290-521 BLACKFIELD\Read-only Domain Controllers (Domain Group)
+S-1-5-21-4194615774-2175524697-3563712290-522 BLACKFIELD\Cloneable Domain Controllers (Domain Group)
+S-1-5-21-4194615774-2175524697-3563712290-525 BLACKFIELD\Protected Users (Domain Group)
+S-1-5-21-4194615774-2175524697-3563712290-526 BLACKFIELD\Key Admins (Domain Group)
+S-1-5-21-4194615774-2175524697-3563712290-527 BLACKFIELD\Enterprise Key Admins (Domain Group)
+S-1-5-21-4194615774-2175524697-3563712290-1000 BLACKFIELD\DC01$ (Local User)
+[33m
+[+] [0m[32mEnumerating users using SID S-1-5-21-3077484823-2408220471-973546559 and logon username 'support', password '#00^BlackKnight'
+
+[0mS-1-5-21-3077484823-2408220471-973546559-500 DC01\Administrator (Local User)
+S-1-5-21-3077484823-2408220471-973546559-501 DC01\Guest (Local User)
+S-1-5-21-3077484823-2408220471-973546559-503 DC01\DefaultAccount (Local User)
+S-1-5-21-3077484823-2408220471-973546559-504 DC01\WDAGUtilityAccount (Local User)
+S-1-5-21-3077484823-2408220471-973546559-513 DC01\None (Domain Group)
+[33m
+[+] [0m[32mEnumerating users using SID S-1-5-80-3139157870-2983391045-3678747466-658725712 and logon username 'support', password '#00^BlackKnight'
+
+[0m[33m
+[+] [0m[32mEnumerating users using SID S-1-5-32 and logon username 'support', password '#00^BlackKnight'
+
+[0mS-1-5-32-544 BUILTIN\Administrators (Local Group)
+S-1-5-32-545 BUILTIN\Users (Local Group)
+S-1-5-32-546 BUILTIN\Guests (Local Group)
+S-1-5-32-548 BUILTIN\Account Operators (Local Group)
+S-1-5-32-549 BUILTIN\Server Operators (Local Group)
+S-1-5-32-550 BUILTIN\Print Operators (Local Group)
+
+[34m ===============================( [0m[32mGetting printer info for 10.129.229.17[0m[34m )===============================
+
+[0m[33m
+[V] [0m[35mAttempting to get printer info with command: rpcclient -W 'WORKGROUP' -U'support'%'#00^BlackKnight' -c 'enumprinters' '10.129.229.17' 2>&1
+
+[0mNo printers returned.
+
+
+enum4linux complete on Wed Jan  3 17:57:11 2024
+

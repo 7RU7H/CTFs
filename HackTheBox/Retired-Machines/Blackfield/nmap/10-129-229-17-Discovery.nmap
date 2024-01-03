@@ -1,0 +1,179 @@
+# Nmap 7.94SVN scan initiated Wed Jan  3 15:48:08 2024 as: nmap --script discovery -oA /home/none/7ru7hGithub/CTFs/HackTheBox/Retired-Machines/Blackfield/nmap/10-129-229-17-Discovery --min-rate 300 -e tun0 -p 53,88,135,389,445,593,3268,5985 10.129.229.17
+Pre-scan script results:
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_broadcast-ping: false
+|_lltd-discovery: false
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.129.229.17
+Host is up (0.088s latency).
+
+PORT     STATE SERVICE
+53/tcp   open  domain
+|_dns-nsec3-enum: Can't determine domain for host 10.129.229.17; use dns-nsec3-enum.domains script arg.
+|_dns-nsec-enum: Can't determine domain for host 10.129.229.17; use dns-nsec-enum.domains script arg.
+88/tcp   open  kerberos-sec
+135/tcp  open  msrpc
+389/tcp  open  ldap
+| ldap-rootdse: 
+| LDAP Results
+|   <ROOT>
+|       domainFunctionality: 7
+|       forestFunctionality: 7
+|       domainControllerFunctionality: 7
+|       rootDomainNamingContext: DC=BLACKFIELD,DC=local
+|       ldapServiceName: BLACKFIELD.local:dc01$@BLACKFIELD.LOCAL
+|       isGlobalCatalogReady: TRUE
+|       supportedSASLMechanisms: GSSAPI
+|       supportedSASLMechanisms: GSS-SPNEGO
+|       supportedSASLMechanisms: EXTERNAL
+|       supportedSASLMechanisms: DIGEST-MD5
+|       supportedLDAPVersion: 3
+|       supportedLDAPVersion: 2
+|       supportedLDAPPolicies: MaxPoolThreads
+|       supportedLDAPPolicies: MaxPercentDirSyncRequests
+|       supportedLDAPPolicies: MaxDatagramRecv
+|       supportedLDAPPolicies: MaxReceiveBuffer
+|       supportedLDAPPolicies: InitRecvTimeout
+|       supportedLDAPPolicies: MaxConnections
+|       supportedLDAPPolicies: MaxConnIdleTime
+|       supportedLDAPPolicies: MaxPageSize
+|       supportedLDAPPolicies: MaxBatchReturnMessages
+|       supportedLDAPPolicies: MaxQueryDuration
+|       supportedLDAPPolicies: MaxDirSyncDuration
+|       supportedLDAPPolicies: MaxTempTableSize
+|       supportedLDAPPolicies: MaxResultSetSize
+|       supportedLDAPPolicies: MinResultSets
+|       supportedLDAPPolicies: MaxResultSetsPerConn
+|       supportedLDAPPolicies: MaxNotificationPerConn
+|       supportedLDAPPolicies: MaxValRange
+|       supportedLDAPPolicies: MaxValRangeTransitive
+|       supportedLDAPPolicies: ThreadMemoryLimit
+|       supportedLDAPPolicies: SystemMemoryLimitPercent
+|       supportedControl: 1.2.840.113556.1.4.319
+|       supportedControl: 1.2.840.113556.1.4.801
+|       supportedControl: 1.2.840.113556.1.4.473
+|       supportedControl: 1.2.840.113556.1.4.528
+|       supportedControl: 1.2.840.113556.1.4.417
+|       supportedControl: 1.2.840.113556.1.4.619
+|       supportedControl: 1.2.840.113556.1.4.841
+|       supportedControl: 1.2.840.113556.1.4.529
+|       supportedControl: 1.2.840.113556.1.4.805
+|       supportedControl: 1.2.840.113556.1.4.521
+|       supportedControl: 1.2.840.113556.1.4.970
+|       supportedControl: 1.2.840.113556.1.4.1338
+|       supportedControl: 1.2.840.113556.1.4.474
+|       supportedControl: 1.2.840.113556.1.4.1339
+|       supportedControl: 1.2.840.113556.1.4.1340
+|       supportedControl: 1.2.840.113556.1.4.1413
+|       supportedControl: 2.16.840.1.113730.3.4.9
+|       supportedControl: 2.16.840.1.113730.3.4.10
+|       supportedControl: 1.2.840.113556.1.4.1504
+|       supportedControl: 1.2.840.113556.1.4.1852
+|       supportedControl: 1.2.840.113556.1.4.802
+|       supportedControl: 1.2.840.113556.1.4.1907
+|       supportedControl: 1.2.840.113556.1.4.1948
+|       supportedControl: 1.2.840.113556.1.4.1974
+|       supportedControl: 1.2.840.113556.1.4.1341
+|       supportedControl: 1.2.840.113556.1.4.2026
+|       supportedControl: 1.2.840.113556.1.4.2064
+|       supportedControl: 1.2.840.113556.1.4.2065
+|       supportedControl: 1.2.840.113556.1.4.2066
+|       supportedControl: 1.2.840.113556.1.4.2090
+|       supportedControl: 1.2.840.113556.1.4.2205
+|       supportedControl: 1.2.840.113556.1.4.2204
+|       supportedControl: 1.2.840.113556.1.4.2206
+|       supportedControl: 1.2.840.113556.1.4.2211
+|       supportedControl: 1.2.840.113556.1.4.2239
+|       supportedControl: 1.2.840.113556.1.4.2255
+|       supportedControl: 1.2.840.113556.1.4.2256
+|       supportedControl: 1.2.840.113556.1.4.2309
+|       supportedControl: 1.2.840.113556.1.4.2330
+|       supportedControl: 1.2.840.113556.1.4.2354
+|       supportedCapabilities: 1.2.840.113556.1.4.800
+|       supportedCapabilities: 1.2.840.113556.1.4.1670
+|       supportedCapabilities: 1.2.840.113556.1.4.1791
+|       supportedCapabilities: 1.2.840.113556.1.4.1935
+|       supportedCapabilities: 1.2.840.113556.1.4.2080
+|       supportedCapabilities: 1.2.840.113556.1.4.2237
+|       subschemaSubentry: CN=Aggregate,CN=Schema,CN=Configuration,DC=BLACKFIELD,DC=local
+|       serverName: CN=DC01,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=BLACKFIELD,DC=local
+|       schemaNamingContext: CN=Schema,CN=Configuration,DC=BLACKFIELD,DC=local
+|       namingContexts: DC=BLACKFIELD,DC=local
+|       namingContexts: CN=Configuration,DC=BLACKFIELD,DC=local
+|       namingContexts: CN=Schema,CN=Configuration,DC=BLACKFIELD,DC=local
+|       namingContexts: DC=DomainDnsZones,DC=BLACKFIELD,DC=local
+|       namingContexts: DC=ForestDnsZones,DC=BLACKFIELD,DC=local
+|       isSynchronized: TRUE
+|       highestCommittedUSN: 237655
+|       dsServiceName: CN=NTDS Settings,CN=DC01,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=BLACKFIELD,DC=local
+|       dnsHostName: DC01.BLACKFIELD.local
+|       defaultNamingContext: DC=BLACKFIELD,DC=local
+|       currentTime: 20240103224832.0Z
+|_      configurationNamingContext: CN=Configuration,DC=BLACKFIELD,DC=local
+445/tcp  open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+593/tcp  open  http-rpc-epmap
+|_banner: ncacn_http/1.0
+3268/tcp open  globalcatLDAP
+5985/tcp open  wsman
+Service Info: Host: DC01; OS: Windows
+
+Host script results:
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 53    0       60584.20   10248.74  0.0%
+| 88    0       68147.00   10165.02  0.0%
+| 135   0       67283.90   12138.75  0.0%
+| 389   0       79646.10   72478.97  0.0%
+| 445   0       66068.40   17053.31  0.0%
+| 593   0       61739.30   8588.43   0.0%
+| 3268  0       61589.20   6539.43   0.0%
+|_5985  0       63960.60   6243.18   0.0%
+|_dns-brute: Can't guess domain of "10.129.229.17"; use dns-brute.domain script argument.
+|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_path-mtu: PMTU == 1500
+|_fcrdns: FAIL (No PTR record)
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled and required
+| smb-protocols: 
+|   dialects: 
+|     2:0:2
+|     2:1:0
+|     3:0:0
+|     3:0:2
+|_    3:1:1
+| smb2-capabilities: 
+|   2:0:2: 
+|     Distributed File System
+|   2:1:0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:0:0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:0:2: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:1:1: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+| smb2-time: 
+|   date: 2024-01-03T22:48:50
+|_  start_date: N/A
+|_ipidseq: Unknown
+
+# Nmap done at Wed Jan  3 15:49:13 2024 -- 1 IP address (1 host up) scanned in 65.42 seconds

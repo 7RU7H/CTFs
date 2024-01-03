@@ -1,0 +1,20 @@
+# Nmap 7.94SVN scan initiated Wed Jan  3 15:49:13 2024 as: nmap --script vuln -oA /home/none/7ru7hGithub/CTFs/HackTheBox/Retired-Machines/Blackfield/nmap/10-129-229-17-Vuln --min-rate 300 -e tun0 -p 53,88,135,389,445,593,3268,5985 10.129.229.17
+Nmap scan report for DC01.BLACKFIELD.local (10.129.229.17)
+Host is up (0.060s latency).
+
+PORT     STATE SERVICE
+53/tcp   open  domain
+88/tcp   open  kerberos-sec
+135/tcp  open  msrpc
+389/tcp  open  ldap
+445/tcp  open  microsoft-ds
+593/tcp  open  http-rpc-epmap
+3268/tcp open  globalcatLDAP
+5985/tcp open  wsman
+
+Host script results:
+|_samba-vuln-cve-2012-1182: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+
+# Nmap done at Wed Jan  3 15:49:56 2024 -- 1 IP address (1 host up) scanned in 43.43 seconds

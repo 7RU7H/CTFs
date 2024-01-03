@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Wed Jan  3 15:49:13 2024 as: nmap -&#45;script vuln -oA /home/none/7ru7hGithub/CTFs/HackTheBox/Retired-Machines/Blackfield/nmap/10-129-229-17-Vuln -&#45;min-rate 300 -e tun0 -p 53,88,135,389,445,593,3268,5985 10.129.229.17 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA /home/none/7ru7hGithub/CTFs/HackTheBox/Retired-Machines/Blackfield/nmap/10-129-229-17-Vuln -&#45;min-rate 300 -e tun0 -p 53,88,135,389,445,593,3268,5985 10.129.229.17" start="1704296953" startstr="Wed Jan  3 15:49:13 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="8" services="53,88,135,389,445,593,3268,5985"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.229.17" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1704296963" endtime="1704296996"><status state="up" reason="echo-reply" reason_ttl="127"/>
+<address addr="10.129.229.17" addrtype="ipv4"/>
+<hostnames>
+<hostname name="DC01.BLACKFIELD.local" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="domain" method="table" conf="3"/></port>
+<port protocol="tcp" portid="88"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="kerberos-sec" method="table" conf="3"/></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ldap" method="table" conf="3"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="593"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http-rpc-epmap" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3268"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="globalcatLDAP" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="wsman" method="table" conf="3"/></port>
+</ports>
+<hostscript><script id="samba-vuln-cve-2012-1182" output="Could not negotiate a connection:SMB: Failed to receive bytes: ERROR">false</script><script id="smb-vuln-ms10-054" output="false">false</script><script id="smb-vuln-ms10-061" output="Could not negotiate a connection:SMB: Failed to receive bytes: ERROR">false</script></hostscript><times srtt="60051" rttvar="17651" to="130655"/>
+</host>
+<runstats><finished time="1704296996" timestr="Wed Jan  3 15:49:56 2024" summary="Nmap done at Wed Jan  3 15:49:56 2024; 1 IP address (1 host up) scanned in 43.43 seconds" elapsed="43.43" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

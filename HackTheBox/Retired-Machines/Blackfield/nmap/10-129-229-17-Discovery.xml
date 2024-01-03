@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Wed Jan  3 15:48:08 2024 as: nmap -&#45;script discovery -oA /home/none/7ru7hGithub/CTFs/HackTheBox/Retired-Machines/Blackfield/nmap/10-129-229-17-Discovery -&#45;min-rate 300 -e tun0 -p 53,88,135,389,445,593,3268,5985 10.129.229.17 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA /home/none/7ru7hGithub/CTFs/HackTheBox/Retired-Machines/Blackfield/nmap/10-129-229-17-Discovery -&#45;min-rate 300 -e tun0 -p 53,88,135,389,445,593,3268,5985 10.129.229.17" start="1704296888" startstr="Wed Jan  3 15:48:08 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="8" services="53,88,135,389,445,593,3268,5985"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="targets-sniffer" output="Sniffed 1 address(es). &#xa;224.0.23.12"/><script id="broadcast-ping" output="false">false</script><script id="lltd-discovery" output="false">false</script><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.229.17" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1704296911" endtime="1704296953"><status state="up" reason="echo-reply" reason_ttl="127"/>
+<address addr="10.129.229.17" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="domain" method="table" conf="3"/><script id="dns-nsec3-enum" output="Can&apos;t determine domain for host 10.129.229.17; use dns-nsec3-enum.domains script arg."/><script id="dns-nsec-enum" output="Can&apos;t determine domain for host 10.129.229.17; use dns-nsec-enum.domains script arg."/></port>
+<port protocol="tcp" portid="88"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="kerberos-sec" method="table" conf="3"/></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ldap" product="Microsoft Windows Active Directory LDAP" extrainfo="Domain: BLACKFIELD.local, Site: Default-First-Site-Name" hostname="DC01" ostype="Windows" method="probed" conf="10"/><script id="ldap-rootdse" output="&#xa;LDAP Results&#xa;  &lt;ROOT&gt;&#xa;      domainFunctionality: 7&#xa;      forestFunctionality: 7&#xa;      domainControllerFunctionality: 7&#xa;      rootDomainNamingContext: DC=BLACKFIELD,DC=local&#xa;      ldapServiceName: BLACKFIELD.local:dc01$@BLACKFIELD.LOCAL&#xa;      isGlobalCatalogReady: TRUE&#xa;      supportedSASLMechanisms: GSSAPI&#xa;      supportedSASLMechanisms: GSS-SPNEGO&#xa;      supportedSASLMechanisms: EXTERNAL&#xa;      supportedSASLMechanisms: DIGEST-MD5&#xa;      supportedLDAPVersion: 3&#xa;      supportedLDAPVersion: 2&#xa;      supportedLDAPPolicies: MaxPoolThreads&#xa;      supportedLDAPPolicies: MaxPercentDirSyncRequests&#xa;      supportedLDAPPolicies: MaxDatagramRecv&#xa;      supportedLDAPPolicies: MaxReceiveBuffer&#xa;      supportedLDAPPolicies: InitRecvTimeout&#xa;      supportedLDAPPolicies: MaxConnections&#xa;      supportedLDAPPolicies: MaxConnIdleTime&#xa;      supportedLDAPPolicies: MaxPageSize&#xa;      supportedLDAPPolicies: MaxBatchReturnMessages&#xa;      supportedLDAPPolicies: MaxQueryDuration&#xa;      supportedLDAPPolicies: MaxDirSyncDuration&#xa;      supportedLDAPPolicies: MaxTempTableSize&#xa;      supportedLDAPPolicies: MaxResultSetSize&#xa;      supportedLDAPPolicies: MinResultSets&#xa;      supportedLDAPPolicies: MaxResultSetsPerConn&#xa;      supportedLDAPPolicies: MaxNotificationPerConn&#xa;      supportedLDAPPolicies: MaxValRange&#xa;      supportedLDAPPolicies: MaxValRangeTransitive&#xa;      supportedLDAPPolicies: ThreadMemoryLimit&#xa;      supportedLDAPPolicies: SystemMemoryLimitPercent&#xa;      supportedControl: 1.2.840.113556.1.4.319&#xa;      supportedControl: 1.2.840.113556.1.4.801&#xa;      supportedControl: 1.2.840.113556.1.4.473&#xa;      supportedControl: 1.2.840.113556.1.4.528&#xa;      supportedControl: 1.2.840.113556.1.4.417&#xa;      supportedControl: 1.2.840.113556.1.4.619&#xa;      supportedControl: 1.2.840.113556.1.4.841&#xa;      supportedControl: 1.2.840.113556.1.4.529&#xa;      supportedControl: 1.2.840.113556.1.4.805&#xa;      supportedControl: 1.2.840.113556.1.4.521&#xa;      supportedControl: 1.2.840.113556.1.4.970&#xa;      supportedControl: 1.2.840.113556.1.4.1338&#xa;      supportedControl: 1.2.840.113556.1.4.474&#xa;      supportedControl: 1.2.840.113556.1.4.1339&#xa;      supportedControl: 1.2.840.113556.1.4.1340&#xa;      supportedControl: 1.2.840.113556.1.4.1413&#xa;      supportedControl: 2.16.840.1.113730.3.4.9&#xa;      supportedControl: 2.16.840.1.113730.3.4.10&#xa;      supportedControl: 1.2.840.113556.1.4.1504&#xa;      supportedControl: 1.2.840.113556.1.4.1852&#xa;      supportedControl: 1.2.840.113556.1.4.802&#xa;      supportedControl: 1.2.840.113556.1.4.1907&#xa;      supportedControl: 1.2.840.113556.1.4.1948&#xa;      supportedControl: 1.2.840.113556.1.4.1974&#xa;      supportedControl: 1.2.840.113556.1.4.1341&#xa;      supportedControl: 1.2.840.113556.1.4.2026&#xa;      supportedControl: 1.2.840.113556.1.4.2064&#xa;      supportedControl: 1.2.840.113556.1.4.2065&#xa;      supportedControl: 1.2.840.113556.1.4.2066&#xa;      supportedControl: 1.2.840.113556.1.4.2090&#xa;      supportedControl: 1.2.840.113556.1.4.2205&#xa;      supportedControl: 1.2.840.113556.1.4.2204&#xa;      supportedControl: 1.2.840.113556.1.4.2206&#xa;      supportedControl: 1.2.840.113556.1.4.2211&#xa;      supportedControl: 1.2.840.113556.1.4.2239&#xa;      supportedControl: 1.2.840.113556.1.4.2255&#xa;      supportedControl: 1.2.840.113556.1.4.2256&#xa;      supportedControl: 1.2.840.113556.1.4.2309&#xa;      supportedControl: 1.2.840.113556.1.4.2330&#xa;      supportedControl: 1.2.840.113556.1.4.2354&#xa;      supportedCapabilities: 1.2.840.113556.1.4.800&#xa;      supportedCapabilities: 1.2.840.113556.1.4.1670&#xa;      supportedCapabilities: 1.2.840.113556.1.4.1791&#xa;      supportedCapabilities: 1.2.840.113556.1.4.1935&#xa;      supportedCapabilities: 1.2.840.113556.1.4.2080&#xa;      supportedCapabilities: 1.2.840.113556.1.4.2237&#xa;      subschemaSubentry: CN=Aggregate,CN=Schema,CN=Configuration,DC=BLACKFIELD,DC=local&#xa;      serverName: CN=DC01,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=BLACKFIELD,DC=local&#xa;      schemaNamingContext: CN=Schema,CN=Configuration,DC=BLACKFIELD,DC=local&#xa;      namingContexts: DC=BLACKFIELD,DC=local&#xa;      namingContexts: CN=Configuration,DC=BLACKFIELD,DC=local&#xa;      namingContexts: CN=Schema,CN=Configuration,DC=BLACKFIELD,DC=local&#xa;      namingContexts: DC=DomainDnsZones,DC=BLACKFIELD,DC=local&#xa;      namingContexts: DC=ForestDnsZones,DC=BLACKFIELD,DC=local&#xa;      isSynchronized: TRUE&#xa;      highestCommittedUSN: 237655&#xa;      dsServiceName: CN=NTDS Settings,CN=DC01,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=BLACKFIELD,DC=local&#xa;      dnsHostName: DC01.BLACKFIELD.local&#xa;      defaultNamingContext: DC=BLACKFIELD,DC=local&#xa;      currentTime: 20240103224832.0Z&#xa;      configurationNamingContext: CN=Configuration,DC=BLACKFIELD,DC=local&#xa;"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="593"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http-rpc-epmap" method="table" conf="3"/><script id="banner" output="ncacn_http/1.0"/></port>
+<port protocol="tcp" portid="3268"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="globalcatLDAP" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="wsman" method="table" conf="3"/></port>
+</ports>
+<hostscript><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;53    0       60584.20   10248.74  0.0%&#xa;88    0       68147.00   10165.02  0.0%&#xa;135   0       67283.90   12138.75  0.0%&#xa;389   0       79646.10   72478.97  0.0%&#xa;445   0       66068.40   17053.31  0.0%&#xa;593   0       61739.30   8588.43   0.0%&#xa;3268  0       61589.20   6539.43   0.0%&#xa;5985  0       63960.60   6243.18   0.0%&#xa;"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.129.229.17&quot;; use dns-brute.domain script argument."/><script id="msrpc-enum" output="Could not negotiate a connection:SMB: Failed to receive bytes: ERROR">false</script><script id="smb-mbenum" output="&#xa;  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR"/><script id="path-mtu" output="PMTU == 1500"/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="smb2-security-mode" output="&#xa;  3:1:1: &#xa;    Message signing enabled and required"><table key="3:1:1">
+<elem>Message signing enabled and required</elem>
+</table>
+</script><script id="smb-protocols" output="&#xa;  dialects: &#xa;    2:0:2&#xa;    2:1:0&#xa;    3:0:0&#xa;    3:0:2&#xa;    3:1:1"><table key="dialects">
+<elem>2:0:2</elem>
+<elem>2:1:0</elem>
+<elem>3:0:0</elem>
+<elem>3:0:2</elem>
+<elem>3:1:1</elem>
+</table>
+</script><script id="smb2-capabilities" output="&#xa;  2:0:2: &#xa;    Distributed File System&#xa;  2:1:0: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3:0:0: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3:0:2: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3:1:1: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations"><table key="2:0:2">
+<elem>Distributed File System</elem>
+</table>
+<table key="2:1:0">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3:0:0">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3:0:2">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3:1:1">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+</script><script id="smb2-time" output="&#xa;  date: 2024-01-03T22:48:50&#xa;  start_date: N/A"><elem key="date">2024-01-03T22:48:50</elem>
+<elem key="start_date">N/A</elem>
+</script><script id="ipidseq" output="Unknown"/></hostscript><times srtt="88116" rttvar="14302" to="145324"/>
+</host>
+<runstats><finished time="1704296953" timestr="Wed Jan  3 15:49:13 2024" summary="Nmap done at Wed Jan  3 15:49:13 2024; 1 IP address (1 host up) scanned in 65.42 seconds" elapsed="65.42" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
