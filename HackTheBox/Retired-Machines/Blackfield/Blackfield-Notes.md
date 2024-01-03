@@ -64,9 +64,6 @@ python3 bloodhound.py --dns-tcp -c all -d BLACKFIELD.local -dc DC01.BLACKFIELD.l
 -
 -
 
-```
-impacket-getTGT -dc-ip 10.129.229.17 'blackfield.local/audit2020'
-```
 
 #### Todo List
 
@@ -79,3 +76,12 @@ rpcclient -U support 10.10.10.192
 - rescan tcp - done
 - password spray - done
 - profile seems like a rabbithole of profiles -check potentially
+
+
+
+```
+impacket-getTGT -dc-ip 10.129.229.17 'blackfield.local/audit2020'
+
+
+smbget # use ccache file to auth in and get lsass.zip
+```
