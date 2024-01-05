@@ -284,14 +284,17 @@ Having to check every shoelace, PowerShell does work this time....
 
 There is AV on the box eating my binaries and being generally bad for my footholding
 
+
 ## AV Evasion - The Real Beyond Root Begins here 
 
 And I do not even have to start the machine to have fun... or use the internet to do that much.
 
 - Binary patch something with shellcode
 - Automate the AV evasion - think about it
-- Shellter a sliver binary
+- Shellter a sliver binary - Sliver binary are so large this is just laughable 
 - Mimikatz manually consider how an application would do this and cool ideas
+
+- C sharp stager to sliver beacon
 
 IDEAS
 - All filename names for:
@@ -333,7 +336,38 @@ What I would need to do to make the golang app
 	- do not remove line
 	- `-v` exclude option
 
+#### Let the AV arms race commence 
 
+Attempt 1 
+
+![](attemptone-src.png)
+![](upxtherevC.png)
+![](compiledproof-somedebugfixed.png)
+![](attempt1-basicshellcode.png)
+![](narcissismisalwaysbad.png)
+
+
+
+![](PROGRESS.png)
+
+Double checking with
+![](puttybadbecause2yearsagoitwasbadbuthey.png)
+
+
+
+![](tearsthatarerelevant.png)
+
+![](defensesagain.png)
+
+- Ideas 
+	- Download Relevant's `C:\Windows\System32\kernel32.dll`
+
+
+And with a great name!
+![](ExcelIsTheMathematicalDockWhatAName.png)
+
+Run Seatbelt for late and check that this actually is not just a rug pull. Interactive broke. Not sure if it was seatbelt.
+![](atleast2minstesting-interactive-broke.png)
 ## Privilege Escalation
 
 ## Post-Root-Reflection  

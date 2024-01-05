@@ -56,8 +56,9 @@ python3 bloodhound.py --dns-tcp -c all -d BLACKFIELD.local -dc DC01.BLACKFIELD.l
 
 ```
 
-- support forcepassword audit2020, but it might acommplish much
-- svc_backup is the only member of remote mamagement
+- support forcepassword audit2020, but it might accomplish much, given that we cant just download lssas 
+	- Probably other directories are just clues.. I just really really wanted that lsass.zip
+- svc_backup is the only member of remote management
 -
 -
 -

@@ -42,7 +42,7 @@ Tripletted with [[Response-Helped-Through]] and [[Dynstr-Helped-Through]]
 [Ippsec Video](https://www.youtube.com/watch?v=rfAmMQV_wss)
 [Alh4zr3d Stream](https://www.twitch.tv/videos/1855594279) - does not exist any more
 [0xDF Written Writeup](https://0xdf.gitlab.io/2023/05/27/htb-absolute.html)
-I also used the Official Write Up that is the .pdf in this directory 
+I also used the Official Write Up that is the PDF in this directory 
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
