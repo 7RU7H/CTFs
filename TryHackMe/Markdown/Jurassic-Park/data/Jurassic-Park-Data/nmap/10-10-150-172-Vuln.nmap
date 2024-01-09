@@ -1,0 +1,75 @@
+# Nmap 7.94SVN scan initiated Sat Dec 16 19:57:43 2023 as: nmap --script vuln -oA /home/kali/Jurassic-Park-Data/nmap/10-10-150-172-Vuln --min-rate 300 -e tun0 -p 22,80 10.10.150.172
+Nmap scan report for 10.10.150.172
+Host is up (0.056s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+| http-sql-injection: 
+|   Possible sqli for queries:
+|     http://10.10.150.172:80/item.php?id=2%27%20OR%20sqlspider
+|     http://10.10.150.172:80/item.php?id=1%27%20OR%20sqlspider
+|     http://10.10.150.172:80/item.php?id=3%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=N%3BO%3DD%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=M%3BO%3DD%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=D%3BO%3DD%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=S%3BO%3DD%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=N%3BO%3DD%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=S%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=D%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=M%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=N%3BO%3DA%27%20OR%20sqlspider
+|     http://10.10.150.172:80/assets/?C=S%3BO%3DA%27%20OR%20sqlspider
+|_    http://10.10.150.172:80/assets/?C=D%3BO%3DA%27%20OR%20sqlspider
+| http-fileupload-exploiter: 
+|   
+|     Couldn't find a file-type field.
+|   
+|_    Couldn't find a file-type field.
+| http-enum: 
+|_  /robots.txt: Robots file
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+|_      http://ha.ckers.org/slowloris/
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+
+# Nmap done at Sat Dec 16 20:03:18 2023 -- 1 IP address (1 host up) scanned in 335.41 seconds

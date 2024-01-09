@@ -1,0 +1,142 @@
+# Nmap 7.94SVN scan initiated Sat Dec 16 19:51:46 2023 as: nmap --script discovery -oA /home/kali/Jurassic-Park-Data/nmap/10-10-150-172-Discovery --min-rate 300 -e tun0 -p 22,80 10.10.150.172
+Pre-scan script results:
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-ping: false
+| targets-sniffer: Sniffed 1 address(es). 
+|_10.10.150.172
+|_lltd-discovery: false
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.10.150.172
+Host is up (0.065s latency).
+
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh-hostkey: 
+|   2048 27:9f:11:20:1c:d1:ff:64:65:fa:09:cb:28:9b:02:af (RSA)
+|   256 78:2c:82:5f:07:1d:04:3f:43:7c:a3:23:2c:eb:02:c0 (ECDSA)
+|_  256 d8:65:32:92:0f:a8:80:7e:b9:28:d9:15:53:aa:1a:06 (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (6)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_7.2p2 Ubuntu-4ubuntu2.6
+80/tcp open  http
+| http-grep: 
+|   (1) http://10.10.150.172:80/assets/: 
+|     (1) ip: 
+|_      + 10.10.150.172
+|_http-errors: Couldn't find any error pages.
+|_http-chrono: Request times for /; avg: 245.69ms; min: 216.28ms; max: 287.52ms
+|_http-title: Jarassic Park
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-vhosts: 
+|_128 names had status 200
+|_http-date: Sat, 16 Dec 2023 19:52:11 GMT; +1h00m00s from local time.
+| http-headers: 
+|   Date: Sat, 16 Dec 2023 19:52:21 GMT
+|   Server: Apache/2.4.18 (Ubuntu)
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-feed: Couldn't find any feeds.
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; php: 3
+|     /assets/
+|       Other: 1; css: 1; gif: 1; jpg: 3; js: 2; mp3: 1; png: 2
+|     /icons/
+|       gif: 2
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /assets/
+|   Total files found (by extension):
+|_    Other: 2; css: 1; gif: 3; jpg: 3; js: 2; mp3: 1; php: 3; png: 2
+|_http-mobileversion-checker: No mobile version detected.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.10.150.172
+|     
+|     Path: http://10.10.150.172:80/assets/bootstrap.min.css
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * Bootstrap v4.3.0 (https://getbootstrap.com/)
+|          * Copyright 2011-2019 The Bootstrap Authors
+|          * Copyright 2011-2019 Twitter, Inc.
+|          * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+|          */
+|     
+|     Path: http://10.10.150.172:80/assets/bootstrap.min.js
+|     Line number: 7
+|     Comment: 
+|         
+|         //# sourceMappingURL=bootstrap.min.js.map
+|     
+|     Path: http://10.10.150.172:80/assets/jquery.min.js
+|     Line number: 1
+|     Comment: 
+|         /*! jQuery v3.3.1 | (c) JS Foundation and other contributors | jquery.org/license */
+|     
+|     Path: http://10.10.150.172:80/index.php
+|     Line number: 32
+|     Comment: 
+|         <!-- <video src="assets/theme.mp3" autoplay> -->
+|     
+|     Path: http://10.10.150.172:80/assets/bootstrap.min.css
+|     Line number: 7
+|     Comment: 
+|         /*# sourceMappingURL=bootstrap.min.css.map */
+|     
+|     Path: http://10.10.150.172:80/assets/bootstrap.min.js
+|     Line number: 1
+|     Comment: 
+|         /*!
+|           * Bootstrap v4.3.0 (https://getbootstrap.com/)
+|           * Copyright 2011-2019 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+|           * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+|_          */
+| http-enum: 
+|_  /robots.txt: Robots file
+
+Host script results:
+|_dns-brute: Can't guess domain of "10.10.150.172"; use dns-brute.domain script argument.
+|_ipidseq: All zeros
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       68276.20   41440.67  0.0%
+|_80    0       61199.90   11397.50  0.0%
+|_path-mtu: 1006 <= PMTU < 1492
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Sat Dec 16 19:57:43 2023 -- 1 IP address (1 host up) scanned in 356.87 seconds

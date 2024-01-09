@@ -368,7 +368,9 @@ And with a great name!
 
 Run Seatbelt for late and check that this actually is not just a rug pull. Interactive broke. Not sure if it was seatbelt.
 ![](atleast2minstesting-interactive-broke.png)
-## Privilege Escalation
+## Privilege Escalation To Bob
+
+## Privilege Escalation To NT System
 
 ## Post-Root-Reflection  
 
@@ -396,7 +398,7 @@ upx --ultra
 
 Note - Nothing in this room requires Metasploit
 
-Learn some ASP - does not work
+Learn some ASP - does not work,  just powershell does not work
 ```asp
 <%@ Page Language="C#" Debug="true" Trace="false" %>
 <%@ Import Namespace="System.Diagnostics" %>
