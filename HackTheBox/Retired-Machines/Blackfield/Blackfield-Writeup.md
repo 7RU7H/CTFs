@@ -10,6 +10,7 @@ Learnt:
 - Do not look at the HTB Machine Info tab for retired machines. 
 - Sometimes I am correct 
 - DOWNLOAD THE SYMBOL TABLES IDIOT 
+- GitHub does not have a facepalm emoji, the one time I actually would like to use an emoji and join in
 Beyond Root:
 - Active-Directory-Recon improvements
 
@@ -105,9 +106,16 @@ Uncrackable as per rockyou.txt
 
 Impacket
 ```bash
-impacket-getTGT -dc-ip 10.129.229.17 -hashes 9658d1d1dcd9250115e2205d9f48400d:9658d1d1dcd9250115e2205d9f48400d BLACKFIELD.local/svc_backup
+impacket-getTGT -dc-ip 10.129.19.77 -hashes 9658d1d1dcd9250115e2205d9f48400d:9658d1d1dcd9250115e2205d9f48400d BLACKFIELD.local/svc_backup
 ```
 The issues with clock skewage. 
+
+[After some time I remembered I already found all of the requirements to fix this for both VMware and Vbox](https://github.com/7RU7H/Archive/blob/main/Virtualization/Disable-Time-Synchronisation-With-Host-For-Guest-VMs.md). No GitHub facepalm emoji.
+
+
+
+
+
 
 ## Post-Root-Reflection  
 

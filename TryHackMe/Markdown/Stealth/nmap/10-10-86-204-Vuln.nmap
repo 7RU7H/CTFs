@@ -1,0 +1,80 @@
+# Nmap 7.94SVN scan initiated Wed Jan 10 17:33:20 2024 as: nmap --script vuln -oA /home/none/7ru7hGithub/CTFs/TryHackMe/Markdown/Stealth/nmap/10-10-86-204-Vuln --min-rate 500 -e tun0 -p 139,445,3389,5985,7680,8000,8080,8443,47001,49664,49665,49666,49667,49668,49669,49674 10.10.86.204
+Nmap scan report for 10.10.86.204
+Host is up (0.095s latency).
+
+PORT      STATE    SERVICE
+139/tcp   open     netbios-ssn
+445/tcp   open     microsoft-ds
+3389/tcp  open     ms-wbt-server
+5985/tcp  open     wsman
+7680/tcp  filtered pando-pub
+8000/tcp  open     http-alt
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       http://ha.ckers.org/slowloris/
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+8080/tcp  open     http-proxy
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+|_http-trace: TRACE is enabled
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       http://ha.ckers.org/slowloris/
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+| http-enum: 
+|   /icons/: Potentially interesting folder w/ directory listing
+|_  /uploads/: Potentially interesting folder
+8443/tcp  open     https-alt
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+| ssl-dh-params: 
+|   VULNERABLE:
+|   Diffie-Hellman Key Exchange Insufficient Group Strength
+|     State: VULNERABLE
+|       Transport Layer Security (TLS) services that use Diffie-Hellman groups
+|       of insufficient strength, especially those using one of a few commonly
+|       shared groups, may be susceptible to passive eavesdropping attacks.
+|     Check results:
+|       WEAK DH GROUP 1
+|             Cipher Suite: TLS_DHE_RSA_WITH_AES_256_CBC_SHA
+|             Modulus Type: Safe prime
+|             Modulus Source: RFC2409/Oakley Group 2
+|             Modulus Length: 1024
+|             Generator Length: 8
+|             Public Key Length: 1024
+|     References:
+|_      https://weakdh.org
+|_http-trace: TRACE is enabled
+47001/tcp open     winrm
+49664/tcp open     unknown
+49665/tcp open     unknown
+49666/tcp open     unknown
+49667/tcp open     unknown
+49668/tcp open     unknown
+49669/tcp open     unknown
+49674/tcp open     unknown
+
+Host script results:
+|_smb-vuln-ms10-061: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_smb-vuln-ms10-054: false
+|_samba-vuln-cve-2012-1182: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+
+# Nmap done at Wed Jan 10 17:42:16 2024 -- 1 IP address (1 host up) scanned in 536.80 seconds

@@ -10,9 +10,9 @@ DNS: BLACKFIELD.local
 Domain: BLACKFIELD.local
 Domain SID: S-1-5-21-4194615774-2175524697-3563712290
 Machine Purpose: Domain Controller 
-Services: 53 dns ,88 kerberos ,135, 593 rpc,389,445,,3268,5985, smb 445 (signing:True) (SMBv1:False), 
+Services: 53 dns ,88 kerberos ,135, 593 rpc,  445 smb (signing:True) , 389, 3268 ldap,5985, (SMBv1:False)
 Service Languages:
-Users: dc01, audit2020,support,svc_backup,lydericlefebvre and lots of generated
+Users: dc01, audit2020,support,svc_backup, lydericlefebvre and lots of generated
 Email and Username Formatting:
 Credentials:
 ```

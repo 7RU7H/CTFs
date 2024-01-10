@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Wed Jan 10 17:26:11 2024 as: nmap -sC -sV -oA /home/none/7ru7hGithub/CTFs/TryHackMe/Markdown/Stealth/nmap/10-10-86-204-Extensive-Found-Ports -&#45;min-rate 500 -e tun0 -p 139,445,3389,5985,7680,8000,8080,8443,47001,49664,49665,49666,49667,49668,49669,49674 10.10.86.204 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA /home/none/7ru7hGithub/CTFs/TryHackMe/Markdown/Stealth/nmap/10-10-86-204-Extensive-Found-Ports -&#45;min-rate 500 -e tun0 -p 139,445,3389,5985,7680,8000,8080,8443,47001,49664,49665,49666,49667,49668,49669,49674 10.10.86.204" start="1704907571" startstr="Wed Jan 10 17:26:11 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="16" services="139,445,3389,5985,7680,8000,8080,8443,47001,49664-49669,49674"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.86.204" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1704907584" endtime="1704907681"><status state="up" reason="echo-reply" reason_ttl="127"/>
+<address addr="10.10.86.204" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="netbios-ssn" product="Microsoft Windows netbios-ssn" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ms-wbt-server" product="Microsoft Terminal Services" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="rdp-ntlm-info" output="&#xa;  Target_Name: HOSTEVASION&#xa;  NetBIOS_Domain_Name: HOSTEVASION&#xa;  NetBIOS_Computer_Name: HOSTEVASION&#xa;  DNS_Domain_Name: HostEvasion&#xa;  DNS_Computer_Name: HostEvasion&#xa;  Product_Version: 10.0.17763&#xa;  System_Time: 2024-01-10T17:27:16+00:00"><elem key="Target_Name">HOSTEVASION</elem>
+<elem key="NetBIOS_Domain_Name">HOSTEVASION</elem>
+<elem key="NetBIOS_Computer_Name">HOSTEVASION</elem>
+<elem key="DNS_Domain_Name">HostEvasion</elem>
+<elem key="DNS_Computer_Name">HostEvasion</elem>
+<elem key="Product_Version">10.0.17763</elem>
+<elem key="System_Time">2024-01-10T17:27:16+00:00</elem>
+</script><script id="ssl-date" output="2024-01-10T17:27:53+00:00; -7s from scanner time."><elem key="date">2024-01-10T17:27:53+00:00</elem>
+<elem key="delta">-7.0</elem>
+</script><script id="ssl-cert" output="Subject: commonName=HostEvasion&#xa;Not valid before: 2024-01-09T17:20:11&#xa;Not valid after:  2024-07-10T17:20:11"><table key="subject">
+<elem key="commonName">HostEvasion</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">HostEvasion</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">C793F49F58BAC815EA74781428FACD2B230CB4D2CDAC07521B31B0141BE039FFDBA7283A791C6C513C3C8AED56C25DFAD7C396916E69356B430B82579CB2C29085B96A946C01E1A75857B5DBDE8F2737D66308C6DBDE3A9BA4E9BB21EB7A7CF9EE38DE63E958D61E4265D68C81FE5182E3191430D20009AAC32F37977D12019A263BB65759A1628293362C1FDC80810CDA3306759D31E726396B86B7753F34449F9DAA7411E71D4E5A3B14C2BA74DDB07C26CC9C87687E3C826C8BC8ABF0C22F9A4AE4A0509301834D89F848A8CFA43DE47021173150A721ECCCDAF886A0C40D367841A711818405BDC2592E287F01ADAED12F60E12BF1664014B9000D5494BD</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Key Encipherment, Data Encipherment</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2024-01-09T17:20:11</elem>
+<elem key="notAfter">2024-07-10T17:20:11</elem>
+</table>
+<elem key="md5">3977ccb19d6726f0ed8fb32de376916a</elem>
+<elem key="sha1">678f256d39d55889e85a8eca2b436689547e38db</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIC2jCCAcKgAwIBAgIQSdacSTuHRrZNNA+CPT7OjjANBgkqhkiG9w0BAQsFADAW&#xa;MRQwEgYDVQQDEwtIb3N0RXZhc2lvbjAeFw0yNDAxMDkxNzIwMTFaFw0yNDA3MTAx&#xa;NzIwMTFaMBYxFDASBgNVBAMTC0hvc3RFdmFzaW9uMIIBIjANBgkqhkiG9w0BAQEF&#xa;AAOCAQ8AMIIBCgKCAQEAx5P0n1i6yBXqdHgUKPrNKyMMtNLNrAdSGzGwFBvgOf/b&#xa;pyg6eRxsUTw8iu1Wwl3618OWkW5pNWtDC4JXnLLCkIW5apRsAeGnWFe1296PJzfW&#xa;YwjG2946m6TpuyHrenz57jjeY+lY1h5CZdaMgf5RguMZFDDSAAmqwy83l30SAZom&#xa;O7ZXWaFigpM2LB/cgIEM2jMGdZ0x5yY5a4a3dT80RJ+dqnQR5x1OWjsUwrp03bB8&#xa;Jsych2h+PIJsi8ir8MIvmkrkoFCTAYNNifhIqM+kPeRwIRcxUKch7Mza+IagxA02&#xa;eEGnEYGEBb3CWS4ofwGtrtEvYOEr8WZAFLkADVSUvQIDAQABoyQwIjATBgNVHSUE&#xa;DDAKBggrBgEFBQcDATALBgNVHQ8EBAMCBDAwDQYJKoZIhvcNAQELBQADggEBAH6K&#xa;W/md6OwlgG52j/gVRiBNMjg38xZ3XP5QdjPwGxezOJ0uYb+HA7QthzJksvk/nA04&#xa;nHaOQv+ED5HLtw/O6z9ysruCqI4i3KkCLuUPs7gW2k2PLcJKptQgKvwJ4gEzEQFq&#xa;MHoJ2snrr/KEM7ak9LeYdSZKVoRVRP5e00YzTkbZ1QOW2eRQhEIYjzr2XJ2D+8uh&#xa;WlgFdkuZbzED3oHjtwgRTICOm0COh9qh1JGsUNdaHunW20wnqMMMNZrpNuYgoDLS&#xa;wT7GMYZzTcCaGuU/rkJQJ4vpSv+tO12H7ysEjvkw/1zUZ+Ra3uGwciemZdYREYB4&#xa;icW5HBDovVlpKALDbuw=&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" product="Microsoft HTTPAPI httpd" version="2.0" extrainfo="SSDP/UPnP" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-server-header" output="Microsoft-HTTPAPI/2.0"><elem>Microsoft-HTTPAPI/2.0</elem>
+</script><script id="http-title" output="Not Found"><elem key="title">Not Found</elem>
+</script></port>
+<port protocol="tcp" portid="7680"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="pando-pub" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8000"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" product="PHP cli server" version="5.5 or later" method="probed" conf="10"><cpe>cpe:/a:php:php</cpe></service><script id="http-title" output="404 Not Found"><elem key="title">404 Not Found</elem>
+</script></port>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" product="Apache httpd" version="2.4.56" extrainfo="(Win64) OpenSSL/1.1.1t PHP/8.0.28" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.56</cpe></service><script id="http-title" output="PowerShell Script Analyser"><elem key="title">PowerShell Script Analyser</elem>
+</script><script id="http-open-proxy" output="Proxy might be redirecting requests"/><script id="http-server-header" output="Apache/2.4.56 (Win64) OpenSSL/1.1.1t PHP/8.0.28"><elem>Apache/2.4.56 (Win64) OpenSSL/1.1.1t PHP/8.0.28</elem>
+</script></port>
+<port protocol="tcp" portid="8443"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" product="Apache httpd" version="2.4.56" extrainfo="(Win64) OpenSSL/1.1.1t PHP/8.0.28" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.56</cpe></service><script id="http-server-header" output="Apache/2.4.56 (Win64) OpenSSL/1.1.1t PHP/8.0.28"><elem>Apache/2.4.56 (Win64) OpenSSL/1.1.1t PHP/8.0.28</elem>
+</script><script id="http-title" output="PowerShell Script Analyser"><elem key="title">PowerShell Script Analyser</elem>
+</script><script id="ssl-cert" output="Subject: commonName=localhost&#xa;Not valid before: 2009-11-10T23:48:47&#xa;Not valid after:  2019-11-08T23:48:47"><table key="subject">
+<elem key="commonName">localhost</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">localhost</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">1024</elem>
+<elem key="modulus">C125D327E3ECAD0D836A6DE75F9A751023E2909DA063958F1D419A58D59C638C5B73869079CCC3D6A389B875BC1E947C7C6EE3ADE8275C0BC60C6AF90F32FEB3C47A1023042B2928D4AAF9B32F6610F8A7C1CD60C46B2857E3673BF79ECD4822DC38EA4813803A4097570C4735463D71629AEE539D630E677A28C9A434FF19ED</elem>
+<elem key="exponent">65537</elem>
+</table>
+<elem key="sig_algo">sha1WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2009-11-10T23:48:47</elem>
+<elem key="notAfter">2019-11-08T23:48:47</elem>
+</table>
+<elem key="md5">a0a44cc99e84b26f9e639f9ed229dee0</elem>
+<elem key="sha1">b0238c547a905bfa119c4e8baccaeacf36491ff6</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIBnzCCAQgCCQC1x1LJh4G1AzANBgkqhkiG9w0BAQUFADAUMRIwEAYDVQQDEwls&#xa;b2NhbGhvc3QwHhcNMDkxMTEwMjM0ODQ3WhcNMTkxMTA4MjM0ODQ3WjAUMRIwEAYD&#xa;VQQDEwlsb2NhbGhvc3QwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAMEl0yfj&#xa;7K0Ng2pt51+adRAj4pCdoGOVjx1BmljVnGOMW3OGkHnMw9ajibh1vB6UfHxu463o&#xa;J1wLxgxq+Q8y/rPEehAjBCspKNSq+bMvZhD4p8HNYMRrKFfjZzv3ns1IItw46kgT&#xa;gDpAl1cMRzVGPXFimu5TnWMOZ3ooyaQ0/xntAgMBAAEwDQYJKoZIhvcNAQEFBQAD&#xa;gYEAavHzSWz5umhfb/MnBMa5DL2VNzS+9whmmpsDGEG+uR0kM1W2GQIdVHHJTyFd&#xa;aHXzgVJBQcWTwhp84nvHSiQTDBSaT6cQNQpvag/TaED/SEQpm0VqDFwpfFYuufBL&#xa;vVNbLkKxbK2XwUvu0RxoLdBMC/89HqrZ0ppiONuQ+X2MtxE=&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="tls-alpn" output="&#xa;  http/1.1"><elem>http/1.1</elem>
+</script></port>
+<port protocol="tcp" portid="47001"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" product="Microsoft HTTPAPI httpd" version="2.0" extrainfo="SSDP/UPnP" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service><script id="http-title" output="Not Found"><elem key="title">Not Found</elem>
+</script><script id="http-server-header" output="Microsoft-HTTPAPI/2.0"><elem>Microsoft-HTTPAPI/2.0</elem>
+</script></port>
+<port protocol="tcp" portid="49664"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49665"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49666"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49667"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49668"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49669"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="49674"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+</ports>
+<hostscript><script id="clock-skew" output="mean: -6s, deviation: 0s, median: -7s"><elem key="stddev">0</elem>
+<elem key="mean">-6</elem>
+<elem key="count">3</elem>
+<elem key="median">-7</elem>
+</script><script id="smb2-time" output="&#xa;  date: 2024-01-10T17:27:14&#xa;  start_date: N/A"><elem key="date">2024-01-10T17:27:14</elem>
+<elem key="start_date">N/A</elem>
+</script><script id="smb2-security-mode" output="&#xa;  3:1:1: &#xa;    Message signing enabled but not required"><table key="3:1:1">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script></hostscript><times srtt="82409" rttvar="8178" to="115121"/>
+</host>
+<runstats><finished time="1704907681" timestr="Wed Jan 10 17:28:01 2024" summary="Nmap done at Wed Jan 10 17:28:01 2024; 1 IP address (1 host up) scanned in 110.26 seconds" elapsed="110.26" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

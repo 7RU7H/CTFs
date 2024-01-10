@@ -1,0 +1,313 @@
+# Nmap 7.94SVN scan initiated Wed Jan 10 17:28:01 2024 as: nmap --script discovery -oA /home/none/7ru7hGithub/CTFs/TryHackMe/Markdown/Stealth/nmap/10-10-86-204-Discovery --min-rate 500 -e tun0 -p 139,445,3389,5985,7680,8000,8080,8443,47001,49664,49665,49666,49667,49668,49669,49674 10.10.86.204
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_lltd-discovery: false
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-ping: false
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.10.86.204
+Host is up (0.067s latency).
+
+PORT      STATE    SERVICE
+139/tcp   open     netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+445/tcp   open     microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+3389/tcp  open     ms-wbt-server
+|_ssl-date: 2024-01-10T17:28:29+00:00; -6s from scanner time.
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|_  least strength: C
+| rdp-ntlm-info: 
+|   Target_Name: HOSTEVASION
+|   NetBIOS_Domain_Name: HOSTEVASION
+|   NetBIOS_Computer_Name: HOSTEVASION
+|   DNS_Domain_Name: HostEvasion
+|   DNS_Computer_Name: HostEvasion
+|   Product_Version: 10.0.17763
+|_  System_Time: 2024-01-10T17:28:19+00:00
+| ssl-cert: Subject: commonName=HostEvasion
+| Not valid before: 2024-01-09T17:20:11
+|_Not valid after:  2024-07-10T17:20:11
+| rdp-enum-encryption: 
+|   Security layer
+|     CredSSP (NLA): SUCCESS
+|     CredSSP with Early User Auth: SUCCESS
+|_    RDSTLS: SUCCESS
+5985/tcp  open     wsman
+7680/tcp  filtered pando-pub
+8000/tcp  open     http-alt
+|_http-date: Wed, 10 Jan 2024 17:28:26 GMT; +59m53s from local time.
+|_http-title: 404 Not Found
+| http-vhosts: 
+|_128 names had status 404
+| http-headers: 
+|   Host: 10.10.86.204:8000
+|   Date: Wed, 10 Jan 2024 17:28:26 GMT
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   Content-Length: 533
+|   
+|_  (Request type: GET)
+|_http-chrono: Request times for /; avg: 282.27ms; min: 268.56ms; max: 323.88ms
+8080/tcp  open     http-proxy
+|_http-trace: TRACE is enabled
+|_http-open-proxy: Proxy might be redirecting requests
+|_http-chrono: Request times for /; avg: 338.77ms; min: 272.98ms; max: 506.64ms
+| http-vhosts: 
+| 127 names had status 200
+|_mirror
+|_http-php-version: Version from header x-powered-by: PHP/8.0.28
+| http-headers: 
+|   Date: Wed, 10 Jan 2024 17:28:35 GMT
+|   Server: Apache/2.4.56 (Win64) OpenSSL/1.1.1t PHP/8.0.28
+|   X-Powered-By: PHP/8.0.28
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+|_http-title: PowerShell Script Analyser
+| http-enum: 
+|   /icons/: Potentially interesting folder w/ directory listing
+|_  /uploads/: Potentially interesting folder
+|_http-date: Wed, 10 Jan 2024 17:28:34 GMT; +59m53s from local time.
+8443/tcp  open     https-alt
+| ssl-cert: Subject: commonName=localhost
+| Not valid before: 2009-11-10T23:48:47
+|_Not valid after:  2019-11-08T23:48:47
+| http-headers: 
+|   Date: Wed, 10 Jan 2024 17:28:41 GMT
+|   Server: Apache/2.4.56 (Win64) OpenSSL/1.1.1t PHP/8.0.28
+|   X-Powered-By: PHP/8.0.28
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+|_http-date: Wed, 10 Jan 2024 17:28:19 GMT; +59m44s from local time.
+|_http-title: PowerShell Script Analyser
+|_http-chrono: Request times for /; avg: 669.38ms; min: 314.59ms; max: 1997.64ms
+| tls-alpn: 
+|_  http/1.1
+|_ssl-date: TLS randomness does not represent time
+| http-vhosts: 
+| 125 names had status 200
+| alerts : 400
+| ns : 400
+|_internal : 400
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 1024) - F
+|       TLS_DHE_RSA_WITH_SEED_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_SEED_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_IDEA_CBC_SHA (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher IDEA vulnerable to SWEET32 attack
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 1024) - F
+|       TLS_DHE_RSA_WITH_SEED_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_SEED_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_IDEA_CBC_SHA (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher IDEA vulnerable to SWEET32 attack
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_256_CCM_8 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_256_CCM (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_ARIA_256_GCM_SHA384 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_ARIA_256_GCM_SHA384 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CCM_8 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CCM (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_ARIA_128_GCM_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_ARIA_128_GCM_SHA256 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_CAMELLIA_256_CBC_SHA384 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CCM_8 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CCM (rsa 1024) - F
+|       TLS_RSA_WITH_ARIA_256_GCM_SHA384 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CCM_8 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CCM (rsa 1024) - F
+|       TLS_RSA_WITH_ARIA_128_GCM_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 1024) - F
+|       TLS_DHE_RSA_WITH_SEED_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_SEED_CBC_SHA (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.3: 
+|     ciphers: 
+|       TLS_AKE_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A
+|       TLS_AKE_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - A
+|       TLS_AKE_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|     cipher preference: server
+|_  least strength: F
+|_http-trace: TRACE is enabled
+|_http-php-version: Version from header x-powered-by: PHP/8.0.28
+47001/tcp open     winrm
+49664/tcp open     unknown
+49665/tcp open     unknown
+49666/tcp open     unknown
+49667/tcp open     unknown
+49668/tcp open     unknown
+49669/tcp open     unknown
+49674/tcp open     unknown
+
+Host script results:
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_fcrdns: FAIL (No PTR record)
+| smb-protocols: 
+|   dialects: 
+|     2:0:2
+|     2:1:0
+|     3:0:0
+|     3:0:2
+|_    3:1:1
+|_path-mtu: PMTU == 1500
+|_dns-brute: Can't guess domain of "10.10.86.204"; use dns-brute.domain script argument.
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2024-01-10T17:29:00
+|_  start_date: N/A
+|_ipidseq: Unknown
+| smb2-capabilities: 
+|   2:0:2: 
+|     Distributed File System
+|   2:1:0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:0:0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:0:2: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:1:1: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+| qscan: 
+| PORT   FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 139    0       72037.50   5962.43  0.0%
+| 445    0       67952.10   7490.99  0.0%
+| 3389   0       72529.50   8391.16  0.0%
+| 5985   0       72522.22   8046.43  10.0%
+| 8000   0       73595.70   8360.39  0.0%
+| 8080   0       74818.60   7296.80  0.0%
+| 8443   0       69802.80   5037.33  0.0%
+|_47001  0       69368.70   8897.18  0.0%
+|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+
+# Nmap done at Wed Jan 10 17:33:20 2024 -- 1 IP address (1 host up) scanned in 318.50 seconds
