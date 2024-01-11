@@ -12,7 +12,6 @@ Beyond Root:
 - [[Stealth-Notes.md]]
 - [[Stealth-CMD-by-CMDs.md]]
 
-
 ## Recon of machine and alternatives
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
@@ -115,7 +114,7 @@ Or
 # Pipe out to a file do not just do want the nice women wrote down like an idiot
 nc -lvnp 80
 
-nc -lvnp 80 > info.txt.b64
+i
 ```
 [Discovered CSbyGB - Woman Hacker of the Year 2022's notes](https://csbygb.gitbook.io/pentips/cs-by-gb-pentips/readme) 
 
