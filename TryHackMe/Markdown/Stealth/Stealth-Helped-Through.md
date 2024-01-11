@@ -5,13 +5,14 @@ Date:
 Difficulty:  Medium
 Goals:  
 - AV evasion - three hours max
-Learnt:
+TrLearnt:
 Beyond Root:
 - Hey - Use hoaxshell
 
 - [[Stealth-Notes.md]]
 - [[Stealth-CMD-by-CMDs.md]]
 
+I peaked to much at [Tyler Ramsbey's Stealth - Detailed Walkthrough -- [TryHackMe LIVE!]](https://www.youtube.com/watch?v=iICjs8754yE)
 ## Recon of machine and alternatives
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
@@ -253,6 +254,12 @@ Tried a more profession way...
 ![](flagisinanotherlocationonstealth.png)
 
 ![](stealthistrollingme.png)
+
+I peaked at the walkthrough just to get this done. Its been 4 hours and I need to move forward.
+- webshell 
+- godpotato - never heard of this.
+
+
 ## Post-Root-Reflection  
 
 - Hoaxshell can work with

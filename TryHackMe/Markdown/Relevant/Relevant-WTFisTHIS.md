@@ -379,15 +379,26 @@ GOOS=windows GOARCH=amd64 go build -ldflags="-s -w"
 upx $file.exe
 
 ```
-## Privilege Escalation To Bob
 
+#### Could not manage to execute the exact same thing
+
+WTF is this machine. Lets AV with msfvenom in 2023 and be humbled into the crater of humility on this one.
+![](learnintomsfvenom.png)
 ## Privilege Escalation To NT System
 
+Another SeImpersonate Privilege Escalation to whine about. This time I watch the video to understand what I was going wrong from the various Proving Ground boxes of late 2023. This is actually it:
+```powwershell
+.\printspoofer.exe -i -c cmd
+```
+
+![](root.png)
 ## Post-Root-Reflection  
 
 - Sometimes it is not you 
 - Sometimes the boxes are robot.txt levels of WTF.
-
+- FINALLY ALL SeImpersonate boxes will aGAIN BE MINE!!!
+- Sometimes boxes are of there time
+- msfvenom is still worth considering.
 ## Beyond Root
 
 Update my rpc cheatsheet
