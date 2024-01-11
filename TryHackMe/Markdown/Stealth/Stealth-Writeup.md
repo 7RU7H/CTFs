@@ -256,8 +256,12 @@ Tried a more profession way...
 ![](stealthistrollingme.png)
 ## Post-Root-Reflection  
 
+- Hoaxshell can work with
+- Chimera
+- AV/AMSI bypassing is best left to open source tools for the most part to brunt of work at this point in time; trying too hard has already been done by everyone else
+
 ## Beyond Root
 
-Use Hoaxshell!
+- Use Hoaxshell!
 
 
