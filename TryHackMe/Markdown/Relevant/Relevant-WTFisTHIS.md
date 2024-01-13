@@ -1,7 +1,7 @@
 # Relevant WTFisTHIS
 
 Name: Relevant
-Date:  
+Date:  11/1/2024
 Difficulty:  Medium
 Goals:  
 - Finish Offensive Path on THM 
@@ -9,12 +9,11 @@ Goals:
 - Evade internet restrictions eating patience 
 Learnt:
 - I am jaded
-- 
+- Some boxes are just odd
 Beyond Root:
 
 - [[Relevant-Notes.md]]
 - [[Relevant-CMD-by-CMDs.md]]
-
 
 ## Recon
 
@@ -28,7 +27,7 @@ These issue make the ordering and explanation of screenshots more convoluted. Th
 
 Point of Self-Reflection:
 - When the box says **blackbox and all tools and any techniques**, just go full cyber do not treat it like a pentest you are only wasting your time. 
-- "Stealthy" to some is on a scale and the annoying arbituariness of that is probably true in the real world. I just think that is  
+- "Stealthy" to some is on a scale and the annoying arbitrariness of that is probably true in the real world. I just think that is  
 
 On - 4th time attempting this machine point I wanted to see if this machine and author are going to waste more of my time learning in the most stupid way possible is just someone idea of enjoy the *"interpretation of my learning* affect how I grade myself as to if I solved some percentage of this machine. 
 ![](justwhy.png)
@@ -37,20 +36,35 @@ Why should a python3 threaded script be more stealthy than masscan or nmap
 
 RDP:
 ![](anotherrestartlatertocheckifthecertisatools.png)
-![](wtfisgoingonwiththismachine.png)
-
-3920bb317a0bef51027e2852be64b543
-![](validpassword.png)
-![](smbparanoid.png)
-
-![](rpcclientnozeroauth.png)
-![](cmethistime.png)
-![](cmesmbbuild.png)
-![](cmerid.png)
-
 
 I started clucking at straws given how network connection to this machine was over multiple.  
 ![](certchecking.png)
+
+
+![](wtfisgoingonwiththismachine.png)
+
+After I had got the passwords.txt, this writeup will be a jumbled as my mind on the attempt just o communicate with it were.
+![](validpassword.png)
+Checking SMB as this box behaved so weirdly.
+![](smbparanoid.png)
+No zero auth rpcclient
+![](rpcclientnozeroauth.png)
+
+crackmapexec:
+![](cmethistime.png)
+
+passwords.txt
+```bash
+echo Qm9iIC0gIVBAJCRXMHJEITEyMw== | base64 -d
+Bob - !P@$$W0rD!123
+
+echo QmlsbCAtIEp1dzRubmFNNG40MjA2OTY5NjkhJCQk | base64 -d
+Bill - Juw4nnaM4n420696969!$$$
+```
+
+![](cmesmbbuild.png)
+![](cmerid.png)
+
 
 Bob can connect to RPC:
 ![](bobspassword.png)
@@ -62,7 +76,7 @@ Bill cannot connect to RPC
 ![](billspassword.png)
 ![](billrpcfailedauth.png)
 
-
+Why is it on this port?
 ![](becausewhy49663.png)
 
 
