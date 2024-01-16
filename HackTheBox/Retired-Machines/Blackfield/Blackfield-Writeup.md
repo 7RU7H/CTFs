@@ -1,7 +1,6 @@
 # Blackfield Writeup
 
 ## Authors Warning with defining this.. 
-
 I did everything up dumping SAM and SYSTEM hives then I failed for about 2 hours. Here are my arguments to calling this a Writeup, but I almost called a Helped-Thorough twice during the subsequent hour of deliberating and WTFisThis machine too.
 
 - if Kerberos can sign a ticket with one hash, but you cannot login with kerberos with either ticket generated from each hash 
@@ -10,6 +9,8 @@ I did everything up dumping SAM and SYSTEM hives then I failed for about 2 hours
 - Normally SeBackupPrivilege and SeRestorePrivilege give you read/write permission ... 
 -  I got all the way to the end without hints or writeup, but did not consider the weirdness expressed above.
 - The way lots of people got root.txt with `cipher /c root.txt` before the patch
+
+Git commit for this *writeup* - `Root Salt is Black and found on nondomjoin Field`
 
 
 For the big sighs my notes contained:
@@ -40,7 +41,7 @@ Beyond Root:
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](Screenshots/ping.png)
-	
+
 ![](cmebasic.png)
 ![](improvementsandconcise.png)
 ![](nodigdomaintransfer.png)
