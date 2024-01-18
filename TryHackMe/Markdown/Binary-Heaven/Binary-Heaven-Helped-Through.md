@@ -5,11 +5,18 @@ Date:
 Difficulty:  Easy
 Goals:  
 - Gentle steps into Binary Exploitation Mountain
+- Learn some:
+	- BinEx
+	- ASM
+	- C
+	- Methodology
+	- Tools: `r2`, `gdb+gef`
 Learnt:
+- 
 Beyond Root:
 - Pre-Watching Video past the introduction - recite the exact way to exploit this as if it is a PWK200+ machine 
 - Watch the [CryptoCat intro binary Exploitation series](https://www.youtube.com/watch?v=wa3sMSdLyHw&list=PLHUKi1UlEgOIc07Rfk2Jgb5fZbxDPec94)
-
+- `GBD + GEF` + `r2` cheatsheet updated slightly
 
 - [[Binary-Heaven-Notes.md]]
 - [[Binary-Heaven-CMD-by-CMDs.md]]
@@ -60,7 +67,28 @@ Beyond Root:
  
 ## XCT as a Blueprint and Parasocial Mentor
 
-[XCT](https://www.youtube.com/watch?v=UnZj5zzcBG4) is awesome
+[XCT](https://www.youtube.com/watch?v=UnZj5zzcBG4) is awesome.
+
+I decided to start by laying the foundation for get data with some automation
+
+Then `gdb` and `gef` or `r2` 
+![1080](pdfatmain.png)
+
+
+![1080](readthedecompilationlikepossiblywell.png)
+
+`r2` command syntax is `letter` then `letter`
+```c
+d // debug commands
+ds // step one instruction
+db 0x55dc2082e21f// breakpoint at address
+dr //show registers
+
+```
+Demonstrating register changes:  
+![](registerobservationtesting.png)
+
+- How to deal with scanf in `r2` and `gef`
 ## Exploit
 
 ## Foothold
