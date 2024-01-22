@@ -1,0 +1,406 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+  <title>X86-64 Architecture Guide</title>
+  <style>
+    h1 { font-family: "Lucida Grande", verdana, arial, helvetica, sans-serif; font-size: 22px; font-weight: bold; }
+  div.writeboardbody { font-family: "Lucida Grande", verdana, arial, helvetica, sans-serif; font-size: 14px; line-height: 19px; color: #000; }
+  div.writeboardbody h1 { font-size: 130%; }
+  div.writeboardbody h2 { font-size: 100%; }
+  div.writeboardbody h3 { font-size: 100%; }
+  </style>
+  <style type="text/css">table.tbl, table.tbl th, table.tbl td { border: 1px solid black; } table.tbl, table.tbl th, table.tbl td, table.stk, table.stk th, table.stk td { border-collapse: collapse; vertical-align: top; } table.stk td { text-align: center; vertical-align: center; } table.tbl th, table.stk th { background-color: #CCC; } </style>
+</head>
+<body bgcolor="#ffffff">
+<h1>X86-64 Architecture Guide</h1>
+<div class="writeboardbody">
+<h1>Reference</h1>
+<p>This handout only mentions a small subset of the rich possibilities
+provided by the x86-64 instruction set and architecture. For a more
+complete (but still readable) introduction, consult <a
+ href="http://www.amd.com/us-en/assets/content_type/white_papers_and_tech_docs/24592.pdf"><cite>The
+<span class="caps">AMD64 </span>Architecture Programmer’s Manual,
+Volume 1: Application Programming</cite></a>.</p>
+<h2 id="registers">Registers</h2>
+<p>In the assembly syntax accepted by <code>gcc</code>, register names
+are always prefixed with <code>%</code>.&nbsp; All of these registers
+are 64 bits wide.</p>
+The register file is as follows:<br>
+<br>
+<table class="tbl">
+  <tbody>
+    <tr>
+      <th>Register</th>
+      <th>Purpose</th>
+      <th>Saved across calls</th>
+    </tr>
+    <tr>
+      <td style="font-family: monospace;"><code>%rax</code></td>
+      <td style="font-family: monospace;">temp register; return value</td>
+      <td style="font-family: monospace;">No<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">%rbx<br>
+      </td>
+      <td style="vertical-align: top; font-family: monospace;">callee-saved<br>
+      </td>
+      <td style="vertical-align: top; font-family: monospace;">Yes<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">%rcx<br>
+      </td>
+      <td style="vertical-align: top; font-family: monospace;">used to
+pass 4th argument to functions <br>
+      </td>
+      <td style="vertical-align: top; font-family: monospace;">No<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">%rdx<br>
+      </td>
+      <td style="vertical-align: top; font-family: monospace;">used to
+pass 3rd argument to functions<br>
+      </td>
+      <td style="vertical-align: top; font-family: monospace;">No<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="font-family: monospace;"><code>%rsp</code></td>
+      <td style="font-family: monospace;">stack pointer</td>
+      <td style="font-family: monospace;">Yes</td>
+    </tr>
+    <tr>
+      <td style="font-family: monospace;"><code>%rbp</code></td>
+      <td style="font-family: monospace;">callee-saved; base pointer</td>
+      <td style="font-family: monospace;">Yes</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">%rsi<br>
+      </td>
+      <td style="vertical-align: top; font-family: monospace;">used to
+pass 2nd argument to functions<br>
+      </td>
+      <td style="vertical-align: top; font-family: monospace;">No<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">%rdi<br>
+      </td>
+      <td style="vertical-align: top; font-family: monospace;">used to
+pass 1st argument to functions<br>
+      </td>
+      <td style="vertical-align: top; font-family: monospace;">No<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">%r8<br>
+      </td>
+      <td style="vertical-align: top; font-family: monospace;">used to
+pass 5th argument to functions<br>
+      </td>
+      <td style="vertical-align: top; font-family: monospace;">No<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">%r9<br>
+      </td>
+      <td style="vertical-align: top; font-family: monospace;">used to
+pass 6th argument to functions<br>
+      </td>
+      <td style="vertical-align: top; font-family: monospace;">No<br>
+      </td>
+    </tr>
+    <tr style="font-family: monospace;">
+      <td>%r10-r11<br>
+      </td>
+      <td style="vertical-align: top;">temporary<br>
+      </td>
+      <td style="vertical-align: top;">No<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top; font-family: monospace;">%r12-r15<br>
+      </td>
+      <td style="vertical-align: top; font-family: monospace;">callee-saved
+registers<br>
+      </td>
+      <td style="vertical-align: top; font-family: monospace;">Yes<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+For the code generation phase of the project you will not be performing
+register allocation.&nbsp; You should use %r10 and %r11 for temporary
+values that you load from the stack.<br>
+<h2 id="instruction_set">Instruction Set</h2>
+<p>Each mnemonic opcode presented here represents a family of
+instructions. Within each family, there are variants which take
+different argument types (registers, immediate values, or memory
+addresses) and/or argument sizes (byte, word, double-word, or
+quad-word). The former can be distinguished from the prefixes of the
+arguments, and the latter by an optional one-letter suffix on the
+mnemonic.</p>
+<p>For example, a <code>mov</code> instruction which sets the value of
+the 64-bit <code>%rax</code> register to the immediate value 3 can be
+written as</p>
+<blockquote> <code></code>
+  <pre>    movq    $3, %rax</pre>
+</blockquote>
+<p>Immediate operands are always prefixed by <code>$</code>.
+Un-prefixed operands are treated as memory addresses, and should be
+avoided since they are confusing.</p>
+<p>For instructions which modify one of their operands, the operand
+which is modified appears second. This differs from the convention used
+by Microsoft’s and Borland’s assemblers, which are commonly used on <span
+ class="caps">DOS</span> and Windows.</p>
+<table class="tbl">
+  <tbody>
+    <tr>
+      <th style="width: 15em;">Opcode</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td colspan="2"><em>Copying values</em></td>
+    </tr>
+    <tr>
+      <td><code>mov src, dest</code></td>
+      <td>Copies a value from a register, immediate value or memory
+address to a register or memory address.</td>
+    </tr>
+    <tr>
+      <td><code>cmove %src, %dest</code></td>
+      <td rowspan="6">Copies from register <code>%src</code> to
+register <code>%dest</code> if the last comparison operation had the
+corresponding result (<code>cmove</code>: equality, <code>cmovne</code>:
+inequality, <code>cmovg</code>: greater, <code>cmovl</code>: less, <code>cmovge</code>:
+greater or equal, <code>cmovle</code>: less or equal).</td>
+    </tr>
+    <tr>
+      <td><code>cmovne %src, %dest</code></td>
+    </tr>
+    <tr>
+      <td><code>cmovg %src, %dest</code></td>
+    </tr>
+    <tr>
+      <td><code>cmovl %src, %dest</code></td>
+    </tr>
+    <tr>
+      <td><code>cmovge %src, %dest</code></td>
+    </tr>
+    <tr>
+      <td><code>cmovle %src, %dest</code></td>
+    </tr>
+    <tr>
+      <td colspan="2"><em>Stack management</em></td>
+    </tr>
+    <tr>
+      <td><code>enter $x, $0</code></td>
+      <td>Sets up a procedure’s stack frame by first pushing the
+current value of <code>%rbp</code> on to the stack, storing the
+current value of <code>%rsp</code> in <code>%rbp</code>, and finally
+decreasing <code>%rsp</code> to make room for <code>x</code>
+byte-sized local variables.</td>
+    </tr>
+    <tr>
+      <td><code>leave</code></td>
+      <td>Removes local variables from the stack frame by restoring the
+old values of <code>%rsp</code> and <code>%rbp</code>.</td>
+    </tr>
+    <tr>
+      <td><code>push src</code></td>
+      <td>Decreases <code>%rsp</code> and places <code>src</code> at
+the new memory location pointed to by <code>%rsp</code>. Here, <code>src</code>
+can be a register, immediate value or memory address.</td>
+    </tr>
+    <tr>
+      <td><code>pop dest</code></td>
+      <td>Copies the value stored at the location pointed to by <code>%rsp</code>
+to <code>dest</code> and increases <code>%rsp</code>. Here, <code>dest</code>
+can be a register or memory location.</td>
+    </tr>
+    <tr>
+      <td colspan="2"><em>Control flow</em></td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">call target<br>
+      </td>
+      <td style="vertical-align: top;">Jump unconditionally to target
+and push return value (current PC + 1) onto stack.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">ret<br>
+      </td>
+      <td style="vertical-align: top;">Pop the return address off the
+stack and jump unconditionally to this address.<br>
+      </td>
+    </tr>
+    <tr>
+      <td><code>jmp target</code></td>
+      <td>Jump unconditionally to <code>target</code>, which is
+specified as a memory location (for example, a label).</td>
+    </tr>
+    <tr>
+      <td><code>je target</code></td>
+      <td rowspan="2">Jump to <code>target</code> if the last
+comparison had the corresponding result (<code>je</code>: equality; <code>jne</code>:
+inequality).</td>
+    </tr>
+    <tr>
+      <td><code>jne target</code></td>
+    </tr>
+    <tr>
+      <td colspan="2"><em>Arithmetic and logic</em></td>
+    </tr>
+    <tr>
+      <td><code>add src, dest</code></td>
+      <td>Add <code>src</code> to <code>dest</code>.</td>
+    </tr>
+    <tr>
+      <td><code>sub src, dest</code></td>
+      <td>Subtract <code>src</code> from <code>dest</code>.</td>
+    </tr>
+    <tr>
+      <td><code>imul src, dest</code></td>
+      <td>Multiply <code>dest</code> by <code>src</code>.</td>
+    </tr>
+    <tr>
+      <td><code>idiv divisor</code></td>
+      <td>Divide <code>rdx:rax</code> by <code>divisor</code>.  Store quotient in <code>rax</code> and store remainder in <code>rdx</code>.</td>
+    </tr>
+    <tr>
+      <td><code>shr reg</code></td>
+      <td rowspan="2">Shift <code>reg</code> to the left or right by value in <code>cl</code> (low 8 bits of <code>rcx</code>).</td>
+    </tr>
+    <tr>
+      <td><code>shl reg</code></td>
+    </tr>
+    <tr>
+      <td><code>ror src, dest</code></td>
+      <td>Rotate <code>dest</code> to the left or right by <code>src</code>
+bits.</td>
+    </tr>
+    <tr>
+      <td><code>cmp src, dest</code></td>
+      <td>Set flags corresponding to whether <code>dest</code> is less
+than, equal to, or greater than <code>src</code></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="stack_frame">Stack Organization</h2>
+<p>Global and local variables are stored on the stack, a region of
+memory that is typically addressed by offsets from the registers <code>%rbp</code>
+and <code>%rsp</code>. Each procedure call results in the creation of
+a <em>stack frame</em> where the procedure can store local variables
+and temporary intermediate values for that invocation.The stack is
+organized as follows:</p>
+<table class="stk">
+  <tbody>
+    <tr>
+      <th style="border: 1px solid black;">Position</th>
+      <th style="border: 1px solid black;">Contents</th>
+      <th style="border: 1px solid black;">Frame</th>
+    </tr>
+    <tr>
+      <td
+ style="border-style: solid; border-color: black; border-width: 1px 1px 0pt; vertical-align: middle;"><code>8n+16(%rbp)</code></td>
+      <td
+ style="border-style: solid; border-color: black; border-width: 1px 1px 0pt; vertical-align: middle;">argument
+      <code>n</code></td>
+      <td
+ style="border-style: solid; border-color: black; border-width: 1px 1px 0pt; vertical-align: middle;"
+ rowspan="3">Previous</td>
+    </tr>
+    <tr>
+      <td
+ style="border-style: solid; border-color: black; border-width: 0pt 1px; vertical-align: middle;">...</td>
+      <td
+ style="border-style: solid; border-color: black; border-width: 0pt 1px; vertical-align: middle;">...</td>
+    </tr>
+    <tr>
+      <td
+ style="border-style: solid; border-color: black; border-width: 0pt 1px 1px; vertical-align: middle;"><code>16(%rbp)</code></td>
+      <td
+ style="border-style: solid; border-color: black; border-width: 0pt 1px 1px; vertical-align: middle;">argument
+7<br>
+      </td>
+    </tr>
+    <tr>
+      <td
+ style="border-style: solid; border-color: black; border-width: 0pt 1px; vertical-align: middle;"><code>8(%rbp)</code></td>
+      <td style="border: 1px solid black;">return address</td>
+      <td style="border: 1px solid black; vertical-align: middle;"
+ rowspan="5">Current</td>
+    </tr>
+    <tr>
+      <td
+ style="border-style: solid; border-color: black; border-width: 0pt 1px; vertical-align: middle;"><code>0(%rbp)</code></td>
+      <td style="border: 1px solid black;">previous <code>%rbp</code>
+value</td>
+    </tr>
+    <tr>
+      <td
+ style="border-style: solid; border-color: black; border-width: 0pt 1px; vertical-align: middle;"><code>-8(%rbp)</code></td>
+      <td style="border: 1px solid black; vertical-align: middle;"
+ rowspan="3">locals and temps</td>
+    </tr>
+    <tr>
+      <td
+ style="border-style: solid; border-color: black; border-width: 0pt 1px; vertical-align: middle;">...</td>
+    </tr>
+    <tr>
+      <td
+ style="border-style: solid; border-color: black; border-width: 0pt 1px 1px; vertical-align: middle;"><code>0(%rsp)</code></td>
+    </tr>
+  </tbody>
+</table>
+<h2 id="calling_convention">Calling Convention<a
+ name="calling_convention"></a></h2>
+We will use the standard Linux function calling convention.&nbsp; The
+calling convention is defined in detail in <a
+ href="http://www.x86-64.org/documentation/abi.pdf"><cite>System V
+Application Binary Interface—AMD64 Architecture Processor Supplement.</cite></a>&nbsp;
+We will summarize the calling convention as it applies to decaf.&nbsp; <br>
+<br>
+The caller uses registers to pass the first 6 arguments to the
+callee.&nbsp; Given the arguments in left-to-right order, the order of
+registers used is: %rdi, %rsi, %rdx, %rcx, %r8, and %r9.&nbsp; Any
+remaining arguments are passed on the stack in reverse order so that
+they can be popped off the stack in order.&nbsp; <br>
+<br>
+The callee is responsible for perserving the value of registers %rbp
+%rbx, and %r12-r15, as these registers are owned by the caller.&nbsp;
+The remaining registers are owned by the callee.&nbsp; <br>
+<p>The callee places its return value in <code>%rax</code> and is
+responsible for cleaning up its local variables as well as for removing
+the return address from the stack.&nbsp;</p>
+<p>The <code>call</code>, <code>enter</code>, <code>leave</code> and
+<code>ret</code> instructions make it easy to follow this calling
+convention.<br>
+</p>
+<p>Since we follow the standard linux ABI, we can call C functions and
+library functions using our callout structure.&nbsp; For the purposes
+of the project we are only going to call <span
+ style="font-family: monospace;">printf</span> and <span
+ style="font-family: monospace;">get_int_035.</span>&nbsp; When calling
+<span style="font-family: monospace;">printf, </span>we must set the
+value of register %rax to 0 before issuing the call instruction.&nbsp;
+This is because <span style="font-family: monospace;">printf</span>
+uses a variable number of arguments and %rax specifies how many SSE
+registers are used for the arguments.&nbsp; For our purposes the value
+will always be 0.&nbsp; Since callouts can only return an single
+integer value, we have provided<code></code> a function <code
+ style="font-family: monospace;">get_int_035</code><span
+ style="font-family: monospace;">(), </span>which will read a single
+integer input from the terminal and return its integer value.&nbsp;
+This function is included in the 6035 static library.&nbsp; We cannot
+use scanf because it returns the number of items read.<br>
+<br>
+</p>
+</div>
+</body>
+</html>
