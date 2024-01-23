@@ -22,7 +22,7 @@ Beyond Root:
 - Create a list of what I need to know - DONE 
 - Watch the [CryptoCat intro binary Exploitation series](https://www.youtube.com/watch?v=wa3sMSdLyHw&list=PLHUKi1UlEgOIc07Rfk2Jgb5fZbxDPec94) - One a day to make the brain not drain
 - `GBD + GEF` + `r2` cheatsheet updated slightly - done 
-- [[Compiled-Writeup]] - NEXT
+- [[Compiled-Helped-Thorough]] - NEXT
 - [[PWN100-Helped-Thorough]] - 1 hour max per task - Writeup 
 -  Made automation for extracting all the information from a ELF binary
 
