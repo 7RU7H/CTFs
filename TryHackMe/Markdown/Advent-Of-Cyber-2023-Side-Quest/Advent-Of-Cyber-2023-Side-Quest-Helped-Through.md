@@ -1,4 +1,4 @@
-# Advent-Of-Cyber-2023-Side-Quest Through
+# Advent-Of-Cyber-2023-Side-Quest Through=
 
 Name: Advent-Of-Cyber-2023-Side-Quest
 Date:  
@@ -21,9 +21,9 @@ During December of 2023 I realised I could not do this puzzle. The rabbithole wo
 
 Yeti, Bandit and Advent in the search terms to find three of the rooms:
 
-https://tryhackme.com/room/adventofcyber23sidequest
-https://tryhackme.com/room/adv3nt0fdbopsjcap
-https://tryhackme.com/room/armageddon2r
+[Side Quest Room](https://tryhackme.com/room/adventofcyber23sidequest)
+[Day 1](https://tryhackme.com/room/adv3nt0fdbopsjcap)
+[Day 2](https://tryhackme.com/room/armageddon2r)
 3?
 https://tryhackme.com/room/surfingyetiiscomingtotown
 
@@ -121,12 +121,56 @@ I noticed there were slightly less packets for some reason... and my py_rdp_outp
 cat yetikey1.txt | awk -F. '{print $2$3$4$5$6$7$8$9$10$11$12}' | tr -d '\n'
 ```
 
+## [Snowy ARMageddon](https://tryhackme.com/room/armageddon2r)
+
+[GrepMoreCoffee](https://github.com/JoanneBiltz/CTF-Writeups/tree/main/2023_THM_AOC_Side_Quests/Snowy_ARMageddon) and [0xb0b](https://0xb0b.gitbook.io/writeups/tryhackme/2023/advent-of-cyber-23-side-quest/snowy-armageddon) point out that previous requirement to gain the QR code from my favourite room from the AoC 2023 Game hacking room which this year was a Buffer Overflow. For my the very visual and new context of seeing a buffer overflow was very satisfying to me. But, this is 2024. I am doing this to learn from and highlight others to get the badge, experience different Hacking and InfoSec domains while I finish some projects and not get burnt out doing the HTB Season 4.  
+
+Port scanning the machine we have ssh, telnet, a HTTP web server with instant 403 forbidden and a 50628 tcp port for...
+![](nmapforARMingyouday2.png)
+
+Trivision:
+![](trivisionconnectprotectandbufferoverflow.png)
+A quick `searchsploit`
+![](day2searchsploitnoexploit.png)
+Dorking it - key takeaway being trying different variations
+![](dorkingtheexploitforthecamera.png)
+[sumanrox](https://github.com/sumanrox/sidequest-exploits/tree/main/sidequest_2) has a automated exploit for this so I will test it only after I have read everyone else writeups that are GitHub. This exploit is very sexy. Good code and the nice visuals.
+![](coolexploit.png)
+
+Because they have made this so easy. I wanted to review and finish [nosqlinjectiontutorial](https://tryhackme.com/room/nosqlinjectiontutorial) from THM. After doing this.
+
+```asm
+mov r1, #0xc1   // store '193' in R1
+lsl r1, #8      // shift by 8 bits to the left
+add r1, #0x03   // add '3' to R1
+lsl r1, #8      // shift by 8 bits to the left
+add r1, #0x0b   // add '11' to R1
+lsl r1, #8      // shift by 8 bits to the left
+add r1, #0x08   // add '8' and '2' to R1 (since we cannot pass the hex value for 10 '0x0a')
+add r1, #0x02
+push {r1}
+```
+[beta-j](https://github.com/beta-j/TryHackMe-Rooms/blob/main/AoC%202023%20-%20SideQuest%202%20-%20Snowy%20ARMageddon.md) discusses the use of [https://shell-storm.org/online/Online-Assembler-and-Disassembler/](https://shell-storm.org/online/Online-Assembler-and-Disassembler)
+```plaintext
+\xc1\x10\xa0\xe3\x01\x14\xa0\xe1\x03\x10\x81\xe2\x01\x14\xa0\xe1\x0b\x10\x81\xe2\x01\x14\xa0\xe1\x08\x10\x81\xe2\x04\x10\x2d\xe5
+```
+
+Assembling my own version with [https://shell-storm.org/online/Online-Assembler-and-Disassembler/](https://shell-storm.org/online/Online-Assembler-and-Disassembler):
+![](nicetoolonlinetool.png)
+
+After issues, concentration dip and time management concerns I decide over lunch to, given how good this auto-exploits are, analyse them as the Beyond Root and figure out and copy some of the cool tricks they utilise for H4dd1xb4dg3r recon tool wrapper   
+
+## Frosteau's Laptop
+
+While testing nuclei to see if it return any information if any about the Day 2 Web Camera exploit I stumbled on [0xb0b](https://0xb0b.gitbook.io/writeups/tryhackme/2023/advent-of-cyber-23-side-quest/frosteau-busy-with-vim#getting-to-sq3-the-qr-code) explanation of day 3, which I was missing. Apparently Day 3 is a secret challenge inside of Day 17's AoC 2023.
 
 ## Post-Completion-Reflection  
 
 - The people that unknowingly contributed to my fast-track exposure to these topics are awesome!
+- The first day I could not really add anything useful or helpful I knew basically nothing even though I have done well in packet analysis challenges - LEARNT A LOT
 
 ## Beyond Root
 
+- https://tryhackme.com/room/nosqlinjectiontutorial
 
-
+- [sumanrox](https://github.com/sumanrox/sidequest-exploits/tree/main/sidequest_2) has a automated exploits - they look cool, work well, not many dependencies!
