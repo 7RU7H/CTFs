@@ -24,7 +24,7 @@ Yeti, Bandit and Advent in the search terms to find three of the rooms:
 [Side Quest Room](https://tryhackme.com/room/adventofcyber23sidequest)
 [Day 1](https://tryhackme.com/room/adv3nt0fdbopsjcap)
 [Day 2](https://tryhackme.com/room/armageddon2r)
-3?
+[Day 3](https://tryhackme.com/room/busyvimfrosteau)
 https://tryhackme.com/room/surfingyetiiscomingtotown
 
 
@@ -36,7 +36,7 @@ Profile names as links to Writeup - What I learnt from them
 	- `aircrack-ng` alternative with hashcat from [cyberark](https://www.cyberark.com/resources/threat-research-blog/cracking-wifi-at-scale-with-one-simple-trick)
 - [0xb0b](https://0xb0b.gitbook.io/writeups/tryhackme/2023/advent-of-cyber-23-side-quest/the-return-of-the-yeti), for `aircrack-ng` to crack wifi passwords we need a .pcap format
 - [Gh05t-1337](https://github.com/Gh05t-1337/CTF-Writeups/tree/main/TryHackMe/AoC23%20Sidequest/1%20The%20Return%20of%20the%20Yeti), decrypting using Wireshark
-
+-  [0xb0b](https://0xb0b.gitbook.io/writeups/tryhackme/2023/advent-of-cyber-23-side-quest/frosteau-busy-with-vim#getting-to-sq3-the-qr-code): [Wikipedia - ACropalypse](https://en.wikipedia.org/wiki/ACropalypse) 
 #### [The Return of the Yeti](https://tryhackme.com/room/adv3nt0fdbopsjcap)
 
 I have never done any WIFI capture so I guessed the first answer:
@@ -160,10 +160,80 @@ Assembling my own version with [https://shell-storm.org/online/Online-Assembler-
 
 After issues, concentration dip and time management concerns I decide over lunch to, given how good this auto-exploits are, analyse them as the Beyond Root and figure out and copy some of the cool tricks they utilise for H4dd1xb4dg3r recon tool wrapper   
 
-## Frosteau's Laptop
+## [Frosteau's Busy with Vim](https://tryhackme.com/room/busyvimfrosteau)
 
 While testing nuclei to see if it return any information if any about the Day 2 Web Camera exploit I stumbled on [0xb0b](https://0xb0b.gitbook.io/writeups/tryhackme/2023/advent-of-cyber-23-side-quest/frosteau-busy-with-vim#getting-to-sq3-the-qr-code) explanation of day 3, which I was missing. Apparently Day 3 is a secret challenge inside of Day 17's AoC 2023.
 
+
+![](admindesktopday3.png)
+
+![](chatlogs.png)
+
+![](gimpforwindows.png)
+
+![](snipandsketchvuln.png)
+
+[Wikipedia - ACropalypse](https://en.wikipedia.org/wiki/ACropalypse) *(CVE 2023-21036) was a vulnerability in Markup, a [screenshot](https://en.wikipedia.org/wiki/Screenshot "Screenshot") editing tool introduced in [Google Pixel](https://en.wikipedia.org/wiki/Google_Pixel "Google Pixel") phones with the release of [Android Pie](https://en.wikipedia.org/wiki/Android_Pie "Android Pie"). The vulnerability, discovered in 2023 by security researchers Simon Aarons and David Buchanan, allows an attacker to view an [uncropped](https://en.wikipedia.org/wiki/Cropping_(image) "Cropping (image)") and unaltered version of a screenshot. Following aCropalypse's discovery, a similar [zero-day](https://en.wikipedia.org/wiki/Zero-day_(computing) "Zero-day (computing)")[[1]](https://en.wikipedia.org/wiki/ACropalypse#cite_note-1) vulnerability was also discovered, affecting [Snip & Sketch](https://en.wikipedia.org/wiki/Snip_%26_Sketch "Snip & Sketch") for [Windows 10](https://en.wikipedia.org/wiki/Windows_10 "Windows 10") and [Snipping Tool](https://en.wikipedia.org/wiki/Snipping_Tool "Snipping Tool") for [Windows 11](https://en.wikipedia.org/wiki/Windows_11 "Windows 11").*
+
+[frankthetank-music - Acropalypse-Multi-Tool](https://github.com/frankthetank-music/Acropalypse-Multi-Tool) can *easily detect and restore Acropalypse vulnerable PNG and GIF files with simple Python GUI.*
+
+![1080](0xb0brecroppingtoreveal.png)
+
+![](nmapday3.png)
+
+![](ftpanon.png)
+
+For some reason `wget -r ` did not work.
+![](flag2isaenv.png)
+frostling_base
+![](frostling_base.png)
+
+frostling_five
+![](frostling_five.png)
+
+yeti_footage
+![](yeti_footage.png)
+
+yeti_mugshot
+![](yeti_mugshot.png)
+
+The wonderful Christmas Joke of escaping from Vi
+![](telnettoaviproc.png)
+I tried
+```
+:set shell=/bin/sh
+:shell
+```
+
+BEfore losing my mind and rabbitholing in dev week:
+![](beforerabbithioleindevweek.png)
+
+[GrepMoreCoffee](https://github.com/JoanneBiltz/CTF-Writeups/tree/main/2023_THM_AOC_Side_Quests/frosteau_busy_with_vim) found that 
+```
+-If you exit vim you are kicked out of the connection.
+-You can see the directories inside vim using `:e /` then `:e /directory_name`.
+-Trying to run commands using :! from vim gives an error `Cannot execute shell /tmp/sh`. 
+-After looking through many files and directories we determined that /tmp/sh was empty and not executable. 
+-There is also a user frosty that has /usr/frosty/sh that is empty but is executable. We might be able to use that to get a shell.
+-If you go to the /home directory you will find the user ubuntu.
+-We tried all kinds of shells in vim but didn't have any luck.
+-We can set permissions with `:call setfperm("/tmp/sh","rwxrwxrwx")`.
+-`:e /etc/shells` gives us `/usr/busybox/sh`.
+-It seems the 8065 port points to `/usr/frosty/sh`.
+```
+
+She then creates a msfvenom shell and uploads via FTP
+![](grepnomorerabbitholes.png)
+
+BatBato's solution was to upload Linux binaries  
+![](batosolutiontotheshellday3issue.png)
+
+![](changeofname.png)
+
+
+```
+:call setfperm("/tmp/ftp/sh","rwxrwxrwx")
+```
 ## Post-Completion-Reflection  
 
 - The people that unknowingly contributed to my fast-track exposure to these topics are awesome!
