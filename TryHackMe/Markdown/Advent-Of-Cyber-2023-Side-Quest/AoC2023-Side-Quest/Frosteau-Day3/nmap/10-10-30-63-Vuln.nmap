@@ -1,0 +1,30 @@
+# Nmap 7.94SVN scan initiated Wed Jan 24 11:32:38 2024 as: nmap --script vuln -oA /home/kali/AoC2023-Side-Quest/Frosteau-Day3/nmap/10-10-30-63-Vuln --min-rate 1000 -e tun0 -p 22,80,8065,8075,8085,8095 10.10.30.63
+Nmap scan report for 10.10.30.63
+Host is up (0.066s latency).
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-slowloris-check: 
+|   VULNERABLE:
+|   Slowloris DOS attack
+|     State: LIKELY VULNERABLE
+|     IDs:  CVE:CVE-2007-6750
+|       Slowloris tries to keep many connections to the target web server open and hold
+|       them open as long as possible.  It accomplishes this by opening connections to
+|       the target web server and sending a partial request. By doing so, it starves
+|       the http server's resources causing Denial Of Service.
+|       
+|     Disclosure date: 2009-09-17
+|     References:
+|       http://ha.ckers.org/slowloris/
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750
+8065/tcp open  unknown
+8075/tcp open  unknown
+8085/tcp open  unknown
+8095/tcp open  unknown
+
+# Nmap done at Wed Jan 24 11:42:30 2024 -- 1 IP address (1 host up) scanned in 591.68 seconds

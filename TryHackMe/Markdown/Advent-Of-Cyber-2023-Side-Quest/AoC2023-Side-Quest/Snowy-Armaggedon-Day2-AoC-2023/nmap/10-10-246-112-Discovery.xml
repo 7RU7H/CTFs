@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Tue Jan 23 10:29:43 2024 as: nmap -&#45;script discovery -oA /home/kali/Snowy-Armaggedon-Day2-AoC-2023/nmap/10-10-246-112-Discovery -&#45;min-rate 500 -e tun0 -p 22,23,8080,50628 10.10.246.112 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA /home/kali/Snowy-Armaggedon-Day2-AoC-2023/nmap/10-10-246-112-Discovery -&#45;min-rate 500 -e tun0 -p 22,23,8080,50628 10.10.246.112" start="1706005783" startstr="Tue Jan 23 10:29:43 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="4" services="22-23,8080,50628"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-sniffer" output="Sniffed 1 address(es). &#xa;224.0.23.12"/><script id="broadcast-ping" output="false">false</script><script id="lltd-discovery" output="false">false</script><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.246.112" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1706005807" endtime="1706005836"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.246.112" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/><script id="banner" output="SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.9"/><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (9)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (6)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ssh-rsa</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script><script id="ssh-hostkey" output="&#xa;  3072 5e:b9:0f:68:e9:b6:e0:a2:ff:0e:15:9a:d8:71:6f:38 (RSA)&#xa;  256 aa:31:8c:d0:66:bd:ab:ab:d0:fd:20:08:ad:53:d7:58 (ECDSA)&#xa;  256 55:5d:2c:47:20:a5:c3:34:68:1b:14:a4:7d:64:55:b8 (ED25519)"><table>
+<elem key="bits">3072</elem>
+<elem key="type">ssh-rsa</elem>
+<elem key="fingerprint">5eb90f68e9b6e0a2ff0e159ad8716f38</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABgQCgbYQ47PkAsRGiTfkiwvHDvoSUPhw4gedrgizaW4zVNoKKfXr7qU6FSVC4kOKMGiAISFI8AaSLtDLW4V7jhD+S1ehAC07j3PWSPlRox73E+4pt0wKcIMz3q0nkLAibJIWaSJ/qMnV4EZeujQ/XV5uQE1up6s3Q+dbBfzdpZSRtgNTqCsFNbXNr9SmEjrMhRD/nSEHHDQRQfLntt2SKlueThHXfOIsMDjAqGwG4hx70DMxYWyCZyo9bXyuv3UFqgG5HE79O4s7YYzFTFHpPUSRC9qUeX/PGr5G5Xx3bXidR0xnULSU7Rz1OBg/U77Qndkn1hKdQAJspnYu5zZNIUyeFNFLSAs8pkoJUI0B6ylXaw027+YBGy7ZpLCq8jpSnZKaf0JVGxYtaysai+5fZztBGhlYnYs5ldDK966A3bu1bnS2ZTLfWvHOSc1pGlsuWY9Bf+8Ki/1B8xO67p/Ej3fZJeYknVj3e8SCSmbPT+lSfDyrgMMnBzFAFUrAu12acIVc=</elem>
+</table>
+<table>
+<elem key="bits">256</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="fingerprint">aa318cd066bdababd0fd2008ad53d758</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMnvn1Wk6G2nh6jPGlfQ9nQhXwYgWGD0qAqedxzGbtZBJ7pirAtmXTjMiz3kvSuIKoistqzjXRzFwMb0DABpD7I=</elem>
+</table>
+<table>
+<elem key="bits">256</elem>
+<elem key="type">ssh-ed25519</elem>
+<elem key="fingerprint">555d2c4720a5c334681b14a47d6455b8</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIOvmENSNskbNV9yvbDTrdZYlWjfnGYF2DV8UDewkn3fT</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="23"><state state="open" reason="syn-ack" reason_ttl="62"/><service name="telnet" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="62"/><service name="http-proxy" method="table" conf="3"/><script id="http-vhosts" output="&#xa;128 names had status 403"/><script id="http-chrono" output="Request times for /; avg: 331.27ms; min: 255.02ms; max: 415.90ms"/><script id="http-headers" output="&#xa;  Date: Tue, 23 Jan 2024 10:29:55 GMT&#xa;  Server: Apache/2.4.57 (Debian)&#xa;  Last-Modified: Tue, 05 Dec 2023 18:54:54 GMT&#xa;  ETag: &quot;3a5-60bc7c52a95e8&quot;&#xa;  Accept-Ranges: bytes&#xa;  Content-Length: 933&#xa;  Connection: close&#xa;  Content-Type: text/html&#xa;  &#xa;  (Request type: GET)&#xa;"/><script id="http-title" output="TryHackMe | Access Forbidden - 403"><elem key="title">TryHackMe | Access Forbidden - 403</elem>
+</script><script id="http-date" output="Tue, 23 Jan 2024 10:29:55 GMT; +59m45s from local time."><elem key="date">2024-01-23T11:29:55+00:00</elem>
+<elem key="delta">3585.0</elem>
+</script></port>
+<port protocol="tcp" portid="50628"><state state="open" reason="syn-ack" reason_ttl="62"/></port>
+</ports>
+<hostscript><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.10.246.112&quot;; use dns-brute.domain script argument."/><script id="qscan" output="&#xa;PORT   FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;22     0       97650.40   21426.63  0.0%&#xa;23     0       94458.80   21074.41  0.0%&#xa;8080   0       101114.30  13302.77  0.0%&#xa;50628  0       92973.40   19114.85  0.0%&#xa;"/><script id="path-mtu" output="PMTU == 1500"/><script id="ipidseq" output="All zeros"/></hostscript><times srtt="128586" rttvar="57997" to="360574"/>
+</host>
+<runstats><finished time="1706005836" timestr="Tue Jan 23 10:30:36 2024" summary="Nmap done at Tue Jan 23 10:30:36 2024; 1 IP address (1 host up) scanned in 52.88 seconds" elapsed="52.88" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

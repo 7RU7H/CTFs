@@ -1,0 +1,107 @@
+# Nmap 7.94SVN scan initiated Wed Jan 24 11:26:41 2024 as: nmap --script discovery -oA /home/kali/AoC2023-Side-Quest/Frosteau-Day3/nmap/10-10-30-63-Discovery --min-rate 1000 -e tun0 -p 22,80,8065,8075,8085,8095 10.10.30.63
+Pre-scan script results:
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-ping: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_lltd-discovery: false
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.10.30.63
+Host is up (0.092s latency).
+
+Bug in http-security-headers: no string output.
+PORT     STATE SERVICE
+22/tcp   open  ssh
+|_banner: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.9
+| ssh2-enum-algos: 
+|   kex_algorithms: (9)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   3072 9d:a7:e1:c9:4a:bd:f3:46:35:7e:55:d3:e1:4b:57:14 (RSA)
+|   256 33:2f:ef:b0:18:e0:7b:b5:2e:44:8c:a4:6b:a7:c8:e4 (ECDSA)
+|_  256 f8:43:14:8a:35:1e:af:8e:58:78:06:f1:59:3f:00:ad (ED25519)
+80/tcp   open  http
+| http-vhosts: 
+|_128 names had status 405
+|_http-chrono: Request times for /; avg: 180.86ms; min: 147.19ms; max: 201.77ms
+| http-sitemap-generator: 
+|   Directory structure:
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    
+|_http-feed: Couldn't find any feeds.
+|_http-date: Wed, 24 Jan 2024 11:27:04 GMT; +59m43s from local time.
+| http-useragent-tester: 
+|   Status for browser useragent: 405
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-mobileversion-checker: No mobile version detected.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.10.30.63
+|   Found the following error pages: 
+|   
+|   Error Code: 405
+|_  	http://10.10.30.63:80/
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-title: Error response
+|_http-comments-displayer: Couldn't find any comments.
+| http-headers: 
+|   Server: WebSockify Python/3.8.10
+|   Date: Wed, 24 Jan 2024 11:27:06 GMT
+|   Connection: close
+|   Content-Type: text/html;charset=utf-8
+|   Content-Length: 472
+|   
+|_  (Request type: GET)
+8065/tcp open  unknown
+|_banner: \xFF\xFD\x01\xFF\xFD\x1F\xFF\xFB\x01\xFF\xFB\x03
+8075/tcp open  unknown
+|_banner: 220 Operation successful
+8085/tcp open  unknown
+|_banner: \xFF\xFD\x01\xFF\xFD\x1F\xFF\xFB\x01\xFF\xFB\x03\x0D\x0D\x0A...
+8095/tcp open  unknown
+|_banner: \xFF\xFD\x01\xFF\xFD\x1F\xFF\xFB\x01\xFF\xFB\x03
+
+Host script results:
+|_ipidseq: All zeros
+|_dns-brute: Can't guess domain of "10.10.30.63"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       63272.70   3434.81   0.0%
+| 80    0       64999.60   7794.78   0.0%
+| 8065  0       65986.90   6757.32   0.0%
+| 8075  1       68765.70   5468.70   0.0%
+| 8085  0       65098.70   12058.88  0.0%
+|_8095  0       63323.20   6144.68   0.0%
+|_path-mtu: PMTU == 1500
+
+# Nmap done at Wed Jan 24 11:32:38 2024 -- 1 IP address (1 host up) scanned in 356.57 seconds

@@ -821,7 +821,7 @@ Wow
 ![](insidethebackup.png)
 
 
-Check for docker container is running `--privileged`, meaning we are can mount to these disks as containerr does not need disks 
+Check for docker container is running `--privileged`, meaning we are can mount to these disks as container does not need disks 
 ```bash
 ls /dev/ | grep sda
 mount /dev/sdaX /mnt

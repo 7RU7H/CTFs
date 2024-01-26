@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Wed Jan 24 11:26:41 2024 as: nmap -&#45;script discovery -oA /home/kali/AoC2023-Side-Quest/Frosteau-Day3/nmap/10-10-30-63-Discovery -&#45;min-rate 1000 -e tun0 -p 22,80,8065,8075,8085,8095 10.10.30.63 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA /home/kali/AoC2023-Side-Quest/Frosteau-Day3/nmap/10-10-30-63-Discovery -&#45;min-rate 1000 -e tun0 -p 22,80,8065,8075,8085,8095 10.10.30.63" start="1706095601" startstr="Wed Jan 24 11:26:41 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="6" services="22,80,8065,8075,8085,8095"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="broadcast-ping" output="false">false</script><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="targets-sniffer" output="Sniffed 1 address(es). &#xa;224.0.23.12"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="lltd-discovery" output="false">false</script><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.30.63" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1706095625" endtime="1706095958"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.30.63" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/><script id="banner" output="SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.9"/><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (9)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (6)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ssh-rsa</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script><script id="ssh-hostkey" output="&#xa;  3072 9d:a7:e1:c9:4a:bd:f3:46:35:7e:55:d3:e1:4b:57:14 (RSA)&#xa;  256 33:2f:ef:b0:18:e0:7b:b5:2e:44:8c:a4:6b:a7:c8:e4 (ECDSA)&#xa;  256 f8:43:14:8a:35:1e:af:8e:58:78:06:f1:59:3f:00:ad (ED25519)"><table>
+<elem key="fingerprint">9da7e1c94abdf346357e55d3e14b5714</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABgQDBzWgqMTkMAAjW5VKwH+NHc8XbfpNt2qA7uGHxY7e2drJpGiOkCscHaPZKTFeG4jbHE4p6zmn9p0dmQTSrKvKZwJQ5QrBfPd8Nhki15fBH8rjAsFRkSfR68MDR6GUVnvu4MhPRklBxBNlK2GDthjo62acnuZrY49MX1++8mrP2QOtFy+mhp05wwS9qXKplDWog03mkccUx2AZc4UkmfjF1jiA/r2D185RVAfzznlu84CI/jzbPgCnd5GIOTHE2pqkoIGWrCnlnktaDFsieafzGC7Ttv+BxDenH6YqWe8rfUN+pMYiu8DpVw4W3JCWl4CRXfHsoLqxOKNc62YDfsns74kadIgG1ALTbk0NyA09QY7PMCTbAA582mWzfP6GtVy9Dn6BXj9Mel3aQ7Aq84o5x3tb+wZsBi9nJbTqvcqrW3+1Of8O/Ffm/PjCTk4z2iTG5lfbWAuKSMSeec1Z1P6SZnhuYME/bHOwYLdikUYQYs3dGXUi4w5/x7YgirjpvPaM=</elem>
+<elem key="bits">3072</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+<table>
+<elem key="fingerprint">332fefb018e07bb52e448ca46ba7c8e4</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBPowVTwa/6BeZKGVxiO34ZKRl2PzRIRtOHvqm5+vunYEgdXa9bqEDk3wVGAwZgfPDAXrZQLiJ2zk9jXC7pPHXc=</elem>
+<elem key="bits">256</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+</table>
+<table>
+<elem key="fingerprint">f843148a351eaf8e587806f1593f00ad</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIPxOWgthVzNZ8SXb1MHOkHg14zuZKfejckFpVHycuv9x</elem>
+<elem key="bits">256</elem>
+<elem key="type">ssh-ed25519</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-vhosts" output="&#xa;128 names had status 405"/><script id="http-chrono" output="Request times for /; avg: 180.86ms; min: 147.19ms; max: 201.77ms"/><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;  Longest directory structure:&#xa;    Depth: 0&#xa;    Dir: /&#xa;  Total files found (by extension):&#xa;    &#xa;"/><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-date" output="Wed, 24 Jan 2024 11:27:04 GMT; +59m43s from local time."><elem key="date">2024-01-24T12:27:04+00:00</elem>
+<elem key="delta">3583.0</elem>
+</script><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 405&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">405</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-errors" output="&#xa;Spidering limited to: maxpagecount=40; withinhost=10.10.30.63&#xa;  Found the following error pages: &#xa;  &#xa;  Error Code: 405&#xa;  &#x9;http://10.10.30.63:80/&#xa;"/><script id="http-xssed" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-title" output="Error response"><elem key="title">Error response</elem>
+</script><script id="http-comments-displayer" output="Couldn&apos;t find any comments."/><script id="http-headers" output="&#xa;  Server: WebSockify Python/3.8.10&#xa;  Date: Wed, 24 Jan 2024 11:27:06 GMT&#xa;  Connection: close&#xa;  Content-Type: text/html;charset=utf-8&#xa;  Content-Length: 472&#xa;  &#xa;  (Request type: GET)&#xa;"/><script id="http-security-headers" output=""></script></port>
+<port protocol="tcp" portid="8065"><state state="open" reason="syn-ack" reason_ttl="62"/><script id="banner" output="\xFF\xFD\x01\xFF\xFD\x1F\xFF\xFB\x01\xFF\xFB\x03"/></port>
+<port protocol="tcp" portid="8075"><state state="open" reason="syn-ack" reason_ttl="62"/><script id="banner" output="220 Operation successful"/></port>
+<port protocol="tcp" portid="8085"><state state="open" reason="syn-ack" reason_ttl="62"/><script id="banner" output="\xFF\xFD\x01\xFF\xFD\x1F\xFF\xFB\x01\xFF\xFB\x03\x0D\x0D\x0A...&#xa;"/></port>
+<port protocol="tcp" portid="8095"><state state="open" reason="syn-ack" reason_ttl="62"/><script id="banner" output="\xFF\xFD\x01\xFF\xFD\x1F\xFF\xFB\x01\xFF\xFB\x03"/></port>
+</ports>
+<hostscript><script id="ipidseq" output="All zeros"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.10.30.63&quot;; use dns-brute.domain script argument."/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;22    0       63272.70   3434.81   0.0%&#xa;80    0       64999.60   7794.78   0.0%&#xa;8065  0       65986.90   6757.32   0.0%&#xa;8075  1       68765.70   5468.70   0.0%&#xa;8085  0       65098.70   12058.88  0.0%&#xa;8095  0       63323.20   6144.68   0.0%&#xa;"/><script id="path-mtu" output="PMTU == 1500"/></hostscript><times srtt="91897" rttvar="20690" to="174657"/>
+</host>
+<runstats><finished time="1706095958" timestr="Wed Jan 24 11:32:38 2024" summary="Nmap done at Wed Jan 24 11:32:38 2024; 1 IP address (1 host up) scanned in 356.57 seconds" elapsed="356.57" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Tue Jan 23 10:25:26 2024 as: nmap -p- -vv -&#45;min-rate 500 -e tun0 -oA /home/kali/Snowy-Armaggedon-Day2-AoC-2023/nmap/10-10-246-112-All-TCP-Ports 10.10.246.112 -->
+<nmaprun scanner="nmap" args="nmap -p- -vv -&#45;min-rate 500 -e tun0 -oA /home/kali/Snowy-Armaggedon-Day2-AoC-2023/nmap/10-10-246-112-All-TCP-Ports 10.10.246.112" start="1706005526" startstr="Tue Jan 23 10:25:26 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="Ping Scan" time="1706005526"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.246.112" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<taskend task="Ping Scan" time="1706005526" extrainfo="1 total hosts"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1706005526"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1706005539"/>
+<taskbegin task="SYN Stealth Scan" time="1706005539"/>
+<taskprogress task="SYN Stealth Scan" time="1706005570" percent="26.30" remaining="87" etc="1706005657"/>
+<taskprogress task="SYN Stealth Scan" time="1706005600" percent="49.40" remaining="63" etc="1706005662"/>
+<taskprogress task="SYN Stealth Scan" time="1706005630" percent="72.96" remaining="34" etc="1706005664"/>
+<taskend task="SYN Stealth Scan" time="1706005666" extrainfo="65535 total ports"/>
+<host starttime="1706005539" endtime="1706005666"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.246.112" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65531">
+<extrareasons reason="reset" count="65531" proto="tcp" ports="1-21,24-8079,8081-50627,50629-65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="23"><state state="open" reason="syn-ack" reason_ttl="62"/><service name="telnet" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8080"><state state="open" reason="syn-ack" reason_ttl="62"/><service name="http-proxy" method="table" conf="3"/></port>
+<port protocol="tcp" portid="50628"><state state="open" reason="syn-ack" reason_ttl="62"/></port>
+</ports>
+<times srtt="161767" rttvar="55817" to="385035"/>
+</host>
+<runstats><finished time="1706005666" timestr="Tue Jan 23 10:27:46 2024" summary="Nmap done at Tue Jan 23 10:27:46 2024; 1 IP address (1 host up) scanned in 139.49 seconds" elapsed="139.49" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

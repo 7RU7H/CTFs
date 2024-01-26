@@ -1,0 +1,346 @@
+# Nmap 7.94SVN scan initiated Wed Jan 24 11:25:03 2024 as: nmap -sC -sV -oA /home/kali/AoC2023-Side-Quest/Frosteau-Day3/nmap/10-10-30-63-Extensive-Found-Ports --min-rate 1000 -e tun0 -p 22,80,8065,8075,8085,8095 10.10.30.63
+Nmap scan report for 10.10.30.63
+Host is up (0.079s latency).
+
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.9 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 9d:a7:e1:c9:4a:bd:f3:46:35:7e:55:d3:e1:4b:57:14 (RSA)
+|   256 33:2f:ef:b0:18:e0:7b:b5:2e:44:8c:a4:6b:a7:c8:e4 (ECDSA)
+|_  256 f8:43:14:8a:35:1e:af:8e:58:78:06:f1:59:3f:00:ad (ED25519)
+80/tcp   open  http    WebSockify Python/3.8.10
+|_http-title: Error response
+| fingerprint-strings: 
+|   GetRequest: 
+|     HTTP/1.1 405 Method Not Allowed
+|     Server: WebSockify Python/3.8.10
+|     Date: Wed, 24 Jan 2024 11:25:04 GMT
+|     Connection: close
+|     Content-Type: text/html;charset=utf-8
+|     Content-Length: 472
+|     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+|     "http://www.w3.org/TR/html4/strict.dtd">
+|     <html>
+|     <head>
+|     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+|     <title>Error response</title>
+|     </head>
+|     <body>
+|     <h1>Error response</h1>
+|     <p>Error code: 405</p>
+|     <p>Message: Method Not Allowed.</p>
+|     <p>Error code explanation: 405 - Specified method is invalid for this resource.</p>
+|     </body>
+|     </html>
+|   HTTPOptions: 
+|     HTTP/1.1 501 Unsupported method ('OPTIONS')
+|     Server: WebSockify Python/3.8.10
+|     Date: Wed, 24 Jan 2024 11:25:04 GMT
+|     Connection: close
+|     Content-Type: text/html;charset=utf-8
+|     Content-Length: 500
+|     <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+|     "http://www.w3.org/TR/html4/strict.dtd">
+|     <html>
+|     <head>
+|     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+|     <title>Error response</title>
+|     </head>
+|     <body>
+|     <h1>Error response</h1>
+|     <p>Error code: 501</p>
+|     <p>Message: Unsupported method ('OPTIONS').</p>
+|     <p>Error code explanation: HTTPStatus.NOT_IMPLEMENTED - Server does not support this operation.</p>
+|     </body>
+|_    </html>
+|_http-server-header: WebSockify Python/3.8.10
+8065/tcp open  telnet
+| fingerprint-strings: 
+|   GenericLines, GetRequest, Help, NULL, RPCCheck, SIPOptions: 
+|     Ubuntu 22.04.3 LTS
+|   NCP: 
+|     Ubuntu 22.04.3 LTS
+|     DmdT^@^@^@
+|     ^@^@^@^A^@^@^@^@
+|   tn3270: 
+|     Ubuntu 22.04.3 LTS
+|_    ^@IBM-3279-4-E
+8075/tcp open  ftp     BusyBox ftpd (D-Link DCS-932L IP-Cam camera)
+| ftp-syst: 
+|   STAT: 
+| Server status:
+|  TYPE: BINARY
+|_Ok
+|_ftp-bounce: bounce working!
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+|_Can't get directory listing: PASV IP 172.18.0.2 is not the same as 10.10.30.63
+8085/tcp open  telnet
+| fingerprint-strings: 
+|   NULL: 
+|     Ubuntu 22.04.3 LTS
+|     [2;1H
+|     [2;1H 
+|     [3;1H
+|     \x1b[0%m
+|     [3;1H 
+|     [1;1H
+|     [2;1H
+|     [34m~ 
+|     [3;1H~ 
+|     [4;1H~ 
+|     [5;1H~ 
+|     [6;1H~ 
+|     [7;1H~ 
+|     [8;1H~ 
+|     [9;1H~ 
+|_    [10;1H~
+8095/tcp open  telnet
+| fingerprint-strings: 
+|   GenericLines: 
+|     Ubuntu 22.04.3 LTS
+|     [?2004h
+|     [1;24r
+|     [?7h
+|     [?25l
+|     [22;24H
+|     [0;7m
+|     Directory '.' is not writable ]
+|     [0;7m
+|     nano 6.2 New Buffer 
+|     [1;79H
+|     [22B
+|     [0;7m
+|     (B^G
+|     Help
+|     [0;7m
+|     (B^O
+|     Write Out 
+|     [0;7m
+|     (B^W
+|     Where Is 
+|     [0;7m
+|     (B^K
+|     [0;7m
+|     (B^T
+|     Execute 
+|     [0;7m
+|     (B^C
+|     Location
+|     [0;7m
+|     (B^X
+|     Exit
+|     [0;7m
+|     (B^R
+|     Read File 
+|     [0;7m
+|     (B^\x1b[m
+|     Replace 
+|     [0;7m
+|     (B^U
+|     Paste 
+|     [0;7m
+|     (B^J
+|     Justify 
+|     [0;7m
+|     (B^/
+|     Line
+|     [22A
+|     [?25h
+|     [?25l
+|     [1;49H
+|     [0;7m
+|     [29C
+|     [?25h
+|   NULL: 
+|     Ubuntu 22.04.3 LTS
+|     [?2004h
+|     [1;24r
+|     [?7h
+|     [?25l
+|     [22;24H
+|     [0;7m
+|     Directory '.' is not writable ]
+|     [0;7m
+|     nano 6.2 New Buffer 
+|     [1;79H
+|     [22B
+|     [0;7m
+|     (B^G
+|     Help
+|     [0;7m
+|     (B^O
+|     Write Out 
+|     [0;7m
+|     (B^W
+|     Where Is 
+|     [0;7m
+|     (B^K
+|     [0;7m
+|     (B^T
+|     Execute 
+|     [0;7m
+|     (B^C
+|     Location
+|     [0;7m
+|     (B^X
+|     Exit
+|     [0;7m
+|     (B^R
+|     Read File 
+|     [0;7m
+|     (B^\x1b[m
+|     Replace 
+|     [0;7m
+|     (B^U
+|     Paste 
+|     [0;7m
+|     (B^J
+|     Justify 
+|     [0;7m
+|     (B^/
+|     Line
+|     [22A
+|_    [?25h
+4 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port80-TCP:V=7.94SVN%I=7%D=1/24%Time=65B0F3A0%P=x86_64-pc-linux-gnu%r(G
+SF:etRequest,291,"HTTP/1\.1\x20405\x20Method\x20Not\x20Allowed\r\nServer:\
+SF:x20WebSockify\x20Python/3\.8\.10\r\nDate:\x20Wed,\x2024\x20Jan\x202024\
+SF:x2011:25:04\x20GMT\r\nConnection:\x20close\r\nContent-Type:\x20text/htm
+SF:l;charset=utf-8\r\nContent-Length:\x20472\r\n\r\n<!DOCTYPE\x20HTML\x20P
+SF:UBLIC\x20\"-//W3C//DTD\x20HTML\x204\.01//EN\"\n\x20\x20\x20\x20\x20\x20
+SF:\x20\x20\"http://www\.w3\.org/TR/html4/strict\.dtd\">\n<html>\n\x20\x20
+SF:\x20\x20<head>\n\x20\x20\x20\x20\x20\x20\x20\x20<meta\x20http-equiv=\"C
+SF:ontent-Type\"\x20content=\"text/html;charset=utf-8\">\n\x20\x20\x20\x20
+SF:\x20\x20\x20\x20<title>Error\x20response</title>\n\x20\x20\x20\x20</hea
+SF:d>\n\x20\x20\x20\x20<body>\n\x20\x20\x20\x20\x20\x20\x20\x20<h1>Error\x
+SF:20response</h1>\n\x20\x20\x20\x20\x20\x20\x20\x20<p>Error\x20code:\x204
+SF:05</p>\n\x20\x20\x20\x20\x20\x20\x20\x20<p>Message:\x20Method\x20Not\x2
+SF:0Allowed\.</p>\n\x20\x20\x20\x20\x20\x20\x20\x20<p>Error\x20code\x20exp
+SF:lanation:\x20405\x20-\x20Specified\x20method\x20is\x20invalid\x20for\x2
+SF:0this\x20resource\.</p>\n\x20\x20\x20\x20</body>\n</html>\n")%r(HTTPOpt
+SF:ions,2B9,"HTTP/1\.1\x20501\x20Unsupported\x20method\x20\('OPTIONS'\)\r\
+SF:nServer:\x20WebSockify\x20Python/3\.8\.10\r\nDate:\x20Wed,\x2024\x20Jan
+SF:\x202024\x2011:25:04\x20GMT\r\nConnection:\x20close\r\nContent-Type:\x2
+SF:0text/html;charset=utf-8\r\nContent-Length:\x20500\r\n\r\n<!DOCTYPE\x20
+SF:HTML\x20PUBLIC\x20\"-//W3C//DTD\x20HTML\x204\.01//EN\"\n\x20\x20\x20\x2
+SF:0\x20\x20\x20\x20\"http://www\.w3\.org/TR/html4/strict\.dtd\">\n<html>\
+SF:n\x20\x20\x20\x20<head>\n\x20\x20\x20\x20\x20\x20\x20\x20<meta\x20http-
+SF:equiv=\"Content-Type\"\x20content=\"text/html;charset=utf-8\">\n\x20\x2
+SF:0\x20\x20\x20\x20\x20\x20<title>Error\x20response</title>\n\x20\x20\x20
+SF:\x20</head>\n\x20\x20\x20\x20<body>\n\x20\x20\x20\x20\x20\x20\x20\x20<h
+SF:1>Error\x20response</h1>\n\x20\x20\x20\x20\x20\x20\x20\x20<p>Error\x20c
+SF:ode:\x20501</p>\n\x20\x20\x20\x20\x20\x20\x20\x20<p>Message:\x20Unsuppo
+SF:rted\x20method\x20\('OPTIONS'\)\.</p>\n\x20\x20\x20\x20\x20\x20\x20\x20
+SF:<p>Error\x20code\x20explanation:\x20HTTPStatus\.NOT_IMPLEMENTED\x20-\x2
+SF:0Server\x20does\x20not\x20support\x20this\x20operation\.</p>\n\x20\x20\
+SF:x20\x20</body>\n</html>\n");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port8065-TCP:V=7.94SVN%I=7%D=1/24%Time=65B0F39D%P=x86_64-pc-linux-gnu%r
+SF:(NULL,24,"\xff\xfd\x01\xff\xfd\x1f\xff\xfb\x01\xff\xfb\x03\r\r\nUbuntu\
+SF:x2022\.04\.3\x20LTS\r\n\r")%r(GenericLines,24,"\xff\xfd\x01\xff\xfd\x1f
+SF:\xff\xfb\x01\xff\xfb\x03\r\r\nUbuntu\x2022\.04\.3\x20LTS\r\n\r")%r(GetR
+SF:equest,24,"\xff\xfd\x01\xff\xfd\x1f\xff\xfb\x01\xff\xfb\x03\r\r\nUbuntu
+SF:\x2022\.04\.3\x20LTS\r\n\r")%r(RPCCheck,24,"\xff\xfd\x01\xff\xfd\x1f\xf
+SF:f\xfb\x01\xff\xfb\x03\r\r\nUbuntu\x2022\.04\.3\x20LTS\r\n\r")%r(Help,24
+SF:,"\xff\xfd\x01\xff\xfd\x1f\xff\xfb\x01\xff\xfb\x03\r\r\nUbuntu\x2022\.0
+SF:4\.3\x20LTS\r\n\r")%r(SIPOptions,24,"\xff\xfd\x01\xff\xfd\x1f\xff\xfb\x
+SF:01\xff\xfb\x03\r\r\nUbuntu\x2022\.04\.3\x20LTS\r\n\r")%r(NCP,5C,"\xff\x
+SF:fd\x01\xff\xfd\x1f\xff\xfb\x01\xff\xfb\x03\r\r\nUbuntu\x2022\.04\.3\x20
+SF:LTS\r\n\rDmdT\^@\^@\^@\x08\x20\x08\x08\x20\x08\x08\x20\x08\x08\x20\x08\
+SF:x08\x20\x08\x08\x20\x08\x08\x20\x08\x08\x20\x08\x08\x20\x08\x08\x20\x08
+SF:\^@\^@\^@\^A\^@\^@\^@\^@")%r(tn3270,35,"\xff\xfd\x01\xff\xfd\x1f\xff\xf
+SF:b\x01\xff\xfb\x03\r\r\nUbuntu\x2022\.04\.3\x20LTS\r\n\r\^@IBM-3279-4-E\
+SF:xfb\^Y");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port8085-TCP:V=7.94SVN%I=7%D=1/24%Time=65B0F3A3%P=x86_64-pc-linux-gnu%r
+SF:(NULL,9E7,"\xff\xfd\x01\xff\xfd\x1f\xff\xfb\x01\xff\xfb\x03\r\r\nUbuntu
+SF:\x2022\.04\.3\x20LTS\r\n\r\x1b\[m\x1b\[m\x1b\[0m\x1b\[H\x1b\[2J\x1b\[2;
+SF:1H\xbd\x1b\[6n\x1b\[2;1H\x20\x20\x1b\[3;1H\x1bPzz\x1b\\\x1b\[0%m\x1b\[6
+SF:n\x1b\[3;1H\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x1b\[1;1H\x1b\[
+SF:2;1H\x1b\[1m\x1b\[34m~\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\
+SF:x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20
+SF:\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x2
+SF:0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x
+SF:20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x1b\[3;1H~\x20\x
+SF:20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\
+SF:x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20
+SF:\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x2
+SF:0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x
+SF:20\x20\x20\x20\x20\x20\x20\x1b\[4;1H~\x20\x20\x20\x20\x20\x20\x20\x20\x
+SF:20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\
+SF:x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20
+SF:\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x2
+SF:0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x
+SF:1b\[5;1H~\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x
+SF:20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\
+SF:x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20
+SF:\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x2
+SF:0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x1b\[6;1H~\x20\x20\x20\x20\x2
+SF:0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x
+SF:20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\
+SF:x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20
+SF:\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x2
+SF:0\x20\x20\x20\x1b\[7;1H~\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x2
+SF:0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x
+SF:20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\
+SF:x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20
+SF:\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x1b\[8;1H~\x20
+SF:\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x2
+SF:0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x
+SF:20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\
+SF:x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20
+SF:\x20\x20\x20\x20\x20\x20\x20\x1b\[9;1H~\x20\x20\x20\x20\x20\x20\x20\x20
+SF:\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x2
+SF:0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x
+SF:20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\
+SF:x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20
+SF:\x1b\[10;1H~\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x2
+SF:0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x
+SF:20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\
+SF:x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20
+SF:\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port8095-TCP:V=7.94SVN%I=7%D=1/24%Time=65B0F3A3%P=x86_64-pc-linux-gnu%r
+SF:(NULL,250,"\xff\xfd\x01\xff\xfd\x1f\xff\xfb\x01\xff\xfb\x03\r\r\nUbuntu
+SF:\x2022\.04\.3\x20LTS\r\n\r\x1b\[\?2004h\x1b\)0\x1b\[1;24r\x1b\[m\x1b\(B
+SF:\x1b\[4l\x1b\[\?7h\x1b\[\?25l\x1b\[H\x1b\[J\x1b\[22;24H\x1b\[0;7m\x1b\(
+SF:B\[\x20Directory\x20'\.'\x20is\x20not\x20writable\x20\]\x1b\[m\x1b\(B\x
+SF:1b\[H\x1b\[0;7m\x1b\(B\x20\x20GNU\x20nano\x206\.2\x20\x20\x20\x20\x20\x
+SF:20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20N
+SF:ew\x20Buffer\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x2
+SF:0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x
+SF:20\x1b\[1;79H\x1b\[m\x1b\(B\r\x1b\[22B\x1b\[0;7m\x1b\(B\^G\x1b\[m\x1b\(
+SF:B\x20Help\x1b\[6C\x1b\[0;7m\x1b\(B\^O\x1b\[m\x1b\(B\x20Write\x20Out\x20
+SF:\x1b\[0;7m\x1b\(B\^W\x1b\[m\x1b\(B\x20Where\x20Is\x20\x20\x1b\[0;7m\x1b
+SF:\(B\^K\x1b\[m\x1b\(B\x20Cut\x1b\[7C\x1b\[0;7m\x1b\(B\^T\x1b\[m\x1b\(B\x
+SF:20Execute\x20\x20\x20\x1b\[0;7m\x1b\(B\^C\x1b\[m\x1b\(B\x20Location\r\x
+SF:1b\[1B\x1b\[0;7m\x1b\(B\^X\x1b\[m\x1b\(B\x20Exit\x1b\[6C\x1b\[0;7m\x1b\
+SF:(B\^R\x1b\[m\x1b\(B\x20Read\x20File\x20\x1b\[0;7m\x1b\(B\^\\\x1b\[m\x1b
+SF:\(B\x20Replace\x20\x20\x20\x1b\[0;7m\x1b\(B\^U\x1b\[m\x1b\(B\x20Paste\x
+SF:20\x20\x20\x20\x20\x1b\[0;7m\x1b\(B\^J\x1b\[m\x1b\(B\x20Justify\x20\x20
+SF:\x20\x1b\[0;7m\x1b\(B\^/\x1b\[m\x1b\(B\x20Go\x20To\x20Line\r\x1b\[22A\x
+SF:1b\[\?25h")%r(GenericLines,27D,"\xff\xfd\x01\xff\xfd\x1f\xff\xfb\x01\xf
+SF:f\xfb\x03\r\r\nUbuntu\x2022\.04\.3\x20LTS\r\n\r\x1b\[\?2004h\x1b\)0\x1b
+SF:\[1;24r\x1b\[m\x1b\(B\x1b\[4l\x1b\[\?7h\x1b\[\?25l\x1b\[H\x1b\[J\x1b\[2
+SF:2;24H\x1b\[0;7m\x1b\(B\[\x20Directory\x20'\.'\x20is\x20not\x20writable\
+SF:x20\]\x1b\[m\x1b\(B\x1b\[H\x1b\[0;7m\x1b\(B\x20\x20GNU\x20nano\x206\.2\
+SF:x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20
+SF:\x20\x20\x20\x20\x20New\x20Buffer\x20\x20\x20\x20\x20\x20\x20\x20\x20\x
+SF:20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\
+SF:x20\x20\x20\x20\x20\x20\x1b\[1;79H\x1b\[m\x1b\(B\r\x1b\[22B\x1b\[0;7m\x
+SF:1b\(B\^G\x1b\[m\x1b\(B\x20Help\x1b\[6C\x1b\[0;7m\x1b\(B\^O\x1b\[m\x1b\(
+SF:B\x20Write\x20Out\x20\x1b\[0;7m\x1b\(B\^W\x1b\[m\x1b\(B\x20Where\x20Is\
+SF:x20\x20\x1b\[0;7m\x1b\(B\^K\x1b\[m\x1b\(B\x20Cut\x1b\[7C\x1b\[0;7m\x1b\
+SF:(B\^T\x1b\[m\x1b\(B\x20Execute\x20\x20\x20\x1b\[0;7m\x1b\(B\^C\x1b\[m\x
+SF:1b\(B\x20Location\r\x1b\[1B\x1b\[0;7m\x1b\(B\^X\x1b\[m\x1b\(B\x20Exit\x
+SF:1b\[6C\x1b\[0;7m\x1b\(B\^R\x1b\[m\x1b\(B\x20Read\x20File\x20\x1b\[0;7m\
+SF:x1b\(B\^\\\x1b\[m\x1b\(B\x20Replace\x20\x20\x20\x1b\[0;7m\x1b\(B\^U\x1b
+SF:\[m\x1b\(B\x20Paste\x20\x20\x20\x20\x20\x1b\[0;7m\x1b\(B\^J\x1b\[m\x1b\
+SF:(B\x20Justify\x20\x20\x20\x1b\[0;7m\x1b\(B\^/\x1b\[m\x1b\(B\x20Go\x20To
+SF:\x20Line\r\x1b\[22A\x1b\[\?25h\x1b\[\?25l\x1b\[1;49H\x1b\[0;7m\x1b\(B\*
+SF:\x1b\[29C\x1b\[m\x1b\(B\r\x1b\[3B\x1b\[\?25h");
+Service Info: OS: Linux; Device: webcam; CPE: cpe:/o:linux:linux_kernel, cpe:/h:dlink:dcs-932l
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Wed Jan 24 11:26:41 2024 -- 1 IP address (1 host up) scanned in 98.24 seconds

