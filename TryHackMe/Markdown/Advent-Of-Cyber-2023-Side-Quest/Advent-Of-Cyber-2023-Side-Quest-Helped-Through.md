@@ -400,7 +400,6 @@ I am sure I was slightly devastated at Privilege Escalation similar to this on a
 
 ![](nastyroot.png)
 
-
 ## Post-Completion-Reflection  
 
 - The people that unknowingly contributed to my fast-track exposure to these topics are awesome!
@@ -413,6 +412,10 @@ I am sure I was slightly devastated at Privilege Escalation similar to this on a
 
 - [sumanrox](https://github.com/sumanrox/sidequest-exploits/tree/main/sidequest_2) has a automated exploits - they look cool, work well, not many dependencies!
 	- Templating automated exploitation
+
+
+
+
 
 - Agile HTB is similar Weukzerg exploit: [https://exploit-notes.hdks.org/exploit/web/framework/python/werkzeug-pentesting](https://exploit-notes.hdks.org/exploit/web/framework/python/werkzeug-pentesting)
 ```python
