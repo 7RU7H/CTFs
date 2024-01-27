@@ -1,0 +1,18 @@
+# Nmap 7.94 scan initiated Sun Jun 18 10:48:42 2023 as: nmap --script vuln -oA nmap/10-129-181-135-Vuln --min-rate 100 -e tun0 -p 22,80,443 10.129.181.135
+Nmap scan report for ssa.htb (10.129.181.135)
+Host is up (0.061s latency).
+
+PORT    STATE SERVICE
+22/tcp  open  ssh
+80/tcp  open  http
+|_http-vuln-cve2013-7091: ERROR: Script execution failed (use -d to debug)
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-passwd: ERROR: Script execution failed (use -d to debug)
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+443/tcp open  https
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+
+# Nmap done at Sun Jun 18 10:51:36 2023 -- 1 IP address (1 host up) scanned in 173.53 seconds

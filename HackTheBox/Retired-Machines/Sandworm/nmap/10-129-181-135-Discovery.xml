@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94 scan initiated Sun Jun 18 10:40:46 2023 as: nmap -&#45;script discovery -oA nmap/10-129-181-135-Discovery -&#45;min-rate 100 -e tun0 -p 22,80,443 10.129.181.135 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA nmap/10-129-181-135-Discovery -&#45;min-rate 100 -e tun0 -p 22,80,443 10.129.181.135" start="1687081246" startstr="Sun Jun 18 10:40:46 2023" version="7.94" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="22,80,443"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="broadcast-ping" output="false">false</script><script id="lltd-discovery" output="false">false</script><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="targets-sniffer" output="Sniffed 1 address(es). &#xa;224.0.23.12"/><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.181.135" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1687081257" endtime="1687081722"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.129.181.135" addrtype="ipv4"/>
+<hostnames>
+<hostname name="ssa.htb" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (10)&#xa;  server_host_key_algorithms: (4)&#xa;  encryption_algorithms: (6)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>sntrup761x25519-sha512@openssh.com</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script><script id="banner" output="SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.1"/><script id="ssh-hostkey" output="&#xa;  256 b7:89:6c:0b:20:ed:49:b2:c1:86:7c:29:92:74:1c:1f (ECDSA)&#xa;  256 18:cd:9d:08:a6:21:a8:b8:b6:f7:9f:8d:40:51:54:fb (ED25519)"><table>
+<elem key="bits">256</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBH2y17GUe6keBxOcBGNkWsliFwTRwUtQB3NXEhTAFLziGDfCgBV7B9Hp6GQMPGQXqMk7nnveA8vUz0D7ug5n04A=</elem>
+<elem key="fingerprint">b7896c0b20ed49b2c1867c2992741c1f</elem>
+</table>
+<table>
+<elem key="bits">256</elem>
+<elem key="type">ssh-ed25519</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIKfXa+OM5/utlol5mJajysEsV4zb/L0BJ1lKxMPadPvR</elem>
+<elem key="fingerprint">18cd9d08a621a8b8b6f79f8d405154fb</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-errors" output="Couldn&apos;t find any error pages."/><script id="http-xssed" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-headers" output="&#xa;  Server: nginx/1.18.0 (Ubuntu)&#xa;  Date: Sun, 18 Jun 2023 09:40:40 GMT&#xa;  Content-Type: text/html&#xa;  Content-Length: 178&#xa;  Connection: close&#xa;  Location: https://ssa.htb/&#xa;  &#xa;  (Request type: GET)&#xa;"/><script id="http-title" output="Did not follow redirect to https://ssa.htb/"><elem key="redirect_url">https://ssa.htb/</elem>
+</script><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Redirected To: https://ssa.htb/&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34&#xa;  Change in Status Code: &#xa;    PHP/: false"><elem key="Status for browser useragent">200</elem>
+<elem key="Redirected To">https://ssa.htb/</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+<table key="Change in Status Code">
+<elem key="PHP/">false</elem>
+</table>
+</script><script id="http-security-headers" output=""></script><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;  Longest directory structure:&#xa;    Depth: 0&#xa;    Dir: /&#xa;  Total files found (by extension):&#xa;    &#xa;"/><script id="http-vhosts" output="&#xa;128 names had status 301"/><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-comments-displayer" output="Couldn&apos;t find any comments."/><script id="http-chrono" output="Request times for /; avg: 184.63ms; min: 155.78ms; max: 233.46ms"/><script id="http-date" output="Sun, 18 Jun 2023 09:40:38 GMT; +59m28s from local time."><elem key="date">2023-06-18T10:40:38+00:00</elem>
+<elem key="delta">3568.0</elem>
+</script><script id="http-feed" output="Couldn&apos;t find any feeds."/></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="https" method="table" conf="3"/><script id="ssl-cert" output="Subject: commonName=SSA/organizationName=Secret Spy Agency/stateOrProvinceName=Classified/countryName=SA&#xa;Not valid before: 2023-05-04T18:03:25&#xa;Not valid after:  2050-09-19T18:03:25"><table key="subject">
+<elem key="commonName">SSA</elem>
+<elem key="countryName">SA</elem>
+<elem key="emailAddress">atlas@ssa.htb</elem>
+<elem key="localityName">Classified</elem>
+<elem key="organizationName">Secret Spy Agency</elem>
+<elem key="organizationalUnitName">SSA</elem>
+<elem key="stateOrProvinceName">Classified</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">SSA</elem>
+<elem key="countryName">SA</elem>
+<elem key="emailAddress">atlas@ssa.htb</elem>
+<elem key="localityName">Classified</elem>
+<elem key="organizationName">Secret Spy Agency</elem>
+<elem key="organizationalUnitName">SSA</elem>
+<elem key="stateOrProvinceName">Classified</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">A2D3A90B21375C648BED6C4916BA624E6194D616AE83F2AD5866F85B8A32934B7235BDA7234E57FC2F49D091BA4FECDE18EA9087F5D9F9633E2E32E4886A7DCA5393E74448F19389776B13BA317161E78D0BC4D3531A4FD331B48C0689106EA6E16F6F6BC80B64B12A4291DBC93F63CDC0A09217EF695B78727D1A536569F36938006B2228F2173068BBA2456CB6642FABEF28B65D4A31B2EF3ECD28B1F71074C1ABA892A1C49DC563D7B6C47489F7A184E0C64F62FBA1EDCE591BC29584CCDDDC632060BAE0C9CFE4ABA66A62680A52F6F9B4B2890CC52576EF7291913A04D4D3523A43172BD44E59D0A1FC21B81B44498F25A8C82166ECB88DEA2DBB0A4853</elem>
+<elem key="exponent">65537</elem>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-05-04T18:03:25</elem>
+<elem key="notAfter">2050-09-19T18:03:25</elem>
+</table>
+<elem key="md5">b8b7487ef3e214a4999ef842014159a1</elem>
+<elem key="sha1">80d923678d7b43b2526d5d6100bd66e948ddc223</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDpTCCAo0CFBEpfzxeoSRi0SkjUE4hvTDcELATMA0GCSqGSIb3DQEBCwUAMIGN&#xa;MQswCQYDVQQGEwJTQTETMBEGA1UECAwKQ2xhc3NpZmllZDETMBEGA1UEBwwKQ2xh&#xa;c3NpZmllZDEaMBgGA1UECgwRU2VjcmV0IFNweSBBZ2VuY3kxDDAKBgNVBAsMA1NT&#xa;QTEMMAoGA1UEAwwDU1NBMRwwGgYJKoZIhvcNAQkBFg1hdGxhc0Bzc2EuaHRiMCAX&#xa;DTIzMDUwNDE4MDMyNVoYDzIwNTAwOTE5MTgwMzI1WjCBjTELMAkGA1UEBhMCU0Ex&#xa;EzARBgNVBAgMCkNsYXNzaWZpZWQxEzARBgNVBAcMCkNsYXNzaWZpZWQxGjAYBgNV&#xa;BAoMEVNlY3JldCBTcHkgQWdlbmN5MQwwCgYDVQQLDANTU0ExDDAKBgNVBAMMA1NT&#xa;QTEcMBoGCSqGSIb3DQEJARYNYXRsYXNAc3NhLmh0YjCCASIwDQYJKoZIhvcNAQEB&#xa;BQADggEPADCCAQoCggEBAKLTqQshN1xki+1sSRa6Yk5hlNYWroPyrVhm+FuKMpNL&#xa;cjW9pyNOV/wvSdCRuk/s3hjqkIf12fljPi4y5IhqfcpTk+dESPGTiXdrE7oxcWHn&#xa;jQvE01MaT9MxtIwGiRBupuFvb2vIC2SxKkKR28k/Y83AoJIX72lbeHJ9GlNlafNp&#xa;OABrIijyFzBou6JFbLZkL6vvKLZdSjGy7z7NKLH3EHTBq6iSocSdxWPXtsR0ifeh&#xa;hODGT2L7oe3OWRvClYTM3dxjIGC64MnP5KumamJoClL2+bSyiQzFJXbvcpGROgTU&#xa;01I6Qxcr1E5Z0KH8IbgbREmPJajIIWbsuI3qLbsKSFMCAwEAATANBgkqhkiG9w0B&#xa;AQsFAAOCAQEAdI3dDCNz77/xf7aGG26x06slMCPqq/J0Gbhvy+YH4Gz9nIp0FFb/&#xa;E8abhRkUIUr1i9eIL0gAubQdQ6ccGTTuqpwE+DwUh58C5/Tjbj/fSa0MJ3562uyb&#xa;c0CElo94S8wRKW0Mds0bUFqF8+n2shuynReFfBhXKTb8/Ho/2T2fflK94JaqCbzM&#xa;owSKHx8aMbUdNp9Fuld5+Fc88u10ZzIrRl9J5RAeR5ScxQ4RNGTdBVYClk214Pzl&#xa;IiyRHacJOxJAUX6EgcMZnLBLgJ1R4u7ZvU3I3BiaENCxvV6ITi61IwusjVCazRf3&#xa;NNn7kmk7cfgQqPCvmwtVrItRHxWEWnkNuQ==&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-errors" output="Couldn&apos;t find any error pages."/><script id="http-vhosts" output="&#xa;128 names had status 200"/><script id="http-title" output="Secret Spy Agency | Secret Security Service"><elem key="title">Secret Spy Agency | Secret Security Service</elem>
+</script><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-date" output="Sun, 18 Jun 2023 09:40:30 GMT; +59m27s from local time."><elem key="date">2023-06-18T10:40:30+00:00</elem>
+<elem key="delta">3567.0</elem>
+</script><script id="http-chrono" output="Request times for /; avg: 308.14ms; min: 274.92ms; max: 360.83ms"/><script id="http-headers" output="&#xa;  Server: nginx/1.18.0 (Ubuntu)&#xa;  Date: Sun, 18 Jun 2023 09:40:29 GMT&#xa;  Content-Type: text/html; charset=utf-8&#xa;  Content-Length: 8161&#xa;  Connection: close&#xa;  &#xa;  (Request type: HEAD)&#xa;"/><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      Other: 1&#xa;    /static/&#xa;      css: 1; js: 2; png: 1&#xa;  Longest directory structure:&#xa;    Depth: 1&#xa;    Dir: /static/&#xa;  Total files found (by extension):&#xa;    Other: 1; css: 1; js: 2; png: 1&#xa;"/><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;  Change in Status Code: &#xa;    WWW-Mechanize/1.34: 400"><elem key="Status for browser useragent">200</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+</table>
+<table key="Change in Status Code">
+<elem key="WWW-Mechanize/1.34">400</elem>
+</table>
+</script><script id="http-comments-displayer" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=ssa.htb&#xa;    &#xa;    Path: https://ssa.htb:443/static/styles.css&#xa;    Line number: 7862&#xa;    Comment: &#xa;        /* rtl:begin:remove */&#xa;    &#xa;    Path: https://ssa.htb:443/about&#xa;    Line number: 19&#xa;    Comment: &#xa;        &lt;!-&#45; Responsive navbar-&#45;&gt;&#xa;    &#xa;    Path: https://ssa.htb:443/static/styles.css&#xa;    Line number: 2&#xa;    Comment: &#xa;        /*!&#xa;        * Start Bootstrap - Heroic Features v5.0.5 (https://startbootstrap.com/template/heroic-features)&#xa;        * Copyright 2013-2022 Start Bootstrap&#xa;        * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-heroic-features/blob/master/LICENSE)&#xa;        */&#xa;    &#xa;    Path: https://ssa.htb:443/about&#xa;    Line number: 46&#xa;    Comment: &#xa;        &lt;!-&#45; Page Content-&#45;&gt;&#xa;    &#xa;    Path: https://ssa.htb:443/about&#xa;    Line number: 9&#xa;    Comment: &#xa;        &lt;!-&#45; Favicon-&#45;&gt;&#xa;    &#xa;    Path: https://ssa.htb:443/static/popper.min.js&#xa;    Line number: 1&#xa;    Comment: &#xa;        /*&#xa;         Copyright (C) Federico Zivolo 2019&#xa;         Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).&#xa;         */&#xa;    &#xa;    Path: https://ssa.htb:443/static/styles.css&#xa;    Line number: 12283&#xa;    Comment: &#xa;        /* These two lines are counted as one :-)       */&#xa;    &#xa;    Path: https://ssa.htb:443/static/styles.css&#xa;    Line number: 12282&#xa;    Comment: &#xa;        /* Fallback for browsers do NOT support vh unit */&#xa;    &#xa;    Path: https://ssa.htb:443/static/bootstrap.bundle.min.js&#xa;    Line number: 7&#xa;    Comment: &#xa;        &#xa;        //# sourceMappingURL=bootstrap.bundle.min.js.map&#xa;    &#xa;    Path: https://ssa.htb:443/static/styles.css&#xa;    Line number: 440&#xa;    Comment: &#xa;        /* rtl:raw:&#xa;        [type=&quot;tel&quot;],&#xa;        [type=&quot;url&quot;],&#xa;        [type=&quot;email&quot;],&#xa;        [type=&quot;number&quot;] {&#xa;          direction: ltr;&#xa;        }&#xa;        */&#xa;    &#xa;    Path: https://ssa.htb:443/about&#xa;    Line number: 34&#xa;    Comment: &#xa;        &lt;!-&#45; Header-&#45;&gt;&#xa;    &#xa;    Path: https://ssa.htb:443/about&#xa;    Line number: 70&#xa;    Comment: &#xa;        &lt;!-&#45; Bootstrap core JS-&#45;&gt;&#xa;    &#xa;    Path: https://ssa.htb:443/about&#xa;    Line number: 50&#xa;    Comment: &#xa;        &lt;!-&#45; Page Features-&#45;&gt;&#xa;    &#xa;    Path: https://ssa.htb:443/static/popper.min.js&#xa;    Line number: 5&#xa;    Comment: &#xa;        &#xa;        //# sourceMappingURL=popper.min.js.map&#xa;    &#xa;    Path: https://ssa.htb:443/about&#xa;    Line number: 63&#xa;    Comment: &#xa;        &lt;!-&#45; Footer-&#45;&gt;&#xa;    &#xa;    Path: https://ssa.htb:443/static/styles.css&#xa;    Line number: 6032&#xa;    Comment: &#xa;        /* rtl:begin:ignore */&#xa;    &#xa;    Path: https://ssa.htb:443/static/styles.css&#xa;    Line number: 256&#xa;    Comment: &#xa;        /* rtl:ignore */&#xa;    &#xa;    Path: https://ssa.htb:443/static/styles.css&#xa;    Line number: 4793&#xa;    Comment: &#xa;        /* rtl: var(-&#45;bs-breadcrumb-divider, &quot;/&quot;) */&#xa;    &#xa;    Path: https://ssa.htb:443/static/styles.css&#xa;    Line number: 6043&#xa;    Comment: &#xa;        /* rtl:end:ignore */&#xa;    &#xa;    Path: https://ssa.htb:443/static/bootstrap.bundle.min.js&#xa;    Line number: 1&#xa;    Comment: &#xa;        /*!&#xa;          * Bootstrap v5.1.3 (https://getbootstrap.com/)&#xa;          * Copyright 2011-2021 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)&#xa;          * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)&#xa;          */&#xa;    &#xa;    Path: https://ssa.htb:443/about&#xa;    Line number: 14&#xa;    Comment: &#xa;        &lt;!-&#45; Core theme CSS (includes Bootstrap)-&#45;&gt;&#xa;    &#xa;    Path: https://ssa.htb:443/static/styles.css&#xa;    Line number: 6119&#xa;    Comment: &#xa;        /* rtl:options: {&#xa;          &quot;autoRename&quot;: true,&#xa;          &quot;stringMap&quot;:[ {&#xa;            &quot;name&quot;    : &quot;prev-next&quot;,&#xa;            &quot;search&quot;  : &quot;prev&quot;,&#xa;            &quot;replace&quot; : &quot;next&quot;&#xa;          } ]&#xa;        } */&#xa;    &#xa;    Path: https://ssa.htb:443/about&#xa;    Line number: 11&#xa;    Comment: &#xa;        &lt;!-&#45; Bootstrap icons-&#45;&gt;&#xa;    &#xa;    Path: https://ssa.htb:443/static/styles.css&#xa;    Line number: 7868&#xa;    Comment: &#xa;        /* rtl:end:remove */&#xa;    &#xa;    Path: https://ssa.htb:443/static/styles.css&#xa;    Line number: 7&#xa;    Comment: &#xa;        /*!&#xa;         * Bootstrap v5.1.3 (https://getbootstrap.com/)&#xa;         * Copyright 2011-2021 The Bootstrap Authors&#xa;         * Copyright 2011-2021 Twitter, Inc.&#xa;         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)&#xa;         */&#xa;    &#xa;    Path: https://ssa.htb:443/about&#xa;    Line number: 74&#xa;    Comment: &#xa;        &lt;!-&#45; Core theme JS-&#45;&gt;&#xa;"/><script id="http-xssed" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-security-headers" output="&#xa;  Strict_Transport_Security: &#xa;    HSTS not configured in HTTPS Server"><table key="Strict_Transport_Security">
+<elem>HSTS not configured in HTTPS Server</elem>
+</table>
+</script><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (ecdh_x25519) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;  least strength: A"><table key="TLSv1.2">
+<table key="ciphers">
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="strength">A</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+</table>
+<elem key="least strength">A</elem>
+</script><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/></port>
+</ports>
+<hostscript><script id="dns-brute" output="&#xa;  DNS Brute-force hostnames: No results."><table key="DNS Brute-force hostnames">
+</table>
+</script><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;22    0       50737.80   6592.78   0.0%&#xa;80    0       50545.00   11520.03  0.0%&#xa;443   0       60783.30   24914.24  0.0%&#xa;"/><script id="path-mtu" output="PMTU == 1500"/><script id="ipidseq" output="All zeros"/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script></hostscript><times srtt="43723" rttvar="19040" to="119883"/>
+</host>
+<runstats><finished time="1687081722" timestr="Sun Jun 18 10:48:42 2023" summary="Nmap done at Sun Jun 18 10:48:42 2023; 1 IP address (1 host up) scanned in 476.15 seconds" elapsed="476.15" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

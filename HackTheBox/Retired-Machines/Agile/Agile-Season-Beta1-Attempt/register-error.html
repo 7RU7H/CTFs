@@ -1,0 +1,832 @@
+
+<!doctype html>
+<html lang=en>
+  <head>
+    <title>sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (2013, 'Lost connection to MySQL server during query')
+[SQL: SELECT users.id AS users_id, users.username AS users_username, users.hashed_password AS users_hashed_password 
+FROM users 
+WHERE users.username = %(username_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'username_1': 'asd', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+ // Werkzeug Debugger</title>
+    <link rel="stylesheet" href="?__debugger__=yes&amp;cmd=resource&amp;f=style.css">
+    <link rel="shortcut icon"
+        href="?__debugger__=yes&amp;cmd=resource&amp;f=console.png">
+    <script src="?__debugger__=yes&amp;cmd=resource&amp;f=debugger.js"></script>
+    <script>
+      var CONSOLE_MODE = false,
+          EVALEX = true,
+          EVALEX_TRUSTED = false,
+          SECRET = "5E39KW9CrPo03xq16Qlu";
+    </script>
+  </head>
+  <body style="background-color: #fff">
+    <div class="debugger">
+<h1>OperationalError</h1>
+<div class="detail">
+  <p class="errormsg">sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (2013, &#39;Lost connection to MySQL server during query&#39;)
+[SQL: SELECT users.id AS users_id, users.username AS users_username, users.hashed_password AS users_hashed_password 
+FROM users 
+WHERE users.username = %(username_1)s 
+ LIMIT %(param_1)s]
+[parameters: {&#39;username_1&#39;: &#39;asd&#39;, &#39;param_1&#39;: 1}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+</p>
+</div>
+<h2 class="traceback">Traceback <em>(most recent call last)</em></h2>
+<div class="traceback">
+  <h3></h3>
+  <ul><li><div class="frame" id="frame-139673627751616">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py"</cite>,
+      line <em class="line">1900</em>,
+      in <code class="function">_execute_context</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">                    </span>for fn in self.dialect.dispatch.do_execute:</pre>
+<pre class="line before"><span class="ws">                        </span>if fn(cursor, statement, parameters, context):</pre>
+<pre class="line before"><span class="ws">                            </span>evt_handled = True</pre>
+<pre class="line before"><span class="ws">                            </span>break</pre>
+<pre class="line before"><span class="ws">                </span>if not evt_handled:</pre>
+<pre class="line current"><span class="ws">                    </span>self.dialect.do_execute(</pre>
+<pre class="line after"><span class="ws">                        </span>cursor, statement, parameters, context</pre>
+<pre class="line after"><span class="ws">                    </span>)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">            </span>if self._has_events or self.engine._has_events:</pre>
+<pre class="line after"><span class="ws">                </span>self.dispatch.after_cursor_execute(</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673627751728">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py"</cite>,
+      line <em class="line">736</em>,
+      in <code class="function">do_execute</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def do_executemany(self, cursor, statement, parameters, context=None):</pre>
+<pre class="line before"><span class="ws">        </span>cursor.executemany(statement, parameters)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def do_execute(self, cursor, statement, parameters, context=None):</pre>
+<pre class="line current"><span class="ws">        </span>cursor.execute(statement, parameters)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def do_execute_no_params(self, cursor, statement, context=None):</pre>
+<pre class="line after"><span class="ws">        </span>cursor.execute(statement)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def is_disconnect(self, e, connection, cursor):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673627751840">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/pymysql/cursors.py"</cite>,
+      line <em class="line">148</em>,
+      in <code class="function">execute</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>while self.nextset():</pre>
+<pre class="line before"><span class="ws">            </span>pass</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>query = self.mogrify(query, args)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line current"><span class="ws">        </span>result = self._query(query)</pre>
+<pre class="line after"><span class="ws">        </span>self._executed = query</pre>
+<pre class="line after"><span class="ws">        </span>return result</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def executemany(self, query, args):</pre>
+<pre class="line after"><span class="ws">        </span># type: (str, list) -&gt; int</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673627751952">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/pymysql/cursors.py"</cite>,
+      line <em class="line">310</em>,
+      in <code class="function">_query</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def _query(self, q):</pre>
+<pre class="line before"><span class="ws">        </span>conn = self._get_db()</pre>
+<pre class="line before"><span class="ws">        </span>self._last_executed = q</pre>
+<pre class="line before"><span class="ws">        </span>self._clear_result()</pre>
+<pre class="line current"><span class="ws">        </span>conn.query(q)</pre>
+<pre class="line after"><span class="ws">        </span>self._do_get_result()</pre>
+<pre class="line after"><span class="ws">        </span>return self.rowcount</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def _clear_result(self):</pre>
+<pre class="line after"><span class="ws">        </span>self.rownumber = 0</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673627752064">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/pymysql/connections.py"</cite>,
+      line <em class="line">548</em>,
+      in <code class="function">query</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span># if DEBUG:</pre>
+<pre class="line before"><span class="ws">        </span>#     print(&#34;DEBUG: sending query:&#34;, sql)</pre>
+<pre class="line before"><span class="ws">        </span>if isinstance(sql, str):</pre>
+<pre class="line before"><span class="ws">            </span>sql = sql.encode(self.encoding, &#34;surrogateescape&#34;)</pre>
+<pre class="line before"><span class="ws">        </span>self._execute_command(COMMAND.COM_QUERY, sql)</pre>
+<pre class="line current"><span class="ws">        </span>self._affected_rows = self._read_query_result(unbuffered=unbuffered)</pre>
+<pre class="line after"><span class="ws">        </span>return self._affected_rows</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def next_result(self, unbuffered=False):</pre>
+<pre class="line after"><span class="ws">        </span>self._affected_rows = self._read_query_result(unbuffered=unbuffered)</pre>
+<pre class="line after"><span class="ws">        </span>return self._affected_rows</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673627752176">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/pymysql/connections.py"</cite>,
+      line <em class="line">775</em>,
+      in <code class="function">_read_query_result</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">                </span>result.unbuffered_active = False</pre>
+<pre class="line before"><span class="ws">                </span>result.connection = None</pre>
+<pre class="line before"><span class="ws">                </span>raise</pre>
+<pre class="line before"><span class="ws">        </span>else:</pre>
+<pre class="line before"><span class="ws">            </span>result = MySQLResult(self)</pre>
+<pre class="line current"><span class="ws">            </span>result.read()</pre>
+<pre class="line after"><span class="ws">        </span>self._result = result</pre>
+<pre class="line after"><span class="ws">        </span>if result.server_status is not None:</pre>
+<pre class="line after"><span class="ws">            </span>self.server_status = result.server_status</pre>
+<pre class="line after"><span class="ws">        </span>return result.affected_rows</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673627752288">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/pymysql/connections.py"</cite>,
+      line <em class="line">1156</em>,
+      in <code class="function">read</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>if self.unbuffered_active:</pre>
+<pre class="line before"><span class="ws">            </span>self._finish_unbuffered_query()</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def read(self):</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line current"><span class="ws">            </span>first_packet = self.connection._read_packet()</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">            </span>if first_packet.is_ok_packet():</pre>
+<pre class="line after"><span class="ws">                </span>self._read_ok_packet(first_packet)</pre>
+<pre class="line after"><span class="ws">            </span>elif first_packet.is_load_local_packet():</pre>
+<pre class="line after"><span class="ws">                </span>self._read_load_local_packet(first_packet)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673627752400">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/pymysql/connections.py"</cite>,
+      line <em class="line">701</em>,
+      in <code class="function">_read_packet</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>bytes_to_read = btrl + (btrh &lt;&lt; 16)</pre>
+<pre class="line before"><span class="ws">            </span>if packet_number != self._next_seq_id:</pre>
+<pre class="line before"><span class="ws">                </span>self._force_close()</pre>
+<pre class="line before"><span class="ws">                </span>if packet_number == 0:</pre>
+<pre class="line before"><span class="ws">                    </span># MariaDB sends error packet with seqno==0 when shutdown</pre>
+<pre class="line current"><span class="ws">                    </span>raise err.OperationalError(</pre>
+<pre class="line after"><span class="ws">                        </span>CR.CR_SERVER_LOST,</pre>
+<pre class="line after"><span class="ws">                        </span>&#34;Lost connection to MySQL server during query&#34;,</pre>
+<pre class="line after"><span class="ws">                    </span>)</pre>
+<pre class="line after"><span class="ws">                </span>raise err.InternalError(</pre>
+<pre class="line after"><span class="ws">                    </span>&#34;Packet sequence number wrong - got %d expected %d&#34;</pre></div>
+</div>
+
+<li><div class="exc-divider">The above exception was the direct cause of the following exception:</div>
+<li><div class="frame" id="frame-139673645352208">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/flask/app.py"</cite>,
+      line <em class="line">2528</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>ctx.push()</pre>
+<pre class="line before"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line before"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line before"><span class="ws">                </span>error = e</pre>
+<pre class="line current"><span class="ws">                </span>response = self.handle_exception(e)</pre>
+<pre class="line after"><span class="ws">            </span>except:  # noqa: B001</pre>
+<pre class="line after"><span class="ws">                </span>error = sys.exc_info()[1]</pre>
+<pre class="line after"><span class="ws">                </span>raise</pre>
+<pre class="line after"><span class="ws">            </span>return response(environ, start_response)</pre>
+<pre class="line after"><span class="ws">        </span>finally:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673630238288">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/flask/app.py"</cite>,
+      line <em class="line">2525</em>,
+      in <code class="function">wsgi_app</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>ctx = self.request_context(environ)</pre>
+<pre class="line before"><span class="ws">        </span>error: t.Optional[BaseException] = None</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>try:</pre>
+<pre class="line before"><span class="ws">                </span>ctx.push()</pre>
+<pre class="line current"><span class="ws">                </span>response = self.full_dispatch_request()</pre>
+<pre class="line after"><span class="ws">            </span>except Exception as e:</pre>
+<pre class="line after"><span class="ws">                </span>error = e</pre>
+<pre class="line after"><span class="ws">                </span>response = self.handle_exception(e)</pre>
+<pre class="line after"><span class="ws">            </span>except:  # noqa: B001</pre>
+<pre class="line after"><span class="ws">                </span>error = sys.exc_info()[1]</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673630238400">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/flask/app.py"</cite>,
+      line <em class="line">1822</em>,
+      in <code class="function">full_dispatch_request</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>request_started.send(self)</pre>
+<pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+<pre class="line before"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+<pre class="line before"><span class="ws">        </span>except Exception as e:</pre>
+<pre class="line current"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+<pre class="line after"><span class="ws">        </span>return self.finalize_request(rv)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def finalize_request(</pre>
+<pre class="line after"><span class="ws">        </span>self,</pre>
+<pre class="line after"><span class="ws">        </span>rv: t.Union[ft.ResponseReturnValue, HTTPException],</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673630238512">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/flask/app.py"</cite>,
+      line <em class="line">1820</em>,
+      in <code class="function">full_dispatch_request</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line before"><span class="ws">            </span>request_started.send(self)</pre>
+<pre class="line before"><span class="ws">            </span>rv = self.preprocess_request()</pre>
+<pre class="line before"><span class="ws">            </span>if rv is None:</pre>
+<pre class="line current"><span class="ws">                </span>rv = self.dispatch_request()</pre>
+<pre class="line after"><span class="ws">        </span>except Exception as e:</pre>
+<pre class="line after"><span class="ws">            </span>rv = self.handle_user_exception(e)</pre>
+<pre class="line after"><span class="ws">        </span>return self.finalize_request(rv)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def finalize_request(</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673630238624">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/flask/app.py"</cite>,
+      line <em class="line">1796</em>,
+      in <code class="function">dispatch_request</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>and req.method == &#34;OPTIONS&#34;</pre>
+<pre class="line before"><span class="ws">        </span>):</pre>
+<pre class="line before"><span class="ws">            </span>return self.make_default_options_response()</pre>
+<pre class="line before"><span class="ws">        </span># otherwise dispatch to the handler for that endpoint</pre>
+<pre class="line before"><span class="ws">        </span>view_args: t.Dict[str, t.Any] = req.view_args  # type: ignore[assignment]</pre>
+<pre class="line current"><span class="ws">        </span>return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def full_dispatch_request(self) -&gt; Response:</pre>
+<pre class="line after"><span class="ws">        </span>&#34;&#34;&#34;Dispatches the request and on top of that performs request</pre>
+<pre class="line after"><span class="ws">        </span>pre and postprocessing as well as HTTP exception catching and</pre>
+<pre class="line after"><span class="ws">        </span>error handling.</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673630238736">
+  <h4>File <cite class="filename">"/app/app/superpass/infrastructure/view_modifiers.py"</cite>,
+      line <em class="line">15</em>,
+      in <code class="function">view_method</code></h4>
+  <div class="source "><pre class="line before"><span class="ws">    </span>def response_inner(f):</pre>
+<pre class="line before"><span class="ws">        </span>#print(f&#34;Wrapping in response {f.__name__}&#34;, flush=True)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>@wraps(f)</pre>
+<pre class="line before"><span class="ws">        </span>def view_method(*args, **kwargs):</pre>
+<pre class="line current"><span class="ws">            </span>response_val = f(*args, **kwargs)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">            </span>if isinstance(response_val, werkzeug.wrappers.Response):</pre>
+<pre class="line after"><span class="ws">                </span>return response_val</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">            </span>if isinstance(response_val, flask.Response):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673630239184">
+  <h4>File <cite class="filename">"/app/app/superpass/views/account_views.py"</cite>,
+      line <em class="line">35</em>,
+      in <code class="function">register_post</code></h4>
+  <div class="source "><pre class="line before"><span class="ws">        </span>return {</pre>
+<pre class="line before"><span class="ws">            </span>&#39;error&#39;: &#39;Please use only letters and numbers in usernames&#39;,</pre>
+<pre class="line before"><span class="ws">            </span>&#39;username&#39;: username,</pre>
+<pre class="line before"><span class="ws">        </span>}</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line current"><span class="ws">    </span>user = user_service.create_user(username, password)</pre>
+<pre class="line after"><span class="ws">    </span>if not user:</pre>
+<pre class="line after"><span class="ws">        </span>return {</pre>
+<pre class="line after"><span class="ws">            </span>&#39;error&#39;: &#39;User already exists&#39;,</pre>
+<pre class="line after"><span class="ws">            </span>&#39;username&#39;: username,</pre>
+<pre class="line after"><span class="ws">        </span>}</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673630241312">
+  <h4>File <cite class="filename">"/app/app/superpass/services/user_service.py"</cite>,
+      line <em class="line">8</em>,
+      in <code class="function">create_user</code></h4>
+  <div class="source "><pre class="line before"><span class="ws"></span>from superpass.data import db_session</pre>
+<pre class="line before"><span class="ws"></span>from passlib.handlers.sha2_crypt import sha512_crypt as hasher</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws"></span>def create_user(username: str, password: str) -&gt; Optional[User]:</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line current"><span class="ws">    </span>if get_user_by_name(username):</pre>
+<pre class="line after"><span class="ws">        </span>return None</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>user = User()</pre>
+<pre class="line after"><span class="ws">    </span>user.username = username</pre>
+<pre class="line after"><span class="ws">    </span>user.hashed_password = hasher.encrypt(password, rounds=200000)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673630241984">
+  <h4>File <cite class="filename">"/app/app/superpass/services/user_service.py"</cite>,
+      line <em class="line">36</em>,
+      in <code class="function">get_user_by_name</code></h4>
+  <div class="source "><pre class="line before"><span class="ws">    </span>return None</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws"></span>def get_user_by_name(username: str) -&gt; Optional[User]:</pre>
+<pre class="line before"><span class="ws">    </span>session = db_session.create_session()</pre>
+<pre class="line current"><span class="ws">    </span>tmp = session.query(User).filter(User.username == username).first()</pre>
+<pre class="line after"><span class="ws">    </span>session.close()</pre>
+<pre class="line after"><span class="ws">    </span>return tmp</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws"></span>def get_user_by_id(uid: int) -&gt; Optional[User]:</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673630242096">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py"</cite>,
+      line <em class="line">2824</em>,
+      in <code class="function">first</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>&#34;&#34;&#34;</pre>
+<pre class="line before"><span class="ws">        </span># replicates limit(1) behavior</pre>
+<pre class="line before"><span class="ws">        </span>if self._statement is not None:</pre>
+<pre class="line before"><span class="ws">            </span>return self._iter().first()</pre>
+<pre class="line before"><span class="ws">        </span>else:</pre>
+<pre class="line current"><span class="ws">            </span>return self.limit(1)._iter().first()</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def one_or_none(self):</pre>
+<pre class="line after"><span class="ws">        </span>&#34;&#34;&#34;Return at most one result or raise an exception.</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>Returns ``None`` if the query selects</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673630547680">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py"</cite>,
+      line <em class="line">2916</em>,
+      in <code class="function">_iter</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">    </span>def _iter(self):</pre>
+<pre class="line before"><span class="ws">        </span># new style execution.</pre>
+<pre class="line before"><span class="ws">        </span>params = self._params</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>statement = self._statement_20()</pre>
+<pre class="line current"><span class="ws">        </span>result = self.session.execute(</pre>
+<pre class="line after"><span class="ws">            </span>statement,</pre>
+<pre class="line after"><span class="ws">            </span>params,</pre>
+<pre class="line after"><span class="ws">            </span>execution_options={&#34;_sa_orm_load_options&#34;: self.load_options},</pre>
+<pre class="line after"><span class="ws">        </span>)</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673630547792">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py"</cite>,
+      line <em class="line">1714</em>,
+      in <code class="function">execute</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>execution_options = execution_options.union(</pre>
+<pre class="line before"><span class="ws">                </span>dict(future_result=False)</pre>
+<pre class="line before"><span class="ws">            </span>)</pre>
+<pre class="line before"><span class="ws">        </span>else:</pre>
+<pre class="line before"><span class="ws">            </span>conn = self._connection_for_bind(bind)</pre>
+<pre class="line current"><span class="ws">        </span>result = conn._execute_20(statement, params or {}, execution_options)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>if compile_state_cls:</pre>
+<pre class="line after"><span class="ws">            </span>result = compile_state_cls.orm_setup_cursor_result(</pre>
+<pre class="line after"><span class="ws">                </span>self,</pre>
+<pre class="line after"><span class="ws">                </span>statement,</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673628765520">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py"</cite>,
+      line <em class="line">1705</em>,
+      in <code class="function">_execute_20</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>except AttributeError as err:</pre>
+<pre class="line before"><span class="ws">            </span>util.raise_(</pre>
+<pre class="line before"><span class="ws">                </span>exc.ObjectNotExecutableError(statement), replace_context=err</pre>
+<pre class="line before"><span class="ws">            </span>)</pre>
+<pre class="line before"><span class="ws">        </span>else:</pre>
+<pre class="line current"><span class="ws">            </span>return meth(self, args_10style, kwargs_10style, execution_options)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def exec_driver_sql(</pre>
+<pre class="line after"><span class="ws">        </span>self, statement, parameters=None, execution_options=None</pre>
+<pre class="line after"><span class="ws">    </span>):</pre>
+<pre class="line after"><span class="ws">        </span>r&#34;&#34;&#34;Executes a SQL statement construct and returns a</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673629074352">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py"</cite>,
+      line <em class="line">334</em>,
+      in <code class="function">_execute_on_connection</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def _execute_on_connection(</pre>
+<pre class="line before"><span class="ws">        </span>self, connection, multiparams, params, execution_options, _force=False</pre>
+<pre class="line before"><span class="ws">    </span>):</pre>
+<pre class="line before"><span class="ws">        </span>if _force or self.supports_execution:</pre>
+<pre class="line current"><span class="ws">            </span>return connection._execute_clauseelement(</pre>
+<pre class="line after"><span class="ws">                </span>self, multiparams, params, execution_options</pre>
+<pre class="line after"><span class="ws">            </span>)</pre>
+<pre class="line after"><span class="ws">        </span>else:</pre>
+<pre class="line after"><span class="ws">            </span>raise exc.ObjectNotExecutableError(self)</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673629497872">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py"</cite>,
+      line <em class="line">1572</em>,
+      in <code class="function">_execute_clauseelement</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>column_keys=keys,</pre>
+<pre class="line before"><span class="ws">            </span>for_executemany=for_executemany,</pre>
+<pre class="line before"><span class="ws">            </span>schema_translate_map=schema_translate_map,</pre>
+<pre class="line before"><span class="ws">            </span>linting=self.dialect.compiler_linting | compiler.WARN_LINTING,</pre>
+<pre class="line before"><span class="ws">        </span>)</pre>
+<pre class="line current"><span class="ws">        </span>ret = self._execute_context(</pre>
+<pre class="line after"><span class="ws">            </span>dialect,</pre>
+<pre class="line after"><span class="ws">            </span>dialect.execution_ctx_cls._init_compiled,</pre>
+<pre class="line after"><span class="ws">            </span>compiled_sql,</pre>
+<pre class="line after"><span class="ws">            </span>distilled_params,</pre>
+<pre class="line after"><span class="ws">            </span>execution_options,</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673629497984">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py"</cite>,
+      line <em class="line">1943</em>,
+      in <code class="function">_execute_context</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">                    </span># CursorResult already exhausted rows / has no rows.</pre>
+<pre class="line before"><span class="ws">                    </span># close us now</pre>
+<pre class="line before"><span class="ws">                    </span>branched.close()</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>except BaseException as e:</pre>
+<pre class="line current"><span class="ws">            </span>self._handle_dbapi_exception(</pre>
+<pre class="line after"><span class="ws">                </span>e, statement, parameters, cursor, context</pre>
+<pre class="line after"><span class="ws">            </span>)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">        </span>return result</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673629498096">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py"</cite>,
+      line <em class="line">2124</em>,
+      in <code class="function">_handle_dbapi_exception</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">                    </span>self._autorollback()</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">            </span>if newraise:</pre>
+<pre class="line before"><span class="ws">                </span>util.raise_(newraise, with_traceback=exc_info[2], from_=e)</pre>
+<pre class="line before"><span class="ws">            </span>elif should_wrap:</pre>
+<pre class="line current"><span class="ws">                </span>util.raise_(</pre>
+<pre class="line after"><span class="ws">                    </span>sqlalchemy_exception, with_traceback=exc_info[2], from_=e</pre>
+<pre class="line after"><span class="ws">                </span>)</pre>
+<pre class="line after"><span class="ws">            </span>else:</pre>
+<pre class="line after"><span class="ws">                </span>util.raise_(exc_info[1], with_traceback=exc_info[2])</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673629498208">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/sqlalchemy/util/compat.py"</cite>,
+      line <em class="line">211</em>,
+      in <code class="function">raise_</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span># intermediary exception does not change, but we can&#39;t figure</pre>
+<pre class="line before"><span class="ws">            </span># that out.</pre>
+<pre class="line before"><span class="ws">            </span>exception.__cause__ = replace_context</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line current"><span class="ws">            </span>raise exception</pre>
+<pre class="line after"><span class="ws">        </span>finally:</pre>
+<pre class="line after"><span class="ws">            </span># credit to</pre>
+<pre class="line after"><span class="ws">            </span># https://cosmicpercolator.com/2016/01/13/exception-leaks-in-python-2-and-3/</pre>
+<pre class="line after"><span class="ws">            </span># as the __traceback__ object creates a cycle</pre>
+<pre class="line after"><span class="ws">            </span>del exception, replace_context, from_, with_traceback</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673629505824">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py"</cite>,
+      line <em class="line">1900</em>,
+      in <code class="function">_execute_context</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">                    </span>for fn in self.dialect.dispatch.do_execute:</pre>
+<pre class="line before"><span class="ws">                        </span>if fn(cursor, statement, parameters, context):</pre>
+<pre class="line before"><span class="ws">                            </span>evt_handled = True</pre>
+<pre class="line before"><span class="ws">                            </span>break</pre>
+<pre class="line before"><span class="ws">                </span>if not evt_handled:</pre>
+<pre class="line current"><span class="ws">                    </span>self.dialect.do_execute(</pre>
+<pre class="line after"><span class="ws">                        </span>cursor, statement, parameters, context</pre>
+<pre class="line after"><span class="ws">                    </span>)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">            </span>if self._has_events or self.engine._has_events:</pre>
+<pre class="line after"><span class="ws">                </span>self.dispatch.after_cursor_execute(</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673629505936">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py"</cite>,
+      line <em class="line">736</em>,
+      in <code class="function">do_execute</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def do_executemany(self, cursor, statement, parameters, context=None):</pre>
+<pre class="line before"><span class="ws">        </span>cursor.executemany(statement, parameters)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def do_execute(self, cursor, statement, parameters, context=None):</pre>
+<pre class="line current"><span class="ws">        </span>cursor.execute(statement, parameters)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def do_execute_no_params(self, cursor, statement, context=None):</pre>
+<pre class="line after"><span class="ws">        </span>cursor.execute(statement)</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def is_disconnect(self, e, connection, cursor):</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673627640320">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/pymysql/cursors.py"</cite>,
+      line <em class="line">148</em>,
+      in <code class="function">execute</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>while self.nextset():</pre>
+<pre class="line before"><span class="ws">            </span>pass</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">        </span>query = self.mogrify(query, args)</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line current"><span class="ws">        </span>result = self._query(query)</pre>
+<pre class="line after"><span class="ws">        </span>self._executed = query</pre>
+<pre class="line after"><span class="ws">        </span>return result</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def executemany(self, query, args):</pre>
+<pre class="line after"><span class="ws">        </span># type: (str, list) -&gt; int</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673627644800">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/pymysql/cursors.py"</cite>,
+      line <em class="line">310</em>,
+      in <code class="function">_query</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def _query(self, q):</pre>
+<pre class="line before"><span class="ws">        </span>conn = self._get_db()</pre>
+<pre class="line before"><span class="ws">        </span>self._last_executed = q</pre>
+<pre class="line before"><span class="ws">        </span>self._clear_result()</pre>
+<pre class="line current"><span class="ws">        </span>conn.query(q)</pre>
+<pre class="line after"><span class="ws">        </span>self._do_get_result()</pre>
+<pre class="line after"><span class="ws">        </span>return self.rowcount</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def _clear_result(self):</pre>
+<pre class="line after"><span class="ws">        </span>self.rownumber = 0</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673627644912">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/pymysql/connections.py"</cite>,
+      line <em class="line">548</em>,
+      in <code class="function">query</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span># if DEBUG:</pre>
+<pre class="line before"><span class="ws">        </span>#     print(&#34;DEBUG: sending query:&#34;, sql)</pre>
+<pre class="line before"><span class="ws">        </span>if isinstance(sql, str):</pre>
+<pre class="line before"><span class="ws">            </span>sql = sql.encode(self.encoding, &#34;surrogateescape&#34;)</pre>
+<pre class="line before"><span class="ws">        </span>self._execute_command(COMMAND.COM_QUERY, sql)</pre>
+<pre class="line current"><span class="ws">        </span>self._affected_rows = self._read_query_result(unbuffered=unbuffered)</pre>
+<pre class="line after"><span class="ws">        </span>return self._affected_rows</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">    </span>def next_result(self, unbuffered=False):</pre>
+<pre class="line after"><span class="ws">        </span>self._affected_rows = self._read_query_result(unbuffered=unbuffered)</pre>
+<pre class="line after"><span class="ws">        </span>return self._affected_rows</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673627751280">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/pymysql/connections.py"</cite>,
+      line <em class="line">775</em>,
+      in <code class="function">_read_query_result</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">                </span>result.unbuffered_active = False</pre>
+<pre class="line before"><span class="ws">                </span>result.connection = None</pre>
+<pre class="line before"><span class="ws">                </span>raise</pre>
+<pre class="line before"><span class="ws">        </span>else:</pre>
+<pre class="line before"><span class="ws">            </span>result = MySQLResult(self)</pre>
+<pre class="line current"><span class="ws">            </span>result.read()</pre>
+<pre class="line after"><span class="ws">        </span>self._result = result</pre>
+<pre class="line after"><span class="ws">        </span>if result.server_status is not None:</pre>
+<pre class="line after"><span class="ws">            </span>self.server_status = result.server_status</pre>
+<pre class="line after"><span class="ws">        </span>return result.affected_rows</pre>
+<pre class="line after"><span class="ws"></span> </pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673627751392">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/pymysql/connections.py"</cite>,
+      line <em class="line">1156</em>,
+      in <code class="function">read</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">        </span>if self.unbuffered_active:</pre>
+<pre class="line before"><span class="ws">            </span>self._finish_unbuffered_query()</pre>
+<pre class="line before"><span class="ws"></span> </pre>
+<pre class="line before"><span class="ws">    </span>def read(self):</pre>
+<pre class="line before"><span class="ws">        </span>try:</pre>
+<pre class="line current"><span class="ws">            </span>first_packet = self.connection._read_packet()</pre>
+<pre class="line after"><span class="ws"></span> </pre>
+<pre class="line after"><span class="ws">            </span>if first_packet.is_ok_packet():</pre>
+<pre class="line after"><span class="ws">                </span>self._read_ok_packet(first_packet)</pre>
+<pre class="line after"><span class="ws">            </span>elif first_packet.is_load_local_packet():</pre>
+<pre class="line after"><span class="ws">                </span>self._read_load_local_packet(first_packet)</pre></div>
+</div>
+
+<li><div class="frame" id="frame-139673627751504">
+  <h4>File <cite class="filename">"/app/venv/lib/python3.10/site-packages/pymysql/connections.py"</cite>,
+      line <em class="line">701</em>,
+      in <code class="function">_read_packet</code></h4>
+  <div class="source library"><pre class="line before"><span class="ws">            </span>bytes_to_read = btrl + (btrh &lt;&lt; 16)</pre>
+<pre class="line before"><span class="ws">            </span>if packet_number != self._next_seq_id:</pre>
+<pre class="line before"><span class="ws">                </span>self._force_close()</pre>
+<pre class="line before"><span class="ws">                </span>if packet_number == 0:</pre>
+<pre class="line before"><span class="ws">                    </span># MariaDB sends error packet with seqno==0 when shutdown</pre>
+<pre class="line current"><span class="ws">                    </span>raise err.OperationalError(</pre>
+<pre class="line after"><span class="ws">                        </span>CR.CR_SERVER_LOST,</pre>
+<pre class="line after"><span class="ws">                        </span>&#34;Lost connection to MySQL server during query&#34;,</pre>
+<pre class="line after"><span class="ws">                    </span>)</pre>
+<pre class="line after"><span class="ws">                </span>raise err.InternalError(</pre>
+<pre class="line after"><span class="ws">                    </span>&#34;Packet sequence number wrong - got %d expected %d&#34;</pre></div>
+</div>
+</ul>
+  <blockquote>sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (2013, &#39;Lost connection to MySQL server during query&#39;)
+[SQL: SELECT users.id AS users_id, users.username AS users_username, users.hashed_password AS users_hashed_password 
+FROM users 
+WHERE users.username = %(username_1)s 
+ LIMIT %(param_1)s]
+[parameters: {&#39;username_1&#39;: &#39;asd&#39;, &#39;param_1&#39;: 1}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+</blockquote>
+</div>
+
+<div class="plain">
+    <p>
+      This is the Copy/Paste friendly version of the traceback.
+    </p>
+    <textarea cols="50" rows="10" name="code" readonly>Traceback (most recent call last):
+  File &#34;/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py&#34;, line 1900, in _execute_context
+    self.dialect.do_execute(
+  File &#34;/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py&#34;, line 736, in do_execute
+    cursor.execute(statement, parameters)
+  File &#34;/app/venv/lib/python3.10/site-packages/pymysql/cursors.py&#34;, line 148, in execute
+    result = self._query(query)
+  File &#34;/app/venv/lib/python3.10/site-packages/pymysql/cursors.py&#34;, line 310, in _query
+    conn.query(q)
+  File &#34;/app/venv/lib/python3.10/site-packages/pymysql/connections.py&#34;, line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File &#34;/app/venv/lib/python3.10/site-packages/pymysql/connections.py&#34;, line 775, in _read_query_result
+    result.read()
+  File &#34;/app/venv/lib/python3.10/site-packages/pymysql/connections.py&#34;, line 1156, in read
+    first_packet = self.connection._read_packet()
+  File &#34;/app/venv/lib/python3.10/site-packages/pymysql/connections.py&#34;, line 701, in _read_packet
+    raise err.OperationalError(
+pymysql.err.OperationalError: (2013, &#39;Lost connection to MySQL server during query&#39;)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File &#34;/app/venv/lib/python3.10/site-packages/flask/app.py&#34;, line 2528, in wsgi_app
+    response = self.handle_exception(e)
+  File &#34;/app/venv/lib/python3.10/site-packages/flask/app.py&#34;, line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File &#34;/app/venv/lib/python3.10/site-packages/flask/app.py&#34;, line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File &#34;/app/venv/lib/python3.10/site-packages/flask/app.py&#34;, line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File &#34;/app/venv/lib/python3.10/site-packages/flask/app.py&#34;, line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File &#34;/app/app/superpass/infrastructure/view_modifiers.py&#34;, line 15, in view_method
+    response_val = f(*args, **kwargs)
+  File &#34;/app/app/superpass/views/account_views.py&#34;, line 35, in register_post
+    user = user_service.create_user(username, password)
+  File &#34;/app/app/superpass/services/user_service.py&#34;, line 8, in create_user
+    if get_user_by_name(username):
+  File &#34;/app/app/superpass/services/user_service.py&#34;, line 36, in get_user_by_name
+    tmp = session.query(User).filter(User.username == username).first()
+  File &#34;/app/venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py&#34;, line 2824, in first
+    return self.limit(1)._iter().first()
+  File &#34;/app/venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py&#34;, line 2916, in _iter
+    result = self.session.execute(
+  File &#34;/app/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py&#34;, line 1714, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File &#34;/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py&#34;, line 1705, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File &#34;/app/venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py&#34;, line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File &#34;/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py&#34;, line 1572, in _execute_clauseelement
+    ret = self._execute_context(
+  File &#34;/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py&#34;, line 1943, in _execute_context
+    self._handle_dbapi_exception(
+  File &#34;/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py&#34;, line 2124, in _handle_dbapi_exception
+    util.raise_(
+  File &#34;/app/venv/lib/python3.10/site-packages/sqlalchemy/util/compat.py&#34;, line 211, in raise_
+    raise exception
+  File &#34;/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py&#34;, line 1900, in _execute_context
+    self.dialect.do_execute(
+  File &#34;/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py&#34;, line 736, in do_execute
+    cursor.execute(statement, parameters)
+  File &#34;/app/venv/lib/python3.10/site-packages/pymysql/cursors.py&#34;, line 148, in execute
+    result = self._query(query)
+  File &#34;/app/venv/lib/python3.10/site-packages/pymysql/cursors.py&#34;, line 310, in _query
+    conn.query(q)
+  File &#34;/app/venv/lib/python3.10/site-packages/pymysql/connections.py&#34;, line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File &#34;/app/venv/lib/python3.10/site-packages/pymysql/connections.py&#34;, line 775, in _read_query_result
+    result.read()
+  File &#34;/app/venv/lib/python3.10/site-packages/pymysql/connections.py&#34;, line 1156, in read
+    first_packet = self.connection._read_packet()
+  File &#34;/app/venv/lib/python3.10/site-packages/pymysql/connections.py&#34;, line 701, in _read_packet
+    raise err.OperationalError(
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (2013, &#39;Lost connection to MySQL server during query&#39;)
+[SQL: SELECT users.id AS users_id, users.username AS users_username, users.hashed_password AS users_hashed_password 
+FROM users 
+WHERE users.username = %(username_1)s 
+ LIMIT %(param_1)s]
+[parameters: {&#39;username_1&#39;: &#39;asd&#39;, &#39;param_1&#39;: 1}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+</textarea>
+</div>
+<div class="explanation">
+  The debugger caught an exception in your WSGI application.  You can now
+  look at the traceback which led to the error.  <span class="nojavascript">
+  If you enable JavaScript you can also use additional features such as code
+  execution (if the evalex feature is enabled), automatic pasting of the
+  exceptions and much more.</span>
+</div>
+      <div class="footer">
+        Brought to you by <strong class="arthur">DON'T PANIC</strong>, your
+        friendly Werkzeug powered traceback interpreter.
+      </div>
+    </div>
+
+    <div class="pin-prompt">
+      <div class="inner">
+        <h3>Console Locked</h3>
+        <p>
+          The console is locked and needs to be unlocked by entering the PIN.
+          You can find the PIN printed out on the standard output of your
+          shell that runs the server.
+        <form>
+          <p>PIN:
+            <input type=text name=pin size=14>
+            <input type=submit name=btn value="Confirm Pin">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+
+<!--
+
+Traceback (most recent call last):
+  File "/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1900, in _execute_context
+    self.dialect.do_execute(
+  File "/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+  File "/app/venv/lib/python3.10/site-packages/pymysql/cursors.py", line 148, in execute
+    result = self._query(query)
+  File "/app/venv/lib/python3.10/site-packages/pymysql/cursors.py", line 310, in _query
+    conn.query(q)
+  File "/app/venv/lib/python3.10/site-packages/pymysql/connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/app/venv/lib/python3.10/site-packages/pymysql/connections.py", line 775, in _read_query_result
+    result.read()
+  File "/app/venv/lib/python3.10/site-packages/pymysql/connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "/app/venv/lib/python3.10/site-packages/pymysql/connections.py", line 701, in _read_packet
+    raise err.OperationalError(
+pymysql.err.OperationalError: (2013, 'Lost connection to MySQL server during query')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/venv/lib/python3.10/site-packages/flask/app.py", line 2528, in wsgi_app
+    response = self.handle_exception(e)
+  File "/app/venv/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/app/venv/lib/python3.10/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/app/venv/lib/python3.10/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/app/venv/lib/python3.10/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "/app/app/superpass/infrastructure/view_modifiers.py", line 15, in view_method
+    response_val = f(*args, **kwargs)
+  File "/app/app/superpass/views/account_views.py", line 35, in register_post
+    user = user_service.create_user(username, password)
+  File "/app/app/superpass/services/user_service.py", line 8, in create_user
+    if get_user_by_name(username):
+  File "/app/app/superpass/services/user_service.py", line 36, in get_user_by_name
+    tmp = session.query(User).filter(User.username == username).first()
+  File "/app/venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2824, in first
+    return self.limit(1)._iter().first()
+  File "/app/venv/lib/python3.10/site-packages/sqlalchemy/orm/query.py", line 2916, in _iter
+    result = self.session.execute(
+  File "/app/venv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1714, in execute
+    result = conn._execute_20(statement, params or {}, execution_options)
+  File "/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1705, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/app/venv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1572, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1943, in _execute_context
+    self._handle_dbapi_exception(
+  File "/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2124, in _handle_dbapi_exception
+    util.raise_(
+  File "/app/venv/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1900, in _execute_context
+    self.dialect.do_execute(
+  File "/app/venv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+  File "/app/venv/lib/python3.10/site-packages/pymysql/cursors.py", line 148, in execute
+    result = self._query(query)
+  File "/app/venv/lib/python3.10/site-packages/pymysql/cursors.py", line 310, in _query
+    conn.query(q)
+  File "/app/venv/lib/python3.10/site-packages/pymysql/connections.py", line 548, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "/app/venv/lib/python3.10/site-packages/pymysql/connections.py", line 775, in _read_query_result
+    result.read()
+  File "/app/venv/lib/python3.10/site-packages/pymysql/connections.py", line 1156, in read
+    first_packet = self.connection._read_packet()
+  File "/app/venv/lib/python3.10/site-packages/pymysql/connections.py", line 701, in _read_packet
+    raise err.OperationalError(
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (2013, 'Lost connection to MySQL server during query')
+[SQL: SELECT users.id AS users_id, users.username AS users_username, users.hashed_password AS users_hashed_password 
+FROM users 
+WHERE users.username = %(username_1)s 
+ LIMIT %(param_1)s]
+[parameters: {'username_1': 'asd', 'param_1': 1}]
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+
+
+-->
+

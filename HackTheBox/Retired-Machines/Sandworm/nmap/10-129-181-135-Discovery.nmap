@@ -1,0 +1,329 @@
+# Nmap 7.94 scan initiated Sun Jun 18 10:40:46 2023 as: nmap --script discovery -oA nmap/10-129-181-135-Discovery --min-rate 100 -e tun0 -p 22,80,443 10.129.181.135
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-ping: false
+|_lltd-discovery: false
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for ssa.htb (10.129.181.135)
+Host is up (0.044s latency).
+
+Bug in http-security-headers: no string output.
+PORT    STATE SERVICE
+22/tcp  open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (4)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.1
+| ssh-hostkey: 
+|   256 b7:89:6c:0b:20:ed:49:b2:c1:86:7c:29:92:74:1c:1f (ECDSA)
+|_  256 18:cd:9d:08:a6:21:a8:b8:b6:f7:9f:8d:40:51:54:fb (ED25519)
+80/tcp  open  http
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-errors: Couldn't find any error pages.
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-headers: 
+|   Server: nginx/1.18.0 (Ubuntu)
+|   Date: Sun, 18 Jun 2023 09:40:40 GMT
+|   Content-Type: text/html
+|   Content-Length: 178
+|   Connection: close
+|   Location: https://ssa.htb/
+|   
+|_  (Request type: GET)
+|_http-title: Did not follow redirect to https://ssa.htb/
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Redirected To: https://ssa.htb/
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|     WWW-Mechanize/1.34
+|   Change in Status Code: 
+|_    PHP/: false
+| http-sitemap-generator: 
+|   Directory structure:
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    
+| http-vhosts: 
+|_128 names had status 301
+|_http-mobileversion-checker: No mobile version detected.
+|_http-comments-displayer: Couldn't find any comments.
+|_http-chrono: Request times for /; avg: 184.63ms; min: 155.78ms; max: 233.46ms
+|_http-date: Sun, 18 Jun 2023 09:40:38 GMT; +59m28s from local time.
+|_http-feed: Couldn't find any feeds.
+443/tcp open  https
+| ssl-cert: Subject: commonName=SSA/organizationName=Secret Spy Agency/stateOrProvinceName=Classified/countryName=SA
+| Not valid before: 2023-05-04T18:03:25
+|_Not valid after:  2050-09-19T18:03:25
+|_http-feed: Couldn't find any feeds.
+|_http-mobileversion-checker: No mobile version detected.
+|_http-errors: Couldn't find any error pages.
+| http-vhosts: 
+|_128 names had status 200
+|_http-title: Secret Spy Agency | Secret Security Service
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-date: Sun, 18 Jun 2023 09:40:30 GMT; +59m27s from local time.
+|_http-chrono: Request times for /; avg: 308.14ms; min: 274.92ms; max: 360.83ms
+| http-headers: 
+|   Server: nginx/1.18.0 (Ubuntu)
+|   Date: Sun, 18 Jun 2023 09:40:29 GMT
+|   Content-Type: text/html; charset=utf-8
+|   Content-Length: 8161
+|   Connection: close
+|   
+|_  (Request type: HEAD)
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /static/
+|       css: 1; js: 2; png: 1
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /static/
+|   Total files found (by extension):
+|_    Other: 1; css: 1; js: 2; png: 1
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|   Change in Status Code: 
+|_    WWW-Mechanize/1.34: 400
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=ssa.htb
+|     
+|     Path: https://ssa.htb:443/static/styles.css
+|     Line number: 7862
+|     Comment: 
+|         /* rtl:begin:remove */
+|     
+|     Path: https://ssa.htb:443/about
+|     Line number: 19
+|     Comment: 
+|         <!-- Responsive navbar-->
+|     
+|     Path: https://ssa.htb:443/static/styles.css
+|     Line number: 2
+|     Comment: 
+|         /*!
+|         * Start Bootstrap - Heroic Features v5.0.5 (https://startbootstrap.com/template/heroic-features)
+|         * Copyright 2013-2022 Start Bootstrap
+|         * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-heroic-features/blob/master/LICENSE)
+|         */
+|     
+|     Path: https://ssa.htb:443/about
+|     Line number: 46
+|     Comment: 
+|         <!-- Page Content-->
+|     
+|     Path: https://ssa.htb:443/about
+|     Line number: 9
+|     Comment: 
+|         <!-- Favicon-->
+|     
+|     Path: https://ssa.htb:443/static/popper.min.js
+|     Line number: 1
+|     Comment: 
+|         /*
+|          Copyright (C) Federico Zivolo 2019
+|          Distributed under the MIT License (license terms are at http://opensource.org/licenses/MIT).
+|          */
+|     
+|     Path: https://ssa.htb:443/static/styles.css
+|     Line number: 12283
+|     Comment: 
+|         /* These two lines are counted as one :-)       */
+|     
+|     Path: https://ssa.htb:443/static/styles.css
+|     Line number: 12282
+|     Comment: 
+|         /* Fallback for browsers do NOT support vh unit */
+|     
+|     Path: https://ssa.htb:443/static/bootstrap.bundle.min.js
+|     Line number: 7
+|     Comment: 
+|         
+|         //# sourceMappingURL=bootstrap.bundle.min.js.map
+|     
+|     Path: https://ssa.htb:443/static/styles.css
+|     Line number: 440
+|     Comment: 
+|         /* rtl:raw:
+|         [type="tel"],
+|         [type="url"],
+|         [type="email"],
+|         [type="number"] {
+|           direction: ltr;
+|         }
+|         */
+|     
+|     Path: https://ssa.htb:443/about
+|     Line number: 34
+|     Comment: 
+|         <!-- Header-->
+|     
+|     Path: https://ssa.htb:443/about
+|     Line number: 70
+|     Comment: 
+|         <!-- Bootstrap core JS-->
+|     
+|     Path: https://ssa.htb:443/about
+|     Line number: 50
+|     Comment: 
+|         <!-- Page Features-->
+|     
+|     Path: https://ssa.htb:443/static/popper.min.js
+|     Line number: 5
+|     Comment: 
+|         
+|         //# sourceMappingURL=popper.min.js.map
+|     
+|     Path: https://ssa.htb:443/about
+|     Line number: 63
+|     Comment: 
+|         <!-- Footer-->
+|     
+|     Path: https://ssa.htb:443/static/styles.css
+|     Line number: 6032
+|     Comment: 
+|         /* rtl:begin:ignore */
+|     
+|     Path: https://ssa.htb:443/static/styles.css
+|     Line number: 256
+|     Comment: 
+|         /* rtl:ignore */
+|     
+|     Path: https://ssa.htb:443/static/styles.css
+|     Line number: 4793
+|     Comment: 
+|         /* rtl: var(--bs-breadcrumb-divider, "/") */
+|     
+|     Path: https://ssa.htb:443/static/styles.css
+|     Line number: 6043
+|     Comment: 
+|         /* rtl:end:ignore */
+|     
+|     Path: https://ssa.htb:443/static/bootstrap.bundle.min.js
+|     Line number: 1
+|     Comment: 
+|         /*!
+|           * Bootstrap v5.1.3 (https://getbootstrap.com/)
+|           * Copyright 2011-2021 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+|           * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+|           */
+|     
+|     Path: https://ssa.htb:443/about
+|     Line number: 14
+|     Comment: 
+|         <!-- Core theme CSS (includes Bootstrap)-->
+|     
+|     Path: https://ssa.htb:443/static/styles.css
+|     Line number: 6119
+|     Comment: 
+|         /* rtl:options: {
+|           "autoRename": true,
+|           "stringMap":[ {
+|             "name"    : "prev-next",
+|             "search"  : "prev",
+|             "replace" : "next"
+|           } ]
+|         } */
+|     
+|     Path: https://ssa.htb:443/about
+|     Line number: 11
+|     Comment: 
+|         <!-- Bootstrap icons-->
+|     
+|     Path: https://ssa.htb:443/static/styles.css
+|     Line number: 7868
+|     Comment: 
+|         /* rtl:end:remove */
+|     
+|     Path: https://ssa.htb:443/static/styles.css
+|     Line number: 7
+|     Comment: 
+|         /*!
+|          * Bootstrap v5.1.3 (https://getbootstrap.com/)
+|          * Copyright 2011-2021 The Bootstrap Authors
+|          * Copyright 2011-2021 Twitter, Inc.
+|          * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+|          */
+|     
+|     Path: https://ssa.htb:443/about
+|     Line number: 74
+|     Comment: 
+|_        <!-- Core theme JS-->
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-security-headers: 
+|   Strict_Transport_Security: 
+|_    HSTS not configured in HTTPS Server
+| ssl-enum-ciphers: 
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|_  least strength: A
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+
+Host script results:
+| dns-brute: 
+|_  DNS Brute-force hostnames: No results.
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       50737.80   6592.78   0.0%
+| 80    0       50545.00   11520.03  0.0%
+|_443   0       60783.30   24914.24  0.0%
+|_path-mtu: PMTU == 1500
+|_ipidseq: All zeros
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Sun Jun 18 10:48:42 2023 -- 1 IP address (1 host up) scanned in 476.15 seconds

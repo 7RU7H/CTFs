@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+	<title>Secret Spy Agency | PGP Training</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="/static/favicon.ico"/>
+        <!-- Bootstrap icons-->
+	<link rel="stylesheet" href="/static/bootstrap-icons2.css">
+	<link href="/static/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/static/styles.css" rel="stylesheet" />
+    </head>
+    <body class="d-flex flex-column min-vh-100">
+	    
+<!-- Responsive navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container px-lg-5">
+		    <img class="logo" src="/static/circleLogo2.png"></img>
+		<a class="navbar-brand" href="/">Secret Spy Agency</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+			    <li class="nav-item"><a class="nav-link" aria-current="page" href="/">Home</a></li>
+			    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+			    <li class="nav-item"><a class="nav-link active" href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Page Content-->
+        <section class="pt-4">
+            <div class="container mt-5 mb-5">
+                <h2 class="text-center">PGP Encryption Demonstration</h2>
+		<p class="text-center">Practice by importing our public <a class="key" href="/pgp">key</a> and encrypting, signing, and verifying messages.</p>
+		<form class="col-xxl-auto row" action="/guide" method="post">
+                  <div class="form-group mt-4 col-md-6" data-toggle="tooltip" data-placement="right" title="Encrypt a message with OUR public key and paste it here.">
+                    <label for="encrypted_text">Encrypted Text:</label>
+		    <textarea required class="form-control mt-4" rows="10" name="encrypted_text" id="encrypted_text"></textarea>
+                  </div>
+                  <div class="form-group mt-4 col-md-6" data-toggle="tooltip" data-placement="right" title="If you correctly encrypted a message with OUR public PGP key, we will automatically decrypt it and display it here.">
+                    <label for="encrypted_text">Decrypted Message:</label>
+		    <textarea class="form-control mt-4" rows="10" name="dec_text" id="dec_text" disabled></textarea>
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary btn-lg mt-5">Decrypt Message</button>
+                  </div>
+                </form>
+		<form class="col-xxl-auto row" action="/guide/encrypt" method="post">
+                  <div class="form-group mt-4 col-md-6" data-toggle="tooltip" data-placement="right" title="Provide your PUBLIC PGP key and we will encrypt a message for you to decrypt with your PRIVATE key.">
+                    <label for="encrypted_text">Public Key:</label>
+                    <textarea required class="form-control mt-4" rows="10" name="pub_key" id="pub_key"></textarea>
+                  </div>
+                  <div class="form-group mt-4 col-md-6" data-toggle="tooltip" data-placement="right" title="A message that can only be decrypted with your PRIVATE key will appear here." >
+                    <label for="encrypted_text">Encrypted Message:</label>
+		    <textarea class="form-control mt-4" rows="10" name="encrypted_text" id="encrypted_text" disabled></textarea>
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary btn-lg mt-5">Encrypt Message</button>
+                  </div>
+                </form>
+		<form class="col-xxl-auto row verify-form" action="/guide/verify" method="post">
+                  <div class="form-group mt-4 col-md-6">
+                    <label for="public_key">Public Key:</label>
+		    <textarea required class="form-control mt-2" rows="10" name="public_key" id="public_key" data-toggle="tooltip" data-placement="right" title="Enter your PUBLIC key. You will be able to decrypt the message with the corresponding PRIVATE key."></textarea>
+                  </div>
+                  <div class="form-group mt-4 col-md-6">
+                    <label for="signed_text">Signed Text:</label>
+		    <textarea required class="form-control mt-2" rows="10" name="signed_text" id="signed_text" data-toggle="tooltip" data-placement="right" title="Enter a signed message and your public key to check if you signed it correctly."></textarea>
+                  </div>
+                 <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary btn-lg mt-5" id="verify-signature">Verify Signature</button>
+                  </div>
+               </form>
+		<div class="modal fade" id="signature-modal" tabindex="-1" role="dialog" aria-labelledby="signatureModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="signatureModalLabel">Signature Verification Result</h5>
+		      </div>
+		      <div class="modal-body">
+		        <p id="signature-result">Loading...</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+              </div>
+	      <div class="container mt-2 mb-5 text-center" data-toggle="tooltip" data-placement="right" title="Import our public key and use it to verify this message. Make sure to paste the entire message into your program, including the signature." >
+		<h2 class="mb-4">Verifying signed messages</h2>
+                <textarea cols="80" rows="34" id="signed_message" disabled>
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+This message has been signed with the official SSA private key.
+
+Import our public key linked above into your keychain and use your favorite program to verify this message. PGP signatures are the only reliable way to verify someone's identity within Cyberspace, and ensure secure and private communication between two parties.
+
+Knowing how to Encrypt/Decrypt messages, as well as verifying them is an imperative skill if you wish to conduct yourself securely, without any prying eyes on you.
+
+Make sure you use verified, open-source programs such as KGpg, Kleopatra, OpenPGP, etc.
+
+And finally, rule number one in asymmetric encryption is to keep your PRIVATE key safe. It is for your eyes only.
+
+SSA
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEE1rqUIwIaCDnMxvPIxh1CkRC2JdQFAmRT2bsACgkQxh1CkRC2
+JdTCLhAAqdOcrfOsmkffKwdDKATwEpW1aLXkxYoklkH+DCDc58FgQYDNunMQvXjp
+Hd41hbrzQNTm4mMwFfYgFR5oNywAfa0D5L+qTrk05DqwvT7uIZF4/Q/iNp8zElKM
+rAVci7c6dBSKLzyGOd7c7/ZnM3Clt4krPGD3L4nQB1Vu7Hav8Oj0R2bL3eaNr0sL
+lnj84lbWcGqM9sRfnhfSlpqueK0qbZy02PdzsZ/Ox6KI6s1lAZL5v4eynwrZjXVB
+S20SeQAzPr+2m0LGQajPaxYvdEs4BkfyApwzauES0X3bckKdZrXZb/iImQxTrhDq
+ZKwGG2qoa6xj4zV32l2JYLKfCcZQh/VE3pslfYb5btuZ/h+oSz6rWT0py/gigbX5
+j4ps6gzS16uuVLePyw6kZN2tXgqWqR9IRydCqFJSajwanm9n1I99DH+r9vb7CYOI
+PFKwIqynqNX6ddpkCpUl3wgGnUoGdox5DLnE7DZGFM4mOhsNuwd8EBgpU18inFb2
+MMZO8Qk5bp2qsK9b4LFWDMEL+pzakgJwA1+H5auJLOak+Xee7UcYeqsq1fjpkwIX
+mItshTOG0jrtlvAf/PjqZ54yOPCWoyJQr5ZR7m4bh/kicXZVg5OiWrtVCuN0iUlD
+7sXs10Js/pgvZfA6xFipfvs7W+lOQ0febeNmjuKcGk0VVewv8oc=
+=/yGe
+-----END PGP SIGNATURE-----</textarea>
+                <p class="mt-2">
+                  When verifying our message, you should see something along the lines of:
+                </p>
+                <div class="bg-light text-center">
+                <p>
+                Good signature from:<br>
+                SSA &lt;atlas@ssa.htb&gt; <br>
+                Key ID: D6BA9423021A0839CCC6F3C8C61D429110B625D4
+
+                </p>
+              </div>
+	      </div>
+        </section>
+
+	    <!-- Footer-->
+        <footer class="py-5 bg-dark mt-auto">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Secret Spy Agency 2023</p>
+		<br>
+            <p class="m-0 text-center text-white opacity-100 fst-italic">Powered by Flask&trade; </p>
+	    </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+	<script src="/static/bootstrap.bundle.min.js"></script>
+	<script src="/static/popper.min.js"></script>
+	<script src="/static/jquery.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="/static/scripts.js" defer></script>
+    </body>
+</html>
