@@ -2,7 +2,7 @@
 
 ## Data 
 
-IP: 
+IP:  10.129.228.34
 OS:
 Arch:
 Hostname:
@@ -15,7 +15,8 @@ Users:
 Email and Username Formatting:
 Credentials:
 
-
+- BR list
+	- Redhat package version by httpd dorking fail
 
 #### Mindmap-per Service
 
