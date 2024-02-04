@@ -21,6 +21,10 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 ![ping](Screenshots/ping.png)
 
 `/manual/`  from `feroxbuster`, and the `login.php` and `status.php` pages found by `gospider` look interesting.
+
+Doing the good idea of OSINTing the box creator [0xEA31](https://app.hackthebox.com/users/13340) is Italian. More importantly I have seen looks of GitHub Profiles with Donkeys as profile images and questioned the significance of the animal from an anthropological perspective. According to [Wikipedia: Cultural references to Donkeys](https://en.wikipedia.org/wiki/Cultural_references_to_donkeys) *Italy has several phrases regarding donkeys, including "put your money in the anus of a donkey and they'll call him sir" (meaning, if you're rich, you'll get respect) and "women, donkeys and goats all have heads" (meaning, women are as stubborn as donkeys and goats).* and according to [washingtonpost](https://www.washingtonpost.com/archive/politics/2005/06/19/pinning-a-fairy-tale-on-italys-dwindling-donkeys/170a715a-9c64-45b7-93f4-6897c411188e/) *Donkeys, **a symbol of Italy's impoverished past**, might not seem as important as, say, Venice or family farming, both under threat -- unless you see something profoundly Italian in them, as Princess Nicoletta d'Ardia Caracciolo does. 19 Jun 2005*
+
+Interestingly according to [Wikipedia](https://en.wikipedia.org/wiki/Italian_wolf): *The **Italian wolf** features prominently in Latin and Italian cultures, such as in the legend of the founding of Rome. It is unofficially considered the national animal of Italy.*... to me seems correct given my understanding of Roman History and mythology. Seems weird that they do not use the Wolf as a symbol or maybe it my framing over the last few days or it maybe some kind of joke I do not understand because I am trying to observe something to understand, naive or just some contemporary I lack the resource to care enough or to observe.
 ## Exploit
 
 ```bash
