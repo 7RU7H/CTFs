@@ -1,0 +1,120 @@
+# Nmap 7.94SVN scan initiated Sun Feb  4 12:31:39 2024 as: nmap --script discovery -oA /home/kali/7ru7hGithub/CTFs/HackTheBox/Retired-Machines/CTF/nmap/10-129-228-34-Discovery --min-rate 1000 -e tun0 -p 22,80 10.129.228.34
+Pre-scan script results:
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_lltd-discovery: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-ping: false
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.129.228.34
+Host is up (0.060s latency).
+
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (12)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (12)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_7.4
+| ssh-hostkey: 
+|   2048 fd:ad:f7:cb:dc:42:1e:43:7d:b3:d5:8b:ce:63:b9:0e (RSA)
+|   256 3d:ef:34:5c:e5:17:5e:06:d7:a4:c8:86:ca:e2:df:fb (ECDSA)
+|_  256 4c:46:e2:16:8a:14:f6:f0:aa:39:6c:97:46:db:b4:40 (ED25519)
+80/tcp open  http
+|_http-title: CTF
+| http-useragent-tester: 
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-vhosts: 
+|_128 names had status ERROR
+| http-headers: 
+|   Date: Sun, 04 Feb 2024 12:32:03 GMT
+|   Server: Apache/2.4.6 (CentOS) OpenSSL/1.0.2k-fips mod_fcgid/2.3.9 PHP/5.4.16
+|   Last-Modified: Tue, 23 Oct 2018 20:13:51 GMT
+|   ETag: "a20-578eb0212fdc0"
+|   Accept-Ranges: bytes
+|   Content-Length: 2592
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: GET)
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.228.34
+|     
+|     Path: http://10.129.228.34:80/
+|     Line number: 55
+|     Comment: 
+|         <!-- Placed at the end of the document so the pages load faster -->
+|     
+|     Path: http://10.129.228.34:80/
+|     Line number: 15
+|     Comment: 
+|         <!-- Custom styles for this template -->
+|     
+|     Path: http://10.129.228.34:80/
+|     Line number: 12
+|     Comment: 
+|         <!-- Bootstrap core CSS -->
+|     
+|     Path: http://10.129.228.34:80/
+|     Line number: 53
+|     Comment: 
+|         <!-- Bootstrap core JavaScript
+|_            ================================================== -->
+|_http-mobileversion-checker: No mobile version detected.
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-feed: Couldn't find any feeds.
+|_http-errors: ERROR: Script execution failed (use -d to debug)
+| http-referer-checker: 
+| Spidering limited to: maxpagecount=30
+|_  https://code.jquery.com:443/jquery-3.3.1.slim.min.js
+|_http-chrono: Request times for /; avg: 6255.97ms; min: 4242.50ms; max: 8138.44ms
+|_http-trace: TRACE is enabled
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1
+|_http-date: Sun, 04 Feb 2024 12:32:03 GMT; +59m45s from local time.
+|_http-traceroute: ERROR: Script execution failed (use -d to debug)
+
+Host script results:
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       81916.78   65863.17  10.0%
+|_80    1       68907.00   -nan      90.0%
+|_ipidseq: All zeros
+|_dns-brute: Can't guess domain of "10.129.228.34"; use dns-brute.domain script argument.
+|_path-mtu: PMTU == 1500
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Sun Feb  4 12:38:22 2024 -- 1 IP address (1 host up) scanned in 403.02 seconds
