@@ -1,0 +1,162 @@
+_______________________________________________________________
+         __          _______   _____
+         \ \        / /  __ \ / ____|
+          \ \  /\  / /| |__) | (___   ___  __ _ _ __ ®
+           \ \/  \/ / |  ___/ \___ \ / __|/ _` | '_ \
+            \  /\  /  | |     ____) | (__| (_| | | | |
+             \/  \/   |_|    |_____/ \___|\__,_|_| |_|
+
+         WordPress Security Scanner by the WPScan Team
+                         Version 3.8.25
+       Sponsored by Automattic - https://automattic.com/
+       @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart
+_______________________________________________________________
+
+[32m[+][0m URL: https://myblog.thm:9007/ [10.10.167.65]
+[32m[+][0m Started: Tue Feb  6 12:54:12 2024
+
+Interesting Finding(s):
+
+[32m[+][0m Headers
+ | Interesting Entry: Server: Apache/2.4.41 (Ubuntu)
+ | Found By: Headers (Passive Detection)
+ | Confidence: 100%
+
+[32m[+][0m XML-RPC seems to be enabled: https://myblog.thm:9007/xmlrpc.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+ | References:
+ |  - http://codex.wordpress.org/XML-RPC_Pingback_API
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_ghost_scanner/
+ |  - https://www.rapid7.com/db/modules/auxiliary/dos/http/wordpress_xmlrpc_dos/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_xmlrpc_login/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_pingback_access/
+
+[32m[+][0m WordPress readme found: https://myblog.thm:9007/readme.html
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+
+[32m[+][0m The external WP-Cron seems to be enabled: https://myblog.thm:9007/wp-cron.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 60%
+ | References:
+ |  - https://www.iplocation.net/defend-wordpress-from-ddos
+ |  - https://github.com/wpscanteam/wpscan/issues/1299
+
+[32m[+][0m WordPress version 6.2.2 identified (Insecure, released on 2023-05-20).
+ | Found By: Rss Generator (Passive Detection)
+ |  - https://myblog.thm:9007/?feed=rss2, <generator>https://wordpress.org/?v=6.2.2</generator>
+ |  - https://myblog.thm:9007/?feed=comments-rss2, <generator>https://wordpress.org/?v=6.2.2</generator>
+ |
+ | [31m[!][0m 8 vulnerabilities identified:
+ |
+ | [31m[!][0m Title: WP 5.6-6.3.1 - Contributor+ Stored XSS via Navigation Block
+ |     Fixed in: 6.2.3
+ |     References:
+ |      - https://wpscan.com/vulnerability/cd130bb3-8d04-4375-a89a-883af131ed3a
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-38000
+ |      - https://wordpress.org/news/2023/10/wordpress-6-3-2-maintenance-and-security-release/
+ |
+ | [31m[!][0m Title: WP 5.6-6.3.1 - Reflected XSS via Application Password Requests
+ |     Fixed in: 6.2.3
+ |     References:
+ |      - https://wpscan.com/vulnerability/da1419cc-d821-42d6-b648-bdb3c70d91f2
+ |      - https://wordpress.org/news/2023/10/wordpress-6-3-2-maintenance-and-security-release/
+ |
+ | [31m[!][0m Title: WP < 6.3.2 - Denial of Service via Cache Poisoning
+ |     Fixed in: 6.2.3
+ |     References:
+ |      - https://wpscan.com/vulnerability/6d80e09d-34d5-4fda-81cb-e703d0e56e4f
+ |      - https://wordpress.org/news/2023/10/wordpress-6-3-2-maintenance-and-security-release/
+ |
+ | [31m[!][0m Title: WP < 6.3.2 - Subscriber+ Arbitrary Shortcode Execution
+ |     Fixed in: 6.2.3
+ |     References:
+ |      - https://wpscan.com/vulnerability/3615aea0-90aa-4f9a-9792-078a90af7f59
+ |      - https://wordpress.org/news/2023/10/wordpress-6-3-2-maintenance-and-security-release/
+ |
+ | [31m[!][0m Title: WP < 6.3.2 - Contributor+ Comment Disclosure
+ |     Fixed in: 6.2.3
+ |     References:
+ |      - https://wpscan.com/vulnerability/d35b2a3d-9b41-4b4f-8e87-1b8ccb370b9f
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-39999
+ |      - https://wordpress.org/news/2023/10/wordpress-6-3-2-maintenance-and-security-release/
+ |
+ | [31m[!][0m Title: WP < 6.3.2 - Unauthenticated Post Author Email Disclosure
+ |     Fixed in: 6.2.3
+ |     References:
+ |      - https://wpscan.com/vulnerability/19380917-4c27-4095-abf1-eba6f913b441
+ |      - https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-5561
+ |      - https://wpscan.com/blog/email-leak-oracle-vulnerability-addressed-in-wordpress-6-3-2/
+ |      - https://wordpress.org/news/2023/10/wordpress-6-3-2-maintenance-and-security-release/
+ |
+ | [31m[!][0m Title: WordPress < 6.4.3 - Deserialization of Untrusted Data
+ |     Fixed in: 6.2.4
+ |     References:
+ |      - https://wpscan.com/vulnerability/5e9804e5-bbd4-4836-a5f0-b4388cc39225
+ |      - https://wordpress.org/news/2024/01/wordpress-6-4-3-maintenance-and-security-release/
+ |
+ | [31m[!][0m Title: WordPress < 6.4.3 - Admin+ PHP File Upload
+ |     Fixed in: 6.2.4
+ |     References:
+ |      - https://wpscan.com/vulnerability/a8e12fbe-c70b-4078-9015-cf57a05bdd4a
+ |      - https://wordpress.org/news/2024/01/wordpress-6-4-3-maintenance-and-security-release/
+
+[32m[+][0m WordPress theme in use: twentytwentythree
+ | Location: https://myblog.thm:9007/wp-content/themes/twentytwentythree/
+ | Last Updated: 2023-11-07T00:00:00.000Z
+ | Readme: https://myblog.thm:9007/wp-content/themes/twentytwentythree/readme.txt
+ | [33m[!][0m The version is out of date, the latest version is 1.3
+ | [31m[!][0m Directory listing is enabled
+ | Style URL: https://myblog.thm:9007/wp-content/themes/twentytwentythree/style.css
+ | Style Name: Twenty Twenty-Three
+ | Style URI: https://wordpress.org/themes/twentytwentythree
+ | Description: Twenty Twenty-Three is designed to take advantage of the new design tools introduced in WordPress 6....
+ | Author: the WordPress team
+ | Author URI: https://wordpress.org
+ |
+ | Found By: Urls In Homepage (Passive Detection)
+ |
+ | Version: 1.1 (80% confidence)
+ | Found By: Style (Passive Detection)
+ |  - https://myblog.thm:9007/wp-content/themes/twentytwentythree/style.css, Match: 'Version: 1.1'
+
+
+[34m[i][0m No plugins Found.
+
+
+[34m[i][0m No themes Found.
+
+
+[34m[i][0m No Timthumbs Found.
+
+
+[34m[i][0m No Config Backups Found.
+
+
+[34m[i][0m No DB Exports Found.
+
+
+[34m[i][0m No Medias Found.
+
+
+[34m[i][0m User(s) Identified:
+
+[32m[+][0m joomla
+ | Found By: Rss Generator (Passive Detection)
+ | Confirmed By:
+ |  Author Id Brute Forcing - Author Pattern (Aggressive Detection)
+ |  Login Error Messages (Aggressive Detection)
+
+[32m[+][0m WPScan DB API OK
+ | Plan: free
+ | Requests Done (during the scan): 2
+ | Requests Remaining: 21
+
+[32m[+][0m Finished: Tue Feb  6 12:55:29 2024
+[32m[+][0m Requests Done: 3581
+[32m[+][0m Cached Requests: 9
+[32m[+][0m Data Sent: 1.073 MB
+[32m[+][0m Data Received: 752.089 KB
+[32m[+][0m Memory used: 276.418 MB
+[32m[+][0m Elapsed time: 00:01:17

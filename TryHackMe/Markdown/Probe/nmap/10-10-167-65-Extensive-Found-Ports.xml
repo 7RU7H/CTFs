@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Tue Feb  6 11:20:35 2024 as: nmap -sC -sV -oA /home/kali/7ru7hGithub/CTFs/TryHackMe/Markdown/Probe/nmap/10-10-167-65-Extensive-Found-Ports -&#45;min-rate 1000 -e tun0 -p 22,80,443,1338,1443,1883,8000,9007 10.10.167.65 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA /home/kali/7ru7hGithub/CTFs/TryHackMe/Markdown/Probe/nmap/10-10-167-65-Extensive-Found-Ports -&#45;min-rate 1000 -e tun0 -p 22,80,443,1338,1443,1883,8000,9007 10.10.167.65" start="1707218435" startstr="Tue Feb  6 11:20:35 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="8" services="22,80,443,1338,1443,1883,8000,9007"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.167.65" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1707218449" endtime="1707218505"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.167.65" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" product="OpenSSH" version="8.2p1 Ubuntu 4ubuntu0.7" extrainfo="Ubuntu Linux; protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:8.2p1</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service><script id="ssh-hostkey" output="&#xa;  3072 e1:e4:94:6d:9e:05:2f:1e:9e:61:37:ea:ef:6e:ea:86 (RSA)&#xa;  256 f5:d0:22:ad:aa:54:48:b7:2e:6d:a4:95:58:71:9b:e7 (ECDSA)&#xa;  256 70:21:b9:d3:5b:00:c2:c3:8c:6c:87:0b:71:55:e1:93 (ED25519)"><table>
+<elem key="bits">3072</elem>
+<elem key="fingerprint">e1e4946d9e052f1e9e6137eaef6eea86</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABgQCfz9ePnRxyYg4t48zzh4KLDQoBjWZlULxmKRJFR+++zamMbEG2eSNGFoW/h9aVyZzYpxJTFsSxnPEWxegwZjfqfg76DFQebTeA8SJrBvgu9URF4UEvfaiVwmmL8+wxbFuOEQcUg4klP3Qh9s1O7BWW2+KHkoQXPHWp1Ivo15sgHhHAWE37C+Nkhku55YA6Bi+V1/tGNQhSciKyEAZBEfJV8nLcKjCS1rTYJhdu5hSeSR+l6AmQSf1x//YU4JzMAFojOlpS4ZLD47pasworJldTgco2b4oOYI//ZEKmKbww/uScMm98QF7vRzhEA/2g/wcc4rldGVlcRSRrV5NNVwHUoji/3oU91QFeNek7vApTTa7FYrZt5H696NmPUVBgthncPAE9DKJS3L2rKjJLY5FGIZ1PSjeeZGF2f61r+8y+WuZUwPHdH1L8mQDokY4WrEOj+DmXTrVHq3uMyU4rJ0j/2OCbhaTS1Hb7LXZFKcvEMCIAZQi0OYXh7htzkDxCCpM=</elem>
+<elem key="type">ssh-rsa</elem>
+</table>
+<table>
+<elem key="bits">256</elem>
+<elem key="fingerprint">f5d022adaa5448b72e6da49558719be7</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKISd8lEmqoySLrwcFC0oxBEz/c52VZixCyekC8lWwjnROLUiD4crXZrFdU0V+FSEpUeBM6yC9xlNwxySvldAtQ=</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+</table>
+<table>
+<elem key="bits">256</elem>
+<elem key="fingerprint">7021b9d35b00c2c38c6c870b7155e193</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIII9AVTSVlkC6B0ypS+Oln2iTCLqipwrZW2Ufqo3qBQb</elem>
+<elem key="type">ssh-ed25519</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="lighttpd" version="1.4.55" method="probed" conf="10"><cpe>cpe:/a:lighttpd:lighttpd:1.4.55</cpe></service><script id="http-title" output="403 Forbidden"><elem key="title">403 Forbidden</elem>
+</script><script id="http-server-header" output="lighttpd/1.4.55"><elem>lighttpd/1.4.55</elem>
+</script></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="Apache httpd" version="2.4.41" hostname="ip-10-10-167-65.eu-west-1.compute.internal" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.41</cpe></service><script id="http-server-header" output="Apache/2.4.41 (Ubuntu)"><elem>Apache/2.4.41 (Ubuntu)</elem>
+</script><script id="http-title" output="403 Forbidden"><elem key="title">403 Forbidden</elem>
+</script><script id="tls-alpn" output="&#xa;  http/1.1"><elem>http/1.1</elem>
+</script><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="ssl-cert" output="Subject: commonName=dev.probe.thm/organizationName=Tester/stateOrProvinceName=Some-State/countryName=US&#xa;Not valid before: 2023-07-18T10:57:05&#xa;Not valid after:  2024-07-17T10:57:05"><table key="subject">
+<elem key="commonName">dev.probe.thm</elem>
+<elem key="countryName">US</elem>
+<elem key="emailAddress">probe@probe.thm</elem>
+<elem key="localityName">city</elem>
+<elem key="organizationName">Tester</elem>
+<elem key="organizationalUnitName">MHT</elem>
+<elem key="stateOrProvinceName">Some-State</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">dev.probe.thm</elem>
+<elem key="countryName">US</elem>
+<elem key="emailAddress">probe@probe.thm</elem>
+<elem key="localityName">city</elem>
+<elem key="organizationName">Tester</elem>
+<elem key="organizationalUnitName">MHT</elem>
+<elem key="stateOrProvinceName">Some-State</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">9F7AF2138D791459069AD9E651DFC161136599351C306F06F897FDB9FED7C22384664B18FED152100F07127EF17D882A4A6FF8DB653EDFCC4525531B878405ACDE506E833922B32823E97BB9E23095C23501796705F978CFB11F9EA2A2EB9E8D06C6027496BFB243F9E0F9E1C0739B13D701FC92245631E712C2014DF511774ADC7A8C4C430280F9F6315FE78A06D1CB3B0F720A380261ACB4990FFF83AAD26FC60EB7B77E8A24DB0EF4C13D64616B619A4D3D242C9F4ECDDD03435FFBE16FC7C242A1920094E584F6C74D1CDA4CCC2C4A9BDC2F641772CE3EBD8E4FD10B536CB6214FCB8D677C89584080E2461EA6B37414C1D918770E97C204378E8C28F3B1</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">5B:69:13:A7:01:9C:55:7B:45:72:17:47:E8:B5:6C:30:97:CD:DF:0B</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">5B:69:13:A7:01:9C:55:7B:45:72:17:47:E8:B5:6C:30:97:CD:DF:0B</elem>
+</table>
+<table>
+<elem key="name">X509v3 Basic Constraints</elem>
+<elem key="value">CA:TRUE</elem>
+<elem key="critical">true</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-07-18T10:57:05</elem>
+<elem key="notAfter">2024-07-17T10:57:05</elem>
+</table>
+<elem key="md5">2db9279ffd423e75e889d86e421aeee4</elem>
+<elem key="sha1">41bacbff7475d58e352fa3dcec3c91c91f4015e1</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIID8zCCAtugAwIBAgIUeNeI6dt0UNbE4AjCYEEX3hCgs9AwDQYJKoZIhvcNAQEL&#xa;BQAwgYgxCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApTb21lLVN0YXRlMQ0wCwYDVQQH&#xa;DARjaXR5MQ8wDQYDVQQKDAZUZXN0ZXIxDDAKBgNVBAsMA01IVDEWMBQGA1UEAwwN&#xa;ZGV2LnByb2JlLnRobTEeMBwGCSqGSIb3DQEJARYPcHJvYmVAcHJvYmUudGhtMB4X&#xa;DTIzMDcxODEwNTcwNVoXDTI0MDcxNzEwNTcwNVowgYgxCzAJBgNVBAYTAlVTMRMw&#xa;EQYDVQQIDApTb21lLVN0YXRlMQ0wCwYDVQQHDARjaXR5MQ8wDQYDVQQKDAZUZXN0&#xa;ZXIxDDAKBgNVBAsMA01IVDEWMBQGA1UEAwwNZGV2LnByb2JlLnRobTEeMBwGCSqG&#xa;SIb3DQEJARYPcHJvYmVAcHJvYmUudGhtMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A&#xa;MIIBCgKCAQEAn3ryE415FFkGmtnmUd/BYRNlmTUcMG8G+Jf9uf7XwiOEZksY/tFS&#xa;EA8HEn7xfYgqSm/422U+38xFJVMbh4QFrN5QboM5IrMoI+l7ueIwlcI1AXlnBfl4&#xa;z7EfnqKi656NBsYCdJa/skP54PnhwHObE9cB/JIkVjHnEsIBTfURd0rceoxMQwKA&#xa;+fYxX+eKBtHLOw9yCjgCYay0mQ//g6rSb8YOt7d+iiTbDvTBPWRha2GaTT0kLJ9O&#xa;zd0DQ1/74W/HwkKhkgCU5YT2x00c2kzMLEqb3C9kF3LOPr2OT9ELU2y2IU/LjWd8&#xa;iVhAgOJGHqazdBTB2Rh3DpfCBDeOjCjzsQIDAQABo1MwUTAdBgNVHQ4EFgQUW2kT&#xa;pwGcVXtFchdH6LVsMJfN3wswHwYDVR0jBBgwFoAUW2kTpwGcVXtFchdH6LVsMJfN&#xa;3wswDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAZ4QUG0vJCdUT&#xa;+nDrF8KlO7GTsHFTzh9RbXMu9QzC/rKsrlX50sBU3bEwkxNfadyouT1UEKk+7S7x&#xa;TstTPCBBZwoeU3C7aImSjdgA+ABcW/5exSYuPo+Effk0poG8QUkHkdAK4PZL7Kaz&#xa;iZ1Hw8kpEY5X6rYxKyeXiH2VtHBzcsLA47nJLHnt8iph1uabpbbcC4Ef8zxHLeAS&#xa;hKgo67A/ynPHKQ0T7bjWI2+coV/vQFSx4pw+9aFTZa//fkr7qRNJNufSq+INlEHi&#xa;c5x8WEeGHOzBneTqxOiGI5zIrPHkyCUMO6EV+SWbVx+M4wK82hkz3aVUeA7Jvo2m&#xa;96hSYnnEUA==&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script></port>
+<port protocol="tcp" portid="1338"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ftp" product="vsftpd" version="2.0.8 or later" method="probed" conf="10"><cpe>cpe:/a:vsftpd:vsftpd</cpe></service></port>
+<port protocol="tcp" portid="1443"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="Apache httpd" version="2.4.41" extrainfo="(Ubuntu)" tunnel="ssl" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.41</cpe></service><script id="ssl-cert" output="Subject: commonName=dev.probe.thm/organizationName=Tester/stateOrProvinceName=Some-State/countryName=US&#xa;Not valid before: 2023-07-18T10:57:05&#xa;Not valid after:  2024-07-17T10:57:05"><table key="subject">
+<elem key="commonName">dev.probe.thm</elem>
+<elem key="countryName">US</elem>
+<elem key="emailAddress">probe@probe.thm</elem>
+<elem key="localityName">city</elem>
+<elem key="organizationName">Tester</elem>
+<elem key="organizationalUnitName">MHT</elem>
+<elem key="stateOrProvinceName">Some-State</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">dev.probe.thm</elem>
+<elem key="countryName">US</elem>
+<elem key="emailAddress">probe@probe.thm</elem>
+<elem key="localityName">city</elem>
+<elem key="organizationName">Tester</elem>
+<elem key="organizationalUnitName">MHT</elem>
+<elem key="stateOrProvinceName">Some-State</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">9F7AF2138D791459069AD9E651DFC161136599351C306F06F897FDB9FED7C22384664B18FED152100F07127EF17D882A4A6FF8DB653EDFCC4525531B878405ACDE506E833922B32823E97BB9E23095C23501796705F978CFB11F9EA2A2EB9E8D06C6027496BFB243F9E0F9E1C0739B13D701FC92245631E712C2014DF511774ADC7A8C4C430280F9F6315FE78A06D1CB3B0F720A380261ACB4990FFF83AAD26FC60EB7B77E8A24DB0EF4C13D64616B619A4D3D242C9F4ECDDD03435FFBE16FC7C242A1920094E584F6C74D1CDA4CCC2C4A9BDC2F641772CE3EBD8E4FD10B536CB6214FCB8D677C89584080E2461EA6B37414C1D918770E97C204378E8C28F3B1</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">5B:69:13:A7:01:9C:55:7B:45:72:17:47:E8:B5:6C:30:97:CD:DF:0B</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">5B:69:13:A7:01:9C:55:7B:45:72:17:47:E8:B5:6C:30:97:CD:DF:0B</elem>
+</table>
+<table>
+<elem key="name">X509v3 Basic Constraints</elem>
+<elem key="value">CA:TRUE</elem>
+<elem key="critical">true</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-07-18T10:57:05</elem>
+<elem key="notAfter">2024-07-17T10:57:05</elem>
+</table>
+<elem key="md5">2db9279ffd423e75e889d86e421aeee4</elem>
+<elem key="sha1">41bacbff7475d58e352fa3dcec3c91c91f4015e1</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIID8zCCAtugAwIBAgIUeNeI6dt0UNbE4AjCYEEX3hCgs9AwDQYJKoZIhvcNAQEL&#xa;BQAwgYgxCzAJBgNVBAYTAlVTMRMwEQYDVQQIDApTb21lLVN0YXRlMQ0wCwYDVQQH&#xa;DARjaXR5MQ8wDQYDVQQKDAZUZXN0ZXIxDDAKBgNVBAsMA01IVDEWMBQGA1UEAwwN&#xa;ZGV2LnByb2JlLnRobTEeMBwGCSqGSIb3DQEJARYPcHJvYmVAcHJvYmUudGhtMB4X&#xa;DTIzMDcxODEwNTcwNVoXDTI0MDcxNzEwNTcwNVowgYgxCzAJBgNVBAYTAlVTMRMw&#xa;EQYDVQQIDApTb21lLVN0YXRlMQ0wCwYDVQQHDARjaXR5MQ8wDQYDVQQKDAZUZXN0&#xa;ZXIxDDAKBgNVBAsMA01IVDEWMBQGA1UEAwwNZGV2LnByb2JlLnRobTEeMBwGCSqG&#xa;SIb3DQEJARYPcHJvYmVAcHJvYmUudGhtMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A&#xa;MIIBCgKCAQEAn3ryE415FFkGmtnmUd/BYRNlmTUcMG8G+Jf9uf7XwiOEZksY/tFS&#xa;EA8HEn7xfYgqSm/422U+38xFJVMbh4QFrN5QboM5IrMoI+l7ueIwlcI1AXlnBfl4&#xa;z7EfnqKi656NBsYCdJa/skP54PnhwHObE9cB/JIkVjHnEsIBTfURd0rceoxMQwKA&#xa;+fYxX+eKBtHLOw9yCjgCYay0mQ//g6rSb8YOt7d+iiTbDvTBPWRha2GaTT0kLJ9O&#xa;zd0DQ1/74W/HwkKhkgCU5YT2x00c2kzMLEqb3C9kF3LOPr2OT9ELU2y2IU/LjWd8&#xa;iVhAgOJGHqazdBTB2Rh3DpfCBDeOjCjzsQIDAQABo1MwUTAdBgNVHQ4EFgQUW2kT&#xa;pwGcVXtFchdH6LVsMJfN3wswHwYDVR0jBBgwFoAUW2kTpwGcVXtFchdH6LVsMJfN&#xa;3wswDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAZ4QUG0vJCdUT&#xa;+nDrF8KlO7GTsHFTzh9RbXMu9QzC/rKsrlX50sBU3bEwkxNfadyouT1UEKk+7S7x&#xa;TstTPCBBZwoeU3C7aImSjdgA+ABcW/5exSYuPo+Effk0poG8QUkHkdAK4PZL7Kaz&#xa;iZ1Hw8kpEY5X6rYxKyeXiH2VtHBzcsLA47nJLHnt8iph1uabpbbcC4Ef8zxHLeAS&#xa;hKgo67A/ynPHKQ0T7bjWI2+coV/vQFSx4pw+9aFTZa//fkr7qRNJNufSq+INlEHi&#xa;c5x8WEeGHOzBneTqxOiGI5zIrPHkyCUMO6EV+SWbVx+M4wK82hkz3aVUeA7Jvo2m&#xa;96hSYnnEUA==&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="http-server-header" output="Apache/2.4.41 (Ubuntu)"><elem>Apache/2.4.41 (Ubuntu)</elem>
+</script><script id="http-title" output="PHP 7.4.3-4ubuntu2.19 - phpinfo()"><elem key="title">PHP 7.4.3-4ubuntu2.19 - phpinfo()</elem>
+</script><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="tls-alpn" output="&#xa;  http/1.1"><elem>http/1.1</elem>
+</script></port>
+<port protocol="tcp" portid="1883"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="mosquitto version 1.6.9" method="probed" conf="10"/><script id="mqtt-subscribe" output="&#xa;  Topics and their most recent payloads: &#xa;    $SYS/broker/clients/connected: 1&#xa;    $SYS/broker/load/messages/sent/15min: 2.25&#xa;    $SYS/broker/load/bytes/sent/5min: 239.30&#xa;    $SYS/broker/heap/current: 54752&#xa;    $SYS/broker/load/messages/received/1min: 2.35&#xa;    $SYS/broker/load/messages/received/5min: 0.57&#xa;    $SYS/broker/load/sockets/15min: 0.13&#xa;    $SYS/broker/uptime: 198 seconds&#xa;    $SYS/broker/heap/maximum: 55152&#xa;    $SYS/broker/load/bytes/received/5min: 13.18&#xa;    $SYS/broker/clients/disconnected: 4&#xa;    $SYS/broker/clients/maximum: 5&#xa;    $SYS/broker/clients/active: 1&#xa;    $SYS/broker/load/bytes/sent/1min: 1112.24&#xa;    $SYS/broker/retained messages/count: 39&#xa;    $SYS/broker/clients/total: 5&#xa;    $SYS/broker/bytes/received: 69&#xa;    $SYS/broker/messages/received: 3&#xa;    $SYS/broker/load/sockets/1min: 1.35&#xa;    $SYS/broker/version: mosquitto version 1.6.9&#xa;    $SYS/broker/subscriptions/count: 2&#xa;    $SYS/broker/store/messages/count: 36&#xa;    $SYS/broker/load/sockets/5min: 0.37&#xa;    $SYS/broker/store/messages/bytes: 156&#xa;    $SYS/broker/load/bytes/sent/15min: 80.76&#xa;    $SYS/broker/messages/sent: 34&#xa;    $SYS/broker/load/publish/sent/15min: 2.05&#xa;    $SYS/broker/clients/inactive: 4&#xa;    $SYS/broker/load/connections/5min: 0.37&#xa;    $SYS/broker/publish/messages/sent: 31&#xa;    $SYS/broker/bytes/sent: 1219&#xa;    $SYS/broker/load/bytes/received/15min: 4.53&#xa;    $SYS/broker/load/connections/15min: 0.13&#xa;    $SYS/broker/load/messages/sent/5min: 6.66&#xa;    $SYS/broker/load/publish/sent/1min: 28.32&#xa;    $SYS/broker/messages/stored: 36&#xa;    $SYS/broker/load/connections/1min: 1.44&#xa;    $SYS/broker/load/messages/sent/1min: 30.68&#xa;    $SYS/broker/load/messages/received/15min: 0.20&#xa;    $SYS/broker/publish/bytes/sent: 129&#xa;    $SYS/broker/load/bytes/received/1min: 56.09&#xa;    $SYS/broker/load/publish/sent/5min: 6.09"><table key="Topics and their most recent payloads">
+<elem key="$SYS/broker/clients/connected">1</elem>
+<elem key="$SYS/broker/load/messages/sent/15min">2.25</elem>
+<elem key="$SYS/broker/load/bytes/sent/5min">239.30</elem>
+<elem key="$SYS/broker/heap/current">54752</elem>
+<elem key="$SYS/broker/load/messages/received/1min">2.35</elem>
+<elem key="$SYS/broker/load/messages/received/5min">0.57</elem>
+<elem key="$SYS/broker/load/sockets/15min">0.13</elem>
+<elem key="$SYS/broker/uptime">198 seconds</elem>
+<elem key="$SYS/broker/heap/maximum">55152</elem>
+<elem key="$SYS/broker/load/bytes/received/5min">13.18</elem>
+<elem key="$SYS/broker/clients/disconnected">4</elem>
+<elem key="$SYS/broker/clients/maximum">5</elem>
+<elem key="$SYS/broker/clients/active">1</elem>
+<elem key="$SYS/broker/load/bytes/sent/1min">1112.24</elem>
+<elem key="$SYS/broker/retained messages/count">39</elem>
+<elem key="$SYS/broker/clients/total">5</elem>
+<elem key="$SYS/broker/bytes/received">69</elem>
+<elem key="$SYS/broker/messages/received">3</elem>
+<elem key="$SYS/broker/load/sockets/1min">1.35</elem>
+<elem key="$SYS/broker/version">mosquitto version 1.6.9</elem>
+<elem key="$SYS/broker/subscriptions/count">2</elem>
+<elem key="$SYS/broker/store/messages/count">36</elem>
+<elem key="$SYS/broker/load/sockets/5min">0.37</elem>
+<elem key="$SYS/broker/store/messages/bytes">156</elem>
+<elem key="$SYS/broker/load/bytes/sent/15min">80.76</elem>
+<elem key="$SYS/broker/messages/sent">34</elem>
+<elem key="$SYS/broker/load/publish/sent/15min">2.05</elem>
+<elem key="$SYS/broker/clients/inactive">4</elem>
+<elem key="$SYS/broker/load/connections/5min">0.37</elem>
+<elem key="$SYS/broker/publish/messages/sent">31</elem>
+<elem key="$SYS/broker/bytes/sent">1219</elem>
+<elem key="$SYS/broker/load/bytes/received/15min">4.53</elem>
+<elem key="$SYS/broker/load/connections/15min">0.13</elem>
+<elem key="$SYS/broker/load/messages/sent/5min">6.66</elem>
+<elem key="$SYS/broker/load/publish/sent/1min">28.32</elem>
+<elem key="$SYS/broker/messages/stored">36</elem>
+<elem key="$SYS/broker/load/connections/1min">1.44</elem>
+<elem key="$SYS/broker/load/messages/sent/1min">30.68</elem>
+<elem key="$SYS/broker/load/messages/received/15min">0.20</elem>
+<elem key="$SYS/broker/publish/bytes/sent">129</elem>
+<elem key="$SYS/broker/load/bytes/received/1min">56.09</elem>
+<elem key="$SYS/broker/load/publish/sent/5min">6.09</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="8000"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="Apache httpd" version="2.4.41" extrainfo="(Ubuntu)" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.41</cpe></service><script id="http-title" output="Site doesn&apos;t have a title (text/html; charset=UTF-8)."></script><script id="http-open-proxy" output="Proxy might be redirecting requests"/><script id="http-server-header" output="Apache/2.4.41 (Ubuntu)"><elem>Apache/2.4.41 (Ubuntu)</elem>
+</script></port>
+<port protocol="tcp" portid="9007"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" product="Apache httpd" version="2.4.41" hostname="myblog.thm" method="probed" conf="10"><cpe>cpe:/a:apache:http_server:2.4.41</cpe></service><script id="http-server-header" output="Apache/2.4.41 (Ubuntu)"><elem>Apache/2.4.41 (Ubuntu)</elem>
+</script><script id="http-title" output="400 Bad Request"><elem key="title">400 Bad Request</elem>
+</script></port>
+</ports>
+<times srtt="88446" rttvar="25646" to="191030"/>
+</host>
+<runstats><finished time="1707218505" timestr="Tue Feb  6 11:21:45 2024" summary="Nmap done at Tue Feb  6 11:21:45 2024; 1 IP address (1 host up) scanned in 70.02 seconds" elapsed="70.02" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

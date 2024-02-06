@@ -1,0 +1,24 @@
+# Nmap 7.94SVN scan initiated Tue Feb  6 11:29:36 2024 as: nmap --script vuln -oA /home/kali/7ru7hGithub/CTFs/TryHackMe/Markdown/Probe/nmap/10-10-167-65-Vuln --min-rate 1000 -e tun0 -p 22,80,443,1338,1443,1883,8000,9007 10.10.167.65
+Nmap scan report for 10.10.167.65
+Host is up (0.068s latency).
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+443/tcp  open  https
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+1338/tcp open  wmc-log-svc
+1443/tcp open  ies-lm
+1883/tcp open  mqtt
+8000/tcp open  http-alt
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+| http-enum: 
+|_  /phpmyadmin/: phpMyAdmin
+9007/tcp open  ogs-client
+
+# Nmap done at Tue Feb  6 11:33:13 2024 -- 1 IP address (1 host up) scanned in 216.80 seconds

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Tue Feb  6 11:29:36 2024 as: nmap -&#45;script vuln -oA /home/kali/7ru7hGithub/CTFs/TryHackMe/Markdown/Probe/nmap/10-10-167-65-Vuln -&#45;min-rate 1000 -e tun0 -p 22,80,443,1338,1443,1883,8000,9007 10.10.167.65 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA /home/kali/7ru7hGithub/CTFs/TryHackMe/Markdown/Probe/nmap/10-10-167-65-Vuln -&#45;min-rate 1000 -e tun0 -p 22,80,443,1338,1443,1883,8000,9007 10.10.167.65" start="1707218976" startstr="Tue Feb  6 11:29:36 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="8" services="22,80,443,1338,1443,1883,8000,9007"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.167.65" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1707218999" endtime="1707219193"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.167.65" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="https" method="table" conf="3"/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/></port>
+<port protocol="tcp" portid="1338"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="wmc-log-svc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="1443"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ies-lm" method="table" conf="3"/></port>
+<port protocol="tcp" portid="1883"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="mqtt" method="table" conf="3"/></port>
+<port protocol="tcp" portid="8000"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http-alt" method="table" conf="3"/><script id="http-vuln-cve2017-1001000" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-enum" output="&#xa;  /phpmyadmin/: phpMyAdmin&#xa;"/></port>
+<port protocol="tcp" portid="9007"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ogs-client" method="table" conf="3"/></port>
+</ports>
+<times srtt="67515" rttvar="7121" to="100000"/>
+</host>
+<runstats><finished time="1707219193" timestr="Tue Feb  6 11:33:13 2024" summary="Nmap done at Tue Feb  6 11:33:13 2024; 1 IP address (1 host up) scanned in 216.80 seconds" elapsed="216.80" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

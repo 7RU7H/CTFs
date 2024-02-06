@@ -78,7 +78,7 @@ Validation of special characters is probably in this case done with burp.
 
 ![](burprevalidingfuzzingspecialchars.png)
 
-I made a sepcial characters wordlists that also includes base64, url encoded and double url encoded and octal encoding
+I made a special characters wordlists that also includes base64, url encoded and double url encoded and octal encoding
 
 12:14
 ## Exploit
