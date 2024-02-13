@@ -1,21 +1,25 @@
 # Probe Writeup
 
 Name: Probe
-Date:  
+Date:  13/2/2024
 Difficulty:  Easy
 Goals:  
+- Points
+- Test my speed
 Learnt:
 Beyond Root:
+- None
 
 - [[Probe-Notes.md]]
 - [[Probe-CMD-by-CMDs.md]]
 
-
+I needed [sahilmalvi1806](https://medium.com/@sahilmalvi1806/tryhackme-room-probe-by-sahil-malvi-1be94ed54d90) writeup to verify answers given that my nikto database provable differs from the machine expected answers
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](Screenshots/ping.png)
 
+Added the domains to my /etc/hosts file
 ![](updatingetchosts.png)
 
 What is the version of the Apache server?
@@ -45,10 +49,14 @@ What is the banner for the FTP service?
 ```
 THM{WELCOME_101113}
 ```
-What software is used for managing the database on the server?
+
+
+What software is used for managing the database on the server? [I found this but even though I have done a PG machine with phpmyadmin were their is a SQLi (so has  database access for some reason I needed this..)](https://medium.com/@sahilmalvi1806/tryhackme-room-probe-by-sahil-malvi-1be94ed54d90)
+```
+phpmyadmin
 ```
 
-```
+
 What is the Content Management System (CMS) hosted on the server?
 ![](question7and8.png)
 ```
@@ -70,27 +78,36 @@ joomla
 # I tried wpscan to brute force the login to: joomla / raihan Time: 00:16:46 <> (18456 / 14344392)  0.12% - before giving up
 ```
 
-
 During vulnerability scanning, **OSVDB-3092** detects a file that may be used to identify the blogging site software. What is the name of the file?
 ```bash
 # grep -r /var/lib/nikto 'OSVDB' | grep 3092 
 # My version of nikto cannot find this!!'
 # OSVDB is stup down!
-
+# Dorked into the oblivion to brute force this answer
+license.txt
 ```
+
+![](myniktodatabase.png)
+And the Writeup 
+![](sahilmalvisnitkodb.png)
+
 What is the name of the software being used on the standard HTTP port?
 ![](question12.png)
 ```
 lighttpd
 ```
+
 What is the flag value associated with the web page hosted on port 8000?
 ```
-
+I am too jade by other content creators rabbit holes that this was just missed out of presuming it to be a rabbithole.
+- Use gobuster on port 8000
 ```
 
+## Post-Root-Reflection
 
-## Post-Root-Reflection  
-
+- Manual review is very important
+- Worrying about an Insane machine of season 4 HTB 
+- Scanning is never ever pentesting
 ## Beyond Root
 
-
+No time just points and testing speed

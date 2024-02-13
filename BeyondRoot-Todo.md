@@ -1,6 +1,8 @@
 # Beyond Root Todo
 
 
+learn more about system32 directory 
+
 #### Mimikatz - Finishing AV bypassing but its 2024 
 
 #### List the words to replace in order across all files 

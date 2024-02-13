@@ -1,30 +1,15 @@
 # PrintNightmare-Thrice Notes
 
-## Data 
+#### List of things to remember or learnt 
 
-IP: 
-OS:
-Hostname:
-Domain:  / Domain SID:
-Machine Purpose: 
-Services:
-Service Languages:
-Users:
-Credentials:
-
-## Objectives
-
-## Target Map
-
-![](PrintNightmare-Thrice-map.excalidraw.md)
-
-## Solution Inventory Map
+If are struggle to express what you need to find in network traffic, never forget WireShark's
+- `Display Filter Expressions` 
 
 
-### Todo 
+ `_path=smb_mapping OR _path=dce_rpc | sort ts`
 
-Make Excalidraw
+`endpoint`s in brim can be files.
 
-### Done
-      
 
+
+If is not a some alien or APT level mind-boggler-existing-in-some-unknown-rootkit-parasitic-kernel-nether-realm then all protocols and services will use the standard utilities of the OS - the question is where would normal activity leave artefacts?
