@@ -1,4 +1,4 @@
-# Internal Notes
+# Cyborg Notes
 
 ## Data 
 
@@ -15,12 +15,16 @@ Users:
 Email and Username Formatting:
 Credentials:
 
-- Released 3.4 years ago!   
-- Wordpress 
+
 
 #### Mindmap-per Service
 
 - OS detect, run generate noting for nmap
+- 22 
+- 80
+	- Archive tar
+		- field is a username from the file system /home/field.. 
+		- borgbackup.readthedocs.io
 -
 -
 -
@@ -31,13 +35,9 @@ Credentials:
 -
 -
 -
-- 
 -
 -
 -
--
--
-
 
 
 #### Todo List

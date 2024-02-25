@@ -1,4 +1,4 @@
-# Internal Notes
+# Anonymous Notes
 
 ## Data 
 
@@ -15,8 +15,7 @@ Users:
 Email and Username Formatting:
 Credentials:
 
-- Released 3.4 years ago!   
-- Wordpress 
+
 
 #### Mindmap-per Service
 
@@ -31,7 +30,7 @@ Credentials:
 -
 -
 -
-- 
+-
 -
 -
 -

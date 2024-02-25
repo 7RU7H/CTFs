@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Sat Feb 24 16:33:59 2024 as: nmap -&#45;script discovery -oA /home/kali/7ru7hGithub/CTFs/TryHackMe/Markdown/Anonymous/nmap/10-10-166-62-Discovery -&#45;min-rate 1000 -e tun0 -p 21,22,139,445 10.10.166.62 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA /home/kali/7ru7hGithub/CTFs/TryHackMe/Markdown/Anonymous/nmap/10-10-166-62-Discovery -&#45;min-rate 1000 -e tun0 -p 21,22,139,445 10.10.166.62" start="1708792439" startstr="Sat Feb 24 16:33:59 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="4" services="21-22,139,445"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="broadcast-ping" output="false">false</script><script id="lltd-discovery" output="false">false</script><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="targets-sniffer" output="Sniffed 1 address(es). &#xa;224.0.23.12"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.166.62" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1708792463" endtime="1708792767"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.166.62" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ftp" method="table" conf="3"/><script id="banner" output="220 NamelessOne&apos;s FTP Server!"/><script id="ftp-syst" output="&#xa;  STAT: &#xa;FTP server status:&#xa;     Connected to ::ffff:10.11.3.193&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 1&#xa;     vsFTPd 3.0.3 - secure, fast, stable&#xa;End of status"><elem key="STAT">&#xa;FTP server status:&#xa;     Connected to ::ffff:10.11.3.193&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 1&#xa;     vsFTPd 3.0.3 - secure, fast, stable&#xa;End of status</elem>
+</script></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (10)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (6)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+<elem>diffie-hellman-group14-sha1</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>ssh-rsa</elem>
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script><script id="ssh-hostkey" output="&#xa;  2048 8b:ca:21:62:1c:2b:23:fa:6b:c6:1f:a8:13:fe:1c:68 (RSA)&#xa;  256 95:89:a4:12:e2:e6:ab:90:5d:45:19:ff:41:5f:74:ce (ECDSA)&#xa;  256 e1:2a:96:a4:ea:8f:68:8f:cc:74:b8:f0:28:72:70:cd (ED25519)"><table>
+<elem key="type">ssh-rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABAQDCi47ePYjDctfwgAphABwT1jpPkKajXoLvf3bb/zvpvDvXwWKnm6nZuzL2HA1veSQa90ydSSpg8S+B8SLpkFycv7iSy2/Jmf7qY+8oQxWThH1fwBMIO5g/TTtRRta6IPoKaMCle8hnp5pSP5D4saCpSW3E5rKd8qj3oAj6S8TWgE9cBNJbMRtVu1+sKjUy/7ymikcPGAjRSSaFDroF9fmGDQtd61oU5waKqurhZpre70UfOkZGWt6954rwbXthTeEjf+4J5+gIPDLcKzVO7BxkuJgTqk4lE9ZU/5INBXGpgI5r4mZknbEPJKS47XaOvkqm9QWveoOSQgkqdhIPjnhD</elem>
+<elem key="fingerprint">8bca21621c2b23fa6bc61fa813fe1c68</elem>
+</table>
+<table>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="bits">256</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPjHnAlR7sBuoSM2X5sATLllsFrcUNpTS87qXzhMD99aGGzyOlnWmjHGNmm34cWSzOohxhoK2fv9NWwcIQ5A/ng=</elem>
+<elem key="fingerprint">9589a412e2e6ab905d4519ff415f74ce</elem>
+</table>
+<table>
+<elem key="type">ssh-ed25519</elem>
+<elem key="bits">256</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIDHIuFL9AdcmaAIY7u+aJil1covB44FA632BSQ7sUqap</elem>
+<elem key="fingerprint">e12a96a4ea8f688fcc74b8f0287270cd</elem>
+</table>
+</script><script id="banner" output="SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="netbios-ssn" method="table" conf="3"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="microsoft-ds" product="Samba smbd" version="4.7.6-Ubuntu" method="probed" conf="10"/></port>
+</ports>
+<hostscript><script id="nbstat" output="NetBIOS name: ANONYMOUS, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: &lt;unknown&gt; (unknown)"/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="smb2-security-mode" output="&#xa;  3:1:1: &#xa;    Message signing enabled but not required"><table key="3:1:1">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script><script id="smb-protocols" output="&#xa;  dialects: &#xa;    NT LM 0.12 (SMBv1) [dangerous, but default]&#xa;    2:0:2&#xa;    2:1:0&#xa;    3:0:0&#xa;    3:0:2&#xa;    3:1:1"><table key="dialects">
+<elem>NT LM 0.12 (SMBv1) [dangerous, but default]</elem>
+<elem>2:0:2</elem>
+<elem>2:1:0</elem>
+<elem>3:0:0</elem>
+<elem>3:0:2</elem>
+<elem>3:1:1</elem>
+</table>
+</script><script id="smb-security-mode" output="&#xa;  account_used: guest&#xa;  authentication_level: user&#xa;  challenge_response: supported&#xa;  message_signing: disabled (dangerous, but default)"><elem key="account_used">guest</elem>
+<elem key="authentication_level">user</elem>
+<elem key="challenge_response">supported</elem>
+<elem key="message_signing">disabled</elem>
+</script><script id="msrpc-enum" output="NT_STATUS_OBJECT_NAME_NOT_FOUND">false</script><script id="smb-mbenum" output="&#xa;  DFS Root&#xa;    ANONYMOUS  0.0  anonymous server (Samba, Ubuntu)&#xa;  Master Browser&#xa;    ANONYMOUS  0.0  anonymous server (Samba, Ubuntu)&#xa;  Print server&#xa;    ANONYMOUS  0.0  anonymous server (Samba, Ubuntu)&#xa;  Server&#xa;    ANONYMOUS  0.0  anonymous server (Samba, Ubuntu)&#xa;  Server service&#xa;    ANONYMOUS  0.0  anonymous server (Samba, Ubuntu)&#xa;  Unix server&#xa;    ANONYMOUS  0.0  anonymous server (Samba, Ubuntu)&#xa;  Windows NT/2000/XP/2003 server&#xa;    ANONYMOUS  0.0  anonymous server (Samba, Ubuntu)&#xa;  Workstation&#xa;    ANONYMOUS  0.0  anonymous server (Samba, Ubuntu)&#xa;"/><script id="smb2-time" output="&#xa;  date: 2024-02-24T16:34:24&#xa;  start_date: N/A"><elem key="date">2024-02-24T16:34:24</elem>
+<elem key="start_date">N/A</elem>
+</script><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.10.166.62&quot;; use dns-brute.domain script argument."/><script id="smb-enum-sessions" output="&#xa;  &lt;nobody&gt;&#xa;"/><script id="smb-system-info" output="ERROR: Script execution failed (use -d to debug)"/><script id="smb-enum-shares" output="&#xa;  account_used: guest&#xa;  \\10.10.166.62\IPC$: &#xa;    Type: STYPE_IPC_HIDDEN&#xa;    Comment: IPC Service (anonymous server (Samba, Ubuntu))&#xa;    Users: 3&#xa;    Max Users: &lt;unlimited&gt;&#xa;    Path: C:\tmp&#xa;    Anonymous access: READ/WRITE&#xa;    Current user access: READ/WRITE&#xa;  \\10.10.166.62\pics: &#xa;    Type: STYPE_DISKTREE&#xa;    Comment: My SMB Share Directory for Pics&#xa;    Users: 0&#xa;    Max Users: &lt;unlimited&gt;&#xa;    Path: C:\home\namelessone\pics&#xa;    Anonymous access: READ&#xa;    Current user access: READ&#xa;  \\10.10.166.62\print$: &#xa;    Type: STYPE_DISKTREE&#xa;    Comment: Printer Drivers&#xa;    Users: 0&#xa;    Max Users: &lt;unlimited&gt;&#xa;    Path: C:\var\lib\samba\printers&#xa;    Anonymous access: &lt;none&gt;&#xa;    Current user access: &lt;none&gt;"><elem key="account_used">guest</elem>
+<table key="\\10.10.166.62\IPC$">
+<elem key="Type">STYPE_IPC_HIDDEN</elem>
+<elem key="Comment">IPC Service (anonymous server (Samba, Ubuntu))</elem>
+<elem key="Users">3</elem>
+<elem key="Max Users">&lt;unlimited&gt;</elem>
+<elem key="Path">C:\tmp</elem>
+<elem key="Anonymous access">READ/WRITE</elem>
+<elem key="Current user access">READ/WRITE</elem>
+</table>
+<table key="\\10.10.166.62\pics">
+<elem key="Type">STYPE_DISKTREE</elem>
+<elem key="Comment">My SMB Share Directory for Pics</elem>
+<elem key="Users">0</elem>
+<elem key="Max Users">&lt;unlimited&gt;</elem>
+<elem key="Path">C:\home\namelessone\pics</elem>
+<elem key="Anonymous access">READ</elem>
+<elem key="Current user access">READ</elem>
+</table>
+<table key="\\10.10.166.62\print$">
+<elem key="Type">STYPE_DISKTREE</elem>
+<elem key="Comment">Printer Drivers</elem>
+<elem key="Users">0</elem>
+<elem key="Max Users">&lt;unlimited&gt;</elem>
+<elem key="Path">C:\var\lib\samba\printers</elem>
+<elem key="Anonymous access">&lt;none&gt;</elem>
+<elem key="Current user access">&lt;none&gt;</elem>
+</table>
+</script><script id="smb2-capabilities" output="&#xa;  2:0:2: &#xa;    Distributed File System&#xa;  2:1:0: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3:0:0: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3:0:2: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3:1:1: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations"><table key="2:0:2">
+<elem>Distributed File System</elem>
+</table>
+<table key="2:1:0">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3:0:0">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3:0:2">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3:1:1">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+</script><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;21    0       81867.40   10375.67  0.0%&#xa;22    1       73891.50   5993.20   0.0%&#xa;139   0       80012.00   11039.52  0.0%&#xa;445   0       78336.80   11646.57  0.0%&#xa;"/><script id="smb-enum-domains" output="&#xa;  ANONYMOUS&#xa;    Groups: n/a&#xa;    Users: namelessone&#xa;    Creation time: unknown&#xa;    Passwords: min length: 5; min age: n/a days; max age: n/a days; history: n/a passwords&#xa;    Account lockout disabled&#xa;  Builtin&#xa;    Groups: n/a&#xa;    Users: n/a&#xa;    Creation time: unknown&#xa;    Passwords: min length: 5; min age: n/a days; max age: n/a days; history: n/a passwords&#xa;    Account lockout disabled&#xa;"/><script id="smb-os-discovery" output="&#xa;  OS: Windows 6.1 (Samba 4.7.6-Ubuntu)&#xa;  Computer name: anonymous&#xa;  NetBIOS computer name: ANONYMOUS\x00&#xa;  Domain name: \x00&#xa;  FQDN: anonymous&#xa;  System time: 2024-02-24T16:34:26+00:00&#xa;"><elem key="os">Windows 6.1</elem>
+<elem key="lanmanager">Samba 4.7.6-Ubuntu</elem>
+<elem key="server">ANONYMOUS\x00</elem>
+<elem key="date">2024-02-24T16:34:26+00:00</elem>
+<elem key="fqdn">anonymous</elem>
+<elem key="domain_dns">\x00</elem>
+<elem key="workgroup">WORKGROUP\x00</elem>
+</script><script id="ipidseq" output="All zeros"/><script id="smb-ls" output="Volume \\10.10.166.62\pics&#xa;SIZE    TIME                 FILENAME&#xa;&lt;DIR&gt;   2020-05-17T11:11:34  .&#xa;&lt;DIR&gt;   2020-05-14T01:59:10  ..&#xa;42663   2020-05-12T00:43:42  corgo2.jpg&#xa;265188  2020-05-12T00:43:42  puppos.jpeg&#xa;&#xa;"><table key="volumes">
+<table>
+<elem key="volume">\\10.10.166.62\pics</elem>
+<table key="files">
+<table>
+<elem key="filename">.</elem>
+<elem key="size">&lt;DIR&gt;</elem>
+<elem key="time">2020-05-17T11:11:34</elem>
+</table>
+<table>
+<elem key="filename">..</elem>
+<elem key="size">&lt;DIR&gt;</elem>
+<elem key="time">2020-05-14T01:59:10</elem>
+</table>
+<table>
+<elem key="filename">corgo2.jpg</elem>
+<elem key="size">42663</elem>
+<elem key="time">2020-05-12T00:43:42</elem>
+</table>
+<table>
+<elem key="filename">puppos.jpeg</elem>
+<elem key="size">265188</elem>
+<elem key="time">2020-05-12T00:43:42</elem>
+</table>
+</table>
+</table>
+</table>
+<table key="total">
+<elem key="files">4</elem>
+<elem key="bytes">307851</elem>
+</table>
+</script><script id="path-mtu" output="1006 &lt;= PMTU &lt; 1492"/></hostscript><times srtt="95054" rttvar="36763" to="242106"/>
+</host>
+<runstats><finished time="1708792767" timestr="Sat Feb 24 16:39:27 2024" summary="Nmap done at Sat Feb 24 16:39:27 2024; 1 IP address (1 host up) scanned in 327.77 seconds" elapsed="327.77" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

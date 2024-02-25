@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Sat Feb 24 16:33:30 2024 as: nmap -sC -sV -oA /home/kali/7ru7hGithub/CTFs/TryHackMe/Markdown/Anonymous/nmap/10-10-166-62-Extensive-Found-Ports -&#45;min-rate 1000 -e tun0 -p 21,22,139,445 10.10.166.62 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA /home/kali/7ru7hGithub/CTFs/TryHackMe/Markdown/Anonymous/nmap/10-10-166-62-Extensive-Found-Ports -&#45;min-rate 1000 -e tun0 -p 21,22,139,445 10.10.166.62" start="1708792410" startstr="Sat Feb 24 16:33:30 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="4" services="21-22,139,445"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.166.62" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1708792424" endtime="1708792439"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.166.62" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="21"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ftp" product="vsftpd" version="2.0.8 or later" method="probed" conf="10"><cpe>cpe:/a:vsftpd:vsftpd</cpe></service><script id="ftp-syst" output="&#xa;  STAT: &#xa;FTP server status:&#xa;     Connected to ::ffff:10.11.3.193&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 2&#xa;     vsFTPd 3.0.3 - secure, fast, stable&#xa;End of status"><elem key="STAT">&#xa;FTP server status:&#xa;     Connected to ::ffff:10.11.3.193&#xa;     Logged in as ftp&#xa;     TYPE: ASCII&#xa;     No session bandwidth limit&#xa;     Session timeout in seconds is 300&#xa;     Control connection is plain text&#xa;     Data connections will be plain text&#xa;     At session startup, client count was 2&#xa;     vsFTPd 3.0.3 - secure, fast, stable&#xa;End of status</elem>
+</script><script id="ftp-anon" output="Anonymous FTP login allowed (FTP code 230)&#xa;drwxrwxrwx    2 111      113          4096 Jun 04  2020 scripts [NSE: writeable]"/></port>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" product="OpenSSH" version="7.6p1 Ubuntu 4ubuntu0.3" extrainfo="Ubuntu Linux; protocol 2.0" ostype="Linux" method="probed" conf="10"><cpe>cpe:/a:openbsd:openssh:7.6p1</cpe><cpe>cpe:/o:linux:linux_kernel</cpe></service><script id="ssh-hostkey" output="&#xa;  2048 8b:ca:21:62:1c:2b:23:fa:6b:c6:1f:a8:13:fe:1c:68 (RSA)&#xa;  256 95:89:a4:12:e2:e6:ab:90:5d:45:19:ff:41:5f:74:ce (ECDSA)&#xa;  256 e1:2a:96:a4:ea:8f:68:8f:cc:74:b8:f0:28:72:70:cd (ED25519)"><table>
+<elem key="bits">2048</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABAQDCi47ePYjDctfwgAphABwT1jpPkKajXoLvf3bb/zvpvDvXwWKnm6nZuzL2HA1veSQa90ydSSpg8S+B8SLpkFycv7iSy2/Jmf7qY+8oQxWThH1fwBMIO5g/TTtRRta6IPoKaMCle8hnp5pSP5D4saCpSW3E5rKd8qj3oAj6S8TWgE9cBNJbMRtVu1+sKjUy/7ymikcPGAjRSSaFDroF9fmGDQtd61oU5waKqurhZpre70UfOkZGWt6954rwbXthTeEjf+4J5+gIPDLcKzVO7BxkuJgTqk4lE9ZU/5INBXGpgI5r4mZknbEPJKS47XaOvkqm9QWveoOSQgkqdhIPjnhD</elem>
+<elem key="type">ssh-rsa</elem>
+<elem key="fingerprint">8bca21621c2b23fa6bc61fa813fe1c68</elem>
+</table>
+<table>
+<elem key="bits">256</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPjHnAlR7sBuoSM2X5sATLllsFrcUNpTS87qXzhMD99aGGzyOlnWmjHGNmm34cWSzOohxhoK2fv9NWwcIQ5A/ng=</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="fingerprint">9589a412e2e6ab905d4519ff415f74ce</elem>
+</table>
+<table>
+<elem key="bits">256</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIDHIuFL9AdcmaAIY7u+aJil1covB44FA632BSQ7sUqap</elem>
+<elem key="type">ssh-ed25519</elem>
+<elem key="fingerprint">e12a96a4ea8f688fcc74b8f0287270cd</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="netbios-ssn" product="Samba smbd" version="3.X - 4.X" extrainfo="workgroup: WORKGROUP" hostname="ANONYMOUS" method="probed" conf="10"><cpe>cpe:/a:samba:samba</cpe></service></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="netbios-ssn" product="Samba smbd" version="4.7.6-Ubuntu" extrainfo="workgroup: WORKGROUP" hostname="ANONYMOUS" method="probed" conf="10"><cpe>cpe:/a:samba:samba</cpe></service></port>
+</ports>
+<hostscript><script id="smb2-time" output="&#xa;  date: 2024-02-24T16:33:56&#xa;  start_date: N/A"><elem key="date">2024-02-24T16:33:56</elem>
+<elem key="start_date">N/A</elem>
+</script><script id="smb2-security-mode" output="&#xa;  3:1:1: &#xa;    Message signing enabled but not required"><table key="3:1:1">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script><script id="nbstat" output="NetBIOS name: ANONYMOUS, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: &lt;unknown&gt; (unknown)"/><script id="smb-security-mode" output="&#xa;  account_used: guest&#xa;  authentication_level: user&#xa;  challenge_response: supported&#xa;  message_signing: disabled (dangerous, but default)"><elem key="account_used">guest</elem>
+<elem key="authentication_level">user</elem>
+<elem key="challenge_response">supported</elem>
+<elem key="message_signing">disabled</elem>
+</script><script id="smb-os-discovery" output="&#xa;  OS: Windows 6.1 (Samba 4.7.6-Ubuntu)&#xa;  Computer name: anonymous&#xa;  NetBIOS computer name: ANONYMOUS\x00&#xa;  Domain name: \x00&#xa;  FQDN: anonymous&#xa;  System time: 2024-02-24T16:33:56+00:00&#xa;"><elem key="os">Windows 6.1</elem>
+<elem key="lanmanager">Samba 4.7.6-Ubuntu</elem>
+<elem key="server">ANONYMOUS\x00</elem>
+<elem key="date">2024-02-24T16:33:56+00:00</elem>
+<elem key="fqdn">anonymous</elem>
+<elem key="domain_dns">\x00</elem>
+<elem key="workgroup">WORKGROUP\x00</elem>
+</script></hostscript><times srtt="80286" rttvar="33942" to="216054"/>
+</host>
+<runstats><finished time="1708792439" timestr="Sat Feb 24 16:33:59 2024" summary="Nmap done at Sat Feb 24 16:33:59 2024; 1 IP address (1 host up) scanned in 28.65 seconds" elapsed="28.65" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

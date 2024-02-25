@@ -12,7 +12,7 @@ Beyond Root:
 - [[Stealth-Notes.md]]
 - [[Stealth-CMD-by-CMDs.md]]
 
-I peaked to much at [Tyler Ramsbey's Stealth - Detailed Walkthrough -- [TryHackMe LIVE!]](https://www.youtube.com/watch?v=iICjs8754yE)
+I peaked too much at [Tyler Ramsbey's Stealth - Detailed Walkthrough -- [TryHackMe LIVE!]](https://www.youtube.com/watch?v=iICjs8754yE)
 ## Recon of machine and alternatives
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
