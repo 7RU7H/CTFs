@@ -10,15 +10,18 @@ fi
 blank=""
 if [ "$1" != "$blank" ] || [ "$2" != "$blank" ];
 then
-	mkdir HackTheBox/Challenges/$2/$1/Screenshots -p;
-	cd HackTheBox/Challenges/$2/$1;
+	mkdir HackTheBox/Retired-Challenges/$2/$1/Screenshots -p;
+	cd HackTheBox/Retired-Challenges/$2/$1;
 	echo "# $1 Write-up
+
 Name: $1
 Type: $2
 Date:  
 Difficulty:  
 Goals:  
 Learnt:
+
+## Post-Completion Reflection
 
 	"	> $1-Writeup.md
 else

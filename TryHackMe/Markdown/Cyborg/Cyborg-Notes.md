@@ -7,7 +7,7 @@ OS:
 Arch:
 Hostname:
 DNS:
-Domain:  / Domain SID:
+Domain:  Domain SID:
 Machine Purpose: 
 Services:
 Service Languages:
