@@ -310,9 +310,22 @@ And NT flag
 - Hoaxshell can work with
 - Chimera
 - AV/AMSI bypassing is best left to open source tools for the most part to brunt of work at this point in time; trying too hard has already been done by everyone else
-
+- WTF is the GodPotato
+- This boxes was weird, but I learnt alot
 ## Beyond Root
 
 - Use Hoaxshell! I did not work! Even with Chimera!
 - https://github.com/gh0x0st/Secure_Kali
 - https://github.com/BeichenDream/GodPotato to the Archive!
+https://www.sans.org/blog/month-of-powershell-profile-hack-base64-encoding-decoding/
+
+```powershell
+Function ConvertFrom-Base64($base64) {
+    return [System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String($base64))
+}
+
+Function ConvertTo-Base64($plain) {
+    return [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes($plain))
+}
+
+```
