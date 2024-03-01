@@ -1,7 +1,7 @@
 # Stealth Helped-Through
 
 Name: Stealth
-Date:  
+Date:  28/2/2024
 Difficulty:  Medium
 Goals:  
 - AV evasion - three hours max
