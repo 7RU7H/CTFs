@@ -154,9 +154,9 @@ TIL: Github search is case insensitive!
 
 How in the every living `git good` is Github tracking anything on their site?
 ![](lookthroughgithub.png)
-
+Visual changes of the last change
 ![](goodgitopsecisalwaysrough.png)
-
+But it is better to check the versioning
 ![](apikeyinthegitrepo.png)
 
 While my head is reeling from the madness that is search engine dorking these days, I started noting questions I needed to answer for my beyond root and the OSINT methodology and for my own sanity while git clone the repository for fine combing through.
@@ -239,9 +239,10 @@ All go for the authenticated directory brute forcing for the maximum data collec
 
 Mentioned knowledge of upload.php, which they all should have as they found the GitHub repository.
 ![](rateunlimitedfornow.png)
-
+And the first flag
 ![](anidiotswelcome.png)
 
+Blank file upload form in Burpsuite
 ![](fileuploadfromapi.png)
 
 Reference a previously scrap bit of source code as a way of mention how I am sometimes not blinded by my own inanepitude -> ineptitude... 
@@ -270,22 +271,26 @@ But it did not happen again
 Here is the burp history for to enjoyers of computer related weirdness
 ![1920](burphisstoryforproof.png)
 
+Extra special idiot proof!
 ![](laudabledenyingmyabilityforthehumility.png)
 
-If only passing the buttery smoothness of doing this was frictionless... 
+If only passing the buttery smoothness of doing this was friction-less... 
 ![](whatismypurposeohmygod.png)
-
+And the monkey has landed on the webserver:
 ![](monkeydothething.png)
 
 And we are double-u, double-u, double-u dash dator
 ![](www-data.png)
 
+Using my hard forged looking-in-the-right-place when I *have* read from the Box description - no privilege escalation 
 ![](varwwwdirectories.png)
 
+Remembering to READ THE ALL THE FILE PERMISSIONS and ask questions
 ![](unreadablesql.png)
 
+Always check the config files:
 ![](mysqlhasbeenfound.png)
-
+No mysql access...
 ![](nomysql.png)
 
 And then this machine make me feel like an absolute idiot.
@@ -341,7 +346,6 @@ Thank you to:
 - https://medium.com/@niceselol/tryhackme-grep-8e0249947190
 - https://cyberiumx.com/write-ups/tryhackme-grep/
 ## Beyond Root
-
 
 - The word mangler of truth needs to be found or developed
 - There is a lot to be automated out of OSINT manually - modular not h4ddixb4dg3r monolithic 

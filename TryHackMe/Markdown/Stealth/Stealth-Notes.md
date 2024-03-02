@@ -27,20 +27,20 @@ Credentials:
 - Bypass using COM: [xpn/COM_to_registry.ps1](https://gist.githubusercontent.com/xpn/1e9e879fab3e9ebfd236f5e4fdcfb7f1/raw/ceb39a9d5b0402f98e8d3d9723b0bd19a84ac23e/COM_to_registry.ps1)
     
 - Bypass using your own Powershell DLL: [p3nt4/PowerShdll](https://github.com/p3nt4/PowerShdll) & [iomoath/PowerShx](https://github.com/iomoath/PowerShx)
-```
-rundll32 PowerShdll,main <script>
-rundll32 PowerShdll,main -h      Display this message
-rundll32 PowerShdll,main -f <path>       Run the script passed as argument
-rundll32 PowerShdll,main -w      Start an interactive console in a new window (Default)
-rundll32 PowerShdll,main -i      Start an interactive console in this console
+```powershell 
+rundll32 PowerShx.dll,main <script>
+rundll32 PowerShx.dll,main -h # Display this message
+rundll32 PowerShx.dll,main -f <path> # Run the script passed as argument
+rundll32 PowerShx.dll,main -w # Start an interactive console in a new window (Default)
+rundll32 PowerShdll,main -i # Start an interactive console in this console
 
-rundll32 PowerShx.dll,main -e                           <PS script to run>
-rundll32 PowerShx.dll,main -f <path>                    Run the script passed as argument
-rundll32 PowerShx.dll,main -f <path> -c <PS Cmdlet>     Load a script and run a PS cmdlet
-rundll32 PowerShx.dll,main -w                           Start an interactive console in a new window
-rundll32 PowerShx.dll,main -i                           Start an interactive console
-rundll32 PowerShx.dll,main -s                           Attempt to bypass AMSI
-rundll32 PowerShx.dll,main -v                           Print Execution Output to the console
+rundll32 PowerShx.dll,main -e <PS script to run>
+rundll32 PowerShx.dll,main -f <path> # Run the script passed as argument
+rundll32 PowerShx.dll,main -f <path> -c <PS Cmdlet> # Load a script and run a PS cmdlet
+rundll32 PowerShx.dll,main -w # Start an interactive console in a new window
+rundll32 PowerShx.dll,main -i # Start an interactive console
+rundll32 PowerShx.dll,main -s # Attempt to bypass AMSI
+rundll32 PowerShx.dll,main -v # Print Execution Output to the console
 ```
 
 ```powershell

