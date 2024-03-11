@@ -24,6 +24,9 @@ Learnt:
 ## Post-Completion Reflection
 
 	"	> $1-Writeup.md
+if [ $2 -eq "Pwn" ]; then
+	echo "flag{local_testing_flag}" > HackTheBox/Retired-Challenges/$2/$1/flag.txt
+fi
 else
 	echo $HELP
 	echo "Error Name: $1 or Type: $2 is empty"
