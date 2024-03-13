@@ -20,12 +20,13 @@ Date:
 Difficulty:  
 Goals:  
 Learnt:
+Beyond X:
 
 ## Post-Completion Reflection
 
 	"	> $1-Writeup.md
-if [ $2 -eq "Pwn" ]; then
-	echo "flag{local_testing_flag}" > HackTheBox/Retired-Challenges/$2/$1/flag.txt
+if [ $2 == "Pwn" ]; then
+	echo "flag{local_testing_flag}" | tee -a flag.txt
 fi
 else
 	echo $HELP
