@@ -10,6 +10,7 @@ Goals:
 Learnt:
 Beyond Pwn:
 - [Tangerine](https://www.youtube.com/watch?v=6SuTLMp6Ytw)
+- Write a bash script that updates where the pattern differs, but has to be replaced, because I keep running up against that problem and I want the oneliner.
 
 I am almost certainly falling back to [CryptoCat's Bat Computer easy: HackTheBox Pwn Challenge (shellcode injection)](https://www.youtube.com/watch?v=NZfqLFuffYY&list=PLHUKi1UlEgOIn12nvhwwq2aTU8bG-FE0I&index=3) Writeup, but that said... I really want to try to research the attack first, then do my best trying knowing before and collecting information about shellcode injection to complete a Pwn challenge and what that means. [Play some music and I will explain](https://www.youtube.com/watch?v=ly2zdrtWLVc)...
 
@@ -82,8 +83,109 @@ Unsolved:
 - https://dhavalkapil.com/blogs/Shellcode-Injection/
 - https://www.logsign.com/blog/how-to-prevent-shellcode-injection/
 
+... I got to 0xrick's explanation of what shellcode injection was and realised it is just probably a simple buffer overflow with some shellcode. Originally I assumed it was something like crow's article on shellcode-injection with process hijacking with syscalls, so I might be able to just consider this a Write-Up if I do this myself.
 
-The bat computer is .. a tangELF 64 bit 
+The bat computer is .. a tangELF 64 bit - `strings -e S` there is a unsafe C function used 
+![](stringse.png)
+
+The memory address being printed I know is from a use of `printf` in c like: `printf("It was very hard, but Alfred managed to locate him: %p", some_var_or_pointer)`
+![](comparisonofaddressprintfpercentp.png)
+We need to `sendline()` a 2 in pwn  
+```python
+from pwn import *
+
+sendline("2")
+
+```
+
+![](notsurewhy.png)
+
+![](nothingatthismemoryaddress.png)
+
+
+![](break-entry.png)
+
+![](stillmakesmelaugh.png)
+
+- `scan` searches for addresses of one memory region (needle) inside another region (haystack) and lists all results.
+	- `scan stack libc`
+- `trace-run` command is meant to be provide a visual appreciation directly in IDA disassembler of the path taken by a specific execution.
+	- `trace-run <address_of_last_instruction_to_trace>`
+- `xinfo 0x00000001` displays all the information known to `gef` about the specific address as argument
+
+![](xinfoaboutheaddress.png)
+
+![](doublecheckingthenumberedinput.png)
+
+Turning to Ghidra:
+![](ghidrasimportsummary.png)
+
+![](ghidrasimportsummary.png)
+
+![](alfredforgettoencryptthehardcodedpasswords.png)
+
+`b4tp@$$w0rd!`
+
+![](readthreadrtfm.png)
+
+with 100 length pattern:
+![](again.png)
+
+![](ireallyreallywanttoreferencethenullpointermemebutreadisvoidbuffer.png)
+
+Void buffers are very bad and probably why even the not so great courses that still cause these issues do not teach this
+![](readingthecodeagain.png)
+
+[My brain](https://www.youtube.com/watch?v=tqsCslriqjk) on MORE EXPLOSIONS!
+![](WENEEDMOREPATTERN.png)
+
+Unfortunately no explosions
+![](testing2failed.png)
+
+Well I gave it a solid hour, but I manage to segfault it..
+
+
+[siphos - High level explanation on some binary executable security](https://blog.siphos.be/2011/07/high-level-explanation-on-some-binary-executable-security/): *"**PIE**, meaning Position Independent Executable. A **No PIE** application tells the loader which virtual address it should use (and keeps its memory layout quite static). Hence, attacks against this application know up-front how the virtual memory for this application is (partially) organized."*
+- Disassembly:
+	- Will not produce addresses
+	- Will produce offsets
+
+Adding `ltrace` to my life
+![](ltraceaddedtoarsenal.png)
+
+And [gribbles to the rescue](https://gribblelab.org/teaching/CBootCamp/7_Memory_Stack_vs_Heap.html)
+![](stackvariablesexist.png)
+No `malloc()` means stack! Sense is be made.
+
+- https://superuser.com/questions/169051/whats-the-difference-between-c-and-d-for-unix-mac-os-x-terminal:
+	- `ctrl + c`: SIGINT to current foreground process
+	- `ctrl + d`: [EOF](https://en.wikipedia.org/wiki/End-of-Transmission_character#Meaning_in_Unix)
+
+
+![](thesearethebytesthatwouldhavemadeittorip.png)
+
+- 84 then the stack address from the print format.
+
+19:20 
 ## Post-Completion Reflection
 
-	
+- Refilling in my C knowledge in the fun way 
+- What questions do you need to ask to figure out what type of Pwn challenge this is? 
+- more `ltrace` in your life
+- do not be an idiot `Ghidra -> Strings` click and click to find the functions that matter - this is both good and bad, I guess that the issue would be contextual awareness and loss time trade off for focusing  
+- Have you run `ltrace ./binary`?
+- PIE will display offsets, which we can still calculate to and from 
+- convert values in the ghidra use the tools
+- [corefile.pc](https://docs.pwntools.com/en/stable/elf/corefile.html#pwnlib.elf.corefile.Corefile.pc) for cross platform get eip
+
+```c
+// stack variables are declared like this:
+int stackVariable = 69;
+
+// malloc return a pointer to heap variable and takes a int as size 
+int *heapVariable = malloc(sizeof(int));
+// then needs to have a value assigned:
+*heapVariable = 69;
+// Alway free memory after use
+free(heapVariable);
+```
