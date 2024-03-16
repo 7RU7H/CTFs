@@ -166,16 +166,33 @@ No `malloc()` means stack! Sense is be made.
 
 - 84 then the stack address from the print format.
 
-19:20 
+Guessing game to start those learn curves to produce brain winklage. 
+![](guessinggamepython3scripting.png)
+
+CryptoCat uses a nice regular expression for this. My initial concerns were that the x is not an x but the ASCII or UTF-8 mathematical x, because *if its not quotes, its bad characters and if not bad characters its character encodings*
+```python
+# Get addresses - CryptoCat for p and r
+# recvS() is like recv(), but returns a String 
+pivot_addr = int(re.search(r"0x[\w\d])+", r.recvS()).group(0), 16)
+pivot_addr = int(re.search(r"0x[\w\d])+", p.recvS()).group(0), 16)
+```
+
+Pwntools and `info()` do work with f-strings
+
+
+- 25:32 
+
+
 ## Post-Completion Reflection
 
+- Best rollercoaster of - WTF is this jargon exactly to, maybe to nope get good please
 - Refilling in my C knowledge in the fun way 
 - What questions do you need to ask to figure out what type of Pwn challenge this is? 
 - more `ltrace` in your life
 - do not be an idiot `Ghidra -> Strings` click and click to find the functions that matter - this is both good and bad, I guess that the issue would be contextual awareness and loss time trade off for focusing  
 - Have you run `ltrace ./binary`?
 - PIE will display offsets, which we can still calculate to and from 
-- convert values in the ghidra use the tools
+- convert values in the Ghidra use the tools
 - [corefile.pc](https://docs.pwntools.com/en/stable/elf/corefile.html#pwnlib.elf.corefile.Corefile.pc) for cross platform get eip
 
 ```c
