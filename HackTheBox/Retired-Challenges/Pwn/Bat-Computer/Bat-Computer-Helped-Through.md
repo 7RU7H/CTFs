@@ -173,12 +173,19 @@ CryptoCat uses a nice regular expression for this. My initial concerns were that
 ```python
 # Get addresses - CryptoCat for p and r
 # recvS() is like recv(), but returns a String 
-pivot_addr = int(re.search(r"0x[\w\d])+", r.recvS()).group(0), 16)
-pivot_addr = int(re.search(r"0x[\w\d])+", p.recvS()).group(0), 16)
+pivot_addr = int(re.search(r"(0x[\w\d]+)", r.recvS()).group(0), 16)
+pivot_addr = int(re.search(r"(0x[\w\d]+)", p.recvS()).group(0), 16)
 ```
 
 Pwntools and `info()` do work with f-strings
 
+My method did not work
+```python
+alfreds_message = p.recvline()
+split_alfreds_message = alfreds_message.split()
+joker_location = bytes(split_alfreds_message[-1], 'utf-8')
+print(info("joker_location: %#x", split_alfreds_message[-1]))
+```
 
 - 25:32 
 
@@ -206,3 +213,44 @@ int *heapVariable = malloc(sizeof(int));
 // Alway free memory after use
 free(heapVariable);
 ```
+
+Have this weird issue with `gef` to fix and the paste into my brain and notes: https://notes.vulndev.io/wiki to do and beyond root additions to add from this
+## Beyond the PWN
+
+- Read everything: Legend - https://notes.vulndev.io/wiki 
+
+
+```python
+# GDB debugs the parent process when process forks, but if we need the  follow the child process in gdb:
+gdb.attach(p, '''
+set follow-fork-mode child
+continue
+''')
+```
+[Explaination of `set follow-fork-mode child` from ftp.gnu.org](https://ftp.gnu.org/old-gnu/Manuals/gdb/html_node/gdb_25.html)
+
+GDB Quick Commands
+- disassemble: `disas <addr>`
+- continue: `c`
+- step: `s`
+- step over: `n`
+- finish function: `fin`
+- dump memory: `x/20x <addr>`
+- dump registers: `info registers`
+- dump call stack: `bt`
+- list breakpoints: `info break`
+- memory mapping: `vmmap`
+- heap infos: `heap chunks`,`print main_arena`
+- show GOT: `print $_got()`
+- pattern: `pattern create <n>`, `pattern search <offset>`
+- shellcode: `shellcode search <arch>`, `shellcode get <num>`
+
+
+https://github.com/xct/wiki
+
+Template Meta-gaming 
+- https://notes.vulndev.io/wiki/redteam/binary-exploitation/templates
+
+- https://notes.vulndev.io/wiki/redteam/templates
+- https://github.com/nikosChalk/exploitation-training/blob/master/pwn-template.py
+- https://notes.vulndev.io/wiki/redteam/binary-exploitation/templates
