@@ -1,0 +1,118 @@
+# Nmap 7.94SVN scan initiated Tue Mar 26 12:22:14 2024 as: nmap --script discovery -oA /home/kali/7ru7hGithub/CTFs/HackTheBox/Retired-Machines/Book/nmap/10-129-95-163-Discovery --min-rate 1000 -e tun0 -p 22,80 10.129.95.163
+Pre-scan script results:
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-ping: false
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_lltd-discovery: false
+Nmap scan report for 10.129.95.163
+Host is up (0.074s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+|_banner: SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3
+| ssh-hostkey: 
+|   2048 f7:fc:57:99:f6:82:e0:03:d6:03:bc:09:43:01:55:b7 (RSA)
+|   256 a3:e5:d1:74:c4:8a:e8:c8:52:c7:17:83:4a:54:31:bd (ECDSA)
+|_  256 e3:62:68:72:e2:c0:ae:46:67:3d:cb:46:bf:69:b9:6a (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+80/tcp open  http
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.95.163
+|     
+|     Path: http://10.129.95.163:80/
+|     Line number: 318
+|     Comment: 
+|_         //# sourceURL=pen.js
+|_http-title: LIBRARY - Read | Learn | Have Fun
+|_http-mobileversion-checker: No mobile version detected.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-referer-checker: 
+| Spidering limited to: maxpagecount=30
+|_  https://static.codepen.io:443/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js
+| http-internal-ip-disclosure: 
+|_  Internal IP Leaked: 250
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    Other: 1
+|_http-chrono: Request times for /; avg: 265.47ms; min: 250.06ms; max: 305.66ms
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.95.163
+|   url                       method
+|_  http://10.129.95.163:80/  FORM
+|_http-errors: Couldn't find any error pages.
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-date: Tue, 26 Mar 2024 12:22:49 GMT; +1h00m00s from local time.
+| http-vhosts: 
+|_128 names had status 200
+|_http-feed: Couldn't find any feeds.
+| http-enum: 
+|   /admin/: Possible admin folder
+|_  /admin/index.php: Possible admin folder
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-headers: 
+|   Date: Tue, 26 Mar 2024 12:22:50 GMT
+|   Server: Apache/2.4.29 (Ubuntu)
+|   Set-Cookie: PHPSESSID=fsng4spdta87pnifunqu0jhi06; path=/
+|   Expires: Thu, 19 Nov 1981 08:52:00 GMT
+|   Cache-Control: no-store, no-cache, must-revalidate
+|   Pragma: no-cache
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+| http-security-headers: 
+|   Cache_Control: 
+|     Header: Cache-Control: no-store, no-cache, must-revalidate
+|   Pragma: 
+|     Header: Pragma: no-cache
+|   Expires: 
+|_    Header: Expires: Thu, 19 Nov 1981 08:52:00 GMT
+
+Host script results:
+|_dns-brute: Can't guess domain of "10.129.95.163"; use dns-brute.domain script argument.
+|_fcrdns: FAIL (No PTR record)
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       69798.30   12253.25  0.0%
+|_80    0       64327.10   6112.40   0.0%
+|_path-mtu: PMTU == 1500
+|_ipidseq: All zeros
+
+# Nmap done at Tue Mar 26 12:28:17 2024 -- 1 IP address (1 host up) scanned in 362.47 seconds

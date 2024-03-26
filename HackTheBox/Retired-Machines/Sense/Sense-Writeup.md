@@ -24,7 +24,7 @@ Blocked out non multiples of less than 3
 ![sense](oneofthreevulns.png)
 2.2 - 2.4
 
-Research pfsense_ng
+Research `pfsense_ng`
 [Documentation: Feature list 2.0](https://docs.netgate.com/pfsense/en/latest/releases/2-0-0.html)
 FreeBSD!
 

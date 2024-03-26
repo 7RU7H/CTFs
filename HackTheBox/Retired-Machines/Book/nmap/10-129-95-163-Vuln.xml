@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Tue Mar 26 12:28:17 2024 as: nmap -&#45;script vuln -oA /home/kali/7ru7hGithub/CTFs/HackTheBox/Retired-Machines/Book/nmap/10-129-95-163-Vuln -&#45;min-rate 1000 -e tun0 -p 22,80 10.129.95.163 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA /home/kali/7ru7hGithub/CTFs/HackTheBox/Retired-Machines/Book/nmap/10-129-95-163-Vuln -&#45;min-rate 1000 -e tun0 -p 22,80 10.129.95.163" start="1711456097" startstr="Tue Mar 26 12:28:17 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.95.163" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1711456120" endtime="1711456142"><status state="up" reason="reset" reason_ttl="63"/>
+<address addr="10.129.95.163" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-cookie-flags" output="&#xa;  /: &#xa;    PHPSESSID: &#xa;      httponly flag not set&#xa;  /admin/: &#xa;    PHPSESSID: &#xa;      httponly flag not set&#xa;  /admin/index.php: &#xa;    PHPSESSID: &#xa;      httponly flag not set"><table key="/">
+<table key="PHPSESSID">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+<table key="/admin/">
+<table key="PHPSESSID">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+<table key="/admin/index.php">
+<table key="PHPSESSID">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+</script><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.95.163&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://10.129.95.163:80/&#xa;    Form id: &#xa;    Form action: &#xa;    &#xa;    Path: http://10.129.95.163:80/&#xa;    Form id: &#xa;    Form action: &#xa;"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-vuln-cve2017-1001000" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-internal-ip-disclosure" output="&#xa;  Internal IP Leaked: 250"><elem key="Internal IP Leaked">250</elem>
+</script><script id="http-enum" output="&#xa;  /admin/: Possible admin folder&#xa;  /admin/index.php: Possible admin folder&#xa;"/></port>
+</ports>
+<times srtt="99039" rttvar="61303" to="344251"/>
+</host>
+<runstats><finished time="1711456142" timestr="Tue Mar 26 12:29:02 2024" summary="Nmap done at Tue Mar 26 12:29:02 2024; 1 IP address (1 host up) scanned in 45.41 seconds" elapsed="45.41" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -61,6 +61,9 @@ key = hqlhbGdvcml0aG2mc2hhMjU2pGRhdGHaAZ6ZS3pOjzX7NiYkZMTEyECo+6f9mTsiO9ZWFV
 
 
 ```
+
+
+https://borgbackup.readthedocs.io
 ![](borgconfig.png)
 
 `strings index.5`
@@ -132,6 +135,7 @@ https://github.com/Cyan4973/xxHash
 
 ![](cyberchefingthekey.png)
 
+
 ![](ippsecsizecheckingttheid.png)
 
 
@@ -157,6 +161,11 @@ echo 'hqlhbGdvcml0aG2mc2hhMjU2pGRhdGHaAZ6ZS3pOjzX7NiYkZMTEyECo+6f9mTsiO9ZWFV
 ```bash
 apt install borgbackup
 ```
+
+Usually -thm is enough. I removed the final ) to the markdown picture linking:
+![](oopsonthedork.png
+
+
 ## Foothold
 
 ## Privilege Escalation

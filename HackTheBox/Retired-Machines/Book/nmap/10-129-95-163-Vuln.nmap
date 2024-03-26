@@ -1,0 +1,38 @@
+# Nmap 7.94SVN scan initiated Tue Mar 26 12:28:17 2024 as: nmap --script vuln -oA /home/kali/7ru7hGithub/CTFs/HackTheBox/Retired-Machines/Book/nmap/10-129-95-163-Vuln --min-rate 1000 -e tun0 -p 22,80 10.129.95.163
+Nmap scan report for 10.129.95.163
+Host is up (0.099s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|       httponly flag not set
+|   /admin/: 
+|     PHPSESSID: 
+|       httponly flag not set
+|   /admin/index.php: 
+|     PHPSESSID: 
+|_      httponly flag not set
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.95.163
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.129.95.163:80/
+|     Form id: 
+|     Form action: 
+|     
+|     Path: http://10.129.95.163:80/
+|     Form id: 
+|_    Form action: 
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+| http-internal-ip-disclosure: 
+|_  Internal IP Leaked: 250
+| http-enum: 
+|   /admin/: Possible admin folder
+|_  /admin/index.php: Possible admin folder
+
+# Nmap done at Tue Mar 26 12:29:02 2024 -- 1 IP address (1 host up) scanned in 45.41 seconds
