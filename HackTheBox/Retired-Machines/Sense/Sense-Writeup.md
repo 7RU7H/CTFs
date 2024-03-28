@@ -16,6 +16,7 @@ Previous recon and progress from
 The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](HackTheBox/Retired-Machines/Sense/Screenshots/ping.png)
 
+
 ![lightpd](lighttpd-1-4-35.png)
 
 Nmap found /tree
@@ -64,4 +65,9 @@ import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s
 
 ## PrivEsc
 
-      
+## Post Root Reflection
+
+## Beyond Root
+
+https://www.teachthought.com/learning/what-is-blooms-taxonomy/
+https://cft.vanderbilt.edu/guides-sub-pages/blooms-taxonomy/
