@@ -12,12 +12,13 @@ Beyond Root:
 - [[Book-Notes.md]]
 - [[Book-CMD-by-CMDs.md]]
 
-This helped-through was made by reading [ivanitlearning](https://ivanitlearning.wordpress.com/2021/04/17/hackthebox-book/) and following along.
+This helped-through was made by reading [ivanitlearning](https://ivanitlearning.wordpress.com/2021/04/17/hackthebox-book/) and following along. Due to it being only about the privilege escalation vector for this box I will put a good 2 hours of practice into hacking the web application
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](Screenshots/ping.png)
-	
+
+
 ## Exploit
 
 ## Foothold

@@ -1,12 +1,18 @@
-# Sense
+# Sense Writeup
+
 Name: Sense
 Date:  
 Difficulty:  Easy
 Goals:  OSCP Prep
 Learnt: 
 - When you get banned learn how to proxy!
+Beyond Root:
+- Blooms Taxomony for myself and notes
+
+Previous recon and progress from 
 
 ## Recon
+
 The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](HackTheBox/Retired-Machines/Sense/Screenshots/ping.png)
 

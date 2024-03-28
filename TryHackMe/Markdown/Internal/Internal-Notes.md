@@ -20,10 +20,9 @@ Credentials:
 
 #### Mindmap-per Service
 
-- OS detect, run generate noting for nmap
--
--
--
+- OS detect, run generate noting for `nmap`
+
+ -
 -
 -
 -
