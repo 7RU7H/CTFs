@@ -191,9 +191,12 @@ Then I could not log into admin panel...went on a cross referencing spree
 
 ## Privilege Escalation
 
+- New CVE-2024 Linux Kernel EXploit to try!
+
 ## Post-Root-Reflection  
 
 - And all of this to do a section of the HTB academy and the road there was full of new things!
+- I need to do more boxes with new ways
 ## Beyond Root
 
 
