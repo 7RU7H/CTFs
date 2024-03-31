@@ -5,12 +5,13 @@ Type: Pwn
 Date:  
 Difficulty:  Easy
 Goals:  
-- Pwnage of novel kind
+- Pwnage of a novel kind
 - Write out some helpful methodology, issues and solutions and figure out more Pwn Methodology
 Learnt:
 Beyond Pwn:
 - [Tangerine](https://www.youtube.com/watch?v=6SuTLMp6Ytw)
 - Write a bash script that updates where the pattern differs, but has to be replaced, because I keep running up against that problem and I want the oneliner.
+- Assimilate a Legend - https://notes.vulndev.io/wiki 
 
 I am almost certainly falling back to [CryptoCat's Bat Computer easy: HackTheBox Pwn Challenge (shellcode injection)](https://www.youtube.com/watch?v=NZfqLFuffYY&list=PLHUKi1UlEgOIn12nvhwwq2aTU8bG-FE0I&index=3) Writeup, but that said... I really want to try to research the attack first, then do my best trying knowing before and collecting information about shellcode injection to complete a Pwn challenge and what that means. [Play some music and I will explain](https://www.youtube.com/watch?v=ly2zdrtWLVc)...
 
@@ -187,7 +188,33 @@ joker_location = bytes(split_alfreds_message[-1], 'utf-8')
 print(info("joker_location: %#x", split_alfreds_message[-1]))
 ```
 
-- 25:32 
+#### Returning after some time...
+
+`codium` had a `gpg` key change and I now need to find a alternative or make it work..therefore given this issue knowing that it works and has seamlessly on ParrotOS and I need to look at the Ippsec's `anisible` VM building repository. Not because I do not like Kali, I love Kali. Neither am I distro-hoping fedora or long-sock wearing individual or a Gentoo infinite compiling my life btw type. One of the things that someone has imparted on me is learn the two to three tools that do the same thing after you learn about why there are those tools in the first place. As hard of a sheer wall of learning curve as that may seem, it for the best. So ParrotOS additional go to as I have deep suspicion for the AUR and Arch that make BlackArch like installing RedStarOS for non-North Korea Cultural and 101-On-How-To-Backdoor a Linux OS. OpenSuse and Nix seem to be were backup and application management seem to be going so Debian will probably go a similar direction at some point or it is paid feature of Server already and I have no idea.
+
+So objective now are:
+
+- First understand how `codium` is installed on Parrot so that I can have it on Kali again.
+	- https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo this works, but am I comfortable
+	- sooooo until then 
+- First this mess on Parrot:
+![](firsthebashterminalbullshitoneverydistro.png)
+- Script all of the GUI nonsense of parrot to something I like with bash
+- WTF is ansible and is there alternative if I can integrate all my personal scripts into it
+	- I also discovered that by having personalise scripts that is SO much easier to troubleshoot anything you installed as you then KNOW what and where you did it.
+- PWNGDB and GEF on Parrot 
+
+Configuring xfce4: 
+`~/.config/xfce4/xfconf/xfce-perchannel-xml/xfwm4.xml`, but which values?
+
+[GitHub - Ansible](https://github.com/ansible/ansible) states it is *"Ansible is a radically simple IT automation platform that makes your applications and systems easier to deploy and maintain. Automate everything from code deployment to network configuration to cloud management, in a language that approaches plain English, using SSH, with no agents to install on remote systems. [https://docs.ansible.com](https://docs.ansible.com)."*
+
+GitLab can be self hosted! There are others Kali has GitLab 
+https://docs.gitlab.com/ee/topics/offline/quick_start_guide.html
+https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-gitlab-on-ubuntu
+
+
+ 25:32 
 
 
 ## Post-Completion Reflection
@@ -219,6 +246,7 @@ Have this weird issue with `gef` to fix and the paste into my brain and notes: h
 
 - Read everything: Legend - https://notes.vulndev.io/wiki 
 
+Write a bash script that updates where the pattern differs, but has to be replaced, because I keep running up against that problem and I want the one liner. 
 
 ```python
 # GDB debugs the parent process when process forks, but if we need the  follow the child process in gdb:
