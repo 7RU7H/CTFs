@@ -2,7 +2,7 @@
 
 Name: Bat-Computer
 Type: Pwn
-Date:  
+Date:  31/3/2024
 Difficulty:  Easy
 Goals:  
 - Pwnage of a novel kind
@@ -96,14 +96,15 @@ We need to `sendline()` a 2 in pwn
 from pwn import *
 
 sendline("2")
-
 ```
 
+Using gef to create a pattern to try buffer overflowing the password buffer
 ![](notsurewhy.png)
 
+Checking the address
 ![](nothingatthismemoryaddress.png)
 
-
+use `entry-break`
 ![](break-entry.png)
 
 ![](stillmakesmelaugh.png)
@@ -167,7 +168,7 @@ No `malloc()` means stack! Sense is be made.
 
 - 84 then the stack address from the print format.
 
-Guessing game to start those learn curves to produce brain winklage. 
+Guessing game to start those learn curves to produce brain wrinklage. 
 ![](guessinggamepython3scripting.png)
 
 CryptoCat uses a nice regular expression for this. My initial concerns were that the x is not an x but the ASCII or UTF-8 mathematical x, because *if its not quotes, its bad characters and if not bad characters its character encodings*
@@ -198,6 +199,7 @@ So objective now are:
 	- https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo this works, but am I comfortable
 	- sooooo until then 
 - First this mess on Parrot:
+	- MATE Terminal issue
 ![](firsthebashterminalbullshitoneverydistro.png)
 - Script all of the GUI nonsense of parrot to something I like with bash
 - WTF is ansible and is there alternative if I can integrate all my personal scripts into it
@@ -210,13 +212,77 @@ Configuring xfce4:
 [GitHub - Ansible](https://github.com/ansible/ansible) states it is *"Ansible is a radically simple IT automation platform that makes your applications and systems easier to deploy and maintain. Automate everything from code deployment to network configuration to cloud management, in a language that approaches plain English, using SSH, with no agents to install on remote systems. [https://docs.ansible.com](https://docs.ansible.com)."*
 
 GitLab can be self hosted! There are others Kali has GitLab 
+
+[Wikipedia - GitLab](https://en.wikipedia.org/wiki/GitLab) states: *"GitLab Inc. is an open-core company that operates GitLab, a DevOps software package that can develop, secure, and operate software."*
+
 https://docs.gitlab.com/ee/topics/offline/quick_start_guide.html
 https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-gitlab-on-ubuntu
 
+Ultimate I decided that as cool as the PWNbox is the Architect version is the way to go.
+![](infofeedbackrequiredforexploitdevdumbdumb.png)
 
- 25:32 
+[`vmmap`](https://hugsy.github.io/gef/commands/vmmap/) to display the target process's entire memory space mapping. GEF is architecture-agnostic! So we can piebase everything without piebase
+- Learn the ELF running on SPARC architectures always have their `.data` and `heap` sections set as Read/Write/Execute.
+![](vmmapwithgef.png)
+
+`name-break` (alias `nb`):
+- `address` may be a linespec, address, or explicit location, same as specified for `break`.
+- If `address` isn't specified, it will create the breakpoint at the current instruction pointer address.
+
+Set a breakpoint at a relative virtual address:
+```c
+gef➤ vmmap
+// 0xaddressStart 0xaddressEnd <permissions> /file/path
+gef➤ break *0x555555554000 + <RVA>
+```
+
+![](microwaves.png)
+
+![1080](cli.png)
+
+```
+shellcraft -l | grep amd64.linux
+```
+
+Forkbombing my brain with all the cool functions!
+![](shellcraft-l-to-grep-amd64-linux.png)
+
+![](windowshasnolove.png)
+
+Use can also write your OWN shellcode!
+
+[Github - Gallopsled/pwntools-tutorial](https://github.com/Gallopsled/pwntools-tutorial/blob/master/walkthrough/shellcode-advanced/README.md) states on template best practice:
+>And a few things to note about general "good style" for templates.
+>
+>- Use `common.label` instead of a constant label is preferred, since `common.label` ensures the label name is unique, even if the shellcode template is used multiple times.
+>- Use the helper functions `mov`, `pushstr`, `syscall`, and the `syscall` wrappers (like `write` used below) instead of reinventing the wheel
+    - On some architectures, these emit NULL- and newline-free shellcode
+    - These themselves are just other shellcode templates with some logic
+>- Any integer fields should be passed through `constants.eval` so that well-known constant values can be used instead.
+    - `constants.eval("SYS_execve") ==> int`
+    - `int(constants.SYS_execve) ==> int`
+    - If you're just passing it to another template, e.g. `mov`, this is already handled for you.
+
+...then we use `asm` to compile the shellcode! Pwntools connections 
+
+Decided to change my template script be less managing multiple repeations no `r.` or `p.` just `pwn =` 
+
+The issue that CryptoCat has is that the registers are being populated so we need to depopulate it - subscribe to [PinkDraconian](https://github.com/PinkDraconian)
+```python
+# Pop all of the registers onto the stack which i386 popad does, in the same order.
+shellcraft.amd64.popad()
+```
 
 
+[PinkDraconian](https://github.com/PinkDraconian/CTF-bash-tools/blob/master/scripts/ctf-ex.sh) is very different from myself link here is to a very scripted approach hacking boxes.
+
+[PinkDraconian's twos complement explaination](https://github.com/PinkDraconian/InfoSecCheatSheets/tree/master/binary): *"Whenever negative numbers need to be converted to an address, it's probably in the [two's complement](https://en.wikipedia.org/wiki/Two's_complement). We can turn it back by doing `n + pow(2, [32|64])` or `(1<<[32|64]) + n`"*
+
+What a journey!
+![](PWNED-WHATJOURNEY.png)
+
+And for the hilariousness that pwned me onto the floor... 
+![](linkedintryinghardtogetmetologon.png)
 ## Post-Completion Reflection
 
 - Best rollercoaster of - WTF is this jargon exactly to, maybe to nope get good please
