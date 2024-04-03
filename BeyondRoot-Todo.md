@@ -1,5 +1,8 @@
 # Beyond Root Todo
 
+Make it work!:
+https://pwning.tech/nftables/
+https://github.com/Notselwyn/CVE-2024-1086
 
 https://medium.com/@cy1337/first-look-ghidras-10-3-emulator-7f74dd55e12d - pwn with ghidra emulation
 

