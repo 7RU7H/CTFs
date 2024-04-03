@@ -1,6 +1,8 @@
 # Beyond Root Todo
 
 
+https://medium.com/@cy1337/first-look-ghidras-10-3-emulator-7f74dd55e12d - pwn with ghidra emulation
+
 learn more about system32 directory 
 
 #### Mimikatz - Finishing AV bypassing but its 2024 
