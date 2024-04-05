@@ -1,5 +1,9 @@
 # Beyond Root Todo
 
+Tradecraft-To-BrainCraft in forensics Challenges; and find one more 
+
+
+
 Make it work!:
 https://pwning.tech/nftables/
 https://github.com/Notselwyn/CVE-2024-1086
