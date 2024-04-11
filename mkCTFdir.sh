@@ -75,8 +75,11 @@ Credentials:
 
 #### Mindmap-per Service
 
+\`\`\`
+sudo tcpdump -nvvvXi tun0 tcp port 80
+\`\`\`
+
 - OS detect, run generate noting for nmap
--
 -
 -
 -
