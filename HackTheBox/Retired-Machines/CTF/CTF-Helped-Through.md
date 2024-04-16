@@ -328,7 +328,7 @@ LDAP Injection:
 
 ## Beyond Root
 
-- Tried to adapt the hacksmarter script.
+- Tried to adapt the hacksmarter script. - Done
 - Adapt the get the remote time script 
-- LDAP page in Archive complete
-- CIA tradecraft-to-brainzcraft
+- LDAP injection page in Archive complete
+- CIA tradecraft-to-brainzcraft - Done! Will review in a later Box
