@@ -5,7 +5,8 @@ Date:  28/2/2024
 Difficulty:  Medium
 Goals:  
 - AV evasion - three hours max
-TrLearnt:
+Learnt:
+- Godlike pototas
 Beyond Root:
 - Hey - Use hoaxshell
 

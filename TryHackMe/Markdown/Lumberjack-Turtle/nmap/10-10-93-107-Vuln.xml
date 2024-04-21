@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Sun Apr 21 16:50:12 2024 as: nmap -&#45;script vuln -oA /home/kali/7ru7hGithub/CTFs/TryHackMe/Markdown/Lumberjack-Turtle/nmap/10-10-93-107-Vuln -&#45;min-rate 1000 -e tun0 -p 22,80 10.10.93.107 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA /home/kali/7ru7hGithub/CTFs/TryHackMe/Markdown/Lumberjack-Turtle/nmap/10-10-93-107-Vuln -&#45;min-rate 1000 -e tun0 -p 22,80 10.10.93.107" start="1713714612" startstr="Sun Apr 21 16:50:12 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.10.93.107" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1713714635" endtime="1713714809"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.10.93.107" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="62"/><service name="http" method="table" conf="3"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/></port>
+</ports>
+<times srtt="78772" rttvar="63321" to="332056"/>
+</host>
+<runstats><finished time="1713714809" timestr="Sun Apr 21 16:53:29 2024" summary="Nmap done at Sun Apr 21 16:53:29 2024; 1 IP address (1 host up) scanned in 197.43 seconds" elapsed="197.43" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
