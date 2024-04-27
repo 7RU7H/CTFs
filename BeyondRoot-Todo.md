@@ -356,7 +356,7 @@ Make a wordlists creator in golang for the serious string compute.
 
 OneSeclistDirectoryBustingWordlistToRuleTheCTFs
 
-- Go back to gobuster for inital directories
+- Go back to gobuster for initial directories
 - Stop, observe and note potential targets to start feroxbuster and ffuf from 
 	- What is actually a good target for this and what are likely middle directories that are good to recurse -  Pushing beyond the 
 		- Anything wherehttps://www.patreon.com/xct

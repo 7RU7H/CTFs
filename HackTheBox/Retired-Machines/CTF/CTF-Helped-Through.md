@@ -37,10 +37,10 @@ Interestingly according to [Wikipedia](https://en.wikipedia.org/wiki/Italian_wol
 Ippsec - *"Payed software is better documented"*, but this is 2024 so search engine dorking is not what used to be... add Redhat package version by httpd dorking fail to BR list
 
 ![](www-root.png)
-`cmd=whoami` does not change the command ran to get server status
+`cmd=whoami` does not change the command ran to get server status. Prevention of Brute force attempts enabled:
 ![](bannedips.png)
 
-
+Login page, this is my first One Time Password Login page
 ![](OTPloginpage.png)
 
 Pay our respects
@@ -262,7 +262,7 @@ sudo apt install stoken
 ```
 
 ```bash
-stoken --token=$token
+stoken import --token=$token
 ```
 
 OTP are time sensitive and therefore to finish this I need to change the VM time. This is the wrong date - I am a idiot...
@@ -320,6 +320,36 @@ LDAP Injection:
 - https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/LDAP_Injection
 -  https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/LDAP_Injection/Intruder/LDAP_FUZZ.txt
 - https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/LDAP_Injection/Intruder/LDAP_attributes.txt
+
+Returning after being teased by that one successful attempt I decided that I was not  going to learn much more and I need to move forward and finish this and the other Beyond Roots for Helped-Through-ing this machine.
+```bash
+stoken import --token 285449490011357156531651545652335570713167411445727140604172141456711102716717000
+```
+
+![](isitthedateconversionorisitspeed.png)
+
+![](dfpluswriteupcombo.png)
+But this 302 is not the 302 redirect I am looking for
+![](doublecheckingthe302Igot.png)
+
+![](noredirect302.png)
+
+![](doublechecking0xdf.png)
+
+![1080](notsurewhatisgoingwrong.png)
+
+Changing the offset by -30 to +30:
+![](incrementinganddecrementingtheoffset.png)
+
+![1080](testingstokenandhowforceisaffectingthetoken.png)
+
+![](forceoveridethecheckbuttheexpirydateisnotchanged.png)
+
+Key length, Expiry date - 
+![1080](expirydatealignment.png)
+
+Expiry 
+![](stokenconfiguration.png)
 ## Foothold
 
 ## Privilege Escalation
