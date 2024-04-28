@@ -1,27 +1,29 @@
-# CTF Notes
+# Schooled Notes
 
 ## Data 
 
-IP:  10.129.228.34
-OS: FreeBSD
-Arch: 
+IP: 
+OS:
+Arch:
 Hostname:
 DNS:
-Domain: schooled.htb
-Machine Purpose: web server 
-Services: 22,80,33060: ssh, http, mysqlx 
+Domain:  / Domain SID:
+Machine Purpose: 
+Services:
 Service Languages:
 Users:
 Email and Username Formatting:
 Credentials:
 
-- BR list
-	- Redhat package version by httpd dorking fail
+
 
 #### Mindmap-per Service
 
+```
+sudo tcpdump -nvvvXi tun0 tcp port 80
+```
+
 - OS detect, run generate noting for nmap
-	- 
 -
 -
 -

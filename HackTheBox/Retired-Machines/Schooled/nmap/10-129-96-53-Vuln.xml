@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Sun Apr 28 16:18:03 2024 as: nmap -&#45;script vuln -oA /home/kali/7ru7hGithub/CTFs/HackTheBox/Retired-Machines/Schooled/nmap/10-129-96-53-Vuln -&#45;min-rate 1000 -e tun0 -p 22,80,33060 10.129.96.53 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA /home/kali/7ru7hGithub/CTFs/HackTheBox/Retired-Machines/Schooled/nmap/10-129-96-53-Vuln -&#45;min-rate 1000 -e tun0 -p 22,80,33060 10.129.96.53" start="1714317483" startstr="Sun Apr 28 16:18:03 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="22,80,33060"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.96.53" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1714317506" endtime="1714317541"><status state="up" reason="reset" reason_ttl="63"/>
+<address addr="10.129.96.53" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-trace" output="TRACE is enabled"/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.96.53&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://10.129.96.53:80/contact.html&#xa;    Form id: contactform&#xa;    Form action: contact.php&#xa;"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-enum" output="&#xa;  /css/: Potentially interesting folder w/ directory listing&#xa;  /images/: Potentially interesting folder w/ directory listing&#xa;  /js/: Potentially interesting folder w/ directory listing&#xa;"/></port>
+<port protocol="tcp" portid="33060"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="mysqlx" method="table" conf="3"/></port>
+</ports>
+<times srtt="45001" rttvar="22207" to="133829"/>
+</host>
+<runstats><finished time="1714317541" timestr="Sun Apr 28 16:19:01 2024" summary="Nmap done at Sun Apr 28 16:19:01 2024; 1 IP address (1 host up) scanned in 58.59 seconds" elapsed="58.59" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>
