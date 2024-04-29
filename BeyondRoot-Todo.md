@@ -2,6 +2,7 @@
 
 Tradecraft-To-BrainCraft in forensics Challenges; and find one more 
 
+Sounds good https://www.kali.org/tools/pwnat
 
 
 Make it work!:
