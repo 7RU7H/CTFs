@@ -14,6 +14,14 @@ Users:
 nuclei found from CVE-2017 for wp - admin
 Email and Username Formatting:
 Credentials:
+```
+
+aubreanna : bubb13guM!@#123
+
+admin : my2boys
+william : arnold147
+
+```
 
 - Released 3.4 years ago+!   
 - Wordpress 

@@ -1,6 +1,10 @@
 # Beyond Root Todo
 
+Rewrite the entire Rules of flag Acquisition - https://memory-alpha.fandom.com/wiki/Rules_of_Acquisition to be hacking centric HACKING IS ETERNAL
+
 Tradecraft-To-BrainCraft in forensics Challenges; and find one more 
+
+[Zip Bomb](https://en.wikipedia.org/wiki/Zip_bomb) -  on Windows Defender OLD MACHINE that has software that is Zip Bombable
 
 Sounds good https://www.kali.org/tools/pwnat
 
