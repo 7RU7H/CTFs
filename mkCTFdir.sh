@@ -77,6 +77,7 @@ Credentials:
 
 \`\`\`
 sudo tcpdump -nvvvXi tun0 tcp port 80
+ls -1tr Screenshots | grep -v ping | awk '{print \"![](\"$1\")\"}\' | xsel -b
 \`\`\`
 
 - OS detect, run generate noting for nmap

@@ -4,6 +4,8 @@ Tradecraft-To-BrainCraft in forensics Challenges; and find one more
 
 Sounds good https://www.kali.org/tools/pwnat
 
+Write some assembly with this:
+https://github.com/hugsy/cemu
 
 Make it work!:
 https://pwning.tech/nftables/

@@ -8,6 +8,7 @@ Goals:
 - Finish in a sitting
 Learnt:
 Beyond Root:
+- Twinned with  [[RedCross-Writeup]]
 
 - [[Schooled-Notes.md]]
 - [[Schooled-CMD-by-CMDs.md]]
@@ -233,7 +234,7 @@ Start [moanin'](https://www.youtube.com/watch?v=__OSyznVDOY) in a good, educatio
 	- Reduces time to completion in an objective based way
 	- Dependent on how good the questions are and how much that you translate in wording that then forms part of Question based methodology
 	- Did not use notes as much. SO I forget to copy a cookie
-
+	- Conflict of following the question in case I missed something that rabbitholed-me-into-the-moodle-mush
 
 
 

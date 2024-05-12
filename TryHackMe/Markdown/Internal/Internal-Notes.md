@@ -5,17 +5,17 @@
 IP: 
 OS:
 Arch:
-Hostname:
-DNS:
-Domain:  / Domain SID:
+Hostname: internal
+Domain: internal.thm
 Machine Purpose: 
-Services:
-Service Languages:
-Users:
+Services: Wordpress 5.4.2
+Service Languages: php
+Users: 
+nuclei found from CVE-2017 for wp - admin
 Email and Username Formatting:
 Credentials:
 
-- Released 3.4 years ago!   
+- Released 3.4 years ago+!   
 - Wordpress 
 
 #### Mindmap-per Service

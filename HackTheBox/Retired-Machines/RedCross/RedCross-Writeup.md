@@ -8,6 +8,7 @@ Goals:
 Learnt:
 Beyond Root:
 - Finish the new XSS room on https://tryhackme.com/r/room/axss
+- Twin with [[Schooled-Helped-Through]]
 
 - [[RedCross-Notes.md]]
 - [[RedCross-CMD-by-CMDs.md]]
