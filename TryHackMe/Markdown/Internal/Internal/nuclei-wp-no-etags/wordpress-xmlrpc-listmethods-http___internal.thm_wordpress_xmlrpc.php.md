@@ -1,0 +1,146 @@
+### Wordpress XML-RPC List System Methods (wordpress-xmlrpc-listmethods) found on internal.thm
+
+----
+**Details**: **wordpress-xmlrpc-listmethods** matched at internal.thm
+
+**Protocol**: HTTP
+
+**Full URL**: http://internal.thm/wordpress/xmlrpc.php
+
+**Timestamp**: Sun May 12 11:04:12 +0100 BST 2024
+
+**Template Information**
+
+| Key | Value |
+| --- | --- |
+| Name | Wordpress XML-RPC List System Methods |
+| Authors | 0ut0fb4nd |
+| Tags | wordpress |
+| Severity | info |
+
+**Request**
+```http
+POST /wordpress/xmlrpc.php HTTP/1.1
+Host: internal.thm
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/604.5.6 (KHTML, like Gecko) Version/11.0.3 Safari/604.5.6
+Connection: close
+Content-Length: 123
+Accept: */*
+Accept-Language: en
+Accept-Encoding: gzip
+
+<?xml version="1.0" encoding="utf-8"?><methodCall><methodName>system.listMethods</methodName><params></params></methodCall>
+```
+
+**Response**
+```http
+HTTP/1.1 200 OK
+Connection: close
+Content-Type: text/xml; charset=UTF-8
+Date: Sun, 12 May 2024 10:04:14 GMT
+Server: Apache/2.4.29 (Ubuntu)
+Vary: Accept-Encoding
+
+<?xml version="1.0" encoding="UTF-8"?>
+<methodResponse>
+  <params>
+    <param>
+      <value>
+      <array><data>
+  <value><string>system.multicall</string></value>
+  <value><string>system.listMethods</string></value>
+  <value><string>system.getCapabilities</string></value>
+  <value><string>demo.addTwoNumbers</string></value>
+  <value><string>demo.sayHello</string></value>
+  <value><string>pingback.extensions.getPingbacks</string></value>
+  <value><string>pingback.ping</string></value>
+  <value><string>mt.publishPost</string></value>
+  <value><string>mt.getTrackbackPings</string></value>
+  <value><string>mt.supportedTextFilters</string></value>
+  <value><string>mt.supportedMethods</string></value>
+  <value><string>mt.setPostCategories</string></value>
+  <value><string>mt.getPostCategories</string></value>
+  <value><string>mt.getRecentPostTitles</string></value>
+  <value><string>mt.getCategoryList</string></value>
+  <value><string>metaWeblog.getUsersBlogs</string></value>
+  <value><string>metaWeblog.deletePost</string></value>
+  <value><string>metaWeblog.newMediaObject</string></value>
+  <value><string>metaWeblog.getCategories</string></value>
+  <value><string>metaWeblog.getRecentPosts</string></value>
+  <value><string>metaWeblog.getPost</string></value>
+  <value><string>metaWeblog.editPost</string></value>
+  <value><string>metaWeblog.newPost</string></value>
+  <value><string>blogger.deletePost</string></value>
+  <value><string>blogger.editPost</string></value>
+  <value><string>blogger.newPost</string></value>
+  <value><string>blogger.getRecentPosts</string></value>
+  <value><string>blogger.getPost</string></value>
+  <value><string>blogger.getUserInfo</string></value>
+  <value><string>blogger.getUsersBlogs</string></value>
+  <value><string>wp.restoreRevision</string></value>
+  <value><string>wp.getRevisions</string></value>
+  <value><string>wp.getPostTypes</string></value>
+  <value><string>wp.getPostType</string></value>
+  <value><string>wp.getPostFormats</string></value>
+  <value><string>wp.getMediaLibrary</string></value>
+  <value><string>wp.getMediaItem</string></value>
+  <value><string>wp.getCommentStatusList</string></value>
+  <value><string>wp.newComment</string></value>
+  <value><string>wp.editComment</string></value>
+  <value><string>wp.deleteComment</string></value>
+  <value><string>wp.getComments</string></value>
+  <value><string>wp.getComment</string></value>
+  <value><string>wp.setOptions</string></value>
+  <value><string>wp.getOptions</string></value>
+  <value><string>wp.getPageTemplates</string></value>
+  <value><string>wp.getPageStatusList</string></value>
+  <value><string>wp.getPostStatusList</string></value>
+  <value><string>wp.getCommentCount</string></value>
+  <value><string>wp.deleteFile</string></value>
+  <value><string>wp.uploadFile</string></value>
+  <value><string>wp.suggestCategories</string></value>
+  <value><string>wp.deleteCategory</string></value>
+  <value><string>wp.newCategory</string></value>
+  <value><string>wp.getTags</string></value>
+  <value><string>wp.getCategories</string></value>
+  <value><string>wp.getAuthors</string></value>
+  <value><string>wp.getPageList</string></value>
+  <value><string>wp.editPage</string></value>
+  <value><string>wp.deletePage</string></value>
+  <value><string>wp.newPage</string></value>
+  <value><string>wp.getPages</string></value>
+  <value><string>wp.getPage</string></value>
+  <value><string>wp.editProfile</string></value>
+  <value><string>wp.getProfile</string></value>
+  <value><string>wp.getUsers</string></value>
+  <value><string>wp.getUser</string></value>
+  <value><string>wp.getTaxonomies</string></value>
+  <value><string>wp.getTaxonomy</string></value>
+  <value><string>wp.getTerms</string></value>
+  <value><string>wp.getTerm</string></value>
+  <value><string>wp.deleteTerm</string></value>
+  <value><string>wp.editTerm</string></value>
+  <value><string>wp.newTerm</string></value>
+  <value><string>wp.getPosts</string></value>
+  <value><string>wp.getPost</string></value>
+  <value><string>wp.deletePost</string></value>
+  <value><string>wp.editPost</string></value>
+  <value><string>wp.newPost</string></value>
+  <value><string>wp.getUsersBlogs</string></value>
+</data></array>
+      </value>
+    </param>
+  </params>
+</methodResponse>
+
+```
+
+
+**CURL command**
+```sh
+curl -X 'POST' -d '<?xml version="1.0" encoding="utf-8"?><methodCall><methodName>system.listMethods</methodName><params></params></methodCall>' -H 'Accept: */*' -H 'Accept-Language: en' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/604.5.6 (KHTML, like Gecko) Version/11.0.3 Safari/604.5.6' 'http://internal.thm/wordpress/xmlrpc.php'
+```
+
+----
+
+Generated by [Nuclei v3.2.6](https://github.com/projectdiscovery/nuclei)

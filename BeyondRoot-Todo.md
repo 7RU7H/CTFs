@@ -4,6 +4,19 @@ Rewrite the entire Rules of flag Acquisition - https://memory-alpha.fandom.com/w
 
 Tradecraft-To-BrainCraft in forensics Challenges; and find one more 
 
+https://github.com/Rajchowdhury420/OSCP-CheatSheet
+
+https://github.com/saisathvik1/OSCP-Cheatsheet
+
+https://strange-1.gitbook.io/notes
+
+Try to turtle a terrapin
+https://en.wikipedia.org/wiki/Terrapin_attack
+https://jfrog.com/blog/ssh-protocol-flaw-terrapin-attack-cve-2023-48795-all-you-need-to-know/
+https://github.com/RUB-NDS/Terrapin-Artifacts
+
+
+
 [Zip Bomb](https://en.wikipedia.org/wiki/Zip_bomb) -  on Windows Defender OLD MACHINE that has software that is Zip Bombable
 
 Sounds good https://www.kali.org/tools/pwnat
