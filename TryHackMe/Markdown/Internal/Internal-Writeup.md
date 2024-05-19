@@ -1,12 +1,13 @@
 # Internal Writeup
 
 Name: Internal
-Date:  
+Date:  15/5/2024
 Difficulty:  Hard
 Goals:  
 - GLHF on another of TheMayor boxes.. 
 Learnt:
 - MORE CLI Cool Commands
+- Hard of THM is passwords.txt sometimes
 Beyond Root:
 - Unintend SQL injection to retain Writeup status - CVE is 2022 and box is 2020 and its a Offensive Path box from the TheMayor and the last one was evil. I have spent so much time painfully flailing on this machine. I can only justify do this for completionism
 - XCT Windows Privilege Escalation - https://notes.vulndev.io/wiki/redteam/privilege-escalation/windows
@@ -14,18 +15,21 @@ Beyond Root:
 - [[Internal-Notes.md]]
 - [[Internal-CMD-by-CMDs.md]]
 
-Starting and restarting this Writeup multiple times, this will be the final time. I am already aware the SQL Injection before this attempt. This going in for this final attempt, the this is a TheMayor Box and the last one I did  was not pretty. I almost wanted to run for Senate in the US and filibuster with infinite jibberish out of frustrated madness till I clone myself a proxy to run for Mayor that is more arbitrary and absurd than myself out the mismatch *real* upbringing to oust him... it was a weird and painful experience - [cue battle music to humiliation](https://www.youtube.com/watch?v=ACULtdKEVdY). It made realise I am bad, the box was bad and digging yourself out of the inverse learning curve hole is (and still sort of is continuously going to be a nightmare. Lots of other really like these boxes, but they could all be of CM tribe online surging and back-patting or I just got unlucky with other user trolling me. It could also be that these boxes were before HTB, PG and THM start standardising what a box is actually suppose to be and what the objective actually is with it. Having been blissful unaware of the nerdy-bullshit of unstrategic-mindmeddling of epeen insecurity honeypot-to-fill-the-creator ego for most of my life, the rude awaking to that kind of bullshit that does not exist outside of most *hardcore* Video Games, Specific subculture-forums and Cartoon-Cults. Internally I am *hoping* this will 3 hours maximum.  I live and cope. The beyond root for this is just finishing this. 
+Starting and restarting this Writeup multiple times, this will be the final time. I am already aware the SQL Injection before this attempt. This going in for this final attempt, the this is a TheMayor Box and the last one I did  was not pretty. I almost wanted to run for Senate in the US and filibuster with infinite jibberish out of frustrated madness till I clone myself a proxy to run for Mayor that is more arbitrary and absurd than myself out the mismatch *real* upbringing to oust him... it was a weird and painful experience - [cue battle music to humiliation](https://www.youtube.com/watch?v=ACULtdKEVdY). It made realise I am bad, the box was bad and digging yourself out of the inverse learning curve hole is (and still sort of is continuously going to be a nightmare. Lots of other really like these boxes, but they could all be of CM tribe online surging and back-patting or I just got unlucky with other user trolling me. It could also be that these boxes were before HTB, PG and THM start standardising what a box is actually suppose to be and what the objective actually is with it. Having been blissful unaware of the nerdy-bullshit of nonstrategic-mind-meddling of 3p33n insecurity honeypot-to-fill-the-creator ego for most of my life, the rude awaking to that kind of bullshit that does not exist outside of most *hardcore* Video Games, Specific subculture-forums and Cartoon-Cults. Internally I am *hoping* this will 3 hours maximum.  I live and cope. The beyond root for this is just finishing this. 
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](Screenshots/ping.png)
 
+On port 80 it is just another....
+![](justAnotherWPsite.png)
 
+... Wordpress site, so using `wpscan` with the free API key while help enumerate the low to middle hang potential attack vector fruits.
 ```bash
 wpscan --url $url --rua -e --api-token $APIKEY -o zeroauth.wpscan
 ```
 
-Wordlists to try
+SecLists also has wordlists to try, although they might be old 
 ```bash
 /usr/share/wordlists/seclists/Discovery/Web-Content/URLs/urls-wordpress-3.3.1.txt
 /usr/share/wordlists/seclists/Discovery/Web-Content/CMS/wordpress.fuzz.txt
@@ -39,63 +43,43 @@ One day I hope the Offensive Security Web App Cert just understand how anyone is
 cat zeroauth.wpscan | grep 'Title' -A 1
 ```
 
-![](justAnotherWPsite.png)
-
+Hostname in the source
 ![](domaininthesrcbut.png)
 
-Another weirdness
+Another weirdness to this machine is this first of many hundreds of box that `gospider` did not work
 ![](nospider.png)
-
+and with the hostname:
 ![](nodomainspider.png)
 
 Terrapin BR?
 ![](nucleinoetags.png)
 
+The default, is actual `admin`; I for some reason thought it was `wp-admin`, but I leave this here as reminder of my mistake...
 > WHY WOULD YOU MAKE ANOTHER ADMINISTRATIVE USER IN WORDPRESS IT GOES AGAINST THE TIERING OF ADMINISTRATIVE ACCOUNTS ITS MADNESS.
  Another `admin`  user - [[CVE-2017-5487-http___internal.thm_wordpress__rest_route=_wp_v2_users_-.md]]
 > WHY WOULD YOU MAKE ANOTHER ADMINISTRATIVE USER IN WORDPRESS IT GOES AGAINST THE TIERING OF ADMINISTRATIVE ACCOUNTS ITS MADNESS.
 
+Apparently some people make their own Administrator account with less guessable names, which is not a good solution:
+1. Introduces custom permissions misconfigurations
+2. Vulnerabilities exist 
+3. Enumeration of usernames exists via errors on brute forcing
+4. Changing the username could additive profiling information about the administrator that could be used at a later stage
+
+A better would just be have long strong password, MFA apps and if you are really concerned alerting on failed login after 3 attempts. Then worry about getting a SOC... If you needed to be very special:
+- Copy the permissions of the default to a new user that is just MD5 hash for the name, with all the security suggestions above
+- Remove all the permissions of the default administrative user
+- Add an alert whenever the default admin logs in and use it as a honeypot admin account.
 
 Regardless, version verification is the current objective, either from:
 - Forcing SQL Errors on `WP_Query` or `WP_Meta_Query` 
-- Deduction, Abduction, ...
-- Version indicator on the website
+- Deductive, Abductive, .Inductive reasoning 
+- Version indicator on the website - HackTricks.
 
 `SE-dork:`  `wordpress 6.0.3` depending on whether that feature was released prior to 2022.
 
 - https://en.wikipedia.org/wiki/Deductive_reasoning
 
 ![](wpversion603releasedate.png)
-
-https://developer.wordpress.org/reference/classes/wp_query/
-```php
-// wp-includes/class-wp-query.php
-<?php
-// The Query.
-$the_query = new WP_Query( $args );
-
-// The Loop.
-if ( $the_query->have_posts() ) {
-	echo '<ul>';
-	while ( $the_query->have_posts() ) {
-		$the_query->the_post();
-		echo '<li>' . esc_html( get_the_title() ) . '</li>';
-	}
-	echo '</ul>';
-} else {
-	esc_html_e( 'Sorry, no posts matched your criteria.' );
-}
-// Restore original Post Data.
-wp_reset_postdata();
-// ... no closing on the page `?`+`>`
-```
-Search for posts 
-
-https://developer.wordpress.org/reference/classes/wp_meta_query/
-![](actuallyhassqlrelatedinformationinthedocumentation.png)
-
-*[WP_Meta_Query](https://developer.wordpress.org/reference/classes/wp_meta_query/) is a class defined in wp-includes/meta.php that generates the necessary SQL for meta-related queries. It was introduced in Version 3.2.0 and greatly improved the possibility to query posts by custom fields. In the WP core, it’s used in the [WP_Query](https://developer.wordpress.org/reference/classes/wp_query/ "Class Reference/WP Query") and [WP_User_Query](https://developer.wordpress.org/reference/classes/wp_user_query/ "Class Reference/WP User Query") classes, and since Version 3.5 in the [WP_Comment_Query](https://developer.wordpress.org/reference/classes/wp_comment_query/ "Class Reference/WP Comment Query") class. Unless you’re writing a custom SQL query, you should look in the *Custom Field Parameters* section for the corresponding class.*
-
 
 
 1. Version
@@ -106,7 +90,7 @@ First stop [HackTricks](https://book.hacktricks.xyz/network-services-pentesting/
 
 ![](exactWordpressVerson.png)
 
-
+Get WordPress Version
 ```bash
 curl https://$victim.tld/$wordpress | grep 'content="WordPress'
 ```
@@ -137,14 +121,10 @@ For the spoiler as a bypassing the insult of wasting your time reading this and 
 
 #### Intended Path to avoid waste even more time on these *special* boxes
 
-After the agonising over 24 hour plus allegorical prometheus's feculent vomiting the stones of barbed-wired wrapped molten glass of the [[Relevant-WTFisTHIS]] machine and the unintended pathes, intended paths of Internal. I decided at the SQL injection being from 2022 and this box being 2020 based and prior to view the official writeup for the intended path to atleast have more streamlined painful couple of hours trying to get the unintended way of get the admin and or the wp-admin users password through the SQL injection. Unfortunately I cannot do the *official* way or follow what the official walkthrough, because reasons. 
+After the agonising over 24 hour plus allegorical prometheus's feculent vomiting the stones of barbed-wired wrapped molten glass of the [[Relevant-WTFisTHIS]] machine and the unintended paths, intended paths of Internal. I decided at the SQL injection being from 2022 and this box being 2020 based and prior to view the official Writeup for the intended path to at least have more streamlined painful couple of hours trying to get the unintended way of get the admin and or the wp-admin (mistake: admin) users password through the SQL injection. Unfortunately I cannot do the *official* way or follow what the official walkthrough, because reasons. 
 ![](gatekeepage.png)
 
-I understand to some this is the ultimate opportunity for me to shart another away 24-48 hours. Learning nothing, gaining nothing and doing very, very little that is relevant to the modern world. There are better networks and boxes for the "Pre-engagement Briefing". 
-
-At least given my lack capability 
-
-Please tell me the real world were this makes any sense both to implement as security and CTF. 
+I understand to some this is the ultimate opportunity for me to shart another away 24-48 hours. Learning nothing, gaining nothing and doing very, very little that is relevant to the modern world. There are better networks and boxes for the "Pre-engagement Briefing". At least given my lack capability. Please tell me the real world were this makes any sense both to implement as security and CTF. 
 ![](nmapudpforthewhy.png)
 
 The scars on my brain of doing the [[Relevant-WTFisTHIS]] machine still hurt. Once I actually have some actually credibility of any kind, as TheMayor actually does this for a Job I think in addition to whatever I contribute I will use AI to scrap all these to figure out for other whether these old machine actually were worth doing for others:
@@ -154,21 +134,25 @@ The preemptive counter argument here is: Video Game Industry has had shovelware,
 
 Quality control exists to actually make us better as why use a platform if the curation is so bad that there is not a warning about this. A discord channel and community doing your work is not a solution. This the exact reason the same idiots are worrying that AI will take their security jobs. Commitment. 
 
-WHY WOULD YOU MAKE ANOTHER ADMINISTRATIVE USER IN WORDPRESS IT GOES AGAINST THE TIERING OF ADMINISTRATIVE ACCOUNTS ITS MADNESS.
+Why would I not search engine dork something like this before writing it down...
+
+This was me being WRONG:
+> WHY WOULD YOU MAKE ANOTHER ADMINISTRATIVE USER IN WORDPRESS IT GOES AGAINST THE TIERING OF ADMINISTRATIVE ACCOUNTS ITS MADNESS.
+
 https://infosecwriteups.com/tryhackme-internal-writeup-480ce471efdd. 
 ![](thankyou.png)
-How is this hard.
-
-After I ranted at myself at the State of the West, Cultures, Conflicts of the day, Corporations failing even while being successful. I decided it best to parallel the issues with how I learning and changing. I think this the real systemic problem for world and I. I am reminded of may past cynicism and knowing how things would play out in the world, the futility of knowing the people(s) chose this with all the technology and capability and inventive to do so. And yet here I am humiliating myself to reach a more meta point about the direction of me just trying to make a better life for myself than care about the world. Its not problem of new or old strategy its just a character-of-how-we-get-there problem. We need unified truth on the best path, its costs and its rewards. 
+How is this hard? [[Relevant-WTFisTHIS]] was hard for weird reasons. Due diligence...and due to the experience of both of these boxes - I like I how I am got recommended videos and adverts that may read and the assume I am the issue. I spent more time trying these the the developer that programmed that algorithm did to push corporate surveillance  for market dominance did on this machine. My ego is very small, my hope being that this make an affect to terrible recommendations. So after I had ranted at myself at the State of the West, Cultures, Conflicts of the day, Corporations failing even while being successful. I decided it best to parallel the issues with how I learnt and changed in contrast to the rest of the world. I know this the real systemic problem for world and I. I am reminded of many my past cynical perspectives, views and knowing how things would play out in the world, the futility of knowing the people(s) chose *this* with all the technology and capability and inventiveness to do so to ultimately fail to dominate in this world. I put it down to the greed of the power hungry to de-optimise the entire system, all our generation best decision maker are playing or larping around in difficult Video Games. The irony is hilariously sad state of humanity and its systems the UI is being made bad by the nepotistic decadence inherent in any system with humans not trying to comply with neutrality for algorithmic optimisation. And yet here I am humiliating myself to reach a more meta point about the direction of me (while still trying to retain the small ego part) just trying to make a better life for myself than care about the world, humanity or imperfect systems. Its not problem of new or old strategy its just a character-of-how-we-get-there problem. We need a unified truth on the best path, its costs and its rewards. 
+- Neutrality as collective compliance for algorithmic optimisations: what is best for the system not for my family or friends or person that SE-ed; the system should be inherently valuable to be investing time in. Governments protect and grow population to survive; corrupt governments are inefficient except in being more of a particular type of accepted corruption.  
 - If I monopolise my time without growing and cultivating novelty, I am not adapting like nature does
 - If dogmatically pursue self enforced predestination by perspective without surrendering to change I waste time 
 - If I am honest and use proofs instead opinion and guise then at the least the environment offence kneels to my acquired might through neural work. 
 - If do not pay the price or sacrifice to adapt I will never endure
 - If my interest is in the short term the inflation in the long term is greater - cheating yourself 
+- Nietzsche's Decadence start at the human level of self-control, but is manifest by the systems hierarchically dominion greater than the individual.   
 
-Sometimes I amazing myself at my own patience. The laws of nature and the universe are so evident yet it ourselves not the technology that is the issue.
+Sometimes I amazing myself at my own patience. The laws of nature and the universe are so evident yet its ourselves and our systems not the technology that is the issue. Except with something like LLM were we just trust the AI, but I am most certain is novel.
 
-So to return to the point. The reason why I do this is the same reason that the rich want to go space, it is a way to find new technology that works this is just cheaper and good for the brain. I written down multiple times *"well I focused on the idea of SQL because the 3 other times trying this I came to this conclusion and that seemed to line up with the versioning, difficulty of box and I should learn more SQL because failing to do this is frustrating and I do not have mentors or a job doing this...."* 
+So to return to the point writing more of CTF related content. The reason why I do this is the same reason that the rich want to go space, it is a way to find new technology that works this is just cheaper and good for the brain. I written down multiple times *"well I focused on the idea of SQL because the 3 other times trying this I came to this conclusion and that seemed to line up with the versioning, difficulty of box and I should learn more SQL because failing to do this is frustrating and I do not have mentors or a job doing this...."* 
 
 Piece and puzzles and the differences on realism or difficulty or puzzle-y type of boxes is ... pain when in this situation. It is so bad I am starting to talk other people activities... This has left me with a lot of life and wtftodowiththeworld-kind of questions.
 
@@ -178,17 +162,17 @@ admin : my2boys
 ```
 
 
-Queue the Angry Scarlet Johanssen walk from Ghost in the Shell... I will atleast feel as good web shelling this machine for the probably easy PrivEsc like [Aramaki Shoot out](https://www.youtube.com/watch?v=TRS4tYeeouA) and turn the moral upside-down on the hourglass of hacking-moral. One day I will get good at this...
+Queue the angry Scarlet Johanssen walk from Ghost in the Shell... I will at least feel as good web shelling this machine for the probably easy PrivEsc like [Aramaki Shoot out](https://www.youtube.com/watch?v=TRS4tYeeouA) and turn the moral upside-down on the hourglass of hacking-moral. How wrong I would end up being. One day I will get good at this... but if I need to do more angry Scarlet Johanssen walking... I find the walk very funny for uncanny-valley-human-augmented-killing-machine-as-a-stompy-child reasons...
 ![](wptooktheoffense.png)
 Well....another restart later after I did not read the email is correct WHAT
 ![](thmcomplianceasaprotest.png)
 
-At this point I the hilarious absurd timelords-dodging-the-genocide-the-universe-inquiry final Dr Who episode ever in 6969 come to mind. At email is correct nonsense. Level of triggering and upsetting for all involved. Second restart
+At this point I the hilarious absurd timelords-dodging-the-genocide-the-universe-inquiry final Dr Who episode ever in 6969 come to mind. At email is correct nonsense. Level of triggering and upsetting for all involved. Second restart:
 ![](bypassthis.png)
 
 Well nothing is working for me these days, because the same old external issues, but regardless it is all worth it.
 ![](strengthofEMAILS.png)
-It is times like these were I am reminded of the corrupting influence of the dragon of mars  in 40k. I will finish my echoesofthemahcinegod rust convert a play a base64 version of Children of the Omnissiah. My hope is to after I final figure how to actually write rust to try huffman encoding it.
+It is times like these were I am reminded of the corrupting influence of the dragon of mars in 40k. I will finish my echoesofthemahcinegod rust convert a play a base64 version of Children of the Omnissiah. My hope is to after I final figure how to actually write rust to try huffman encoding it.
 ![](putinlogsintowp.png)
 
 Another reminder to go passwordless by 2025!
@@ -199,7 +183,7 @@ All data at rest or in-transit is just like those cool Japanese restaurants with
 ```
 william:arnold147
 ```
-
+These credentials were not useful as far as I can make out.
 
 [Zip Bomb](https://en.wikipedia.org/wiki/Zip_bomb) - for the later BR on Windows Defender for one of these old machine.
 ![](showingmyage.png)
@@ -270,7 +254,6 @@ https://en.wikipedia.org/wiki/Jenkins_(software)
 ```
 admin : admin
 jenkins : jenkins
-
 ```
 
 While I ran through proxychains nulcei and nmap, linpeas as aubreanna
@@ -352,11 +335,52 @@ Funny GOT hacking related house mottos
 - My knee-high socks as large as rc files
 ## Beyond Root
 
-Deduction, ... 
+Deductive Reasoning - [Wikipedia](https://en.wikipedia.org/wiki/Deductive_reasoning) *"is the process of drawing valid [inferences](https://en.wikipedia.org/wiki/Inference "Inference"). An inference is [valid](https://en.wikipedia.org/wiki/Validity_(logic) "Validity (logic)") if its conclusion follows logically from its [premises](https://en.wikipedia.org/wiki/Premise "Premise"), meaning that it is impossible for the premises to be true and the conclusion to be false."*; 
+```c
+type Premise struct {
+	[]char subPremises
+}
+
+int inference = -1;
+int lenSP = sizeof(subPremises)-1
+int allSubpremises = 0;
+bool test = false;
+for ; i <= lenSP; i++ { 
+	test = isSubpremiseTrue();
+	if test {
+		allSubpremises++;
+		test = false;
+	} 
+}
+
+if allSubpremises != lenSP {
+	// Inference is False
+} else {
+	// Inference is True
+}
+```
+
+
+Abductive Reasoning - [Wikipedia](https://en.wikipedia.org/wiki/Abductive_reasoning) *"is a form of logical inference that seeks the simplest and most likely conclusion from a set of observations. It was formulated and advanced by American philosopher and logician Charles Sanders Peirce beginning in the latter half of the 19th century."*
+```c
+type Conclusion struct {
+	int simplicity 
+	float possiblity 
+} 
+// for x,y,z being initialised Conclusions and assigned in shorthand, not proper C
+allConclusions = []*Conclusion{x,y,z};
+searchForMostSinmplyAndMostLikely(allConclusions);
+```
+
+
+Inductive Reasoning - [Wikipedia](https://en.wikipedia.org/wiki/Inductive_reasoning) - **Not** *"[mathematical induction](https://en.wikipedia.org/wiki/Mathematical_induction "Mathematical induction"), which is actually a form of deductive* reasoning and is actually *"is any of various [methods of reasoning](https://en.wikipedia.org/wiki/Method_of_reasoning "Method of reasoning") in which broad generalizations or [principles](https://en.wikipedia.org/wiki/Principle "Principle") are derived from a body of observations.[](https://en.wikipedia.org/wiki/Inductive_reasoning#cite_note-1)"*
+```c
+generalizations, principles = inductiveReasoning(observations); 
+```
 
 #### Unintended Web access path
 
-Unintended SQLi is possible and I want do to retain Writeup status of this box I would really like to do one of the SQL injections myself and Rule of Acquisation number 17 is a contract is a contract is a contract - but ionly between ferengi. And hacker without flags is no hacker at all. Quality of the flags and should be subject to the same scrutiny written above, terms and your attention is mine on the condition that I even succeed. Lmao. Added The Rules of Hackquisition as a Beyond Root Todo.
+Unintended SQLi is possible and I want do to retain Writeup status of this box I would really like to do one of the SQL injections myself and Rule of Acquisition number 17 is a contract is a contract is a contract - but only between ferengi. And hacker without flags is no hacker at all. Quality of the flags and should be subject to the same scrutiny written above, terms and your attention is mine on the condition that I even succeed. Lmao. Added The Rules of Hackquisition as a Beyond Root Todo.
 
 ```bash
 # Does require another sed command to remove the ` ^[[31m^[[0m ` unless you copy from post-stdout  
@@ -370,12 +394,6 @@ Dork  `-Internal` each of these
 	 CVE-2022-21661
 
 https://www.exploit-db.com/exploits/50663
-
-
-```sql
-where database == wordpress; select * from wp-users
-```
-
 
 - Find an action=FUZZ
 
@@ -391,3 +409,46 @@ where database == wordpress; select * from wp-users
 
  > Title: WP < 6.0.3 - SQLi in WP_Date_Query
     Fixed in: 5.4.12
+
+
+
+https://developer.wordpress.org/reference/classes/wp_query/
+```php
+// wp-includes/class-wp-query.php
+<?php
+// The Query.
+$the_query = new WP_Query( $args );
+
+// The Loop.
+if ( $the_query->have_posts() ) {
+	echo '<ul>';
+	while ( $the_query->have_posts() ) {
+		$the_query->the_post();
+		echo '<li>' . esc_html( get_the_title() ) . '</li>';
+	}
+	echo '</ul>';
+} else {
+	esc_html_e( 'Sorry, no posts matched your criteria.' );
+}
+// Restore original Post Data.
+wp_reset_postdata();
+// ... no closing on the page `?`+`>`
+```
+Searches for posts 
+
+https://developer.wordpress.org/reference/classes/wp_meta_query/
+![](actuallyhassqlrelatedinformationinthedocumentation.png)
+
+*[WP_Meta_Query](https://developer.wordpress.org/reference/classes/wp_meta_query/) is a class defined in wp-includes/meta.php that generates the necessary SQL for meta-related queries. It was introduced in Version 3.2.0 and greatly improved the possibility to query posts by custom fields. In the WP core, it’s used in the [WP_Query](https://developer.wordpress.org/reference/classes/wp_query/ "Class Reference/WP Query") and [WP_User_Query](https://developer.wordpress.org/reference/classes/wp_user_query/ "Class Reference/WP User Query") classes, and since Version 3.5 in the [WP_Comment_Query](https://developer.wordpress.org/reference/classes/wp_comment_query/ "Class Reference/WP Comment Query") class. Unless you’re writing a custom SQL query, you should look in the *Custom Field Parameters* section for the corresponding class.*
+
+1. Which parameter is used to pass the input to the `WP_Meta_Query` method?
+2. Guess the SQL syntax game
+3. Create an error
+4. Wordpress database has a `wp_users` table to read
+
+
+```sql
+select * from wp_users;
+/* Till we see admin $shahash *\
+```
+

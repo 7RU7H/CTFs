@@ -30,24 +30,12 @@ root:tr0ub13guM!@#123
 #### Mindmap-per Service
 
 - OS detect, run generate noting for `nmap`
-
- -
--
--
--
--
--
--
-- 
--
--
--
+ - Writeup writing over noting...
 - Does not work on this box:
 	- https://www.exploit-db.com/exploits/51217
- 
+-  scanned the 172.17.0.2 IP, is it a docker container looks like docker container address. 
 
 
 #### Todo List
 
 
-- scan the 172.17.0.2 IP, is it a docker container looks like docker container address.
