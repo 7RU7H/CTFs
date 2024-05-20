@@ -1,5 +1,8 @@
 # Beyond Root Todo
 
+
+https://www.youtube.com/watch?v=QRRHA_5hS2c QUIC Decrypt
+
 https://linux.die.net/man/1/busybox oneliner alternative stagers
 ```
 
