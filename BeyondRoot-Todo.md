@@ -1,6 +1,15 @@
 # Beyond Root Todo
 
+https://linux.die.net/man/1/busybox oneliner alternative stagers
+```
+
+```
+
+
+
 Rewrite the entire Rules of flag Acquisition - https://memory-alpha.fandom.com/wiki/Rules_of_Acquisition to be hacking centric HACKING IS ETERNAL
+System Administration is also Eternal so, Rules of System Administration
+
 
 Tradecraft-To-BrainCraft in forensics Challenges; and find one more 
 
