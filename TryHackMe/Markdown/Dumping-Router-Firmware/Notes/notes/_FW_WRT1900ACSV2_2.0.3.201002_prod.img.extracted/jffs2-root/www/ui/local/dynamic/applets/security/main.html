@@ -1,0 +1,533 @@
+<link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/cache/applets/security/css/security.css" />
+
+<article id="security-applet">
+    <header>
+        <h1>{{dynamic-applets-security.549cb963}}</h1>
+        <h4>{{dynamic-applets-security.b04db74f}}</h4>
+        <div class="close-button"></div>
+    </header>
+    <section class="tab-section">
+        <ul class="tabs">
+            <li data-id="firewall"><span>{{dynamic-applets-security.ce715cd2}}</span></li>
+            <li data-id="dmz"><span>{{dynamic-applets-security.d0fbed2c}}</span></li>
+            <li data-id="app-and-gaming"><span>{{dynamic-applets-security.e8ed1455}}</span></li>
+            <div class="tab-filler"></div>
+        </ul>
+        <div class="tab-content form" id="firewall">
+            <div class="solid" style="margin-top:0px">
+                <fieldset class="left tight">
+                    <legend>{{dynamic-applets-security.ce715cd2}}</legend>
+                    <div class="row">
+                        <label>{{dynamic-applets-security.b459a3e7}}</label>
+                        <span class="check-item">
+                            <input id="firewall-ipv4-enable" type="checkbox" name="firewall.isIPv4FirewallEnabled"/>
+                            <label for="firewall-ipv4-enable">{{dynamic-applets-security.3d896dd1}}</label>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <label>{{dynamic-applets-security.6a6d2c5c}}</label>
+                        <span class="check-item">
+                            <input id="firewall-ipv6-enable" type="checkbox" name="firewall.isIPv6FirewallEnabled"/>
+                            <label for="firewall-ipv6-enable">{{dynamic-applets-security.3d896dd1}}</label>
+                        </span>
+                    </div>
+                </fieldset>
+                <fieldset class="right two-col">
+                    <legend>{{dynamic-applets-security.587b87e6}}</legend>
+                    <div class="block-row">
+                        <div class="check-item">
+                            <div>
+                                <input id="blockAnonymous" name="firewall.blockAnonymousRequests" type="checkbox" />
+                            </div>
+                            <div>
+                                <label for="blockAnonymous">{{dynamic-applets-security.a5dd7ec7}}</label>
+                            </div>
+                        </div>
+                        <div class="check-item">
+                            <div>
+                                <input id="blockMulticast"  name="firewall.blockMulticast" type="checkbox" />
+                            </div>
+                            <div>
+                                <label for="blockMulticast">{{dynamic-applets-security.93703d17}}</label>
+                            </div>
+                        </div>
+                          <div class="check-item">
+                            <div>
+                                 <input id="blockNASRedirect" type="checkbox" name="firewall.blockNATRedirection" />
+                            </div>
+                            <div>
+                                 <label for="blockNASRedirect">{{dynamic-applets-security.1eadec9b}}</label>
+                            </div>
+                        </div>
+
+                         <div class="check-item">
+                            <div>
+                                <input id="blockIDENT" type="checkbox" name="firewall.blockIDENT" />
+                            </div>
+                            <div>
+                                <label for="blockIDENT">{{dynamic-applets-security.381d0ea9}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="left tight">
+                    <legend>{{dynamic-applets-security.37d20c43}}</legend>
+                    <div class="row">
+                        <label>{{dynamic-applets-security.9975c1b9}}</label>
+                        <span class="check-item">
+                            <input id="firewall-ipsec-enable" type="checkbox" name="firewall.enableIPSec"/>
+                            <label for="firewall-ipsec-enable">{{dynamic-applets-security.3d896dd1}}</label>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <label>{{dynamic-applets-security.45489cff}}</label>
+                        <span class="check-item">
+                            <input id="firewall-pptp-enable" type="checkbox" name="firewall.enablePPTP"/>
+                            <label for="firewall-pptp-enable">{{dynamic-applets-security.3d896dd1}}</label>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <label>{{dynamic-applets-security.8d8f5c37}}</label>
+                        <span class="check-item">
+                            <input id="firewall-l2tp-enable" type="checkbox" name="firewall.enableL2TP"/>
+                            <label for="firewall-l2tp-enable">{{dynamic-applets-security.3d896dd1}}</label>
+                        </span>
+                    </div>
+                </fieldset>
+            </div>
+            <fieldset class="ipv6-portrange">
+                <legend>{{dynamic-applets-security.bba1b785}}</legend>
+                <div class="inline-edit">
+                    <table id="ipv6firewallrules-list" class="grid word-break">
+                        <tbody>
+                            <tr>
+                                <th>{{dynamic-applets-security.2dc9ef06}}</th>
+                                <th>{{dynamic-applets-security.27a6815d}}</th>
+                                <th>{{dynamic-applets-security.3acc20e5}}</th>
+                                <th>{{dynamic-applets-security.ac828e63}}</th>
+                                <th>{{dynamic-applets-security.3d896dd1}}</th>
+                                <th></th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-buttons">
+                    <button id="add-ipv6firewall">{{dynamic-applets-security.39028391}}</button>
+                </div>
+            </fieldset>
+        </div>
+        <div class="tab-content form" id="dmz">
+            <div class="container" id="dmz-isEnabled">
+                <p class="legend">{{dynamic-applets-security.d0fbed2c}}</p>
+                <p><input id="dmz-enable" type="checkbox" name="dmz.isDMZEnabled" class="ui-checkbox switch"/></p>
+            </div>
+            <div class="left">
+                <p class="legend">{{dynamic-applets-security.d72193bd}}</p>
+                <fieldset class="highlighted">
+                    <div class="block-row">
+                        <div class="check-item">
+                            <div>
+                                <input type="radio" name="dmz.source" id="sourceRestrictionAny" />
+                            </div>
+                            <div>
+                                <label for="sourceRestrictionAny">{{dynamic-applets-security.aa359e3f}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-row">
+                        <div class="check-item">
+                            <div>
+                                <input type="radio" name="dmz.source" id="sourceRestrictionSpecific" />
+                            </div>
+                            <div id="dmz-specified-range">
+                                <label for="sourceRestrictionSpecific">{{dynamic-applets-security.b274a1fc}}</label>
+                                <div class="ip-input cell" name="dmz.sourceRestriction.firstIPAddress" dir="ltr">
+                                    <input type="text"/>.<input type="text"/>.<input type="text"/>.<input type="text"/>
+                                </div>
+                                <div class="to">
+                                    {{dynamic-applets-security.b32c2c09}}
+                                </div>
+                                <div class="ip-input cell" name="dmz.sourceRestriction.lastIPAddress" dir="ltr">
+                                    <input type="text"/>.<input type="text"/>.<input type="text"/>.<input type="text"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="right">
+                <p class="legend">{{dynamic-applets-security.53821267}}</p>
+                <fieldset class="highlighted">
+                    <div class="block-row">
+                        <div class="check-item">
+                            <div>
+                                <input type="radio" name="dmz.destination" id="destinationIPAddress" />
+                            </div>
+                            <div>
+                                <label for="destinationIPAddress">{{dynamic-applets-security.b5032f39}}</label>
+                                <div class="ip-input" name="dmz.destinationIPAddress" id="dmz-destinationIPAddress" dir="ltr">
+                                    <input type="text" maxlength="3">.
+                                    <input type="text" maxlength="3">.
+                                    <input type="text" maxlength="3">.
+                                    <input type="text" maxlength="3">
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block-row">
+                        <div class="check-item">
+                            <div>
+                                <input type="radio" name="dmz.destination" id="destinationMACAddress" />
+                            </div>
+                            <div>
+                                <label for="destinationMACAddress">{{dynamic-applets-security.2a0f165c}}</label>
+                                <div class="mac-input" name="dmz.destinationMACAddress" id="destination-mac-address" dir="ltr">
+                                    <input type="text" maxlength="2"/>:<input type="text" maxlength="2"/>:<input type="text" maxlength="2"/>:<input type="text" maxlength="2"/>:<input type="text" maxlength="2"/>:<input type="text" maxlength="2"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="clear-both"><button id="dmz-viewdhcpclienttable">{{dynamic-applets-security.35018900}}</button></div>
+            </div>
+        </div>
+        <div class="tab-content sub-tab-section" id="app-and-gaming">
+            <ul class="sub-tabs">
+                <li><span>{{dynamic-applets-security.35d69968}}</span></li>
+                <li><span>{{dynamic-applets-security.ae2e6375}}</span></li>
+                <li><span>{{dynamic-applets-security.c0c1a240}}</span></li>
+                <li><span>{{dynamic-applets-security.5da75756}}</span></li>
+            </ul>
+            <div class="sub-tab-content form" id="ddns">
+                <fieldset id="ddnsSettings">
+                    <legend>{{dynamic-applets-security.6a02ac6d}}
+                        <select id="ddnsProvider" name="ddnsProvider">
+                        </select>
+                    </legend>
+                    <div id="ddns-None">
+                    </div>
+                    <div id="ddns-DynDNS">
+                        <fieldset id="dyndns" class="left">
+                            <div class="row">
+                                <label for="dynDNSSettings.username">{{dynamic-applets-security.0fb45d5c}}</label>
+                                <div class="cell">
+                                    <input type="text" id="dynDNSSettings.username" name="dynDNSSettings.username" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="dynDNSSettings.password">{{dynamic-applets-security.30c623e8}}</label>
+                                <div class="cell">
+                                    <input type="password" id="dynDNSSettings.password" name="dynDNSSettings.password" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="dynDNSSettings.hostName">{{dynamic-applets-security.4a18970f}}</label>
+                                <div class="cell">
+                                    <input type="text" id="dynDNSSettings.hostName" name="dynDNSSettings.hostName" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="dynDNSSettings.mode">{{dynamic-applets-security.b227290c}}</label>
+                                <div class="cell">
+                                     <select id="dynDNSSettings.mode" name="dynDNSSettings.mode">
+                                        <option value="Dynamic">{{dynamic-applets-security.64304af7}}</option>
+                                        <option value="Static">{{dynamic-applets-security.7e1afe63}}</option>
+                                        <option value="Custom">{{dynamic-applets-security.e0617007}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="dynDNSSettings.mailExchangeSettings.hostName">{{dynamic-applets-security.de39474c}}</label> <!-- confirm field? -->
+                                <div class="cell">
+                                    <input type="text" id="dynDNSSettings.mailExchangeSettings.hostName" name="dynDNSSettings.mailExchangeSettings.hostName" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label>{{dynamic-applets-security.a95286e3}}</label>
+                                <span class="check-item">
+                                    <input type="checkbox" id="dynDNSSettings.mailExchangeSettings.isBackup" name="dynDNSSettings.mailExchangeSettings.isBackup"/>
+                                    <label for="dynDNSSettings.mailExchangeSettings.isBackup">{{dynamic-applets-security.3d896dd1}}</label>
+                                </span>
+                            </div>
+                            <div class="row">
+                                <label>{{dynamic-applets-security.dcfe26cd}}</label>
+                                <span class="check-item">
+                                    <input type="checkbox" id="dynDNSSettings.isWildcardEnabled" name="dynDNSSettings.isWildcardEnabled"/>
+                                    <label for="dynDNSSettings.isWildcardEnabled">{{dynamic-applets-security.3d896dd1}}</label>
+                                </span>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div id="ddns-No-IP">
+                        <fieldset class="left">
+                            <div class="row">
+                                <label for="noipSettings.username">{{dynamic-applets-security.b7671e0c}}</label>
+                                <div class="cell">
+                                    <input type="text" id="noipSettings.username" name="noipSettings.username" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="noipSettings.password">{{dynamic-applets-security.bcb2991a}}</label>
+                                <div class="cell">
+                                    <input type="text" id="noipSettings.password" name="noipSettings.password" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="noipSettings.hostName">{{dynamic-applets-security.4a18970f}}</label>
+                                <div class="cell">
+                                    <input type="text" id="noipSettings.hostName" name="noipSettings.hostName" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div id="ddns-TZO">
+                        <fieldset class="left">
+                            <div class="row">
+                                <label for="tzoSettings.username">{{dynamic-applets-security.9fd187ab}}</label>
+                                <div class="cell">
+                                    <input type="text" id="tzoSettings.username" name="tzoSettings.username" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="tzoSettings.password">{{dynamic-applets-security.388142b0}}</label>
+                                <div class="cell">
+                                    <input type="text" id="tzoSettings.password" name="tzoSettings.password" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="tzoSettings.hostName">{{dynamic-applets-security.cea8aa76}}</label>
+                                <div class="cell">
+                                     <input type="text" id="tzoSettings.hostName" name="tzoSettings.hostName" />
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <fieldset class="right">
+                        <div id="ddns-common">
+                            <div class="row">
+                                <label for="wanConnection.ipAddress">{{dynamic-applets-security.80e73dd2}}</label>
+                                <label id="wanConnection.ipAddress" name="wanConnection.ipAddress"></label>
+                            </div>
+                            <div class="row">
+                                <label for="ddnsstatus.status">{{dynamic-applets-security.7a04e592}}</label>
+                                <label id="ddnsstatus.status" name="status"></label>
+                            </div>
+                            <div class="row">
+                                <span>
+                                    <button id="ddns-update">{{dynamic-applets-security.9cd2d4a0}}</button>
+                                </span>
+                            </div>
+                        </div>
+                    </fieldset>
+                </fieldset>
+            </div>
+            <div class="sub-tab-content form" id="singleportforwarding">
+                <fieldset>
+                    <div class="inline-edit">
+                        <table id="singleportforwarding-list" class="grid word-break">
+                            <tbody>
+                                <tr>
+                                    <th>{{dynamic-applets-security.d62ffba5}}</th>
+                                    <th>{{dynamic-applets-security.cc3f7c0d}}</th>
+                                    <th>{{dynamic-applets-security.425248cf}}</th>
+                                    <th>{{dynamic-applets-security.27a6815d}}</th>
+                                    <th>{{dynamic-applets-security.9d34c510}}</th>
+                                    <th>{{dynamic-applets-security.3d896dd1}}</th>
+                                    <th></th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="panel-buttons">
+                        <button id="add-singleportforwarding">{{dynamic-applets-security.0969d7ba}}</button>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="sub-tab-content form" id="portrangeforwarding">
+                <fieldset>
+                    <div class="inline-edit">
+                        <table id="portrangeforwarding-list" class="grid word-break">
+                            <tbody>
+                                <tr>
+                                    <th>{{dynamic-applets-security.d62ffba5}}</th>
+                                    <th>{{dynamic-applets-security.29076935}}</th>
+                                    <th>{{dynamic-applets-security.27a6815d}}</th>
+                                    <th>{{dynamic-applets-security.9d34c510}}</th>
+                                    <th>{{dynamic-applets-security.3d896dd1}}</th>
+                                    <th></th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="panel-buttons">
+                        <button id="add-portrangeforwarding">{{dynamic-applets-security.c6771aba}}</button>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="sub-tab-content form" id="portrangetriggering">
+                <fieldset>
+                    <div class="inline-edit">
+                        <table id="portrangetriggering-list" class="grid word-break">
+                            <tbody>
+                                <tr>
+                                    <th>{{dynamic-applets-security.9277a024}}</th>
+                                    <th>{{dynamic-applets-security.8ba413e8}}</th>
+                                    <th>{{dynamic-applets-security.24165a30}}</th>
+                                    <th>{{dynamic-applets-security.3d896dd1}}</th>
+                                    <th></th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="panel-buttons">
+                        <button id="add-portrangetriggering">{{dynamic-applets-security.0d646a99}}</button>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <button class="apply">{{dynamic-applets-security.fce86bf7}}</button>
+        <button class="cancel">{{dynamic-applets-security.8f475444}}</button>
+        <button class="submit">{{dynamic-applets-security.e9b662b3}}</button>
+    </footer>
+
+    <div class="dialog-container" style="display: none;">
+        <div id="dmz-dhcpclienttable" class="inline-edit">
+            <div class="dialog-header">
+                <label>{{dynamic-applets-security.56ec2b2b}}</label>
+                <div class="close-button"></div>
+            </div>
+            <div class="dialog-content form">
+                <fieldset>
+                    <legend>{{dynamic-applets-security.117e604f}}</legend>
+                    <table id="dmz-clienttable">
+                        <thead>
+                            <tr>
+                                <th class="col-name">{{dynamic-applets-security.d8ca3c54}}</th>
+                                <th class="col-interface">{{dynamic-applets-security.662686a9}}</th>
+                                <th class="col-ip">{{dynamic-applets-security.76d751ed}}</th>
+                                <th class="col-mac">{{dynamic-applets-security.b0725057}}</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </fieldset>
+            </div>
+            <div class="dialog-buttons">
+                <button class="cancel">{{dynamic-applets-security.7fdeae92}}</button>
+                <button class="refresh">{{dynamic-applets-security.7edbb162}}</button>
+           </div>
+        </div>
+    </div>
+
+    <div id="templateClientRow" style="display: none;">
+        <table>
+            <tbody>
+                <tr>
+                    <td class="col-name"><span name="friendlyName"></span></td>
+                    <td name="wireless"></td>
+                    <td name="ipAddress" dir="ltr"></td>
+                    <td name="macAddress" dir="ltr"></td>
+                    <td>
+                        <button class="submit" name="select"></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="immutableTemplateIPv6FirewallRuleRow" style="display: none;">
+        <table>
+            <tbody>
+                <tr>
+                    <td><span class="spStatic description"><label name="description" /></span><span class="spEdit"><input class="rule-description" type="text" name="description" maxlength="{maxDescriptionLength}" /></span></td>
+                    <td><span class="spStatic protocol"><label name="protocolLabel" /></span><span class="spEdit"><select name="protocol" class="ipv6firewall-protocol"><option value="TCP">{{dynamic-applets-security.c3c59f75}}</option><option value="UDP">{{dynamic-applets-security.8d41b840}}</option><option value="Both">{{dynamic-applets-security.30c9cb12}}</option></select></span></td>
+                    <td><span class="spStatic ipv6Address"><label name="ipv6Address" /></span><span class="spEdit"><input type="text" name="ipv6Address" class="ipv6firewall-ipv6Address"/></span></td>
+                    <td><span class="spStatic portRange"><label name="firstPort" />&nbsp;- <label name="lastPort"/></span><span class="spEdit"><input type="text" name="firstPort" class="ipv6firewall-firstPort" />-<input type="text" name="lastPort" class="ipv6firewall-lastPort" /></span></td>
+                    <td><span class="spStatic isEnabled"><label name="isEnabledLabel" /></span><span class="spEdit"><input type="checkbox" class="rule-enabled" checked="checked" name="isEnabled" /></span></td>
+                    <td>
+                        <span class="spStatic">
+                            <a class="edit">{{dynamic-applets-security.4a370bdd}}</a>/<br/>
+                            <a class="delete">{{dynamic-applets-security.3618bd6a}}</a>
+                        </span>
+                        <span class="spEdit">
+                            <a class="save">{{dynamic-applets-security.723ace2b}}</a>/<br/>
+                            <a class="cancel">{{dynamic-applets-security.8f475444}}</a>
+                        </span>
+                   </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="immutableTemplateSinglePortForwardingRow" style="display: none;">
+        <table>
+            <tbody>
+                <tr>
+                    <td><span class="spStatic description"><label name="description" /></span><span class="spEdit"><input type="text" name="description" maxlength="{maxDescriptionLength}" /></span></td>
+                    <td><span class="spStatic externalPort"><label name="externalPort" /></span><span class="spEdit"><input type="text" name="externalPort" class="forwarding-externalPort" /></span></td>
+                    <td><span class="spStatic internalPort"><label name="internalPort" /></span><span class="spEdit"><input type="text" name="internalPort" class="forwarding-internalPort" /></span></td>
+                    <td><span class="spStatic protocol"><label name="protocolLabel" /></span><span class="spEdit"><select name="protocol"><option value="TCP">{{dynamic-applets-security.c3c59f75}}</option><option value="UDP">{{dynamic-applets-security.8d41b840}}</option><option value="Both">{{dynamic-applets-security.30c9cb12}}</option></select></span></td>
+                    <td><span class="spStatic internalServerIPAddress"><div class="ip-input short-labels" name="internalServerIPAddress" dir="ltr"><label></label>.<label></label>.<label></label>.<label></label></div></span><span class="spEdit"><div class="ip-input short-labels" name="internalServerIPAddress" dir="ltr"><input type="text" maxlength="3">.<input type="text" maxlength="3">.<input type="text" maxlength="3">.<input type="text" maxlength="3"></div></span></td>
+                    <td><span class="spStatic isEnabled"><label name="isEnabledLabel" /></span><span class="spEdit"><input type="checkbox" class="rule-enabled" checked="checked" name="isEnabled" /></span></td>
+                    <td>
+                        <span class="spStatic">
+                            <a class="edit">{{dynamic-applets-security.4a370bdd}}</a>/<br/>
+                            <a class="delete">{{dynamic-applets-security.3618bd6a}}</a>
+                        </span>
+                        <span class="spEdit">
+                            <a class="save">{{dynamic-applets-security.723ace2b}}</a>/<br/>
+                            <a class="cancel">{{dynamic-applets-security.8f475444}}</a>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="immutableTemplatePortRangeForwardingRow" style="display: none;">
+        <table>
+            <tbody>
+                <tr>
+                    <td><span class="spStatic description"><label name="description" /></span><span class="spEdit"><input type="text" name="description" maxlength="{maxDescriptionLength}" /></span></td>
+                    <td><span class="spStatic externalPort"><label name="firstExternalPort" />&nbsp;- <label name="lastExternalPort"/></span><span class="spEdit"><input type="text" name="firstExternalPort" class="forwarding-firstExternalPort" /> - <input type="text" name="lastExternalPort" class="forwarding-lastExternalPort" /></span></td>
+                    <td><span class="spStatic protocol"><label name="protocolLabel" /></span><span class="spEdit"><select name="protocol"><option value="TCP">{{dynamic-applets-security.c3c59f75}}</option><option value="UDP">{{dynamic-applets-security.8d41b840}}</option><option value="Both">{{dynamic-applets-security.30c9cb12}}</option></select></span></td><td><span class="spStatic internalServerIPAddress"><div class="ip-input short-labels" name="internalServerIPAddress" dir="ltr"><label></label>.<label></label>.<label></label>.<label></label></div></span><span class="spEdit"><div class="ip-input short-labels" name="internalServerIPAddress" dir="ltr"><input type="text" maxlength="3">.<input type="text" maxlength="3">.<input type="text" maxlength="3">.<input type="text" maxlength="3"></div></span></td>
+                    <td><span class="spStatic isEnabled"><label name="isEnabledLabel" /></span><span class="spEdit"><input type="checkbox" class="rule-enabled" checked="checked" name="isEnabled" /></span></td>
+                    <td>
+                        <span class="spStatic">
+                            <a class="edit">{{dynamic-applets-security.4a370bdd}}</a>/<br/>
+                            <a class="delete">{{dynamic-applets-security.3618bd6a}}</a>
+                        </span>
+                        <span class="spEdit">
+                            <a class="save">{{dynamic-applets-security.723ace2b}}</a>/<br/>
+                            <a class="cancel">{{dynamic-applets-security.8f475444}}</a>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="immutableTemplatePortRangeTriggeringRow" style="display: none;">
+        <table>
+            <tbody>
+                <tr>
+                    <td><span class="spStatic description"><label name="description" /></span><span class="spEdit"><input type="text" name="description" maxlength="{maxDescriptionLength}" /></span></td>
+                    <td><span class="spStatic triggerPort"><label name="firstTriggerPort" /><span>&nbsp;{{dynamic-applets-security.b32c2c09}} </span><label name="lastTriggerPort" /></span><span class="spEdit"><input type="text" class="triggering-firstTriggerPort" name="firstTriggerPort" /> {{dynamic-applets-security.b32c2c09}} <input type="text" class="triggering-lastTriggerPort" name="lastTriggerPort" /></span></td>
+                    <td><span class="spStatic forwardedPort"><label name="firstForwardedPort" /><span>&nbsp;{{dynamic-applets-security.b32c2c09}} </span><label name="lastForwardedPort" /></span><span class="spEdit"><input type="text" class="triggering-firstForwardedPort" name="firstForwardedPort" /> {{dynamic-applets-security.b32c2c09}} <input type="text" class="triggering-lastForwardedPort" name="lastForwardedPort" /></span></td>
+                    <td><span class="spStatic isEnabled"><label name="isEnabledLabel" /></span><span class="spEdit"><input type="checkbox" class="rule-enabled" checked="checked" name="isEnabled" /></span></td>
+                    <td>
+                        <span class="spStatic">
+                            <a class="edit">{{dynamic-applets-security.4a370bdd}}</a>/<br/>
+                            <a class="delete">{{dynamic-applets-security.3618bd6a}}</a>
+                        </span>
+                        <span class="spEdit">
+                            <a class="save">{{dynamic-applets-security.723ace2b}}</a>/<br/>
+                            <a class="cancel">{{dynamic-applets-security.8f475444}}</a>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</article>
+<script type="text/javascript" src="/ui/1.0.99.201002/static/cache/applets/security/js/security.js"></script>

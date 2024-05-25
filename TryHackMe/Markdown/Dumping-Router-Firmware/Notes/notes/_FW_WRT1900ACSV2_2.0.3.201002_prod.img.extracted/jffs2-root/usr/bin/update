@@ -1,0 +1,252 @@
+#!/bin/sh
+
+VERBOSE="no"
+PRIMARY="no"
+PRIROOTFSMTD=
+AlTROOTFSMTD=
+MOUNTEDMTD=
+
+check_error() {
+	if [ $? -ne 0 ]; then
+		echo -e "Failed, exiting...\n"
+		exit 1
+	else
+		echo -e "OK!"
+	fi
+}
+
+check_linksys_image() {
+	FW_SIZE="`stat -c%s $1`"
+	HEADER_MARK="`expr $FW_SIZE - 255`"
+	( dd if=$1 of=/tmp/.lnks.sig. bs=1 skip=$HEADER_MARK count=7 ) > /dev/null 2>&1
+	OUR_SIG="`cat /tmp/.lnks.sig.`"
+	rm -rf /tmp/.lnks.sig.
+	if [ "$OUR_SIG" == "LINKSYS" ] ; then
+		return 1
+	fi
+	  return 0
+}
+
+
+set_uboot_to_openwrt() {
+
+   # this is a quick fix until we get a uboot that eval boot_cmd - mfmfmf???
+	 CURR_BOOT_PART="`fw_printenv boot_part | cut -d'=' -f2`"
+	 if [ "$CURR_BOOT_PART" == "1" ] ; then
+			fw_setenv bootcmd 'run altnandboot'
+	 else
+			fw_setenv bootcmd 'run nandboot'
+	 fi
+	 # this is a quick fix until we get a uboot that eval boot_cmd - mfmfmf???
+	 echo "CAUTION: turning OFF auto_recovery in uboot" >> /dev/console
+	 fw_setenv auto_recovery 'no'
+   sync
+}
+
+# return 0 if booted via nfs
+# else return 1
+check_mountnfs() {
+	if `cat /proc/mounts  | grep "\/dev\/root" | grep "nfs" 2>&1 > /dev/null`
+	then
+		return 0
+	fi
+	return 1
+}
+
+# return 0 if booted via nfs
+# else return 1
+check_mountjffs2() {
+	if `cat /proc/mounts  | grep "\/dev\/root" | grep "jffs2" 2>&1 > /dev/null`
+	then
+		return 0
+	fi
+	return 1
+}
+
+# return 0 if booted via primary NAND partition
+# return 1 if booted via alternate NAND partition
+check_mount() {
+	# get primary and alternate		
+	PRIROOTFSMTD=`cat /proc/mtd | grep "rootfs" | grep -v "alt_" | cut -d':' -f1 | cut -f2 -d"d"`
+	ALTROOTFSMTD=`cat /proc/mtd | grep "alt_rootfs" | cut -d':' -f1 | cut -f2 -d"d"`
+	PRIROOTFSMTD2=`expr $PRIROOTFSMTD - 1`
+	ALTROOTFSMTD2=`expr $ALTROOTFSMTD - 1`
+
+	# get the MTD of the current mounted rootfs
+	MOUNTEDMTD=`cat /proc/self/mountinfo | grep "\/dev\/root" | cut -f3 -d' ' | cut -f2 -d':'`
+
+	if [ "$MOUNTEDMTD" -eq "$PRIROOTFSMTD" ] || [ "$MOUNTEDMTD" -eq "$PRIROOTFSMTD2" ]
+	then
+		return 0	
+	fi
+	if [ "$MOUNTEDMTD" -eq "$ALTROOTFSMTD" ]  || [ "$MOUNTEDMTD" -eq "$ALTROOTFSMTD2" ]
+	then
+		return 1	
+	fi
+	return 255 
+}
+
+erase_and_program() {
+	if [ -c /dev/$2 ] && [ ! -z $3 ] && [ -e $3 ]; then 
+		FLASH_TYPE=`mtd_debug info /dev/$2 | grep "mtd.type" | cut -d' ' -f3`
+		echo -e "updating $1\n"
+		if [ ${FLASH_TYPE} = "MTD_NORFLASH" ]; then
+			#echo -ne "\tErasing...\t"
+			#flash_eraseall -q /dev/$2
+			#check_error
+			echo -ne "\tProgramming NOR flash (takes a long, long while, please wait)...\n"
+			if [ "$VERBOSE" = "yes" ]; then
+				flashcp -v $3 /dev/$2
+			else
+				flashcp $3 /dev/$2
+			fi
+			check_error
+		fi
+		if [ ${FLASH_TYPE} = "MTD_NANDFLASH" ]; then
+			echo -ne "\tErasing... /dev/$2\n" >> /dev/console
+			if [ "$VERBOSE" = "yes" ]; then
+				# flash_eraseall -j /dev/$2
+				flash_erase /dev/$2 0 0
+			else
+				# flash_eraseall -q -j /dev/$2
+				flash_erase -q /dev/$2 0 0
+			fi
+			check_error
+			echo -ne "\tProgramming... /dev/$2\n" >> /dev/console
+			if [ "$VERBOSE" = "yes" ]; then
+				#nandwrite -m -a -p /dev/$2 $3 
+				nandwrite -p /dev/$2 $3
+			else
+				#nandwrite -q -m -a -p /dev/$2 $3
+				nandwrite -q -p /dev/$2 $3
+			fi
+			check_error
+		fi
+	fi
+}
+
+print_under_construction()
+{
+	echo -e "\t$1 update not supported at this time."
+	exit 1
+}
+
+usage()
+{
+	cat << EOF
+	
+	usage: $0 options
+
+	OPTIONS:
+	-f rootfs (optional) Specify path to rootfs image (usually: jffs2.rootfs.img)
+	-u u-boot (optional) Specify path to u-boot image (usually: u-boot.img)
+	-k kernel (optional) Specify path to kernel image (usually: uImage.img)
+	-h --help Print this help message
+
+EOF
+}
+
+if [ -z "$1" ]; then
+	usage
+	exit 1
+fi
+
+pidof fwupd > /dev/null
+if [ $? = "0" ] ; then
+	echo -e "Failed.  Cannot update due to running fwupd"
+	exit 1
+fi
+
+while getopts ":h:pf:k:u::v" OPTION
+do
+	case $OPTION in
+	h)
+		usage
+		exit 1
+		;;
+	c)
+		CONFIG_IMAGE=$OPTARG
+		;;
+	f)
+		FIRMWARE_IMAGE=$OPTARG
+		;;
+	r)
+		RESCUE_IMAGE=$OPTARG
+		;;
+	u)
+		print_under_construction "u-boot image"
+		UBOOT_IMAGE=$OPTARG
+		;;
+	k)
+		KERNEL_IMAGE=$OPTARG
+		;;
+	d)
+		DTB_IMAGE=$OPTARG
+		;;
+	p)
+		PRIMARY="yes"
+		;;
+	v)
+		VERBOSE="yes"
+		;;
+	?)
+		usage
+		exit 1
+	esac
+done
+
+if [ -e /proc/mtd ]; then
+	CONFIG_BLKDEV=`cat /proc/mtd | grep "config img" | cut -d':' -f1`
+	DTB_BLKDEV=`cat /proc/mtd | grep "device tree img" | cut -d':' -f1`
+
+	# check if trying to update the partition you are currently mounted on 
+	check_mountjffs2
+	RET=$?
+	# if mounted JFFS2 mtd, then check if trying to update a mounted mtd 
+	if [ $RET -eq 0 ]; then
+		check_mount
+		RET=$?
+		# if booted on primary mtd && trying to update primary mtd
+		if [ $RET -eq 0 ] && [ "$PRIMARY" = "yes" ]; then
+			echo -e "Failed.  Cannot update a currently mounted root file system...\n"
+			exit 1
+		fi
+		# if booted on alternate mtd && trying to update alternate mtd
+		if [ $RET -eq 1 ] && [ "$PRIMARY" = "no" ]; then
+			echo -e "Failed.  Cannot update a currently mounted root file system...\n"
+			exit 1
+		fi
+	fi
+
+	if [ "$PRIMARY" = "yes" ]; then
+		FIRMWARE_BLKDEV=`cat /proc/mtd | grep "rootfs" | grep -v "alt_" | cut -d':' -f1`
+		KERNEL_BLKDEV=`cat /proc/mtd | grep "kernel" | grep -v "alt_" | cut -d':' -f1`
+	else
+		FIRMWARE_BLKDEV=`cat /proc/mtd | grep "alt_rootfs" | cut -d':' -f1`
+		KERNEL_BLKDEV=`cat /proc/mtd | grep "alt_kernel" | cut -d':' -f1`
+	fi
+	RESCUE_BLKDEV=`cat /proc/mtd | grep "rescue img" | cut -d':' -f1`
+	UBOOT_BLKDEV=`cat /proc/mtd | grep "u-boot img" | cut -d':' -f1`
+fi
+
+check_linksys_image ${KERNEL_IMAGE}
+ISLINKSYS_FIRMWARE=$?
+if [ $ISLINKSYS_FIRMWARE -eq 0 ] ; then
+	echo "firmware does not have Linksys signature" >> /dev/console
+# MAMBA-753, COBRA-225, CAIMAIN-180 - do not turn off autorecovery
+#	echo "altering uboot parameters for OpenWRT firmware" >> /dev/console
+#	set_uboot_to_openwrt
+else
+	echo "image looks like a Linksys image" >> /dev/console
+fi
+
+echo "Firmware upgrade in process..." >> /dev/console
+
+erase_and_program "u-boot image" ${UBOOT_BLKDEV} ${UBOOT_IMAGE}
+if [ "$PRIMARY" = "yes" ]; then
+	erase_and_program "primary firmware image" ${FIRMWARE_BLKDEV} ${FIRMWARE_IMAGE}
+	erase_and_program "primary kernel image" ${KERNEL_BLKDEV} ${KERNEL_IMAGE}
+else
+	erase_and_program "alternate firmware image" ${FIRMWARE_BLKDEV} ${FIRMWARE_IMAGE}
+	erase_and_program "alternate kernel image" ${KERNEL_BLKDEV} ${KERNEL_IMAGE}
+fi

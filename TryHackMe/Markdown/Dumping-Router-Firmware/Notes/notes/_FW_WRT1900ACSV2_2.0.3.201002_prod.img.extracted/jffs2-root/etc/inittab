@@ -1,0 +1,18 @@
+# sysinit is run during boot
+::sysinit:/etc/system/sysinit
+# wait is run after sysinit and before once
+::wait:/etc/system/wait
+# once is run after wait scripts
+::once:/etc/system/once
+#
+#
+#
+# Stuff to do when restarting the init process
+::restart:/sbin/init
+#
+#
+# Stuff to do before rebooting
+::ctrlaltdel:/sbin/reboot 
+
+# Stuff to do before shutting down is in service_system
+::shutdown:/etc/init.d/service_system.sh system-stop

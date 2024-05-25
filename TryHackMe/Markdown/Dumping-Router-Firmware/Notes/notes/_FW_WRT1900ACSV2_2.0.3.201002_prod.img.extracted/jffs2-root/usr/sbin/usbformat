@@ -1,0 +1,243 @@
+#!/bin/sh
+
+VERBOSE=0
+
+FS_STAT=`sysevent get file_sharing-status`
+
+error_exit()
+{
+	ret=$1
+	sysevent set usb_device_formatting failed
+	exit $ret
+}
+
+delete_usb_partitions()
+{
+	DEV=$1
+	[ "$VERBOSE" -eq 1 ] && echo -e "DEV = $DEV"
+	PART_LIST=$(ls /dev/sda* | sed 's@/dev/sda@@' | sort -n -r)
+	for i in $PART_LIST
+	do
+		(echo d; echo $i; echo w;) | fdisk $DEV > /dev/null 2>&1
+		wait
+	done
+
+	return 0
+}
+
+create_partition()
+{
+	RET=0
+	DEV=$1
+	if [ -z "$2" ]; then
+		PART=1
+		PART_START=
+		PART_END=
+	else
+		PART=$2
+		PART_START=$3
+		PART_END=$4
+	fi
+
+	# create one Win95 FAT32 (LBA) partition on whole USB
+	(echo o; echo n; echo p; echo $PART; echo $PART_START; echo $PART_END; \
+	 echo t; echo c; echo w;) | \
+		fdisk "$DEV" > /dev/null 2>&1
+	CNT=0
+	while [ ! -b "$DEV""$PART" ];  do
+		CNT=`expr $CNT + 1`
+		sleep .25
+		[ $CNT -ge 40 ] && break
+	done
+
+	[ "$RC" -ge 50 ] && RET=1
+		
+	return $RET
+}
+
+create_fs()
+{
+	[ -z "$1" ] && return 1
+	[ -z "$2" ] && return 1
+
+	DEV=$1
+	LABEL=$2
+
+	# make the FAT32 file system
+	[ "$VERBOSE" -eq 1 ] && echo -e "Make fs USB volume  \"$LABEL\""
+	mkdosfs -F 32 -n "$LABEL" "$DEV"1 2>&1 > /dev/null
+
+	return $?
+}
+
+umount_usb_part()
+{
+	[ -z "$1" ] && return 1
+
+	DEV="$1"
+	F=0
+	# unmount mount points for this device
+	MOUNT_DIR=`mount`
+	for i in $MOUNT_DIR
+	do
+		if [ $F -eq 2 ]; then
+			[ "$VERBOSE" -eq 1 ] && echo -e "Unmount usb volume $i"
+			umount "$i"
+			wait
+			rm -rf "$i"
+			rc=$?
+			wait
+			[ "$rc" -ne 0 ] && error_exit "$rc"
+			F=0
+		else
+			echo "$i" | grep "$DEV" > /dev/null 2>&1
+			if [ $? -eq 0 ]; then
+				F=1
+			else
+				if [ $F -eq 1 ]; then
+					F=2
+				else
+					F=0
+				fi
+			fi
+		fi
+	done
+}
+
+restart_media_services()
+{
+	sysevent set file_sharing-start
+	return 0
+}
+
+stop_media_services()
+{
+	sysevent set file_sharing-stop
+	return 0
+}
+
+## main
+# return 0 on success
+# return non-0 on failure
+RET=0
+FORMAT_WHOLE_USB=0
+
+sysevent set usb_device_formatting started
+
+[ -z "$1" ] &&  error_exit 1
+[ -z "$2" ] && error_exit 1
+USB_DEVICE=$1
+PART_LABEL=$2
+
+# if passed in sda,sdb,sdc,etc. then format the entire USB thumbdrive
+# by creating one dos partiton (fdisk) and making a dos file system
+#
+# if passed in sda#, sdb#, sdc#, then just remake the dos file system
+# in the same partition space
+#
+SD_DEV_LEN=`echo $USB_DEVICE | awk '{ print length($USB_DEVICE) }'`
+
+[ "$SD_DEV_LEN" -ge 3 ] && FORMAT_WHOLE_USB=0
+
+#SD_DEV=`echo $USB_DEVICE | awk '{ print substr($1,1,3) }'`
+
+#USB_DEV_NODE="/dev/""$SD_DEV"
+USB_DEV_NODE="/dev/""$USB_DEVICE"
+
+### fake these for now
+# begin
+USB_OPEN_CNT=0
+USB_LABEL=`usblabel`
+USB_RMDRIVE=`usbrmdrive`
+### end
+
+###
+### TODO:
+###   - change echo's to ulog's
+###   - add in all error exit cases
+###
+
+mount | grep $USB_DEV_NODE > /dev/null 2>&1
+RET=$?
+[ $RET -ne 0 ] && error_exit $RET
+
+# assume usb lock is the sysevent variable "usb_device_open_cnt"
+# get the usb lock
+USB_LOCK=`sysevent get usb_device_open_cnt`
+if [ "$USB_OPEN_CNT" -eq 0 ]; then
+	# usb lock free so grab it and proceed for format
+	USB_OPEN_CNT=$(expr $USB_OPEN_CNT + 1)
+
+	[ "$VERBOSE" -eq 1 ] && echo -e "Format USB volume $PART_LABEL"
+	# stop smbd, nmbd, vftpd, and twonky
+	echo "waiting for file sharing to stop" >> /dev/console
+	while [ "$FS_STAT" != "stopped" ] ; do
+	  stop_media_services
+
+	  killall -9 smbd > /dev/null 2>&1
+	  killall -9 nmbd > /dev/null 2>&1
+	  killall -9 vsftpd > /dev/null 2>&1
+	if [ "`cat /etc/product`" = "wraith" ]; then
+	  killall twonkystarter > /dev/null 2>&1
+	  killall twonkyserver > /dev/null 2>&1
+	else
+	  killall twonkymedia > /dev/null 2>&1
+	  killall twonkymediaserv > /dev/null 2>&1
+	  killall twonkymediaserver > /dev/null 2>&1
+	fi
+	  sleep 1
+	  FS_STAT=`sysevent get file_sharing-status`
+	done
+	echo "file sharing stopped" >> /dev/console
+
+	sleep 2
+	# unmount
+	umount_usb_part $USB_DEV_NODE
+	#wait
+	RET=$?
+#	[ "$RET" -ne 0 ] && error_exit 1
+
+	delete_usb_partitions $USB_DEV_NODE
+	#wait
+	#sleep 2
+	RET=$?
+#	[ "$RET" -ne 0 ] && error_exit 1
+
+	# for now only create a single partition spanning the whole usb drive
+	PART_NO=1
+	create_partition "$USB_DEV_NODE" "$PART_NO"
+	#wait
+	#sleep 2
+	RET=$?
+#	[ "$RET" -ne 0 ] && error_exit 1
+
+	create_fs "$USB_DEV_NODE" "$PART_LABEL"
+	#sleep 2
+	RET=$?
+#	[ "$RET" -ne 0 ] && error_exit 1
+
+	# mount the file system
+	#mount "$USB_DEV_NODE"1 /tmp/"$USB_DEVICE"1 > /dev/null 2>&1
+	#rc=$?
+	#[ "$rc" -ne 0 ] && error_exit "$rc"
+
+	sync
+	[ "$VERBOSE" -eq 1 ] && echo "adding device back with mountscript"
+	/etc/init.d/service_usb/mountscript.sh add "$USB_DEVICE"1
+	wait
+
+	sleep 1
+	# start up services
+	sync
+	restart_media_services
+
+	sleep 3
+
+	RET=0
+	sysevent set usb_device_formatting completed
+else
+	RET=1
+	error_exit "$RET"
+fi
+
+exit $RET

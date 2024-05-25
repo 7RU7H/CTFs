@@ -1,0 +1,8 @@
+#!/bin/sh
+#
+#
+vendor=`cat /sys/bus/usb/devices/1-1/manufacturer`
+product=`cat /sys/bus/usb/devices/1-1/product`
+
+echo -n "$vendor $product" | sed 's/ */ /g'
+

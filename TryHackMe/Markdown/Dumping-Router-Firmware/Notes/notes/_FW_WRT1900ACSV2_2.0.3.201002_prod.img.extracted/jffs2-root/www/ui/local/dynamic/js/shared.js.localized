@@ -1,0 +1,146 @@
+// use double-quotes for strings (use single-quotes for html elements inside the string)
+
+'use strict';
+if (!window.RAINIER) {
+    window.RAINIER = {};
+}
+
+RAINIER.ui = RAINIER.ui || {};
+RAINIER.ui.shared = RAINIER.ui.shared || {};
+
+// set of labels to look for in shared-util.getLabeledRadio() for e.g. 5-indexed set
+// needs to match the list for bands and bandSteering
+RAINIER.ui.shared.radioLabelSet = [
+    'short',
+    'band',
+    'network',
+    'networkName',
+    'wirelessNetwork',
+    'wirelessSettings'
+];
+
+// adjusts string for Arabic language
+RAINIER.ui.shared.adjustAr = function(str) {
+	var dir = document.getElementsByTagName("html")[0].getAttribute('dir');
+	if(dir === 'rtl') {
+		//add &#8207 to force '+' and space chars to be RTL See http://en.wikipedia.org/wiki/Right-to-left_mark
+		return str.replace(' + ', ' &#8207+ ').replace(' &nbsp ', ' &#8207&nbsp ');
+	}
+
+	return str;
+};
+
+// adjusts string for both Arabic and German languages
+RAINIER.ui.shared.adjustArDe = function(str) {
+	var lang = document.getElementsByTagName("html")[0].getAttribute('lang');
+	if(lang === 'de') {
+		return str.replace(' + ', '- + ').replace(' &nbsp ', '-&nbsp ');
+	}
+
+	return RAINIER.ui.shared.adjustAr(str);
+};
+
+RAINIER.ui.shared.strings = {
+    bands: {
+        '2.4': {
+            short: '<bdo dir="ltr">{{dynamic-js.1976e32a}}</bdo>',
+            band: '{{dynamic-js.fc9d11f9}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.1976e32a}}</bdo>'),
+            network: '{{dynamic-js.82def07c}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.1976e32a}}</bdo>'),
+            networkName: '{{dynamic-js.6bc521ce}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.1976e32a}}</bdo>'),
+            wirelessNetwork: '{{dynamic-js.d269cb54}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.1976e32a}}</bdo>'),
+            wirelessSettings: '{{dynamic-js.9dfc3733}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.1976e32a}}</bdo>')
+        },
+        '5': {
+            short: '<bdo dir="ltr">{{dynamic-js.5579bd82}}</bdo>',
+            band: '{{dynamic-js.fc9d11f9}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.5579bd82}}</bdo>'),
+            network: '{{dynamic-js.82def07c}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.5579bd82}}</bdo>'),
+            networkName: '{{dynamic-js.6bc521ce}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.5579bd82}}</bdo>'),
+            wirelessNetwork: '{{dynamic-js.d269cb54}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.5579bd82}}</bdo>'),
+            wirelessSettings: '{{dynamic-js.9dfc3733}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.5579bd82}}</bdo>')
+        },
+        '5-indexed': {
+            short: '<bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>{0}</sub></bdo>',
+            band: '{{dynamic-js.fc9d11f9}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>{0}</sub></bdo>'),
+            network: '{{dynamic-js.82def07c}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>{0}</sub></bdo>'),
+            networkName: '{{dynamic-js.6bc521ce}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>{0}</sub></bdo>'),
+            wirelessNetwork: '{{dynamic-js.d269cb54}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>{0}</sub></bdo>'),
+            wirelessSettings: '{{dynamic-js.9dfc3733}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>{0}</sub></bdo>')
+        }
+    },
+    bandSteering: {
+        'Basic': {
+            short: RAINIER.ui.shared.adjustAr(
+				'<bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>1</sub></bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>2</sub></bdo>'),
+            band: RAINIER.ui.shared.adjustArDe(
+                '{{dynamic-js.a696d422}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>1</sub></bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>2</sub></bdo>')),
+            network: RAINIER.ui.shared.adjustArDe(
+				'{{dynamic-js.82def07c}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>1</sub></bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>2</sub></bdo>')),
+            networkName: RAINIER.ui.shared.adjustArDe(
+				'{{dynamic-js.6bc521ce}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>1</sub></bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>2</sub></bdo>')),
+            wirelessNetwork: RAINIER.ui.shared.adjustArDe(
+				'{{dynamic-js.d269cb54}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>1</sub></bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>2</sub></bdo>')),
+            wirelessSettings: RAINIER.ui.shared.adjustArDe(
+				'{{dynamic-js.9dfc3733}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>1</sub></bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>2</sub></bdo>'))
+        },
+        'TriBand': {
+            short: RAINIER.ui.shared.adjustAr(
+				'<bdo dir="ltr">{{dynamic-js.1976e32a}}</bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>1</sub></bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>2</sub></bdo>'),
+            band: RAINIER.ui.shared.adjustArDe(
+            	'{{dynamic-js.a696d422}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.1976e32a}}</bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>1</sub></bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>2</sub></bdo>')),
+            network: RAINIER.ui.shared.adjustArDe(
+				'{{dynamic-js.82def07c}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.1976e32a}}</bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>1</sub></bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>2</sub></bdo>')),
+            networkName: RAINIER.ui.shared.adjustArDe(
+				'{{dynamic-js.6bc521ce}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.1976e32a}}</bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>1</sub></bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>2</sub></bdo>')),
+            wirelessNetwork: RAINIER.ui.shared.adjustArDe(
+				'{{dynamic-js.d269cb54}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.1976e32a}}</bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>1</sub></bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>2</sub></bdo>')),
+            wirelessSettings: RAINIER.ui.shared.adjustArDe(
+				'{{dynamic-js.9dfc3733}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.1976e32a}}</bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>1</sub></bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>2</sub></bdo>'))
+        }
+    },
+	allBands: {
+        twoRadios: RAINIER.ui.shared.adjustAr(
+            '<bdo dir="ltr">{{dynamic-js.1976e32a}}</bdo> &nbsp <bdo dir="ltr">{{dynamic-js.5579bd82}}</bdo>'),
+        threeRadios: RAINIER.ui.shared.adjustAr(
+            '<bdo dir="ltr">{{dynamic-js.1976e32a}}</bdo> &nbsp <bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>1</sub></bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}<sub>2</sub></bdo>')
+    },
+    velop: {
+        'twoRadios': {
+            short: RAINIER.ui.shared.adjustAr(
+				'<bdo dir="ltr">{{dynamic-js.1976e32a}}</bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}</bdo>'),
+            network: RAINIER.ui.shared.adjustArDe(
+				'{{dynamic-js.82def07c}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.1976e32a}}</bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}</bdo>')),
+            networkName: RAINIER.ui.shared.adjustArDe(
+				'{{dynamic-js.6bc521ce}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.1976e32a}}</bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}</bdo>')),
+            wirelessNetwork: RAINIER.ui.shared.adjustArDe(
+				'{{dynamic-js.d269cb54}}'.replace('<radio_name>', '<bdo dir="ltr">{{dynamic-js.1976e32a}}</bdo> + <bdo dir="ltr">{{dynamic-js.5579bd82}}</bdo>')),
+            wirelessSettings: '{{dynamic-js.51bed00d}}'
+        }
+    },
+    powerTableCountries: {
+        'CHN': "{{dynamic-js.b87d6a45}}",
+        'HKG': "{{dynamic-js.75ab31a0}}",
+        'IND': "{{dynamic-js.ec543b66}}",
+        'IDN': "{{dynamic-js.5a3cda75}}",
+        'JPN': "{{dynamic-js.f6ad8807}}",
+        'KOR': "{{dynamic-js.9761748b}}",
+        'PHL': "{{dynamic-js.bdb49083}}",
+        'SGP': "{{dynamic-js.fc711f52}}",
+        'TWN': "{{dynamic-js.f50564bb}}",
+        'THA': "{{dynamic-js.242cfe13}}",
+        'XAH': "{{dynamic-js.64fc0379}}",
+        'AUS': "{{dynamic-js.cd783eaa}}",
+        'CAN': "{{dynamic-js.e27e9fed}}",
+        'EEE': "{{dynamic-js.e02cd0cf}}",
+        'BHR': "{{dynamic-js.6926840c}}",
+        'EGY': "{{dynamic-js.67be69be}}",
+        'KWT': "{{dynamic-js.86178193}}",
+        'OMN': "{{dynamic-js.57a7c5c2}}",
+        'QAT': "{{dynamic-js.33204a70}}",
+        'SAU': "{{dynamic-js.3c512cbb}}",
+        'TUR': "{{dynamic-js.65352c62}}",
+        'ARE': "{{dynamic-js.1a05258a}}",
+        'XME': "{{dynamic-js.32ad3105}}",
+        'NZL': "{{dynamic-js.130b42ef}}",
+        'USA': "{{dynamic-js.f443b879}}"
+    }
+};

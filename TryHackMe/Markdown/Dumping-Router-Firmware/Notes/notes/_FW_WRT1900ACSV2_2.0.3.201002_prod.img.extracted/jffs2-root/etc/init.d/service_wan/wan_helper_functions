@@ -1,0 +1,201 @@
+#!/bin/sh
+#------------------------------------------------------------------
+# © 2013 Belkin International, Inc. and/or its affiliates. All rights reserved.
+#------------------------------------------------------------------
+
+#------------------------------------------------------------------
+# interface_to_syscfg_namespace
+#
+# Given an interface name, return the syscfg namespace encapsulating 
+# the interface information
+#------------------------------------------------------------------
+interface_to_syscfg_namespace ()
+{
+   if [ -n "$1" ] ; then
+      echo `sysevent get ${1}_syscfg_namespace` 
+   fi
+}
+
+#------------------------------------------------------------------
+# parse_wan_namespace_sysevent
+# 
+# Given a string of form wan_x_sysevent, parse into  NAMESPACE=wan_x, EVENT=sysevent
+#------------------------------------------------------------------
+parse_wan_namespace_sysevent()
+{
+   if [ -z "$1" ] ; then
+      return
+   fi
+   EVENT=`echo "$1" | awk '{split($1,foo, "wan_[0-9]+_"); print(foo[2]);}'`
+   NAMESPACE=`echo "$1" | awk '{split($1,foo, "wan_[0-9]+_"); split($1,bar,"_"foo[2]); print(bar[1]);}'`
+}
+
+#------------------------------------------------------------------
+
+
+#------------------------------------------------------------------
+# wan_info_by_namespace
+# Given a syscfg namespace, set local variables from the values in syscfg
+#
+# Parameters:
+#    $1 is the namespace
+#
+# Return:
+#    0 : local variables are set
+#    1 : namespace found but no wan_proto associated with it
+#  255 : some error (eg namespace not found in syscfg)
+#
+#------------------------------------------------------------------
+wan_info_by_namespace()
+{
+   if [ -z "$1" ] ; then
+      return 255
+   fi
+
+   NS=$1
+
+   eval `utctx_cmd get ${NS}::wan_proto`
+   eval `echo SYSCFG_wan_proto='$'SYSCFG_${NS}_wan_proto`
+
+   if [ -n "$SYSCFG_wan_proto" ] ; then
+      if [ "none" = "$SYSCFG_wan_proto" ] ; then
+         return 1
+      fi
+   else
+      return 255
+   fi
+
+   eval ARGS=\"\
+        $NS::default \
+        $NS::forwarding \
+        $NS::natting \
+        $NS::wan_mtu \
+        $NS::def_hwaddr \
+        $NS::wan_proto_username \
+        $NS::wan_proto_password \
+        $NS::pptp_address_static \
+        $NS::l2tp_address_static \
+        $NS::wan_physical_ifname \
+        $NS::ifname \
+        $NS::wan_virtual_ifnum \
+        $NS::wan_ipaddr \
+        $NS::wan_netmask \
+        $NS::wan_default_gateway \
+        $NS::pppoe_service_name \
+        $NS::pppoe_access_concentrator_name \
+        $NS::wan_proto_server_address \
+        $NS::wan_proto_remote_name \
+        $NS::ppp_conn_method \
+        $NS::ppp_keepalive_interval \
+        $NS::ppp_lcp_echo_failure \
+        $NS::ppp_idle_time \
+        $NS::nameserver1 \
+        $NS::nameserver2 \
+        $NS::nameserver3 \
+        $NS::hardware_vendor_name\"
+
+   eval `utctx_cmd get $ARGS`
+
+   eval `echo SYSCFG_default=\"'$'SYSCFG_${NS}_default\"`
+   eval `echo SYSCFG_forwarding=\"'$'SYSCFG_${NS}_forwarding\"`
+   eval `echo SYSCFG_natting=\"'$'SYSCFG_${NS}_natting\"`
+   eval `echo SYSCFG_wan_proto=\"'$'SYSCFG_${NS}_wan_proto\"`
+   eval `echo SYSCFG_wan_mtu=\"'$'SYSCFG_${NS}_wan_mtu\"`
+   eval `echo SYSCFG_def_hwaddr=\"'$'SYSCFG_${NS}_def_hwaddr\"`
+   eval `echo SYSCFG_wan_proto_username=\"'$'SYSCFG_${NS}_wan_proto_username\"`
+   eval `echo SYSCFG_wan_proto_password=\"'$'SYSCFG_${NS}_wan_proto_password\"`
+   eval `echo SYSCFG_pptp_address_static=\"'$'SYSCFG_${NS}_pptp_address_static\"`
+   eval `echo SYSCFG_l2tp_address_static=\"'$'SYSCFG_${NS}_l2tp_address_static\"`
+   eval `echo SYSCFG_wan_physical_ifname=\"'$'SYSCFG_${NS}_wan_physical_ifname\"`
+   eval `echo SYSCFG_ifname=\"'$'SYSCFG_${NS}_ifname\"`
+   eval `echo SYSCFG_wan_virtual_ifnum=\"'$'SYSCFG_${NS}_wan_virtual_ifnum\"`
+   if [ "-1" = "$SYSCFG_wan_virtual_ifnum" ] ; then
+      SYSCFG_wan_virtual_ifnum=
+   fi
+   eval `echo SYSCFG_wan_ipaddr=\"'$'SYSCFG_${NS}_wan_ipaddr\"`
+   eval `echo SYSCFG_wan_netmask=\"'$'SYSCFG_${NS}_wan_netmask\"`
+   eval `echo SYSCFG_wan_default_gateway=\"'$'SYSCFG_${NS}_wan_default_gateway\"`
+   eval `echo SYSCFG_pppoe_service_name=\"'$'SYSCFG_${NS}_pppoe_service_name\"`
+   eval `echo SYSCFG_pppoe_access_concentrator_name=\"'$'SYSCFG_${NS}_pppoe_access_concentrator_name\"`
+   eval `echo SYSCFG_wan_proto_server_address=\"'$'SYSCFG_${NS}_wan_proto_server_address\"`
+   eval `echo SYSCFG_wan_proto_remote_name=\"'$'SYSCFG_${NS}_wan_proto_remote_name\"`
+   eval `echo SYSCFG_ppp_conn_method=\"'$'SYSCFG_${NS}_ppp_conn_method\"`
+   eval `echo SYSCFG_ppp_keepalive_interval=\"'$'SYSCFG_${NS}_ppp_keepalive_interval\"`
+   eval `echo SYSCFG_ppp_lcp_echo_failure=\"'$'SYSCFG_${NS}_ppp_lcp_echo_failure\"`
+   eval `echo SYSCFG_ppp_idle_time=\"'$'SYSCFG_${NS}_ppp_idle_time\"`
+   eval `echo SYSCFG_nameserver1=\"'$'SYSCFG_${NS}_nameserver1\"`
+   eval `echo SYSCFG_nameserver2=\"'$'SYSCFG_${NS}_nameserver2\"`
+   eval `echo SYSCFG_nameserver3=\"'$'SYSCFG_${NS}_nameserver3\"`
+   eval `echo SYSCFG_hardware_vendor_name=\"'$'SYSCFG_${NS}_hardware_vendor_name\"`
+
+   # in order to maintain backwards compatibility with the legacy UI
+   # the wan_proto "legacy" is a signal to use legacy syscfgs for provisioning
+   if [ "legacy" = "$SYSCFG_wan_proto" ] ; then
+      SYSCFG_wan_proto=`syscfg get wan_proto`
+      SYSCFG_wan_virtual_ifnum=`syscfg get wan_virtual_ifnum`
+      if [ "-1" = "$SYSCFG_wan_virtual_ifnum" ] ; then
+         SYSCFG_wan_virtual_ifnum=
+      fi
+      SYSCFG_wan_mtu=`syscfg get wan_mtu`
+      SYSCFG_def_hwaddr=`syscfg get def_hwaddr`
+      SYSCFG_wan_proto_username=`syscfg get wan_proto_username`
+      SYSCFG_wan_proto_password=`syscfg get wan_proto_password`
+      SYSCFG_pptp_address_static=`syscfg get pptp_address_static`
+      SYSCFG_l2tp_address_static=`syscfg get l2tp_address_static`
+      SYSCFG_wan_ipaddr=`syscfg get wan_ipaddr`
+      SYSCFG_wan_netmask=`syscfg get wan_netmask`
+      SYSCFG_wan_default_gateway=`syscfg get wan_default_gateway`
+      SYSCFG_pppoe_service_name=`syscfg get pppoe_service_name`
+      SYSCFG_pppoe_access_concentrator_name=`syscfg get pppoe_access_concentrator_name`
+      SYSCFG_wan_proto_server_address=`syscfg get wan_proto_server_address`
+      SYSCFG_wan_proto_remote_name=`syscfg get wan_proto_remote_name`
+      SYSCFG_ppp_conn_method=`syscfg get ppp_conn_method`
+      SYSCFG_ppp_keepalive_interval=`syscfg get ppp_keepalive_interval`
+      SYSCFG_ppp_lcp_echo_failure=`syscfg get ppp_lcp_echo_failure`
+      SYSCFG_ppp_idle_time=`syscfg get ppp_idle_time`
+      SYSCFG_nameserver1=`syscfg get nameserver1`
+      SYSCFG_nameserver2=`syscfg get nameserver2`
+      SYSCFG_nameserver3=`syscfg get nameserver3`
+# The following syscfgs are not overridden in legacy mode
+#      SYSCFG_ifname
+#      SYSCFG_default
+#      SYSCFG_forwarding
+#      SYSCFG_natting
+#      SYSCFG_wan_physical_ifname
+#      SYSCFG_hardware_vendor_name
+   fi
+
+   SYSEVENT_current_wan_ifname=`sysevent get ${NS}_current_wan_ifname`
+   # if there is no current_wan_ifname, then assign it now
+   # Note that this replicates code in service_wan.sh
+   if [ -z "$SYSEVENT_current_wan_ifname" ] ; then
+      # if it is not a vlan, then use the syscfg interface name
+      if [ -z "$SYSCFG_wan_virtual_ifnum" -o "-1" = "$SYSCFG_wan_virtual_ifnum" ] ; then
+         SYSCFG_wan_virtual_ifnum=
+         SYSEVENT_current_wan_ifname=$SYSCFG_ifname
+      else
+         # if it is a vlan, then differentiate between Broadcom and Others.
+         if [ -n "$SYSCFG_hardware_vendor_name" -a "Broadcom" = "$SYSCFG_hardware_vendor_name" ] ; then
+            SYSEVENT_current_wan_ifname="vlan${SYSCFG_wan_virtual_ifnum}"
+         else
+            SYSEVENT_current_wan_ifname="${SYSCFG_wan_ifname}.${SYSCFG_wan_virtual_ifnum}"
+         fi
+      fi
+      if [ "1" = "$SYSCFG_default" ] ; then
+         sysevent set current_wan_ifname $SYSEVENT_current_wan_ifname
+      fi
+      sysevent set ${1}_current_wan_ifname $SYSEVENT_current_wan_ifname
+   fi
+
+   SYSEVENT_desired_ipv4_link_state=`sysevent get ${NS}_desired_ipv4_link_state`
+   SYSEVENT_current_ipv4_link_state=`sysevent get ${NS}_current_ipv4_link_state`
+   SYSEVENT_desired_ipv4_wan_state=`sysevent get ${NS}_desired_ipv4_wan_state`
+   SYSEVENT_current_ipv4_wan_state=`sysevent get ${NS}_current_ipv4_wan_state`
+   SYSEVENT_phylink_wan_state=`sysevent get ${NS}_phylink_wan_state`
+   SYSEVENT_ipv4_wan_ipaddr=`sysevent get ${NS}_ipv4_wan_ipaddr`
+   SYSEVENT_ipv4_wan_subnet=`sysevent get ${NS}_ipv4_wan_subnet`
+   SYSEVENT_ipv4_default_router=`sysevent get ${NS}_ipv4_default_router`
+   SYSEVENT_wan_start_time=`sysevent get ${NS}_wan_start_time`
+
+   return 0
+}

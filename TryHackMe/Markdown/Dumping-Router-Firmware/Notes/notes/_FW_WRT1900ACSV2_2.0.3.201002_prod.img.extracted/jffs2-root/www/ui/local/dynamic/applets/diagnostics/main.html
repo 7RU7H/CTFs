@@ -1,0 +1,318 @@
+<link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/cache/applets/diagnostics/css/diagnostics.css" />
+<iframe style="display: none;" id="form-target" name="form-target"></iframe>
+<article id="diagnostics-applet">
+    <header>
+        <h1>{{dynamic-applets-diagnostics.492b3da9}}</h1>
+        <h4>{{dynamic-applets-diagnostics.e9b14d60}}</h4>
+        <div class="close-button"></div>
+
+        <div id="refresh-header">
+            <label id="refresh-updating">Updating...</label>
+            <label id="refresh-updated">Updated</label>
+            &nbsp;<button id="refresh-button" class="small-blue refresh" tooltip="{{dynamic-applets-diagnostics.7edbb162}}"><img src="/ui/1.0.99.201002/static/applets/diagnostics/images/refresh_icon.png" width="20" height="20" border="0" alt="Refresh" /></button>
+        </div>
+    </header>
+    <section class="tab-section">
+        <ul class="tabs">
+            <li id="status-tab" data-id="status"><span>{{dynamic-applets-diagnostics.17865ec5}}</span></li>
+            <li id="sysinfo-tab" data-id="sysinfo-report"><span>{{dynamic-applets-diagnostics.77081f54}}</span></li>
+            <div class="tab-filler"></div>
+        </ul>
+        <div class="tab-content form" id="status">
+            <div class="left" id="router-details">
+                <legend class="left">{{dynamic-applets-diagnostics.678723c6}}</legend><legend id="router-additional-details">&nbsp;</legend>
+
+                <div id="router-section">
+                </div>
+            </div>
+
+            <div id="wireless-details">
+                <legend class="left">{{dynamic-applets-diagnostics.06a28686}}</legend><legend id="parent-node-txt">&nbsp;{{dynamic-applets-diagnostics.33266d76}}</legend>
+
+                <div id="radio-section">
+                    <fieldset class="left" id="band-steering-fieldset">
+                        <div class="row">
+                            <label for="">{{dynamic-applets-diagnostics.c3f2269c}}</label>
+                            <label name="wireless.bandSteeringMode"></label>
+                        </div>
+
+                        <hr />
+                    </fieldset>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="left" id="router-services">
+                <legend>{{dynamic-applets-diagnostics.1d27e3bc}}</legend>
+
+                <div id="services-section">
+                    <fieldset id="router-services-fieldset">
+                        <div class="row qos-row">
+                            <label for="" id="qos-device-prioritization">{{dynamic-applets-diagnostics.97f67608}}</label>
+                            <label for="" id="qos-media-prioritization">{{dynamic-applets-diagnostics.e993d2b4}}</label>
+                            <label name="qos.qosOn"></label>
+                        </div>
+                        <div class="row qos-row">
+                            <label for="" name="qos.ruleType1">{{dynamic-applets-diagnostics.370554bb}}</label>
+                            <label name="qos.rule1">--</label>
+                        </div>
+                        <div class="row qos-row">
+                            <label for="" name="qos.ruleType2">{{dynamic-applets-diagnostics.9f8a41ab}}</label>
+                            <label name="qos.rule2">--</label>
+                        </div>
+                        <div class="row qos-row">
+                            <label for="" name="qos.ruleType3">{{dynamic-applets-diagnostics.fcf6469e}}</label>
+                            <label name="qos.rule3">--</label>
+                        </div>
+                        <div class="row">
+                            <label for="">{{dynamic-applets-diagnostics.ef32aa95}}</label>
+                            <label id="speed-test-results"></label>
+                        </div>
+                        <div class="row" id="speed-check-server-row">
+                            <label for="">{{dynamic-applets-diagnostics.977f8371}}</label>
+                            <label name="deviceInfo.speedCheckServer"></label>
+                        </div>
+                        <div class="row">
+                            &nbsp;
+                        </div>
+                        <div class="row">
+                            <label for="">{{dynamic-applets-diagnostics.321a99c7}}</label>
+                            <label name="portRanges.singleForwardingText"></label>
+                        </div>
+                        <div class="row">
+                            <label for="">{{dynamic-applets-diagnostics.8f58082f}}</label>
+                            <label name="portRanges.forwardingText"></label>
+                        </div>
+                        <div class="row">
+                            <label for="">{{dynamic-applets-diagnostics.2f73d5e5}}</label>
+                            <label name="portRanges.triggeringText"></label>
+                        </div>
+                        <div class="row">
+                            <label for="">{{dynamic-applets-diagnostics.3006c5d8}}</label>
+                            <label name="dmz.dmzOn"></label>
+                        </div>
+                        <div class="row">
+                            &nbsp;
+                        </div>
+                        <div class="row">
+                            <label for="">{{dynamic-applets-diagnostics.32f8488b}}</label>
+                            <label name="parentalControl.pcOn"></label>
+                        </div>
+                        <div class="row">
+                            <label for="">{{dynamic-applets-diagnostics.f5b5853a}}</label>
+                            <label name="guestAccess.gaOn"></label>
+                        </div>
+                        <div class="row storage-row">
+                            <label for="">{{dynamic-applets-diagnostics.a0bc6f12}}</label>
+                            <label name="ftpServerSettings.ftpOn"></label>
+                        </div>
+                        <div class="row storage-row">
+                            <label for="">{{dynamic-applets-diagnostics.4f653420}}</label>
+                            <label name="smbServerSettings.smbOn"></label>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <div id="connected-clients">
+                <legend>{{dynamic-applets-diagnostics.1d902a0e}}</legend>
+
+                <div id="clients-section">
+                    <div>
+                        <fieldset>
+                            <div class="row wireless-count-row">
+                                <label for="">{{dynamic-applets-diagnostics.b5b509c9}}</label>
+                                <label name="totalWirelessClients"></label>
+                            <div>
+                        </fieldset>
+                    </div>
+                    <div id="router-clients">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="tab-content form" id="sysinfo-report">
+            <div id="spinner-section" class="centerContentImage">
+                <img src="/ui/1.0.99.201002/static/applets/diagnostics/images/lg_waiting.gif" width="200" height="100" border="0" alt="Waiting..." />
+            </div>
+            <div id="button-section" class="left">
+                <button id="btn-top">Jump to Top</button>
+                <br />
+                <br />
+                <button id="btn-wifi">Wi-Fi Debug</button>
+            </div>
+            <div id="report-section">
+                <button class="left" id="button-search"><img src="/ui/1.0.99.201002/static/cache/applets/diagnostics/images/magnifying_glass.png" width="32" height="32" border="0" alt="" /></button>
+                <input id="text-search" maxlength="1024" class="left">
+
+                <textarea id="text-sysinfo" cols="120" rows="30"></textarea>
+
+                <button class="right" id="button-top"><img src="/ui/1.0.99.201002/static/cache/applets/device_list/images/up-arrow.png" width="13" height="7" alt=""> Back to Top</button>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <button class="close-panel">{{dynamic-applets-diagnostics.e9b662b3}}</button>
+    </footer>
+
+    <div id="templateRouterDetailsBlock" style="display: none;">
+        <fieldset class="left authority-device router-node">
+            <div class="row">
+                <label for="" id="router-details-router-name" class="bold">{{dynamic-applets-diagnostics.47db0bc2}}</label>
+                <label for="" id="router-details-parent-node" class="bold">{{dynamic-applets-diagnostics.fa9101ee}}</label>
+                <label name="deviceInfo.routerName"></label>
+            </div>
+            <div class="row uptime-row">
+                <label for="">{{dynamic-applets-diagnostics.7e4ac2d8}}</label>
+                <label name="sysData.upTime"></label>
+            </div>
+            <div class="row">
+                <label for="">{{dynamic-applets-diagnostics.b06efdc9}}</label>
+                <label name="wanStatus.wanConnection.ipAddress"></label>
+            </div>
+            <div class="row">
+                <label for="">{{dynamic-applets-diagnostics.1435227d}}</label>
+                <label name="deviceInfo.connectionType"></label>
+            </div>
+            <div class="row">
+                <label for="">{{dynamic-applets-diagnostics.0967deca}}</label>
+                <label name="sysData.certRegion"></label>
+            </div>
+            <div class="row">
+                <label for="">{{dynamic-applets-diagnostics.679af35a}}</label>
+                <label name="deviceInfo.autoFWUpdateOn"></label>
+            </div>
+            <div class="row">
+                <label for="">{{dynamic-applets-diagnostics.0a213b4f}}</label>
+                <label name="deviceInfo.firmwareVersion"></label>
+            </div>
+            <div class="row">
+                &nbsp;
+            </div>
+            <div class="row current-fw-row">
+                <label for="">{{dynamic-applets-diagnostics.574b8965}}</label>
+                <label name="deviceInfo.isCurrentFW"></label>
+            </div>
+            <div class="row">
+                <label for="">{{dynamic-applets-diagnostics.42b0bbf1}}</label>
+                <label name="deviceInfo.ipAddress"></label>
+            </div>
+            <div class="row">
+                <label for="">{{dynamic-applets-diagnostics.2d3fe1c4}}</label>
+                <label name="deviceInfo.modelNumberLabel"></label>
+            </div>
+            <div class="row">
+                <label for="">{{dynamic-applets-diagnostics.a1f82af1}}</label>
+                <label name="deviceInfo.serialNumber"></label>
+            </div>
+        </fieldset>
+    </div>
+
+    <div id="templateChildNodesDetailsBlock" style="display: none;">
+        <fieldset class="left router-node">
+            <div class="row child-name-row">
+                <label for="" name="childLabel" class="bold">{{dynamic-applets-diagnostics.36c860d7}}</label>
+                <label name="routerName"></label>
+            </div>
+            <div class="row">
+                <label for="">{{dynamic-applets-diagnostics.0a213b4f}}</label>
+                <label name="unit.firmwareVersion"></label>
+            </div>
+            <div class="row current-fw-row">
+                <label for="">{{dynamic-applets-diagnostics.574b8965}}</label>
+                <label name="isCurrentFW"></label>
+            </div>
+            <div class="row ip-row">
+                <label for="">{{dynamic-applets-diagnostics.42b0bbf1}}</label>
+                <label name="ipAddress"></label>
+            </div>
+            <div class="row">
+                <label for="">{{dynamic-applets-diagnostics.2d3fe1c4}}</label>
+                <label name="modelNumberLabel"></label>
+            </div>
+            <div class="row">
+                <label for="">{{dynamic-applets-diagnostics.a1f82af1}}</label>
+                <label name="unit.serialNumber"></label>
+            </div>
+        </fieldset>
+    </div>
+
+    <div id="templateWirelessRadioBlock" style="display: none;">
+        <fieldset class="wireless-radio">
+            <div class="row">
+                <label for="">{{dynamic-applets-diagnostics.48344e54}}</label>
+                <label name="radioLabel"></label>
+            </div>
+            <div class="row enabled-only-row">
+                <label for="">{{dynamic-applets-diagnostics.cb1fa3cd}}</label>
+                <label name="settings.ssid"></label>
+            </div>
+            <div class="row enabled-only-row">
+                <label for="">{{dynamic-applets-diagnostics.28326c06}}</label>
+                <label name="isBroadcasting"></label>
+            </div>
+            <div class="row enabled-only-row">
+                <label for="">{{dynamic-applets-diagnostics.0481769b}}</label>
+                <label name="settings.security"></label>
+            </div>
+            <div class="row enabled-only-row">
+                <label for="">{{dynamic-applets-diagnostics.06323ac8}}</label>
+                <label name="settings.mode"></label>
+            </div>
+            <div class="row enabled-only-row">
+                <label for="">{{dynamic-applets-diagnostics.c681481a}}</label>
+                <label name="settings.channel"></label>
+            </div>
+            <div class="row enabled-only-row">
+                <label for="">{{dynamic-applets-diagnostics.da41bccb}}</label>
+                <label name="settings.channelWidth"></label>
+            </div>
+            <div class="row enabled-only-row competing-networks-row">
+                <label for="">{{dynamic-applets-diagnostics.1a5fb7eb}}</label>
+                <label name="competingNetworks"></label>
+            </div>
+            <div class="row enabled-only-row most-congested-row">
+                <label for="">{{dynamic-applets-diagnostics.d09ab5ce}}</label>
+                <label name="mostCongestedChannel"></label>
+            </div>
+        </fieldset>
+    </div>
+
+    <div id="templateRouterClientsBlock" style="display: none;">
+        <fieldset>
+            <div class="row router-name-row">
+                <label for="" name="routerLabel" class="bold">{{dynamic-applets-diagnostics.47db0bc2}}</label>
+                <label name="routerName"></label>
+            </div>
+            <div class="row radio24-row">
+                <label for="" name="radio24_label"><!-- 2.4 GHz: --></label>
+                <label name="clientsCount24"></label>
+            </div>
+            <div class="row radio5-row">
+                <label for="" name="radio5_label"><!-- 5 GHz: --></label>
+                <label name="clientsCount5"></label>
+            </div>
+            <div class="row radio52-row">
+                <label for="" name="radio52_label"><!-- 5 GHz-2: --></label>
+                <label name="clientsCount5_2"></label>
+            </div>
+            <div class="row wired-row">
+                <label for="">{{dynamic-applets-diagnostics.0cb98df6}}</label>
+                <label name="wiredClientsCount"></label>
+            </div>
+        </fieldset>
+    </div>
+
+    <div id="templateSpinner" style="display: none;">
+        <img src="/ui/1.0.99.201002/static/applets/diagnostics/images/sm_waiting.gif" width="26" height="9" border="0" alt="Waiting..." />
+    </div>
+</article>
+
+<script type="text/javascript">
+    RAINIER.util.injectScripts([
+        '/ui/1.0.99.201002/static/cache/applets/diagnostics/js/diagnostics.js',
+        '/ui/1.0.99.201002/static/cache/applets/media_prioritization/js/media-prioritization-common.js'
+    ]);
+</script>

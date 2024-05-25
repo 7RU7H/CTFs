@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+# format a USB disk and erase all existing partitions
+#
+# USE: newformat <dev> <label>
+# Example:
+# newformat.sh sda media
+#set -x
+if [ "$2" ] ; then
+  sysevent set file_sharing-stop
+  sleep 1
+  DEVICE=`echo $1 | sed -r 's/[1-9]//g'`
+  LABEL=$2
+  PART_LIST=`fdisk -l  | grep -r "$DEVICE[1-9]" | sed -r "s|/dev/$DEVICE||g" | awk '{print $1}'`
+  PART_COUNT=`fdisk -l  | grep -r "$1[1-9]"| wc -l`
+#  echo "there are $PART_COUNT partitions"
+#  echo "$PART_LIST"
+  usbrmdrive $DEVICE
+  for ct in $PART_LIST
+  do
+#    echo "delete partition ${ct} on $DEVICE"
+    (echo d; echo ${ct}; echo w;) | fdisk "/dev/"$DEVICE > /dev/null 2>&1
+  done
+#  echo "creating new partition table"
+  (echo n; echo p; echo "1"; echo ""; echo ""; echo "t"; echo "c"; echo w;) | fdisk "/dev/$DEVICE" > /dev/null 2>&1
+#  echo "partition table"
+#  fdisk -l
+#  echo "formatting disk"
+  sleep 1
+  mkdosfs "/dev/$1"1 -n "$2"
+  sleep 1
+  sysevent set file_sharing-start
+fi

@@ -1,0 +1,29 @@
+#!/bin/sh
+ 
+USB_HIGH_480MB=480
+USB_NONE=0
+USB_FULL_SPEED=1	#  USB 1.1 full-speed (12 Mbit/s) 
+USB_HIGH_SPEED=2	#  USB 2.0 high-speed (480 Mbit/s)
+
+sysfs_usb_speed="/sys/bus/usb/devices/usb1/1-1/speed"
+usbspeed=0
+ret=0
+
+if [ -f "$sysfs_usb_speed" ];  then
+	usbspeed=`cat $sysfs_usb_speed`
+fi
+
+if [ "$usbspeed" -ne 0 ]; then
+	if [ "$usbspeed" -ge "$USB_HIGH_480MB" ]; then
+		echo -e "high-speed"
+		ret=$USB_HIGH_SPEED
+	else
+		echo -e "full-speed"
+		ret=$USB_FULL_SPEED
+	fi
+else
+	echo -e "none"
+fi
+
+exit $ret
+

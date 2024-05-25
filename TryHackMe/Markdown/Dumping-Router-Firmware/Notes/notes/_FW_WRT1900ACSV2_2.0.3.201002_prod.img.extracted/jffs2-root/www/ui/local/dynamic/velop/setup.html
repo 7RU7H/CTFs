@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html dir="{{dynamic-velop.ce8eef14}}" lang="{{dynamic-velop.29e84b92}}">
+<head>
+<!--
+2016 Belkin International, Inc. and/or its affiliates. All rights reserved.
+
+$Author$
+$DateTime$
+$Id$
+-->
+    <meta charset="utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="robots" content="noindex,noarchive" />
+
+    <meta name="description" content="Included with your Linksys Smart Wi-Fi Router, create a free Linksys Smart Wi-Fi account to access your home network from anywhere, at any time. Includes easy guest access, parental controls, and apps that make home networking easier and fun.">
+    <meta name="viewport" content="" />
+
+    <title>{{dynamic-velop.79b6d568}}</title>
+
+    <link type="image/x-icon" rel="shortcut icon" href="/favicon.ico" />
+
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/third_party/json.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/lib/webshim/base64.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/shared/shared-util.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/lib/jquery.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/lib/lodash.underscore.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/any_device/jnap-simple.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/dynamic/js/setup.js.localized"></script>
+
+    <link rel="stylesheet" href="/ui/1.0.99.201002/static/cache/css/lib/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/css/velop-desktop-block.css">
+
+    <style type="text/css">
+
+        html {
+            height: 100%;
+        }
+
+        #ssidInputValidation table,
+        #passwordInputValidation table {
+            width: 175px;
+        }
+
+        #ssidInputValidation td,
+        #passwordInputValidation td {
+            width: 75px;
+        }
+
+        #ssidInputValidation td + td,
+        #passwordInputValidation td + td {
+            width: 100px;
+        }
+
+        .txt-right {
+            text-align: right;
+        }
+
+        .unconfigured-block,
+        .configured-block,
+        .ssid-block,
+        .done-block {
+            font-weight: 600;
+        }
+
+        #setupNode {
+            width: 130px;
+        }
+
+        #stopOnboarding {
+            width: 200px;
+        }
+
+        .inputValidationBox .inputValidationErrorImage,
+        .inputValidationBox .inputValidationErrorMessage,
+        .inputValidationBox.inputError .inputValidationMessage,
+        .inputValidationBox.inputError.showInputValidationMessage .inputValidationErrorMessage {
+            display: none;
+        }
+
+        .inputValidationBox .inputValidationErrorImage img {
+            vertical-align: top;
+        }
+
+        .inputValidationBox.inputError {
+            color: Red;
+        }
+
+        .inputValidationBox.inputError .inputValidationErrorImage {
+            display: inline;
+        }
+
+        .inputValidationBox.inputError .inputValidationErrorMessage,
+        .inputValidationBox.inputError.showInputValidationMessage .inputValidationMessage {
+            display: inline;
+        }
+
+        #ssidInputValidation table.inputValidationBox td,
+        #passwordInputValidation table.inputValidationBox td {
+            width: auto;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        var defaultPw = 'admin', // 'admin',
+            deviceName = 'Node1',
+            bands = [ '2.4GHz', '5GHz' ],
+            properties = [ 'userDeviceName', 'userDeviceLocation' ],
+            deviceID,
+            deviceList,
+            fwUpdateSettings,
+            $ajax,
+            $ajaxSetup,
+            $deferred,
+            $extend,
+            $isFunction;
+
+        function getAdminPw() {
+            return 'Basic ' + window.btoa('admin:' + defaultPw);
+        }
+
+        function setupNodeComplete(data) {
+            if (data.result === 'OK') {
+                console.warn('Setup complete');
+
+                setTimeout(function() {
+                    $('.unconfigured-block').hide();
+
+                    $('#ssidTxt').text($('#ssid').val());
+                    $('#pwTxt').text($('#password').val());
+
+                    $('.ssid-block').show();
+                    $('.configured-block').show();
+                }, 25 * 1000);
+            } else {
+                console.error('Setup Master transaction failed!', data);
+            }
+        }
+
+        function startWiredAutoOnboarding(trans, cb) {
+            var action = {
+                action: '/jnap/nodes/autoonboarding/SetWiredAutoOnboardingSettings',
+                data: { isAutoOnboardingEnabled: true },
+                cb: function(data) {
+                    if (data.result === 'OK') {
+                        if ($isFunction(cb)) {
+                            cb();
+                        }
+                    } else {
+                        console.error('SetWiredAutoOnboardingSettings failed!', data);
+                    }
+                },
+                adminPasswordOverride: getAdminPw(),
+                disableDefaultAjaxErrHandler: true
+            };
+
+            if (trans) {
+                trans.add(action);
+            } else {
+                RAINIER.jnap.send(action);
+            }
+        }
+
+        function stopWiredAutoOnboarding(trans, cb) {
+            var action = {
+                action: '/jnap/nodes/autoonboarding/SetWiredAutoOnboardingSettings',
+                data: { isAutoOnboardingEnabled: false },
+                cb: function(data) {
+                    if (data.result === 'OK') {
+                        if ($isFunction(cb)) {
+                            cb();
+                        }
+                    } else {
+                        console.error('SetWiredAutoOnboardingSettings failed!', data);
+                    }
+                },
+                adminPasswordOverride: getAdminPw(),
+                disableDefaultAjaxErrHandler: true
+            };
+
+            if (trans) {
+                trans.add(action);
+            } else {
+                RAINIER.jnap.send(action);
+            }
+        }
+
+        function doConfigureNode() {
+            if (deviceList && fwUpdateSettings) {
+                var device = _.find(deviceList, { isAuthority: true });
+
+                if (device) {
+                    deviceID = device.deviceID;
+                    console.warn('Found Authority', deviceID);
+                }
+
+                // set FirmwareUpdateSettings to enable 'AutomaticallyCheckAndInstall'
+                fwUpdateSettings.updatePolicy = 'AutomaticallyCheckAndInstall';
+
+                // setup configure button
+                $('#setupNode').click(function() {
+                    var simpleWifiSettings = [],
+                        customProperties = [],
+                        ssid = $('#ssid').val(),
+                        pw = $('#password').val();
+
+                    $('#setupNode').prop('disabled', 'disabled');
+                    $('#spinner').show();
+
+                    // add Simple WiFi settings per band
+                    _.map(bands, function(band) {
+                        simpleWifiSettings.push({
+                            band: band,
+                            ssid: ssid,
+                            security: 'WPA2-Personal',
+                            passphrase: pw
+                        });
+                    });
+
+                    // add Custom Properties for name and location
+                    _.map(properties, function(property) {
+                        customProperties.push({
+                            name: property,
+                            value: deviceName
+                        });
+                    });
+
+                    var trans = RAINIER.jnap.Transaction({
+                        onComplete: setupNodeComplete,
+                        adminPasswordOverride: getAdminPw(),
+                        timeoutMs: 30 * 1000,
+                        disableDefaultJnapErrHandler: true
+                    });
+
+                    trans.add('/jnap/nodes/smartmode/SetDeviceMode', { mode: 'Master' });
+
+                    trans.add({
+                        action:'/jnap/nodes/setup/SetSimpleWiFiSettings',
+                        data: { simpleWiFiSettings: simpleWifiSettings },
+                        cb: function(output) {
+                            if (output.result !== 'OK') {
+                                $('#spinner').hide();
+                                $('#setupNode').removeProp('disabled');
+
+                                console.warn('err', output.result);
+
+                                if (output.result === 'ErrorInvalidSSID') {
+                                    showInputValidationError('ssidInputValidation', true, RAINIER.setup.ui.inputInvalid);
+                                } else {
+                                    removeValidationError('ssidInputValidation');
+                                }
+
+                                if (output.result === 'ErrorInvalidPassphrase') {
+                                    showInputValidationError('passwordInputValidation', true, RAINIER.setup.ui.inputInvalid);
+                                } else {
+                                    removeValidationError('passwordInputValidation');
+                                }
+                            } else {
+                                removeValidationError('ssidInputValidation');
+                                removeValidationError('passwordInputValidation');
+                            }
+                        }
+                    });
+
+                    // need to set Admin Password or App will not think it has been configured (flips an internal FW flag)
+                    trans.add('/jnap/core/SetAdminPassword2', { adminPassword: 'admin' });
+
+                    trans.add('/jnap/devicelist/SetDeviceProperties', {
+                        'deviceID': deviceID,
+                        'propertiesToModify': customProperties
+                    });
+
+                    trans.add('/jnap/firmwareupdate/SetFirmwareUpdateSettings', fwUpdateSettings);
+
+                    // add SetWiredAutoOnboardingSettings JNAP call to transaction
+                    startWiredAutoOnboarding(trans);
+
+                    trans.send();
+                });
+
+                $('#setupNode').removeProp('disabled');
+            } else {
+                console.error('GetDevices + GetFirmwareUpdateSettings failed!');
+            }
+        }
+
+        function unconfiguredNode() {
+            var trans = RAINIER.jnap.Transaction({
+                onComplete: doConfigureNode,
+                adminPasswordOverride: getAdminPw(),
+                timeoutMs: 30 * 1000,
+                disableDefaultJnapErrHandler: true
+            });
+
+            trans.add({
+                action: '/jnap/devicelist/GetDevices',
+                data: {},
+                cb: function(data) {
+                    if (data.result === 'OK') {
+                        deviceList = data.output.devices;
+                    } else {
+                        console.error('GetDevices failed!', data);
+                    }
+                },
+                disableDefaultAjaxErrHandler: true
+            });
+
+            trans.add({
+                action: '/jnap/firmwareupdate/GetFirmwareUpdateSettings',
+                data: {},
+                cb: function(data) {
+                    if (data.result === 'OK') {
+                        fwUpdateSettings = data.output;
+                    } else {
+                        console.error('GetFirmwareUpdateSettings failed!', data);
+                    }
+                },
+                disableDefaultAjaxErrHandler: true
+            });
+
+            trans.send();
+
+            $('.unconfigured-block').show();
+        }
+
+        function configuredNode() {
+            startWiredAutoOnboarding(null, function() {
+                $('.configured-block').show();
+            });
+        }
+
+        // validation taken from LSWF Setup (/static/js/setup)
+        function showInputValidationError(validationBoxId, showErrorNotMessage, errorMessage) {
+            var elValidation = $('#' + validationBoxId),
+                validationBox = elValidation.find('.inputValidationBox'),
+                inputBox = elValidation.find('inputField');
+
+            validationBox.addClass('inputError');
+
+            if (showErrorNotMessage) {
+                validationBox.removeClass('showInputValidationMessage'); // clear class that would override the error validation message
+
+                var errorMessageElements = validationBox.find('.inputValidationErrorMessage');
+                if (errorMessageElements.length > 0) {
+                    console.warn(errorMessageElements);
+
+                    if (errorMessage && errorMessage.length > 0) {
+                        errorMessageElements.html(errorMessage);
+                    }
+                } else {
+                    console.error('showInputValidationError() - expected class "inputValidationErrorMessage" required');
+                    return;
+                }
+            } else {
+                validationBox.addClass('showInputValidationMessage');
+            }
+
+            if (inputBox) {
+                inputBox.focus();
+            }
+        }
+
+        function removeValidationError(validationBoxId) {
+            var elValidation = $('#' + validationBoxId),
+                validationBox = elValidation.find('.inputValidationBox');
+
+            validationBox.removeClass('inputError');
+        }
+
+        $(document).ready(function() {
+            // provide jnap-simple with necessary vars
+            $ajax = jQuery.ajax;
+            $ajaxSetup = jQuery.ajaxSetup;
+            $deferred = jQuery.Deferred; // used by ajax
+            $extend = jQuery.extend; // used by ajax
+            $isFunction = jQuery.isFunction; // used by extend
+
+            $('#stopOnboarding').click(function() {
+                $(this).prop('disabled', 'disabled');
+
+                var trans = RAINIER.jnap.Transaction({
+                    onComplete: function() {
+                        $('.done-block').show();
+                    },
+                    adminPasswordOverride: getAdminPw(),
+                    timeoutMs: 30 * 1000,
+                    disableDefaultJnapErrHandler: true
+                });
+
+                stopWiredAutoOnboarding(trans);
+
+                trans.add('/jnap/core/SetUnsecuredWiFiWarning', { enabled: false });
+
+                trans.send();
+            });
+
+            // detect if the Node is Configured
+            RAINIER.jnap.send({
+                action: '/jnap/nodes/smartmode/GetDeviceMode',
+                data: {},
+                cb: function(data) {
+                    if (data.result === 'OK') {
+                        switch (data.output.mode) {
+                            case 'Unconfigured': { // 'Unconfigured'
+                                unconfiguredNode();
+                                break;
+                            }
+
+                            case 'Master': {
+                                configuredNode();
+                                break;
+                            }
+                        }
+                    } else {
+                        console.error('GetDeviceMode failed!', data);
+                    }
+                },
+                adminPasswordOverride: getAdminPw(),
+                disableDefaultAjaxErrHandler: true
+            });
+        });
+    </script>
+</head>
+<body id="velop-bg">
+    <div class="container">
+        <div class="content row">
+            <div id="mobile-images" dir="ltr" class="col-sm-6 col-sm-offset-3 col-md-offset-0 col-md-5 col-xs-6 col-xs-offset-3">
+                <img id="phone-1" src="/ui/1.0.99.201002/static/cache/images/velop_block/white-i-phone.png" alt="Linksys App on iPhone">
+                <img id="phone-2" src="/ui/1.0.99.201002/static/cache/images/velop_block/black-android.png" alt="Linksys App on Android">
+            </div>
+
+            <!--right column-->
+            <div class="text-center col-sm-12 col-md-7 col-xs-12">
+                <div id="logo">
+                    <img src="/ui/1.0.99.201002/static/cache/images/velop_block/velop-logo.png" alt="Linksys Velop Logo" class="logo">
+                </div>
+
+                <br>
+                <br>
+
+                <div class="unconfigured-block" style="display: none;">
+                    {{dynamic-velop.026b482f}}
+                    <br>
+                    <br>
+
+                    <center>
+                        <table id="ssidInputValidation">
+                            <tr>
+                                <td class="txt-right">{{dynamic-velop.24c3760b}}:</td>
+                                <td><input type="text" id="ssid" maxlength="32" size="20" class="inputField"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <table class="inputValidationBox">
+                                        <td><div class="inputValidationErrorImage"><img src="/ui/1.0.99.201002/static/cache/images/exclamation.png" /></div></td>
+                                        <td><div class="inputValidationMessage">{{dynamic-velop.50167b84}}</div></td>
+                                        <td><div class="inputValidationErrorMessage"></div></td>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <table id="passwordInputValidation">
+                            <tr>
+                                <td class="txt-right">{{dynamic-velop.0ff71dd1}}:</td>
+                                <td><input type="text" id="password" maxlength="64" size="20" class="inputField"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <table class="inputValidationBox">
+                                        <td><div class="inputValidationErrorImage"><img src="/ui/1.0.99.201002/static/cache/images/exclamation.png" /></div></td>
+                                        <td><div class="inputValidationMessage">{{dynamic-velop.74491a08}}</div></td>
+                                        <td><div class="inputValidationErrorMessage"></div></td>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </center>
+
+                    <br>
+                    <br>
+
+                    <input id="setupNode" type="button" disabled="disabled" value="{{dynamic-velop.bcc9b317}}">
+
+                    <br>
+                    <br>
+
+                    <img id="spinner" align="mid" src="/ui/1.0.99.201002/static/images/spinner/Spinner_18.gif" style="display:none;">
+                </div>
+
+                <div class="ssid-block" style="display: none;">
+                    {{dynamic-velop.f6253478}} <span id="ssidTxt"></span> / <span id="pwTxt"></span>
+
+                    <br>
+                    <br>
+                </div>
+
+                <div class="configured-block" style="display: none;">
+                    {{dynamic-velop.9ebe312d}}
+
+                    <br>
+                    <br>
+
+                    <input type="button"  id="stopOnboarding" value="{{dynamic-velop.a43703d6}}">
+                </div>
+
+                <div class="done-block" style="display: none;">
+                    <br>
+                    <br>
+
+                    {{dynamic-velop.b4d8984b}}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

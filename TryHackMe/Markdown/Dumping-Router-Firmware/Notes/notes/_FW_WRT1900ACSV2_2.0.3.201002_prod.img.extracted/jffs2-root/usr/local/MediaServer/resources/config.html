@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN"
+   "http://www.w3.org/TR/html4/frameset.dtd">
+
+<html>
+<head>
+<title>TwonkyServer Configuration</title>
+<meta content="text/html; charset=utf-8" http-equiv="content-type">
+<meta name="description" content="TwonkyServer">
+<meta name="keywords" content="UPnP, UPnP AV, MediaServer, Media Server, SDK, Digital Home">
+
+<script src="/configpage/TwonkyMediaConfig.js" type="text/javascript"></script>
+<script src="/configpage/TwonkyMediaConfig_grouping.js" type="text/javascript"></script>
+<script src="/configpage/platform-specific-menu-grouping.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+// global variable for option set identification across frame boundaries
+// needed in any case, even if different frameset is used in customized config pages
+statusInfo(false);
+
+//actualPage = 0;
+actualPage = 14;
+if (licenseStatus() != 2) actualPage=14;
+if (gup("confpage"))
+	actualPage = parseInt(gup("confpage"));
+	
+</script>
+</head>
+
+<frameset rows="100,*" frameborder="0" framespacing="0">
+  <frame src="/configpage/config-head.html" name="HEAD_FRAME" scrolling="no" marginwidth="0" marginheight="0" frameborder="0" noresize>   
+	<frameset cols="160,*" frameborder="0" framespacing="0">
+	  <frame src="/configpage/config-menu.html" name="NAV_FRAME_LEFT" scrolling="no" marginwidth="20" marginheight="0" frameborder="0" noresize>
+
+<!-- ATTENTION: if different name for content frame is used in customized configuration pages, 
+     this has to be adapted throughout the scripts generating the options -->
+
+    <frame src="/configpage/config-content.html" name="CONT_FRAME" scrolling="yes" marginwidth="18" marginheight="0" frameborder="0" noresize>
+	</frameset> 
+</frameset> 
+
+</html>

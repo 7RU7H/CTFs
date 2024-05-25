@@ -1,0 +1,141 @@
+<link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/cache/applets/guest_access/css/guest-access.css"/>
+
+<article id="guest-access-applet" class="applet">
+    <header>
+        <h1>{{dynamic-applets-guest_access.c28e69af}}</h1>
+        <h4>{{dynamic-applets-guest_access.ab1b93f4}}</h4>
+        <div class="close-button"></div>
+        <div class="widget-config">
+           <input type="checkbox" id="cbAddWidget" checked=checked /><label for="cbAddWidget">{{dynamic-applets-guest_access.96d3c7d5}}</label>
+        </div>
+    </header>
+
+    <section class="form">
+        <div class="left">
+            <div class="container">
+                <p class="legend">{{dynamic-applets-guest_access.1b8307d8}}</p>
+                <p><input type="checkbox" id="isGuestNetworkEnabled" name="isGuestNetworkEnabled" class="switch" disabled="disabled"/></p>
+            </div>
+
+            <fieldset id="guest-access-settings">
+                <legend>
+                    <p class="showForLinksysRouters">{{dynamic-applets-guest_access.5a77c963}}</p>
+                    <p class="showForNodes">{{dynamic-applets-guest_access.2aedcd41}}</p>
+                    <span>|</span>
+                    <span id="edit-guest-access">
+                        <a id="editGuestAccessLink" href="#" style="display: none;">{{dynamic-applets-guest_access.4a370bdd}}</a>
+                    </span>
+                </legend>
+
+                <div class="showForLinksysRouters">
+                    <div class="row toggle-edit" id="ssid24">
+                        <label>{{dynamic-applets-guest_access.760c45b1}}</label>
+                        <label name="radio.band24.guestSSID" tooltip="" class="truncate-text"></label>
+                        <div class="cell">
+                            <input type="text" id="radioBand24GuestSSID" name="radio.band24.guestSSID" />
+                        </div>
+                    </div>
+                    <div class="row toggle-edit ga-50">
+                        <label>{{dynamic-applets-guest_access.b805542e}}</label>
+                        <label id="enabled-text-24"></label> <!-- code sets the text to either Enabled or Disabled -->
+                        <div class="cell" id="w-enabled-span-24">
+                            <div class="check-item">
+                                <div><input type="checkbox" id="enabled-24" name="radio.band24.isEnabled" /></div>
+                                <div><label for="enabled-24">{{dynamic-applets-guest_access.3d896dd1}}</label></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row toggle-edit ga-50" id="ssid50">
+                        <label>{{dynamic-applets-guest_access.fa7c1531}}</label>
+                        <label name="radio.band50.guestSSID" tooltip="" class="truncate-text"></label>
+                        <div class="cell">
+                            <input type="text" id="radioBand50GuestSSID" name="radio.band50.guestSSID" />
+                        </div>
+                    </div>
+                    <div class="row toggle-edit ga-50">
+                        <label>{{dynamic-applets-guest_access.b805542e}}</label>
+                        <label id="enabled-text-50"></label> <!-- code sets the text to either Enabled or Disabled -->
+                        <div class="cell" id="w-enabled-span-50">
+                            <div class="check-item">
+                                <div><input type="checkbox" id="enabled-50" name="radio.band50.isEnabled" /></div>
+                                <div><label for="enabled-50">{{dynamic-applets-guest_access.3d896dd1}}</label></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row toggle-edit" id="guest-password">
+                        <label for="guestPassword">{{dynamic-applets-guest_access.b9b9ac19}}</label>
+                        <label name="radio.band24.guestPassword" tooltip="" class="truncate-text"></label>
+                        <div class="cell">
+                            <input type="text" id="guestPassword" name="radio.band24.guestPassword" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="showForNodes">
+                    <div class="row toggle-edit">
+                        <label for="guestSSID">{{dynamic-applets-guest_access.b45a49ed}}</label>
+                        <label name="radio.band24.guestSSID" tooltip="" class="truncate-text"></label>
+                        <div class="cell">
+                            <input type="text" id="guestSSID" name="radio.band24.guestSSID" />
+                        </div>
+                    </div>
+                    <div class="row toggle-edit" id="guest-WPAPassphrase">
+                        <label for="guestWPAPassphrase">{{dynamic-applets-guest_access.30c623e8}}</label>
+                        <label name="radio.band24.guestWPAPassphrase" tooltip="" class="truncate-text"></label>
+                        <div class="cell">
+                            <input type="text" id="guestWPAPassphrase" name="radio.band24.guestWPAPassphrase" />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="showForLinksysRouters">
+                <div><legend>{{dynamic-applets-guest_access.c241a615}}</legend></div>
+                <div class="block-row">
+                    <select name="maxSimultaneousGuests"></select>
+                </div>
+            </fieldset>
+        </div>
+        <div class="right showForLinksysRouters">
+            <div id="info-block" class="highlighted">
+                <div class="attention left">
+                    <p>{{dynamic-applets-guest_access.ea115568}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <button class="cancel">{{dynamic-applets-guest_access.8f475444}}</button>
+        <button class="submit" id="submitGuestAccessButton">{{dynamic-applets-guest_access.e9b662b3}}</button>
+    </footer>
+
+    <div id="wirelessIsDisabled" style="display: none;">
+        <h1 class="exclamation">{{dynamic-applets-guest_access.d0818d8e}}</h1>
+        <h2>{{dynamic-applets-guest_access.b80f51f4}}</h2>
+        <div id="start-text">{{dynamic-applets-guest_access.47fa2e2a}}</div>
+    </div>
+
+    <div id="band24-disabled" class="dialog exclamation" style="display:none">
+        <!-- wireless ssid and guest ssid the same -->
+        <div class="dialog-content">
+            <h1 class="exclamation">{{dynamic-applets-guest_access.a4f198f5}}</h1>
+            {{dynamic-applets-guest_access.0382063f}}
+        </div>
+        <div class="dialog-buttons">
+            <button class="cancel">{{dynamic-applets-guest_access.e9b662b3}}</button>
+        </div>
+    </div>
+
+    <div id="band50-disabled" class="dialog exclamation" style="display:none">
+        <!-- wireless ssid and guest ssid the same -->
+        <div class="dialog-content">
+            <h1 class="exclamation">{{dynamic-applets-guest_access.a4f198f5}}</h1>
+            {{dynamic-applets-guest_access.f61004a0}}
+        </div>
+        <div class="dialog-buttons">
+            <button class="cancel">{{dynamic-applets-guest_access.e9b662b3}}</button>
+        </div>
+    </div>
+</article>
+<script type="text/javascript" src="/ui/1.0.99.201002/static/cache/applets/guest_access/js/guest-access.js"></script>

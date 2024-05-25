@@ -1,0 +1,912 @@
+<link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/cache/applets/troubleshooting/css/troubleshooting.css" />
+<iframe style="display: none;" id="form-target" name="form-target"></iframe>
+
+<article id="troubleshooting-applet">
+    <header>
+        <h1>{{dynamic-applets-troubleshooting.690e3313}}</h1>
+        <h4>{{dynamic-applets-troubleshooting.ed78d5b9}}</h4>
+        <div class="close-button"></div>
+    </header>
+    <section class="tab-section">
+        <ul class="tabs">
+            <li data-id="status"><span>{{dynamic-applets-troubleshooting.17865ec5}}</span></li>
+            <li id="diagnosticsTab" data-id="diagnostics"><span>{{dynamic-applets-troubleshooting.492b3da9}}</span></li>
+            <li data-id="logs"><span>{{dynamic-applets-troubleshooting.af1768d2}}</span></li>
+            <div class="tab-filler"></div>
+        </ul>
+        <div class="tab-content sub-tab-section" id="status">
+            <ul class="sub-tabs">
+                <li id="devices-sub-tab">{{dynamic-applets-troubleshooting.f577d853}}</li>
+                <li id="report-sub-tab">{{dynamic-applets-troubleshooting.ba8d9557}}</li>
+            </ul>
+            <div class="sub-tab-content panel-form no-text-orphans" id="status-devices">
+                <div id="devices-wrapper">
+                    <div class="table-wrapper">
+                        <table id="devices-ipv4" class="grid word-break">
+                            <tbody>
+                                <tr>
+                                    <th>{{dynamic-applets-troubleshooting.f6170a83}}</th>
+                                    <th>{{dynamic-applets-troubleshooting.779ac855}}</th>
+                                    <th>{{dynamic-applets-troubleshooting.d30ec579}}</th>
+                                    <th>{{dynamic-applets-troubleshooting.2a8b6381}}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table id="devices-ipv6" class="grid word-break">
+                            <tbody>
+                                <tr>
+                                    <th>{{dynamic-applets-troubleshooting.f6170a83}}</th>
+                                    <th>{{dynamic-applets-troubleshooting.779ac855}}</th>
+                                    <th>{{dynamic-applets-troubleshooting.4eba0800}}</th>
+                                    <th>{{dynamic-applets-troubleshooting.2a8b6381}}</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="sub-tab-content form panel-form" id="status-report">
+                <div class="report-wrapper">
+                      <table id="status-report-content">
+                        <tr>
+                            <th>{{dynamic-applets-troubleshooting.fdb2066b}}</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.6a0d9aa8}}</td>
+                            <td name="firmwareVersion"></td>
+                        </tr>
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.a1f82af1}}</td>
+                            <td name="serialNumber"></td>
+                        </tr>
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.1a7ae0b9}}</td>
+                            <td name="currentRouterTime"></td>
+                        </tr>
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.252a37b7}}</td>
+                            <td name="currentBrowserTime"></td>
+                        </tr>
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.35db46ce}}</td>
+                            <td name="internetMacAddress" dir="ltr"></td>
+                        </tr>
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.8dbad053}}</td>
+                            <td name="lanSettings.hostName"></td>
+                        </tr>
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.946effec}}</td>
+                            <td name="lanSettings.hostName"></td>
+                        </tr>
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.d8f492c5}}</td>
+                            <td name="wan.domainName"></td>
+                        </tr>
+                        <tr><td colspan="2">&nbsp;</td></tr>
+                        <tr>
+                            <th>{{dynamic-applets-troubleshooting.60e279f0}}</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.7a04e592}}</td>
+                            <td name="routerManagement.serviceState"></td>
+                        </tr>
+                        <tr><td colspan="2">&nbsp;</td></tr>
+                        <tr>
+                            <th>{{dynamic-applets-troubleshooting.4eac83ed}}</th>
+                            <th></th>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.1435227d}}</td>
+                            <td name="ipv4Type"></td>
+                        </tr>
+
+                        <tr id="ppp-status" style="display: none;">
+                            <td>{{dynamic-applets-troubleshooting.0402942a}}</td>
+                            <td><label name="wanStatus.currentState"></label> &nbsp; <button style="display:none;" class="small-blue" id="ppp-connect">{{dynamic-applets-troubleshooting.0e9a1fb4}}</button><button class="small-blue" style="display:none;" id="ppp-disconnect">{{dynamic-applets-troubleshooting.0613dd9f}}</button></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.40856be3}}</td>
+                            <td name="wanStatus.wanConnection.ipAddress"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.7dda85fa}}</td>
+                            <td name="wanStatus.wanConnection.subnetMask"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.fb16a82a}}</td>
+                            <td name="wanStatus.wanConnection.gateway"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.4ce11868}}</td>
+                            <td name="wanStatus.wanConnection.dnsServer1"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.e740a681}}</td>
+                            <td name="wanStatus.wanConnection.dnsServer2"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.3fafa01e}}</td>
+                            <td name="wanStatus.wanConnection.dnsServer3"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.bb402821}}</td>
+                            <td name="wanStatus.wanConnection.mtu"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.ba035e4a}}</td>
+                            <td><span name="wanStatus.wanConnection.dhcpLeaseMinutes"></span>&nbsp;<label id="lease-mins"></label></td>
+                        </tr>
+
+                        <tr><td colspan="2">&nbsp;</td></tr>
+                        <tr>
+                            <th>{{dynamic-applets-troubleshooting.65c046f9}}</th>
+                            <th></th>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.1435227d}}</td>
+                            <td name="ipv6Type"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.40856be3}}</td>
+                            <td name="wanStatus.wanIPv6Connection.networkInfo.ipAddress"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.fb16a82a}}</td>
+                            <td name="wanStatus.wanIPv6Connection.networkInfo.gateway"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.4ce11868}}</td>
+                            <td name="wanStatus.wanIPv6Connection.networkInfo.dnsServer1"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.e740a681}}</td>
+                            <td name="wanStatus.wanIPv6Connection.networkInfo.dnsServer2"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.3fafa01e}}</td>
+                            <td name="wanStatus.wanIPv6Connection.networkInfo.dnsServer3"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.ba035e4a}}</td>
+                            <td><span name="wanStatus.wanIPv6Connection.networkInfo.dhcpLeaseMinutes"></span>&nbsp;<label id="ipv6-lease-mins"></label></td>
+                        </tr>
+
+                        <tr><td colspan="2">&nbsp;</td></tr>
+                        <tr>
+                            <th>{{dynamic-applets-troubleshooting.4679ef0d}}</th>
+                            <th></th>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.101f06cc}}</td>
+                            <td name="authorityDevice.macAddress" dir="ltr"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.7077d5a0}}</td>
+                            <td name="lanSettings.ipAddress"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.2491d00e}}</td>
+                            <td name="lanSettings.subnetMask"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.1a1ec467}}</td>
+                            <td name="wanStatus.linkLocalIPv6Address"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.f60eb783}}</td>
+                            <td name="ipv6.ipv6rdTunnelSettings.prefix"></td>
+                        </tr>
+
+                        <tr><td colspan="2">&nbsp;</td></tr>
+                        <tr>
+                            <th>{{dynamic-applets-troubleshooting.70e57160}}</th>
+                            <th></th>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.e166f284}}</td>
+                            <td name="lanSettings.isDHCPEnabled"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.91e8a976}}</td>
+                            <td name="lanSettings.dhcpSettings.firstClientIPAddress"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.9ee87e41}}</td>
+                            <td name="lanSettings.dhcpSettings.lastClientIPAddress"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.cb55c682}}</td>
+                            <td><span name="lanSettings.dhcpSettings.leaseMinutes"></span>&nbsp;<label id="lease-mins"></label></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.865aa4f8}}</td>
+                            <td name="lanSettings.dhcpSettings.dnsServer1"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.7652de7e}}</td>
+                            <td name="lanSettings.dhcpSettings.dnsServer2"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.dff746ac}}</td>
+                            <td name="lanSettings.dhcpSettings.dnsServer3"></td>
+                        </tr>
+
+                        <tr>
+                            <td>{{dynamic-applets-troubleshooting.ab225709}}</td>
+                            <td name="lanSettings.dhcpSettings.winsServer"></td>
+                        </tr>
+
+                        <tr class="openVpn"><td colspan="2">&nbsp;</td></tr>
+                        <tr class="openVpn">
+                            <th>{{dynamic-applets-troubleshooting.04e3b4d3}}</th>
+                            <th></th>
+                        </tr>
+
+                        <tr class="openVpn">
+                            <td>{{dynamic-applets-troubleshooting.6323170d}}</td>
+                            <td name="openVpn.isOpenVPNEnabled"></td>
+                        </tr>
+
+                        <tr class="openVpn">
+                            <td>{{dynamic-applets-troubleshooting.fc251ceb}}</td>
+                            <td name="openVpn.serverIPAddress"></td>
+                        </tr>
+
+                        <tr class="openVpn">
+                            <td>{{dynamic-applets-troubleshooting.38c784eb}}</td>
+                            <td name="openVpn.serverPort"></td>
+                        </tr>
+
+                        <tr class="openVpn">
+                            <td>{{dynamic-applets-troubleshooting.a89b4142}}</td>
+                            <td name="openVpn.protocol"></td>
+                        </tr>
+
+                        <tr class="openVpn">
+                            <td>{{dynamic-applets-troubleshooting.a532718f}}</td>
+                            <td name="openVpn.clientIPStartAddress"></td>
+                        </tr>
+
+                        <tr class="openVpn">
+                            <td colspan="2">{{dynamic-applets-troubleshooting.44d4bdbd}}:</td>
+                        </tr>
+
+                        <tr class="openVpn">
+                            <td colspan="2">
+                                <table class="openVpn-users-table">
+                                    <tr>
+                                        <th>{{dynamic-applets-troubleshooting.0fb45d5c}}</th>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <tr class="wirelessScheduler"><td colspan="2">&nbsp;</td></tr>
+                        <tr class="wirelessScheduler">
+                            <th>{{dynamic-applets-troubleshooting.bd32b640}}</th>
+                            <th></th>
+                        </tr>
+
+                        <tr class="wirelessScheduler">
+                            <td>{{dynamic-applets-troubleshooting.7a04e592}}</td>
+                            <td name="wirelessScheduler.isWirelessSchedulerEnabled"></td>
+                        </tr>
+
+                        <tr class="wirelessScheduler">
+                            <td>{{dynamic-applets-troubleshooting.832aa1a7}}</td>
+                            <td name="wirelessScheduler.radiosStatus"></td>
+                        </tr>
+
+                        <tr class="bandSteeringInfo"><td colspan="2">&nbsp;</td></tr>
+                        <tr class="bandSteeringInfo">
+                            <th>{{dynamic-applets-troubleshooting.0fdd2e1c}}</th>
+                            <th></th>
+                        </tr>
+                        <tr id="bandSteeringEnabled" class="bandSteeringInfo">
+                            <td>{{dynamic-applets-troubleshooting.7a04e592}}</td>
+                            <td name="wireless.isBandSteeringEnabled"></td>
+                        </tr>
+
+                        <tr><td colspan="2">&nbsp;</td></tr>
+                        <tr class="powerModem">
+                            <th>{{dynamic-applets-troubleshooting.417613d4}}</th>
+                            <th></th>
+                        </tr>
+                        <tr class="powerModem"><td colspan="2">&nbsp;</td></tr>
+                        <tr class="powerModem">
+                            <th>{{dynamic-applets-troubleshooting.dddec81b}}</th>
+                            <th></th>
+                        </tr>
+                        <tr class="powerModem">
+                            <td>{{dynamic-applets-troubleshooting.2a59b284}}</td>
+                            <td name="powerModem.dslSettings.wanType"></td>
+                        </tr>
+                        <tr class="powerModem">
+                            <td>{{dynamic-applets-troubleshooting.f3a9fe3c}}</td>
+                            <td name="powerModem.dslSettings.multiplexing"></td>
+                        </tr>
+                        <tr class="powerModem">
+                            <td>{{dynamic-applets-troubleshooting.333cb402}}</td>
+                            <td name="powerModem.dslSettings.qosType"></td>
+                        </tr>
+                        <tr class="powerModem">
+                            <td>{{dynamic-applets-troubleshooting.e79e0dfd}}</td>
+                            <td name="powerModem.dslSettings.pcr">0 cps</td>
+                        </tr>
+                        <tr class="powerModem">
+                            <td>{{dynamic-applets-troubleshooting.d5f30a78}}</td>
+                            <td name="powerModem.dslSettings.scr">0 cps</td>
+                        </tr>
+                        <tr class="powerModem">
+                            <td>{{dynamic-applets-troubleshooting.d23974ce}}</td>
+                            <td name="powerModem.dslSettings.vpi"></td>
+                        </tr>
+                        <tr class="powerModem">
+                            <td>{{dynamic-applets-troubleshooting.8f9b2f2f}}</td>
+                            <td name="powerModem.dslSettings.vci"></td>
+                        </tr>
+                        <tr class="powerModem">
+                            <td>{{dynamic-applets-troubleshooting.094fbd1c}}</td>
+                            <td name="powerModem.dslSettings.modulation"></td>
+                        </tr>
+                        <tr class="powerModem"><td colspan="2">&nbsp;</td></tr>
+                        <tr class="powerModem">
+                            <th>{{dynamic-applets-troubleshooting.9bf2aa5f}}</th>
+                            <th></th>
+                        </tr>
+                        <tr class="powerModem">
+                            <td>{{dynamic-applets-troubleshooting.7a04e592}}</td>
+                            <td name="adslLineStatus.status">{{dynamic-applets-troubleshooting.7b4d9a58}}</td>
+                        </tr>
+                        <tr class="powerModem">
+                            <td colspan="2">
+                                <table class="adsl-table">
+                                    <tr>
+                                        <th></th>
+                                        <th>{{dynamic-applets-troubleshooting.4b8eb3f8}}</th>
+                                        <th>{{dynamic-applets-troubleshooting.a5f1401b}}</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{dynamic-applets-troubleshooting.893de63d}}</td>
+                                        <td name="adslLineStatus.downDataRateBps"></td>
+                                        <td name="adslLineStatus.upDataRateBps"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{dynamic-applets-troubleshooting.9d6a1363}}</td>
+                                        <td name="adslLineStatus.downOutputPowerdBm"></td>
+                                        <td name="adslLineStatus.upOutputPowerdBm"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{dynamic-applets-troubleshooting.f44cdb2c}}</td>
+                                        <td name="adslLineStatus.downNoiseMargindB"></td>
+                                        <td name="adslLineStatus.upNoiseMargindB"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{dynamic-applets-troubleshooting.1018c9cc}}</td>
+                                        <td name="adslLineStatus.downAttenuationdB"></td>
+                                        <td name="adslLineStatus.upAttenuationdB"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <tr><td colspan="2">&nbsp;</td></tr>
+                        <tr>
+                            <th>{{dynamic-applets-troubleshooting.3ac35d91}}</th>
+                            <th></th>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">
+
+                                <table id="internet-port" class="port-table">
+                                <tr>
+                                    <th></th>
+                                    <th>{{dynamic-applets-troubleshooting.ec7ed5f3}}</th>
+                                    <th>{{dynamic-applets-troubleshooting.e17e6a33}}</th>
+                                </tr>
+                                <tr>
+                                    <td>{{dynamic-applets-troubleshooting.cf3bb2a0}}</td>
+                                    <td name="internet100"></td>
+                                    <td name="internet1gbps"></td>
+                                </tr>
+                                </table>
+
+                                <div id="lan-ports-wrapper">
+                                <!-- LAN Ports will be inserted here -->
+                                </div>
+
+                            </td>
+                        </tr>
+                        <tr><td colspan="2">&nbsp;</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="panel-buttons">
+                <button id="refresh-status" tooltip=""><span class="truncate-text">{{dynamic-applets-troubleshooting.7edbb162}}</span></button>
+                <button id="open-status" tooltip=""><span class="truncate-text">{{dynamic-applets-troubleshooting.194acae2}}</span></button>
+                <button id="print-status" tooltip=""><span class="truncate-text">{{dynamic-applets-troubleshooting.521bd1b2}}</span></button>
+                <button id="open-dhcpclienttable" tooltip=""><span class="truncate-text">{{dynamic-applets-troubleshooting.1bd9da64}}</span></button>
+            </div>
+        </div>
+        <div class="tab-content form" id="diagnostics">
+            <fieldset id="ping-ipv4" class="left">
+                <legend>{{dynamic-applets-troubleshooting.b2efce97}}</legend>
+
+                <div class="row">
+                    <label for="ping-address">{{dynamic-applets-troubleshooting.654ee7cd}}</label>
+                    <div class="cell">
+                        <input type="text" id="ping-address" name="pingAddress.host" />
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="ping-number">{{dynamic-applets-troubleshooting.70829926}}</label>
+                    <div class="cell">
+                        <select id="ping-number" name="pingAddress.pingCount">
+                            <option value='five'>{{dynamic-applets-troubleshooting.0b9ab3db}}</option>
+                            <option value="ten">{{dynamic-applets-troubleshooting.cb16cdae}}</option>
+                            <option value="fifteen">{{dynamic-applets-troubleshooting.f0296fa6}}</option>
+                            <option value="unlimited">{{dynamic-applets-troubleshooting.612690d2}}</option>
+                        </select>
+                        <p><button id="start-ping">{{dynamic-applets-troubleshooting.fa7b9de0}}</button></p>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset id="diagnostics-info" class="right hidden">
+                <legend>{{dynamic-applets-troubleshooting.c33804d1}}</legend>
+                <div class="block-row">
+                    <button id="share-info">{{dynamic-applets-troubleshooting.59f204e7}}</button>
+                </div>
+                <div id="auto-upload-div" class="block-row hidden">
+                    <div class="check-item">
+                        <div>
+                            <input id="diagnostics-upload" name="userConsent" type="checkbox" />
+                        </div>
+                        <div id="auto-upload-label">
+                            <label for="diagnostics-upload">{{dynamic-applets-troubleshooting.c3c07c8e}}</label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset id="router-configuration" class="right local-content showForLinksysRouters">
+                <legend>{{dynamic-applets-troubleshooting.3de20a76}}</legend>
+                <div class="row">
+                    <div class="cell">
+                        <form method="POST" enctype="multipart/form-data" action="/jcgi/" class="left" target="form-target">
+                            <input type="hidden" name="X-JNAP-Action" value="backupconfiguration" />
+                            <input type="hidden" id="backup-admin-auth" name="X-JNAP-Authorization" />
+                            <input type="hidden" id="backup-user-auth-token" name="X-JNAP-Session" />
+                            <button id="backup-config" type="submit">{{dynamic-applets-troubleshooting.291e9db9}}</button>
+                        </form>
+                    </div>
+                    <div class="cell">
+                        <button id="restore">{{dynamic-applets-troubleshooting.f9bcbc00}}</button>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset id="router-firmware" class="right local-content showForLinksysRouters">
+                <legend>{{dynamic-applets-troubleshooting.546d933e}}</legend>
+                <button id="restore-previous-firmware">{{dynamic-applets-troubleshooting.5f4806ad}}</button>
+            </fieldset>
+
+            <fieldset id="trace-route" class="left">
+                <legend>{{dynamic-applets-troubleshooting.dc7c65c5}}</legend>
+                <div class="row">
+                    <label for="trace-address">{{dynamic-applets-troubleshooting.654ee7cd}}</label>
+                    <div class="cell">
+                        <input type="text" id="trace-address" name="traceAddress.host" />
+                        <p><button id="start-trace">{{dynamic-applets-troubleshooting.5a694639}}</button></p>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset id="router-address" class="right local-content">
+                <legend>{{dynamic-applets-troubleshooting.40856be3}}</legend>
+                <div class="block-row">
+                    <span class="left">{{dynamic-applets-troubleshooting.1f2d1a4d}}: <label id="ip-addr" name="wanConnection.ipAddress"></label></span> <a id="renew-ip" class="right">{{dynamic-applets-troubleshooting.7c209474}}</a>
+                </div>
+                <div class="block-row">
+                    <span class="left">{{dynamic-applets-troubleshooting.4a4330ef}}: <label id="ipv6-addr" name="wanIPv6Connection.networkInfo.ipAddress"></label></span> <a id="renew-ipv6" class="right">{{dynamic-applets-troubleshooting.7c209474}}</a>
+                </div>
+            </fieldset>
+
+            <fieldset id="reboot" class="left">
+                <legend>{{dynamic-applets-troubleshooting.f3d26f57}}</legend>
+                <div class="block-row">
+                    <a class="reboot-router showForLinksysRouters">{{dynamic-applets-troubleshooting.16c10ee4}}</a>
+                    <a class="reboot-router showForNodes">{{dynamic-applets-troubleshooting.70c6f590}}</a>
+                </div>
+            </fieldset>
+            <fieldset class="right local-content">
+                <legend>{{dynamic-applets-troubleshooting.450a4c7f}}</legend>
+                <div class="block-row">{{dynamic-applets-troubleshooting.33eb21dc}}</div>
+            </fieldset>
+        </div>
+        <div class="tab-content" id="logs">
+            <div class="form">
+                <div class="single-line">
+                    <h2>
+                        <label class="legend left" for="enable-logs">{{dynamic-applets-troubleshooting.c1b6a82f}}</label>
+                        <p><input type="checkbox" id="enable-logs" class="switch" /></p>
+                    </h2>
+                </div>
+                <div class="panel-form">
+                    <table id="log-content">
+                        <tr>
+                            <th>{{dynamic-applets-troubleshooting.c0a83d7e}}</th>
+                        </tr>
+                        <tr id="incoming">
+                            <th>{{dynamic-applets-troubleshooting.2c534ef6}}</th>
+                            <th class="bar">|</th>
+                            <th colspan="5">{{dynamic-applets-troubleshooting.c8f7bf31}}</th>
+                        </tr>
+                        <tr><td>&nbsp;</td></tr>
+                        <tr>
+                            <th>{{dynamic-applets-troubleshooting.c321e137}}</th>
+                        </tr>
+                        <tr id="outgoing">
+                            <th>{{dynamic-applets-troubleshooting.47100e97}}</th>
+                            <th class="bar">|</th>
+                            <th>{{dynamic-applets-troubleshooting.70a03a18}}</th>
+                            <th class="bar">|</th>
+                            <th colspan="3">{{dynamic-applets-troubleshooting.8d1973d9}}</th>
+                        </tr>
+                        <tr><td>&nbsp;</td></tr>
+                        <tr>
+                            <th colspan="7">{{dynamic-applets-troubleshooting.2063b9c7}}</th>
+                        </tr>
+                        <tr id="security">
+                            <th>{{dynamic-applets-troubleshooting.47100e97}}</th>
+                            <th class="bar">|</th>
+                            <th>{{dynamic-applets-troubleshooting.779ac855}}</th>
+                            <th class="bar">|</th>
+                            <th>{{dynamic-applets-troubleshooting.22f3c5c6}}</th>
+                            <th class="bar">|</th>
+                            <th>{{dynamic-applets-troubleshooting.1164a420}}</th>
+                        </tr>
+                        <tr><td>&nbsp;</td></tr>
+                        <tr>
+                            <th colspan="7">{{dynamic-applets-troubleshooting.2a4ee407}}</th>
+                        </tr>
+                        <tr id="dhcp">
+                            <th>{{dynamic-applets-troubleshooting.47100e97}}</th>
+                            <th class="bar">|</th>
+                            <th>{{dynamic-applets-troubleshooting.779ac855}}</th>
+                            <th class="bar">|</th>
+                            <th>{{dynamic-applets-troubleshooting.22f3c5c6}}</th>
+                            <th class="bar">|</th>
+                            <th>{{dynamic-applets-troubleshooting.1d2dace3}}</th>
+                        </tr>
+                        <tr><td>&nbsp;</td></tr>
+                    </table>
+                </div>
+                <div class="panel-buttons">
+                    <button id="refresh-logs" tooltip=""><span class="truncate-text">{{dynamic-applets-troubleshooting.7edbb162}}</span></button>
+                    <button id="open-logs" tooltip=""><span class="truncate-text">{{dynamic-applets-troubleshooting.194acae2}}</span></button>
+                    <button id="print-logs" tooltip=""><span class="truncate-text">{{dynamic-applets-troubleshooting.521bd1b2}}</span></button>
+                    <button id="clear-logs" tooltip=""><span class="truncate-text">{{dynamic-applets-troubleshooting.72c8e004}}</span></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <button class="close-panel">{{dynamic-applets-troubleshooting.e9b662b3}}</button>
+    </footer>
+
+    <div class="dialog-container" style="display: none;">
+        <div id="dhcpclienttabledialog">
+            <div class="dialog-header">
+                <h2>{{dynamic-applets-troubleshooting.56ec2b2b}}</h2>
+                <div class="close-button"></div>
+            </div>
+            <div class="dialog-content">
+                <fieldset>
+                    <table id="dhcpclienttable" class="grid word-break">
+                        <tbody>
+                            <tr>
+                                <th>{{dynamic-applets-troubleshooting.d8ca3c54}}</th>
+                                <th>{{dynamic-applets-troubleshooting.662686a9}}</th>
+                                <th>{{dynamic-applets-troubleshooting.76d751ed}}</th>
+                                <th>{{dynamic-applets-troubleshooting.b0725057}}</th>
+                                <th>{{dynamic-applets-troubleshooting.4c6b323c}}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+            </div>
+            <div class="dialog-buttons">
+                <button class="cancel">{{dynamic-applets-troubleshooting.e9b662b3}}</button>
+                <button class="refresh">{{dynamic-applets-troubleshooting.7edbb162}}</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="dialog-container" style="display: none;">
+        <div id="diagnostics-ping">
+            <div class="dialog-header">
+                <label>{{dynamic-applets-troubleshooting.224634ea}}</label>
+                <div class="close-button"></div>
+            </div>
+            <div class="dialog-content form">
+                <pre id="ping-log" class="diagnostics-log" style="height: 200px; overflow: auto;" />
+            </div>
+            <div class="dialog-buttons">
+                <button class="cancel">{{dynamic-applets-troubleshooting.7fdeae92}}</button>
+                <button id="stop-ping">{{dynamic-applets-troubleshooting.80d916df}}</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="dialog-container" style="display: none;">
+        <div id="diagnostics-trace">
+            <div class="dialog-header">
+                <label>{{dynamic-applets-troubleshooting.9bd2be54}}</label>
+                <div class="close-button"></div>
+            </div>
+            <div class="dialog-content form">
+                <pre id="trace-log" class='diagnostics-log' />
+            </div>
+            <div class="dialog-buttons">
+                <button class="cancel">{{dynamic-applets-troubleshooting.7fdeae92}}</button>
+                <button id="stop-trace">{{dynamic-applets-troubleshooting.80d916df}}</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="dialog-container" style="display: none;">
+        <div id="diagnostics-restore-configuration">
+            <div class="dialog-header">
+                <label>{{dynamic-applets-troubleshooting.bf6a871f}}</label>
+                <div class="close-button"></div>
+            </div>
+            <div class="dialog-content form">
+                <div class="left">
+                    {{dynamic-applets-troubleshooting.8231d656}}
+                </div>
+                <fieldset class="left">
+                    <form id="restore-form" method="POST" enctype="multipart/form-data" action="/jcgi/" target="form-target">
+                        <input type="hidden" name="X-JNAP-Action" value="restoreconfiguration" />
+                        <input type="hidden" id="restore-admin-auth" name="X-JNAP-Authorization" />
+                        <input type="hidden" id="restore-user-auth-token" name="X-JNAP-Session" />
+                        <div class="row">
+                            <span id="upload-configuration-span" class="file-input">
+                                <button id="upload-configuration-button">{{dynamic-applets-troubleshooting.f4c04af2}}</button> <!-- button that is visible to user -->
+                                <!-- Setting it to be transparent upfront; prevents FOUC -->
+                                <input id="upload-configuration" style="opacity: 0;filter:alpha(opacity=0)" name="upload" size="1" type="file" />
+                            </span>
+                            <label id="upload-file-name">{{dynamic-applets-troubleshooting.48fba0e6}}</label>
+                        </div>
+                        <div class="row">
+                            <button id="start-to-restore" type="button" class="left" disabled="disabled">{{dynamic-applets-troubleshooting.ad50bd3a}}</button>
+                        </div>
+                    </form>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+    <div id="share-diagnostics" class="dialog white-dialog large-dialog" style="display: none;">
+        <div class="dialog-header">
+            <h2>{{dynamic-applets-troubleshooting.d7b2d1ae}}</h2>
+            <div class="close-button"></div>
+        </div>
+        <div class="dialog-content">
+            <div class="working">
+                <img class="auto-center" src="/ui/1.0.99.201002/static/cache/images/spinner/Spinner_18.gif" />
+                <p class="auto-center margin-bottom-med">{{dynamic-applets-troubleshooting.5b833059}}</p>
+            </div>
+            <div class="landing hidden">
+                <div class="textArea"></div>
+            </div>
+            <p>{{dynamic-applets-troubleshooting.1381c689}}</p>
+        </div>
+        <div class="dialog-buttons">
+            <ul class="form">
+                <li><input type="text" id="send-router-info" placeholder="{{dynamic-applets-troubleshooting.8a6e72bc}}" skipLabel="true" autocomplete="off" /></li>
+                <li><button disabled="true">{{dynamic-applets-troubleshooting.83e819f5}}</button></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="success-share-diagnostics" class="dialog white-dialog" style="display: none;">
+        <div class="dialog-header">
+            <div class="close-button close"></div>
+        </div>
+        <div class="dialog-content">
+            <p>{{dynamic-applets-troubleshooting.e21d09cf}}</p>
+        </div>
+        <div class="dialog-buttons">
+            <ul class="form">
+                <li><button class="close">{{dynamic-applets-troubleshooting.07a75328}}</button></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="templateStatusRow" style="display: none;">
+        <table>
+            <tbody>
+                <tr>
+                    <td name="name"></td>
+                    <td name="macAddress" dir="ltr"></td>
+                    <td name="ipAddress"></td>
+                    <td name="netType"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="templateStatusRowIPv6" style="display: none;">
+        <table>
+            <tbody>
+                <tr>
+                    <td name="name"></td>
+                    <td name="macAddress" dir="ltr"></td>
+                    <td name="ipv6Address"></td>
+                    <td name="netType"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="templateDHCPClientRow" style="display: none;">
+        <table>
+            <tbody>
+                <tr>
+                    <td name="friendlyName"></td>
+                    <td name="physInterface"></td>
+                    <td name="ipAddress"></td>
+                    <td name="macAddress" dir="ltr"></td>
+                    <td name="leaseTimeLeft"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="restorePreviousFirmware" style="display: none;">
+        <h1 class="exclamation">{{dynamic-applets-troubleshooting.18ca186e}}</h1>
+        <h2>{{dynamic-applets-troubleshooting.b60a1241}}</h2>
+        <div>{{dynamic-applets-troubleshooting.6cdcca12}}</div>
+        <br />
+        <div class="warning-message">{{dynamic-applets-troubleshooting.8dbd8b1a}}</div>
+    </div>
+    <div id="renewWANIp" style="display: none;">
+        <h1 class="exclamation">{{dynamic-applets-troubleshooting.18ca186e}}</h1>
+        <h2>{{dynamic-applets-troubleshooting.c2b828ff}}</h2>
+        <div id="start-text">{{dynamic-applets-troubleshooting.6ec3370d}}</div>
+        <br />
+        <div class="warning-message">{{dynamic-applets-troubleshooting.8dbd8b1a}}</div>
+    </div>
+    <div id="rebootRouter" style="display: none;">
+        <h1 class="exclamation showForLinksysRouters">{{dynamic-applets-troubleshooting.03a3b2a8}}</h1>
+        <h1 class="exclamation showForNodes">{{dynamic-applets-troubleshooting.3f0c38a2}}</h1>
+        <div class="showForLinksysRouters">{{dynamic-applets-troubleshooting.45d2ef6d}}</div>
+        <div class="showForNodes">{{dynamic-applets-troubleshooting.a59d0832}}</div>
+    </div>
+    <div id="factoryReset" style="display: none;">
+        <h1 class="exclamation">{{dynamic-applets-troubleshooting.18ca186e}}</h1>
+        <h2>{{dynamic-applets-troubleshooting.f24395b5}}</h2>
+        <div>{{dynamic-applets-troubleshooting.641c98fe}}</div>
+        <br />
+        <div class="warning-message">{{dynamic-applets-troubleshooting.8dbd8b1a}}</div>
+    </div>
+    <div id="restoreBackup" style="display: none;">
+        <h1 class="exclamation">{{dynamic-applets-troubleshooting.18ca186e}}</h1>
+        <h2>{{dynamic-applets-troubleshooting.7033f5f2}}</h2>
+        <div>{{dynamic-applets-troubleshooting.b172803a}}</div>
+        <br />
+        <div class="warning-message">{{dynamic-applets-troubleshooting.8dbd8b1a}}</div>
+    </div>
+
+    <div id="router-status-report-title" style="display: none;">{{dynamic-applets-troubleshooting.74425ac2}}</div>
+    <div id="device-status-report-title" style="display: none;">{{dynamic-applets-troubleshooting.2875ee84}}</div>
+
+    <div id="template-radio" style="display: none;">
+        <table>
+            <tbody>
+                <tr class="radioInfoReport"><td colspan="2">&nbsp;</td></tr>
+                <tr class="radioInfoReport">
+                    <th name="labels.wirelessNetwork"></th>
+                    <th></th>
+                </tr>
+
+                <tr class="radioInfoReport">
+                    <td>{{dynamic-applets-troubleshooting.7a04e592}}</td>
+                    <td name="settings.isEnabled"></td>
+                </tr>
+
+                <tr class="radioInfoReport">
+                    <td>{{dynamic-applets-troubleshooting.2a0f165c}}</td>
+                    <td name="bssid" dir="ltr"></td>
+                </tr>
+
+                <tr class="radioInfoReport">
+                    <td>{{dynamic-applets-troubleshooting.06323ac8}}</td>
+                    <td name="settings.mode"></td>
+                </tr>
+
+                <tr class="radioInfoReport">
+                    <td>{{dynamic-applets-troubleshooting.e57db986}}</td>
+                    <td name="settings.ssid"></td>
+                </tr>
+
+                <tr class="radioInfoReport">
+                    <td>{{dynamic-applets-troubleshooting.da41bccb}}</td>
+                    <td name="settings.channelWidth"></td>
+                </tr>
+
+                <tr class="radioInfoReport">
+                    <td>{{dynamic-applets-troubleshooting.c681481a}}</td>
+                    <td name="settings.channel"></td>
+                </tr>
+
+                <tr class="radioInfoReport">
+                    <td>{{dynamic-applets-troubleshooting.0228ca17}}</td>
+                    <td name="settings.security"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="templateLANPorts" style="display: none;">
+        <!-- Routers without Link Aggregation -->
+        <table id="lan-ports" class="port-table">
+            <tr>
+                <th></th>
+                <th>{{dynamic-applets-troubleshooting.ec7ed5f3}}</th>
+                <th>{{dynamic-applets-troubleshooting.e17e6a33}}</th>
+            </tr>
+        </table>
+    </div>
+
+    <div id="templateLANPortsLinkAgg" style="display: none;">
+        <!-- Routers with Link Aggregation -->
+        <table id="lan-ports-linkaggregation" class="port-table">
+            <tr>
+                <th></th>
+                <th>{{dynamic-applets-troubleshooting.ec7ed5f3}}</th>
+                <th>{{dynamic-applets-troubleshooting.e17e6a33}}</th>
+                <th>{{dynamic-applets-troubleshooting.8bfc335f}}</th>
+            </tr>
+        </table>
+    </div>
+
+</article>
+<script type="text/javascript" src="/ui/1.0.99.201002/static/cache/applets/troubleshooting/js/troubleshooting.js"></script>

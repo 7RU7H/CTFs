@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html dir="{{dynamic.ce8eef14}}" lang="{{dynamic.29e84b92}}">
+    <head>
+        <meta charset="utf-8" />
+        <title>{{dynamic.092dac36}}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <noscript><meta http-equiv="refresh" content="0;url=/ui/local/dynamic/setup/browser_unsupported.html"></noscript>
+        <link type="text/css" rel="stylesheet" href="/ui/local/static/cache/css/any-device.css" />
+        <script type="text/javascript" src="/ui/local/static/cache/js/lib/jquery.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/lib/webshim/base64.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/lib/lodash.js"></script>
+        <script type="text/javascript">
+            var lodash = _.noConflict();
+        </script>
+        <script type="text/javascript" src="/ui/1.0.99.201002/dynamic/js/shared.js.localized"></script>
+
+        <script type="text/javascript" src="/ui/local/static/cache/js/symmetry/linksys-jnap-js/jnap.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/symmetry/linksys-jnap-js/cloud-rest.js"></script>
+
+        <script type="text/javascript" src="/ui/local/static/cache/js/symmetry/linksys-symmetry-lib/side-effects-manager.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/symmetry/linksys-symmetry-lib/cache-manager.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/symmetry/linksys-symmetry-lib/symmetry-jnap.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/symmetry/linksys-symmetry-lib/icon-rules.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/symmetry/linksys-symmetry-lib/device-manager.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/symmetry/linksys-symmetry-lib/errorstring-mappings.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/symmetry/linksys-symmetry-lib/util-guest-access.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/symmetry/linksys-symmetry-lib/util-lan.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/symmetry/linksys-symmetry-lib/util-wireless.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/symmetry/linksys-symmetry-lib/util-wan.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/symmetry/linksys-symmetry-lib/util-monitors.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/symmetry/linksys-symmetry-lib/util-nodes.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/symmetry/linksys-symmetry-lib/util-firmware-update.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/symmetry/linksys-symmetry-lib/util-network-security.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/symmetry/linksys-symmetry-lib/symmetry-util.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/symmetry/linksys-symmetry-lib/validation.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/symmetryLib.js"></script>
+
+        <script type="text/javascript" src="/ui/local/static/cache/js/shared/shared-util.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/shared/shared-ui.js"></script>
+        <!-- ^shared libraries above this point^ -->
+        <script type="text/javascript" src="/ui/local/dynamic/js/setup.js.localized"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/third_party/json.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/any_device/common.js"></script>
+        <script type="text/javascript" src="/ui/local/static/cache/js/any_device/jnap-simple.js"></script>
+
+        <script type="text/javascript">
+            // check to see if the user is behind a Node device
+            RAINIER.jnap.send({
+                action: RAINIER.jnapActions.getDeviceInfo(),
+                data: {},
+                cb: function(data) {
+                    if (data.result === 'OK') {
+                        var services = data.output.services,
+                            isBehindNode = false;
+
+                        for (var i = 0; i < services.length; i++) {
+                            if (services[i].indexOf('/jnap/nodes/') !== -1) {
+                                isBehindNode = true;
+                                break;
+                            }
+                        }
+
+                        if (isBehindNode) { // let the Ad-blocking kick in
+                            loginLocal('/');
+                        } else {
+                            document.showElementById('logoDiv');
+                            document.showElementById('dialog');
+                        }
+                    }
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <div id="logoDiv" style="display:none;"><img src="/ui/local/static/cache/images/any_device/linksys_logo.png" /></div>
+        <div id="dialog" style="display:none;">
+            <div id="header">
+                <h1>{{dynamic.092dac36}}</h1>
+                <h4>{{dynamic.2f3627e9}}</h4>
+            </div>
+            <div id="headerBorderLocal"></div>
+            <div id="content">
+                <div id="div502Message"> <!-- WARNING: some code depend on matching "div502Message", change string with caution -->
+                    <div class="staticContent">
+                        <table >
+                            <tr>
+                                <td><img src="/ui/local/static/cache/images/badges/attention_48.png" /></td>
+                                <td >
+                                    <b>{{dynamic.d4575d0f}}</b>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="bottomContent"></div>
+                        <p>{{dynamic.a089583b}}</p>
+                        <p>{{dynamic.48f4f4ac}}</p>
+                        <p>{{dynamic.2b802246}}</p>
+                    </div>
+                </div>
+                <div class="view working">
+                    <div id="radioSpinner" class="centerContentImage">
+                        <img src="/ui/local/static/cache/images/spinner/Spinner_55.gif" />
+                    </div>
+                    <div id="status" class="centerContentText pleaseWait">
+                        {{dynamic.728d6236}}
+                    </div>
+                </div>
+            </div>
+            <div id="footerBorder"></div>
+            <div id="footer">
+                <button type="button" class="buttonLocal" onclick="loginLocal();">{{dynamic.059c180e}}</button>
+                <button type="button" class="buttonLocal" onclick="retry502();">{{dynamic.a6806da5}}</button>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,1 @@
+function goToNextPage(){if(document.getElementById("manualSetupCheckbox").checked){RAINIER.setup.goToPage("/ui/dynamic/setup/update.html")}else{RAINIER.setup.goToPage("/ui/dynamic/setup/pm_region.html")}}window.onload=function(){showView("landing")};

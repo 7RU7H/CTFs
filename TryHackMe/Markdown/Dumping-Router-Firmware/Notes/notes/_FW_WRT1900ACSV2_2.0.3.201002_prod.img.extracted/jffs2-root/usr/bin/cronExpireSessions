@@ -1,0 +1,31 @@
+#! /usr/bin/lua
+
+--
+-- expires any open seesions that have reached their timeout
+-- notifies cloud if possible
+--
+
+local sysctx = require('libsysctxlua')
+local sc = sysctx.new()
+sc:writelock()
+local ds = require('dynamicsession')
+local expired = ds.expireDynamicSessions(sc)
+local device = require('device')    
+local host = device.getCloudHost(sc)
+local netname = sc:get('owned_network_id')
+sc:commit()
+
+local cloud = require('cloud')      
+
+for i,v in ipairs(expired) do           
+	print(expired[i])               
+	local response, status = cloud.callCloudLowLevel({
+		host = host, 
+		path = '/device-service/rest/networks/'..netname..'/rasessions/'..expired[i],
+		method = 'DELETE',
+	})
+	if status ~= 200 then
+		print('cancel failed for '..expired[i])
+		print(response)
+	end
+end

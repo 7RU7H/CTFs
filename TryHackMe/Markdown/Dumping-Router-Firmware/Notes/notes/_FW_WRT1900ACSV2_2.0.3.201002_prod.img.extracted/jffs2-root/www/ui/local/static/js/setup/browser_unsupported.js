@@ -1,0 +1,1 @@
+window.onload=function(){var a=new XMLHttpRequest();a.open("POST","/JNAP/",true);a.setRequestHeader("Content-Type","application/json;charset=UTF-8");a.setRequestHeader("X-JNAP-Action","/jnap/core/SetUnsecuredWiFiWarning");a.send(JSON.stringify({enabled:true}))};

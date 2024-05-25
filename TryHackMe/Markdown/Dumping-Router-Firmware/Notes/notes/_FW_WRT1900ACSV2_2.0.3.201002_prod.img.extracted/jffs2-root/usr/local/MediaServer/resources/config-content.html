@@ -1,0 +1,1093 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<head>
+<title>TwonkyServer Configuration</title>
+<meta content="text/html; charset=utf-8" http-equiv="content-type">
+<meta name="description" content="TwonkyVision Digital Home">
+<meta name="keywords" content="UPnP, UPnP AV, MediaServer, Media Server, SDK, Digital Home">
+<meta http-equiv="cache-control" content="no-cache">
+<script src="/configpage/TwonkyMediaConfig.js" type="text/javascript"></script>
+<script src="/configpage/TwonkyMediaConfig_grouping.js" type="text/javascript"></script>
+<script src="/configpage/platform-specific-menu-grouping.js" type="text/javascript"></script>
+<link rel="StyleSheet" href="/configpage/TwonkyMediaConfig.css" type="text/css" media="screen">
+
+<!--[if IE]>
+<style>.button{width:1;}</style>
+<![endif]-->
+
+<script type="text/javascript">
+
+var globalLanguage = "";
+var newContentDirs = "";
+var enable_cancel = false;
+var global_level = 0;
+var userkey = ""; 
+
+// Language menu uses this array in this order
+var languages = new Array();
+	languages[ "en" ]="English";
+	languages[ "de" ]="Deutsch";
+	languages[ "fr" ]="Francais";
+	languages[ "it" ]="Italiano";
+	languages[ "es" ]="Espa&ntilde;ol";
+	languages[ "nl" ]="Nederlands";
+	languages[ "fi" ]="Suomi";
+	languages[ "ru" ]="&#x0440;&#x0443;&#x0441;&#x0441;&#x043a;&#x0438;&#x0439;";
+	languages[ "ko" ]="&#xd55c;&#xad6d;&#xc5b4;";
+	languages[ "cht"]="&#x6b63;&#x9ad4;&#x4e2d;&#x6587;";
+	languages[ "chs"]="&#x7b80;&#x4F53;&#x4e2d;&#x6587;";
+	languages[ "jp" ]="&#x65e5;&#x672c;&#x8a9e;";
+
+// create new input field for contentdir
+function addContentDir()
+{ 
+	newContentDirs = build_contentDir ();
+	enable_cancel = true;
+	var contentObject = document.getElementById("divContentdir");
+	contentObject.innerHTML = showContentdirs();
+}
+
+function cancelAll()
+{ 
+	enable_cancel = false;
+	if ((parent.actualPage == 0) || (parent.actualPage == 1)) 
+	{
+		var contentObject = document.getElementById("divContentdir");
+		contentObject.innerHTML = showContentdirs();
+	}
+}
+
+function checkKeyInput(form)
+{
+	// cd-key
+	if (((form.cdkey1.value.length != 4) ||
+		 (form.cdkey2.value.length != 4) ||
+		 (form.cdkey3.value.length != 4) || 
+		 (form.cdkey4.value.length != 4) || 
+		 (form.cdkey5.value.length != 4) || 
+		 (form.cdkey6.value.length != 4) || 
+		 (form.cdkey7.value.length != 4) || 
+		 (form.cdkey8.value.length != 4)) &&
+		!(form.cdkey1.value.length == 39))
+	{
+		var alertMSG = translateHelp("cdkey").replace(/<(\S+).*?>/g,'');   //strip all tags.
+		alert(alertMSG);
+		return false;
+	}
+ 
+	 return true;
+}
+
+function build_contentDir ()
+{
+  var first = true;
+  var contentDirString = '';
+  var i = 0;
+  //cdir_checkbox
+  while ((document.forms[egal.name].elements[i]) && (document.forms[egal.name].elements[i].name.substring(0,13) != "cdir_checkbox"))
+  	{ i++;}
+	while ((document.forms[egal.name].elements[i]) && (document.forms[egal.name].elements[i].name.substring(0,13) == "cdir_checkbox"))
+  { 
+	  if (document.forms[egal.name].elements[i+1].value != "")
+		  { 
+		  if (!first) {contentDirString = contentDirString + ",";}
+		  if (document.forms[egal.name].elements[i].checked) 
+				contentDirString = contentDirString + "+" + document.forms[egal.name].elements[i+2].value + document.forms[egal.name].elements[i+1].value;
+			else 
+				contentDirString = contentDirString + "-" + document.forms[egal.name].elements[i+2].value + document.forms[egal.name].elements[i+1].value;
+			first = false;
+			}
+    i = i+4;
+	}
+	//alert(contentDirString);
+	return contentDirString;
+}
+
+// save changes
+function returnForm(form) 
+{ 
+// all those which do not require special handling
+	setValue("friendlyname",form.friendlyname.value);  	 
+	setValue("compilationsdir",form.compilationsdir.value);  
+	setValue("scantime",form.scantime.value); 
+	setValue("playlistnumentries",form.playlistnumentries.value);     
+
+// removable media autoshare
+	var checkString1 = '0';
+	if (form.rmautoshare.checked) { checkString1 = '1'; }
+	setValue("rmautoshare",checkString1); 
+
+// contentdir
+	setValue("contentdir",build_contentDir());
+	enable_cancel=false;
+
+// clients - new 
+// client_autoenable
+	var checkString = '0';
+	if (form.client_autoenable.checked) { checkString = '1'; }
+	setValue("clientautoenable",checkString);	
+
+	var i = 0;
+	while ((document.forms[form.name].elements[i]) && (document.forms[form.name].elements[i].name.substring(0,14) != "client_enabled"))
+	{ 
+		// search for first element which starts with "client_enabled"
+		// this should be the checkbox in clients menu
+		i++;
+	}
+	while ((document.forms[form.name].elements[i]) && (document.forms[form.name].elements[i].name.substring(0,14) == "client_enabled"))
+  {
+  	if (!(document.forms[form.name].elements[i+1].value=="")) { 
+		var this_name    =document.forms[form.name].elements[i+1].name;
+		var this_mac     =document.forms[form.name].elements[i+1].value;
+		var this_clientid=document.forms[form.name].elements[i+3].value;
+		checkString = '0';
+		if (document.forms[form.name].elements[i].checked) { checkString = '1'; }
+		if (this_clientid>0) {
+			if (this_name == "new_client_mac") {
+				var check=this_mac.split(":");
+				if (check.length <6) {
+					alert("required MAC format: XX:XX:XX:XX:XX:XX");
+				}
+				else {
+					var this_view=document.forms[form.name].elements[i+4].value;
+					addClient(this_mac,this_clientid,checkString,this_view);
+				}
+			}
+			else {
+				var this_view=document.forms[form.name].elements[i+4].value;
+				addClient(this_mac,this_clientid,checkString,this_view);
+			}
+		}
+		else {
+			if (this_mac.length>0) removeClient(this_mac);
+		}
+	}
+	i+=5;
+	}
+
+// Naming
+//	var checkString = '0';
+//	if (form.adapt.checked) { checkString = '1'; }
+//	setValue("adaptcase",checkString);  
+
+// network
+	checkString = '0';
+	if (form.nicrestartBox.checked) { checkString = '1'; }
+	setValue("nicrestart",checkString);
+
+// remote access
+	checkString = '0';
+	if (form.remoteaccessBox.checked) { checkString = '1'; }
+	setValue("remoteaccess",checkString);
+	checkString = '0';
+	if (form.remoteaccessMBBox[0].checked) 
+		setValue("remoteaccessflash","0");
+	if (form.remoteaccessMBBox[1].checked) 
+		setValue("remoteaccessflash","1");
+
+// aggregation
+	checkString = '0';
+	if (form.aggregationBox.checked) { checkString = '1'; }
+	setValue("aggregation",checkString);
+
+// aggregation mode
+	if (form.aggmodeBox[0].checked) 
+		setValue("aggmode","0");
+	if (form.aggmodeBox[1].checked) 
+		setValue("aggmode","1");
+	if (form.aggmodeBox[2].checked) 
+		setValue("aggmode","2");
+
+// loglevel
+var tmp_level = 0
+	if (form.loglevel.checked) tmp_level = 4095;
+	var tmp_str = parseInt(tmp_level);
+	setValue("v", tmp_str );
+
+	// set as last value
+	// setValue("autotree",form.treetype.value);
+	setValue("defaultview",form.defaultview.value);
+
+// language	
+	if (globalLanguage != form.language.value)
+	{
+		globalLanguage = form.language.value;
+		setValue("language",globalLanguage);	
+		top.frames['NAV_FRAME_LEFT'].location.reload();
+	}
+
+
+	// cd-key
+	if (form.cdkey1.value.length>0) {
+		setValue("cdkey",form.cdkey1.value.toUpperCase()+"-"+
+		                 form.cdkey2.value.toUpperCase()+"-"+
+		                 form.cdkey3.value.toUpperCase()+"-"+
+		                 form.cdkey4.value.toUpperCase()+"-"+
+		                 form.cdkey5.value.toUpperCase()+"-"+
+		                 form.cdkey6.value.toUpperCase()+"-"+
+		                 form.cdkey7.value.toUpperCase()+"-"+
+		                 form.cdkey8.value.toUpperCase());
+	}
+	else setValue("cdkey","");
+	
+	// search for first element starting with "bgtrans"
+	i = 0;
+	while ((document.forms[form.name].elements[i]) && (document.forms[form.name].elements[i].name.substring(0,7) != "bgtrans"))
+	{ 
+		// search for elements which name matches "bgtransXXX"
+		i++;
+	}
+	var bgtrans=""
+	while ((document.forms[form.name].elements[i]) && (document.forms[form.name].elements[i].name.substring(0,7) == "bgtrans"))
+	{
+		if (bgtrans != "") bgtrans += ",";
+		bgtrans += document.forms[form.name].elements[i].name.substring(7);
+		bgtrans += "=";
+		if (document.forms[form.name].elements[i].checked)
+			bgtrans += "1";
+		else
+			bgtrans += "0";
+		i++
+	}
+	loadXMLDoc("/rpc/set_option?bgtrans="+bgtrans,"");
+
+// webaccess
+	setValue("accessuser",form.accessuser.value);     
+	setValue("accesspwd",form.accesspwd.value);     
+
+	// commit changes
+
+	setAllValues();
+	// give visual feedback
+	hideAllDivs();
+	show_div("divPleaseWait")
+	setTimeout("tryLoadConfig()", 1500);
+}
+
+window.onload = function iniPagex()
+{
+	iniPage();
+}
+
+function iniPage()
+{
+	optionsShow(parent.actualPage,false);
+
+// restart pending?
+	if (restartpending) {
+		show_div("divRestartWarning");
+		show_div("divRestart");
+	}
+	else {
+		hide_div("divRestartWarning");
+	}
+
+	refresh_dynamic_divs();
+
+
+// loglevel
+
+	var tmp_level = parseInt(getValue("v"),10);
+	var logging = document.egal;
+	if (tmp_level > 0) logging.loglevel.checked = true;
+	else logging.loglevel.checked = false;
+}
+</script>
+</head>
+
+<body text="#000000" link="#495F8B" vlink="#495F8B" class="body-main">
+
+<!-- please wait while server is restarting -->
+	<div id="divPleaseWait">
+		<table border="0">
+			<tr>
+				<td><img src="/resources/wait.gif" alt="wait"></td>
+				<td>
+					<script type="text/javascript">
+						document.write(translateOption("pleasewait"))
+					</script>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+<!-- empty page to avoid flickering on reload -->
+	<div id="divEMPTY">
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	</div>
+
+<!-- Configuration 
+<FORM name="egal" action="/configpage/config-content.html" method="post" onSubmit="return returnForm(this);">
+-->
+<FORM name="egal" action="/configpage/config-content.html" method="post" >
+
+<!-- Buttons -->
+	<table border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td>
+				<div id="divButtons">
+					<script type="text/javascript">
+						document.write("<input type=\"button\" value=\"" + translateOption("savechanges")+"\" name=\"submit\" onClick=\"returnForm(this.form);\">")
+						document.write("<input type=\"reset\" value=\"" + translateOption("cancel")+"\" name=\"cancel\" onClick=\"cancelAll();\">")
+					</script>
+				</div>
+			</td>
+			<td>
+				<!--  5.1 only
+				<div id="divExit">
+					<script type="text/javascript">
+						document.write("<input type=\"button\" value=\"" + translateOption("stopserver") + "\" onClick=\"stopServer();\" name=\"stop\">")
+					</script>
+				</div></td> -->
+			<td>
+				<div id="divRestart">
+					<script type="text/javascript">
+						document.write("<input type=\"button\" value=\"" + translateOption("restartserver") + "\" onClick=\"restartServer();\" name=\"restart\">")
+					</script>
+				</div>
+			</td>
+			<td>
+				<div id="divRescan">
+					<script type="text/javascript">
+						document.write("<input type=\"button\" value=\"" + translateOption("rescandirs") + "\" onClick=\"rescanDirectories();\" name=\"rescan\">")
+					</script>
+				</div>
+			</td>
+			<td>
+				<div id="divTrouble">
+					<script type="text/javascript">
+						document.write("<input type=\"button\" value=\"" + translateOption("rebuiltdb") + "\" onClick=\"rebuiltDB();\" name=\"rebuilt\">")
+						document.write("<input type=\"button\" value=\"" + translateOption("resetdefaults")+"\" onClick=\"resetDefaults();\" name=\"defaults\">")
+					</script>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<table border="0" cellspacing="0" cellpadding="0">
+		<tr><td>&nbsp;</td></tr>
+		<tr>
+			<td class="alert">
+				<div id="divError">
+					<script type="text/javascript">document.write(errorStr())</script>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="alert">
+				<div id="divRestartWarning">
+					<script type="text/javascript">document.write(translateOption("restartrequired"))</script>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+	<div id="divFirstHR">
+	  <hr>
+	</div>
+
+<!-- cd key -->
+	<div id="divCDKey">
+		<table class="optionItem">
+			<tr>
+				<td class="optionName">
+					<script type="text/javascript">document.write(translateOption("cdkey")+":")</script>
+				</td>
+				<td class="optionValue">
+					<script type="text/javascript">
+						document.write("<input type=\"text\"  onKeyUp=\"KeyPress(this,event,4,'egal.cdkey2.focus()')\" onkeypress=\"return noenter(event)\" name=\"cdkey1\" size=\"4\" value=\""+getValue("cdkey").substring(0,4)+"\">")
+						document.write(" - ")
+						document.write("<input type=\"text\"  onKeyUp=\"KeyPress(this,event,4,'egal.cdkey3.focus()')\" onkeypress=\"return noenter(event)\" name=\"cdkey2\" size=\"4\" value=\""+getValue("cdkey").substring(5,9)+"\">")
+						document.write(" - ")
+						document.write("<input type=\"text\"  onKeyUp=\"KeyPress(this,event,4,'egal.cdkey4.focus()')\" onkeypress=\"return noenter(event)\" name=\"cdkey3\" size=\"4\" value=\""+getValue("cdkey").substring(10,14)+"\">")
+						document.write(" - ")
+						document.write("<input type=\"text\"  onKeyUp=\"KeyPress(this,event,4,'egal.cdkey5.focus()')\" onkeypress=\"return noenter(event)\" name=\"cdkey4\" size=\"4\" value=\""+getValue("cdkey").substring(15,19)+"\">")
+						document.write(" - ")
+						document.write("<input type=\"text\"  onKeyUp=\"KeyPress(this,event,4,'egal.cdkey6.focus()')\" onkeypress=\"return noenter(event)\" name=\"cdkey5\" size=\"4\" value=\""+getValue("cdkey").substring(20,24)+"\">")
+						document.write(" - ")
+						document.write("<input type=\"text\"  onKeyUp=\"KeyPress(this,event,4,'egal.cdkey7.focus()')\" onkeypress=\"return noenter(event)\" name=\"cdkey6\" size=\"4\" value=\""+getValue("cdkey").substring(25,29)+"\">")
+						document.write(" - ")
+						document.write("<input type=\"text\"  onKeyUp=\"KeyPress(this,event,4,'egal.cdkey8.focus()')\" onkeypress=\"return noenter(event)\" name=\"cdkey7\" size=\"4\" value=\""+getValue("cdkey").substring(30,34)+"\">")
+						document.write(" - ")
+						document.write("<input type=\"text\"  onkeypress=\"return noenter(event)\" name=\"cdkey8\" maxlength=\"4\" size=\"4\" value=\""+getValue("cdkey").substring(35,39)+"\">")
+					</script>
+				</td>
+			</tr>
+			<tr>
+				<td class="helpText" colspan="2">
+					<script type="text/javascript">document.write(translateHelp("cdkey"))</script>
+				</td>
+			</tr>
+		</table>
+		<hr>
+	</div>
+
+<!-- Status -->
+	<div id="divStatus">
+		<table cellspacing="3" width="750" border="0">
+			<tr>
+				<td>
+					<script type="text/javascript">document.write(statusInfo(true))</script>
+				</td>
+			</tr>
+		</table> 
+	</div>
+
+<!-- AutoUpdate -->
+	<div id="divAutoUpdate">
+		<table cellspacing="3" width="750" border="0">
+			<tr>
+				<td>
+					<script type="text/javascript">document.write(autoUpdateInfo(true))</script>
+				</td>
+			</tr>
+		</table> 
+	</div>
+
+<!-- Streaming info -->
+	<div id="divStreamInfo">
+		<hr>
+		<table cellspacing="3" width="750" border="0">
+				<script type="text/javascript">document.write(streamInfo())</script>
+		</table> 
+	</div>
+
+<!-- language --> 
+	<div id="divLanguage">
+		<table class="optionItem">
+			<tr>
+				<td class="optionName">
+					<script type="text/javascript">document.write(translateOption("language")+":")</script>
+				</td>
+				<td class="optionValue">
+					<script  type="text/javascript">
+						document.write("<select class=\"inputValue\" name=\"language\">");
+						var strLanguage=getValue("language");
+						globalLanguage = strLanguage;
+						for (var lang in languages) {
+							var selected = "";
+							if (strLanguage == lang)
+								selected ="selected";
+							document.write("<option "+selected+" value="+lang+" class=\"inputValue\">"+languages[lang]+"<\/option>")
+						}
+						document.write("<\/select>");
+					</script>
+				</td>
+			</tr>
+			<tr>
+				<td class="helpText" colspan="2">
+					<script type="text/javascript">document.write(translateHelp("language"))</script>
+				</td>
+			</tr>
+		</table>
+		<hr>
+	</div>
+
+<!-- friendlyname -->      
+	<div id="divFriendlyname">    
+		<table class="optionItem">
+			<tr>
+				<td class="optionName">
+					<script type="text/javascript">document.write(translateOption("friendlyname")+":")</script>
+				</td>
+				<td class="optionValue">
+					<script  type="text/javascript">document.write("<input type=\"text\"  onkeypress=\"return noenter(event)\"name=\"friendlyname\" size=\"30\" value=\""+getValue("friendlyname")+"\">")</script>
+				</td>
+			</tr>
+			<tr>
+				<td class="helpText" colspan="2">
+					<script type="text/javascript">document.write(translateHelp("friendlyname"))</script>
+				</td>
+			</tr>
+		</table>
+		<hr>
+	</div>
+
+<!-- contentdir -->
+	<div id="divContentdir">
+		<script type="text/javascript">document.write(showContentdirs())</script>
+	</div>
+
+	<!-- Webdav -->	
+	<div id="divWebDav" ">
+		<table class="optionItem">
+			<tr>
+				<td class="optionName">
+					<script type="text/javascript">document.write(translateOption("WebDAV:"))</script>
+				</td>
+			</tr>
+		</table>
+		<table class="optionItem">	
+			<tr>
+				<td>
+					<script type="text/javascript">
+					document.write(translateOption("TwonkyServer comes with a built-in WebDAV server which allows you to synchronize your media between different devices. This feature is supported by WebDAV-enabled applications like TwonkyMobile.<br/><br/>All media located in the subfolders \\Twonky\\Sync under the user default music, picture and video folders will be automatically synched and shared by TwonkyServer.<br/><br/>You can personalize your synchronization settings "))
+					document.write("<a href=\""+getWebDavLink() +"\" target=\"_blank\">"+translateOption("here")+"</a>");
+					</script>
+				</td>
+			</tr>
+		</table>
+		<hr>
+	</div>
+	
+	<!-- compilationsdir --> 
+	<div id="divCompilationsdir">
+		<table class="optionItem">
+			<tr>
+				<td class="optionName">
+					<script type="text/javascript">document.write(translateOption("compilationsdir")+":")</script>
+				</td>
+				<td class="optionValue">
+					<script type="text/javascript">document.write("<input type=\"text\"  onkeypress=\"return noenter(event)\"name=\"compilationsdir\" size=\"50\" value=\""+getValue("compilationsdir")+"\">")</script>
+				</td>
+			</tr>
+			<tr>
+				<td class="helpText" colspan="2">
+					<script type="text/javascript">document.write(translateHelp("compilationsdir"))</script>
+				</td>
+			</tr>
+		</table>
+		<hr>
+	</div>
+
+<!-- scantime -->           
+	<div id="divScantime">
+		<table class="optionItem">
+			<tr>
+				<td class="optionName">
+					<script type="text/javascript">document.write(translateOption("scantime")+":")</script>
+				</td>
+				<td class="optionValue">
+					<script type="text/javascript">
+						document.write("<input type=\"text\" onkeypress=\"return noenter(event)\"name=\"scantime\" size=\"5\" value=\""+getValue("scantime")+"\">")
+					</script>
+				</td>
+			</tr>
+			<tr>
+				<td class="helpText" colspan="2">
+					<script type="text/javascript">document.write(translateHelp("scantime"))</script>
+				</td>
+			</tr>
+		</table>
+		<hr>
+	</div>
+
+<!-- auto share removable media -->           
+	<div id="divAutoShare">
+		<table class="optionItem">
+			<tr>
+				<td class="optionName">
+					<script type="text/javascript">document.write(translateOption("rmautoshare")+":")</script>
+				</td>
+				<td class="optionValue">
+					<script type="text/javascript">
+					if(getValue("rmautoshare") == '1') {
+						document.write("<input type=\"checkbox\" name=\"rmautoshare\" checked>&nbsp;");
+					} else {
+						document.write("<input type=\"checkbox\" name=\"rmautoshare\">&nbsp;");
+					}
+					</script>
+				</td>
+			</tr>
+			<tr>
+				<td class="helpText" colspan="2">
+					<script type="text/javascript">document.write(translateHelp("rmautoshare"))</script>
+				</td>
+			</tr>
+		</table>
+		<hr>
+	</div>
+
+<!-- playlistnumentries -->           
+	<div id="divPlaylistnumentries">
+		<table class="optionItem">
+			<tr>
+				<td class="optionName">
+					<script type="text/javascript">document.write(translateOption("playlistnumentries")+":")</script>
+				</td>
+				<td class="optionValue">
+					<script type="text/javascript">
+						document.write("<input type=\"text\"  onkeypress=\"return noenter(event)\"name=\"playlistnumentries\" size=\"4\" value=\""+getValue("playlistnumentries")+"\">")
+					</script>
+				</td>
+			</tr>
+			<tr>
+				<td class="helpText" colspan="2">
+					<script type="text/javascript">document.write(translateHelp("playlistnumentries"))</script>
+				</td>
+			</tr>
+		</table>
+		<hr>
+	</div>
+    
+<!-- remoteaccess --> 
+	<div id="divRemoteaccess">
+		<script type="text/javascript">
+			var repeat_time = 1000;
+			var checked = "";
+			var dyndns=getValue("dyndns");
+			var automatic=true;
+
+			function register_device() {
+				url = loadXMLDoc("/rpc/igd?get_register_url","");
+				window.open(url,"_register_device",'menubar=yes,scrollbars=yes,status=yes,toolbar=yes,resizable=yes');
+			}
+			function cont() {
+				automatic=false;
+				setTimeout("updateRemoteAccessStatus()",repeat_time);
+			}
+			function get_var(name, s) {
+				if (!s) return "";
+				start = s.indexOf(name);
+				if (start < 0) return "";
+				start +=name.length;
+				end = s.substring(start).indexOf("&");
+				if (end < 0) return s.substring(start);
+				return s.substring(start,start+end);
+			}
+			function updateRemoteAccessStatus() {
+				var STEP1=translateOption("lookingforigd");
+				var HELP1=translateHelp("lookingforigd");
+				var STEP2=translateOption("portforwarding");
+				var HELP2=translateHelp("portforwarding");
+				var STEP3=translateOption("validateportforwarding");
+				var HELP3=translateHelp("validateportforwarding");
+				var HELP4=translateHelp("successfulportforwarding");
+
+				var CONT="<br><br><input value=\""+translateOption("continuemanual")+"\" type=\"button\" onClick=\"cont();\"/><br>";
+			
+				var OK = "&nbsp;<img width=\"11\" src=\"/images/ok.jpg\" />";
+				var WAIT="&nbsp;<img width=\"11\" src=\"/images/wait.gif\" />";
+				var REGISTER = "<br><br><input type=\"button\" value=\""+translateOption("portalpage")+"\" onClick=\"register_device();\">";
+				var PORTAL = "<br><br><input type=\"button\" value=\""+translateOption("gotoportalpage")+"\" onClick=\"register_device();\">";
+				
+				var ra_div = parent.CONT_FRAME.document.getElementById("divRemoteAccessStatus");
+				var ra_box = document.getElementsByName("remoteaccessBox")[0];
+				var nic = document.getElementsByName("nic")[0];
+				
+				if (dyndns && dyndns.length > 0)
+					automatic=false;
+
+				if (ra_box && ra_box.checked && !restartpending) {
+					var status=remote_access_status();
+					if (!status) return;
+					var b_igd = status.indexOf("IGD") >= 0;
+					var b_portmapping = status.indexOf("PORTMAPPING") >= 0;
+					var b_validated = status.indexOf("VALIDATED") >= 0;
+					var b_failure = status.indexOf("FAILURE") >= 0;
+					var b_registered = status.indexOf("REGISTERED") >= 0;
+
+					var port=get_var("&NewExternalPort=",status);
+					var newText="";
+					if (!b_validated || !b_registered) {
+						newText += "<br>"+translateOption("usingport")+" <font color=\"#ff0000\">" + port + "<\/font> ";
+						newText += translateOption("onhost")+" <font color=\"#ff0000\">" + nic.value + "<\/font>";
+						if (dyndns && dyndns.length > 0) {
+							newText+=", "+translateOption("dyndnsset")+" <font color=\"#ff0000\">" + dyndns + "<\/font>. "+translateOption("manualportforwading");
+						}
+						newText+="<br>";
+					}
+					
+					//newText+="<br>"+status+automatic+b_igd+b_portmapping+b_validated+b_failure+b_registered+"<br>";
+					if (automatic) {
+						if (b_failure) {
+							if (!b_igd) 
+								newText += "<br>"+HELP1+CONT+"<br>";
+							else if (!b_portmapping)
+								newText += "<br>"+HELP2+CONT+"<br>";
+							else
+								newText += "<br>"+HELP3+"<br>";
+							ra_div.innerHTML=newText;
+							return;
+						}
+						if (!b_validated) {
+							if (b_igd)
+								newText += "<br>"+STEP1+OK+"<br>";
+							if (!b_igd)
+								newText += "<br>"+STEP1+"..."+WAIT;
+							if (b_portmapping)
+								newText += "<br>"+STEP2+OK+"<br>";
+							if (!b_portmapping)
+								newText += "<br>"+STEP2+"..."+WAIT;
+						}
+					}
+					if (!b_validated) {
+						if (b_failure) {
+							newText += "<br>"+HELP3+"<br>";
+							ra_div.innerHTML=newText;
+							return;
+						}
+						setTimeout("updateRemoteAccessStatus()",repeat_time);
+						newText += "<br>"+STEP3+"..."+WAIT;
+						ra_div.innerHTML=newText;
+						return;
+					}
+					if (b_registered) {
+						newText += PORTAL;
+						ra_div.innerHTML=newText;
+						return;
+					} else {
+						newText += "<br>"+HELP4+"<br>"+REGISTER;
+					}
+					setTimeout("updateRemoteAccessStatus()",repeat_time);
+					ra_div.innerHTML=newText;
+					return;
+				} 
+				if (ra_div) 
+					ra_div.innerHTML="";
+			}
+			setTimeout("updateRemoteAccessStatus()",repeat_time);
+		</script>
+		<table class="optionItem">
+			<tr>
+				<td class="optionName">
+					<script type="text/javascript">
+						document.write(translateOption("remoteaccess")+":");
+					</script>
+				</td>
+				<td class="optionValue">
+					<script type="text/javascript">
+						var remoteaccessVar=getValue("remoteaccess");
+						if (remoteaccessVar=="1") {
+							checked = "checked";
+							updateRemoteAccessStatus();
+						}
+						document.write("<input type=\"checkbox\" name=\"remoteaccessBox\" "+checked+"><\/input>");
+					</script>
+				</td>
+			</tr>
+			<tr>
+				<td class="helpText" colspan="4">
+					<script type="text/javascript">document.write(translateHelp("remoteaccess"))</script>
+				</td>
+			</tr>
+			<tr>
+				<td class="optionName">
+					<script type="text/javascript">
+						document.write(translateOption("onport"));
+					</script>
+				</td>
+				<td class="optionValue">
+					<script type="text/javascript">
+						function remoteportchanged(button,value) {
+							var localport=getValue("httpport");
+							if (value != 0 && value == localport) {
+								// local port can not be used as remote port, reset to last known value
+								value=getValue("httpremoteport");
+								button.value=value;
+							}
+							loadXMLDoc("/rpc/set_option?httpremoteport="+value,"");
+						}
+						var remoteport=getValue("httpremoteport");
+						if (!remoteport)
+							remoteport=0;
+						document.write("&nbsp;<input type=\"text\" name=\"remoteport\" value=\""+remoteport+"\" size=\"3\" onchange=\"remoteportchanged(this,value);\"><\/input>");
+					</script>
+				</td>
+			</tr>
+			<tr>
+				<td class="helpText" colspan="4">
+					<script type="text/javascript">document.write(translateHelp("onport"))</script>
+				</td>
+			</tr>
+			<tr>
+				<td class="optionItem" colspan="2">
+					<div id="divRemoteAccessStatus">
+					</div>
+				</td>
+			</tr>
+		</table>
+		<hr>
+		<table class="optionItem">
+			<tr>
+				<td class="optionName">
+					<script type="text/javascript">
+						document.write(translateOption("remoteaccessmediabrowser")+":");
+					</script>
+				</td>
+				<td class="optionValue">
+					<script type="text/javascript">
+						var flash=getValue("remoteaccessflash");
+						if (flash == '1') {
+							document.write("<input type=\"radio\" name=\"remoteaccessMBBox\"  value=\"0\" />"+translateOption("HTML")+"&nbsp;&nbsp;");
+							document.write("<input type=\"radio\" name=\"remoteaccessMBBox\"  value=\"1\" checked />"+translateOption("Flash")+"&nbsp;&nbsp;");
+						}
+						else {
+							document.write("<input type=\"radio\" name=\"remoteaccessMBBox\" value=\"0\" checked />"+translateOption("HTML")+"&nbsp;&nbsp;");
+							document.write("<input type=\"radio\" name=\"remoteaccessMBBox\" value=\"1\" />"+translateOption("Flash")+"&nbsp;&nbsp;");
+						}
+					</script>
+				</td>
+			</tr>
+			<tr>
+				<td class="helpText" colspan="2">
+					<script type="text/javascript">document.write(translateHelp("remoteaccessmediabrowser"))</script>
+				</td>
+			</tr>
+		</table>
+		<table class="optionItem">
+			<tr>
+				<td class="optionValue" colspan="5">
+					<script type="text/javascript">
+
+						function remote_access_status() {
+							return loadXMLDoc("/rpc/igd?get_remote_access_status","");
+						}
+						function igd(button,form) { 
+							var status = loadXMLDoc("/rpc/igd?"+button.value
+								+"&NewInternalClient="+form.nic.value
+								+form.status.value
+								,"");
+							form.status.value = remote_access_status();
+						}
+						
+						var nicstring=getNicInfo();
+						var nics = nicstring.split("<br>");
+						var localip="";
+						for ( var i = 0; i < nics.length; i++) {
+							if (nics[i] == "" || nics[i] == "127.0.0.1") continue;
+							localip=nics[i];
+							break;
+						}
+
+						document.write("<input name=\"status\" type=\"hidden\" size=\"80\" value=\""+status+"\" />");
+						document.write("<input name=\"nic\" type=\"hidden\" size=\"30\" value=\""+localip+"\" />");
+						document.write("<hr>");
+					</script>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+<!-- nicrestart --> 
+	<div id="divNicrestart">
+		<table class="optionItem">
+			<tr>
+				<td class="optionName">
+					<script type="text/javascript">document.write(translateOption("nicrestart")+":")</script>
+				</td>
+				<td class="optionValue">
+					<script type="text/javascript">
+						var nicrestartVar=getValue("nicrestart");
+						if (nicrestartVar == '0')
+							document.write("<input type=\"checkbox\" name=\"nicrestartBox\" ><\/input>&nbsp;&nbsp;&nbsp;");
+						if (nicrestartVar == '1')
+							document.write("<input type=\"checkbox\" name=\"nicrestartBox\" checked ><\/input>&nbsp;&nbsp;&nbsp;");
+					</script>
+				</td>
+			</tr>
+			<tr>
+				<td class="helpText" colspan="2">
+					<script type="text/javascript">document.write(translateHelp("nicrestart"))</script>
+				</td>
+			</tr>
+		</table>
+		<hr>
+	</div>
+
+<!-- log level -->	
+	<div id="divLogfile">
+		<table class="optionItem">
+			<tr>
+				<td class="optionName">
+					<script type="text/javascript">document.write(translateOption("logging")+":")</script>
+				</td>
+				<td class="optionValue">
+					<script type="text/javascript">document.write("<input type=\"checkbox\" name=\"loglevel\"><\/input>&nbsp;")</script>
+				</td>
+			</tr>
+		</table>
+		<table class="optionItem">
+			<tr>
+				<td>
+					<script type="text/javascript">
+						document.write("<input type=\"button\" value=\"" 
+							+ translateOption("clearlog")+"\" name=\"clearlog\" onClick=\"clearLog();\">&nbsp;&nbsp;&nbsp;");
+						document.write("<input type=\"button\" value=\"" 
+							+ translateOption("getlog")+"\" name=\"getlog\" onClick=\"getLog();\">&nbsp;&nbsp;&nbsp;") 
+					</script>
+				</td>
+			</tr>
+		</table>
+		<hr>
+	</div>
+
+	<!-- tree type -->           
+	<div id="divTreetype">
+		<table class="optionItem">
+			<tr>
+				<td class="optionName">
+					<script type="text/javascript">document.write(translateOption("treetype")+":")</script>
+				</td>
+				<td class="optionValue">
+					<script type="text/javascript">document.write(viewSelectionBox());</script>
+				</td>
+			</tr>
+			<tr>
+				<td class="helpText" colspan="2">
+					<script type="text/javascript">document.write(translateHelp("treetype"))</script>
+				</td>
+			</tr>
+		</table>
+		<hr>
+	</div>
+  
+<!-- Webaccess -->
+	<div id="divWebaccess">
+		<table class="optionItem">
+			<tr>
+				<td class="optionName">
+					<script type="text/javascript">document.write(translateOption("username")+":")</script>
+				</td>
+				<td class="optionValue">
+					<script type="text/javascript">document.write("<input type=\"text\" onkeypress=\"return noenter(event)\"name=\"accessuser\" size=\"30\" value=\""+getValue("accessuser")+"\">")</script>
+				</td>
+			</tr>
+			<tr>
+				<td class="optionName">
+					<script type="text/javascript">document.write(translateOption("userpwd")+":")</script>
+				</td>
+				<td class="optionValue">
+					<script type="text/javascript">document.write("<input type=\"password\" onkeypress=\"return noenter(event)\"name=\"accesspwd\" size=\"30\" value=\""+getValue("accesspwd")+"\">")</script>
+				</td>
+			</tr>
+			<tr>
+				<td class="helpText" colspan="2">
+					<script type="text/javascript">document.write(translateHelp("webaccess"))</script>
+				</td>
+			</tr>
+		</table>
+		<hr>
+	</div>
+
+<!--client database (new) -->
+	<div id="divClientDB">
+		<table class="optionItem">
+			<tr>
+				<td class="optionName">
+					<script type="text/javascript">document.write(translateOption("clientautoenable")+":")</script>
+				</td>
+				<td class="optionValue">
+					<script type="text/javascript">
+						if (getValue("clientautoenable") == '1') 
+							document.write("<input type=\"checkbox\" name=\"client_autoenable\" checked><\/input>")
+						else 
+							document.write("<input type=\"checkbox\" name=\"client_autoenable\"><\/input>")
+						document.write("&nbsp;<input type=\"button\" value=\"" 
+							+ translateOption("resetclients")+"\" name=\"resetclients\" onClick=\"resetClients();\">");
+					</script>
+				</td>
+			</tr>
+		</table>
+		<table class="optionItem" border="0">
+			<script type="text/javascript">document.write(clientInfo())</script>
+		</table>
+		<table class="optionItem">
+			<tr>
+				<td class="helpText">
+					<script type="text/javascript">document.write(translateHelp("clientdetection"))</script>
+				</td>
+			</tr>
+		</table>
+		<hr>
+	</div>
+
+<!-- popup for file and directory selection 
+     required for adobepath, ituneslib, winamp and content dir -->    
+	<div id="divBrowse">
+		<table>
+			<tr>
+				<td><div id="divPopup"></div></td>
+			</tr>
+		</table>
+	</div>
+
+	<div id="divTranscoding">
+		<table class="optionItem" border="0">
+			<tr>
+				<td class="optionName" colspan="5">
+					<script type="text/javascript">document.write(translateOption("transcodingoption"))</script>
+				</td>
+				<td class="optionName" colspan="5">
+					<script type="text/javascript">document.write(setTranscoding());</script>
+				</td>
+			</tr>
+			<tr>
+				<td class="helpText" colspan="5">
+					<script type="text/javascript">document.write(translateHelp("transcodinghelp"))</script>
+				</td>
+			</tr>
+		</table>
+		<hr>
+	</div>
+<!-- aggregation --> 
+	<div id="divAggregation">
+		<table class="optionItem">
+			<tr>
+				<td class="optionName">
+					<script type="text/javascript">document.write(translateOption("aggregation")+":")</script>
+				</td>
+				<td class="optionValue">
+					<script type="text/javascript">
+						var aggregationVar=getValue("aggregation");
+						if (aggregationVar == '1')
+							document.write("<input type=\"checkbox\" name=\"aggregationBox\" checked ><\/input>&nbsp;&nbsp;&nbsp;");
+						else
+							document.write("<input type=\"checkbox\" name=\"aggregationBox\" ><\/input>&nbsp;&nbsp;&nbsp;");
+					</script>
+				</td>
+			</tr>
+			<tr>
+				<td class="helpText" colspan="2">
+					<script type="text/javascript">document.write(translateHelp("aggregation"))</script>
+				</td>
+			</tr>
+			<tr>
+				<td class="optionName">
+					<script type="text/javascript">document.write(translateOption("aggmode")+":")</script>
+				</td>
+				<td class="optionValue">
+					<script type="text/javascript">
+						var aggmodeVar=getValue("aggmode");
+						if (aggmodeVar == '1') {
+							document.write("<input type=\"radio\" name=\"aggmodeBox\"  value=\"0\" />"+translateOption("ignore")+"&nbsp;&nbsp;");
+							document.write("<input type=\"radio\" name=\"aggmodeBox\"  value=\"1\" checked />"+translateOption("aggregate")+"&nbsp;&nbsp;");
+							document.write("<input type=\"radio\" name=\"aggmodeBox\"  value=\"2\" />"+translateOption("mirror"));
+						}
+						else if (aggmodeVar == '2') {
+							document.write("<input type=\"radio\" name=\"aggmodeBox\" value=\"0\" />"+translateOption("ignore")+"&nbsp;&nbsp;");
+							document.write("<input type=\"radio\" name=\"aggmodeBox\" value=\"1\" />"+translateOption("aggregate")+"&nbsp;&nbsp;");
+							document.write("<input type=\"radio\" name=\"aggmodeBox\" value=\"2\" checked />"+translateOption("mirror"));
+						}
+						else {
+							document.write("<input type=\"radio\" name=\"aggmodeBox\" value=\"0\" checked />"+translateOption("ignore")+"&nbsp;&nbsp;");
+							document.write("<input type=\"radio\" name=\"aggmodeBox\" value=\"1\" />"+translateOption("aggregate")+"&nbsp;&nbsp;");
+							document.write("<input type=\"radio\" name=\"aggmodeBox\" value=\"2\" />"+translateOption("mirror"));
+						}
+					</script>
+				</td>
+			</tr>
+			<tr>
+				<td class="helpText" colspan="2">
+					<script type="text/javascript">document.write(translateHelp("aggmode"))</script>
+				</td>
+			</tr>
+		</table>
+		<div id="divAggregationTable">
+			<table class="optionItem">
+				<tr>
+					<td class="helpText" colspan="2">
+						<script type="text/javascript">document.write(aggregationInfo())</script>
+					</td>
+				</tr>
+			</table>
+			<hr>
+		</div>
+	</div>
+</form>
+
+<!-- MediaFusion -->
+	<div id="divMediaFusion">
+	</div>
+
+</body>
+</html>

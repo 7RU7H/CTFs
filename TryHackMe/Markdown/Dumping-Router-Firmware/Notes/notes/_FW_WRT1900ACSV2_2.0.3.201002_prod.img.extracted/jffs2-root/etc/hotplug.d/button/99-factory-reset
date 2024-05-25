@@ -1,0 +1,49 @@
+#
+# Copyright (c) 2013 Qualcomm Atheros, Inc..
+#
+# All Rights Reserved.
+# Qualcomm Atheros Confidential and Proprietary.
+#
+/etc/init.d/hotplug2_functions.sh
+
+if [ "`cat /etc/product`" = "wraith" ] ; then
+    if [ "$ACTION" = "pressed" -a "$BUTTON" = "reset" ]; then
+        if [ -f /tmp/var/.seq ]; then
+         #retrieve the initial sequence number
+         seq=`cat /tmp/var/.seq`
+         #compute how long has the key been held.   
+         delta=`expr $SEQNUM - $seq`
+         #assuming repeat rate is 30 ch/s. This is about 10 sec.
+         #adjust the count value if need to.
+         if [ "$delta" -gt 300 ]; then
+		 echo "RESET TO FACTORY SETTING EVENT DETECTED" > /dev/console
+	         sysevent set reset_hw_button pressed
+		 sysevent set reset_hw_button released
+	         /sbin/utcmd factory_reset
+         fi 
+        else
+            #remember initial count
+            echo "$SEQNUM" > /tmp/var/.seq
+        fi
+    fi
+    if [ "$ACTION" = "released" -a "$BUTTON" = "reset" ]; then
+        echo "RESET PUSH BUTTON DETECTED" > /dev/console
+        # This is to clean up the last pressed.
+        if [ -f /tmp/var/.seq ]; then
+         rm /tmp/var/.seq
+        fi
+        #If you want to invoke system reset, uncommented this lin
+        #/sbin/reboot
+    fi
+else
+    if [ "$ACTION" = "released" -a "$BUTTON" = "reset" ]; then
+	if [ "pressed" = "`sysevent get reset_hw_button`" ] ; then
+		SetTimer 0
+		sysevent set reset_hw_button released
+	fi
+    fi
+    if [ "$ACTION" = "pressed" -a "$BUTTON" = "reset" ]; then
+	sysevent set reset_hw_button pressed
+	/etc/init.d/hotplug2_factory_reset_after.sh 10 &
+    fi
+fi

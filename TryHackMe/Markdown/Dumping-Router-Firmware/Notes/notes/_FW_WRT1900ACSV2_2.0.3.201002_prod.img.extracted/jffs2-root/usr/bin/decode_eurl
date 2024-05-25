@@ -1,0 +1,36 @@
+#! /bin/sh
+
+guid="$1"
+payload="$2"
+#passphrase=this_is_a_passphrase
+
+#url=`echo -n "$payload" | ( echo -n "Salted__openssl."; openssl enc -base64 -d) | openssl enc -aes-128-cbc -d -pass pass:"$passphrase"`
+#url=`eurl decode "$passphrase" "$payload"`
+url=`eurl validate "$guid" "$payload"`
+
+hostport=`echo "$url" | sed -re 's,^http://([^/]*).*,\1,'`
+path=`echo "$url" | sed -re 's,^http://[^/]*(.*),\1,'`
+
+if expr match "$hostport" "\[" > /dev/null; then	
+	# ipv6
+	host=`echo "$hostport" | sed -re 's/\].*//' -e 's/^\[//'`
+	rest=`echo "$hostport" | sed -re 's/.*\]//'`
+	if expr match "$rest" ":" > /dev/null; then
+		port=`echo "$hostport" | sed -re 's/.*://'`
+	else
+		port=80
+	fi
+else
+	# ipv4
+	if expr match "$hostport" ".*:" > /dev/null; then
+		host=`echo "$hostport" | sed -re 's/:.*//'`
+		port=`echo "$hostport" | sed -re 's/.*://'`
+	else
+		host="$hostport"
+		port=80
+	fi
+fi
+
+echo "$host"
+echo "$port"
+echo "$path"

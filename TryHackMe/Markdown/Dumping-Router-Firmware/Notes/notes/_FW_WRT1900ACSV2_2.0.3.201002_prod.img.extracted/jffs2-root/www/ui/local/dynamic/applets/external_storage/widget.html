@@ -1,0 +1,54 @@
+<link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/cache/applets/external_storage/css/widget.css"/>
+
+<section class="widget" id="external-storage-widget">
+    <div id="partition-list">
+        <ul>
+            <!-- list of partitions go here -->
+        </ul>
+        <a href="#" class="refresh-button"><img src="/ui/1.0.99.201002/static/cache/applets/external_storage/images/refresh.png" alt="{{dynamic-applets-external_storage.7edbb162}}" /></a>
+    </div>
+    <footer>
+        <span id="pagination">
+            <span id="back-button" />
+            <span id="page-numbers">{{dynamic-applets-external_storage.de8ba450}}</span>
+            <span id="forward-button" />
+        </span>
+        <a href="#" id="external-storage-applet-link">{{dynamic-applets-external_storage.bb5c71a3}}</a>
+    </footer>
+
+    <!-- template for a partition on a storage device -->
+    <div id="template-partition" style="display: none;">
+        <li class="partition">
+            <p>
+                <label class="node-name" name="deviceName" />
+            </p>
+            <p>
+                <span class="partition-read-only-icon" style="display: none;"><img src="/ui/1.0.99.201002/static/cache/applets/wireless/images/security_locked.png" /> {{dynamic-applets-external_storage.b04dfb07}}</span>
+            </p>
+            <progress max="0" value="0"></progress>
+            <p class="storageInfo">{{dynamic-applets-external_storage.90e43ae1}}</p>
+        </li>
+    </div>
+
+    <!-- template for an unsupported partition -->
+    <div id="template-unsupported-partition" style="display: none;">
+        <li class="partition unsupported-partition">
+            <label class="node-name" name="deviceName" />
+            <p>{{dynamic-applets-external_storage.f4cc99e0}}</p>
+        </li>
+    </div>
+
+    <!-- template for no drives connected message -->
+    <div id="template-no-drives" style="display: none;">
+        <li class="partition no-drives-message">
+            <p>{{dynamic-applets-external_storage.21e89b8f}}</p>
+        </li>
+    </div>
+
+</section>
+
+<script type="text/javascript">
+    RAINIER.util.injectScripts([
+        '/ui/1.0.99.201002/static/cache/applets/external_storage/js/widget.js'
+    ]);
+</script>

@@ -1,0 +1,278 @@
+#!/bin/sh
+
+#------------------------------------------------------------------
+# © 2014 Belkin International, Inc. and/or its affiliates. All rights reserved.
+#------------------------------------------------------------------
+
+
+#------------------------------------------------------------------
+#  This file contains the code run by init process during the wait target
+#  It starts the sysevent daemon, and then runs through all of the sysevent
+#  registration scripts
+#------------------------------------------------------------------
+
+# create our passwd/shadow/group files
+mkdir -p /tmp/etc/.root
+chmod 711 /tmp/etc/.root
+
+if [ -f "/tmp/etc/.root/passwd" ] ; then chmod 644 /tmp/etc/.root/passwd; else touch /tmp/etc/.root/passwd; chmod 644 /tmp/etc/.root/passwd; fi
+if [ -f "/tmp/etc/.root/shadow" ] ; then chmod 600 /tmp/etc/.root/shadow; else touch /tmp/etc/.root/shadow; chmod 600 /tmp/etc/.root/shadow; fi
+if [ -f "/tmp/etc/.root/group" ] ; then chmod 600 /tmp/etc/.root/group; else touch /tmp/etc/.root/group; chmod 600 /tmp/etc/.root/group; fi
+
+# create the default profile. This is linked to by /etc/profile 
+echo "export setenv PATH=/bin:/sbin:/usr/sbin:/usr/bin:/opt/sbin:/opt/bin" > /tmp/profile
+echo "export setenv LD_LIBRARY_PATH=/lib:/usr/lib:/opt/lib" >> /tmp/profile
+#echo "export setenv LD_LIBRARY_PATH=/lib:/usr/lib:/opt/lib:/usr/local/lib/lua/5.1/" >> /tmp/profile
+
+# create other files that are linked to by etc
+mkdir -p /tmp/udev/rules.d
+echo -n > /tmp/hosts
+echo -n > /tmp/hostname
+echo -n > /tmp/resolv.conf
+echo -n > /tmp/igmpproxy.conf
+echo -n > /tmp/ez-ipupdate.conf
+echo -n > /tmp/ez-ipupdate.out
+echo -n > /tmp/TZ
+echo -n > /tmp/.htpasswd
+echo -n > /tmp/dnsmasq.conf
+echo -n > /tmp/dhcp_options
+echo -n > /tmp/dhcp_static_hosts
+echo -n > /tmp/dnsmasq.leases
+echo -n > /tmp/zebra.conf
+echo -n > /tmp/ripd.conf
+echo -n > /tmp/dhcp6c.conf
+
+# SYSTEM TUNING
+# reserve 8Mb RAM for kernel
+echo 8192 > /proc/sys/vm/min_free_kbytes
+
+# For MAMBA-268: Increase concurrent connection limit
+echo 65535 > /proc/sys/net/netfilter/nf_conntrack_max
+echo 65535 > /proc/sys/net/ipv4/netfilter/ip_conntrack_max
+
+# mount cgroup
+if [ -d /cgroup ]; then
+    mount -t cgroup -o memory memory /cgroup
+else
+    echo "[utopia][init] Error: /cgroup mount point not found."
+fi
+
+# We'd nomally use /var/lib as the mount point for persistent
+# application data.  But /var/lib is already being used for
+# non-persistent application data (e.g. /var/lib/tc).  So, we fall
+# back to using /mnt/lib.
+APPLICATION_DIR=/var/config
+SYSCFG_DIR=${APPLICATION_DIR}/syscfg
+SYSCFG_FILE=${SYSCFG_DIR}/syscfg.dat
+
+PERSISTENT_PARTITION=$(awk -F: '/syscfg/ { print $1 }' /proc/mtd)
+if [ -z $PERSISTENT_PARTITION ]; then
+    PERSISTENT_PARTITION=mtd8
+    echo [utopia][init] Cannot find syscfg partition, assuming /dev/$PERSISTENT_PARTITION
+fi
+MTD_DEVICE=/dev/${PERSISTENT_PARTITION}
+MTD_BLOCK_DEVICE=/dev/$(echo ${PERSISTENT_PARTITION} | sed s/mtd/mtdblock/)
+MTD_NUM="`echo -n $PERSISTENT_PARTITION | sed 's/mtd//g'`"
+
+mounted=0
+mkdir -p ${APPLICATION_DIR} || echo [utopia][init] No mount point for persistent storage.
+
+echo "Attempting mount of ubifs syscfg partition"
+
+if [ "`mount | grep ubi0`" ] ; then
+	UBIDEV=1
+	echo "rootfs appears to be ubifs"
+else
+	UBIDEV=0
+fi
+
+ubiattach /dev/ubi_ctrl -m ${MTD_NUM} -d ${UBIDEV}
+
+#if mount -t jffs2 $MTD_BLOCK_DEVICE ${APPLICATION_DIR}; then
+if mount -o sync -t ubifs ubi${UBIDEV}_0 ${APPLICATION_DIR}; then
+    mounted=1
+else
+    echo [utopia][init] Persistent storage mount failed, attempting format
+    tmp=$(mktemp -t -d)
+    mkdir -p ${tmp}/syscfg
+    
+    echo "erasing flash partition $MTD_DEVICE"
+    #flash_erase ${MTD_DEVICE} 0 0
+    # change suggested by Adam to get ubifs commands working from uboot
+    ubidetach /dev/ubi_ctrl -m ${MTD_NUM}
+    ubiformat -y ${MTD_DEVICE}
+    echo "ubiattach /dev/ubi_ctrl -m ${MTD_NUM}"
+		ubiattach /dev/ubi_ctrl -m ${MTD_NUM}
+    
+    echo "trying to create ubi volume"
+    if ! ubimkvol /dev/ubi${UBIDEV} -N syscfg -m; then
+	echo [utopia][init] Format persistent storage failed.  Perhaps ubimkvol not installed.  Giving up.
+    else
+	if ! mount -o sync -t ubifs ubi${UBIDEV}_0 ${APPLICATION_DIR}; then
+	    echo [utopia][init] Format succeeded, mount still failed.  Giving up.
+	else
+	    mounted=1
+	fi
+    fi
+    rm -rf ${tmp}
+fi
+
+if [ ${mounted} -ne 0 ]; then
+    [ -d ${SYSCFG_DIR} ] || mkdir -p ${SYSCFG_DIR}
+    syscfg_create -f ${SYSCFG_FILE}
+    echo [utopia][init] Using persistent syscfg data from ${SYSCFG_DIR}
+else
+    echo [utopia][init] Using raw partition ${MTD_DEVICE} for syscfg data
+    syscfg_check -d $MTD_DEVICE
+    if [ $? = 0 ]; then
+	echo "[utopia][init] Starting syscfg subsystem using flash partition $MTD_DEVICE"
+	/sbin/syscfg_create -d $MTD_DEVICE
+    else
+	echo "[utopia][init] Formating flash partition $MTD_DEVICE for syscfg use"
+	syscfg_format -d $MTD_DEVICE
+	if [ $? = 0 ]; then
+	    echo "[utopia][init] Starting syscfg subsystem using flash partition $MTD_DEVICE with default settings"
+	    /sbin/syscfg_create -d $MTD_DEVICE
+	else
+	    echo "[utopia][init] FAILURE: formatting flash partition $MTD_DEVICE for syscfg use"
+	    echo "[utopia][init] Starting syscfg with default settings using file store (/tmp/syscfg.db)"
+	    echo "" > /tmp/syscfg.db
+	    /sbin/syscfg_create -f /tmp/syscfg.db
+	fi
+    fi
+fi
+
+# adjust tunables for flash sync
+# echo "100" > /proc/sys/vm/dirty_writeback_centisecs
+# echo "50" > /proc/sys/vm/dirty_expire_centisecs
+
+#echo "[utopia][init] Cleaning up vendor nvram"
+# /etc/init.d/nvram_cleanup.sh
+
+echo "[utopia][init] Starting system logging"
+/etc/init.d/service_syslog.sh syslog-start
+
+echo "[utopia][init] Starting sysevent subsystem"
+/sbin/syseventd
+
+
+# load kernel modules to handle FTP PORT command
+MODULE_PATH=/lib/modules/`uname -r`/
+insmod $MODULE_PATH/nf_conntrack_ftp.ko
+insmod $MODULE_PATH/nf_nat_ftp.ko
+
+sysctl -w net.netfilter.nf_conntrack_acct=1
+
+
+# load the watchdog module and start the watchdog program
+/sbin/modprobe orion_wdt
+#set 16s with 5s ping interval by daemon process
+/usr/sbin/wdtutil -c 16 -i 5 -B
+echo "watchdog running"
+
+# we want plugged in usb devices to propagate events to sysevent
+# echo "[utopia][init] Late loading usb drivers"
+# insmod $MODULE_PATH/usbcore.ko
+# insmod $MODULE_PATH/ehci-hcd.ko
+# insmod $MODULE_PATH/scsi_mod.ko
+# insmod $MODULE_PATH/sd_mod.ko
+# insmod $MODULE_PATH/libusual.ko
+# insmod $MODULE_PATH/usb-storage.ko
+# insmod $MODULE_PATH/nls_cp437.ko
+# insmod $MODULE_PATH/nls_iso8859-1.ko
+# insmod $MODULE_PATH/fat.ko
+# insmod $MODULE_PATH/vfat.ko
+
+echo "[utopia][init] Setting any unset system values to default"
+apply_system_defaults
+if [ -f /usr/sbin/vlan_setup.sh ]; then
+    /usr/sbin/vlan_setup.sh
+fi
+
+INIT_DIR=/etc/registration.d
+# run all executables in the sysevent registration directory
+# echo "[utopia][init] Running registration using $INIT_DIR"
+execute_dir $INIT_DIR
+
+# Start Marvell RSS script. This script sets up load balancing
+# for eth0 and eth1. It must be run when the Ethernet interfaces
+# are down, otherwise it will not take effect
+if [ -f /etc/init.d/bringup_rss_2cores.sh ]
+then
+    /etc/init.d/bringup_rss_2cores.sh
+fi
+
+# Load bdutil daemon
+#lsmod | grep mod_bdutil 2>&1 > /dev/null
+#if [ $? -eq 0 ]; then
+#        echo "[utopia][init] Starting bdutil daemon" > /dev/console
+#        /usr/sbin/bdutil &
+#fi
+
+# make sure auto_recovery in uboot is turned on to account for OpenWRT firmware upgrades
+AUTO_RECOVERY_ENA="`fw_printenv auto_recovery | cut -d'=' -f2`"
+if [ "$AUTO_RECOVERY_ENA" != "yes" ] ; then
+	echo "CAUTION: uboot auto_recovery not enabled!!!" >> /dev/console
+	if [ "`syscfg get auto_recovery_override`" == "1" ] ; then
+		echo "not enabling uBoot auto_recovery - OverRide in syscfg" >> /dev/console
+	else
+		echo "uBoot auto_recovery will be enabled for Linksys firmwares" >> /dev/console
+		fw_setenv auto_recovery yes
+		sync
+	fi
+fi
+
+
+# load FS modules
+/sbin/modprobe ext2
+/sbin/modprobe ext3
+/sbin/modprobe ntfs
+/sbin/modprobe cifs
+/sbin/modprobe nfsv2
+/sbin/modprobe nfsv2
+/sbin/modprobe nfsv4
+/sbin/modprobe isofs
+/sbin/modprobe crc-itu-t
+/sbin/modprobe udf
+# load some IPv6 modules
+/sbin/modprobe ip6_gre
+# load button handler
+/sbin/modprobe button-hotplug
+killall -q hotplug2
+wait
+#restart run-time hotplug2 for buttons handler
+[ -x /sbin/hotplug2 ] && /sbin/hotplug2 --override --persistent \
+		--set-rules-file /etc/hotplug2.rules \
+		--max-children 1 >/dev/null 2>&1 &
+
+# The code below attempts to sync up the current admin password ( which may have
+# been changed, with the admin http_auth password for the sysinfo.cgi file. 
+# Matt Fatheree appologizes in advance for this spaghetti code.
+# BEWARE: here there be dragons
+if [ ! -f "/var/config/.sysinfo_pswd" ] ; then
+	if [ -f "/var/config/syspwl.lst" ] ; then
+		# if there is an admin password already set try to use that
+		ADMPASS="`cat /var/config/syspwl.lst  | grep 1000 | cut -d':' -f2`"
+		echo "admin:$ADMPASS" > /var/config/.sysinfo_pswd
+	else
+		echo "admin:admin" > /var/config/.sysinfo_pswd
+	fi
+else
+  # this is a case for when someone has changed the admin passwd
+  # before they had code that supported protecting sysinfo.cgi
+  # in that case the sysinfo_pswd exists, but has the default admin:admin
+  # password combination.  In that case, we basically do what we did above, but 
+  # recreate the sysinfo_pswd file 
+	if [ -f "/var/config/syspwl.lst" ] ; then
+	# quick hack to sync up sysinfo passwords
+	  echo "attempting to sync sysinfo.cgi auth credentials" >> /dev/console
+		ORGPASS="`cat /var/config/.sysinfo_pswd | grep admin | cut -d':' -f2`"
+		ADMPASS="`cat /var/config/syspwl.lst  | grep 1000 | cut -d':' -f2`"
+		if [ "$ORGPASS" != "$ADMPASS" ] ; then
+		  echo "sync sysinfo.cgi auth credentials from syspwl.lst" >> /dev/console
+			echo "admin:$ADMPASS" > /var/config/.sysinfo_pswd
+		fi
+	else
+		echo "admin:admin" > /var/config/.sysinfo_pswd
+	fi
+fi

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+echo 1 > /proc/watchdog/orionwdt
+wdtutil -d
+sysevent set wdtprimeit-stop
+
+exit 0

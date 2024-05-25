@@ -1,0 +1,38 @@
+#!/bin/sh
+
+source /etc/init.d/ulog_functions.sh
+
+INTERFACE=${DNSMASQ_INTERFACE}
+ManageDevs="/tmp/ManageDevs.list"
+# Only include the vendor class if the interface is present
+if [ -n "$INTERFACE" ] ; then
+   VENDOR_CLASS="${DNSMASQ_VENDOR_CLASS}";
+fi
+
+HOSTNAME=$4
+if [ -z "$HOSTNAME" ] ; then
+    # Use a hostname of "*" to indicate that no value was supplied
+    HOSTNAME=*
+fi
+
+#echo "[utopia] [dhcp server script] action: $1  MAC: $2  IP: $3  HOSTNAME: $4 IFACE: $INTERFACE VENDOR_CLASS: $VENDOR_CLASS" > /dev/console
+ulog lan dhcpserver "action: $1 MAC: $2 IP: $3 HOSTNAME: $HOSTNAME IFACE: $INTERFACE VENDOR_CLASS: '$VENDOR_CLASS'"
+
+sysevent set lan_dhcp_client_change "$1 $2 $3 $HOSTNAME $INTERFACE '$VENDOR_CLASS'"
+
+if [ "$1" = "add" -o "$1" = "old" ] ; then
+    if [ -e "$ManageDevs" ] ; then
+        sed "/$4==/d" $ManageDevs > /tmp/ManageDevs.tmp
+        echo $4"=="$DNSMASQ_CPEWAN_OUI"=="$DNSMASQ_CPEWAN_SERIAL"=="$DNSMASQ_CPEWAN_CLASS >> /tmp/ManageDevs.tmp
+        mv /tmp/ManageDevs.tmp $ManageDevs
+    else 
+        echo $4"=="$DNSMASQ_CPEWAN_OUI"=="$DNSMASQ_CPEWAN_SERIAL"=="$DNSMASQ_CPEWAN_CLASS > $ManageDevs
+    fi
+fi
+
+if [ "$1" = "del" ] ; then
+    if [ -e "$ManageDevs" ] ; then
+        sed "/$4==/d" $ManageDevs > /tmp/ManageDevs.tmp
+        mv /tmp/ManageDevs.tmp $ManageDevs
+    fi
+fi

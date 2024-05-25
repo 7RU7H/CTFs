@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+# Handler for firewall-status sysevent.  When this event fires, the
+# firewall has been modified which means the previous contents were
+# flushed.  Check if lighttpd is running and if so re-install its'
+# rules.
+
+BASE_DIR=/etc/init.d/service_httpd
+BLOCK=$BASE_DIR/block-interfaces
+
+# If lighttpd is running, apply blocking rules.  If not, remove them
+
+if /etc/init.d/service_httpd.sh httpd-status
+then
+    # Lighttpd is up; add rules
+    logger -t ESM 'Firewall change detected: applying lighttpd security rules'
+    $BLOCK start
+else
+    # Lighttpd is down; remove rule
+    logger -t ESM 'Firewall change detected: removing lighttpd security rules'
+    STATUS=$($BLOCK status)
+    if [ "stopped" = "$STATUS" ] ; then
+        # lighttpd security rules have been removed, just exit
+        exit
+    else
+        $BLOCK stop
+    fi
+fi

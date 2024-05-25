@@ -1,0 +1,493 @@
+<link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/cache/applets/usb_storage/css/usb_storage.css" />
+
+<article id="usb-storage-applet">
+    <header>
+        <h1>{{dynamic-applets-usb_storage.2d296368}}</h1>
+        <h4>{{dynamic-applets-usb_storage.5646544a}}</h4>
+        <div class="close-button"></div>
+        <div class="widget-config">
+           <input type="checkbox" id="cbAddWidget" checked="checked"/><label for="cbAddWidget">{{dynamic-applets-usb_storage.96d3c7d5}}</label>
+        </div>
+    </header>
+    <section class="tab-section">
+        <div id="usb-storage-templates" style="display:none">
+            <select id="option-template">
+                <option></option>
+            </select>
+            <table id="authorized-user-row">
+                <!-- note: a tbody is automatically inserted by the browser -->
+                <tr>
+                    <td><label class="name-label"></label></td>
+                    <td><label class="static password-label">********</label><input type="text" class="input password-input"/></td>
+                    <td><label class="static permissions-label"></label><select class="input permissions-input"><option value="readAndWrite">{{dynamic-applets-usb_storage.96a7828b}}</option><option value="read">{{dynamic-applets-usb_storage.b04dfb07}}</option></select></td>
+                    <td class="edit-user-cell"><a class="edit-user">{{dynamic-applets-usb_storage.4a370bdd}}</a><a class="cancel-edit-user">{{dynamic-applets-usb_storage.8f475444}}</a></td>
+                    <td class="show-shares-cell"><a class="show-shares">{{dynamic-applets-usb_storage.74f115b2}}</a></td>
+                    <td class="delete-user-cell"><a class="delete-user">{{dynamic-applets-usb_storage.3618bd6a}}</a></td>
+                </tr>
+            </table>
+            <table id="first-authorized-user-row">
+                <tr>
+                    <td><input type="text" class="name"/></td>
+                    <td><input type="text" class="password"/></td>
+                    <td><select><option value="readAndWrite">{{dynamic-applets-usb_storage.96a7828b}}</option><option value="read">{{dynamic-applets-usb_storage.b04dfb07}}</option></select></td>
+                    <td id="select-share-cell"><a id="select-share">{{dynamic-applets-usb_storage.3b078947}}</a></td>
+                    <td id="add-user-cell" colspan="3"><button>{{dynamic-applets-usb_storage.fc5e5899}}</button></td>
+                </tr>
+            </table>
+            <ul id="create-share-folders-row">
+                <li>
+                    <input name="selected-folder" type="radio"/>
+                    <label for="" tooltip="" class="truncate-text"></label>
+                    <div class="select-folder-enter-directory"></div>
+                </li>
+            </ul>
+            <div id="select-existing-share-row">
+                <div class="checkbox-row">
+                    <input type="checkbox" />
+                    <label></label>
+                </div>
+            </div>
+            <table id="show-all-shares-row">
+                <tr>
+                    <td><label class="show-all-shares-row-share-name"></label></td>
+                    <td><label class="show-all-shares-row-users-list"></label></td>
+                    <td><a>{{dynamic-applets-usb_storage.3618bd6a}}</a></td>
+                </tr>
+            </table>
+            <table id="media-folder-everything-row">
+                <tr id="media-folder-everything">
+                    <td><label>{{dynamic-applets-usb_storage.1e6a3b17}}</label></td>
+                    <td><label>{{dynamic-applets-usb_storage.fe1039ab}}</label></td>
+                    <td><label>{{dynamic-applets-usb_storage.fe1039ab}}</label></td>
+                    <td><label>{{dynamic-applets-usb_storage.e03c4b0f}}</label></td>
+                </tr>
+            </table>
+            <table id="media-folder-nothing-row">
+                <tr id="media-folder-nothing">
+                    <td><label>{{dynamic-applets-usb_storage.ac2101fe}}</label></td>
+                    <td><label>{{dynamic-applets-usb_storage.fe1039ab}}</label></td>
+                    <td><label>{{dynamic-applets-usb_storage.fe1039ab}}</label></td>
+                </tr>
+            </table>
+            <table id="media-folder-row">
+                <tr>
+                    <td><label class="name-label"></label></td>
+                    <td><label class="path-label" dir="ltr"></label></td>
+                    <td><a class="delete-media-folder">{{dynamic-applets-usb_storage.3618bd6a}}</a></td>
+                </tr>
+            </table>
+            <table id="user-shares-row">
+                <tr>
+                    <td><label class="user-shares-row-share-name"></label></td>
+                    <td><a>{{dynamic-applets-usb_storage.342db949}}</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <ul class="tabs">
+            <li id="tab-status" data-id="status"><span>{{dynamic-applets-usb_storage.17865ec5}}</span></li>
+            <li id="tab-folder-access" data-id="folder-access"><span>{{dynamic-applets-usb_storage.857871f3}}</span></li>
+            <li id="tab-ftp-server" data-id="ftp-server"><span>{{dynamic-applets-usb_storage.b2adaecf}}</span></li>
+            <li id="tab-media-server" data-id="media-server"><span>{{dynamic-applets-usb_storage.ee1b1db2}}</span></li>
+            <div class="tab-filler"></div>
+        </ul>
+        <div class="tab-content form" id="status">
+            <div id="usb-status-empty">
+                <label>{{dynamic-applets-usb_storage.25d990c5}}</label>
+                <div id="no-device-found-info" class="highlighted">
+                    <div id="usb-status-refresh-info">
+                        <label id="no-device-found-title" class="title">{{dynamic-applets-usb_storage.f98c238e}}</label>
+                        <label>{{dynamic-applets-usb_storage.e91c2062}}</label>
+                    </div>
+                </div>
+                <div id="unsupported-device-info" class="highlighted" style="display:none">
+                    <div>
+                        <label id="unsupported-device-title" class="title">{{dynamic-applets-usb_storage.2845cd2b}}</label>
+                        <label>{{dynamic-applets-usb_storage.79a8e606}} <a href="#" class="unsupported-learn-more-link">{{dynamic-applets-usb_storage.edcf9904}}</a></label>
+                    </div>
+                </div>
+                <div id="refresh-usb-status-div">
+                    <button id="refresh-usb-status">{{dynamic-applets-usb_storage.7edbb162}}</button>
+                </div>
+            </div>
+            <div id="usb-status-device" style="display:none">
+                <table class="left-column">
+                    <tr>
+                        <td id="usb-drive-label">
+                            <label class="title">{{dynamic-applets-usb_storage.b88be50c}}</label>
+                            <div class="drive-unsupported" style="display:none">
+                                {{dynamic-applets-usb_storage.bfccde76}} <a href="#" class="unsupported-learn-more-link">{{dynamic-applets-usb_storage.edcf9904}}</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr id="status-select-partition" style="display:none">
+                        <td>
+                            <label class="title">{{dynamic-applets-usb_storage.c892b147}}</label><select></select> <!-- the partitions dropdown is programatically generated -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="usb-information-panel" class="highlighted">
+                                <label>{{dynamic-applets-usb_storage.85fedef1}} </label><label name="label"></label>
+                                <div id="partition-space">
+                                    <div class="progress-bar capacity-bar"></div>
+                                </div>
+                                <label>{{dynamic-applets-usb_storage.d2e5f57c}}&nbsp;<label name="usedSpaceLabel"></label>&nbsp;{{dynamic-applets-usb_storage.6d05c031}}</label>
+                                <div id="remove-usb-container">
+                                    <button id="remove-usb">{{dynamic-applets-usb_storage.f232e650}}</button>
+                                    <button id="refresh-usb">{{dynamic-applets-usb_storage.7edbb162}}</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="right-column">
+                    <tr>
+                        <td>
+                            <label class="title secure-folder-access-off">{{dynamic-applets-usb_storage.11239078}}</label>
+                            <label class="title secure-folder-access-on" style="display: none;">{{dynamic-applets-usb_storage.7d14498f}}</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="folder-access-subtitle">
+                            <label class="secure-folder-access-off">{{dynamic-applets-usb_storage.3b7f096d}}</label>
+                            <label class="secure-folder-access-on" style="display: none;">{{dynamic-applets-usb_storage.957df4cc}}</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="folder-access-info">
+                            <div class="highlighted">
+                                <label>{{dynamic-applets-usb_storage.0adfe1f4}} </label><label name="smbRouterIpAddressWindows" dir="ltr"></label>
+                                <br />
+                                <label>{{dynamic-applets-usb_storage.7906e873}} </label><label name="smbRouterIpAddressMac" dir="ltr"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="title ftp-server-disabled">{{dynamic-applets-usb_storage.1f6559a0}}</label>
+                            <label class="title ftp-server-enabled" style="display: none;">{{dynamic-applets-usb_storage.5bd169ec}}</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="ftp-server-subtitle">
+                            <label class="ftp-server-disabled">{{dynamic-applets-usb_storage.d361857f}}</label>
+                            <label class="ftp-server-enabled" style="display: none;">
+                                <label class="secure-folder-access-off">{{dynamic-applets-usb_storage.afd50bba}}</label>
+                                <label class="secure-folder-access-on" style="display: none;">{{dynamic-applets-usb_storage.4692857c}}</label>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="ftp-server-info">
+                            <div class="highlighted">
+                                <label class="ftp-server-disabled">{{dynamic-applets-usb_storage.a8234a22}}</label>
+                                <label class="ftp-server-enabled">{{dynamic-applets-usb_storage.80c47b84}} </label>
+                                <label class="ftp-server-enabled" name="ftpServerAddress"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="media-server-visible">
+                        <td>
+                            <label class="title dlna-server-disabled">{{dynamic-applets-usb_storage.5a05755f}}</label>
+                            <label class="title dlna-server-enabled" style="display: none;">{{dynamic-applets-usb_storage.56516486}}</label>
+                        </td>
+                    </tr>
+                    <tr class="media-server-visible">
+                        <td id="media-server-subtitle">
+                            <label class="dlna-server-disabled">{{dynamic-applets-usb_storage.1d5b34ba}}</label>
+                            <label class="dlna-server-enabled" style="display: none;">{{dynamic-applets-usb_storage.8f2ffc70}}</label>
+                        </td>
+                    </tr>
+                    <tr class="media-server-visible">
+                        <td>
+                            <div class="highlighted">
+                                <label class="dlna-server-disabled">{{dynamic-applets-usb_storage.9d7ce0a6}}</label>
+                                <label class="dlna-server-enabled">{{dynamic-applets-usb_storage.e665ebec}} </label>
+                                <label class="dlna-server-enabled" name="upnpMediaServerSettings.serverName"></label>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="tab-content form" id="folder-access">
+            <label>{{dynamic-applets-usb_storage.8d1256ca}}</label>
+            <label class="ftp-server-enabled">{{dynamic-applets-usb_storage.fbaad53b}}</label>
+            <div id="folder-access-intro" class="highlighted">
+                <div id="folder-access-intro-text">
+                    <label id="secure-folder-access-title" class="title">{{dynamic-applets-usb_storage.5ebc119b}}</label>
+                    <input id="secure-folder-access-switch" name="smbServerSettings.secureAccessEnabled" type="checkbox" class="switch"/>
+                    <label id="secure-folder-access-off-text" class="secure-folder-access-off">{{dynamic-applets-usb_storage.000b9420}}</label>
+                    <label id="secure-folder-access-on-text" class="secure-folder-access-on">{{dynamic-applets-usb_storage.f3d94120}}</label>
+                </div>
+            </div>
+            <div id="authorized-users" class="secure-folder-access-on">
+                <label id="authorized-users-title" class="title">{{dynamic-applets-usb_storage.006b8ccb}}</label>
+                <span id="folder-access-select-partition" style="display:none"><label class="title">{{dynamic-applets-usb_storage.c892b147}}</label><select></select> <!-- the partitions dropdown is programatically generated --></span>
+                <table class="inline-edit" border="1px">
+                    <thead>
+                        <tr>
+                            <td id="username-title"><em>{{dynamic-applets-usb_storage.d55d51a7}}</em></td>
+                            <td><em>{{dynamic-applets-usb_storage.0ff71dd1}}</em></td>
+                            <td><em>{{dynamic-applets-usb_storage.d08f8500}}</em></td>
+                            <td id="show-all-shares" colspan="4"><a href="#">{{dynamic-applets-usb_storage.bd1bf951}}</a></td>
+                        </tr>
+                    </thead>
+                    <tbody id="users-tablebody">
+                    </tbody>
+                </table>
+                <label id="admin-account-password-text">{{dynamic-applets-usb_storage.58563667}}</label>
+                <label>{{dynamic-applets-usb_storage.4068cb20}}</label>
+            </div>
+        </div>
+        <div class="tab-content form" id="ftp-server">
+            <label>{{dynamic-applets-usb_storage.bde33c73}}</label>
+            <div class="tab-subcontent">
+                <table class="left-column">
+                    <tr><td><label class="title item-header">{{dynamic-applets-usb_storage.44b5b468}}</label></td></tr>
+                    <tr><td id="enable-ftp-server-subtitle">{{dynamic-applets-usb_storage.0a08c419}}</td></tr>
+                    <tr><td><input id="ftp-server-switch" name="ftpServerSettings.isEnabled" type="checkbox" class="switch"/></td></tr>
+
+                    <tr><td><label class="title item-header">{{dynamic-applets-usb_storage.6a617840}}</label></td></tr>
+                    <tr><td><label class="pad-right-sml">{{dynamic-applets-usb_storage.4616ec94}}</label><input class="small" type="text" id="ftp-server-port" name="ftpServerSettings.port"/></td></tr>
+                </table>
+                <table class="right-column">
+                    <tr><td><label class="title inline-header">{{dynamic-applets-usb_storage.216dd545}}</label><label name="ftpServerSettings.serverName"></label></td></tr>
+
+                    <tr><td><label class="title item-header">{{dynamic-applets-usb_storage.8c9ccd34}}</label></td></tr>
+                    <tr><td><select id="ftp-server-encoding" name="ftpServerSettings.encoding"></select></td></tr><!-- options are generated programmatically -->
+                </table>
+            </div>
+        </div>
+        <div class="tab-content form" id="media-server">
+            <label>{{dynamic-applets-usb_storage.43d8c33b}}</label>
+            <div class="tab-subcontent">
+                <table class="left-column">
+                    <tr><td><label class="title item-header">{{dynamic-applets-usb_storage.5e4a381f}}</label></td></tr>
+                    <tr><td><input id="media-server-switch" name="upnpMediaServerSettings.isEnabled" type="checkbox" class="switch"/></td></tr>
+
+                    <tr>
+                        <td><label class="title inline-header">{{dynamic-applets-usb_storage.7c243382}}</label>
+                            <label>{{dynamic-applets-usb_storage.37bc68e4}}</label>
+                            <select name="upnpMediaServer.autoScanInterval">
+                                <option value="2">{{dynamic-applets-usb_storage.a1d4a5f2}}</option>
+                                <option value="6">{{dynamic-applets-usb_storage.e26a35e9}}</option>
+                                <option value="12">{{dynamic-applets-usb_storage.4fdc289f}}</option>
+                                <option value="24">{{dynamic-applets-usb_storage.f2e5bc5f}}</option>
+                                <option value="48">{{dynamic-applets-usb_storage.cf231854}}</option>
+                                <option value="0">{{dynamic-applets-usb_storage.1f16322b}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <table class="right-column">
+                    <tr><td><label class="title inline-header">{{dynamic-applets-usb_storage.8dbad053}}</label><label name="upnpMediaServerSettings.serverName"></label></td></tr>
+
+                    <tr>
+                        <td>
+                            <label class="title inline-header">{{dynamic-applets-usb_storage.2ccb5775}}</label>
+                            <label class="media-server-last-scan-hide">{{dynamic-applets-usb_storage.25f8bf32}}</label>
+                            <label class="media-server-last-scan-show" name="upnpMediaServer.lastScanTime" style="display:none"></label>
+                        </td>
+                    </tr>
+                    <tr><td><button id="media-server-scan">{{dynamic-applets-usb_storage.e4654cbe}}</button></td></tr>
+                </table>
+            </div>
+            <!-- TODO: update table to latest best-practice for design -->
+            <div id="media-folders">
+                <label id ="media-folders-title" class="title item-header">{{dynamic-applets-usb_storage.07b11447}}</label>
+                <span id="media-server-select-partition" style="display:none"><label class="title">{{dynamic-applets-usb_storage.c892b147}}</label><select></select> <!-- the partitions dropdown is programatically generated --></span>
+                <table id="media-folders-list" class="inline-edit grid word-break">
+                    <tbody>
+                        <tr>
+                            <th><em>{{dynamic-applets-usb_storage.53a20dd1}}</em></th>
+                            <th><em>{{dynamic-applets-usb_storage.4b3991ec}}</em></th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="add-media-folder">
+                    <button class="blue">{{dynamic-applets-usb_storage.b88e9443}}</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <button class="apply" style="display:none">{{dynamic-applets-usb_storage.fce86bf7}}</button>
+        <button class="cancel" style="display:none">{{dynamic-applets-usb_storage.8f475444}}</button>
+        <button class="submit">{{dynamic-applets-usb_storage.e9b662b3}}</button>
+    </footer>
+
+    <div class="dialog-container" style="display: none;">
+        <div id="create-new-share">
+            <div class="dialog-header">
+                <h1 class="network-context">{{dynamic-applets-usb_storage.1cf4d642}}</h1>
+                <h1 class="media-context">{{dynamic-applets-usb_storage.522907e2}}</h1>
+                <label class="network-context">{{dynamic-applets-usb_storage.fb1c3aad}}</label>
+                <label class="media-context">{{dynamic-applets-usb_storage.df2eb2c2}}</label>
+                <div class="close-button"></div>
+            </div>
+            <div class="dialog-content form">
+                <label id="edit-user-information-title" class="title">{{dynamic-applets-usb_storage.ba3f5e39}}</label>
+                <div id="select-folder" class="highlighted">
+                    <ul>
+                        <li>
+                            <label id="select-folder-title" class="title">{{dynamic-applets-usb_storage.6320d4a6}}</label>
+                            <div id="select-folder-up-directory"></div>
+                        </li>
+                        <!-- the list of directories is programmatically generated -->
+                    </ul>
+                </div>
+                <div id="create-share-name-share" class="highlighted">
+                    <label id="create-share-name-share-title" class="title">{{dynamic-applets-usb_storage.a192b1f8}}</label>
+                    <input type="text" />
+                </div>
+                <div id="create-share-share-all">
+                    <input type="checkbox" />
+                    <label>{{dynamic-applets-usb_storage.df7dabb9}}</label>
+                </div>
+            </div>
+            <div class="dialog-buttons">
+                <button id="create-share-cancel">{{dynamic-applets-usb_storage.8f475444}}</button>
+                <button id="create-share-submit" disabled="disabled">{{dynamic-applets-usb_storage.e9b662b3}}</button>
+           </div>
+        </div>
+    </div>
+
+    <div class="dialog-container" style="display: none;">
+        <div id="select-existing-share">
+            <div class="dialog-header">
+                <h1>{{dynamic-applets-usb_storage.aca6a6e1}}</h1>
+                <div class="close-button"></div>
+            </div>
+            <div id="select-existing-share-content" class="dialog-content form">
+                <div class="checkbox-row"><div id="create-new-share-button"></div><label id="create-new-share-button-text">{{dynamic-applets-usb_storage.ab4c1737}}</label></div>
+                <div id="all-shares-row" class="checkbox-row"><input id="all-shares-checkbox" type="checkbox"/><label>{{dynamic-applets-usb_storage.334fa934}}</label></div>
+                <hr />
+                <div id="select-existing-share-rows"></div>
+            </div>
+            <div class="dialog-buttons">
+                <button class="cancel">{{dynamic-applets-usb_storage.8f475444}}</button>
+                <button id="select-existing-share-submit" disabled="disabled">{{dynamic-applets-usb_storage.e9b662b3}}</button>
+           </div>
+        </div>
+    </div>
+
+    <div class="dialog-container" style="display: none;">
+        <div id="show-all-shares-dialog">
+            <div class="dialog-header">
+                <h1>{{dynamic-applets-usb_storage.238ce0df}}</h1>
+                <label>{{dynamic-applets-usb_storage.f0f693f9}}</label>
+                <div class="close-button"></div>
+            </div>
+            <div class="dialog-content form">
+                <label class="title">{{dynamic-applets-usb_storage.92f810e6}}</label>
+                <table id="show-all-shares-table" class="inline-edit" border="1px">
+                    <thead>
+                        <tr>
+                             <td><em>{{dynamic-applets-usb_storage.a192b1f8}}</em></td>
+                             <td><em>{{dynamic-applets-usb_storage.44d4bdbd}}</em></td>
+                             <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data programatically filled in -->
+                    </tbody>
+                </table>
+                <a id="show-all-shares-dialog-create-new-share-link">{{dynamic-applets-usb_storage.ab4c1737}}</a>
+            </div>
+            <div class="dialog-buttons">
+                <button class="cancel">{{dynamic-applets-usb_storage.8f475444}}</button>
+                <button class="submit">{{dynamic-applets-usb_storage.e9b662b3}}</button>
+           </div>
+        </div>
+    </div>
+
+    <div class="dialog-container" style="display: none;">
+        <div id="user-shares">
+            <div class="dialog-header">
+                <h1>{{dynamic-applets-usb_storage.0048143b}}</h1>
+                <label>{{dynamic-applets-usb_storage.5a046154}}</label>
+                <div class="close-button"></div>
+            </div>
+            <div class="dialog-content form">
+                <div id="user-shares-table-title">
+                    <label class="title">{{dynamic-applets-usb_storage.a736a837}}</label>
+                    <label id="users-shares-user-name" class="title"></label>
+                </div>
+                <table id="user-shares-table" class="inline-edit" border="1px">
+                    <thead>
+                        <tr>
+                             <td><em>{{dynamic-applets-usb_storage.a192b1f8}}</em></td>
+                             <td><em>{{dynamic-applets-usb_storage.c5b74657}}</em></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data programatically filled in -->
+                    </tbody>
+                </table>
+                <a id="user-shares-add-share">{{dynamic-applets-usb_storage.37cb8ff0}}</a>
+            </div>
+            <div class="dialog-buttons">
+                <button class="cancel">{{dynamic-applets-usb_storage.8f475444}}</button>
+                <button class="submit">{{dynamic-applets-usb_storage.e9b662b3}}</button>
+           </div>
+        </div>
+    </div>
+
+    <div class="dialog-container" style="display: none;">
+        <div id="upgrade-warning">
+            <div class="dialog-header">
+                <h1 class="exclamation">{{dynamic-applets-usb_storage.2deefdf2}}</h1>
+                <h2>{{dynamic-applets-usb_storage.8d291d43}}</h2>
+                <div class="close-button"></div>
+            </div>
+            <div class="dialog-content form">
+                <label>{{dynamic-applets-usb_storage.04be6e44}}</label>
+            </div>
+            <div class="dialog-buttons">
+                <button id="upgrade-cancel">{{dynamic-applets-usb_storage.8f475444}}</button>
+                <button class="submit">{{dynamic-applets-usb_storage.fa173478}}</button>
+           </div>
+        </div>
+    </div>
+
+    <div class="dialog-container" style="display: none;">
+        <div id="threshold-warning">
+            <div class="dialog-header">
+                <h1 class="exclamation">{{dynamic-applets-usb_storage.4a834b05}}</h1>
+                <h2>{{dynamic-applets-usb_storage.0897731c}}</h2>
+            </div>
+            <div class="dialog-content form no-text-orphans">
+                <label>{{dynamic-applets-usb_storage.dc15ba3e}}</label>
+            </div>
+            <div class="dialog-buttons">
+                <button class="submit">{{dynamic-applets-usb_storage.fa173478}}</button>
+           </div>
+        </div>
+    </div>
+
+    <div id="sfa-warning" style="display: none;">
+        <h1>{{dynamic-applets-usb_storage.b53491b3}}</h1>
+        <div>{{dynamic-applets-usb_storage.2fd6a8a6}} {{dynamic-applets-usb_storage.34733266}}</div>
+    </div>
+
+    <div id="drive-unsupported-info" class="dialog exclamation" style="display: none;">
+        <div class="warning-content dialog-content">
+            <h1>{{dynamic-applets-usb_storage.2845cd2b}}</h1>
+            <p>{{dynamic-applets-usb_storage.ec89dfea}}</p>
+            <p>{{dynamic-applets-usb_storage.f6945cf2}}</p>
+        </div>
+        <div class="dialog-buttons">
+            <button class="cancel">{{dynamic-applets-usb_storage.e9b662b3}}</button>
+        </div>
+    </div>
+
+</article>
+
+<script type="text/javascript">
+    RAINIER.util.injectScripts([
+        '/ui/1.0.99.201002/static/cache/applets/usb_storage/js/usb_storage.js'
+    ]);
+</script>

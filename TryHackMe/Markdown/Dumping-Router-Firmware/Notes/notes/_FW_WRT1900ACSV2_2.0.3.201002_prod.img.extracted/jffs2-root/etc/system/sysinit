@@ -1,0 +1,185 @@
+#!/bin/sh
+
+#------------------------------------------------------------------
+# Copyright (c) 2014 by Belkin, Inc. All Rights Reserved.
+#
+# This work is subject to U.S. and international copyright laws and
+# treaties. No part of this work may be used, practiced, performed,
+# copied, distributed, revised, modified, translated, abridged, condensed,
+# expanded, collected, compiled, linked, recast, transformed or adapted
+# without the prior written consent of Cisco Systems, Inc. Any use or
+# exploitation of this work without authorization could subject the
+# perpetrator to criminal and civil liability.
+#------------------------------------------------------------------
+
+#------------------------------------------------------------------
+#   This file contains the code to initialize the board
+#------------------------------------------------------------------
+
+#------------------------------------------------------------------
+#   Display the Belkin/Linksys firmware Banner
+#------------------------------------------------------------------
+echo "*********************************************************************************"
+echo "              _        _  __    _    __ _____ __   __ _____"
+echo "             | |      | ||  \  | |  / // ____]\ \ / // ____]TM"
+echo "             | |      | ||   \ | | / /| (___   \ V /| (____"
+echo "             | |      | || |\ \| |\ \  \____ \  \ /  \____ \\"
+echo "             | |_____ | || | \   | \ \  ____) | | |   ____) |"
+echo "             |_______||_||_|  \__|  \_\[____ /  |_|  [_____/"
+echo ""
+echo " (c) 2014 Belkin International, Inc. and/or its affiliates. All rights reserved."
+echo " Booting `cat /etc/product` (firmware version `cat /etc/version`) "
+echo "*********************************************************************************"
+
+echo "[utopia][init] System Initialization"
+
+#------------------------------------------------------------------
+#   Create the /proc /sys and /dev filesystems
+#------------------------------------------------------------------
+echo "[utopia][init] Creating /proc"
+mount -n -t proc none /proc
+echo "[utopia][init] Creating /sys"
+mount -n -t sysfs none /sys
+echo "[utopia][init] Creating /dev"
+mkdir -p /dev
+#------------------------------------------------------------------
+#   Create device nodes
+#------------------------------------------------------------------
+mount -n -t tmpfs mdev /dev -o size=100k
+mknod -m 666 /dev/null c 1 3
+mknod -m 660 /dev/console c 5 1
+mknod -m 660 /dev/ttyS0 c 4 64
+
+#------------------------------------------------------------------
+#  Create some space in RAM mounted on /tmp for some non volatile files
+#  TODO: this should be cleaned up 
+#------------------------------------------------------------------
+echo "[utopia][init] Creating /tmp"
+if [ $(awk '/MemTotal:/ { print $2 }' /proc/meminfo) -gt 65536 ]; then
+  echo "[utopia][init] Allocating 100M for /tmp"
+  mount -t tmpfs -o size=100m none /tmp
+else
+  echo "[utopia][init] Attempting to create /downloads"
+    TMP_PARTITION=$(awk -F: '/downloads/ { print $1 }' /proc/mtd)
+    TMP_PARTITION=${TMP_PARTITION:-$(awk -F: '/data/ { print $1 }' /proc/mtd)}
+    if [ -z $TMP_PARTITION ]; then
+	echo No MTD partition located for /tmp, using tmpfs
+	mount -t tmpfs -o size=100m none /tmp
+    else
+	TMP_DEVICE=/dev/$TMP_PARTITION
+	TMP_BLOCK_DEVICE=$(echo ${TMP_DEVICE} | sed s/mtd/mtdblock/)
+	mknod $TMP_DEVICE c 90 $(expr $(echo $TMP_DEVICE | sed s@/dev/mtd@@) \* 2)
+	mknod $TMP_BLOCK_DEVICE b 31 $(echo $TMP_DEVICE | sed s@/dev/mtd@@)
+	mount -t jffs2 -o noatime $TMP_BLOCK_DEVICE /tmp ||
+	(flash_eraseall -j ${TMP_DEVICE}
+	    mount -t jffs2 -o noatime $TMP_BLOCK_DEVICE /tmp || (echo /tmp mount failed using tmpfs; mount -t tmpfs -o size=4m none /tmp))
+	rm -rf /tmp/* /tmp/.[a-z]*
+    fi
+fi
+
+#------------------------------------------------------------------
+#   create non volatile directories for the linux system
+#------------------------------------------------------------------
+mkdir -p /tmp/var;
+mkdir -p /var/lock;
+mkdir -p /var/log;
+mkdir -p /var/run;
+mkdir -p /var/tmp;
+
+mkdir -p /tmp/cron;
+mkdir -p /tmp/ppp;
+mkdir -p /tmp/l2tp;
+mkdir -p /tmp/iproute2;
+mkdir -p /tmp/lib/tc;
+
+#------------------------------------------------------------------
+#   when we use ssh we need to prepare devpts
+#------------------------------------------------------------------
+echo "[utopia][init] Prepairing /dev/pts"
+mkdir /dev/pts
+chmod 755 /dev/pts
+mount -t devpts none /dev/pts
+
+echo "[utopia][init] Setting /tmp and /var permissions"
+chmod 777 /tmp
+chmod 777 /tmp/var;
+chmod 777 /var/lock;
+chmod 777 /var/log;
+chmod 777 /var/run;
+chmod 777 /var/tmp;
+chmod 777 /tmp/cron;
+chmod 777 /tmp/ppp;
+chmod 777 /tmp/l2tp;
+chmod 777 /tmp/iproute2;
+chmod 777 /tmp/lib/tc;
+
+#if this is linux 2.6 we mkdir /dev/shm and execute hotplug2
+mkdir -p /dev/shm;
+
+# hotplug2 is depricated
+#chmod 777 /sbin/hotplug2 --coldplug
+#chmod 777 /sbin/hotplug2
+#echo "[utopia][init] Using netlink for hotplug events..not finished implementing"
+#echo "" > /proc/sys/kernel/hotplug
+
+echo "[utopia][init] Starting udev.."
+/sbin/udevd --daemon 
+# echo " *  Populating /dev with existing devices through uevents" 
+# touch /dev/.udev_populate 
+/sbin/udevadm trigger --attr-match=dev
+# echo " *  Letting udev process events"
+# /sbin/udevadm settle --timeout=60
+# [ -d /dev/pts ] || mkdir -m 755 /dev/pts
+# [ -c /dev/ptmx ] || mknod -m 666 /dev/ptmx c 5 2
+# rm /dev/.udev_populate 
+
+
+#------------------------------------------------------------------
+#   load the board utility drivers
+#------------------------------------------------------------------
+MODULE_PATH=/lib/modules/`uname -r`/
+if [ -f $MODULE_PATH/mod_bdutil.ko ]; then
+	insmod $MODULE_PATH/mod_bdutil.ko
+fi
+
+
+#------------------------------------------------------------------
+#   TODO: find out why this is here and what it does
+#------------------------------------------------------------------
+MODULE_PATH=/lib/modules/`uname -r`/
+if [ -f $MODULE_PATH/orion_wdt.ko ]; then
+	insmod $MODULE_PATH/orion_wdt.ko
+fi
+
+
+lsmod | grep mod_bdutil 2>&1 > /dev/null
+if [ $? -eq 0 ]; then
+	for n in buttons mfgeeprom bdgpio; do
+		major=$(awk ' /'$n'/{ print $1 }' /proc/devices)
+		if [ "$major" ]; then
+			/bin/mknod /dev/$n c $major 1
+		fi
+	done
+fi
+
+#------------------------------------------------------------------
+#   remount the filesystem as readonly
+#------------------------------------------------------------------
+mount -o remount,ro /
+
+#------------------------------------------------------------------
+#   /dev/null is the devil
+#------------------------------------------------------------------
+chmod 666 /dev/null
+
+#------------------------------------------------------------------
+#   kick off the syslog and kernel log deamons
+#------------------------------------------------------------------
+/sbin/syslogd && /sbin/klogd && dmesg -n 1
+
+#------------------------------------------------------------------
+#   setup inet iface lo:local:loopback
+#------------------------------------------------------------------
+ip addr add 127.0.0.1/255.0.0.0 dev lo
+ip link set lo up
+ip route add 127.0.0.0/8 dev lo

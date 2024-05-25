@@ -1,0 +1,108 @@
+<link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/cache/applets/external_storage/css/external_storage.css" />
+
+<article id="external-storage-applet">
+    <header>
+        <h1>{{dynamic-applets-external_storage.2d296368}}</h1>
+        <h4>{{dynamic-applets-external_storage.5646544a}}</h4>
+        <div class="close-button"></div>
+        <div class="widget-config">
+           <input type="checkbox" id="cbAddWidget" checked="checked"/><label for="cbAddWidget">{{dynamic-applets-external_storage.96d3c7d5}}</label>
+        </div>
+    </header>
+    <section class="form">
+        <fieldset class="left">
+            <div id="drive-list">
+                <!-- storage drives go here -->
+            </div>
+            <button id="refresh-drive-list">{{dynamic-applets-external_storage.7edbb162}}</button>
+        </fieldset>
+        <fieldset class="right">
+            <legend>{{dynamic-applets-external_storage.c0d4f64f}}</legend>
+            <p>{{dynamic-applets-external_storage.037c0cee}}</p>
+            <p>{{dynamic-applets-external_storage.c93700dd}}</p>
+            <p>{{dynamic-applets-external_storage.5d1d2ec2}}</p>
+            <p>{{dynamic-applets-external_storage.1e8c66a7}}</p>
+            <p>{{dynamic-applets-external_storage.bceb92a7}}</p>
+        </fieldset>
+        <fieldset class="right">
+            <legend>
+                {{dynamic-applets-external_storage.a2f5a811}}
+                <div>
+                    <input type="checkbox" id="smb-secure-access" class="switch" name="smbServerSettings.secureAccessEnabled" />
+                </div>
+            </legend>
+            <p>{{dynamic-applets-external_storage.11fd7bc2}}</p>
+            <div class="row">
+                <label for="smb-username">{{dynamic-applets-external_storage.0fb45d5c}}</label>
+                <div class="cell">
+                    <input type="text" id="smb-username" name="smbServerSettings.username" />
+                </div>
+            </div>
+            <div class="row">
+                <label for="smb-password">{{dynamic-applets-external_storage.30c623e8}}</label>
+                <div class="cell">
+                    <input type="password" autocapitalize="none" id="smb-password" name="smbServerSettings.password" />
+                </div>
+            </div>
+        </fieldset>
+    </section>
+    <footer>
+        <button class="apply">{{dynamic-applets-external_storage.fce86bf7}}</button>
+        <button class="cancel">{{dynamic-applets-external_storage.8f475444}}</button>
+        <button class="submit">{{dynamic-applets-external_storage.e9b662b3}}</button>
+    </footer>
+
+    <!-- template for an external storage device -->
+    <div id="template-drive-info" style="display: none;">
+        <section class="drive-device no-text-orphans highlighted">
+            <legend><label name="deviceName" /> <a href="#" class="eject-button"><img src="/ui/1.0.99.201002/static/cache/applets/external_storage/images/eject.png" alt="{{dynamic-applets-external_storage.dbc9db47}}" /></a></legend>
+            <div class="drive-slide-window">
+                <div class="partition-list">
+                    <!-- partitions go here -->
+                </div>
+                <p>{{dynamic-applets-external_storage.3d7874ed}} <label name="ipAddress"></label></p>
+            </div>
+        </section>
+    </div>
+
+    <!-- template for an ejected storage device -->
+    <div id="template-drive-ejected" style="display: none;">
+        <section class="drive-device no-text-orphans ejected-message highlighted">
+            <p>{{dynamic-applets-external_storage.598b8bf2}}</p>
+        </section>
+    </div>
+
+    <!-- template for a partition on a storage device -->
+    <div id="template-partition-info" style="display: none;">
+        <div class="drive-partition">
+            <label class="storageLabel" name="label"></label>
+            <span class="partition-read-only-icon" style="display: none;"><img src="/ui/1.0.99.201002/static/cache/applets/wireless/images/security_locked.png" /> {{dynamic-applets-external_storage.b04dfb07}}</span>
+            <progress max="0" value="0"></progress>
+            <p class="storageInfo">{{dynamic-applets-external_storage.90e43ae1}}</p>
+        </div>
+    </div>
+
+    <!-- template for an unsupported partition on a storage device -->
+    <div id="template-unsupported-partition-info" style="display: none;">
+        <div class="drive-partition unsupported-drive-partition">
+            <label class="storageLabel" name="label"></label>
+            <p class="unsupported-message">{{dynamic-applets-external_storage.7e54fb2f}}</p>
+            <p><a href="https://www.linksys.com/us/support-article?articleNum=302833" rel="noopener">{{dynamic-applets-external_storage.9a32bfb5}}</a></p>
+        </div>
+    </div>
+
+    <!-- template for no-devices connected message -->
+    <div id="template-no-drives" style="display: none;">
+        <section class="drive-device no-drives-message highlighted">
+            <p class="info-heading">{{dynamic-applets-external_storage.b19a31c3}}</p>
+            <p>{{dynamic-applets-external_storage.27d8134c}}</p>
+        </section>
+    </div>
+
+</article>
+
+<script type="text/javascript">
+    RAINIER.util.injectScripts([
+        '/ui/1.0.99.201002/static/cache/applets/external_storage/js/external_storage.js'
+    ]);
+</script>

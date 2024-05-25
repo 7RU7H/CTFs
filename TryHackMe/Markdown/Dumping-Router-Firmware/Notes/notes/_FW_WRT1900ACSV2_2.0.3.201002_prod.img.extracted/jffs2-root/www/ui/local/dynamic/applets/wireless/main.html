@@ -1,0 +1,500 @@
+<link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/cache/applets/wireless/css/wireless.css" />
+<link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/cache/css/block-scheduler.css" />
+
+<article id="wireless-applet">
+    <header>
+        <h1>{{dynamic-applets-wireless.51bed00d}}</h1>
+        <h4>{{dynamic-applets-wireless.ef54b331}}</h4>
+        <div class="close-button"></div>
+        <div class="widget-config" style="display: none;">
+            <input type="checkbox" id="cbAddWidget" checked="checked" /><label for="cbAddWidget">{{dynamic-applets-wireless.96d3c7d5}}</label>
+        </div>
+    </header>
+    <section class="tab-section">
+        <ul class="tabs">
+            <li id="wireless-tab" data-id="wireless"><span>{{dynamic-applets-wireless.74f0ca39}}</span></li>
+            <li id="wps-tab" data-id="wps"><span>{{dynamic-applets-wireless.c0aca228}}</span></li>
+            <div class="tab-filler"></div>
+        </ul>
+        <div class="tab-content form" id="wireless">
+            <div id="band-steering-selection" style="display:none;">
+                <span class="steering-title">
+                    <strong>{{dynamic-applets-wireless.ab3732e1}}</strong>
+                </span>
+                <div class="triBandSteering" style="display:none;">
+                    <input type="radio" id="triBandSteeringEnabled" name="wireless.bandSteeringMode" value="TriBand" data-fieldname="{{dynamic-applets-wireless.b3f09a66}}" />
+                    <span class="steering-title w-steering-triBand">
+                        <label for="triBandSteeringEnabled">
+                            <strong>{{dynamic-applets-wireless.a8473bac}}</strong><br />
+                            <span></span>
+                        </label>
+                    </span>
+                </div>
+                <input type="radio" id="basicBandSteeringEnabled" name="wireless.bandSteeringMode" value="Basic" data-fieldname="{{dynamic-applets-wireless.b3f09a66}}" />
+                <span class="steering-title w-steering-basic">
+                    <label for="basicBandSteeringEnabled">
+                        <strong>{{dynamic-applets-wireless.b15f9c79}}</strong><br />
+                        <span></span>
+                    </label>
+                </span>
+                <input type="radio" id="bandSteeringDisabled" name="wireless.bandSteeringMode" value="Off" />
+                <span class="steering-title">
+                    <label for="bandSteeringDisabled">
+                        <strong>{{dynamic-applets-wireless.78248efd}}</strong><br />
+                        <span>{{dynamic-applets-wireless.c3a5ca53}}</span>
+                    </label>
+                </span>
+                <span class="steering-help">
+                    <a href="#">{{dynamic-applets-wireless.73de6040}}</a>
+                </span>
+            </div>
+            <!-- radio-list will be populated with radio config boxes -->
+            <div id="radio-list"></div>
+            <div id="velop-content" class="showForNodes">
+                <a id="show-less" class="radio-link">{{dynamic-applets-wireless.7a6d143a}}</a>
+                <a id="show-more" class="radio-link">{{dynamic-applets-wireless.2acabe9e}}</a>
+                <a id="make-all-the-same" class="radio-link">{{dynamic-applets-wireless.c0257170}}</a>
+                <select style="display: none;" name="wireless.combineNetworks">
+                    <option value="true">{{dynamic-applets-wireless.c397d39e}}</option>
+                    <option value="false">{{dynamic-applets-wireless.b9ef9a13}}</option>
+                </select>
+                <p id="homekit-combine-radios-note" style="display: none;">{{dynamic-applets-wireless.e221c823}}</p>
+            </div>
+        </div>
+        <div class="tab-content form" id="wps">
+            <label class="legend" id="wps-enabled-legend">
+                {{dynamic-applets-wireless.cb460ddb}}
+            </label>
+            <div id="wps-enabled-switch">
+                <div id="wps-enabled-wrapper"><input type="checkbox" id="wps-enabled" class="switch" name="wps.enabled"/></div>
+                <div id="wps-enabled-text-wrapper-wrapper" class="highlighted">
+                    <div id="wps-enabled-text-wrapper">
+                        <label id="wps-enabled-text">
+                            <div id="wps-service-enabled">{{dynamic-applets-wireless.1499c864}}</div>
+                            <div id="wps-service-disabled">{{dynamic-applets-wireless.e57d63f9}}</div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div id="wps-enabled-note">
+                <p>{{dynamic-applets-wireless.82752b70}}</p>
+            </div>
+            <div id="wps-bottom-row">
+                <div class="left">
+                    <label class="legend">{{dynamic-applets-wireless.46d33a9a}}</label>
+                    <div class="highlighted">
+                        <p>{{dynamic-applets-wireless.cbda92fc}}</p>
+                        <div id="wps-button" tabindex="1"></div>
+                    </div>
+                </div>
+                <div class="left">
+                    <label class="legend">{{dynamic-applets-wireless.450a4780}}</label>
+                    <div class="highlighted">
+                        <p>{{dynamic-applets-wireless.3d843555}}</p>
+                        <div id="wps-router-pin" class="allow-select">0000000</div>
+                    </div>
+                </div>
+                <div class="left">
+                    <label class="legend">{{dynamic-applets-wireless.07a17b06}}</label>
+                    <div class="highlighted">
+                        <p>{{dynamic-applets-wireless.4c84c5e8}}</p>
+                        <div id="wps-device-pin-inputs">
+                            <input type="text" id="wps-device-pin" name="clientPIN"/>
+                            <button id="wps-register">{{dynamic-applets-wireless.b66dfc28}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <button class="apply">{{dynamic-applets-wireless.fce86bf7}}</button>
+        <button class="cancel">{{dynamic-applets-wireless.8f475444}}</button>
+        <button class="submit" id="submitWirelessButton">{{dynamic-applets-wireless.e9b662b3}}</button>
+    </footer>
+
+    <!-- TODO: make center area light, like the error dialog -->
+    <!-- TODO: minimum height = 300, max height = 900, with scrollbar -->
+    <div class="dialog-container" style="display: none;">
+        <div id="wps-popup">
+            <div class="dialog-header">
+                <h1>{{dynamic-applets-wireless.cb460ddb}}</h1>
+            </div>
+            <div id="searching" class="dialog-content form">
+                <label id="searching-searching-for-client">{{dynamic-applets-wireless.679449f9}}</label>
+                <label id="searching-please-wait">{{dynamic-applets-wireless.728d6236}}</label>
+                <div id="spinner-section"></div>
+            </div>
+            <div id="failure" class="dialog-content form no-text-orphans">
+                <label>{{dynamic-applets-wireless.55ae8f3f}}</label>
+                <label>{{dynamic-applets-wireless.1c7c5288}}</label>
+            </div>
+            <div id="success" class="dialog-content form no-text-orphans">
+                <label>{{dynamic-applets-wireless.db4c422e}}</label>
+                <label>{{dynamic-applets-wireless.91b1215d}}</label>
+            </div>
+            <div class="dialog-buttons">
+                <button id="cancel-button">{{dynamic-applets-wireless.8f475444}}</button>
+                <button id="close-button" class="cancel">{{dynamic-applets-wireless.7fdeae92}}</button>
+           </div>
+        </div>
+    </div>
+
+    <div class="dialog-container" style="display: none;">
+        <div id="ssid-broadcast-warning">
+            <div class="dialog-header">
+                <h1 class="exclamation">{{dynamic-applets-wireless.256fee65}}</h1>
+            </div>
+            <div class="dialog-content form">
+                {{dynamic-applets-wireless.66902e86}}
+            </div>
+            <div class="dialog-buttons">
+                <button class="submit">{{dynamic-applets-wireless.7fdeae92}}</button>
+           </div>
+        </div>
+    </div>
+
+    <div class="dialog-container" style="display: none;">
+        <div id="no-ssid-broadcast-warning">
+            <div class="dialog-header">
+                <h1 class="exclamation">{{dynamic-applets-wireless.256fee65}}</h1>
+            </div>
+            <div class="dialog-content form no-text-orphans">
+                <span id="reboot-needed" style="display:none;">{{dynamic-applets-wireless.ec4dc4e7}}</span>
+                <span id="no-reboot-needed" style="display:none;">{{dynamic-applets-wireless.77ba6059}}</span>
+            </div>
+            <div class="dialog-buttons">
+                <button class="cancel">{{dynamic-applets-wireless.8f475444}}</button>
+                <button class="submit">{{dynamic-applets-wireless.e9b662b3}}</button>
+           </div>
+        </div>
+    </div>
+
+    <div id="confirm-different-wifi-names" class="template">
+        <h1 class="exclamation">{{dynamic-applets-wireless.719549fe}}</h1>
+        <p>{{dynamic-applets-wireless.0bed79e8}}</p>
+    </div>
+    <div id="confirm-wep-or-wpa" class="template">{{dynamic-applets-wireless.51248839}}</div>
+    <div id="confirm-security-mode-disabled" class="template">{{dynamic-applets-wireless.c45ebad7}}</div>
+    <div id="confirm-mac-filter-enabled" class="template">{{dynamic-applets-wireless.7f3ef59c}}</div>
+    <div id="confirm-wireless-scheduler-disabled" class="template">{{dynamic-applets-wireless.791ce4a1}}</div>
+    <div id="max-mac-addresses-reached" class="template">{{dynamic-applets-wireless.448878f3}}</div>
+    <div id="wps-pin-invalid-text" style="display: none;">{{dynamic-applets-wireless.504061d0}}</div>
+    <div id="wireless-mode-mixed" style="display: none;">{{dynamic-applets-wireless.967fece9}}</div>
+    <div id="wireless-mode-bg" style="display: none;">{{dynamic-applets-wireless.761608b5}}</div>
+    <div id="wireless-mode-bgn" style="display: none;">{{dynamic-applets-wireless.8d475e28}}</div>
+    <div id="wireless-mode-bgnax" style="display: none;">{{dynamic-applets-wireless.57fbf11d}}</div>
+    <div id="wireless-mode-b" style="display: none;">{{dynamic-applets-wireless.4fa1819c}}</div>
+    <div id="wireless-mode-g" style="display: none;">{{dynamic-applets-wireless.c7909e11}}</div>
+    <div id="wireless-mode-n" style="display: none;">{{dynamic-applets-wireless.de8a0fc8}}</div>
+    <div id="wireless-mode-a" style="display: none;">{{dynamic-applets-wireless.86967226}}</div>
+    <div id="wireless-mode-an" style="display: none;">{{dynamic-applets-wireless.95bf52fd}}</div>
+    <div id="wireless-mode-ac" style="display: none;">{{dynamic-applets-wireless.ceed77ee}}</div>
+    <div id="wireless-mode-anac" style="display: none;">{{dynamic-applets-wireless.ff28c9be}}</div>
+    <div id="wireless-mode-anacax" style="display: none;">{{dynamic-applets-wireless.1b4fcfef}}</div>
+    <div id="wireless-channel-auto" style="display: none;">{{dynamic-applets-wireless.0c7cf4f3}}</div>
+    <div id="channel-width-auto" style="display: none;">{{dynamic-applets-wireless.0c7cf4f3}}</div>
+    <div id="channel-width-standard" style="display: none;">{{dynamic-applets-wireless.8446cb23}}</div>
+    <div id="channel-width-wide" style="display: none;">{{dynamic-applets-wireless.6c813321}}</div>
+    <div id="channel-width-wide80" style="display: none;">{{dynamic-applets-wireless.5f0cf02a}}</div>
+    <div id="channel-width-wide160c" style="display: none;">{{dynamic-applets-wireless.1815c7b0}}</div>
+    <div id="channel-width-wide160nc" style="display: none;">{{dynamic-applets-wireless.1815c7b0}}</div>
+
+    <div id="wireless-disabled-features"style="display: none;">
+        <!-- Mac Filtering tab -->
+        <li id="mac-filtering-tab" data-id="mac-filtering"><span>{{dynamic-applets-wireless.d9c3794a}}</span></li>
+        <div id="mac-filtering" class="tab-content form no-text-orphans">
+            <fieldset id="filter-options" class="left">
+                <legend>
+                    {{dynamic-applets-wireless.1013d277}} <span><input type="checkbox" id="filter-enabled" /></span><span><label for="filter-enabled">{{dynamic-applets-wireless.3d896dd1}}</label></span>
+                </legend>
+                <div class="block-row">
+                    <h2>{{dynamic-applets-wireless.2fe65abd}}</h2>
+                    <div class="check-item">
+                        <div>
+                            <input type="radio" name="filter-addresses" value="Deny" id="deny-filters" checked="checked" />
+                        </div>
+                        <div>
+                            <label for="deny-filters">{{dynamic-applets-wireless.7d7c6474}}</label>
+                        </div>
+                    </div>
+                    <div class="check-item">
+                        <div>
+                            <input type="radio" name="filter-addresses" value="Allow" id="allow-filters" />
+                        </div>
+                        <div>
+                            <label for="allow-filters">{{dynamic-applets-wireless.13e22435}}</label>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="solid inline-edit right">
+                <legend>{{dynamic-applets-wireless.129e4346}}</legend>
+                <div id="filter-wrapper" class="block-row tooltip-top">
+                    <table border="0" id="filter-list" class="grid word-break">
+                        <tbody>
+                            <tr>
+                                <th>{{dynamic-applets-wireless.b0725057}}</th>
+                                <th>{{dynamic-applets-wireless.c5b74657}}</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button id="add-address" class="blue right">{{dynamic-applets-wireless.4929b67e}}</button>
+                </div>
+            </fieldset>
+        </div>
+        <!-- Simple Tap tab -->
+        <li id="simpletap-tab" data-id="simpletap"><span>{{dynamic-applets-wireless.6a377dc5}}</span></li>
+        <div id="simpletap" class="tab-content form">
+            <label class="legend" id="simpletap-legend">{{dynamic-applets-wireless.14732497}}</label>
+            <label id="simpletap-description">{{dynamic-applets-wireless.129eeb80}}</label>
+            <div id="simpletap-enabled-wrapper"><input type="checkbox" id="simpletap-enabled" class="switch" name="simpletap.isSetupVAPEnabled" /></div>
+        </div>
+        <!-- Wireless Scheduler tab -->
+        <li id="scheduler-tab" data-id="scheduler"><span>{{dynamic-applets-wireless.bd32b640}}</span></li>
+        <div class="tab-content form" id="scheduler">
+            <fieldset style="margin-top: 0;">
+                <label class="legend">{{dynamic-applets-wireless.bd32b640}}</label>
+                <p class="tabDescription">{{dynamic-applets-wireless.c0e04dfd}}</p>
+                <div class="helpSection">
+                    <span>{{dynamic-applets-wireless.0635e043}}</span><span class="help-icon"></span>
+                </div>
+            </fieldset>
+            <fieldset style="margin-top: 0;">
+                <div id="blockInternetAccessNet">
+                    <div id="divSelection" class="Selection"></div>
+                    <!-- TODO: clean up HTML (inline styles, TDs all on one line, etc.) -->
+                    <table id="tableBlockAccess" border="0" style="border: solid 0px black;">
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td colspan="12"><div class="moon-icon"></div></td>
+                            <td colspan="13"><div class="sun-icon"></div></td>
+                        </tr>
+                        <tr class="header">
+                            <td></td>
+                            <td><div>12</div></td>
+                            <td><div>1</div></td>
+                            <td><div>2</div></td>
+                            <td><div>3</div></td>
+                            <td><div>4</div></td>
+                            <td><div>5</div></td>
+                            <td><div>6</div></td>
+                            <td><div>7</div></td>
+                            <td><div>8</div></td>
+                            <td><div>9</div></td>
+                            <td><div>10</div></td>
+                            <td><div>11</div></td>
+                            <td><div>12</div></td>
+                            <td><div>1</div></td>
+                            <td><div>2</div></td>
+                            <td><div>3</div></td>
+                            <td><div>4</div></td>
+                            <td><div>5</div></td>
+                            <td><div>6</div></td>
+                            <td><div>7</div></td>
+                            <td><div>8</div></td>
+                            <td><div>9</div></td>
+                            <td><div>10</div></td>
+                            <td><div>11</div></td>
+                        </tr>
+                        <tr id="rowSunday"><td>{{dynamic-applets-wireless.7b701b91}}</td></tr>
+                        <tr id="rowMonday"><td>{{dynamic-applets-wireless.8885e952}}</td></tr>
+                        <tr id="rowTuesday"><td>{{dynamic-applets-wireless.0324384f}}</td></tr>
+                        <tr id="rowWednesday"><td>{{dynamic-applets-wireless.378171a9}}</td></tr>
+                        <tr id="rowThursday"><td>{{dynamic-applets-wireless.a98877f4}}</td></tr>
+                        <tr id="rowFriday"><td>{{dynamic-applets-wireless.46bd419c}}</td></tr>
+                        <tr id="rowSaturday"><td>{{dynamic-applets-wireless.eed5a000}}</td></tr>
+                        <tr>
+                            <td></td>
+                            <td colspan="24">
+                                <table class="legend">
+                                    <tbody>
+                                    <tr>
+                                        <td class="unchecked onOffTd">&nbsp;</td>
+                                        <td><div>{{dynamic-applets-wireless.f29550e5}}</div></td>
+                                        <td></td>
+                                        <td class="checked onOffTd">&nbsp;</td>
+                                        <td><div>{{dynamic-applets-wireless.1e538eb6}}</div></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div class="currentTime">{{dynamic-applets-wireless.a607a42a}} <span></span> | <a class="editRouterTime">{{dynamic-applets-wireless.4a370bdd}}</a></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </fieldset>
+        </div>
+        <!-- Advanced tab -->
+        <li id="advanced-tab" data-id="advanced"><span>{{dynamic-applets-wireless.a93a621f}}</span></li>
+        <div id="advanced" class="tab-content form">
+            <fieldset class="highlighted left" id="atf-wrapper">
+                <label class="legend">
+                    {{dynamic-applets-wireless.3c2f63b7}}
+                </label>
+                <div id="atf-enabled-wrapper">
+                    <input type="checkbox" id="atf-enabled" class="switch" name="atf.isAirtimeFairnessEnabled" />
+                </div>
+                <div>
+                    {{dynamic-applets-wireless.3592cdfd}}
+                </div>
+            </fieldset>
+            <fieldset class="highlighted left" id="dfs-wrapper">
+                <label class="legend">
+                    {{dynamic-applets-wireless.a807af55}}
+                </label>
+                <div id="dfs-enabled-wrapper">
+                    <input type="checkbox" id="dfs-enabled" class="switch" name="dfs.isDFSEnabled" />
+                </div>
+                <div>
+                    {{dynamic-applets-wireless.7db1fa70}}
+                </div>
+            </fieldset>
+            <fieldset class="highlighted left" id="clientSteering-wrapper">
+                <label class="legend">
+                    {{dynamic-applets-wireless.60f46a75}}
+                </label>
+                <div id="clientSteering-enabled-wrapper">
+                    <input type="checkbox" id="clientSteering-enabled" class="switch" name="topologyOptimization.isClientSteeringEnabled" />
+                </div>
+                <div>
+                    {{dynamic-applets-wireless.953ecdbd}}
+                </div>
+            </fieldset>
+            <fieldset class="highlighted left" id="nodeSteering-wrapper">
+                <label class="legend">
+                    {{dynamic-applets-wireless.de01a75d}}
+                </label>
+                <div id="nodeSteering-enabled-wrapper">
+                    <input type="checkbox" id="nodeSteering-enabled" class="switch" name="topologyOptimization.isNodeSteeringEnabled" />
+                </div>
+                <div>
+                    {{dynamic-applets-wireless.39097332}}
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+    <div id="template-radio-config-box" style="display: none;">
+        <div class="radio-config-box">
+            <h2 name="labels.band"></h2>
+            <h2 class="tri-band" style="display: none;">{{dynamic-applets-wireless.51bed00d}}</h2>
+            <p class="radio-blocked" style="display: none;">{{dynamic-applets-wireless.94f4b0b8}}</p>
+            <div class="radio-settings">
+                <h3>
+                    <label>{{dynamic-applets-wireless.de656916}}</label>
+                    <input type="text" class="w-ssid" name="settings.ssid" />
+                    <span class="radio-toggle showForLinksysRouters">
+                        <input type="checkbox" class="w-enabled switch" name="settings.isEnabled" />
+                    </span>
+                    <label for="settings.isEnabled" name="labels.band" class="radio-label showForLinksysRouters">{{dynamic-applets-wireless.6fd4c5a7}}</label>
+                    <label for="settings.isEnabled" class="radio-label tri-band showForLinksysRouters" style="display: none;">{{dynamic-applets-wireless.6fd4c5a7}}</label>
+                </h3>
+
+                <label class="w-personal-only">{{dynamic-applets-wireless.7fc1eb08}}</label>
+                <input class="w-personal-only w-personal-pass" type="text" name="settings.wpaPersonalSettings.passphrase" />
+
+                <label class="w-wpa-enterpr-only">{{dynamic-applets-wireless.fdedcaa0}}</label>
+                <input class="w-wpa-enterpr-only w-wpa-enterpr-key" type="text" name="settings.wpaEnterpriseSettings.sharedKey" />
+
+                <label class="w-wep-only">{{dynamic-applets-wireless.df0302f8}}</label>
+                <input class="w-wep-only w-wep-pass" type="text" name="settings.wepSettings.passphrase" />
+
+                <label class="w-no-sec-only">{{dynamic-applets-wireless.7fc1eb08}}</label>
+                <span class="no-edit-field w-no-sec-only">{{dynamic-applets-wireless.25f8bf32}}</span>
+
+                <label class="showForLinksysRouters">{{dynamic-applets-wireless.7e80b0d3}}</label>
+                <select class="w-broadcastSSID showForLinksysRouters" name="settings.broadcastSSID">
+                    <option value="true">{{dynamic-applets-wireless.c397d39e}}</option>
+                    <option value="false">{{dynamic-applets-wireless.b9ef9a13}}</option>
+                </select>
+
+                <label class="showForLinksysRouters">{{dynamic-applets-wireless.c681481a}}</label>
+                <span class="no-edit-field w-band-steer-only w-channel-label"></span>
+                <!-- the channel dropdown menu items below are programmatically generated -->
+                <div class="channelWrapper showForLinksysRouters">
+                    <select class="w-channel w-no-band-steer-only" name="settings.channel" data-fieldname="{{dynamic-applets-wireless.d5a932d7}}"></select>
+                </div>
+                <label>{{dynamic-applets-wireless.3cedff94}}</label>
+                <!-- the below wireless security values are programmatically generated based off the supported values JNAP returns -->
+                <div class="securityTypeWrapper">
+                    <select class="w-security" name="settings.security" data-fieldname="{{dynamic-applets-wireless.f17d9d5f}}"></select>
+                </div>
+
+                <label>{{dynamic-applets-wireless.4c78e9f3}}</label>
+                <span class="no-edit-field w-band-steer-only w-network-mode-label"></span>
+                <!-- the below network mode values are programmatically generated based off which values JNAP reports are supported -->
+                <div class="networkModeWrapper">
+                    <select class="w-network-mode w-no-band-steer-only" name="settings.mode" data-fieldname="{{dynamic-applets-wireless.127663c3}}"></select>
+                </div>
+
+                <label class="showForLinksysRouters">{{dynamic-applets-wireless.3a22962e}}</label>
+                <span class="no-edit-field w-band-steer-only w-channel-width-label"></span>
+                <!--if you add new options please update wirelessChannelWidth in ui.js.localized -->
+                <div class="channelWidthWrapper showForLinksysRouters">
+                    <select class="w-channel-width w-no-band-steer-only" name="settings.channelWidth" data-fieldname="{{dynamic-applets-wireless.9638a358}}"></select>
+                </div>
+
+                <label class="w-wpa-enterpr-only">{{dynamic-applets-wireless.d792743b}}</label>
+                <span class="w-wpa-enterpr-only ipv4-input ip-input" name="settings.wpaEnterpriseSettings.radiusServer" dir="ltr">
+                    <input type="text" defaultValue="1" />.<input type="text" defaultvalue="0" />.<input type="text" defaultvalue="0" />.<input type="text" defaultValue="1" />
+                </span>
+
+                <label class="w-wpa-enterpr-only">{{dynamic-applets-wireless.4a868832}}</label>
+                <input class="w-wpa-enterpr-only w-wpa-enterpr-port" type="text" name="settings.wpaEnterpriseSettings.radiusPort" defaultValue="0" />
+
+                <label class="w-wep-only">{{dynamic-applets-wireless.4fd07f02}}</label>
+                <select class="w-wep-only w-wep-encrypt" name="settings.wepSettings.encryption">
+                    <option value="WEP-64">{{dynamic-applets-wireless.52fd3a01}}</option>
+                    <option value="WEP-128">{{dynamic-applets-wireless.a8afb84b}}</option>
+                </select>
+
+                <label class="w-wep-only">{{dynamic-applets-wireless.ca3e67c6}}</label>
+                <input class="w-wep-only w-wep-k1" type="text" name="settings.wepSettings.key1" />
+
+                <label class="w-wep-only">{{dynamic-applets-wireless.5ea8b8c2}}</label>
+                <input class="w-wep-only w-wep-k2" type="text" name="settings.wepSettings.key2" />
+
+                <label class="w-wep-only"></label>
+                <button class="w-wep-only w-wep-generate-keys">{{dynamic-applets-wireless.d3805946}}</button>
+
+                <label class="w-wep-only">{{dynamic-applets-wireless.c9b9fe80}}</label>
+                <input class="w-wep-only w-wep-k3" type="text" name="settings.wepSettings.key3" />
+
+                <label class="w-wep-only">{{dynamic-applets-wireless.f47b8767}}</label>
+                <input class="w-wep-only w-wep-k4" type="text" name="settings.wepSettings.key4" />
+
+                <label class="w-wep-only">{{dynamic-applets-wireless.a33dffc6}}</label>
+                <select class="w-wep-only w-wep-tx-k" name="settings.wepSettings.txKey">
+                    <option value="1">{{dynamic-applets-wireless.72d5b8ea}}</option>
+                    <option value="2">{{dynamic-applets-wireless.af11364f}}</option>
+                    <option value="3">{{dynamic-applets-wireless.c48003ed}}</option>
+                    <option value="4">{{dynamic-applets-wireless.4e4b66b6}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div id="templateFilterRow" style="display: none;">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <span class="spStatic mac" name="macAddress" dir="ltr"></span><span class="spEdit"><input type="text" class="text-mac" dir="ltr"></span>
+                    </td>
+                    <td>
+                        <span class="spEdDel"><a id="edit-filter">{{dynamic-applets-wireless.4a370bdd}}</a> / <a id="delete-filter">{{dynamic-applets-wireless.3618bd6a}}</a></span><span class="spEdit"><a id="save-filter">{{dynamic-applets-wireless.723ace2b}}</a> / <a id="cancel-filter">{{dynamic-applets-wireless.8f475444}}</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</article>
+
+<script type="text/javascript">
+    RAINIER.util.injectScripts([
+        '/ui/1.0.99.201002/static/cache/js/lib/md5.js',
+        '/ui/1.0.99.201002/static/cache/js/block-scheduler.js',
+        '/ui/1.0.99.201002/static/cache/applets/wireless/js/wireless.js'
+    ]);
+</script>

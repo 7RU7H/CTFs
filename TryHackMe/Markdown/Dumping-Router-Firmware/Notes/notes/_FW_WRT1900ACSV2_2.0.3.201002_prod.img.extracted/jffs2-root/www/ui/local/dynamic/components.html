@@ -1,0 +1,487 @@
+<!-- Preloaded images -->
+<div id="cache-images" style="width:0; height:0; overflow:hidden; position:absolute; top:0; left:0;">
+    <!-- images for Network Status widget -->
+    <div class="widget">
+        <div class="vertical-mark"></div>
+    </div>
+    <img src="/ui/1.0.99.201002/static/cache/applets/network_health/images/Internet_Globe.png" />
+
+    <!-- images for dialogs -->
+    <div class="dialog-container" style="width:0; height:0; overflow:hidden; position:absolute;">
+        <button></button><button class="blue"></button><button class="small-blue"></button><button class="orange"></button>
+        <div class="dialog exclamation">
+            <div class="dialog-header">
+                <div class="close-button"></div>
+            </div>
+            <div class="dialog-content">
+                <h1 class="exclamation"></h1>
+                <h2></h2>
+                <ol>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ol>
+            </div>
+            <div class="dialog-buttons">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Common Dialogs -->
+<div id="generic-dialog" class="dialog" style="display: none">
+    <div id="generic-dialog-content" class="dialog-content">
+    </div>
+    <div class="dialog-buttons">
+        <button class="cancel">{{dynamic.e9b662b3}}</button>
+    </div>
+</div>
+<div id="generic-dialog-template" class="dialog" style="display: none">
+    <div class="dialog-header">
+        <h1 class="exclamation"></h1>
+    </div>
+    <div class="dialog-content"></div>
+    <div class="dialog-buttons">
+        <button class="cancel">{{dynamic.e9b662b3}}</button>
+    </div>
+</div>
+<div id="router-not-found" class="dialog exclamation hideDetails" style="display: none;">
+    <div class="dialog-content">
+        <h1 class="exclamation">{{dynamic.d49ac3d5}}</h1>
+        <h2>{{dynamic.9849398a}}</h2>
+        <ol>
+            <li>{{dynamic.c9214bcc}}</li>
+            <li>{{dynamic.81ae367a}}</li>
+            <li>{{dynamic.c66bba5d}}</li>
+        </ol>
+        <br />
+        <br />
+        <a id="router-not-found-details-link"><div class="hidingDetails">{{dynamic.4bedacbb}}</div><div class="showingDetails">{{dynamic.3f1c6744}}</div></a>
+        <div id="router-not-found-details" class="showingDetails"></div>
+    </div>
+    <div class="dialog-buttons">
+        <button id="router-not-found-retry">{{dynamic.a6806da5}}</button>
+    </div>
+</div>
+<div id="remote-user-lost-connection" class="dialog exclamation" style="display:none">
+    <!-- The remote device has lost its local lan or wan connection -->
+    <div class="dialog-content">
+        <h1 class="exclamation">{{dynamic.f106f21a}}</h1>
+        {{dynamic.862bc0e3}}
+    </div>
+    <div class="dialog-buttons">
+        <button class="retryButton">{{dynamic.a6806da5}}</button>
+    </div>
+</div>
+<div id="guest-ssid-conflict" class="dialog exclamation" style="display:none">
+    <!-- wireless ssid and guest ssid the same -->
+    <div class="dialog-content">
+        <h1 class="exclamation">{{dynamic.a4f198f5}}</h1>
+        {{dynamic.e27b685d}}
+    </div>
+    <div class="dialog-buttons">
+        <button class="cancel">{{dynamic.e9b662b3}}</button>
+    </div>
+</div>
+<div id="generic-error" class="dialog exclamation hideDetails" style="display: none;">
+    <div class="dialog-content">
+        <h1 class="exclamation">{{dynamic.4d1042e6}}</h1>
+        <h2 id="generic-error-value"></h2>
+        {{dynamic.4fd1c83e}}
+        <br />
+        <br />
+        <a id="generic-error-details"><div class="hidingDetails">{{dynamic.4bedacbb}}</div><div class="showingDetails">{{dynamic.3f1c6744}}</div></a>
+        <div id="generic-error-action" class="showingDetails"></div>
+    </div>
+    <div id="ok" class="dialog-buttons">
+        <button class="cancel">{{dynamic.e9b662b3}}</button>
+    </div>
+    <div id="retry" class="dialog-buttons">
+        <button class="signOut">{{dynamic.56046358}}</button>
+        <button class="retry">{{dynamic.a6806da5}}</button>
+    </div>
+</div>
+<div id="generic-warning-dialog" class="dialog exclamation" style="display: none;">
+    <div class="warning-content dialog-content"></div>
+    <div class="dialog-buttons">
+        <button class="cancel">{{dynamic.b9ef9a13}}</button>
+        <button class="submit">{{dynamic.c397d39e}}</button>
+    </div>
+</div>
+<div id="generic-alert-dialog" class="dialog exclamation" style="display: none;">
+    <div class="warning-content dialog-content"></div>
+    <div class="dialog-buttons">
+        <button class="cancel">{{dynamic.e9b662b3}}</button>
+    </div>
+</div>
+<div id="waiting" style="display:none">
+    <img src="/ui/1.0.99.201002/static/cache/images/spinner/Spinner_55.gif" width="55" height="55" alt="Waiting" />
+    <div id="waiting-text">
+        {{dynamic.1ab82ed7}}
+    </div>
+</div>
+<div id="help-menu-dialog" class="dialog help" style="display: none;">
+    <div class="dialog-header">
+        <h1>{{dynamic.f8681f5a}}</h1>
+        <div class="close-button"></div>
+    </div>
+    <div class="dialog-content" >
+        <div class="pad-horz-lrg">
+            <div class="help-content" style="width:400px"></div>
+        </div>
+    </div>
+    <nav>
+        <h2>{{dynamic.72ba5a24}}</h2>
+        <ul id="help-nav-list">
+            <li id="LinksysSmartWiFi">{{dynamic.092dac36}}</li>
+        </ul>
+    </nav>
+    <div class="dialog-buttons">
+        <button class="cancel">{{dynamic.e9b662b3}}</button>
+    </div>
+</div>
+<div id="third-party-license-local" class="dialog" style="display: none">
+    <div class="dialog-content">
+        <h1>{{dynamic.7e2be5a0}}</h1>
+        {{dynamic.63f47bdf}}
+    </div>
+    <div class="dialog-buttons">
+        <button class="cancel">{{dynamic.e9b662b3}}</button>
+    </div>
+</div>
+<div id="link-unavailable-offline" class="dialog" style="display: none">
+    <div class="dialog-content">
+        <h1>{{dynamic.c3dd668e}}</h1>
+        {{dynamic.64ef6469}}
+    </div>
+    <div class="dialog-buttons">
+        <button class="cancel">{{dynamic.e9b662b3}}</button>
+    </div>
+</div>
+<div id="firmware-update-required" class="dialog exclamation" style="display: none;">
+    <div class="dialog-content">
+        <h1 class="exclamation">{{dynamic.6d4e446f}}</h1>
+        <h2>{{dynamic.68d50043}}</h2>
+        <p>{{dynamic.e3c6181b}}</p>
+    </div>
+    <div class="dialog-buttons">
+        <button class="cancel">{{dynamic.e9b662b3}}</button>
+    </div>
+</div>
+<div id="online-to-offline" class="dialog exclamation" style="display: none;">
+    <div class="dialog-content">
+        <h1 class="exclamation">{{dynamic.36c0ab38}}</h1>
+        {{dynamic.2a284e9d}}
+    </div>
+    <div class="dialog-buttons">
+        <button class="cancel">{{dynamic.e9b662b3}}</button>
+    </div>
+</div>
+<div id="close-account-dialog" class="dialog exclamation" style="display: none;">
+    <div class="dialog-content">
+        <h1 class="exclamation">{{dynamic.8bc74286}}</h1>
+        {{dynamic.ef6e9acd}}
+    </div>
+    <div class="dialog-buttons">
+        <button class="cancel">{{dynamic.e9b662b3}}</button>
+    </div>
+</div>
+<div class="dialog-container" style="z-index: -1; display:none">
+    <div id="user-menu-about-dialog">
+        <div class="dialog-header">
+            <h1>{{dynamic.aaae69be}}</h1>
+            <div class="close-button"></div>
+        </div>
+        <div class="dialog-content form">
+            <div id="about-dialog-cloud">{{dynamic.174cb739}}&nbsp;<span id="about-dialog-cloud-version"></span></div>
+            <div id="about-dialog-firmware"><span id="about-dialog-model-name"></span>&nbsp;{{dynamic.119c9a93}}&nbsp;<span id="about-dialog-firmware-version"></span></div>
+            <br />
+            <br />
+            <h2>{{dynamic.943845eb}}</h2>
+                &#169; 2019 Belkin International, Inc. {{dynamic.72a70582}}
+            <br />
+            <br />
+        </div>
+        <div class="dialog-buttons">
+            <button class="cancel">{{dynamic.e9b662b3}}</button>
+        </div>
+    </div>
+</div>
+<div id="global-tooltip" style="display: none" class="balloon left"><div class="tip"></div></div>
+<div id="global-popmenu" style="display: none" class="balloon left"><div class="tip"></div><div id="contents"></div></div>
+<div id="dialog-cache" style="display: none"></div>
+<div id="generic-dialog-wrapper" class="dialog-container" style="display: none"></div>
+<div id="survey-dialog-wrapper" class="dialog-container" style="display: none"></div>
+<div id="help-dialog-wrapper" class="dialog-container" style="display: none"></div>
+<div id="error-dialog-wrapper" class="dialog-container" style="display: none"></div>
+<div id="promptsavedhcpreservation" class="dialog" style="display: none;">
+    <div class="dialog-content">
+        <h1>{{dynamic.bf7908ab}}</h1>
+        {{dynamic.e0f05fdc}}
+        <br /><br />
+        {{dynamic.cebccaf6}}
+        <br /><br />
+        {{dynamic.fa686e08}}
+    </div>
+    <div class="dialog-buttons">
+        <button class="cancel">{{dynamic.b9ef9a13}}</button>
+        <button class="submit">{{dynamic.c397d39e}}</button>
+    </div>
+</div>
+<div id="eula-dialog" class="dialog" style="display: none">
+    <div class="dialog-content">
+        <h2>{{dynamic.674a1468}}</h2>
+        <br />
+        <div id="eula-content" class="text-orphan"></div>
+    </div>
+    <div class="dialog-buttons">
+        <button class="cancel">{{dynamic.7fdeae92}}</button>
+    </div>
+</div>
+<div id="email-not-validated" class="dialog exclamation" style="display: none;">
+    <div class="dialog-content">
+        <h1 class="exclamation">{{dynamic.bb2ad704}}</h1>
+        <b>{{dynamic.0c893bce}}</b><br />
+        {{dynamic.c4d2482c}}<br /><br />
+        <div id="email-not-validated-content" class="none">
+            <div id="none">&nbsp;</div>
+            <div id="sent"><img src="/ui/1.0.99.201002/static/cache/images/badges/checkmark_18.png" style="vertical-align:bottom;padding-right:10px;"/>{{dynamic.0aba439f}}</div>
+            <div id="sending"><img src="/ui/1.0.99.201002/static/cache/images/spinner/Spinner_18.gif" style="vertical-align:bottom;padding-right:10px;"/>{{dynamic.bfa33044}}</div>
+            <div id="failed">{{dynamic.9214f339}}</div>
+        </div>
+    </div>
+    <div class="dialog-buttons">
+        <button class="cancel">{{dynamic.e9b662b3}}</button>
+        <button class="submit">{{dynamic.efa47c04}}</button>
+    </div>
+</div>
+
+<!-- DHCP Reservations dialogs and templates -->
+
+<div class="dialog-container" style="display: none;">
+    <div id="dhcp-reservations-dialog" class="inline-edit no-text-orphans">
+        <div class="dialog-header">
+            <h2>{{dynamic.6caabfe4}}</h2>
+            <div class="close-button"></div>
+        </div>
+        <div class="dialog-content form">
+            <fieldset>
+                <legend>{{dynamic.bb1cc5f7}}</legend>
+
+                <table id="reservation-list" class="grid word-break">
+                    <tbody>
+                        <tr>
+                            <th>{{dynamic.e5476168}}</th>
+                            <th>{{dynamic.5d9ddc54}}</th>
+                            <th>{{dynamic.92cc67ee}}</th>
+                            <th></th>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button id="add-device">{{dynamic.829e3509}}</button>
+            </fieldset>
+
+            <fieldset>
+                <label>{{dynamic.56ddc36b}}</label>
+
+                <table id="devices-list" class="grid word-break">
+                    <tbody>
+                        <tr>
+                            <th width="20%">{{dynamic.e5476168}}</th>
+                            <th width="20%">{{dynamic.662686a9}}</th>
+                            <th width="20%">{{dynamic.76d751ed}}</th>
+                            <th width="25%">{{dynamic.b0725057}}</th>
+                            <th width="15%">{{dynamic.68f650a8}}</th>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div>
+                    <button id="add-reservation" class="blue">{{dynamic.3c75c00b}}</button>
+                </div>
+            </fieldset>
+        </div>
+        <!-- Inputs for DHCP Reservations validation -->
+        <div id="dhcp-reservations-block" style="display:none;">
+            <div class="ip-input cell" name="lanSettingsSetup.subnetMask" dir="ltr">
+                <input type="text" maxlength="3"/><span>.</span><input type="text" maxlength="3"/><span>.</span><input type="text" maxlength="3"/><span>.</span><input type="text" maxlength="3"/>
+            </div>
+            <div class="ip-input cell" name="lanSettings.ipAddress" dir="ltr">
+                <input type="text"/><input type="text"/><input type="text"/><input type="text"/>
+            </div>
+        </div>
+        <div class="dialog-buttons">
+            <button class="cancel close-button">{{dynamic.8f475444}}</button>
+            <button class="submit">{{dynamic.e9b662b3}}</button>
+        </div>
+    </div>
+</div>
+
+<div id="templateDeviceRow" style="display: none;">
+    <table>
+        <tr>
+            <td class="desc" name="name"></td>
+            <td name="netType"></td>
+            <td class="ipAddr" name="ipAddress"></td>
+            <td class="mac" name="macAddress" dir="ltr"></td>
+            <td><input type="checkbox" /></td>
+        </tr>
+    </table>
+</div>
+
+<div id="immutableTemplateReserveRow" style="display: none;">
+    <table>
+        <tr>
+            <td><span class="spStatic" name="description"></span><span class="spEdit"><input type="text" name="description"></span></td>
+            <td><span class="spStatic"><div class="ip-input short-labels" name="ipAddress" dir="ltr"><label />.<label />.<label />.<label /></div></span><span class="spEdit"><div class="ip-input short-labels" name="ipAddress" dir="ltr"><input type="text" maxlength="3"><span>.</span><input type="text" maxlength="3"><span>.</span><input type="text" maxlength="3"><span>.</span><input type="text" maxlength="3"></div></span></td>
+            <td><span class="spStatic" name="macAddress" dir="ltr"></span><span class="spEdit"><input type="text" name="macAddress" maxlength="17" dir="ltr"></span></td>
+            <td class="word-break-normal"><span class="spEdDel"><a id="edit-device">{{dynamic.4a370bdd}}</a> / <a id="delete-device">{{dynamic.3618bd6a}}</a></span><span class="spEdit"><a id="save-device">{{dynamic.723ace2b}}</a> / <a id="cancel">{{dynamic.8f475444}}</a></span></td>
+        </tr>
+    </table>
+</div>
+
+<div id="templateStaticRow" style="display: none;">
+    <table>
+        <tr>
+            <td><span class="spStatic desc" name="name"></span><span class="spEdit"><input type="text" class="text-desc" name="name"></span></td>
+            <td><span class="spStatic destination" name="settings.destinationLAN"></span><span class="spEdit"><div class="ip-input" name="settings.destinationLAN" dir="ltr"><input type="text" /><input type="text" /><input type="text" /><input type="text" /></div></span></td>
+            <td><span class="spStatic subnet" name="settings.subnetMask"></span><span class="spEdit"><div class="ip-input" name="settings.subnetMask" dir="ltr"><input type="text" /><input type="text" /><input type="text" /><input type="text" /></div></span></td>
+            <td><span class="spStatic gateway" name="settings.gateway"></span><span class="spEdit"><div class="ip-input" name="settings.gateway" dir="ltr"><input type="text" /><input type="text" /><input type="text" /><input type="text" /></div></span></td>
+            <td><span class="spStatic" id="interface-lan" style="display: none;">{{dynamic.af49a9a2}}</span><span class="spStatic" id="interface-internet" style="display: none;">{{dynamic.cf3bb2a0}}</span><span class="spEdit"><select id="interfaceSelect" class="text-interface" name="settings.interface"><option value="LAN">{{dynamic.af49a9a2}}/{{dynamic.74f0ca39}}</option><option value="Internet">{{dynamic.cf3bb2a0}}</option></select></span></td>
+            <td><span class="spEdDel"><a id="edit-route">{{dynamic.4a370bdd}}</a> / <a id="delete-route">{{dynamic.3618bd6a}}</a></span><span class="spEdit"><a id="save-route">{{dynamic.723ace2b}}</a> / <a id="cancel">{{dynamic.8f475444}}</a></span></td>
+        </tr>
+    </table>
+</div>
+
+<!-- connectivity applet dialogs and templates -->
+<!-- TODO: move to its own file -->
+
+<div class="dialog-container" style="display: none">
+    <div id="radio-disconnect-warning" class="disconnect-warning-dialog">
+        <div class="dialog-header">
+            <h1>{{dynamic.08f6f5b6}}</h1>
+        </div>
+        <div class="dialog-content form">
+            {{dynamic.3a40e780}}
+            <br />
+            <div id="disconnect-warning-wireless-networks-disabled-text" class="warning-text">
+                <br />
+                {{dynamic.b73a9d54}}
+            </div>
+            <div id="disabling-24-50ghz-wireless-scheduler-enabled-text" class="warning-text" style="display: none;">
+                <br />
+                {{dynamic.e4fdd08e}}
+            </div>
+            <div id="disabling-24ghz-disables-guest-access-text" class="warning-text" style="display: none;">
+                <br />
+                {{dynamic.36954b93}}
+            </div>
+            <div id="disabling-24ghz-disables-24guest-access-text" class="warning-text" style="display: none;">
+                <br />
+                {{dynamic.968149e9}}
+            </div>
+            <div id="disabling-50ghz-disables-50guest-access-text" class="warning-text" style="display: none;">
+                <br />
+                {{dynamic.17a13792}}
+            </div>
+            <div id="disabling-50_1ghz-disables-50guest-access-text" class="warning-text" style="display: none;">
+                <br />
+                {{dynamic.7b773286}}
+            </div>
+            <div id="disabling-24-50ghz-disables-guest-access-text" class="warning-text" style="display: none;">
+                <br />
+                {{dynamic.db9a5abb}}
+            </div>
+            <div id="disabling-24-50_1ghz-disables-guest-access-text" class="warning-text" style="display: none;">
+                <br />
+                {{dynamic.3918e1bc}}
+            </div>
+            <br />
+            <div id="disconnect-warning-wireless">
+            </div>
+            {{dynamic.8dbd8b1a}}
+        </div>
+        <div class="dialog-buttons">
+            <button class="cancel">{{dynamic.b9ef9a13}}</button>
+            <button class="submit">{{dynamic.c397d39e}}</button>
+        </div>
+    </div>
+</div>
+
+<div id="radio-disconnect-warning-template" style="display: none;">
+    <div>
+        <label for="" name="labels.band"><!-- {{dynamic.348e2113}} --></label>
+
+        <div id="disablingghz-broadcastSSID-text" class="wireless-hide-text" style="display: none;">
+            {{dynamic.d2d7d6a3}}
+        </div>
+        <table class="disconnect-warning-wireless">
+            <tr>
+                <td>{{dynamic.de656916}} <span name="settings.ssid"></span></td>
+            </tr>
+            <tr>
+                <td id="disconnect-warning-password-row" class="wireless-hide-text">{{dynamic.7fc1eb08}} <span name="settings.wpaPersonalSettings.passphrase"></span></td>
+            </tr>
+            <tr>
+                <td>{{dynamic.119f92c8}} <span name="securityText"></span></td>
+            </tr>
+            <tr>
+                <td id="disconnect-warning-key-row" class="wireless-hide-text">{{dynamic.0f107115}} <span name="settings.wepSettings.key"></span></td>
+            </tr>
+            <tr>
+                <td id="disconnect-warning-shared-key-row" class="wireless-hide-text">{{dynamic.fdedcaa0}} <span name="settings.wpaEnterpriseSettings.sharedKey"></span></td>
+            </tr>
+        </table>
+    </div>
+    <br />
+</div>
+
+<div id="wireless-bridge-not-connected" class="dialog exclamation" style="display: none;">
+    <div class="dialog-content">
+        <h1 class="exclamation">{{dynamic.a4f198f5}}</h1>
+        <b>{{dynamic.43db4e4a}}</b><br />
+        {{dynamic.2010e0c9}}
+    </div>
+    <div class="dialog-buttons">
+        <button class="cancel">{{dynamic.e9b662b3}}</button>
+    </div>
+</div>
+
+<div id="session-ended-dialog" class="dialog white-dialog" style="display: none;">
+    <div class="dialog-header">
+        <h1>{{dynamic.8db922c5}}</h1>
+        <div class="close-button"></div>
+    </div>
+    <div class="dialog-content">
+        <p id="agentEndsSession">{{dynamic.40780eca}}</p>
+    </div>
+    <div class="dialog-buttons">
+        <ul class="form">
+            <li><button class="cancel">{{dynamic.7fdeae92}}</button></li>
+        </ul>
+    </div>
+</div>
+
+<div id="velop-overlay" style="display: none;">
+</div>
+
+<div id="linksys-app-content" style="display: none;">
+    <div class="left">
+        <img id="phone-1" width="160" src="/ui/1.0.99.201002/static/cache/images/velop_block/white-i-phone.png" alt="Linksys App on iPhone">
+        <img id="phone-2" width="138" src="/ui/1.0.99.201002/static/cache/images/velop_block/black-android.png" alt="Linksys App on Android">
+    </div>
+
+    <h1 class="app-icons right">
+        <a target="_blank" href="https://itunes.apple.com/us/app/linksys-smart-wi-fi/id533516503?mt=8">
+            <img src="/ui/1.0.99.201002/static/cache/images/velop_block/app-store-badge.png" alt="Download on the App Store">
+        </a>
+        <a target="_blank" href="https://play.google.com/store/apps/details?id=com.cisco.connect.cloud&hl=en">
+            <img src="/ui/1.0.99.201002/static/cache/images/velop_block/android-play-store.png" alt="Get it on Google Play">
+        </a>
+    </h1>
+
+    <div class="caption clear-both pad-top-lrg">
+        <p>{{dynamic.e90c1e1e}}</p>
+        <p>{{dynamic.ae20a2ae}}</p>
+    </div>
+</div>

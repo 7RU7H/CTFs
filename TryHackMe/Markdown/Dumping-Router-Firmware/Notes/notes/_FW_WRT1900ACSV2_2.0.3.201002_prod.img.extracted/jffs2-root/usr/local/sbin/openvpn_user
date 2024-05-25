@@ -1,0 +1,86 @@
+#!/bin/sh
+#
+# quick_script to help creating openvpn users
+#
+#
+
+AUTH_FILE="/tmp/vpn/user_auth"
+
+print_use() {
+	echo "$0 Use:"
+	echo "$0 add <username> <password> - add a openvpn user"
+	echo "$0 del <username> <password> - delete a openvpn user"
+	echo "$0 show - list openvpn users"
+	exit 
+}
+
+if [ ! "$1" ] ; then
+	print_use
+fi
+
+show_openvpn_users() {
+	cat "$AUTH_FILE" | awk '{ print $1 }' | sed '/./!d'
+}
+
+count_openvpn_users() {
+	cat "$AUTH_FILE" | awk '{ print $1 }' | sed '/./!d' | wc -l
+}
+
+check_openvpn_user_exists() {
+	cat "$AUTH_FILE" | grep "^$1 "
+}
+
+add_openvpn_user() {
+	USER_COUNT=$(count_openvpn_users)
+	MAX_USERS=`syscfg get vpn_max_users`
+	if [ "$USER_COUNT" -ge "$MAX_USERS" ] ; then
+		echo "max user count reached"
+	else
+		if [ ! "$(check_openvpn_user_exists $1)" ] ; then
+			echo -e "$1 $2" >> "$AUTH_FILE"
+			echo "openvpn user $1 created"
+		else
+			echo "openvpn user $1 exists already"
+		fi
+	fi
+}
+
+
+
+del_openvpn_user() {
+	HAS_USER=`cat $AUTH_FILE | grep "^$1"`
+	if [ "$HAS_USER" ] ; then
+		sed -i "/^$1 /d" "$AUTH_FILE"
+		echo "openvpn user $1 deleted"
+	else
+		echo "could not find user $1"
+	fi
+}
+
+
+case "$1" in
+    "add" )
+			if [ "$3" ] ; then
+				#echo "openvpn add user"
+				add_openvpn_user "$2" "$3"
+				sed -i '/^$/d' $AUTH_FILE
+			else
+				print_use
+			fi
+			;;
+    "del" )
+      if [ "$2" ] ; then
+				#echo "openvpn delete user"
+				del_openvpn_user "$2"
+				
+      else
+				print_use
+      fi
+      ;;
+    "show" )
+      #echo "openvpn show user(s)"
+      show_openvpn_users
+      ;;
+    * )
+			print_use ;;
+esac

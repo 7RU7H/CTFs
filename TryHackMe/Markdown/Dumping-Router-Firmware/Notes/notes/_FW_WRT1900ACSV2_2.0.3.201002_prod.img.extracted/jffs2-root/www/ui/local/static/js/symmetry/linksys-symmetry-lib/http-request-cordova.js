@@ -1,0 +1,1 @@
+(function(a,b){if(typeof define==="function"&&define.amd){define([],b)}else{if(typeof module==="object"&&module.exports){module.exports=b()}else{a.httpRequestCordova=b()}}}(this,function(){return{send:function(c,b,a){cordova.exec(c,b,"Http","request",[a])}}}));

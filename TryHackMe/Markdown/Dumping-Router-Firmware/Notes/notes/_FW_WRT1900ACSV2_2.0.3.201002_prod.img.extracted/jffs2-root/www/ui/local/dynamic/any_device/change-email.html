@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html dir="{{dynamic-any_device.ce8eef14}}" lang="{{dynamic-any_device.29e84b92}}">
+<head>
+    <meta charset="utf-8" />
+    <title>{{dynamic-any_device.092dac36}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <noscript><meta http-equiv="refresh" content="0;url=/ui/1.0.99.201002/dynamic/script-disabled.html"></noscript>
+    <link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/cache/css/any-device.css" />
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/lib/jquery.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/lib/webshim/base64.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/lib/lodash.js"></script>
+    <script type="text/javascript">
+        var lodash = _.noConflict();
+    </script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/dynamic/js/shared.js.localized"></script>
+
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-jnap-js/jnap.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-jnap-js/cloud-rest.js"></script>
+
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/side-effects-manager.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/cache-manager.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/symmetry-jnap.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/icon-rules.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/device-manager.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/errorstring-mappings.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/util-guest-access.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/util-lan.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/util-wireless.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/util-wan.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/util-monitors.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/util-nodes.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/util-firmware-update.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/util-network-security.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/symmetry-util.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/validation.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetryLib.js"></script>
+
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/shared/shared-util.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/dynamic/js/account-errors.js.localized"></script><!-- MUST load prior to shared-ui.js -->
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/shared/shared-ui.js"></script>
+    <!-- ^shared libraries above this point^ -->
+    <script type="text/javascript" src="/ui/1.0.99.201002/dynamic/js/ui.js.localized"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/third_party/json.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/any_device/common.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/any_device/jnap-simple.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/account-simple.js"></script>
+    <!-- <script type="text/javascript" src="/ui/1.0.99.201002/static/js/create-account-simple.js"></script> -->
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/any_device/change-email.js"></script>
+    <script type="text/javascript">
+        (function () {
+            if (!RAINIER.shared.util.areCookiesEnabled()) {
+                window.location.replace('/ui/1.0.99.201002/dynamic/cookies-disabled.html');
+            }
+        } ())
+    </script>
+</head>
+<body onkeypress="onEnterKeyPress(event, changeEmail);">
+<div id="logoDiv"></div>
+
+<div id="dialog">
+    <div id="header">
+        <h1>{{dynamic-any_device.7ef29f9b}}</h1>
+        <h4 class='view landing working'>{{dynamic-any_device.ba9041fd}}</h4>
+    </div>
+    <div id="headerBorder"></div>
+    <div id="content" class="wideContent">
+        <div id="validationErrorDiv">
+            <table><tr> <td><img src="/ui/1.0.99.201002/static/cache/images/badges/alert_32.png" /></td>
+                <td id="validationErrorTd">{{dynamic-any_device.6415f8e9}}</td>
+            </tr></table>
+        </div>
+        <div class="view landing">
+            <div id="signinBox" class="box">
+                <div class="gridCell">
+                    <div class="inputHeader"><b>{{dynamic-any_device.84ac8d1e}}</b></div>
+                    <div id="newEmailValidation">
+                        <input id="newEmailInput" class="inputField" type="text"/>
+                        <div class="gridCell">
+                            <table class="inputValidationBox">
+                                <tr>
+                                    <td><div class="inputValidationErrorImage"><img src="/ui/1.0.99.201002/static/cache/images/exclamation.png" /></div></td>
+                                    <td><div class="inputValidationErrorMessage"></div></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="gridCell">
+                    <div class="inputHeader"><b>{{dynamic-any_device.30c623e8}}</b></div>
+                    <div id="passwordValidation">
+                        <input id="passwordInput" class="inputField" type="password"/>
+                        <div class="gridCell">
+                            <table class="inputValidationBox">
+                                <tr>
+                                    <td><div class="inputValidationErrorImage"><img src="/ui/1.0.99.201002/static/cache/images/exclamation.png" /></div></td>
+                                    <td><div class="inputValidationErrorMessage"></div></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottomContent"></div>
+            </div>
+        </div>
+        <div class="view emailVerified">
+            <div class="staticContent">
+                <div class="box simpleBox">
+                    <table class="largeText"><tr>
+                        <td><img src="/ui/1.0.99.201002/static/cache/images/checkmark.png" /></td>
+                        <td>{{dynamic-any_device.233e8088}}</td>
+                    </tr></table>
+                    <br />
+                    {{dynamic-any_device.43b8f5c4}}
+                </div>
+            </div>
+        </div>
+        <div class="view verifyingAccount">
+            <div class="centerContentImage">
+                <img src="/ui/1.0.99.201002/static/cache/images/spinner/Spinner_55.gif" />
+            </div>
+            <div class="centerContentText">{{dynamic-any_device.2a889685}}</div>
+        </div>
+        <div class="view emailChanged">
+            <div class="staticContent">
+                <div id='test' class="box simpleBox">
+                    <table class="largeText">
+                        <tr>
+                            <td><img src="/ui/1.0.99.201002/static/cache/images/checkmark.png" /></td>
+                            <td>{{dynamic-any_device.16ba91bc}}</td>
+                        </tr>
+                    </table>
+                    <br />
+                    <div id='messageDiv'></div>
+                </div>
+            </div>
+        </div>
+        <div class="view working">
+            <div class="centerContentImage">
+                <img src="/ui/1.0.99.201002/static/cache/images/spinner/Spinner_55.gif" />
+            </div>
+            <div class="centerContentText">{{dynamic-any_device.50378545}}</div>
+        </div>
+    </div>
+    <div id="footerBorder"></div>
+    <div id="footer">
+        <button type="button" id="okButton" onclick="changeEmail();">{{dynamic-any_device.e9b662b3}}</button>
+        <button type="button" id="cancelButton" onclick="cancel();">{{dynamic-any_device.8f475444}}</button>
+    </div>
+</div>
+<div id="copyrightDiv" >
+    <div class="copyright-content">
+        <a class="terms-and-conditions" onclick="RAINIER.shared.ui.goToLegalDoc('termsAndConditions');">{{dynamic-any_device.999b37a1}}</a><span class="pipe">|</span><a class="terms-of-service" onclick="RAINIER.shared.ui.goToLegalDoc('termsOfService');">{{dynamic-any_device.2a9c3d6f}}</a><span class="pipe">|</span><a class="privacy-statement" onclick="RAINIER.shared.ui.goToLegalDoc('privacyStatement');">{{dynamic-any_device.904f3e38}}</a><span class="pipe">|</span><a id="third-party-licenses" onclick="RAINIER.shared.ui.goToLegalDoc('thirdPartyLicenses');">{{dynamic-any_device.8302e44a}}</a>
+    </div>
+</div>
+</body>
+</html>

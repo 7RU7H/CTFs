@@ -1,0 +1,208 @@
+<link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/cache/applets/openvpn/css/openvpn.css" />
+<iframe style="display: none;" id="form-target" name="form-target"></iframe>
+<article id="openvpn-applet">
+    <header>
+        <div id="switchTitle">
+            <h1>{{dynamic-applets-openvpn.04e3b4d3}}</h1>
+            <input type="checkbox" id="isVPNEnabled" name="openVpn.isOpenVPNEnabled" class="ui-checkbox switch ui-helper-hidden-accessible">
+        </div>
+        <div class="description">
+            <h4>{{dynamic-applets-openvpn.af84cb3c}}</h4>
+            <span class="help">{{dynamic-applets-openvpn.5ce635eb}}</span>
+         </div>
+        <div class="close-button"></div>
+    </header>
+    <section>
+        <div class="form" id="applet-locked">
+            <div id="no-remote-access">
+                <span class="info-icon"><i>{{dynamic-applets-openvpn.534d4268}}</i></span>
+            </div>
+            <div id="no-wan-detected">
+                <span class="warning-icon">{{dynamic-applets-openvpn.fd01f6a5}}</span>
+            </div>
+        </div>
+        <div class="form" id="open-vpn">
+            <div id="vpn-settings">
+                <div class="topSection">
+                    <p class="legend">{{dynamic-applets-openvpn.97912c26}}</p>
+                    <div class="editForm">
+                        <button id="vpn-settings-edit-btn" class="spStatic edit-button blue">
+                            <span>{{dynamic-applets-openvpn.4a370bdd}}</span>
+                        </button>
+                        <button id="vpn-settings-cacnel-btn" class="spEdit cancel-button">
+                            <span>{{dynamic-applets-openvpn.8f475444}}</span>
+                        </button>
+                        <button id="vpn-settings-save-btn" class="spEdit save-button blue">
+                            <span>{{dynamic-applets-openvpn.723ace2b}}</span>
+                        </button>
+                    </div>
+                </div>
+                <fieldset class="noMarginBottom">
+                    <div id="allow-remote" class="row spEdit">
+                        <span class="check-item">
+                            <input type="checkbox" id="chkRemoteConfigure" name="openVpn.allowRemoteConfigure" /> <label for="chkRemoteConfigure">{{dynamic-applets-openvpn.9c88d8b5}}</label>
+                        </span>
+                    </div>
+                    <div class="row spStatic">
+                        {{dynamic-applets-openvpn.9c88d8b5}}
+                    </div>
+                    <div id="remote-on" class="row spStatic">
+                        {{dynamic-applets-openvpn.8295a945}}
+                    </div>
+                    <div id="remote-off" class="row spStatic">
+                        {{dynamic-applets-openvpn.7110af8e}}
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div class="row">
+                        <div class="cell">
+                            <label class="title">{{dynamic-applets-openvpn.fc251ceb}}</label>
+                            <div>
+                                <span class="spStatic">
+                                    <label name="serverAddressLabel" class="truncate-text" ></label>
+                                </span>
+                                <span class="spEdit">
+                                    <select id="server-address" name="openVpn.serverAddress">
+                                        <option id="ipAddress" value="serverIPAddress">{{dynamic-applets-openvpn.76d751ed}}</option>
+                                        <option value="hostname">{{dynamic-applets-openvpn.d262a05f}}</option>
+                                    </select>
+                                    <div id="hostname" style="display:none;">
+                                        <ul>
+                                            <li>
+                                                <input type="text" name="openVpn.hostname" maxlength="255" placeholder="{{dynamic-applets-openvpn.335f1825}}"/>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="cell">
+                            <label class="title">{{dynamic-applets-openvpn.2f3e7466}}</label>
+                            <span class="spStatic">
+                                <label name="openVpn.serverPort"></label>
+                            </span>
+                            <div id="port" class="spEdit">
+                                <input class="small" type="text" maxlength="5" name="openVpn.serverPort" />
+                            </div>
+                        </div>
+                        <div class="cell">
+                            <label class="title">{{dynamic-applets-openvpn.a89b4142}}</label>
+                            <span class="spStatic">
+                                <label name="openVpn.protocol"></label>
+                            </span>
+                            <div class="spEdit" id="protocol">
+                                <select name="openVpn.protocol">
+                                    <option value="TCP">{{dynamic-applets-openvpn.c3c59f75}}</option>
+                                    <option value="UDP">{{dynamic-applets-openvpn.8d41b840}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="ipAddressRange" class="cell">
+                            <label class="title">{{dynamic-applets-openvpn.a532718f}}</label>
+                            <div>
+                                <span class="spStatic internalServerIPAddress">
+                                    <div name="internalServerIPAddress">
+                                        <label name="startIPAddress">192.168</label>.<label name="thirdOctet">100</label>.<label>2 - 6</label>
+                                    </div>
+                                </span>
+                                <span class="spEdit internalServerIPAddress">
+                                    <div name="startIpAddress">
+                                        <label name="startIPAddress">192.168</label>.<input class="ipAddressInput" type="text" name="thirdOctet" maxlength="3" />.2 - 6
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="jcgi-wrapper">
+                            <form method="POST" enctype="multipart/form-data" action="/jcgi/" class="left" target="form-target">
+                                <input type="hidden" name="X-JNAP-Action" value="downloadvpnprofile" />
+                                <input type="hidden" id="download-admin-auth" name="X-JNAP-Authorization" />
+                                <input type="hidden" id="download-user-auth-token" name="X-JNAP-Session" />
+                                <button id="ovpn-profile-btn" type="submit" class="ovpn-profile-button blue">
+                                    <span class="download-button">{{dynamic-applets-openvpn.5bb3ba05}}</span>
+                                </button>
+                            </form>
+                        </div>
+                        <div id="non-jcgi-wrapper">
+                            <button id="download-profile-btn" class="ovpn-profile-button blue">
+                                <span class="download-button">{{dynamic-applets-openvpn.5bb3ba05}}</span>
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+                <div id="warningMessage" style="display:none;">
+                    <span class="warning-icon">{{dynamic-applets-openvpn.45e4ded7}}</span>
+                </div>
+            </div>
+            <div class="gray-line"></div>
+            <div id="users-settings">
+                <div class="topSection">
+                    <p class="legend">{{dynamic-applets-openvpn.fd620f19}}</p>
+                    <div class="editForm">
+                        <button id="user-settings-edit-btn" class="spStatic edit-button blue">
+                            <span>{{dynamic-applets-openvpn.4a370bdd}}</span>
+                        </button>
+                        <button id="user-settings-cancel-btn" class="spEdit cancel-button">
+                            <span>{{dynamic-applets-openvpn.8f475444}}</span>
+                        </button>
+                        <button id="user-settings-save-btn" class="spEdit save-button blue">
+                            <span>{{dynamic-applets-openvpn.723ace2b}}</span>
+                        </button>
+                    </div>
+                </div>
+                <fieldset>
+                    <div class="row">
+                        <div class="cell">
+                            <label>{{dynamic-applets-openvpn.0fb45d5c}}</label>
+                        </div>
+                        <div class="cell">
+                            <label>{{dynamic-applets-openvpn.30c623e8}}</label>
+                        </div>
+                    </div>
+                    <div id="users-list">
+                    </div>
+                    <div class="row">
+                        <button id="add-vpn-user" class="blue">
+                            <span class="add-button">{{dynamic-applets-openvpn.fc5e5899}}</span>
+                        </button>
+                    </div>
+                </fieldset>
+                <div id="maxUsersMessage" style="display:none;">
+                    <span class="warning-icon">{{dynamic-applets-openvpn.4e8f8f4b}}</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <button id="vpn-close-btn" class="cancel close-footer-button">{{dynamic-applets-openvpn.7fdeae92}}</button>
+    </footer>
+
+    <div style="display:none;">
+        <div id="templateVpnUserRow">
+            <div class="row userRow">
+                <div class="cell">
+                    <label class="spStatic truncate-text" tooltip="" name="username"></label>
+                    <input class="spEdit" type="text" id="vpn-user" maxlength="64" name="username" />
+                </div>
+                <div class="cell">
+                    <label class="spStatic mask">********</label>
+                    <label class="hiddenPassword spStatic truncate-text" name="password" tooltip="" style="display:none;"></label>
+                    <input  class="spEdit" type="text" id="vpn-password" maxlength="64" name="password" />
+                </div>
+                <div class="cell buttonCell">
+                    <span class="spStatic viewPassword" tooltip="{{dynamic-applets-openvpn.33712b0f}}"></span>
+                    <span class="spStatic hidePassword" style="display:none;" tooltip="{{dynamic-applets-openvpn.9d3f8b79}}"></span>
+                    <span class="spEdit delete"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+
+<script type="text/javascript">
+    RAINIER.util.injectScripts([
+        '/ui/1.0.99.201002/static/cache/applets/openvpn/js/openvpn.js'
+    ]);
+</script>

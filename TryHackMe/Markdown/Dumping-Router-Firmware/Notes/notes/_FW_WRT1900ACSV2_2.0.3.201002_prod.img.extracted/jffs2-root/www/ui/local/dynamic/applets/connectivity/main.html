@@ -1,0 +1,1650 @@
+<link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/cache/applets/connectivity/css/connectivity.css" />
+<iframe style="display: none;" id="form-target" name="form-target"></iframe>
+<article id="connectivity-applet">
+    <header>
+        <h1>{{dynamic-applets-connectivity.4ef17af2}}</h1>
+        <h4>{{dynamic-applets-connectivity.b04db74f}}</h4>
+        <div class="close-button"></div>
+    </header>
+    <section class="tab-section">
+        <ul class="tabs">
+            <li id="internetSettingsTab" data-id="internet-settings"><span>{{dynamic-applets-connectivity.5fe1407e}}</span></li>
+            <div class="tab-filler"></div>
+        </ul>
+        <div class="tab-content form" id="basic">
+            <div id="basic-main">
+                <fieldset id="basic-wireless-enabled" class="left showForLinksysRouters" style="display:none">
+                    <legend>{{dynamic-applets-connectivity.51bed00d}}<span>|</span><span id="edit-basic-wireless"><a href="#">{{dynamic-applets-connectivity.4a370bdd}}</a></span></legend>
+                    <div id="basic-wireless-radios">
+                    </div>
+                </fieldset>
+                <fieldset id="pm-firmware-update" class="right local-content">
+                    <legend>{{dynamic-applets-connectivity.fdf27c41}}</legend>
+                    <div id="pm-firmware-manual" class="highlighted block-row">
+                        <div class="shield" tooltip="{{dynamic-applets-connectivity.ea340e26}}"></div>
+                        <form method="POST" id="pm-fw-update-form" enctype="multipart/form-data" action="/jcgi/" target="form-target">
+                            <input type="hidden" name="X-JNAP-Action" value="updatepmfirmware" />
+                            <input type="hidden" id="pm-fw-update-admin-auth" name="X-JNAP-Authorization" />
+                            <input type="hidden" id="pm-fw-update-user-auth-token" name="X-JNAP-Session" />
+                            <input type="hidden" id="pm-firmware-version" name="X-JNAP-FW-Version" />
+
+                            <div class="text-orphan">
+                                <label for="pm-firmware-file"><b>{{dynamic-applets-connectivity.50f5cdd4}}</b></label>
+                                <span class="right">
+                                    ({{dynamic-applets-connectivity.5b3ee57c}} <span name="pmFirmwareVersion.firmwareVersion"><!-- This will be filled in programatically --></span>)
+                                </span>
+                            </div>
+
+                            <div class="file-input">
+                                <label id="pm-filename" class="filename left" tooltip="{{dynamic-applets-connectivity.48fba0e6}}">{{dynamic-applets-connectivity.48fba0e6}}</label>
+
+                                <button id="pm-start-update" type="button" disabled="true" class="right">{{dynamic-applets-connectivity.b4e98f62}}</button>
+
+                                <button id="pm-choose-file" type="button" class="choose-file right">{{dynamic-applets-connectivity.f4c04af2}}</button>
+                                <input id="pm-firmware-file" name="upload" size="1" style="opacity: 0;filter:alpha(opacity=0);" type="file" tooltip="{{dynamic-applets-connectivity.48fba0e6}}" />
+                            </div>
+                        </form>
+                    </div>
+                </fieldset>
+                <fieldset id="firmware-update" class="right">
+                    <legend>
+                        <span class="showForLinksysRouters title">{{dynamic-applets-connectivity.236a14b2}}</span>
+                        <span class="showForNodes title">{{dynamic-applets-connectivity.84155321}}</span>
+                    </legend>
+                    <div id="firmware-auto-nodes-header" class="highlighted block-row showForNodes">
+                        <div id="check-progress">
+                            <span id="spinner-section-nodes"></span>
+                            {{dynamic-applets-connectivity.cd82c708}}
+                        </div>
+                        <div id="up-to-date">
+                            <img src="/ui/1.0.99.201002/static/cache/images/badges/checkmark.png" />{{dynamic-applets-connectivity.046e6094}}
+                        </div>
+                        <div id="time-to-update">
+                            <img src="/ui/1.0.99.201002/static/cache/images/badges/white-alert.png" />{{dynamic-applets-connectivity.eb72ab9e}}
+                        </div>
+                        <div id="no-internet-detected">
+                            <img src="/ui/1.0.99.201002/static/cache/images/badges/white-alert.png" />{{dynamic-applets-connectivity.fa1d755a}}
+                        </div>
+                        <div id="cannot-reach-server">
+                            <img src="/ui/1.0.99.201002/static/cache/images/badges/white-alert.png" />{{dynamic-applets-connectivity.6560bbf0}}
+                        </div>
+                    </div>
+                    <div id="firmware-auto" class="highlighted block-row">
+                        <div class="showForLinksysRouters">
+                            <div>
+                                <input id="auto-update" class="firmware-auto-update" type="checkbox" />
+                                <label for="auto-update">{{dynamic-applets-connectivity.88330685}}</label>
+                                <span class="right">
+                                    ({{dynamic-applets-connectivity.5b3ee57c}} <span name="info.firmwareVersion"></span>)
+                                </span>
+                            </div>
+                            <div class="block-row">
+                                <div class="left"><button class="check-update">{{dynamic-applets-connectivity.87a0b775}}</button></div>
+                                <div id="check-progress" class="left">
+                                    <span id="spinner-section"></span>
+                                    {{dynamic-applets-connectivity.cd82c708}}
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div id="firmware-download">
+
+                                </div>
+                                <div id="no-update">
+                                    <span class="error">{{dynamic-applets-connectivity.ce2b6cf9}}</span>
+                                </div>
+                                <div id="server-unavailable">
+                                    <span class="error">{{dynamic-applets-connectivity.22c71ff9}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="firmware-auto-nodes" class="showForNodes">
+                            <div>
+                                <input id="auto-update-nodes" class="firmware-auto-update" type="checkbox" />
+                                <label for="auto-update-nodes">{{dynamic-applets-connectivity.88330685}}</label>
+
+                                <div id="check-updates" class="right"><button class="check-update">{{dynamic-applets-connectivity.87a0b775}}</button></div>
+                                <div id="start-updates" class="right"><button class="blue">{{dynamic-applets-connectivity.9cd2d4a0}}</button></div>
+                            </div>
+                            <div id="fw-details">
+                                <legend>{{dynamic-applets-connectivity.4bedacbb}}<img id="down-arrow" src="/ui/1.0.99.201002/static/cache/applets/connectivity/images/down-arrow.png" /><img id="up-arrow" src="/ui/1.0.99.201002/static/cache/applets/connectivity/images/up-arrow.png" /></legend>
+                            </div>
+                            <div id="fw-details-update">
+                                <div><img src="/ui/1.0.99.201002/static/cache/images/spinner/Spinner_55.gif" /></div>
+                                <div>{{dynamic-applets-connectivity.77b84092}}</div>
+                            </div>
+                            <div id="fw-details-block" class="firmware-update-icon">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>{{dynamic-applets-connectivity.daeae1bd}}</th>
+                                            <th></th>
+                                            <th>{{dynamic-applets-connectivity.9b92122e}}</th>
+                                            <th>{{dynamic-applets-connectivity.c80689cf}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="firmware-manual" class="highlighted block-row local-content showForLinksysRouters">
+                        <form method="POST" id="fw-update-form" enctype="multipart/form-data" action="/jcgi/" target="form-target">
+                            <input type="hidden" name="X-JNAP-Action" value="updatefirmware" />
+                            <input type="hidden" id="fw-update-admin-auth" name="X-JNAP-Authorization" />
+                            <input type="hidden" id="fw-update-user-auth-token" name="X-JNAP-Session" />
+
+                            <label for="firmware-file">{{dynamic-applets-connectivity.50f5cdd4}}</label>
+                            <div class="file-input">
+                                <label id="filename" class="filename left" tooltip="{{dynamic-applets-connectivity.48fba0e6}}">{{dynamic-applets-connectivity.48fba0e6}}</label>
+
+                                <button id="start-update" type="button" disabled="true" class="right">{{dynamic-applets-connectivity.b4e98f62}}</button>
+
+                                <button id="choose-file" class="choose-file right">{{dynamic-applets-connectivity.f4c04af2}}</button> <!-- button that is visible to user -->
+                                <!-- Setting it to be transparent upfront; prevents FOUC -->
+                                <input id="firmware-file" name="upload" size="1" style="opacity: 0;filter:alpha(opacity=0);" type="file" tooltip="{{dynamic-applets-connectivity.48fba0e6}}" /> <!-- invisible input file button that actually does the work -->
+                            </div>
+                        </form>
+                    </div>
+                </fieldset>
+                <fieldset id="password-section" class="left">
+                    <legend>
+                        <span class="showForLinksysRouters title">{{dynamic-applets-connectivity.cc2af8c9}}</span>
+                        <span class="showForNodes title">{{dynamic-applets-connectivity.7ee97961}}</span>
+                        <span>|</span>
+                        <span id="edit-router-password">
+                            <a href="#">{{dynamic-applets-connectivity.4a370bdd}}</a>
+                        </span>
+                    </legend>
+                    <div class="row readOnly" id="password-placeholder">
+                        <label for="" class="showForLinksysRouters">{{dynamic-applets-connectivity.ae358188}}</label>
+                        <label for="" class="showForNodes">{{dynamic-applets-connectivity.bd6eb0e1}}</label>
+                        <label for="">********</label>
+                    </div>
+                    <div class="row readOnly passwordHintSection hidden" id="password-hint-placeholder">
+                        <label class="showForLinksysRouters">{{dynamic-applets-connectivity.ccde0352}}</label>
+                        <label class="showForNodes">{{dynamic-applets-connectivity.ee3537a7}}</label>
+                        <label class="word-break-text" id="passwordHintLabel"></label>
+                        <label id="noPasswordHintLabel" style="display:none;"><i>{{dynamic-applets-connectivity.b40992a4}}</i></label>
+                    </div>
+                    <div id="update-password" style="display:none;" class="highlighted">
+                        <div class="close-button right"></div>
+                        <div>
+                            <h4>
+                                <em class="showForLinksysRouters">{{dynamic-applets-connectivity.4c7d2c1f}}</em>
+                                <em class="showForNodes">{{dynamic-applets-connectivity.35ecec8b}}</em>
+                            </h4>
+                        </div>
+                        <div class="row noPasswordHintSection">
+                            <label for="current-router-password">{{dynamic-applets-connectivity.03a1f30b}}</label>
+                            <div class="cell">
+                                <input type="text" id="current-router-password" autocapitalize="none" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="router-password">{{dynamic-applets-connectivity.533a1302}}</label>
+                            <div class="cell noPasswordHintSection">
+                                <input type="text" id="router-password" autocapitalize="none" />
+                            </div>
+                            <div class="cell passwordHintSection hidden">
+                                <div class="password-eye-box" id="router-password-hint">
+                                    <input type="password" autocapitalize="none" />
+                                    <input type="text" autocapitalize="none" />
+                                    <span class="viewPassword hidden"></span>
+                                    <span class="hidePassword hidden"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row noPasswordHintSection">
+                            <label for="confirm-router-password">{{dynamic-applets-connectivity.90797f41}}</label>
+                            <div class="cell">
+                                <input type="text" id="confirm-router-password" autocapitalize="none" />
+                            </div>
+                        </div>
+                        <div class="row passwordHintSection hidden">
+                            <label for="password-hint">
+                                <span class="showForLinksysRouters">{{dynamic-applets-connectivity.ccde0352}}</span>
+                                <span class="showForNodes">{{dynamic-applets-connectivity.ee3537a7}}</span>
+                            </label>
+                            <div class="cell">
+                                <textarea id="password-hint" name="passwordHint.passwordHint" placeholder="{{dynamic-applets-connectivity.4848745f}}" maxlength="512"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="right">
+                    <legend>{{dynamic-applets-connectivity.0a55e435}}</legend>
+                    <div class="block-row">
+                        <select id="time-zone" name="time.timeZoneID"></select>
+                    </div>
+                    <div class="block-row">
+                        <input id="auto-adj-dst" name="time.autoAdjustForDST" type="checkbox" />
+                        <label for="auto-adj-dst">{{dynamic-applets-connectivity.fafd7e4b}}</label>
+                    </div>
+                </fieldset>
+                <fieldset id="power-table" class="right hidden">
+                    <legend>{{dynamic-applets-connectivity.1a2e462c}}</legend>
+                    <div class="block-row">
+                        <select id="region-select" name="powerTable.country"></select>
+                    </div>
+                    <div class="block-row">
+                        <label class="font-small">{{dynamic-applets-connectivity.ccb8e2c2}}</label>
+                    </div>
+                </fieldset>
+                <fieldset class="right showForLinksysRouters">
+                    <div>
+                        <div id="activity-light-wrapper">
+                            <legend>{{dynamic-applets-connectivity.405cdc4a}}</legend>
+                            <div class="cell">
+                                <input id="port-lights" name="portlights" type="checkbox" class="switch"/>
+                            </div>
+                        </div>
+                        <div id="activity-light-text-wrapper" class="highlighted">
+                            <div>
+                                {{dynamic-applets-connectivity.f95c7183}}
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="tab-content sub-tab-section" id="internet-settings">
+            <ul class="sub-tabs">
+                <li>{{dynamic-applets-connectivity.1f2d1a4d}}</li>
+                <li>{{dynamic-applets-connectivity.4a4330ef}}</li>
+            </ul>
+            <div class="form ipv4 right" id="ipv4-ipv6-common">
+                <div id="internet-connection">
+                    <fieldset>
+                        <legend>{{dynamic-applets-connectivity.4848745f}}</legend>
+                        <div class="row">
+                            <label for="domainName">{{dynamic-applets-connectivity.cea8aa76}}</label>
+                            <label id="domainName-label" style="display:none"><label for="" name="wan.domainName" /></label>
+                            <div id="domainName-input" class="cell" style="display:none"><input type="text" name="domainName" /></div>
+                        </div>
+                        <div class="row">
+                            <label for="mtu-type">{{dynamic-applets-connectivity.bb402821}}</label>
+                            <div class="cell">
+                                <select name="wan.mtu-type">
+                                    <option value="auto">{{dynamic-applets-connectivity.0c7cf4f3}}</option>
+                                    <option value="manual">{{dynamic-applets-connectivity.3f01bb7b}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="mtu">{{dynamic-applets-connectivity.d2a9caaf}}</label>
+                            <div class="cell">
+                                <input class="small" type="text" id="mtu" name="wan.mtu" maxlength="4" />
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset id="cloneMACBlock">
+                        <legend>{{dynamic-applets-connectivity.8e6c4a6d}}<span class="check-item"><input type="checkbox" id="macaddress-enabled" name="macAddressCloneSettings.isMACAddressCloneEnabled" /><label for="macaddress-enabled">{{dynamic-applets-connectivity.3d896dd1}}</label></span></legend>
+                        <div class="macAddressClone row" id="macAddressCloneSettings">
+                            <div class="mac-input cell" name="macAddressCloneSettings.macAddress" dir="ltr">
+                                <input type="text" maxlength="2"/><span>:</span><input type="text" maxlength="2"/><span>:</span><input type="text" maxlength="2"/><span>:</span><input type="text" maxlength="2"/><span>:</span><input type="text" maxlength="2"/><span>:</span><input type="text" maxlength="2"/>
+                            </div>
+                        </div>
+                        <div id="cloneMAC" class="row">
+                            <div class="status-buttons right">
+                                <button id="clone-macaddress" class="blue">{{dynamic-applets-connectivity.e4344bd4}}</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="sub-tab-content form" id="ip-v4">
+                <fieldset class="left" id="ip-v4-fieldset">
+                    <legend>{{dynamic-applets-connectivity.cab9b3f7}}<span>|</span><span id="edit-ipv4" style="display:none;"><a href="#">{{dynamic-applets-connectivity.4a370bdd}}</a></span></legend>
+                    <p class="connectionError error pad-left-sml margin-bottom-sml" style="display:none;">{{dynamic-applets-connectivity.f24c15b5}}</p>
+                    <p id="displayPmTab" style="display:none;">{{dynamic-applets-connectivity.c27cf430}}</p>
+                    <div class="row toggle-edit">
+                        <label>{{dynamic-applets-connectivity.1435227d}}</label>
+                        <label id="ipv4-wan-type" style="display:none;"><!--the value in here is automatically generated--></label>
+                        <label id="pm-wan-type-label" style="display:none;"><!--the value in here is automatically generated--></label>
+                        <div style="display:none;" class="cell">
+                            <select id="wanType">
+                                <option value="DHCP">{{dynamic-applets-connectivity.dda665a0}}</option>
+                                <option value="Static">{{dynamic-applets-connectivity.039c1f5f}}</option>
+                                <option value="PPPoE">{{dynamic-applets-connectivity.7cbbfc50}}</option>
+                                <option value="PPTP">{{dynamic-applets-connectivity.cabee84f}}</option>
+                                <option value="L2TP">{{dynamic-applets-connectivity.dbb7ac4c}}</option>
+                                <option value="Bridge">{{dynamic-applets-connectivity.9c3e690e}}</option>
+                                <option value="WirelessRepeater">{{dynamic-applets-connectivity.bc018948}}</option>
+                                <option value="WirelessBridge">{{dynamic-applets-connectivity.b813c670}}</option>
+                            </select>
+                            <select id="pmWanType" style="display:none;">
+                                <option value="2684Bridged" data-location="Bridge">{{dynamic-applets-connectivity.e1e99bb1}}</option>
+                                <option value="PPPoA" data-location="PPPoE">{{dynamic-applets-connectivity.33a146cb}}</option>
+                                <option value="PPPoE" data-location="PPPoE">{{dynamic-applets-connectivity.7cbbfc50}}</option>
+                            </select>
+                        </div>
+                        <div id="DHCP" style="display:none"></div>
+                    </div>
+                    <div id="Static">
+                        <div class="ipv4-form"></div>
+                    </div>
+                    <div id="PPPoE" style="display:none">
+                        <div class="row toggle-edit">
+                            <label for="pppoe-username">{{dynamic-applets-connectivity.0fb45d5c}}</label>
+                            <label name="wan.pppoeSettings.username"></label>
+                            <div class="cell">
+                                <input type="text" id="pppoe-username" name="wan.pppoeSettings.username" maxlength="255"/>
+                            </div>
+                        </div>
+                        <div class="row toggle-edit">
+                            <label for="pppoe-password">{{dynamic-applets-connectivity.30c623e8}}</label>
+                            <label name="wan.pppoeSettings.password"></label>
+                            <div class="cell">
+                                <input type="text" id="pppoe-password" name="wan.pppoeSettings.password" maxlength="255"/>
+                            </div>
+                        </div>
+                        <div class="row toggle-edit" id="wanTaggingSettings">
+                            <label for="pppoe-vlan-id">{{dynamic-applets-connectivity.16506432}}</label>
+                            <label name="wan.wanTaggingSettings.vlanTaggingSettings.vlanID"></label>
+                            <div class="cell">
+                                <input type="text" id="pppoe-vlan-id" name="wan.wanTaggingSettings.vlanTaggingSettings.vlanID" maxlength="4"/>
+                            </div>
+                        </div>
+                        <div class="row toggle-edit">
+                            <label for="pppoe-service-name">{{dynamic-applets-connectivity.50620666}}</label>
+                            <label name="wan.pppoeSettings.serviceName"></label>
+                            <div class="cell">
+                               <input type="text" id="pppoe-service-name" name="wan.pppoeSettings.serviceName" maxlength="255"/>
+                            </div>
+                        </div>
+                        <div class="row toggle-edit" id="pppoe-connect-mode">
+                            <label>{{dynamic-applets-connectivity.7ba98c4a}}</label>
+                            <div id="pppoe-conn-mode" class="cell">
+                                <p id="pppoe-conn-mode-label"></p>
+                                <p id="pppoe-connect-on-demand-value">{{dynamic-applets-connectivity.367594f3}} <span name="wan.pppoeSettings.maxIdleMinutes"></span> {{dynamic-applets-connectivity.8af25ad1}}</p>
+                                <p id="pppoe-keep-alive-value">{{dynamic-applets-connectivity.e3827ab9}} <span name="wan.pppoeSettings.reconnectAfterSeconds"></span> {{dynamic-applets-connectivity.c7fa4d54}}</p>
+                            </div>
+                            <div class="cell">
+                                <div class="check-item w100">
+                                    <div>
+                                        <input type="radio" name="wan.pppoeSettings.behavior" id="pppoe-connect-on-demand" value="ConnectOnDemand" />
+                                    </div>
+                                    <div>
+                                        <label for="pppoe-connect-on-demand">{{dynamic-applets-connectivity.e2f288cd}}</label>
+                                        <p><span>{{dynamic-applets-connectivity.367594f3}}</span><input class="tiny" type="text" name="wan.pppoeSettings.maxIdleMinutes" id="pppoe-max-idle-time" maxlength="4"/><span>{{dynamic-applets-connectivity.8af25ad1}}</span></p>
+                                    </div>
+                                </div>
+                                <div class="check-item w100">
+                                    <div>
+                                        <input type="radio" name="wan.pppoeSettings.behavior" id="pppoe-keep-alive" value="KeepAlive"/>
+                                    </div>
+                                    <div>
+                                        <label for="pppoe-keep-alive">{{dynamic-applets-connectivity.2db01b90}}</label>
+                                        <p><span>{{dynamic-applets-connectivity.e3827ab9}}</span><input class="tiny" type="text" name="wan.pppoeSettings.reconnectAfterSeconds" id="pppoe-redial-period" maxlength="3"/><span>{{dynamic-applets-connectivity.c7fa4d54}}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="PPTP" style="display:none">
+                        <div class="row toggle-edit" id="pptp-mode">
+                            <label>{{dynamic-applets-connectivity.b5032f39}}</label>
+                            <label id="pptp-ip-address-mode"></label>
+                            <div class="cell">
+                                <div class="check-item w100">
+                                    <div>
+                                        <input type="radio" value="false" name="wan.tpSettings.useStaticSettings" id="pptp-auto"/>
+                                    </div>
+                                    <div>
+                                        <label for="pptp-auto">{{dynamic-applets-connectivity.afc4eab4}}</label>
+                                    </div>
+                                </div>
+                                <div class="check-item w100">
+                                    <div>
+                                        <input type="radio" value="true" name="wan.tpSettings.useStaticSettings" id="pptp-manual"/>
+                                    </div>
+                                    <div>
+                                        <label for="pptp-manual">{{dynamic-applets-connectivity.937ac908}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ipv4-form"></div>
+                        <div class="row toggle-edit">
+                            <label>{{dynamic-applets-connectivity.6eb6e2fe}}</label>
+                            <label name="wan.tpSettings.server"></label>
+                            <div class="ip-input cell" name="wan.tpSettings.server" dir="ltr">
+                                <input type="text"/><input type="text"/><input type="text"/><input type="text"/>
+                            </div>
+                        </div>
+                        <div class="row toggle-edit">
+                            <label for="pptp-username">{{dynamic-applets-connectivity.0fb45d5c}}</label>
+                            <label name="wan.tpSettings.username"></label>
+                            <div class="cell">
+                                <input type="text" id="pptp-username" name="wan.tpSettings.username" maxlength="255"/>
+                            </div>
+                        </div>
+                        <div class="row toggle-edit">
+                            <label for="pptp-password">{{dynamic-applets-connectivity.30c623e8}}</label>
+                            <label name="wan.tpSettings.password"></label>
+                            <div class="cell">
+                                <input type="text" id="pptp-password" name="wan.tpSettings.password" maxlength="255"/>
+                            </div>
+                        </div>
+                        <div class="row toggle-edit" id="pptp-connect-mode">
+                            <label>{{dynamic-applets-connectivity.7ba98c4a}}</label>
+                            <div id="pptp-conn-mode" class="cell">
+                                <p id="pptp-conn-mode-label"></p>
+                                <p id="pptp-connect-on-demand-value">{{dynamic-applets-connectivity.367594f3}} <span name="wan.tpSettings.maxIdleMinutes"></span> {{dynamic-applets-connectivity.8af25ad1}}</p>
+                                <p id="pptp-keep-alive-value">{{dynamic-applets-connectivity.e3827ab9}} <span name="wan.tpSettings.reconnectAfterSeconds"></span> {{dynamic-applets-connectivity.c7fa4d54}}</p>
+                            </div>
+                            <div class="cell">
+                                <div class="check-item w100">
+                                    <div>
+                                        <input type="radio" name="wan.tpSettings.behavior" id="pptp-connect-on-demand" value="ConnectOnDemand" />
+                                    </div>
+                                    <div>
+                                        <label for="pptp-connect-on-demand">{{dynamic-applets-connectivity.e2f288cd}}</label>
+                                        <p><span>{{dynamic-applets-connectivity.367594f3}}</span><input class="tiny" id="pptp-max-idle-time" type="text" name="wan.tpSettings.maxIdleMinutes" maxlength="4"/><span>{{dynamic-applets-connectivity.8af25ad1}}</span></p>
+                                    </div>
+                                </div>
+                                <div class="check-item w100">
+                                    <div>
+                                        <input type="radio" name="wan.tpSettings.behavior" id="pptp-keep-alive" value="KeepAlive"/>
+                                    </div>
+                                    <div>
+                                        <label for="pptp-keep-alive">{{dynamic-applets-connectivity.2db01b90}}</label>
+                                        <div><span>{{dynamic-applets-connectivity.e3827ab9}}</span><input class="tiny" id="pptp-redial-period" type="text" name="wan.tpSettings.reconnectAfterSeconds" maxlength="3"/><span>{{dynamic-applets-connectivity.c7fa4d54}}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="L2TP" style="display:none">
+                        <div class="row toggle-edit">
+                            <label>{{dynamic-applets-connectivity.6eb6e2fe}}</label>
+                            <label name="wan.L2TPSettings.server"></label>
+                            <div class="ip-input cell" name="wan.L2TPSettings.server" dir="ltr">
+                                <input type="text"/><input type="text"/><input type="text"/><input type="text"/>
+                            </div>
+                        </div>
+                        <div class="row toggle-edit">
+                            <label for="L2TP-username">{{dynamic-applets-connectivity.0fb45d5c}}</label>
+                            <label name="wan.L2TPSettings.username"></label>
+                            <div class="cell">
+                                <input type="text" id="L2TP-username" name="wan.L2TPSettings.username" maxlength="255"/>
+                            </div>
+                        </div>
+                        <div class="row toggle-edit">
+                            <label for="L2TP-password">{{dynamic-applets-connectivity.30c623e8}}</label>
+                            <label name="wan.L2TPSettings.password"></label>
+                            <div class="cell">
+                                <input type="text" id="L2TP-password" name="wan.L2TPSettings.password" maxlength="255"/>
+                            </div>
+                        </div>
+                        <div class="row toggle-edit" id="l2tp-connect-mode">
+                            <label>{{dynamic-applets-connectivity.7ba98c4a}}</label>
+                            <div id="l2tp-conn-mode" class="cell">
+                                <p id="l2tp-conn-mode-label"></p>
+                                <p id="l2tp-connect-on-demand-value">{{dynamic-applets-connectivity.367594f3}} <span name="wan.L2TPSettings.maxIdleMinutes"></span> {{dynamic-applets-connectivity.8af25ad1}}</p>
+                                <p id="l2tp-keep-alive-value">{{dynamic-applets-connectivity.e3827ab9}} <span name="wan.L2TPSettings.reconnectAfterSeconds"></span> {{dynamic-applets-connectivity.c7fa4d54}}</p>
+                            </div>
+                            <div class="cell">
+                                <div class="check-item w100">
+                                    <div>
+                                        <input type="radio" name="wan.L2TPSettings.behavior" id="l2tp-connect-on-demand" value="ConnectOnDemand" /> <!-- the value ConnectOnDemand is registered by the incoming jnap call -->
+                                    </div>
+                                    <div>
+                                        <label for="l2tp-connect-on-demand">{{dynamic-applets-connectivity.e2f288cd}}</label>
+                                        <p><span>{{dynamic-applets-connectivity.367594f3}}</span><input class="tiny" id="l2tp-max-idle-time" type="text" name="wan.L2TPSettings.maxIdleMinutes" maxlength="4"/><span>{{dynamic-applets-connectivity.8af25ad1}}</span></p>
+                                    </div>
+                                </div>
+                                <div class="check-item w100">
+                                    <div>
+                                        <input type="radio" name="wan.L2TPSettings.behavior" id="l2tp-keep-alive" value="KeepAlive"/> <!-- the value KeepAlive is registered by the incoming jnap call -->
+                                    </div>
+                                    <div>
+                                        <label for="l2tp-keep-alive">{{dynamic-applets-connectivity.2db01b90}}</label>
+                                        <p><span>{{dynamic-applets-connectivity.e3827ab9}}</span><input class="tiny" id="l2tp-redial-period" type="text" name="wan.L2TPSettings.reconnectAfterSeconds" maxlength="3"/></span>{{dynamic-applets-connectivity.c7fa4d54}}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="Bridge" style="display:none">
+                        <div class="showForLinksysRouters">
+                            <div class="row toggle-edit" id="bridge-mode">
+                                <label>{{dynamic-applets-connectivity.b5032f39}}</label>
+                                <label id="bridge-ip-address-mode"></label>
+                                <div class="cell">
+                                    <div class="check-item w100">
+                                        <div>
+                                            <input type="radio" name="wan.bridgeSettings.useStaticSettings" value="false" id="bridge-auto"/>
+                                        </div>
+                                        <div>
+                                            <label for="bridge-auto">{{dynamic-applets-connectivity.afc4eab4}}</label>
+                                        </div>
+                                    </div>
+                                    <div class="check-item w100">
+                                        <div>
+                                            <input type="radio" name="wan.bridgeSettings.useStaticSettings" value="true" id="bridge-manual" />
+                                        </div>
+                                        <div>
+                                            <label for="bridge-manual">{{dynamic-applets-connectivity.937ac908}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ipv4-form"></div>
+                        </div>
+                    </div>
+                    <div id="WirelessRepeater" style="display:none">
+                        <div class="row toggle-edit">
+                            <label for="">{{dynamic-applets-connectivity.e57db986}}</label>
+                            <label name="wan.wirelessModeSettings.ssid" for="" tooltip="" class="truncate-text"></label>
+                            <div class="cell">
+                                <input type="text" name="wan.wirelessModeSettings.ssid" />
+                            </div>
+                            <div class="signalStrength"></div>
+                        </div>
+                        <div class="row toggle-edit">
+                            <label>{{dynamic-applets-connectivity.cb428062}}</label>
+                            <label>
+                                <label class="radio-24" style="display:none;">{{dynamic-applets-connectivity.1976e32a}}</label>
+                                <label class="radio-5" style="display:none;">{{dynamic-applets-connectivity.5579bd82}}</label>
+                            </label>
+                            <div class="cell">
+                                <div class="check-item band">
+                                    <div>
+                                        <input type="radio" name="wan.wirelessModeSettings.band" value="2.4GHz" />
+                                    </div>
+                                    <div>
+                                        <label for=""><b>{{dynamic-applets-connectivity.1976e32a}}</b></label>
+                                    </div>
+                                    <p class="clear-both band-warning">{{dynamic-applets-connectivity.7ad371bd}}</p>
+                                </div>
+                                <div class="check-item band">
+                                    <div>
+                                        <input type="radio" name="wan.wirelessModeSettings.band" value="5GHz" />
+                                    </div>
+                                    <div>
+                                        <label for=""><b>{{dynamic-applets-connectivity.5579bd82}}</b></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row toggle-edit">
+                            <label >{{dynamic-applets-connectivity.c7fa4293}}</label>
+                            <label name="wan.wirelessModeSettings.security"></label>
+                            <div class="cell">
+                                <select name="wan.wirelessModeSettings.security">
+                                    <option value="None">{{dynamic-applets-connectivity.25f8bf32}}</option>
+                                    <option value="WPA-Personal">{{dynamic-applets-connectivity.2549c6f8}}</option>
+                                    <option value="WPA2-Personal">{{dynamic-applets-connectivity.53f27ad3}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row toggle-edit wireless-password">
+                            <label for="">{{dynamic-applets-connectivity.1bd12bb4}}</label>
+                            <label name="wan.wirelessModeSettings.password" for="" tooltip=""></label>
+                            <div class="cell">
+                                <input type="text" name="wan.wirelessModeSettings.password" />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="WirelessBridge" style="display:none"></div>
+                    <p id="bridgeModeHint" class="showForNodes">{{dynamic-applets-connectivity.ca4de371}}</p>
+                </fieldset>
+            </div>
+            <div class="sub-tab-content form" id="ip-v6">
+                <fieldset class="left two-col" id="ip-v6-fieldset">
+                    <legend>
+                        {{dynamic-applets-connectivity.cab9b3f7}}<span>|</span><span id="edit-ipv6"><a href="#">{{dynamic-applets-connectivity.4a370bdd}}</a></span>
+                    </legend>
+                    <div id="ipv6-connection-type" class="row toggle-edit">
+                        <label>{{dynamic-applets-connectivity.1435227d}}</label>
+                        <label id="ipv6-wan-type"><!--the value in here is automatically generated--></label>
+                        <div class="cell">
+                            <select id="ipv6WanType" name="ipv6.wanType"></select>
+                        </div>
+                    </div>
+                    <div id="automaticSettings" style="display:none;">
+                        <div class="row toggle-edit">
+                            <label>{{dynamic-applets-connectivity.34b175cb}}</label>
+                            <label id="ipv6-automatic-text"></label>
+                            <div class="cell">
+                                <div class="check-item">
+                                    <div>
+                                        <input type="checkbox" id="ipv6-automatic-enabled" name="ipv6.isIPv6AutomaticEnabled"/>
+                                    </div>
+                                    <div>
+                                        <label for="ipv6-automatic-enabled">{{dynamic-applets-connectivity.3d896dd1}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label>{{dynamic-applets-connectivity.12dcd306}}</label>
+                            <label name="ipv6Setup.duid" dir="ltr"></label>
+                        </div>
+                        <div class="row toggle-edit">
+                            <label for="ipv6-tunnel-mode">{{dynamic-applets-connectivity.ee7ebc14}}</label>
+                            <label id="ipv6-tunnel-mode-text" for=""><!--the value in here is automatically generated--></label>
+                            <div class="cell">
+                                <select id="ipv6-tunnel-mode" name="ipv6.ipv6rdTunnelMode">
+                                    <option value="Disabled">{{dynamic-applets-connectivity.94e0cc84}}</option>
+                                    <option value="Automatic">{{dynamic-applets-connectivity.88330685}}</option>
+                                    <option value="Manual">{{dynamic-applets-connectivity.3f01bb7b}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row toggle-edit tunnel-mode-manual">
+                            <label for="ipv6-tunnel-settings-prefix">{{dynamic-applets-connectivity.74d3502d}}</label>
+                            <label name="ipv6.ipv6rdTunnelSettings.prefix"></label>
+                            <div class="cell">
+                                <input type="text" id="ipv6-tunnel-settings-prefix" name="ipv6.ipv6rdTunnelSettings.prefix"/>
+                            </div>
+                        </div>
+                        <div class="row toggle-edit tunnel-mode-manual">
+                            <label for="ipv6-tunnel-settings-prefix-length">{{dynamic-applets-connectivity.18022937}}</label>
+                            <label name="ipv6.ipv6rdTunnelSettings.prefixLength"></label>
+                            <div class="cell">
+                                <input type="text" id="ipv6-tunnel-settings-prefix-length" name="ipv6.ipv6rdTunnelSettings.prefixLength" dir="ltr" />
+                            </div>
+                        </div>
+                        <div class="row toggle-edit tunnel-mode-manual">
+                            <label>{{dynamic-applets-connectivity.19f46ea8}}</label>
+                            <label name="ipv6.ipv6rdTunnelSettings.borderRelay"></label>
+                            <div id="ipv6-tunnel-settings-border-relay" class="ip-input cell" name="ipv6.ipv6rdTunnelSettings.borderRelay" dir="ltr">
+                                <input type="text"/><input type="text"/><input type="text"/><input type="text"/>
+                            </div>
+                        </div>
+                        <div class="row toggle-edit tunnel-mode-manual">
+                            <label for="ipv6-tunnel-settings-mask-length">{{dynamic-applets-connectivity.c3300ccc}}</label>
+                            <label name="ipv6.ipv6rdTunnelSettings.borderRelayPrefixLength"></label>
+                            <div class="cell">
+                                <input type="text" id="ipv6-tunnel-settings-mask-length" name="ipv6.ipv6rdTunnelSettings.borderRelayPrefixLength" />
+                            </div>
+                        </div>
+                        <!-- new fields that are part of the manual tunnel mode settings must set class tunnel-mode-manual -->
+                    </div>
+                    <div id="pppoeSettings" style="display:none;" class="highlighted">
+                        <div class="attention">
+                            <p>{{dynamic-applets-connectivity.2cf72b1d}}</p>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="tab-content form" id="power-modem">
+            <fieldset id="pmTools">
+                <legend>{{dynamic-applets-connectivity.e0e9c359}}</legend>
+                <p class="text-orphan">
+                    <input type="checkbox" id="isPmEnabled" name="powerModem.isPowerModemEnabled" class="ui-checkbox switch ui-helper-hidden-accessible">
+                </p>
+            </fieldset>
+            <div id="dsl-settings" class="left">
+                <fieldset>
+                    <div class="shield"></div>
+                    <legend>{{dynamic-applets-connectivity.f45a48ea}}</legend>
+                    <div class="row">
+                        <label for="multiplexing-inputs">{{dynamic-applets-connectivity.f3a9fe3c}}</label>
+                        <div id="multiplexing-inputs" class="cell">
+                            <div class="check-item left">
+                                <input id="llc-input" value="LLC" type="radio" checked="checked" name="powerModem.dslSettings.multiplexing"/>
+                                <label for="llc-input">{{dynamic-applets-connectivity.6a2eebe6}}</label>
+                            </div>
+                            <div class="check-item left">
+                                <input id="vc-input" value="VC" type="radio" name="powerModem.dslSettings.multiplexing"/>
+                                <label for="vc-input">{{dynamic-applets-connectivity.a83f62f7}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="qos-type">{{dynamic-applets-connectivity.12bb0def}}</label>
+                        <div class="cell">
+                            <select id="qos-type">
+                                <option value="UBR">{{dynamic-applets-connectivity.e067de3a}}</option>
+                                <option value="CBR">{{dynamic-applets-connectivity.5f998099}}</option>
+                                <option value="VBR">{{dynamic-applets-connectivity.af357cc0}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="pcr">{{dynamic-applets-connectivity.e79e0dfd}}</label>
+                        <div class="cell">
+                            <input class="small" type="text" id="pcr" name="powerModem.dslSettings.pcr" />  <label class="hint">0-65534</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="scr">{{dynamic-applets-connectivity.d5f30a78}}</label>
+                        <div class="cell">
+                            <input class="small" type="text" id="scr" name="powerModem.dslSettings.scr" />  <label class="hint">0-65534</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="vpi">{{dynamic-applets-connectivity.d23974ce}}</label>
+                        <div class="cell">
+                            <input class="small" type="text" id="vpi" name="powerModem.dslSettings.vpi" />  <label class="hint">0-255</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="vci">{{dynamic-applets-connectivity.8f9b2f2f}}</label>
+                        <div class="cell">
+                            <input class="small" type="text" id="vci" name="powerModem.dslSettings.vci" />  <label class="hint">0-65535</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label for="dsl_modulation">{{dynamic-applets-connectivity.06b21180}}</label>
+                        <div class="cell">
+                            <select id="dsl_modulation">
+                                <option value="MultiMode">{{dynamic-applets-connectivity.b91b62cc}}</option>
+                                <option value="T1_413">{{dynamic-applets-connectivity.472951a4}}</option>
+                                <option value="G_dmt">{{dynamic-applets-connectivity.1425848a}}</option>
+                                <option value="G_lite">{{dynamic-applets-connectivity.2f949bce}}</option>
+                                <option value="ADSL2">{{dynamic-applets-connectivity.f02ee0b6}}</option>
+                                <option value="ADSL2_plus">{{dynamic-applets-connectivity.1c514436}}</option>
+                                <option value="ADSL2_L">{{dynamic-applets-connectivity.6d76703d}}</option>
+                                <option value="ADSL2_M">{{dynamic-applets-connectivity.c5648377}}</option>
+                                <option value="ADSL2_plus_M">{{dynamic-applets-connectivity.962ddeeb}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="tab-content form" id="local-network">
+            <fieldset id="local-network-fieldset" class="left">
+                <legend>{{dynamic-applets-connectivity.5ddd8d06}}<span>|</span><span id="edit-local-network"><a href="#">{{dynamic-applets-connectivity.4a370bdd}}</a></span></legend>
+                <div class="row toggle-edit">
+                    <label for="">{{dynamic-applets-connectivity.4a18970f}}</label>
+                    <label name="lanSettings.hostName" for=""></label>
+                    <input type="text" name="lanSettings.hostName" />
+                </div>
+                <div class="row toggle-edit">
+                    <label for="">{{dynamic-applets-connectivity.0fc5d93e}}</label>
+                    <label name="lanSettings.ipAddress"></label>
+                    <div class="ip-input cell" name="lanSettings.ipAddress" dir="ltr">
+                        <input type="text"/><input type="text"/><input type="text"/><input type="text"/>
+                    </div>
+                </div>
+                <div class="row toggle-edit">
+                    <label for="">{{dynamic-applets-connectivity.041a63f9}}</label>
+                    <label name="lanSettingsSetup.subnetMask"></label>
+                    <div class="ip-input cell" name="lanSettingsSetup.subnetMask" dir="ltr">
+                        <input type="text" maxlength="3"/><span>.</span><input type="text" maxlength="3"/><span>.</span><input type="text" maxlength="3"/><span>.</span><input type="text" maxlength="3"/>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="right" id="dhcp-form">
+                <legend>{{dynamic-applets-connectivity.70e57160}}<span class="check-item"><input type="checkbox" id="dhcp-enabled" name="lanSettings.isDHCPEnabled" /><label for="dhcp-enabled">{{dynamic-applets-connectivity.3d896dd1}}</label></span></legend>
+                <div class="row">
+                    <label for="">{{dynamic-applets-connectivity.a1f9c24c}}</label>
+                    <div class="cell">
+                        <div class="ip-input short-labels edit" name="lanSettingsSetup.dhcpSettings.firstClientIPAddress" dir="ltr">
+                            <input type="text" maxlength="3" /><span>.</span><input type="text" maxlength="3"/><span>.</span><input type="text" maxlength="3"/><span>.</span><input type="text" maxlength="3"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label>{{dynamic-applets-connectivity.769cf6bb}}</label>
+                    <div class="cell">
+                        <input type="text" class="medium" name="lanSettingsSetup.dhcpSettings.maxClients"/>
+                        <span>1 {{dynamic-applets-connectivity.b32c2c09}} </span><span name="lanSettingsSetup.dhcpSettings.maxUsers"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <label>{{dynamic-applets-connectivity.d386f2ae}}</label>
+                    <div class="label">
+                        <div class="ip-input short-labels" name="lanSettingsSetup.dhcpSettings.firstClientIPAddress" dir="ltr">
+                            <label></label>.<label></label>.<label></label>.<label></label>
+                        </div>
+                        {{dynamic-applets-connectivity.b32c2c09}}
+                        <div class="ip-input short-labels" name="lanSettingsSetup.dhcpSettings.lastClientIPAddress" dir="ltr">
+                            <label></label>.<label></label>.<label></label>.<label></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label>{{dynamic-applets-connectivity.cb55c682}}</label>
+                    <div class="cell">
+                        <input type="text" class="medium" name="lanSettings.dhcpSettings.leaseMinutes" /><span> {{dynamic-applets-connectivity.8af25ad1}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="">{{dynamic-applets-connectivity.865aa4f8}}</label>
+                    <div class="ip-input cell" name="lanSettings.dhcpSettings.dnsServer1" dir="ltr">
+                        <input type="text" defaultValue="1" /><input type="text" defaultvalue="0" /><input type="text" defaultvalue="0" /><input type="text" defaultValue="1" />
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="">{{dynamic-applets-connectivity.7652de7e}}</label>
+                    <div class="ip-input cell" name="lanSettings.dhcpSettings.dnsServer2" dir="ltr">
+                        <input type="text" defaultValue="1" /><input type="text" defaultvalue="0" /><input type="text" defaultvalue="0" /><input type="text" defaultValue="1" />
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="">{{dynamic-applets-connectivity.dff746ac}}</label>
+                    <div class="ip-input cell" name="lanSettings.dhcpSettings.dnsServer3" dir="ltr">
+                        <input type="text" defaultValue="1" /><input type="text" defaultvalue="0" /><input type="text" defaultvalue="0" /><input type="text" defaultValue="1" />
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="">{{dynamic-applets-connectivity.ab225709}}</label>
+                    <div class="ip-input cell" name="lanSettings.dhcpSettings.winsServer" dir="ltr">
+                        <input type="text" defaultValue="1" /><input type="text" defaultvalue="0" /><input type="text" defaultvalue="0" /><input type="text" defaultValue="1" />
+                    </div>
+                </div>
+                <div class="block-row" id="dhcp-reservation">
+                    <button>{{dynamic-applets-connectivity.6caabfe4}}</button>
+                </div>
+            </fieldset>
+            <fieldset class="left single-line" id="link-aggregation-form">
+                <h2>
+                    <label class="legend left" for="enable-link-aggregation">{{dynamic-applets-connectivity.974dfe7c}}</label>
+                    <p><input type="checkbox" name="linkAggregation.isEnabled" id="enable-link-aggregation" class="switch" /></p>
+                </h2>
+                <div class="row">
+                    <label>{{dynamic-applets-connectivity.83f82a4c}}</label>
+                    <label id="link-aggregation-ports">{{dynamic-applets-connectivity.87a05bd8}}</label>
+                </div>
+                <p>{{dynamic-applets-connectivity.da7e6bc8}}</p>
+                <p>{{dynamic-applets-connectivity.1fa2e5ec}}</p>
+            </fieldset>
+        </div>
+        <div class="tab-content form" id="advanced-routing">
+            <fieldset id="advanced-options">
+                <div class="block-row">
+                    <p><label class="legend">{{dynamic-applets-connectivity.e48a52e2}}</label><span class="check-item"><input type="radio" id="nat-enabled" name="routing.isDynamicRoutingEnabled" value="false" /><label for="nat-enabled">{{dynamic-applets-connectivity.3d896dd1}}</label></span></p>
+                </div>
+                <div class="block-row">
+                    <p><label class="legend">{{dynamic-applets-connectivity.3a7434c4}}</label><span class="check-item"><input type="radio" id="rip-enabled" name="routing.isDynamicRoutingEnabled" value="true" /><label for="rip-enabled">{{dynamic-applets-connectivity.3d896dd1}}</label></span></p>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>{{dynamic-applets-connectivity.ba612da9}}</legend>
+                <div class="inline-edit block-row">
+                    <div id="static-wrapper">
+                        <table id="static-list" class="grid word-break">
+                            <tbody>
+                                <tr>
+                                    <th>{{dynamic-applets-connectivity.5e9fe260}}</th>
+                                    <th>{{dynamic-applets-connectivity.cfa11cb7}}</th>
+                                    <th>{{dynamic-applets-connectivity.eab02a57}}</th>
+                                    <th>{{dynamic-applets-connectivity.b8228e62}}</th>
+                                    <th>{{dynamic-applets-connectivity.662686a9}}</th>
+                                    <th></th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button id="add-route" class="right blue">{{dynamic-applets-connectivity.98122669}}</button>
+                </div>
+            </fieldset>
+        </div>
+        <div class="tab-content form" id="vlan-tagging">
+            <fieldset class="single-line">
+                <legend for="enableVlan">{{dynamic-applets-connectivity.0488e4ef}}</legend>
+                <div>
+                    <input checked="checked" id="enableVlan" name="vlanSettings.isEnabled" type="checkbox" class="switch"/>
+                </div>
+            </fieldset>
+            <div class="vlanFields">
+                <fieldset>
+                    <div class="row">
+                        <label>{{dynamic-applets-connectivity.333d72fe}}</label>
+                        <div class="cell">
+                            <select id="vlanProfiles" name="vlanSettings.profile.name"></select>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="left vlanTaggingSettings" id="vlanWanSettings">
+                    <legend>{{dynamic-applets-connectivity.b6ba4d5c}}</legend>
+                    <div class="highlighted block-row">
+                        <div class="row">
+                            <h2>{{dynamic-applets-connectivity.a0bcbe1f}}</h2>
+                            <span class="portIcon"></span>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>{{dynamic-applets-connectivity.16858f9b}}</th>
+                                        <th>{{dynamic-applets-connectivity.4a1fffc4}}</th>
+                                        <th class="vlan-priority">{{dynamic-applets-connectivity.6e30563b}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="row toggle-edit">
+                                                <label name="vlanSettings.profile.vlanTaggingSettings.wanSettings.vlanID"></label>
+                                                <div class="cell">
+                                                    <input name="vlanSettings.profile.vlanTaggingSettings.wanSettings.vlanID" type="text" maxlength="4"/>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="row toggle-edit">
+                                                <label name="vlanSettings.profile.vlanTaggingSettings.wanSettings.vlanStatus"></label>
+                                                <div class="cell">
+                                                    <select name="vlanSettings.profile.vlanTaggingSettings.wanSettings.vlanStatus" class="vlanTag">
+                                                        <option value="Tagged" selected="selected">{{dynamic-applets-connectivity.cae66391}}</option>
+                                                        <option value="Untagged">{{dynamic-applets-connectivity.8efeba1f}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="vlan-priority">
+                                            <div class="row toggle-edit">
+                                                <label name="vlanSettings.profile.vlanTaggingSettings.wanSettings.vlanPriority"></label>
+                                                <div class="cell">
+                                                    <select name="vlanSettings.profile.vlanTaggingSettings.wanSettings.vlanPriority">
+                                                        <option value="0" selected="selected">0</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="right vlanTaggingSettings" id="ethernetPorts">
+                    <legend>{{dynamic-applets-connectivity.935879cb}}</legend>
+                    <div class="highlighted block-row">
+                        <div class="row" id="voIPSettings">
+                            <h2 class="showForManual">{{dynamic-applets-connectivity.a0bcbe1f}}</h2>
+                            <h2 class="hideForManual">{{dynamic-applets-connectivity.0a2f2d78}}</h2>
+                            <span class="portIcon vlanPort1 port3"></span>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>{{dynamic-applets-connectivity.16858f9b}}</th>
+                                        <th>{{dynamic-applets-connectivity.4a1fffc4}}</th>
+                                        <th class="vlan-priority">{{dynamic-applets-connectivity.6e30563b}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- The rows will be automatically generated -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row" id="ipTVSettings">
+                            <h2 class="showForManual">{{dynamic-applets-connectivity.a0bcbe1f}}</h2>
+                            <h2 class="hideForManual">{{dynamic-applets-connectivity.5bf58f50}}</h2>
+                            <span class="portIcon vlanPort2 port4"></span>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>{{dynamic-applets-connectivity.16858f9b}}</th>
+                                        <th>{{dynamic-applets-connectivity.4a1fffc4}}</th>
+                                        <th class="vlan-priority">{{dynamic-applets-connectivity.6e30563b}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- The rows will be automatically generated -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div id="vlanRowTemplate">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="row toggle-edit">
+                                <label name="vlanID"></label>
+                                <div class="cell">
+                                    <input name="vlanID" type="text" maxlength="4"/>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row toggle-edit">
+                                <label name="vlanStatus"></label>
+                                <div class="cell">
+                                    <select name="vlanStatus">
+                                        <option value="Tagged">{{dynamic-applets-connectivity.cae66391}}</option>
+                                        <option value="Untagged" selected="selected">{{dynamic-applets-connectivity.8efeba1f}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="vlan-priority">
+                            <div class="row toggle-edit">
+                                <label name="vlanPriority"></label>
+                                <div class="cell">
+                                    <select name="vlanPriority" class="vlanTag">
+                                        <option value="0" selected="selected">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="tab-content form" id="administration">
+            <div id="management">
+                <fieldset class="left tight">
+                    <legend>{{dynamic-applets-connectivity.8388d1be}}</legend>
+                    <div class="block-row">
+                        <div class="check-item left">
+                            <div><input type="checkbox" id="http-enabled" disabled="disabled" name="mgmt.canManageUsingHTTP" /></div>
+                            <div><label for="http-enabled">{{dynamic-applets-connectivity.3ddeb06e}}</label></div>
+                        </div>
+                        <div class="check-item left">
+                            <div><input type="checkbox" id="https-enabled" name="mgmt.canManageUsingHTTPS" /></div>
+                            <div><label for="https-enabled">{{dynamic-applets-connectivity.4400775e}}</label></div>
+                        </div>
+                    </div>
+                    <div class="block-row" id="wireless-access-block">
+                        <div class="check-item">
+                            <div><input type="checkbox" id="wireless-enabled" name="mgmt.canManageWirelessly" /></div>
+                            <div><label for="wireless-enabled">{{dynamic-applets-connectivity.596a1cdf}}</label></div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset id="allow-remote-access" class="right tight">
+                    <legend>{{dynamic-applets-connectivity.b97575aa}}</legend>
+                    <div class="block-row">
+                        <div class="check-item">
+                            <div><input type="checkbox" id="cloud-enabled" name="mgmt.canManageRemotely" /></div>
+                            <div id="cloud-enabled-labels">
+                                <label for="cloud-enabled">{{dynamic-applets-connectivity.90567744}}</label>
+                                <p id="cloud-note">{{dynamic-applets-connectivity.a2f56e7f}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="clear-both" id="upnp">
+                <fieldset class="left tight">
+                    <legend>{{dynamic-applets-connectivity.10ff0b14}}<span><input type="checkbox" id="upnp-enabled" name="upnp.isUPnPEnabled" /></span><span><label for="upnp-enabled">{{dynamic-applets-connectivity.3d896dd1}}</label></span></legend>
+                    <div class="block-row">
+                        <div class="check-item">
+                            <div>
+                                <input type="checkbox" id="user-configure" name="upnp.canUsersConfigure" />
+                            </div>
+                        <div>
+                                <label for="user-configure">{{dynamic-applets-connectivity.8acdcd85}}</label>
+                            </div>
+                        </div>
+                        <div class="check-item">
+                            <div>
+                                <input type="checkbox" id="user-disable" name="upnp.canUsersDisableWANAccess" />
+                            </div>
+                            <div>
+                                <label for="user-disable">{{dynamic-applets-connectivity.4dbdc949}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="right tight">
+                    <legend>{{dynamic-applets-connectivity.1e1d922f}}</legend>
+                    <div class="block-row">
+                        <div class="check-item">
+                            <div>
+                                <input type="checkbox" name="isSIPEnabled" id="sip-enabled" />&nbsp;
+                            </div>
+                            <div>
+                                <label for="sip-enabled">{{dynamic-applets-connectivity.060c7aca}}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <span id="administration-ctf" style="display:none">
+                        <legend>{{dynamic-applets-connectivity.64cb4600}}</legend>
+                        <div class="block-row">
+                            <div class="check-item">
+                                <div>
+                                    <input type="checkbox" name="isCTFEnabled" id="ctf-enabled" />&nbsp;
+                                </div>
+                                <div>
+                                    <label for="ctf-enabled">{{dynamic-applets-connectivity.42fd80d3}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </span>
+                    <span id="administration-expressforwarding" style="display:none">
+                        <legend>{{dynamic-applets-connectivity.514ae4d0}}</legend>
+                        <div class="block-row">
+                            <div class="check-item">
+                                <div>
+                                    <input type="checkbox" name="isExpressForwardingEnabled" id="expressforwarding-enabled" />&nbsp;
+                                </div>
+                                <div>
+                                    <label for="expressforwarding-enabled">{{dynamic-applets-connectivity.42fd80d3}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </span>
+                </fieldset>
+            </div>
+            <div class="clear-both">
+                <fieldset id="alljoyn" class="right tight hidden">
+                    <legend>{{dynamic-applets-connectivity.31d38603}}</legend>
+                    <p class="font-small">{{dynamic-applets-connectivity.a7a412c9}}</p>
+                    <div class="block-row">
+                        <div class="check-item">
+                            <div>
+                                <input type="checkbox" name="isAllJoynEnabled" id="alljoyn-enabled" />&nbsp;
+                            </div>
+                            <div>
+                                <label for="alljoyn-enabled">{{dynamic-applets-connectivity.94ea28d3}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="tab-content form" id="velop-simpleSetup">
+            <div class="unconfigured-block" style="display:none;">
+                {{dynamic-applets-connectivity.026b482f}}
+                <br>
+                <br>
+
+                <table id="ssidInputValidation">
+                    <tr>
+                        <td class="txt-right">{{dynamic-applets-connectivity.24c3760b}}:&nbsp;</td>
+                        <td><input type="text" id="ssid" maxlength="32" size="20" class="inputField"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <table class="inputValidationBox">
+                                <td><div class="inputValidationErrorImage"><img src="/ui/1.0.99.201002/static/cache/images/exclamation.png" /></div></td>
+                                <td><div class="inputValidationMessage">{{dynamic-applets-connectivity.50167b84}}</div></td>
+                                <td><div class="inputValidationErrorMessage"></div></td>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <br/>
+
+                <table id="passwordInputValidation">
+                    <tr>
+                        <td class="txt-right">{{dynamic-applets-connectivity.0ff71dd1}}:&nbsp;</td>
+                        <td><input type="text" id="password" maxlength="64" size="20" class="inputField"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <table class="inputValidationBox">
+                                <td><div class="inputValidationErrorImage"><img src="/ui/1.0.99.201002/static/cache/images/exclamation.png" /></div></td>
+                                <td><div class="inputValidationMessage">{{dynamic-applets-connectivity.74491a08}}</div></td>
+                                <td><div class="inputValidationErrorMessage"></div></td>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <br>
+                <br>
+
+                <button id="setupNode" type="button" disabled="disabled">{{dynamic-applets-connectivity.bcc9b317}}</button>
+            </div>
+
+            <div class="ssid-block" style="display: none;">
+                {{dynamic-applets-connectivity.f6253478}} <span id="ssidTxt"></span> / <span id="pwTxt"></span>
+
+                <br>
+                <br>
+            </div>
+
+            <div class="configured-block" style="display: none;">
+                {{dynamic-applets-connectivity.0c9e7563}}
+
+                <br>
+                <br>
+
+                <button type="button" id="startOnboarding">{{dynamic-applets-connectivity.03b88c42}}</button>
+                &nbsp;&nbsp;&nbsp;
+                <button type="button" id="stopOnboarding" disabled="disabled">{{dynamic-applets-connectivity.c71a4e69}}</button>
+
+                <br>
+                <br>
+                <br>
+                <br>
+
+                <button type="button" id="startBTOnboarding">{{dynamic-applets-connectivity.77b9b2d0}}</button>
+
+                <div id="autoonboarding-notavailable" style="display:none;">
+                    {{dynamic-applets-connectivity.d4c31b15}}
+                <div>
+            </div>
+
+        </div>
+    </section>
+    <footer>
+        <button class="apply">{{dynamic-applets-connectivity.fce86bf7}}</button>
+        <button class="cancel">{{dynamic-applets-connectivity.8f475444}}</button>
+        <button class="submit">{{dynamic-applets-connectivity.e9b662b3}}</button>
+    </footer>
+
+    <div style="display: none;">
+        <li id="basic-tab" data-id="basic"><span>{{dynamic-applets-connectivity.991f03f4}}</span></li>
+        <li id="powerModem-tab" data-id="power-modem"><span>{{dynamic-applets-connectivity.8a473168}}</span></li>
+        <li id="localnetwork-tab" data-id="local-network"><span>{{dynamic-applets-connectivity.4679ef0d}}</span></li>
+        <li id="advancedrouting-tab" data-id="advanced-routing"><span>{{dynamic-applets-connectivity.d92fba10}}</span></li>
+        <li id="vlantagging-tab" data-id="vlan-tagging"><span>{{dynamic-applets-connectivity.0488e4ef}}</span></li>
+        <li id="administration-tab" data-id="administration"><span>{{dynamic-applets-connectivity.7b0f6f48}}</span></li>
+        <li id="velopSimpleSetup-tab" data-id="velop-simpleSetup"><span>{{dynamic-applets-connectivity.f66539aa}}</span></li>
+    </div>
+
+    <div id="ipv6-ipv4-not-valid" style="display: none;">
+        <div class="dialog-content">
+            <h1 class="exclamation">{{dynamic-applets-connectivity.a4f198f5}}</h1>
+            <p>{{dynamic-applets-connectivity.54a7b9ff}}<br /></p>
+            <table id="ipv4-ipv6-combinations">
+                <tr>
+                    <th>{{dynamic-applets-connectivity.1f2d1a4d}}</th>
+                    <th>{{dynamic-applets-connectivity.4a4330ef}}</th>
+                </tr>
+            </table>
+        </div>
+        <div class="dialog-buttons">
+            <button class="cancel">{{dynamic-applets-connectivity.e9b662b3}}</button>
+        </div>
+    </div>
+
+    <div style="display: none;">
+        <div id="template-wireless-radios">
+            <div id="radioId">
+                <h2 name="labels.band"><!-- Will be set programmatically --><!-- 2.4 GHz band --></h2>
+                <div id="wireless-bridge" class="row" style="display:none">
+                    <label id='bridge-band' for="" name="labels.band" class="no-select"><!-- Will be set programmatically --><!-- 2.4 GHz band --></label>
+                    <label id='bridge-message' for=""><!-- Will be set programmatically --></label>
+                </div>
+                <div class="row toggle-edit">
+                    <label for="ssid" class="no-select">{{dynamic-applets-connectivity.de656916}}</label>
+                    <label name="settings.ssid" for="" tooltip="" class="truncate-text"></label>
+                    <div class="cell">
+                        <input type="text" name="settings.ssid" />
+                    </div>
+                </div>
+                <div id="basic-wpa-password" class="row toggle-edit">
+                    <label for="">{{dynamic-applets-connectivity.7fc1eb08}}</label>
+                    <label name="settings.wpaPersonalSettings.passphrase" for="" tooltip="" class="truncate-text"></label>
+                    <div class="cell">
+                        <input type="text" name="settings.wpaPersonalSettings.passphrase" />
+                    </div>
+                </div>
+                <div id="basic-wpa-enterprise-key" class="row toggle-edit">
+                    <label for="basic-wpa-enterpr-key">{{dynamic-applets-connectivity.7fc1eb08}}</label>
+                    <label name="settings.wpaEnterpriseSettings.sharedKey" tooltip="" class="truncate-text"></label>
+                    <div class="cell">
+                        <input type="text" id="basic-wpa-enterpr-key" name="settings.wpaEnterpriseSettings.sharedKey" />
+                    </div>
+                </div>
+                <div id="basic-no-security" class="row basic-no-security" style="display:none">
+                    <label for="">{{dynamic-applets-connectivity.7fc1eb08}}</label>
+                    <label for="">{{dynamic-applets-connectivity.e558ad8e}}</label>
+                </div>
+                <div id="basic-wep-password" class="row toggle-edit" style="display:none">
+                    <label for="">{{dynamic-applets-connectivity.7fc1eb08}}</label>
+                    <label name="settings.wepSettings.key" for="" tooltip="" class="truncate-text"></label>
+                    <div class="cell">
+                        <input type="text" name="settings.wepSettings.key" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="border-prefix-invalid-value" style="display: none;">{{dynamic-applets-connectivity.2d002763}}</div>
+
+    <div id="password-warning-dialog" style="display: none;">
+        <span class="showForLinksysRouters">{{dynamic-applets-connectivity.ee9b981e}}</span>
+        <span class="showForNodes">{{dynamic-applets-connectivity.a421c05f}}</span>
+    </div>
+
+    <div id="invalidFwExtension" style="display: none;">
+        <h1 class="exclamation">{{dynamic-applets-connectivity.18ca186e}}</h1>
+        <h2>{{dynamic-applets-connectivity.ddafa7b1}}</h2>
+        <div id="start-text">{{dynamic-applets-connectivity.8f5797d0}}</div>
+    </div>
+
+    <div id="invalidFwName" style="display: none;">
+        <h1 class="exclamation">{{dynamic-applets-connectivity.18ca186e}}</h1>
+        <h2>{{dynamic-applets-connectivity.9947fb90}}</h2>
+        <div id="start-text">{{dynamic-applets-connectivity.584c6894}}</div>
+    </div>
+
+    <div id="invalidFwFile" style="display: none;">
+        <h1 class="exclamation">{{dynamic-applets-connectivity.393f0752}}</h1>
+        <div id="start-text">
+            {{dynamic-applets-connectivity.8a3e3fee}}
+            <br />
+            <br />
+            {{dynamic-applets-connectivity.d82b03ab}}
+        </div>
+    </div>
+
+    <div id="cantReachFwServer" style="display: none;">
+        <h1 class="exclamation">{{dynamic-applets-connectivity.495a7529}}</h1>
+        <div id="start-text">
+            {{dynamic-applets-connectivity.b90b79e4}}
+            <br />
+            <br />
+            {{dynamic-applets-connectivity.21ac7f61}}
+        </div>
+    </div>
+
+    <div id="cantVerifyFwFile" style="display: none;">
+        <h1 class="exclamation">{{dynamic-applets-connectivity.f29925af}}</h1>
+        <div id="start-text">
+            {{dynamic-applets-connectivity.9d6e1215}}
+            <br />
+            <br />
+            {{dynamic-applets-connectivity.cf36c59c}}
+        </div>
+    </div>
+
+    <div id="pmFirmwareUpgradeError" style="display: none;">
+        <div class="dialog-content">
+            <h1 class="exclamation">{{dynamic-applets-connectivity.4d1042e6}}</h1>
+            <div id="start-text">
+                {{dynamic-applets-connectivity.87c99af3}}
+                <br />
+                {{dynamic-applets-connectivity.9ae2f160}}
+                <br />
+                {{dynamic-applets-connectivity.9675c6d1}}
+            </div>
+        </div>
+        <div class="dialog-buttons">
+            <button class="cancel">{{dynamic-applets-connectivity.e9b662b3}}</button>
+        </div>
+    </div>
+
+    <div id="invalidPmFwFile" style="display: none;">
+        <div class="dialog-content">
+            <h1 class="exclamation">{{dynamic-applets-connectivity.8949c27d}}</h1>
+            <div id="start-text">{{dynamic-applets-connectivity.3367b0e7}}</div>
+        </div>
+        <div class="dialog-buttons">
+            <button class="cancel">{{dynamic-applets-connectivity.e9b662b3}}</button>
+        </div>
+    </div>
+
+    <div id="updateFwConfirm" style="display: none;">
+        <h1 class="exclamation">{{dynamic-applets-connectivity.18ca186e}}</h1>
+        <h2>{{dynamic-applets-connectivity.cb1dacce}}</h2>
+        <div id="start-text">{{dynamic-applets-connectivity.1e07877d}}</div>
+        <br />
+        <div class="warning-message">{{dynamic-applets-connectivity.8dbd8b1a}}</div>
+    </div>
+
+    <div id="updatePmFwConfirm" style="display: none;">
+        <h1 class="exclamation">{{dynamic-applets-connectivity.18ca186e}}</h1>
+        <h2>{{dynamic-applets-connectivity.9e18be68}}</h2>
+        <div id="start-text">{{dynamic-applets-connectivity.0c04e1cd}}</div>
+        <br />
+        <div class="warning-message">{{dynamic-applets-connectivity.8dbd8b1a}}</div>
+    </div>
+
+    <div id="updateFwProgress" style="display: none;">
+        <div class="dialog-content">
+            <h1 class="exclamation">{{dynamic-applets-connectivity.18ca186e}}</h1>
+            <h2><span id="fw-downloading" style="display: none;">{{dynamic-applets-connectivity.04a2bdcd}}</span><span id="fw-installing">{{dynamic-applets-connectivity.ec060179}}</span></h2>
+            <div id="start-text">{{dynamic-applets-connectivity.a275ef72}}</div>
+            <br />
+
+            <div id="firmware-progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="updatePmFwProgress" style="display: none;">
+        <div class="dialog-content">
+            <h1 class="exclamation">{{dynamic-applets-connectivity.18ca186e}}</h1>
+            <h2>{{dynamic-applets-connectivity.98a6e883}}</h2>
+            <div id="start-text">{{dynamic-applets-connectivity.223bec80}}</div>
+            <br />
+
+            <div id="pm-firmware-progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="updateFwComplete" style="display: none;">
+        <div class="dialog-content">
+            <h1>{{dynamic-applets-connectivity.1789ac07}}</h1>
+            <div id="start-text">{{dynamic-applets-connectivity.844bff78}}</div>
+        </div>
+        <div class="dialog-buttons">
+            <button class="submit">{{dynamic-applets-connectivity.e9b662b3}}</button>
+        </div>
+    </div>
+
+    <div id="updatePmFwComplete" style="display: none;">
+        <div class="dialog-content">
+            <h1>{{dynamic-applets-connectivity.264f6d93}}</h1>
+        </div>
+        <div class="dialog-buttons">
+            <button class="submit">{{dynamic-applets-connectivity.e9b662b3}}</button>
+        </div>
+    </div>
+
+    <div id="nodes-bridgemode-warning-dialog" style="display: none;">
+        <div class="dialog-content">
+            <h1>{{dynamic-applets-connectivity.35ef7e57}}</h1>
+            <h3><b>{{dynamic-applets-connectivity.24e12687}}</b></h3>
+            <p>{{dynamic-applets-connectivity.10f10d93}}</p>
+            <h3 class="margin-top-med"><b>{{dynamic-applets-connectivity.399f4d6e}}</b></h3>
+            <p>{{dynamic-applets-connectivity.2b1ec1f1}}</p>
+            <p>{{dynamic-applets-connectivity.3b1dc0f0}}</p>
+        </div>
+        <div class="dialog-buttons">
+            <button class="submit">{{dynamic-applets-connectivity.9d7c925f}}</button>
+            <button class="cancel disabled">{{dynamic-applets-connectivity.8f475444}}</button>
+        </div>
+    </div>
+
+    <div id="nodes-homekit-bridgemode-warning-dialog" style="display: none;">
+        <div class="dialog-content">
+            <h1>{{dynamic-applets-connectivity.4dadb409}}</h1>
+            <p>{{dynamic-applets-connectivity.edd8a966}}</p>
+            <br />
+            <p>{{dynamic-applets-connectivity.e4433f9d}}</p>
+        </div>
+        <div class="dialog-buttons">
+            <button class="submit">{{dynamic-applets-connectivity.8f475444}}</button>
+        </div>
+    </div>
+
+    <div id="disable-bridgemode-warning-dialog" style="display: none;">
+        <div class="dialog-content">
+            <h1>{{dynamic-applets-connectivity.bc92e9fd}}</h1>
+            <ol>
+                <li>
+                    <h3><b>{{dynamic-applets-connectivity.4f6b00d8}}</b></h3>
+                    <p>{{dynamic-applets-connectivity.0793c802}}</p>
+                </li>
+                <!-- Sending this text for locatization porpuses, right now is not possible to detect in terms on JNAP wired connected child nodes -->
+                <li class="hidden">
+                    <h3><b>{{dynamic-applets-connectivity.c9f62b2e}}</b></h3>
+                    <ul>
+                        <li>
+                            <h3><b>{{dynamic-applets-connectivity.71c97feb}}</b></h3>
+                            <p>{{dynamic-applets-connectivity.0793c802}}</p>
+                        </li>
+                        <li>
+                            <h3><b>{{dynamic-applets-connectivity.8c5300b4}}</b></h3>
+                            <p>{{dynamic-applets-connectivity.1259ea37}}</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h3><b>{{dynamic-applets-connectivity.13cc90e7}}</b></h3>
+                </li>
+            </ol>
+            <p>{{dynamic-applets-connectivity.e5c56ea5}}</p>
+        </div>
+        <div class="dialog-buttons">
+            <button class="submit">{{dynamic-applets-connectivity.7d4ae821}}</button>
+            <button class="cancel disabled">{{dynamic-applets-connectivity.8f475444}}</button>
+        </div>
+    </div>
+
+    <div id="bridgemode-progress-dialog" style="display: none;">
+        <div class="dialog-content">
+            <h1>{{dynamic-applets-connectivity.66f110b3}}</h1>
+            <div id="bridgemode-progress-bar" class="progress-bar margin-top-lrg"></div>
+            <p>{{dynamic-applets-connectivity.d27eb66d}}</p>
+        </div>
+    </div>
+
+    <div id="twoEthernetPorts" class="port-status-dialog" style="display: none;">
+        <div class="dialog-content">
+            <h1>{{dynamic-applets-connectivity.04a88602}}</h1>
+
+            <div class="left option">
+                <img id="port-left" src="/ui/1.0.99.201002/static/cache/images/ethernet_ports/WHW03-port-left.png" />
+                <table id="portResetButton" class="submit">
+                    <tbody>
+                        <tr class="velop-senior"><td>{{dynamic-applets-connectivity.60622b7f}}</td></tr>
+                        <tr class="velop-junior" style="display: none;"><td>{{dynamic-applets-connectivity.4074e4dd}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="right option">
+                <img id="port-right" src="/ui/1.0.99.201002/static/cache/images/ethernet_ports/WHW03-port-right.png" />
+                <table id="portPowerSwitch" class="submit">
+                    <tbody>
+                        <tr class="velop-senior"><td>{{dynamic-applets-connectivity.b4bb89f0}}</td></tr>
+                        <tr class="velop-junior" style="display: none;"><td>{{dynamic-applets-connectivity.834b430e}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p id="additional-error-msg" class="pad-top-med clear-both hidden">{{dynamic-applets-connectivity.ab598678}}</p>
+        </div>
+    </div>
+
+    <div id="noEthernetPorts" style="display: none;">
+        <p class="exclamation">{{dynamic-applets-connectivity.06b098cd}}</p>
+    </div>
+
+    <div id="connect-on-demand-warning" style="display: none;">{{dynamic-applets-connectivity.bf2e7175}}</div>
+
+    <div id="powerTableConfirm" style="display: none;">
+        <div class="dialog-content">
+            <h2>{{dynamic-applets-connectivity.65e66911}}</h2>
+            <p>{{dynamic-applets-connectivity.5b96e36b}}</p>
+            <br />
+            <p>{{dynamic-applets-connectivity.f164a909}}</p>
+        </div>
+        <div class="dialog-buttons">
+            <button class="submit">{{dynamic-applets-connectivity.e9b662b3}}</button>
+            <button class="cancel">{{dynamic-applets-connectivity.8f475444}}</button>
+        </div>
+    </div>
+
+    <div id="powerTableRestartWarning" style="display: none;">
+        <div class="dialog-content">
+            <h2>{{dynamic-applets-connectivity.659ed070}}</h2>
+            <p>{{dynamic-applets-connectivity.9daf2dbd}}</p>
+            <br />
+            <p>{{dynamic-applets-connectivity.17bfaf2f}}</p>
+        </div>
+        <div class="dialog-buttons">
+            <button class="submit">{{dynamic-applets-connectivity.fa173478}}</button>
+            <button class="cancel">{{dynamic-applets-connectivity.8f475444}}</button>
+        </div>
+    </div>
+
+    <!-- template used for IPv4 forms in internet settings -->
+    <div id="ipv4-form-template" style="display: none;">
+        <div class="row toggle-edit">
+            <label>{{dynamic-applets-connectivity.d2d9a2af}}</label>
+            <label name="ipAddress"></label>
+            <div class="ip-input cell" name="ipAddress" dir="ltr">
+                <input type="text"/><input type="text"/><input type="text"/><input type="text"/>
+            </div>
+        </div>
+        <div class="row toggle-edit">
+            <label>{{dynamic-applets-connectivity.041a63f9}}</label>
+            <label name="subnetMask"></label>
+            <div class="ip-input cell" name="subnetMask" dir="ltr">
+                <input type="text"/><input type="text"/><input type="text"/><input type="text"/>
+            </div>
+        </div>
+        <div class="row toggle-edit">
+            <label>{{dynamic-applets-connectivity.99033b5e}}</label>
+            <label name="gateway"></label>
+            <div class="ip-input cell" name="gateway" dir="ltr">
+                <input type="text"/><input type="text"/><input type="text"/><input type="text"/>
+            </div>
+        </div>
+        <div class="row toggle-edit">
+            <label>{{dynamic-applets-connectivity.5f9f4726}}</label>
+            <label name="dnsServer1"></label>
+            <div class="ip-input cell" name="dnsServer1" dir="ltr">
+                <input type="text"/><input type="text"/><input type="text"/><input type="text"/>
+            </div>
+        </div>
+        <div class="row toggle-edit">
+            <label>{{dynamic-applets-connectivity.9bd2d8c9}}</label>
+            <label name="dnsServer2"></label>
+            <div class="ip-input cell" name="dnsServer2" dir="ltr">
+                <input type="text"/><input type="text"/><input type="text"/><input type="text"/>
+            </div>
+        </div>
+        <div class="row toggle-edit">
+            <label>{{dynamic-applets-connectivity.2d5ea3c5}}</label>
+            <label name="dnsServer3"></label>
+            <div class="ip-input cell" name="dnsServer3" dir="ltr">
+                <input type="text"/><input type="text"/><input type="text"/><input type="text"/>
+            </div>
+        </div>
+    </div>
+
+    <!-- template used to show Nodes FW Versions -->
+    <div id="template-nodes-fw-details" style="display: none;">
+        <div class="node-details">
+            <table>
+                <tr>
+                    <td>
+                        <div class="device-icon"></div>
+                    </td>
+                    <td>
+                        <div class="truncate-text"><span name="deviceName" tooltip="">...</span></div>
+                        <div class="checking-fw">{{dynamic-applets-connectivity.154caa93}}</div>
+                        <div class="up-to-date-fw">{{dynamic-applets-connectivity.3ad7bd93}}</div>
+                        <div class="available-fw">
+                            <div>{{dynamic-applets-connectivity.9ad9fefd}}</div>
+                            <div class="info-badge" tooltip=""></div>
+                        </div>
+                    </td>
+                    <td name="currentVersion"></td>
+                    <td name="model"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</article>
+
+<script type="text/javascript">
+    RAINIER.util.injectScripts([
+        '/ui/1.0.99.201002/static/cache/applets/connectivity/js/connectivity-util.js',
+        '/ui/1.0.99.201002/static/cache/applets/connectivity/js/bridge.js',
+        '/ui/1.0.99.201002/static/cache/applets/connectivity/js/internet-settings.js',
+        '/ui/1.0.99.201002/static/cache/applets/connectivity/js/connectivity.js'
+    ]);
+</script>

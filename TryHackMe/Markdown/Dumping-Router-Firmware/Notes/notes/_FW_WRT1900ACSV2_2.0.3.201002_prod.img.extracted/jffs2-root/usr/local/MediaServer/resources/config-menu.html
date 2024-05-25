@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<head>
+<title>TwonkyServer Configuration</title>
+<meta content="text/html; charset=utf-8" http-equiv="content-type">
+<script src="/configpage/TwonkyMediaConfig.js" type="text/javascript"></script>
+<script src="/configpage/TwonkyMediaConfig_grouping.js" type="text/javascript"></script>
+<script src="/configpage/platform-specific-menu-grouping.js" type="text/javascript"></script>
+<link rel="StyleSheet" href="/configpage/TwonkyMediaConfig.css" type="text/css" media="screen">
+
+<body  text="#000000" link="#495F8B" vlink="#495F8B" class="body-menu">
+<p class="menuGroup">&nbsp;<script type="text/javascript">document.write(translateOption("mediabrowser"))</script></p><p>
+	<ul>
+		<li><a href="/webbrowse" target="Webbrowse"><script type="text/javascript">document.write(translateOption("HTML"))</script></a></li>
+		<li><a href="/flash" target="Flash"><script type="text/javascript">document.write(translateOption("Flash"))</script></a></li>
+	</ul>
+	
+<p class="menuGroup">&nbsp;<script type="text/javascript">document.write(translateOption("basicsetup"))</script></p>
+
+	<ul>
+		<li><a href="javascript:optionsShow(15,false)"><script type="text/javascript">document.write(translateOption("quickstartup"))</script></a></li>
+		<li><a href="javascript:optionsShow(0,false)"><script type="text/javascript">document.write(translateOption("sharing"))</script></a></li>
+	</ul>
+
+<p class="menuGroup">&nbsp;<script type="text/javascript">document.write(translateOption("advancedsetup"))</script></p>
+
+	<ul>
+		<script type="text/javascript">
+			if (isAggregationServer()) {
+				document.write("<li><a href=\"javascript:optionsShow(1,false)\">");
+				document.write(translateOption("aggmenu"));
+				document.write("</a></li>");
+			}
+		</script>
+		<script type="text/javascript">
+			if(isRemoteAccess()) {	
+				document.write("<li><a href=\"javascript:optionsShow(10,false)\">");
+				document.write(translateOption("remoteaccess"));
+				document.write("</a></li>");
+			}
+		</script>
+		<script type="text/javascript">
+			if (getValue("suppressmenu").indexOf("transcoding")<0) {
+				document.write("<li><a href=\"javascript:optionsShow(19,false)\">");
+				document.write(translateOption("transcoding"));
+				document.write("</a></li>");
+			}
+		</script>
+		<script type="text/javascript">
+			if (getValue("suppressmenu").indexOf("mediafeeds")<0) {
+				document.write("<li><a href=\"javascript:optionsShow(17,false)\">");
+				document.write(translateOption("mediafeeds"));
+				document.write("</a></li>");
+			}
+		</script>
+		<li><a href="javascript:optionsShow(16,false)"><script type="text/javascript">document.write(translateOption("clients"))</script></a></li>
+		<li><a href="javascript:optionsShow(9,false)"><script type="text/javascript">document.write(translateOption("network"))</script></a></li>
+
+	</ul>
+
+<p class="menuGroup">&nbsp;<script type="text/javascript">document.write(translateOption("support"))</script></p>
+
+	<ul>
+
+		<li><a href="javascript:optionsShow(14,true)"><script type="text/javascript">document.write(translateOption("status"))</script></a></li>
+		<li><a href="javascript:optionsShow(13,false)"><script type="text/javascript">document.write(translateOption("troubleshooting"))</script></a></li>
+		<li><a href="http://www.twonky.com/ask.html" target="_blank"><script type="text/javascript">document.write(translateOption("faq"))</script></a></li>
+		<li><a href="http://www.twonkyforum.com/" target="_blank"><script type="text/javascript">document.write(translateOption("forum"))</script></a></li> 
+<!-- for testing purposes only, remove prior to release         
+		<li><a href="javascript:showAllDivs()">Test all</a></li>
+		<li><a href="javascript:hideAllDivs()">Hide all</a></li>		
+-->
+	</ul>
+
+<p class="copyright"><script type="text/javascript">document.write(getCopyrightMessage())</script></p>
+   
+</body>
+</html>

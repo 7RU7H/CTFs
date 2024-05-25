@@ -1,0 +1,1 @@
+"use strict";module.exports={JNAP:require("./jnap"),CLOUD_REST:require("./cloud-rest")};

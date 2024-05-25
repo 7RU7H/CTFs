@@ -1,0 +1,194 @@
+<link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/cache/applets/parental_controls/css/parental-controls.css" />
+<link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/cache/css/block-scheduler.css" />
+
+<article id="parentalcontrols-applet">
+    <header>
+        <h1>{{dynamic-applets-parental_controls.85fe0a80}}</h1>
+        <h4 id="original-tagline" style="display:none;">{{dynamic-applets-parental_controls.262fe1bc}}</h4>
+        <h4 id="shield-tagline" style="display:none;">{{dynamic-applets-parental_controls.ca82bdf0}}</h4>
+        <div class="close-button"></div>
+        <div class="widget-config" style="display:none;">
+           <input type="checkbox" id="cbAddParentalControlWidget" checked="checked" />
+           <label for="cbAddParentalControlWidget">{{dynamic-applets-parental_controls.96d3c7d5}}</label>
+        </div>
+    </header>
+    <section class="form">
+        <div id="blocked" style="display:none;">
+            <div id="blocked-image">
+                <img src="/ui/1.0.99.201002/static/cache/applets/parental_controls/images/shield-block.png" width="301" height="346" border="0" alt="Download the Linksys App">
+            </div>
+            <div id="blocked-instructions">
+                <legend>{{dynamic-applets-parental_controls.fafae11b}}</legend>
+
+                <div id="download-apps">
+                    <div id="ios-app">
+                        <!-- TODO - when we recieve optimized SVGs, squash commits to remove old ones from Git -->
+                        <img src="/ui/1.0.99.201002/static/cache/images/app_qr/qr-code-itunes.png" width="100" height="100" border="0" alt="Download on the App Store via QR Code">
+
+                        <div class="store-badge">
+                            <a target="_blank" href="https://itunes.apple.com/us/app/linksys-smart-wi-fi/id533516503?mt=8">
+                                <img src="/ui/1.0.99.201002/static/cache/images/velop_block/app-store-badge.png" width="135" height="40" border="0" alt="Download on the App Store">
+                            </a>
+                        </div>
+                    </div>
+                    <div id="google-app">
+                        <img src="/ui/1.0.99.201002/static/cache/images/app_qr/qr-code-play.png" width="100" height="100" border="0" alt="Get it on Google Play via QR Code">
+
+                        <div class="store-badge">
+                            <a target="_blank" href="https://play.google.com/store/apps/details?id=com.cisco.connect.cloud&hl=en">
+                                <img src="/ui/1.0.99.201002/static/cache/images/velop_block/android-play-store.png" width="135" height="40" border="0" alt="Get it on Google Play">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="unblocked" style="display:none;">
+            <fieldset style="margin-top: 0px;">
+                <legend id="isEnabled">{{dynamic-applets-parental_controls.58685266}}</legend>
+                <div>
+                    <input checked="checked" id="isParentalControlEnabled" name="isParentalControlEnabled" type="checkbox" class="switch"/>
+                </div>
+            </fieldset>
+
+            <fieldset class="left">
+                <legend id="restrictOn">{{dynamic-applets-parental_controls.bfdd6866}}</legend>
+                <div class="position-absolute">
+                    <ul id="deviceSelection" size="12"></ul>
+                </div>
+            </fieldset>
+            <fieldset class="right">
+                <legend id="BlockInternetAccess">{{dynamic-applets-parental_controls.a31b44b6}}</legend>
+                <div class="highlighted" style="display:block;">
+                    <ul id="blockRadios">
+                        <li>
+                            <input id="idRadioBlockNever" disabled="disabled" type="radio" name="BlockInternetAccessGroup" value="0" />
+                            <label for="idRadioBlockNever">{{dynamic-applets-parental_controls.1f16322b}}</label>
+                        </li>
+                        <li>
+                            <input id="idRadioBlockAlways" disabled="disabled" type="radio" name="BlockInternetAccessGroup" value="1" />
+                            <label for="idRadioBlockAlways">{{dynamic-applets-parental_controls.a8c14b50}}</label>
+                        </li>
+                        <li>
+                            <input id="idRadioBlockCustom" disabled="disabled" type="radio" name="BlockInternetAccessGroup" value="2" />
+                            <label for="idRadioBlockCustom">{{dynamic-applets-parental_controls.4021e99e}}</label>
+                            <span class="pipe" style="margin-left: 0px; display: none;">|</span>
+                            <a id="idLinkBlockInetAccessEdit" style="display: none">{{dynamic-applets-parental_controls.4a370bdd}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </fieldset>
+            <fieldset class="right">
+                <legend id="BlockSpecificSites">{{dynamic-applets-parental_controls.21602075}}<span class="pipe">|</span> <a id="idBtnAddBlackListItem" style="display: none">{{dynamic-applets-parental_controls.71da334c}}</a></legend>
+                <!-- This displays when the user clicks the add button. -->
+                <ul>
+                    <li id="input-blocked-website" style="display: none">
+                        <input type="text" placeholder="{{dynamic-applets-parental_controls.607615a0}}" id="idTextAddBlackListItem"/>
+                    </li>
+                </ul>
+                <div class="visualInfoWrapper">
+                    <div id="idSpanSiteBlackList"></div>
+                </div>
+            </fieldset>
+        </div>
+    </section>
+    <footer class="applet-button-section">
+        <button class="cancel" style="display:none;">{{dynamic-applets-parental_controls.8f475444}}</button>
+        <button class="submit" style="display:none;">{{dynamic-applets-parental_controls.e9b662b3}}</button>
+        <button class="close-panel" style="display:none;">{{dynamic-applets-parental_controls.7fdeae92}}</button>
+    </footer>
+
+    <div class="dialog-container" style="display: none;">
+        <div id="blockInternetAccessNet" class="dialog" style="width: 700px">
+            <div class="dialog-header">
+                <fieldset>
+                    <legend>{{dynamic-applets-parental_controls.a31b44b6}}</legend>
+                    {{dynamic-applets-parental_controls.20ca971e}}
+                </fieldset>
+            </div>
+            <div id="idDialogContent" class="dialog-content">
+                <div style="position:relative;">
+                    <div id="divSelection" class="Selection"></div>
+                    <!-- TODO: clean up HTML (inline styles, TDs all on one line, etc.) -->
+                    <table id="tableBlockAccess" border="0" style="border:solid 0px black;">
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td colspan="12"><div class="moon-icon"></div></td>
+                            <td colspan="13"><div class="sun-icon"></div></td>
+                        </tr>
+                        <tr class="header">
+                            <td></td>
+                            <td><div>12</div></td>
+                            <td><div>1</div></td>
+                            <td><div>2</div></td>
+                            <td><div>3</div></td>
+                            <td><div>4</div></td>
+                            <td><div>5</div></td>
+                            <td><div>6</div></td>
+                            <td><div>7</div></td>
+                            <td><div>8</div></td>
+                            <td><div>9</div></td>
+                            <td><div>10</div></td>
+                            <td><div>11</div></td>
+                            <td><div>12</div></td>
+                            <td><div>1</div></td>
+                            <td><div>2</div></td>
+                            <td><div>3</div></td>
+                            <td><div>4</div></td>
+                            <td><div>5</div></td>
+                            <td><div>6</div></td>
+                            <td><div>7</div></td>
+                            <td><div>8</div></td>
+                            <td><div>9</div></td>
+                            <td><div>10</div></td>
+                            <td><div>11</div></td>
+                        </tr>
+                        <tr id="rowSunday"><td>{{dynamic-applets-parental_controls.7b701b91}}</td></tr>
+                        <tr id="rowMonday"><td>{{dynamic-applets-parental_controls.8885e952}}</td></tr>
+                        <tr id="rowTuesday"><td>{{dynamic-applets-parental_controls.0324384f}}</td></tr>
+                        <tr id="rowWednesday"><td>{{dynamic-applets-parental_controls.378171a9}}</td></tr>
+                        <tr id="rowThursday"><td>{{dynamic-applets-parental_controls.a98877f4}}</td></tr>
+                        <tr id="rowFriday"><td>{{dynamic-applets-parental_controls.46bd419c}}</td></tr>
+                        <tr id="rowSaturday"><td>{{dynamic-applets-parental_controls.eed5a000}}</td></tr>
+                        <tr>
+                            <td></td>
+                            <td colspan="24">
+                                <table class="legend">
+                                    <tbody>
+                                        <tr>
+                                            <td class="unchecked">&nbsp;</td>
+                                            <td><div>{{dynamic-applets-parental_controls.d41a8996}}</div></td>
+                                            <td></td>
+                                            <td class="checked">&nbsp;</td>
+                                            <td><div>{{dynamic-applets-parental_controls.5306d43a}}</div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="currentTime">{{dynamic-applets-parental_controls.a607a42a}} <span></span> | <a class="editRouterTime">{{dynamic-applets-parental_controls.4a370bdd}}</a></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="dialog-buttons">
+                <button class="cancel">{{dynamic-applets-parental_controls.8f475444}}</button>
+                <button class="submit">{{dynamic-applets-parental_controls.e9b662b3}}</button>
+            </div>
+        </div>
+    </div>
+        
+    <div id="max-rules-warning" style="display: none;">
+        <div class="dialog-content">
+            <h1 class="exclamation">{{dynamic-applets-parental_controls.a814c736}}</h1>
+            <h2>{{dynamic-applets-parental_controls.6d5afbd6}}</h2>
+            <div id="start-text">{{dynamic-applets-parental_controls.b81774a7}}</div>
+        </div>
+    </div>
+</article>
+
+<script type="text/javascript">
+    RAINIER.util.injectScripts([
+        '/ui/1.0.99.201002/static/cache/js/block-scheduler.js',
+        '/ui/1.0.99.201002/static/cache/applets/parental_controls/js/parental-controls.js'
+    ]);
+</script>

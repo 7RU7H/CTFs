@@ -1,0 +1,1 @@
+$(document).ready(function(){function a(){if(!$("html").hasClass("small-window")){RAINIER.ui.showSlides();RAINIER.ui.showLinksysAppContent(RAINIER.ui.linksysAppResources.captionPasswordReset)}else{$("#slide-show").hide();$("#linksys-app").hide()}RAINIER.ui.hideMasterWaiting();RAINIER.ui.showAppletContainer()}RAINIER.network.getDeviceInfo(function(){RAINIER.ui.init(a)})});

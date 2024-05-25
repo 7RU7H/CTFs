@@ -1,0 +1,1 @@
+$(document).ready(function(){function a(){RAINIER.ui.TopMenu.initialize()}RAINIER.network.updateUserDetails(a)});

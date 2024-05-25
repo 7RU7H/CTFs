@@ -1,0 +1,1464 @@
+################################################################################
+# This file contains system defaults which will be used
+# if, and only if, the value has not yet been set
+# Both sysevent and syscfg namespace can be set
+#
+# syntax is 
+# 1) for syscfg address space
+#    $name=value
+# 2) for sysevent address space
+#    @name=value or
+#    @name=value | flag  where flag is defined in sysevent.h
+#          TUPLE_FLAG_NONE     = 0x00000000  (no flags)
+#          TUPLE_FLAG_SERIAL   = 0x00000001  (execute registered handlers in serial fashion)
+#          TUPLE_FLAG_EVENT    = 0x00000002  (execute registered handlers upon any set operation)
+#          TUPLE_FLAG_WORM     = 0x00000004  (write once read many)
+#          example @foo=bar | 0x00000001
+#    For sysevent address space you can use a syscfg value as the 
+#    initial value for the sysevent tuple by prefacing the value by $
+#    eg. @name=$name will use the current value of syscfg <name> as the value
+################################################################################
+
+
+#-------------------------------------------------------------------
+#     sysevent namespace
+#-------------------------------------------------------------------
+
+# model_name          - display friendly model name of this device
+@model_name=WRT1900ACS | 0x00000004
+
+# firmware_version is the current firmware version
+@firmware_version=2.0.3 | 0x00000004
+
+# device's static information used by HNAP/utctx
+@device_type=Linksys WRT1900ACS
+@device_model_name=WRT1900ACS
+@device_model_desc=Linksys WRT1900ACS
+@device_model_rev=1.0
+@device_model_vendorname=Linksys
+@device_model_url=/
+
+# current_wan_ipaddr is the ip address currently assigned to the wan
+@current_wan_ipaddr= 0.0.0.0
+
+# phylink_wan_state is the current state wan port's physical link (up/down)
+@phylink_wan_state=down
+
+# current hostname is taken from syscfg
+@hostname=$hostname
+
+# current usb device state (inserted/removed)
+@usb_device_state=removed
+@usb_device_mount_pt=none
+
+# Wireless radio definitions for AP95
+@wl0_radio_type=single  | 0x00000004
+@wl0_radio_band=2.4g    | 0x00000004
+@wl0_osifname=wdev0     | 0x00000004
+
+@wl1_radio_type=dual    | 0x00000004
+@wl1_radio_band="2.4g 5g" | 0x00000004
+@wl1_osifname=wdev1     |  0x00000004
+
+@TZ=$TZ
+
+# initial usb state for usb port. The format is usb_port_number_ 
+# where number is the physical port number
+@usb_port_1_state=down
+@usb_port_1_type=none
+
+#-------------------------------------------------------------------
+#     syscfg namespace
+#-------------------------------------------------------------------
+
+# The UTC date to set prior to receiving date/time via NTP (yyyymmddhhmm)
+$last_known_date=201210110600
+
+# hardware_vendor_name 
+#   It is the string Marvell, Broadcom
+#   It is used for run time detection of vendor hardware
+$hardware_vendor_name=Marvell
+
+# hostname            - the name of the home gateway as known to itself 
+#    and the home network. The hostname is used to identify the home gateway
+#    during dns lookups.
+#    This may be "" or unset if no hostname is desired, but this will
+#    result in an inability to resolve the home gateway by name to
+#    provide its current lan interface ip address.
+# dont assign hostname. instead let registration assign ssid on a per box basis
+$hostname=
+
+# device's Manufacturer information. It should be populate by devinfo
+$device::hw_revision=
+$device::serial_number=
+$device::modelNumber=
+$device::uuid=
+$device::manufacturer=
+$device::manufacturerURL=
+$device::modelDescription=
+$device::deviceType=
+
+# interface
+#
+# Declare all interfaces that could be used on the system.
+$max_interface_count=5
+
+$interface_1::ifname=eth1
+$interface_1::hardware_vendor_name=Marvell
+$interface_1::type=switch
+$interface_1::dependency=none
+$interface_2::ifname=ppp0
+$interface_2::hardware_vendor_name=
+$interface_2::type=tunnel
+$interface_2::dependency=eth1
+$interface_2::virtual_ifnum=
+$interface_3::ifname=dslite
+$interface_3::hardware_vendor_name=
+$interface_3::type=tunnel
+$interface_3:dependency=eth1
+$interface_3::virtual_ifnum=
+$interface_4::ifname=eth1.2
+$interface_4::hardware_vendor_name=Marvell
+$interface_4::type=vlan
+$interface_4::dependency=eth1
+$interface_4::virtual_ifnum=2
+$interface_5::ifname=eth1.10
+$interface_5::hardware_vendor_name=Marvell
+$interface_5::type=vlan
+$interface_5::dependency=eth1
+$interface_5::virtual_ifnum=10
+
+# switch configuration
+#
+# Defines how the interfaces (switches) are configured. This information is
+# used by linkstate, linkmgr, and other processes to access the correct ports
+# for information, and in case of Broadcom, this is also used to configure
+# the switches.
+#
+# Each interface is numbered by mode.
+# <mode> is currently "router" or "bridge"
+#
+# switch::<mode>_max - the number of interfaces defined for this mode
+#
+# switch::<mode>_#::<parameters> - where parameters are vendor dependent
+#   Required:
+#     ifname - the OS interface name
+#     physical_ifname - the physical interface (may be the same as ifname)
+#     port_numbers - list of ports that belong to this interface
+#     port_names - list of human-readable names for each port
+#     wan_monitor_port - the port to be monitored (but only if this is WAN)
+#   Optional (vendor dependent):
+#     vlan_num - if vlan is used, the vlan number
+#     cpu_port_number - number designated as CPU port
+#     driver_hw_name - name of the Ethernet device (according to Broadcom
+#                      driver) for this interface
+#     interface_suffix - can be empty, "*" (default), or "u" (untag)
+#
+
+# router mode
+$switch::router_max=2
+
+$switch::router_1::ifname=eth0
+$switch::router_1::physical_ifname=eth0
+$switch::router_1::port_numbers=0 1 2 3
+$switch::router_1::port_names=port3 port2 port1 port0
+
+$switch::router_2::ifname=eth1
+$switch::router_2::physical_ifname=eth1
+$switch::router_2::port_numbers=4
+$switch::router_2::port_names=wan
+$switch::router_2::wan_monitor_port=4
+
+# bridge mode
+$switch::bridge_max=2
+
+$switch::bridge_1::ifname=eth0
+$switch::bridge_1::physical_ifname=eth0
+$switch::bridge_1::port_numbers=0 1 2 3
+$switch::bridge_1::port_names=port3 port2 port1 port0
+
+$switch::bridge_2::ifname=eth1
+$switch::bridge_2::physical_ifname=eth1
+$switch::bridge_2::port_numbers=4
+$switch::bridge_2::port_names=wan
+$switch::bridge_2::wan_monitor_port=4
+
+# wan 
+# ---
+
+#
+# Notes
+# 1)  The name of the interface is shared among several components and must be predictable.
+# If there is no wan_virtual_ifnum, then the name is wan_physical_ifname
+# If there is a value for wan_virtual_ifnum, then the name is either wan_physical_ifname.wan_virtual_ifnum or vlan.wan_virtual_ifnum (depending on hardware manufacturer)
+# 2) link and wan handlers are declared so that specific interfaces can be given individualized handling per protocol.
+# eg. For dhcp on multiple interfaces whereby you might not want the default route to be set by each interface's
+# dhcp client.
+#
+#
+# default             - if set to 1 then this wan is the default wan interface and special global sysevents are set
+# forwarding          - if set to 1 then this wan interface can forward to lan
+# wan_proto           - describes how the wan interface is provisioned, none means skip this wan, legacy means use old syscfg for wan_1
+#                       Note legacy is only valid for wan_1
+#                       Note for legacy, the only fields used from wan_1 namespace are: default, forwarding,  
+#                                                                                       wan_physical_ifname, and hardware_vendor_name.
+#             
+# wan_mtu             - the size of the wan interface's mtu
+#                   0 - means auto-mtu, system will pick appropriate
+# def_hwaddr 
+# wan_proto_username
+# wan_proto_password
+# pptp_address_static
+# l2tp_address_static
+# wan_physical_ifname - the name (as known to the OS) of the physical interface
+#    that is used for the wan. This setting is not meant for users to manipulate.
+#   wan_virtual_ifnum 
+# wan_virtual_ifnum   - this is used only if the wan interface is part of a 
+#    virtual lan. This technique can be used to separate the ethernet switch 
+#    into a wan port and some lan ports.
+#    If no vlan is used then the tuple is not required, or may be set to ""
+#    This setting is not meant for users to manipulate.
+# wan_ipaddr
+# wan_netmask
+# wan_default_gateway
+# pppoe_service_name
+# pppoe_access_concentrator_name
+# wan_proto_server_address
+# wan_proto_remote_name
+# ppp_conn_method
+# ppp_keepalive_interval
+# ppp_idle_time
+# nameserver1
+# nameserver2
+# nameserver3
+# hardware_vendor_name 
+#   It is the string Marvell, Broadcom
+#   It is used for run time detection of vendor hardware
+
+$max_wan_count=3
+$wan_supported_conn_types=dhcp static pppoe pptp l2tp bridge wirelessbridge wirelessrepeater
+$wan_ipv6_supported_conn_types=Automatic
+
+$wan_1::default=1
+$wan_1::forwarding=1
+$wan_1::natting=1
+$wan_1::ifname=eth1
+$wan_1::wan_proto=legacy
+$wan_1::wan_physical_ifname=eth1
+$wan_1::hardware_vendor_name=Marvell
+
+$wan_2::default=0
+$wan_2::forwarding=1
+$wan_2::ifname=dslite
+$wan_2::wan_proto=dslite
+$wan_2::wan_physical_ifname=eth1
+$wan_2::hardware_vendor_name=Marvell
+$wan_2::wan_mtu=0
+
+# Watchdog daemon
+$watchdog_timer=enable
+
+# legacy wan interface syscfg values
+# wan_physical_ifname - the name (as known to the OS) of the physical interface
+#    that is used for the wan. This setting is not meant for users to manipulate.
+$wan_physical_ifname=eth1
+
+# wan_virtual_ifnum   - this is used only if the wan interface is part of a 
+#    virtual lan. This technique can be used to separate the ethernet switch 
+#    into a wan port and some lan ports.
+#    If so, the value of wan_virtual_ifnum determines the name of the vlan 
+#    ("vlan" contatenated with wan_virtual_ifnum). The wan_physical_ifname 
+#    will be part of the resultant virtual lan.
+#    If no vlan is used then the tuple is not required, or may be set to ""
+#    This setting is not meant for users to manipulate.
+# wan_mtu             - the size of the wan interface's mtu
+#                   0 - means auto-mtu, system will pick appropriate
+#                       default depending on WAN protocol
+$wan_mtu=0
+
+# wan_auto_detect_enable - whether or not to try to auto detect the wan protocol 
+#                          currently only dhcp and pppoe is detectable
+$wan_auto_detect_enable=1 
+
+# wan_proto           - describes how the wan interface is provisioned
+#    must be one of: dhcp, static, pppoe, pptp, l2tp, telstra
+$wan_proto=dhcp
+
+# pppoe_detect        -  transmit the "pppoe -a" discovery result to "pppoe_auto_detect"
+#    must be one of: NotStart, OK, NOK, Detecting
+$pppoe_detect=NotStart
+
+# if wan_proto=static then we need to know the values to which to provision 
+#    ----------------
+# the wan interface 
+#    wan_ipaddr          - desired wan interface ip address
+#    wan_netmask         - desired netmask for the interface
+#    wan_default_gateway - the default gateway to route to
+#    nameserver1         - primary DNS nameserver to use, or 0.0.0.0 if none
+#    nameserver2         - secondary DNS nameserver to use, or 0.0.0.0 if none
+#    nameserver3         - tertiary DNS nameserver to use, or 0.0.0.0 if none
+# $wan_ipaddr=0.0.0.0
+# $wan_netmask=255.255.255.0
+# $wan_default_gateway=0.0.0.0
+# $nameserver1=0.0.0.0
+# $nameserver2=0.0.0.0
+# $nameserver3=0.0.0.0
+
+# if wan_proto=pppoe then
+#    ---------------
+# wan_proto_username - the username
+# wan_proto_password - the password
+# wan_proto_remote_name  - an remotename (optional)
+# pppoe_service_name - for pppoe an optional service name
+# pppoe_access_concentrator_name - for pppoe an optional ac name
+# ppp_conn_method - describes the connection method
+#    must be either: redial or demand
+# ppp_keepalive_interval - if ppp_conn_method=redial (should be 20-180)
+# ppp_idle_time - if ppp_conn_method=demand (should be 1-9999, or 0 for never disconnect)
+$wan_proto_username=
+$wan_proto_password=
+$wan_proto_remote_name=
+$pppoe_service_name=
+$pppoe_access_concentrator_name=
+$ppp_conn_method=redial
+$ppp_keepalive_interval=30
+$ppp_idle_time=15
+$ppp_lcp_echo_failure=5
+
+# if wan_proto=pptp then
+#    ---------------
+# wan_proto_username - the username
+# wan_proto_password - the password
+# wan_proto_remote_name  - an remotename (optional)
+# wan_proto_server_address- ip address of the pptp server
+# pptp_address_static- whether or not to use auto or static ip address
+#                      0 or "" means automatic
+#                      1 means static
+# if static then 
+#    wan_ipaddr          - desired wan interface ip address
+#    wan_netmask         - desired netmask for the interface
+#    wan_default_gateway - the default gateway to route to
+#    nameserver1         - primary DNS nameserver to use, or 0.0.0.0 if none
+#    nameserver2         - secondary DNS nameserver to use, or 0.0.0.0 if none
+#    nameserver3         - tertiary DNS nameserver to use, or 0.0.0.0 if none
+#
+# ppp_conn_method - describes the connection method
+#    must be either: redial or demand
+# ppp_keepalive_interval - if ppp_conn_method=redial (should be 30-180)
+# ppp_idle_time - if ppp_conn_method=demand (should be 1-9999)
+$wan_proto_server_address=
+$pptp_address_static=0
+
+# if wan_proto=l2tp then
+#    -------------
+# wan_proto_username - the username
+# wan_proto_password - the password
+# wan_proto_server_address- ip address of the l2tp server
+# l2tp_address_static- whether or not to use auto or static ip address
+#                      0 or "" means automatic
+#                      1 means static
+# if static then 
+#    wan_ipaddr          - desired wan interface ip address
+#    wan_netmask         - desired netmask for the interface
+#    wan_default_gateway - the default gateway to route to
+#    nameserver1         - primary DNS nameserver to use, or 0.0.0.0 if none
+#    nameserver2         - secondary DNS nameserver to use, or 0.0.0.0 if none
+#    nameserver3         - tertiary DNS nameserver to use, or 0.0.0.0 if none
+#
+# ppp_conn_method - describes the connection method
+#    must be either: redial or demand
+# ppp_keepalive_interval - if ppp_conn_method=redial (should be 30-180)
+# ppp_idle_time - if ppp_conn_method=demand (should be 1-9999)
+$l2tp_address_static=0
+
+# IPv4 Bridge Mode Settings
+# If bridge_mode is set then it overrides wan_proto
+#--------------------------------------------------
+$bridge_mode=0
+
+
+# lan_ifname          - the name (as known to the OS) of the lan interface
+#    This setting is not meant for users to manipulate.
+$lan_ifname=br0
+
+# lan_ethernet_virtual_ifnums -  a list of vlan nums. This is used if the 
+#    ethernet switch has been segmented into wan and lan ports using the 
+#    technique described in wan_virtual_ifnum.
+#    This setting is not meant for users to manipulate.
+# $lan_ethernet_virtual_ifnums=1
+
+# lan_ethernet_physical_ifnames - a list of names of ethernet interfaces, 
+#    which will be enslaved into the lan bridge (which is known as lan_ifname
+#    as described above)
+#    This setting is not meant for users to manipulate
+$lan_ethernet_physical_ifnames=eth0
+
+# lan_wl_physical_ifnames - a list of names of 802.11 interfaces, which will 
+#    be enslaved into the lan bridge (which is known as lan_ifname as 
+#    described above).
+#    This setting is not meant for users to manipulate
+$lan_wl_physical_ifnames=wdev0 wdev1
+
+# lan virtual interfaces to be enslaved to lan bridge
+$lan_wl_virtual_ifnames=wdev0ap1 wdev0ap2 wdev1ap1 wdev1ap2
+
+# wireless interface settings
+# ---------------------------
+# for each wireless interface in lan_wl_physical_ifnames you must
+# specify the settings for that interface using the format
+# XXXX_setting, where
+#    XXXX is the interface name, for example wdev0
+#    setting is the name of the value to set. 
+# For example eth1_wl_ssid
+#    controls the wl_ssid value for wdev0
+# a) ssid
+# b) wep
+# wl_wep_enabled is 0 if wep is not enabled and 1 if enabled
+# if wl_wep_enabled then you must specify the wep settings
+# wl_wep_primary_key specifies the primary wep key [0-3]
+# wl_wep_key_X specifies the wep_key for the index X
+# E.g:
+# $wl1_key_1=
+# $wl1_key_2=
+# $wl1_key_3=
+# $wl1_key_4=
+
+
+# WLAN domain: wl0_xxx is for 2.4GHz, wl1_xxx is for 5GHz
+
+# WLAN radio settings
+$wl_config_mode=wps
+
+# WLAN SSID prefix; if not set here, will use the default value 
+# defined in apply_system_default.c
+$wl_ssid_prefix=Linksys
+
+# wl_region indicates wifi regulatory region.
+# apply_system_defaults sets it based on SKU
+# currently, fcc and ce 
+$wl_region=
+
+# Configurable interfaces (wl0 = 2.4GHz, wl1 = 5GHz)
+# This should typically only be changed when there is a need to restrict any configuration
+# of a particular radio, e.g. for some WiFi certification processes.
+$wdev0_syscfg_index=wl1
+$wdev1_syscfg_index=wl0
+$configurable_wl_ifs=wl0 wl1
+
+# Supported network radio modes
+$wl0_network_modes=11b,11g,11n,11bg,11bgn,mixed
+$wl1_network_modes=11a,11n,11an,11ac,mixed
+
+# Supported WiFi security types
+$wl0_supported_sec_types=none wep wpa2-personal wpa2-enterprise wpa-mixed wpa-enterprise-mixed
+$wl1_supported_sec_types=none wep wpa2-personal wpa2-enterprise wpa-mixed wpa-enterprise-mixed
+
+# 2.4GHz 
+$wl0_state=up
+
+$wl0_physical_ifname=wdev1
+
+# WLAN power setting table file
+# apply_system_defaults sets it based on SKU
+$wl0_power_table=
+
+$wl0_wps_state=unconfigured
+
+# VAPs
+$wl0_user_vap=wdev1ap0
+$wl1_user_vap=wdev0ap0
+$wl0_guest_vap=wdev1ap1
+$wl1_guest_vap=wdev0ap1
+$wl0_sta_vap=wdev1sta0
+$wl1_sta_vap=wdev0sta0
+$tc_vap_user_vap=wdev1ap2
+
+# Wireless QoS
+$wl_wmm_support=enabled
+$wl_no_acknowledgement=disabled
+
+
+# QoS on br0 (used for shaping wan ingress)
+# device maximum transmit speed in mbits/s 
+$br0_dev_max_rate=1000
+# percentages of bandwidth guaranteed to each QoS class 
+$br0_gold_percent=60
+$br0_silver_percent=25
+$br0_bronze_percent=10
+$br0_tin_percent=5
+
+# QoS on VAP wdev0ap0 (2.4 user vap)
+# device maximum transmit speed in mbits/s (testing reveals 152 mbps in shielded room)
+$wdev0ap0_dev_max_rate=150
+# percentages of bandwidth guaranteed to each QoS class
+$wdev0ap0_gold_percent=60
+$wdev0ap0_silver_percent=25
+$wdev0ap0_bronze_percent=10
+$wdev0ap0_tin_percent=5
+
+# QoS on VAP wdev0ap1 (2.4 guest vap)
+$wdev0ap1_dev_max_rate=150 
+# percentages of bandwidth guaranteed to each QoS class
+$wdev0ap1_gold_percent=60
+$wdev0ap1_silver_percent=25
+$wdev0ap1_bronze_percent=10
+$wdev0ap1_tin_percent=5
+
+# QoS on VAP wdev1ap0 (5 GHz user)
+# device maximum transmit speed in mbits/s (testing reveals 145 on 20 mHz and 246 on 40 mHz)
+$wdev1ap0_dev_max_rate=245
+# percentages of bandwidth guaranteed to each QoS class 
+$wdev1ap0_gold_percent=60
+$wdev1ap0_silver_percent=25
+$wdev1ap0_bronze_percent=10
+$wdev1ap0_tin_percent=5
+
+# dont assign ssid. instead let registration assign ssid on a per box basis
+# $wl0_ssid=ut610n
+$wl0_ssid_broadcast=1
+$wl0_network_mode=mixed
+$wl0_radio_band=auto
+# channel 0 means auto
+$wl0_channel=0
+$wl0_sideband=auto
+
+# (was: Default to disabled due to IOT issue with MB-Air documeneted on ap8x 7.2.1.5)
+# Re-enable amsdu as Apple has released a MB-Air fixed
+$wl0_amsdu_enabled=1
+
+# 5GHz
+$wl1_state=up
+
+$wl1_physical_ifname=wdev0
+
+# WLAN power setting table file
+# apply_system_defaults sets it based on SKU
+$wl1_power_table=
+
+$wl1_wps_state=unconfigured
+
+# Disbled 2.4G user vap
+$wl0_uvap_disabled=
+
+# Disbled 5.G user vap
+$wl1_uvap_disabled=
+
+# dont assign ssid. instead let registration assign ssid on a per box basis
+# $wl1_ssid=ut610n_media
+$wl1_ssid_broadcast=1
+$wl1_network_mode=mixed
+$wl1_radio_band=auto
+$wl1_channel=0
+$wl1_sideband=lower
+#Default disabled to avoid crash for now. Correct when the driver is stable
+$wl1_amsdu_enabled=1
+
+# WLAN security settings
+
+# 2.4GHz 
+$wl0_security_mode=wpa2-personal
+$wl0_encryption=aes
+$wl0_passphrase=
+$wl0_tx_key=1
+$wl0_key_1=
+$wl0_key_2=
+$wl0_key_3=
+$wl0_key_4=
+$wl0_radius_server=
+$wl0_radius_port=1812
+$wl0_shared=0
+$wl0_key_renewal=3600
+
+# 5GHz 
+$wl1_security_mode=wpa2-personal
+$wl1_encryption=aes
+$wl1_passphrase=
+$wl1_tx_key=1
+$wl1_key_1=
+$wl1_key_2=
+$wl1_key_3=
+$wl1_key_4=
+$wl1_radius_server=
+$wl1_radius_port=1812
+$wl1_shared=0
+$wl1_key_renewal=3600
+
+# WLAN MAC filters 
+$wl_access_restriction=disabled
+$wl_client_list=
+$wl_mac_filter=
+
+# Advanced features
+# 2.4GHZ
+$wl0_ap_isolation=disabled
+$wl0_frame_burst=enabled
+$wl0_authentication_type=auto
+$wl0_basic_rate=default
+$wl0_transmission_rate=auto
+$wl0_n_transmission_rate=auto
+$wl0_transmission_power=high
+$wl0_cts_protection_mode=enabled
+$wl0_beacon_interval=100
+$wl0_dtim_interval=1
+$wl0_fragmentation_threshold=2346
+$wl0_rts_threshold=2347
+$wl0_grn_field_pre=disabled
+$wl0_ht_dup_mcs32=enabled
+$wl0_stbc=disabled
+$wl0_wmm_ps=enabled
+$wl0_txbf_enabled=1
+$wl0_dfs_enabled=0
+$wl0_txbf_3x3_only=0
+$wl0_pmf=disabled
+
+# 5GHz 
+$wl1_ap_isolation=disabled
+$wl1_frame_burst=enabled
+$wl1_authentication_type=auto
+$wl1_basic_rate=default
+$wl1_transmission_rate=auto
+$wl1_n_transmission_rate=auto
+$wl1_transmission_power=high
+$wl1_cts_protection_mode=enabled
+$wl1_beacon_interval=100
+$wl1_dtim_interval=1
+$wl1_fragmentation_threshold=2346
+$wl1_rts_threshold=2347
+$wl1_grn_field_pre=disabled
+$wl1_ht_dup_mcs32=enabled
+$wl1_stbc=disabled
+$wl1_wmm_ps=enabled
+$wl1_txbf_enabled=1
+$wl1_dfs_enabled=1
+$wl1_txbf_3x3_only=0
+$wl1_pmf=disabled
+
+# lan_ipaddr          - the ip address to assign the lan_ifname
+#    if unset then a random rfc 1918 address will be assigned
+# lan_dns_ipaddr          - the ip address to assign to the interface providing dns 
+#    if unset then the lan_ipaddr address will be assigned
+# lan_netmask         - the netmask to assign the lan_ifname
+$lan_ipaddr=192.168.1.1
+$lan_dns_ipaddr=192.168.1.1
+$lan_netmask=255.255.255.0
+
+# router_dns_domain          - the name of the lan side domain
+# -----------
+#   This may be blank or unassigned if no lan domain is desired
+#   however for internal dns lookups it is usually desirable to
+#   have a lan domain
+$router_dns_domain=
+
+# local domain using .local
+$dot_local_domain=local
+
+# dot_local_hostname   - the name of the host within the dot_local_domain
+$dot_local_hostname=myrouter
+
+# dhcp client
+# -----------
+# automatic 6rd configuration via dhpcv4
+$dhcp_option_6rd_enable=1
+
+# dhcp server
+# ----------
+# dhcp_server_enabled  - if 0 then not enabled, if 1 then enabled
+#    It must be enabled for any dhcp options to take effect
+# dhcp_start           - the starting address for assigning dhcp leases on the lan side
+# dhcp_end             - the ending address for assigning dhcp leases on the lan side
+#   It is the last octet of the ip address. Eg 100 is 192.168.1.100
+# dhcp_num             - the number of ip addresses that the dhcp server 
+#    can give out on the lan side
+# dhcp_lease_time      - the number of minutes (m) or hours (h) that 
+#                        a dhcp lease is given to a lan client
+# dhcp_nameserver_1, dhcp_nameserver_2, dhcp_nameserver_3 - nameservers to provision to dhcp clients
+# dhcp_wins_server    - wins server to provision to client
+# dhcp_server_propagate_wan_nameserver - to maintain old (and less good) behavior of using the wan nameservers 
+#                                    for lan clients then ser dhcp_server_propagate_wan_nameserver to 1
+# dhcp_server_slow_start - if we are propagating info from wan, and if wan is not yet provisioned, then give dhcp
+#                          clients a short lease in order to give wan a chance to come up
+$dhcp_server_enabled=1
+$dhcp_start=100
+$dhcp_end=199
+$dhcp_num=100
+$dhcp_lease_time=24h
+$dhcp_server_propagate_wan_nameserver=0
+$dhcp_server_slow_start=0
+$dhcp_nameserver_1=0.0.0.0
+$dhcp_nameserver_2=0.0.0.0
+$dhcp_nameserver_3=0.0.0.0
+$dhcp_wins_server=0.0.0.0
+
+# static dhcp leases
+# ------------------
+#    if you want to have static addresses given to lan hosts by the dhcp server then
+#       dhcp_num_static_host  -  the number of static hosts provisioned
+#       and for each host dhcp_static_host_1 ... dhcp_static_host_x must be
+#          either none (for a hole in the array) 
+#          or mac_address,last_octet_of_ip_address,friendly-name, eg. 11:22:33:44:55:66,99,Bob's iMac
+$dhcp_num_static_hosts=0
+
+# static nameservers
+# $nameserver1=
+# $nameserver2=
+# $nameserver3=
+
+# static wins server
+# ------------------
+$dhcp_wins_server=
+
+# ddns
+# ----
+# ddns_enable          - will set/disable the ddns client
+#    0 is disabled, otherwise it is enabled
+# ddns_service          - the name of the ddns service
+#                         one of:
+#                                null ezip pgpow dhs
+#                                dyndns dyndns-static dyndns-custom
+#                                ods easydns easydns-partner
+#                                gnudip justlinux dyns hn zoneedit
+#                                heipv6tb
+
+$ddns_service=dyndns
+$ddns_supported_providers=dyndns noip
+
+# ddns_update_days      - the maximum number of days that we can wait between 
+#    ddns updates in order that the server doesnt think we implicitly unregistered
+#    from the ddns service
+# ddns_last_update       - the timestamp when we last registered with the 
+#    ddns service.
+# it may be 0 if we never registered
+# ddns_hostname           - the name we are registering as with the ddns service
+# ddns_username/ddns_password -  the credentials for the ddns service
+# ddns_mx                     - string to send as the mail exchange 
+# ddns_wildcard               - set your domain to have a wildcard
+# ddns_server                 - override default ip:port of ddns service provider
+# wan_last_ipaddr         - the ip address that was last successfully registered
+#    This should be 0.0.0.0 until we register successfully with the ddns server
+#    This is not meant to be changed by the user
+# with ddns service. It may be 0.0.0.0 if we never successfully registered
+# It may also be unset
+# $wan_last_ipaddr=0.0.0.0
+# ddns_last_update        - the timestamp of when we last updated successfully
+#   with the ddns server
+#   It may be 0 or it may be unset if never registered
+#   This is not meant to be changed by the user
+# ddns_last_update=0
+$ddns_enable=0
+$ddns_update_days=28
+$ddns_last_update=0
+$ddns_hostname=none
+$ddns_username=none
+$ddns_password=none
+
+# ntp_server is the name of the ntp server we should use
+$ntp_server1=0.pool.ntp.org
+$ntp_server2=1.pool.ntp.org
+$ntp_server3=2.pool.ntp.org
+# dynamic ntp servers
+# if we get ntp_servers from dhcp client then they will be added
+#@dhcpc_ntp_server1=
+#@dhcpc_ntp_server2=
+#@dhcpc_ntp_server3=
+
+# TZ is the timezone that we are in. eg GMT+08:00
+# also Daylight Savings time can be added
+# One specification for DST starting on March 8 @ 2 AM and ending on Nov 11 @ 2AM
+# is: March 8 is the 0th day of the 2nd week of the 3rd month, and 
+#     Nov 11 is the 0th day of the 1st week of the 11th month
+# thus: DST,M3.2.0/02:00,M11.1.0/02:00
+$TZ=PST8PDT,M3.2.0/02:00,M11.1.0/02:00
+$auto_dst=1
+
+# Locale Settings
+$locale=en-US
+
+# IGMP Proxy
+$igmpproxy_enabled=1
+
+# UPnP InternetGatewayDevice (IGD) settings
+$upnp_igd_enabled=1
+$igd_allow_userconfig=1
+$igd_allow_wandisable=0
+
+# Lego services settings
+$lego_enabled=0
+
+# Webserver settings
+#   default admin username & password ("admin" in encrypted form)
+#   http_is_admin_default indicates whether the default password is being used
+$http_admin_user=admin
+$http_admin_password=TSLIIHauhEfGE
+$http_admin_port=80
+$http_admin_is_default=1
+
+# Default user / passwords for file sharing use
+$user_auth_file=/var/config/syspwl.lst
+$user_count=2
+
+$user_1_username=admin
+$user_1_id=1000
+$user_1_description=admin
+$user_1_full_name=admin
+$user_1_group=admin
+$user_1_enabled=1
+$user_1_reserved=1
+
+$user_2_username=guest
+$user_2_id=1001
+$user_2_description=guest
+$user_2_full_name=guest
+$user_2_group=guest
+$user_2_enabled=1
+$user_2_reserved=1
+
+$group_count=2
+$group_1_name=admin
+$group_1_desc='Admin Users'
+$group_1_perms=file_admin
+$group_1_reserved=1
+$group_1_share_reserved=1
+
+$group_2_name=guest
+$group_2_desc='Guest Users'
+$group_2_perms=file_guest
+$group_2_reserved=1
+$group_2_share_reserved=0
+
+$media_server_maxitems=80000
+
+# Access restrictions on management interface
+$mgmt_http_enable=1
+$mgmt_https_enable=1
+$mgmt_wifi_access=1
+$mgmt_wan_access=0
+$mgmt_wan_httpaccess=0
+$mgmt_wan_httpsaccess=0
+$mgmt_wan_httpport=8080
+$mgmt_wan_httpsport=8080
+$mgmt_wan_fwupgrade=1
+$mgmt_wan_srcany=1
+$mgmt_wan_srcstart_ip=
+$mgmt_wan_srcend_ip=
+
+# NAT
+# ---
+# NAT can be explicitly turned off by setting nat_enabled 0
+$nat_enabled=1
+
+# Firewall
+#---------
+# $firewall_enabled= 0|1   1 is enabled, 0 is disabled
+$firewall_enabled=1
+# during development we want to allow ping, rfc 1918 addresses on wan, ssh/http/https from wan
+# no matter what rules are in firewall
+#$firewall_development_override=1
+
+# Do not block rfc 1918 private addresses on the WAN side
+$block_rfc1918=0
+
+$block_multicast=0
+$block_ping=1
+$block_ident=1
+$block_nat_redirection=0
+$block_java=0
+$block_webproxy=0
+$block_cookies=0
+$block_activex=0
+
+
+# IPv6 Section
+#---------------
+
+#IPv6 Automatic enabled as default (SLAAC and DHCPv6 IA+PD)
+$ipv6_automatic=1
+$ipv6_enable=1 
+# allow wan interface to be provisioned using router advertisement (SLAAC)
+$router_adv_provisioning_enable=1 
+
+# DHCPv6 client
+# $dhcpv6c_enable = 0|1|2|3  1 is enabled for PD, 2 is enabled for IA, 3 is enabled for IA and PD, 0 is disabled
+$dhcpv6c_enable=3
+
+
+# router advertisement provisioning on LAN side
+# $router_adv_enable= 0|1
+$router_adv_enable=1
+
+# DHCPv6 server
+# $dhcpv6s_enable = 0|1  1 is enabled, 0 is disabled
+$dhcpv6s_enable=1
+
+
+# Other wan side ipv6 protocols
+
+# 6rd tunnels
+# gui cares about tunnel_mode (as opposed to ipv6_automatic) when ipv6 wan protocol is 6rd
+# $tunnel_mode=1
+
+# $6rd_enable=   0|1  1 is enabled, 0 is disabled
+# if 6rd_enabled then,
+# $6rd_zone= the leading part of the IPv6 prefix
+# $6rd_zone_length= the length of the 6RD zone
+# $6rd_common_prefix4= the length of the leading common part of the IPv4 address of all 6RD router
+# $6rd_relay= the IPv4 address of the default 6RD relay
+$6rd_enable=0
+
+# static ipv6 configuration
+# if static_enable then,
+# WAN static interface configuration (optional when SLAAC is used)
+#$wan_ipv6addr=2001:db8:cafe:baba::1/64
+#$wan_ipv6_default_gateway=fe80::bad:babe
+# LAN static interface configuration MANDATORY when ipv6_static_enable == 1
+#$lan_ipv6addr=2001:db8:f00::1/64
+$ipv6_static_enable=0
+
+# Bridging IPv6
+# $ipv6_bridging_enable = 0|1  1 is enabled, 0 is disabled
+$ipv6_bridging_enable=0
+
+# 6to4 tunnels
+# $6to4_enable=  0|1|2  1 is enabled except when WAN is RFC1918, 0 is disabled, 2 is enabled even with WAN in RFC1928
+$6to4_enable=0
+
+# ipv6 unique local address 
+$ula_enable=0
+
+# AICCU (www.SixSs.net tunnel broker) = IPv6 over UDP over IPv4
+# $aiccu_enable = 0|1 1 is enabled, 0 is disabled even if $aiccu_user/password are configured
+# if aiccu_enabled,then
+#$aiccu_user=foo
+#$aiccu_password=T@#dK
+#$aiccu_tunnel=T1234
+#$aiccu_prefix=2001:db8::  # only prefix, no prefix length
+$aiccu_enable=0
+
+# Hurricane Electric tunnels (www.tunnelbroker.net) = IPv6 over IPv4
+# $he_enable = 0|1 1 is enabled, 0 is disabled even if $he_user/password are configured
+# if he_enable then,
+#$he_client_ipv6=2001:db8:cafe::2 # IPv6 address of the client tunnel interface
+#$he_user=foo
+#$he_password=T@#dK
+#$he_tunnel=1234
+#$he_server_ipv4=192.0.0.2    # The IPv4 address of the tunnel broker
+#$he_prefix=2001:db8::  # only prefix, no prefix length
+$he_enable=0
+
+# IPv6 firewall settings 
+# $ipv6_firewall = 0 (disabled) |
+#                  1 (enabled, full protection similar to IPv4) | 
+#                  2 (enabled, with access to IPv6 servers allowed from WAN to LAN)
+$ipv6_firewall=1
+
+# NDP Proxy for IPv6
+# $ipv6_ndp_proxy_enable = 0|1  1 is enabled, 0 is disabled
+$ipv6_ndp_proxy_enable=0
+
+# USB Management
+#---------------
+# UsbPortCount
+# UsbPort_x  : namespace for following fields. x = 1 to UsbPortCount
+# namespace::name
+# namespace::friendly_name
+# namespace::supported_modes
+# namespace::current_mode
+$UsbPortCount=2
+$UsbPort_1=usb_1
+$usb_1::friendly_name="USB 1"
+$usb_1::supported_modes="virtualUSB storage"
+$usb_1::current_mode=detect
+$UsbPort_2=usb_2
+$usb_2::friendly_name="USB 2"
+$usb_2::supported_modes="virtualUSB storage"
+$usb_2::current_mode=detect
+
+# Rip
+#----
+# $rip_enabled 1 , 0 is disabled
+# $rip_no_split_horizon 1 , 1 means dont use split horizon
+# $rip_interface_wan 0|1, 0 means disable rip on the wan interface
+# $rip_interface_lan 0|1, 0 means disable rip on the lan interface
+$rip_enabled=0
+
+# Logging
+# -------
+# $log_level=[0|1|2]
+#      0 - disabled 
+#      1 - default log
+#      2 - extra log
+#      3 - debug log
+# syslog level=1 to 8
+#      1 - Emergency
+#      2 - Alert
+#      3 - Critical
+#      4 - Error
+#      5 - Warning (maps to 0 - disabled)
+#      6 - Notice  (maps to 1 - normal logging)
+#      7 - Info
+#      8 - Debug   (maps to 2 - debug logging)
+# $log_remote=0|<ip-addr>:[port]
+$log_level=1
+$log_remote=0
+
+# Firewall traffic logging
+# fw_log_level=[0 | 1]
+#      0 - disabled (default)
+#      1 - log all pkts (both dropped & accepted)
+#      2 - log pkt drops  (future use)
+#      3 - log pkt accepts (future use)
+$fw_log_level=0
+$fw_log_limit_rate=30/minute
+$fw_log_limit_burst=100
+
+# Quality of Service
+#------------------
+$qos_enable=0
+$qos_auto_prioritize_enable=1
+
+# NAS ( SMB & FTP ) Shared Folders
+#------------------
+$ftp_server_name=
+$SharedFolderCount=0
+$FTPFolderCount=0
+$SharedFolderWorkgroup=Workgroup
+$ftp_enabled=0
+$ftp_base_dir=/tmp/ftp
+$ftp_port=21
+$ftp_encoding=0
+$ftp_anon_enabled=1
+# Samba usb storage filesystem
+$smb_enabled=1
+$smb_server_name=
+$SharedFolderAnonEna=1
+
+# Media Server Settings
+$MedFolderCount=0
+#$media_server_name=LinksysHomeMedia
+$media_server_name=
+$media_server_scan_time=120
+$media_server_port=9999
+$media_server_enabled=1
+$media_server_default_share=/mnt
+$media_server_web_enabled=2
+$last_scan_time=Not Available
+#end of media server default configuration
+
+
+# NAT-Pmp
+# -------
+# NAT-Pmp can be explicitly turned off by setting natpmp_enabled 0
+$natpmp_enabled=1
+
+# MDNSD
+# -------
+# mdnsd can be explicitly turned off by setting mdnsd_enabled 0
+$mdnsd_enabled=1
+
+#
+# Guest Access Support
+#
+# Enabled/Disabled
+$guest_enabled=0
+$wl0_guest_enabled=1
+$wl1_guest_enabled=1
+
+# guest bridge interface name
+$guest_lan_ifname=br1
+
+# Wifi physical interface name used in syscfg for guest AP
+$guest_wifi_phy_ifname=wl0
+$wl1_guest_wifi_phy_ifname=wl1
+
+# suffix to use to generate Guest SSID
+$guest_ssid_suffix=-guest
+
+# guest SSID (drived from main ssid for the default)
+$guest_ssid=
+$wl1_guest_ssid=
+
+# broadcast guest SSID
+$guest_ssid_broadcast=1
+$wl1_guest_ssid_broadcast=1
+
+# default access password
+$guest_password=BeMyGuest
+$wl1_guest_password=BeMyGuest
+
+# maximum number of guests
+$guest_max_allowed=5
+
+# hard limit on maximum number of guests
+$guest_max_allowed_limit=50
+
+# account duration in hours
+$guest_max_duration=24
+
+# guest subnet
+$guest_subnet=192.168.3.0
+
+# guest bridge IP address
+#    if unset then a random rfc 1918 address will be assigned
+$guest_lan_ipaddr=192.168.3.1
+
+# guest bridge IP netmask
+$guest_lan_netmask=255.255.255.0
+
+# guest dhcp start
+$guest_dhcp_start=100
+
+# guest dhcp lease time, 1 hour
+$guest_dhcp_lease_time=3600
+
+# guest redirector listening port 
+$guest_redirector=51000
+
+# guest authentication port. It should be matched with "IGNORE-PORT" in lighttpd configuration.
+$guest_auth_port=10080
+
+# guest activity logging
+$guest_logging=1
+
+# guest vlan id 
+$guest_vlan_id=3
+
+## end of Guest Access Support
+
+#
+# Parental Control Support
+#
+
+# Enabled/Disabled
+$parental_control_enabled=0
+
+# Parental Control access password.
+$parental_control_password=
+
+$parental_control_security_question=
+
+$parental_control_security_answer=
+
+#count of number of parental control policies
+$parental_control_policy_count=0
+
+# TAV serial number. SN returns from entitlement server when activated. Default must be empty string.
+$parental_control_tav_sn=
+
+# TAV SN expiration date as seconds since "1970/01/01 00:00:00".
+$parental_control_expired_date=
+
+# WTP adjustment level. Range from 0 to 100.
+$parental_control_WTP_level=65
+
+# WTP on/off
+$parental_control_WTP_enabled=1
+
+# PC on/off
+$parental_control_pc_enabled=1
+
+# Default policy for devices in primary network. 0(disable), 1~256(policy).
+$parental_control_default_policy=0
+
+# Default policy for devices in guest network. 0(disable), 1~256(policy).
+$parental_control_guest_default_policy=0
+
+# SWS override duration in seconds.
+$parental_control_sws_duration = 900
+
+$parental_control_firstaccesspolicynumber=1
+$parental_control_accesspolicynumber=1
+$parental_control_maxpolicynumber= 14
+$parental_control_maxpolicyname= 32
+$parental_control_maxapplieddevicelist= 10
+$parental_control_maxblockedurlarray= 10
+$parental_control_maxblockedurlstring= 32
+$parental_control_maxblockedkeywordarray= 0
+$parental_control_maxblockedkeywordstring= 0
+$parental_control_maxblockedcategoryarray= 0
+
+## end of Parental Control Support
+
+#
+# Redirect/Redirector
+#
+
+# Turn on/off verbose mode. 0(disable), 1(enable). Only for debug build.
+$redirector_verbose=0
+
+# Redirect port for parental control time blocking.
+$redirect_port_pc_time=9000
+
+# Redirect port for parental control domain blocking.
+$redirect_port_pc_domain=9001
+
+# Redirect port for parental control Safe Web Surfing blocking.
+$redirect_port_pc_sws=9002
+
+# Redirect port for automatic configuration.
+$redirect_port_setup=9003
+
+# Redirect port for blocked application.
+$redirect_port_pc_app=9004
+
+## end of Redirect/Redirector
+
+#
+# Guardian
+#
+
+# Turn on/off verbose mode. 0(disable), 1(enable).
+$guardian_verbose=0
+
+# Turn on/off trace mode. 0(disable), 1(enable). Logged in /tmp/guardian_trace.log when enabled.
+$guardian_trace=0
+
+# Guardian database name.
+$guardian_database=/var/run/guardian.db
+
+# Threads to query Trend server. 0(disable), 1~10(number of prefetchers)
+$guardian_prefetcher=5
+
+# System whitelist. It overrides port, time, domain and sws policy.
+$guardian_system_whitelist=/etc/guardian/system_whitelist
+
+# Global whitelist. It overrides domain and sws policies.
+$guardian_global_whitelist=/etc/guardian/global_whitelist
+
+# Wireless whitelist. It overrides wireless security policy.
+$guardian_wireless_whitelist=/etc/guardian/wireless_whitelist
+
+# Keep dns records up to the count in database. 1000~5000(dns records).
+$guardian_max_dns_count=2000
+
+# Script for registering iptables' rules.
+$guardian_register_sh=/etc/guardian/register.sh
+
+# Script for unregistering iptables' rules.
+$guardian_unregister_sh=/etc/guardian/unregister.sh
+
+# File types which is allowed always.
+$guardian_file_override=.js .css .ico .jpg .png .gif .tif .swf
+
+# Netfilter queue number for capturing http request packets.
+$guardian_queue_num_http_request=10
+
+# Netfilter queue number for capturing dns query packets.
+$guardian_queue_num_dns_query=11
+
+# Netfilter queue number for capturing dns response packets.
+$guardian_queue_num_dns_response=12
+
+# Netfilter queue number for capturing tcp syn packets on www(80/443).
+$guardian_queue_num_tcp_syn_www=13
+
+# Netfilter queue number for redirecting to wireless security welcome page.
+$guardian_queue_num_setup_http=14
+
+# Netfilter queue number for blocking non HTTP in wireless security warning.
+$guardian_queue_num_setup_non_http=15
+
+## end of Guardian
+
+# private local domain
+$private_domain=home.linksys.com
+
+#ldal settings
+#ssid and passphrase are set from apply_system_defaults
+$ldal_wl_ssid=
+$ldal_wl_passphrase=
+$ldal_wl_security_mode=wpa2-personal
+$ldal_wl_vsta=
+$ldal_wl_stamode=
+$ldal_wl_lego_mode=1    
+#$ldal_wl_lego_device_type=LegoPlus
+$ldal_debug=
+$ldal_wl_setup_vap_ssid=ldalsetup
+$wl_use_hostapd=1
+# turn on hostapd debug if needed
+#$wl_hostapd_debug=-dd
+#When finish bring up the wifi phy then reset to true 
+@ldal_wl_phy_up=false
+
+# setup vap
+$svap_vlan_id=4
+
+# ldal_wl_setup_vap_ipaddr
+#    if unset then a random rfc 1918 address will be assigned
+@ldal_wl_setup_vap-openmode=stopped
+#Time out in minute
+$ldal_wl_setup_vap-openmode_timeout=15
+#LDAL database time out in minute
+$ldal_record_timeout=60
+
+# backhaul interface
+#$backhaul_ifname_list=
+$uplink_ifname=eth1
+
+#firmware update
+
+# fwup_autoupdate_flags: 2 for auto on, 0 for auto off
+# based on SKU, apply_system_defaults set it
+$fwup_autoupdate_flags=
+$fwup_periodic_checktime=0
+$fwup_checklimit=14400
+$fwup_server_uri=https://update1.linksys.com/cds/update
+$fwup_dev_server_uri=https://update1-stage.linksys.com/cds/update
+$fwup_lastsuccess_checktime=0
+$fwup_version_compare=0
+#end of bootstrap dns service
+
+#Web UI LED Rear Port
+# 1 - on, 0 - off
+$led_ui_rearport=1
+
+# CTF is not supported on Marvell platform
+$ctf_support=0
+$ctf_enable=0
+
+$sip_alg_enabled=0
+
+# Temporary work-around for problem with captive setup
+# Captive Setup is supposed to get disabled once the system is
+# configured to a certain minimal degree.  The mechanism is to set the
+# syscfg variable "device_is_configured" to 1.
+# However, this fails to happen when configuring via Cisco Connect.
+#$device_is_configured=1
+
+# samba is supported on viper 
+$samba_server_enabled = 1
+
+$wl0_txbf_enabled=1
+
+# The Belkin ICC algorithm uses active means to detect if the internet
+# is accessible
+$belkin_icc_enabled = 1
+
+$pptpd::enabled=0
+$pptpd::debug=0
+$pptpd::localip=172.16.0.1
+$pptpd::remoteip=172.16.0.10
+$pptpd::mdnsip=172.16.0.1
+$pptpd::use_mppe=1
+$pptpd::use_netbios=1
+
+# ----- wifi_scheduler::frequence is not configurable by the user --------
+$wifi_scheduler::frequency=5
+#-------------------------------------------------------------------------
+# wifi scheduler rules from 12AM to 12PM, defaults to all "allow"
+$wifi_scheduler::enabled=0
+$wifi_scheduler::if_enabled=
+$wifi_scheduler::sunday_time_blocks=111111111111111111111111111111111111111111111111
+$wifi_scheduler::monday_time_blocks=111111111111111111111111111111111111111111111111
+$wifi_scheduler::tuesday_time_blocks=111111111111111111111111111111111111111111111111
+$wifi_scheduler::wednesday_time_blocks=111111111111111111111111111111111111111111111111
+$wifi_scheduler::thursday_time_blocks=111111111111111111111111111111111111111111111111
+$wifi_scheduler::friday_time_blocks=111111111111111111111111111111111111111111111111
+$wifi_scheduler::saturday_time_blocks=111111111111111111111111111111111111111111111111
+
+# VLAN
+$vlan_tagging::enabled=0
+
+#############################
+# WiFi Bridge 
+#############################
+$wifi_bridge::mode=0
+
+# Supported security types
+$wifi_bridge::wl0_supported_sec_types=none wpa-personal wpa2-personal wpa-mixed
+$wifi_bridge::wl1_supported_sec_types=none wpa-personal wpa2-personal wpa-mixed 
+
+#############################
+# VPN
+#############################
+$vpn_max_users=25
+$vpn_max_connections=5
+
+#MTD named partition for oops and panic log
+$mtd.for.panic=sysdiag
+#MTD Offset of that partition if not at the top, for example, mtdoffset=131072
+$mtd.for.panic.offset=0
+
+# Flag indicating whether the user has consented to allow the automatic uploading of data
+# to the Linksys cloud, when certain system events occur.
+$user_consented_data_upload=0
+
+# Settings for collecting and uploading diagnostics data.
+$diagnostics::auto_upload_enabled=1
+$diagnostics::auto_upload_data_types=sysinfo crashinfo
+$diagnostics::sysinfo_periodic_upload_enabled=0
+$diagnostics::sysinfo_upload_interval=daily
+#
+# UI settings for Rainier production
+#
+
+# httpd logging level
+# 0 - disabled, 1 - informational (default), 2 - verbose
+$httpd_log_level=1
+
+# The hostname (and port) of the server to proxy requests for the "remote" ui to.
+# Note that the patch to support DNS resolution in lighttpd's mod_proxy is required
+# to use non-numerical (i.e. non-IP address) hostname here. The patch currently exists and
+# is applied.
+$ui::remote_host=cloud1.linksyssmartwifi.com
+$ui::remote_port=443
+# Use an SSL tunnel for remote ui requests?
+$ui::remote_stunnel=1
+# The stunnel port to proxy remote ui requests to (the local port stunnel will accept connections on)
+$ui::remote_stunnel_port=8081
+# Verify the remote ui server's certificate is valid?
+$ui::remote_stunnel_verify=1
+
+# Disable remote ui (i.e. always serve the local ui)?
+# NOTE: This value is overriden in the Makefile for CD-based SKUs (Audi, Bentley, Carrer, & Viper)
+$ui::remote_disabled=1
+
+#
+# Cloud settings
+#
+
+# The hostname (and port) of the server to proxy requests for "cloud" web service calls to.
+# Note that the patch to support DNS resolution in lighttpd's mod_proxy is required
+# to use non-numerical (i.e. IP address) hostname here. The patch currently exists and
+# is applied.
+$cloud::host=cloud1.linksyssmartwifi.com
+$cloud::port=443
+# Use an SSL tunnel for cloud requests?
+$cloud::stunnel=1
+# The stunnel port to proxy cloud requests to (the local port stunnel will accept connections on)
+$cloud::stunnel_port=8082
+# Verify the remote cloud server's certificate is valid?
+$cloud::stunnel_verify=1
+
+#
+# XMPP settings
+#
+
+# The XMPP host that XRAC connects to
+$xmpp_host=xmpp.linksyssmartwifi.com
+# The XMPP server port that XRAC connects to
+$xmpp_port=5222
+# Boolean flag to enable/disable XRAC logging
+$xmpp_logging=0
+
+#
+# Host for router status/heartbeat service 
+#
+$routerstatus::host=heartbeat.linksyssmartwifi.com
+# defaults for remote (media) access
+
+# also see $media_server_port=9999
+
+# sessions
+$ra_maxsessions=20
+$ra_maxsessiontimeout=1200
+
+# proxy via lighttpd
+$ra_httpproxyport=10000
+$ra_httpsproxyport=10001
+$ra_maxproxyrules=20
+$ra_maxaclsperrule=10
+
+# port forwarding
+$ra_maxruledescription=20
+$ra_maxsingleportrules=20
+$ra_maxportrangerules=20
+$ra_maxipv6rules=20

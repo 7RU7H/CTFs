@@ -1,0 +1,34 @@
+#!/bin/sh
+#
+# This script will change the current boot partition.
+# In effect this should revert the unit to the previous firmware.
+
+pidof fwupd > /dev/null
+if [ $? = "0" ] ; then
+	echo -e "Failed.  Cannot restore to the previous version due to running fwupd"
+	exit 1
+fi
+
+pidof update > /dev/null
+if [ $? = "0" ] ; then
+	echo -e "Failed.  Cannot restore to the previous version due to running manual update"
+	exit 1
+fi
+
+CURRENT_BOOT_IMAGE=`syscfg get fwup_boot_part`
+if [ $CURRENT_BOOT_IMAGE -eq 1 ] ; then
+  fw_setenv boot_part_ready 3
+  fw_setenv boot_part 2
+#  fw_setenv bootcmd 'run altnandboot'
+elif [ $CURRENT_BOOT_IMAGE -eq 2 ] ; then
+  fw_setenv boot_part_ready 3
+  fw_setenv boot_part 1
+#  fw_setenv bootcmd 'run nandboot'
+else
+  echo "detected odd boot partition $CURRENT_BOOT_IMAGE"
+fi
+# add sync to make sure disk cache is flushed after upgrade
+sync
+
+/sbin/reboot
+

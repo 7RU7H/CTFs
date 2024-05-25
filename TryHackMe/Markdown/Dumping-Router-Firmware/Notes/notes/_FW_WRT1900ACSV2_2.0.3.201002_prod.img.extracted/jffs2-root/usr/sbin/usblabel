@@ -1,0 +1,55 @@
+#!/bin/sh
+
+#######
+#### usblabel.sh
+#### Input: USB device partation name, e.g. sda1, sda2, sda3, etc.
+#### Output: USB device partition label
+#### Return: 0 on sucessful read of partition label 
+####         1 if USB device present but can not read partition label
+####         2 if USB device specifie in Input arguement is not present
+#######
+
+is_invalid()
+{
+	str=$1
+
+	for i in $(seq ${#str})
+	do
+		ch=`echo $str | cut -b $i`
+		d=`printf "%d" "'$ch'"`
+		# simply exclude unicode
+		if [ "$d" -gt 127 -o "$d" -lt 0 ]; then
+			return 1
+		fi
+		# exclude other invalid characters
+		if [ "x$ch" = "x\\" -o "x$ch" = "x/" -o "x$ch" = "x:" -o "x$ch" = "x*" -o "x$ch" = "x?" -o "x$ch" = "x<" -o "x$ch" = "x>" -o "x$ch" = "x|" -o "x$ch" = "x[" -o "x$ch" = "x]" ];then
+			return 1
+		fi
+	done
+
+	return 0
+}
+
+
+BLKID="/sbin/blkid"
+
+LABEL_NAME=`$BLKID -o value -s LABEL /dev/$1`
+if [ ! -z "$LABEL_NAME" ]; then
+	is_invalid "$LABEL_NAME"; RET_CODE=$?
+	# If invalid character found in label, use UUID instead
+	if [ $RET_CODE -eq 1 ]; then
+    	LABEL_NAME=`$BLKID -o value -s UUID /dev/$1`
+		if [ -z "$LABEL_NAME" ]; then
+   			# If label name is not found, use partition name
+   			LABEL_NAME="$1"
+		fi
+	fi
+else
+    LABEL_NAME=`$BLKID -o value -s UUID /dev/$1`
+	if [ -z "$LABEL_NAME" ]; then
+   		# If label name is not found, use partition name
+   		LABEL_NAME="$1"
+	fi
+fi
+
+echo "$LABEL_NAME"

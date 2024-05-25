@@ -1,0 +1,678 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
+<noscript><meta http-equiv="refresh" content="0;url=/ui/1.0.99.201002/dynamic/script-disabled.html"></noscript>
+
+<title>Linksys Smart Wi-Fi</title>
+
+<link type="image/x-icon" rel="icon" href="/favicon.ico" />
+<link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/css/reset.css" />
+<link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/css/connect.css" />
+<link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/css/applet-ui.css" />
+<link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/css/checkbox-radio.css" />
+
+<script type="text/javascript">
+    RAINIER = {};
+</script>
+
+<script type="text/javascript" src="/ui/1.0.99.201002/static/js/lib/jquery.js"></script>
+<script type="text/javascript" src="/ui/1.0.99.201002/static/js/lib/jquery.cookie.js"></script>
+<script type="text/javascript" src="/ui/1.0.99.201002/static/js/lib/webshim/extras/loaders/yepnope.js"></script>
+
+<script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/lib/lodash.js"></script>
+<script type="text/javascript">
+    var lodash = _.noConflict();
+</script>
+<script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/lib/lodash.underscore.js"></script>
+
+<script type="text/javascript" src="/ui/1.0.99.201002/static/js/console.js"></script>
+<script type="text/javascript" src="/ui/1.0.99.201002/static/js/lib/webshim/extras/html5shiv.js"></script>
+<script type="text/javascript" src="/ui/1.0.99.201002/static/js/lib/webshim/extras/modernizr-custom.js"></script>
+<script type="text/javascript" src="/ui/1.0.99.201002/static/js/lib/webshim/polyfiller.js"></script>
+<script type="text/javascript" src="/ui/1.0.99.201002/static/js/browser.js"></script>
+<script type="text/javascript" src="/ui/1.0.99.201002/static/js/shims.js"></script>
+
+<style type="text/css">
+    .form fieldset legend {
+        display: block;
+    }
+
+    .close-button {
+        visibility: hidden;
+    }
+</style>
+
+</head>
+
+<body class="applet-view">
+    <div id="scroll-container">
+        <article id="main">
+            <section id="widget-container">
+                <div id ="widget-shield" style="background:gray;"></div>
+            </section>
+            <section id="nav-container">
+                <div id="nav-cliff">
+                    <div id="nav-shadow">
+                    </div>
+                </div>
+                <nav>
+                    <ul id="main-menu">
+                        <li>
+                            <h2>&nbsp;</h2>
+                            <ul>
+                                <li>&nbsp;</li>
+                                <li>&nbsp;</li>
+                                <li>&nbsp;</li>
+                                <li>&nbsp;</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </section>
+            <section id="applet-container" role="region">
+                <link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/css/advanced-wireless.css">
+                <article id="advancedwireless">
+                    <header>
+                        <h1>Advanced Wireless Settings</h1>
+                        <h4>View and change advanced wireless settings</h4>
+                        <div class="close-button"></div>
+                    </header>
+                    <section class="tab-section setup">
+                        <ul class="tabs">
+                            <li id="24ghz-tab"><span>2.4 GHz</span></li>
+                            <li id="50ghz-tab"><span>5 GHz</span></li>
+                        </ul>
+                        <div class="tab-content form" id="24ghz">
+                            <fieldset class="solid tight">
+                                <legend>2.4 GHz Advanced Wireless:</legend>
+                                <fieldset class="left">
+                                    <div class="row">
+                                        <label>AP Isolation:</label>
+                                        <span class="floatRight">
+                                            <input id="24ghz-apIsolation" type="checkbox" name="settings.apIsolation"/>
+                                            <label for="24ghz-apIsolation">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <div class="row">
+                                        <label>Frame Burst:</label>
+                                        <span class="floatRight">
+                                            <input id="24ghz-frameburst" type="checkbox" name="settings.frameburst"/>
+                                            <label for="24ghz-frameburst">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <div class="row">
+                                        <label>Green Field Preamble:</label>
+                                        <span class="floatRight">
+                                            <input id="24ghz-greenfieldPreamble" type="checkbox" name="settings.greenfieldPreamble"/>
+                                            <label for="24ghz-greenfieldPreamble">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <div class="row">
+                                        <label>HT Duplicate:</label>
+                                        <span class="floatRight">
+                                            <input id="24ghz-htDuplicate" type="checkbox" name="settings.htDuplicate"/>
+                                            <label for="24ghz-htDuplicate">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <div class="row">
+                                        <label>Space Time Block Code:</label>
+                                        <span class="floatRight">
+                                            <input id="24ghz-spaceTimeBlockCode" type="checkbox" name="settings.spaceTimeBlockCode"/>
+                                            <label for="24ghz-spaceTimeBlockCode">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <div class="row">
+                                        <label>Wireless Multimedia Power Save:</label>
+                                        <span class="floatRight">
+                                            <input id="24ghz-wirelessMultimediaPowerSave" type="checkbox" name="settings.wirelessMultimediaPowerSave"/>
+                                            <label for="24ghz-wirelessMultimediaPowerSave">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <div class="row">
+                                        <label>CTS Protection:</label>
+                                        <span class="floatRight">
+                                            <input id="24ghz-ctsProtection" type="checkbox" name="settings.ctsProtection"/>
+                                            <label for="24ghz-ctsProtection">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <div class="row">
+                                        <label>Protected Management Frame:</label>
+                                        <span class="floatRight">
+                                            <input id="24ghz-pmfEnabled" type="checkbox" name="settings.pmfEnabled" />
+                                            <label for="24ghz-pmfEnabled">Enabled</label>
+                                        </span>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="right tight">
+                                    <div class="row">
+                                        <label for="24ghz-wepAuthentication">WEP Authentication:</label>
+                                        <select id="24ghz-wepAuthentication" class="dropdown" name="settings.wepAuthentication">
+                                            <option value="Auto">Auto</option>
+                                            <option value="Open">Open</option>
+                                            <option value="SharedKey">SharedKey</option>
+                                        </select>
+                                    </div>
+                                    <div class="row">
+                                        <label for="24ghz-basicRate">Basic Rate:</label>
+                                        <select id="24ghz-basicRate" class="dropdown" name="settings.basicRate">
+                                            <option value="Default">Default</option>
+                                            <option value="All">All</option>
+                                            <option value="802.11bCompatible">802.11bCompatible</option>
+                                        </select>
+                                    </div>
+                                    <div class="row">
+                                        <label for="24ghz-supportedRatesMbps">Transmission Rate:</label>
+                                        <select id="24ghz-supportedRatesMbps" class="dropdown" name="settings.rateMbps">
+                                        </select>
+                                    </div>
+                                    <div class="row">
+                                        <label for="24ghz-supportedNRatesMbps">N Transmission Rate:</label>
+                                        <select id="24ghz-supportedNRatesMbps" class="dropdown" name="settings.nRateMbps">
+                                        </select>
+                                    </div>
+                                    <div class="row">
+                                        <label for="24ghz-transmissionPower">Transmission Power:</label>
+                                        <select id="24ghz-transmissionPower" class="dropdown" name="settings.transmissionPower">
+                                            <option value="Low">Low</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="High">High</option>
+                                        </select>
+                                    </div>
+                                    <div class="row broadcom">
+                                        <label for="24ghz-sidebandSelection">Sideband Selection:</label>
+                                        <select id="24ghz-sidebandSelection" class="dropdown" name="settings.sidebandSelection">
+                                            <option value="Auto">Auto</option>
+                                            <option value="Upper">Upper</option>
+                                            <option value="Lower">Lower</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                            </fieldset>
+                            <fieldset class="solid tight">
+                                <div class="row">
+                                    <label>Beacon Interval:</label>
+                                    <span>
+                                        <input id="24ghz-beaconIntervalMilliseconds" name="settings.beaconIntervalMilliseconds" type="text" /> (Default: 100, Milliseconds, Range: 1 - 65535)
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <label>DTIM Interval:</label>
+                                    <span>
+                                        <input id="24ghz-dtimIntervalMilliseconds" name="settings.dtimIntervalMilliseconds" type="text" /> (Default: 1, Range: 1 - 255)
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <label>Fragmentation Threshold:</label>
+                                    <span>
+                                        <input id="24ghz-fragmentationThresholdBytes " name="settings.fragmentationThresholdBytes" type="text" /> (Default: 2346, Range: 256 - 2346)
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <label>RTS Threshold:</label>
+                                    <span>
+                                        <input id="24ghz-rtsThresholdBytes" name="settings.rtsThresholdBytes" type="text" /> (Default: 2347, Range: 0 - 2347)
+                                    </span>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="tab-content form" id="50ghz">
+                            <fieldset class="solid tight">
+                                <legend>5 GHz Advanced Wireless:</legend>
+                                <fieldset class="left tight">
+                                    <div class="row">
+                                        <label>AP Isolation:</label>
+                                        <span class="floatRight">
+                                            <input id="50ghz-apIsolation" type="checkbox" name="settings.apIsolation"/>
+                                            <label for="50ghz-apIsolation">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <div class="row">
+                                        <label>Frame Burst:</label>
+                                        <span class="floatRight">
+                                            <input id="50ghz-frameburst" type="checkbox" name="settings.frameburst"/>
+                                            <label for="50ghz-frameburst">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <div class="row">
+                                        <label>Green Field Preamble:</label>
+                                        <span class="floatRight">
+                                            <input id="50ghz-greenfieldPreamble" type="checkbox" name="settings.greenfieldPreamble"/>
+                                            <label for="50ghz-greenfieldPreamble">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <div class="row">
+                                        <label>HT Duplicate:</label>
+                                        <span class="floatRight">
+                                            <input id="50ghz-htDuplicate" type="checkbox" name="settings.htDuplicate"/>
+                                            <label for="50ghz-htDuplicate">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <div class="row">
+                                        <label>Space Time Block Code:</label>
+                                        <span class="floatRight">
+                                            <input id="50ghz-spaceTimeBlockCode" type="checkbox" name="settings.spaceTimeBlockCode"/>
+                                            <label for="50ghz-spaceTimeBlockCode">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <div class="row">
+                                        <label>Wireless Multimedia Power Save:</label>
+                                        <span class="floatRight">
+                                            <input id="50ghz-wirelessMultimediaPowerSave" type="checkbox" name="settings.wirelessMultimediaPowerSave"/>
+                                            <label for="50ghz-wirelessMultimediaPowerSave">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <div class="row">
+                                        <label>CTS Protection:</label>
+                                        <span class="floatRight">
+                                            <input id="50ghz-ctsProtection" type="checkbox" name="settings.ctsProtection"/>
+                                            <label for="50ghz-ctsProtection">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <div class="row">
+                                        <label>Protected Management Frame:</label>
+                                        <span class="floatRight">
+                                            <input id="50ghz-pmfEnabled" type="checkbox" name="settings.pmfEnabled" />
+                                            <label for="50ghz-pmfEnabled">Enabled</label>
+                                        </span>
+                                    </div>
+
+                                </fieldset>
+                                <fieldset class="right tight">
+                                    <div class="row">
+                                        <label for="50ghz-wepAuthentication">WEP Authentication:</label>
+                                        <select id="50ghz-wepAuthentication" class="dropdown" name="settings.wepAuthentication">
+                                            <option value="Auto">Auto</option>
+                                            <option value="Open">Open</option>
+                                            <option value="SharedKey">SharedKey</option>
+                                        </select>
+                                    </div>
+                                    <div class="row">
+                                        <label for="50ghz-basicRate">Basic Rate:</label>
+                                        <select id="50ghz-basicRate" class="dropdown" name="settings.basicRate">
+                                            <option value="Default">Default</option>
+                                            <option value="All">All</option>
+                                            <option value="802.11bCompatible">802.11bCompatible</option>
+                                        </select>
+                                    </div>
+                                    <div class="row">
+                                        <label for="50ghz-supportedRatesMbps">Transmission Rate:</label>
+                                        <select id="50ghz-supportedRatesMbps" class="dropdown" name="settings.rateMbps">
+                                        </select>
+                                    </div>
+                                    <div class="row">
+                                        <label for="50ghz-supportedNRatesMbps">N Transmission Rate:</label>
+                                        <select id="50ghz-supportedNRatesMbps" class="dropdown" name="settings.nRateMbps">
+                                        </select>
+                                    </div>
+                                    <div class="row">
+                                        <label for="50ghz-transmissionPower">Transmission Power:</label>
+                                        <select id="50ghz-transmissionPower" class="dropdown" name="settings.transmissionPower">
+                                            <option value="Low">Low</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="High">High</option>
+                                        </select>
+                                    </div>
+                                    <div class="row broadcom">
+                                        <label for="50ghz-sidebandSelection">Sideband Selection:</label>
+                                        <select id="50ghz-sidebandSelection" class="dropdown" name="settings.sidebandSelection">
+                                            <option value="Auto">Auto</option>
+                                            <option value="Upper">Upper</option>
+                                            <option value="Lower">Lower</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                            </fieldset>
+                            <fieldset class="solid tight">
+                                <div class="row">
+                                    <label>Beacon Interval:</label>
+                                    <span>
+                                        <input id="50ghz-beaconIntervalMilliseconds" name="settings.beaconIntervalMilliseconds" type="text" /> (Default: 100, Milliseconds, Range: 1 - 65535)
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <label>DTIM Interval:</label>
+                                    <span>
+                                        <input id="50ghz-dtimIntervalMilliseconds" name="settings.dtimIntervalMilliseconds" type="text" /> (Default: 1, Range: 1 - 255)
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <label>Fragmentation Threshold:</label>
+                                    <span>
+                                        <input id="50ghz-fragmentationThresholdBytes " name="settings.fragmentationThresholdBytes" type="text" /> (Default: 2346, Range: 256 - 2346)
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <label>RTS Threshold:</label>
+                                    <span>
+                                        <input id="50ghz-rtsThresholdBytes" name="settings.rtsThresholdBytes" type="text" /> (Default: 2347, Range: 0 - 2347)
+                                    </span>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="tab-content form AdvancedBroadcom" id="broadcom">
+                            <fieldset class="solid tight">
+                                <legend>Broadcom specific:</legend>
+                                <fieldset class="left tight">
+                                    <div class="row AdvancedBroadcom">
+                                        <label>BRCM's Multicast:</label>
+                                        <span class="floatRight">
+                                            <input id="advancedsettings.multicastForwarding" type="checkbox" name="advancedsettings.multicastForwarding"/>
+                                            <label for="advancedsettings.multicastForwarding">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <div class="row AdvancedBroadcom2">
+                                        <label>Transmit Beam Forming (TXBF):</label>
+                                        <span class="floatRight">
+                                            <input id="txBFSettings.txbfEnabled" type="checkbox" name="txBFSettings.txbfEnabled"/>
+                                            <label for="txBFSettings.txbfEnabled">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <div class="row AdvancedBroadcom3">
+                                        <label>WiFi Certification Support:</label>
+                                        <span class="floatRight">
+                                            <input id="advancedsettings.wifiCertificationSupport" type="checkbox" name="advancedsettings.wifiCertificationSupport" />
+                                            <label for="advancedsettings.wifiCertificationSupport">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <div class="row AdvancedBroadcom4">
+                                        <fieldset class="tight">
+                                            <br/>
+                                            <fieldset class="tight">
+                                                <legend>5 GHz</legend>
+                                                <fieldset class="left tight">
+                                                    <div class="row">
+                                                        <label>MU-MIMO Enabled:</label>
+                                                        <span class="floatRight">
+                                                            <input id="brcm_radio50.isMUMIMOEnabled" type="checkbox" name="brcm_radio50.isMUMIMOEnabled" />
+                                                            <label for="brcm_radio50.isMUMIMOEnabled">Enabled</label>
+                                                        </span>
+                                                    </div>
+                                                </fieldset>
+                                                <br/>
+                                                <legend>5 GHz<sup>2</sup></legend>
+                                                <fieldset class="left tight">
+                                                    <div class="row">
+                                                        <label>MU-MIMO Enabled:</label>
+                                                        <span class="floatRight">
+                                                            <input id="brcm_radio50_2.isMUMIMOEnabled" type="checkbox" name="brcm_radio50_2.isMUMIMOEnabled" />
+                                                            <label for="brcm_radio50_2.isMUMIMOEnabled">Enabled</label>
+                                                        </span>
+                                                    </div>
+                                                </fieldset>
+                                            </fieldset>
+                                        </fieldset>
+                                    </div>
+                                </fieldset>
+                            </fieldset>
+                        </div>
+                        <div class="tab-content form AdvancedMarvell" id="marvell">
+                            <fieldset class="solid tight">
+                                <legend>Marvell specific:</legend>
+                                <fieldset class="left tight AdvancedMarvell1">
+                                    <div class="row AdvancedMarvell">
+                                        <label>Transmit Beam Forming (TXBF):</label>
+                                        <span class="floatRight">
+                                            <input id="txBFSettings.txbfEnabled" type="checkbox" name="txBFSettings.txbfEnabled" />
+                                            <label for="txBFSettings.txbfEnabled">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <br />
+                                    <div class="row AdvancedMarvell">
+                                        <label>TXBF 3x3 Streams Only:</label>
+                                        <span class="floatRight">
+                                            <input id="txBFSettings.txbf3x3Only" type="checkbox" name="txBFSettings.txbf3x3Only" />
+                                            <label for="txBFSettings.txbf3x3Only">Enabled</label>
+                                        </span>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="left tight AdvancedMarvell2">
+                                    <br/>
+                                    <legend>2.4 GHz</legend>
+                                    <fieldset class="left tight">
+                                        <div class="row AdvancedMarvell2">
+                                            <label>Transmit Beam Forming (TXBF):</label>
+                                            <span class="floatRight">
+                                                <input id="radio24.isTxBFEnabled" type="checkbox" name="radio24.isTxBFEnabled" />
+                                                <label for="radio24.isTxBFEnabled">Enabled</label>
+                                            </span>
+                                        </div>
+                                        <div class="row AdvancedMarvell2">
+                                            <label>TXBF 3x3 Streams Only:</label>
+                                            <span class="floatRight">
+                                                <input id="radio24.isTxBF3x3Only" type="checkbox" name="radio24.isTxBF3x3Only" />
+                                                <label for="radio24.isTxBF3x3Only">Enabled</label>
+                                            </span>
+                                        </div>
+                                        <div class="row AdvancedMarvell2 mu-mimo">
+                                            <label>MU-MIMO Enabled:</label>
+                                            <span class="floatRight">
+                                                <input id="radio24.isMUMIMOEnabled" type="checkbox" name="radio24.isMUMIMOEnabled" />
+                                                <label for="radio24.isMUMIMOEnabled">Enabled</label>
+                                            </span>
+                                        </div>
+                                    </fieldset>
+                                </fieldset>
+                                <fieldset class="right tight AdvancedMarvell2">
+                                    <br/>
+                                    <legend>5 GHz</legend>
+                                    <fieldset class="left tight">
+                                        <div class="row AdvancedMarvell2">
+                                            <label>Transmit Beam Forming (TXBF):</label>
+                                            <span class="floatRight">
+                                                <input id="radio50.isTxBFEnabled" type="checkbox" name="radio50.isTxBFEnabled" />
+                                                <label for="radio50.isTxBFEnabled">Enabled</label>
+                                            </span>
+                                        </div>
+                                        <div class="row AdvancedMarvell2">
+                                            <label>TXBF 3x3 Streams Only:</label>
+                                            <span class="floatRight">
+                                                <input id="radio50.isTxBF3x3Only" type="checkbox" name="radio50.isTxBF3x3Only" />
+                                                <label for="radio50.isTxBF3x3Only">Enabled</label>
+                                            </span>
+                                        </div>
+                                        <div class="row AdvancedMarvell2 mu-mimo">
+                                            <label>MU-MIMO Enabled:</label>
+                                            <span class="floatRight">
+                                                <input id="radio50.isMUMIMOEnabled" type="checkbox" name="radio50.isMUMIMOEnabled" />
+                                                <label for="radio50.isMUMIMOEnabled">Enabled</label>
+                                            </span>
+                                        </div>
+                                    </fieldset>
+                                </fieldset>
+                            </fieldset>
+                        </div>
+                        <div class="tab-content form AdvancedQualcomm" id="qualcomm">
+                            <legend style="font-weight: bold; font-size: 12pt;">Qualcomm specific:</legend>
+                            <br/>
+                            <fieldset class="solid tight">
+                                <br/>
+                                <legend>2.4 GHz</legend>
+                                <fieldset class="left tight">
+                                    <div class="row AdvancedQualcomm">
+                                        <label>Transmit Beam Forming (TXBF):</label>
+                                        <span class="floatRight">
+                                            <input id="qca_radio24.isTxBFEnabled" type="checkbox" name="qca_radio24.isTxBFEnabled" />
+                                            <label for="qca_radio24.isTxBFEnabled">Enabled</label>
+                                        </span>
+                                    </div>
+                                </fieldset>
+                            </fieldset>
+                            <fieldset class="solid tight">
+                                <br/>
+                                <legend>5 GHz<sub>1</sub></legend>
+                                <fieldset class="left tight">
+                                    <div class="row AdvancedQualcomm">
+                                        <label>Transmit Beam Forming (TXBF):</label>
+                                        <span class="floatRight">
+                                            <input id="qca_radio50.isTxBFEnabled" type="checkbox" name="qca_radio50.isTxBFEnabled" />
+                                            <label for="qca_radio50.isTxBFEnabled">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <br />
+                                    <div class="row AdvancedQualcomm2">
+                                        <label>MU-MIMO Enabled:</label>
+                                        <span class="floatRight">
+                                            <input id="qca_radio50.isMUMIMOEnabled" type="checkbox" name="qca_radio50.isMUMIMOEnabled" />
+                                            <label for="qca_radio50.isMUMIMOEnabled">Enabled</label>
+                                        </span>
+                                    </div>
+                                </fieldset>
+                            </fieldset>
+                            <fieldset class="solid tight hasBandSteering">
+                                <br/>
+                                <legend>5 GHz<sub>2</sub></legend>
+                                <fieldset class="left tight">
+                                    <div class="row AdvancedQualcomm">
+                                        <label>Transmit Beam Forming (TXBF):</label>
+                                        <span class="floatRight">
+                                            <input id="qca_radio50_2.isTxBFEnabled" type="checkbox" name="qca_radio50_2.isTxBFEnabled" />
+                                            <label for="qca_radio50_2.isTxBFEnabled">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <br />
+                                    <div class="row AdvancedQualcomm2 hasBandSteering">
+                                        <label>MU-MIMO Enabled:</label>
+                                        <span class="floatRight">
+                                            <input id="qca_radio50_2.isMUMIMOEnabled" type="checkbox" name="qca_radio50_2.isMUMIMOEnabled" />
+                                            <label for="qca_radio50_2.isMUMIMOEnabled">Enabled</label>
+                                        </span>
+                                    </div>
+                                </fieldset>
+                            </fieldset>
+                        </div>
+                        <div class="tab-content form AdvancedMediatek" id="mediatek">
+                            <fieldset class="solid tight">
+                                <legend>Mediatek specific:</legend>
+                                <fieldset class="left tight">
+                                    <div class="row AdvancedMediatek">
+                                        <label>IGMP snooping:</label>
+                                        <span class="floatRight">
+                                            <input id="advancedsettings.isIGMPSnoopingEnabled" type="checkbox" name="advancedsettings.isIGMPSnoopingEnabled" />
+                                            <label for="advancedsettings.isIGMPSnoopingEnabled">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <br />
+                                    <div class="row AdvancedMediatek">
+                                        <label>overlapping BSS Coexistence:</label>
+                                        <span class="floatRight">
+                                            <input id="advancedsettings.isOBSSCoexsistenceEnabled" type="checkbox" name="advancedsettings.isOBSSCoexsistenceEnabled" />
+                                            <label for="advancedsettings.isOBSSCoexsistenceEnabled">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <br />
+                                    <div class="row AdvancedMediatek">
+                                        <label>EDCCA:</label>
+                                        <span class="floatRight">
+                                            <input id="advancedsettings.isEDCCAEnabled" type="checkbox" name="advancedsettings.isEDCCAEnabled" />
+                                            <label for="advancedsettings.isEDCCAEnabled">Enabled</label>
+                                        </span>
+                                    </div>
+                                    <div class="row AdvancedMediatek2">
+                                        <fieldset class="tight">
+                                            <br/>
+                                            <fieldset class="tight">
+                                                <legend>2.4 GHz</legend>
+                                                <fieldset class="left tight">
+                                                    <div class="row">
+                                                        <label>MU-MIMO Enabled:</label>
+                                                        <span class="floatRight">
+                                                            <input id="mtk_radio24.isMUMIMOEnabled" type="checkbox" name="mtk_radio24.isMUMIMOEnabled" />
+                                                            <label for="mtk_radio24.isMUMIMOEnabled">Enabled</label>
+                                                        </span>
+                                                    </div>
+                                                </fieldset>
+                                                <br/>
+                                                <legend>5 GHz</legend>
+                                                <fieldset class="left tight">
+                                                    <div class="row">
+                                                        <label>MU-MIMO Enabled:</label>
+                                                        <span class="floatRight">
+                                                            <input id="mtk_radio50.isMUMIMOEnabled" type="checkbox" name="mtk_radio50.isMUMIMOEnabled" />
+                                                            <label for="mtk_radio50.isMUMIMOEnabled">Enabled</label>
+                                                        </span>
+                                                    </div>
+                                                </fieldset>
+                                            </fieldset>
+                                        </fieldset>
+                                    </div>
+                                </fieldset>
+                            </fieldset>
+                        </div>
+                    </section>
+                    <footer>
+                        <button class="apply">Apply</button>
+                        <button class="revert">Revert</button>
+                    </footer>
+                </article>
+            </section>
+        </article>
+        <div id="header-bg-right"></div>
+        <div id="header-bg-left"></div>
+        <div id="dialog-overlay" class="dialog-overlay" style="display:none"></div>
+        <div id="dialogs"><!-- This will be filled in with contents of dialogs.html --></div>
+    </div>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/globals.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/util.js"></script>
+    <script type="text/javascript">
+        RAINIER.network.uiLoadedFromCloud = function () {
+            return false;
+        }
+    </script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/linksys.js"></script>
+
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-jnap-js/jnap.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-jnap-js/cloud-rest.js"></script>
+
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/side-effects-manager.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/cache-manager.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/symmetry-jnap.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/icon-rules.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/device-manager.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/errorstring-mappings.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/util-guest-access.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/util-lan.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/util-wireless.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/util-wan.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/util-monitors.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/util-nodes.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/util-firmware-update.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/util-network-security.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/symmetry-util.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetry/linksys-symmetry-lib/validation.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/cache/js/symmetryLib.js"></script>
+
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/shared/shared-util.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/data-bind.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/lib/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/shared/shared-ui.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/dynamic/js/ui.js.localized"></script><!-- MUST load prior to ui.js -->
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/ui.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/lib/ui.checkbox.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/help.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/jnap.js"></script>
+    <script type="text/javascript" src="/ui/1.0.99.201002/static/js/advanced-wireless.js"></script>
+    <script type="text/javascript">
+        if (!$.cookie('admin-auth') && !$.cookie('user-auth-token')) { //no auth cookies or oauth fragment
+            //Sets the value to redirect to the advanced-wireless page
+            $.cookie('advanced-wireless', true);
+            window.location.replace('/ui/1.0.99.201002/dynamic/login.html');
+        } else {
+            //Clears the cookie value so it would not redirect in the home.html
+            $.cookie('advanced-wireless', '');
+        }
+        (function () {
+            var b = RAINIER.browser;
+            if (b.isBrowserInvalidMobile()) {
+                window.location.replace('/ui/1.0.99.201002/dynamic/dynamic/mobile-browser-unsupported.html');
+            } else if (b.isBrowserInvalid()) {
+                window.location.replace('/ui/1.0.99.201002/dynamic/dynamic/browser-unsupported.html');
+            } else if (!b.isCookiesEnabled()) {
+                window.location.replace('/ui/1.0.99.201002/dynamic/dynamic/cookies-disabled.html');
+            }
+        } ())
+    </script>
+</body>
+</html>

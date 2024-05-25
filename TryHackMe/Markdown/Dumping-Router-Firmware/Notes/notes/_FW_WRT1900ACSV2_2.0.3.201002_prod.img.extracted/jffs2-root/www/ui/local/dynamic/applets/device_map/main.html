@@ -1,0 +1,791 @@
+<link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/cache/applets/device_map/css/device-list.css"/>
+<link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/cache/applets/device_map/css/add-device.css"/>
+<link type="text/css" rel="stylesheet" href="/ui/1.0.99.201002/static/cache/applets/device_map/css/smartmap.css"/>
+
+<article id="networkmap-applet">
+    <header>
+        <h1>{{dynamic-applets-device_map.b32f2e2e}}</h1>
+        <h4><!-- LSWF-700: Removing sub-heading, per PdM --></h4>
+
+        <div class="close-button"></div>
+        <div class="widget-config">
+           <input type="checkbox" id="cbAddWidget" checked=checked /><label for="cbAddWidget">{{dynamic-applets-device_map.96d3c7d5}}</label>
+        </div>
+    </header>
+    <section class="tab-section">
+        <div id="divTabWrap">
+            <ul class="tabs">
+                <!--<li><span>{{dynamic-applets-device_map.a4601416}}</span></li>
+                <li><span>{{dynamic-applets-device_map.3aa03072}}</span></li>-->
+                <li data-id="online-network"><span id="tab-header-online-network">{{dynamic-applets-device_map.a4601416}}&nbsp;(<span></span>)</span></li>
+                <li data-id="guest-network"><span id="tab-header-guest-network">{{dynamic-applets-device_map.3aa03072}}&nbsp;(<span></span>)</span></li>
+                <div id="shelf-btn-wrapper" class="btn-shelf">
+                    <div class="btn-shelf-lft"></div>
+                    <div id="bw-rpt-btn-wrapper">
+                        <button id="show-bandwidth-report" class="small-green"><img src="/ui/1.0.99.201002/static/cache/images/network_map/BU_glyph_16.png" width="13" height="13" alt="+" />&nbsp;&nbsp;{{dynamic-applets-device_map.8685ac47}}</button>
+                        <div class="btn-shelf-mid"></div>
+                    </div>
+                    <button id="show-add-a-device" class="small-blue"><img src="/ui/1.0.99.201002/static/cache/images/btn_plus.png" width="13" height="13" alt="+" />&nbsp;&nbsp;{{dynamic-applets-device_map.ab503716}}</button>
+                    <div id="clear-devices-btn-wrapper">
+                        <div class="btn-shelf-mid"></div>
+                        <button id="clear-devices" class="small-blue clear-btn" tooltip="{{dynamic-applets-device_map.29cd01f4}}"><img src="/ui/1.0.99.201002/static/cache/applets/device_map/images/clear_16.png" width="16" height="16" alt="{{dynamic-applets-device_map.7edbb162}}" /></button>
+                    </div>
+                    <div class="btn-shelf-mid"></div>
+                    <button id="refresh-devices" class="small-blue refresh" tooltip="{{dynamic-applets-device_map.7edbb162}}"><img src="/ui/1.0.99.201002/static/cache/applets/device_map/images/refresh_glyph.png" width="16" height="16" alt="{{dynamic-applets-device_map.7edbb162}}" /></button>
+                    <div class="btn-shelf-rht"></div>
+                </div>
+                <div class="tab-filler"></div>
+            </ul>
+            <div id="folding-wrapper">
+                <div id="add-a-device" style="display: none;">
+                    <section id="add-device-container" style="display: none;">
+                        <fieldset>
+                            <legend>{{dynamic-applets-device_map.74fe0643}}</legend>
+                            <p>{{dynamic-applets-device_map.302933a1}} <span id="usb-printer-text">{{dynamic-applets-device_map.d6fd5eb5}}</span></p>
+                            <div>
+                                <ul>
+                                    <li id="add-computer">{{dynamic-applets-device_map.4b86071f}}</li>
+                                    <li id="add-wps">{{dynamic-applets-device_map.aaa1615f}}</li>
+                                    <li id="add-other">{{dynamic-applets-device_map.32434f46}}</li>
+                                    <li id="add-usb-printer">{{dynamic-applets-device_map.c369dbce}}</li>
+                                </ul>
+                            </div>
+                            <footer>
+                                <button class="blue back">{{dynamic-applets-device_map.6bd0ab64}}</button>
+                                <button class="blue cancel">{{dynamic-applets-device_map.8f475444}}</button>
+                            </footer>
+                        </fieldset>
+                    </section>
+                    <section id="add-computer-container" style="display: none;">
+                        <fieldset>
+                            <legend>{{dynamic-applets-device_map.1b35bdc7}}</legend>
+                            <p>{{dynamic-applets-device_map.d76b31fb}}</p>
+                            <div>
+                            <ol>
+                                <li id="add-computer-step-1">{{dynamic-applets-device_map.33fbc575}}</li>
+                                <li id="add-computer-step-2">{{dynamic-applets-device_map.03b5a16a}}</li>
+                                <li id="add-computer-step-3">{{dynamic-applets-device_map.28a48c7c}}</li>
+                            </ol>
+                            </div>
+                            <div class="settings-container-wrapper">
+                            </div>
+                            <footer>
+                                <button class="blue back">{{dynamic-applets-device_map.6bd0ab64}}</button>
+                                <button class="blue submit">{{dynamic-applets-device_map.e9b662b3}}</button>
+                            </footer>
+                        </fieldset>
+                    </section>
+                    <section id="add-other-container" style="display: none;">
+                        <fieldset>
+                            <legend>{{dynamic-applets-device_map.2ef7b6f1}}</legend>
+                            <p>{{dynamic-applets-device_map.59d0e41f}}</p>
+                            <ol>
+                                <li id="add-computer-step-1">{{dynamic-applets-device_map.33fbc575}}</li>
+                                <li id="add-computer-step-2">{{dynamic-applets-device_map.22587cfa}}</li>
+                                <li id="add-computer-step-3">{{dynamic-applets-device_map.28a48c7c}}</li>
+                            </ol>
+                            <div class="settings-container-wrapper">
+                            </div>
+                        </fieldset>
+                        <footer>
+                            <button class="blue back">{{dynamic-applets-device_map.6bd0ab64}}</button>
+                            <button class="blue submit">{{dynamic-applets-device_map.e9b662b3}}</button>
+                        </footer>
+                    </section>
+                    <section id="add-usb-printer-container" style="display: none;">
+                        <fieldset>
+                            <legend>{{dynamic-applets-device_map.e6ac3db1}}</legend>
+                            <p>{{dynamic-applets-device_map.499bc5df}}</p>
+                            <p>{{dynamic-applets-device_map.755f9d73}}</p>
+                            <div>
+                                <ol>
+                                    <li>{{dynamic-applets-device_map.bf401bae}}</li>
+                                    <li>{{dynamic-applets-device_map.136b38f7}}</li>
+                                    <li>{{dynamic-applets-device_map.846b5ac1}}</li>
+                                    <li>{{dynamic-applets-device_map.f47faadd}}</li>
+                                </ol>
+                                <p>{{dynamic-applets-device_map.41bafd74}}</p>
+                                <ol>
+                                    <li>{{dynamic-applets-device_map.bf401bae}}</li>
+                                    <li>{{dynamic-applets-device_map.800255ca}}</li>
+                                    <li>{{dynamic-applets-device_map.849d00d0}}</li>
+                                    <li>{{dynamic-applets-device_map.c4f3682e}}</li>
+                                </ol>
+                            </div>
+                        </fieldset>
+                        <footer>
+                            <button class="blue back">{{dynamic-applets-device_map.6bd0ab64}}</button>
+                        </footer>
+                    </section>
+                </div>
+
+                <div id="bandwidth-report" style="display: none;">
+                    <div id="rerun-report-wrapper">
+                        <button id="rerun-report" class="small-blue refresh" tooltip="{{dynamic-applets-device_map.580b998b}}" disabled="true"><img src="/ui/1.0.99.201002/static/cache/applets/device_map/images/refresh_glyph.png" width="16" height="16" alt="{{dynamic-applets-device_map.580b998b}}" /></button>
+                    </div>
+
+                    <section>
+                        <fieldset>
+                            <legend>{{dynamic-applets-device_map.f6b10430}}</legend>
+
+                            <h1>{{dynamic-applets-device_map.82370068}}</h1>
+
+                            <ul>
+                                <li class="filters">
+                                    <div id="filter-wrapper">
+                                        <h3>{{dynamic-applets-device_map.969b54ae}}</h3>
+                                        <ul class="filter-list">
+                                            <li>
+                                                <input type="radio" name="filters" value="totals" id="totalsFilter" checked="checked"> <label for="totalsFilter">{{dynamic-applets-device_map.dfb8dc06}}</label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" name="filters" value="sent" id="sentFilter"> <label for="sentFilter">{{dynamic-applets-device_map.1afd39d3}}</label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" name="filters" value="received" id="receivedFilter"> <label for="receivedFilter">{{dynamic-applets-device_map.b4496101}}</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="list">
+                                    <div id="device-usage" class="no-text-orphans">
+                                        <h3 class="left">{{dynamic-applets-device_map.4a44077b}}&nbsp;<span>(<span></span> {{dynamic-applets-device_map.f577d853}})</span></h3>
+                                    </div>
+
+                                    <div id="total-bar">
+                                    </div>
+
+                                    <div class="device-list">
+                                    </div>
+
+                                    <div id="speedtest-tip">
+                                        <div id="tip-span">{{dynamic-applets-device_map.db59fb9f}}</div>
+                                        <div>{{dynamic-applets-device_map.c66cca0f}}</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </fieldset>
+                        <footer>
+                            <button id="closeBwReport" class="blue back">{{dynamic-applets-device_map.7fdeae92}}</button>
+                        </footer>
+                    </section>
+
+                    <div id="infoGlyphText" style="display: none;">{{dynamic-applets-device_map.5d41ba2a}}</div>
+                </div>
+            </div>
+            <div class="tab-content columns" style="display: none;" id="online-network">
+                <div id="filter-menu" class="collapsed">
+                    <div id='filter-map-button'>
+                        <legend>{{dynamic-applets-device_map.d06ccfca}}<img src="/ui/1.0.99.201002/static/cache/applets/device_map/images/filter-arrow-down.png" /></legend>
+                    </div>
+
+                    <ul id="filter-menu-dropdown">
+                        <li class="menu-children">
+                            <ul>
+                                <li class="heading">{{dynamic-applets-device_map.5be4fd66}}</li>
+                                <li class="filter-device filter-type-computer">
+                                    <div>{{dynamic-applets-device_map.4b86071f}}</div>
+                                </li>
+                                <li class="filter-device filter-type-mobile">
+                                    <div>{{dynamic-applets-device_map.10b4eeed}}</div>
+                                </li>
+                                <li class="filter-device filter-type-printer">
+                                    <div>{{dynamic-applets-device_map.68616892}}</div>
+                                </li>
+                                <li class="filter-device filter-type-other">
+                                    <div>{{dynamic-applets-device_map.7e868aa2}}</div>
+                                </li>
+                                <li class="heading">{{dynamic-applets-device_map.2fd77199}}</li>
+                                <li class="filter-connection filter-type-lan">
+                                    <div>{{dynamic-applets-device_map.af49a9a2}}</div>
+                                </li>
+                                <li class="filter-connection filter-type-wirelessTwo">
+                                    <div>{{dynamic-applets-device_map.1976e32a}}</div>
+                                </li>
+                                <li class="filter-connection filter-type-wirelessFive">
+                                    <div>{{dynamic-applets-device_map.5579bd82}}</div>
+                                </li>
+                                <li class="filter-connection filter-type-wirelessFive-2">
+                                    <div><!-- will be populated programatically --></div>
+                                </li>
+                                <li class="filter-connection filter-type-offline">
+                                    <div>{{dynamic-applets-device_map.a917cc22}}</div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="online-network-main">
+                    <div class="network-main">
+                        <div class="primary-device device-icon this-router large-icon" />
+                        <div id="all-devices" />
+                        <div class="bottom no-text-orphans">
+                            <h3 class="network-name" />
+                        </div><!--.bottom-->
+                    </div><!--.network-main-->
+                </div><!--#online-network-main-->
+            </div><!--#online-network-->
+            <div class="tab-content columns" style="display: none;" id="guest-network">
+                <div id="guest-network-main">
+                    <div class="network-main">
+                        <div class="primary-device device-icon this-router large-icon"/>
+                        <div id="all-guest-devices" />
+                        <div class="bottom no-text-orphans">
+                            <h3 class="network-name no-text-orphans">
+                                <span id="guest-net-label" style="display: none;">{{dynamic-applets-device_map.3aa03072}}</span>
+                                <span class="no-guests" style="display: none;">{{dynamic-applets-device_map.09c636e7}}</span>
+                                <span id="guests-disabled" style="display: none;">{{dynamic-applets-device_map.cc941aba}}</span>
+                            </h3>
+                        </div><!--.bottom-->
+                    </div><!--.network-main-->
+                </div><!--#guest-network-main-->
+            </div><!--.guest-network-->
+        </div><!-- divTabWrap -->
+        <div id="network-footer" style="display: none;">
+            <div id="page-prev" class="network-footer-item slide-back left disabled" />
+            <div class="network-footer-item middle">
+                <h2 id="paging-summary"></h2>
+            </div>
+            <div id="page-next" class="network-footer-item slide-next right disabled" />
+        </div><!--#network-footer-->
+    </section>
+
+
+    <footer>
+        <button class="close-panel">{{dynamic-applets-device_map.e9b662b3}}</button>
+    </footer>
+
+    <div class="dialog-container" style="z-index: -1; display: none;">
+        <div id="cannot-delete-online" class="dialog">
+            <div class="dialog-content">
+                <h2>{{dynamic-applets-device_map.d5885891}}</h2>
+            </div>
+
+            <div class="dialog-buttons">
+                <button class="submit">{{dynamic-applets-device_map.e9b662b3}}</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="dialog-container" style="z-index: -1; display: none;">
+        <div id="device-info" class="dialog no-text-orphans" style="width: 510px;">
+            <div class="dialog-header">
+                <div id="edit-link"><a>{{dynamic-applets-device_map.4a370bdd}}</a></div>
+
+                <div class="icon-block">
+                    <div id="device-icon-wrapper" class="device-icon generic-device">
+                    </div>
+
+                    <a id="change-icon">{{dynamic-applets-device_map.903aaff2}}</a>
+                </div>
+
+                <div id="device-rename">
+                    <div id="device-name">
+                        <h1>{{dynamic-applets-device_map.e5476168}}</h1>
+                    </div>
+
+                    <div id="edit-device-name">
+                        <input type="text" id="name-text" maxlength="255" autocapitalize="none" autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="dialog-content">
+                <div id="divChange">
+                    <div class="dialog-subhead">
+                        {{dynamic-applets-device_map.e5a0dba0}}
+                    </div>
+
+                    <div class="device-icons-wrapper">
+                        <div class="device-icon-box">
+                            <div>
+                                <div class="device-icon desktop-mac" tooltip="{{dynamic-applets-device_map.4a302f6a}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon desktop-pc" tooltip="{{dynamic-applets-device_map.6bb3680d}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon device-router" tooltip="{{dynamic-applets-device_map.ecd8be61}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon digital-camera" tooltip="{{dynamic-applets-device_map.4d8cac5c}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon digital-media-player" tooltip="{{dynamic-applets-device_map.12ecacdb}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon dvr" tooltip="{{dynamic-applets-device_map.3a8be13d}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon game-consoles" tooltip="{{dynamic-applets-device_map.32618a47}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon gateway" tooltip="{{dynamic-applets-device_map.b8228e62}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon generic-cellphone" tooltip="{{dynamic-applets-device_map.78ac4c9c}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon generic-device"tooltip="{{dynamic-applets-device_map.0a8678fc}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon generic-display" tooltip="{{dynamic-applets-device_map.e9a62c23}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon laptop-mac" tooltip="{{dynamic-applets-device_map.041e41a1}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon laptop-pc" tooltip="{{dynamic-applets-device_map.7767a46d}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon media-adapter" tooltip="{{dynamic-applets-device_map.bfd22523}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon net-camera" tooltip="{{dynamic-applets-device_map.c071d3a0}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon net-drive" tooltip="{{dynamic-applets-device_map.6624340e}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon photo-frame" tooltip="{{dynamic-applets-device_map.ee821b19}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon printer-inkjet" tooltip="{{dynamic-applets-device_map.d476054c}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon printer-laser" tooltip="{{dynamic-applets-device_map.f9863da8}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon printer-photo" tooltip="{{dynamic-applets-device_map.88a60843}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon print-server" tooltip="{{dynamic-applets-device_map.aa884c38}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-default" tooltip="{{dynamic-applets-device_map.df804c77}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-ea2700" tooltip="Linksys EA2700"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-ea3500" tooltip="Linksys EA3500"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-ea4500" tooltip="Linksys EA4500"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-ea6100" tooltip="Linksys EA6100"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-ea6200" tooltip="Linksys EA6200"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-ea6300" tooltip="Linksys EA6300"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-ea6350" tooltip="Linksys EA6350"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-ea6400" tooltip="Linksys EA6400"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-ea6500" tooltip="Linksys EA6500"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-ea6700" tooltip="Linksys EA6700"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-ea6900" tooltip="Linksys EA6900"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-ea7400" tooltip="Linksys EA7400"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-ea7500" tooltip="Linksys EA7500"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-ea8300" tooltip="Linksys EA8300"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-ea8500" tooltip="Linksys EA8500"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-ea9200" tooltip="Linksys EA9200"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-ea9300" tooltip="Linksys EA9300"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-ea9500" tooltip="Linksys EA9500"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-wrt1200ac" tooltip="Linksys WRT1200AC"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-wrt1900ac" tooltip="Linksys WRT1900AC"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-whw03" tooltip="Linksys Velop"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-xac1200" tooltip="Linksys XAC1200"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon router-xac1900" tooltip="Linksys XAC1900"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon extender-re7000" tooltip="Linksys RE7000"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon linksys-bridge" tooltip="{{dynamic-applets-device_map.3e00a7c0}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon linksys-extender" tooltip="{{dynamic-applets-device_map.63154739}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon server-mac" tooltip="{{dynamic-applets-device_map.b189dda7}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon server-pc" tooltip="{{dynamic-applets-device_map.d86533d7}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon set-top-box" tooltip="{{dynamic-applets-device_map.1fb156f8}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon smartphone" tooltip="{{dynamic-applets-device_map.61ba0adf}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon tablet-ereader" tooltip="{{dynamic-applets-device_map.7620cb03}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon tablet-pc" tooltip="{{dynamic-applets-device_map.528447e5}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon tv-hdtv" tooltip="{{dynamic-applets-device_map.76940af8}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon voip-phone" tooltip="{{dynamic-applets-device_map.01dce86e}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon wired-bridge" tooltip="{{dynamic-applets-device_map.876d1024}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon amazon-echo" tooltip="Amazon Echo"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon amazon-dot" tooltip="Amazon Dot"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon amazon-tap" tooltip="Amazon Tap"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon apple-homepod" tooltip="Apple HomePod"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon google-home" tooltip="Google Home"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon whirlpool-fridge" tooltip="{{dynamic-applets-device_map.9c46581b}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon automation-hub" tooltip="{{dynamic-applets-device_map.a4275d4c}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon smart-thermostat" tooltip="{{dynamic-applets-device_map.e7a4ae4f}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon media-stick" tooltip="{{dynamic-applets-device_map.11d711b9}}"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon wemo-device" tooltip="WeMo"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon wemo-lightswitch" tooltip="WeMo Light Switch"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon wemo-insight" tooltip="WeMo Insight Switch"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon wemo-netcam" tooltip="NetCamHD"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon wemo-sensor" tooltip="WeMo Sensor"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon wemo-socket" tooltip="WeMo Switch"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon wemo-link" tooltip="WeMo Link"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon wemo-maker" tooltip="WeMo Maker"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon wemo-ledbulb" tooltip="WeMo Smart LED Bulb"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon wemo-mini" tooltip="WeMo Mini Smart Plug"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon smart-crockpot" tooltip="Crock-Pot&#174; Slow Cooker"></div>
+                            </div>
+
+                            <div>
+                                <div class="device-icon smart-mrcoffee" tooltip="Mr. Coffee&#174; Brewer"></div>
+                            </div>
+
+                            <!-- <div>
+                                <div class="device-icon smart-humidifier" tooltip="Holmes&$174; Humidifier"></div>
+                            </div>  -->
+                        </div>
+                    </div>
+                </div>
+
+                <div id="divStats">
+                    <div class="dialog-subhead">
+                        {{dynamic-applets-device_map.a71935ed}}
+                        <div id="fold-up">
+                            <a id="lnkResetDialog"><img src="/ui/1.0.99.201002/static/cache/applets/device_map/images/up-arrow.png" width="13" height="7" alt="" /></a>
+                        </div>
+                    </div>
+
+                    <div class="dialog-content">
+                        <div id="divStatsContent">
+                            <table class="word-break">
+                                <tbody>
+                                    <tr>
+                                        <th nowrap>{{dynamic-applets-device_map.05683e3b}}</th>
+                                        <td rowspan="42">&nbsp;</td>
+                                        <td name="name" width="85%"></td>
+                                    </tr>
+                                    <tr id="mfg-row">
+                                        <th nowrap>{{dynamic-applets-device_map.7372a559}}</th>
+                                        <td name="manufacturer"></td>
+                                    </tr>
+                                    <tr id="model-row">
+                                        <th nowrap>{{dynamic-applets-device_map.2d3fe1c4}}</th>
+                                        <td name="model"></td>
+                                    </tr>
+                                    <tr id="os-row">
+                                        <th nowrap>{{dynamic-applets-device_map.0b9b4bb8}}</th>
+                                        <td name="operatingSystem"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dialog-buttons">
+                <button class="cancel">{{dynamic-applets-device_map.8f475444}}</button>
+                <button class="submit">{{dynamic-applets-device_map.e9b662b3}}</button>
+            </div>
+        </div>
+    </div>
+
+    <div style="display: none;">
+        <div id="templateDevice">
+            <div class="device-container">
+                <div class="device-icon"></div><h2 tooltip="" name="name"></h2><h3 name="isConnected"></h3><div class="close-button"></div>
+            </div>
+        </div>
+
+        <table id="templDeviceConn">
+            <tbody>
+                <tr id="spacer-row">
+                    <td colpsan="3">&nbsp;</td>
+                </tr>
+                <tr id="ip-row">
+                    <th nowrap class="no-select">{{dynamic-applets-device_map.76d751ed}} (<label for="" name="netType"></label>)-<label for="" name="num"></label>:</th>
+                    <td name="ipAddress" dir="ltr"></td>
+                </tr>
+                <tr id="ipv6-row">
+                    <th nowrap class="no-select">{{dynamic-applets-device_map.3acc20e5}} (<label for="" name="netType"></label>)-<label for="" name="num"></label>:</th>
+                    <td name="ipv6Address"></td>
+                </tr>
+                <tr id="mac-row">
+                    <th nowrap>{{dynamic-applets-device_map.2a0f165c}}</th>
+                    <td name="macAddress" dir="ltr"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div id="templatePaging">
+            <span>{{dynamic-applets-device_map.4612ae19}}</span>
+        </div>
+
+        <div id="templateNMDevice">
+            <div class="smartmap-device-element tooltip-top">
+                <div class="device-connection-type"></div>
+                <div class="device-icon" />
+                <p class="truncate-text"><span name="friendlyName"></span></p>
+            </div>
+        </div>
+
+        <div id="templateBWTotalRow">
+            <li id="totalBar">
+                <div class="name">{{dynamic-applets-device_map.363c0dc7}}</div>
+                <div id="ttlMbps">
+                    <div class="left"><span name="ttlmbitspersecond"></span></div>
+                    <div>{{dynamic-applets-device_map.eba16a96}}</div>
+                </div>
+
+                <div id="info-glyph" tooltip="">
+                    <img src="/ui/1.0.99.201002/static/images/badges/info_16.png" width="16" height="16" />
+                </div>
+            </li>
+        </div>
+
+        <div id="templateBWReportRow">
+            <li class="tooltip-top">
+                <span class="device-icon"></span> <div class="name" tooltip=""><span name="friendlyName"></span></div>
+                <div class="bandwidth">
+                    <div class="left"><span name="mbitspersecond"></span></div>
+                    <div>{{dynamic-applets-device_map.eba16a96}}</div>
+                    <div class="graph"><div class="graph-inner"></div></div>
+                </div>
+            </li>
+        </div>
+    </div>
+
+    <div id="clear-list-warning" class="dialog dialog-container" style="z-index: -1; display: none;">
+        <h1>{{dynamic-applets-device_map.29cd01f4}}</h1>
+        <p>{{dynamic-applets-device_map.bdd7039b}}</p>
+    </div>
+
+    <div id="additonalElements" style="display: none;">
+        <!-- Action menu -->
+        <div id="actionMenu">
+            <ul>
+                <li><a id="device-info-lnk">{{dynamic-applets-device_map.76f4e0ba}}</a></li>
+                <li><a id="parental-controls-lnk">{{dynamic-applets-device_map.85fe0a80}}</a></li>
+                <li><a id="dhcp-set-reservation-lnk" class="popmenu-visible">{{dynamic-applets-device_map.aac4445d}}</a></li>
+                <li><a id="dhcp-set-spinner"><img src="/ui/1.0.99.201002/static/cache/images/spinner/Spinner_18.gif" /> <i>{{dynamic-applets-device_map.621065e5}}</i></a></li>
+                <li><a id="dhcp-edit-reservation-lnk">{{dynamic-applets-device_map.baacb893}}</a></li>
+                <li class="separate-lnk"><a id="delete-device-lnk">{{dynamic-applets-device_map.0b8647ba}}</a></li>
+            </ul>
+        </div>
+
+        <div id="radio-settings-template">
+            <div class="settings-container">
+                <label name="labels.band" class="legend"></label>
+                <table>
+                    <tr>
+                        <td class="networkName">{{dynamic-applets-device_map.e57db986}}</td>
+                        <td rowspan="3">&nbsp;</td>
+                        <td nowrap name="settings.ssid"></td>
+                    </tr>
+                    <tr id="password-row" class="wireless-hide-row">
+                        <td>{{dynamic-applets-device_map.1bd12bb4}}</td>
+                        <td nowrap name="settings.wpaPersonalSettings.passphrase"></td>
+                    </tr>
+                    <tr id="key-row" class="wireless-hide-row">
+                        <td>{{dynamic-applets-device_map.0f107115}}</td>
+                        <td nowrap name="settings.wepSettings.key"></td>
+                    </tr>
+                    <tr id="shared-key-row" class="wireless-hide-row">
+                        <td>{{dynamic-applets-device_map.b20376af}}</td>
+                        <td nowrap name="settings.wpaEnterpriseSettings.sharedKey"></td>
+                    </tr>
+                    <tr>
+                        <td>{{dynamic-applets-device_map.a7e49642}}</td>
+                        <td nowrap name="securityText"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="ctf-warning-dialog" style="display: none;">{{dynamic-applets-device_map.0b531935}}</div>
+    <div id="filters-disabled-dialog" style="display: none;">{{dynamic-applets-device_map.acb174e6}}</div>
+</article>
+
+<script type="text/javascript">
+    RAINIER.util.injectScripts([
+        '/ui/1.0.99.201002/static/cache/applets/device_map/js/add-device.js',
+        '/ui/1.0.99.201002/static/cache/applets/device_map/js/device-list.js',
+
+        '/ui/1.0.99.201002/static/cache/js/lib/backbone.js',
+        '/ui/1.0.99.201002/static/cache/applets/device_map/js/smartmap.models.js',
+        '/ui/1.0.99.201002/static/cache/applets/device_map/js/smartmap.views.js',
+        '/ui/1.0.99.201002/static/cache/applets/device_map/js/smartmap.js'
+    ]);
+</script>

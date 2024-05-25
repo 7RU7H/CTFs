@@ -1,0 +1,310 @@
+#!/bin/sh
+
+source /etc/init.d/usb_functions.sh 
+source /etc/init.d/ulog_functions.sh
+
+VERBOSE=1
+
+if [ ! "$1" ] ; then
+  [ $VERBOSE -eq 1 ] && echo "must provide disk drive" > /dev/console
+  exit 1
+fi
+
+error_exit()
+{
+	ret=$1
+	sysevent set usb_device_removal failed
+	exit $ret
+}
+
+kill_media_services()
+{
+  # explicitly kill samba, vftpd and twonky
+  SMB_CNT=`ps | grep -v grep | grep -c "smbd"`
+  TWONKY_CNT=`ps | grep -v grep | grep -c "twonkymediaserver"`
+
+  # echo "smb,twmedia count: $SMB_CNT, $TWONKY_CNT" > /dev/console
+  
+  if [ $SMB_CNT -gt 0 ] || [ $TWONKY_CNT -gt 0 ] ; then
+    killall -9 smbd &> /dev/null
+    killall -9 nmbd &> /dev/null
+    killall -9 vsftpd &> /dev/null
+if [ "`cat /etc/product`" = "wraith" ]; then
+    killall -9 twonkystarter &> /dev/null
+    killall -9 twonkyserver &> /dev/null
+else
+    killall -9 twonkymedia &> /dev/null
+    killall -9 twonkymediaserver &> /dev/null
+fi
+    sleep 5
+  fi
+
+  return 0
+}
+
+finished_usbremove()
+{
+  if [ "$isSafeRemoveOrNopartition" = "1" ] ; then
+    mount_drives=`ls "/tmp/mnt/" | grep "$1" | wc -l`
+    sysevent set usb_mount_cnt_$1 $mount_drives
+    if [ $mount_drives -eq 0 ] ; then
+      sysevent set remove_usb_drives "finished"
+    fi
+  else
+    mount_drives=`sysevent get usb_mount_cnt_"$1"`
+
+    [ -z "$mount_drives" ] && echo "mount_drives is not setting" > /dev/console && return 0
+
+    mount_drives=`expr $mount_drives - 1`
+    sysevent set usb_mount_cnt_$1 $mount_drives
+
+    # echo "mount_drives : $mount_drives" > /dev/console
+
+    if [ $mount_drives -le 0 ] ; then
+      sysevent set remove_usb_drives "finished"
+    fi
+  fi
+
+  DRIVE_COUNT=`ls /mnt/ | wc -l`
+
+  # echo "DRIVE_COUNT = $DRIVE_COUNT" > /dev/console
+  sysevent set no_usb_drives $DRIVE_COUNT
+
+  return 0
+}
+
+umount_devices() 
+{
+  [ $VERBOSE -eq 1 ] && echo "unmount devices" > /dev/console
+
+  if [ "$isSafeRemoveOrNopartition" = "1" ] ;then
+    devNode="$1"
+  else
+    devNode="$1 "
+  fi
+  mount | grep "^/dev/$devNode" | sed -r "s/(.*) on .*/\1/g" | sed "s|\040| |g" | while read file; 
+  do 
+    ulog usbrmdrive "umount_devices: unmounted $file"
+    umount "$file"
+    rc=$?
+    # sync
+    if [ "$rc" != "0" ] ; then 
+      ulog usbrmdrive "umount_devices: ERROR unmount $file"
+      umount "$file"
+      # error_exit "$rc" 
+    fi 
+  done
+  return 0
+}
+
+umount_dirs()
+{
+  [ $VERBOSE -eq 1 ] && echo "unmount dirs" > /dev/console
+  
+  if [ "$isSafeRemoveOrNopartition" = "1" ] ;then
+    devNode="$1"
+  else
+    devNode="$1 "
+  fi
+
+  mount | grep "^/dev/$devNode" | sed -r "s/.* on (.*) type .*/\1/g" | sed "s|\040| |g" | while read file; 
+  do 
+    ulog usbrmdrive "umount_dirs: unmount $file"
+    umount "$file"
+    rc=$?
+    sync
+    if [ "$rc" != "0" ] ; then 
+      ulog usbrmdrive "umount_dirs: ERROR unmount $file"
+      umount "$file"
+    fi
+    ulog usbrmdrive "umount_dirs: rmdir $file"
+    rmdir "$file"
+    #Sometimes some directory is not removed even though it is unmounted.
+    if [ -d "$file" ] ; then
+      if [ -z "$(ls -A $file)" ] ; then
+        ulog usbrmdrive "umount_dirs: Found empty dir = $file and remove dir"
+        rmdir "$file"
+      fi
+    fi
+  done
+
+  return 0
+}
+
+umount_deleted_dirs()
+{
+  [ $VERBOSE -eq 1 ] && echo "unmount deleted dirs($1)" > /dev/console
+  if [ "$isSafeRemoveOrNopartition" = "1" ] ;then
+    matchStr="$1.*040(deleted)"
+  else
+    matchStr="$1.040(deleted)"
+  fi
+  mount | grep "$matchStr" | sed -r "s/.* on (.*) type .*/\1/g" | sed "s|.040(deleted)||g" | while read file;
+  do
+    ulog usbrmdrive "umount_deleted_dirs: unmount $file"
+    umount "$file"
+    rc=$?
+    sync
+    if [ "$rc" != "0" ] ; then
+      ulog usbrmdrive "umount_deleted_dirs: ERROR unmount $file"
+      umount "$file"
+    fi
+    ulog usbrmdrive "umount_deleted_dirs: rmdir $file"
+    rmdir "$file"
+    #Sometimes some directory is not removed even though it is unmounted.
+    if [ -d "$file" ] ; then
+      if [ -z "$(ls -A $file)" ] ; then
+        ulog usbrmdrive "umount_deleted_dirs: Found empty dir = $file and remove dir"
+        rmdir "$file"
+      fi
+    fi
+  done
+  return 0 
+}
+
+# ----------------------------------------------------------------------------
+# Synchronize the USB info files with what is currently mounted
+# ----------------------------------------------------------------------------
+sync_usb_info_files()
+{
+    if [ ! -d "/tmp/.usbinfo/" ]; then
+        return
+    fi
+
+    local nfo_files=`ls /tmp/.usbinfo/*.nfo`
+
+    if [ -z "$nfo_files" ]; then
+        return
+    fi
+
+    # get mount info
+    local mount_info=`mount | grep -e "^/dev/sd"`
+
+    # check each nfo file to see if they are still valid
+    local devblock
+    local devname
+    for fn in $nfo_files; do
+        # check if the dev block is still there
+        devblock=`grep "dname:" $fn | awk -F ":" '{print $2}'`
+        if [ -z "$devblock" ]; then
+            # malformed file, remove it
+            rm -f $fn
+            echo "removing usb info file $fn" > /dev/console
+            continue
+        fi
+        
+        if [ ! -e "/dev/$devblock" ]; then
+            # dev block isn't there anymore, the device has been
+            # physically removed
+            rm -f $fn
+            echo "removing usb info file $fn" > /dev/console
+            continue
+        fi
+
+        # now that we know the device block is still there, check if this
+        # device is mounted
+        devname=`grep "pname:" $fn | awk -F ":" '{print $2}'`
+        if [ -z "$devname" ]; then
+            # malformed file, remove it
+            rm -f $fn
+            echo "removing usb info file $fn" > /dev/console
+            continue
+        fi
+
+        if echo $mount_info | grep -q "/dev/$devname "; then
+            # still mounted, we're good
+            continue
+        fi
+
+        if echo $devname | grep -q -e "sd[a-z]$"; then
+            # not mounted, but since it's a devblock, i.e. sda, sdb
+            # which can be not mounted, we're good
+            continue
+        fi
+
+        if grep -q "format:unsupported" $fn; then
+            # if this is unsupported, then it won't be mounted anyway,
+            # we're good
+            
+            #fixed MAMBA-445,PINNACLE_10372,
+	    #we also create the xxx.nfo files for those unsupported partitions, need to delete them together.
+	    if [ "$1" = "$devblock" ]; then
+                rm -f $fn
+	        echo "removing usb drive unsupported nfo file $fn" > /dev/console
+            fi
+   	    continue
+        fi
+
+        # if we're here that means this partition is umounted,
+        # remove it
+        rm -f $fn
+        echo "removing usb info file $fn" > /dev/console
+    done
+}
+
+#--------------------------------------------------------------------------
+# START
+# $1 is device name or partition name, i.e. sda, sdb, sda1, sdb2... etc
+#--------------------------------------------------------------------------
+[ -z "$1" ] && error_exit 1
+
+[ $VERBOSE -eq 1 ] && echo "usbrmdrive $1" > /dev/console
+
+USB_DEVICE=$1
+DEV_NAME=${USB_DEVICE::3}
+
+[ $VERBOSE -eq 1 ] && echo "usbrmdrive $USB_DEVICE, $DEV_NAME" > /dev/console
+sysevent set usb_device_removal started
+
+# It should be the same two variables($USB_DEVICE,$DEV_NAME) if user clicks safe-remove button in storogae tab of webui.
+if [ "$USB_DEVICE" = "$DEV_NAME" ] ; then
+    isSafeRemoveOrNopartition="1"
+else
+    isSafeRemoveOrNopartition="0"
+fi
+
+mount | grep $USB_DEVICE 
+RET=$?
+
+if [ "$RET" -eq 0 ];  then
+
+    kill_media_services
+
+    umount_dirs "$USB_DEVICE"
+    umount_devices "$USB_DEVICE"
+    umount_deleted_dirs "$USB_DEVICE"
+
+    [ $VERBOSE -eq 1 ] && echo "removing directories for $1" > /dev/console
+
+    rm -rf /tmp/$USB_DEVICE
+    rm -rf /mnt/$USB_DEVICE
+    
+    sysevent set usb_device_removal completed
+
+    Hotplug_GetId $USB_DEVICE
+
+    # we currently don't have a system for esata drives, so
+    # they are handled by temporary workarounds. Once the USB subsystem
+    # is refactored, we will build in support for esata
+    if [ "$DEVICE_TYPE" == "usb" ]; then
+        sysevent set usb_port_${DEVICE_PORT}_type none
+        sysevent set usb_port_${DEVICE_PORT}_state down
+    fi
+
+    # remove usb_storage if necessary
+    local devs=`ls /dev/sd* 2> /dev/null`
+    if [ -z "$devs" ]; then
+        rmmod usb_storage
+    fi
+
+    [ $VERBOSE -eq 1 ] && echo "type=$DEVICE_TYPE port=$DEVICE_PORT" > /dev/console
+
+    finished_usbremove $DEV_NAME
+    sync_usb_info_files $DEV_NAME
+else
+    # USB not mounted
+    sync_usb_info_files $DEV_NAME
+    error_exit 1
+fi
+
+exit 0
