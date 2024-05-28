@@ -140,7 +140,7 @@ As a Day <4 note to self: even though I like ncat and netcat, I am glad to final
 Checking whether I can run in memory on the box:
 ![](noexecshm.png)
 
-After researching and making go compilation and doing some of [[Hololive-Writeup]]. With shell stability in mind after returning to this machine for the third time, although I will do it this way just for my own peace on mind after, I want recall proxychaining and using chisel to the port forward to scan the subset with nmap. If we had NC we could do port scanning like this: `nc -zv 172.18.0.1 1-65535`. One thing to consider is that the noexec flag has been set on /dev/shm 
+After researching and making go compilation and doing some of [[Hololive-Helped-Thorough]]. With shell stability in mind after returning to this machine for the third time, although I will do it this way just for my own peace on mind after, I want recall proxychaining and using chisel to the port forward to scan the subset with nmap. If we had NC we could do port scanning like this: `nc -zv 172.18.0.1 1-65535`. One thing to consider is that the noexec flag has been set on /dev/shm 
 
 ![](noexeconshm.png)
 
@@ -446,7 +446,7 @@ File is there
 Burpsuite was irrating me, also reddish I need to keep the connection open as it is in the cache of redis.
 ![](burpisirratingme.png)
 
-Ippsec and 0xDF initally check the networking in prioritising pre reverse shell. Ping will not return back. This is were I am completely unknown territory as to pivoting through. [[Hololive-Writeup]] has some of this, but through C2s so multiple manual approaches is now an additional requirement for my beyond rooting of this box. 
+Ippsec and 0xDF initally check the networking in prioritising pre reverse shell. Ping will not return back. This is were I am completely unknown territory as to pivoting through. [[Hololive-Helped-Thorough]] has some of this, but through C2s so multiple manual approaches is now an additional requirement for my beyond rooting of this box. 
 
 Also to make matter worse/better (in that I do not have to cleanup afterward) the Server also cleans up so we have continuously create the web shell. Also burpsuites URL encoding is a kicker where I need both to work for some time.. Also learnt how to add the video into markdown. 
 
