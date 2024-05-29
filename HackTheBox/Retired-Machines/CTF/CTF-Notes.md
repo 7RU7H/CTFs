@@ -26,7 +26,7 @@ ul27pa3q9s6qvpkmoci4ln6f9o
 
 - OS detect, run generate noting for nmap
 	- 
--
+- 
 -
 -
 -
@@ -46,4 +46,4 @@ ul27pa3q9s6qvpkmoci4ln6f9o
 
 #### Todo List
 
-
+https://tryhackme.com/r/room/ldapinjection

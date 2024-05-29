@@ -7,13 +7,13 @@ Description:
 - *Holo is an Active Directory (AD) and Web-App attack lab that aims to teach core web attack vectors and more advanced AD attack techniques. This network simulates an external penetration test on a corporate network.*
 Better Description:  
 - 
--  
+- [Enjoy the wonders of those that just here to stand on by and roll around and wait till their wifes tell otherwise](https://www.youtube.com/watch?v=WhtTNzMFjMg)
 Goals: 
 - OSCP revision, demonstrate how far I have come since Throwback..
 - Dante Preparation 
 Learnt:
 - Tie functionality of pages together
-- `deepce` is linpeas for docker containers
+- `deepce` is `linpeas` for docker containers
 - Chisel
 - Golang compilation nitty gritty
 - More Situational Awareness or may the trench that is Dunning Kroger
