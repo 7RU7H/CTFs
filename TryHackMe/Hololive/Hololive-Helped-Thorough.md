@@ -23,6 +23,7 @@ Beyond Root
 - HTB academy: Pivoting, Tunneling, and Port Forwarding
 - AV Evasion a historic set of techniques additions:
 	- https://www.youtube.com/watch?v=tJGROL0PM4I&pp=ygUNYWxoNHpyM2QgaG9sbw%3D%3D
+- Homage to Aquinas https://github.com/ChrisPritchard/ctf-writeups/blob/master/tryhackme-rooms/hololive.md + copying the writing style for another machine.
 
 Returning to this after lots of Hack the Box I decided to follow along with [Alh4zr3d](https://www.youtube.com/watch?v=PqnnKMU3XMk) purely to fit with my work schedule that include another six hours plus after this. I need mentorship and I need practical experience that is less-head-smashing-problem-solving-stress to pace out the the marathon of learning everything for the exam I need. Some humour and Cthulhu mythos is great addition to my day. It was very enjoyable to do this this way. I learnt a lot and loads of fun.
 
