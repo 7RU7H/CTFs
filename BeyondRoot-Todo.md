@@ -1,6 +1,10 @@
 # Beyond Root Todo
 
 
+rootkit + static make to make xdotools on a machine from rootkit space
+
+Is pagefile.sys hackable in some cool way in the future, basic dorking = none 
+
 https://www.youtube.com/watch?v=QRRHA_5hS2c QUIC Decrypt
 
 
