@@ -34,6 +34,17 @@ Section to solve
 
 ### Todo
 
+```
+# quick and dirty MD5 hashes
+echo -n 'text to be encrypted' | openssl md5
+
+# Detirmine if a port is open or closed in bash
+(: </dev/tcp/127.0.0.1/80) &>/dev/null && echo "OPEN" || echo "CLOSED"
+
+netsh interface portproxy add v4tov4 listenport=<LPORT> listenaddress=0.0.0.0 connectport=<RPORT> connectaddress=<RHOST>
+ncat -lvkp 12345 -c "ncat --ssl 192.168.0.1 443"
+```
+
 ### Done
 
 ```bash
