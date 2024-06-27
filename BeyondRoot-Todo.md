@@ -1,6 +1,14 @@
 # Beyond Root Todo
 
+
+
+https://github.com/s0md3v/Smap
+
 Use https://github.com/vi/websocat - get your blue hair, knee highs and memory safe webshells with dynamic socks proxies out! 
+
+Use
+https://github.com/ChrisPritchard/ctf-writeups/blob/master/GO-SCRIPTING.md
+
 
 `icacls scsiaccess.exe` on various windows machines
 
