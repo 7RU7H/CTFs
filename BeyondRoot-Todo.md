@@ -1,8 +1,29 @@
 # Beyond Root Todo
 
+Encrypted Sliver not to disk! Like Bishop Fox do: no mtls, or wireguard
+ - https + proxy
+ - Persistence:
+	 - Persist a stage 1, either
+		 - pull stager 2 over the network again
+		 - encrypt the stage 2 and then write it to disk so that when the stage 1 runs  it read the cipher text from disk and load back into memory'
+	- Just Re-exploit, no Persistence 
+
+https://blog.zsec.uk/hellojackhunter-exploring-winsxs/
+`c:\Windows\WinSxS` for the Koth madness of multiversioning bins, dlls
+```
+# Map out binaries
+GCI -Path C:\Windows\WinSxS -Recurse -Filter *.exe | Select -First 20 | Select Name, FullName, @{l='FileVersion';e={[System.Version]($_.VersionInfo.FileVersion)}} | Group Name | ForEach-Object { $_.Group | Sort-Object -Property FileVersion -Descending | Select-Object -First 1 }
+```
 
 
 https://github.com/s0md3v/Smap
+
+
+Kenny The Self Replicating BR 
+- https://www.cs.cmu.edu/~rdriley/487/papers/Thompson_1984_ReflectionsonTrustingTrust.pdf2
+https://github.com/skywardpixel/trusting-trust-hack/tree/main/code
+https://github.com/pullmoll/trusttrust
+
 
 Use https://github.com/vi/websocat - get your blue hair, knee highs and memory safe webshells with dynamic socks proxies out! 
 
