@@ -87,3 +87,33 @@ reset for gurag:
 Set in the url to the `user_token=`  on requesting gurag password. 
 
 https://www.youtube.com/watch?v=PqnnKMU3XMk 3:48 fin
+
+https://www.youtube.com/watch?v=SHfzaQWithc MORE CAVALRY IS HERE, just as annoying as me! FULL Overwatch YEARS AGO https://www.youtube.com/watch?v=RIYd6Xdn88U; play on repeat - confirmed. Woohoo https://www.youtube.com/watch?v=RLxcn-rgDS8
+My brain after I have finished this thing so I can move on - https://www.youtube.com/watch?v=lLPAUHdyjRI and make the best songs in the world https://www.youtube.com/watch?v=_lK4cX5xGiQ
+
+
+Encrypted Sliver not to disk! Like Bishop Fox do: no mtls, or wireguard
+ - https + proxy
+ - Persistence:
+	 - Persist a stage 1, either
+		 - pull stager 2 over the network again
+		 - encrypt the stage 2 and then write it to disk so that when the stage 1 runs  it read the cipher text from disk and load back into memory'
+	- Just Re-exploit, no Persistence 
+
+https://blog.zsec.uk/hellojackhunter-exploring-winsxs/
+`c:\Windows\WinSxS` for the Koth madness of multiversioning bins, dlls
+```
+# Map out binaries
+GCI -Path C:\Windows\WinSxS -Recurse -Filter *.exe | Select -First 20 | Select Name, FullName, @{l='FileVersion';e={[System.Version]($_.VersionInfo.FileVersion)}} | Group Name | ForEach-Object { $_.Group | Sort-Object -Property FileVersion -Descending | Select-Object -First 1 }
+```
+
+https://github.com/xct/winpspy
+https://github.com/xct/xc
+https://github.com/icyguider/Nimcrypt2 
+
+Drop and exfil
+https://github.com/DCScoder/LINTri/blob/main/LINTri.sh
+https://github.com/DCScoder/WINTri/blob/main/WINTri.ps1
+
+
+https://github.com/ChrisPritchard/ctf-writeups/blob/master/GO-SCRIPTING.md

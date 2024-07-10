@@ -6,11 +6,13 @@ Difficulty: Hard
 Description:
 - *Holo is an Active Directory (AD) and Web-App attack lab that aims to teach core web attack vectors and more advanced AD attack techniques. This network simulates an external penetration test on a corporate network.*
 Better Description:  
-- 
+- Weeb's make a cool AD domain 
 - [Enjoy the wonders of those that just here to stand on by and roll around and wait till their wifes tell otherwise](https://www.youtube.com/watch?v=WhtTNzMFjMg)
 Goals: 
 - OSCP revision, demonstrate how far I have come since Throwback..
 - Dante Preparation 
+- Test and make work https://github.com/7RU7H/Shadow/blob/main/Perpectishells/cmd.php
+- Make simpler php, asp, aspx, js golang api endpoint
 Learnt:
 - Tie functionality of pages together
 - `deepce` is `linpeas` for docker containers
@@ -40,6 +42,8 @@ The initial nmap:
 ![initnmap](init-recon-nmap-webserver.png)
 
 ![nikto](nikto-init-webserver.png)
+
+#### Authorial Opinions - Skip Ahead 
 
 Weebs, prepare the Flashgitz videos..actually [Filthy Frank WEEABOOS](https://www.youtube.com/watch?v=OFQQALduhzA&pp=ygUUd2VlYnMgYXJlIGV2ZXJ5d2hlcmU%3D) video I watched a long time ago made me realise that I could be considered a competent in the culture I was born into, and culture appreciation and mixing is very important for the growth of human. Powerful groups still want for an identity and there are some aspects of all cultures are taboo, abhorrent or social faux-par. An obsession with drawing and proliferation school girls is glorifying the reduced left frontal cortex and the domination of the not fully grown, conscious and capable (etc). Therefore glorifying decadence of the Nietzsche idea - non-thoughtful non-empathetic and non-human aspects of the self, group or human system. There is probably a real horrific historic reason it exists, but to understand that probably is derived from trauma of persons, groups it was what help is about. They need to realise and better themselves by recognition of what deterministic universe has force them now to accept, why not choose an identity not dominated by the past trauma and on the non-decadent choices of the most conscious choices to be made by the self or group.
 ![](weebs.png)
@@ -485,7 +489,6 @@ BROWSE_THESENUTS,
 
 Reminder that Alh4zr3d will mald into the oblivion to stop at a point where he is trying the NTMLrelay [THM Alh4zr3d  Owning THM Holo Network](https://www.youtube.com/watch?v=UCBcpgdKPak) to then move to [THM Cthulhu Cthursday: The Malding Conclusion of TryHackMe's "Holo"!](https://www.youtube.com/watch?v=0VGRim39U9w)
 
-
 #### AV Evasion Notes for the Archive
 
 The Anti-Malware Scan Interface (AMSI) is a PowerShell security feature that will allow any applications or services to integrate into antimalware products to scan payloads before execution inside of the runtime. For documentation: [Windows docs](https://docs.microsoft.com/en-us/windows/win32/amsi/). AMSI is instrumented in both `System.Management.Automation.dll` and within the [Common Language Runtime CLR](https://learn.microsoft.com/en-us/dotnet/standard/clr)
@@ -626,4 +629,10 @@ execute_stager();
 die();   
 ?>
 ```
+
+
+
+
+
+
 ## Beyond Root

@@ -32,6 +32,8 @@ cat ../fs.txt | grep '.exe' | grep -v '32'
 ```
 ## Answers
 
+#### Memory
+
 What binary gives the most apparent sign of suspicious activity in the given memory image?
 
 Use the full path of the artefact.
@@ -40,8 +42,24 @@ C:\Tools\svchost.exe
 ```
 The answer above shares the same parent process with another binary that references a .txt file - what is the full path of this .txt file?
 ```
-
+C:\Users\Bobby\Documents\tmp\part2.txt
 ```
+
+#### Disk
+
+We [have Troy...Bobby's disk](https://www.youtube.com/watch?v=evuCz5wDESs)
+
+Got hung up on, but learnt about;
+- `$130` files in Downloads is a index file; they are everywhere
+- rasphone.pbk - I really want the meme about Bill gates on the phone to Ballmer, which I could not remember how funny or the content, ...
+- Nothing in `%systemroot%\System32\Tasks` for whether it is downloaded or created as scheduled task
+
+- To me part2.txt is either a file name, arg key to run or a decryption key for the malware source code
+- NOTEPAD.exe is not system32 
+
+
+But in DFIR things this will do [What is love](https://www.youtube.com/watch?v=6XuizTRqEsw)
+
 
 What binary gives the most apparent sign of suspicious activity in the given disk image?
 ```
@@ -57,7 +75,7 @@ What is the full registry path where the existence of the binary above is confir
 ```
 What is the content of "Part2"?
 ```
-
+faDB3XzJfcDF2T1R9  
 ```
 What is the flag?
 ```

