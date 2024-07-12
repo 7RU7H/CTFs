@@ -1,6 +1,6 @@
 # Squid Game Meta Notes
 
-
+## Pre
 
 What is the Environment?
 ![](toolsonthevm.png)
@@ -94,10 +94,13 @@ What I think I will start with day one:
 
 ![](SnakeBaboonOnUbuntu.png)
 
+## Attacker 1 MalDoc
+
 `trid` is a file identification tool - [GitHub](https://github.com/dubfr33/trid): *"TrID is a utility designed to identify file types from their binary signatures. While there are similar utilities with hard coded rules, TriID has no such rules. Instead, it is extensible and can be trained to recognize new formats in a fast and automatic way. TrID uses a database of definitions which describe recurring patterns
 for supported file types."*
 
 ![](trid-v-a1.png)
+
 
 ```bash
 # run first to prevent stdout and brain overflow 
@@ -165,3 +168,13 @@ olevba
 ```
 
 https://www.onlinegdb.com/online_vb_compiler
+
+
+```
+# Get the Streams 
+oledump.py $maldoc
+```
+
+## Attacker 2 MalDoc
+
+Not made a vipermonkey Archive page
