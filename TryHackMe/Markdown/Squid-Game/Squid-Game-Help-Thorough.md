@@ -31,17 +31,21 @@ Beyond Root:
 	- https://www.youtube.com/watch?v=zzpz3VYKzUw - YARA rules reminder
 	- https://www.youtube.com/watch?v=wSkUbP9t4Dw - reversing a loader
 	- https://www.youtube.com/watch?v=TgYb3hwOAV4 - Crypters how?
-	- https://www.youtube.com/watch?v=cNP6QXXUxro Lockbit document
+	- https://www.youtube.com/watch?v=cNP6QXXUxro - Lockbit document
 	- https://www.youtube.com/watch?v=o0fvdfEmQAk - Lockbit killchain
-	- https://www.youtube.com/playlist?list=PLt9cUwGw6CYFrFbDkpdHi43ti5dmUfoOd - anti debuging techniques
+	- https://www.youtube.com/playlist?list=PLt9cUwGw6CYFrFbDkpdHi43ti5dmUfoOd - anti debuging techniques - 2
 	- finalise a list for ten single play games that I would like to hack to make the game *playable*, not cheatable - to pick from in the future if I need stuff to do and relax and to keep me relaxing while these weeks and months roll on by.
 - Squeeze the 100ish pages from Art of Exploitation into using C related things I struggle to remember or use because of beginner based projects
 
 
-- [[Squid-Game-Notes-Attacker]]
-- [[Squid-Game-CMD-by-CMDs.md]]
+- [[Squid-Game-Notes-Attacker-1]]
+- [[Squid-Game-Notes-Attacker-2]]
+- [[Squid-Game-Notes-Attacker-3]]
+- [[Squid-Game-Notes-Attacker-4]]
+- [[Squid-Game-Notes-Attacker-5]]
+- [[Squid-Game-Meta-Notes]]
 
-Warning I am an idiot and this Helped-thorourgh is only a write because I will try to upgrade any Malware and detections and mitigations. I briefly skimmed to have an idea of the direction to complete this: [kumarishefu Medium Writeup](https://medium.com/@kumarishefu.4507/try-hack-me-write-up-squid-game-1102eb0b7230); this women is a amazing and anyone who has completed this without assistance is awesome. It is very sad that these great people will have to work in places where they just open all the bad pdfs and documents files. All got from it was that I need to use tools I have used in HTB Forensics challenge (`oletools`) and a healthy dosing of the great `cyberchef`. I have also not watch Squid Game so I ask Chatgpt to provide some information as if I was an alien, I will not use Chatgpt in completing this. Basically its Korean-Pre apocalyptic version of Roman Coliseum with instead of glory being the currency, Yen is the currency that the participants strive for, because their master have no creativity and have ruined themselves to hasten the end of Korean civilisation like all civilisations. Themes of death with change, guilt or mercilessness, survival and power and powerless. Remember it could always be worse than Squid Games, like the [Despair Squid](https://www.youtube.com/watch?v=ce-Uc3InSxk). Anyway this is a CTF I plan to tie as many relevant projects, unfinished CTFs and personal goals.
+Warning I am an idiot and this Helped-thorough is only a write because I will try to upgrade any Malware and detections and mitigations. I briefly skimmed to have an idea of the direction to complete this: [kumarishefu Medium Writeup](https://medium.com/@kumarishefu.4507/try-hack-me-write-up-squid-game-1102eb0b7230); this women is a amazing and anyone who has completed this without assistance is awesome. It is very sad that these great people will have to work in places where they just open all the bad pdfs and documents files. All got from it was that I need to use tools I have used in HTB Forensics challenge (`oletools`) and a healthy dosing of the great `cyberchef`. I have also not watch Squid Game so I ask Chatgpt to provide some information as if I was an alien, I will not use Chatgpt in completing this. Basically its Korean-Pre apocalyptic version of Roman Coliseum with instead of glory being the currency, Yen is the currency that the participants strive for, because their master have no creativity and have ruined themselves to hasten the end of Korean civilisation like all civilisations. Themes of death with change, guilt or mercilessness, survival and power and powerless. Remember it could always be worse than Squid Games, like the [Despair Squid](https://www.youtube.com/watch?v=ce-Uc3InSxk). Anyway this is a CTF I plan to tie as many relevant projects, unfinished CTFs and personal goals.
 
 Firstly mute THM tab before you loose your mind!
 ![](savingyoursanity.png)
@@ -67,7 +71,7 @@ Fixed this to reflect actually finding from QB methods
 
 Progress only the necessary, non-linear THM  
 https://tryhackme.com/r/room/squidgameroom
-https://tryhackme.com/r/room/maldoc
+https://tryhackme.com/r/room/maldoc - doc section done
 https://tryhackme.com/r/room/advancedstaticanalysis
 https://tryhackme.com/r/room/androidmalwareanalysis
 https://tryhackme.com/r/room/androidhacking101
@@ -230,7 +234,7 @@ Exit;
 ```
 
 
-GB-X Notes
+QB-X Notes
 ```
 Columbo deals in components and I just looked at the VBA like the attacker would have wanted and fell down a particial rabbithole of fear!
 
@@ -312,6 +316,13 @@ Under what stream did the main malicious script use to retrieve DLLs from the C2
 QB-Forensics-Notes:
 ```
 ```
+
+QB-X Notes
+```
+```
+Important Takeways
+```
+```
 ## Attacker 3 
 
 Provide the executable name being downloaded.; Answer:
@@ -339,6 +350,13 @@ Which stream executes the binary that was downloaded?; Answer:
 ```
 ```
 QB-Forensics-Notes:
+```
+```
+
+QB-X Notes
+```
+```
+Important Takeways
 ```
 ```
 ## Attacker 4
@@ -371,6 +389,13 @@ Provide the full URI from which the second binary was downloaded (exclude http/h
 ```
 ```
 QB-Forensics-Notes:
+```
+```
+
+QB-X Notes
+```
+```
+Important Takeways
 ```
 ```
 ## Attacker 5
@@ -418,20 +443,34 @@ QB-Forensics-Notes:
 ```
 ```
 
+QB-X Notes
+```
+```
+Important Takeways
+```
+```
+
 ## Post-Completion-Reflection  
 
 ## Beyond Root
 
+Before venturing forth check the following in the Post-completion-Reflection:
+- QB-Forensics-Notes, QB-X Notes, Important Takeways:
+- [[Squid-Game-Meta-Notes]]
 
+
+
+https://github.com/intere/hacking/tree/master/booksrc
+https://github.com/amenasec/Hacking-The-Art-of-Exploitation-2e
 #### Single player Game to Hack / Mod
 
 
-- Graveyard Keeper
+- Graveyard Keeper - Apparently this already has mods.
 	- Speed increase
 	- Energy reduced usage
 	- Bigger inventory 
 	- Infinite Storage
 	- Animation speed
 - Baldurs Gate 3 - not that it is bad, I want to see that game live on for the next 10-15 years it is that good
-- Grey Hack - Because why not try one multiplayer game
+- Grey Hack - Because why not try one multiplayer game - Or just find a transpiler
 	- Exfil scripts 

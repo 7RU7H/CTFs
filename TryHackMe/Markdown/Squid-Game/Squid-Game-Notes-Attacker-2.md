@@ -1,26 +1,5 @@
 # Squid-Game Notes
 
-## Data 
-
-
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
-
-
-
-#### Todo List
+Not made a vipermonkey Archive page
 
 
