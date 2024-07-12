@@ -1,4 +1,3 @@
-
 # Squid-Game Help-Thorough
 
 Name: Squid-Game
@@ -42,7 +41,8 @@ Warning I am an idiot and this Helped-thorourgh is only a write because I will t
 Firstly mute THM tab before you loose your mind!
 ![](savingyoursanity.png)
 
-https://tryhackme.com/r/room/squidgameroom
+Also do you eyes a favour:
+![](terminaleyes.png)
 
 ## My Scenario
 
@@ -62,6 +62,7 @@ https://tryhackme.com/r/room/squidgameroom
 5 Days of tangent unfinished rooms that are CTFs 
 
 Progress only the necessary, non-linear THM  
+https://tryhackme.com/r/room/squidgameroom
 https://tryhackme.com/r/room/maldoc
 https://tryhackme.com/r/room/advancedstaticanalysis
 https://tryhackme.com/r/room/androidmalwareanalysis
@@ -75,6 +76,21 @@ Accept the invitation? (Yes/No)
 ```
 Yes
 ```
+
+Tools on the box of note:
+- `trid`
+- `vmonkey`
+- oletools each can be run like:
+	- `oleid`
+	- `olebrowse`   
+	- `oledir` 
+	- `oledump.py`
+	- `olefile`     
+	- `olemap`
+	- `olemeta`     
+	- `oleobj`
+	- `oletimes`
+	- `olevba`
 
 ## Attacker 1
 
