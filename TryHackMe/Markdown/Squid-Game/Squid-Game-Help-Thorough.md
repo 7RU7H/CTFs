@@ -30,13 +30,13 @@ Beyond Root:
 - Guided Hacking relevant playlist
 	- https://www.youtube.com/watch?v=zzpz3VYKzUw - YARA rules reminder
 	- https://www.youtube.com/watch?v=wSkUbP9t4Dw - reversing a loader
-	- https://www.youtube.com/watch?v=TgYb3hwOAV4 - Crypters how?
+	- https://www.youtube.com/watch?v=TgYb3hwOAV4 - Crypters how? - Done
 	- https://www.youtube.com/watch?v=cNP6QXXUxro - Lockbit document
 	- https://www.youtube.com/watch?v=o0fvdfEmQAk - Lockbit killchain
 	- https://www.youtube.com/playlist?list=PLt9cUwGw6CYFrFbDkpdHi43ti5dmUfoOd - anti debuging techniques - 2
 	- finalise a list for ten single play games that I would like to hack to make the game *playable*, not cheatable - to pick from in the future if I need stuff to do and relax and to keep me relaxing while these weeks and months roll on by.
 - Squeeze the 100ish pages from Art of Exploitation into using C related things I struggle to remember or use because of beginner based projects
-
+- Malicious Obsidian and Detecting Malicious Obsidian
 
 - [[Squid-Game-Notes-Attacker-1]]
 - [[Squid-Game-Notes-Attacker-2]]
@@ -52,6 +52,8 @@ Firstly mute THM tab before you loose your mind!
 
 Also do you eyes a favour:
 ![](terminaleyes.png)
+
+Also `Right-Click` the `xfce-terminal` Windows once run and set the scrollback to 10000.
 
 ## My Scenario
 
@@ -76,8 +78,7 @@ https://tryhackme.com/r/room/advancedstaticanalysis
 https://tryhackme.com/r/room/androidmalwareanalysis
 https://tryhackme.com/r/room/androidhacking101
 
-For my Starting point see [[Squid-Game-Meta-Notes]] 
-
+For my Starting point see [[Squid-Game-Meta-Notes]]; main issue I found is there seems to be one way to do everything and probably because I am just ridiculous no on explained why forensically x action is a good decision.
 ## Scenario
 
 Accept the invitation? (Yes/No)
@@ -244,84 +245,121 @@ Solution:
 ```
 ## Attacker 2 
 
+[[Squid-Game-Notes-Attacker-2]]; Given how quickly I managed to get all the answers other than confused as to why 15671 is not the answer to question 2, I decided that `olevba` is OP for this document so wanted to then spend more time learning about Cryptors and obfuscating in C/Rust and Golang instead of puzzling my way to nowhere. The answer being `oledump -i` is more informative 
+
 Provide the streams (numbers) that contain macros.; Answer:
 ```
+12, 13, 14, 16
 ```
 QB-Forensics-Notes:
 ```
+
 ```
 Provide the size (bytes) of the compiled code for the second stream that contains a macro.; Answer:
 ```
+13867
 ```
 QB-Forensics-Notes:
 ```
 ```
 Provide the largest number of bytes found while analyzing the streams.; Answer:
 ```
+olevba
+63641
 ```
 QB-Forensics-Notes:
 ```
 ```
 Find the command located in the ‘fun’ field ( make sure to reverse the string).; Answer:
 ```
+https://gchq.github.io/CyberChef/#recipe=Reverse('Character')&input=c2J2Lm5pcFxhdGFEbWFyZ29yUFw6QyBleGUudHBpcmNzYyBrLyBkbWM
+olevba
+
+cmd /k cscript.exe C:\ProgramData\pin.vbs
 ```
 QB-Forensics-Notes:
 ```
 ```
 Provide the first domain found in the maldoc.; Answer:
 ```
+olevba
+priyacareers.com/u9hDQN9Yy7g/pt.html
 ```
 QB-Forensics-Notes:
 ```
+Tools general parse data linearly
 ```
 Provide the second domain found in the maldoc.; Answer:
 ```
+olevba
+perfectdemos.com/Gv1iNAuMKZ/pt.html
 ```
 QB-Forensics-Notes:
 ```
 ```
 Provide the name of the first malicious DLL it retrieves from the C2 server.; Answer:
 ```
+olevba
+www1.dll
 ```
 QB-Forensics-Notes:
 ```
 ```
 How many DLLs does the maldoc retrieve from the domains?; Answer:
 ```
+olevba
+5
 ```
 QB-Forensics-Notes:
 ```
 ```
 Provide the path of where the malicious DLLs are getting dropped onto?; Answer:
 ```
+olevba
+C:\ProgramData
 ```
 QB-Forensics-Notes:
 ```
 ```
 What program is it using to run DLLs?; Answer:
 ```
+olevba
+rundll32.exe
 ```
 QB-Forensics-Notes:
 ```
 ```
 How many seconds does the function in the maldoc sleep for to fully execute the malicious DLLs?; Answer:
 ```
+olevba - .Sleep(15000) -> 15 secs
+15
 ```
 QB-Forensics-Notes:
 ```
 ```
 Under what stream did the main malicious script use to retrieve DLLs from the C2 domains? (Provide the name of the stream).; Answer:
 ```
+olevba
+Macros/Form/o
 ```
 QB-Forensics-Notes:
 ```
 ```
+
+`olevba` is the 
 
 QB-X Notes
 ```
 ```
 Important Takeways
 ```
+Stomping
+- VBA Stomping
+
+
+Sometimes it does not matter how intimediating anything is if you can analyse it so affectively it is almost like
+
+
 ```
 ## Attacker 3 
 
@@ -458,6 +496,14 @@ Before venturing forth check the following in the Post-completion-Reflection:
 - QB-Forensics-Notes, QB-X Notes, Important Takeways:
 - [[Squid-Game-Meta-Notes]]
 
+#### Funny Ideas
+
+- Infinite Captcha
+
+#### Cryptors
+
+https://www.youtube.com/watch?v=TgYb3hwOAV4
+- https://github.com/NYAN-x-CAT
 
 
 https://github.com/intere/hacking/tree/master/booksrc
@@ -465,7 +511,7 @@ https://github.com/amenasec/Hacking-The-Art-of-Exploitation-2e
 #### Single player Game to Hack / Mod
 
 
-- Graveyard Keeper - Apparently this already has mods.
+- Graveyard Keeper - Apparently this already has mods. Also already labour a lot as it is, do not need a work simulator; Music is good!
 	- Speed increase
 	- Energy reduced usage
 	- Bigger inventory 
