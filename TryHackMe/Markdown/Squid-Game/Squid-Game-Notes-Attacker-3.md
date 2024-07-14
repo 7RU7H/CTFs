@@ -1,26 +1,6 @@
 # Squid-Game Notes
 
-## Data 
 
+![](oleid-a3.png)
 
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
-
-
-
-#### Todo List
-
-
+![](oldump-i-olemetabroken-a3.png)

