@@ -21,6 +21,7 @@ Learnt:
 - https://github.com/PaperMtn
 - Lena Rain is an awesome Composer - hackmud soundtrack hit very nicely at points
 - oletoolage
+- vmonkey can just solve all your problems
 - some vba
 - Forensics and a reminder of why Columbo is the best
 Beyond Root:
@@ -29,7 +30,7 @@ Beyond Root:
 - Forensics QB methodology
 - Finish https://tryhackme.com/r/room/sandboxevasion and https://tryhackme.com/r/room/deadend
 - Guided Hacking relevant playlist
-	- https://www.youtube.com/watch?v=zzpz3VYKzUw - YARA rules reminder
+	- https://www.youtube.com/watch?v=zzpz3VYKzUw - YARA rules reminder - Done
 	- https://www.youtube.com/watch?v=wSkUbP9t4Dw - reversing a loader
 	- https://www.youtube.com/watch?v=TgYb3hwOAV4 - Crypters how? - Done
 	- https://www.youtube.com/watch?v=cNP6QXXUxro - Lockbit document 
@@ -38,7 +39,8 @@ Beyond Root:
 	- finalise a list for ten single play games that I would like to hack to make the game *playable*, not cheatable - to pick from in the future if I need stuff to do and relax and to keep me relaxing while these weeks and months roll on by.
 - Squeeze the 100ish pages from Art of Exploitation into using C related things I struggle to remember or use because of beginner based projects
 - Malicious Obsidian and Detecting Malicious Obsidian
-
+- Classifying problem solving observation as a scale
+ 
 - [[Squid-Game-Notes-Attacker-1]]
 - [[Squid-Game-Notes-Attacker-2]]
 - [[Squid-Game-Notes-Attacker-3]]
@@ -56,6 +58,8 @@ Also do you eyes a favour:
 
 Also `Right-Click` the `xfce-terminal` Windows once run and set the scrollback to 10000.
 
+
+TIL - People love Macros in [Excel and the darkness inside it](https://www.youtube.com/watch?v=xydcP31wVRk)
 ## My Scenario
 
 Fixed this to reflect actually finding from QB methods
@@ -435,23 +439,48 @@ Important Takeways
 ```
 ## Attacker 4
 
-Provide the first decoded string found in this maldoc.; Answer:
+
+[[Squid-Game-Notes-Attacker-4]] did an hour and got some environment variables, but none of the answers below; realised I went too deep into source and ran out of time I did not reverse this block sadly:
+```vb
+Set VPBCRFOQENN = CreateObject(XORI(Hextostring("3F34193F254049193F253A331522"), Hextostring("7267417269")))
+GoTo fpvygztoabfyscyqmjxaakqwiwqpjfzgwplzmhryvptavvsitizcoqgammdhoraqpviudbameizhxxkfiw:
+fpvygztoabfyscyqmjxaakqwiwqpjfzgwplzmhryvptavvsitizcoqgammdhoraqpviudbameizhxxkfiw:
+GoTo fjuvxpaemzuawljcczrjcqncfqtadadckbfxynawdigwsmxxfdtoiyzyriibnsacdbvkbubskrjrvkujkg:
+fjuvxpaemzuawljcczrjcqncfqtadadckbfxynawdigwsmxxfdtoiyzyriibnsacdbvkbubskrjrvkujkg:
+GoTo atdgxcypqufobazqwfbzsdpphuexwbgmzrvveuqfuissqnqrjbvmoathximeitkzlsazxqlwrbwkegkczc:
+atdgxcypqufobazqwfbzsdpphuexwbgmzrvveuqfuissqnqrjbvmoathximeitkzlsazxqlwrbwkegkczc:
+    VPBCRFOQENN.Open XORI(Hextostring("00353B"), Hextostring("47706F634E")), FYAMZFQXNVI, False
+GoTo 
 ```
+
+But also I used the functions themselves, which I thought would work
+
+Provide the first decoded string found in this maldoc.; Answer:
+```bash
+# 3F34193F254049193F253A331522;  7267417269 is the XOR Key
+# https://gchq.github.io/CyberChef/#recipe=From_Hex('Auto')XOR(%7B'option':'Hex','string':'7267417269'%7D,'Standard',false)&input=M0YzNDE5M0YyNTQwNDkxOTNGMjUzQTMzMTUyMg
+
+MSXML2.XMLHTTP
 ```
 QB-Forensics-Notes:
 ```
 ```
 Provide the name of the binary being dropped.; Answer:
-```
+```bash
+# Same as question 1
+DYIATHUQLCW.exe
 ```
 QB-Forensics-Notes:
 ```
 ```
 Provide the folder where the binary is being dropped to.; Answer:
 ```
+# Guessed
+Temp
 ```
 QB-Forensics-Notes:
 ```
+
 ```
 Provide the name of the second binary.; Answer:
 ```
@@ -466,12 +495,37 @@ QB-Forensics-Notes:
 ```
 ```
 
+https://medium.com/@kumarishefu.4507/try-hack-me-write-up-squid-game-1102eb0b7230 cites: 
+https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/deobfuscating-malicious-macros-using-python/
+
 QB-X Notes
 ```
+Have got background tooling running, automating information gathering to come back to later prevent going head first into obfuscated stuff?
+
+I seperated it out, but
+
+Have you seperated out functions, methods with their corresponding classes?
+
+Can you replace the functions with external tooling - ie. Cyberchef
+
+
+Does it look like some encoding type:
+	- Hex?
+
+Classifying problem solving observation as a scale is a now a must for BR 
+
 ```
 Important Takeways
 ```
+Went to deep and went too methodical to understand, but a tiny step back
+- I could have replace the functions with tooling 
+
+Could have just used vmonkey for everything
 ```
+
+https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/environ-function
+https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-help/createobject-function
+
 ## Attacker 5
 
 What is the caption you found in the maldoc?; Answer:
@@ -547,11 +601,11 @@ Previous to this point the best prevention is to never open any documents, pdf, 
 	- No libreoffice, browsers, etc
 	- Docker images for all the tools
 	
-
 #### Funny Ideas
 
 - Infinite Captcha
 
+#### Classifying problem solving observation as a scale
 #### Cryptors
 
 https://www.youtube.com/watch?v=TgYb3hwOAV4
