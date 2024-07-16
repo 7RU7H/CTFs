@@ -528,44 +528,75 @@ https://learn.microsoft.com/en-us/office/vba/language/reference/user-interface-h
 
 ## Attacker 5
 
+No time, no exercise; vmonkey ready in one tab, oleid in the other and Cyberchef Hex->XOR in browser tab 
+
+Its a cobalt strike stager not a beacon
+
+https://ak100117.medium.com/analyzing-cobalt-strike-powershell-payload-64d55ed3521b
+
+https://www.embeeresearch.io/ghidra-basics-shellcode-analysis/ - Ghidra did not work - compile does not matter according 
+
+https://research.nccgroup.com/2022/03/25/mining-data-from-cobalt-strike-beacons/
+https://medium.com/@polygonben/deobfuscating-a-powershell-cobalt-strike-beacon-loader-c650df862c34
+
+I found with 3 minute to go 
+https://github.com/mattnotmax/cyberchef-recipes?tab=readme-ov-file#recipe-28---de-obfuscation-of-cobalt-strike-beacon-using-conditional-jumps-to-obtain-shellcode; but leave me at the same point with binary data file I can analyse
+
+
+https://raw.githubusercontent.com/DidierStevens/DidierStevensSuite/master/1768.py
+didier analysis python script did not work and no internet on the box to git clone 
+
+
+
 What is the caption you found in the maldoc?; Answer:
 ```
+# Did not do the sequencial stream dumping oledump -s 6
 ```
 QB-Forensics-Notes:
 ```
 ```
 What is the XOR decimal value found in the decoded-base64 script?; Answer:
 ```
+# I decoded using it but forget to put this answer in 
+35
 ```
 QB-Forensics-Notes:
 ```
 ```
 Provide the C2 IP address of the Cobalt Strike server. ; Answer:
 ```
+176.103.56.8
 ```
 QB-Forensics-Notes:
 ```
 ```
 Provide the full user-agent found.; Answer:
 ```
+Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET CLR 2.0.50727)
 ```
 QB-Forensics-Notes:
 ```
 ```
 Provide the path value for the Cobalt Strike shellcode.; Answer:
 ```
+# FORGET scdbg exists on the box! And I was going to put /SjMR as you can see it in the binary data clearly, but that would be too guessy
+/SjMR
 ```
 QB-Forensics-Notes:
 ```
 ```
 Provide the port number of the Cobalt Strike C2 Server.; Answer:
 ```
+# FORGET scdbg exists on the box!
+8080
 ```
 QB-Forensics-Notes:
 ```
 ```
 Provide the first two APIs found.; Answer:
 ```
+# FORGET scdbg exists on the box!
+LoadLibraryA, InternetOpenA
 ```
 QB-Forensics-Notes:
 ```
@@ -573,9 +604,11 @@ QB-Forensics-Notes:
 
 QB-X Notes
 ```
+- Caption would be a not real world; I did not have time to sequencial stream with oledump
 ```
 Important Takeways
 ```
+- vipermonkey, scdbg pages for the Archive
 ```
 
 ## Post-Completion-Reflection  
