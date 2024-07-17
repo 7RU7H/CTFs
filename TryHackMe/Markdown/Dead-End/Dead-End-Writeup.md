@@ -8,7 +8,10 @@ Goals:
 - Testing, Tooling and Labs
 - Volatility a desperate return to a rough last use - Python problems
 Learnt:
+- More registry familiarity
+- I really do not like Windows Event viewer
 Beyond Root:
+- [[Squid-Helped-through]]
 
 - [[Dead-End-Notes.md]]
 - [[Dead-End-CMD-by-CMDs.md]]
@@ -58,32 +61,74 @@ Got hung up on, but learnt about;
 - NOTEPAD.exe is not system32 
 
 
-But in DFIR things this will do [What is love](https://www.youtube.com/watch?v=6XuizTRqEsw)
+But in DFIR things this will do [What is love](https://www.youtube.com/watch?v=6XuizTRqEsw), when there is no Autospy. I got a hint from the https://www.youtube.com/watch?v=4iAYaDRWT9A thumbnail which resolved my confusion (very CTFy make a directory in C:\\)regarding the Tools directory, with svchost.exe in it and that not be the suspicious thing...
 
 
-What binary gives the most apparent sign of suspicious activity in the given disk image?
+What binary gives the most apparent sign of suspicious activity in the given disk image? Use the full path of the artefact:
+```powershell
+# 
+C:\Tools\windows-networking-tools-master\windows-networking-tools-master\LatestBuilds\x64\Autoconnector.exe
 ```
 
-```
-Use the full path of the artefact.
+![](BAM.png)
+
+![](samebamnotautoconnect.png)
+
+Took another hint from the thumbnail; event logs then I skipped to the point where he uses the finder in RegExplorer, which I had forgotten about
+- https://www.youtube.com/watch?v=4iAYaDRWT9A
+
+https://www.reddit.com/r/computerforensics/comments/k8go5m/event_logs_from_forensic_disk_image/
+```powershell
+C:\Windows\System32\winevt\Logs
+
+SYSTEM\CurrentControlSet\Services\dam\UserSettings\{SID}
 ```
 
-```
+![](findthings.png)
+
+
 What is the full registry path where the existence of the binary above is confirmed?
+```powershell
+# SYSTEM\ControlSet001\Control\Session Manager\AppCompatCache\AppCompatCache\49
+# HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Session Manager\AppCompatCache\AppCompatCache
 ```
 
-```
 What is the content of "Part2"?
 ```
 faDB3XzJfcDF2T1R9  
 ```
+
 What is the flag?
 ```
 
 ```
 ## Post-Root-Reflection  
 
+I really do not like Windows Event Viewer.
+
+Virus Total artefacts regardless
+
+My registry extraction did not have svcnotes so I must have done something wrong
+![](nosvcnotes.png)
+
+What is the full registry path where the existence of the binary above is confirmed?
+```powershell
+# SYSTEM\ControlSet001\Control\Session Manager\AppCompatCache\AppCompatCache\49
+# HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Session Manager\AppCompatCache\AppCompatCache
+```
+
+What is the content of "Part2"?
+```
+faDB3XzJfcDF2T1R9  
+```
+
+What is the flag?
+```
+
+```
+
 ## Beyond Root
 
+https://www.youtube.com/watch?v=4iAYaDRWT9A https://www.youtube.com/@djalilayed
 
 https://blog.onfvp.com/post/volatility-cheatsheet/ of https://github.com/onfvp

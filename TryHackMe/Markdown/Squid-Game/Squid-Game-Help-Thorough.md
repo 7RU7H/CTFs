@@ -1,7 +1,7 @@
 # Squid-Game Help-Thorough
 
 Name: Squid-Game
-Date:  
+Date:  16/07/2024
 Difficulty: Hard
 Goals:  
 - Novelty
@@ -13,12 +13,11 @@ Goals:
 - Automation if possible
 - Finish: main, BR and unfinished supplementary  by end of Monday 
 - Use more `assert` in my programming
-- C Source code for Rust/Golang Malware
+- C Source code for Rust / Golang Malware
 - Read Malware Analyst's Cookbook 
 - Other Objectives
 Learnt:
-- This is not a malware analysis CTF
-- https://github.com/PaperMtn
+- This is not a malware analysis CTF, maldocs, but later on it gets more relevant
 - Lena Rain is an awesome Composer - hackmud soundtrack hit very nicely at points
 - oletoolage
 - vmonkey can just solve all your problems
@@ -28,15 +27,15 @@ Beyond Root:
 - FEATURE CREEP MALWARE AND DETECTION
 - BiS Cyberchef
 - Forensics QB methodology
-- Finish https://tryhackme.com/r/room/sandboxevasion and https://tryhackme.com/r/room/deadend
+- Finish https://tryhackme.com/r/room/deadend - [[Dead-End-Writeup]]
 - Guided Hacking relevant playlist
 	- https://www.youtube.com/watch?v=zzpz3VYKzUw - YARA rules reminder - Done
 	- https://www.youtube.com/watch?v=wSkUbP9t4Dw - reversing a loader
 	- https://www.youtube.com/watch?v=TgYb3hwOAV4 - Crypters how? - Done
 	- https://www.youtube.com/watch?v=cNP6QXXUxro - Lockbit document 
 	- https://www.youtube.com/watch?v=o0fvdfEmQAk - Lockbit killchain 
-	- https://www.youtube.com/playlist?list=PLt9cUwGw6CYFrFbDkpdHi43ti5dmUfoOd - anti debuging techniques - 2
-	- finalise a list for ten single play games that I would like to hack to make the game *playable*, not cheatable - to pick from in the future if I need stuff to do and relax and to keep me relaxing while these weeks and months roll on by.
+	- https://www.youtube.com/playlist?list=PLt9cUwGw6CYFrFbDkpdHi43ti5dmUfoOd - anti debugging techniques - 2
+	- finalise a list for approximately ten single play games that I would like to hack to make the game *playable*, not cheatable - to pick from in the future if I need stuff to do and relax and to keep me relaxing while these weeks and months roll on by.
 - Squeeze the 100ish pages from Art of Exploitation into using C related things I struggle to remember or use because of beginner based projects
 - Malicious Obsidian and Detecting Malicious Obsidian
 - Classifying problem solving observation as a scale
@@ -80,8 +79,7 @@ Progress only the necessary, non-linear THM
 https://tryhackme.com/r/room/squidgameroom
 https://tryhackme.com/r/room/maldoc - doc section done
 https://tryhackme.com/r/room/advancedstaticanalysis
-https://tryhackme.com/r/room/androidmalwareanalysis
-https://tryhackme.com/r/room/androidhacking101
+Android stuff, was not relevant to the box
 
 For my Starting point see [[Squid-Game-Meta-Notes]]; main issue I found is there seems to be one way to do everything and probably because I am just ridiculous no on explained why forensically x action is a good decision.
 ## Scenario
@@ -185,9 +183,11 @@ Provide the stream number that contains a macro.; Answer:
 ```
 QB-Forensics-Notes:
 ```
+8
 ```
 Provide the name of the stream that contains a macro.; Answer:
 ```
+ThisDocument
 ```
 QB-Forensics-Notes:
 ```
@@ -247,6 +247,11 @@ Columbo deals in components and I just looked at the VBA like the attacker would
 Solution:
 - Have a fast eye for what you want to look for first
 - Input: toLookFor -> FastEyes(X amount of time) -> Output
+```
+
+Takeaways
+```
+
 ```
 ## Attacker 2 
 
@@ -484,12 +489,14 @@ QB-Forensics-Notes:
 ```
 Provide the name of the second binary.; Answer:
 ```
+bin.exe
 ```
 QB-Forensics-Notes:
 ```
 ```
 Provide the full URI from which the second binary was downloaded (exclude http/https).; Answer:
 ```
+gv-roth.de/js/bin.exe
 ```
 QB-Forensics-Notes:
 ```
@@ -545,7 +552,6 @@ https://github.com/mattnotmax/cyberchef-recipes?tab=readme-ov-file#recipe-28---d
 
 https://raw.githubusercontent.com/DidierStevens/DidierStevensSuite/master/1768.py
 didier analysis python script did not work and no internet on the box to git clone 
-
 
 
 What is the caption you found in the maldoc?; Answer:
@@ -633,21 +639,310 @@ Previous to this point the best prevention is to never open any documents, pdf, 
 	- Change permissions to prevent accidental human reading
 	- No libreoffice, browsers, etc
 	- Docker images for all the tools
-	
-#### Funny Ideas
 
-- Infinite Captcha
 
-#### Classifying problem solving observation as a scale
-#### Cryptors
+#### Malware
 
+Spoiler: Legitimate software is the best malware, but if you just learning  
+
+After thinking on this also:
+- Why not make a HTTPS cert that has to verify itself with a DNS or application certificate authority to then download malware, this seems good because:
+	- Encryption 
+	- no Malware or Keys or XOR or entropy that is not out of place is in the file
+	- Certificates can be regenerated, automated
+	- Its normal traffic
+	- ADCS also exists
+
+Zero Trust:
+- Whitelisting
+	- Certificates hashes
+	- Domains
+
+
+Although I can fallen slightly in love with XOR and HEX usage from this box, but it seems very low bar, which I guess going full cyber is not really the name of the game with this kind of malware. Also this kind of swapping and converting obfuscation must be really easy to detect as even my Gran would think that this is just nonsense compare normal *person in finance will have their Custom excel macro on the digital and physical grave, after getting it will-full getting it tattoo-ed on their arse on the work night out*. this reminds me of another project that can get feature here that I have been think about since the Excel Olympics about the intuition I had over the Generalisation Formula; there exists a formula that can spawn formulas that can create a Game of Life in an Excel speadsheet. In someways I hope one day that to if I ever write a book that this be the God joke, in that character meets God and is just [micro-ing](https://www.youtube.com/watch?v=tG_XYFTp0xo)([Full context for the confused](https://www.youtube.com/watch?v=9sXMO07p7oc)) an Excel spreadsheet and you are just string of nonsense being passed around a microscope section of Excel table of infinite excel tables. Existentialist humbling through disappointment in a funny way. I hope one day that I am funny enough or if I ever Stream, that I am the Day9 of Infosec [and have my call out the Boomers moment](https://www.youtube.com/watch?v=fEcsmUx8CzU); RIP Geoff.
+
+
+- Cryptors
 https://www.youtube.com/watch?v=TgYb3hwOAV4
 - https://github.com/NYAN-x-CAT
 
-
+Encoding as a IOCs
 https://github.com/intere/hacking/tree/master/booksrc
-https://github.com/amenasec/Hacking-The-Art-of-Exploitation-2e
-#### Single player Game to Hack / Mod
+https://github.com/amenasec/Hacking-The-Art-of-Exploitation-2eQuestion: What is the Entropy of HEX, XOR 
+
+Why are you base64ing a domain?
+- Detection is just:
+	- REGEX for base64
+	- decode
+	- REGEX for protocol-optionalsubdomain-domain-tld or short url
+
+
+Devastated the Art of Exploitation v2 does not have any inline asm!
+
+https://gcc.gnu.org/onlinedocs/gcc/extensions-to-the-c-language-family/how-to-use-inline-assembly-language-in-c-code.html
+C++, C and ISO C compile differently and have different keywords 
+https://en.cppreference.com/w/c/language/asm
+
+https://www.youtube.com/watch?v=ww2INI76ydQ - 
+```c
+// Debug detection Windows 
+
+int antidebug() 
+{
+
+// Debugger check
+__asm__("pushfd\n\t"
+	"or dword ptr[esp], 0x100\n\t"
+	"popfd\n\t"
+	"nop\n\t"
+)
+if () { // debugger is present
+// Epilogue
+__asm__("pop edi\n\t"
+	"pop esi\n\t"
+	"pop ebx\n\t"
+	"mov esp, esp\n\t"
+	"pop ebp\n\t"
+	"ret\n\t"
+)
+return 1
+} else { // debugger is not present
+// Epilogue
+__asm__("pop edi\n\t"
+	"pop esi\n\t"
+	"pop ebx\n\t"
+	"mov esp, esp\n\t"
+	"pop ebp\n\t"
+	"ret\n\t"
+)
+return 0
+}
+
+```
+
+```cpp
+#include <iostream>
+#include <Windows.h>
+
+#define EPILOGUE __asm \
+{
+	__asm pop edi \
+	__asm pop esi \
+	__asm pop ebx \
+	__asm mov esp, ebp \
+	__asm pop ebp \
+	__asm ret \
+}
+
+int antidebug()
+{
+	__try
+	{
+		__asm
+		{
+			pushfd
+			or dword ptr[esp], 0x100
+			popfd
+			nop
+		}
+		EPILOGUE
+	}
+	__finally
+	{
+		EPILOGUE
+	}
+}
+
+int WINAPI WinMain(_In_ hINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
+{
+	int antidebug;
+	antidebug = antidebug();
+}
+```
+
+
+Time Based Anti Debugging - https://www.youtube.com/watch?v=sirFxSNSXDY
+```
+// Get the start of an action time and then compare with how long it should take
+
+```
+
+
+https://tryhackme.com/r/room/signatureevasion
+#### GB and Take-aways
+
+Important Take-aways
+```bash
+# Noting went well I found and noted Replace() function that helps in decoding the powershell script
+
+# Best practice seems to be go string by string till you hit a good line
+oledump.py -s $int $maldoc
+oledump.py -s $specialLineNum -S $maldoc
+```
+QB-X Notes
+```
+Columbo deals in components and I just looked at the VBA like the attacker would have wanted and fell down a particial rabbithole of fear!
+
+Solution:
+- Have a fast eye for what you want to look for first
+- Input: toLookFor -> FastEyes(X amount of time) -> Output
+```
+
+QB-X Notes
+```
+```
+Important Takeways
+```
+Stomping
+- VBA Stomping
+
+
+Sometimes it does not matter how intimediating anything is if you can analyse it so affectively it is almost like
+
+
+What is analysis from  programmatical sense?
+What is should a tool do from an analytical sense post chatgpt3.0
+```
+
+QB-X Notes
+```
+Have got background tooling running, automating information gathering to come back to later prevent going head first into obfuscated stuff?
+
+I seperated it out, but
+
+Have you seperated out functions, methods with their corresponding classes?
+
+Can you replace the functions with external tooling - ie. Cyberchef
+
+
+Does it look like some encoding type:
+	- Hex?
+
+Classifying problem solving observation as a scale is a now a must for BR 
+
+```
+Important Takeways
+```
+Went to deep and went too methodical to understand, but a tiny step back
+- I could have replace the functions with tooling 
+
+Could have just used vmonkey for everything
+```
+
+QB-X Notes
+```
+- Caption would be a not real world; I did not have time to sequencial stream with oledump
+```
+Important Takeways
+```
+- vipermonkey, scdbg pages for the Archive
+```
+
+
+ViRb3/De4Dot CEx github get for DotNet deobfuscation
+
+#### Funny Ideas
+
+- MalDocs SpamDocs for Koth and Battlegrounds
+
+- Infinite Captcha
+
+HiveBin-ed or Hivemancer
+executable that runs on search regexs from values in the normal registry hive keys and values   
+All in the Registry to then execute. Masquerades as a legitimate CleanHives, registeryAV  
+
+#### Classifying problem solving observation as a scale
+
+After thinking about this for a bit I decided on the visual metaphor of `Problem Microscope`
+
+
+- `Problem Microscope` - observation that a problem has a context internal and external (your solving context; mood, temperature, etc), which the internal context as a scale
+	- Have you classified the problems as layers?
+	- Are you accounting for dimensionality?
+		- Time-lining 
+		- Vectors data connected across Problem layers that require modelling or you are zooming in and out and in and out
+		- Agents:
+			- Red Teaming thinking
+	- Are focusing on the extremes, too far out to find detail or too far in to understand connections?
+	- Are you one too many layers in or out - are you off a layer compare focus point and objective and layers:
+		- `A`(you may need to look here)... , `N`(you are here) `B`...(you may need to look here even if it is `A` for confirmation by comparison)
+	- Are you using this model too much and not noting anything down in a organised way? 
+
+#### C programming - Sandbox Room and PreStager Ideal
+
+https://tryhackme.com/r/room/sandboxevasion
+
+- Check and see if the device is joined to an Active Directory Domain
+- Check if the system memory is greater than 1GB of RAM
+- Implement an outbound HTTP request to 10.10.10.10
+- Implement a 60-second sleep timer before your payload is retrieved from your web server
+
+Debugger Check
+
+Plus my certificate checking Idea
+
+```cpp
+#include <iostream>
+#include <Windows.h>
+using namespace std;
+
+int main() {
+int dj_result 2;
+int vm_memsize_result 2; 
+
+// Is device domain joined
+LPCWSTR dcName;  
+NetGetDCName(NULL, NULL, (LPBYTE *) &dcName);
+wstring ws(dcName);
+string dcNewName(ws.begin(), ws.end());
+if ( dcNewName.find("\\\\"){
+	dj_result = 0;
+    } else {
+	dj_result =  1;
+    }
+
+// Size of System memory
+MEMORYSTATUSEX statex;
+statex.dwLength = sizeof(statex);
+GlobalMemoryStatusEx(&statex);
+if (statex.ullTotalPhys / 1024 / 1024 / 1024 >= 1.00) {        
+       vm_memsize_result = 0;    
+    } else {        
+       vm_memsize_result = 1;
+	}
+}   
+```
+
+// make a http request to 10.10.10.10
+
+// sleep for 60s
+
+```
+
+Beyond root version 
+```
+
+
+// Debugger Checking
+// Action time evaluation
+// Load Certificate.pfx into memory
+// Make HTTPS request to server
+// sleep
+// Evaluate response
+
+
+// Start encrypted "update" Key exchange
+
+```
+
+
+Golang Version; to get it done
+```go
+
+```
+
+
+#### Single player Game to Hack / Mod - not 10 I have no time
 
 
 - Graveyard Keeper - Apparently this already has mods. Also already labour a lot as it is, do not need a work simulator; Music is good!
@@ -657,5 +952,10 @@ https://github.com/amenasec/Hacking-The-Art-of-Exploitation-2e
 	- Infinite Storage
 	- Animation speed
 - Baldurs Gate 3 - not that it is bad, I want to see that game live on for the next 10-15 years it is that good
-- Grey Hack - Because why not try one multiplayer game - Or just find a transpiler
-	- Exfil scripts 
+- Hacking Games:
+	- Hackmud -  I do not like multiple player hacking
+		- Hacking people via a commonality of linguistic preferences algorithm is still hacking 
+	- HackNet
+	- 
+	- Grey Hack - Because why not try one multiplayer game - Or just find a transpiler and I do not like multiple player hacking
+		- Exfil scripts 

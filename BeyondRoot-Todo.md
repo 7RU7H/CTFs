@@ -1,6 +1,8 @@
 # Beyond Root Todo
 
 
+DEVELOPERS DEVELOPERS https://www.youtube.com/watch?v=OQm07iuC-zs
+
 Named Pipes
 
 [notes.Vulndev - Linux Race](https://notes.vulndev.io/wiki/redteam/misc/linux-race) 
@@ -72,6 +74,7 @@ Kenny The Self Replicating BR
 https://github.com/skywardpixel/trusting-trust-hack/tree/main/code
 https://github.com/pullmoll/trusttrust
 
+PDFs - https://tryhackme.com/r/room/maldoc 
 
 Use https://github.com/vi/websocat - get your blue hair, knee highs and memory safe webshells with dynamic socks proxies out! 
 
