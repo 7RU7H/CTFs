@@ -30,11 +30,10 @@ Beyond Root:
 - Finish https://tryhackme.com/r/room/deadend - [[Dead-End-Writeup]]
 - Guided Hacking relevant playlist
 	- https://www.youtube.com/watch?v=zzpz3VYKzUw - YARA rules reminder - Done
-	- https://www.youtube.com/watch?v=wSkUbP9t4Dw - reversing a loader
+	- https://www.youtube.com/watch?v=wSkUbP9t4Dw - reversing a loader - Done
 	- https://www.youtube.com/watch?v=TgYb3hwOAV4 - Crypters how? - Done
-	- https://www.youtube.com/watch?v=cNP6QXXUxro - Lockbit document 
-	- https://www.youtube.com/watch?v=o0fvdfEmQAk - Lockbit killchain 
-	- https://www.youtube.com/playlist?list=PLt9cUwGw6CYFrFbDkpdHi43ti5dmUfoOd - anti debugging techniques - 2
+	- https://www.youtube.com/watch?v=cNP6QXXUxro - Lockbit document - Done
+	- https://www.youtube.com/playlist?list=PLt9cUwGw6CYFrFbDkpdHi43ti5dmUfoOd - anti debugging techniques - 2 - Done
 	- finalise a list for approximately ten single play games that I would like to hack to make the game *playable*, not cheatable - to pick from in the future if I need stuff to do and relax and to keep me relaxing while these weeks and months roll on by.
 - Squeeze the 100ish pages from Art of Exploitation into using C related things I struggle to remember or use because of beginner based projects
 - Malicious Obsidian and Detecting Malicious Obsidian
@@ -632,7 +631,6 @@ Previous to this point the best prevention is to never open any documents, pdf, 
 - There must be a algorithm that determines the scale of human readable code as intuitively my Grandma could spot bad VBA as ultra weird nonsense 
 
 
-
 - IsItBadDoc 
 	- No internet access
 	- Automate external disconnection from internal network
@@ -769,89 +767,7 @@ Time Based Anti Debugging - https://www.youtube.com/watch?v=sirFxSNSXDY
 
 
 https://tryhackme.com/r/room/signatureevasion
-#### GB and Take-aways
-
-Important Take-aways
-```bash
-# Noting went well I found and noted Replace() function that helps in decoding the powershell script
-
-# Best practice seems to be go string by string till you hit a good line
-oledump.py -s $int $maldoc
-oledump.py -s $specialLineNum -S $maldoc
-```
-QB-X Notes
-```
-Columbo deals in components and I just looked at the VBA like the attacker would have wanted and fell down a particial rabbithole of fear!
-
-Solution:
-- Have a fast eye for what you want to look for first
-- Input: toLookFor -> FastEyes(X amount of time) -> Output
-```
-
-QB-X Notes
-```
-```
-Important Takeways
-```
-Stomping
-- VBA Stomping
-
-
-Sometimes it does not matter how intimediating anything is if you can analyse it so affectively it is almost like
-
-
-What is analysis from  programmatical sense?
-What is should a tool do from an analytical sense post chatgpt3.0
-```
-
-QB-X Notes
-```
-Have got background tooling running, automating information gathering to come back to later prevent going head first into obfuscated stuff?
-
-I seperated it out, but
-
-Have you seperated out functions, methods with their corresponding classes?
-
-Can you replace the functions with external tooling - ie. Cyberchef
-
-
-Does it look like some encoding type:
-	- Hex?
-
-Classifying problem solving observation as a scale is a now a must for BR 
-
-```
-Important Takeways
-```
-Went to deep and went too methodical to understand, but a tiny step back
-- I could have replace the functions with tooling 
-
-Could have just used vmonkey for everything
-```
-
-QB-X Notes
-```
-- Caption would be a not real world; I did not have time to sequencial stream with oledump
-```
-Important Takeways
-```
-- vipermonkey, scdbg pages for the Archive
-```
-
-
-ViRb3/De4Dot CEx github get for DotNet deobfuscation
-
-#### Funny Ideas
-
-- MalDocs SpamDocs for Koth and Battlegrounds
-
-- Infinite Captcha
-
-HiveBin-ed or Hivemancer
-executable that runs on search regexs from values in the normal registry hive keys and values   
-All in the Registry to then execute. Masquerades as a legitimate CleanHives, registeryAV  
-
-#### Classifying problem solving observation as a scale
+#### GB and Take-aways and Classifying problem solving observation as a scale
 
 After thinking about this for a bit I decided on the visual metaphor of `Problem Microscope`
 
@@ -867,6 +783,22 @@ After thinking about this for a bit I decided on the visual metaphor of `Problem
 	- Are you one too many layers in or out - are you off a layer compare focus point and objective and layers:
 		- `A`(you may need to look here)... , `N`(you are here) `B`...(you may need to look here even if it is `A` for confirmation by comparison)
 	- Are you using this model too much and not noting anything down in a organised way? 
+
+
+
+#### Funny Ideas and cool finds
+
+- MalDocs SpamDocs for Koth and Battlegrounds
+
+- Infinite Captcha
+
+HiveBin-ed or Hivemancer
+executable that runs on search regexs from values in the normal registry hive keys and values   
+All in the Registry to then execute. Masquerades as a legitimate CleanHives, registeryAV  
+
+
+ViRb3/De4Dot CEx github get for DotNet deobfuscation
+
 
 #### C programming - Sandbox Room and PreStager Ideal
 
@@ -911,7 +843,7 @@ if (statex.ullTotalPhys / 1024 / 1024 / 1024 >= 1.00) {
        vm_memsize_result = 1;
 	}
 }   
-```
+
 
 // make a http request to 10.10.10.10
 
@@ -935,11 +867,6 @@ Beyond root version
 
 ```
 
-
-Golang Version; to get it done
-```go
-
-```
 
 
 #### Single player Game to Hack / Mod - not 10 I have no time
