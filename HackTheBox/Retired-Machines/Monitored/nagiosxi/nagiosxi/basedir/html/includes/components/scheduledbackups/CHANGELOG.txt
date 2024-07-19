@@ -1,0 +1,80 @@
+1.2.0 - 05/14/2018
+==================
+- Added settings for Cloud licenses -JO
+- Last scheduled backup now shows when the actual command was issued, rather than when it was scheduled to run - SAW
+- If a scheduled backup is missed by >2 hours, the backup will be rescheduled instead of running immediately [TPS#13260] - SAW
+
+1.1.6 - 01/30/2017
+==================
+- Fixed issue where the shown scheduled backup directory was set to /usr/local/nagiosxi in the interface [TPS#10868] -JO
+
+1.1.5 - 12/30/2016
+==================
+- Fixed bug when testing permissions on local backup directory [TPS#10530] -LG
+
+1.1.4 - 12/19/2016
+==================
+- Fixed XSS vulnerabilities -JO
+
+1.1.3 - 09/15/2016
+==================
+- Fixed local backups to be sorted by timestamp -JO
+- Fixed minute dropdown in local backups not displaying correct value [TPS#8700] -BH
+- Fixed old backups not being deleted in case of most recent backup failing [TPS#8702] -BH
+
+1.1.2 - 10/30/2015
+==================
+- Moved into XI base -JO
+- Fixed setting backup limit to 0 for unlimited -JO
+
+1.1.1 - 10/11/2015
+==================
+- Fixed throwing php errors -JO
+- Fixed scheduled backup table display -JO
+
+1.1.0 - 06/10/2015
+==================
+- Styling changes for XI 5 -JO
+- Fixes for auto-deleting old local backups -LG
+
+1.0.9 - 05/01/2015
+==================
+- Will prune up to 20 older backups instead of just one -SW
+
+1.0.8 - 02/04/2015
+==================
+- Fix bug where day was not populating correctly on page load for local backups -SW
+
+1.0.7 - 12/05/2014
+==================
+- Added a 7 day log rotation and now log all info on scheduled backups -JO
+- Fixed logging to actually output to file -JO
+- Fixed issue where clicking "Create Backup" in local backups page would wait for an extremely long time -JO
+
+1.0.6 - 10/07/2014
+==================
+- Fix timeout/backup issues because of backend calls -JO
+
+1.0.5 - 07/23/2014
+==================
+- Allow configuration variable "backup_timeout" to be set (defaults to 1200 seconds/20 mins) -JO
+
+1.0.4 - 07/21/2014
+==================
+- Fixed issue where failing would not remove the local bakup file -JO
+- Fixed bug in SSH backups where SSH would connect and stay open while the file backup started which could be 1hr+ -JO
+
+1.0.3 - 07/07/2014
+==================
+- Fixed issue where readdir was trying to read a boolean and caused a loop -JO
+
+1.0.2 - 06/19/2014
+==================
+- Fixed broken last file size issue -JO
+- Fixed issue where local backups would never create file size -JO
+- Proper permissions in backup script -SW
+- Ability to run local backup in the background was added so it doesn't lock the browser -JO
+
+1.0.0 - 11/13/2013
+==================
+- Initial release -JO

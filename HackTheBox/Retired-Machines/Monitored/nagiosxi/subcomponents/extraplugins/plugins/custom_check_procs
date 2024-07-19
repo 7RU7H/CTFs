@@ -1,0 +1,31 @@
+#!/bin/bash
+# Script to check total processes
+#
+#!/bin/bash
+
+critical=""
+warning=""
+STATE_OK=0
+STATE_WARNING=1
+STATE_CRITICAL=2
+STATE_UNKNOWN=3
+
+
+
+
+tmpfile="/tmp/tmp_custom_check_procs"
+procs_cmd=`ps axo state > $tmpfile`
+
+total_procs=`cat $tmpfile | wc -l`
+usleep_procs=`cat $tmpfile | grep D | wc -l`
+running_procs=`cat $tmpfile | grep R | wc -l`
+isleep_procs=`cat $tmpfile | grep S | wc -l`
+stopped_procs=`cat $tmpfile | grep T | wc -l`
+paging_procs=`cat $tmpfile | grep W | wc -l`
+zombie_procs=`cat $tmpfile | grep Z | wc -l`
+
+label="OK"
+
+echo "Procs $label: Total=$total_procs, Running=$running_procs, Sleep(I)=$isleep_procs, Sleep(U)=$usleep_procs, Stopped=$stopped_procs, Paging=$paging_procs, Zombie=$zombie_procs | total=$total_procs running=$running_procs sleep(U)=$usleep_procs sleep(I)=$isleep_procs sleep(U)=$usleep_procs stopped=$stopped_procs paging=$paging_procs zombie=$zombie_procs"
+
+exit $result

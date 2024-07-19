@@ -1,0 +1,26 @@
+# Nmap 7.94SVN scan initiated Sun May 12 10:01:28 2024 as: nmap -sC -sV -oA /home/kali/HackTheBoxCompetitive/Anomalies/SolarLab/nmap/10-129-33-124-Extensive-Found-Ports --min-rate 300 -e tun0 -p 80,135,139,445,6791 10.129.33.124
+Nmap scan report for 10.129.33.124
+Host is up (0.077s latency).
+
+PORT     STATE SERVICE       VERSION
+80/tcp   open  http          nginx 1.24.0
+|_http-server-header: nginx/1.24.0
+|_http-title: Did not follow redirect to http://solarlab.htb/
+135/tcp  open  msrpc         Microsoft Windows RPC
+139/tcp  open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp  open  microsoft-ds?
+6791/tcp open  http          nginx 1.24.0
+|_http-server-header: nginx/1.24.0
+|_http-title: Did not follow redirect to http://report.solarlab.htb:6791/
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-time: 
+|   date: 2024-05-12T09:02:00
+|_  start_date: N/A
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled but not required
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun May 12 10:02:38 2024 -- 1 IP address (1 host up) scanned in 69.76 seconds

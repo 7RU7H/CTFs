@@ -1,0 +1,9 @@
+#!/bin/bash -e
+. ./xi-sys.cfg
+
+# Install contrib and non-free repos
+sed -i 's/main/main contrib non-free/g' /etc/apt/sources.list
+sed -i 's/deb cdrom:/#deb cdrom:/g' /etc/apt/sources.list
+
+# Update apt-get sources
+apt-get update

@@ -1,0 +1,11 @@
+--- npcd.c	2013-12-18 12:25:12.000000000 -0600
++++ npcd.new.c	2014-11-20 13:00:02.600539064 -0600
+@@ -81,7 +81,7 @@
+ 	chdir("/");
+ 
+ 	/* change umask to defined value - be independent from parent umask */
+-	umask(0);
++	umask(002);
+ 
+ 	/* close all possible file handles */
+ 	for (i = sysconf(_SC_OPEN_MAX); i > 0; i--)

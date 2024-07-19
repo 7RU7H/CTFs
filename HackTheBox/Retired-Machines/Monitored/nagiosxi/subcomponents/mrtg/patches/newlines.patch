@@ -1,0 +1,11 @@
+--- /usr/bin/cfgmaker	2021-08-04 13:44:48.538129195 -0500
++++ /usr/bin/cfgmaker-patched	2021-10-27 14:40:09.968064945 -0500
+@@ -377,6 +377,8 @@
+         my $sysdescr = $$router_dev{sysDescr};
+         my $comment_sysdescr = $sysdescr;
+         # make sure embeded newlines do not harm us here
++        $syscontact =~ s/[\n\r]+/\n\#          /g;
++        $syslocation =~ s/[\n\r]+/\n\#          /g;
+         $comment_sysdescr =~ s/[\n\r]+/\n\#          /g;
+         my $community = $$router_ref{community};
+         $community  =~ s/([@ ])/\\$1/g;

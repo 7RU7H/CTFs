@@ -1,0 +1,31 @@
+#!/bin/bash -e
+
+. ./xi-sys.cfg
+
+# Was previous step completed?
+if [ ! -f installed.usersgroups ]; then
+    echo "Users/groups were not configured - run previous script" >&2
+    exit 1
+fi
+
+# Was this step already completed?
+if [ -f installed.dbservers ]; then
+    echo "Database servers already initialized - skipping."
+    exit 0
+fi
+
+##########################################
+# INITIALIZE MYSQL
+##########################################
+
+./init-mysql
+if [ ! -f installed.mysql ]; then
+    exit 1
+fi
+
+if [ "$distro" != "Ubuntu" ] && [ "$distro" != "Debian" ]; then
+    systemctl disable postgresql.service
+fi
+
+echo "Database servers initialized OK"
+touch installed.dbservers

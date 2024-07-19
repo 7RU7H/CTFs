@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Mon Mar  4 14:26:46 2024 as: nmap -&#45;script vuln -oA /home/kali/HackTheBoxCompetitive/Savage-Lands/Perfection/nmap/10-129-235-152-Vuln -&#45;min-rate 1000 -e tun0 -p 22,80 10.129.235.152 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA /home/kali/HackTheBoxCompetitive/Savage-Lands/Perfection/nmap/10-129-235-152-Vuln -&#45;min-rate 1000 -e tun0 -p 22,80 10.129.235.152" start="1709562406" startstr="Mon Mar  4 14:26:46 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.235.152" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1709562429" endtime="1709562609"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.129.235.152" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.235.152&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://10.129.235.152:80/weighted-grade&#xa;    Form id: category1&#xa;    Form action: /weighted-grade-calc&#xa;"/></port>
+</ports>
+<times srtt="65738" rttvar="49204" to="262554"/>
+</host>
+<runstats><finished time="1709562609" timestr="Mon Mar  4 14:30:09 2024" summary="Nmap done at Mon Mar  4 14:30:09 2024; 1 IP address (1 host up) scanned in 203.34 seconds" elapsed="203.34" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

@@ -1,0 +1,36 @@
+#!/usr/bin/perl
+# Predefined NAGIOS exit codes.
+%exit_codes   = ('UNKNOWN' ,-1,
+		 'OK'      , 0,
+                 'WARNING' , 1,
+                 'CRITICAL', 2,);
+
+
+
+sub usage()
+{
+  print "\ncheck_yum (Nagios Plugin v1.0)";
+  print "\n  Check that an O/S is up to date.";
+  print "\nUsage:";
+  print "\n  check_yum\n\n";
+  exit  $exit_codes{'OK'}; 
+}
+
+
+
+if ($#ARGV ge 0)
+{ &usage; }
+
+$yum = system("yum check-update >/dev/null");
+#chomp($yum = `yum check-update | grep -e i386 -e noarch -e x86_64 | grep -i -v excluding | wc -l`);
+
+if ($yum != 0)
+{
+  print "YUM WARNING:  O/S requires an update.\n";
+  exit $exit_codes{'WARNING'};
+}
+else
+{
+  print "YUM OK:  O/S is up to date.\n";
+  exit $exit_codes{'OK'};
+}

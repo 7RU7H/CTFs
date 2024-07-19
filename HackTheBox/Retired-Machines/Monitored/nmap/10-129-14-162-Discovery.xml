@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Sun Jan 14 17:47:36 2024 as: nmap -&#45;script discovery -oA /home/none/HackTheBoxCompetitive/Savage-Lands/Monitored/nmap/10-129-14-162-Discovery -&#45;min-rate 500 -e tun0 -p 22,80,389,443,5667 10.129.14.162 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA /home/none/HackTheBoxCompetitive/Savage-Lands/Monitored/nmap/10-129-14-162-Discovery -&#45;min-rate 500 -e tun0 -p 22,80,389,443,5667 10.129.14.162" start="1705254456" startstr="Sun Jan 14 17:47:36 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="5" services="22,80,389,443,5667"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="targets-sniffer" output="Sniffed 1 address(es). &#xa;10.129.14.162"/><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="lltd-discovery" output="false">false</script><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="broadcast-ping" output="false">false</script></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.14.162" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1705254480" endtime="1705254739"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.129.14.162" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (10)&#xa;  server_host_key_algorithms: (5)&#xa;  encryption_algorithms: (6)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+<elem>kex-strict-s-v00@openssh.com</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ssh-rsa</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script><script id="banner" output="SSH-2.0-OpenSSH_8.4p1 Debian-5+deb11u3"/><script id="ssh-hostkey" output="&#xa;  3072 61:e2:e7:b4:1b:5d:46:dc:3b:2f:91:38:e6:6d:c5:ff (RSA)&#xa;  256 29:73:c5:a5:8d:aa:3f:60:a9:4a:a3:e5:9f:67:5c:93 (ECDSA)&#xa;  256 6d:7a:f9:eb:8e:45:c2:02:6a:d5:8d:4d:b3:a3:37:6f (ED25519)"><table>
+<elem key="fingerprint">61e2e7b41b5d46dc3b2f9138e66dc5ff</elem>
+<elem key="key">AAAAB3NzaC1yc2EAAAADAQABAAABgQC/xFgJTbVC36GNHaE0GG4n/bWZGaD2aE7lsFUvXVdbINrl0qzBPVCMuOE1HNf0LHi09obr2Upt9VURzpYdrQp/7SX2NDet9pb+UQnB1IgjRSxoIxjsOX756a7nzi71tdcR3I0sALQ4ay5I5GO4TvaVq+o8D01v94B0Qm47LVk7J3mN4wFR17lYcCnm0kwxNBsKsAgZVETxGtPgTP6hbauEk/SKGA5GASdWHvbVhRHgmBz2l7oPrTot5e+4m8A7/5qej2y5PZ9Hq/2yOldrNpS77ID689h2fcOLt4fZMUbxuDzQIqGsFLPhmJn5SUCG9aNrWcjZwSL2LtLUCRt6PbW39UAfGf47XWiSs/qTWwW/yw73S8n5oU5rBqH/peFIpQDh2iSmIhbDq36FPv5a2Qi8HyY6ApTAMFhwQE6MnxpysKLt/xEGSDUBXh+4PwnR0sXkxgnL8QtLXKC2YBY04jGG0DXGXxh3xEZ3vmPV961dcsNd6Up8mmSC43g5gj2ML/E=</elem>
+<elem key="type">ssh-rsa</elem>
+<elem key="bits">3072</elem>
+</table>
+<table>
+<elem key="fingerprint">2973c5a58daa3f60a94aa3e59f675c93</elem>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBbeArqg4dgxZEFQzd3zpod1RYGUH6Jfz6tcQjHsVTvRNnUzqx5nc7gK2kUUo1HxbEAH+cPziFjNJc6q7vvpzt4=</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="bits">256</elem>
+</table>
+<table>
+<elem key="fingerprint">6d7af9eb8e45c2026ad58d4db3a3376f</elem>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIB5o+WJqnyLpmJtLyPL+tEUTFbjMZkx3jUUFqejioAj7</elem>
+<elem key="type">ssh-ed25519</elem>
+<elem key="bits">256</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-security-headers" output=""></script><script id="http-date" output="Sun, 14 Jan 2024 17:48:06 GMT; +59m50s from local time."><elem key="date">2024-01-14T18:48:06+00:00</elem>
+<elem key="delta">3590.0</elem>
+</script><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-vhosts" output="&#xa;128 names had status 301"/><script id="http-grep" output="&#xa;  (1) https://nagios.monitored.htb:443/: &#xa;    (1) ip: &#xa;      + 10.129.14.162"><table key="(1) https://nagios.monitored.htb:443/">
+<table key="(1) ip">
+<elem>+ 10.129.14.162</elem>
+</table>
+</table>
+</script><script id="http-comments-displayer" output="Couldn&apos;t find any comments."/><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: false&#xa;  Redirected To: https://nagios.monitored.htb/&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">false</elem>
+<elem key="Redirected To">https://nagios.monitored.htb/</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-xssed" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-title" output="Did not follow redirect to https://nagios.monitored.htb/"><elem key="redirect_url">https://nagios.monitored.htb/</elem>
+</script><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;  Longest directory structure:&#xa;    Depth: 0&#xa;    Dir: /&#xa;  Total files found (by extension):&#xa;    &#xa;"/><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-headers" output="&#xa;  Date: Sun, 14 Jan 2024 17:48:08 GMT&#xa;  Server: Apache/2.4.56 (Debian)&#xa;  Location: https://nagios.monitored.htb/&#xa;  Content-Length: 316&#xa;  Connection: close&#xa;  Content-Type: text/html; charset=iso-8859-1&#xa;  &#xa;  (Request type: GET)&#xa;"/><script id="http-chrono" output="Request times for /; avg: 2.47ms; min: 2.22ms; max: 2.69ms"/><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-errors" output="Couldn&apos;t find any error pages."/></port>
+<port protocol="tcp" portid="389"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ldap" method="probed" conf="10"/><script id="ldap-rootdse" output="&#xa;LDAP Results&#xa;  &lt;ROOT&gt;&#xa;      namingContexts: dc=monitored,dc=htb&#xa;      supportedControl: 2.16.840.1.113730.3.4.18&#xa;      supportedControl: 2.16.840.1.113730.3.4.2&#xa;      supportedControl: 1.3.6.1.4.1.4203.1.10.1&#xa;      supportedControl: 1.3.6.1.1.22&#xa;      supportedControl: 1.2.840.113556.1.4.319&#xa;      supportedControl: 1.2.826.0.1.3344810.2.3&#xa;      supportedControl: 1.3.6.1.1.13.2&#xa;      supportedControl: 1.3.6.1.1.13.1&#xa;      supportedControl: 1.3.6.1.1.12&#xa;      supportedExtension: 1.3.6.1.4.1.4203.1.11.1&#xa;      supportedExtension: 1.3.6.1.4.1.4203.1.11.3&#xa;      supportedExtension: 1.3.6.1.1.8&#xa;      supportedLDAPVersion: 3&#xa;      supportedSASLMechanisms: DIGEST-MD5&#xa;      supportedSASLMechanisms: NTLM&#xa;      supportedSASLMechanisms: CRAM-MD5&#xa;      subschemaSubentry: cn=Subschema&#xa;"/><script id="ldap-search" output="&#xa;  Context: dc=monitored,dc=htb&#xa;    dn: dc=monitored,dc=htb&#xa;        objectClass: top&#xa;        objectClass: dcObject&#xa;        objectClass: organization&#xa;        o: monitored.htb&#xa;        dc: monitored&#xa;"/></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="https" method="table" conf="3"/><script id="http-vhosts" output="&#xa;128 names had status 403"/><script id="http-security-headers" output="&#xa;  Strict_Transport_Security: &#xa;    HSTS not configured in HTTPS Server"><table key="Strict_Transport_Security">
+<elem>HSTS not configured in HTTPS Server</elem>
+</table>
+</script><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: 200&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">200</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;    /&#xa;      Other: 1&#xa;    /nagiosxi/&#xa;      php: 1&#xa;    /nagiosxi/about/&#xa;      Other: 1&#xa;    /nagiosxi/includes/css/&#xa;      css: 3&#xa;    /nagiosxi/includes/js/&#xa;      js: 1&#xa;  Longest directory structure:&#xa;    Depth: 3&#xa;    Dir: /nagiosxi/includes/css/&#xa;  Total files found (by extension):&#xa;    Other: 2; css: 3; js: 1; php: 1&#xa;"/><script id="http-chrono" output="Request times for /; avg: 342.01ms; min: 256.09ms; max: 452.70ms"/><script id="tls-alpn" output="&#xa;  http/1.1"><elem>http/1.1</elem>
+</script><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-headers" output="&#xa;  Date: Sun, 14 Jan 2024 17:47:59 GMT&#xa;  Server: Apache/2.4.56 (Debian)&#xa;  Vary: Accept-Encoding&#xa;  Content-Length: 3245&#xa;  Connection: close&#xa;  Content-Type: text/html; charset=UTF-8&#xa;  &#xa;  (Request type: GET)&#xa;"/><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-errors" output="Couldn&apos;t find any error pages."/><script id="http-auth-finder" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.14.162&#xa;  url                                                                                    method&#xa;  https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&amp;noauth=1  FORM&#xa;  https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&amp;noauth=1  FORM&#xa;"/><script id="http-title" output="Nagios XI"><elem key="title">Nagios XI</elem>
+</script><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="http-unsafe-output-escaping" output="&#xa;  Characters [&apos;] reflected in parameter redirect at https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&amp;noauth=1&#xa;  Characters [&apos;] reflected in parameter redirect at https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&amp;noauth=1&#xa;"/><script id="http-grep" output="&#xa;  (1) https://10.129.14.162:443/nagiosxi/about/?legal: &#xa;    (1) ip: &#xa;      + 10.129.14.162&#xa;  (1) https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&amp;noauth=1: &#xa;    (1) email: &#xa;      + sales@nagios.com"><table key="(1) https://10.129.14.162:443/nagiosxi/about/?legal">
+<table key="(1) ip">
+<elem>+ 10.129.14.162</elem>
+</table>
+</table>
+<table key="(1) https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&amp;noauth=1">
+<table key="(1) email">
+<elem>+ sales@nagios.com</elem>
+</table>
+</table>
+</script><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="ssl-cert" output="Subject: commonName=nagios.monitored.htb/organizationName=Monitored/stateOrProvinceName=Dorset/countryName=UK&#xa;Not valid before: 2023-11-11T21:46:55&#xa;Not valid after:  2297-08-25T21:46:55"><table key="subject">
+<elem key="commonName">nagios.monitored.htb</elem>
+<elem key="countryName">UK</elem>
+<elem key="emailAddress">support@monitored.htb</elem>
+<elem key="localityName">Bournemouth</elem>
+<elem key="organizationName">Monitored</elem>
+<elem key="stateOrProvinceName">Dorset</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">nagios.monitored.htb</elem>
+<elem key="countryName">UK</elem>
+<elem key="emailAddress">support@monitored.htb</elem>
+<elem key="localityName">Bournemouth</elem>
+<elem key="organizationName">Monitored</elem>
+<elem key="stateOrProvinceName">Dorset</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">D6A45108A9FDC051AAB9815DAA1EDCA785924CF9CA740C24C9CAA46B7593634C8EB9BB9C1A60378C055D3EE489D15A741CE8646C0768D3C255CE9BCF5FB2E1F262040D1497DFD14360294FBD020095D0AE586919DD05AE91183D6BB74AFBE28BEFD233F976C8011FD72D3F40368322F3FD463F604A1EF77BB89ABB2D5D31AE3B4C0FA7A6C034CA14E9397D76AA39E383827149CB25D0619AF141079201397B70B73501B5F7FFA5C1B011FB7B7C5655131A471053C1B27F999DC189C206A71186667ADC91D43C66FF8B462C2F465D63A449C47858DACF0616ADC1FEE8168EBE68789453C18B77FF7FFCF955BA1128FD09074AFA23734CE99B21F15FC89E1E1FC5</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">E9:54:A2:12:5B:06:C3:E9:2A:5D:4A:F2:4D:A3:78:5A:9F:9A:E1:5B</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">E9:54:A2:12:5B:06:C3:E9:2A:5D:4A:F2:4D:A3:78:5A:9F:9A:E1:5B</elem>
+</table>
+<table>
+<elem key="name">X509v3 Basic Constraints</elem>
+<elem key="value">CA:TRUE</elem>
+<elem key="critical">true</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-11-11T21:46:55</elem>
+<elem key="notAfter">2297-08-25T21:46:55</elem>
+</table>
+<elem key="md5">b36a55607a5f047d983864504d67cfe0</elem>
+<elem key="sha1">610938448c36b08b0ae8a132971c8e89cfac2b5b</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIID/zCCAuegAwIBAgIUVhOvMcK6dv/Kvzplbf6IxOePX3EwDQYJKoZIhvcNAQEL&#xa;BQAwgY0xCzAJBgNVBAYTAlVLMQ8wDQYDVQQIDAZEb3JzZXQxFDASBgNVBAcMC0Jv&#xa;dXJuZW1vdXRoMRIwEAYDVQQKDAlNb25pdG9yZWQxHTAbBgNVBAMMFG5hZ2lvcy5t&#xa;b25pdG9yZWQuaHRiMSQwIgYJKoZIhvcNAQkBFhVzdXBwb3J0QG1vbml0b3JlZC5o&#xa;dGIwIBcNMjMxMTExMjE0NjU1WhgPMjI5NzA4MjUyMTQ2NTVaMIGNMQswCQYDVQQG&#xa;EwJVSzEPMA0GA1UECAwGRG9yc2V0MRQwEgYDVQQHDAtCb3VybmVtb3V0aDESMBAG&#xa;A1UECgwJTW9uaXRvcmVkMR0wGwYDVQQDDBRuYWdpb3MubW9uaXRvcmVkLmh0YjEk&#xa;MCIGCSqGSIb3DQEJARYVc3VwcG9ydEBtb25pdG9yZWQuaHRiMIIBIjANBgkqhkiG&#xa;9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1qRRCKn9wFGquYFdqh7cp4WSTPnKdAwkycqk&#xa;a3WTY0yOubucGmA3jAVdPuSJ0Vp0HOhkbAdo08JVzpvPX7Lh8mIEDRSX39FDYClP&#xa;vQIAldCuWGkZ3QWukRg9a7dK++KL79Iz+XbIAR/XLT9ANoMi8/1GP2BKHvd7uJq7&#xa;LV0xrjtMD6emwDTKFOk5fXaqOeODgnFJyyXQYZrxQQeSATl7cLc1AbX3/6XBsBH7&#xa;e3xWVRMaRxBTwbJ/mZ3BicIGpxGGZnrckdQ8Zv+LRiwvRl1jpEnEeFjazwYWrcH+&#xa;6BaOvmh4lFPBi3f/f/z5VboRKP0JB0r6I3NM6Zsh8V/Inh4fxQIDAQABo1MwUTAd&#xa;BgNVHQ4EFgQU6VSiElsGw+kqXUryTaN4Wp+a4VswHwYDVR0jBBgwFoAU6VSiElsG&#xa;w+kqXUryTaN4Wp+a4VswDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsFAAOC&#xa;AQEAdPGDylezaB8d/u2ufsA6hinUXF61RkqcKGFjCO+j3VrrYWdM2wHF83WMQjLF&#xa;03tSek952fObiU2W3vKfA/lvFRfBbgNhYEL0dMVVM95cI46fNTbignCj2yhScjIz&#xa;W9oeghcR44tkU4sRd4Ot9L/KXef35pUkeFCmQ2Xm74/5aIfrUzMnzvazyi661Q97&#xa;mRGL52qMScpl8BCBZkdmx1SfcVgn6qHHZpy+EJ2yfJtQixOgMz3I+hZYkPFjMsgf&#xa;k9w6Z6wmlalRLv3tuPqv8X3o+fWFSDASlf2uMFh1MIje5S/jp3k+nFhemzcsd/al&#xa;4c8NpU/6egay1sl2ZrQuO8feYA==&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="http-xssed" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-date" output="Sun, 14 Jan 2024 17:47:55 GMT; +59m50s from local time."><elem key="date">2024-01-14T18:47:55+00:00</elem>
+<elem key="delta">3590.0</elem>
+</script><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.0: &#xa;    ciphers: &#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: client&#xa;  TLSv1.1: &#xa;    ciphers: &#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: client&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CCM (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CCM_8 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CCM (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CCM_8 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_ARIA_128_GCM_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_ARIA_256_GCM_SHA384 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_ARIA_128_GCM_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_ARIA_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_CAMELLIA_256_CBC_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (secp256r1) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CCM (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CCM_8 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CCM (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CCM_8 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A&#xa;      TLS_RSA_WITH_ARIA_128_GCM_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_ARIA_256_GCM_SHA384 (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256 (rsa 2048) - A&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: client&#xa;  TLSv1.3: &#xa;    ciphers: &#xa;      TLS_AKE_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A&#xa;      TLS_AKE_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A&#xa;      TLS_AKE_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - A&#xa;    cipher preference: client&#xa;  least strength: A"><table key="TLSv1.0">
+<table key="ciphers">
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_CAMELLIA_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_CAMELLIA_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">client</elem>
+</table>
+<table key="TLSv1.1">
+<table key="ciphers">
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_CAMELLIA_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_CAMELLIA_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">client</elem>
+</table>
+<table key="TLSv1.2">
+<table key="ciphers">
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CCM</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CCM_8</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CCM</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CCM_8</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_ARIA_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_ARIA_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">dh 2048</elem>
+<elem key="name">TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_ARIA_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_ARIA_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_CAMELLIA_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_CAMELLIA_256_CBC_SHA384</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">secp256r1</elem>
+<elem key="name">TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_CCM</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_CCM_8</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_CCM</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_CCM_8</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_ARIA_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_ARIA_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_CAMELLIA_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_CAMELLIA_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">rsa 2048</elem>
+<elem key="name">TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">client</elem>
+</table>
+<table key="TLSv1.3">
+<table key="ciphers">
+<table>
+<elem key="kex_info">ecdh_x25519</elem>
+<elem key="name">TLS_AKE_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">ecdh_x25519</elem>
+<elem key="name">TLS_AKE_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+</table>
+<table>
+<elem key="kex_info">ecdh_x25519</elem>
+<elem key="name">TLS_AKE_WITH_CHACHA20_POLY1305_SHA256</elem>
+<elem key="strength">A</elem>
+</table>
+</table>
+<elem key="cipher preference">client</elem>
+</table>
+<elem key="least strength">A</elem>
+</script><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-comments-displayer" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.14.162&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 258&#xa;    Comment: &#xa;        &lt;!-&#45; This page requires a web browser which supports frames. -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 179&#xa;    Comment: &#xa;        &lt;!-&#45; XI CSS -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/font-awesome.min.css?1687894169&#xa;    Line number: 1&#xa;    Comment: &#xa;        /*!&#xa;         *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome&#xa;         *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)&#xa;         */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/js/dashboards.js?1687894169&#xa;    Line number: 6&#xa;    Comment: &#xa;        &lt;!-&#45;&lt;input type=&apos;submit&apos; class=&apos;submitbutton&apos; name=&apos;cancelButton&apos; value=&apos;&quot;+_(&apos;Cancel&apos;)+&quot;&apos; id=&apos;cancelExportDashboardButton&apos;&gt;-&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 158&#xa;    Comment: &#xa;        &lt;!-&#45; colorpicker -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/bootstrap.3.min.css&#xa;    Line number: 5&#xa;    Comment: &#xa;        /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&amp;noauth=1&#xa;    Line number: 221&#xa;    Comment: &#xa;        &lt;!-&#45;&#45; HEADER START -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 34&#xa;    Comment: &#xa;         // Language string for translations&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 215&#xa;    Comment: &#xa;        &lt;!-&#45;&#45; CHILD HEADER START -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 343&#xa;    Comment: &#xa;        /* defaults */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 917&#xa;    Comment: &#xa;        /* For Overlays */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&amp;noauth=1&#xa;    Line number: 194&#xa;    Comment: &#xa;        &lt;!-&#45; jScrollPane -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 835&#xa;    Comment: &#xa;        /* Special help section */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 227&#xa;    Comment: &#xa;        &lt;!-&#45;&#45; CHILD HEADER END -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 721&#xa;    Comment: &#xa;        /* Host/Service details page Performance Graphs tab */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 250&#xa;    Comment: &#xa;        &lt;!-&#45; CHILD FOOTER START -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&amp;noauth=1&#xa;    Line number: 448&#xa;    Comment: &#xa;        &lt;!-&#45; FOOTER END -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 162&#xa;    Comment: &#xa;        &lt;!-&#45; clipboard plugin -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 255&#xa;    Comment: &#xa;        &lt;!-&#45;page-&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 341&#xa;    Comment: &#xa;        /* FORMS */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 196&#xa;    Comment: &#xa;        &lt;!-&#45; Mobile redirect -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 1061&#xa;    Comment: &#xa;        /* Updated install section */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 1095&#xa;    Comment: &#xa;        /* Modern form layout (for deploy agent section) */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 89&#xa;    Comment: &#xa;        /* Page settings dropdown */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 493&#xa;    Comment: &#xa;        /* STANDARD TABLE DEFAULTS */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 1125&#xa;    Comment: &#xa;        /* css for Banner Message */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 816&#xa;    Comment: &#xa;        /* Color overrides for fontawesome icons */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 184&#xa;    Comment: &#xa;        &lt;!-&#45; Highcharts Graphing Library -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 850&#xa;    Comment: &#xa;        /* New report layout */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&amp;noauth=1&#xa;    Line number: 446&#xa;    Comment: &#xa;        &lt;!-&#45; end footer div -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 735&#xa;    Comment: &#xa;        /* Graph Explorer CSS for Dashlets */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 1032&#xa;    Comment: &#xa;        /* User Macro Component */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/bootstrap.3.min.css&#xa;    Line number: 5&#xa;    Comment: &#xa;        /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 631&#xa;    Comment: &#xa;        /* log entries */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&amp;noauth=1&#xa;    Line number: 359&#xa;    Comment: &#xa;         // Hover change &apos;tab&apos;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 1179&#xa;    Comment: &#xa;        /* banner message switch */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 262&#xa;    Comment: &#xa;        /* Fix perfdata in tabs on status pages */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&amp;noauth=1&#xa;    Line number: 431&#xa;    Comment: &#xa;        &lt;!-&#45; FOOTER START -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 3&#xa;    Comment: &#xa;        &lt;!-&#45; Powered by the Nagios Synthesis Framework -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 135&#xa;    Comment: &#xa;        &lt;!-&#45; main jquery libraries -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 253&#xa;    Comment: &#xa;        &lt;!-&#45; CHILD FOOTER END -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 964&#xa;    Comment: &#xa;        /* Screen &lt; 1000px */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 959&#xa;    Comment: &#xa;        /* Screen &lt; 1100px */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 19&#xa;    Comment: &#xa;        &lt;!-&#45; Adding Font-Awesome for all themes -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 787&#xa;    Comment: &#xa;        /* SLA Dashlet */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 886&#xa;    Comment: &#xa;        /*font-weight: bold; font-size: 1.3rem;*/&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 895&#xa;    Comment: &#xa;        /* Screen &lt; 1500px */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 144&#xa;    Comment: &#xa;        /* Set colors for tables */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 901&#xa;    Comment: &#xa;        /* Screen &lt; 1200px */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 127&#xa;    Comment: &#xa;         // Translation helper function&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/bootstrap.3.min.css&#xa;    Line number: 1&#xa;    Comment: &#xa;        /*!&#xa;         * Bootstrap v3.4.1 (https://getbootstrap.com/)&#xa;         * Copyright 2011-2019 Twitter, Inc.&#xa;         * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)&#xa;         */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 1048&#xa;    Comment: &#xa;        /* warning/critical highcharts buttons */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&amp;noauth=1&#xa;    Line number: 2&#xa;    Comment: &#xa;        &lt;!-&#45; &lt;!DOCTYPE html&gt; -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 166&#xa;    Comment: &#xa;        &lt;!-&#45; XI JS Scripts -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 22&#xa;    Comment: &#xa;        &lt;!-&#45; Global variables &amp; Javascript translation text -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 152&#xa;    Comment: &#xa;        &lt;!-&#45; spin kit -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 2&#xa;    Comment: &#xa;        &lt;!-&#45; Produced by Nagios XI. Copyright (c) 2008-2024 Nagios Enterprises, LLC (www.nagios.com). All Rights Reserved. -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 189&#xa;    Comment: &#xa;        &lt;!-&#45; D3 Graphing Library -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/js/dashboards.js?1687894169&#xa;    Line number: 6&#xa;    Comment: &#xa;        &lt;!-&#45;&lt;input type=&apos;submit&apos; class=&apos;submitbutton&apos; name=&apos;cancelButton&apos; value=&apos;&quot;+_(&apos;Cancel&apos;)+&quot;&apos; id=&apos;cancelCloneDashboardButton&apos;&gt;-&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&amp;noauth=1&#xa;    Line number: 429&#xa;    Comment: &#xa;        &lt;!-&#45;mainframe-&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 77&#xa;    Comment: &#xa;        /* jQuery-UI overwriting */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal&#xa;    Line number: 155&#xa;    Comment: &#xa;        &lt;!-&#45; jquery autocomplete -&#45;&gt;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 406&#xa;    Comment: &#xa;        /* SORTED TABLE STYLES */&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&amp;noauth=1&#xa;    Line number: 263&#xa;    Comment: &#xa;        &#xa;        // Frame buster&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&amp;noauth=1&#xa;    Line number: 268&#xa;    Comment: &#xa;        &#xa;        // Focus on the login fields automatically&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css&#xa;    Line number: 729&#xa;    Comment: &#xa;        /* Gauge classes for Outboard Dashlets */&#xa;"/></port>
+<port protocol="tcp" portid="5667"><state state="open" reason="syn-ack" reason_ttl="63"/></port>
+</ports>
+<hostscript><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV     LOSS (%)&#xa;22    0       82350.70   92842.07   0.0%&#xa;80    0       192752.00  357534.71  0.0%&#xa;389   0       169624.78  339482.95  10.0%&#xa;443   0       57358.60   11584.97   0.0%&#xa;5667  0       53150.30   8555.35    0.0%&#xa;"/><script id="ipidseq" output="All zeros"/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.129.14.162&quot;; use dns-brute.domain script argument."/><script id="path-mtu" output="PMTU == 1500"/></hostscript><times srtt="171802" rttvar="197210" to="960642"/>
+</host>
+<runstats><finished time="1705254739" timestr="Sun Jan 14 17:52:19 2024" summary="Nmap done at Sun Jan 14 17:52:19 2024; 1 IP address (1 host up) scanned in 283.03 seconds" elapsed="283.03" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

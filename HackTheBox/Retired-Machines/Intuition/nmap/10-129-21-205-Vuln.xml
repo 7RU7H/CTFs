@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Sat Apr 27 20:33:54 2024 as: nmap -&#45;script vuln -oA /home/kali/HackTheBoxCompetitive/Anomalies/Intuition/nmap/10-129-21-205-Vuln -&#45;min-rate 1000 -e tun0 -p 22,80 10.129.21.205 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA /home/kali/HackTheBoxCompetitive/Anomalies/Intuition/nmap/10-129-21-205-Vuln -&#45;min-rate 1000 -e tun0 -p 22,80 10.129.21.205" start="1714246434" startstr="Sat Apr 27 20:33:54 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.21.205" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1714246444" endtime="1714246616"><status state="up" reason="reset" reason_ttl="63"/>
+<address addr="10.129.21.205" addrtype="ipv4"/>
+<hostnames>
+<hostname name="comprezzor.htb" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-fileupload-exploiter" output="&#xa;  &#xa;    Couldn&apos;t find a file-type field."><table>
+<elem>Couldn&apos;t find a file-type field.</elem>
+</table>
+</script><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/></port>
+</ports>
+<times srtt="55110" rttvar="32140" to="183670"/>
+</host>
+<runstats><finished time="1714246616" timestr="Sat Apr 27 20:36:56 2024" summary="Nmap done at Sat Apr 27 20:36:56 2024; 1 IP address (1 host up) scanned in 181.80 seconds" elapsed="181.80" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

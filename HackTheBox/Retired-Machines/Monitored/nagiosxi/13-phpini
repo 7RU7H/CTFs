@@ -1,0 +1,77 @@
+#!/bin/bash -e
+
+. ./xi-sys.cfg
+
+# Was previous step completed?
+if [ ! -f installed.sourceguardian ]; then
+	echo "Sourceguardian was not configured - run previous script" >&2
+	exit 1
+fi
+
+# Was this step already completed?
+if [ -f installed.phpini ]; then
+	echo "PHP already configured - skipping."
+	exit 0
+fi
+
+# Set timezone in PHP script (this will also be done by the PHP on final install)
+if [ -r /etc/sysconfig/clock ]; then
+    . /etc/sysconfig/clock
+    timezone="$ZONE"
+elif [ `command -v timedatectl` ]; then
+    timezone=$(timedatectl | awk '/Time zone:/ {print $3}')
+fi
+sed -i "s|^;date\.timezone =.*|date.timezone = $timezone|" "$phpini" || true
+
+# Set filesize and post limits
+sed -i "s/^upload_max_filesize =.*/upload_max_filesize = 20M/" "$phpini" || true
+sed -i "s/^post_max_size =.*/post_max_size = 21M/" "$phpini" || true
+sed -i "s/^;* *max_input_vars =.*/max_input_vars = 90000/" "$phpini" || true
+
+
+# Set php.ini defaults
+echo "Checking php.ini defaults..."
+for file in $(find /etc -name "php.ini"); do
+    echo "Checking max_execution_time for PHP..."
+    execution_time=$(grep "max_execution_time" $file | awk '{print $3}')
+    if [ "$execution_time" -lt "600" ]; then
+        echo "max_execution_time is less than 600 in $file, setting to 600..."
+        sed -i 's/max_execution_time = .*/max_execution_time = 600/g' $file
+    fi
+
+    # Check max_input_time
+    echo "Checking max_input_time for PHP in $file..."
+    input_time=$(grep "max_input_time" $file | awk '{print $3}')
+    if [ "$input_time" -lt "1200" ]; then
+        echo "max_input_time is less than 1200 in $file, setting to 1200..."
+        sed -i 's/max_input_time = .*/max_input_time = 1200/g' $file
+    fi
+
+    # Check max_input_vars
+    echo "Checking max_input_vars for PHP in $file..."
+    input_vars=$(grep "max_input_vars" $file | awk '{print $3}')
+    if [ "$input_vars" -lt "50000" ]; then
+        echo "max_input_vars is less than 50000 in $file, setting to 50000..."
+        sed -i 's/max_input_vars = .*/max_input_vars = 50000/g' $file
+    fi
+
+    # Check memory_limit
+    echo "Checking memory_limit for PHP in $file..."
+    memory_limit=$(grep "memory_limit" $file | awk '{print $3}')
+    # Extract the integer value from the memory limit
+    int_memory_limit=$(echo $memory_limit | sed 's/[^0-9]*//g')
+    # Compare the extracted integer value with another value
+    if [ "$int_memory_limit" -lt 1024 ]; then
+        echo "memory_limit is less than 1024M in $file, setting to 1024M..."
+        sed -i 's/memory_limit = .*/memory_limit = 1024M/g' $file
+    fi
+done
+
+
+# Do some basic session changes to disable defaults
+sed -i "/session.upload_progress.enabled =.*/c\session.upload_progress.enabled = 0" "$phpini" || true
+sed -i "/session.use_strict_mode =.*/c\session.use_strict_mode = 1" "$phpini" || true
+
+echo "PHP configured OK"
+touch installed.phpini
+

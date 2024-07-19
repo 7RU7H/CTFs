@@ -1,0 +1,18 @@
+# Nmap 7.94SVN scan initiated Mon Mar  4 14:26:46 2024 as: nmap --script vuln -oA /home/kali/HackTheBoxCompetitive/Savage-Lands/Perfection/nmap/10-129-235-152-Vuln --min-rate 1000 -e tun0 -p 22,80 10.129.235.152
+Nmap scan report for 10.129.235.152
+Host is up (0.066s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.235.152
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.129.235.152:80/weighted-grade
+|     Form id: category1
+|_    Form action: /weighted-grade-calc
+
+# Nmap done at Mon Mar  4 14:30:09 2024 -- 1 IP address (1 host up) scanned in 203.34 seconds

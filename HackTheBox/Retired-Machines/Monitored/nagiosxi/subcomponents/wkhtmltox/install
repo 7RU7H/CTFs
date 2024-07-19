@@ -1,0 +1,73 @@
+#!/bin/bash -e
+
+. ../../xi-sys.cfg
+
+pkgname="wkhtmltox-0.12.1.3"
+if [ "$dist" == "ubuntu22" ] || [ "$dist" == "debian11" ]; then
+    pkgname="wkhtmltox-0.12.6.1-2"
+elif [ "$dist" == "el8" ] || [ "$dist" == "el9" ] || [ "$dist" == "debian10" ] || [ "$dist" == "ubuntu20" ]; then
+    pkgname="wkhtmltox-0.12.5"
+fi
+
+echo "INSTALL: wkhtmltox is being installed..."
+
+# Check architecture and make a complete package name
+arch=$(arch)
+
+if [[ $arch == "ppc"* ]]; then
+
+    # Install from epel in el7 on ppc
+    yum install wkhtmltopdf -y
+
+else
+
+    if [ "$arch" == "x86_64" ]; then
+        if [ "$distro" == "Debian" ] || [ "$distro" == "Ubuntu" ]; then
+            archtype="amd64"
+        else
+            archtype="$arch"
+        fi
+    else
+        archtype="i386"
+    fi
+
+    pkgname="$pkgname.$dist.$archtype"
+    if [ "$distro" == "Debian" ] || [ "$distro" == "Ubuntu" ]; then
+        pkgname="$pkgname.deb"
+    else
+        pkgname="$pkgname.rpm"
+    fi
+
+    # Delete old archive and folder
+    rm -rf wkhtmlto*
+
+    # Download a new package
+    assets="https://assets.nagios.com/downloads/nagiosxi/packages/"
+    wget "$assets$pkgname"
+
+    if [ "$distro" == "Debian" ] || [ "$distro" == "Ubuntu" ]; then
+        dpkg -i "$pkgname"
+    else
+        yum localinstall -y "$pkgname"
+    fi
+
+    # Symlink the binaries
+    if [ -f /usr/bin/wkhtmltopdf ]; then
+        rm -f /usr/bin/wkhtmltopdf
+    fi
+    if [ -f /usr/bin/wkhtmltoimage ]; then
+        rm -f /usr/bin/wkhtmltoimage
+    fi
+    ln -s /usr/local/bin/wkhtmltopdf /usr/bin/wkhtmltopdf
+    ln -s /usr/local/bin/wkhtmltoimage /usr/bin/wkhtmltoimage
+
+fi
+
+# Do a simple sanity check like all components and see if they exist
+if [ ! -f /usr/bin/wkhtmltopdf ]; then
+    echo "ERROR: wkhtmltox install appears to have failed!"
+    exit 1
+fi
+
+# It is okay!
+echo "INSTALL: wkhtmltox installed OK."

@@ -1,0 +1,60 @@
+#!/bin/bash
+
+. ./xi-sys.cfg
+
+# Was previous step completed?
+if [ ! -f installed.prereqs ]; then
+    echo "Prereqs were not installed - run previous script" >&2
+    exit 1
+fi
+
+# Was this step already completed?
+if [ -f installed.usersgroups ]; then
+    echo "Users/groups already configured - skipping."
+    exit 0
+fi
+
+##########################################
+# CREATE USERS AND GROUPS
+##########################################
+
+echo "Adding users and groups..."
+eval "$useraddbin" "$nagiosuser"
+usermod -s /bin/bash nagios
+eval "$groupaddbin" "$nagiosgroup"
+eval "$groupaddbin" "$nagioscmdgroup"
+if [ "$dist" = "suse11" ]; then
+        eval "$usermodbin" -A "$nagioscmdgroup" "$nagiosuser"
+        eval "$usermodbin" -A "$nagioscmdgroup" "$apacheuser"
+        eval "$usermodbin" -A "$nagiosgroup" "$nagiosuser"
+        eval "$usermodbin" -A "$nagiosgroup" "$apacheuser"
+else
+        eval "$usermodbin" -a -G "$nagioscmdgroup" "$nagiosuser"
+        eval "$usermodbin" -a -G "$nagioscmdgroup" "$apacheuser"
+        eval "$usermodbin" -a -G "$nagiosgroup" "$nagiosuser"
+        eval "$usermodbin" -a -G "$nagiosgroup" "$apacheuser"
+fi
+
+# Make sure home directory exists
+if [ ! -d "/home/$nagiosuser" ]; then
+    mkdir "/home/$nagiosuser"
+    chown "$nagiosuser:$nagiosgroup" "/home/$nagiosuser"
+fi
+
+# Make sure user exists
+if ! grep -q "^$nagiosuser:" /etc/passwd; then
+    echo "ERROR: User '$nagiosuser' was not created - exiting." >&2
+    exit 1
+fi
+
+# Make sure groups exist
+for group in "$nagiosgroup" "$nagioscmdgroup"; do
+    if ! grep -q "^$group:" /etc/group; then
+        echo "ERROR: Group '$group' was not created - exiting." >&2
+        exit 1
+    fi
+done
+
+echo "Users and groups added OK"
+touch installed.usersgroups
+

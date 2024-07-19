@@ -1,0 +1,717 @@
+#!/bin/bash -e
+
+# Set up system variables
+./init.sh
+. ./xi-sys.cfg
+
+./xivar RPMINSTALL 1
+RPMINSTALL=1
+
+export INSTALL_PATH=`pwd`
+INTERACTIVE="False"
+
+UPDATE_SUDOERS=0
+
+# copy xi-sys.cfg
+cp xi-sys.cfg "$proddir/var/"
+cp xi-sys.cfg ./nagiosxi/basedir/var/
+
+# Install Sourceguardian extension
+./install-sourceguardian-extension.sh
+service $httpd restart
+
+# Verify server has needed prereqs
+/usr/bin/php ./verify-prereqs.php
+
+# Get existing version ID
+oldversion=$(./get-version)
+
+## remove problematic install.sh files
+rm -f $proddir/html/includes/components/nrdsconfigmanager/install.sh
+rm -f $proddir/html/includes/components/nagvis/install.sh
+rm -f $proddir/html/includes/components/snmptrapsender/install.sh
+rm -f $proddir/html/includes/configwizards/windowswmi/install.sh
+rm -f $proddir/html/includes/configwizards/domain_expiration/install.sh
+rm -f $proddir/html/includes/configwizards/ftpserver/install.sh
+rm -f $proddir/html/includes/configwizards/exchange/install.sh
+rm -f $proddir/html/includes/configwizards/mailserver/install.sh
+rm -f $proddir/html/includes/configwizards/mongodb_database/install.sh
+rm -f $proddir/html/includes/configwizards/mongodb_server/install.sh
+rm -f $proddir/html/includes/configwizards/folder_watch/install.sh
+
+## VERSION-SPECIFIC FIXES ####################################
+
+## 2014R2.7
+if [ "$oldversion" -lt 416 ]; then
+    
+    # update nagios init script to not exit 0 if process isn't running
+    sed -i 's/echo "nagios is not running"/echo "nagios is not running";exit 3/g' /etc/init.d/nagios
+    
+fi
+
+## 5R1.0
+if [ "$oldversion" -lt 501 ]; then
+    
+    # Fix the active_directory component from loading adLDAP library
+    if [ -f $proddir/html/includes/component/active_directory/active_directory.inc.php ];then
+        sed -i '/\/adLDAP\/adLDAP.php/d' $proddir/html/includes/component/active_directory/active_directory.inc.php
+    fi
+    
+    # make NPCD status more robust
+    sed -i 's/ps -p $PID_NUMBER > /ps -p $PID_NUMBER | grep npcd > /g' /etc/init.d/npcd
+    
+    # update nagios init script to not exit 0 if process isn't running
+    sed -i 's/echo "nagios is not running"/echo "nagios is not running";exit 3/g' /etc/init.d/nagios
+    
+    # make NPCD status more robust
+    sed -i 's/ps -p $PID_NUMBER > /ps -p $PID_NUMBER | grep npcd > /g' /etc/init.d/npcd
+    
+    if [ "$cfg__db_info__nagiosxi__dbtype" == "pgsql" ]; then
+        # add details to auditlog
+        echo "ALTER TABLE xi_auditlog ADD COLUMN details text;" | psql $cfg__db_info__nagiosxi__db $cfg__db_info__nagiosxi__user
+        # reset themes
+        echo "delete from xi_usermeta where keyname='theme';"|psql $cfg__db_info__nagiosxi__db $cfg__db_info__nagiosxi__user
+        echo "delete from xi_options where name='theme';"|psql $cfg__db_info__nagiosxi__db $cfg__db_info__nagiosxi__user
+    fi
+    
+fi
+
+# Version < 5.2.0
+if [ "$oldversion" -lt 511 ]; then
+
+    # Verify that upgrades directory exists
+    if [ ! -d /usr/local/nagiosxi/var/upgrades ]; then
+        mkdir -p /usr/local/nagiosxi/var/upgrades
+        chown $apacheuser:$nagiosgroup /usr/local/nagiosxi/var/upgrades
+        chmod 754 /usr/local/nagiosxi/var/upgrades
+        chmod +x /usr/local/nagiosxi/var/upgrades
+    fi
+
+fi
+
+# Version < 5.2.8
+if [ "$oldversion" -lt 519 ]; then
+
+    # Fix nagvis for RHEL/Cent7 tps#8313
+    if [ $ver -eq 7 ] && [ -f /usr/local/nagvis/share/server/core/classes/WuiViewEditMainCfg.php ]; then
+        sed -i 's/.*\$arr\[\$propname\]\['\''default'\''\].*/if (\!is_array(\$prop\['\''default'\''\])) { & } /' /usr/local/nagvis/share/server/core/classes/WuiViewEditMainCfg.php
+    fi
+
+fi
+
+# Version < 5.3.0
+if [ "$oldversion" -lt 530 ]; then
+
+    if [ "$cfg__db_info__nagiosxi__dbserver" == "" ]; then
+        cfg__db_info__nagiosxi__dbserver="localhost";
+    fi
+
+    if [ "$cfg__db_info__nagiosql__dbserver" == "" ]; then
+        cfg__db_info__nagiosql__dbserver="localhost";
+    fi
+
+    if [ "$cfg__db_info__nagiosxi__dbtype" == "pgsql" ]; then
+        psql $cfg__db_info__nagiosxi__db $cfg__db_info__nagiosxi__user -f nagiosxi/nagiosxi-db/mods/pgsql/schema_01.sql
+    else
+        mysql -h $cfg__db_info__nagiosxi__dbserver -u $cfg__db_info__nagiosxi__user --password="$cfg__db_info__nagiosxi__pwd" --database=$cfg__db_info__nagiosxi__db --force < nagiosxi/nagiosxi-db/mods/mysql/schema_01.sql
+    fi
+
+    # Update nagiosql database structure (session locking / negation)
+    mysql -h $cfg__db_info__nagiosql__dbserver -u $cfg__db_info__nagiosql__user --password="$cfg__db_info__nagiosql__pwd" --database=$cfg__db_info__nagiosql__db --force < subcomponents/ccm/db/schema_01.sql
+
+    # Update logrotate files
+    cp ./nagiosxi/logrotate.nagiosxi /etc/logrotate.d/nagiosxi
+    sed -i "s|APACHEUSER|$apacheuser|;s|NAGIOSGROUP|$nagiosgroup|;s|PRODDIR|$proddir|" /etc/logrotate.d/nagiosxi
+
+    # Update config.inc.php with changes for cfg_only flag
+    sed -i 's/require_once.*/if (!defined('\''CFG_ONLY'\'')) { & }/' $proddir/html/config.inc.php
+
+fi
+
+# 5.3.2
+if [ "$oldversion" -lt 532 ]; then
+
+    # update the mrtg cron to change lock directory
+    # for whatever reason, the lock directory became volatile on cent7
+    if [ -f /etc/cron.d/mrtg ]; then
+        sed -i 's|/var/lock/mrtg|/var/lib/mrtg|' /etc/cron.d/mrtg
+    fi
+fi
+
+# 5.4.0
+if [ "$oldversion" -lt 5400 ]; then
+
+    # Do not re-run the MySQL upgrades if they have already been applied
+    if [ "$cfg__db_info__nagiosxi__dbserver" == "" ]; then
+        cfg__db_info__nagiosxi__dbserver="localhost";
+    fi
+
+    # update the database
+    if [ "$cfg__db_info__nagiosxi__dbtype" == "pgsql" ]; then
+        psql $cfg__db_info__nagiosxi__db $cfg__db_info__nagiosxi__user -f nagiosxi/nagiosxi-db/mods/pgsql/schema_02.sql
+    else
+        mysql -h $cfg__db_info__nagiosxi__dbserver -u $cfg__db_info__nagiosxi__user --password="$cfg__db_info__nagiosxi__pwd" --database=$cfg__db_info__nagiosxi__db --force < nagiosxi/nagiosxi-db/mods/mysql/schema_02.sql
+    fi
+
+fi
+
+# Version 5.4.8
+if [ "$oldversion" -lt 5408 ]; then
+
+    # Update logrotate files
+    cp ./nagiosxi/logrotate.nagiosxi /etc/logrotate.d/nagiosxi
+    sed -i "s|APACHEUSER|$apacheuser|;s|NAGIOSGROUP|$nagiosgroup|;s|PRODDIR|$proddir|" /etc/logrotate.d/nagiosxi
+
+fi
+
+# Version 5.5.0
+if [ "$oldversion" -lt 5500 ]; then
+
+    UPDATE_SUDOERS=1
+
+    # Update the mysql config for innodb update
+    mycnf="/etc/my.cnf"
+
+    # Make backup for mysql config
+    mycnfbak="$mycnf.bak"
+    mycnfnew="$mycnf.new"
+    cp $mycnf $mycnfbak
+
+    sed -i 's/\[mysqld\]/\[mysqld\]\ninnodb_file_per_table=1\n/' $mycnf
+
+    # Set filesize and post limits
+    sed -i "s~^upload_max_filesize =$~upload_max_filesize = 20M~" "$phpini" || true
+    sed -i "s~^post_max_size =$~post_max_size = 21M~" "$phpini" || true
+
+    # Remove NagiosQL apache config so you can no longer access
+    # it from the browser (files are still there for the time being)
+    if [ -f "$httpdconfdir/nagiosql.conf" ]; then
+        rm -rf "$httpdconfdir/nagiosql.conf"
+    fi
+
+    if [ ! -f 'mysql.5500.updated' ]; then
+
+        if [ "$cfg__db_info__nagiosxi__dbserver" == "" ]; then
+            cfg__db_info__nagiosxi__dbserver="localhost";
+        fi
+
+        if [ "$cfg__db_info__nagiosql__dbserver" == "" ]; then
+            cfg__db_info__nagiosql__dbserver="localhost";
+        fi
+
+        # Update the database
+        if [ "$cfg__db_info__nagiosxi__dbtype" == "pgsql" ]; then
+            psql $cfg__db_info__nagiosxi__db $cfg__db_info__nagiosxi__user -f nagiosxi/nagiosxi-db/mods/pgsql/schema_03.sql
+        else
+            mysql -h $cfg__db_info__nagiosxi__dbserver -u $cfg__db_info__nagiosxi__user --password="$cfg__db_info__nagiosxi__pwd" --database=$cfg__db_info__nagiosxi__db --force < nagiosxi/nagiosxi-db/mods/mysql/schema_03.sql
+        fi
+
+        # Update nagiosql database structure (cached user perms))
+        mysql -h $cfg__db_info__nagiosql__dbserver -u $cfg__db_info__nagiosql__user --password="$cfg__db_info__nagiosql__pwd" --database=$cfg__db_info__nagiosql__db --force < subcomponents/ccm/db/schema_02.sql
+
+        touch 'mysql.5500.updated'
+
+    fi
+
+    # Remove ajaxterminal
+    if rpm -q nagiosxi-ajaxterm >/dev/null; then 
+        cp -f "$httpdconfdir/ssl.conf" "$httpdconfdir/ssl.conf.nagiosxibackup"
+        sed -i '/## AJAXTERM #####################/,+12d' "$httpdconfdir/ssl.conf"
+        rm -f $proddir/html/admin/ajaxterm.php
+    fi
+    
+    # Install SSH terminal
+    (
+        cd subcomponents/sshterminal
+        ./install
+    )
+
+fi
+
+# Version 5.5.1
+if [ "$oldversion" -lt 5501 ]; then
+
+    if [ "$cfg__db_info__nagiosxi__dbserver" == "" ]; then
+        cfg__db_info__nagiosxi__dbserver="localhost";
+    fi
+
+    # Verify that we need to upgrade the SQL
+    if [ "$cfg__db_info__nagiosxi__dbtype" == "pgsql" ]; then
+        if psql $cfg__db_info__nagiosxi__db $cfg__db_info__nagiosxi__user -c '\d xi_cmp_trapdata' | grep -q trapdata_custom_format; then
+            touch 'mysql.5501.updated'
+        fi
+    else
+        if mysql -h $cfg__db_info__nagiosxi__dbserver -u $cfg__db_info__nagiosxi__user --password="$cfg__db_info__nagiosxi__pwd" --database=$cfg__db_info__nagiosxi__db -e 'DESCRIBE xi_cmp_trapdata' | grep -q trapdata_custom_format; then
+            touch 'mysql.5501.updated'
+        fi
+    fi
+
+    if [ ! -f 'mysql.5501.updated' ]; then
+
+        # Update the database
+        if [ "$cfg__db_info__nagiosxi__dbtype" == "pgsql" ]; then
+            psql $cfg__db_info__nagiosxi__db $cfg__db_info__nagiosxi__user -f nagiosxi/nagiosxi-db/mods/pgsql/schema_04.sql
+        else
+            mysql -h $cfg__db_info__nagiosxi__dbserver -u $cfg__db_info__nagiosxi__user --password="$cfg__db_info__nagiosxi__pwd" --database=$cfg__db_info__nagiosxi__db --force < nagiosxi/nagiosxi-db/mods/mysql/schema_04.sql
+        fi
+
+        touch 'mysql.5501.updated'
+
+    fi
+
+    # Make sure NXTI is properly set up...
+    touch $proddir/var/NXTI_Write_Test
+    $chownbin $nagiosuser:$nagiosgroup $proddir/var/NXTI_Write_Test /etc/snmp/snmptt.ini
+    chmod 666 $proddir/var/NXTI_Write_Test
+    chmod 664 /etc/snmp/snmptt.ini
+
+    # Add firewall rule
+    set +e
+    if [ `command -v firewall-cmd` ]; then
+        firewall-cmd --zone=public --add-port=162/udp --permanent
+        firewall-cmd --reload
+    else
+        status=$(service iptables status)
+        if [ $? = 0 ]; then
+            if ! grep -q -- '-A INPUT -p udp -m state --state NEW -m udp --dport 162 -j ACCEPT' /etc/sysconfig/iptables; then
+                # determine information for the rules
+                chain=$(iptables -L | awk '/^Chain.*INPUT/ {print $2; exit(0)}')
+                rulenum=$((`iptables -L $chain | wc -l` - 2))
+
+                # test to make sure we aren't using less than the minimum 1
+                if [ "$rulenum" -lt 1 ]; then rulenum=1; fi
+
+                # Add to iptables
+                iptables -I "$chain" "$rulenum" -m state --state NEW -m udp -p udp --dport 162 -j ACCEPT
+                service iptables save
+            fi
+        fi
+    fi
+    set -e
+
+    # Update snmptrapd.conf
+    cat << EOF > /etc/snmp/snmptrapd.conf
+disableAuthorization yes
+traphandle default /usr/sbin/snmptthandler
+EOF
+
+    # Set up logging files
+    echo "Setting log file permissions..."
+    touch /usr/local/nagiosxi/var/wkhtmltox.log
+    chown $apacheuser:$apachegroup /usr/local/nagiosxi/var/wkhtmltox.log
+    chmod 664 /usr/local/nagiosxi/var/wkhtmltox.log
+
+    # Update wizards
+    echo "Updating XI config wizards..."
+    (
+        cd ./subcomponents/xiwizards
+        ./install
+    )
+
+    # Update components
+    echo "Updating XI components..."
+    (
+        cd ./subcomponents/xicomponents
+        ./install
+    )
+
+    # Install dashlets
+    echo "Updating XI dashlets..."
+    (
+        cd ./subcomponents/xidashlets
+        ./install
+    )
+
+    # Enable services in EL7
+    if `command -v systemctl`; then
+        systemctl enable nagios
+        systemctl enable snmptt
+        systemctl enable snmptrapd
+        systemctl enable shellinaboxd
+        systemctl restart snmptt
+        systemctl restart snmptrapd
+    else
+        service snmptt restart
+        service snmptrapd restart
+    fi
+
+fi
+
+# Version < 5.5.9
+if [ "$oldversion" -lt 5509 ]; then
+
+    # Do database updates
+    if [ ! -f 'mysql.5509.updated' ]; then
+
+        if [ "$cfg__db_info__nagiosql__dbserver" == "" ]; then
+            cfg__db_info__nagiosql__dbserver="localhost";
+        fi
+
+        # Update database schema for CCM (tps#13954)
+        mysql -h $cfg__db_info__nagiosql__dbserver -u $cfg__db_info__nagiosql__user --password="$cfg__db_info__nagiosql__pwd" --database=$cfg__db_info__nagiosql__db --force < subcomponents/ccm/db/schema_03.sql
+
+        touch 'mysql.5509.updated'
+    fi
+
+fi
+
+# Version < 5.6.0
+if [ "$oldversion" -lt 5600 ]; then
+
+    # Do database updates
+    if [ ! -f 'mysql.5600.updated' ]; then
+
+        if [ "$cfg__db_info__nagiosql__dbserver" == "" ]; then
+            cfg__db_info__nagiosql__dbserver="localhost";
+        fi
+
+        if [ "$cfg__db_info__nagiosxi__dbserver" == "" ]; then
+            cfg__db_info__nagiosxi__dbserver="localhost";
+        fi
+
+        # Update nagiosql database structure (cached user perms))
+        mysql -h $cfg__db_info__nagiosql__dbserver -u $cfg__db_info__nagiosql__user --password="$cfg__db_info__nagiosql__pwd" --database=$cfg__db_info__nagiosql__db --force < subcomponents/ccm/db/schema_04.sql
+
+        # Update nagiosxi database (Manage MIBs)
+        if [ "$cfg__db_info__nagiosxi__dbtype" == "pgsql" ]; then
+            psql $cfg__db_info__nagiosxi__db $cfg__db_info__nagiosxi__user -f nagiosxi/nagiosxi-db/mods/pgsql/schema_05.sql
+        else
+            mysql -h $cfg__db_info__nagiosxi__dbserver -u $cfg__db_info__nagiosxi__user --password="$cfg__db_info__nagiosxi__pwd" --database=$cfg__db_info__nagiosxi__db --force < nagiosxi/nagiosxi-db/mods/mysql/schema_05.sql
+        fi
+
+        touch 'mysql.5600.updated'
+
+    fi
+
+    # Update wizards
+    echo "Updating XI config wizards..."
+    (
+        cd ./subcomponents/xiwizards
+        ./install
+    )
+
+    # Update components
+    echo "Updating XI components..."
+    (
+        cd ./subcomponents/xicomponents
+        ./install
+    )
+
+    # Install dashlets
+    echo "Updating XI dashlets..."
+    (
+        cd ./subcomponents/xidashlets
+        ./install
+    )
+
+    # Initialize mibs database table for new mibs page
+    php ./nagiosxi/basedir/scripts/initialize_mibs.php
+
+    # Capacity planning log must be writable by nagios (plugin) user.
+    if [ ! -f $proddir/var/components/capacityplanning.log ]; then
+        touch $proddir/var/components/capacityplanning.log
+        chown $apacheuser:$nagiosgroup $proddir/var/components/capacityplanning.log
+        chmod 664 $proddir/var/components/capacityplanning.log
+    else
+        chmod g+w $proddir/var/components/capacityplanning.log
+    fi
+
+fi
+
+# Version < 5.7.0
+if [ "$oldversion" -lt 5700 ]; then
+
+    UPDATE_SUDOERS=1
+
+    # Do database updates
+    if [ ! -f 'mysql.5700.updated' ]; then
+
+        if [ "$cfg__db_info__nagiosql__dbserver" == "" ]; then
+            cfg__db_info__nagiosql__dbserver="localhost";
+        fi
+
+        if [ "$cfg__db_info__nagiosxi__dbserver" == "" ]; then
+            cfg__db_info__nagiosxi__dbserver="localhost";
+        fi
+
+        # Update nagiosxi database (Manage MIBs)
+        if [ "$cfg__db_info__nagiosxi__dbtype" == "pgsql" ]; then
+            psql $cfg__db_info__nagiosxi__db $cfg__db_info__nagiosxi__user -f nagiosxi/nagiosxi-db/mods/pgsql/schema_5700.sql
+        else
+            mysql -h $cfg__db_info__nagiosxi__dbserver -u $cfg__db_info__nagiosxi__user --password="$cfg__db_info__nagiosxi__pwd" --database=$cfg__db_info__nagiosxi__db --force < nagiosxi/nagiosxi-db/mods/mysql/schema_5700.sql
+        fi
+
+        touch 'mysql.5700.updated'
+
+    fi
+
+    # Update wizards
+    echo "Updating XI config wizards..."
+    (
+        cd ./subcomponents/xiwizards
+        ./install
+    )
+
+    # Update components
+    echo "Updating XI components..."
+    (
+        cd ./subcomponents/xicomponents
+        ./install
+    )
+
+    # Install dashlets
+    echo "Updating XI dashlets..."
+    (
+        cd ./subcomponents/xidashlets
+        ./install
+    )
+	
+	# Make Nagios BPI config backup directory
+	mkdir -p "$proddir/etc/components/bpi"
+	chown $apacheuser:$nagiosgroup "$proddir/etc/components/bpi"
+	chmod 775 "$proddir/etc/components/bpi"
+
+	# Audit Log file is always enabled now
+	if [ ! -f $proddir/var/components/auditlog.log ]; then
+		touch $proddir/var/components/auditlog.log
+		chown $apacheuser:$nagiosgroup $proddir/var/components/auditlog.log
+		chmod 664 $proddir/var/components/auditlog.log
+	fi
+
+fi
+
+# Version < 5.7.1
+if [ "$oldversion" -lt 5701 ]; then
+
+	# Add restrict config area to conf file
+	cat nagiosxi/httpd.restrict.conf >> "$httpdconfdir/nagiosxi.conf"
+
+fi
+
+# Version < 5.7.2
+if [ "$oldversion" -lt 5702 ]; then
+
+    # Remove old windowsdesktop wizard if it still exists
+    if [ -d "$proddir/html/includes/configwizards/windowsdesktop" ]; then
+        mv -f "$proddir/html/includes/configwizards/windowsdesktop" "$proddir/tmp/"
+    fi
+
+fi
+
+# Version < 5.8.0
+if [ "$oldversion" -lt 5800 ]; then
+
+    UPDATE_SUDOERS=1
+
+    # Make sure logging for scheduledreporting exists
+    touch /usr/local/nagiosxi/var/scheduledreporting.log
+    chown $apacheuser:$apachegroup /usr/local/nagiosxi/var/scheduledreporting.log
+    chmod 664 /usr/local/nagiosxi/var/scheduledreporting.log
+
+fi
+
+# Version 5.8.7
+if [ "$oldversion" -lt 5807 ]; then
+
+    # Upgrade nocscreen to fix file permission vuln
+    "$proddir/tools/install_component.php" --file="subcomponents/xicomponents/components/nocscreen.zip"
+
+    # Upgrade nrdsconfigmanager to fix RCE vuln (must removed touched installed file first)
+    rm -f "$proddir/html/includes/components/nrdsconfigmanager/installed.nrds"
+    "$proddir/tools/install_component.php" --file="subcomponents/xicomponents/components/nrdsconfigmanager.zip"
+
+    # Upgrade hyper-v wizard if it exists
+    if [ -d "$proddir/html/includes/configwizards/hyperv" ]; then
+        "$proddir/tools/install_configwizard.php" --file="subcomponents/xiwizards/wizards/hyperv.zip" --restart=false
+    fi
+
+    # Update nagiosql database structure (excludes on service escalation) - should have been done earlier but was missing?
+    mysql -h $cfg__db_info__nagiosql__dbserver -u $cfg__db_info__nagiosql__user --password="$cfg__db_info__nagiosql__pwd" --database=$cfg__db_info__nagiosql__db --force < subcomponents/ccm/db/schema_05.sql
+
+    # Update nagiosql database to alter collation on tbl_host and tbl_service
+    # to fix case sensitivity in object names
+    mysql -h $cfg__db_info__nagiosql__dbserver -u $cfg__db_info__nagiosql__user --password="$cfg__db_info__nagiosql__pwd" --database=$cfg__db_info__nagiosql__db --force < subcomponents/ccm/db/schema_06.sql
+
+    # Make sure we upgrade NDO and the db
+    (
+        cd subcomponents/ndo
+        ver=$(find -name 'ndo-*tar.gz'|cut -d'/' -f 2)
+        ./post-upgrade ${ver%'.tar.gz'}
+    )
+
+fi
+
+
+# Version < 5.10.0
+# Note: this script wasn't updated for 5.9.1-3. The following handles the pieces that shouldn't be handled in dependency packages.
+if [ "$oldversion" -lt 51000 ]; then
+
+    # Security: force upgrade of twilio component to latest.
+    "$proddir/tools/install_component.php" --file="subcomponents/xicomponents/components/twilio.zip" --refresh=1
+    if [ "$dist" == "el8" ] || [ "$dist" == "el9" ]; then
+        if [[ ($(grep -c "max_requests" /etc/php-fpm.d/www.conf) = 1) && ("$(grep "max_requests" /etc/php-fpm.d/www.conf)" == ";"*) && ("$(grep "pm =" /etc/php-fpm.d/www.conf)" == *"dynamic" ) ]]; then
+            sed -i "s/$(grep 'pm.max_requests' /etc/php-fpm\.d/www\.conf)/pm.max_requests = 250/" /etc/php-fpm.d/www.conf
+            $proddir/scripts/manage_services.sh restart php-fpm
+        fi
+    fi
+
+    # Set up OAuth
+    (
+        cd ./subcomponents/oauth2
+        ./install
+    )
+fi
+
+# Version < 5.11.00
+if [ "$oldversion" -lt 51100 ]; then
+
+    # Make sure we upgrade NDO and the db
+    (
+        cd subcomponents/ndo
+        ver=$(find -name 'ndo-*tar.gz'|cut -d'/' -f 2)
+        ./post-upgrade ${ver%'.tar.gz'}
+    )
+
+    # Update wizards
+    echo "Updating XI config wizards..."
+    (
+        cd ./subcomponents/xiwizards
+        ./install
+    )
+
+    # Update components
+    echo "Updating XI components..."
+    (
+        cd ./subcomponents/xicomponents
+        ./install
+    )
+
+    # Install dashlets
+    echo "Updating XI dashlets..."
+    (
+        cd ./subcomponents/xidashlets
+        ./install
+    )
+
+    # Do database updates
+    if [ ! -f 'mysql.51100.updated' ]; then
+
+        if [ "$cfg__db_info__nagiosql__dbserver" == "" ]; then
+            cfg__db_info__nagiosql__dbserver="localhost";
+        fi
+
+        if [ "$cfg__db_info__nagiosxi__dbserver" == "" ]; then
+            cfg__db_info__nagiosxi__dbserver="localhost";
+        fi
+
+        # Update nagiosxi database (Banner Message)
+        if [ "$cfg__db_info__nagiosxi__dbtype" != "pgsql" ]; then
+            mysql -h $cfg__db_info__nagiosxi__dbserver -u $cfg__db_info__nagiosxi__user --password="$cfg__db_info__nagiosxi__pwd" --database=$cfg__db_info__nagiosxi__db --force < nagiosxi/nagiosxi-db/mods/mysql/schema_51100.sql
+        fi
+
+        touch 'mysql.51100.updated'
+    fi
+
+
+    if [ -f /usr/local/nagios/etc/ndo.cfg ]; then
+        echo "downtime_history_data=0" >> /usr/local/nagios/etc/ndo.cfg
+        echo "comment_history_data=0" >> /usr/local/nagios/etc/ndo.cfg
+        sed -i 's/host_check_data=.*/host_check_data=0/' /usr/local/nagios/etc/ndo.cfg
+        sed -i 's/service_check_data=.*/service_check_data=0/' /usr/local/nagios/etc/ndo.cfg
+    fi
+fi
+
+##########################################################################
+## COMMON FIXES
+##
+## These run during ever upgrade after version-specific upgrade procedures
+##########################################################################
+
+# Add a UUID if one doesn't already exist
+if [ ! -f /usr/local/nagiosxi/var/xi-uuid ]; then
+    uuidgen >> /usr/local/nagiosxi/var/xi-uuid
+    chown $nagiosuser:$nagiosgroup /usr/local/nagiosxi/var/xi-uuid
+fi
+
+# Set up key and cert directories
+mkdir -p /usr/local/nagiosxi/var/keys
+mkdir -p /usr/local/nagiosxi/var/certs
+chown -R $nagiosuser:$nagiosgroup /usr/local/nagiosxi/var/keys
+chown -R $nagiosuser:$nagiosgroup /usr/local/nagiosxi/var/certs
+chmod 775 /usr/local/nagiosxi/var/keys
+chmod 775 /usr/local/nagiosxi/var/certs
+
+# Set up directory for keys and XI server's encryption key (make one if
+# one doesn't already exist ... XI < 5.5)
+if [ ! -f /usr/local/nagiosxi/var/keys/xi.key ]; then
+    openssl rand -hex 16 > /usr/local/nagiosxi/var/keys/xi.key
+fi
+chown $nagiosuser:$nagiosgroup /usr/local/nagiosxi/var/keys/xi.key
+chmod 640 /usr/local/nagiosxi/var/keys/xi.key
+
+# Update crontab entries
+install -m 644 nagiosxi/nagiosxi.cron.d /etc/cron.d/nagiosxi
+
+# Update sudoers file
+if [ $UPDATE_SUDOERS -eq 1 ]; then
+    ./install-sudoers
+fi
+
+# Fix perms on Nagios etc directory
+chown $apacheuser:$nagiosgroup /usr/local/nagios/etc
+chmod g+s /usr/local/nagios/etc
+
+# Install updated NagiosXI PHP files, scripts, etc. to /usr/local/nagiosxi
+# This also makes the latest config perm reset utility
+./install-html
+
+# Fix sequences in Postgres database
+echo "Updating sequences..."
+./nagiosxi/basedir/tools/fix_postgres_sequences.sh
+
+# Fix permissions on config files
+echo "Fixing config file permissions..."
+chown $apacheuser:$nagiosgroup /usr/local/nagios/etc/*.cfg
+chown $apacheuser:$nagiosgroup /usr/local/nagios/etc/hosts/*.cfg
+chown $apacheuser:$nagiosgroup /usr/local/nagios/etc/services/*.cfg
+
+# Set permissions on htpasswd file
+echo "Fixing htpasswd permissions..."
+chown -R $nagiosuser:$apachegroup "$proddir/etc/htpasswd.users"
+
+# Enforce proper group membership
+echo "Checking group memberships..."
+if [ "$dist" = "suse11" ]; then
+        eval "$usermodbin" -A "$nagioscmdgroup" "$nagiosuser"
+        eval "$usermodbin" -A "$nagioscmdgroup" "$apacheuser"
+        eval "$usermodbin" -A "$nagiosgroup" "$nagiosuser"
+        eval "$usermodbin" -A "$nagiosgroup" "$apacheuser"
+else
+        eval "$usermodbin" -a -G "$nagioscmdgroup" "$nagiosuser"
+        eval "$usermodbin" -a -G "$nagioscmdgroup" "$apacheuser"
+        eval "$usermodbin" -a -G "$nagiosgroup" "$nagiosuser"
+        eval "$usermodbin" -a -G "$nagiosgroup" "$apacheuser"
+fi
+
+# Fix perms on snmp directory
+chown root:$nagiosgroup /etc/snmp
+
+# Install new Nagios Core templates (restarts Nagios Core)
+./install-templates
+
+# Fix for php-mcrypt bug
+if [ -f /etc/php.d/mcrypt.ini ]; then
+    echo "Fixing php-mcrypt bug..."
+    perl -p -i -e "s|module.so|mcrypt.so|g" /etc/php.d/mcrypt.ini
+fi
+
+# Restart apache so it recognizes the new permissions
+if [ ! `command -v systemctl` ]; then
+    service $httpd restart
+else
+    systemctl restart $httpd
+fi
+    
+# Set SNMP MIB directory perms since new versions of net-snmp-libs changes this
+chown -R .$nagiosgroup "$mibsdir"
+chmod g+ws "$mibsdir"

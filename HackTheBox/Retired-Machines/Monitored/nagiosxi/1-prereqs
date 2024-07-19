@@ -1,0 +1,268 @@
+#!/bin/bash -e
+# This file boot straps NagiosXI install with all the yum packages.
+
+. ./xi-sys.cfg
+
+# Check whether we have sufficient privileges
+if [ $(id -u) -ne 0 ]; then
+    echo "This script needs to be run as root/superuser." >&2
+    exit 1
+fi
+
+# Was previous step completed?
+if [ ! -f installed.repos ]; then
+    echo "Repos were not properly prepared - run previous script" >&2
+    exit 1
+fi
+
+# Are prereqs already installed?
+if [ -f installed.prereqs ]; then
+    echo "Prereqs already installed - skipping..."
+    echo "Note: If you want to update the RPMs installed on this system, run your package manager's update command"
+    exit 0
+fi
+
+##########################################
+# INSTALL REQUIRED PACKAGES
+##########################################
+
+echo "Installing prerequisites..."
+if [ -f $INSTALL_PATH/offline ]; then
+    rpm -ivh $INSTALL_PATH/nagiosxi-deps-$xiver-1.noarch.rpm
+else
+    if [ "$distro" = "SUSE LINUX" ]; then
+        if [ "$dist" == "suse11" ]; then
+            xiverrpm="nagiosxi-deps-suse11"
+            zypper install -y $(readlink -e ./$xiverrpm-$xiver-1.noarch.rpm)
+        else
+            xiverrpm="nagiosxi-deps-suse12"
+            zypper install -y $(readlink -e ./$xiverrpm-$xiver-1.noarch.rpm)
+        fi
+    elif [ "$distro" == "Raspbian" ] || [ "$distro" == "Ubuntu" ] || [ "$distro" == "Debian" ]; then
+
+        export DEBIAN_FRONTEND=noninteractive
+        export PERL_MM_USE_DEFAULT=1
+        
+        echo "Checking conflicting packages " 
+        if ! dpkg -s nagios nagios-nrpe nagios-nsca ndoutils ndoutils-mysql nrpe nsca && [ "$?" -ne 0 ]; then
+            echo "ERROR: Conflicting packages found." >&2
+            exit 1
+        fi
+
+        extras="libgd3"
+
+        # Fixes for mysql install (sshpass required for migrate)
+        if [ "$dist" == "debian11" ]; then
+            extras="$extras mariadb-server libmariadb-dev-compat libmariadb-dev python3-pymssql python3-pip python3-rrdtool sshpass"
+        elif [ "$dist" == "debian10" ]; then
+            extras="$extras mariadb-server libmariadb-dev-compat libmariadb-dev python-pymssql python-pip python-rrdtool php-gettext sshpass"
+        elif [ "$dist" == "debian9" ]; then
+            extras="$extras default-libmysqlclient-dev mysql-server python-pip python-rrdtool php-gettext"
+        elif [ "$dist" == "ubuntu20" ] || [ "$dist" == "ubuntu22" ]; then
+            extras="$extras libmysqlclient-dev python3-pymssql python3-lxml python3-numpy python3-pip python3-rrdtool mysql-server sshpass"
+        else
+            extras="$extras libmysqlclient-dev python-pymssql python-pip python-rrdtool mysql-server php-gettext"
+        fi
+
+        if [ "$dist" == "ubuntu18" ] || [ "$dist" == "ubuntu20" ] || [ "$dist" == "ubuntu22" ] || [ "$dist" == "debian10" ] || [ "$dist" == "debian11" ]; then
+            extras="$extras libgd-dev"
+        else
+            extras="$extras libgd2-xpm-dev"
+        fi
+
+        # Fixes for python deps
+        if [ "$dist" == "debian11" ] || [ "$dist" == "ubuntu22" ]; then
+            extras="$extras python3-numpy python3-lxml python3-simplejson"
+        else
+            extras="$extras python-numpy python-lxml python-simplejson"
+        fi
+
+        # Add newer ansible repo for ubuntu 16/18 and debian 9 ...
+        if [ "$dist" == "ubuntu16" ] || [ "$dist" == "ubuntu18" ]; then
+            apt-add-repository ppa:ansible/ansible -y
+        elif [ "$dist" == "debian9" ]; then
+            apt-get install dirmngr -y
+            echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main" >> /etc/apt/sources.list
+            apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
+        fi
+
+        # Test install all required packages (for now)
+        apt-get update
+        if [ "$dist" == "ubuntu16" ] || [ "$dist" == "ubuntu18" ] || [ "$dist" == "ubuntu20" ] || [ "$dist" == "ubuntu22" ] ||
+           [ "$dist" == "debian9" ] || [ "$dist" == "debian10" ] || [ "$dist" == "debian11" ]; then
+            apt-get install -y $extras automake autoconf bc dnsutils dstat libxml-parser-perl fping gcc libc6 graphviz apache2 apache2-utils iptables mcrypt locales libmcrypt-dev make automake mailutils mrtg snmp snmptt snmptrapd snmpd libsnmp-base libsnmp-dev snmp-mibs-downloader nmap ntp slapd libpq5 libpq-dev libldap2-dev ldap-utils openssl ssh libexpat1-dev libssl-dev curl libcurl4-openssl-dev perl libmail-imapclient-perl libdbd-mysql-perl libnet-dns-perl libnet-snmp-perl php php-pdo php-ssh2 php-sybase libapache2-mod-php php-gd php-mysql php-pear php-sqlite3 php-mbstring libssh2-1-dev php-pgsql php-intl php-dev php-snmp php-imap php-ldap php-curl libpq-dev rrdtool librrds-perl subversion sudo sysstat traceroute unzip wget xinetd zip tftp uuid-runtime rsync xfonts-75dpi xfonts-base postgresql gawk postgresql-contrib ansible dc git iputils-ping cron
+        else
+            apt-get install -y $extras automake autoconf bc dnsutils dstat libxml-parser-perl fping locales gcc libc6 libgd2-xpm-dev graphviz apache2 apache2-utils iptables mcrypt libmcrypt-dev make automake mailutils mrtg mysql-server libmysqlclient-dev snmp snmptt snmpd libsnmp-base libsnmp-dev snmp-mibs-downloader nmap ntp python-numpy slapd libpq5 libpq-dev libldap2-dev ldap-utils openssl ssh libexpat1-dev libssl-dev curl libcurl4-openssl-dev perl libmail-imapclient-perl libdbd-mysql-perl libnet-dns-perl libnet-snmp-perl php5 libapache2-mod-php5 php5-gd php5-mcrypt php5-mssql php5-intl php-gettext php5-sqlite php5-mysql php-pear libssh2-1-dev php5-pgsql php5-snmp php5-imap php5-ldap php5-dev php5-curl php5-sybase php5-ssh2 libpq-dev python-pip python-lxml python-simplejson rrdtool librrds-perl python-rrdtool subversion sudo sysstat traceroute unzip wget xinetd zip tftp uuid-runtime rsync xfonts-75dpi xfonts-base postgresql postgresql-contrib ansible gawk dc git
+        fi
+
+        # Fix for python if it doesn't exist as a binary
+        if [ ! -f /usr/bin/python ]; then
+            if [ -f /usr/bin/python3 ]; then
+                ln -s /usr/bin/python3 /usr/bin/python
+            elif [ -f /usr/bin/python2 ]; then
+                ln -s /usr/bin/python2 /usr/bin/python
+            fi
+        fi
+
+        # Install shellinabox in a shell because it has problems...
+        (
+            apt-get install -y shellinabox > /dev/null 2>&1
+        )
+
+        # Install via cpan - apparently if already installed it causes an error
+        LANG="C" cpan install CPAN ||:
+        LANG="C" cpan install Error ||:
+        LANG="C" cpan install Params::Validate Math::Calc::Units Config::Tiny Crypt::Rijndael Crypt::SSLeay Crypt::DES HTTP::Cookies HTTP::Request::Common Mail::POP3Client Net::SMTP Net::SMTP::TLS Test::More Time::HiRes Number::Format XML::Parser XML::Simple Class::Accessor ||:
+
+        # Set up apache SSL and CGI
+        a2enmod cgi
+        a2enmod ssl
+        a2enmod rewrite
+        a2ensite default-ssl
+
+        # Install python modules with pip that can't be installed from packages
+        if [ "$dist" == "debian9" ]; then
+            python -m pip install "pymssql<2.2"
+        fi
+
+        # Set up languages for the install
+        (
+            cd nagiosxi/basedir/html/includes/lang/locale
+            for lang in *; do
+                if [ -d "$lang" ]; then
+                    if [ "$distro" == "Debian" ]; then
+                        sed -i "/#[[:blank:]]*$lang/s/#//" /etc/locale.gen
+                    else
+                        locale-gen "$lang" &> /dev/null
+                        locale-gen "$lang.UTF-8" &> /dev/null
+                    fi
+                fi
+            done
+            echo "Configuring locale... this might take a minute..."
+            if [ `command -v locale-update` ]; then
+                locale-update &> /dev/null
+            else
+                locale-gen &> /dev/null
+            fi
+        )
+
+        # Update /bin/mail to /usr/bin/mail on Ubuntu/Debian
+        if [ ! -f /bin/mail ]; then
+            ln -s /usr/bin/mail /bin/mail
+        fi
+
+    elif [ "$distro" == "CentOS" ] || [ "$distro" == "RedHatEnterpriseServer" ] || [ "$distro" == "OracleServer" ]; then
+
+        if [ $ver -eq 9 ]; then
+
+            xiverrpm="nagiosxi-deps-el9"
+
+        elif [ $ver -eq 8 ]; then
+
+            if [ "$distro" == "CentOS" ]; then
+                if rpm -q centos-release; then
+                    yum config-manager --set-enabled PowerTools
+                else 
+                    yum config-manager --set-enabled powertools
+                fi
+            fi
+
+            xiverrpm="nagiosxi-deps-el8"
+
+        elif [ $ver -eq 7 ]; then
+
+            # Install MySQL or MariaDB because why not make life difficult
+            # - practical reasoning is someone might need to use MySQL and/or mariadb doesn't even
+            #   exist on their installation due to reasons...
+
+            # Check if both MySQL and MariaDB are available in yum
+            av_mariadb=0
+            av_mysql=0
+
+            set +e
+            if yum info mysql-community-server &>/dev/null; then
+                av_mysql=1
+            fi
+            if yum info mariadb-server &>/dev/null; then
+                av_mariadb=1
+            fi
+            set -e
+
+            # Default to MariaDB unless it doesn't exist
+            mysql_res="1"
+            if [ $av_mariadb -eq 0 ]; then
+                mysql_res="2"
+            fi
+
+            # IF we need to ask which MySQL/MariaDB to use...
+            if [ "$INTERACTIVE" != False ] && [ $av_mysql -eq 1 ] && [ $av_mariadb -eq 1 ]; then
+                cat <<-EOF
+----------------------------------------
+
+It looks like MySQL and MariaDB are available on your system. Please pick one:
+1 - MariaDB (Default)
+2 - MySQL Community
+
+----------------------------------------
+EOF
+                read -p "Which DB server would you like to use? [1]: " mysql_res
+            fi
+
+            # Install the package and set the xivar if needed
+            if [ "$mysql_res" == "1" ] || [ "$mysql_res" == "" ]; then
+                yum install -y mariadb mariadb-server mariadb-devel
+                mysqld="mariadb"
+                ./xivar "mysqld" "$mysqld"
+            elif [ "$mysql_res" == "2" ]; then
+                yum install -y mysql mysql-community-server mysql-community-devel
+            else
+                echo "You must select one of the options, or nothing and use the default."
+                exit 1;
+            fi
+
+            xiverrpm="nagiosxi-deps-el7"
+        fi
+
+        yumlocalinstall="$(readlink -e ./$xiverrpm-$xiver-1.noarch.rpm)"
+
+        # Attempt to install dependencies, and if it fails for some reason clean the repos
+        if ! yum -y localinstall $yumlocalinstall; then
+            yum clean all
+            yum -y localinstall $yumlocalinstall
+        fi
+
+        # Special section for EL8 perl and net-snmp
+        if [ $ver -eq 8 ]; then
+
+            # Link python3 to python so we are using 3 normally
+            if [ ! -f /usr/bin/python ]; then
+                ln -s /usr/bin/python3 /usr/bin/python
+            fi
+
+            # Upgrade pip and setuptools for RHEL 8
+            pip3 install --upgrade setuptools
+            python -m pip install -U pip
+
+            python -m pip install "pymssql<3"
+            python -m pip install --upgrade requests
+
+            # Perl modules (if install exits because something is already installed the install stops... due to -e)
+            set +e
+            echo | cpan install CPAN
+            cpan install Crypt::Rijndael Class::Accessor Mail::IMAPClient Number::Format Params::Validate
+            set -e
+
+        elif [ $ver -eq 9 ]; then
+
+            set +e
+            echo | cpan install CPAN
+            cpan install Math::Calc::Units Crypt::Rijndael Class::Accessor Mail::IMAPClient Number::Format Params::Validate Config::IniFiles
+            set -e
+
+        fi
+
+    fi
+fi
+
+echo "Prerequisites installed OK"
+touch installed.prereqs

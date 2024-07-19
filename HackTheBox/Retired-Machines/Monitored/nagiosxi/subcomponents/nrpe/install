@@ -1,0 +1,56 @@
+#!/bin/bash -e
+
+. ../../xi-sys.cfg
+
+pkgname="nrpe-4.1.0"
+
+echo "INSTALL: NRPE is being installed..."
+
+# Delete the old archive
+rm -rf "$pkgname"
+
+# Extract archive
+tar -xzf "$pkgname.tar.gz"
+
+# Make and install 
+(
+	cd "./$pkgname"
+	if [ "$distro" == "Ubuntu" ] || [ "$distro" == "Debian" ]; then
+		./configure --with-ssl=/usr/bin/openssl --with-ssl-lib=/usr/lib/x86_64-linux-gnu --enable-command-args
+	elif [ "$distro" == "Raspbian" ]; then
+		./configure --with-ssl-lib=/usr/lib/arm-linux-gnueabihf --libexecdir=/usr/local/nagios/libexec --enable-command-args
+	else
+		./configure --enable-command-args
+	fi
+
+	# Temp fix for SSL issues with nrpe
+	if [ "$dist" == "el8" ] || [ "$dist" == "el9" ] || [ "$dist" == "debian11" ] || [ "$dist" == "ubuntu22" ]; then
+		sed -i "s/#define USE_SSL_DH 1/#undef USE_SSL_DH/" include/config.h
+	fi
+
+	make -j $make_j_flag all
+	make install-plugin
+	make install-daemon
+	make install-config
+	make install-init
+)
+
+# Start NRPE
+if [ ! `command -v systemctl` ]; then
+	service nrpe start
+else
+	systemctl daemon-reload
+	systemctl start nrpe
+fi
+
+# Do a simple sanity check to make sure some key files exist...
+for f in /usr/local/nagios/bin/nrpe /usr/local/nagios/libexec/check_nrpe ; do
+	if [ ! -f "$f" ]; then
+		echo "ERROR: NRPE install appears to have failed - exiting.  Missing file = $f"
+		exit 1
+	fi
+done
+
+# Things are okay
+echo "INSTALL: NRPE installed OK."
+

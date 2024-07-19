@@ -1,0 +1,36 @@
+#!/bin/bash -e
+
+pkgname="mrtg-2.17.4"
+
+echo "INSTALL: MRTG is being installed..."
+
+# Delete the old archive
+rm -rf "$pkgname"
+
+# Extract archive
+tar -xzf "$pkgname.tar.gz"
+
+# Apply our patches
+echo "INSTALL: Applying patches to MRTG..."
+./apply-patches "$pkgname"
+
+# Make and install 
+(
+	cd "./$pkgname"
+	./configure --prefix='/usr'
+	make -j $make_j_flag all
+	make install
+)
+
+./post_install
+
+# Do a simple sanity check to make sure some key files exist...
+for f in /usr/bin/mrtg /etc/mrtg/mrtg.cfg ; do
+	if [ ! -f "$f" ]; then
+		echo "ERROR: MRTG install appears to have failed - exiting.  Missing file = $f"
+		exit 1
+	fi
+done
+
+# Things are okay
+echo "INSTALL: MRTG installed OK;"

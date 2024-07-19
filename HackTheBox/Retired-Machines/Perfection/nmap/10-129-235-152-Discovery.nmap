@@ -1,0 +1,169 @@
+# Nmap 7.94SVN scan initiated Mon Mar  4 14:20:22 2024 as: nmap --script discovery -oA /home/kali/HackTheBoxCompetitive/Savage-Lands/Perfection/nmap/10-129-235-152-Discovery --min-rate 1000 -e tun0 -p 22,80 10.129.235.152
+Pre-scan script results:
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_lltd-discovery: false
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-ping: false
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.129.235.152
+Host is up (0.074s latency).
+
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh-hostkey: 
+|   256 80:e4:79:e8:59:28:df:95:2d:ad:57:4a:46:04:ea:70 (ECDSA)
+|_  256 e9:ea:0c:1d:86:13:ed:95:a9:d0:0b:c8:22:e4:cf:e9 (ED25519)
+|_banner: SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.6
+| ssh2-enum-algos: 
+|   kex_algorithms: (11)
+|   server_host_key_algorithms: (4)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+80/tcp open  http
+| http-headers: 
+|   Server: nginx
+|   Date: Mon, 04 Mar 2024 14:20:58 GMT
+|   Content-Type: text/html;charset=utf-8
+|   Content-Length: 3842
+|   Connection: close
+|   X-Xss-Protection: 1; mode=block
+|   X-Content-Type-Options: nosniff
+|   X-Frame-Options: SAMEORIGIN
+|   Server: WEBrick/1.7.0 (Ruby/3.0.2/2021-07-07)
+|   
+|_  (Request type: HEAD)
+|_http-chrono: Request times for /; avg: 245.47ms; min: 226.49ms; max: 273.81ms
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 3
+|     /css/
+|       css: 4
+|     /images/
+|       jpg: 3; png: 1
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /images/
+|   Total files found (by extension):
+|_    Other: 3; css: 4; jpg: 3; png: 1
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.235.152
+|     
+|     Path: http://10.129.235.152:80/css/w3.css
+|     Line number: 151
+|     Comment: 
+|         /* Colors */
+|     
+|     Path: http://10.129.235.152:80/weighted-grade
+|     Line number: 124
+|     Comment: 
+|         <!-- Footer -->
+|     
+|     Path: http://10.129.235.152:80/css/w3.css
+|     Line number: 26
+|     Comment: 
+|         /* End extract */
+|     
+|     Path: http://10.129.235.152:80/weighted-grade
+|     Line number: 130
+|     Comment: 
+|         
+|         // Used to toggle the menu on small screens when clicking on the menu button
+|     
+|     Path: http://10.129.235.152:80/weighted-grade
+|     Line number: 34
+|     Comment: 
+|         <!-- Header -->
+|     
+|     Path: http://10.129.235.152:80/weighted-grade
+|     Line number: 40
+|     Comment: 
+|         <!-- First Grid -->
+|     
+|     Path: http://10.129.235.152:80/css/w3.css
+|     Line number: 3
+|     Comment: 
+|         /* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
+|     
+|     Path: http://10.129.235.152:80/css/w3.css
+|     Line number: 1
+|     Comment: 
+|         /* W3.CSS 4.15 December 2020 by Jan Egil and Borge Refsnes */
+|     
+|     Path: http://10.129.235.152:80/about
+|     Line number: 59
+|     Comment: 
+|         <!-- Second Grid -->
+|     
+|     Path: http://10.129.235.152:80/weighted-grade
+|     Line number: 27
+|     Comment: 
+|         <!-- Navbar on small screens -->
+|     
+|     Path: http://10.129.235.152:80/css/font-awesome.min.css
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
+|          *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+|          */
+|     
+|     Path: http://10.129.235.152:80/weighted-grade
+|     Line number: 18
+|     Comment: 
+|_        <!-- Navbar -->
+|_http-feed: Couldn't find any feeds.
+|_http-traceroute: ERROR: Script execution failed (use -d to debug)
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.129.235.152
+|   Found the following error pages: 
+|   
+|   Error Code: 404
+|_  	http://10.129.235.152:80/weighted-grade-calc
+|_http-title: Weighted Grade Calculator
+|_http-date: Mon, 04 Mar 2024 14:20:47 GMT; +1h00m00s from local time.
+|_http-mobileversion-checker: No mobile version detected.
+| http-vhosts: 
+|_128 names had status 200
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+
+Host script results:
+|_path-mtu: PMTU == 1500
+|_ipidseq: All zeros
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "10.129.235.152"; use dns-brute.domain script argument.
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 22    0       61730.00   6796.71  80.0%
+|_80    0       71026.00   223.45   80.0%
+
+# Nmap done at Mon Mar  4 14:26:46 2024 -- 1 IP address (1 host up) scanned in 384.20 seconds

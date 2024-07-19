@@ -1,0 +1,119 @@
+#!/bin/bash
+# Script to check real memory usage
+# L.Gill 02/05/06 - V.1.0
+# ------------------------------------------
+# ########  Script Modifications  ##########
+# ------------------------------------------
+# Who  When    What
+# ---    ----      ----
+# LGill  17/05/06  "$percent" lt 1% fix - sed edits dc result beggining with "."
+# Box293 14/06/16  Updated to work with RHEL/CentOS 7.x and fixed perfdata unit
+#                  for shared not being displayed.
+# 
+#
+#!/bin/bash
+USAGE="`basename $0` [-w|--warning]<percent free> [-c|--critical]<percent free> [-n|--nocache]"
+THRESHOLD_USAGE="WARNING threshold must be greater than CRITICAL: `basename $0` $*"
+calc=/tmp/memcalc
+percent_free=/tmp/mempercent
+critical=""
+warning=""
+STATE_OK=0
+STATE_WARNING=1
+STATE_CRITICAL=2
+STATE_UNKNOWN=3
+nocache=0
+# print usage
+if [[ $# -lt 4 ]]
+then
+  echo ""
+  echo "Wrong Syntax: `basename $0` $*"
+  echo ""
+  echo "Usage: $USAGE"
+  echo ""
+  exit 0
+fi
+# read input
+while [[ $# -gt 0 ]]
+  do
+        case "$1" in
+               -w|--warning)
+               shift
+               warning=$1
+        ;;
+               -c|--critical)
+               shift
+               critical=$1
+        ;;
+        
+               -n|--nocache)
+               nocache=1
+        ;;
+        esac
+        shift
+  done
+# verify input
+if [[ $warning -eq $critical || $warning -lt $critical ]]
+then
+  echo ""
+  echo "$THRESHOLD_USAGE"
+  echo ""
+        echo "Usage: $USAGE"
+  echo ""
+        exit 0
+fi
+
+headertest=`free -m | head -1 | gawk '{print $6}'`
+memoutput=`free -m | head -2 | tail -1`
+if [ "$headertest" = "available" ]; then
+  memoutput=`free -m -w | head -2 | tail -1`
+fi
+# Total memory available
+total=`echo $memoutput | gawk '{print $2}'`
+# Total memory used
+used=`echo $memoutput | gawk '{print $3}'`
+# Calc total minus used
+if [ "$nocache" -eq "1" ]; then
+    free=`echo $memoutput | gawk '{print $4+$7}'`
+else
+    free=`echo $memoutput | gawk '{print $4}'`
+fi
+shared=`echo $memoutput | gawk '{print $5}'`
+buffers=`echo $memoutput | gawk '{print $6}'`
+cached=`echo $memoutput | gawk '{print $7}'`
+bufferscached=`echo $memoutput | gawk '{print $6+$7}'`
+
+# normal values
+#echo "$total"MB total
+#echo "$used"MB used
+#echo "$free"MB free
+
+# make it into % percent free = ((free mem / total mem) * 100)
+echo "5" > $calc # decimal accuracy
+echo "k" >> $calc # commit
+echo "100" >> $calc # multiply
+echo "$free" >> $calc # division integer
+echo "$total" >> $calc # division integer
+echo "/" >> $calc # division sign
+echo "*" >> $calc # multiplication sign
+echo "p" >> $calc # print
+percent=`/usr/bin/dc $calc|/bin/sed 's/^\./0./'|/usr/bin/tr "." " "|/usr/bin/gawk {'print $1'}`
+if [[ "$percent" -le  $warning ]]; then
+    string="WARNING"
+    result=1
+fi
+if [[ "$percent" -le  $critical ]]; then
+    string="CRITICAL"
+    result=2
+fi
+if [[ "$percent" -gt  $warning ]]; then
+    string="OK"
+    result=0
+fi
+
+if [ "$headertest" = "available" ]; then
+    echo "$string - $free / $total MB ($percent%) Free Memory, Used: $used MB, Shared: $shared MB, Buffers + Cached: $bufferscached MB | total="$total"MB free="$free"MB used="$used"MB shared="$shared"MB buffers_and_cached="$bufferscached"MB"
+else
+    echo "$string - $free / $total MB ($percent%) Free Memory, Used: $used MB, Shared: $shared MB, Buffers: $buffers MB, Cached: $cached MB | total="$total"MB free="$free"MB used="$used"MB shared="$shared"MB buffers="$buffers"MB cached="$cached"MB"
+fi
+exit $result

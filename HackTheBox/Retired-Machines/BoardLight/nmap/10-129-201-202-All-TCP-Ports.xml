@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Sat May 25 20:30:23 2024 as: nmap -p- -vv -&#45;min-rate 300 -e tun0 -oA /home/kali/HackTheBoxCompetitive/Anomalies/BoardLight/nmap/10-129-201-202-All-TCP-Ports 10.129.201.202 -->
+<nmaprun scanner="nmap" args="nmap -p- -vv -&#45;min-rate 300 -e tun0 -oA /home/kali/HackTheBoxCompetitive/Anomalies/BoardLight/nmap/10-129-201-202-All-TCP-Ports 10.129.201.202" start="1716665423" startstr="Sat May 25 20:30:23 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="65535" services="1-65535"/>
+<verbose level="2"/>
+<debugging level="0"/>
+<taskbegin task="Ping Scan" time="1716665423"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.201.202" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<taskend task="Ping Scan" time="1716665423" extrainfo="1 total hosts"/>
+<taskbegin task="Parallel DNS resolution of 1 host." time="1716665423"/>
+<taskend task="Parallel DNS resolution of 1 host." time="1716665436"/>
+<taskbegin task="SYN Stealth Scan" time="1716665436"/>
+<taskend task="SYN Stealth Scan" time="1716665480" extrainfo="65535 total ports"/>
+<host starttime="1716665436" endtime="1716665480"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.129.201.202" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><extraports state="closed" count="65533">
+<extrareasons reason="reset" count="65533" proto="tcp" ports="1-21,23-79,81-65535"/>
+</extraports>
+<port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/></port>
+</ports>
+<times srtt="76332" rttvar="1210" to="100000"/>
+</host>
+<runstats><finished time="1716665480" timestr="Sat May 25 20:31:20 2024" summary="Nmap done at Sat May 25 20:31:20 2024; 1 IP address (1 host up) scanned in 57.37 seconds" elapsed="57.37" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

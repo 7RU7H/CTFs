@@ -1,0 +1,159 @@
+#!/bin/bash -e
+
+. ./xi-sys.cfg
+
+##########################################
+# INITIALIZE MYSQL
+##########################################
+
+# See if user already initialized MySQL
+if [ -f installed.mysql ]; then
+    echo "MySQL already initialized - skipping."
+    exit 0
+fi
+
+# Check that mysql is installed
+if [ ! -f "/usr/bin/mysql" ]; then
+    echo "ERROR: MySQL not installed - exiting." >&2
+    exit 1
+fi
+echo "MySQL installed OK - continuing..."
+
+echo "Starting MySQL..."
+if ! service "$mysqld" restart; then
+    echo "ERROR: MySQL failed to start - exiting." >&2
+    exit 1
+fi
+
+echo "Initializing MySQL..."
+
+# Test for pre-saved password (from ./fullinstall script)
+if mysqlshow -u root -p"$mysqlpass" &>/dev/null; then
+    echo "Saved password '$mysqlpass' worked..."
+# Test for null MySQL root password
+elif mysqlshow -u root &>/dev/null; then
+    # Set the password to "nagiosxi"
+    mysqlpass=nagiosxi  
+    mysqladmin -u root password "$mysqlpass"
+    echo "MySQL root password is now set to: $mysqlpass"
+else
+    for i in 1 2 3; do
+        if [ "$INTERACTIVE" = "True" ]; then
+            # Ask for the password
+            echo "Enter the MySQL root password to continue..."
+            read -p "MySQL Root Password: " pass
+        fi
+
+        # Test the password
+        if mysqlshow -u root -p"$pass" &>/dev/null; then
+            echo "Password validated."
+            mysqlpass="$pass"
+            break
+        else
+            echo "Password failed." >&2
+            [ $i -eq 3 ] && exit 1
+        fi
+    done
+fi
+
+# we only automatically tune mysql if we just installed it
+# see scripts/mysql_tune.sh
+if [ "$TUNE_MYSQL" = "True" ]; then
+
+    add=0
+    mycnf="/etc/my.cnf"
+
+    if [ "$distro" == "Ubuntu" ] || [ "$distro" == "Debian" ]; then
+        add=1
+        mycnf="/etc/mysql/conf.d/mysql.cnf"
+        if [ ! -f $mycnf ]; then
+            mycnf="/etc/mysql/my.cnf"
+            add=0
+        fi
+    fi
+
+    if [ "$dist" == "el8" ] || [ "$dist" == "el9" ]; then
+        mycnf="/etc/my.cnf.d/mysql-server.cnf"
+    fi
+
+    # backup the cnf file first
+    mycnfbak="$mycnf.bak"
+    mycnfnew="$mycnf.new"
+    cp $mycnf $mycnfbak
+
+    if [ -f $mycnf ]; then
+
+        if [ $add -eq 1 ]; then
+            ADD="\n\n[mysqld]\ntmp_table_size=64M\nmax_heap_table_size=64M\nkey_buffer_size=32M\ntable_open_cache=32\ninnodb_file_per_table=1\nmax_allowed_packet=256M\nsort_buffer_size=32M\nmax_connections=1000\nopen_files_limit=4096\n"
+
+            # Special case for ubuntu 22 which runs MySQL 8
+            if [ "$dist" == "ubuntu22" ]; then
+                ADD="$ADD\nsql_mode=NO_ENGINE_SUBSTITUTION\n"
+            else 
+                ADD="$ADD\nquery_cache_size=16M\nquery_cache_limit=4M\nsql_mode=ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION\n"
+            fi
+
+            # Add disable_log_bin only for non debain 9 systems
+            if [ "$dist" != "debian9" ]; then
+                ADD="$ADD\ndisable_log_bin\n"
+            fi
+
+            echo -e "$ADD" >> $mycnf
+        else
+
+            # Note: If you're changing the tuning options here, please also change mysql_tune.sh
+            REPLACEMENT='s/\[mysqld\]/\[mysqld\]\ntmp_table_size=64M\nmax_heap_table_size=64M\nkey_buffer_size=32M\ntable_open_cache=32\ninnodb_file_per_table=1\nmax_allowed_packet=256M\nsort_buffer_size=32M\nmax_connections=1000\nopen_files_limit=4096\n'
+
+            if [ "$dist" != "el7" ] && [ "$dist" != "debian9" ]; then
+                # All of these distros have binlogs turned on by default. We don't currently do anything with failover replication but might in the future.
+                REPLACEMENT="$REPLACEMENT\ndisable_log_bin\n"
+            fi
+
+            if [ "$dist" == "el8" ] || [ "$dist" == "el9" ]; then
+                # query cache is removed in MySQL 8 but not in any MariaDB (yet).
+                REPLACEMENT="$REPLACEMENT\nsql_mode=NO_ENGINE_SUBSTITUTION\n"
+            else
+                REPLACEMENT="$REPLACEMENT\nquery_cache_size=16M\nquery_cache_limit=4M\n"
+            fi
+
+            REPLACEMENT="$REPLACEMENT/"
+
+            if ! sed -i "$REPLACEMENT" $mycnf; then
+                successful=0
+            else
+                successful=1
+            fi
+
+        fi
+
+        # if mysql doesn't restart, then we need to revert our changes
+        if ! service "$mysqld" restart; then
+
+            # keep a copy of the mycnf that failed for support
+            cp $mycnf $mycnfnew
+            cp $mycnfbak $mycnf
+
+            # if it fails again we're out
+            if ! service "$mysqld" restart; then
+                echo "ERROR: MySQL failed to start - exiting." >&2
+                exit 1
+            fi
+        fi
+    fi
+fi
+
+# Update xi-sys.cfg with MySQL password for later use by subcomponent install
+if ! ./xivar mysqlpass "$mysqlpass"; then
+    echo "ERROR: Failed to update xi-sys.cfg with MySQL password - exiting." >&2
+    exit 1
+fi
+
+# Update automysqlbackup script
+if ! sed -i -e "s/PASSWORD=.*/PASSWORD=$mysqlpass/g" nagiosxi/automysqlbackup; then
+    echo "ERROR: Failed to update automysqlbackup with MySQL password - exiting." >&2
+    exit 1
+fi
+
+echo "MySQL initialized OK"
+touch installed.mysql
+

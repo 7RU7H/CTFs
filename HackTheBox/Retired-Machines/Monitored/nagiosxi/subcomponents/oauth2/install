@@ -1,0 +1,32 @@
+#!/bin/bash -e
+
+. ../../xi-sys.cfg
+
+echo "INSTALL: Nagios OAuth 2.0 is being installed..."
+
+# pkgname=oauth2-1.0.0.src.tar.gz
+
+# if [ ! -d "$proddir/html/includes/components" ]; then
+#     mkdir -p "$proddir/html/includes/components"
+# fi
+
+# tar -xzf "$pkgname" -C "$proddir/html/includes/components"
+
+# make folder
+mkdir -p "$proddir/etc/components/oauth2/providers"
+
+# folder permissions
+chown -R "$apacheuser:$nagiosgroup" "$proddir/etc/components/oauth2"
+# chown "$apacheuser:$nagiosgroup" "$proddir/html/includes/components/oauth2/access-templates.json"
+
+# Do a simple sanity check to make sure some key files exist...
+for d in "$proddir/etc/components/oauth2" ; do
+    if [ ! -d "$d" ]; then
+        echo "ERROR: OAuth2 install appears to have failed - exiting.  Missing folder = $d"
+        exit 1
+    fi
+done
+
+
+# Things are okay
+echo "INSTALL: OAuth2 installed OK."

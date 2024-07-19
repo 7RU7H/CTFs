@@ -1,0 +1,218 @@
+---
+
+
+# Check Ansible can read system info (some versions can't determine OS for newer OS)
+
+
+- name: Check if Ansible can read System Info
+  fail:
+    msg: "Ansible version on the Nagios XI system is too low to deploy to this host"
+  when: ansible_os_family is not defined
+
+
+# Download NCPA
+
+
+# CentOS/RHEL/CloudLinux
+
+- name: Download NCPA (RedHat/CentOS 32bit)
+  get_url:
+    url: https://assets.nagios.com/downloads/ncpa/ncpa-latest.el{{ ansible_distribution_major_version }}.i386.rpm
+    dest: /tmp/ncpa.rpm
+    force: yes
+  when: ansible_os_family == "RedHat" and ansible_architecture == "i386"
+- name: Download NCPA (RedHat/CentOS 64bit)
+  get_url: 
+    url: https://assets.nagios.com/downloads/ncpa/ncpa-latest.el{{ ansible_distribution_major_version }}.x86_64.rpm
+    dest: /tmp/ncpa.rpm
+    force: yes
+  when: ansible_os_family == "RedHat" and ansible_architecture == "x86_64"
+
+# Debian
+
+- name: Download NCPA (Debian 32bit 8)
+  get_url:
+    url: https://assets.nagios.com/downloads/ncpa/ncpa-latest.i386.deb
+    dest: /tmp/ncpa.deb
+    force: yes
+  when: ansible_distribution == "Debian" and ansible_architecture == "i386" and ansible_distribution_major_version|int == 8
+- name: Download NCPA (Debian 64bit 8)
+  get_url:
+    url: https://assets.nagios.com/downloads/ncpa/ncpa-latest.amd64.deb
+    dest: /tmp/ncpa.deb
+    force: yes
+  when: ansible_distribution == "Debian" and ansible_architecture == "x86_64" and ansible_distribution_major_version|int == 8
+
+- name: Download NCPA (Debian 32bit 9+)
+  get_url:
+    url: https://assets.nagios.com/downloads/ncpa/ncpa-latest.d{{ ansible_distribution_major_version }}.i386.deb
+    dest: /tmp/ncpa.deb
+    force: yes
+  when: ansible_distribution == "Debian" and ansible_architecture == "i386" and ansible_distribution_major_version|int >= 9
+- name: Download NCPA (Debian 64bit 9+)
+  get_url:
+    url: https://assets.nagios.com/downloads/ncpa/ncpa-latest.d{{ ansible_distribution_major_version }}.amd64.deb
+    dest: /tmp/ncpa.deb
+    force: yes
+  when: ansible_distribution == "Debian" and ansible_architecture == "x86_64" and ansible_distribution_major_version|int >= 9
+
+# Ubuntu
+
+- name: Download NCPA (Ubuntu 32bit)
+  get_url:
+    url: https://assets.nagios.com/downloads/ncpa/ncpa-latest.i386.deb
+    dest: /tmp/ncpa.deb
+    force: yes
+  when: ansible_distribution == "Ubuntu" and ansible_architecture == "i386" and ansible_distribution_major_version|int < 19
+- name: Download NCPA (Ubuntu 64bit)
+  get_url:
+    url: https://assets.nagios.com/downloads/ncpa/ncpa-latest.amd64.deb
+    dest: /tmp/ncpa.deb
+    force: yes
+  when: ansible_distribution == "Ubuntu" and ansible_architecture == "x86_64" and ansible_distribution_major_version|int < 19
+
+- name: Download NCPA (Ubuntu 32bit 19+)
+  get_url:
+    url: https://assets.nagios.com/downloads/ncpa/ncpa-latest.d9.i386.deb
+    dest: /tmp/ncpa.deb
+    force: yes
+  when: ansible_distribution == "Ubuntu" and ansible_architecture == "i386" and ansible_distribution_major_version|int >= 19
+- name: Download NCPA (Ubuntu 64bit 19+)
+  get_url:
+    url: https://assets.nagios.com/downloads/ncpa/ncpa-latest.d9.amd64.deb
+    dest: /tmp/ncpa.deb
+    force: yes
+  when: ansible_distribution == "Ubuntu" and ansible_architecture == "x86_64" and ansible_distribution_major_version|int >= 19
+
+# OpenSUSE/SLES
+
+- name: Download NCPA (SLES 32bit 11)
+  get_url:
+    url: https://assets.nagios.com/downloads/ncpa/ncpa-latest.sle11.i386.rpm
+    dest: /tmp/ncpa.rpm
+    force: yes
+  when: ansible_distribution == "SLES" and ansible_architecture == "i386" and ansible_distribution_major_version|int == 11
+- name: Download NCPA (SLES 64bit 11)
+  get_url:
+    url: https://assets.nagios.com/downloads/ncpa/ncpa-latest.sle11.x86_64.rpm
+    dest: /tmp/ncpa.rpm
+    force: yes
+  when: ansible_distribution == "SLES" and ansible_architecture == "x86_64" and ansible_distribution_major_version|int == 11
+- name: Download NCPA (SLES 64bit 12)
+  get_url:
+    url: https://assets.nagios.com/downloads/ncpa/ncpa-latest.sle12.x86_64.rpm
+    dest: /tmp/ncpa.rpm
+    force: yes
+  when: ansible_distribution == "SLES" and ansible_architecture == "x86_64" and ansible_distribution_major_version|int == 12
+- name: Download NCPA (SLES 64bit 15+)
+  get_url:
+    url: https://assets.nagios.com/downloads/ncpa/ncpa-latest.sle15.x86_64.rpm
+    dest: /tmp/ncpa.rpm
+    force: yes
+  when: ansible_distribution == "SLES" and ansible_architecture == "x86_64" and ansible_distribution_major_version|int >= 15
+- name: Download NCPA (OpenSUSE Leap 15+)
+  get_url:
+    url: https://assets.nagios.com/downloads/ncpa/ncpa-latest.os15.x86_64.rpm
+    dest: /tmp/ncpa.rpm
+    force: yes
+  when: ansible_distribution == "openSUSE Leap" and ansible_architecture == "x86_64" and ansible_distribution_major_version|int >= 15
+
+
+# Install NCPA
+
+
+- name: Install NCPA (RedHat & CentOS)
+  shell: yum localinstall ncpa.rpm -y
+  args:
+    chdir: /tmp
+  when: ansible_os_family == "RedHat"
+
+- name: Install NCPA (Debian & Ubuntu)
+  apt:
+    deb: /tmp/ncpa.deb
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Install NCPA (SUSE & OpenSUSE)
+  zypper:
+    name: /tmp/ncpa.rpm
+    disable_gpg_check: yes
+    state: present
+  when: ansible_os_family == "Suse"
+
+
+# Set NCPA Token
+
+
+- name: Set NCPA Token
+  lineinfile:
+    dest: /usr/local/ncpa/etc/ncpa.cfg
+    regexp: ^community_string
+    line: "community_string = {{ ncpa_token }}"
+
+
+# Restart NCPA
+
+
+- name: Restart NCPA
+  service:
+    name: ncpa_listener
+    state: restarted
+    enabled: yes
+
+
+# Configure Firewall
+
+
+- name: Open NCPA Port (Ubuntu)
+  ufw:
+    state: enabled
+    policy: allow
+    proto: any
+    rule: allow
+    to_port: 5693
+  when: ansible_distribution == "Ubuntu"
+
+- name: Open NCPA Port (CentOS & RHEL 6)
+  iptables:
+    chain: INPUT
+    jump: ACCEPT
+    destination_port: 5693
+    protocol: tcp
+    action: insert
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version|int == 6
+
+- name: Save iptables Config (CentOS & RHEL 6)
+  command: service iptables save
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version|int == 6
+
+- name: Check if firewalld is installed (RedHat & CentOS 7, 8)
+  package_facts:
+    manager: "auto"
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version|int != 6
+
+- name: Open NCPA Port (RedHat & CentOS 7, 8)
+  firewalld:
+    port: 5693/tcp
+    immediate: yes
+    permanent: yes
+    state: enabled
+    offline: yes
+  ignore_errors: yes
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version|int != 6 and 'firewalld' in ansible_facts.packages
+
+
+# Remove temp NCPA file
+
+
+- name: Clean up temp files (rpm)
+  file:
+    path: /tmp/ncpa.rpm
+    state: absent
+  when: ansible_os_family == "RedHat" or ansible_os_family == "Suse"
+
+- name: Clean up temp files (deb)
+  file:
+    path: /tmp/ncpa.deb
+    state: absent
+  when: ansible_os_family == "Debian"

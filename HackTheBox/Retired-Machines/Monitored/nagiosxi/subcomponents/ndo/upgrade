@@ -1,0 +1,59 @@
+#!/bin/bash -e
+
+pkgname="ndo-3.1.0"
+
+echo "UPGRADE: NDO is being upgraded..."
+
+# Delete the old directory
+rm -rf "$pkgname"
+
+# Extract archive
+tar -xzf "$pkgname.tar.gz"
+
+# Check for a manually downgraded NDO 3 -> NDO 2
+# If present, skip automatic upgrades
+function version_gt ()
+{
+	# Copied from ndo-3 db-mgmt.sh
+	# thanks stackoverflow #16989598/bash-comparing-version-numbers
+    test "$(printf '%s\n' "$@" | sort -V | head -n 1)" != "$1"
+}
+
+if [ -f '/usr/local/nagios/bin/ndo2db' ] && [ "$1" != "-f" ]; then
+
+	# Parse values in case mysql is offloaded 
+	ndopass=$(sed -n '/^db_pass=/ s///p' /usr/local/nagios/etc/ndo2db.cfg)
+	ndohost=$(sed -n '/^db_host=/ s///p' /usr/local/nagios/etc/ndo2db.cfg)
+	ndouser=$(sed -n '/^db_user=/ s///p' /usr/local/nagios/etc/ndo2db.cfg)
+	ndoname=$(sed -n '/^db_name=/ s///p' /usr/local/nagios/etc/ndo2db.cfg)
+	ndoport=$(sed -n '/^db_port=/ s///p' /usr/local/nagios/etc/ndo2db.cfg)
+
+	# Grab version from database
+	ndoversion=$(mysql "$ndoname" -u "$ndouser" -p"$ndopass" -h "$ndohost" -P "$ndoport" -se "SELECT version FROM nagios_dbversion WHERE name='ndoutils';")
+	if version_gt "$ndoversion" "2.1.3"; then
+		# Downgraded system
+		echo "UPGRADE: NDO manually downgraded -- skipping"
+		exit 0
+	fi
+fi
+
+# Make and install NDO
+(
+	cd "./$pkgname"
+
+	./configure
+	make all
+	make install
+	make install-broker-line
+
+	# Copy startup hash file, disabled by default
+	cp -f src/ndo-startup-hash.sh /usr/local/nagios/bin
+)
+
+# Post-upgrade stuff
+./post-upgrade "$pkgname"
+
+# Delete the directory (source files not needed anymore)
+rm -rf "$pkgname"
+
+echo "UPGRADE: NDO upgraded OK."

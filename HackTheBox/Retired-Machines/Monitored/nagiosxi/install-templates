@@ -1,0 +1,25 @@
+#!/bin/bash -e
+
+. ./xi-sys.cfg
+
+##########################################
+# COPY OVER NEW NAGIOS TEMPLATES
+##########################################
+
+echo "Installing new XI templates..."
+
+# Copy over static XI templates
+cp -r ./subcomponents/nagioscore/mods/cfg/static/* /usr/local/nagios/etc/static
+
+# Copy over XI templates to be imported
+# USE CAUTION THIS WILL OVERWRITE 
+# USER DEFINED CONFIGS
+
+cp -r ./subcomponents/nagioscore/mods/cfg/import/xi_timeperiod_24x7.cfg /usr/local/nagios/etc/import
+chown "$apacheuser:$nagiosgroup" /usr/local/nagios/etc/import/*.cfg
+
+# Reconfigure Nagios
+(
+	cd "$proddir/scripts"
+	./reconfigure_nagios.sh
+)

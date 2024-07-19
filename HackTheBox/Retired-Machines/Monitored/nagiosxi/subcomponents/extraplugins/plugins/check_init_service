@@ -1,0 +1,58 @@
+#!/bin/bash
+
+PROGNAME=`basename $0`
+
+PROGPATH="`dirname $0`"
+. $PROGPATH/utils.sh
+
+print_usage() {
+        echo "Usage: $PROGNAME"
+}
+
+print_help() {
+        echo ""
+        print_usage
+        echo ""
+        echo "This plugin checks the status of services normally started by the init process."
+        echo ""
+        support
+        exit 0
+}
+
+
+case "$1" in
+        --help)
+                print_help
+                exit 0
+                ;;
+        -h)
+                print_help
+                exit 0
+                ;;
+        *)
+
+		if [ $# -eq 1 ]; then 
+                        if hash systemctl 2>/dev/null; then
+                             /bin/systemctl is-active $1
+                        else
+			     /sbin/service $1 status
+                        fi
+			ret=$?
+			case "$ret" in
+			     0)
+				exit $ret
+				;;
+			     *)
+				exit 2
+				;;
+			esac
+		else
+			echo "ERROR: No service name specified on command line"
+			exit 3
+		fi
+                ;;
+esac
+
+
+
+

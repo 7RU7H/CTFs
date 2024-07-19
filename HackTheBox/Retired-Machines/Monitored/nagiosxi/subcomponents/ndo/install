@@ -1,0 +1,48 @@
+#!/bin/bash -e
+
+. ../../xi-sys.cfg
+
+pkgname="ndo-3.1.0"
+
+echo "INSTALL: NDO is being installed..."
+
+# Delete the old directory
+rm -rf "$pkgname"
+
+# Extract archive
+tar -xzf "$pkgname.tar.gz"
+
+# Make and install NDO
+(
+	cd "./$pkgname"
+
+	./configure
+	make all
+	make install
+	make install-broker-line
+
+	# Copy startup hash file, disabled by default
+	cp -f src/ndo-startup-hash.sh /usr/local/nagios/bin
+)
+
+# Post-install stuff
+./post-install $pkgname
+
+# Do a simple sanity check to make sure some key files exist...
+if [ ! -f "/usr/local/nagios/bin/ndo.so" ]; then
+	echo "ERROR: NDO install appears to have failed - exiting. Missing file = /usr/local/nagios/bin/ndo.so"
+	exit 1
+fi
+
+# Check MySQL database
+echo "NOTE: If prompted, enter the MySQL root password"
+if mysql -u root -p"$mysqlpass" nagios -e "SELECT COUNT(*) FROM nagios_hosts" &>/dev/null; then
+	echo "NDO database appears OK"
+else
+	echo "ERROR: NDO database install appears to have failed - exiting."
+	exit 1
+fi
+
+# Things are okay
+echo "NDO installed OK"
+

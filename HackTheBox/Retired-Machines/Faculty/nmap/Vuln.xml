@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.92 scan initiated Mon Aug  8 20:40:02 2022 as: nmap -&#45;script vuln -oA nmap/Vuln -p 22,80 -&#45;min-rate 1000 10.129.64.49 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA nmap/Vuln -p 22,80 -&#45;min-rate 1000 10.129.64.49" start="1659987602" startstr="Mon Aug  8 20:40:02 2022" version="7.92" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="2" services="22,80"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.64.49" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1659987612" endtime="1659987760"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.129.64.49" addrtype="ipv4"/>
+<hostnames>
+<hostname name="faculty.htb" type="PTR"/>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-enum" output="&#xa;  /admin/login.php: Possible admin folder&#xa;  /login.php: Possible admin folder&#xa;  /admin/home.php: Possible admin folder&#xa;"/><script id="http-fileupload-exploiter" output="&#xa;  &#xa;    Couldn&apos;t find a file-type field."><table>
+<elem>Couldn&apos;t find a file-type field.</elem>
+</table>
+</script><script id="http-cookie-flags" output="&#xa;  /: &#xa;    PHPSESSID: &#xa;      httponly flag not set"><table key="/">
+<table key="PHPSESSID">
+<elem>httponly flag not set</elem>
+</table>
+</table>
+</script></port>
+</ports>
+<times srtt="48439" rttvar="30844" to="171815"/>
+</host>
+<runstats><finished time="1659987760" timestr="Mon Aug  8 20:42:40 2022" summary="Nmap done at Mon Aug  8 20:42:40 2022; 1 IP address (1 host up) scanned in 158.51 seconds" elapsed="158.51" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

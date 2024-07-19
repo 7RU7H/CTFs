@@ -1,0 +1,140 @@
+### Missing Subresource Integrity (missing-sri) found on comprezzor.htb
+
+----
+**Details**: **missing-sri** matched at comprezzor.htb
+
+**Protocol**: HTTP
+
+**Full URL**: http://comprezzor.htb/
+
+**Timestamp**: Sat Apr 27 20:33:41 +0100 BST 2024
+
+**Template Information**
+
+| Key | Value |
+| --- | --- |
+| Name | Missing Subresource Integrity |
+| Authors | lucky0x0d, pulsesecurity.co.nz |
+| Tags | compliance, js, sri, misconfig |
+| Severity | info |
+| Description | Checks if script tags within the HTML response have Subresource Integrity implemented via the integrity attribute<br> |
+
+**Request**
+```http
+GET / HTTP/1.1
+Host: comprezzor.htb
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1661.51
+Connection: close
+Accept-Encoding: gzip
+
+
+```
+
+**Response**
+```http
+HTTP/1.1 200 OK
+Connection: close
+Transfer-Encoding: chunked
+Content-Type: text/html; charset=utf-8
+Date: Sat, 27 Apr 2024 19:33:41 GMT
+Server: nginx/1.18.0 (Ubuntu)
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Comprezzor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+            min-height: 100vh;
+            position: relative;
+            margin-bottom: 100px; /* Adjust the margin to keep some space above the footer */
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .file-input {
+            margin-bottom: 20px;
+        }
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100px; /* Set the height of the footer */
+            padding: 20px;
+            background-color: #f8f9fa;
+            text-align: center;
+            box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow at the bottom of the footer */
+        }
+        .footer p {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Comprezzor</h1>
+        <hr>
+        <p class="lead">Welcome to our file compression service. You can upload text (txt), PDF (pdf), and Word (docx) files to compress them using the LZMA algorithm.</p>
+
+        <form method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="fileInput" class="form-label">Select a file to compress:</label>
+                <input type="file" id="fileInput" name="file" class="form-control-file file-input" accept=".txt, .pdf, .docx">
+            </div>
+            <div class="mb-3 text-center">
+                <button type="submit" class="btn btn-primary">Compress File</button>
+            </div>
+        </form>
+
+        
+            
+        
+
+        <hr>
+
+        <h2>About Our Team</h2>
+        <p>We are a passionate team of developers dedicated to providing high-quality file compression services. Our mission is to make file compression easy, fast, and efficient for all users.</p>
+        <p>We believe in continuous learning and staying at the forefront of technology to bring the best compression solutions to our users. Our team consists of skilled engineers and designers who work collaboratively to create a seamless compression experience.</p>
+        <p>Customer satisfaction is our top priority, and we strive to exceed expectations in every aspect of our service.</p>
+
+        <h2>About Our Company</h2>
+        <p>We are a leading technology company that specializes in file compression solutions. Our goal is to innovate and simplify the file compression process, delivering exceptional results to our users.</p>
+        <p>At Comprezzor, we are committed to data security and privacy. All uploaded files are processed securely, and we do not retain any user data beyond the compression process.</p>
+        <p>With a strong focus on user experience and performance, we aim to be the go-to platform for all file compression needs.</p>
+    </div>
+
+    <div class="footer">
+        <p>Contact Us:</p>
+        <p>Email: support@comprezzor.htb</p>
+        <p>Phone: +1 (123) 456-7890</p>
+        <p>Found a bug?</p>
+        <p>Inform us from by submitting a <a href="http://report.comprezzor.htb/">report</a></p>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+```
+
+**Extra Information**
+
+**Extracted results:**
+
+- https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js
+
+
+References: 
+- https://cheatsheetseries.owasp.org/cheatsheets/third_party_javascript_management_cheat_sheet.html#subresource-integrity
+
+**CURL command**
+```sh
+curl -X 'GET' -d '' -H 'Host: comprezzor.htb' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1661.51' 'http://comprezzor.htb/'
+```
+
+----
+
+Generated by [Nuclei v3.2.2](https://github.com/projectdiscovery/nuclei)

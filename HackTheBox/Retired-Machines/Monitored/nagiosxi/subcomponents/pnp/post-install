@@ -1,0 +1,46 @@
+#!/bin/bash -e
+
+. ../../xi-sys.cfg
+
+echo "INSTALL: POST-INSTALL: PNP post install is running..."
+
+# Post-install modifications
+
+# Copy sample configs
+cp /usr/local/nagios/etc/pnp/rra.cfg-sample /usr/local/nagios/etc/pnp/rra.cfg
+cp /usr/local/nagios/etc/pnp/process_perfdata.cfg-sample /usr/local/nagios/etc/pnp/process_perfdata.cfg
+
+# Init file or systemd service
+if [ ! `command -v systemctl` ]; then
+	cp -f mods/npcd.init /etc/init.d/npcd
+else
+	if [ -d /etc/systemd/system ]; then
+		cp -f mods/npcd.service /etc/systemd/system/npcd.service
+	else
+		cp -f mods/npcd.service /usr/lib/systemd/system/npcd.service
+	fi
+	systemctl daemon-reload
+fi
+
+# Copy modified configs
+cp -r mods/cfg/*.cfg /usr/local/nagios/etc/pnp
+cp -r mods/cfg/config.php /usr/local/nagios/etc/pnp
+
+# Copy custom templates
+/bin/cp -fr mods/templates/* /usr/local/nagios/share/pnp/templates
+
+# Copy custom language file
+cp -r mods/lang/*.php /usr/local/nagios/share/pnp/lang
+
+# Updates for PNP 0.6 script -MG 4/26/11
+if [ ! -d /usr/local/nagios/var/stats ]; then
+	mkdir /usr/local/nagios/var/stats
+fi
+chown "$nagiosuser:$nagiosgroup" /usr/local/nagios/var/stats
+
+# Copy over new PNP 0.6 patched script - MG 4/26/11
+rm -f /usr/local/nagios/libexec/process_perfdata.pl
+cp mods/process_perfdata.pl /usr/local/nagios/libexec/
+chown "$nagiosuser:$nagiosgroup" /usr/local/nagios/libexec/process_perfdata.pl
+
+echo "INSTALL: POST-INSTALL: PNP post install completed OK."

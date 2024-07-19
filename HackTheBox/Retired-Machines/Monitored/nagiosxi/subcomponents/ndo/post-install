@@ -1,0 +1,37 @@
+#!/bin/bash -e
+
+. ../../xi-sys.cfg
+
+pkgname="$1"
+
+echo "INSTALL: POST-INSTALL: Starting NDO post install..."
+
+# Post-install modifications
+
+# Copy config
+cp -f mods/cfg/ndo.cfg /usr/local/nagios/etc
+
+# See if database already exists
+echo "NOTE: If prompted, enter the MySQL root password"
+if mysql nagios -u root -p"$mysqlpass" -e 'SELECT COUNT(*) FROM nagios_hosts' &>/dev/null; then
+	echo "NDO database already exists - skipping creation..."
+else
+
+	# Run SQL to create database and add user
+	mysql -u root -p"$mysqlpass" < mods/create_db.sql
+
+	##parse values in case mysql is offloaded 
+	ndopass=$(sed -n '/^db_pass=/ s///p' /usr/local/nagios/etc/ndo.cfg)
+	ndohost=$(sed -n '/^db_host=/ s///p' /usr/local/nagios/etc/ndo.cfg)
+	ndouser=$(sed -n '/^db_user=/ s///p' /usr/local/nagios/etc/ndo.cfg)
+
+	# Install the database
+	# -- Apply some changes for newer MySQL restrictions if the ndo version isn't updated
+	(
+		cd ./"$pkgname"/db
+		./db-mgmt.sh -u "$ndouser" -p "$ndopass" -h "$ndohost" -d nagios
+	)
+
+fi
+
+echo "INSTALL: POST-INSTALL: NDO post installed OK."

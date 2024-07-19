@@ -1,0 +1,48 @@
+#!/bin/bash -e
+
+echo "UPGRADE: PNP is being upgraded..."
+
+# Get the current pnp 
+pnp_spool_dir=$(sed -n -e '/^perfdata_spool_dir =.\// s/.*\= *//p' /usr/local/nagios/etc/pnp/npcd.cfg)
+
+pkgname="pnp-latest"
+
+# Delete the old archive
+rm -rf "$pkgname"
+
+# Extract archive
+tar -xzf "$pkgname.tar.gz"
+
+# Apply patches
+echo "Applying Nagios XI patches to PNP..."
+./apply-patches "$pkgname"
+
+# Make and install 
+(
+	cd "./$pkgname"
+	./configure
+	make all
+	make install
+)
+
+if [ "x$pnp_spool_dir" != "x" ]; then
+	sed -i '/perfdata_spool_dir = \//c\perfdata_spool_dir = '"$pnp_spool_dir"'' /usr/local/nagios/etc/pnp/npcd.cfg
+fi
+
+# Do a simple sanity check to make sure some key files exist...
+for f in /usr/local/nagios/bin/npcd /usr/local/nagios/libexec/process_perfdata.pl /usr/local/nagios/etc/pnp/process_perfdata.cfg ; do
+	if [ ! -f "$f" ]; then
+		echo "ERROR: PNP install appears to have failed - exiting.  Missing file = $f"
+		exit 1
+	fi
+done
+
+# Restart npcd
+if [ ! `command -v systemctl` ]; then
+	service npcd restart
+else
+	systemctl restart npcd
+fi
+
+# Things are okay
+echo "UPGRADE: PNP upgraded OK."

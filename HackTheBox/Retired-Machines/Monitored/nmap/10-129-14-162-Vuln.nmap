@@ -1,0 +1,59 @@
+# Nmap 7.94SVN scan initiated Sun Jan 14 17:52:19 2024 as: nmap --script vuln -oA /home/none/HackTheBoxCompetitive/Savage-Lands/Monitored/nmap/10-129-14-162-Vuln --min-rate 500 -e tun0 -p 22,80,389,443,5667 10.129.14.162
+Nmap scan report for 10.129.14.162
+Host is up (0.059s latency).
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+|_http-aspnet-debug: ERROR: Script execution failed (use -d to debug)
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+389/tcp  open  ldap
+443/tcp  open  https
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+| http-fileupload-exploiter: 
+|   
+|_    Couldn't find a file-type field.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.14.162
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&noauth=1
+|     Form id: loginform
+|     Form action: /nagiosxi/login.php
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&noauth=1
+|     Form id: loginform
+|     Form action: /nagiosxi/login.php
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/login.php
+|     Form id: loginform
+|     Form action: /nagiosxi/login.php
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/js/views.js?1687894169
+|     Form id: addview_form
+|     Form action: "+ajax_helper_url+"
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/js/views.js?1687894169
+|     Form id: editview_form
+|     Form action: "+ajax_helper_url+"
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/js/views.js?1687894169
+|     Form id: addview_form
+|_    Form action: "+ajax_helper_url+"
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-sql-injection: 
+|   Possible sqli for queries:
+|     https://10.129.14.162:443/nagiosxi/includes/js/core.js?1687894169=%27%20OR%20sqlspider
+|     https://10.129.14.162:443/nagiosxi/includes/js/core.js?1687894169=%27%20OR%20sqlspider
+|     https://10.129.14.162:443/nagiosxi/includes/js/core.js?1687894169=%27%20OR%20sqlspider
+|     https://10.129.14.162:443/nagiosxi/includes/js/core.js?1687894169=%27%20OR%20sqlspider
+|     https://10.129.14.162:443/nagiosxi/includes/js/core.js?1687894169=%27%20OR%20sqlspider
+|     https://10.129.14.162:443/nagiosxi/includes/js/core.js?1687894169=%27%20OR%20sqlspider
+|     https://10.129.14.162:443/nagiosxi/includes/js/core.js?1687894169=%27%20OR%20sqlspider
+|_    https://10.129.14.162:443/nagiosxi/includes/js/core.js?1687894169=%27%20OR%20sqlspider
+5667/tcp open  unknown
+
+# Nmap done at Sun Jan 14 18:03:04 2024 -- 1 IP address (1 host up) scanned in 645.26 seconds

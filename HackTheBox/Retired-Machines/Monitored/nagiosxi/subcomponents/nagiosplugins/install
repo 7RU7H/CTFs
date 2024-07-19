@@ -1,0 +1,45 @@
+#!/bin/bash -e
+
+. ../../xi-sys.cfg
+
+pkgname="nagios-plugins-2.4.5"
+
+echo "INSTALL: Nagios Plugins is installing..."
+
+# Delete the old directory
+rm -rf "$pkgname"
+
+# Extract archive
+tar -xzf "$pkgname.tar.gz"
+
+# Apply our patches
+./apply-patches "$pkgname"
+
+(
+	cd "./$pkgname"
+	time ./configure
+	time make clean
+	time make -j $make_j_flag
+	time make install
+)
+
+# Fix permissions on plugin directory
+chown $apacheuser:$nagiosgroup -R /usr/local/nagios/libexec
+chmod ug+rwx -R /usr/local/nagios/libexec
+chmod g+s /usr/local/nagios/libexec
+chown root:$nagiosgroup /usr/local/nagios/libexec/check_dhcp
+chown root:$nagiosgroup /usr/local/nagios/libexec/check_icmp
+chmod u+s /usr/local/nagios/libexec/check_dhcp
+chmod u+s /usr/local/nagios/libexec/check_icmp
+
+# Do a simple sanity check to make sure some key files exist...
+for f in /usr/local/nagios/libexec/check_ping ; do
+	if [ ! -f "$f" ]; then
+		echo "ERROR: Nagios Plugins install appears to have failed - exiting.  Missing file = $f"
+		exit 1
+	fi
+done
+
+# Things are okay
+echo "INSTALL: Nagios Plugins installed OK."
+

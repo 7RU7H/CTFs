@@ -1,0 +1,133 @@
+#!/bin/bash
+#
+### BEGIN INIT INFO
+# Provides:          npcd
+# Required-Start:    
+# Required-Stop:     
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Nagios NPCD Initscript
+# Description: 	     Nagios Process Control Daemon
+### END INIT INFO
+
+# chkconfig: 345 99 6
+#
+# Startup script for NPCD
+#
+# processname: npcd
+# pidfile: /usr/local/nagiosxi/var/subsys/npcd.pid
+# config: /usr/local/nagios/etc/pnp/npcd.cfg
+
+PREFIX=/usr/local/nagios
+BIN=$PREFIX/bin/npcd
+CONF=$PREFIX/etc/pnp/npcd.cfg
+#PID=/var/run/npcd.pid
+PID=/usr/local/nagiosxi/var/subsys/npcd.pid
+
+get_pid ()
+{
+	PID_NUMBER=`head -n 1 $PID`
+}
+
+get_status ()
+{
+	# No pid file - daemon is stopped
+	if [ ! -f $PID ]
+	then
+		return 1
+	fi
+	
+	get_pid
+	
+	# Make sure the process is still running
+	if ps -p $PID_NUMBER | grep npcd > /dev/null 2>&1; then
+		return 0
+	fi
+	
+	# Process couldn't be found, looks like the pidfile is stale
+	return 2
+}
+
+case "$1" in
+	start)
+		get_status
+		if [ $? -eq 0 ]
+		then
+			echo "NPCD already started"
+			exit 0
+		else
+			$BIN -d -f $CONF
+			if [ $? -eq 0 ] 
+			then
+				echo "NPCD started."
+				exit 0
+			else
+				echo "Could not start NPCD"
+				exit 1
+			fi
+		fi
+		;;
+	stop)
+		get_status
+		if [ $? -eq 0 ]
+		then
+			get_pid
+			kill $PID_NUMBER
+			if [ $? -eq 0 ] 
+			then
+				rm $PID
+				echo "NPCD Stopped."
+				exit 0
+			else
+				echo "Could not stop NPCD"
+				exit 1
+			fi
+		else
+			rm $PID
+			echo "NPCD was not running."
+			exit 0
+		fi
+		;;
+	restart)
+		$0 stop
+		$0 start
+		;;
+	reload)
+		if [ -f $PID ] 
+		then
+			get_pid
+			kill -HUP $PID_NUMBER
+			if [ $? -eq 0 ]
+			then
+				echo "NPCD reloaded"
+				exit 0
+			else
+				echo "Could not reload"
+				exit 1
+			fi
+		else
+			echo "NPCD not running ($PID doesn't exist)"
+			exit 1
+		fi
+		;;
+	status)
+		get_status
+		if [ $? -eq 0 ] 
+		then
+			echo "NPCD running (pid $PID_NUMBER)."
+			exit 0
+		elif [ $? -eq 2 ]
+		then
+			echo "NPCD pid file exists, but process (pid $PID_NUMBER) is not running."
+			exit 1
+		else
+			echo "NPCD not running."
+			exit 1
+		fi
+		;;
+	*)
+		echo "Usage: npcd {start|stop|restart|reload|status}"
+		exit 1
+		;;
+esac
+	

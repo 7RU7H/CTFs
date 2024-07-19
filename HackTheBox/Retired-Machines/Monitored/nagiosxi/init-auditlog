@@ -1,0 +1,33 @@
+#!/bin/bash -e
+
+# Set up system variables
+./init.sh
+. ./xi-sys.cfg
+
+
+echo "Checking PostgresQL status..."
+if service postgresql status &>/dev/null; then
+	echo "PostgresQL running - continuing..."
+else
+	echo "ERROR: PostgresQL not running - exiting." >&2
+	exit 1
+fi
+
+# Create Postgres db structure (if it doesn't exist already)
+if psql -A -t -U nagiosxi "$pgsqlpass" -c "select COUNT(*) from xi_auditlog" &>/dev/null; then
+	echo "Audit log database structure already created - skipping..."
+else
+	echo "Creating audit log database structure..."
+	psql -U nagiosxi "$pgsqlpass" < nagiosxi/auditlog.pgsql.sql >/dev/null
+fi
+
+# Check database structure...
+if psql -A -t -U nagiosxi "$pgsqlpass" -c "select COUNT(*) from xi_auditlog" &>/dev/null; then
+	echo "Audit log database schema created successfully."
+else
+	echo "ERROR: Audit log database schema was not created - exiting." >&2
+	exit 1
+fi
+
+echo "Nagios XI Audit Log Initialized OK."
+

@@ -1,0 +1,91 @@
+# Nmap 7.94SVN scan initiated Sat Apr 27 20:30:56 2024 as: nmap --script discovery -oA /home/kali/HackTheBoxCompetitive/Anomalies/Intuition/nmap/10-129-21-205-Discovery --min-rate 1000 -e tun0 -p 22,80 10.129.21.205
+Pre-scan script results:
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-ping: false
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-sniffer: Sniffed 1 address(es). 
+|_10.129.21.205
+|_lltd-discovery: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.129.21.205
+Host is up (0.65s latency).
+
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+22/tcp open  ssh
+|_banner: SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.7
+| ssh2-enum-algos: 
+|   kex_algorithms: (11)
+|   server_host_key_algorithms: (4)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+| ssh-hostkey: 
+|   256 b3:a8:f7:5d:60:e8:66:16:ca:92:f6:76:ba:b8:33:c2 (ECDSA)
+|_  256 07:ef:11:a6:a0:7d:2b:4d:e8:68:79:1a:7b:a7:a9:cd (ED25519)
+80/tcp open  http
+| http-sitemap-generator: 
+|   Directory structure:
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    
+|_http-mobileversion-checker: No mobile version detected.
+|_http-errors: Couldn't find any error pages.
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-comments-displayer: Couldn't find any comments.
+|_http-date: Sat, 27 Apr 2024 19:31:34 GMT; +1h00m00s from local time.
+|_http-chrono: Request times for /; avg: 1.89ms; min: 1.66ms; max: 2.13ms
+|_http-feed: Couldn't find any feeds.
+| http-useragent-tester: 
+|   Status for browser useragent: false
+|   Redirected To: http://comprezzor.htb/
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-title: Did not follow redirect to http://comprezzor.htb/
+| http-headers: 
+|   Server: nginx/1.18.0 (Ubuntu)
+|   Date: Sat, 27 Apr 2024 19:31:35 GMT
+|   Content-Type: text/html
+|   Content-Length: 178
+|   Connection: close
+|   Location: http://comprezzor.htb/
+|   
+|_  (Request type: GET)
+| http-vhosts: 
+|_128 names had status 301
+
+Host script results:
+| qscan: 
+| PORT  FAMILY  MEAN (us)    STDDEV      LOSS (%)
+| 22    0       93581.50     50551.06    0.0%
+|_80    0       -1229738.00  4168030.47  0.0%
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "10.129.21.205"; use dns-brute.domain script argument.
+|_ipidseq: All zeros
+|_path-mtu: PMTU == 1500
+
+# Nmap done at Sat Apr 27 20:33:54 2024 -- 1 IP address (1 host up) scanned in 177.65 seconds

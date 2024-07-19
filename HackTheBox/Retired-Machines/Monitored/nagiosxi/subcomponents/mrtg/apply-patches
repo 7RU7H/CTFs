@@ -1,0 +1,9 @@
+#!/bin/bash -e
+
+pkgname="$1"
+
+# Fix protocol to accept more protocol variants
+patch "$pkgname/bin/cfgmaker" < patches/v3_privprotocol.patch
+patch "$pkgname/bin/cfgmaker" < patches/lib64.patch
+patch "$pkgname/bin/cfgmaker" < patches/newlines.patch
+patch "$pkgname/bin/mrtg" < patches/mrtg-lib64.patch

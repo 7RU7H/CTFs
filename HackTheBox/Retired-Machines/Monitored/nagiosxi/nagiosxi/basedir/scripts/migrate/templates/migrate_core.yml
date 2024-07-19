@@ -1,0 +1,12 @@
+---
+- name: Migrate Nagios Core
+  hosts: all
+  become: $BECOME$
+  remote_user: $REMOTE_USER$
+  
+  vars:
+    ansible_ssh_pass: '$REMOTE_USER_PASSWORD$'
+    ansible_sudo_pass: '$REMOTE_USER_PASSWORD$'
+
+  roles:
+    - role: $MIGRATE_CORE_ROLE$

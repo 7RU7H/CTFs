@@ -1,0 +1,57 @@
+# Nmap 7.93 scan initiated Sat Nov 12 10:05:48 2022 as: nmap --script discovery -oA nmap/10-129-13-240-Discovery --min-rate 500 -p 21,22 10.129.13.240
+Pre-scan script results:
+| targets-ipv6-multicast-echo: 
+|   IP: 2a01:4c8:1421:9dc2::9     MAC: 9223ae200763  IFACE: usb0
+|   IP: fe80::9023:aeff:fe20:763  MAC: 9223ae200763  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| ipv6-multicast-mld-list: 
+|   fe80::9023:aeff:fe20:763: 
+|     device: usb0
+|     mac: 9223ae200763
+|     multicast_ips: 
+|       ff02::1:ff20:763          (NDP Solicited-node)
+|       ff02::1:ff00:0            (Solicited-Node Address)
+|       ff05::2                   (unknown)
+|       ff02::2                   (All Routers Address)
+|_      ff02::1:ff00:9            (Solicited-Node Address)
+| targets-ipv6-multicast-invalid-dst: 
+|   IP: 2a01:4c8:1421:9dc2::9     MAC: 9223ae200763  IFACE: usb0
+|   IP: fe80::9023:aeff:fe20:763  MAC: 9223ae200763  IFACE: usb0
+|_  Use --script-args=newtargets to add the results as targets
+| targets-ipv6-multicast-mld: 
+|   IP: fe80::9023:aeff:fe20:763  MAC: 9223ae200763  IFACE: usb0
+| 
+|_  Use --script-args=newtargets to add the results as targets
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.129.13.240
+Host is up (0.049s latency).
+
+PORT   STATE SERVICE
+21/tcp open  ftp
+22/tcp open  ssh
+| ssh-hostkey: 
+|   3072 c4b44617d2102d8fec1dc927fecd79ee (RSA)
+|   256 2aea2fcb23e8c529409cab866dcd4411 (ECDSA)
+|_  256 fd78c0b0e22016fa050debd83f12a4ab (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (9)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_8.4p1 Debian-5+deb11u1
+
+Host script results:
+|_dns-brute: Can't guess domain of "10.129.13.240"; use dns-brute.domain script argument.
+|_ipidseq: All zeros
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 21    0       50893.90   6879.00   0.0%
+|_22    0       52055.70   11267.17  0.0%
+|_fcrdns: FAIL (No PTR record)
+|_path-mtu: PMTU == 1500
+
+# Nmap done at Sat Nov 12 10:07:19 2022 -- 1 IP address (1 host up) scanned in 91.89 seconds

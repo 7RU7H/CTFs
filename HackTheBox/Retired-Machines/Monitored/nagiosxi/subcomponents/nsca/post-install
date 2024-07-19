@@ -1,0 +1,39 @@
+#!/bin/bash -e
+
+. ../../xi-sys.cfg
+
+echo "INSTALL: POST-INSTALL: NSCA post install is running..."
+
+# Post-install modifications
+
+# Backup original config files
+if [ -f /usr/local/nagios/etc/nsca.cfg ]; then
+	cp -f /usr/local/nagios/etc/nsca.cfg /usr/local/nagios/etc/nsca.cfg.orig
+fi
+if [ -f /usr/local/nagios/etc/send_nsca.cfg ]; then
+	cp -f /usr/local/nagios/etc/send_nsca.cfg /usr/local/nagios/etc/send_nsca.cfg.orig
+fi
+
+# Config files
+cp -r mods/cfg/*.cfg /usr/local/nagios/etc
+
+# Set permissions
+chown "$apacheuser:$nagiosgroup" /usr/local/nagios/etc/nsca.cfg
+chown "$apacheuser:$nagiosgroup" /usr/local/nagios/etc/send_nsca.cfg
+
+chmod g+rw /usr/local/nagios/etc/nsca.cfg
+chmod g+rw /usr/local/nagios/etc/send_nsca.cfg
+
+# Restart xinetd
+if [ -d /etc/xinetd.d ]; then
+	if [ ! `command -v systemctl` ]; then
+		service xinetd restart
+	else
+		systemctl restart xinetd
+	fi
+else
+	systemctl daemon-reload
+	systemctl start nsca
+fi
+
+echo "INSTALL: POST-INSTALL: NSCA post install completed OK."

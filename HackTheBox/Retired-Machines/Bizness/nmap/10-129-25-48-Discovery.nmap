@@ -1,0 +1,1134 @@
+# Nmap 7.94SVN scan initiated Sat Jan  6 19:32:49 2024 as: nmap --script discovery -oA /home/none/HackTheBoxCompetitive/Savage-Labs/Bizness/nmap/10-129-25-48-Discovery --min-rate 500 -e tun0 -p 22,80,443,39629 10.129.25.48
+Pre-scan script results:
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-sniffer: Sniffed 2 address(es). 
+| 10.129.25.48
+|_224.0.23.12
+|_broadcast-ping: false
+|_lltd-discovery: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for bizness.htb (10.129.25.48)
+Host is up (0.092s latency).
+
+Bug in http-security-headers: no string output.
+PORT      STATE SERVICE
+22/tcp    open  ssh
+| ssh-hostkey: 
+|   3072 3e:21:d5:dc:2e:61:eb:8f:a6:3b:24:2a:b7:1c:05:d3 (RSA)
+|   256 39:11:42:3f:0c:25:00:08:d7:2f:1b:51:e0:43:9d:85 (ECDSA)
+|_  256 b0:6f:a0:0a:9e:df:b1:7a:49:78:86:b2:35:40:ec:95 (ED25519)
+|_banner: SSH-2.0-OpenSSH_8.4p1 Debian-5+deb11u3
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+80/tcp    open  http
+| http-headers: 
+|   Server: nginx/1.18.0
+|   Date: Sat, 06 Jan 2024 19:33:39 GMT
+|   Content-Type: text/html
+|   Content-Length: 169
+|   Connection: close
+|   Location: https://bizness.htb/
+|   
+|_  (Request type: GET)
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-mobileversion-checker: No mobile version detected.
+|_http-date: Sat, 06 Jan 2024 19:33:21 GMT; +59m58s from local time.
+|_http-title: Did not follow redirect to https://bizness.htb/
+| http-default-accounts: 
+|   [Arris 2307] at /logo_t.gif
+|_    <blank>:<blank>
+| http-sitemap-generator: 
+|   Directory structure:
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    
+|_http-comments-displayer: Couldn't find any comments.
+|_http-errors: Couldn't find any error pages.
+|_http-feed: Couldn't find any feeds.
+| http-vhosts: 
+| 122 names had status 301
+| devsql.htb
+| exchange.htb
+| mx0.htb
+| gw.htb
+| internal.htb
+|_admin.htb
+|_http-chrono: Request times for /; avg: 1199.36ms; min: 973.05ms; max: 1377.21ms
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Redirected To: https://bizness.htb/
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     Wget/1.13.4 (linux-gnu)
+|     WWW-Mechanize/1.34
+|   Change in Status Code: 
+|     MFC_Tear_Sample: false
+|     PECL::HTTP: false
+|     Snoopy: false
+|_    http client: false
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+443/tcp   open  https
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=bizness.htb
+|     
+|     Path: https://bizness.htb:443/lib/bootstrap/css/bootstrap.min.css
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * Bootstrap v4.2.1 (https://getbootstrap.com/)
+|          * Copyright 2011-2018 The Bootstrap Authors
+|          * Copyright 2011-2018 Twitter, Inc.
+|          * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+|          */
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 171
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 312
+|     Comment: 
+|         /* Nav Menu Essentials */
+|     
+|     Path: https://bizness.htb:443/lib/wow/wow.min.js
+|     Line number: 1
+|     Comment: 
+|         
+|         
+|         * Copyright (c) 2016 Thomas Grainger; Licensed MIT */
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 1
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         */
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 352
+|     Comment: 
+|         /* Nav Menu Arrows */
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 56
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 21
+|     Comment: 
+|         <!-- Libraries CSS Files -->
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 83
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 856
+|     Comment: 
+|         
+|         --------------------------------*/
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 378
+|     Comment: 
+|         /* Nav Meu Styling */
+|     
+|     Path: https://bizness.htb:443/js/main.js
+|     Line number: 189
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/contactform/contactform.js
+|     Line number: 10
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 49
+|     Comment: 
+|         <!-- Uncomment below if you prefer to use an image logo -->
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 123
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 308
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 108
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 534
+|     Comment: 
+|         /* Mobile Nav body classes */
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 72
+|     Comment: 
+|         /* Prelaoder */
+|     
+|     Path: https://bizness.htb:443/js/main.js
+|     Line number: 29
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 311
+|     Comment: 
+|         
+|         
+|             ============================-->
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 296
+|     Comment: 
+|         <!-- #services -->
+|     
+|     Path: https://bizness.htb:443/lib/lightbox/js/lightbox.min.js
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * Lightbox v2.10.0
+|          * by Lokesh Dhakar
+|          *
+|          * More info:
+|          * http://lokeshdhakar.com/projects/lightbox2/
+|          *
+|          * Copyright 2007, 2018 Lokesh Dhakar
+|          * Released under the MIT license
+|          * https://github.com/lokesh/lightbox2/blob/master/LICENSE
+|          *
+|          * @preserve
+|          */
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 48
+|     Comment: 
+|         /* Back to top button */
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 348
+|     Comment: 
+|         <!-- #facts -->
+|     
+|     Path: https://bizness.htb:443/contactform/contactform.js
+|     Line number: 16
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 111
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 64
+|     Comment: 
+|         <!-- #header -->
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 494
+|     Comment: 
+|         <!-- #footer -->
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 61
+|     Comment: 
+|         <!-- #nav-menu-container -->
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 50
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 139
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 43
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/isotope/isotope.pkgd.min.js
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * Isotope PACKAGED v3.0.5
+|          *
+|          * Licensed GPLv3 for open source use
+|          * or Isotope Commercial License for commercial use
+|          *
+|          * https://isotope.metafizzy.co
+|          * Copyright 2017 Metafizzy
+|          */
+|     
+|     Path: https://bizness.htb:443/contactform/contactform.js
+|     Line number: 12
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 20
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/js/main.js
+|     Line number: 13
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 593
+|     Comment: 
+|         
+|         --------------------------------*/
+|     
+|     Path: https://bizness.htb:443/js/main.js
+|     Line number: 163
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 62
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/contactform/contactform.js
+|     Line number: 4
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 135
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/superfish/superfish.min.js
+|     Line number: 1
+|     Comment: 
+|         /*
+|          * jQuery Superfish Menu Plugin - v1.7.9
+|          * Copyright (c) 2016 Joel Birch
+|          *
+|          * Dual licensed under the MIT and GPL licenses:
+|          *	http://www.opensource.org/licenses/mit-license.php
+|          *	http://www.gnu.org/licenses/gpl.html
+|          */
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 8
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 739
+|     Comment: 
+|         
+|         --------------------------------*/
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 600
+|     Comment: 
+|         
+|         --------------------------------*/
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 146
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 903
+|     Comment: 
+|         
+|         --------------------------------*/
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 143
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 76
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/js/main.js
+|     Line number: 26
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 66
+|     Comment: 
+|         
+|         
+|           ============================-->
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 31
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|           ======================================================= -->
+|     
+|     Path: https://bizness.htb:443/lib/counterup/counterup.min.js
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * jquery.counterup.js 2.1.0
+|          *
+|          * Copyright 2013, Benjamin Intal http://gambit.ph @bfintal
+|          * Released under the GPL v2 License
+|          *
+|          * Amended by Jeremy Paris, Ciro Mattia Gonano and others
+|          *
+|          * Date: Feb 24, 2017
+|          */
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 1251
+|     Comment: 
+|         
+|         --------------------------------*/
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 50
+|     Comment: 
+|         <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 429
+|     Comment: 
+|         /* Mobile Nav Toggle */
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 188
+|     Comment: 
+|         <!-- #featured-services -->
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 1516
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 18
+|     Comment: 
+|         <!-- Bootstrap CSS File -->
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 126
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 127
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/js/main.js
+|     Line number: 4
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/touchSwipe/jquery.touchSwipe.min.js
+|     Line number: 1
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|          */
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 132
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 90
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 298
+|     Comment: 
+|         
+|         
+|             ============================-->
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 93
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 123
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 129
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 68
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 1166
+|     Comment: 
+|         
+|         --------------------------------*/
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 417
+|     Comment: 
+|         <!-- #contact -->
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 122
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 785
+|     Comment: 
+|         
+|         --------------------------------*/
+|     
+|     Path: https://bizness.htb:443/lib/jquery/jquery.min.js
+|     Line number: 1
+|     Comment: 
+|         /*! jQuery v3.2.1 | (c) JS Foundation and other contributors | jquery.org/license */
+|     
+|     Path: https://bizness.htb:443/js/main.js
+|     Line number: 77
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/js/main.js
+|     Line number: 170
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 155
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 308
+|     Comment: 
+|         <!-- #call-to-action -->
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 148
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 552
+|     Comment: 
+|         
+|         --------------------------------*/
+|     
+|     Path: https://bizness.htb:443/lib/animate/animate.min.css
+|     Line number: 3
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|          */
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 137
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 145
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/js/main.js
+|     Line number: 90
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 41
+|     Comment: 
+|         
+|         
+|           ============================-->
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 15
+|     Comment: 
+|         <!-- Google Fonts -->
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 450
+|     Comment: 
+|         /* Mobile Nav Styling */
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 500
+|     Comment: 
+|         <!-- JavaScript Libraries -->
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 53
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 350
+|     Comment: 
+|         
+|         
+|             ============================-->
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 246
+|     Comment: 
+|         <!-- #about -->
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 190
+|     Comment: 
+|         
+|         
+|             ============================-->
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 24
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 497
+|     Comment: 
+|         <!-- Uncomment below i you want to use a preloader -->
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 114
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 517
+|     Comment: 
+|         <!-- Template Main Javascript File -->
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 156
+|     Comment: 
+|         <!-- #intro -->
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 160
+|     Comment: 
+|         
+|         
+|             ============================-->
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 16
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/jquery/jquery-migrate.min.js
+|     Line number: 1
+|     Comment: 
+|         /*! jQuery Migrate v3.0.0 | (c) jQuery Foundation and other contributors | jquery.org/license */
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 643
+|     Comment: 
+|         
+|         --------------------------------*/
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 11
+|     Comment: 
+|         <!-- Favicons -->
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 106
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 514
+|     Comment: 
+|         <!-- Contact Form JavaScript File -->
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 498
+|     Comment: 
+|         <!-- <div id="preloader"></div> -->
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 484
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|                 -->
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 10
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|          */
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 1055
+|     Comment: 
+|         
+|         --------------------------------*/
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 141
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 421
+|     Comment: 
+|         
+|         
+|           ============================-->
+|     
+|     Path: https://bizness.htb:443/lib/bootstrap/css/bootstrap.min.css
+|     Line number: 7
+|     Comment: 
+|         /*# sourceMappingURL=bootstrap.min.css.map */
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 371
+|     Comment: 
+|         /* Nav Meu Container */
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 64
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 548
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 78
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 70
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 1092
+|     Comment: 
+|         
+|         --------------------------------*/
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 248
+|     Comment: 
+|         
+|         
+|             ============================-->
+|     
+|     Path: https://bizness.htb:443/js/main.js
+|     Line number: 124
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/contactform/contactform.js
+|     Line number: 102
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/ionicons/css/ionicons.min.css
+|     Line number: 1
+|     Comment: 
+|         /*!
+|           Ionicons, v2.0.0
+|           Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
+|           https://twitter.com/benjsperry  https://twitter.com/ionicframework
+|           MIT License: https://github.com/driftyco/ionicons
+|         
+|           Android-style icons originally built by Google\xE2\x80\x99s
+|           Material Design Icons: https://github.com/google/material-design-icons
+|           used under CC BY http://creativecommons.org/licenses/by/4.0/
+|           Modified icons to fit ionicon\xE2\x80\x99s grid from original.
+|         */
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 1
+|     Comment: 
+|         
+|         
+|         
+|         
+|         
+|         
+|         
+|          */
+|     
+|     Path: https://bizness.htb:443/lib/owlcarousel/assets/owl.carousel.min.css
+|     Line number: 1
+|     Comment: 
+|         /**
+|          * Owl Carousel v2.2.1
+|          * Copyright 2013-2017 David Deutsch
+|          * Licensed under  ()
+|          */
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 124
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/js/main.js
+|     Line number: 37
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/js/main.js
+|     Line number: 143
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/js/main.js
+|     Line number: 176
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 72
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 125
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/
+|     Line number: 28
+|     Comment: 
+|         <!-- Main Stylesheet File -->
+|     
+|     Path: https://bizness.htb:443/css/style.css
+|     Line number: 1353
+|     Comment: 
+|         
+|         
+|         --------------------------------------------------------------*/
+|     
+|     Path: https://bizness.htb:443/js/main.js
+|     Line number: 198
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 2
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 118
+|     Comment: 
+|         
+|     
+|     Path: https://bizness.htb:443/lib/superfish/hoverIntent.js
+|     Line number: 150
+|     Comment: 
+|_        
+| tls-nextprotoneg: 
+|_  http/1.1
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /css/
+|       css: 1
+|     /img/
+|       png: 2
+|     /img/intro-carousel/
+|       jpg: 2
+|     /js/
+|       js: 1
+|     /lib/animate/
+|       css: 1
+|     /lib/bootstrap/css/
+|       css: 1
+|     /lib/bootstrap/js/
+|       js: 1
+|     /lib/counterup/
+|       js: 1
+|     /lib/easing/
+|       js: 1
+|     /lib/ionicons/css/
+|       css: 1
+|     /lib/isotope/
+|       js: 1
+|     /lib/lightbox/js/
+|       js: 1
+|     /lib/superfish/
+|       js: 1
+|     /lib/touchSwipe/
+|       js: 1
+|     /lib/wow/
+|       js: 1
+|   Longest directory structure:
+|     Depth: 3
+|     Dir: /lib/ionicons/css/
+|   Total files found (by extension):
+|_    Other: 1; css: 4; jpg: 2; js: 9; png: 2
+| http-default-accounts: 
+|   [Arris 2307] at /logo_t.gif
+|_    <blank>:<blank>
+| http-headers: 
+|   Server: nginx/1.18.0
+|   Date: Sat, 06 Jan 2024 19:33:39 GMT
+|   Content-Type: text/html
+|   Content-Length: 27200
+|   Connection: close
+|   Set-Cookie: JSESSIONID=2FACABCA07029A3050B2323391ED70D2.jvm1; Path=/; Secure; HttpOnly; SameSite=strict
+|   Accept-Ranges: bytes
+|   ETag: W/"27200-1702887508516"
+|   Last-Modified: Mon, 18 Dec 2023 08:18:28 GMT
+|   vary: accept-encoding
+|   
+|_  (Request type: HEAD)
+|_http-aspnet-debug: ERROR: Script execution failed (use -d to debug)
+|_http-title: 400 The plain HTTP request was sent to HTTPS port
+|_http-date: Sat, 06 Jan 2024 19:33:01 GMT; +59m36s from local time.
+|_http-feed: Couldn't find any feeds.
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-vhosts: 
+| 77 names had status 400
+| 38 names had status 301
+|_13 names had status ERROR
+|_http-chrono: Request times for /; avg: 2601.76ms; min: 1876.60ms; max: 3482.61ms
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_ARIA_256_GCM_SHA384 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_ARIA_128_GCM_SHA256 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_CAMELLIA_256_CBC_SHA384 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CCM_8 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CCM (rsa 2048) - A
+|       TLS_RSA_WITH_ARIA_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CCM_8 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CCM (rsa 2048) - A
+|       TLS_RSA_WITH_ARIA_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|   TLSv1.3: 
+|     ciphers: 
+|       TLS_AKE_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A
+|       TLS_AKE_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - A
+|       TLS_AKE_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|     cipher preference: server
+|_  least strength: A
+| ssl-cert: Subject: organizationName=Internet Widgits Pty Ltd/stateOrProvinceName=Some-State/countryName=UK
+| Not valid before: 2023-12-14T20:03:40
+|_Not valid after:  2328-11-10T20:03:40
+| tls-alpn: 
+|_  http/1.1
+|_ssl-date: TLS randomness does not represent time
+|_http-mobileversion-checker: No mobile version detected.
+| http-useragent-tester: 
+|   Allowed User Agents: 
+|     lwp-trivial
+|     PHPCrawl
+|     Zend_Http_Client
+|   Change in Status Code: 
+|     Snoopy: 400
+|     Python-urllib/2.5: 400
+|     URI::Fetch: 400
+|     WWW-Mechanize/1.34: 200
+|     PHP/: 400
+|     GT::WWW: 200
+|     Wget/1.13.4 (linux-gnu): 400
+|     HTTP::Lite: 400
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html): 400
+|     libcurl-agent/1.0: 400
+|     http client: 200
+|     PECL::HTTP: 400
+|     MFC_Tear_Sample: 400
+|_    libwww: 400
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=bizness.htb
+|   Found the following error pages: 
+|   
+|   Error Code: 400
+|   	http://bizness.htb:443/lib/font-awesome/css/font-awesome.min.css
+|   
+|   Error Code: 400
+|_  	http://bizness.htb:443/lib/owlcarousel/owl.carousel.min.js
+| http-grep: 
+|   (1) https://bizness.htb:443/: 
+|     (1) email: 
+|_      + info@bizness.htb
+| http-security-headers: 
+|   Strict_Transport_Security: 
+|_    HSTS not configured in HTTPS Server
+|_http-trane-info: Problem with XML parsing of /evox/about
+| http-waf-detect: IDS/IPS/WAF detected:
+|_bizness.htb:443/?p4yl04d=../../../../../../../../../../../../../../../../../etc/passwd
+39629/tcp open  unknown
+
+Host script results:
+|_path-mtu: PMTU == 1500
+|_ipidseq: Unknown
+|_fcrdns: FAIL (No PTR record)
+| dns-brute: 
+|_  DNS Brute-force hostnames: No results.
+| qscan: 
+| PORT   FAMILY  MEAN (us)  STDDEV     LOSS (%)
+| 22     0       158591.10  173387.86  0.0%
+| 80     0       199775.50  275245.32  0.0%
+| 443    0       177565.00  314206.88  0.0%
+|_39629  0       151367.60  212791.83  0.0%
+
+# Nmap done at Sat Jan  6 19:46:56 2024 -- 1 IP address (1 host up) scanned in 846.52 seconds

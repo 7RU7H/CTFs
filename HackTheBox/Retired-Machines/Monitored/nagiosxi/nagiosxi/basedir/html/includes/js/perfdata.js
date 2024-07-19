@@ -1,0 +1,4 @@
+
+$(document).ready(function(){$.datepicker.setDefaults({closeText:'X',altFormat:'yy-mm-dd',dateFormat:'yy-mm-dd'});var datepickerup=false;$('#startdatepicker').click(function(){if(datepickerup==true){$('#startdatepickercontainer').datepicker('destroy');datepickerup=false;}
+else{datepickerup=true;$('#startdatepickercontainer').datepicker({closeText:'X',onSelect:function(dateText,inst){$('#startdateBox').val(dateText);$('#startdatepickercontainer').datepicker('destroy');}});}});$('#enddatepicker').click(function(){if(datepickerup==true){$('#enddatepickercontainer').datepicker('destroy');datepickerup=false;}
+else{datepickerup=true;$('#enddatepickercontainer').datepicker({closeText:'X',onSelect:function(dateText,inst){$('#enddateBox').val(dateText);$('#enddatepickercontainer').datepicker('destroy');}});}});});

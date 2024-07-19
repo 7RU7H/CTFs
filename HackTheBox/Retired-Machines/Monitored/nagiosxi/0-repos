@@ -1,0 +1,252 @@
+#!/bin/bash -e
+
+. ./xi-sys.cfg
+. ./functions.sh
+
+# Check if user already configured repos
+if [ -f installed.repos ]; then
+    echo "Repos already configured - exiting."
+    exit 0
+fi
+echo "Configuring Repos..."
+
+# Check if we don't have all the info on a debian or ubuntu system that
+# hasn't installed lsb-release
+if [ "$dist" == "debian" ] || [ "$dist" == "ubuntu" ]; then
+    apt-get install -y lsb-release
+    ./init.sh
+fi
+
+# Stop if it is not a supported distro
+case "$dist" in
+    el7 | el8 | el9 )
+        :
+        ;;
+    ubuntu18 | ubuntu20 | ubuntu22 )
+        :
+        ;;
+    debian10 | debian11 )
+        :
+        ;;
+    el6 )
+        echo "CentOS / RHEL 6 is no longer supported due to end of life."
+        exit 1
+        ;;
+    el5 )
+        echo "CentOS / RHEL 5 is no longer supported due to end of life."
+        exit 1
+        ;;
+    ubuntu14 )
+        echo "Ubuntu 14.04 LTS is no longer supported due to end of life."
+        exit 1
+        ;;
+    ubuntu16 )
+        echo "Ubuntu 16.04 LTS is no longer supported due to end of life."
+        exit 1
+        ;;
+    debian8 )
+        echo "Debian 8 is no longer supported due to end of life."
+        exit 1
+        ;;
+    debian9 )
+        echo "Debian 9 is no longer supported due to end of life."
+        exit 1
+        ;;
+    *)
+        echo "$dist is not currently supported. Please use one of the following distros:" >&2
+        echo "  CentOS 7, CentOS Stream 8 or 9, RHEL or Oracle 7, 8, 9" >&2
+        echo "  Ubuntu 18.04, 20.04 LTS, or 22.04 LTS" >&2
+        echo "  Debian 10, or 11" >&2
+        exit 1
+esac
+
+# Stop if we are not a supported archtiecture
+if [[ $arch == "ppc"* ]]; then
+    echo "Nagios XI must be installed in a x86_64 environment."
+    echo "It cannot be installed on a ppc, ppc64, or ppc64le system."
+    exit 1
+fi
+
+# Stop if any other arch other than x86_64
+if [ $arch != "x86_64" ]; then
+    echo "Nagios XI can only be installed in a x86_64 environment."
+    exit 1
+fi
+
+if [ "$distro" = "SUSE LINUX" ]; then
+    ./susemods
+    echo "Repos configured OK"
+    touch installed.repos
+    exit 0
+fi
+
+if [ "$distro" == "Ubuntu" ]; then 
+    #./ubuntumods
+    echo "Repos configured OK"
+    touch installed.repos
+    exit 0
+fi
+
+if [ "$distro" == "Debian" ]; then
+    ./debianmods
+    echo "Repos configured OK"
+    touch installed.repos
+    exit 0
+fi
+
+# Check that the Red Hat installation is valid
+if [ "$distro" == "RedHatEnterpriseServer" ] && [ -x /usr/sbin/rhn_check ] && ! /usr/sbin/rhn_check >/dev/null 2>&1; then
+    ## Fails initial check with newer subscription method, nested if to check for subscription and proceed correctly if found -SR
+    if [ -x /usr/bin/subscription-manager ] && [[ -z `subscription-manager list | grep Status: | grep -qF Subscribed` ]]; then
+        echo "Passed New Subscription Check"
+    else
+        echo "Your Red Hat Installation is not registered or does not have proper entitlements." >&2
+        echo "Please register or enable entitlements at rhn.redhat.com." >&2
+        exit 1;
+    fi
+fi
+
+## Do specific checks for RHEL 7 (since we don't support 6 anymore)
+if [ ! -f $INSTALL_PATH/offline ]; then
+    if [ "$distro" != "OracleServer" ] && [ "$dist" == "el7" ] && ! rpm -q centos-stream-release && ! rpm -q centos-release && ! rhn-channel -l | grep -q rhel-.\*-server-optional ; then
+        ## Fails initial check with newer subscription method, nested if to check for optional repos proceeds correctly if optional is enabled -SR
+        if `yum repolist all | grep optional | grep -q :`; then
+            echo "Passed Optional Repo Check"
+        else
+            echo "ERROR: Please add the 'Optional' rpms channel to your Red Hat systems subscriptions." >&2
+            echo "       You can do so in the Redhat Network web interface or using the rhn-channel command." >&2
+            echo "       or, install the yum-utils package and use the following command:" >&2
+
+            # Check for AWS (we have to tell them something differnt for optional channel install)
+            if `yum repolist all | grep rhui`; then
+                echo "       yum-config-manager --enable rhui-<region>-rhel-server-optional" >&2
+            else
+                if [ "$dist" = "el7" ]; then
+                    echo "       yum-config-manager --enable rhel-7-server-optional-rpms" >&2
+                fi
+            fi
+
+            exit 1
+        fi
+    fi
+
+    # Enable codeready builder repo
+    if [ "$distro" == "RedHatEnterpriseServer" ] && [ "$dist" == "el9" ]; then
+        subscription-manager repos --enable codeready-builder-for-rhel-9-x86_64-rpms
+    elif [ "$distro" == "RedHatEnterpriseServer" ] && [ "$dist" == "el8" ]; then
+        subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+    elif [ "$distro" == "OracleServer" ] && [ "$dist" == "el8" ]; then
+        yum config-manager --set-enabled ol8_codeready_builder
+    elif [ "$distro" == "OracleServer" ] && [ "$dist" == "el9" ]; then
+        yum config-manager --set-enabled ol9_codeready_builder
+    fi
+
+    # Fail if codeready builder is not enabled
+    if [ "$distro" == "RedHatEnterpriseServer" ] && [ "$dist" != "el7" ]; then
+        if subscription-manager repos --list-enabled | grep -q 'codeready' ; then
+            echo "Passed Code Ready Repo Check"
+        else
+            echo "ERROR: Please add the 'codeready-builder' repo to your Red Hat systems subscriptions." >&2
+            echo "       You can do so with the following command:" >&2
+            echo "       subscription-manager repos --enable <repo name>" >&2
+            echo "" >&2
+            echo "       You can list all repos available to you to find the codeready-builder by running:" >&2
+            echo "       subscription-manager repos" >&2
+            exit 1
+        fi
+    fi
+fi
+
+# If we are running an OracleServer, make sure optional is added
+if [ "$distro" == "OracleServer" ] && [ "$dist" == "el7" ]; then
+
+    # Remove this crap in el7 so that we can actually install any mysql
+    yum remove -y mysql-community-libs mysql-community-common
+
+    if `yum repolist all | grep optional | grep -q :`; then
+        echo "Passed Optional Repo Check"
+    else
+        echo "ERROR: Please enable the 'Optional' repo for your system in:" >&2
+        echo "       /etc/yum.repos.d/public-yum-ol7.repo" >&2
+        exit 1
+    fi
+fi
+    
+# Make sure everything needed is still present, and we should be working 
+# with a current system anyway
+if [ "$distro" == "CentOS" ] || [ "$distro" == "RedHatEnterpriseServer" ] || [ "$distro" == "OracleServer" ]; then
+    if [ "$1" != noupdate ]; then
+        echo "Updating system..."
+        yum -y update
+    fi
+fi
+
+##########################################
+# INSTALL DEPENDANT REPOS
+##########################################
+
+# See if we need to install RPMForge...
+if [ "$distro" == "CentOS" ] || [ "$distro" == "RedHatEnterpriseServer" ] || [ "$distro" == "OracleServer" ]; then
+
+    # Install centos stream codeready builder
+    if [ "$dist" == "el9" ] && rpm -q centos-stream-release ; then
+        dnf config-manager --set-enabled crb
+    fi
+
+    if ! rpm -q nagios-repo &>/dev/null; then
+
+        echo "Enabling Nagios repo..."
+        PKG="packages/nagios-repo-$ver-latest.el$ver.noarch.rpm"
+        echo "Installing Nagios Repo PKG: $PKG"
+        rpm -Uvh "$PKG"
+        rm "$PKG"
+        unset PKG
+        
+        if [ ! -f $INSTALL_PATH/offline ]; then
+            yum check-update || true
+        fi
+    fi
+
+    # Try to install epel release package from the repo
+    set +e
+    yum install epel-release -y
+    set -e
+
+    # See if we need to install EPEL...
+    if ! rpm -q epel-release &>/dev/null; then
+
+        echo "Enabling EPEL repo..."
+        PKG="./packages/epel-release-latest-$ver.noarch.rpm"
+
+        echo "Installing EPEL PKG: $PKG"
+        rpm -Uvh "$PKG"
+
+        rm "$PKG"
+        unset PKG
+        
+        if [ ! -f $INSTALL_PATH/offline ]; then
+            yum check-update || true
+        fi
+        
+    fi
+
+    # Check to make sure RPM was installed
+    if rpm -q epel-release &>/dev/null; then
+        echo "epel-release RPM installed OK"
+    else
+        echo "ERROR: epel-release RPM was not installed - exiting." >&2
+        exit 1
+    fi
+
+fi
+
+# Checks if offline, if so, installs all needed packages now to avoid issues
+if [ -f $INSTALL_PATH/offline ]; then
+    echo "Updating RPMS, this may take a moment." >&2
+    rpm -Uvh $INSTALL_PATH/packages/offlineinstall/rpms/upgrade/*.rpm
+    echo "Installing RPMS, this may take a moment." >&2
+    rpm -ivh $INSTALL_PATH/packages/offlineinstall/rpms/*.rpm
+fi
+
+echo "Repo configured OK"
+touch installed.repos

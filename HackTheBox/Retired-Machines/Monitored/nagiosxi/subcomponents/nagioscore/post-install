@@ -1,0 +1,87 @@
+#!/bin/bash -e
+
+. ../../xi-sys.cfg
+
+echo "INSTALL: POST-INSTALL: Nagios Core post install running..."
+
+# Post-install modifications
+
+# New images and logos (needed so statusmap can use new logos)
+cp -r ../../nagiosxi/basedir/html/includes/components/nagioscore/ui/images/logos/* /usr/local/nagios/share/images/logos
+
+# Apache config
+cp -r mods/httpd.nagios.conf "$httpdconfdir/nagios.conf"
+
+# Make config directories for static definitions and NagiosQL import,export
+if [ ! -d /usr/local/nagios/etc/static ]; then
+	mkdir /usr/local/nagios/etc/static
+fi
+if [ ! -d /usr/local/nagios/etc/import ]; then
+	mkdir /usr/local/nagios/etc/import
+fi
+if [ ! -d /usr/local/nagios/etc/hosts ]; then
+	mkdir /usr/local/nagios/etc/hosts
+fi
+if [ ! -d /usr/local/nagios/etc/services ]; then
+	mkdir /usr/local/nagios/etc/services
+fi
+
+# New config files
+if [ -f /usr/local/nagios/etc/nagios.cfg ]; then
+	cp -f mods/cfg/nagios.cfg /usr/local/nagios/etc/nagios.cfg.xi
+else
+	cp -f mods/cfg/nagios.cfg /usr/local/nagios/etc
+fi
+cp -f mods/cfg/cgi.cfg /usr/local/nagios/etc
+if [ -f /usr/local/nagios/etc/resource.cfg ]; then
+	cp -f mods/cfg/resource.cfg /usr/local/nagios/etc/resource.cfg.xi
+else
+	cp -f mods/cfg/resource.cfg /usr/local/nagios/etc
+fi
+
+# New object config files
+cp -r mods/cfg/objects/* /usr/local/nagios/etc/import
+
+# If centos != 7, add npcd and ntpd checks
+if [ ! `command -v systemctl` ]; then
+	cat localhost-extras.cfg >> /usr/local/nagios/etc/import/localhost.cfg
+
+	# New init file
+	cp -r mods/nagios.init /etc/init.d/nagios
+	chmod +x /etc/init.d/nagios
+fi
+
+# Static config files
+cp -r mods/cfg/static/* /usr/local/nagios/etc/static
+
+# Config files to be imported
+cp -r mods/cfg/import/* /usr/local/nagios/etc/import
+
+# Make the perfdata spool
+if [ ! -d /usr/local/nagios/var/spool/perfdata ]; then
+	mkdir /usr/local/nagios/var/spool/perfdata
+fi
+
+# Make XI data processing engine directory
+if [ ! -d /usr/local/nagios/var/spool/xidpe ]; then
+	mkdir /usr/local/nagios/var/spool/xidpe
+	chown $nagiosuser:$nagiosgroup /usr/local/nagios/var/spool/xidpe
+fi
+
+# Set permissions
+chown -R "$apacheuser:$nagiosgroup" /usr/local/nagios/etc
+chmod -R 6775 /usr/local/nagios/etc
+
+find /usr/local/nagios/etc \
+	/usr/local/nagios/etc/hosts \
+	/usr/local/nagios/etc/services \
+	-maxdepth 1 -name \*.cfg -exec chmod ug-s {} +
+
+# Restart apache so it recognizes the new permissions
+if [ ! `command -v systemctl` ]; then
+	service $httpd restart
+else
+	systemctl restart $httpd
+fi
+
+echo "INSTALL: POST-INSTALL: Nagios Core post install completed OK."

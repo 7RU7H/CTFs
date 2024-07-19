@@ -1,0 +1,38 @@
+November 25, 2008 - Changes in v0.5
+* Bug: typo in OS type check causing occasional issues
+* Added: Now sets the LC_NUMERIC environment variable to (hopefully) solve issues caused by systems that used different number formats than the script expected.
+
+March 6, 2007-v0.4a:
+* Changed: Modified the help output to properly reflect changes in v0.4
+* Added: Changes (this file), INSTALL, and README files to the distribution 
+  package
+
+March 1, 2007-v0.4:
+* Added: Performance data output
+* Added: Verbose output using -v and more verbose output using -v -v or -vv
+* Changed: Version switch is now -V to better conform with nagios plugin 
+  guidelines (and to allow the -v for verbose)
+
+January 29, 2007-v0.3:
+* Changed: No more need to edit the script before first run (hopefully)!
+* Changed: -f switch now takes full-path to RRD file rather than just the name
+* Added: Auto-scaling output units. If the units to use for output are not 
+  specified via the -l switch, the display will now automatically scale to the
+  most appropriate units.
+* Changed: File expiration now uses the stat command rather than find. it 
+  SHOULD determine the proper flags to use on your OS automatically, but if 
+  you get an error when using the -e switch, please let me know 
+  (israel@frontierflying.com), along with the output of the uname command for 
+  your OS.
+* Changed: -e switch now takes arguments in seconds rather than minutes
+
+January 18, 2007- v0.2:
+* Initial release
+* Changed: Uses command-line switches (-e, -f, etc) rather than positional 
+  arguments
+* Added: File expiration check
+* Changed: Separated incoming and outgoing traffic levels/alarms
+* Changed: different data retrieval/calculation methods to get better results
+
+v0.1:
+* check_rrd_bw

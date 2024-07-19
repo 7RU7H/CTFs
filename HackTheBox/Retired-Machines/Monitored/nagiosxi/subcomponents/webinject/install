@@ -1,0 +1,41 @@
+#!/bin/bash -e
+
+. ../../xi-sys.cfg
+
+pkgname="webinject"
+pkgfile="webinject-1.41.src.tar.gz"
+
+echo "INSTALL: Webinject is being installed..."
+
+# Delete the old archive
+rm -rf "$pkgname"
+
+# Extract archive
+tar -xzf "$pkgfile"
+
+# First make target directory if it doesn't exist
+mkdir -p "$proddir/etc/components/webinject"
+
+# Install
+# Webinject is interesting...  Config files have to be in its working directory, so we have to install it outside the normal location
+(
+	cd "./$pkgname"
+	cp webinject.pl "$proddir/etc/components/webinject"
+)
+
+# Fix perms
+chown "$nagiosuser:$nagiosgroup" "$proddir/etc/components/webinject/webinject.pl"
+chmod -s "$proddir/etc/components/webinject/webinject.pl"
+chmod +x "$proddir/etc/components/webinject/webinject.pl"
+
+# Do a simple sanity check to make sure some key files exist...
+for f in "$proddir/etc/components/webinject/webinject.pl" ; do
+	if [ ! -f "$f" ]; then
+		echo "ERROR: Webinject install appears to have failed - exiting.  Missing file = $f"
+		exit 1
+	fi
+done
+
+# Things are okay
+echo "INSTALL: Webinject installed OK."
+

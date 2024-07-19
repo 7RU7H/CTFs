@@ -1,0 +1,35 @@
+#!/bin/bash -e
+
+usage() {
+	echo "Usage: $0 <mibfile>"
+	echo "Configure snmptt.conf for a given MIB file"
+}
+
+if [ -z "$1" ]; then
+	usage
+	exit 1
+fi
+
+if [ ! -r "$1" ]; then
+	usage
+	exit 4
+fi
+
+if grep -qFe "$1) converted on" /etc/snmp/snmptt.conf; then
+	echo "This file looks like it has been added already!  Exiting."
+	exit 2
+fi
+
+touch /tmp/snmpttconvertmib.log /etc/snmp/snmptt.conf
+
+if [ -w /tmp/snmpttconvertmib.log ] && [ -w /etc/snmp/snmptt.conf ]; then
+	: do nothing
+else
+	echo "You don't have privileges to run this application, check perms"
+	echo "on /tmp/snmpttconvertmib.log and /etc/snmp/snmptt.conf"
+	exit 4
+fi
+
+cmd='/usr/local/bin/snmptraphandling.py "$aR" "SNMP Traps" "$s" "$@" "$-*"'
+snmpttconvertmib --in="$1" --out=/etc/snmp/snmptt.conf \
+	--exec "$cmd" >> /tmp/snmpttconvertmib.log

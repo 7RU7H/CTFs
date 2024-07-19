@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Sun Feb 18 18:13:50 2024 as: nmap -&#45;script vuln -oA /home/kali/HackTheBoxCompetitive/Savage-Lands/Office/nmap/10-129-11-168-Vuln -&#45;min-rate 1000 -e tun0 -p 53,80,88,139,389,443,445,464,593,636,3268,3269,5985,9389,49664,49668,49681,50622 10.129.11.168 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA /home/kali/HackTheBoxCompetitive/Savage-Lands/Office/nmap/10-129-11-168-Vuln -&#45;min-rate 1000 -e tun0 -p 53,80,88,139,389,443,445,464,593,636,3268,3269,5985,9389,49664,49668,49681,50622 10.129.11.168" start="1708280030" startstr="Sun Feb 18 18:13:50 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="18" services="53,80,88,139,389,443,445,464,593,636,3268-3269,5985,9389,49664,49668,49681,50622"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<taskprogress task="NSE" time="1708280030" percent="0.00"/>
+<taskprogress task="NSE" time="1708280031" percent="0.00"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.11.168" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1708280053" endtime="1708280370"><status state="up" reason="echo-reply" reason_ttl="127"/>
+<address addr="10.129.11.168" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="domain" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" method="table" conf="3"/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.11.168&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: http://10.129.11.168:80/&#xa;    Form id: login-form-16&#xa;    Form action: /index.php&#xa;    &#xa;    Path: http://10.129.11.168:80/index.php/holograms-are-evolving&#xa;    Form id: login-form-16&#xa;    Form action: /index.php/holograms-are-evolving&#xa;    &#xa;    Path: http://10.129.11.168:80/index.php?view=article&amp;amp;id=2:iron-man-mark-1&amp;amp;catid=8&#xa;    Form id: login-form-16&#xa;    Form action: /index.php?view=article&amp;id=2:iron-man-mark-1&amp;catid=8&#xa;    &#xa;    Path: http://10.129.11.168:80/index.php?view=article&amp;amp;id=3:iron-man-mark-3&amp;amp;catid=8&#xa;    Form id: login-form-16&#xa;    Form action: /index.php?view=article&amp;id=3:iron-man-mark-3&amp;catid=8&#xa;    &#xa;    Path: http://10.129.11.168:80/index.php/component/users/remind?Itemid=101&#xa;    Form id: user-registration&#xa;    Form action: /index.php/component/users/?task=remind.remind&amp;Itemid=101&#xa;    &#xa;    Path: http://10.129.11.168:80/index.php/component/users/remind?Itemid=101&#xa;    Form id: login-form-16&#xa;    Form action: /index.php/component/users/remind?Itemid=101&#xa;    &#xa;    Path: http://10.129.11.168:80/index.php&#xa;    Form id: login-form-16&#xa;    Form action: /index.php&#xa;    &#xa;    Path: http://10.129.11.168:80/index.php?view=category&amp;amp;id=8&#xa;    Form id: login-form-16&#xa;    Form action: /index.php?view=category&amp;id=8&#xa;    &#xa;    Path: http://10.129.11.168:80/index.php?view=article&amp;amp;id=4:iron-man-mark-4&amp;amp;catid=8&#xa;    Form id: login-form-16&#xa;    Form action: /index.php?view=article&amp;id=4:iron-man-mark-4&amp;catid=8&#xa;    &#xa;    Path: http://10.129.11.168:80/index.php/component/users/reset?Itemid=101&#xa;    Form id: user-registration&#xa;    Form action: /index.php/component/users/?task=reset.request&amp;Itemid=101&#xa;    &#xa;    Path: http://10.129.11.168:80/index.php/component/users/reset?Itemid=101&#xa;    Form id: login-form-16&#xa;    Form action: /index.php/component/users/reset?Itemid=101&#xa;    &#xa;    Path: http://10.129.11.168:80/index.php/holograms-are-evolving?view=category&amp;amp;id=8&#xa;    Form id: login-form-16&#xa;    Form action: /index.php/holograms-are-evolving?view=category&amp;id=8&#xa;"/><script id="http-aspnet-debug" output="&#xa;  status: DEBUG is enabled"><elem key="status">DEBUG is enabled</elem>
+</script><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-enum" output="&#xa;  /administrator/: Possible admin folder&#xa;  /administrator/index.php: Possible admin folder&#xa;  /Administrator/: Possible admin folder&#xa;  /robots.txt: Robots file&#xa;  /administrator/manifests/files/joomla.xml: Joomla version 4.2.7&#xa;  /htaccess.txt: Joomla!&#xa;  /README.txt: Interesting, a readme.&#xa;  /cache/: Potentially interesting folder&#xa;  /icons/: Potentially interesting folder w/ directory listing&#xa;  /images/: Potentially interesting folder&#xa;  /includes/: Potentially interesting folder&#xa;  /modules/: Potentially interesting folder&#xa;  /templates/: Potentially interesting folder&#xa;  /tmp/: Potentially interesting folder&#xa;"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-vuln-wnr1000-creds" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-trace" output="TRACE is enabled"/></port>
+<port protocol="tcp" portid="88"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="kerberos-sec" method="table" conf="3"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="netbios-ssn" method="table" conf="3"/></port>
+<port protocol="tcp" portid="389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ldap" method="table" conf="3"/></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="https" method="table" conf="3"/><script id="ssl-dh-params" output="&#xa;  VULNERABLE:&#xa;  Diffie-Hellman Key Exchange Insufficient Group Strength&#xa;    State: VULNERABLE&#xa;      Transport Layer Security (TLS) services that use Diffie-Hellman groups&#xa;      of insufficient strength, especially those using one of a few commonly&#xa;      shared groups, may be susceptible to passive eavesdropping attacks.&#xa;    Check results:&#xa;      WEAK DH GROUP 1&#xa;            Cipher Suite: TLS_DHE_RSA_WITH_AES_256_CBC_SHA&#xa;            Modulus Type: Safe prime&#xa;            Modulus Source: RFC2409/Oakley Group 2&#xa;            Modulus Length: 1024&#xa;            Generator Length: 8&#xa;            Public Key Length: 1024&#xa;    References:&#xa;      https://weakdh.org&#xa;"><table key="NMAP-23">
+<elem key="title">Diffie-Hellman Key Exchange Insufficient Group Strength</elem>
+<elem key="state">VULNERABLE</elem>
+<table key="description">
+<elem>Transport Layer Security (TLS) services that use Diffie-Hellman groups&#xa;of insufficient strength, especially those using one of a few commonly&#xa;shared groups, may be susceptible to passive eavesdropping attacks.</elem>
+</table>
+<table key="check_results">
+<elem>WEAK DH GROUP 1&#xa;      Cipher Suite: TLS_DHE_RSA_WITH_AES_256_CBC_SHA&#xa;      Modulus Type: Safe prime&#xa;      Modulus Source: RFC2409/Oakley Group 2&#xa;      Modulus Length: 1024&#xa;      Generator Length: 8&#xa;      Public Key Length: 1024</elem>
+</table>
+<table key="refs">
+<elem>https://weakdh.org</elem>
+</table>
+</table>
+</script><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-slowloris-check" output="&#xa;  VULNERABLE:&#xa;  Slowloris DOS attack&#xa;    State: LIKELY VULNERABLE&#xa;    IDs:  CVE:CVE-2007-6750&#xa;      Slowloris tries to keep many connections to the target web server open and hold&#xa;      them open as long as possible.  It accomplishes this by opening connections to&#xa;      the target web server and sending a partial request. By doing so, it starves&#xa;      the http server&apos;s resources causing Denial Of Service.&#xa;      &#xa;    Disclosure date: 2009-09-17&#xa;    References:&#xa;      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750&#xa;      http://ha.ckers.org/slowloris/&#xa;"><table key="CVE-2007-6750">
+<elem key="title">Slowloris DOS attack</elem>
+<elem key="state">LIKELY VULNERABLE</elem>
+<table key="ids">
+<elem>CVE:CVE-2007-6750</elem>
+</table>
+<table key="description">
+<elem>Slowloris tries to keep many connections to the target web server open and hold&#xa;them open as long as possible.  It accomplishes this by opening connections to&#xa;the target web server and sending a partial request. By doing so, it starves&#xa;the http server&apos;s resources causing Denial Of Service.&#xa;</elem>
+</table>
+<table key="dates">
+<table key="disclosure">
+<elem key="month">09</elem>
+<elem key="day">17</elem>
+<elem key="year">2009</elem>
+</table>
+</table>
+<elem key="disclosure">2009-09-17</elem>
+<table key="exploit_results">
+</table>
+<table key="refs">
+<elem>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-6750</elem>
+<elem>http://ha.ckers.org/slowloris/</elem>
+</table>
+</table>
+</script><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/><script id="http-trace" output="TRACE is enabled"/><script id="http-enum" output="&#xa;  /icons/: Potentially interesting folder w/ directory listing&#xa;"/></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="464"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="kpasswd5" method="table" conf="3"/></port>
+<port protocol="tcp" portid="593"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http-rpc-epmap" method="table" conf="3"/></port>
+<port protocol="tcp" portid="636"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ldapssl" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3268"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="globalcatLDAP" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3269"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="globalcatLDAPssl" method="table" conf="3"/></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="wsman" method="table" conf="3"/></port>
+<port protocol="tcp" portid="9389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="adws" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49664"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49668"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49681"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="50622"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+</ports>
+<hostscript><script id="smb-vuln-ms10-054" output="false">false</script><script id="smb-vuln-ms10-061" output="Could not negotiate a connection:SMB: Failed to receive bytes: ERROR">false</script><script id="samba-vuln-cve-2012-1182" output="Could not negotiate a connection:SMB: Failed to receive bytes: ERROR">false</script></hostscript><times srtt="74085" rttvar="8335" to="107425"/>
+</host>
+<runstats><finished time="1708280370" timestr="Sun Feb 18 18:19:30 2024" summary="Nmap done at Sun Feb 18 18:19:30 2024; 1 IP address (1 host up) scanned in 339.95 seconds" elapsed="339.95" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

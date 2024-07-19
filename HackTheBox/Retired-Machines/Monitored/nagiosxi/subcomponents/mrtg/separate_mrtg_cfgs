@@ -1,0 +1,64 @@
+#!/usr/bin/env python
+
+import tempfile
+import re
+
+mrtg_cfg = '/etc/mrtg/mrtg.cfg'
+CFG = open(mrtg_cfg, 'r')
+TARGET_DIR = '/etc/mrtg/conf.d/'
+
+#~ Buffer is our config that is unnamed, as in we haven't hit the Target directive yet
+BUFFER = None
+#~ Current config will be a file object if we have found a Target directive
+CURRENT_CONFIG = None
+
+def flush_to_file(temp, perm):
+    temp.seek(0)
+    for line in temp:
+        perm.write(line)
+
+GLOBAL_CONFIG_REGEX = re.compile('^### Global Config')
+ADDED_BY_NAGIOS_REGEX = re.compile('^#### ADDED BY NAGIOS')
+TARGET_REGEX = re.compile('[# ]*Target\[([^_]+)_.*')
+
+no_header = True
+
+#~ What we are doing in this for loop:
+#~     
+#~ If we have already found a Target directive, and the current line
+#~ is not one of the breaking lines (GLOBAL_CONFIG_REGEX or ADDED_BY_NAGIOS_REGEX),
+#~ then we simply put the line in the target config
+#~ 
+#~ If we do not have a current config, we look for any of the above three
+#~ regular expressions. If it is one of the three, and not a target, we
+#~ begin buffering it to the temporary file.
+#~ 
+#~ If it IS a TARGET_REGEX, we create a new file, dump the temporary file
+#~ contents into it, and begin writing every line that does not match GLOBAL
+#~ or ADDED into it.
+
+
+for line in CFG:
+    global_result = GLOBAL_CONFIG_REGEX.match(line)
+    added_by_result = ADDED_BY_NAGIOS_REGEX.match(line)
+    target_result = TARGET_REGEX.match(line)
+    if not CURRENT_CONFIG and target_result:
+        if target_result:
+            config_name = TARGET_DIR + target_result.group(1) + '.cfg'
+            CURRENT_CONFIG = open(config_name, 'w')
+            flush_to_file(BUFFER, CURRENT_CONFIG)
+            BUFFER = None
+            CURRENT_CONFIG.write(line)
+    elif global_result or added_by_result:
+        if CURRENT_CONFIG:
+            CURRENT_CONFIG.close()
+            CURRENT_CONFIG = None
+        if not BUFFER:
+            BUFFER = tempfile.TemporaryFile()
+        BUFFER.write(line)
+    elif CURRENT_CONFIG:
+        CURRENT_CONFIG.write(line)
+    elif BUFFER:
+        BUFFER.write(line)
+    
+

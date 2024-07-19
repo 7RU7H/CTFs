@@ -1,0 +1,37 @@
+# Firewall configuration written by system-config-firewall
+# Manual customization of this file is not recommended.
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+-A INPUT -p icmp -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+
+# SSH
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT
+
+# HTTP/HTTPS
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT
+
+# DHCP
+#-A INPUT -p udp --dport 67 -j ACCEPT
+#-A INPUT -p udp --dport 68 -j ACCEPT
+
+# SNMP and SNMP Traps
+#-A INPUT -m state --state NEW -m udp -p udp --dport 161 -j ACCEPT
+#-A INPUT -m state --state NEW -m udp -p udp --dport 162 -j ACCEPT
+
+# NRPE
+#-A INPUT -m state --state NEW -m tcp -p tcp --dport 5666 -j ACCEPT
+
+# NSCA
+#-A INPUT -m state --state NEW -m tcp -p tcp --dport 5667 -j ACCEPT
+
+# SSH Terminal
+#-A INPUT -m state --state NEW -m tcp -p tcp --dport 7878 -j ACCEPT
+
+-A INPUT -j REJECT --reject-with icmp-host-prohibited
+-A FORWARD -j REJECT --reject-with icmp-host-prohibited
+COMMIT

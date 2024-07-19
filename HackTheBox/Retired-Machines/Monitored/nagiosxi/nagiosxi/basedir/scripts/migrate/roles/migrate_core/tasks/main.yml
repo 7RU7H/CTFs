@@ -1,0 +1,48 @@
+---
+
+# Check Ansible can read system info (some versions can't determine OS for newer OS)
+
+- name: Check if Ansible can read System Info
+  fail:
+    msg: "Ansible version on the Nagios XI system is too low to run migration"
+  when: ansible_os_family is not defined
+
+# Verify we have argparse on EL6 systems
+
+- name: Verify Python Modules (CentOS & RHEL 6)
+  yum:
+    name: python-argparse
+    state: latest
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version|int == 6
+
+# Run the bundler on the Core system
+
+- name: Run Configuration Bundler
+  script:
+    chdir: /tmp
+    cmd: /usr/local/nagiosxi/scripts/migrate/nagios_bundler.py {{ bundler_args }}
+
+# Grab the bundle and move it into the Nagios XI temp
+
+- name: Find bundle
+  find:
+    paths: /tmp
+    patterns: "nagiosbundle-*.tar.gz"
+  register: glob
+
+- name: Fetch Bundle
+  fetch:
+    src: "{{ item.path }}"
+    dest: /usr/local/nagiosxi/tmp/migrate/
+    flat: yes
+  with_items:
+    - "{{ glob.files }}"
+
+# Clean up Nagios Core server bundle
+
+- name: Clean up bundle files
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items:
+    - "{{ glob.files }}"

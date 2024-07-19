@@ -1,0 +1,15 @@
+INSTALL
+-------
+check_rrdtraf requires rrdtool and the standard unix utilities bc, awk, and sed
+
+To install, simply copy the check_rrdtraf file to your Nagios plugins 
+directory, and verify that it is executable (chmod a+x check_rrdtraf)
+
+NOTE IF UPGRADING FROM VERSION 0.2:
+
+Some changes will need to be made to how you call the script-
+* Files are now specified as full-path rather than just file name. Should make
+  things easier if you have rrd files stored in more than one location :)
+* File expiration time is now specified in seconds rather than minutes. This is
+  due to a different, more efficient, method of determining file age (see 
+  changes)

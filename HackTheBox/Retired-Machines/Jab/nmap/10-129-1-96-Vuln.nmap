@@ -1,0 +1,48 @@
+# Nmap 7.94SVN scan initiated Mon Feb 26 17:40:21 2024 as: nmap --script vuln -oA /home/kali/HackTheBoxCompetitive/Savage-Lands/Jab/nmap/10-129-1-96-Vuln --min-rate 1000 -e tun0 -p 53,88,135,139,389,445,464,593,636,3268,3269,5222,5223,5262,5263,5269,5270,5275,5276,5985,7070,7443,7777,9389,47001,49664,49665,49666,49667,49671,49686,49687,49690,49695,49726,54023 10.129.1.96
+Nmap scan report for 10.129.1.96
+Host is up (0.093s latency).
+
+PORT      STATE SERVICE
+53/tcp    open  domain
+88/tcp    open  kerberos-sec
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+389/tcp   open  ldap
+445/tcp   open  microsoft-ds
+464/tcp   open  kpasswd5
+593/tcp   open  http-rpc-epmap
+636/tcp   open  ldapssl
+3268/tcp  open  globalcatLDAP
+3269/tcp  open  globalcatLDAPssl
+5222/tcp  open  xmpp-client
+5223/tcp  open  hpvirtgrp
+5262/tcp  open  unknown
+5263/tcp  open  unknown
+5269/tcp  open  xmpp-server
+5270/tcp  open  xmp
+5275/tcp  open  unknown
+5276/tcp  open  unknown
+5985/tcp  open  wsman
+7070/tcp  open  realserver
+7443/tcp  open  oracleas-https
+7777/tcp  open  cbt
+9389/tcp  open  adws
+47001/tcp open  winrm
+49664/tcp open  unknown
+49665/tcp open  unknown
+49666/tcp open  unknown
+49667/tcp open  unknown
+49671/tcp open  unknown
+49686/tcp open  unknown
+49687/tcp open  unknown
+49690/tcp open  unknown
+49695/tcp open  unknown
+49726/tcp open  unknown
+54023/tcp open  unknown
+
+Host script results:
+|_samba-vuln-cve-2012-1182: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_smb-vuln-ms10-061: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_smb-vuln-ms10-054: false
+
+# Nmap done at Mon Feb 26 17:43:55 2024 -- 1 IP address (1 host up) scanned in 214.21 seconds

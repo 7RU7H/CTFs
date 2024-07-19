@@ -1,0 +1,13 @@
+---
+- name: Install Agent
+  hosts: all
+  become: yes
+  remote_user: $REMOTE_USER$
+  
+  vars:
+    ncpa_token: '$NCPA_TOKEN$'
+    ansible_ssh_pass: '$REMOTE_USER_PASSWORD$'
+    ansible_sudo_pass: '$REMOTE_USER_PASSWORD$'
+
+  roles:
+    - role: $NCPA_INSTALL_ROLE$

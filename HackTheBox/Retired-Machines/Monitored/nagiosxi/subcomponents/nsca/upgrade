@@ -1,0 +1,34 @@
+#!/bin/bash -e
+
+pkgname="nsca-2.10.2"
+
+echo "UPGRADE: NSCA is being upgraded..."
+
+# Delete the old archive
+rm -rf "$pkgname"
+
+# Extract archive
+tar -xzf "$pkgname.tar.gz"
+
+# Make and install 
+(
+	cd "./$pkgname"
+	./configure
+	make all
+	cp src/nsca /usr/local/nagios/bin
+	cp src/send_nsca /usr/local/nagios/libexec
+)
+
+# Restart xinetd
+if [ -f /etc/xinetd.d/nsca ]; then
+	if [ ! `command -v systemctl` ]; then
+		service xinetd restart
+	else
+		systemctl restart xinetd
+	fi
+else
+	systemctl daemon-reload
+	systemctl restart nsca
+fi
+
+echo "UPGRADE: NSCA upgrade OK."

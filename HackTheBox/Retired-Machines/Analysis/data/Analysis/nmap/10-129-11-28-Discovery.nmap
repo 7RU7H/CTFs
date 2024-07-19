@@ -1,0 +1,256 @@
+# Nmap 7.94SVN scan initiated Sat Jan 20 19:23:52 2024 as: nmap --script discovery -oA /home/kali/Analysis/nmap/10-129-11-28-Discovery --min-rate 1000 -e tun0 -p 53,80,88,135,139,389,445,464,593,636,3268,3269,3306,5985,9389,33060,47001,49664,49665,49666,49667,49669,49670,49671,49672,49683,49696,49709,49711 10.129.11.28
+Pre-scan script results:
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_broadcast-ping: false
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_lltd-discovery: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.129.11.28
+Host is up (0.088s latency).
+
+Bug in http-security-headers: no string output.
+PORT      STATE SERVICE
+53/tcp    open  domain
+|_dns-nsec3-enum: Can't determine domain for host 10.129.11.28; use dns-nsec3-enum.domains script arg.
+|_dns-nsec-enum: Can't determine domain for host 10.129.11.28; use dns-nsec-enum.domains script arg.
+80/tcp    open  http
+|_http-mobileversion-checker: No mobile version detected.
+| http-headers: 
+|   Content-Type: text/html; charset=us-ascii
+|   Server: Microsoft-HTTPAPI/2.0
+|   Date: Sat, 20 Jan 2024 19:27:35 GMT
+|   Connection: close
+|   Content-Length: 315
+|   
+|_  (Request type: GET)
+|_http-feed: Couldn't find any feeds.
+|_http-comments-displayer: Couldn't find any comments.
+| http-vhosts: 
+|_128 names had status 404
+| http-sitemap-generator: 
+|   Directory structure:
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    
+|_http-date: Sat, 20 Jan 2024 19:27:35 GMT; +59m49s from local time.
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.129.11.28
+|   Found the following error pages: 
+|   
+|   Error Code: 404
+|_  	http://10.129.11.28:80/
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-useragent-tester: 
+|   Status for browser useragent: 404
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-chrono: Request times for /; avg: 176.27ms; min: 150.23ms; max: 202.81ms
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-title: Not Found
+88/tcp    open  kerberos-sec
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+389/tcp   open  ldap
+| ldap-rootdse: 
+| LDAP Results
+|   <ROOT>
+|       domainFunctionality: 7
+|       forestFunctionality: 7
+|       domainControllerFunctionality: 7
+|       rootDomainNamingContext: DC=analysis,DC=htb
+|       ldapServiceName: analysis.htb:dc-analysis$@ANALYSIS.HTB
+|       isGlobalCatalogReady: TRUE
+|       supportedSASLMechanisms: GSSAPI
+|       supportedSASLMechanisms: GSS-SPNEGO
+|       supportedSASLMechanisms: EXTERNAL
+|       supportedSASLMechanisms: DIGEST-MD5
+|       supportedLDAPVersion: 3
+|       supportedLDAPVersion: 2
+|       supportedLDAPPolicies: MaxPoolThreads
+|       supportedLDAPPolicies: MaxPercentDirSyncRequests
+|       supportedLDAPPolicies: MaxDatagramRecv
+|       supportedLDAPPolicies: MaxReceiveBuffer
+|       supportedLDAPPolicies: InitRecvTimeout
+|       supportedLDAPPolicies: MaxConnections
+|       supportedLDAPPolicies: MaxConnIdleTime
+|       supportedLDAPPolicies: MaxPageSize
+|       supportedLDAPPolicies: MaxBatchReturnMessages
+|       supportedLDAPPolicies: MaxQueryDuration
+|       supportedLDAPPolicies: MaxDirSyncDuration
+|       supportedLDAPPolicies: MaxTempTableSize
+|       supportedLDAPPolicies: MaxResultSetSize
+|       supportedLDAPPolicies: MinResultSets
+|       supportedLDAPPolicies: MaxResultSetsPerConn
+|       supportedLDAPPolicies: MaxNotificationPerConn
+|       supportedLDAPPolicies: MaxValRange
+|       supportedLDAPPolicies: MaxValRangeTransitive
+|       supportedLDAPPolicies: ThreadMemoryLimit
+|       supportedLDAPPolicies: SystemMemoryLimitPercent
+|       supportedControl: 1.2.840.113556.1.4.319
+|       supportedControl: 1.2.840.113556.1.4.801
+|       supportedControl: 1.2.840.113556.1.4.473
+|       supportedControl: 1.2.840.113556.1.4.528
+|       supportedControl: 1.2.840.113556.1.4.417
+|       supportedControl: 1.2.840.113556.1.4.619
+|       supportedControl: 1.2.840.113556.1.4.841
+|       supportedControl: 1.2.840.113556.1.4.529
+|       supportedControl: 1.2.840.113556.1.4.805
+|       supportedControl: 1.2.840.113556.1.4.521
+|       supportedControl: 1.2.840.113556.1.4.970
+|       supportedControl: 1.2.840.113556.1.4.1338
+|       supportedControl: 1.2.840.113556.1.4.474
+|       supportedControl: 1.2.840.113556.1.4.1339
+|       supportedControl: 1.2.840.113556.1.4.1340
+|       supportedControl: 1.2.840.113556.1.4.1413
+|       supportedControl: 2.16.840.1.113730.3.4.9
+|       supportedControl: 2.16.840.1.113730.3.4.10
+|       supportedControl: 1.2.840.113556.1.4.1504
+|       supportedControl: 1.2.840.113556.1.4.1852
+|       supportedControl: 1.2.840.113556.1.4.802
+|       supportedControl: 1.2.840.113556.1.4.1907
+|       supportedControl: 1.2.840.113556.1.4.1948
+|       supportedControl: 1.2.840.113556.1.4.1974
+|       supportedControl: 1.2.840.113556.1.4.1341
+|       supportedControl: 1.2.840.113556.1.4.2026
+|       supportedControl: 1.2.840.113556.1.4.2064
+|       supportedControl: 1.2.840.113556.1.4.2065
+|       supportedControl: 1.2.840.113556.1.4.2066
+|       supportedControl: 1.2.840.113556.1.4.2090
+|       supportedControl: 1.2.840.113556.1.4.2205
+|       supportedControl: 1.2.840.113556.1.4.2204
+|       supportedControl: 1.2.840.113556.1.4.2206
+|       supportedControl: 1.2.840.113556.1.4.2211
+|       supportedControl: 1.2.840.113556.1.4.2239
+|       supportedControl: 1.2.840.113556.1.4.2255
+|       supportedControl: 1.2.840.113556.1.4.2256
+|       supportedControl: 1.2.840.113556.1.4.2309
+|       supportedControl: 1.2.840.113556.1.4.2330
+|       supportedControl: 1.2.840.113556.1.4.2354
+|       supportedCapabilities: 1.2.840.113556.1.4.800
+|       supportedCapabilities: 1.2.840.113556.1.4.1670
+|       supportedCapabilities: 1.2.840.113556.1.4.1791
+|       supportedCapabilities: 1.2.840.113556.1.4.1935
+|       supportedCapabilities: 1.2.840.113556.1.4.2080
+|       supportedCapabilities: 1.2.840.113556.1.4.2237
+|       subschemaSubentry: CN=Aggregate,CN=Schema,CN=Configuration,DC=analysis,DC=htb
+|       serverName: CN=DC-ANALYSIS,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=analysis,DC=htb
+|       schemaNamingContext: CN=Schema,CN=Configuration,DC=analysis,DC=htb
+|       namingContexts: DC=analysis,DC=htb
+|       namingContexts: CN=Configuration,DC=analysis,DC=htb
+|       namingContexts: CN=Schema,CN=Configuration,DC=analysis,DC=htb
+|       namingContexts: DC=DomainDnsZones,DC=analysis,DC=htb
+|       namingContexts: DC=ForestDnsZones,DC=analysis,DC=htb
+|       isSynchronized: TRUE
+|       highestCommittedUSN: 377023
+|       dsServiceName: CN=NTDS Settings,CN=DC-ANALYSIS,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=analysis,DC=htb
+|       dnsHostName: DC-ANALYSIS.analysis.htb
+|       defaultNamingContext: DC=analysis,DC=htb
+|       currentTime: 20240120192405.0Z
+|_      configurationNamingContext: CN=Configuration,DC=analysis,DC=htb
+445/tcp   open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+464/tcp   open  kpasswd5
+593/tcp   open  http-rpc-epmap
+|_banner: ncacn_http/1.0
+636/tcp   open  ldapssl
+3268/tcp  open  globalcatLDAP
+3269/tcp  open  globalcatLDAPssl
+3306/tcp  open  mysql
+|_banner: D\x00\x00\x00\xFFj\x04Host '10.10.14.71' is not allowed to c...
+5985/tcp  open  wsman
+9389/tcp  open  adws
+33060/tcp open  mysqlx
+|_banner: \x05\x00\x00\x00\x0B\x08\x05\x1A\x00
+47001/tcp open  winrm
+49664/tcp open  unknown
+49665/tcp open  unknown
+49666/tcp open  unknown
+49667/tcp open  unknown
+49669/tcp open  unknown
+49670/tcp open  unknown
+|_banner: ncacn_http/1.0
+49671/tcp open  unknown
+49672/tcp open  unknown
+49683/tcp open  unknown
+49696/tcp open  unknown
+49709/tcp open  unknown
+49711/tcp open  unknown
+Service Info: Host: DC-ANALYSIS; OS: Windows
+
+Host script results:
+| smb-protocols: 
+|   dialects: 
+|     2:0:2
+|     2:1:0
+|     3:0:0
+|     3:0:2
+|_    3:1:1
+| smb2-capabilities: 
+|   2:0:2: 
+|     Distributed File System
+|   2:1:0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:0:0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:0:2: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:1:1: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 53    0       49797.90   4573.46  0.0%
+| 80    0       50296.40   3965.41  0.0%
+| 88    0       49785.00   3955.88  10.0%
+| 135   1       45902.70   4062.38  0.0%
+| 139   0       47418.60   3399.42  0.0%
+| 389   0       48104.10   4756.96  0.0%
+| 445   1       46265.89   3136.54  10.0%
+|_464   0       49756.00   7612.00  0.0%
+|_ipidseq: Unknown
+| smb2-time: 
+|   date: 2024-01-20T19:24:29
+|_  start_date: N/A
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled and required
+|_dns-brute: Can't guess domain of "10.129.11.28"; use dns-brute.domain script argument.
+|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_path-mtu: PMTU == 1500
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_fcrdns: FAIL (No PTR record)
+
+# Nmap done at Sat Jan 20 19:32:49 2024 -- 1 IP address (1 host up) scanned in 537.08 seconds

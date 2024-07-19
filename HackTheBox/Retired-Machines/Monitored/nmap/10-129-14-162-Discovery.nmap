@@ -1,0 +1,640 @@
+# Nmap 7.94SVN scan initiated Sun Jan 14 17:47:36 2024 as: nmap --script discovery -oA /home/none/HackTheBoxCompetitive/Savage-Lands/Monitored/nmap/10-129-14-162-Discovery --min-rate 500 -e tun0 -p 22,80,389,443,5667 10.129.14.162
+Pre-scan script results:
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+| targets-sniffer: Sniffed 1 address(es). 
+|_10.129.14.162
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_lltd-discovery: false
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_broadcast-ping: false
+Nmap scan report for 10.129.14.162
+Host is up (0.17s latency).
+
+Bug in http-security-headers: no string output.
+PORT     STATE SERVICE
+22/tcp   open  ssh
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_8.4p1 Debian-5+deb11u3
+| ssh-hostkey: 
+|   3072 61:e2:e7:b4:1b:5d:46:dc:3b:2f:91:38:e6:6d:c5:ff (RSA)
+|   256 29:73:c5:a5:8d:aa:3f:60:a9:4a:a3:e5:9f:67:5c:93 (ECDSA)
+|_  256 6d:7a:f9:eb:8e:45:c2:02:6a:d5:8d:4d:b3:a3:37:6f (ED25519)
+80/tcp   open  http
+|_http-date: Sun, 14 Jan 2024 17:48:06 GMT; +59m50s from local time.
+|_http-feed: Couldn't find any feeds.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-vhosts: 
+|_128 names had status 301
+| http-grep: 
+|   (1) https://nagios.monitored.htb:443/: 
+|     (1) ip: 
+|_      + 10.129.14.162
+|_http-comments-displayer: Couldn't find any comments.
+| http-useragent-tester: 
+|   Status for browser useragent: false
+|   Redirected To: https://nagios.monitored.htb/
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-title: Did not follow redirect to https://nagios.monitored.htb/
+| http-sitemap-generator: 
+|   Directory structure:
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-headers: 
+|   Date: Sun, 14 Jan 2024 17:48:08 GMT
+|   Server: Apache/2.4.56 (Debian)
+|   Location: https://nagios.monitored.htb/
+|   Content-Length: 316
+|   Connection: close
+|   Content-Type: text/html; charset=iso-8859-1
+|   
+|_  (Request type: GET)
+|_http-chrono: Request times for /; avg: 2.47ms; min: 2.22ms; max: 2.69ms
+|_http-mobileversion-checker: No mobile version detected.
+|_http-errors: Couldn't find any error pages.
+389/tcp  open  ldap
+| ldap-rootdse: 
+| LDAP Results
+|   <ROOT>
+|       namingContexts: dc=monitored,dc=htb
+|       supportedControl: 2.16.840.1.113730.3.4.18
+|       supportedControl: 2.16.840.1.113730.3.4.2
+|       supportedControl: 1.3.6.1.4.1.4203.1.10.1
+|       supportedControl: 1.3.6.1.1.22
+|       supportedControl: 1.2.840.113556.1.4.319
+|       supportedControl: 1.2.826.0.1.3344810.2.3
+|       supportedControl: 1.3.6.1.1.13.2
+|       supportedControl: 1.3.6.1.1.13.1
+|       supportedControl: 1.3.6.1.1.12
+|       supportedExtension: 1.3.6.1.4.1.4203.1.11.1
+|       supportedExtension: 1.3.6.1.4.1.4203.1.11.3
+|       supportedExtension: 1.3.6.1.1.8
+|       supportedLDAPVersion: 3
+|       supportedSASLMechanisms: DIGEST-MD5
+|       supportedSASLMechanisms: NTLM
+|       supportedSASLMechanisms: CRAM-MD5
+|_      subschemaSubentry: cn=Subschema
+| ldap-search: 
+|   Context: dc=monitored,dc=htb
+|     dn: dc=monitored,dc=htb
+|         objectClass: top
+|         objectClass: dcObject
+|         objectClass: organization
+|         o: monitored.htb
+|_        dc: monitored
+443/tcp  open  https
+| http-vhosts: 
+|_128 names had status 403
+| http-security-headers: 
+|   Strict_Transport_Security: 
+|_    HSTS not configured in HTTPS Server
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1
+|     /nagiosxi/
+|       php: 1
+|     /nagiosxi/about/
+|       Other: 1
+|     /nagiosxi/includes/css/
+|       css: 3
+|     /nagiosxi/includes/js/
+|       js: 1
+|   Longest directory structure:
+|     Depth: 3
+|     Dir: /nagiosxi/includes/css/
+|   Total files found (by extension):
+|_    Other: 2; css: 3; js: 1; php: 1
+|_http-chrono: Request times for /; avg: 342.01ms; min: 256.09ms; max: 452.70ms
+| tls-alpn: 
+|_  http/1.1
+|_http-feed: Couldn't find any feeds.
+| http-headers: 
+|   Date: Sun, 14 Jan 2024 17:47:59 GMT
+|   Server: Apache/2.4.56 (Debian)
+|   Vary: Accept-Encoding
+|   Content-Length: 3245
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: GET)
+|_http-mobileversion-checker: No mobile version detected.
+|_http-errors: Couldn't find any error pages.
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.14.162
+|   url                                                                                    method
+|   https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&noauth=1  FORM
+|_  https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&noauth=1  FORM
+|_http-title: Nagios XI
+|_ssl-date: TLS randomness does not represent time
+| http-unsafe-output-escaping: 
+|   Characters ['] reflected in parameter redirect at https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&noauth=1
+|_  Characters ['] reflected in parameter redirect at https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&noauth=1
+| http-grep: 
+|   (1) https://10.129.14.162:443/nagiosxi/about/?legal: 
+|     (1) ip: 
+|       + 10.129.14.162
+|   (1) https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&noauth=1: 
+|     (1) email: 
+|_      + sales@nagios.com
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| ssl-cert: Subject: commonName=nagios.monitored.htb/organizationName=Monitored/stateOrProvinceName=Dorset/countryName=UK
+| Not valid before: 2023-11-11T21:46:55
+|_Not valid after:  2297-08-25T21:46:55
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-date: Sun, 14 Jan 2024 17:47:55 GMT; +59m50s from local time.
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: client
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: client
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CCM (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_CCM_8 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CCM (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_CCM_8 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_ARIA_128_GCM_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_ARIA_256_GCM_SHA384 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (dh 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_ARIA_128_GCM_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_ARIA_256_GCM_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_CAMELLIA_256_CBC_SHA384 (secp256r1) - A
+|       TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (secp256r1) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CCM (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CCM_8 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CCM (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CCM_8 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_ARIA_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_ARIA_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256 (rsa 2048) - A
+|     compressors: 
+|       NULL
+|     cipher preference: client
+|   TLSv1.3: 
+|     ciphers: 
+|       TLS_AKE_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|       TLS_AKE_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A
+|       TLS_AKE_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - A
+|     cipher preference: client
+|_  least strength: A
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.14.162
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 258
+|     Comment: 
+|         <!-- This page requires a web browser which supports frames. -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 179
+|     Comment: 
+|         <!-- XI CSS -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/font-awesome.min.css?1687894169
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
+|          *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+|          */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/js/dashboards.js?1687894169
+|     Line number: 6
+|     Comment: 
+|         <!--<input type='submit' class='submitbutton' name='cancelButton' value='"+_('Cancel')+"' id='cancelExportDashboardButton'>-->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 158
+|     Comment: 
+|         <!-- colorpicker -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/bootstrap.3.min.css
+|     Line number: 5
+|     Comment: 
+|         /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&noauth=1
+|     Line number: 221
+|     Comment: 
+|         <!--- HEADER START -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 34
+|     Comment: 
+|          // Language string for translations
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 215
+|     Comment: 
+|         <!--- CHILD HEADER START -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 343
+|     Comment: 
+|         /* defaults */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 917
+|     Comment: 
+|         /* For Overlays */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&noauth=1
+|     Line number: 194
+|     Comment: 
+|         <!-- jScrollPane -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 835
+|     Comment: 
+|         /* Special help section */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 227
+|     Comment: 
+|         <!--- CHILD HEADER END -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 721
+|     Comment: 
+|         /* Host/Service details page Performance Graphs tab */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 250
+|     Comment: 
+|         <!-- CHILD FOOTER START -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&noauth=1
+|     Line number: 448
+|     Comment: 
+|         <!-- FOOTER END -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 162
+|     Comment: 
+|         <!-- clipboard plugin -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 255
+|     Comment: 
+|         <!--page-->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 341
+|     Comment: 
+|         /* FORMS */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 196
+|     Comment: 
+|         <!-- Mobile redirect -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 1061
+|     Comment: 
+|         /* Updated install section */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 1095
+|     Comment: 
+|         /* Modern form layout (for deploy agent section) */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 89
+|     Comment: 
+|         /* Page settings dropdown */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 493
+|     Comment: 
+|         /* STANDARD TABLE DEFAULTS */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 1125
+|     Comment: 
+|         /* css for Banner Message */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 816
+|     Comment: 
+|         /* Color overrides for fontawesome icons */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 184
+|     Comment: 
+|         <!-- Highcharts Graphing Library -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 850
+|     Comment: 
+|         /* New report layout */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&noauth=1
+|     Line number: 446
+|     Comment: 
+|         <!-- end footer div -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 735
+|     Comment: 
+|         /* Graph Explorer CSS for Dashlets */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 1032
+|     Comment: 
+|         /* User Macro Component */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/bootstrap.3.min.css
+|     Line number: 5
+|     Comment: 
+|         /*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 631
+|     Comment: 
+|         /* log entries */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&noauth=1
+|     Line number: 359
+|     Comment: 
+|          // Hover change 'tab'
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 1179
+|     Comment: 
+|         /* banner message switch */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 262
+|     Comment: 
+|         /* Fix perfdata in tabs on status pages */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&noauth=1
+|     Line number: 431
+|     Comment: 
+|         <!-- FOOTER START -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 3
+|     Comment: 
+|         <!-- Powered by the Nagios Synthesis Framework -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 135
+|     Comment: 
+|         <!-- main jquery libraries -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 253
+|     Comment: 
+|         <!-- CHILD FOOTER END -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 964
+|     Comment: 
+|         /* Screen < 1000px */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 959
+|     Comment: 
+|         /* Screen < 1100px */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 19
+|     Comment: 
+|         <!-- Adding Font-Awesome for all themes -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 787
+|     Comment: 
+|         /* SLA Dashlet */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 886
+|     Comment: 
+|         /*font-weight: bold; font-size: 1.3rem;*/
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 895
+|     Comment: 
+|         /* Screen < 1500px */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 144
+|     Comment: 
+|         /* Set colors for tables */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 901
+|     Comment: 
+|         /* Screen < 1200px */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 127
+|     Comment: 
+|          // Translation helper function
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/bootstrap.3.min.css
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * Bootstrap v3.4.1 (https://getbootstrap.com/)
+|          * Copyright 2011-2019 Twitter, Inc.
+|          * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+|          */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 1048
+|     Comment: 
+|         /* warning/critical highcharts buttons */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&noauth=1
+|     Line number: 2
+|     Comment: 
+|         <!-- <!DOCTYPE html> -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 166
+|     Comment: 
+|         <!-- XI JS Scripts -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 22
+|     Comment: 
+|         <!-- Global variables & Javascript translation text -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 152
+|     Comment: 
+|         <!-- spin kit -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 2
+|     Comment: 
+|         <!-- Produced by Nagios XI. Copyright (c) 2008-2024 Nagios Enterprises, LLC (www.nagios.com). All Rights Reserved. -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 189
+|     Comment: 
+|         <!-- D3 Graphing Library -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/js/dashboards.js?1687894169
+|     Line number: 6
+|     Comment: 
+|         <!--<input type='submit' class='submitbutton' name='cancelButton' value='"+_('Cancel')+"' id='cancelCloneDashboardButton'>-->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&noauth=1
+|     Line number: 429
+|     Comment: 
+|         <!--mainframe-->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 77
+|     Comment: 
+|         /* jQuery-UI overwriting */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/about/main.php?legal
+|     Line number: 155
+|     Comment: 
+|         <!-- jquery autocomplete -->
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 406
+|     Comment: 
+|         /* SORTED TABLE STYLES */
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&noauth=1
+|     Line number: 263
+|     Comment: 
+|         
+|         // Frame buster
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&noauth=1
+|     Line number: 268
+|     Comment: 
+|         
+|         // Focus on the login fields automatically
+|     
+|     Path: https://10.129.14.162:443/nagiosxi/includes/css/base.css
+|     Line number: 729
+|     Comment: 
+|_        /* Gauge classes for Outboard Dashlets */
+5667/tcp open  unknown
+
+Host script results:
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV     LOSS (%)
+| 22    0       82350.70   92842.07   0.0%
+| 80    0       192752.00  357534.71  0.0%
+| 389   0       169624.78  339482.95  10.0%
+| 443   0       57358.60   11584.97   0.0%
+|_5667  0       53150.30   8555.35    0.0%
+|_ipidseq: All zeros
+|_fcrdns: FAIL (No PTR record)
+|_dns-brute: Can't guess domain of "10.129.14.162"; use dns-brute.domain script argument.
+|_path-mtu: PMTU == 1500
+
+# Nmap done at Sun Jan 14 17:52:19 2024 -- 1 IP address (1 host up) scanned in 283.03 seconds

@@ -1,0 +1,10 @@
+#!/bin/bash -e
+
+. ./xi-sys.cfg
+
+if [ -f "$proddir/var/xiversion" ]; then
+	grep release= "$proddir/var/xiversion" | cut -d = -f 2
+else
+	echo 0
+fi
+

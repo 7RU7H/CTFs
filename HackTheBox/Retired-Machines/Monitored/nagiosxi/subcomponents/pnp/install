@@ -1,0 +1,42 @@
+#!/bin/bash -e
+
+pkgname="pnp-latest"
+
+echo "INSTALL: PNP is being installed..."
+
+# Delete the old archive
+rm -rf "$pkgname"
+
+# Extract archive
+tar -xzf "$pkgname.tar.gz"
+
+# Apply patches
+echo "INSTALL: Applying Nagios XI patches to PNP..."
+./apply-patches "$pkgname"
+
+# Make and install 
+(
+	cd "./$pkgname"
+	./configure
+	make  -j $make_j_flag all
+	make install
+	make install-config
+	if [ ! `command -v systemctl` ]; then
+		make install-init
+	fi
+)
+
+# Post-install modifications
+./post-install
+
+# Do a simple sanity check to make sure some key files exist...
+for f in /usr/local/nagios/bin/npcd /usr/local/nagios/libexec/process_perfdata.pl /usr/local/nagios/etc/pnp/process_perfdata.cfg ; do
+	if [ ! -f "$f" ]; then
+		echo "ERROR: PNP install appears to have failed - exiting.  Missing file = $f"
+		exit 1
+	fi
+done
+
+# Things are okay
+echo "INSTALL: PNP installed OK."
+

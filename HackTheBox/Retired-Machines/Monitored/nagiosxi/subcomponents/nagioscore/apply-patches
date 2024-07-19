@@ -1,0 +1,30 @@
+#!/bin/bash -e
+
+pkgname="$1"
+
+# Custom CGIs
+cp patches/cgi/*.c "$pkgname/cgi"
+
+# Makefile mods for Custom CGIs
+patch "$pkgname/cgi/Makefile.in" < patches/cgi-makefile.patch
+
+# Mod for avail.c to add ability to make combined host/service availabilty with filters
+patch "$pkgname/cgi/avail.c" < patches/cgi-avail-filtering.patch
+
+# Mod for extinfo.c to remove all XSS vulns for comments
+patch "$pkgname/cgi/extinfo.c" < patches/cgi-extinfo.patch
+
+# Mod for logging.c to set permissions of nagios.log to rw-rw-r-- for the purpose of SELinux
+patch "$pkgname/base/logging.c" < patches/logging.patch
+
+# Mod for utils.c to set the ownership of nagios.log to nagios:root for the purpose of SELinux
+patch "$pkgname/base/utils.c" < patches/utils.patch
+
+# Mod for utils.c to avoid freeing SSL_CTX when OpenSSL version is >= 1.1.0
+# patch is no longer necessary as of Core 4.4.9
+#patch "$pkgname/base/utils.c" < patches/utils-openssl-ctx-free.patch
+
+# Update the html main.php to remove the following:
+# - Checking for updates
+# - Most news items and banners
+cp -f patches/html/main.php "$pkgname/html/main.php"

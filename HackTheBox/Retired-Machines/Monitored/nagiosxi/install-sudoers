@@ -1,0 +1,40 @@
+#!/bin/bash -e
+
+. ./xi-sys.cfg
+
+# Backup old sudoers file
+cp -f /etc/sudoers /etc/sudoers.old.backup
+
+# Remove old sudoers entries
+grep -v NAGIOSXI /etc/sudoers > /etc/sudoers.new
+mv -f /etc/sudoers.new /etc/sudoers
+
+# Remove any old /etc/sudoers.d/nagiosxi files
+rm -rf /etc/sudoers.d/nagiosxi
+
+# Remove TTY requirement
+sed -i 's/^Defaults    requiretty/#Defaults    requiretty/g' /etc/sudoers
+
+# Add new sudoers entries
+cat nagiosxi/nagiosxi.sudoers >> /etc/sudoers
+
+# Grep for root setting (add if necessary)
+if ! grep -q "root.*ALL=" /etc/sudoers; then
+	echo "root ALL=(ALL) ALL" >> /etc/sudoers
+fi
+
+# Set permissions
+chmod 440 /etc/sudoers
+
+# Replace apache user with www-data for Ubuntu installs
+if [ "$distro" == "Ubuntu" ] || [ "$distro" == "Debian" ]; then
+	sed -i 's/=apache/=www-data/' /etc/sudoers
+fi
+
+# NOTE - This stuff doesn't work on CentOS 5...
+## Setup sudoers stuff
+#if [ ! -d /etc/sudoers.d ]; then
+#	install -dm 750 /etc/sudoers.d
+#	echo '#includedir /etc/sudoers.d' >>/etc/sudoers
+#fi
+#install  -m 440 nagiosxi/nagiosxi.sudoers /etc/sudoers.d/nagiosxi

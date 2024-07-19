@@ -1,0 +1,55 @@
+PRODDIR/var/*log {
+    missingok
+    notifempty
+    size 5M
+    copytruncate
+    su NAGIOSUSER NAGIOSGROUP
+    rotate 1
+    compress
+}
+
+PRODDIR/var/xidebug.log {
+    missingok
+    notifempty
+    size 100M
+    copytruncate
+    create 0660 APACHEUSER NAGIOSGROUP
+    su APACHEUSER NAGIOSGROUP
+    rotate 1
+    compress
+}
+
+PRODDIR/var/xidebug.log.backtrace {
+    missingok
+    notifempty
+    size 100M
+    copytruncate
+    create 0660 APACHEUSER NAGIOSGROUP
+    su APACHEUSER NAGIOSGROUP
+    rotate 1
+    compress
+}
+
+PRODDIR/var/components/auditlog.log {
+    missingok
+    notifempty
+    size 100M
+    copytruncate
+    create 0660 APACHEUSER NAGIOSGROUP
+    su APACHEUSER NAGIOSGROUP
+    rotate 1
+    compress
+}
+
+PRODDIR/tmp/phpmailer.log {
+    missingok
+    notifempty
+    size 100M
+    copytruncate
+    create 0660 APACHEUSER NAGIOSGROUP
+    su APACHEUSER NAGIOSGROUP
+    rotate 1
+    compress
+}
+
+

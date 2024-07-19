@@ -1,0 +1,72 @@
+# Nmap 7.94SVN scan initiated Sun Feb 18 18:03:52 2024 as: nmap -sC -sV -oA /home/kali/HackTheBoxCompetitive/Savage-Lands/Office/nmap/10-129-11-168-Extensive-Found-Ports --min-rate 1000 -e tun0 -p 53,80,88,139,389,443,445,464,593,636,3268,3269,5985,9389,49664,49668,49681,50622 10.129.11.168
+Nmap scan report for 10.129.11.168
+Host is up (0.071s latency).
+
+PORT      STATE SERVICE       VERSION
+53/tcp    open  domain        Simple DNS Plus
+80/tcp    open  http          Apache httpd 2.4.56 ((Win64) OpenSSL/1.1.1t PHP/8.0.28)
+|_http-server-header: Apache/2.4.56 (Win64) OpenSSL/1.1.1t PHP/8.0.28
+| http-robots.txt: 16 disallowed entries (15 shown)
+| /joomla/administrator/ /administrator/ /api/ /bin/ 
+| /cache/ /cli/ /components/ /includes/ /installation/ 
+|_/language/ /layouts/ /libraries/ /logs/ /modules/ /plugins/
+|_http-title: Home
+|_http-generator: Joomla! - Open Source Content Management
+88/tcp    open  kerberos-sec  Microsoft Windows Kerberos (server time: 2024-02-19 02:04:11Z)
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp   open  ldap          Microsoft Windows Active Directory LDAP (Domain: office.htb0., Site: Default-First-Site-Name)
+|_ssl-date: TLS randomness does not represent time
+| ssl-cert: Subject: commonName=DC.office.htb
+| Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::<unsupported>, DNS:DC.office.htb
+| Not valid before: 2023-05-10T12:36:58
+|_Not valid after:  2024-05-09T12:36:58
+443/tcp   open  ssl/http      Apache httpd 2.4.56 (OpenSSL/1.1.1t PHP/8.0.28)
+|_http-title: 403 Forbidden
+|_http-server-header: Apache/2.4.56 (Win64) OpenSSL/1.1.1t PHP/8.0.28
+|_ssl-date: TLS randomness does not represent time
+| tls-alpn: 
+|_  http/1.1
+| ssl-cert: Subject: commonName=localhost
+| Not valid before: 2009-11-10T23:48:47
+|_Not valid after:  2019-11-08T23:48:47
+445/tcp   open  microsoft-ds?
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp   open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: office.htb0., Site: Default-First-Site-Name)
+| ssl-cert: Subject: commonName=DC.office.htb
+| Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::<unsupported>, DNS:DC.office.htb
+| Not valid before: 2023-05-10T12:36:58
+|_Not valid after:  2024-05-09T12:36:58
+|_ssl-date: TLS randomness does not represent time
+3268/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: office.htb0., Site: Default-First-Site-Name)
+| ssl-cert: Subject: commonName=DC.office.htb
+| Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::<unsupported>, DNS:DC.office.htb
+| Not valid before: 2023-05-10T12:36:58
+|_Not valid after:  2024-05-09T12:36:58
+|_ssl-date: TLS randomness does not represent time
+3269/tcp  open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: office.htb0., Site: Default-First-Site-Name)
+|_ssl-date: TLS randomness does not represent time
+| ssl-cert: Subject: commonName=DC.office.htb
+| Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::<unsupported>, DNS:DC.office.htb
+| Not valid before: 2023-05-10T12:36:58
+|_Not valid after:  2024-05-09T12:36:58
+5985/tcp  open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+9389/tcp  open  mc-nmf        .NET Message Framing
+49664/tcp open  msrpc         Microsoft Windows RPC
+49668/tcp open  msrpc         Microsoft Windows RPC
+49681/tcp open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+50622/tcp open  msrpc         Microsoft Windows RPC
+Service Info: Hosts: DC, www.example.com; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: 7h59m58s
+| smb2-time: 
+|   date: 2024-02-19T02:05:03
+|_  start_date: N/A
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled and required
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sun Feb 18 18:05:42 2024 -- 1 IP address (1 host up) scanned in 110.24 seconds

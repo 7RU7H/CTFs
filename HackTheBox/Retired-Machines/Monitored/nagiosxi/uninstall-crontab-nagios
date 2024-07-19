@@ -1,0 +1,21 @@
+#!/bin/bash
+
+. ./xi-sys.cfg
+
+# Find a suitable filename
+backupfile=/tmp/nagios.crontab.orig
+while [ -f "$backupfile" ]; do
+	# increment number at the end of the file
+	# e.g. /tmp/nagios.crontab.orig   -> /tmp/nagios.crontab.orig.1
+	#      /tmp/nagios.crontab.orig.1 -> /tmp/nagios.crontab.orig.2
+	backupfile=$(echo "$backupfile" | awk -F. 'BEGIN{OFS="."} {print $1, $2, $3, $4+1}')
+done
+
+# Remove old crontab entries
+crontab -l -u nagios > /dev/null
+if [ "$?" == "0" ]; then
+    echo "Saving old crontab to $backupfile..."
+    crontab -l -u root > "$backupfile"
+    echo "Removing XI cron jobs..."
+    crontab -l -u nagios | grep -v "$proddir/cron" | crontab -u nagios -
+fi

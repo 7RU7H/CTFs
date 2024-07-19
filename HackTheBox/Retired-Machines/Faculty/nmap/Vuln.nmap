@@ -1,0 +1,23 @@
+# Nmap 7.92 scan initiated Mon Aug  8 20:40:02 2022 as: nmap --script vuln -oA nmap/Vuln -p 22,80 --min-rate 1000 10.129.64.49
+Nmap scan report for faculty.htb (10.129.64.49)
+Host is up (0.048s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|   /admin/login.php: Possible admin folder
+|   /login.php: Possible admin folder
+|_  /admin/home.php: Possible admin folder
+| http-fileupload-exploiter: 
+|   
+|_    Couldn't find a file-type field.
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|_      httponly flag not set
+
+# Nmap done at Mon Aug  8 20:42:40 2022 -- 1 IP address (1 host up) scanned in 158.51 seconds

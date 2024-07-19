@@ -1,0 +1,33 @@
+---
+
+- name: Download NCPA
+  get_url:
+    url: https://assets.nagios.com/downloads/ncpa/ncpa-latest.dmg
+    dest: /tmp/ncpa.dmg
+    force: yes
+
+- name: Mount NCPA Installer
+  shell: hdiutil attach /tmp/ncpa.dmg
+
+- name: Install NCPA
+  shell: zsh /Volumes/NCPA*/install.sh
+
+- name: Set NCPA Token
+  lineinfile:
+    dest: /usr/local/ncpa/etc/ncpa.cfg
+    regexp: ^community_string
+    line: "community_string = {{ ncpa_token }}"
+
+- name: Stop the NCPA listener
+  shell: launchctl unload -F /Library/LaunchDaemons/com.nagios.ncpa.listener.plist
+
+- name: Start the NCPA listener
+  shell: launchctl load -F /Library/LaunchDaemons/com.nagios.ncpa.listener.plist
+
+- name: Unmount NCPA Installer
+  shell: hdiutil unmount /Volumes/NCPA*
+
+- name: Clean up temp files
+  file:
+    path: /tmp/ncpa.dmg
+    state: absent

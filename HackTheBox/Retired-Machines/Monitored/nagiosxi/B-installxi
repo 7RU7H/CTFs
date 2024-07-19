@@ -1,0 +1,277 @@
+#!/bin/bash -e
+
+. ./xi-sys.cfg
+
+# Was previous step completed?
+if [ ! -f installed.subcomponents ]; then
+	echo "Subcomponents were not installed - run previous script" >&2
+	exit 1
+fi
+
+# Was this step already completed?
+if [ -f installed.nagiosxi ]; then
+	echo "Nagios XI base files already installed - skipping."
+	exit 0
+fi
+
+
+##########################################
+# CREATE MAIN PRODUCT DIRECTORIES
+##########################################
+
+echo "Installing Nagios XI base files..."
+
+echo "Creating product directory..."
+if [ ! -d "$proddir" ]; then
+	eval "$mkdirbin" -p "$proddir"
+fi
+
+# Copy over XI files
+cp -r ./nagiosxi/basedir/* "$proddir"
+
+# Logrotate entry
+cp ./nagiosxi/logrotate.nagiosxi /etc/logrotate.d/nagiosxi
+sed -i "s|APACHEUSER|$apacheuser|;s|NAGIOSGROUP|$nagiosgroup|;s|NAGIOSUSER|$nagiosuser|;s|PRODDIR|$proddir|" /etc/logrotate.d/nagiosxi
+if [ "$dist" == "el6" ]; then
+    sed -i "/su $nagiosuser $nagiosgroup/d" /etc/logrotate.d/nagiosxi
+fi
+
+# Change ownership on directories and files
+chown -R "$nagiosuser:$nagiosgroup" "$proddir"
+chown "root:$nagiosgroup" "$proddir"
+chown "root:$nagiosgroup" $proddir/*
+chown "root:$nagiosgroup" "$proddir/scripts/components"
+
+# Permissions for var should be all nagios permissions
+chown "$nagiosuser:$nagiosgroup" "$proddir/var"
+
+# Change to correct perms
+find "$proddir" -type d -exec /bin/chmod 755 -- {} +
+find "$proddir"/var -type d -exec /bin/chmod 775 -- {} +
+find "$proddir"/html -type f -exec /bin/chmod o-wx+r -- {} +
+find "$proddir"/scripts -type f -exec /bin/chmod o-wx+r -- {} +
+find "$proddir"/tools -type f -exec /bin/chmod o-wx+r -- {} +
+
+# Set permissions on temp directory
+chown -R "$apacheuser:$nagiosgroup" "$proddir/tmp"
+chmod -R 6775 "$proddir/tmp"
+
+# Set permissions on component etc directory
+mkdir -p "$proddir/etc/components/bpi"
+chown -R "$apacheuser:$nagiosgroup" "$proddir/etc/components"
+chmod 6775 $(find "$proddir/etc/components" -type d)
+
+# Set permissions on configwizard etc directory
+chown -R "$apacheuser:$nagiosgroup" "$proddir/etc/configwizards"
+chmod 6775 $(find "$proddir/etc/configwizards" -type d)
+
+# Set permissions on component var directory
+chown -R "$apacheuser:$nagiosgroup" "$proddir/var/components"
+chmod 6775 $(find "$proddir/var/components" -type d)
+
+# Add main Apache conf file
+cp nagiosxi/httpd.nagiosxi.conf "$httpdconfdir/nagiosxi.conf"
+
+# Modify default apache configs
+if [ "$distro" == "Debian" ] || [ "$distro" == "Ubuntu" ]; then
+    a2dissite 000-default
+    ssl_conf="/etc/apache2/sites-available/default-ssl.conf"
+    if [ -f $ssl_conf ] && [ $(grep "nagiosxi/html/api" $ssl_conf | wc -l) -eq 0 ] && [ $(grep -c "</VirtualHost>" $ssl_conf) -eq 1 ]; then
+        # Remove if mod_ssl
+        sed -i 's/<IfModule mod_ssl.c>//' $ssl_conf
+        sed -i 's/<\/IfModule>//' $ssl_conf
+        # Generate a new ssl.conf with api mods
+        grep -v "</VirtualHost>" $ssl_conf > $ssl_conf.new
+        cat nagiosxi/httpd.api.conf >> $ssl_conf.new
+        echo "</VirtualHost>" >> $ssl_conf.new
+        mv -f $ssl_conf.new $ssl_conf
+    fi
+else
+    if [ -f $httpdconfdir/ssl.conf ] && [ $(grep "nagiosxi/html/api" $httpdconfdir/ssl.conf | wc -l) -eq 0 ] && [ $(grep -c "</VirtualHost>" $httpdconfdir/ssl.conf) -eq 1 ]; then
+        # Generate a new ssl.conf with api mods
+        grep -v "</VirtualHost>" $httpdconfdir/ssl.conf > $httpdconfdir/ssl.conf.new
+        cat nagiosxi/httpd.api.conf >> $httpdconfdir/ssl.conf.new
+        echo "</VirtualHost>" >> $httpdconfdir/ssl.conf.new
+        mv -f  $httpdconfdir/ssl.conf.new  $httpdconfdir/ssl.conf
+    fi
+fi
+
+# Modify php-fpm configs
+if [ "$dist" == "el8" ] || [ "$dist" == "el9" ]; then
+    echo 'clear_env = no' >> /etc/php-fpm.d/www.conf
+fi
+
+# Create Apache authentication credential file
+# This is needed by Nagios Core  and PNP
+eval "$htpasswdbin" -c -b -s "$proddir/etc/htpasswd.users" "$nagioswebuser" "$nagioswebpwd"
+
+# Set permissions on htpasswd file
+chown -R "$nagiosuser:$apachegroup" "$proddir/etc/htpasswd.users"
+
+# Fix permissions on config files
+chown -R "$apacheuser:$nagiosgroup" /usr/local/nagios/etc/*.cfg
+
+# Set SNMP MIB directory perms
+chgrp -R "$nagiosgroup" "$mibsdir"
+chmod g+ws "$mibsdir"
+
+# Set PNP template directory perms
+chgrp -R "$nagiosgroup" /usr/local/nagios/share/pnp
+chmod g+ws /usr/local/nagios/share/pnp/templates
+chmod g+ws /usr/local/nagios/share/pnp/templates.dist
+
+# Restart Apache to apply perms
+if [ ! `command -v systemctl` ]; then
+    service $httpd restart
+else
+    systemctl restart $httpd
+fi
+
+# Install system config file
+cp xi-sys.cfg "$proddir/var/"
+cp xi-sys.cfg ./nagiosxi/basedir/var/
+
+# Make a copy of xi-sys.cfg to store in etc for strict permissions
+cp xi-sys.cfg "$proddir/etc/"
+cp xi-sys.cfg ./nagiosxi/basedir/etc/
+chown root.$nagiosgroup "$proddir/etc/xi-sys.cfg"
+chown root.$nagiosgroup ./nagiosxi/basedir/etc/xi-sys.cfg
+chmod 550 "$proddir/etc/xi-sys.cfg"
+chmod 550 ./nagiosxi/basedir/etc/xi-sys.cfg
+
+# Initialize database
+if ! ./init-xidb; then
+	echo "ERROR: Nagios XI database was not setup properly - exiting." >&2
+	exit 1
+fi
+
+# Install wizards - wait for 2012
+(
+	cd ./subcomponents/xiwizards
+	./install
+)
+
+# Install components - wait for 2012
+(
+	cd ./subcomponents/xicomponents
+	./install
+)
+
+# Install dashlets - wait for 2012
+(
+	cd ./subcomponents/xidashlets
+	./install
+)
+
+# Install phantomjs - for Highcharts export server
+if [ -z "$RPMINSTALL" ]; then
+    (
+        cd /tmp
+        arch=`uname -m`
+        
+        if [ "$arch" == "x86_64" ]; then
+            package="phantomjs-2.1.1-linux-x86_64"
+        else
+            package="phantomjs-2.1.1-linux-i686"
+        fi
+
+        echo "Installing PhantomJS..."
+
+        # Delete the old archive
+        rm -rf phantomjs*
+
+        # Download the file
+        wget http://assets.nagios.com/downloads/nagiosxi/packages/$package.tar.bz2
+        tar xf $package.tar.bz2
+        
+        # Move executables to proper location
+        cp $package/bin/phantomjs $proddir/html/includes/components/highcharts/exporting-server
+        chown -R "$nagiosuser:$nagiosgroup" $proddir/html/includes/components/highcharts/exporting-server
+        
+        # Clean up
+        rm -rf phantomjs*
+    )
+fi
+
+# Install the new LDAP/AD Component for XI 5
+$proddir/html/includes/components/ldap_ad_integration/install.sh
+
+# Install NRDS for XI 5
+$proddir/html/includes/components/nrdsconfigmanager/install.sh
+
+# Install SNMP Trap Sender for XI 5
+$proddir/html/includes/components/snmptrapsender/install.sh
+
+# Install NXTI for XI 5.5
+$proddir/html/includes/components/nxti/install.sh
+
+# Install the Manage MIBs database (XI 5.6)
+php ./nagiosxi/basedir/scripts/initialize_mibs.php
+
+# Install Autodiscovery
+chmod 776 $proddir/html/includes/components/autodiscovery/jobs
+
+# Set permissions on OAuth templates
+chown $apacheuser:$nagiosgroup $proddir/html/includes/components/oauth2/access-templates.json
+
+# Fix permissions on plugin directory
+chown $apacheuser:$nagiosgroup -R /usr/local/nagios/libexec
+chmod ug+rwx -R /usr/local/nagios/libexec
+chmod g+s /usr/local/nagios/libexec
+chown root:$nagiosgroup /usr/local/nagios/libexec/check_dhcp
+chown root:$nagiosgroup /usr/local/nagios/libexec/check_icmp
+chmod u+s /usr/local/nagios/libexec/check_dhcp
+chmod u+s /usr/local/nagios/libexec/check_icmp
+
+# Set SNMP MIB directory perms since new versions of net-snmp-libs changes this
+chgrp -R "$nagiosgroup" "$mibsdir"
+chmod g+w -R "$mibsdir"
+chmod g+ws "$mibsdir"
+
+# Give this Nagios XI a UUID and set xi-type to source
+uuidgen >> /usr/local/nagiosxi/var/xi-uuid
+echo "source" >> /usr/local/nagiosxi/var/xi-itype
+chown $nagiosuser:$nagiosgroup /usr/local/nagiosxi/var/xi-*
+
+# Set up key and certs directorys
+mkdir -p /usr/local/nagiosxi/var/keys
+mkdir -p /usr/local/nagiosxi/var/certs
+chown -R $nagiosuser:$nagiosgroup /usr/local/nagiosxi/var/keys
+chown -R $nagiosuser:$nagiosgroup /usr/local/nagiosxi/var/certs
+chmod 775 /usr/local/nagiosxi/var/keys
+chmod 775 /usr/local/nagiosxi/var/certs
+
+# Set up directory for keys and XI server's encryption key
+openssl rand -hex 16 > /usr/local/nagiosxi/var/keys/xi.key
+chown $nagiosuser:$nagiosgroup /usr/local/nagiosxi/var/keys/xi.key
+chmod 640 /usr/local/nagiosxi/var/keys/xi.key
+
+# Set up Recurring Downtime file
+touch /usr/local/nagios/etc/recurringdowntime.cfg
+chown $apacheuser:$nagiosgroup /usr/local/nagios/etc/recurringdowntime.cfg
+chmod 664 /usr/local/nagios/etc/recurringdowntime.cfg
+
+# Set up logging files
+touch /usr/local/nagiosxi/var/wkhtmltox.log
+chown $apacheuser:$apachegroup /usr/local/nagiosxi/var/wkhtmltox.log
+touch /usr/local/nagiosxi/var/scheduledreporting.log
+chown $apacheuser:$apachegroup /usr/local/nagiosxi/var/scheduledreporting.log
+
+mkdir -p $proddir/var/components
+chown $apacheuser:$nagiosgroup $proddir/var/components
+touch $proddir/var/components/capacityplanning.log
+chown $apacheuser:$nagiosgroup $proddir/var/components/capacityplanning.log
+chmod 664 $proddir/var/components/capacityplanning.log
+touch $proddir/var/components/auditlog.log
+chown $apacheuser:$nagiosgroup $proddir/var/components/auditlog.log
+chmod 664 $proddir/var/components/auditlog.log
+
+# Update deployment jobs section
+mkdir -p "$proddir/html/config/deployment/jobs"
+chown "$nagiosuser:$nagiosgroup" "$proddir/html/config/deployment/jobs"
+chmod 755 "$proddir/html/config/deployment/jobs"
+
+# Things are okay
+echo "Nagios XI base files installed OK"
+touch installed.nagiosxi
+

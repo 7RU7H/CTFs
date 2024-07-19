@@ -1,0 +1,24 @@
+#!/bin/bash -e
+
+. ../../xi-sys.cfg
+
+echo "INSTALL: Installing/updating XI dashlets..."
+
+echo "Backing up existing dashlets to /tmp/xidashlets_backup..."
+
+/bin/cp -f ../../nagiosxi/basedir/tools/install_dashlet.php "$proddir/tools/"
+
+/bin/mkdir -p /tmp/xidashlets_backup
+cp -rf "$proddir"/html/includes/dashlets/* /tmp/xidashlets_backup
+
+# Install/update each dashlet
+for f in `ls -1 dashlets/*.zip`; do
+	echo "Installing '$f'"
+	
+	"$proddir/tools/install_dashlet.php" --file=$f --refresh=0
+
+done
+
+# Things are okay
+echo "INSTALL: Dashlets installed/updated OK."
+

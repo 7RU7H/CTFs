@@ -1,0 +1,420 @@
+CCM 3.2.0
+=========
+- Added the ability to delete and add additional Arguments in CCM [GL:XI93] -PG
+- Fixed an issue where users were able to configure invalid service escalation configurations [GL:XI#102] - AC
+- Fixed issue with white screen occurring when editing contacts on Ubuntu [GL:XI#155] -AC
+
+CCM 3.1.9
+=========
+- Fixed issue with newer PHP 8+ systems having PHP fatal errors when editing objects -JO
+
+CCM 3.1.8
+=========
+- Fixed issue with contact deletion where host/service configs were not being re-written on apply config [TPS#15744] -JO
+
+CCM 3.1.7
+=========
+- Fixed copying of service object not copying excludes for Host/Hostgroups [TPS#15732] -JO
+- Fixed reflected XSS security issue in lock page Cancel button not urlencoding the returnurl value -JO
+- Properly fixed XSS security issue in search input on audit log page (thanks Hieu Tran(jkana101) from VCB STeam)) -JO
+
+CCM 3.1.6
+=========
+- Fixed issue where search would be case-sensitive -JO
+- Fixed XSS security issue in search and deletion -JO
+
+CCM 3.1.5
+=========
+- Fixed Down stalking option not working for Host Templates in Alert Settings tab [TPS#15625] -JO
+- Fixed XSS vulnerability in ajax.php script -JO
+
+CCM 3.1.4
+=========
+- Fixed reflective XSS in the test command due to double encoded html entities -JO
+
+CCM 3.1.3
+=========
+- Fixed SQL injection from improper escaping of values in search text -JO
+- Fixed timeperiod template name adding _copy_x to the template name even if empty which caused errors [TPS#15550] -JO
+
+CCM 3.1.2
+=========
+- Fixed XSS security vulnerability in CCM lock page functionality -JO
+
+CCM 3.1.1
+=========
+- Fixed issue where overlay would not allow scrolling for Free Variables list [TPS#15452] -JO
+- Fixed copying host/services with backslash in the name not copying the full name with backslash [TPS#15460] -JO
+- Fixed XSS security vulnerabilities in config_name and service_description on the Services page -JO
+- Fixed XSS security vulernabilities in Overlay modals -JO
+- Fixed issue with writing out host with backslash in the host_name -JO
+
+CCM 3.1.0
+=========
+- Added checkbox in Import Config Files page that hides all configs outside of the import directory -JO
+- Added service excludes checkbox into Service Escalations -JO
+- Updated service object Misc Settings tab to remove config options that are not able to be set for services -JO
+- Updated Misc Settings information for how to use specific fields -JO
+- Fixed issue where object names with multiple spaces in a row would not import properly [TPS#15374] -JO
+- Fixed check command close button over the command output and command output sizing [TPS#15353] -JO
+- Fixed Service Escalations showing * for contact/contact group options since it is not usable [TPS#15403] -JO
+- Fixed Service not removing hosts properly when deleting a host and the service also has a hostgroup assigned [TPS#15415] -JO
+- Fixed excluding services, hosts, host groups from Service Escalations [TPS#15321] -JO
+- Fixed importing services on Service Escalations when host_name is set to * [TPS#15321] -JO
+- Fixed XSS security vulnerability with the Active/Actions buttons in the templates pages (thanks Matt Aberegg) -JO
+
+CCM 3.0.8
+=========
+- Fixed various XSS security vulnerabilities in overlay and notification/check period -JO
+
+CCM 3.0.7
+=========
+- Fixed various XSS sercurity vulnerabilities in the object edit pages (thanks Matthew Aberegg) -JO
+- Fixed various SQL injection security vulnerabilities in the object edit pages (thanks Matthew Aberegg) -JO
+- Fixed bug in the CCM Audit Log page which would not allow searching -JO
+
+CCM 3.0.6
+=========
+- Fixed security vulnerability with Static Config Editor allowing editing apache owned files outside static directory (thanks @TactiFail) -JO
+
+CCM 3.0.5
+=========
+- Fixed several issues with importing service dependencies [TPS#14737] -SAW
+
+CCM 3.0.4
+=========
+- Fixed issue with CCM config imports that would delete all free variables when importing leaving only new ones -JO
+- Fixed form validation for object names and service descriptions to match the default illegal_object_name_chars directive in nagios.cfg -SAW
+
+CCM 3.0.3
+=========
+- Fixed CCM database error when writing configs when a hostgroup of * for a service is selected [TPS#14334] -JO
+
+CCM 3.0.2
+=========
+- Fixed CCM database error when specifying database port number in the config.inc.php for nagiosql [TPS#14263] -JO
+- Fixed limited CCM users permissions not properly applying until after a new cached permissions call is made [TPS#14276] -JO
+
+CCM 3.0.1
+=========
+- Fixed issue with default page limits and session page limits being set [TPS#14215] -JO
+- Fixed demo mode message and static directory location in Static Config Editor -JO
+- Fixed user language and translations not being applied for some variations of CCM user access types -JO
+- Fixed issue with Manage Users no result message and not allowing pagination or limiting -JO
+- Fixed config output of semicolon in check_command for config files to be escaped instead of url encoded [TPS#14225] -JO
+
+CCM 3.0.0
+=========
+- Added deletion of services with host if services do not have hostgroups or other hosts attached [TPS#13537] -JO
+- Added proper audit logging to all the sections/actions that are performed [TPS#13495] -JO
+- Added ability to edit free variables instead of having to remove and re-add them [TPS#12054] -JO
+- Added Manage Service Groups and Manage Dependent Service Groups buttons to service dependency objects [TPS#9066] -JO
+- Added ability to import excluded hosts/hostgroups [TPS#14113] -JO
+- Added checkboxes for Host Groups and Service Groups in the CCM limited access permissions panel in user edit -JO
+- Added renaming of perfdata when a service or host is renamed [TPS#14143] -JO
+- Fixed issue where host/services applied to service groups would not show as Unkown for limited CCM users -JO
+
+CCM 2.7.4
+=========
+- Added icon to relationship popup for host/services that are inactive [TPS#13582] -JO
+- Fixed missing hosts/service from relationships popup when applied to groups that are set as inactive [TPS#13582] -JO
+
+CCM 2.7.3
+=========
+- Fixed issue with free variable escaping on CCM importing configuration files [TPS#13794] -JO
+
+CCM 2.7.2
+=========
+- Fixed not saving * selection for hostgroups and saving of negated hosts/hostgroups on services [TPS#13664] -JO
+- Fixed slow loading of objects (hosts/services/etc) on large systems due to no limits on main SQL query [TPS#13692] -JO
+- Fixed hosts and services menus go to the first page after a config is deleted or cloned [TPS#13766] -SW
+
+CCM 2.7.1
+=========
+- Fixed permissions not updating properly when a non-admin user creates a host/service object [TPS#13397] -JO
+
+CCM 2.7.0
+=========
+- Added CCM limited and full access via session for regular users (CCM 'Power User') [TPS#13227] -JO
+- Added contact alias next to contact name in contact overlay when an alias exists [TPS#10049] -JO
+- Added services applied to hostgroups to the host services list on service groups [TPS#13158] -JO
+- Updated copying a service change the service name and not the config name [TPS#12270] -JO
+- Updated writing configs to no longer rely on pear library HTML_Template_IT [TPS#12386] -JO
+- Updated importing config search to be case-insensitive -JO
+- Fixed importing services with multiple objects finding the proper config name [TPS#13303] -JO
+
+CCM 2.6.11
+==========
+- Fixed u option in service dependencies for execution_failure_criteria & notification_failure_criteria to reak Unknown instead of Unreachable -SW
+- Fixed hostgroup excludes on service management page [TPS#12952] -JO
+
+CCM 2.6.10
+==========
+- Fixed flap detection options values not showing properly in the CCM as selected [TPS#12654] -JO
+
+CCM 2.6.9
+=========
+- Fixed new MySQLi database connection charset to be UTF8 [TPS#12441] -JO
+
+CCM 2.6.8
+=========
+- Fixed issue when cloning timeperiods that have a 'name' value set (templates) [TPS#12159] -JO
+- Fixed the free variable number to update after closing the free variable box [TPS#12176] -JO
+- Fixed issue with importing host and service names with + in them [TPS#12161] -JO
+
+CCM 2.6.7
+=========
+- Fixed result limit box in the CCM settings page to be a dropdown to match the CCM pages [TPS#11648] -JO
+
+CCM 2.6.6
+=========
+- Fixed Default Result Limit not being respected [TPS#11028] -JO,BH
+- Updated CCM Table to accurately display 'Config Name' instead of 'Service Name' [TPS#11170] -BH
+
+CCM 2.6.5
+=========
+- Fixed services and escalations showing 'unreachable' opposed to 'unknown' [TPS#10589|10533] -BH, JO
+- Fixed issue where test commands did not work on systems with a php version less than 5.3 [TPS#10633] -SW
+- Fixed dropdown items per page not working when selecting "None" [TPS#10632] -JO
+- Fixed issue with CCM import not accepting commas even though it splots on them [TPS#10736] -JO
+
+CCM 2.6.4
+=========
+- Fixed issue with ID and page number not being an int -JO
+- Fixed various XSS vulnerabilities (search bar and others) -JO
+- Fixed issue with returnUrl set to non-CCM url -JO
+- Fixed issue with importing contacts/contact groups not importing all contact options [MT#800] -JO
+- Fixed exclamation points being unable to be used in command arguments in CCM [TPS#9741] -BH
+
+CCM 2.6.3
+=========
+- Fixed issue where some objects (timeperiods, commands) could not view relationship info in popup [TPS#10117] -JO
+- Fixed issue where Cancel button would not return to the view list when editing from a relationship link [TPS#10224] -JO
+- Fixed session tracking adding sessions from localhost (when scripts are ran on the CCM) [TPS#10380] -JO
+
+CCM 2.6.2
+=========
+- Fixed issue with service escalations page showing two * in selection box after saving the service escalation [TPS#10045] -JO
+- Fixed missing * option in host escalation hosts and host group options that are in service escalation [TPS#10046] -JO
+- Fixed not being able to delete objects from the XI GUI (Reconfigure Tab) [TPS#10078] -BH
+
+CCM 2.6.1
+=========
+- Fixed issue with host/service escalations now showing set escalation options in the GUI [TPS#9873] -JO
+- Fixed CCM showing login screen when not logged into XI (must be logged into XI session to view CCM) (Thanks CK) -JO
+- Fixed swapped UP/UNREACHABLE on host escalations and OK/DOWN on service escalations pages [TPS#9916] -JO
+- Fixed issue with contact relationships popup not displaying the dependant icon for some objects -JO
+
+CCM 2.6.0
+=========
+- Added ability to set host/hostgroups as "exclude" for services, service templates, host groups, service escalations, and host escalations [TPS#3966] -JO
+- Added icons for tools, configuration, and other nav links -JO
+- Added escape key binding to close overlays [TPS#8911] -BH
+- Updated theme to match the rest of Nagios XI (Modern) -JO
+- Updated splash page to have more information about current configuration -JO
+- Updated 'Run Check Command' to evaluate user macros [TPS#8264] -BH
+- Updated 'Run Check Command' to use cmdsubsys and execute as nagios user [TPS#6578] -BH
+- Updated 'Run Check Command' User Interface to be more intuitive and friendly and use NSP [TPS#9185] -BH
+- Fixed de-activating a contact from the edit page not respecting dependency check [TPS#8777] -BH
+- Fixed services table loading nothing if you delete all of a configs service definitions when selecting a config name from dropdown -JO
+- Fixed CCM not respecting etc/nagios.cfg illegal_object_name_chars [TPS#8864] -BH
+- Fixed various minor security vulnerabilities (thanks John Page aka HYP3RLINX) -JO
+
+CCM 2.5.3
+=========
+- Fixed bug allowing filtering when adding host/service to contact notification commands [TPS#7207] -LG
+- Fixed bug where removing CCM users was not working properly [TPS#7540] -BH
+- Fixed import to properly check for duplicates [TPS#7551] -BH
+
+CCM 2.5.2
+=========
+- Fixed return URL (cancel button) links for host/services edited from clicking through the splash page [TPS#7095] -JO
+
+CCM 2.5.1
+=========
+- Added ability for import issue to update host/service escalations/dependencies by adding in # config_name <value> to written config output -JO
+- Added ability for import issue to add host/service escalations/dependencies with specific config_name using # config_name <value> in config to import -JO
+- Updated some styles for easier readability -JO
+- Fixed import issue where items that needed config_name would use the host_name as the config_name causing only one item to be imported -JO
+- Fixed imported service escalation/dependency services not always showing up in services selection list -JO
+- Fixed php errors being thrown -JO
+
+CCM 2.5.0
+=========
+- Added double click functionality in selection popups -JO
+- Fixed tooltips showing up in the wrong spots -JO
+
+CCM 2.4.0 - 05/20/2015
+======================
+- Added Core Config Manager landing page -LG
+- Added throbber to all loading pages for ccm actions -LG
+- Fixed 'Manage Parents' to now show child relationships, making them non selectable -JO
+- Fixed bug where changing a parent host's host name would cause config not to apply until doing a full delete/rewrite of configs -JO
+
+CCM 2.3.5 - 03/19/2015
+======================
+- Added language support for help popups -SW
+
+CCM 2.3.4 - 02/23/2015
+======================
+- Added links to documents for the "Import Config Files" tool -BD-G
+
+CCM 2.3.3 - 02/17/2015
+======================
+- Changed to not display language setting in Manage Config Access of CCM if using unified XI login -SW
+- Fixed Contacts not correctly denoting object relationships to contactgroups in CCM -SW
+- Fixed popup display scrolling on small screens -JO
+
+CCM 2.3.2 - 02/09/2015
+======================
+- Removed hostname and made all services listed unique in service dependency overlay -JO
+- Fixed issue with filter text field forcing scrolling in overlay popups -JO
+
+CCM 2.3.1 - 01/15/2015
+======================
+- Added search box in popup overlays for host/service/groups -LG
+- Fixed issue in free variable definition that would not allow backslashes -JO
+
+CCM 2.3.0 - 12/10/2014
+======================
+- Added a 500 and 1000 limit to the page limit selection box -JO
+- Added new javascript for overlays on object forms to now automatically resize to screen size making much large viewing areas -JO
+- Added new CSS styles to overlays to keep them cleaner -JO
+- Fixed issue where renaming host would cause config errors -JO
+- Fixed bug in the log management page that wouldn't let you delete logs -JO
+- Fixed bug where auto-login would not set the users language to their Nagios XI langauge if using inside of Nagios XI -JO
+- Fixed corruption of character-based languages in the log management page -JO
+- Fixed import to overwrite hosttemplates on hosts -JO
+- Fixed import error messages not being displayed when there are errors -JO
+- Fixed issue where spaces at front and end of host_name and config_name were possible -JO
+- Fixed limit being set back to 'none' when it shouldn't -JO
+- Fixed default sorting on services page to sort hostname (config name) and service name ASC -JO
+- Fixed hostname in service selection on service escalations object form -JO
+- Fixed non-unique service selection box in service escalations object form -JO
+
+CCM 2.2.3 - 10/23/2014
+======================
+- Added a warning when someone tries to add a ! in $ARGn$ values since they are not allowed (they are used to split command lines) -JO
+- Added functionality to go back to the last page when clicking "go back" and when saving/cancelling an object -JO
+- Fixed import breaking with last line continuing on next line (or lines) with \ character at the end -JO
+- Fixed import creating a value of the key for definitions with keys that have a blank value -JO
+- Fixed issue where sorting and searching did not work properly together -JO
+- Fixed missing "Manage Parents" link on the Host Templates common settings -JO
+- Fixed inactive message when creating a new object -JO
+- Fixed issue where alerting on invalid service dependencies would still allow saving them -JO
+
+CCM 2.2.2 - 09/04/2014
+======================
+- Fixed apply configuration highlight when removing an object -JO
+- Fixed relationship info button displaying services instead of host template relationships for host templates -JO
+
+CCM 2.2.1 - 08/21/2014
+======================
+- Fixed quick delete not working -JO
+- Fixed service timeperiod selection box in contacts from not showing selected service timeperiod -JO
+
+CCM 2.2.0 - 07/18/2014
+======================
+- Added automated login when accessed from inside of Nagios XI if the user is an admin -JO
+- Added ability to use old "separate" login behavior by setting "Separate CCM Login" in Admin > System Config settings page -JO
+- Added a warning on host/service pages to let someone know if the config needs to be applied in case they have multiple pages of hosts/services -JO
+- Added red asterik to "Apply Configuration" button if there are modified object(s) that need the config applied -JO
+- Added delete all configs from the Write Config Files section -AB
+- Updated logging so that automated logins are now logged with the Nagios XI username -JO
+- Updated logging so it does not log Nagios XI's apply configuration logins which plagued the log file -JO
+- Updated the "Config Manager Admin" to be viewble to Nagios XI administrators only when automated login is active (default) -JO
+- Updated the "Configuration Snapshots" link to open in the same frame -JO
+- Updated the way navigation was happening when clicking links to not involve so much Javascript -JO
+- Updates to overall style and look -JO
+- Updated sorting on tables to show what it is sorting by and added back in "Sync Status" sorting -JO
+- Updated "Sync Missed" and "Synced to File" to "Not Applied" and "Applied" and made other some small text changes throughout -JO
+- Fixed bug with messages displaying in a hard-to-read fashion when deleting/updating an object -JO
+- Fixed service description and confg name ordering on services table -JO
+- Fixed hidden scrollbar issues with popup selection boxes for host/services -JO
+- Fixed bug in check_command that wouldn't allow using a ; in the actual checks -JO
+- Fixed a bug where it would show apply config needed all the time if a config didn't exist because all objects were inactive for it -JO
+- Removed code from older versions that is no longer used -JO
+
+CCM 2.1.3 - 07/01/2014
+======================
+- Added validation of imported configs -JO
+- Updated verifications for host/service escalations to match the requirements for apply config to be successful -JO
+- Updated verification requirements for host/service dependency definitions for valid configs -JO
+- Updated tables so Name and Alias are left justified -SW
+- Fixed standalone ccm styling -JO
+- Fixed bug that wouldn't allow & in command definitions -JO
+- Fixed bug where you could not apply configuration with host/config names with / in them -JO
+- Fixed bug where free variables wouldn't import when importing Nagios Core config files -JO
+- Fixed bug that wouldn't allow & in command definitions -JO
+- Fixed bug that allowed reading/editing files that were not inside the static directory -JO
+- Fixed bugs to allow Japanese (and any character-based language) to create host/service names -JO
+- Fixed bug where host/service dependency "inherit parents" was always checked -JO
+- Fixed bug that caused free variables to not be removed from the DB on host/service deletion -JO
+- Fixed bug where Apply Configuration would not overwrite all files necessary if object names changed -AB
+
+CCM 2.1
+===============================
+- Added a new "jump to page" box for quick access to pages -JO
+- Added new pagination that doesn't put in a large amount of clickable links -JO
+- Added the ability to re-arrange host, service, and contact templates using new arrow buttons -JO
+- Updated a few of the icons used in popups -JO
+- Added the ability to give hosts a parent in bulk modification tool -JO
+- Added the ability to give hosts a hostgroup in bulk modification tool -JO
+- Added the ability to add a service (from an existing service as a template) to multiple hosts using the bulk modification tool -JO
+- Fixed bug where you could activate a service that had parent relationships that were disabled -JO
+- Fixed bug where you could add a disabled parent to an object that would cause applying the config to fail -JO
+- Added validation to importing configs -JO
+
+CCM 2.0
+===============================
+- Massive rework to be modified to allow integration into XI help system -SW
+
+CCM 0.6
+===============================
+- Added support for XI 2012 audit logging
+- Moved Bulk Modifications to separate XI component for 2012 Enterprise edition
+- Updated CSS border-radius to use CSS3 format
+- Fixed bug with $ARGx$ not being able to accept single quotes
+- Updated config info to pull information from XI's config.inc.php file automatically
+- Minor CSS fixes
+- Fixed bug with escalations and dependency form validation
+- Fixed bug with escalation and dependency description
+
+CCM 0.5 6/12/2012
+===============================
+- Fixed First notification delay being populated with the notification interval form value
+- Clarified plugin documentation feature and separated from the command definiton part of the page
+- Config name filter now a session variable until cleared, fixes issue with paging by Config Name filtered searches
+- Added confirm prompt for multiple deletions
+- Object name form validation for illegal characters
+- Bulk disabling objects now returns an error if there are dependent relationships
+- Added Apply Configuration button at the end of Bulk Modification tool
+- Fixed single quote issues with host/service command arguments
+- Fixed bug with Host Management page - "time definition and a time range" error
+- Hide "Test Command" button if no check command is selected, reveal upon selection 
+- Word wrapped "assigned members" area on overlays. Fixes issue where names get cut off if they're too long
+- Re-ordered some items on the check settings page	
+- Various cleanup to form formatting on several pages	
+- Fixed "mn" or "min" as a label	
+- Fixed issue with Bulk modification tool where leaving the field empty set all values to 0 instead of 'null'. 
+- Fixed issue where search entries are too sticky, caused unpredictable results 
+- Added sortable table columns: Object name, Config name, service_description, active, id
+- Added Bulk Modification of Contact groups
+- Fixed width for "actions" table data
+- CSS Updates and updated icons
+- Updated JQuery library to 1.7.2
+
+CCM 0.4
+================================
+- Fixed form input bugs with initial_state, flap_detection_options, notification_options ,stalking_options
+- Lists for Config Name filter and Bulk Modification Services are now sorted correctly
+- Overlay boxes that list host and service names in a select list can now display much longer names
+- Fixed CSS issue when single config files are out of day
+- Object searches by type will now persist through page changes until cleared by the user
+- Fixed issue with bulk modification tool when changing a single config option
+- Various CSS fixes
+- Optimized some SQL queries
+
+CCM 0.3 04/13/2012
+================================
+- Public beta released

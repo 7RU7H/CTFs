@@ -1,0 +1,36 @@
+#!/bin/bash -e
+
+. ../../xi-sys.cfg
+
+echo "INSTALL: POST-INSTALL: MRTG post install is running..."
+
+# Add the cron
+echo "*/5 * * * * root LANG=C LC_ALL=C /usr/bin/mrtg /etc/mrtg/mrtg.cfg --lock-file /var/lib/mrtg/mrtg.lock --confcache-file /var/lib/mrtg/mrtg.ok --user=nagios --group=nagios" > /etc/cron.d/mrtg
+
+# Add the folders
+for d in /var/www/mrtg /etc/mrtg/conf.d /etc/mrtg/archive /var/lib/mrtg /var/lock/mrtg ; do
+    if [ ! -d "$d" ]; then
+        mkdir -p "$d"
+    fi
+done
+
+# Separate configs if the mrtg.cfg file exists
+if [ -f /etc/mrtg/mrtg.cfg ]; then
+	cp -f /etc/mrtg/mrtg.cfg /etc/mrtg/mrtg.cfg.orig
+	python separate_mrtg_cfgs
+fi
+
+# Increase file limits if we need to
+echo "INSTALL: POST-INSTALL: Checking if file limits need to be increased..."
+./increase_open_file_limits.sh
+
+# Update our mrtg file
+cp -r mods/cfg/mrtg.cfg /etc/mrtg/mrtg.cfg
+
+# Set permissions
+chown "$apacheuser:$nagiosgroup" /etc/mrtg -R
+chmod 775 /etc/mrtg -R
+chown "$apacheuser:$nagiosgroup" /var/lib/mrtg -R
+chmod 775 /var/lib/mrtg -R
+
+echo "INSTALL: POST-INSTALL: MRTG post install completed OK."

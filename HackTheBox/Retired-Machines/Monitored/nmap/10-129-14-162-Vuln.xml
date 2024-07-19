@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Sun Jan 14 17:52:19 2024 as: nmap -&#45;script vuln -oA /home/none/HackTheBoxCompetitive/Savage-Lands/Monitored/nmap/10-129-14-162-Vuln -&#45;min-rate 500 -e tun0 -p 22,80,389,443,5667 10.129.14.162 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script vuln -oA /home/none/HackTheBoxCompetitive/Savage-Lands/Monitored/nmap/10-129-14-162-Vuln -&#45;min-rate 500 -e tun0 -p 22,80,389,443,5667 10.129.14.162" start="1705254739" startstr="Sun Jan 14 17:52:19 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="5" services="22,80,389,443,5667"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.14.162" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1705254762" endtime="1705255384"><status state="up" reason="reset" reason_ttl="63"/>
+<address addr="10.129.14.162" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-aspnet-debug" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-csrf" output="Couldn&apos;t find any CSRF vulnerabilities."/></port>
+<port protocol="tcp" portid="389"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ldap" method="table" conf="3"/></port>
+<port protocol="tcp" portid="443"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="https" method="table" conf="3"/><script id="http-vuln-cve2017-1001000" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-fileupload-exploiter" output="&#xa;  &#xa;    Couldn&apos;t find a file-type field."><table>
+<elem>Couldn&apos;t find a file-type field.</elem>
+</table>
+</script><script id="http-dombased-xss" output="Couldn&apos;t find any DOM based XSS."/><script id="http-csrf" output="&#xa;Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.14.162&#xa;  Found the following possible CSRF vulnerabilities: &#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&amp;noauth=1&#xa;    Form id: loginform&#xa;    Form action: /nagiosxi/login.php&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/login.php?redirect=/nagiosxi/index.php%3F&amp;noauth=1&#xa;    Form id: loginform&#xa;    Form action: /nagiosxi/login.php&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/login.php&#xa;    Form id: loginform&#xa;    Form action: /nagiosxi/login.php&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/js/views.js?1687894169&#xa;    Form id: addview_form&#xa;    Form action: &quot;+ajax_helper_url+&quot;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/js/views.js?1687894169&#xa;    Form id: editview_form&#xa;    Form action: &quot;+ajax_helper_url+&quot;&#xa;    &#xa;    Path: https://10.129.14.162:443/nagiosxi/includes/js/views.js?1687894169&#xa;    Form id: addview_form&#xa;    Form action: &quot;+ajax_helper_url+&quot;&#xa;"/><script id="http-stored-xss" output="Couldn&apos;t find any stored XSS vulnerabilities."/><script id="http-sql-injection" output="&#xa;  Possible sqli for queries:&#xa;    https://10.129.14.162:443/nagiosxi/includes/js/core.js?1687894169=%27%20OR%20sqlspider&#xa;    https://10.129.14.162:443/nagiosxi/includes/js/core.js?1687894169=%27%20OR%20sqlspider&#xa;    https://10.129.14.162:443/nagiosxi/includes/js/core.js?1687894169=%27%20OR%20sqlspider&#xa;    https://10.129.14.162:443/nagiosxi/includes/js/core.js?1687894169=%27%20OR%20sqlspider&#xa;    https://10.129.14.162:443/nagiosxi/includes/js/core.js?1687894169=%27%20OR%20sqlspider&#xa;    https://10.129.14.162:443/nagiosxi/includes/js/core.js?1687894169=%27%20OR%20sqlspider&#xa;    https://10.129.14.162:443/nagiosxi/includes/js/core.js?1687894169=%27%20OR%20sqlspider&#xa;    https://10.129.14.162:443/nagiosxi/includes/js/core.js?1687894169=%27%20OR%20sqlspider&#xa;"/></port>
+<port protocol="tcp" portid="5667"><state state="open" reason="syn-ack" reason_ttl="63"/></port>
+</ports>
+<times srtt="58847" rttvar="20008" to="138879"/>
+</host>
+<runstats><finished time="1705255384" timestr="Sun Jan 14 18:03:04 2024" summary="Nmap done at Sun Jan 14 18:03:04 2024; 1 IP address (1 host up) scanned in 645.26 seconds" elapsed="645.26" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

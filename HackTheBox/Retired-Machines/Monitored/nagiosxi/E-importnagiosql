@@ -1,0 +1,99 @@
+#!/bin/bash -e
+
+. ./xi-sys.cfg
+
+# Was previous step completed?
+if [ ! -f installed.chkconfig ]; then
+	echo "Daemons were not configured - run previous script" >&2
+	exit 1
+fi
+
+# Was this step already completed?
+if [ -f installed.importnagiosql ]; then
+	echo "NagiosQL data already imported - skipping."
+	exit
+fi
+
+# Stop Apache (workaround for bug where it doesn't create PID file on first start)
+# Thought we found root cause (restarting Apache twice in SourceGuardian step)
+# but it's still a problem
+if [ ! `command -v systemctl` ]; then
+    service $httpd stop
+else
+    systemctl stop $httpd
+fi
+
+# Applying patch for Apache 2.4 configs in CentOS 7
+# without this patch, access is denied to all pages in XI, core, etc!
+if [[ $ver -ge 7 && "$distro" != "Debian" ]] || [ "$distro" == "Ubuntu" ] || [[ "$distro" == "Debian" && $ver -ge 8 ]]; then
+	echo "Applying patches to Apache configs for Apache 2.4.x syntax..."
+	for f in nagios; do
+		sed -i '/<\/Directory>/c\   Require all denied\n</Directory>' $httpdconfdir/$f.conf
+	done
+    for f in nagiosxi nrdp; do
+		sed -i '/<\/Directory>/c\   Require all granted\n</Directory>' $httpdconfdir/$f.conf
+	done
+fi
+
+# Make sure apache is started
+if [ ! `command -v systemctl` ]; then
+    service $httpd start
+else
+    systemctl start $httpd
+fi
+echo "Sleeping..."
+sleep 2
+if ! service "$httpd" status &>/dev/null; then
+	echo "WARNING: Apache failed to start." >&2
+fi
+
+echo "NOTE: If prompted, enter the MySQL root password"
+
+# Check MySQL database (NagiosQL)
+if mysql -u root -p"$mysqlpass" nagiosql -e "SELECT COUNT(*) FROM tbl_host" &>/dev/null; then
+	echo "CCM's nagiosql database appears OK - continuing..."
+else
+	echo "ERROR: Cannot connect to CCM's nagiosql database - exiting. Were MySQL and CCM installed?" >&2
+	exit 1
+fi
+
+# Check MySQL database
+if mysql -u root -p"$mysqlpass" nagios -e "SELECT COUNT(*) FROM nagios_hosts" &>/dev/null; then
+	echo "NDOUtils database appears OK - continuing..."
+else
+	echo "ERROR: Cannot connect to NDOUtils database - exiting. Was NDOUtils installed?" >&2
+	exit 1
+fi
+
+# Make sure we have files to import
+if [ $(ls /usr/local/nagios/etc/import | wc -l) -eq 0 ]; then
+	echo "ERROR: No files to import - exiting. Were Nagios Core and CCM installed?" >&2
+	exit 1
+else
+	echo "Found config files to import - continuing..."
+fi
+
+# Reconfigure Nagios with initial configuration import
+(
+	cd /usr/local/nagiosxi/scripts;
+	./reconfigure_nagios.sh
+)
+
+sleep 3
+
+# Make sure all files were imported...
+if [ $(ls /usr/local/nagios/etc/import | wc -l) -ne 0 ]; then
+	echo "ERROR: CCM import appears to have failed - exiting.  (Reason: Import files are still present in /usr/local/nagios/etc/import)" >&2
+	exit 1
+fi
+
+# Check Nagios config
+if ! /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg &>/dev/null; then
+	echo "ERROR: CCM import appears to have failed - exiting.  (Reason: Nagios Core configuration is invalid)" >&2
+	exit 1
+fi
+
+echo
+echo "CCM data imported OK."
+touch installed.importnagiosql
+

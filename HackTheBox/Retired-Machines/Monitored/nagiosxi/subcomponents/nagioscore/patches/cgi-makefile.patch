@@ -1,0 +1,40 @@
+--- nagios-3.2.0/cgi/Makefile.in	2009-06-16 22:57:21.000000000 -0500
++++ nagios-3.2.0-modified/cgi/Makefile.in	2010-08-13 14:03:05.000000000 -0500
+@@ -39,7 +39,7 @@
+ LDFLAGS=@LDFLAGS@
+ LIBS=@LIBS@
+ 
+-CGIS=archivejson.cgi avail.cgi cmd.cgi config.cgi extinfo.cgi history.cgi notifications.cgi objectjson.cgi outages.cgi showlog.cgi status.cgi statusjson.cgi statuswml.cgi summary.cgi tac.cgi $(CGIEXTRAS)
++CGIS=archivejson.cgi avail.cgi cmd.cgi config.cgi extinfo.cgi history.cgi notifications.cgi objectjson.cgi outages.cgi showlog.cgi status.cgi statusjson.cgi statuswml.cgi summary.cgi tac.cgi tac-xml.cgi status-json.cgi outages-xml.cgi $(CGIEXTRAS)
+ 
+ # External data I/O code and headers
+ XSDC=@XSDC@
+@@ -151,12 +151,18 @@
+ outages.cgi: outages.c $(CGIDEPS) $(CDATADEPS)
+ 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ outages.c $(CGILIBS) $(CDATALIBS) $(LIBS)
+ 
++outages-xml.cgi: outages-xml.c $(CGIDEPS) $(CDATADEPS)
++	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ outages-xml.c $(CGILIBS) $(CDATALIBS) $(LIBS)
++
+ showlog.cgi: showlog.c $(CGIDEPS)
+ 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ showlog.c $(CGILIBS) $(LIBS)
+ 
+ status.cgi: status.c $(CGIDEPS) $(CDATADEPS)
+ 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ status.c $(CGILIBS) $(CDATALIBS) $(LIBS)
+ 
++status-json.cgi: status-json.c $(CGIDEPS) $(CDATADEPS)
++	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ status-json.c $(CGILIBS) $(CDATALIBS) $(LIBS)
++
+ statuswml.cgi: statuswml.c $(CGIDEPS)
+ 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ statuswml.c $(CGILIBS) $(LIBS)
+ 
+@@ -172,6 +178,9 @@
+ tac.cgi: tac.c $(CGIDEPS) $(CDATADEPS)
+ 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ tac.c $(CGILIBS) $(CDATALIBS) $(LIBS)
+ 
++tac-xml.cgi: tac-xml.c $(CGIDEPS) $(CDATADEPS)
++	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ tac-xml.c $(CGILIBS) $(CDATALIBS) $(LIBS)
++
+ trends.cgi: trends.c $(CGIDEPS)
+ 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ trends.c $(CGILIBS) $(GDLIBS) $(LIBS)
+ 

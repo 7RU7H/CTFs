@@ -1,0 +1,23 @@
+#!/bin/bash -e
+
+# Was previous step completed?
+if [ ! -f installed.phpini ]; then
+	echo "PHP was not configured - run previous script" >&2
+	exit 1
+fi
+
+# Was this step already completed?
+if [ -f installed.subcomponents ]; then
+	echo "Subcomponents already configured - skipping."
+	exit 0
+fi
+
+# Install all subcomponents
+if ! (cd ./subcomponents; ./install); then
+	echo "Subcomponents installation failed - exiting" >&2
+	exit 1
+fi
+
+echo "Subcomponents installed OK"
+touch installed.subcomponents
+

@@ -1,0 +1,11 @@
+--- a/base/utils.c
++++ b/base/utils.c
+@@ -2110,7 +2110,7 @@ int drop_privileges(char *user, char *group) {
+ 		}
+ 
+ 	/* now that we know what to change to, we fix log file permissions */
+-	fix_log_file_owner(uid, gid);
++	fix_log_file_owner(uid, 0);
+ 
+ 	/* set effective group ID if other than current EGID */
+ 	if(gid != getegid()) {

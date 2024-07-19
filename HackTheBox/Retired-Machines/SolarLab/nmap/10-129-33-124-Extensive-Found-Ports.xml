@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Sun May 12 10:01:28 2024 as: nmap -sC -sV -oA /home/kali/HackTheBoxCompetitive/Anomalies/SolarLab/nmap/10-129-33-124-Extensive-Found-Ports -&#45;min-rate 300 -e tun0 -p 80,135,139,445,6791 10.129.33.124 -->
+<nmaprun scanner="nmap" args="nmap -sC -sV -oA /home/kali/HackTheBoxCompetitive/Anomalies/SolarLab/nmap/10-129-33-124-Extensive-Found-Ports -&#45;min-rate 300 -e tun0 -p 80,135,139,445,6791 10.129.33.124" start="1715504488" startstr="Sun May 12 10:01:28 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="5" services="80,135,139,445,6791"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.33.124" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1715504501" endtime="1715504558"><status state="up" reason="echo-reply" reason_ttl="127"/>
+<address addr="10.129.33.124" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" product="nginx" version="1.24.0" method="probed" conf="10"><cpe>cpe:/a:igor_sysoev:nginx:1.24.0</cpe></service><script id="http-server-header" output="nginx/1.24.0"><elem>nginx/1.24.0</elem>
+</script><script id="http-title" output="Did not follow redirect to http://solarlab.htb/"><elem key="redirect_url">http://solarlab.htb/</elem>
+</script></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" product="Microsoft Windows RPC" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="netbios-ssn" product="Microsoft Windows netbios-ssn" ostype="Windows" method="probed" conf="10"><cpe>cpe:/o:microsoft:windows</cpe></service></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" method="table" conf="3"/></port>
+<port protocol="tcp" portid="6791"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http" product="nginx" version="1.24.0" method="probed" conf="10"><cpe>cpe:/a:igor_sysoev:nginx:1.24.0</cpe></service><script id="http-server-header" output="nginx/1.24.0"><elem>nginx/1.24.0</elem>
+</script><script id="http-title" output="Did not follow redirect to http://report.solarlab.htb:6791/"><elem key="redirect_url">http://report.solarlab.htb:6791/</elem>
+</script></port>
+</ports>
+<hostscript><script id="smb2-time" output="&#xa;  date: 2024-05-12T09:02:00&#xa;  start_date: N/A"><elem key="date">2024-05-12T09:02:00</elem>
+<elem key="start_date">N/A</elem>
+</script><script id="smb2-security-mode" output="&#xa;  3:1:1: &#xa;    Message signing enabled but not required"><table key="3:1:1">
+<elem>Message signing enabled but not required</elem>
+</table>
+</script></hostscript><times srtt="76588" rttvar="51026" to="280692"/>
+</host>
+<runstats><finished time="1715504558" timestr="Sun May 12 10:02:38 2024" summary="Nmap done at Sun May 12 10:02:38 2024; 1 IP address (1 host up) scanned in 69.76 seconds" elapsed="69.76" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

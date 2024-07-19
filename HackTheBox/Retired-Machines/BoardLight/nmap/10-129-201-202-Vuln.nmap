@@ -1,0 +1,62 @@
+# Nmap 7.94SVN scan initiated Sat May 25 20:42:40 2024 as: nmap --script vuln -oA /home/kali/HackTheBoxCompetitive/Anomalies/BoardLight/nmap/10-129-201-202-Vuln --min-rate 300 -e tun0 -p 22,80 10.129.201.202
+Nmap scan report for 10.129.201.202
+Host is up (0.13s latency).
+
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.201.202
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://10.129.201.202:80/
+|     Form id: 
+|     Form action: 
+|     
+|     Path: http://10.129.201.202:80/
+|     Form id: 
+|     Form action: 
+|     
+|     Path: http://10.129.201.202:80/about.php
+|     Form id: 
+|     Form action: 
+|     
+|     Path: http://10.129.201.202:80/contact.php
+|     Form id: 
+|     Form action: 
+|     
+|     Path: http://10.129.201.202:80/contact.php
+|     Form id: 
+|     Form action: 
+|     
+|     Path: http://10.129.201.202:80/do.php
+|     Form id: 
+|     Form action: 
+|     
+|     Path: http://10.129.201.202:80/index.php
+|     Form id: 
+|     Form action: 
+|     
+|     Path: http://10.129.201.202:80/index.php
+|     Form id: 
+|_    Form action: 
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-fileupload-exploiter: 
+|   
+|     Couldn't find a file-type field.
+|   
+|     Couldn't find a file-type field.
+|   
+|     Couldn't find a file-type field.
+|   
+|     Couldn't find a file-type field.
+|   
+|     Couldn't find a file-type field.
+|   
+|     Couldn't find a file-type field.
+|   
+|_    Couldn't find a file-type field.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+
+# Nmap done at Sat May 25 20:43:29 2024 -- 1 IP address (1 host up) scanned in 48.38 seconds

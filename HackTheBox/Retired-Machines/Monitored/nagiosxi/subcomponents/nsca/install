@@ -1,0 +1,40 @@
+#!/bin/bash -e
+
+pkgname="nsca-2.10.2"
+
+echo "INSTALL: NSCA is being installed..."
+
+# Delete the old archive
+rm -rf "$pkgname"
+
+# Extract archive
+tar -xzf "$pkgname.tar.gz"
+
+# Make and install 
+(
+	cd "./$pkgname"
+	./configure
+	make -j $make_j_flag all
+	cp src/nsca /usr/local/nagios/bin
+	cp src/send_nsca /usr/local/nagios/libexec
+	if [ -d /etc/xinetd.d ]; then
+		cp sample-config/nsca.xinetd /etc/xinetd.d/nsca
+	else
+		cp nsca.service /usr/lib/systemd/system/nsca.service
+	fi
+)
+
+# Post-install modifications
+./post-install
+
+# Do a simple sanity check to make sure some key files exist...
+for f in /usr/local/nagios/bin/nsca /usr/local/nagios/libexec/send_nsca /usr/local/nagios/etc/nsca.cfg ; do
+	if [ ! -f "$f" ]; then
+		echo "ERROR: NSCA install appears to have failed - exiting.  Missing file = $f"
+		exit 1
+	fi
+done
+
+# Things are okay
+echo "INSTALL: NSCA installed OK."
+

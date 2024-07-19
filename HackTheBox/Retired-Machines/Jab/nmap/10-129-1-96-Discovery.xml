@@ -1,0 +1,1662 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Mon Feb 26 17:36:25 2024 as: nmap -&#45;script discovery -oA /home/kali/HackTheBoxCompetitive/Savage-Lands/Jab/nmap/10-129-1-96-Discovery -&#45;min-rate 1000 -e tun0 -p 53,88,135,139,389,445,464,593,636,3268,3269,5222,5223,5262,5263,5269,5270,5275,5276,5985,7070,7443,7777,9389,47001,49664,49665,49666,49667,49671,49686,49687,49690,49695,49726,54023 10.129.1.96 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA /home/kali/HackTheBoxCompetitive/Savage-Lands/Jab/nmap/10-129-1-96-Discovery -&#45;min-rate 1000 -e tun0 -p 53,88,135,139,389,445,464,593,636,3268,3269,5222,5223,5262,5263,5269,5270,5275,5276,5985,7070,7443,7777,9389,47001,49664,49665,49666,49667,49671,49686,49687,49690,49695,49726,54023 10.129.1.96" start="1708968985" startstr="Mon Feb 26 17:36:25 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="36" services="53,88,135,139,389,445,464,593,636,3268-3269,5222-5223,5262-5263,5269-5270,5275-5276,5985,7070,7443,7777,9389,47001,49664-49667,49671,49686-49687,49690,49695,49726,54023"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="broadcast-ping" output="false">false</script><script id="lltd-discovery" output="false">false</script><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="targets-sniffer" output="Sniffed 1 address(es). &#xa;224.0.23.12"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.1.96" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1708969008" endtime="1708969221"><status state="up" reason="reset" reason_ttl="127"/>
+<address addr="10.129.1.96" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="53"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="domain" method="table" conf="3"/><script id="dns-nsec-enum" output="Can&apos;t determine domain for host 10.129.1.96; use dns-nsec-enum.domains script arg."/><script id="dns-nsec3-enum" output="Can&apos;t determine domain for host 10.129.1.96; use dns-nsec3-enum.domains script arg."/></port>
+<port protocol="tcp" portid="88"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="kerberos-sec" method="table" conf="3"/></port>
+<port protocol="tcp" portid="135"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="msrpc" method="table" conf="3"/></port>
+<port protocol="tcp" portid="139"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="netbios-ssn" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ldap" product="Microsoft Windows Active Directory LDAP" extrainfo="Domain: jab.htb, Site: Default-First-Site-Name" hostname="DC01" ostype="Windows" method="probed" conf="10"/><script id="ssl-cert" output="Subject: commonName=DC01.jab.htb&#xa;Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::&lt;unsupported&gt;, DNS:DC01.jab.htb&#xa;Not valid before: 2023-11-01T20:16:18&#xa;Not valid after:  2024-10-31T20:16:18"><table key="subject">
+<elem key="commonName">DC01.jab.htb</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">jab-DC01-CA</elem>
+<elem key="domainComponent">jab</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">BCA186B228C9E0B120151F6359A8D4042B608E2735BB289E9A40DF7F1B3BD512BEB5304D1F7F57EDEB314E12FEF7A2FACD858A0C9C52BCE9694EF8F67F6BC9243DFF7E29F20B49867B9B9A53D05BC96187AA8D2233968B1EC14A51218605B40A56C362CBE543F7605ED1EC123C5B8D3B1589D66F621E672F47D0BD3EB53F41E6F2790EA7B453643F9EB9AABE3BEA85D4BC0C620534C8000694D1144F3E38015BF705C23D2376D06B4B8E31D7A3CD4D3B85FD1DC75BDB8F3FFABF0295BEFEF651E81677B47A00DB4D828CBD70EEB4200EDC107B21AE7CDF7105A971A3A1260C4C907152D9384824CBD5126058D58BB5A2A3F7A9C300DA28D453C157849620BC71</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">1.3.6.1.4.1.311.20.2</elem>
+</table>
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Client Authentication, TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Digital Signature, Key Encipherment</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">S/MIME Capabilities</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">71:0D:81:B2:4A:45:97:5B:09:67:16:4E:EE:11:03:39:FB:9A:C7:91</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">C9:FB:2A:0B:AF:C8:9C:BB:7F:1D:34:B8:44:F1:C3:70:03:8F:BC:DE</elem>
+</table>
+<table>
+<elem key="name">X509v3 CRL Distribution Points</elem>
+<elem key="value">Full Name:&#xa;  URI:ldap:///CN=jab-DC01-CA,CN=DC01,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=jab,DC=htb?certificateRevocationList?base?objectClass=cRLDistributionPoint</elem>
+</table>
+<table>
+<elem key="name">Authority Information Access</elem>
+<elem key="value">CA Issuers - URI:ldap:///CN=jab-DC01-CA,CN=AIA,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=jab,DC=htb?cACertificate?base?objectClass=certificationAuthority</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">othername: 1.3.6.1.4.1.311.25.1::&lt;unsupported&gt;, DNS:DC01.jab.htb</elem>
+</table>
+</table>
+<elem key="sig_algo">sha1WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-11-01T20:16:18</elem>
+<elem key="notAfter">2024-10-31T20:16:18</elem>
+</table>
+<elem key="md5">40f901d6610b289243ca77dec48df221</elem>
+<elem key="sha1">66eac22be584ab5e07e3aa8f5af2b63407338c06</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIFvzCCBKegAwIBAgITWQAAAAJSWxt6j5iOJQAAAAAAAjANBgkqhkiG9w0BAQUF&#xa;ADBAMRMwEQYKCZImiZPyLGQBGRYDaHRiMRMwEQYKCZImiZPyLGQBGRYDamFiMRQw&#xa;EgYDVQQDEwtqYWItREMwMS1DQTAeFw0yMzExMDEyMDE2MThaFw0yNDEwMzEyMDE2&#xa;MThaMBcxFTATBgNVBAMTDERDMDEuamFiLmh0YjCCASIwDQYJKoZIhvcNAQEBBQAD&#xa;ggEPADCCAQoCggEBALyhhrIoyeCxIBUfY1mo1AQrYI4nNbsonppA338bO9USvrUw&#xa;TR9/V+3rMU4S/vei+s2FigycUrzpaU749n9rySQ9/34p8gtJhnubmlPQW8lhh6qN&#xa;IjOWix7BSlEhhgW0ClbDYsvlQ/dgXtHsEjxbjTsVidZvYh5nL0fQvT61P0Hm8nkO&#xa;p7RTZD+euaq+O+qF1LwMYgU0yAAGlNEUTz44AVv3BcI9I3bQa0uOMdejzU07hf0d&#xa;x1vbjz/6vwKVvv72UegWd7R6ANtNgoy9cO60IA7cEHshrnzfcQWpcaOhJgxMkHFS&#xa;2ThIJMvVEmBY1Yu1oqP3qcMA2ijUU8FXhJYgvHECAwEAAaOCAtkwggLVMC8GCSsG&#xa;AQQBgjcUAgQiHiAARABvAG0AYQBpAG4AQwBvAG4AdAByAG8AbABsAGUAcjAdBgNV&#xa;HSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwEwDgYDVR0PAQH/BAQDAgWgMHgGCSqG&#xa;SIb3DQEJDwRrMGkwDgYIKoZIhvcNAwICAgCAMA4GCCqGSIb3DQMEAgIAgDALBglg&#xa;hkgBZQMEASowCwYJYIZIAWUDBAEtMAsGCWCGSAFlAwQBAjALBglghkgBZQMEAQUw&#xa;BwYFKw4DAgcwCgYIKoZIhvcNAwcwHQYDVR0OBBYEFHENgbJKRZdbCWcWTu4RAzn7&#xa;mseRMB8GA1UdIwQYMBaAFMn7KguvyJy7fx00uETxw3ADj7zeMIHCBgNVHR8Egbow&#xa;gbcwgbSggbGgga6GgatsZGFwOi8vL0NOPWphYi1EQzAxLUNBLENOPURDMDEsQ049&#xa;Q0RQLENOPVB1YmxpYyUyMEtleSUyMFNlcnZpY2VzLENOPVNlcnZpY2VzLENOPUNv&#xa;bmZpZ3VyYXRpb24sREM9amFiLERDPWh0Yj9jZXJ0aWZpY2F0ZVJldm9jYXRpb25M&#xa;aXN0P2Jhc2U/b2JqZWN0Q2xhc3M9Y1JMRGlzdHJpYnV0aW9uUG9pbnQwgbkGCCsG&#xa;AQUFBwEBBIGsMIGpMIGmBggrBgEFBQcwAoaBmWxkYXA6Ly8vQ049amFiLURDMDEt&#xa;Q0EsQ049QUlBLENOPVB1YmxpYyUyMEtleSUyMFNlcnZpY2VzLENOPVNlcnZpY2Vz&#xa;LENOPUNvbmZpZ3VyYXRpb24sREM9amFiLERDPWh0Yj9jQUNlcnRpZmljYXRlP2Jh&#xa;c2U/b2JqZWN0Q2xhc3M9Y2VydGlmaWNhdGlvbkF1dGhvcml0eTA4BgNVHREEMTAv&#xa;oB8GCSsGAQQBgjcZAaASBBAWRnnI9GirQq9+bBt8gwIaggxEQzAxLmphYi5odGIw&#xa;DQYJKoZIhvcNAQEFBQADggEBAEwUT144zjzpCYcyp41JW1XTpAHMkw8YNclKebjP&#xa;699ip5bQjpC0fwpaXKo+iMZSklytnMVzYETvQ/wr1bGhn5DAvXUK4GN4VaKMho5+&#xa;KcsYBaBlAMCZZbB9Z/zX5nGRDw2Qj6rcoaKssQK2ACFTTWYB/4VZjJhuF275SADB&#xa;qeRsu+Hfc1/h73cDybRKj+8jvphAZPS8wdYq853G08RQghdnKhlGCwRY10RN541L&#xa;j97DUyucvHWAqdXMWshe3chacNaWdBaxg3BOeRuMsfEEn8O3G5643+wZbAH+FMGy&#xa;eb2uiaxUOLycSsONAQ6qt4bwEVGmyOJTHbpwTB8YSJBFU0A=&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ldap-rootdse" output="&#xa;LDAP Results&#xa;  &lt;ROOT&gt;&#xa;      domainFunctionality: 7&#xa;      forestFunctionality: 7&#xa;      domainControllerFunctionality: 7&#xa;      rootDomainNamingContext: DC=jab,DC=htb&#xa;      ldapServiceName: jab.htb:dc01$@JAB.HTB&#xa;      isGlobalCatalogReady: TRUE&#xa;      supportedSASLMechanisms: GSSAPI&#xa;      supportedSASLMechanisms: GSS-SPNEGO&#xa;      supportedSASLMechanisms: EXTERNAL&#xa;      supportedSASLMechanisms: DIGEST-MD5&#xa;      supportedLDAPVersion: 3&#xa;      supportedLDAPVersion: 2&#xa;      supportedLDAPPolicies: MaxPoolThreads&#xa;      supportedLDAPPolicies: MaxPercentDirSyncRequests&#xa;      supportedLDAPPolicies: MaxDatagramRecv&#xa;      supportedLDAPPolicies: MaxReceiveBuffer&#xa;      supportedLDAPPolicies: InitRecvTimeout&#xa;      supportedLDAPPolicies: MaxConnections&#xa;      supportedLDAPPolicies: MaxConnIdleTime&#xa;      supportedLDAPPolicies: MaxPageSize&#xa;      supportedLDAPPolicies: MaxBatchReturnMessages&#xa;      supportedLDAPPolicies: MaxQueryDuration&#xa;      supportedLDAPPolicies: MaxDirSyncDuration&#xa;      supportedLDAPPolicies: MaxTempTableSize&#xa;      supportedLDAPPolicies: MaxResultSetSize&#xa;      supportedLDAPPolicies: MinResultSets&#xa;      supportedLDAPPolicies: MaxResultSetsPerConn&#xa;      supportedLDAPPolicies: MaxNotificationPerConn&#xa;      supportedLDAPPolicies: MaxValRange&#xa;      supportedLDAPPolicies: MaxValRangeTransitive&#xa;      supportedLDAPPolicies: ThreadMemoryLimit&#xa;      supportedLDAPPolicies: SystemMemoryLimitPercent&#xa;      supportedControl: 1.2.840.113556.1.4.319&#xa;      supportedControl: 1.2.840.113556.1.4.801&#xa;      supportedControl: 1.2.840.113556.1.4.473&#xa;      supportedControl: 1.2.840.113556.1.4.528&#xa;      supportedControl: 1.2.840.113556.1.4.417&#xa;      supportedControl: 1.2.840.113556.1.4.619&#xa;      supportedControl: 1.2.840.113556.1.4.841&#xa;      supportedControl: 1.2.840.113556.1.4.529&#xa;      supportedControl: 1.2.840.113556.1.4.805&#xa;      supportedControl: 1.2.840.113556.1.4.521&#xa;      supportedControl: 1.2.840.113556.1.4.970&#xa;      supportedControl: 1.2.840.113556.1.4.1338&#xa;      supportedControl: 1.2.840.113556.1.4.474&#xa;      supportedControl: 1.2.840.113556.1.4.1339&#xa;      supportedControl: 1.2.840.113556.1.4.1340&#xa;      supportedControl: 1.2.840.113556.1.4.1413&#xa;      supportedControl: 2.16.840.1.113730.3.4.9&#xa;      supportedControl: 2.16.840.1.113730.3.4.10&#xa;      supportedControl: 1.2.840.113556.1.4.1504&#xa;      supportedControl: 1.2.840.113556.1.4.1852&#xa;      supportedControl: 1.2.840.113556.1.4.802&#xa;      supportedControl: 1.2.840.113556.1.4.1907&#xa;      supportedControl: 1.2.840.113556.1.4.1948&#xa;      supportedControl: 1.2.840.113556.1.4.1974&#xa;      supportedControl: 1.2.840.113556.1.4.1341&#xa;      supportedControl: 1.2.840.113556.1.4.2026&#xa;      supportedControl: 1.2.840.113556.1.4.2064&#xa;      supportedControl: 1.2.840.113556.1.4.2065&#xa;      supportedControl: 1.2.840.113556.1.4.2066&#xa;      supportedControl: 1.2.840.113556.1.4.2090&#xa;      supportedControl: 1.2.840.113556.1.4.2205&#xa;      supportedControl: 1.2.840.113556.1.4.2204&#xa;      supportedControl: 1.2.840.113556.1.4.2206&#xa;      supportedControl: 1.2.840.113556.1.4.2211&#xa;      supportedControl: 1.2.840.113556.1.4.2239&#xa;      supportedControl: 1.2.840.113556.1.4.2255&#xa;      supportedControl: 1.2.840.113556.1.4.2256&#xa;      supportedControl: 1.2.840.113556.1.4.2309&#xa;      supportedControl: 1.2.840.113556.1.4.2330&#xa;      supportedControl: 1.2.840.113556.1.4.2354&#xa;      supportedCapabilities: 1.2.840.113556.1.4.800&#xa;      supportedCapabilities: 1.2.840.113556.1.4.1670&#xa;      supportedCapabilities: 1.2.840.113556.1.4.1791&#xa;      supportedCapabilities: 1.2.840.113556.1.4.1935&#xa;      supportedCapabilities: 1.2.840.113556.1.4.2080&#xa;      supportedCapabilities: 1.2.840.113556.1.4.2237&#xa;      subschemaSubentry: CN=Aggregate,CN=Schema,CN=Configuration,DC=jab,DC=htb&#xa;      serverName: CN=DC01,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=jab,DC=htb&#xa;      schemaNamingContext: CN=Schema,CN=Configuration,DC=jab,DC=htb&#xa;      namingContexts: DC=jab,DC=htb&#xa;      namingContexts: CN=Configuration,DC=jab,DC=htb&#xa;      namingContexts: CN=Schema,CN=Configuration,DC=jab,DC=htb&#xa;      namingContexts: DC=DomainDnsZones,DC=jab,DC=htb&#xa;      namingContexts: DC=ForestDnsZones,DC=jab,DC=htb&#xa;      isSynchronized: TRUE&#xa;      highestCommittedUSN: 266344&#xa;      dsServiceName: CN=NTDS Settings,CN=DC01,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=jab,DC=htb&#xa;      dnsHostName: DC01.jab.htb&#xa;      defaultNamingContext: DC=jab,DC=htb&#xa;      currentTime: 20240226173715.0Z&#xa;      configurationNamingContext: CN=Configuration,DC=jab,DC=htb&#xa;"/><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.0: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;      Insecure certificate signature (SHA1), score capped at F&#xa;  TLSv1.1: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;      Insecure certificate signature (SHA1), score capped at F&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp384r1) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - F&#xa;      TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - F&#xa;      TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp384r1) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F&#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;      Insecure certificate signature (SHA1), score capped at F&#xa;  least strength: F"><table key="TLSv1.0">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">secp384r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+<elem>Insecure certificate signature (SHA1), score capped at F</elem>
+</table>
+</table>
+<table key="TLSv1.1">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">secp384r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+<elem>Insecure certificate signature (SHA1), score capped at F</elem>
+</table>
+</table>
+<table key="TLSv1.2">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">secp384r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">secp384r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">secp384r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+<elem>Insecure certificate signature (SHA1), score capped at F</elem>
+</table>
+</table>
+<elem key="least strength">F</elem>
+</script><script id="ssl-date" output="2024-02-26T17:39:28+00:00; 0s from scanner time."><elem key="delta">0.0</elem>
+<elem key="date">2024-02-26T17:39:28+00:00</elem>
+</script></port>
+<port protocol="tcp" portid="445"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="microsoft-ds" method="table" conf="3"/><script id="smb-enum-services" output="ERROR: Script execution failed (use -d to debug)"/></port>
+<port protocol="tcp" portid="464"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="kpasswd5" method="table" conf="3"/></port>
+<port protocol="tcp" portid="593"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="http-rpc-epmap" method="table" conf="3"/><script id="banner" output="ncacn_http/1.0"/></port>
+<port protocol="tcp" portid="636"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="ldap" product="Microsoft Windows Active Directory LDAP" extrainfo="Domain: jab.htb, Site: Default-First-Site-Name" hostname="DC01" ostype="Windows" method="probed" conf="10"/><script id="ssl-cert" output="Subject: commonName=DC01.jab.htb&#xa;Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::&lt;unsupported&gt;, DNS:DC01.jab.htb&#xa;Not valid before: 2023-11-01T20:16:18&#xa;Not valid after:  2024-10-31T20:16:18"><table key="subject">
+<elem key="commonName">DC01.jab.htb</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">jab-DC01-CA</elem>
+<elem key="domainComponent">jab</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">BCA186B228C9E0B120151F6359A8D4042B608E2735BB289E9A40DF7F1B3BD512BEB5304D1F7F57EDEB314E12FEF7A2FACD858A0C9C52BCE9694EF8F67F6BC9243DFF7E29F20B49867B9B9A53D05BC96187AA8D2233968B1EC14A51218605B40A56C362CBE543F7605ED1EC123C5B8D3B1589D66F621E672F47D0BD3EB53F41E6F2790EA7B453643F9EB9AABE3BEA85D4BC0C620534C8000694D1144F3E38015BF705C23D2376D06B4B8E31D7A3CD4D3B85FD1DC75BDB8F3FFABF0295BEFEF651E81677B47A00DB4D828CBD70EEB4200EDC107B21AE7CDF7105A971A3A1260C4C907152D9384824CBD5126058D58BB5A2A3F7A9C300DA28D453C157849620BC71</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">1.3.6.1.4.1.311.20.2</elem>
+</table>
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Client Authentication, TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Digital Signature, Key Encipherment</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">S/MIME Capabilities</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">71:0D:81:B2:4A:45:97:5B:09:67:16:4E:EE:11:03:39:FB:9A:C7:91</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">C9:FB:2A:0B:AF:C8:9C:BB:7F:1D:34:B8:44:F1:C3:70:03:8F:BC:DE</elem>
+</table>
+<table>
+<elem key="name">X509v3 CRL Distribution Points</elem>
+<elem key="value">Full Name:&#xa;  URI:ldap:///CN=jab-DC01-CA,CN=DC01,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=jab,DC=htb?certificateRevocationList?base?objectClass=cRLDistributionPoint</elem>
+</table>
+<table>
+<elem key="name">Authority Information Access</elem>
+<elem key="value">CA Issuers - URI:ldap:///CN=jab-DC01-CA,CN=AIA,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=jab,DC=htb?cACertificate?base?objectClass=certificationAuthority</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">othername: 1.3.6.1.4.1.311.25.1::&lt;unsupported&gt;, DNS:DC01.jab.htb</elem>
+</table>
+</table>
+<elem key="sig_algo">sha1WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-11-01T20:16:18</elem>
+<elem key="notAfter">2024-10-31T20:16:18</elem>
+</table>
+<elem key="md5">40f901d6610b289243ca77dec48df221</elem>
+<elem key="sha1">66eac22be584ab5e07e3aa8f5af2b63407338c06</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIFvzCCBKegAwIBAgITWQAAAAJSWxt6j5iOJQAAAAAAAjANBgkqhkiG9w0BAQUF&#xa;ADBAMRMwEQYKCZImiZPyLGQBGRYDaHRiMRMwEQYKCZImiZPyLGQBGRYDamFiMRQw&#xa;EgYDVQQDEwtqYWItREMwMS1DQTAeFw0yMzExMDEyMDE2MThaFw0yNDEwMzEyMDE2&#xa;MThaMBcxFTATBgNVBAMTDERDMDEuamFiLmh0YjCCASIwDQYJKoZIhvcNAQEBBQAD&#xa;ggEPADCCAQoCggEBALyhhrIoyeCxIBUfY1mo1AQrYI4nNbsonppA338bO9USvrUw&#xa;TR9/V+3rMU4S/vei+s2FigycUrzpaU749n9rySQ9/34p8gtJhnubmlPQW8lhh6qN&#xa;IjOWix7BSlEhhgW0ClbDYsvlQ/dgXtHsEjxbjTsVidZvYh5nL0fQvT61P0Hm8nkO&#xa;p7RTZD+euaq+O+qF1LwMYgU0yAAGlNEUTz44AVv3BcI9I3bQa0uOMdejzU07hf0d&#xa;x1vbjz/6vwKVvv72UegWd7R6ANtNgoy9cO60IA7cEHshrnzfcQWpcaOhJgxMkHFS&#xa;2ThIJMvVEmBY1Yu1oqP3qcMA2ijUU8FXhJYgvHECAwEAAaOCAtkwggLVMC8GCSsG&#xa;AQQBgjcUAgQiHiAARABvAG0AYQBpAG4AQwBvAG4AdAByAG8AbABsAGUAcjAdBgNV&#xa;HSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwEwDgYDVR0PAQH/BAQDAgWgMHgGCSqG&#xa;SIb3DQEJDwRrMGkwDgYIKoZIhvcNAwICAgCAMA4GCCqGSIb3DQMEAgIAgDALBglg&#xa;hkgBZQMEASowCwYJYIZIAWUDBAEtMAsGCWCGSAFlAwQBAjALBglghkgBZQMEAQUw&#xa;BwYFKw4DAgcwCgYIKoZIhvcNAwcwHQYDVR0OBBYEFHENgbJKRZdbCWcWTu4RAzn7&#xa;mseRMB8GA1UdIwQYMBaAFMn7KguvyJy7fx00uETxw3ADj7zeMIHCBgNVHR8Egbow&#xa;gbcwgbSggbGgga6GgatsZGFwOi8vL0NOPWphYi1EQzAxLUNBLENOPURDMDEsQ049&#xa;Q0RQLENOPVB1YmxpYyUyMEtleSUyMFNlcnZpY2VzLENOPVNlcnZpY2VzLENOPUNv&#xa;bmZpZ3VyYXRpb24sREM9amFiLERDPWh0Yj9jZXJ0aWZpY2F0ZVJldm9jYXRpb25M&#xa;aXN0P2Jhc2U/b2JqZWN0Q2xhc3M9Y1JMRGlzdHJpYnV0aW9uUG9pbnQwgbkGCCsG&#xa;AQUFBwEBBIGsMIGpMIGmBggrBgEFBQcwAoaBmWxkYXA6Ly8vQ049amFiLURDMDEt&#xa;Q0EsQ049QUlBLENOPVB1YmxpYyUyMEtleSUyMFNlcnZpY2VzLENOPVNlcnZpY2Vz&#xa;LENOPUNvbmZpZ3VyYXRpb24sREM9amFiLERDPWh0Yj9jQUNlcnRpZmljYXRlP2Jh&#xa;c2U/b2JqZWN0Q2xhc3M9Y2VydGlmaWNhdGlvbkF1dGhvcml0eTA4BgNVHREEMTAv&#xa;oB8GCSsGAQQBgjcZAaASBBAWRnnI9GirQq9+bBt8gwIaggxEQzAxLmphYi5odGIw&#xa;DQYJKoZIhvcNAQEFBQADggEBAEwUT144zjzpCYcyp41JW1XTpAHMkw8YNclKebjP&#xa;699ip5bQjpC0fwpaXKo+iMZSklytnMVzYETvQ/wr1bGhn5DAvXUK4GN4VaKMho5+&#xa;KcsYBaBlAMCZZbB9Z/zX5nGRDw2Qj6rcoaKssQK2ACFTTWYB/4VZjJhuF275SADB&#xa;qeRsu+Hfc1/h73cDybRKj+8jvphAZPS8wdYq853G08RQghdnKhlGCwRY10RN541L&#xa;j97DUyucvHWAqdXMWshe3chacNaWdBaxg3BOeRuMsfEEn8O3G5643+wZbAH+FMGy&#xa;eb2uiaxUOLycSsONAQ6qt4bwEVGmyOJTHbpwTB8YSJBFU0A=&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ssl-date" output="2024-02-26T17:37:08+00:00; 0s from scanner time."><elem key="delta">0.0</elem>
+<elem key="date">2024-02-26T17:37:08+00:00</elem>
+</script><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.0: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;      Insecure certificate signature (SHA1), score capped at F&#xa;  TLSv1.1: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;      Insecure certificate signature (SHA1), score capped at F&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp384r1) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - F&#xa;      TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - F&#xa;      TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp384r1) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F&#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;      Insecure certificate signature (SHA1), score capped at F&#xa;  least strength: F"><table key="TLSv1.0">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">secp384r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+<elem>Insecure certificate signature (SHA1), score capped at F</elem>
+</table>
+</table>
+<table key="TLSv1.1">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">secp384r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+<elem>Insecure certificate signature (SHA1), score capped at F</elem>
+</table>
+</table>
+<table key="TLSv1.2">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">secp384r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">secp384r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">secp384r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+<elem>Insecure certificate signature (SHA1), score capped at F</elem>
+</table>
+</table>
+<elem key="least strength">F</elem>
+</script><script id="ldap-rootdse" output="&#xa;LDAP Results&#xa;  &lt;ROOT&gt;&#xa;      domainFunctionality: 7&#xa;      forestFunctionality: 7&#xa;      domainControllerFunctionality: 7&#xa;      rootDomainNamingContext: DC=jab,DC=htb&#xa;      ldapServiceName: jab.htb:dc01$@JAB.HTB&#xa;      isGlobalCatalogReady: TRUE&#xa;      supportedSASLMechanisms: GSSAPI&#xa;      supportedSASLMechanisms: GSS-SPNEGO&#xa;      supportedSASLMechanisms: EXTERNAL&#xa;      supportedSASLMechanisms: DIGEST-MD5&#xa;      supportedLDAPVersion: 3&#xa;      supportedLDAPVersion: 2&#xa;      supportedLDAPPolicies: MaxPoolThreads&#xa;      supportedLDAPPolicies: MaxPercentDirSyncRequests&#xa;      supportedLDAPPolicies: MaxDatagramRecv&#xa;      supportedLDAPPolicies: MaxReceiveBuffer&#xa;      supportedLDAPPolicies: InitRecvTimeout&#xa;      supportedLDAPPolicies: MaxConnections&#xa;      supportedLDAPPolicies: MaxConnIdleTime&#xa;      supportedLDAPPolicies: MaxPageSize&#xa;      supportedLDAPPolicies: MaxBatchReturnMessages&#xa;      supportedLDAPPolicies: MaxQueryDuration&#xa;      supportedLDAPPolicies: MaxDirSyncDuration&#xa;      supportedLDAPPolicies: MaxTempTableSize&#xa;      supportedLDAPPolicies: MaxResultSetSize&#xa;      supportedLDAPPolicies: MinResultSets&#xa;      supportedLDAPPolicies: MaxResultSetsPerConn&#xa;      supportedLDAPPolicies: MaxNotificationPerConn&#xa;      supportedLDAPPolicies: MaxValRange&#xa;      supportedLDAPPolicies: MaxValRangeTransitive&#xa;      supportedLDAPPolicies: ThreadMemoryLimit&#xa;      supportedLDAPPolicies: SystemMemoryLimitPercent&#xa;      supportedControl: 1.2.840.113556.1.4.319&#xa;      supportedControl: 1.2.840.113556.1.4.801&#xa;      supportedControl: 1.2.840.113556.1.4.473&#xa;      supportedControl: 1.2.840.113556.1.4.528&#xa;      supportedControl: 1.2.840.113556.1.4.417&#xa;      supportedControl: 1.2.840.113556.1.4.619&#xa;      supportedControl: 1.2.840.113556.1.4.841&#xa;      supportedControl: 1.2.840.113556.1.4.529&#xa;      supportedControl: 1.2.840.113556.1.4.805&#xa;      supportedControl: 1.2.840.113556.1.4.521&#xa;      supportedControl: 1.2.840.113556.1.4.970&#xa;      supportedControl: 1.2.840.113556.1.4.1338&#xa;      supportedControl: 1.2.840.113556.1.4.474&#xa;      supportedControl: 1.2.840.113556.1.4.1339&#xa;      supportedControl: 1.2.840.113556.1.4.1340&#xa;      supportedControl: 1.2.840.113556.1.4.1413&#xa;      supportedControl: 2.16.840.1.113730.3.4.9&#xa;      supportedControl: 2.16.840.1.113730.3.4.10&#xa;      supportedControl: 1.2.840.113556.1.4.1504&#xa;      supportedControl: 1.2.840.113556.1.4.1852&#xa;      supportedControl: 1.2.840.113556.1.4.802&#xa;      supportedControl: 1.2.840.113556.1.4.1907&#xa;      supportedControl: 1.2.840.113556.1.4.1948&#xa;      supportedControl: 1.2.840.113556.1.4.1974&#xa;      supportedControl: 1.2.840.113556.1.4.1341&#xa;      supportedControl: 1.2.840.113556.1.4.2026&#xa;      supportedControl: 1.2.840.113556.1.4.2064&#xa;      supportedControl: 1.2.840.113556.1.4.2065&#xa;      supportedControl: 1.2.840.113556.1.4.2066&#xa;      supportedControl: 1.2.840.113556.1.4.2090&#xa;      supportedControl: 1.2.840.113556.1.4.2205&#xa;      supportedControl: 1.2.840.113556.1.4.2204&#xa;      supportedControl: 1.2.840.113556.1.4.2206&#xa;      supportedControl: 1.2.840.113556.1.4.2211&#xa;      supportedControl: 1.2.840.113556.1.4.2239&#xa;      supportedControl: 1.2.840.113556.1.4.2255&#xa;      supportedControl: 1.2.840.113556.1.4.2256&#xa;      supportedControl: 1.2.840.113556.1.4.2309&#xa;      supportedControl: 1.2.840.113556.1.4.2330&#xa;      supportedControl: 1.2.840.113556.1.4.2354&#xa;      supportedCapabilities: 1.2.840.113556.1.4.800&#xa;      supportedCapabilities: 1.2.840.113556.1.4.1670&#xa;      supportedCapabilities: 1.2.840.113556.1.4.1791&#xa;      supportedCapabilities: 1.2.840.113556.1.4.1935&#xa;      supportedCapabilities: 1.2.840.113556.1.4.2080&#xa;      supportedCapabilities: 1.2.840.113556.1.4.2237&#xa;      subschemaSubentry: CN=Aggregate,CN=Schema,CN=Configuration,DC=jab,DC=htb&#xa;      serverName: CN=DC01,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=jab,DC=htb&#xa;      schemaNamingContext: CN=Schema,CN=Configuration,DC=jab,DC=htb&#xa;      namingContexts: DC=jab,DC=htb&#xa;      namingContexts: CN=Configuration,DC=jab,DC=htb&#xa;      namingContexts: CN=Schema,CN=Configuration,DC=jab,DC=htb&#xa;      namingContexts: DC=DomainDnsZones,DC=jab,DC=htb&#xa;      namingContexts: DC=ForestDnsZones,DC=jab,DC=htb&#xa;      isSynchronized: TRUE&#xa;      highestCommittedUSN: 266343&#xa;      dsServiceName: CN=NTDS Settings,CN=DC01,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=jab,DC=htb&#xa;      dnsHostName: DC01.jab.htb&#xa;      defaultNamingContext: DC=jab,DC=htb&#xa;      currentTime: 20240226173657.0Z&#xa;      configurationNamingContext: CN=Configuration,DC=jab,DC=htb&#xa;"/></port>
+<port protocol="tcp" portid="3268"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="globalcatLDAP" method="table" conf="3"/></port>
+<port protocol="tcp" portid="3269"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="globalcatLDAPssl" method="table" conf="3"/><script id="ssl-cert" output="Subject: commonName=DC01.jab.htb&#xa;Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::&lt;unsupported&gt;, DNS:DC01.jab.htb&#xa;Not valid before: 2023-11-01T20:16:18&#xa;Not valid after:  2024-10-31T20:16:18"><table key="subject">
+<elem key="commonName">DC01.jab.htb</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">jab-DC01-CA</elem>
+<elem key="domainComponent">jab</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">BCA186B228C9E0B120151F6359A8D4042B608E2735BB289E9A40DF7F1B3BD512BEB5304D1F7F57EDEB314E12FEF7A2FACD858A0C9C52BCE9694EF8F67F6BC9243DFF7E29F20B49867B9B9A53D05BC96187AA8D2233968B1EC14A51218605B40A56C362CBE543F7605ED1EC123C5B8D3B1589D66F621E672F47D0BD3EB53F41E6F2790EA7B453643F9EB9AABE3BEA85D4BC0C620534C8000694D1144F3E38015BF705C23D2376D06B4B8E31D7A3CD4D3B85FD1DC75BDB8F3FFABF0295BEFEF651E81677B47A00DB4D828CBD70EEB4200EDC107B21AE7CDF7105A971A3A1260C4C907152D9384824CBD5126058D58BB5A2A3F7A9C300DA28D453C157849620BC71</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">1.3.6.1.4.1.311.20.2</elem>
+</table>
+<table>
+<elem key="name">X509v3 Extended Key Usage</elem>
+<elem key="value">TLS Web Client Authentication, TLS Web Server Authentication</elem>
+</table>
+<table>
+<elem key="name">X509v3 Key Usage</elem>
+<elem key="value">Digital Signature, Key Encipherment</elem>
+<elem key="critical">true</elem>
+</table>
+<table>
+<elem key="name">S/MIME Capabilities</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">71:0D:81:B2:4A:45:97:5B:09:67:16:4E:EE:11:03:39:FB:9A:C7:91</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">C9:FB:2A:0B:AF:C8:9C:BB:7F:1D:34:B8:44:F1:C3:70:03:8F:BC:DE</elem>
+</table>
+<table>
+<elem key="name">X509v3 CRL Distribution Points</elem>
+<elem key="value">Full Name:&#xa;  URI:ldap:///CN=jab-DC01-CA,CN=DC01,CN=CDP,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=jab,DC=htb?certificateRevocationList?base?objectClass=cRLDistributionPoint</elem>
+</table>
+<table>
+<elem key="name">Authority Information Access</elem>
+<elem key="value">CA Issuers - URI:ldap:///CN=jab-DC01-CA,CN=AIA,CN=Public%20Key%20Services,CN=Services,CN=Configuration,DC=jab,DC=htb?cACertificate?base?objectClass=certificationAuthority</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">othername: 1.3.6.1.4.1.311.25.1::&lt;unsupported&gt;, DNS:DC01.jab.htb</elem>
+</table>
+</table>
+<elem key="sig_algo">sha1WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-11-01T20:16:18</elem>
+<elem key="notAfter">2024-10-31T20:16:18</elem>
+</table>
+<elem key="md5">40f901d6610b289243ca77dec48df221</elem>
+<elem key="sha1">66eac22be584ab5e07e3aa8f5af2b63407338c06</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIFvzCCBKegAwIBAgITWQAAAAJSWxt6j5iOJQAAAAAAAjANBgkqhkiG9w0BAQUF&#xa;ADBAMRMwEQYKCZImiZPyLGQBGRYDaHRiMRMwEQYKCZImiZPyLGQBGRYDamFiMRQw&#xa;EgYDVQQDEwtqYWItREMwMS1DQTAeFw0yMzExMDEyMDE2MThaFw0yNDEwMzEyMDE2&#xa;MThaMBcxFTATBgNVBAMTDERDMDEuamFiLmh0YjCCASIwDQYJKoZIhvcNAQEBBQAD&#xa;ggEPADCCAQoCggEBALyhhrIoyeCxIBUfY1mo1AQrYI4nNbsonppA338bO9USvrUw&#xa;TR9/V+3rMU4S/vei+s2FigycUrzpaU749n9rySQ9/34p8gtJhnubmlPQW8lhh6qN&#xa;IjOWix7BSlEhhgW0ClbDYsvlQ/dgXtHsEjxbjTsVidZvYh5nL0fQvT61P0Hm8nkO&#xa;p7RTZD+euaq+O+qF1LwMYgU0yAAGlNEUTz44AVv3BcI9I3bQa0uOMdejzU07hf0d&#xa;x1vbjz/6vwKVvv72UegWd7R6ANtNgoy9cO60IA7cEHshrnzfcQWpcaOhJgxMkHFS&#xa;2ThIJMvVEmBY1Yu1oqP3qcMA2ijUU8FXhJYgvHECAwEAAaOCAtkwggLVMC8GCSsG&#xa;AQQBgjcUAgQiHiAARABvAG0AYQBpAG4AQwBvAG4AdAByAG8AbABsAGUAcjAdBgNV&#xa;HSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwEwDgYDVR0PAQH/BAQDAgWgMHgGCSqG&#xa;SIb3DQEJDwRrMGkwDgYIKoZIhvcNAwICAgCAMA4GCCqGSIb3DQMEAgIAgDALBglg&#xa;hkgBZQMEASowCwYJYIZIAWUDBAEtMAsGCWCGSAFlAwQBAjALBglghkgBZQMEAQUw&#xa;BwYFKw4DAgcwCgYIKoZIhvcNAwcwHQYDVR0OBBYEFHENgbJKRZdbCWcWTu4RAzn7&#xa;mseRMB8GA1UdIwQYMBaAFMn7KguvyJy7fx00uETxw3ADj7zeMIHCBgNVHR8Egbow&#xa;gbcwgbSggbGgga6GgatsZGFwOi8vL0NOPWphYi1EQzAxLUNBLENOPURDMDEsQ049&#xa;Q0RQLENOPVB1YmxpYyUyMEtleSUyMFNlcnZpY2VzLENOPVNlcnZpY2VzLENOPUNv&#xa;bmZpZ3VyYXRpb24sREM9amFiLERDPWh0Yj9jZXJ0aWZpY2F0ZVJldm9jYXRpb25M&#xa;aXN0P2Jhc2U/b2JqZWN0Q2xhc3M9Y1JMRGlzdHJpYnV0aW9uUG9pbnQwgbkGCCsG&#xa;AQUFBwEBBIGsMIGpMIGmBggrBgEFBQcwAoaBmWxkYXA6Ly8vQ049amFiLURDMDEt&#xa;Q0EsQ049QUlBLENOPVB1YmxpYyUyMEtleSUyMFNlcnZpY2VzLENOPVNlcnZpY2Vz&#xa;LENOPUNvbmZpZ3VyYXRpb24sREM9amFiLERDPWh0Yj9jQUNlcnRpZmljYXRlP2Jh&#xa;c2U/b2JqZWN0Q2xhc3M9Y2VydGlmaWNhdGlvbkF1dGhvcml0eTA4BgNVHREEMTAv&#xa;oB8GCSsGAQQBgjcZAaASBBAWRnnI9GirQq9+bBt8gwIaggxEQzAxLmphYi5odGIw&#xa;DQYJKoZIhvcNAQEFBQADggEBAEwUT144zjzpCYcyp41JW1XTpAHMkw8YNclKebjP&#xa;699ip5bQjpC0fwpaXKo+iMZSklytnMVzYETvQ/wr1bGhn5DAvXUK4GN4VaKMho5+&#xa;KcsYBaBlAMCZZbB9Z/zX5nGRDw2Qj6rcoaKssQK2ACFTTWYB/4VZjJhuF275SADB&#xa;qeRsu+Hfc1/h73cDybRKj+8jvphAZPS8wdYq853G08RQghdnKhlGCwRY10RN541L&#xa;j97DUyucvHWAqdXMWshe3chacNaWdBaxg3BOeRuMsfEEn8O3G5643+wZbAH+FMGy&#xa;eb2uiaxUOLycSsONAQ6qt4bwEVGmyOJTHbpwTB8YSJBFU0A=&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.0: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;      Insecure certificate signature (SHA1), score capped at F&#xa;  TLSv1.1: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;      Insecure certificate signature (SHA1), score capped at F&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp384r1) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - F&#xa;      TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - F&#xa;      TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp384r1) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - F&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F&#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - F&#xa;      TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - F&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;    warnings: &#xa;      64-bit block cipher 3DES vulnerable to SWEET32 attack&#xa;      Insecure certificate signature (SHA1), score capped at F&#xa;  least strength: F"><table key="TLSv1.0">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">secp384r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+<elem>Insecure certificate signature (SHA1), score capped at F</elem>
+</table>
+</table>
+<table key="TLSv1.1">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">secp384r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+<elem>Insecure certificate signature (SHA1), score capped at F</elem>
+</table>
+</table>
+<table key="TLSv1.2">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">secp384r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">secp384r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">secp384r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">ecdh_x25519</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_3DES_EDE_CBC_SHA</elem>
+<elem key="strength">F</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+<table key="warnings">
+<elem>64-bit block cipher 3DES vulnerable to SWEET32 attack</elem>
+<elem>Insecure certificate signature (SHA1), score capped at F</elem>
+</table>
+</table>
+<elem key="least strength">F</elem>
+</script><script id="ssl-date" output="2024-02-26T17:36:49+00:00; -1s from scanner time."><elem key="delta">-1.0</elem>
+<elem key="date">2024-02-26T17:36:49+00:00</elem>
+</script></port>
+<port protocol="tcp" portid="5222"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="xmpp-client" method="table" conf="3"/><script id="ssl-cert" output="Subject: commonName=dc01.jab.htb&#xa;Subject Alternative Name: DNS:dc01.jab.htb, DNS:*.dc01.jab.htb&#xa;Not valid before: 2023-10-26T22:00:12&#xa;Not valid after:  2028-10-24T22:00:12"><table key="subject">
+<elem key="commonName">dc01.jab.htb</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">dc01.jab.htb</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">85C1A7FDBDA07F90F17B7809A86E07AD81228C65FF76CD56EF63F2F33343217EC6D3E700FA96007855B1A63885F1D04908BFB447618803A7014C1B43CDA51E7FDFA3DD240C16C16409184340DA7F6CAC47A8A86D94DF7FA1999EEA118617C398E09D9E8951B3F654451D3468C04F0308D98C553418C73AFE49E177A2EA62CD604192D4EEF6BF63AAB5BD1A68EC565B352AA6991AA03909A28261C34C1CA1D60DB925C85F85B54F3D915826D80758414779EB9903FCB11699A872C93B120F309B369C1E4B83FEAEFDFE2453041D6A44CCCB79B542BBB077D096522D7859530771F97A918029B5B7D461455F622AE71A8753D85D0C8B2A9565135100AFAB0E1799</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:dc01.jab.htb, DNS:*.dc01.jab.htb</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">C2:0B:FC:B0:44:03:A8:77:3D:56:4B:7E:D8:23:B3:A1:26:34:D9:E8</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">C2:0B:FC:B0:44:03:A8:77:3D:56:4B:7E:D8:23:B3:A1:26:34:D9:E8</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-10-26T22:00:12</elem>
+<elem key="notAfter">2028-10-24T22:00:12</elem>
+</table>
+<elem key="md5">331765e1e84a14c29ac454bab51626d8</elem>
+<elem key="sha1">efd08bde42dfff041a797d20bf87a74066b8d966</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDGzCCAgOgAwIBAgIIbuO/UNJ13hgwDQYJKoZIhvcNAQELBQAwFzEVMBMGA1UE&#xa;AwwMZGMwMS5qYWIuaHRiMB4XDTIzMTAyNjIyMDAxMloXDTI4MTAyNDIyMDAxMlow&#xa;FzEVMBMGA1UEAwwMZGMwMS5qYWIuaHRiMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A&#xa;MIIBCgKCAQEAhcGn/b2gf5Dxe3gJqG4HrYEijGX/ds1W72Py8zNDIX7G0+cA+pYA&#xa;eFWxpjiF8dBJCL+0R2GIA6cBTBtDzaUef9+j3SQMFsFkCRhDQNp/bKxHqKhtlN9/&#xa;oZme6hGGF8OY4J2eiVGz9lRFHTRowE8DCNmMVTQYxzr+SeF3oupizWBBktTu9r9j&#xa;qrW9GmjsVls1KqaZGqA5CaKCYcNMHKHWDbklyF+FtU89kVgm2AdYQUd565kD/LEW&#xa;mahyyTsSDzCbNpweS4P+rv3+JFMEHWpEzMt5tUK7sHfQllIteFlTB3H5epGAKbW3&#xa;1GFFX2Iq5xqHU9hdDIsqlWUTUQCvqw4XmQIDAQABo2swaTAnBgNVHREEIDAeggxk&#xa;YzAxLmphYi5odGKCDiouZGMwMS5qYWIuaHRiMB0GA1UdDgQWBBTCC/ywRAOodz1W&#xa;S37YI7OhJjTZ6DAfBgNVHSMEGDAWgBTCC/ywRAOodz1WS37YI7OhJjTZ6DANBgkq&#xa;hkiG9w0BAQsFAAOCAQEAP5Qvvsqdy8cHd31YX0ju498doEU665J2e7VT4o3F5vEI&#xa;XV/6BOSc5WBGQifLwAXWpeYjk1CHh3wheh9iQfqi+STxKPDXN159EGRA746bJ684&#xa;AtCqFQAUiqbbwME3aqbhZDvnC0HedaTZN4slWyrn25WK6qTyl3XfCqGRMoGja0tz&#xa;K5nzUPsxH/c46I0BwmjIEY4Gjk487cJdSxLEkeI3ThExso1ib1eICjPGKTkCjLO6&#xa;Jq0a9SrQrlm62x8Ddk9roonWJKYsbnsFjDmMFdMbjnSou4dm0I2BAti0BDDOtTU7&#xa;2UlHPhyTT552GLTJngvpeF6DVYNUhDaKElcI6DtKXQ==&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A&#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;  TLSv1.3: &#xa;    ciphers: &#xa;      TLS_AKE_WITH_AES_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_AKE_WITH_AES_128_GCM_SHA256 (secp256r1) - A&#xa;    cipher preference: server&#xa;  least strength: A"><table key="TLSv1.2">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+</table>
+<table key="TLSv1.3">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_AKE_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_AKE_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+</table>
+<elem key="cipher preference">server</elem>
+</table>
+<elem key="least strength">A</elem>
+</script><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="xmpp-info" output="&#xa;  Ignores server name&#xa;  info: &#xa;    xmpp: &#xa;      lang: ru-RU&#xa;      server name: jab.htb&#xa;      version: 1.0&#xa;    capabilities: &#xa;      node: https://www.igniterealtime.org/projects/openfire/&#xa;      ver: WN6k6GTQ31RyB/nhYArQ3jl9Ckw=&#xa;    features: &#xa;      Roster Versioning&#xa;      In-Band Registration&#xa;    compression_methods: &#xa;      zlib&#xa;    auth_mechanisms: &#xa;      NTLM&#xa;      PLAIN&#xa;      ANONYMOUS&#xa;      DIGEST-MD5&#xa;      CRAM-MD5&#xa;      SCRAM-SHA-1&#xa;  pre_tls: &#xa;    xmpp: &#xa;    capabilities: &#xa;    features: &#xa;      TLS&#xa;  post_tls: &#xa;    xmpp: &#xa;    capabilities: "><elem>Ignores server name</elem>
+<table key="info">
+<table key="xmpp">
+<elem key="lang">ru-RU</elem>
+<elem key="server name">jab.htb</elem>
+<elem key="version">1.0</elem>
+</table>
+<table key="capabilities">
+<elem key="node">https://www.igniterealtime.org/projects/openfire/</elem>
+<elem key="ver">WN6k6GTQ31RyB/nhYArQ3jl9Ckw=</elem>
+</table>
+<table key="features">
+<elem>Roster Versioning</elem>
+<elem>In-Band Registration</elem>
+</table>
+<table key="compression_methods">
+<elem>zlib</elem>
+</table>
+<table key="auth_mechanisms">
+<elem>NTLM</elem>
+<elem>PLAIN</elem>
+<elem>ANONYMOUS</elem>
+<elem>DIGEST-MD5</elem>
+<elem>CRAM-MD5</elem>
+<elem>SCRAM-SHA-1</elem>
+</table>
+</table>
+<table key="pre_tls">
+<table key="xmpp">
+</table>
+<table key="capabilities">
+</table>
+<table key="features">
+<elem>TLS</elem>
+</table>
+</table>
+<table key="post_tls">
+<table key="xmpp">
+</table>
+<table key="capabilities">
+</table>
+</table>
+</script></port>
+<port protocol="tcp" portid="5223"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="hpvirtgrp" method="table" conf="3"/><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A&#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;  TLSv1.3: &#xa;    ciphers: &#xa;      TLS_AKE_WITH_AES_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_AKE_WITH_AES_128_GCM_SHA256 (secp256r1) - A&#xa;    cipher preference: server&#xa;  least strength: A"><table key="TLSv1.2">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+</table>
+<table key="TLSv1.3">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_AKE_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_AKE_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+</table>
+<elem key="cipher preference">server</elem>
+</table>
+<elem key="least strength">A</elem>
+</script><script id="ssl-cert" output="Subject: commonName=dc01.jab.htb&#xa;Subject Alternative Name: DNS:dc01.jab.htb, DNS:*.dc01.jab.htb&#xa;Not valid before: 2023-10-26T22:00:12&#xa;Not valid after:  2028-10-24T22:00:12"><table key="subject">
+<elem key="commonName">dc01.jab.htb</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">dc01.jab.htb</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">85C1A7FDBDA07F90F17B7809A86E07AD81228C65FF76CD56EF63F2F33343217EC6D3E700FA96007855B1A63885F1D04908BFB447618803A7014C1B43CDA51E7FDFA3DD240C16C16409184340DA7F6CAC47A8A86D94DF7FA1999EEA118617C398E09D9E8951B3F654451D3468C04F0308D98C553418C73AFE49E177A2EA62CD604192D4EEF6BF63AAB5BD1A68EC565B352AA6991AA03909A28261C34C1CA1D60DB925C85F85B54F3D915826D80758414779EB9903FCB11699A872C93B120F309B369C1E4B83FEAEFDFE2453041D6A44CCCB79B542BBB077D096522D7859530771F97A918029B5B7D461455F622AE71A8753D85D0C8B2A9565135100AFAB0E1799</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:dc01.jab.htb, DNS:*.dc01.jab.htb</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">C2:0B:FC:B0:44:03:A8:77:3D:56:4B:7E:D8:23:B3:A1:26:34:D9:E8</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">C2:0B:FC:B0:44:03:A8:77:3D:56:4B:7E:D8:23:B3:A1:26:34:D9:E8</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-10-26T22:00:12</elem>
+<elem key="notAfter">2028-10-24T22:00:12</elem>
+</table>
+<elem key="md5">331765e1e84a14c29ac454bab51626d8</elem>
+<elem key="sha1">efd08bde42dfff041a797d20bf87a74066b8d966</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDGzCCAgOgAwIBAgIIbuO/UNJ13hgwDQYJKoZIhvcNAQELBQAwFzEVMBMGA1UE&#xa;AwwMZGMwMS5qYWIuaHRiMB4XDTIzMTAyNjIyMDAxMloXDTI4MTAyNDIyMDAxMlow&#xa;FzEVMBMGA1UEAwwMZGMwMS5qYWIuaHRiMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A&#xa;MIIBCgKCAQEAhcGn/b2gf5Dxe3gJqG4HrYEijGX/ds1W72Py8zNDIX7G0+cA+pYA&#xa;eFWxpjiF8dBJCL+0R2GIA6cBTBtDzaUef9+j3SQMFsFkCRhDQNp/bKxHqKhtlN9/&#xa;oZme6hGGF8OY4J2eiVGz9lRFHTRowE8DCNmMVTQYxzr+SeF3oupizWBBktTu9r9j&#xa;qrW9GmjsVls1KqaZGqA5CaKCYcNMHKHWDbklyF+FtU89kVgm2AdYQUd565kD/LEW&#xa;mahyyTsSDzCbNpweS4P+rv3+JFMEHWpEzMt5tUK7sHfQllIteFlTB3H5epGAKbW3&#xa;1GFFX2Iq5xqHU9hdDIsqlWUTUQCvqw4XmQIDAQABo2swaTAnBgNVHREEIDAeggxk&#xa;YzAxLmphYi5odGKCDiouZGMwMS5qYWIuaHRiMB0GA1UdDgQWBBTCC/ywRAOodz1W&#xa;S37YI7OhJjTZ6DAfBgNVHSMEGDAWgBTCC/ywRAOodz1WS37YI7OhJjTZ6DANBgkq&#xa;hkiG9w0BAQsFAAOCAQEAP5Qvvsqdy8cHd31YX0ju498doEU665J2e7VT4o3F5vEI&#xa;XV/6BOSc5WBGQifLwAXWpeYjk1CHh3wheh9iQfqi+STxKPDXN159EGRA746bJ684&#xa;AtCqFQAUiqbbwME3aqbhZDvnC0HedaTZN4slWyrn25WK6qTyl3XfCqGRMoGja0tz&#xa;K5nzUPsxH/c46I0BwmjIEY4Gjk487cJdSxLEkeI3ThExso1ib1eICjPGKTkCjLO6&#xa;Jq0a9SrQrlm62x8Ddk9roonWJKYsbnsFjDmMFdMbjnSou4dm0I2BAti0BDDOtTU7&#xa;2UlHPhyTT552GLTJngvpeF6DVYNUhDaKElcI6DtKXQ==&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script></port>
+<port protocol="tcp" portid="5262"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="5263"><state state="open" reason="syn-ack" reason_ttl="127"/><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A&#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;  TLSv1.3: &#xa;    ciphers: &#xa;      TLS_AKE_WITH_AES_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_AKE_WITH_AES_128_GCM_SHA256 (secp256r1) - A&#xa;    cipher preference: server&#xa;  least strength: A"><table key="TLSv1.2">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+</table>
+<table key="TLSv1.3">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_AKE_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_AKE_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+</table>
+<elem key="cipher preference">server</elem>
+</table>
+<elem key="least strength">A</elem>
+</script><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="ssl-cert" output="Subject: commonName=dc01.jab.htb&#xa;Subject Alternative Name: DNS:dc01.jab.htb, DNS:*.dc01.jab.htb&#xa;Not valid before: 2023-10-26T22:00:12&#xa;Not valid after:  2028-10-24T22:00:12"><table key="subject">
+<elem key="commonName">dc01.jab.htb</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">dc01.jab.htb</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">85C1A7FDBDA07F90F17B7809A86E07AD81228C65FF76CD56EF63F2F33343217EC6D3E700FA96007855B1A63885F1D04908BFB447618803A7014C1B43CDA51E7FDFA3DD240C16C16409184340DA7F6CAC47A8A86D94DF7FA1999EEA118617C398E09D9E8951B3F654451D3468C04F0308D98C553418C73AFE49E177A2EA62CD604192D4EEF6BF63AAB5BD1A68EC565B352AA6991AA03909A28261C34C1CA1D60DB925C85F85B54F3D915826D80758414779EB9903FCB11699A872C93B120F309B369C1E4B83FEAEFDFE2453041D6A44CCCB79B542BBB077D096522D7859530771F97A918029B5B7D461455F622AE71A8753D85D0C8B2A9565135100AFAB0E1799</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:dc01.jab.htb, DNS:*.dc01.jab.htb</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">C2:0B:FC:B0:44:03:A8:77:3D:56:4B:7E:D8:23:B3:A1:26:34:D9:E8</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">C2:0B:FC:B0:44:03:A8:77:3D:56:4B:7E:D8:23:B3:A1:26:34:D9:E8</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-10-26T22:00:12</elem>
+<elem key="notAfter">2028-10-24T22:00:12</elem>
+</table>
+<elem key="md5">331765e1e84a14c29ac454bab51626d8</elem>
+<elem key="sha1">efd08bde42dfff041a797d20bf87a74066b8d966</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDGzCCAgOgAwIBAgIIbuO/UNJ13hgwDQYJKoZIhvcNAQELBQAwFzEVMBMGA1UE&#xa;AwwMZGMwMS5qYWIuaHRiMB4XDTIzMTAyNjIyMDAxMloXDTI4MTAyNDIyMDAxMlow&#xa;FzEVMBMGA1UEAwwMZGMwMS5qYWIuaHRiMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A&#xa;MIIBCgKCAQEAhcGn/b2gf5Dxe3gJqG4HrYEijGX/ds1W72Py8zNDIX7G0+cA+pYA&#xa;eFWxpjiF8dBJCL+0R2GIA6cBTBtDzaUef9+j3SQMFsFkCRhDQNp/bKxHqKhtlN9/&#xa;oZme6hGGF8OY4J2eiVGz9lRFHTRowE8DCNmMVTQYxzr+SeF3oupizWBBktTu9r9j&#xa;qrW9GmjsVls1KqaZGqA5CaKCYcNMHKHWDbklyF+FtU89kVgm2AdYQUd565kD/LEW&#xa;mahyyTsSDzCbNpweS4P+rv3+JFMEHWpEzMt5tUK7sHfQllIteFlTB3H5epGAKbW3&#xa;1GFFX2Iq5xqHU9hdDIsqlWUTUQCvqw4XmQIDAQABo2swaTAnBgNVHREEIDAeggxk&#xa;YzAxLmphYi5odGKCDiouZGMwMS5qYWIuaHRiMB0GA1UdDgQWBBTCC/ywRAOodz1W&#xa;S37YI7OhJjTZ6DAfBgNVHSMEGDAWgBTCC/ywRAOodz1WS37YI7OhJjTZ6DANBgkq&#xa;hkiG9w0BAQsFAAOCAQEAP5Qvvsqdy8cHd31YX0ju498doEU665J2e7VT4o3F5vEI&#xa;XV/6BOSc5WBGQifLwAXWpeYjk1CHh3wheh9iQfqi+STxKPDXN159EGRA746bJ684&#xa;AtCqFQAUiqbbwME3aqbhZDvnC0HedaTZN4slWyrn25WK6qTyl3XfCqGRMoGja0tz&#xa;K5nzUPsxH/c46I0BwmjIEY4Gjk487cJdSxLEkeI3ThExso1ib1eICjPGKTkCjLO6&#xa;Jq0a9SrQrlm62x8Ddk9roonWJKYsbnsFjDmMFdMbjnSou4dm0I2BAti0BDDOtTU7&#xa;2UlHPhyTT552GLTJngvpeF6DVYNUhDaKElcI6DtKXQ==&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script></port>
+<port protocol="tcp" portid="5269"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="xmpp-server" method="table" conf="3"/><script id="xmpp-info" output="&#xa;  STARTTLS Failed&#xa;  info: &#xa;    capabilities: &#xa;    unknown: &#xa;    auth_mechanisms: &#xa;    compression_methods: &#xa;    errors: &#xa;      (timeout)&#xa;    features: &#xa;    xmpp: "><elem>STARTTLS Failed</elem>
+<table key="info">
+<table key="capabilities">
+</table>
+<table key="unknown">
+</table>
+<table key="auth_mechanisms">
+</table>
+<table key="compression_methods">
+</table>
+<table key="errors">
+<elem>(timeout)</elem>
+</table>
+<table key="features">
+</table>
+<table key="xmpp">
+</table>
+</table>
+</script></port>
+<port protocol="tcp" portid="5270"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="xmp" method="table" conf="3"/><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A&#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;  TLSv1.3: &#xa;    ciphers: &#xa;      TLS_AKE_WITH_AES_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_AKE_WITH_AES_128_GCM_SHA256 (secp256r1) - A&#xa;    cipher preference: server&#xa;  least strength: A"><table key="TLSv1.2">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+</table>
+<table key="TLSv1.3">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_AKE_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_AKE_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+</table>
+<elem key="cipher preference">server</elem>
+</table>
+<elem key="least strength">A</elem>
+</script><script id="ssl-date" output="TLS randomness does not represent time"></script><script id="ssl-cert" output="Subject: commonName=dc01.jab.htb&#xa;Subject Alternative Name: DNS:dc01.jab.htb, DNS:*.dc01.jab.htb&#xa;Not valid before: 2023-10-26T22:00:12&#xa;Not valid after:  2028-10-24T22:00:12"><table key="subject">
+<elem key="commonName">dc01.jab.htb</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">dc01.jab.htb</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">85C1A7FDBDA07F90F17B7809A86E07AD81228C65FF76CD56EF63F2F33343217EC6D3E700FA96007855B1A63885F1D04908BFB447618803A7014C1B43CDA51E7FDFA3DD240C16C16409184340DA7F6CAC47A8A86D94DF7FA1999EEA118617C398E09D9E8951B3F654451D3468C04F0308D98C553418C73AFE49E177A2EA62CD604192D4EEF6BF63AAB5BD1A68EC565B352AA6991AA03909A28261C34C1CA1D60DB925C85F85B54F3D915826D80758414779EB9903FCB11699A872C93B120F309B369C1E4B83FEAEFDFE2453041D6A44CCCB79B542BBB077D096522D7859530771F97A918029B5B7D461455F622AE71A8753D85D0C8B2A9565135100AFAB0E1799</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:dc01.jab.htb, DNS:*.dc01.jab.htb</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">C2:0B:FC:B0:44:03:A8:77:3D:56:4B:7E:D8:23:B3:A1:26:34:D9:E8</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">C2:0B:FC:B0:44:03:A8:77:3D:56:4B:7E:D8:23:B3:A1:26:34:D9:E8</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-10-26T22:00:12</elem>
+<elem key="notAfter">2028-10-24T22:00:12</elem>
+</table>
+<elem key="md5">331765e1e84a14c29ac454bab51626d8</elem>
+<elem key="sha1">efd08bde42dfff041a797d20bf87a74066b8d966</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDGzCCAgOgAwIBAgIIbuO/UNJ13hgwDQYJKoZIhvcNAQELBQAwFzEVMBMGA1UE&#xa;AwwMZGMwMS5qYWIuaHRiMB4XDTIzMTAyNjIyMDAxMloXDTI4MTAyNDIyMDAxMlow&#xa;FzEVMBMGA1UEAwwMZGMwMS5qYWIuaHRiMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A&#xa;MIIBCgKCAQEAhcGn/b2gf5Dxe3gJqG4HrYEijGX/ds1W72Py8zNDIX7G0+cA+pYA&#xa;eFWxpjiF8dBJCL+0R2GIA6cBTBtDzaUef9+j3SQMFsFkCRhDQNp/bKxHqKhtlN9/&#xa;oZme6hGGF8OY4J2eiVGz9lRFHTRowE8DCNmMVTQYxzr+SeF3oupizWBBktTu9r9j&#xa;qrW9GmjsVls1KqaZGqA5CaKCYcNMHKHWDbklyF+FtU89kVgm2AdYQUd565kD/LEW&#xa;mahyyTsSDzCbNpweS4P+rv3+JFMEHWpEzMt5tUK7sHfQllIteFlTB3H5epGAKbW3&#xa;1GFFX2Iq5xqHU9hdDIsqlWUTUQCvqw4XmQIDAQABo2swaTAnBgNVHREEIDAeggxk&#xa;YzAxLmphYi5odGKCDiouZGMwMS5qYWIuaHRiMB0GA1UdDgQWBBTCC/ywRAOodz1W&#xa;S37YI7OhJjTZ6DAfBgNVHSMEGDAWgBTCC/ywRAOodz1WS37YI7OhJjTZ6DANBgkq&#xa;hkiG9w0BAQsFAAOCAQEAP5Qvvsqdy8cHd31YX0ju498doEU665J2e7VT4o3F5vEI&#xa;XV/6BOSc5WBGQifLwAXWpeYjk1CHh3wheh9iQfqi+STxKPDXN159EGRA746bJ684&#xa;AtCqFQAUiqbbwME3aqbhZDvnC0HedaTZN4slWyrn25WK6qTyl3XfCqGRMoGja0tz&#xa;K5nzUPsxH/c46I0BwmjIEY4Gjk487cJdSxLEkeI3ThExso1ib1eICjPGKTkCjLO6&#xa;Jq0a9SrQrlm62x8Ddk9roonWJKYsbnsFjDmMFdMbjnSou4dm0I2BAti0BDDOtTU7&#xa;2UlHPhyTT552GLTJngvpeF6DVYNUhDaKElcI6DtKXQ==&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script></port>
+<port protocol="tcp" portid="5275"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="5276"><state state="open" reason="syn-ack" reason_ttl="127"/><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (secp256r1) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 2048) - A&#xa;      TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A&#xa;      TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;  TLSv1.3: &#xa;    ciphers: &#xa;      TLS_AKE_WITH_AES_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_AKE_WITH_AES_128_GCM_SHA256 (secp256r1) - A&#xa;    cipher preference: server&#xa;  least strength: A"><table key="TLSv1.2">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_256_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_RSA_WITH_AES_128_CBC_SHA</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">rsa 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+</table>
+<table key="TLSv1.3">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_AKE_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_AKE_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+</table>
+<elem key="cipher preference">server</elem>
+</table>
+<elem key="least strength">A</elem>
+</script><script id="ssl-cert" output="Subject: commonName=dc01.jab.htb&#xa;Subject Alternative Name: DNS:dc01.jab.htb, DNS:*.dc01.jab.htb&#xa;Not valid before: 2023-10-26T22:00:12&#xa;Not valid after:  2028-10-24T22:00:12"><table key="subject">
+<elem key="commonName">dc01.jab.htb</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">dc01.jab.htb</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">85C1A7FDBDA07F90F17B7809A86E07AD81228C65FF76CD56EF63F2F33343217EC6D3E700FA96007855B1A63885F1D04908BFB447618803A7014C1B43CDA51E7FDFA3DD240C16C16409184340DA7F6CAC47A8A86D94DF7FA1999EEA118617C398E09D9E8951B3F654451D3468C04F0308D98C553418C73AFE49E177A2EA62CD604192D4EEF6BF63AAB5BD1A68EC565B352AA6991AA03909A28261C34C1CA1D60DB925C85F85B54F3D915826D80758414779EB9903FCB11699A872C93B120F309B369C1E4B83FEAEFDFE2453041D6A44CCCB79B542BBB077D096522D7859530771F97A918029B5B7D461455F622AE71A8753D85D0C8B2A9565135100AFAB0E1799</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:dc01.jab.htb, DNS:*.dc01.jab.htb</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">C2:0B:FC:B0:44:03:A8:77:3D:56:4B:7E:D8:23:B3:A1:26:34:D9:E8</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">C2:0B:FC:B0:44:03:A8:77:3D:56:4B:7E:D8:23:B3:A1:26:34:D9:E8</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-10-26T22:00:12</elem>
+<elem key="notAfter">2028-10-24T22:00:12</elem>
+</table>
+<elem key="md5">331765e1e84a14c29ac454bab51626d8</elem>
+<elem key="sha1">efd08bde42dfff041a797d20bf87a74066b8d966</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDGzCCAgOgAwIBAgIIbuO/UNJ13hgwDQYJKoZIhvcNAQELBQAwFzEVMBMGA1UE&#xa;AwwMZGMwMS5qYWIuaHRiMB4XDTIzMTAyNjIyMDAxMloXDTI4MTAyNDIyMDAxMlow&#xa;FzEVMBMGA1UEAwwMZGMwMS5qYWIuaHRiMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A&#xa;MIIBCgKCAQEAhcGn/b2gf5Dxe3gJqG4HrYEijGX/ds1W72Py8zNDIX7G0+cA+pYA&#xa;eFWxpjiF8dBJCL+0R2GIA6cBTBtDzaUef9+j3SQMFsFkCRhDQNp/bKxHqKhtlN9/&#xa;oZme6hGGF8OY4J2eiVGz9lRFHTRowE8DCNmMVTQYxzr+SeF3oupizWBBktTu9r9j&#xa;qrW9GmjsVls1KqaZGqA5CaKCYcNMHKHWDbklyF+FtU89kVgm2AdYQUd565kD/LEW&#xa;mahyyTsSDzCbNpweS4P+rv3+JFMEHWpEzMt5tUK7sHfQllIteFlTB3H5epGAKbW3&#xa;1GFFX2Iq5xqHU9hdDIsqlWUTUQCvqw4XmQIDAQABo2swaTAnBgNVHREEIDAeggxk&#xa;YzAxLmphYi5odGKCDiouZGMwMS5qYWIuaHRiMB0GA1UdDgQWBBTCC/ywRAOodz1W&#xa;S37YI7OhJjTZ6DAfBgNVHSMEGDAWgBTCC/ywRAOodz1WS37YI7OhJjTZ6DANBgkq&#xa;hkiG9w0BAQsFAAOCAQEAP5Qvvsqdy8cHd31YX0ju498doEU665J2e7VT4o3F5vEI&#xa;XV/6BOSc5WBGQifLwAXWpeYjk1CHh3wheh9iQfqi+STxKPDXN159EGRA746bJ684&#xa;AtCqFQAUiqbbwME3aqbhZDvnC0HedaTZN4slWyrn25WK6qTyl3XfCqGRMoGja0tz&#xa;K5nzUPsxH/c46I0BwmjIEY4Gjk487cJdSxLEkeI3ThExso1ib1eICjPGKTkCjLO6&#xa;Jq0a9SrQrlm62x8Ddk9roonWJKYsbnsFjDmMFdMbjnSou4dm0I2BAti0BDDOtTU7&#xa;2UlHPhyTT552GLTJngvpeF6DVYNUhDaKElcI6DtKXQ==&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ssl-date" output="TLS randomness does not represent time"></script></port>
+<port protocol="tcp" portid="5985"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="wsman" method="table" conf="3"/></port>
+<port protocol="tcp" portid="7070"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="realserver" method="table" conf="3"/></port>
+<port protocol="tcp" portid="7443"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="oracleas-https" method="table" conf="3"/><script id="ssl-enum-ciphers" output="&#xa;  TLSv1.2: &#xa;    ciphers: &#xa;      TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (secp256r1) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp256r1) - A&#xa;      TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (secp256r1) - A&#xa;      TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 2048) - A&#xa;      TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 2048) - A&#xa;    compressors: &#xa;      NULL&#xa;    cipher preference: server&#xa;  TLSv1.3: &#xa;    ciphers: &#xa;      TLS_AKE_WITH_AES_256_GCM_SHA384 (secp256r1) - A&#xa;      TLS_AKE_WITH_AES_128_GCM_SHA256 (secp256r1) - A&#xa;    cipher preference: server&#xa;  least strength: A"><table key="TLSv1.2">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_256_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+<table>
+<elem key="name">TLS_DHE_RSA_WITH_AES_128_CBC_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">dh 2048</elem>
+</table>
+</table>
+<table key="compressors">
+<elem>NULL</elem>
+</table>
+<elem key="cipher preference">server</elem>
+</table>
+<table key="TLSv1.3">
+<table key="ciphers">
+<table>
+<elem key="name">TLS_AKE_WITH_AES_256_GCM_SHA384</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+<table>
+<elem key="name">TLS_AKE_WITH_AES_128_GCM_SHA256</elem>
+<elem key="strength">A</elem>
+<elem key="kex_info">secp256r1</elem>
+</table>
+</table>
+<elem key="cipher preference">server</elem>
+</table>
+<elem key="least strength">A</elem>
+</script><script id="ssl-cert" output="Subject: commonName=dc01.jab.htb&#xa;Subject Alternative Name: DNS:dc01.jab.htb, DNS:*.dc01.jab.htb&#xa;Not valid before: 2023-10-26T22:00:12&#xa;Not valid after:  2028-10-24T22:00:12"><table key="subject">
+<elem key="commonName">dc01.jab.htb</elem>
+</table>
+<table key="issuer">
+<elem key="commonName">dc01.jab.htb</elem>
+</table>
+<table key="pubkey">
+<elem key="type">rsa</elem>
+<elem key="bits">2048</elem>
+<elem key="modulus">85C1A7FDBDA07F90F17B7809A86E07AD81228C65FF76CD56EF63F2F33343217EC6D3E700FA96007855B1A63885F1D04908BFB447618803A7014C1B43CDA51E7FDFA3DD240C16C16409184340DA7F6CAC47A8A86D94DF7FA1999EEA118617C398E09D9E8951B3F654451D3468C04F0308D98C553418C73AFE49E177A2EA62CD604192D4EEF6BF63AAB5BD1A68EC565B352AA6991AA03909A28261C34C1CA1D60DB925C85F85B54F3D915826D80758414779EB9903FCB11699A872C93B120F309B369C1E4B83FEAEFDFE2453041D6A44CCCB79B542BBB077D096522D7859530771F97A918029B5B7D461455F622AE71A8753D85D0C8B2A9565135100AFAB0E1799</elem>
+<elem key="exponent">65537</elem>
+</table>
+<table key="extensions">
+<table>
+<elem key="name">X509v3 Subject Alternative Name</elem>
+<elem key="value">DNS:dc01.jab.htb, DNS:*.dc01.jab.htb</elem>
+</table>
+<table>
+<elem key="name">X509v3 Subject Key Identifier</elem>
+<elem key="value">C2:0B:FC:B0:44:03:A8:77:3D:56:4B:7E:D8:23:B3:A1:26:34:D9:E8</elem>
+</table>
+<table>
+<elem key="name">X509v3 Authority Key Identifier</elem>
+<elem key="value">C2:0B:FC:B0:44:03:A8:77:3D:56:4B:7E:D8:23:B3:A1:26:34:D9:E8</elem>
+</table>
+</table>
+<elem key="sig_algo">sha256WithRSAEncryption</elem>
+<table key="validity">
+<elem key="notBefore">2023-10-26T22:00:12</elem>
+<elem key="notAfter">2028-10-24T22:00:12</elem>
+</table>
+<elem key="md5">331765e1e84a14c29ac454bab51626d8</elem>
+<elem key="sha1">efd08bde42dfff041a797d20bf87a74066b8d966</elem>
+<elem key="pem">-&#45;&#45;&#45;&#45;BEGIN CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;MIIDGzCCAgOgAwIBAgIIbuO/UNJ13hgwDQYJKoZIhvcNAQELBQAwFzEVMBMGA1UE&#xa;AwwMZGMwMS5qYWIuaHRiMB4XDTIzMTAyNjIyMDAxMloXDTI4MTAyNDIyMDAxMlow&#xa;FzEVMBMGA1UEAwwMZGMwMS5qYWIuaHRiMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A&#xa;MIIBCgKCAQEAhcGn/b2gf5Dxe3gJqG4HrYEijGX/ds1W72Py8zNDIX7G0+cA+pYA&#xa;eFWxpjiF8dBJCL+0R2GIA6cBTBtDzaUef9+j3SQMFsFkCRhDQNp/bKxHqKhtlN9/&#xa;oZme6hGGF8OY4J2eiVGz9lRFHTRowE8DCNmMVTQYxzr+SeF3oupizWBBktTu9r9j&#xa;qrW9GmjsVls1KqaZGqA5CaKCYcNMHKHWDbklyF+FtU89kVgm2AdYQUd565kD/LEW&#xa;mahyyTsSDzCbNpweS4P+rv3+JFMEHWpEzMt5tUK7sHfQllIteFlTB3H5epGAKbW3&#xa;1GFFX2Iq5xqHU9hdDIsqlWUTUQCvqw4XmQIDAQABo2swaTAnBgNVHREEIDAeggxk&#xa;YzAxLmphYi5odGKCDiouZGMwMS5qYWIuaHRiMB0GA1UdDgQWBBTCC/ywRAOodz1W&#xa;S37YI7OhJjTZ6DAfBgNVHSMEGDAWgBTCC/ywRAOodz1WS37YI7OhJjTZ6DANBgkq&#xa;hkiG9w0BAQsFAAOCAQEAP5Qvvsqdy8cHd31YX0ju498doEU665J2e7VT4o3F5vEI&#xa;XV/6BOSc5WBGQifLwAXWpeYjk1CHh3wheh9iQfqi+STxKPDXN159EGRA746bJ684&#xa;AtCqFQAUiqbbwME3aqbhZDvnC0HedaTZN4slWyrn25WK6qTyl3XfCqGRMoGja0tz&#xa;K5nzUPsxH/c46I0BwmjIEY4Gjk487cJdSxLEkeI3ThExso1ib1eICjPGKTkCjLO6&#xa;Jq0a9SrQrlm62x8Ddk9roonWJKYsbnsFjDmMFdMbjnSou4dm0I2BAti0BDDOtTU7&#xa;2UlHPhyTT552GLTJngvpeF6DVYNUhDaKElcI6DtKXQ==&#xa;-&#45;&#45;&#45;&#45;END CERTIFICATE-&#45;&#45;&#45;&#45;&#xa;</elem>
+</script><script id="ssl-date" output="TLS randomness does not represent time"></script></port>
+<port protocol="tcp" portid="7777"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="cbt" method="table" conf="3"/></port>
+<port protocol="tcp" portid="9389"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="adws" method="table" conf="3"/></port>
+<port protocol="tcp" portid="47001"><state state="open" reason="syn-ack" reason_ttl="127"/><service name="winrm" method="table" conf="3"/></port>
+<port protocol="tcp" portid="49664"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49665"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49666"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49667"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49671"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49686"><state state="open" reason="syn-ack" reason_ttl="127"/><script id="banner" output="ncacn_http/1.0"/></port>
+<port protocol="tcp" portid="49687"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49690"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49695"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="49726"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+<port protocol="tcp" portid="54023"><state state="open" reason="syn-ack" reason_ttl="127"/></port>
+</ports>
+<hostscript><script id="smb2-time" output="&#xa;  date: 2024-02-26T17:37:03&#xa;  start_date: N/A"><elem key="date">2024-02-26T17:37:03</elem>
+<elem key="start_date">N/A</elem>
+</script><script id="smb-mbenum" output="&#xa;  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR"/><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;53    0       77399.83   31720.84  40.0%&#xa;88    0       82145.83   25731.79  40.0%&#xa;135   1       143364.43  65726.07  30.0%&#xa;139   0       94398.80   14254.14  50.0%&#xa;389   0       107595.75  61317.31  20.0%&#xa;445   1       168793.50  80300.07  20.0%&#xa;464   0       80486.67   35214.70  40.0%&#xa;593   1       131513.00  61635.94  40.0%&#xa;"/><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="path-mtu" output="PMTU == 1500"/><script id="smb-protocols" output="&#xa;  dialects: &#xa;    2:0:2&#xa;    2:1:0&#xa;    3:0:0&#xa;    3:0:2&#xa;    3:1:1"><table key="dialects">
+<elem>2:0:2</elem>
+<elem>2:1:0</elem>
+<elem>3:0:0</elem>
+<elem>3:0:2</elem>
+<elem>3:1:1</elem>
+</table>
+</script><script id="smb2-security-mode" output="&#xa;  3:1:1: &#xa;    Message signing enabled and required"><table key="3:1:1">
+<elem>Message signing enabled and required</elem>
+</table>
+</script><script id="ipidseq" output="Unknown"/><script id="smb2-capabilities" output="&#xa;  2:0:2: &#xa;    Distributed File System&#xa;  2:1:0: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3:0:0: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3:0:2: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations&#xa;  3:1:1: &#xa;    Distributed File System&#xa;    Leasing&#xa;    Multi-credit operations"><table key="2:0:2">
+<elem>Distributed File System</elem>
+</table>
+<table key="2:1:0">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3:0:0">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3:0:2">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+<table key="3:1:1">
+<elem>Distributed File System</elem>
+<elem>Leasing</elem>
+<elem>Multi-credit operations</elem>
+</table>
+</script><script id="msrpc-enum" output="Could not negotiate a connection:SMB: Failed to receive bytes: ERROR">false</script><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.129.1.96&quot;; use dns-brute.domain script argument."/></hostscript><times srtt="105789" rttvar="6104" to="130205"/>
+</host>
+<runstats><finished time="1708969221" timestr="Mon Feb 26 17:40:21 2024" summary="Nmap done at Mon Feb 26 17:40:21 2024; 1 IP address (1 host up) scanned in 236.47 seconds" elapsed="236.47" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

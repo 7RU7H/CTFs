@@ -1,0 +1,240 @@
+#!/bin/bash -e
+
+# Set up system variables
+./init.sh
+. ./xi-sys.cfg
+. ./functions.sh
+
+# Explicitly set umask
+umask 0022
+
+# Install log
+log="install.log"
+
+# Installation is interactive by default
+export INTERACTIVE="True"
+# INSTALL_PATH is current dir for use in making install dir independent
+export INSTALL_PATH=`pwd`
+# we wont tune mysql unless we're the ones installing it
+export TUNE_MYSQL="False"
+
+# Force the install even if the XI directory exists
+export FORCE=0
+
+if ! path_is_ok; then
+	echo "Your system \$PATH does not include /sbin and /usr/sbin. This is usually the result of installing GNOME rather than creating a clean system."
+	echo "Adding /sbin and /usr/sbin to \$PATH."
+	PATH="$PATH:/usr/sbin:/sbin"
+fi
+
+# Parse command line
+# Added offline install option - SR
+while [ -n "$1" ]; do
+	case "$1" in
+		-h | --help)
+			usage
+			exit 0
+			;;
+		-v | --version)
+			sed -n '/full/ s/.*=//p' "${0%/*}/nagiosxi/basedir/var/xiversion"
+			exit 0
+			;;
+		-n | --non-interactive)
+			export INTERACTIVE="False"
+			;;
+		-p | --mysql-password)
+			mysqlpass="$2"
+			./xivar mysqlpass "$2"
+			shift
+			;;
+		-o | --offline-install)
+			echo "Offline installs now use RPMs. Instructions are at: https://repo.nagios.com/?repo=offline"
+			exit 0
+			;;
+	    -f | --force)
+			export FORCE=1
+			;;
+		*)
+			echo "Unknown option:  $1" >&2
+			usage >&2
+			exit 1
+	esac
+	shift
+done
+
+# Verify that XI is not already installed
+if [ -d /usr/local/nagiosxi/html ]; then
+	if [ $FORCE -eq 0 ]; then
+		echo "Error: It looks like Nagios XI is already installed in /usr/local/nagiosxi. If you know what"
+		echo "you're doing you can run the installer with -f or --force to run the install."
+		exit 1;
+	fi
+fi
+
+# RHEL 9.0 needs an update to pcre2, or the install breaks.
+# Simplest fix it to ask if we can update the system.
+if [ "$distro" == "RedHatEnterpriseServer" ] && [ "$dist" == "el9" ]; then
+	if [[ $INTERACTIVE == "True" ]]; then
+		cat <<-EOF
+
+		==============================
+		IMPORTANT: RHEL 9 Notification
+		==============================
+		Updated packages are required to install Nagios XI.
+
+		EOF
+
+		read -p "Update your system, now? [Y/n] " response
+
+		case "$response" in
+			Y | y | "")
+				echo "Updating system..."
+				yum -y update
+				;;
+			*)
+				;;
+		esac
+	else
+		echo "Updating system..."
+		yum -y update
+	fi
+fi
+
+if [ "$INTERACTIVE" = "True" ]; then
+	# CentOS, RedHat, Raspbian, Ubuntu, Debian, openSUSE, or SUSE Enterprise
+	fmt -s -w $(tput cols) <<-EOF
+		========================
+		Nagios XI Full Installer
+		========================
+
+		This script will do a complete install of Nagios XI by executing all necessary sub-scripts.
+
+		IMPORTANT: This script should only be used on a 'clean' install of CentOS, RHEL, Ubuntu LTS, Debian, or Oracle. Do NOT use this on a system that has been tasked with other purposes or has an existing install of Nagios Core. To create such a clean install you should have selected only the base package in the OS installer.
+	EOF
+	read -p "Do you want to continue? [Y/n] " res
+
+	case "$res" in
+		Y | y | "")
+			echo "Proceeding with installation..."
+			;;
+		*)
+			echo "Installation cancelled"
+			exit 0
+	esac
+fi
+
+echo "Checking MySQL credentials..."
+
+# Check Mysql root password if MySQL is already installed and running...
+if service $mysqld status &>/dev/null; then
+	# Test for null MySQL root password
+	if mysqlshow -u root &>/dev/null; then
+		echo "After installation your MySQL root password will be set to 'nagiosxi' (without quotes)."
+	elif mysqlshow -u root -p"$mysqlpass" &>/dev/null; then
+		echo "Stored MySQL password validated."
+	else
+		for i in 1 2 3; do
+			if [ "$INTERACTIVE" = "True" ]; then
+				echo "Enter the MySQL root password to continue..."
+				read -p "MySQL Root Password: " pass
+			fi
+
+			# Test the password
+			if mysqlshow -u root -p"$pass" &>/dev/null; then
+				echo "Password validated."
+				mysqlpass="$pass"
+
+				# Update xi-sys.cfg with MySQL password for later use by subcomponent install
+				if ! ./xivar mysqlpass "$mysqlpass"; then
+					echo "ERROR: Failed to update xi-sys.cfg with MySQL password - exiting." >&2
+					exit 1
+				fi			
+
+				break
+			else
+				echo "Password failed." >&2
+				[ $i -eq 3 ] && exit 1
+			fi
+		done
+	fi
+else
+	echo "MySQL not yet installed - that's okay."
+	export TUNE_MYSQL="True"
+fi
+
+# Initialize install.log
+cat >>"$log" <<-EOF
+	Nagios XI Installation Log
+	==========================
+	DATE: $(date)
+
+	DISTRO INFO:
+	$distro
+	$version
+	$architecture
+
+EOF
+
+{
+if [ ! -f "$proddir/var/xiversion" ]; then
+	echo "THIS IS A NEW INSTALL!"
+else
+	echo "THIS IS AN UPGRADE!"
+	echo
+	echo "OLD VERSION:"
+	grep -v "#" "$proddir/var/xiversion"
+fi
+echo
+echo "INSTALLING:"
+grep -v "#" nagiosxi/basedir/var/xiversion
+echo
+} >>"$log"
+
+
+# Install the subcomponents
+run_sub ./0-repos noupdate
+run_sub ./1-prereqs
+run_sub ./2-usersgroups
+run_sub ./3-dbservers
+run_sub ./4-services
+run_sub ./5-sudoers
+run_sub ./6-firewall
+run_sub ./8-selinux
+run_sub ./9-dbbackups
+run_sub ./11-sourceguardian
+run_sub ./13-phpini
+run_sub ./A-subcomponents
+run_sub ./A0-mrtg
+run_sub ./B-installxi
+run_sub ./C-cronjobs
+run_sub ./D-chkconfigalldaemons
+run_sub ./E-importnagiosql
+run_sub ./F-startdaemons
+run_sub ./Z-webroot
+
+echo >>"$log"
+echo "Install complete!" >>"$log"
+ 
+
+# Get IP address
+ip=$(ip addr | grep global | grep -m 1 'inet' | awk '/inet[^6]/{print substr($2,0)}' | sed 's|/.*||')
+if [ "$ip" == "" ]; then
+    ip=$(ip addr | grep global | grep -m 1 'inet' | awk '/inet6/{print substr($2,0)}' | sed 's|/.*||')
+    if [ "$ip" == "" ];then
+    	ip="<HOSTNAME>"
+    else
+    	ip="[$ip]"
+    fi
+fi
+
+
+cat <<-EOF
+
+	Nagios XI Installation Complete!
+	--------------------------------
+
+	You can access the Nagios XI web interface by visiting:
+	    http://${ip}/nagiosxi/
+
+EOF
+

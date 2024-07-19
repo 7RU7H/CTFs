@@ -1,0 +1,23 @@
+#!/bin/bash -e
+
+. ../../xi-sys.cfg
+
+echo "INSTALL: Installing/updating XI components..."
+/bin/cp -f ../../nagiosxi/basedir/tools/install_component.php "$proddir/tools/"
+
+echo "Backing up existing components to /tmp/xicomponents_backup..."
+
+/bin/mkdir -p /tmp/xicomponents_backup
+cp -rf "$proddir"/html/includes/components/* /tmp/xicomponents_backup
+
+# Install/update each component
+for f in `ls -1 components/*.zip`; do
+	echo "Installing '$f'"
+	
+	"$proddir/tools/install_component.php" --file=$f --refresh=0
+
+done
+
+# Things are okay
+echo "INSTALL: Components installed/updated OK."
+

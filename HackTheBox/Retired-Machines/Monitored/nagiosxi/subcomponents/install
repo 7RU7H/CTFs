@@ -1,0 +1,21 @@
+#!/bin/bash -e
+
+. ../xi-sys.cfg
+
+echo "Installing Subcomponents..."
+
+mkdir -p /usr/local/nagios/etc
+
+for pkg in nagioscore nagiosplugins ndo pnp nrpe nsca nrdp ccm extraplugins webinject sshterminal wkhtmltox mrtg oauth2; do
+	# Check installer return code
+	if (cd "./$pkg"; ./install); then
+		echo "Subcomponent '$pkg' installed OK"
+	else
+		echo "ERROR: Subcomponent '$pkg' installation failed - exiting." >&2
+		exit 1
+	fi
+done
+
+# Post-install fixes
+chown -R "$nagiosuser:$nagiosgroup" /usr/local/nagios/var/spool
+

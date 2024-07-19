@@ -1,5 +1,12 @@
 # Beyond Root Todo
 
+Photocopier CTF requires this clip https://www.youtube.com/watch?v=rN7pkFNEg5c
+
+This is living rent free in my head and I want to doa pwn ctf with a null pointer https://www.youtube.com/watch?v=bLHL75H_VEM so I never forget about C type casting
+
+Western Themed box - https://www.youtube.com/watch?v=vrLEPpBIHWI
+
+Fast Eyes, soft eyes and Hard eyes for Problem Microscope improvements https://www.youtube.com/watch?v=tmZUI1LTYZQ
 
 DEVELOPERS DEVELOPERS https://www.youtube.com/watch?v=OQm07iuC-zs
 

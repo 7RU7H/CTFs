@@ -1,0 +1,254 @@
+//0.3.2
+(function($){
+	$.fn.bgStretch=function(o){		
+		this.each(function(){
+			var th=$(this),
+				data=th.data('bgStretch'),
+				_={
+					align:'center',
+					altCSS:{},
+					css:{
+						leftTop:{
+							left:0,
+							right:'auto',
+							top:0,
+							bottom:'auto'
+						},
+						rightTop:{
+							left:'auto',
+							right:0,
+							top:0,
+							bottom:'auto'
+						},
+						leftBottom:{
+							left:0,
+							right:'auto',
+							top:'auto',
+							bottom:0
+						},
+						rightBottom:{
+							left:'auto',
+							right:0,
+							top:'auto',
+							bottom:0
+						}
+						,center:{
+							left:0
+							,top:0
+						}
+					},
+					preFu:function(){
+						_.img
+							.load(function(){
+								_.checkWidthFu()
+								_.img
+									.css({
+										width:'100%',
+										height:'100%',
+										position:'absolute',
+										zIndex:-1,
+										left:0,
+										top:0
+									})
+								$(window).trigger('resize')
+								return false
+							})
+						_.img[0].complete
+							&&_.img.trigger('load')						
+						_.me
+							.css({
+								position:'absolute',
+								zIndex:-1
+							})
+							.css($.extend(_.css[_.aalign=_.align],_.altCSS))
+						_.wrap
+							.css({
+								width:'100%',
+								height:'100%',
+								position:'fixed',
+								left:0,
+								top:0,
+								overflow:'hidden',
+								zIndex:-1
+							})
+					},
+					checkWidthFu:function(){
+						var i=$('<img>')
+						i
+							.css({
+								position:'absolute'
+								,left:'-999%'
+								,top:'-999%'
+							})
+							.appendTo('body')
+							.load(function(){
+								_.k=i.height()/i.width()
+								_.resizeFu()
+								i.remove()
+							})
+							.attr({src:_.img.attr('src')})									
+					},
+					resizeFu:function(){
+						var wh=_.win.height(),
+							ww=_.win.width(),
+							k=wh/ww
+						if(_.aalign!=_.align)
+							_.me
+								.css(_.css[_.aalign=_.align])
+
+						_.me
+							.css(
+								k<_.k
+									?{
+										width:ww
+										,height:ww*_.k
+									}
+									:{
+										width:wh/_.k
+										,height:wh
+									}
+							)
+						if(_.align==='center')
+							_.me
+								.css(
+									k<_.k
+										?{
+											left:0
+											,top:(wh-ww*_.k)/2
+										}
+										:{
+											left:(ww-wh/_.k)/2
+											,top:0
+										}
+								)							
+					},
+					chngFu:function(str){
+						$.fn.sImg
+							?_.me.sImg(str)
+							:_.img.attr({src:str})
+					},
+					init:function(){
+						_.win=$(window)						
+						_.img=$('img',_.me)
+						_.me.wrap('<div></div>')
+						_.wrap=_.me.parent()
+						
+						_.preFu()
+						$(window)
+							.resize(function(){
+								_.resizeFu()
+							})
+							.trigger('resize')
+						_.navs&&_.navs.data('navs')
+							&&_.navs.navs(function(n,__){
+								_.chngFu(__.href)
+							})
+							
+					}
+				}
+			data?_=data:th.data({bgStretch:_})
+			typeof o=='object'&&(_=$.extend(true,_,o))
+			_.me||_.init(_.me=th)
+			
+			typeof o=='string'&&_.chngFu(o)
+		})
+		return this		
+	}
+})(jQuery)
+
+//0.2.4 image changer
+;(function($){
+	$.fn.sImg=function(o,cb){
+		this.each(function(){
+			var th=$(this),
+				data=th.data('sImg'),
+				_={
+					duration:1000,
+					sleep:300,
+					spinner:'<span class="spinner"></span>',
+					preFu:function(){
+						_.me.css('position')=='static'
+							&&_.me.css({position:'relative',zIndex:1})
+					},					
+					chngFu:function(src){
+						if(src==_.src)
+							return false
+						_.src=src
+						_.buff=_.buff||$('<img>').css({position:'absolute',top:'-999%',left:'-999%'})
+						if(_.clone&&_.clone.is(':animated'))
+							_.clone.stop()
+						if(_.clone)
+							_.clone.remove()
+						if(_.spinner!==false)
+							if(typeof _.spinner=='string')
+								_.spinner=$(_.spinner).hide()
+							else
+								if(typeof _.spinner=='object'){
+									if(_.spinner.parent&&_.spinner.parent().length==0)
+										_.spinner.appendTo(_.me)
+									_.spinner										
+										.fadeIn()
+									}
+						_.buff
+							.appendTo('body')
+							.unbind('load')
+							.load(function(){
+								setTimeout(function(){
+									if(_.img.css('position')=='static')										
+										_.me
+											.css({
+												width:_.buff.width(),
+												height:_.buff.height()
+											}),
+										_.img
+											.css({
+												position:'absolute',
+												left:0,
+												top:0
+											})
+									_.clone=_.img.clone()
+										.css({
+											position:'absolute',
+											left:_.img.prop('offsetLeft'),
+											top:_.img.prop('offsetTop')
+										})
+										.appendTo(_.me)
+									_.spinner
+										&&_.spinner.fadeOut()
+									_.img.attr({src:src})
+									_.clone
+										.stop()
+										.animate({
+											opacity:0
+										},{
+											duration:_.duration,
+											complete:function(){
+												_.clone.remove()
+												cb&&cb()
+											}
+										})
+										_.buff.detach()
+										_.spinner
+											&&_.spinner.hide()
+								},_.sleep)
+							})
+							.attr({src:src})
+					},
+					init:function(){
+						_.img=$('>img',_.me)
+						_.preFu()						
+					}
+				}
+			data?_=data:th.data({sImg:_})
+			typeof o=='object'&&$.extend(_,o)
+			_.me||_.init(_.me=th)
+			
+			if(_.spinner!==false)
+				if(typeof _.spinner=='string')
+					_.spinner=$(_.spinner).hide()
+			
+			typeof o=='string'&&_.chngFu(o)
+		})
+		return this
+	}
+})(jQuery)

@@ -1,0 +1,123 @@
+# Nmap 7.94SVN scan initiated Sun May 12 10:02:38 2024 as: nmap --script discovery -oA /home/kali/HackTheBoxCompetitive/Anomalies/SolarLab/nmap/10-129-33-124-Discovery --min-rate 300 -e tun0 -p 80,135,139,445,6791 10.129.33.124
+Pre-scan script results:
+|_broadcast-ping: false
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_lltd-discovery: false
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+Nmap scan report for 10.129.33.124
+Host is up (0.055s latency).
+
+Bug in http-security-headers: no string output.
+PORT     STATE SERVICE
+80/tcp   open  http
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-comments-displayer: Couldn't find any comments.
+|_http-feed: Couldn't find any feeds.
+| http-useragent-tester: 
+|   Status for browser useragent: false
+|   Redirected To: http://solarlab.htb/
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-mobileversion-checker: No mobile version detected.
+|_http-title: Did not follow redirect to http://solarlab.htb/
+| http-sitemap-generator: 
+|   Directory structure:
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    
+|_http-date: Sun, 12 May 2024 09:03:29 GMT; +59m59s from local time.
+|_http-chrono: Request times for /; avg: 2.64ms; min: 1.77ms; max: 4.52ms
+| http-headers: 
+|   Server: nginx/1.24.0
+|   Date: Sun, 12 May 2024 09:03:29 GMT
+|   Content-Type: text/html
+|   Content-Length: 169
+|   Connection: close
+|   Location: http://solarlab.htb/
+|   
+|_  (Request type: GET)
+|_http-errors: Couldn't find any error pages.
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+| http-vhosts: 
+|_128 names had status 301
+135/tcp  open  msrpc
+139/tcp  open  netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+445/tcp  open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+6791/tcp open  hnm
+
+Host script results:
+|_fcrdns: FAIL (No PTR record)
+|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 80    0       99732.11   61553.04  10.0%
+| 135   0       112838.90  72473.68  0.0%
+| 139   0       106016.78  80935.43  10.0%
+| 445   0       99238.78   78053.40  10.0%
+|_6791  0       128943.90  78807.88  0.0%
+|_dns-brute: Can't guess domain of "10.129.33.124"; use dns-brute.domain script argument.
+|_path-mtu: PMTU == 1500
+| smb-protocols: 
+|   dialects: 
+|     2:0:2
+|     2:1:0
+|     3:0:0
+|     3:0:2
+|_    3:1:1
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled but not required
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+| smb2-time: 
+|   date: 2024-05-12T09:03:13
+|_  start_date: N/A
+|_ipidseq: Unknown
+| smb2-capabilities: 
+|   2:0:2: 
+|     Distributed File System
+|   2:1:0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:0:0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:0:2: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:1:1: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+
+# Nmap done at Sun May 12 10:06:58 2024 -- 1 IP address (1 host up) scanned in 260.08 seconds

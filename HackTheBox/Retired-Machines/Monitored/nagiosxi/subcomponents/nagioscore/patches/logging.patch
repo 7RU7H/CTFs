@@ -1,0 +1,18 @@
+--- a/base/logging.c
++++ b/base/logging.c
+@@ -118,11 +118,14 @@ static FILE *open_log_file(void)
+ 	if(log_fp) /* keep it open unless we rotate */
+ 		return log_fp;
+ 
+-	if ((fh = open(log_file, O_RDWR|O_APPEND|O_CREAT|O_NOFOLLOW, S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH)) == -1) {
++	mode_t old_mask = umask(S_IWOTH);
++	if ((fh = open(log_file, O_RDWR|O_APPEND|O_CREAT|O_NOFOLLOW, S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH)) == -1) {
+ 		if (daemon_mode == FALSE)
+ 			printf("Warning: Cannot open log file '%s' for writing\n", log_file);
++		umask(old_mask);
+ 		return NULL;
+ 	}
++	umask(old_mask);
+ 	log_fp = fdopen(fh, "a+");
+ 	if(log_fp == NULL) {
+ 		if (daemon_mode == FALSE)

@@ -1,0 +1,37 @@
+#!/bin/bash -e
+
+. ./xi-sys.cfg
+
+# Was previous step completed?
+if [ ! -f installed.sudoers ]; then
+    echo "sudoers were not initialized - run previous script" >&2
+    exit 1
+fi
+
+# Was this step already completed?
+if [ -f installed.firewall ]; then
+    echo "Firewall rules already configured - skipping."
+    exit 0
+fi
+
+# Skip firewall configuration for Ubuntu for now
+if [ "$distro" == "Raspbian" ] || [ "$distro" == "Ubuntu" ] || [ "$distro" == "Debian" ]; then
+    echo "Skipping firewall configuration... Not enabled."
+    touch installed.firewall
+    exit 0
+fi
+
+# Update firewall settings for CentOS/RHEL
+# - settting +e since these commands won't work if firewalld is off
+set +e
+if [ `command -v firewall-cmd` ]; then
+    firewall-cmd --zone=public --add-port=80/tcp --permanent
+    firewall-cmd --zone=public --add-port=443/tcp --permanent
+    firewall-cmd --zone=public --add-port=22/tcp --permanent
+    firewall-cmd --zone=public --add-port=7878/tcp --permanent
+    firewall-cmd --reload
+fi
+set -e
+
+echo "Firewall rules updated OK"
+touch installed.firewall

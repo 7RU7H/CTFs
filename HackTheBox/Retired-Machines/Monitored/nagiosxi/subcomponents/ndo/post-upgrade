@@ -1,0 +1,140 @@
+#!/bin/bash -e
+
+. ../../xi-sys.cfg
+
+pkgname="$1"
+
+echo "UPGRADE: POST-UPGRADE: NDO post upgrade started..."
+
+# Post-install modifications
+
+# Check to see if we have ndo2db if we do, we will clean up all the pieces we don't need for NDO 3
+# and we will check the dbversion and update to the latest if we need to
+if [ -f '/usr/local/nagios/bin/ndo2db' ]; then
+
+	# Parse values in case mysql is offloaded 
+	ndopass=$(sed -n '/^db_pass=/ s///p' /usr/local/nagios/etc/ndo2db.cfg)
+	ndohost=$(sed -n '/^db_host=/ s///p' /usr/local/nagios/etc/ndo2db.cfg)
+	ndouser=$(sed -n '/^db_user=/ s///p' /usr/local/nagios/etc/ndo2db.cfg)
+	ndoname=$(sed -n '/^db_name=/ s///p' /usr/local/nagios/etc/ndo2db.cfg)
+	ndoport=$(sed -n '/^db_port=/ s///p' /usr/local/nagios/etc/ndo2db.cfg)
+
+	# Upgrade the database
+	ndoversion=$(mysql "$ndoname" -u "$ndouser" -p"$ndopass" -h "$ndohost" -P "$ndoport" -se "SELECT version FROM nagios_dbversion WHERE name='ndoutils';")
+	echo $ndoversion
+	if [ "$ndoversion" != "2.1.2" ]; then
+	(
+		oldpkgname="ndoutils-2.1.3"
+
+		# Unpackage old version
+		rm -rf "$oldpkgname"
+		tar -xzf  "$oldpkgname.tar.gz"
+
+		if [ "$cfg__db_info__nagiosql__dbserver" != "x$cfg__db_info__nagiosql__dbserver" ]; then
+			cfg__db_info__nagiosql__dbserver="${cfg__db_info__nagiosql__dbserver/:/ -P }"
+		fi
+
+		# Remove old references to failure_prediction_enabled from nagiosql DB when we upgrade to Core 4
+		if [ ! -z $cfg__db_info__nagiosql__db ]; then
+			echo "Removing depricated failure_prediction_enabled from NagiosQL"
+			echo "delete from tbl_variabledefinition where name='failure_prediction_enabled';"|mysql -h "$cfg__db_info__nagiosql__dbserver" -u "$cfg__db_info__nagiosql__user" -p"$cfg__db_info__nagiosql__pwd" "$cfg__db_info__nagiosql__db"
+		fi
+
+		echo "copying updated mysql-upgrade-2.0.0.sql"
+		cp -r mods/ndoutils/mysql-upgrade-2.0.0.sql "$oldpkgname"/db
+	
+		# Fix for XI as dbversion has not been set for many releases
+		if [ "$ndoversion" == "" ]; then
+			# set to 1.5.2 if no version is found in DB
+			mysql "$ndoname" -u "$ndouser" -p"$ndopass" -h "$ndohost"  -P "$ndoport" -se "INSERT INTO nagios_dbversion(name,version) VALUES('ndoutils','1.5.2');"
+		fi
+		cd ./"$oldpkgname"/db
+		./upgradedb -u "$ndouser" -p "$ndopass" -h "$ndohost" -d "$ndoname" || true
+	)
+	fi
+
+	# Make sure the new ndo config is applied
+	cp -f mods/cfg/ndo.cfg /usr/local/nagios/etc
+
+	# Set values for database
+	sed -i "s/^db_host=.*/db_host=$ndohost/" /usr/local/nagios/etc/ndo.cfg
+	sed -i "s/^db_name=.*/db_name=$ndoname/" /usr/local/nagios/etc/ndo.cfg
+	sed -i "s/^db_user=.*/db_user=$ndouser/" /usr/local/nagios/etc/ndo.cfg
+	sed -i "s/^db_pass=.*/db_pass=$ndopass/" /usr/local/nagios/etc/ndo.cfg
+	sed -i "s/^db_port=.*/db_port=$ndoport/" /usr/local/nagios/etc/ndo.cfg
+
+	# Disable and remove ndo2db services
+	if [ `command -v systemctl` ]; then
+		systemctl stop ndo2db
+		systemctl disable ndo2db
+	else
+		service ndo2db stop
+	fi
+
+	# Remove all old ndo2db daemon configs
+	if [ -f "/usr/lib/systemd/system/ndo2db.service" ]; then
+		rm -f /usr/lib/systemd/system/ndo2db.service
+	elif [ -f "/lib/systemd/system/ndo2db.service" ]; then
+		rm -f /lib/systemd/system/ndo2db.service
+	elif [ -f "/etc/init.d/ndo2db" ]; then
+		rm -f /etc/init.d/ndo2db
+	fi
+
+	# Daemon reload
+	if [ `command -v systemctl` ]; then
+		systemctl daemon-reload
+	fi
+
+	# Remove upstart script if it exists
+	if [ -f "/etc/init/ndo2db.conf" ]; then
+		rm -rf /etc/init/ndo2db.conf
+		initctl reload-configuration
+	fi
+
+	# Remove NDOutils configs
+	rm -f /usr/local/nagios/etc/ndo2db.cfg
+	rm -f /usr/local/nagios/etc/ndomod.cfg
+
+	# Remove NDOutils binaries
+	rm -f /usr/local/nagios/bin/ndo2db
+	rm -f /usr/local/nagios/bin/file2sock
+	rm -f /usr/local/nagios/bin/log2ndo
+	rm -f /usr/local/nagios/bin/sockdebug
+
+fi
+
+# Upgrading from previous versions of NDO 3
+
+# Parse values in case mysql is offloaded 
+ndopass=$(sed -n '/^db_pass=/ s///p' /usr/local/nagios/etc/ndo.cfg)
+ndohost=$(sed -n '/^db_host=/ s///p' /usr/local/nagios/etc/ndo.cfg)
+ndoport=$(sed -n '/^db_port=/ s///p' /usr/local/nagios/etc/ndo.cfg)
+ndouser=$(sed -n '/^db_user=/ s///p' /usr/local/nagios/etc/ndo.cfg)
+ndoname=$(sed -n '/^db_name=/ s///p' /usr/local/nagios/etc/ndo.cfg)
+
+# Stop Nagios Core while we upgrade the database (we may drop/rebuild unique keys)
+if [ `command -v systemctl` ]; then
+	systemctl stop nagios
+else
+	service nagios stop
+fi
+
+# Update the NDO database
+(
+	cd "./$pkgname/db"
+	./db-mgmt.sh -u "$ndouser" -p "$ndopass" -h "$ndohost" -P "$ndoport" -d "$ndoname"
+)
+
+# Restart Nagios Core
+if [ `command -v systemctl` ]; then
+	systemctl start nagios
+else
+	service nagios start
+fi
+
+# Remove old NDOutils broker module
+if [ -f "/usr/local/nagios/bin/ndomod.o" ]; then
+	rm -f /usr/local/nagios/bin/ndomod.o
+fi
+
+echo "UPGRADE: POST-UPGRADE: NDO post upgraded OK." 

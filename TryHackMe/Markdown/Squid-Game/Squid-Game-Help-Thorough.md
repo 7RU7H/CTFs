@@ -27,7 +27,7 @@ Beyond Root:
 - FEATURE CREEP MALWARE AND DETECTION
 - BiS Cyberchef
 - Forensics QB methodology
-- Finish https://tryhackme.com/r/room/deadend - [[Dead-End-Writeup]]
+- Finish https://tryhackme.com/r/room/deadend - [[Dead-End-Helped-Thorough]]
 - Guided Hacking relevant playlist
 	- https://www.youtube.com/watch?v=zzpz3VYKzUw - YARA rules reminder - Done
 	- https://www.youtube.com/watch?v=wSkUbP9t4Dw - reversing a loader - Done

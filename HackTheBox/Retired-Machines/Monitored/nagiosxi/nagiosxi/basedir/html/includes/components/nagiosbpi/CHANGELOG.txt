@@ -1,0 +1,217 @@
+3.0.6 - XX/XX/2023
+==================
+- Added the ability to sort BPI Groups in descending status order - Critical, Warning, Ok [GL: XI#160] -PG
+
+3.0.5 - 05/16/2023
+==================
+- Fixed an issue where links in BPI groups were incorrect [GL:XI#75] -PG
+
+3.0.4 - 03/15/2022
+==================
+- Fixed stored XSS security issue with the info URL not being escaped properly -JO
+
+3.0.3 - 02/17/2021
+==================
+- Fixed issue with backslash in service names not showing up when editing a BPI group [TPS#15457] -JO
+- Fixed Nagios BPI sync when applying configuration not waiting for NDO3 to load all data before running [TPS#15448] -JO
+
+3.0.2 - 12/10/2020
+==================
+- Fixed issue with forward slashes in name/definition of object configs [TPS#15356] -JO
+
+3.0.1 - 10/07/2020
+==================
+- Fixed issue with newer git using an invalid cmdline parameter -JO
+- Fixed various PHP Warning/Notice messages -JO
+
+3.0.0 - 01/16/2020
+==================
+- Added ability to store/restore/manage changes to the BPI configuration file [TPS#14473] -JO
+- Added checks to Create New BPI Group page to not allow creating a group with the same name causing config issues -JO
+- Added redirects to the proper priority tab when finishing editing/adding configs -JO
+- Updated layout for the BPI configuration management and settings layout -JO
+- Fixed issue when removing a group that has duplicate unique group names in the config -JO
+
+2.8.3 - 02/14/2020
+==================
+- Fixed BPI removing host/services out of the groups when they are renamed [TPS#14929] -JO
+
+2.8.2 - 11/04/2019
+==================
+- Fixed issue where deleting multiple services from a host would cause only one to delete at a time during sync [TPS#14649] -JO
+
+2.8.1 - 09/19/2019
+==================
+- Fixed issue with & used in name of groups and when running plugin against that group [TPS#14464] -JO
+
+2.8.0 - 10/18/2018
+==================
+- Added ability to select what the logic for essential members is in the "Edit BPI Setings" page -JO
+
+2.7.3 - 11/13/2018
+==================
+- Fixed BPI service group sync to not add empty service groups that cause an error on the screen [TPS#13777] -JO
+- Fixed BPI issue with the processing of subgroups applied to multiple groups failing to set proper status [TPS#13816] -JO
+
+2.7.2 - 09/13/2018
+==================
+- Fixed output displayed when in problem state to not have HTML because output is too long [TPS#13552] -JO
+
+2.7.1 - 07/12/2018
+==================
+- Added options in the BPI config settings to turn off automatic sync and object removal -JO
+- Fixed sync and auto removing to run on their own cmdsubsys command that also checks if NDO is loaded [TPS#13407] -JO
+
+2.7.0 - 12/18/2017
+==================
+- Added sync for hostgroup/servicegroup on Apply Config -JO
+- Added removing of missing host objects when Apply Config is ran -JO
+
+2.6.2 - 10/27/2017
+==================
+- Fixed issue where XML for BPI was being read from cache only on API calls -JO, CN
+
+2.6.1 - 09/29/2017
+==================
+- Fixed the acknowledgement/handled state icon -JO
+- Fixed issue where some groups would not get proper status checks (due to recursion) [TPS#12488] -JO
+
+2.6.0 - 09/12/2017
+==================
+- Added command line argument --no-delete to stop syncing host/service groups from deleting old groups that it doesn't find -JO
+
+2.5.5 - 05/15/2017
+==================
+- Chanaged sync to actually remove host and service groups that are not configured, deleted, or have no members [TPS#11743] -JO
+
+2.5.4 - 05/02/2017
+==================
+- Fixed issue where adding new groups would cause spacing issues in the config [TPS#11721] -JO
+
+2.5.3 - 04/07/2017
+==================
+- Fixed issue where replacing synced host/service grips would cause extra spaces after the first run [TPS#11501] -JO
+
+2.5.2 - 03/02/2017
+==================
+- Fixed sorting order in create and edit BPI group host/services member slection list [TPS#11204] -JO
+
+2.5.1 - 12/19/2016
+==================
+- Fixed XSS vulnerability -JO
+
+2.5.0 - 08/09/2016
+==================
+- Added ability to customize Status Text [TPS#7739] -BH
+- Fixed essential member inconsistency when checking for a group with essential member groups with a non-ok service -JO
+- Fixed untranslated errors -JO
+
+2.4.4 - 02/23/2016
+==================
+- Fixed hostnames/service_names inability to start/end with : [TPS#7720] -BH
+- Fixed output for service checks sometime prepending "$STATE :" to output [TPS#7738] -BH
+- Fix for BPI group health showing 100% when in critical state [TPS#7845] -SS
+
+2.4.3 - 10/29/2015
+==================
+- Moved into XI base -JO
+- Moved bpi_init in api_tool.php to not be called on do_bpi_check command -JO
+- Fixed errors and sorting algorithm -JO
+
+2.4.2 - 10/11/2015
+==================
+- Fix php notice/warning errors being thrown -JO
+
+2.4.1 - 10/08/2015
+==================
+- Fix issue with :: not being allowed in config definition -JO
+- Fix issue where syncing wasn't updating but replacing -JO,SS
+
+2.4.0 - 08/31/2015
+==================
+- Updated styling and layout for XI 5 -JO
+- Fix error being thrown in error_log -JO
+
+2.3.4 - 03/26/2015
+==================
+- Fix XSS vulnerability -SW
+
+2.3.3 - 12/03/2014
+==================
+- Added link to settings page from main Nagios BPI page -JO
+
+2.3.2 - 10/23/2014
+==================
+- Fixed output to be normalized and look like normal output (no more XML:) -JO
+
+2.31
+=====================
+- LLC not LCC/Update to proper version number -JO
+
+2.3
+=====================
+- Fix to warn if whitespace is entered in Group ID -SW
+
+2.2
+=====================
+- Fixed bug which prevented editing of groups that starting with the same string -SW
+
+2.1
+=====================
+- Fixed bug with empty auth_users printing lots of commas in bpi.conf
+- Added additional commands to be used with the api_tool.php script. Use -h to see usage for available commands. 
+- Fixed issue where BPI groups states were being calculated twice for every tab load. 
+
+2.0 Enterprise Edition
+====================
+-  each group has list of authorized contacts   
+-  auto-generate hostgroups and servicegroups
+-  fixed bug for when a single service is "warning," the group is only at warning, not critical N/A with percentages
+-  added hosts checks to selectable options 
+-  created an XML dump with all group states and status texts for subsystem group checks 
+-  using AJAX calls to refresh group status every 30-X amount of seconds 
+-  Added switchable option for "Ignore 'handled' problems"
+-  Added a sanity check for orpaned groups 
+-  Added error log 
+-  created sortability by service, status, or group priority 
+-  created option for a threshold percentage
+-  add in the pseudo states for acknowledged, and scheduled downtime and factored those in as a switchable option to the group logic.  
+-  user level filtering for Nagios XI  
+-  More informational feedback in status text.  Add message as to "why" a group has it's problem state.
+-  Information boxes for return messages (success | failure) of command submissions
+-  Help box overlay to replace question marks
+-  Add a "handled" icon to hosts/services with handled problems
+-  Created a new BPI check plugin with performance data and improved readability of plugin output.  
+-  Add auth checks on cmds controller for add/edit/fix permissions 
+-  Add safety net for read-only users so that they don't get the CONFIG ERROR message about missing hosts and services 
+-  allowed user to specifiy location of all BPI files.  Made it safe so that a component upgrade doesn't overwrite it. 
+-  Only admins can create, modify, or delete BPI groups.  
+-  authorized users for BPI groups will only see their authorized hosts/services in the group even if other members are assigned 
+-  Hostgroup and service group BPI pages are enterprise-only features
+-  Added backend API for admin-level users to access BPI group XML from web interface at: nagiosbpi/bpi_display.php?cmd=getbpixml
+
+1.3.1 7/19/2011
+=====================
+- Bug fixes for group state check
+- Fixed bug with host states and css color 
+- Fixed bug where hosts didn't preload into the "Edit" forms 
+
+1.3  7/18/2011
+=====================
+- added support for hosts as BPI group members 
+- updated status parsing functions, removed 'ereg' functions
+- Added version number and support URL 
+
+1.2
+=====================
+- Fixed a bug with the check_bpi.php file. Suppressed any error output from the command-line check in Nagios 
+
+1.1
+======================
+- Fixed bugs with the fix_config tool, so errors in configuration file can be corrected easily.
+- Cleaner error output and setup instructions
+- check_bpi.php *should* work now for Core and XI.  
+
+1.0
+======================
+- Fixed a bug in the host/service detail urls 11/30/2010 

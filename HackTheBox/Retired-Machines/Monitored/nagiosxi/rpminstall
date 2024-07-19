@@ -1,0 +1,254 @@
+#!/bin/bash -e
+
+# Set up system variables
+./init.sh
+. ./xi-sys.cfg
+. ./functions.sh
+
+./xivar RPMINSTALL 1
+RPMINSTALL=1
+
+# Explicitly set umask
+umask 0022
+
+# Install log
+log="/tmp/xi-install.log"
+
+# Installation is interactive by default
+export INTERACTIVE="False"
+
+# Automatically set mysql conf file with defaults
+export TUNE_MYSQL="True"
+
+# INSTALL_PATH is current dir for use in making install dir independent
+export INSTALL_PATH=`pwd`
+
+# Force the install even if the XI directory exists
+export FORCE=0
+
+if ! path_is_ok; then
+    echo "Your system \$PATH does not include /sbin and /usr/sbin. This is usually the result of installing GNOME rather than creating a clean system."
+    echo "Adding /sbin and /usr/sbin to \$PATH."
+    PATH="$PATH:/usr/sbin:/sbin"
+fi
+
+# Check Mysql root password if MySQL is already installed and running...
+if service $mysqld status &>/dev/null; then
+    # Test for null MySQL root password
+    if mysqlshow -u root &>/dev/null; then
+        echo "After installation your MySQL root password will be set to 'nagiosxi' (without quotes)."
+    elif mysqlshow -u root -p"$mysqlpass" &>/dev/null; then
+        echo "Stored MySQL password validated."
+    else
+        for i in 1 2 3; do
+            if [ "$INTERACTIVE" = "True" ]; then
+                echo "Enter the MySQL root password to continue..."
+                read -p "MySQL Root Password: " pass
+            fi
+
+            # Test the password
+            if mysqlshow -u root -p"$pass" &>/dev/null; then
+                echo "Password validated."
+                mysqlpass="$pass"
+
+                # Update xi-sys.cfg with MySQL password for later use by subcomponent install
+                if ! ./xivar mysqlpass "$mysqlpass"; then
+                    echo "ERROR: Failed to update xi-sys.cfg with MySQL password - exiting." >&2
+                    exit 1
+                fi
+
+                break
+            else
+                echo "Password failed." >&2
+                [ $i -eq 3 ] && exit 1
+            fi
+        done
+    fi
+else
+    echo "MySQL not yet installed - that's okay."
+fi
+
+# we only automatically tune mysql if we just installed it
+# see scripts/mysql_tune.sh
+if [ "$TUNE_MYSQL" = "True" ]; then
+
+    add=0
+    mycnf="/etc/my.cnf"
+
+    if [ "$dist" == "el8" ]; then
+        mycnf="/etc/my.cnf.d/mysql-server.cnf"
+    fi
+    if [ "$dist" == "el9" ]; then
+        mycnf="/etc/my.cnf.d/mariadb-server.cnf"
+    fi
+
+    # backup the cnf file first
+    mycnfbak="$mycnf.bak"
+    mycnfnew="$mycnf.new"
+    cp $mycnf $mycnfbak
+
+    if [ -f $mycnf ]; then
+
+        if [ $add -eq 1 ]; then
+            echo -e "\n\n[mysqld]\nquery_cache_size=16M\nquery_cache_limit=4M\ntmp_table_size=64M\nmax_heap_table_size=64M\nkey_buffer_size=32M\ntable_open_cache=32\ninnodb_file_per_table=1\nsql_mode=ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION\nmax_allowed_packet=256M\nsort_buffer_size=32M\n" >> $mycnf
+        else
+            if [ "$dist" == "el8" ] || [ "$dist" == "el9" ]; then
+                sed -i 's/\[mysqld\]/\[mysqld\]\ntmp_table_size=64M\nmax_heap_table_size=64M\nkey_buffer_size=32M\ntable_open_cache=32\ninnodb_file_per_table=1\nbinlog_expire_logs_seconds=86400\nsql_mode=NO_ENGINE_SUBSTITUTION\nmax_allowed_packet=256M\nsort_buffer_size=32M\n/' $mycnf
+            else
+                sed -i 's/\[mysqld\]/\[mysqld\]\nquery_cache_size=16M\nquery_cache_limit=4M\ntmp_table_size=64M\nmax_heap_table_size=64M\nkey_buffer_size=32M\ntable_open_cache=32\ninnodb_file_per_table=1\nmax_allowed_packet=256M\nsort_buffer_size=32M\n/' $mycnf
+            fi
+        fi
+
+        # if mysql doesn't restart, then we need to revert our changes
+        if ! service "$mysqld" restart; then
+
+            # keep a copy of the mycnf that failed for support
+            cp $mycnf $mycnfnew
+            cp $mycnfbak $mycnf
+
+            # if it fails again we're out
+            if ! service "$mysqld" restart; then
+                echo "ERROR: MySQL failed to start - exiting." >&2
+                exit 1
+            fi
+        fi
+    fi
+fi
+
+touch installed.repos
+#TODO - Below may need work for being sure prereqs get added to RPM
+touch installed.prereqs
+
+# Fix for php-mcrypt bug
+if [ -f /etc/php.d/mcrypt.ini ]; then
+    echo "Fixing php-mcrypt bug..."
+    perl -p -i -e "s|module.so|mcrypt.so|g" /etc/php.d/mcrypt.ini
+fi
+
+# Link python3 to python so we are using 3 normally
+if [ ! -f /usr/bin/python ]; then
+    ln -s /usr/bin/python3 /usr/bin/python
+fi
+
+run_sub ./2-usersgroups
+run_sub ./3-dbservers
+run_sub ./4-services
+run_sub ./5-sudoers
+run_sub ./6-firewall
+run_sub ./8-selinux
+run_sub ./9-dbbackups
+run_sub ./11-sourceguardian
+touch installed.mrtg
+run_sub ./13-phpini
+
+(
+    cd subcomponents/ccm
+    ./install
+)
+
+(
+    cd subcomponents/ndo
+    ver=$(find -name 'ndo-*tar.gz'|cut -d'/' -f 2)
+    ./post-install ${ver%'.tar.gz'}
+)
+
+(
+    cd subcomponents/webinject
+    ./install
+)
+
+(
+    cd subcomponents/sshterminal
+    ./install
+)
+
+(
+    cd subcomponents/oauth2
+    ./install
+)
+
+touch installed.subcomponents
+
+mkdir -p $proddir/html/includes/components/ldap_ad_integration $proddir/html/includes/components/autodiscovery
+mkdir -p $proddir/html/includes/components/nrdsconfigmanager $proddir/html/includes/components/snmptrapsender
+
+rm -f nagiosxi/basedir/html/includes/components/ldap_ad_integration/install.sh
+
+cat /dev/null > $proddir/html/includes/components/ldap_ad_integration/install.sh
+cat /dev/null > $proddir/html/includes/components/autodiscovery/install.sh
+cat /dev/null > $proddir/html/includes/components/nrdsconfigmanager/install.sh
+cat /dev/null > $proddir/html/includes/components/snmptrapsender/install.sh
+
+chmod +x $proddir/html/includes/components/ldap_ad_integration/install.sh $proddir/html/includes/components/autodiscovery/install.sh
+chmod +x $proddir/html/includes/components/nrdsconfigmanager/install.sh $proddir/html/includes/components/snmptrapsender/install.sh
+
+run_sub ./B-installxi
+# Kind of a hack: make sure xi-itype is set to the correct value after an rpm install.
+echo "rpm" > /usr/local/nagiosxi/var/xi-itype
+
+run_sub ./C-cronjobs
+run_sub ./D-chkconfigalldaemons
+# setup file to import, then
+# New object config files
+cp -r subcomponents/nagioscore/mods/cfg/objects/* /usr/local/nagios/etc/import
+# Static config files
+cp -r subcomponents/nagioscore/mods/cfg/static/* /usr/local/nagios/etc/static
+# Config files to be imported
+cp -r subcomponents/nagioscore/mods/cfg/import/* /usr/local/nagios/etc/import
+run_sub ./E-importnagiosql
+run_sub ./F-startdaemons
+run_sub ./Z-webroot
+
+# ---- NXTI -----
+
+# Update snmptrapd.conf
+    cat << EOF > /etc/snmp/snmptrapd.conf
+disableAuthorization yes
+traphandle default /usr/sbin/snmptthandler
+EOF
+
+# Add firewall rule
+set +e
+if [ `command -v firewall-cmd` ]; then
+    firewall-cmd --zone=public --add-port=162/udp --permanent
+    firewall-cmd --reload
+else
+    status=$(service iptables status)
+    if [ $? = 0 ]; then
+        if ! grep -q -- '-A INPUT -p udp -m state --state NEW -m udp --dport 162 -j ACCEPT' /etc/sysconfig/iptables; then
+            # determine information for the rules
+            chain=$(iptables -L | awk '/^Chain.*INPUT/ {print $2; exit(0)}')
+            rulenum=$((`iptables -L $chain | wc -l` - 2))
+
+            # test to make sure we aren't using less than the minimum 1
+            if [ "$rulenum" -lt 1 ]; then rulenum=1; fi
+
+            # Add to iptables
+            iptables -I "$chain" "$rulenum" -m state --state NEW -m udp -p udp --dport 162 -j ACCEPT
+            service iptables save
+        fi
+    fi
+fi
+set -e
+
+# Add test trap area...
+touch $proddir/var/NXTI_Write_Test
+chown $nagiosuser:$nagiosgroup $proddir/var/NXTI_Write_Test /etc/snmp/snmptt.ini
+chown root:$nagiosgroup /etc/snmp
+chmod 666 $proddir/var/NXTI_Write_Test
+chmod 664 /etc/snmp/snmptt.ini
+
+# ---- NXTI -----
+
+# Restart services that need it
+if [ ! `command -v systemctl` ]; then
+    service $mysqld restart
+    service nagios restart
+    service snmptt restart
+    service snmptrapd restart
+else
+    systemctl restart $mysqld
+    systemctl restart nagios
+    systemctl restart snmptt
+    systemctl restart snmptrapd
+fi

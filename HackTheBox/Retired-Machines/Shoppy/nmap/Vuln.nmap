@@ -1,0 +1,28 @@
+# Nmap 7.92 scan initiated Sun Sep 25 15:08:23 2022 as: nmap --script vuln -oA nmap/Vuln --min-rate 500 -p 9093,80,22 10.129.50.170
+Nmap scan report for shoppy.htb (10.129.50.170)
+Host is up (0.047s latency).
+
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-vuln-cve2011-3192: 
+|   VULNERABLE:
+|   Apache byterange filter DoS
+|     State: VULNERABLE
+|     IDs:  BID:49303  CVE:CVE-2011-3192
+|       The Apache web server is vulnerable to a denial of service attack when numerous
+|       overlapping byte ranges are requested.
+|     Disclosure date: 2011-08-19
+|     References:
+|       https://www.securityfocus.com/bid/49303
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3192
+|       https://www.tenable.com/plugins/nessus/55976
+|_      https://seclists.org/fulldisclosure/2011/Aug/175
+| http-enum: 
+|_  /login/: Login page
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+9093/tcp open  copycat
+
+# Nmap done at Sun Sep 25 15:11:01 2022 -- 1 IP address (1 host up) scanned in 158.28 seconds

@@ -1,0 +1,136 @@
+#!/bin/bash -e
+
+. ../../xi-sys.cfg
+
+pkgname=nagios-4.4.13
+
+echo "UPGRADE: Nagios Core is upgrading..."
+
+# We need to check for ModGearman being used
+# because upgrading to nagios-4.4.1 breaks if
+# it is currently installed
+echo "Checking if Mod Gearman 2 is in use before continuing..."
+if grep "^broker_module" /usr/local/nagios/etc/nagios.cfg | grep "gearman2"; then
+
+    res="n"
+
+    # Skip the prompt and assume they have ModGearman installed
+    if [ "$INTERACTIVE" = "False" ]; then
+        res="y"
+    fi
+
+    while [ "x$res" != "xy" ]; do
+        read -p "It looks like you're using Mod Gearman 2. Is this accurate? [Y/n]: " res
+        case "$res" in
+            Y|y|"")
+                echo "You pressed yes!"
+                res="y"
+                break
+                ;;
+            N|n)
+                res="n"
+                break
+                ;;
+        esac
+    done
+
+    # They selected No when asked
+    if [ "x$res" = "xn" ]; then
+        sec=6
+        echo ""
+        echo ""
+        echo "WARNING: The version of Nagios Core that will be installed is"
+        echo "         *INCOMPATIBLE* with Mod Gearman 2"
+        echo ""
+        echo "Waiting $sec seconds before continuing"
+        echo ""
+        echo "(Press CTRL+C to abort installation)"
+        echo ""
+        for i in $(seq 1 $sec); do
+            echo -n "."
+            sleep 1
+        done
+    fi
+
+    # They selected Yes when asked
+    if [ "x$res" = "xy" ]; then
+        echo "Skipping Nagios Core upgrade -- If upgrading to Mod Gearman 3, remove broker_module line from nagios.cfg"
+        exit 0
+    fi
+else
+    echo "Mod Gearman 2 not found! Continuing..."
+fi
+
+# Delete the old directory
+rm -rf "$pkgname"
+rm -rf nagios
+
+# Extract archive
+tar -xzf "$pkgname.tar.gz"
+ln -s nagios "$pkgname"
+
+# Apply our patches
+echo "UPGRADE: Applying Nagios XI patches to Nagios Core..."
+./apply-patches "$pkgname"
+
+# Make and install Nagios
+(
+	cd "./$pkgname"
+	configureflags="--with-command-group=$nagioscmdgroup"
+
+	# use sysv (not upstart) if not systemd
+	if [ ! `command -v systemctl` ] || [ -f /etc/init.d/nagios ]; then
+		configureflags="--with-init-type=sysv $configureflags"
+	fi
+
+    # update default-service.in with proper After= section
+    my="mysqld"
+    if [ -f /usr/lib/systemd/system/mariadb.service ]; then
+        my="mariadb"
+    elif [ -f /usr/lib/systemd/system/mysql.service ] || [ -f /lib/systemd/system/mysql.service ]; then
+        my="mysql"
+    fi
+    sed -i "s/local-fs.target/local-fs.target $my.service/" startup/default-service.in
+
+	./configure "$configureflags"
+
+	make -j $make_j_flag all
+
+	make install
+
+	if [ `command -v systemctl` ]; then
+		make install-init
+	fi
+)
+
+# If centos != 7, copy the new init.d file
+if [ ! `command -v systemctl` ] || [ -f /etc/init.d/nagios ]; then
+    service nagios stop
+	cp -f mods/nagios.init /etc/init.d/nagios
+	chmod +x /etc/init.d/nagios
+fi
+
+# Comment out deprecated config items
+sed -i 's/^old/#new/g' /usr/local/nagios/etc/nagios.cfg
+sed -i 's/^use_embedded_perl_implicitly/#use_embedded_perl_implicitly/g' /usr/local/nagios/etc/nagios.cfg
+sed -i 's/^sleep_time/#sleep_time/g' /usr/local/nagios/etc/nagios.cfg
+sed -i 's/^p1_file/#p1_file/g' /usr/local/nagios/etc/nagios.cfg
+sed -i 's/^external_command_buffer_slots/#external_command_buffer_slots/g' /usr/local/nagios/etc/nagios.cfg
+sed -i 's/^enable_embedded_perl/#enable_embedded_perl/g' /usr/local/nagios/etc/nagios.cfg
+sed -i 's/^command_check_interval/#command_check_interval/g' /usr/local/nagios/etc/nagios.cfg
+
+# Set lock file location for Core 4.4.1
+sed -i 's|^lock_file=.*|lock_file=/var/run/nagios.lock|' /usr/local/nagios/etc/nagios.cfg
+
+# Turn on auto_reschedule_checks
+sed -i 's/^auto_reschedule_checks=0/auto_reschedule_checks=1/g' /usr/local/nagios/etc/nagios.cfg
+
+# Restart the nagios service
+if [ ! `command -v systemctl` ]; then
+    service nagios restart
+else
+	systemctl daemon-reload
+    systemctl restart nagios
+fi
+
+echo "UPGRADE: Nagios Core upgraded OK."

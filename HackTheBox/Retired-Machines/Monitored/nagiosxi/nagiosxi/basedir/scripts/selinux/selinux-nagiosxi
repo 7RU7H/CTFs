@@ -1,0 +1,104 @@
+#!/bin/bash -e
+###########################################################################################
+# If you encounter problems after enabling selinux, you can test if selinux is the problem
+# by using the command "setenforce 0" to temporarily disable selinux
+# If the issue resolves when selinux is disabled, you can see the issue by using the
+# command "ausearch -m AVC -ts recent"
+# In order to fix this issue, it requires some degree of knowledge on the part of the user
+# Sometimes, a file context is the issue. Sometimes, a boolean, maybe a port. 
+# To generate a new policy, if one is needed, based on the errors you may encounter, 
+# use "ausearch -m AVC -ts recent | audit2allow -m example > example.te" and modify as necessary. 
+# It is not recommended to give anything the dac_override capability. Change file permissions
+# instead. You can then use the steps taken in the script below to compile the policy 
+# and install it.
+#
+# If you wish to disable selinux in a way that persists after reboot, run this script with
+# the -d option.
+# If you wish to remove the nagiosxi policy to make your own, "semodule -X 500 -r nagiosxi"
+###########################################################################################
+
+disable_selinux() {
+        echo "Disabling SELinux..."
+        # setenforce will fail if selinux is already disabled
+        if selinuxenabled; then
+            setenforce 0
+            echo "SELinux set to permissive mode. You will need to reboot to set SELinux to disabled"
+        fi
+        # Remove nagiosxi policy if installed
+        if semodule -l | grep -q "nagiosxi"; then
+            semodule -X 500 -r nagiosxi
+            echo "Removed Nagios XI policy from SELinux"
+        fi
+        /bin/cp -f disableselinux /etc/selinux/config
+        exit 0
+}
+
+# Was selinux disabled during install?
+if [ `command -v selinuxenabled` ]; then
+    case "$1" in
+        -i )
+            read -p "Do you want to enable SELinux? This is an experimental feature for now. Enable only if you know what you're doing [Y/n] " res
+
+            if [ "$res" = "Y" ] || [ "$res" = "y" ]; then
+                echo "Adding SELinux Support..."
+                cp -f enableselinux /etc/selinux/config
+                if selinuxenabled; then
+                    # Compiling Policy
+                    checkmodule -M -m -o nagiosxi.mod nagiosxi.te
+                    semodule_package -o nagiosxi.pp -m nagiosxi.mod
+                    semodule -X 500 -i nagiosxi.pp
+                    # Setting Contexts and Booleans
+                    set +e
+                    semanage fcontext -a -t nagios_content_t "/usr/local/nagios(/.*)?"
+                    semanage fcontext -a -t nagios_exec_t "/usr/local/nagios/bin(/.*)?"
+                    semanage fcontext -a -t nagios_content_t "/usr/local/nagiosxi(/.*)?"
+                    semanage fcontext -a -t nagios_content_t "/usr/local/nagvis(/.*)?"
+                    semanage fcontext -a -t nagios_content_t "/usr/local/nrdp(/.*)?"
+                    semanage fcontext -a -t nagios_content_t "/usr/local/nsis(/.*)?"
+                    semanage fcontext -a -t nagios_content_t "/usr/share/snmp/mibs(/.*)?"
+                    semanage fcontext -a -t nagios_etc_t "/usr/local/nagios/etc(/.*)?"
+                    semanage fcontext -a -t nagios_log_t "/usr/local/nagiosxi/var(/.*)?"
+                    semanage fcontext -a -t snmpd_var_lib_t "/etc/snmp(/.*)?"
+                    semanage fcontext -a -t slapd_cert_t "/etc/openldap/cacerts(/.*)?"
+                    setsebool -P nagios_run_sudo on
+                    setsebool -P httpd_can_sendmail on
+                    setsebool -P httpd_run_stickshift on
+                    setsebool -P httpd_mod_auth_pam on
+                    setsebool -P httpd_setrlimit on
+                    setsebool -P httpd_can_network_connect on
+                    setsebool -P domain_can_mmap_files on
+                    setsebool -P authlogin_nsswitch_use_ldap on
+                    # Wrap up by restoring context for important files
+                    restorecon -R -v /usr
+                    restorecon -R -v /etc
+                    restorecon -R -v /var/lib/mrtg
+                    restorecon -R -v /run/nagios.lock
+                    if [ -f /run/lock/mrtg ]; then
+                        restorecon -R -v /run/lock/mrtg
+                    fi
+                    set -e
+                    # When a process runs as root and tries to access a file it does not have user/group ownership of, it will generate a dac_override AVC error. Instead of giving dac_override capability, we do this.
+                    chown root /var/spool/snmptt
+                    chown root /var/lib/net-snmp
+                    chmod g+w /var/lib/net-snmp
+                    chmod g+w /usr/local/nagios/var/nagios.log
+                    setenforce 1
+                else
+                    echo "SELinux was set to \"disabled\" in /etc/selinux/config and updated to \"enforcing\", you will need to reboot the machine and rerun this script with \"./selinux-nagiosxi -i\" to finish enabling SELinux."
+                fi
+                exit 0
+            fi
+            ;;
+        -d )
+            disable_selinux
+            ;;
+        -h | * )
+            echo "This is a script to enable SELinux on a Nagios XI machine"
+            echo "Usage: ./selinux-nagiosxi [OPTION]"
+            echo ""
+            echo "  -i    install SELinux policy for Nagios XI and enable SELinux"
+            echo "  -d    remove SELinux policy for Nagios XI and disable SELinux"
+            echo "  -h    print this message"
+            echo ""
+    esac
+fi

@@ -1,0 +1,83 @@
+#!/bin/bash -e
+
+# Load configuration for system
+. ../../xi-sys.cfg
+
+if [ "$dist" == "el9" ]; then
+    echo "Skipping shellinabox due to deprecation and no package for EL9"
+    exit 0
+fi
+
+siab_conf="/etc/sysconfig/shellinaboxd"
+
+echo "INSTALL: SSH Terminal is being installed..."
+
+# Configure it (use port 7878) and connect to local SSH
+if [ "$distro" == "Ubuntu" ] || [ "$distro" == "Debian" ]; then
+    siab_conf="/etc/default/shellinabox"
+    sed -i "s|^SHELLINABOX_PORT.*|SHELLINABOX_PORT=7878|" "$siab_conf"
+    sed -i "s|^SHELLINABOX_ARGS.*|SHELLINABOX_ARGS=\"--disable-ssl-menu --localhost-only\"|" "$siab_conf"
+else
+    sed -i "s|^PORT.*|PORT=7878|" "$siab_conf"
+    sed -i "s|^OPTS.*|OPTS=\"--disable-ssl-menu -s /:SSH --localhost-only --css white-on-black.css\"|" "$siab_conf"
+fi
+
+# Configure Apache for local proxy
+# (so we can use the same SSL in the browser)
+if [ "$distro" == "Ubuntu" ] || [ "$distro" == "Debian" ]; then
+    a2enmod ssl
+    a2enmod proxy
+    a2enmod proxy_http
+
+    httpdsitedir="/etc/apache2/sites-available"
+
+    # Some debian systems don't have .conf on their file names...
+    if [ -f "$httpdsitedir/default-ssl" ]; then
+        file="$httpdsitedir/default-ssl"
+    else
+        file="$httpdsitedir/default-ssl.conf"
+    fi
+
+    # Update apache default ssl site
+    grep -v -e '</VirtualHost>' -e '</IfModule>' "$file" > "$httpdsitedir/default-ssl.conf.new"
+    mv -f "$httpdsitedir/default-ssl.conf.new" "$file"
+    cat ssl-partial.conf >> "$file"
+    echo "</IfModule>" >> "$file"
+
+    # Enable ssl site
+    a2ensite default-ssl
+
+    # Reload apache configs
+    if [ `command -v systemctl` ]; then
+        systemctl reload apache2
+    else
+        service apache2 reload
+    fi
+else
+    grep -v '</VirtualHost>' "$httpdconfdir/ssl.conf" > "$httpdconfdir/ssl.conf.new"
+    mv -f "$httpdconfdir/ssl.conf.new" "$httpdconfdir/ssl.conf"
+    cat ssl-partial.conf >> "$httpdconfdir/ssl.conf"
+fi
+
+# Make sure it starts automatically
+
+siab_service="shellinaboxd"
+if [ "$distro" == "Ubuntu" ] || [ "$distro" == "Debian" ]; then
+    siab_service="shellinabox"
+fi
+
+if [ `command -v systemctl` ]; then
+    systemctl enable $siab_service.service
+    systemctl restart $siab_service.service
+else
+    if [ "$distro" == "Ubuntu" ] || [ "$distro" == "Debian" ]; then
+        update-rc.d $siab_service defaults
+    else
+        chkconfig $siab_service on
+    fi
+    # For whatever reason, shellinabox doesn't actually
+    # remove itself from the terminal in CentOS 6
+    (nohup service $siab_service restart >/dev/null 2>&1 &)
+fi
+
+echo "INSTALL: SSH Terminal installed OK."

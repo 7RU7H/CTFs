@@ -1,0 +1,24 @@
+#!/bin/bash -e
+
+. ./xi-sys.cfg
+
+# Save old web root page
+if [ -f $httpdroot/index.html ]; then
+	mv -f $httpdroot/index.html $httpdroot/index.html.orig
+fi
+if [ -f $httpdroot/index.php ]; then
+	mv -f $httpdroot/index.php $httpdroot/index.php.orig
+fi
+
+# New web root index page
+cp nagiosxi/webroot.php $httpdroot/index.php
+
+if [ "$distro" == "Debian" ] || [ "$distro" == "Ubuntu" ]; then
+	cp nagiosxi/webroot.php $httpdroot/../index.php
+fi
+
+# Finally set up config.inc.php permissions for install
+# once the install is complete it'll be changed back to 644
+# this is done last because reconfigure_nagios.sh will
+# reset these perms to 644 every time it runs
+chmod 664 "$proddir/html/config.inc.php"

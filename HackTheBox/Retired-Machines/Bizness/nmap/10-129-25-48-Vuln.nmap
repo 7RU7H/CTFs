@@ -1,0 +1,36 @@
+# Nmap 7.94SVN scan initiated Sat Jan  6 19:46:56 2024 as: nmap --script vuln -oA /home/none/HackTheBoxCompetitive/Savage-Labs/Bizness/nmap/10-129-25-48-Vuln --min-rate 500 -e tun0 -p 22,80,443,39629 10.129.25.48
+Nmap scan report for bizness.htb (10.129.25.48)
+Host is up (0.063s latency).
+
+PORT      STATE SERVICE
+22/tcp    open  ssh
+80/tcp    open  http
+|_http-csrf: Couldn't find any CSRF vulnerabilities.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+443/tcp   open  https
+|_http-majordomo2-dir-traversal: ERROR: Script execution failed (use -d to debug)
+|_http-vuln-cve2017-1001000: ERROR: Script execution failed (use -d to debug)
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=bizness.htb
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://bizness.htb:443/
+|     Form id: name
+|     Form action: 
+|     
+|     Path: http://bizness.htb:443/
+|     Form id: 
+|_    Form action: 
+| http-vuln-cve2010-0738: 
+|_  /jmx-console/: Authentication was not required
+| http-fileupload-exploiter: 
+|   
+|     Couldn't find a file-type field.
+|   
+|_    Couldn't find a file-type field.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+39629/tcp open  unknown
+
+# Nmap done at Sat Jan  6 19:55:49 2024 -- 1 IP address (1 host up) scanned in 532.77 seconds

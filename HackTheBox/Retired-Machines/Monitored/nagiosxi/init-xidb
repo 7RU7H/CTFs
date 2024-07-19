@@ -1,0 +1,44 @@
+#!/bin/bash -e
+
+# Set up system variables
+./init.sh
+. ./xi-sys.cfg
+
+##########################################
+# INITIALIZE NAGIOS XI MYSQL DATABASE
+##########################################
+
+# Was this step already completed?
+if [ -f installed.xidb ]; then
+	echo "xidb already initialized - skipping."
+	exit 0
+fi
+
+# See if user already initialized MySQL
+if [ ! -f installed.mysql ]; then
+	echo "ERROR: MySQL was not installed - exiting." >&2
+	exit 1
+fi
+
+echo "Checking MySQL status..."
+if service $mysqld status &>/dev/null; then
+	echo "MySQL running - continuing..."
+else
+	echo "ERROR: MySQL not running - exiting." >&2
+	exit 1
+fi
+
+# Force mysql commands (don't die on errors)
+mysqlforce=""
+if [ $FORCE -eq 1 ]; then
+    mysqlforce="--force"
+fi
+
+echo "Setting up Nagios XI database..."
+mysql -p$mysqlpass $mysqlforce < nagiosxi/nagiosxi-db/nagiosxi_db.sql > /dev/null
+
+echo "Loading data into database..."
+mysql -p$mysqlpass $mysqlforce < nagiosxi/nagiosxi-db/nagiosxi_db_data.sql > /dev/null
+
+echo "Nagios XI MySQL Database Initialized OK."
+touch installed.xidb

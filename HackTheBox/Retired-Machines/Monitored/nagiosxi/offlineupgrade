@@ -1,0 +1,21 @@
+#!/bin/sh -e
+
+# Import gpg key
+if [ ! -f /etc/pki/rpm-gpg/GPG-KEY-NAGIOS-V2 ]; then
+	/bin/cp -f GPG-KEY-NAGIOS-V2 /etc/pki/rpm-gpg/GPG-KEY-NAGIOS-V2
+	rpm --import GPG-KEY-NAGIOS-V2
+fi
+
+# Install packages that may not be installed yet
+if ! rpm -q nagiosxi-shellinabox; then
+	yum -y --nogpgcheck localinstall nagiosxi-shellinabox*.rpm
+fi
+if ! rpm -q nagiosxi-nxti; then
+	yum -y --nogpgcheck localinstall nagiosxi-nxti*.rpm
+fi
+if ! rpm -q perl-Nagios-Monitoring-Plugin && ! grep -q '8.' /etc/redhat-release && ! grep -q 'release 8' /etc/redhat-release; then
+	yum -y --nogpgcheck localinstall perl-Nagios-Monitoring-Plugin*.rpm
+fi
+
+# Do local install of packages
+yum -y --nogpgcheck localupdate *.rpm

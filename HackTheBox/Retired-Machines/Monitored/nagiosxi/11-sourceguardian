@@ -1,0 +1,24 @@
+#!/bin/bash -e
+
+. ./xi-sys.cfg
+
+# Was previous step completed?
+if [ ! -f installed.dbbackups ]; then
+	echo "Database backups were not configured - run previous script" >&2
+	exit 1
+fi
+
+# Was this step already completed?
+if [ -f installed.sourceguardian ]; then
+	echo "Sourceguardian already configured - skipping."
+	exit 0
+fi
+
+# Install Sourceguardian extension
+./install-sourceguardian-extension.sh
+
+service "$httpd" restart
+
+echo "Installed SourceGuardian loaders"
+touch installed.sourceguardian
+

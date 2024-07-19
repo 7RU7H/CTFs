@@ -1,0 +1,70 @@
+#!/bin/bash -e
+
+. ./xi-sys.cfg
+
+# Was previous step completed?
+if [ ! -f installed.crontabs ]; then
+	echo "Crontabs were not configured - run previous script" >&2
+	exit 1
+fi
+
+# Was this step already completed?
+if [ -f installed.chkconfig ]; then
+	echo "Daemons already configured - skipping."
+	exit 0
+fi
+
+# Special case for CentOS 7 and 8
+if [ "$dist" == "el7" ] || [ "$dist" == "el8" ] || [ "$dist" == "el9" ]; then
+
+	# Disable this, but we don't care if they don't exist
+	set +e
+	if `command -v firewall-cmd`; then
+		systemctl disable firewalld
+	fi
+	set -e
+
+	# Enable in systemctl
+	for svc in nagios npcd $ntpd $mysqld crond httpd sshd; do
+		systemctl enable "$svc"
+	done
+
+	# Enable php-fpm and postfix on el8/el9
+	if [ "$dist" == "el8" ] || [ "$dist" == "el9" ]; then
+		sed -i "s/$(grep 'pm.max_requests' /etc/php-fpm\.d/www\.conf)/pm.max_requests = 250/" /etc/php-fpm.d/www.conf
+		systemctl enable php-fpm
+		systemctl enable postfix
+		systemctl restart php-fpm
+		systemctl restart postfix
+	fi
+
+elif [ "$distro" == "Ubuntu" ] || [ "$distro" == "Debian" ]; then
+
+	# In Debian 9 we can't enable a unit that is linked
+	if [ "$dist" == "debian9" ]; then
+		mysqld="mariadb"
+	fi
+
+	for svc in nagios npcd $mysqld $httpd $ntpd $crond; do
+		if `command -v systemctl`; then
+			systemctl enable "$svc"
+		else
+			update-rc.d "$svc" defaults
+		fi
+	done
+
+else
+
+	# For CentOS 6
+	for svc in  nagios npcd $ntpd; do
+		chkconfig --add "$svc"
+	done
+	for svc in nagios npcd $mysqld $httpd $ntpd $crond; do
+		chkconfig --level    35 "$svc" on
+		chkconfig --level 01246 "$svc" off
+	done
+
+fi
+
+echo "Daemons configured to start OK"
+touch installed.chkconfig

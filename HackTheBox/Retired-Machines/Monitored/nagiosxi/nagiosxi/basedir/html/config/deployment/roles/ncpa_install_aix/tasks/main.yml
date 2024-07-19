@@ -1,0 +1,27 @@
+---
+
+- name: Download NCPA
+  get_url:
+    url: https://assets.nagios.com/downloads/ncpa/ncpa-latest.aix7.1.ppc.rpm
+    dest: /tmp/ncpa.rpm
+    force: yes
+
+- name: Install NCPA (rpm on AIX)
+  shell: rpm -ivh /tmp/ncpa.rpm
+
+- name: Set NCPA Token
+  lineinfile:
+    dest: /usr/local/ncpa/etc/ncpa.cfg
+    regexp: ^community_string
+    line: "community_string = {{ ncpa_token }}"
+
+- name: Restart NCPA
+  service:
+    name: ncpa_listener
+    state: restarted
+    enabled: yes
+
+- name: Clean up temp files
+  file:
+    path: /tmp/ncpa.rpm
+    state: absent

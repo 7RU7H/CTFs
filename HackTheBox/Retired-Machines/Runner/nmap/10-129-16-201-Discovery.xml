@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.94SVN scan initiated Sun Apr 21 10:06:05 2024 as: nmap -&#45;script discovery -oA /home/kali/HackTheBoxCompetitive/Anomalies/Runner/nmap/10-129-16-201-Discovery -&#45;min-rate 1000 -e tun0 -p 22,80,8000 10.129.16.201 -->
+<nmaprun scanner="nmap" args="nmap -&#45;script discovery -oA /home/kali/HackTheBoxCompetitive/Anomalies/Runner/nmap/10-129-16-201-Discovery -&#45;min-rate 1000 -e tun0 -p 22,80,8000 10.129.16.201" start="1713690365" startstr="Sun Apr 21 10:06:05 2024" version="7.94SVN" xmloutputversion="1.05">
+<scaninfo type="syn" protocol="tcp" numservices="3" services="22,80,8000"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<prescript><script id="broadcast-ping" output="false">false</script><script id="hostmap-robtex" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="broadcast-igmp-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-robtex-shared-ns" output="*TEMPORARILY DISABLED* due to changes in Robtex&apos;s API. See https://www.robtex.com/api/"/><script id="broadcast-pim-discovery" output="ERROR: Script execution failed (use -d to debug)"/><script id="targets-sniffer" output="Sniffed 1 address(es). &#xa;224.0.23.12"/><script id="mrinfo" output="ERROR: Script execution failed (use -d to debug)"/><script id="lltd-discovery" output="false">false</script><script id="targets-asn" output="&#xa;  targets-asn.asn is a mandatory parameter&#xa;"/></prescript><hosthint><status state="up" reason="unknown-response" reason_ttl="0"/>
+<address addr="10.129.16.201" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+</hosthint>
+<host starttime="1713690389" endtime="1713690546"><status state="up" reason="echo-reply" reason_ttl="63"/>
+<address addr="10.129.16.201" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="22"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="ssh" method="table" conf="3"/><script id="banner" output="SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.6"/><script id="ssh-hostkey" output="&#xa;  256 3e:ea:45:4b:c5:d1:6d:6f:e2:d4:d1:3b:0a:3d:a9:4f (ECDSA)&#xa;  256 64:cc:75:de:4a:e6:a5:b4:73:eb:3f:1b:cf:b4:e3:94 (ED25519)"><table>
+<elem key="key">AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBJ+m7rYl1vRtnm789pH3IRhxI4CNCANVj+N5kovboNzcw9vHsBwvPX3KYA3cxGbKiA0VqbKRpOHnpsMuHEXEVJc=</elem>
+<elem key="bits">256</elem>
+<elem key="type">ecdsa-sha2-nistp256</elem>
+<elem key="fingerprint">3eea454bc5d16d6fe2d4d13b0a3da94f</elem>
+</table>
+<table>
+<elem key="key">AAAAC3NzaC1lZDI1NTE5AAAAIOtuEdoYxTohG80Bo6YCqSzUY9+qbnAFnhsk4yAZNqhM</elem>
+<elem key="bits">256</elem>
+<elem key="type">ssh-ed25519</elem>
+<elem key="fingerprint">64cc75de4ae6a5b473eb3f1bcfb4e394</elem>
+</table>
+</script><script id="ssh2-enum-algos" output="&#xa;  kex_algorithms: (11)&#xa;  server_host_key_algorithms: (4)&#xa;  encryption_algorithms: (6)&#xa;  mac_algorithms: (10)&#xa;  compression_algorithms: (2)"><table key="kex_algorithms">
+<elem>curve25519-sha256</elem>
+<elem>curve25519-sha256@libssh.org</elem>
+<elem>ecdh-sha2-nistp256</elem>
+<elem>ecdh-sha2-nistp384</elem>
+<elem>ecdh-sha2-nistp521</elem>
+<elem>sntrup761x25519-sha512@openssh.com</elem>
+<elem>diffie-hellman-group-exchange-sha256</elem>
+<elem>diffie-hellman-group16-sha512</elem>
+<elem>diffie-hellman-group18-sha512</elem>
+<elem>diffie-hellman-group14-sha256</elem>
+<elem>kex-strict-s-v00@openssh.com</elem>
+</table>
+<table key="server_host_key_algorithms">
+<elem>rsa-sha2-512</elem>
+<elem>rsa-sha2-256</elem>
+<elem>ecdsa-sha2-nistp256</elem>
+<elem>ssh-ed25519</elem>
+</table>
+<table key="encryption_algorithms">
+<elem>chacha20-poly1305@openssh.com</elem>
+<elem>aes128-ctr</elem>
+<elem>aes192-ctr</elem>
+<elem>aes256-ctr</elem>
+<elem>aes128-gcm@openssh.com</elem>
+<elem>aes256-gcm@openssh.com</elem>
+</table>
+<table key="mac_algorithms">
+<elem>umac-64-etm@openssh.com</elem>
+<elem>umac-128-etm@openssh.com</elem>
+<elem>hmac-sha2-256-etm@openssh.com</elem>
+<elem>hmac-sha2-512-etm@openssh.com</elem>
+<elem>hmac-sha1-etm@openssh.com</elem>
+<elem>umac-64@openssh.com</elem>
+<elem>umac-128@openssh.com</elem>
+<elem>hmac-sha2-256</elem>
+<elem>hmac-sha2-512</elem>
+<elem>hmac-sha1</elem>
+</table>
+<table key="compression_algorithms">
+<elem>none</elem>
+<elem>zlib@openssh.com</elem>
+</table>
+</script></port>
+<port protocol="tcp" portid="80"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http" method="table" conf="3"/><script id="http-date" output="Sun, 21 Apr 2024 09:06:40 GMT; +59m59s from local time."><elem key="date">2024-04-21T10:06:40+00:00</elem>
+<elem key="delta">3599.0</elem>
+</script><script id="http-mobileversion-checker" output="No mobile version detected."/><script id="http-devframework" output="Couldn&apos;t determine the underlying framework or CMS. Try increasing &apos;httpspider.maxpagecount&apos; value to spider more pages."/><script id="http-referer-checker" output="Couldn&apos;t find any cross-domain scripts."/><script id="http-title" output="Did not follow redirect to http://runner.htb/"><elem key="redirect_url">http://runner.htb/</elem>
+</script><script id="http-xssed" output="ERROR: Script execution failed (use -d to debug)"/><script id="http-sitemap-generator" output="&#xa;  Directory structure:&#xa;  Longest directory structure:&#xa;    Depth: 0&#xa;    Dir: /&#xa;  Total files found (by extension):&#xa;    &#xa;"/><script id="http-useragent-tester" output="&#xa;  Status for browser useragent: false&#xa;  Redirected To: http://runner.htb/&#xa;  Allowed User Agents: &#xa;    Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)&#xa;    libwww&#xa;    lwp-trivial&#xa;    libcurl-agent/1.0&#xa;    PHP/&#xa;    Python-urllib/2.5&#xa;    GT::WWW&#xa;    Snoopy&#xa;    MFC_Tear_Sample&#xa;    HTTP::Lite&#xa;    PHPCrawl&#xa;    URI::Fetch&#xa;    Zend_Http_Client&#xa;    http client&#xa;    PECL::HTTP&#xa;    Wget/1.13.4 (linux-gnu)&#xa;    WWW-Mechanize/1.34"><elem key="Status for browser useragent">false</elem>
+<elem key="Redirected To">http://runner.htb/</elem>
+<table key="Allowed User Agents">
+<elem>Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)</elem>
+<elem>libwww</elem>
+<elem>lwp-trivial</elem>
+<elem>libcurl-agent/1.0</elem>
+<elem>PHP/</elem>
+<elem>Python-urllib/2.5</elem>
+<elem>GT::WWW</elem>
+<elem>Snoopy</elem>
+<elem>MFC_Tear_Sample</elem>
+<elem>HTTP::Lite</elem>
+<elem>PHPCrawl</elem>
+<elem>URI::Fetch</elem>
+<elem>Zend_Http_Client</elem>
+<elem>http client</elem>
+<elem>PECL::HTTP</elem>
+<elem>Wget/1.13.4 (linux-gnu)</elem>
+<elem>WWW-Mechanize/1.34</elem>
+</table>
+</script><script id="http-comments-displayer" output="Couldn&apos;t find any comments."/><script id="http-vhosts" output="&#xa;128 names had status 302"/><script id="http-security-headers" output=""></script><script id="http-feed" output="Couldn&apos;t find any feeds."/><script id="http-headers" output="&#xa;  Server: nginx/1.18.0 (Ubuntu)&#xa;  Date: Sun, 21 Apr 2024 09:06:42 GMT&#xa;  Content-Type: text/html&#xa;  Content-Length: 154&#xa;  Connection: close&#xa;  Location: http://runner.htb/&#xa;  &#xa;  (Request type: GET)&#xa;"/><script id="http-chrono" output="Request times for /; avg: 2.87ms; min: 2.33ms; max: 3.54ms"/><script id="http-errors" output="Couldn&apos;t find any error pages."/></port>
+<port protocol="tcp" portid="8000"><state state="open" reason="syn-ack" reason_ttl="63"/><service name="http-alt" method="table" conf="3"/><script id="http-headers" output="&#xa;  Date: Sun, 21 Apr 2024 09:06:32 GMT&#xa;  Content-Length: 9&#xa;  Content-Type: text/plain; charset=utf-8&#xa;  Connection: close&#xa;  &#xa;  (Request type: GET)&#xa;"/><script id="http-title" output="Site doesn&apos;t have a title (text/plain; charset=utf-8)."></script><script id="http-vhosts" output="&#xa;128 names had status 404"/><script id="http-date" output="Sun, 21 Apr 2024 09:06:32 GMT; +1h00m00s from local time."><elem key="date">2024-04-21T10:06:32+00:00</elem>
+<elem key="delta">3600.0</elem>
+</script><script id="http-chrono" output="Request times for /; avg: 159.57ms; min: 156.79ms; max: 163.56ms"/></port>
+</ports>
+<hostscript><script id="fcrdns" output="FAIL (No PTR record)"><table key="&lt;none&gt;">
+<elem key="status">fail</elem>
+<elem key="reason">No PTR record</elem>
+</table>
+</script><script id="ipidseq" output="All zeros"/><script id="qscan" output="&#xa;PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)&#xa;22    0       44938.20   10424.82  0.0%&#xa;80    0       45165.40   7486.91   0.0%&#xa;8000  0       43070.00   7441.33   0.0%&#xa;"/><script id="dns-brute" output="Can&apos;t guess domain of &quot;10.129.16.201&quot;; use dns-brute.domain script argument."/><script id="path-mtu" output="PMTU == 1500"/></hostscript><times srtt="43972" rttvar="22478" to="133884"/>
+</host>
+<runstats><finished time="1713690546" timestr="Sun Apr 21 10:09:06 2024" summary="Nmap done at Sun Apr 21 10:09:06 2024; 1 IP address (1 host up) scanned in 181.55 seconds" elapsed="181.55" exit="success"/><hosts up="1" down="0" total="1"/>
+</runstats>
+</nmaprun>

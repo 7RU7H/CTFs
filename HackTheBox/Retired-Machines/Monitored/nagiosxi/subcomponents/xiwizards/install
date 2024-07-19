@@ -1,0 +1,24 @@
+#!/bin/bash -e
+
+. ../../xi-sys.cfg
+
+echo "INSTALL: Installing/updating XI wizards..."
+
+echo "Backing up existing wizards to /tmp/xiwizards_backup..."
+
+/bin/cp -f ../../nagiosxi/basedir/tools/install_configwizard.php "$proddir/tools/"
+
+/bin/mkdir -p /tmp/xiwizards_backup
+cp -rf "$proddir"/html/includes/configwizards/* /tmp/xiwizards_backup
+
+# Install/update each wizard
+for f in `ls -1 wizards/*.zip`; do
+	echo "Installing '$f'"
+	
+	"$proddir/tools/install_configwizard.php" --file=$f --restart=false --refresh=0
+
+done
+
+# Things are okay
+echo "INSTALL: Wizards installed/updated OK."
+

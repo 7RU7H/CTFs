@@ -1,0 +1,9 @@
+[Unit]
+Description=Nagios Process Control Daemon
+After=syslog.target network.target local-fs.target
+
+[Service]
+ExecStart=/usr/local/nagios/bin/npcd -f /usr/local/nagios/etc/pnp/npcd.cfg
+
+[Install]
+WantedBy=multi-user.target

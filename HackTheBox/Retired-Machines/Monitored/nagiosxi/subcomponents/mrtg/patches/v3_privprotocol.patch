@@ -1,0 +1,11 @@
+--- /tmp/cfgmaker.old	2014-04-25 13:40:13.000000000 -0500
++++ /usr/bin/cfgmaker	2014-04-25 09:45:17.983946215 -0500
+@@ -1537,7 +1537,7 @@
+ 		$v3opt{privpassword} = $$opt{privpassword};
+ 	}
+ 	if (exists ($$opt{privprotocol})) {
+-		die "Only des, 3des, 3desede, aes, aes128 are defined for --privprotocol" if $$opt{privprotocol} !~ /^(?:3?des(?:ede)?|aes(?:128)?)$/;
++		die "Only des, 3des, 3desede, aes, aes128 are defined for --privprotocol" if $$opt{privprotocol} !~ /^(?:3?des(?:ede)?|aes(?:128|cfb128|cfb192|cfb256)?)$/;
+ 		die "--privprotocol can only be used with --privpassword or --privkey" if ! exists($$opt{privpassword}) and ! exists($$opt{privkey});
+ 		$v3opt{privprotocol} = lc($$opt{privprotocol});
+ 	}

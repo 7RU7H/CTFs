@@ -1,0 +1,43 @@
+#!/bin/bash -e
+
+. ../../xi-sys.cfg
+
+version="2.0.5"
+pkgname="nrdp-$version"
+installdir="/usr/local/nrdp"
+
+echo "UPGRADE: NRDP is being upgraded..."
+
+# Delete the old directory
+rm -rf "$pkgname"
+
+# Extract archive
+tar -xzf "$pkgname.tar.gz"
+
+# Copy old config
+cp -f "$installdir/server/config.inc.php" "/tmp/config.inc.php"
+
+# Copy files
+cd "$pkgname"
+cp -rf server clients LICENSE* /usr/local/nrdp
+cd ..
+
+# Overwrite the copied config
+cp -f "/tmp/config.inc.php" "$installdir/server/config.inc.php"
+
+# Update client perms
+chmod +x /usr/local/nrdp/clients/*
+
+# Set perms
+mkdir -p /usr/local/nrdp/win_clients/tmp
+chown -R "$nagiosuser:$nagiosgroup" $installdir
+chmod ug+rw $installdir/server/config.inc.php
+chmod -R ug+rw $installdir/win_clients/tmp
+
+# Set version in config
+sed -i "/DONT MODIFY ANYTHING BELOW THIS LINE/Q" "$installdir/server/config.inc.php"
+
+# Clean up
+rm -rf "$pkgname"
+
+echo "UPGRADE: NRDP upgraded OK."

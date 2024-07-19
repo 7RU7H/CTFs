@@ -1,0 +1,19 @@
+#!/bin/bash -e
+
+# Was previous step completed?
+if [ ! -f installed.dbservers ]; then
+	echo "Database servers were not initialized - run previous script" >&2
+	exit 1
+fi
+
+# Was this step already completed?
+if [ -f installed.services ]; then
+	echo "/etc/services already updated - skipping."
+	exit 0
+fi
+
+cat nagiosxi/services >> /etc/services
+
+echo "/etc/services updated"
+touch installed.services
+

@@ -1,0 +1,78 @@
+#!/bin/bash -e
+# Gets OS information - Essentially a frontend for lsb_release but with
+# extra logic for RHEL-based and SuSE-based systems, because minimal RHEL installations
+# don't have lsb_release by default and SuSE doesn't have it either
+
+# Make sure we're on a Linux distro
+if [ `uname -s` != Linux ]; then
+	echo "ERROR: Unsupported OS detected. This script only detects Linux distributions." >&2
+	exit 2
+fi
+
+# Get architecture
+architecture=`uname -m`
+
+# Get OS & version
+if which lsb_release &>/dev/null; then
+	distro=`lsb_release -si`
+	version=`lsb_release -sr`
+elif [ -r /etc/redhat-release ]; then
+
+	if rpm -q centos-linux-release || rpm -q centos-stream-release || rpm -q centos-release; then
+		# centos-release: CentOS <= 8.2
+		# centos-linux-release: CentOS 8.3+
+		# centos-stream-release: CentOS 8 Stream
+		distro=CentOS
+	elif [ -r /etc/oracle-release ]; then
+		distro=OracleServer
+	elif rpm -q redhat-release || rpm -q redhat-release-server || rpm -q sles_es-release-server || rpm -q sles_es-release; then
+		distro=RedHatEnterpriseServer
+	fi >/dev/null
+
+	version=`grep -ve ^# /etc/redhat-release|sed 's/.*release \([0-9.]\+\).*/\1/'`
+else
+	# Release is not RedHat or CentOS, let's start by checking for SuSE
+	# or we can just make the last-ditch effort to find out the OS by sourcing os-release if it exists
+	if [ -r /etc/os-release ]; then
+		source /etc/os-release
+		if [ -n "$NAME" ]; then
+			distro=$NAME
+			version=$VERSION_ID
+		fi
+	fi
+fi
+
+# Add patch for RHEL with lsb installed
+if [ "$distro" == "RedHatEnterprise" ]; then
+	distro=RedHatEnterpriseServer
+fi
+
+# Add patch for CentOS with lsb installed
+if [ "$distro" == "CentOSStream" ]; then
+	distro="CentOS"
+fi
+
+
+# Add patch for Debian which changed NAME on us...
+if [[ $distro == *"Debian"* ]]; then
+	distro="Debian"
+fi
+
+# Add patch level to the version of SLES (because they don't...)
+if [ "$distro" == "SUSE LINUX" ]; then
+	if [ -r /etc/SuSE-release ]; then
+		patchlevel=$(cat /etc/SuSE-release | cut -d ' ' -f 3 -s | sed -n 3p)
+		version="$version.$patchlevel"
+	fi
+fi
+
+# Verify that we have a distro now
+if [ -z "$distro" ]; then
+	echo "ERROR: Could not determine OS. Please make sure lsb_release is installed or your OS info is in /etc/os-release." >&2
+	exit 1
+fi
+
+# Print results
+#echo "$distro"
+#echo "$version"
+#echo "$architecture"

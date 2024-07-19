@@ -1,0 +1,2065 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+</head>
+
+<body style="background-color: white">
+
+
+<!-- INDEX BEGIN -->
+<div name="index">
+<p><a name="__index__"></a></p>
+
+<ul>
+
+	<li><a href="#name">NAME</a></li>
+	<li><a href="#synopsis">SYNOPSIS</a></li>
+	<li><a href="#description">DESCRIPTION</a></li>
+	<ul>
+
+		<li><a href="#output_modes">Output Modes</a></li>
+		<ul>
+
+			<li><a href="#nagios_output">Nagios output</a></li>
+			<li><a href="#mrtg_output">MRTG output</a></li>
+			<li><a href="#simple_output">Simple output</a></li>
+			<li><a href="#cacti_output">Cacti output</a></li>
+		</ul>
+
+	</ul>
+
+	<li><a href="#database_connection_options">DATABASE CONNECTION OPTIONS</a></li>
+	<li><a href="#other_options">OTHER OPTIONS</a></li>
+	<li><a href="#actions">ACTIONS</a></li>
+	<ul>
+
+		<li><a href="#autovac_freeze"><strong>autovac_freeze</strong></a></li>
+		<li><a href="#backends"><strong>backends</strong></a></li>
+		<li><a href="#bloat"><strong>bloat</strong></a></li>
+		<li><a href="#checkpoint"><strong>checkpoint</strong></a></li>
+		<li><a href="#connection"><strong>connection</strong></a></li>
+		<li><a href="#custom_query"><strong>custom_query</strong></a></li>
+		<li><a href="#database_size"><strong>database_size</strong></a></li>
+		<li><a href="#dbstats"><strong>dbstats</strong></a></li>
+		<li><a href="#disabled_triggers"><strong>disabled_triggers</strong></a></li>
+		<li><a href="#disk_space"><strong>disk_space</strong></a></li>
+		<li><a href="#fsm_pages"><strong>fsm_pages</strong></a></li>
+		<li><a href="#fsm_relations"><strong>fsm_relations</strong></a></li>
+		<li><a href="#index_size"><strong>index_size</strong></a></li>
+		<li><a href="#table_size"><strong>table_size</strong></a></li>
+		<li><a href="#relation_size"><strong>relation_size</strong></a></li>
+		<li><a href="#last_vacuum"><strong>last_vacuum</strong></a></li>
+		<li><a href="#last_autovacuum"><strong>last_autovacuum</strong></a></li>
+		<li><a href="#last_analyze"><strong>last_analyze</strong></a></li>
+		<li><a href="#last_autoanalyze"><strong>last_autoanalyze</strong></a></li>
+		<li><a href="#listener"><strong>listener</strong></a></li>
+		<li><a href="#locks"><strong>locks</strong></a></li>
+		<li><a href="#logfile"><strong>logfile</strong></a></li>
+		<li><a href="#new_version_cp"><strong>new_version_cp</strong></a></li>
+		<li><a href="#new_version_pg"><strong>new_version_pg</strong></a></li>
+		<li><a href="#new_version_bc"><strong>new_version_bc</strong></a></li>
+		<li><a href="#prepared_txns"><strong>prepared_txns</strong></a></li>
+		<li><a href="#query_runtime"><strong>query_runtime</strong></a></li>
+		<li><a href="#query_time"><strong>query_time</strong></a></li>
+		<li><a href="#same_schema"><strong>same_schema</strong></a></li>
+		<li><a href="#sequence"><strong>sequence</strong></a></li>
+		<li><a href="#replicate_row"><strong>replicate_row</strong></a></li>
+		<li><a href="#txn_time"><strong>txn_time</strong></a></li>
+		<li><a href="#txn_idle"><strong>txn_idle</strong></a></li>
+		<li><a href="#rebuild_symlinks"><strong>rebuild_symlinks</strong></a></li>
+		<li><a href="#rebuild_symlinks_force"><strong>rebuild_symlinks_force</strong></a></li>
+		<li><a href="#settings_checksum"><strong>settings_checksum</strong></a></li>
+		<li><a href="#timesync"><strong>timesync</strong></a></li>
+		<li><a href="#txn_wraparound"><strong>txn_wraparound</strong></a></li>
+		<li><a href="#wal_files"><strong>wal_files</strong></a></li>
+		<li><a href="#version"><strong>version</strong></a></li>
+	</ul>
+
+	<li><a href="#basic_filtering">BASIC FILTERING</a></li>
+	<li><a href="#user_name_filtering">USER NAME FILTERING</a></li>
+	<li><a href="#test_mode">TEST MODE</a></li>
+	<li><a href="#files">FILES</a></li>
+	<li><a href="#environment_variables">ENVIRONMENT VARIABLES</a></li>
+	<li><a href="#tips_and_tricks">TIPS AND TRICKS</a></li>
+	<li><a href="#dependencies">DEPENDENCIES</a></li>
+	<li><a href="#development">DEVELOPMENT</a></li>
+	<li><a href="#mailing_list">MAILING LIST</a></li>
+	<li><a href="#history">HISTORY</a></li>
+	<li><a href="#bugs_and_limitations">BUGS AND LIMITATIONS</a></li>
+	<li><a href="#author">AUTHOR</a></li>
+	<li><a href="#nagios_examples">NAGIOS EXAMPLES</a></li>
+	<li><a href="#license_and_copyright">LICENSE AND COPYRIGHT</a></li>
+</ul>
+
+<hr name="index" />
+</div>
+<!-- INDEX END -->
+
+<p>
+</p>
+<hr />
+<h1><a name="name">NAME</a></h1>
+<p><strong>check_postgres.pl</strong> - a Postgres monitoring script for Nagios, MRTG, Cacti, and others</p>
+<p>This documents describes check_postgres.pl version 2.12.0</p>
+<p>
+</p>
+<hr />
+<h1><a name="synopsis">SYNOPSIS</a></h1>
+<pre>
+  ## Create all symlinks
+  check_postgres.pl --symlinks</pre>
+<pre>
+  ## Check connection to Postgres database 'pluto':
+  check_postgres.pl --action=connection --db=pluto</pre>
+<pre>
+  ## Same things, but using the symlink
+  check_postgres_connection --db=pluto</pre>
+<pre>
+  ## Warn if &gt; 100 locks, critical if &gt; 200, or &gt; 20 exclusive
+  check_postgres_locks --warning=100 --critical=&quot;total=200;exclusive=20&quot;</pre>
+<pre>
+  ## Show the current number of idle connections on port 6543:
+  check_postgres_txn_idle --port=6543 --output=simple</pre>
+<pre>
+  ## There are many other actions and options, please keep reading.</pre>
+<pre>
+  The latest news and documentation can always be found at:
+  <a href="http://bucardo.org/check_postgres/">http://bucardo.org/check_postgres/</a></pre>
+<p>
+</p>
+<hr />
+<h1><a name="description">DESCRIPTION</a></h1>
+<p>check_postgres.pl is a Perl script that runs many different tests against 
+one or more Postgres databases. It uses the psql program to gather the 
+information, and outputs the results in one of three formats: Nagios, MRTG, 
+or simple.</p>
+<p>
+</p>
+<h2><a name="output_modes">Output Modes</a></h2>
+<p>The output can be changed by use of the <code>--output</code> option. The default output 
+is nagios, although this can be changed at the top of the script if you wish. The 
+current option choices are <strong>nagios</strong>, <strong>mrtg</strong>, and <strong>simple</strong>. To avoid having to 
+enter the output argument each time, the type of output is automatically set 
+if no --output argument is given, and if the current directory has one of the 
+output options in its name. For example, creating a directory named mrtg and 
+populating it with symlinks via the <em>--symlinks</em> argument would ensure that 
+any actions run from that directory will always default to an output of &quot;mrtg&quot;
+As a shortcut for --output=simple, you can enter --simple, which also overrides 
+the directory naming trick.</p>
+<p>
+</p>
+<h3><a name="nagios_output">Nagios output</a></h3>
+<p>The default output format is for Nagios, which is a single line of information, along 
+with four specific exit codes:</p>
+<ol>
+<li><strong><a name="ok" class="item">(OK)</a></strong>
+
+</li>
+<li><strong><a name="warning" class="item">(WARNING)</a></strong>
+
+</li>
+<li><strong><a name="critical" class="item">(CRITICAL)</a></strong>
+
+</li>
+<li><strong><a name="unknown" class="item">(UNKNOWN)</a></strong>
+
+</li>
+</ol>
+<p>The output line is one of the words above, a colon, and then a short description of what 
+was measured. Additional statistics information, as well as the total time the command 
+took, can be output as well: see the documentation on the arguments 
+<em><a href="#showperf_val">--showperf</a></em>, 
+<em><a href="#perflimit_i">--perflimit</a></em>, and 
+<em><a href="#showtime_val">--showtime</a></em>.</p>
+<p>
+</p>
+<h3><a name="mrtg_output">MRTG output</a></h3>
+<p>The MRTG output is four lines, with the first line always giving a single number of importance. 
+When possible, this number represents an actual value such as a number of bytes, but it 
+may also be a 1 or a 0 for actions that only return &quot;true&quot; or &quot;false&quot;, such as check_postgres_version.
+The second line is an additional stat and is only used for some actions. The third line indicates 
+an &quot;uptime&quot; and is not used. The fourth line is a description and usually indicates the name of 
+the database the stat from the first line was pulled from, but may be different depending on the 
+action.</p>
+<p>Some actions accept an optional <em>--mrtg</em> argument to further control the output.</p>
+<p>See the documentation on each action for details on the exact MRTG output for each one.</p>
+<p>
+</p>
+<h3><a name="simple_output">Simple output</a></h3>
+<p>The simple output is simply a truncated version of the MRTG one, and simply returns the first number 
+and nothing else. This is very useful when you just want to check the state of something, regardless 
+of any threshold. You can transform the numeric output by appending KB, MB, GB, TB, or EB to the output 
+argument, for example:</p>
+<pre>
+  --output=simple,MB</pre>
+<p>
+</p>
+<h3><a name="cacti_output">Cacti output</a></h3>
+<p>The Cacti output consists of one or more items on the same line, with a simple name, a colon, and 
+then a number. At the moment, the only action with explicit Cacti output is 'dbstats', and using 
+the --output option is not needed in this case, as Cacti is the only output for this action. For many 
+other actions, using --simple is enough to make Cacti happy.</p>
+<p>
+</p>
+<hr />
+<h1><a name="database_connection_options">DATABASE CONNECTION OPTIONS</a></h1>
+<p>All actions accept a common set of database options.</p>
+<dl>
+<dt><strong><a name="h_name_or_host_name" class="item"><strong>-H NAME</strong> or <strong>--host=NAME</strong></a></strong></dt>
+
+<dd>
+<p>Connect to the host indicated by NAME. Can be a comma-separated list of names. Multiple host arguments 
+are allowed. If no host is given, defaults to the <code>PGHOST</code> environment variable or no host at all 
+(which indicates using a local Unix socket). You may also use &quot;--dbhost&quot;.</p>
+</dd>
+<dt><strong><a name="p_port_or_port_port" class="item"><strong>-p PORT</strong> or <strong>--port=PORT</strong></a></strong></dt>
+
+<dd>
+<p>Connects using the specified PORT number. Can be a comma-separated list of port numbers, and multiple 
+port arguments are allowed. If no port number is given, defaults to the <code>PGPORT</code> environment variable. If 
+that is not set, it defaults to 5432. You may also use &quot;--dbport&quot;</p>
+</dd>
+<dt><strong><a name="db_name_or_dbname_name" class="item"><strong>-db NAME</strong> or <strong>--dbname=NAME</strong></a></strong></dt>
+
+<dd>
+<p>Specifies which database to connect to. Can be a comma-separated list of names, and multiple dbname 
+arguments are allowed. If no dbname option is provided, defaults to the <code>PGDATABASE</code> environment variable. 
+If that is not set, it defaults to 'postgres' if psql is version 8 or greater, and 'template1' otherwise.</p>
+</dd>
+<dt><strong><a name="u_username_or_dbuser_username" class="item"><strong>-u USERNAME</strong> or <strong>--dbuser=USERNAME</strong></a></strong></dt>
+
+<dd>
+<p>The name of the database user to connect as. Can be a comma-separated list of usernames, and multiple 
+dbuser arguments are allowed. If this is not provided, it defaults to the <code>PGUSER</code> environment variable, otherwise 
+it defaults to 'postgres'.</p>
+</dd>
+<dt><strong><a name="dbpass_password" class="item"><strong>--dbpass=PASSWORD</strong></a></strong></dt>
+
+<dd>
+<p>Provides the password to connect to the database with. Use of this option is highly discouraged.
+Instead, one should use a .pgpass or pg_service.conf file.</p>
+</dd>
+<dt><strong><a name="dbservice_name" class="item"><strong>--dbservice=NAME</strong></a></strong></dt>
+
+<dd>
+<p>The name of a service inside of the pg_service.conf file. This file is in your home directory by 
+default and contains a simple list of connection options. You can also pass additional information 
+when using this option such as --dbservice=&quot;maindatabase sslmode=require&quot;</p>
+</dd>
+</dl>
+<p>The database connection options can be grouped: <em>--host=a,b --host=c --port=1234 --port=3344</em>
+would connect to a-1234, b-1234, and c-3344. Note that once set, an option 
+carries over until it is changed again.</p>
+<p>Examples:</p>
+<pre>
+  --host=a,b --port=5433 --db=c
+  Connects twice to port 5433, using database c, to hosts a and b: a-5433-c b-5433-c</pre>
+<pre>
+  --host=a,b --port=5433 --db=c,d
+  Connects four times: a-5433-c a-5433-d b-5433-c b-5433-d</pre>
+<pre>
+  --host=a,b --host=foo --port=1234 --port=5433 --db=e,f
+  Connects six times: a-1234-e a-1234-f b-1234-e b-1234-f foo-5433-e foo-5433-f</pre>
+<pre>
+  --host=a,b --host=x --port=5432,5433 --dbuser=alice --dbuser=bob -db=baz
+  Connects three times: a-5432-alice-baz b-5433-alice-baz x-5433-bob-baz</pre>
+<pre>
+  --dbservice=&quot;foo&quot; --port=5433
+  Connects using the named service 'foo' in the pg_service.conf file, but overrides the port</pre>
+<p>
+</p>
+<hr />
+<h1><a name="other_options">OTHER OPTIONS</a></h1>
+<p>Other options include:</p>
+<dl>
+<dt><strong><a name="action_name" class="item"><strong>--action=NAME</strong></a></strong></dt>
+
+<dd>
+<p>States what action we are running. Required unless using a symlinked file, 
+in which case the name of the file is used to figure out the action.</p>
+</dd>
+<dt><strong><a name="warning_val_or_w_val" class="item"><strong>--warning=VAL or -w VAL</strong></a></strong></dt>
+
+<dd>
+<p>Sets the threshold at which a warning alert is fired. The valid options for this 
+option depends on the action used.</p>
+</dd>
+<dt><strong><a name="critical_val_or_c_val" class="item"><strong>--critical=VAL or -c VAL</strong></a></strong></dt>
+
+<dd>
+<p>Sets the threshold at which a critical alert is fired. The valid options for this 
+option depends on the action used.</p>
+</dd>
+<dt><strong><a name="t_val_or_timeout_val" class="item"><strong>-t VAL</strong> or <strong>--timeout=VAL</strong></a></strong></dt>
+
+<dd>
+<p>Sets the timeout in seconds after which the script will abort whatever it is doing 
+and return an UNKNOWN status. The timeout is per Postgres cluster, not for the entire 
+script. The default value is 10; the units are always in seconds.</p>
+</dd>
+<dt><strong><a name="h_or_help" class="item"><strong>-h</strong> or <strong>--help</strong></a></strong></dt>
+
+<dd>
+<p>Displays a help screen with a summary of all actions and options.</p>
+</dd>
+<dt><strong><a name="v_or_version" class="item"><strong>-V</strong> or <strong>--version</strong></a></strong></dt>
+
+<dd>
+<p>Shows the current version.</p>
+</dd>
+<dt><strong><a name="v_or_verbose" class="item"><strong>-v</strong> or <strong>--verbose</strong></a></strong></dt>
+
+<dd>
+<p>Set the verbosity level. Can call more than once to boost the level. Setting it to three 
+or higher (in other words, issuing <code>-v -v -v</code>) turns on debugging information for this 
+program which is sent to stderr.</p>
+</dd>
+<dt><strong><a name="showperf_val" class="item"><strong>--showperf=VAL</strong></a></strong></dt>
+
+<dd>
+<p>Determines if we output additional performance data in standard Nagios format 
+(at end of string, after a pipe symbol, using name=value). 
+VAL should be 0 or 1. The default is 1. Only takes effect if using Nagios output mode.</p>
+</dd>
+<dt><strong><a name="perflimit_i" class="item"><strong>--perflimit=i</strong></a></strong></dt>
+
+<dd>
+<p>Sets a limit as to how many items of interest are reported back when using the 
+<em>showperf</em> option. This only has an effect for actions that return a large 
+number of items, such as <strong>table_size</strong>. The default is 0, or no limit. Be 
+careful when using this with the <em>--include</em> or <em>--exclude</em> options, as 
+those restrictions are done <em>after</em> the query has been run, and thus your 
+limit may not include the items you want. Only takes effect if using Nagios output mode.</p>
+</dd>
+<dt><strong><a name="showtime_val" class="item"><strong>--showtime=VAL</strong></a></strong></dt>
+
+<dd>
+<p>Determines if the time taken to run each query is shown in the output. VAL 
+should be 0 or 1. The default is 1. No effect unless <em>showperf</em> is on.
+Only takes effect if using Nagios output mode.</p>
+</dd>
+<dt><strong><a name="test" class="item"><strong>--test</strong></a></strong></dt>
+
+<dd>
+<p>Enables test mode. See the <a href="#test_mode">TEST MODE</a> section below.</p>
+</dd>
+<dt><strong><a name="psql_path" class="item"><strong>--PSQL=PATH</strong></a></strong></dt>
+
+<dd>
+<p>Tells the script where to find the psql program. Useful if you have more than 
+one version of the psql executable on your system, or if there is no psql program 
+in your path. Note that this option is in all uppercase. By default, this option 
+is <em>not allowed</em>. To enable it, you must change the <code>$NO_PSQL_OPTION</code> near the 
+top of the script to 0. Avoid using this option if you can, and instead hard-code 
+your psql location into the <code>$PSQL</code> variable, also near the top of the script.</p>
+</dd>
+<dt><strong><a name="symlinks" class="item"><strong>--symlinks</strong></a></strong></dt>
+
+<dd>
+<p>Creates symlinks to the main program for each action.</p>
+</dd>
+<dt><strong><a name="output_val" class="item"><strong>--output=VAL</strong></a></strong></dt>
+
+<dd>
+<p>Determines the format of the output, for use in various programs. The default is 'nagios'. No
+other systems are supported yet.</p>
+</dd>
+<dt><strong><a name="mrtg_val" class="item"><strong>--mrtg=VAL</strong></a></strong></dt>
+
+<dd>
+<p>Used only for the MRTG or simple output, for a few specific actions.</p>
+</dd>
+<dt><strong><a name="debugoutput_val" class="item"><strong>--debugoutput=VAL</strong></a></strong></dt>
+
+<dd>
+<p>Outputs the exact string returned by psql, for use in debugging. The value is one or more letters,
+which determine if the output is displayed or not, where 'a' = all, 'c' = critical, 'w' = warning,
+'o' = ok, and 'u' = unknown. Letters can be combined.</p>
+</dd>
+<dt><strong><a name="get_method_val" class="item"><strong>--get_method=VAL</strong></a></strong></dt>
+
+<dd>
+<p>Allows specification of the method used to fetch information for the <code>new_version_cp</code>, 
+<code>new_version_pg</code>, and <code>new_version_bc</code> checks. The following programs are tried, in order, to 
+grab the information from the web: GET, wget, fetch, curl, lynx, links. To force the use of just 
+one (and thus remove the overhead of trying all the others until one of those works), 
+enter one of the names as the argument to get_method. For example, a BSD box might enter 
+the following line in their <code>.check_postgresrc</code> file:</p>
+<pre>
+  get_method=fetch</pre>
+</dd>
+<dt><strong><a name="language_val" class="item"><strong>--language=VAL</strong></a></strong></dt>
+
+<dd>
+<p>Set the language to use for all output messages. Normally, this is detected by examining 
+the environment variables LC_ALL, LC_MESSAGES, and LANG, but setting this option 
+will override any such detection.</p>
+</dd>
+</dl>
+<p>
+</p>
+<hr />
+<h1><a name="actions">ACTIONS</a></h1>
+<p>The script runs one or more actions. This can either be done with the --action 
+flag, or by using a symlink to the main file that contains the name of the action 
+inside of it. For example, to run the action &quot;timesync&quot;, you may either issue:</p>
+<pre>
+  check_postgres.pl --action=timesync</pre>
+<p>or use a program named:</p>
+<pre>
+  check_postgres_timesync</pre>
+<p>All the symlinks are created for you in the current directory 
+if use the option --symlinks</p>
+<pre>
+  perl check_postgres.pl --symlinks</pre>
+<p>If the file name already exists, it will not be overwritten. If the file exists 
+and is a symlink, you can force it to overwrite by using &quot;--action=build_symlinks_force&quot;</p>
+<p>Most actions take a <em>--warning</em> and a <em>--critical</em> option, indicating at what 
+point we change from OK to WARNING, and what point we go to CRITICAL. Note that 
+because criticals are always checked first, setting the warning equal to the 
+critical is an effective way to turn warnings off and always give a critical.</p>
+<p>The current supported actions are:</p>
+<p>
+</p>
+<h2><a name="autovac_freeze"><strong>autovac_freeze</strong></a></h2>
+<p>(<code>symlink: check_postgres_autovac_freeze</code>) Checks how close each database is to the Postgres <strong>autovacuum_freeze_max_age</strong> setting. This 
+action will only work for databases version 8.2 or higher. The <em>--warning</em> and 
+<em>--critical</em> options should be expressed as percentages. The 'age' of the transactions 
+in each database is compared to the autovacuum_freeze_max_age setting (200 million by default) 
+to generate a rounded percentage. The default values are <strong>90%</strong> for the warning and <strong>95%</strong> for 
+the critical. Databases can be filtered by use of the <em>--include</em> and <em>--exclude</em> options. See 
+the <a href="#basic_filtering">BASIC FILTERING</a> section for more details.</p>
+<p>Example 1: Give a warning when any databases on port 5432 are above 80%</p>
+<pre>
+  check_postgres_autovac_freeze --port=5432 --warning=&quot;80%&quot;</pre>
+<p>For MRTG output, the highest overall percentage is reported on the first line, and the highest age is 
+reported on the second line. All databases which have the percentage from the first line are reported 
+on the fourth line, separated by a pipe symbol.</p>
+<p>
+</p>
+<h2><a name="backends"><strong>backends</strong></a></h2>
+<p>(<code>symlink: check_postgres_backends</code>) Checks the current number of connections for one or more databases, and optionally 
+compares it to the maximum allowed, which is determined by the 
+Postgres configuration variable <strong>max_connections</strong>. The <em>--warning</em> and 
+<em>--critical</em> options can take one of three forms. First, a simple number can be 
+given, which represents the number of connections at which the alert will be 
+given. This choice does not use the <strong>max_connections</strong> setting. Second, the 
+percentage of available connections can be given. Third, a negative number can 
+be given which represents the number of connections left until <strong>max_connections</strong> 
+is reached. The default values for <em>--warning</em> and <em>--critical</em> are '90%' and '95%'.
+You can also filter the databases by use of the <em>--include</em> and <em>--exclude</em> options.
+See the <a href="#basic_filtering">BASIC FILTERING</a> section for more details.</p>
+<p>To view only non-idle processes, you can use the <em>--noidle</em> argument. Note that the 
+user you are connecting as must be a superuser for this to work properly.</p>
+<p>Example 1: Give a warning when the number of connections on host quirm reaches 120, and a critical if it reaches 150.</p>
+<pre>
+  check_postgres_backends --host=quirm --warning=120 --critical=150</pre>
+<p>Example 2: Give a critical when we reach 75% of our max_connections setting on hosts lancre or lancre2.</p>
+<pre>
+  check_postgres_backends --warning='75%' --critical='75%' --host=lancre,lancre2</pre>
+<p>Example 3: Give a warning when there are only 10 more connection slots left on host plasmid, and a critical 
+when we have only 5 left.</p>
+<pre>
+  check_postgres_backends --warning=-10 --critical=-5 --host=plasmid</pre>
+<p>Example 4: Check all databases except those with &quot;test&quot; in their name, but allow ones that are named &quot;pg_greatest&quot;. Connect as port 5432 on the first two hosts, and as port 5433 on the third one. We want to always throw a critical when we reach 30 or more connections.</p>
+<pre>
+ check_postgres_backends --dbhost=hong,kong --dbhost=fooey --dbport=5432 --dbport=5433 --warning=30 --critical=30 --exclude=&quot;~test&quot; --include=&quot;pg_greatest,~prod&quot;</pre>
+<p>For MRTG output, the number of connections is reported on the first line, and the fourth line gives the name of the database, 
+plus the current maximum_connections. If more than one database has been queried, the one with the highest number of 
+connections is output.</p>
+<p>
+</p>
+<h2><a name="bloat"><strong>bloat</strong></a></h2>
+<p>(<code>symlink: check_postgres_bloat</code>) Checks the amount of bloat in tables and indexes. (Bloat is generally the amount 
+of dead unused space taken up in a table or index. This space is usually reclaimed 
+by use of the VACUUM command.) This action requires that stats collection be 
+enabled on the target databases, and requires that ANALYZE is run frequently. 
+The <em>--include</em> and <em>--exclude</em> options can be used to filter out which tables 
+to look at. See the <a href="#basic_filtering">BASIC FILTERING</a> section for more details.</p>
+<p>The <em>--warning</em> and <em>--critical</em> options can be specified as sizes or percents.
+Valid size units are bytes, kilobytes, megabytes, gigabytes, terabytes, exabytes, 
+petabytes, and zettabytes. You can abbreviate all of those with the first letter. Items 
+without units are assumed to be 'bytes'. The default values are '1 GB' and '5 GB'. The value 
+represents the number of &quot;wasted bytes&quot;, or the difference between what is actually 
+used by the table and index, and what we compute that it should be.</p>
+<p>Note that this action has two hard-coded values to avoid false alarms on 
+smaller relations. Tables must have at least 10 pages, and indexes at least 15, 
+before they can be considered by this test. If you really want to adjust these 
+values, you can look for the variables <em>$MINPAGES</em> and <em>$MINIPAGES</em> at the top of the 
+<code>check_bloat</code> subroutine.</p>
+<p>Only the top 10 most bloated relations are shown. You can change this number by 
+using the <em>--perflimit</em> option to set your own limit.</p>
+<p>The schema named 'information_schema' is excluded from this test, as the only tables 
+it contains are small and do not change.</p>
+<p>Please note that the values computed by this action are not precise, and 
+should be used as a guideline only. Great effort was made to estimate the 
+correct size of a table, but in the end it is only an estimate. The correct 
+index size is even more of a guess than the correct table size, but both 
+should give a rough idea of how bloated things are.</p>
+<p>Example 1: Warn if any table on port 5432 is over 100 MB bloated, and critical if over 200 MB</p>
+<pre>
+  check_postgres_bloat --port=5432 --warning='100 M', --critical='200 M'</pre>
+<p>Example 2: Give a critical if table 'orders' on host 'sami' has more than 10 megs of bloat</p>
+<pre>
+  check_postgres_bloat --host=sami --include=orders --critical='10 MB'</pre>
+<p>Example 3: Give a critical if table 'q4' on database 'sales' is over 50% bloated</p>
+<pre>
+  check_postgres_bloat --db=sales --include=q4 --critical='50%'</pre>
+<p>For MRTG output, the first line gives the highest number of wasted bytes for the tables, and the 
+second line gives the highest number of wasted bytes for the indexes. The fourth line gives the database 
+name, table name, and index name information. If you want to output the bloat ratio instead (how many 
+times larger the relation is compared to how large it should be), just pass in <code>--mrtg=ratio</code>.</p>
+<p>
+</p>
+<h2><a name="checkpoint"><strong>checkpoint</strong></a></h2>
+<p>(<code>symlink: check_postgres_checkpoint</code>) Determines how long since the last checkpoint has 
+been run. This must run on the same server as the database that is being checked. This check is 
+meant to run on a &quot;warm standby&quot; server that is actively processing shipped WAL files, and is meant 
+to check that your warm standby is truly 'warm'. The data directory must be set, either by the 
+environment variable <code>PGDATA</code>, or passing 
+the <code>--datadir</code> argument. It returns the number of seconds since the last checkpoint 
+was run, as determined by parsing the call to <code>pg_controldata</code>. Because of this, the 
+pg_controldata executable must be available in the current path. Alternatively, you can 
+set the environment variable <code>PGCONTROLDATA</code> to the exact location of the pg_controldata 
+executable, or you can specify <code>PGBINDIR</code> as the directory that it lives in.</p>
+<p>At least one warning or critical argument must be set.</p>
+<p>This action requires the Date::Parse module.</p>
+<p>For MRTG or simple output, returns the number of seconds.</p>
+<p>
+</p>
+<h2><a name="connection"><strong>connection</strong></a></h2>
+<p>(<code>symlink: check_postgres_connection</code>) Simply connects, issues a 'SELECT version()', and leaves.
+Takes no <em>--warning</em> or <em>--critical</em> options.</p>
+<p>For MRTG output, simply outputs a 1 (good connection) or a 0 (bad connection) on the first line.</p>
+<p>
+</p>
+<h2><a name="custom_query"><strong>custom_query</strong></a></h2>
+<p>(<code>symlink: check_postgres_custom_query</code>) Runs a custom query of your choosing, and parses the results. The query itself is passed in through 
+the <code>custom_query</code> argument, and should be kept as simple as possible. If at all possible, wrap it in 
+a view or a function to keep things easier to manage. The query should return one or two columns: the first 
+is the result that will be checked, and the second is any performance data you want sent.</p>
+<p>At least one warning or critical argument must be specified. What these are set to depends on the type of 
+query you are running. There are four types of custom_queries that can be run, specified by the <code>valtype</code> 
+argument. If none is specified, this action defaults to 'integer'. The four types are:</p>
+<p><strong>integer</strong>:
+Does a simple integer comparison. The first column should be a simple integer, and the warning and 
+critical values should be the same.</p>
+<p><strong>string</strong>:
+The warning and critical are strings, and are triggered only if the value in the first column matches 
+it exactly. This is case-sensitive.</p>
+<p><strong>time</strong>:
+The warning and the critical are times, and can have units of seconds, minutes, hours, or days.
+Each may be written singular or abbreviated to just the first letter. If no units are given, 
+seconds are assumed. The first column should be an integer representing the number of seconds
+to check.</p>
+<p><strong>size</strong>:
+The warning and the critical are sizes, and can have units of bytes, kilobytes, megabytes, gigabytes, 
+terabytes, or exabytes. Each may be abbreviated to the first letter. If no units are given, 
+bytes are assumed. The first column should be an integer representing the number of bytes to check.</p>
+<p>Normally, an alert is triggered if the values returned are <strong>greater than</strong> or equal to the critical or warning 
+value. However, an option of <em>--reverse</em> will trigger the alert if the returned value is 
+<strong>lower than</strong> or equal to the critical or warning value.</p>
+<p>Example 1: Warn if any relation over 100 pages is named &quot;rad&quot;:</p>
+<pre>
+  check_postgres_custom_query --valtype=string -w &quot;rad&quot; --query=&quot;SELECT relname FROM pg_class WHERE relpages &gt; 100&quot; --port=5432</pre>
+<p>Example 2: Give a critical if the &quot;foobar&quot; function returns a number over 5MB:</p>
+<pre>
+  check_postgres_custom_query --port=5432 --critical='5MB'--valtype=size --query=&quot;SELECT foobar()&quot;</pre>
+<p>Example 2: Warn if the function &quot;snazzo&quot; returns less than 42:</p>
+<pre>
+  check_postgres_custom_query --port=5432 --critical=42 --query=&quot;SELECT snazzo()&quot; --reverse</pre>
+<p>If you come up with a useful custom_query, consider sending in a patch to this program 
+to make it into a standard action that other people can use.</p>
+<p>This action does not support MRTG or simple output yet.</p>
+<p>
+</p>
+<h2><a name="database_size"><strong>database_size</strong></a></h2>
+<p>(<code>symlink: check_postgres_database_size</code>) Checks the size of all databases and complains when they are too big. 
+There is no need to run this command more than once per database cluster. 
+Databases can be filtered with 
+the <em>--include</em> and <em>--exclude</em> options. See the <a href="#basic_filtering">BASIC FILTERING</a> section 
+for more details. 
+They can also be filtered by the owner of the database with the 
+<em>--includeuser</em> and <em>--excludeuser</em> options.
+See the <a href="#user_name_filtering">USER NAME FILTERING</a> section for more details.</p>
+<p>The warning and critical options can be specified as bytes, kilobytes, megabytes, 
+gigabytes, terabytes, or exabytes. Each may be abbreviated to the first letter as well. 
+If no unit is given, the units are assumed to be bytes. There are not defaults for this 
+action: the warning and critical must be specified. The warning value cannot be greater 
+than the critical value. The output returns all databases sorted by size largest first, 
+showing both raw bytes and a &quot;pretty&quot; version of the size.</p>
+<p>Example 1: Warn if any database on host flagg is over 1 TB in size, and critical if over 1.1 TB.</p>
+<pre>
+  check_postgres_database_size --host=flagg --warning='1 TB' --critical='1.1 t'</pre>
+<p>Example 2: Give a critical if the database template1 on port 5432 is over 10 MB.</p>
+<pre>
+  check_postgres_database_size --port=5432 --include=template1 --warning='10MB' --critical='10MB'</pre>
+<p>Example 3: Give a warning if any database on host 'tardis' owned by the user 'tom' is over 5 GB</p>
+<pre>
+  check_postgres_database_size --host=tardis --includeuser=tom --warning='5 GB' --critical='10 GB'</pre>
+<p>For MRTG output, returns the size in bytes of the largest database on the first line, 
+and the name of the database on the fourth line.</p>
+<p>
+</p>
+<h2><a name="dbstats"><strong>dbstats</strong></a></h2>
+<p>(<code>symlink: check_postgres_dbstats</code>) Reports information from the pg_stat_database view, 
+and outputs it in a Cacti-friendly manner. No other output is supported, as the output 
+is informational and does not lend itself to alerts, such as used with Nagios. If no 
+options are given, all databases are returned, one per line. You can include a specific 
+database by use of the <code>--include</code> option, or you can use the <a href="#dbname"><code>--dbname</code></a> option.</p>
+<p>Eleven items are returned on each line, in the format name:value, separated by a single 
+space. The items are:</p>
+<dl>
+<dt><strong><a name="backends" class="item">backends</a></strong></dt>
+
+<dd>
+<p>The number of currently running backends for this database.</p>
+</dd>
+<dt><strong><a name="commits" class="item">commits</a></strong></dt>
+
+<dd>
+<p>The total number of commits for this database since it was created or reset.</p>
+</dd>
+<dt><strong><a name="rollbacks" class="item">rollbacks</a></strong></dt>
+
+<dd>
+<p>The total number of rollbacks for this database since it was created or reset.</p>
+</dd>
+<dt><strong><a name="read" class="item">read</a></strong></dt>
+
+<dd>
+<p>The total number of disk blocks read.</p>
+</dd>
+<dt><strong><a name="hit" class="item">hit</a></strong></dt>
+
+<dd>
+<p>The total number of buffer hits.</p>
+</dd>
+<dt><strong><a name="ret" class="item">ret</a></strong></dt>
+
+<dd>
+<p>The total number of rows returned.</p>
+</dd>
+<dt><strong><a name="fetch" class="item">fetch</a></strong></dt>
+
+<dd>
+<p>The total number of rows fetched.</p>
+</dd>
+<dt><strong><a name="ins" class="item">ins</a></strong></dt>
+
+<dd>
+<p>The total number of rows inserted.</p>
+</dd>
+<dt><strong><a name="upd" class="item">upd</a></strong></dt>
+
+<dd>
+<p>The total number of rows updated.</p>
+</dd>
+<dt><strong><a name="del" class="item">del</a></strong></dt>
+
+<dd>
+<p>The total number of rows deleted.</p>
+</dd>
+<dt><strong><a name="dbname" class="item">dbname</a></strong></dt>
+
+<dd>
+<p>The name of the database.</p>
+</dd>
+</dl>
+<p>Note that ret, fetch, ins, upd, and del items will always be 0 if Postgres is version 8.2 or lower, as those stats were 
+not available in those versions.</p>
+<p>If the dbname argument is given, seven additional items are returned:</p>
+<dl>
+<dt><strong><a name="idx_scan" class="item">idx_scan</a></strong></dt>
+
+<dd>
+<p>Total number of user index scans.</p>
+</dd>
+<dt><strong><a name="idx_tup_read" class="item">idx_tup_read</a></strong></dt>
+
+<dd>
+<p>Total number of user index entries returned.</p>
+</dd>
+<dt><strong><a name="idx_tup_fetch" class="item">idx_tup_fetch</a></strong></dt>
+
+<dd>
+<p>Total number of rows fetched by simple user index scans.</p>
+</dd>
+<dt><strong><a name="idx_blks_read" class="item">idx_blks_read</a></strong></dt>
+
+<dd>
+<p>Total number of disk blocks read for all user indexes.</p>
+</dd>
+<dt><strong><a name="idx_blks_hit" class="item">idx_blks_hit</a></strong></dt>
+
+<dd>
+<p>Total number of buffer hits for all user indexes.</p>
+</dd>
+<dt><strong><a name="seq_scan" class="item">seq_scan</a></strong></dt>
+
+<dd>
+<p>Total number of sequential scans against all user tables.</p>
+</dd>
+<dt><strong><a name="seq_tup_read" class="item">seq_tup_read</a></strong></dt>
+
+<dd>
+<p>Total number of tuples returned from all user tables.</p>
+</dd>
+</dl>
+<p>Example 1: Grab the stats for a database named &quot;products&quot; on host &quot;willow&quot;:</p>
+<pre>
+  check_postgres_dbstats --dbhost willow --dbname products</pre>
+<p>
+</p>
+<h2><a name="disabled_triggers"><strong>disabled_triggers</strong></a></h2>
+<p>(<code>symlink: check_postgres_disabled_triggers</code>) Checks on the number of disabled triggers inside the database.
+The <em>--warning</em> and <em>--critical</em> options are the number of such triggers found, and both 
+default to &quot;1&quot;, as in normal usage having disabled triggers is a dangerous event. If the 
+database being checked is 8.3 or higher, the check is for the number of triggers that are 
+in a 'disabled' status (as opposed to being 'always' or 'replica'). The output will show 
+the name of the table and the name of the trigger for each disabled trigger.</p>
+<p>Example 1: Make sure that there are no disabled triggers</p>
+<pre>
+  check_postgres_disabled_triggers</pre>
+<p>For MRTG output, returns the number of disabled triggers on the first line.</p>
+<p>
+</p>
+<h2><a name="disk_space"><strong>disk_space</strong></a></h2>
+<p>(<code>symlink: check_postgres_disk_space</code>) Checks on the available physical disk space used by Postgres. This action requires 
+that you have the executable &quot;/bin/df&quot; available to report on disk sizes, and it 
+also needs to be run as a superuser, so it can examine the <strong>data_directory</strong> 
+setting inside of Postgres. The <em>--warning</em> and <em>--critical</em> options are 
+given in either sizes or percentages. If using sizes, the standard unit types 
+are allowed: bytes, kilobytes, gigabytes, megabytes, gigabytes, terabytes, or 
+exabytes. Each may be abbreviated to the first letter only; no units at all 
+indicates 'bytes'. The default values are '90%' and '95%'.</p>
+<p>This command checks the following things to determine all of the different 
+physical disks being used by Postgres.</p>
+<p><strong>data_directory</strong> - The disk that the main data directory is on.</p>
+<p><strong>log directory</strong> - The disk that the log files are on.</p>
+<p><strong>WAL file directory</strong> - The disk that the write-ahead logs are on (e.g. symlinked pg_xlog)</p>
+<p><strong>tablespaces</strong> - Each tablespace that is on a separate disk.</p>
+<p>The output shows the total size used and available on each disk, as well as 
+the percentage, ordered by highest to lowest percentage used. Each item above 
+maps to a file system: these can be included or excluded. See the 
+<a href="#basic_filtering">BASIC FILTERING</a> section for more details.</p>
+<p>Example 1: Make sure that no file system is over 90% for the database on port 5432.</p>
+<pre>
+  check_postgres_disk_space --port=5432 --warning='90%' --critical=&quot;90%'</pre>
+<p>Example 2: Check that all file systems starting with /dev/sda are smaller than 10 GB and 11 GB (warning and critical)</p>
+<pre>
+  check_postgres_disk_space --port=5432 --warning='10 GB' --critical='11 GB' --include=&quot;~^/dev/sda&quot;</pre>
+<p>For MRTG output, returns the size in bytes of the file system on the first line, 
+and the name of the file system on the fourth line.</p>
+<p>
+</p>
+<h2><a name="fsm_pages"><strong>fsm_pages</strong></a></h2>
+<p>(<code>symlink: check_postgres_fsm_pages</code>) Checks how close a cluster is to the Postgres <strong>max_fsm_pages</strong> setting.
+This action will only work for databases of 8.2 or higher, and it requires the contrib
+module <strong>pg_freespacemap</strong> be installed. The <em>--warning</em> and <em>--critical</em> options should be expressed
+as percentages. The number of used pages in the free-space-map is determined by looking in the
+pg_freespacemap_relations view, and running a formula based on the formula used for
+outputting free-space-map pageslots in the vacuum verbose command. The default values are <strong>85%</strong> for the 
+warning and <strong>95%</strong> for the critical.</p>
+<p>Example 1: Give a warning when our cluster has used up 76% of the free-space pageslots, with pg_freespacemap installed in database robert</p>
+<pre>
+  check_postgres_fsm_pages --dbname=robert --warning=&quot;76%&quot;</pre>
+<p>While you need to pass in the name of the database where pg_freespacemap is installed, you only need to run this check once per cluster. Also, checking this information does require obtaining special locks on the free-space-map, so it is recommend you do not run this check with short intervals.</p>
+<p>For MRTG output, returns the percent of free-space-map on the first line, and the number of pages currently used on 
+the second line.</p>
+<p>
+</p>
+<h2><a name="fsm_relations"><strong>fsm_relations</strong></a></h2>
+<p>(<code>symlink: check_postgres_fsm_relations</code>) Checks how close a cluster is to the Postgres <strong>max_fsm_relations</strong> setting. 
+This action will only work for databases of 8.2 or higher, and it requires the contrib module <strong>pg_freespacemap</strong> be 
+installed. The <em>--warning</em> and <em>--critical</em> options should be expressed as percentages. The number of used relations 
+in the free-space-map is determined by looking in the pg_freespacemap_relations view. The default values are <strong>85%</strong> for 
+the warning and <strong>95%</strong> for the critical.</p>
+<p>Example 1: Give a warning when our cluster has used up 80% of the free-space relations, with pg_freespacemap installed in database dylan</p>
+<pre>
+  check_postgres_fsm_relations --dbname=dylan --warning=&quot;75%&quot;</pre>
+<p>While you need to pass in the name of the database where pg_freespacemap is installed, you only need to run this check 
+once per cluster. Also,
+checking this information does require obtaining special locks on the free-space-map, so it is recommend you do not
+run this check with short intervals.</p>
+<p>For MRTG output, returns the percent of free-space-map on the first line, the number of relations currently used on 
+the second line.</p>
+<p>
+</p>
+<h2><a name="index_size"><strong>index_size</strong></a></h2>
+<p>
+</p>
+<h2><a name="table_size"><strong>table_size</strong></a></h2>
+<p>
+</p>
+<h2><a name="relation_size"><strong>relation_size</strong></a></h2>
+<p>(symlinks: <code>check_postgres_index_size</code>, <code>check_postgres_table_size</code>, and <code>check_postgres_relation_size</code>)
+The actions <strong>table_size</strong> and <strong>index_size</strong> are simply variations of the 
+<strong>relation_size</strong> action, which checks for a relation that has grown too big. 
+Relations (in other words, tables and indexes) can be filtered with the 
+<em>--include</em> and <em>--exclude</em> options. See the <a href="#basic_filtering">BASIC FILTERING</a> section 
+for more details. Relations can also be filtered by the user that owns them, 
+by using the <em>--includeuser</em> and <em>--excludeuser</em> options. 
+See the <a href="#user_name_filtering">USER NAME FILTERING</a> section for more details.</p>
+<p>The values for the <em>--warning</em> and <em>--critical</em> options are file sizes, and 
+may have units of bytes, kilobytes, megabytes, gigabytes, terabytes, or exabytes. 
+Each can be abbreviated to the first letter. If no units are given, bytes are 
+assumed. There are no default values: both the warning and the critical option 
+must be given. The return text shows the size of the largest relation found.</p>
+<p>If the <em>--showperf</em> option is enabled, <em>all</em> of the relations with their sizes 
+will be given. To prevent this, it is recommended that you set the 
+<em>--perflimit</em> option, which will cause the query to do a 
+<code>ORDER BY size DESC LIMIT (perflimit)</code>.</p>
+<p>Example 1: Give a critical if any table is larger than 600MB on host burrick.</p>
+<pre>
+  check_postgres_table_size --critical='600 MB' --warning='600 MB' --host=burrick</pre>
+<p>Example 2: Warn if the table products is over 4 GB in size, and give a critical at 4.5 GB.</p>
+<pre>
+  check_postgres_table_size --host=burrick --warning='4 GB' --critical='4.5 GB' --include=products</pre>
+<p>Example 3: Warn if any index not owned by postgres goes over 500 MB.</p>
+<pre>
+  check_postgres_index_size --port=5432 --excludeuser=postgres -w 500MB -c 600MB</pre>
+<p>For MRTG output, returns the size in bytes of the largest relation, and the name of the database 
+and relation as the fourth line.</p>
+<p>
+</p>
+<h2><a name="last_vacuum"><strong>last_vacuum</strong></a></h2>
+<p>
+</p>
+<h2><a name="last_autovacuum"><strong>last_autovacuum</strong></a></h2>
+<p>
+</p>
+<h2><a name="last_analyze"><strong>last_analyze</strong></a></h2>
+<p>
+</p>
+<h2><a name="last_autoanalyze"><strong>last_autoanalyze</strong></a></h2>
+<p>(symlinks: <code>check_postgres_last_vacuum</code>, <code>check_postgres_last_autovacuum</code>, <code>check_postgres_last_analyze</code>, and 
+<code>check_postgres_last_autoanalyze</code>)
+Checks how long it has been since vacuum (or analyze) was last run on each 
+table in one or more databases. Use of these actions requires that the target 
+database is version 8.3 or greater, or that the version is 8.2 and the 
+configuration variable <strong>stats_row_level</strong> has been enabled. Tables can be filtered with the 
+<em>--include</em> and <em>--exclude</em> options. See the <a href="#basic_filtering">BASIC FILTERING</a> section 
+for more details.
+Tables can also be filtered by their owner by use of the 
+<em>--includeuser</em> and <em>--excludeuser</em> options.
+See the <a href="#user_name_filtering">USER NAME FILTERING</a> section for more details.</p>
+<p>The units for <em>--warning</em> and <em>--critical</em> are specified as times. 
+Valid units are seconds, minutes, hours, and days; all can be abbreviated 
+to the first letter. If no units are given, 'seconds' are assumed. The 
+default values are '1 day' and '2 days'. Please note that there are cases 
+in which this field does not get automatically populated. If certain tables 
+are giving you problems, make sure that they have dead rows to vacuum, 
+or just exclude them from the test.</p>
+<p>The schema named 'information_schema' is excluded from this test, as the only tables 
+it contains are small and do not change.</p>
+<p>Note that the non-'auto' versions will also check on the auto versions as well. In other words, 
+using last_vacuum will report on the last vacuum, whether it was a normal vacuum, or 
+one run by the autovacuum daemon.</p>
+<p>Example 1: Warn if any table has not been vacuumed in 3 days, and give a 
+critical at a week, for host wormwood</p>
+<pre>
+  check_postgres_last_vacuum --host=wormwood --warning='3d' --critical='7d'</pre>
+<p>Example 2: Same as above, but skip tables belonging to the users 'eve' or 'mallory'</p>
+<pre>
+  check_postgres_last_vacuum --host=wormwood --warning='3d' --critical='7d' --excludeusers=eve,mallory</pre>
+<p>For MRTG output, returns (on the first line) the LEAST amount of time in seconds since a table was 
+last vacuumed or analyzed. The fourth line returns the name of the database and name of the table.</p>
+<p>
+</p>
+<h2><a name="listener"><strong>listener</strong></a></h2>
+<p>(<code>symlink: check_postgres_listener</code>) Confirm that someone is listening for one or more specific strings. Only one of warning or critical is needed. The format 
+is a simple string representing the LISTEN target, or a tilde character followed by a string for a regular expression 
+check.</p>
+<p>Example 1: Give a warning if nobody is listening for the string bucardo_mcp_ping on ports 5555 and 5556</p>
+<pre>
+  check_postgres_listener --port=5555,5556 --warning=bucardo_mcp_ping</pre>
+<p>Example 2: Give a critical if there are no active LISTEN requests matching 'grimm' on database oskar</p>
+<pre>
+  check_postgres_listener --db oskar --critical=~grimm</pre>
+<p>For MRTG output, returns a 1 or a 0 on the first, indicating success or failure. The name of the notice must 
+be provided via the <em>--mrtg</em> option.</p>
+<p>
+</p>
+<h2><a name="locks"><strong>locks</strong></a></h2>
+<p>(<code>symlink: check_postgres_locks</code>) Check the total number of locks on one or more databases. There is no 
+need to run this more than once per database cluster. Databases can be filtered 
+with the <em>--include</em> and <em>--exclude</em> options. See the <a href="#basic_filtering">BASIC FILTERING</a> section 
+for more details.</p>
+<p>The <em>--warning</em> and <em>--critical</em> options can be specified as simple numbers, 
+which represent the total number of locks, or they can be broken down by type of lock. 
+Valid lock names are <code>'total'</code>, <code>'waiting'</code>, or the name of a lock type used by Postgres. 
+These names are case-insensitive and do not need the &quot;lock&quot; part on the end, 
+so <strong>exclusive</strong> will match 'ExclusiveLock'. The format is name=number, with different 
+items separated by semicolons.</p>
+<p>Example 1: Warn if the number of locks is 100 or more, and critical if 200 or more, on host garrett</p>
+<pre>
+  check_postgres_locks --host=garrett --warning=100 --critical=200</pre>
+<p>Example 2: On the host artemus, warn if 200 or more locks exist, and give a critical if over 250 total locks exist, or if over 20 exclusive locks exist, or if over 5 connections are waiting for a lock.</p>
+<pre>
+  check_postgres_locks --host=artemus --warning=200 --critical=&quot;total=250;waiting=5;exclusive=20&quot;</pre>
+<p>For MRTG output, returns the number of locks on the first line, and the name of the database on the fourth line.</p>
+<p>
+</p>
+<h2><a name="logfile"><strong>logfile</strong></a></h2>
+<p>(<code>symlink: check_postgres_logfile</code>) Ensures that the logfile is in the expected location and is being logged to. 
+This action issues a command that throws an error on each database it is 
+checking, and ensures that the message shows up in the logs. It scans the 
+various log_* settings inside of Postgres to figure out where the logs should be. 
+If you are using syslog, it does a rough (but not foolproof) scan of 
+<em class="file">/etc/syslog.conf</em>. Alternatively, you can provide the name of the logfile 
+with the <em>--logfile</em> option. This is especially useful if the logs have a 
+custom rotation scheme driven be an external program. The <strong>--logfile</strong> option 
+supports the following escape characters: <code>%Y %m %d %H</code>, which represent 
+the current year, month, date, and hour respectively. An error is always 
+reported as critical unless the warning option has been passed in as a non-zero 
+value. Other than that specific usage, the <code>--warning</code> and <code>--critical</code> 
+options should <em>not</em> be used.</p>
+<p>Example 1: On port 5432, ensure the logfile is being written to the file /home/greg/pg8.2.log</p>
+<pre>
+  check_postgres_logfile --port=5432 --logfile=/home/greg/pg8.2.log</pre>
+<p>Example 2: Same as above, but raise a warning, not a critical</p>
+<pre>
+  check_postgres_logfile --port=5432 --logfile=/home/greg/pg8.2.log -w 1</pre>
+<p>For MRTG output, returns a 1 or 0 on the first line, indicating success or failure. In case of a 
+failure, the fourth line will provide more detail on the failure encountered.</p>
+<p>
+</p>
+<h2><a name="new_version_cp"><strong>new_version_cp</strong></a></h2>
+<p>(<code>symlink: check_postgres_new_version_cp</code>) Checks if a newer version of this program 
+(check_postgres.pl) is available, by grabbing the version from a small text file 
+on the main page of the home page for the project. Returns a warning if the returned 
+version does not match the one you are running. Recommended interval to check is 
+once a day. See also the information on the <code>--get_method</code> option.</p>
+<p>
+</p>
+<h2><a name="new_version_pg"><strong>new_version_pg</strong></a></h2>
+<p>(<code>symlink: check_postgres_new_version_pg</code>) Checks if a newer revision of Postgres 
+exists for each database connected to. Note that this only checks for revision, e.g. 
+going from 8.3.6 to 8.3.7. Revisions are always 100% binary compatible and involve no 
+dump and restore to upgrade. Revisions are made to address bugs, so upgrading as soon 
+as possible is always recommended. Returns a warning if you do not have the latest revision.
+It is recommended this check is run at least once a day. See also the information on 
+the <code>--get_method</code> option.</p>
+<p>
+</p>
+<h2><a name="new_version_bc"><strong>new_version_bc</strong></a></h2>
+<p>(<code>symlink: check_postgres_new_version_bc</code>) Checks if a newer version of the Bucardo 
+program is available. The current version is obtained by running <code>bucardo_ctl --version</code>.
+If a major upgrade is available, a warning is returned. If a revision upgrade is 
+available, a critical is returned. (Bucardo is a master to slave, and master to master 
+replication system for Postgres: see <a href="http://bucardo.org">http://bucardo.org</a> for more information).
+See also the information on the <code>--get_method</code> option.</p>
+<p>
+</p>
+<h2><a name="prepared_txns"><strong>prepared_txns</strong></a></h2>
+<p>(<code>symlink: check_postgres_prepared_txns</code>) Check on the age of any existing prepared transactions. 
+Note that most people will NOT use prepared transactions, as they are part of two-part commit 
+and complicated to maintain. They should also not be confused with prepared STATEMENTS, which is 
+what most people think of when they hear prepare. The default value for a warning is 1 second, to 
+detect any use of prepared transactions, which is probably a mistake on most systems. Warning and 
+critical are the number of seconds a prepared transaction has been open before an alert is given.</p>
+<p>Example 1: Give a warning on detecting any prepared transactions:</p>
+<pre>
+  check_postgres_prepared_txns -w 0</pre>
+<p>Example 2: Give a critical if any prepared transaction has been open longer than 10 seconds, but allow 
+up to 360 seconds for the database 'shrike':</p>
+<pre>
+  check_postgres_listener --critical=10 --exclude=shrike
+  check_postgres_listener --critical=360 --include=shrike</pre>
+<p>For MRTG output, returns the number of seconds the oldest transaction has been open as the first line, 
+and which database is came from as the final line.</p>
+<p>
+</p>
+<h2><a name="query_runtime"><strong>query_runtime</strong></a></h2>
+<p>(<code>symlink: check_postgres_query_runtime</code>) Checks how long a specific query takes to run, by executing a &quot;EXPLAIN ANALYZE&quot; 
+against it. The <em>--warning</em> and <em>--critical</em> options are the maximum amount of 
+time the query should take. Valid units are seconds, minutes, and hours; any can be 
+abbreviated to the first letter. If no units are given, 'seconds' are assumed. 
+Both the warning and the critical option must be given. The name of the view or 
+function to be run must be passed in to the <em>--queryname</em> option. It must consist 
+of a single word (or schema.word), with optional parens at the end.</p>
+<p>Example 1: Give a critical if the function named &quot;speedtest&quot; fails to run in 10 seconds or less.</p>
+<pre>
+  check_postgres_query_runtime --queryname='speedtest()' --critical=10 --warning=10</pre>
+<p>For MRTG output, reports the time in seconds for the query to complete on the first line. The fourth 
+line lists the database.</p>
+<p>
+</p>
+<h2><a name="query_time"><strong>query_time</strong></a></h2>
+<p>(<code>symlink: check_postgres_query_time</code>) Checks the length of running queries on one or more databases. There is 
+no need to run this more than once on the same database cluster.
+Databases can be filtered 
+by using the <em>--include</em> and <em>--exclude</em> options. See the <a href="#basic_filtering">BASIC FILTERING</a>
+section for more details. You can also filter on the user running the 
+query with the <em>--includeuser</em> and <em>--excludeuser</em> options.
+See the <a href="#user_name_filtering">USER NAME FILTERING</a> section for more details.</p>
+<p>The values for the <em>--warning</em> and <em>--critical</em> options are amounts of 
+time, and default to '2 minutes' and '5 minutes' respectively. Valid units 
+are 'seconds', 'minutes', 'hours', or 'days'. Each may be written singular or 
+abbreviated to just the first letter. If no units are given, the unit is 
+assumed to be seconds.</p>
+<p>Example 1: Give a warning if any query has been running longer than 3 minutes, and a critical if longer than 5 minutes.</p>
+<pre>
+  check_postgres_query_time --port=5432 --warning='3 minutes' --critical='5 minutes'</pre>
+<p>Example 2: Using default values (2 and 5 minutes), check all databases except those starting with 'template'.</p>
+<pre>
+  check_postgres_query_time --port=5432 --exclude=~^template</pre>
+<p>Example 3: Warn if user 'don' has a query running over 20 seconds</p>
+<pre>
+  check_postgres_query_time --port=5432 --includeuser=don --warning=20s</pre>
+<p>For MRTG output, returns the length in seconds of the longest running query on the first line. The fourth 
+line gives the name of the database.</p>
+<p>
+</p>
+<h2><a name="same_schema"><strong>same_schema</strong></a></h2>
+<p>(<code>symlink: check_postgres_same_schema</code>) Verifies that two databases are identical as far as their 
+schema (but not the data within). This is particularly handy for making sure your slaves have not 
+been modified or corrupted in any way when using master to slave replication. Unlike most other 
+actions, this has no warning or critical criteria - the databases are either in sync, or are not. 
+If they are not, a detailed list of the differences is presented. To make the list more readable, 
+provide a <code>--verbose</code> argument, which will output one item per line.</p>
+<p>You may want to exclude or filter out certain differences. The way to do this is to add strings 
+to the <code>--warning</code> option. To exclude a type of object, use &quot;noobjectnames&quot;. To exclude 
+objects of a certain type by a regular expression against their name, use &quot;noobjectname=regex&quot;. 
+See the examples for a better understanding.</p>
+<p>You may exclude all objects of a certain name by using the <code>exclude</code> option. It takes a Perl 
+regular expression as its argument.</p>
+<p>The types of objects that can be filtered are:</p>
+<dl>
+<dt><strong><a name="user" class="item">user</a></strong></dt>
+
+<dt><strong><a name="schema" class="item">schema</a></strong></dt>
+
+<dt><strong><a name="table" class="item">table</a></strong></dt>
+
+<dt><strong><a name="view" class="item">view</a></strong></dt>
+
+<dt><strong><a name="index" class="item">index</a></strong></dt>
+
+<dt><strong><a name="sequence" class="item">sequence</a></strong></dt>
+
+<dt><strong><a name="constraint" class="item">constraint</a></strong></dt>
+
+<dt><strong><a name="trigger" class="item">trigger</a></strong></dt>
+
+<dt><strong><a name="function" class="item">function</a></strong></dt>
+
+</dl>
+<p>The filter option &quot;noposition&quot;  prevents verification of the position of 
+columns within a table.</p>
+<p>The filter option &quot;nofuncbody&quot; prevents comparison of the bodies of all 
+functions.</p>
+<p>You must provide information on how to reach the second database by a connection 
+parameter ending in the number 2, such as &quot;--dbport2=5543&quot;</p>
+<p>Example 1: Verify that two databases on hosts star and line are the same:</p>
+<pre>
+  check_postgres_same_schema --dbhost=star --dbhost2=line</pre>
+<p>Example 2: Same as before, but exclude any triggers with &quot;slony&quot; in their name</p>
+<pre>
+  check_postgres_same_schema --dbhost=star --dbhost2=line --warning=&quot;notrigger=slony&quot;</pre>
+<p>Example 3: Same as before, but also exclude all indexes</p>
+<pre>
+  check_postgres_same_schema --dbhost=star --dbhost2=line --warning=&quot;notrigger=slony noindexes&quot;</pre>
+<p>Example 3: Don't show anything starting with &quot;pg_catalog&quot;</p>
+<pre>
+  check_postgres_same_schema --dbhost=star --dbhost2=line --exclude=&quot;^pg_catalog&quot;</pre>
+<p>
+</p>
+<h2><a name="sequence"><strong>sequence</strong></a></h2>
+<p>(<code>symlink: check_postgres_sequence</code>) Checks how much room is left on all sequences in the database.
+This is measured as the percent of total possible values that have been used for each sequence. 
+The <em>--warning</em> and <em>--critical</em> options should be expressed as percentages. The default values 
+are <strong>85%</strong> for the warning and <strong>95%</strong> for the critical. You may use --include and --exclude to 
+control which sequences are to be checked. Note that this check does account for unusual <strong>minvalue</strong> 
+and <strong>increment by</strong> values, but does not care if the sequence is set to cycle or not.</p>
+<p>The output for Nagios gives the name of the sequence, the percentage used, and the number of 'calls' 
+left, indicating how many more times nextval can be called on that sequence before running into 
+the maximum value.</p>
+<p>The output for MRTG returns the highest percentage across all sequences on the first line, and 
+the name of each sequence with that percentage on the fourth line, separated by a &quot;|&quot; (pipe) 
+if there are more than one sequence at that percentage.</p>
+<p>Example 1: Give a warning if any sequences are approaching 95% full.</p>
+<pre>
+  check_postgres_sequence --dbport=5432 --warning=95%</pre>
+<p>Example 2: Check that the sequence named &quot;orders_id_seq&quot; is not more than half full.</p>
+<pre>
+  check_postgres_sequence --dbport=5432 --critical=50% --include=orders_id_seq</pre>
+<p>
+</p>
+<h2><a name="replicate_row"><strong>replicate_row</strong></a></h2>
+<p>(<code>symlink: check_postgres_replicate_row</code>) Checks that master-slave replication is working to one or more slaves.
+The slaves are specified the same as the normal databases, except with 
+the number 2 at the end of them, so &quot;--port2&quot; instead of &quot;--port&quot;, etc.
+The values or the <em>--warning</em> and <em>--critical</em> options are units of time, and 
+at least one must be provided (no defaults). Valid units are 'seconds', 'minutes', 'hours', 
+or 'days'. Each may be written singular or abbreviated to just the first letter. 
+If no units are given, the units are assumed to be seconds.</p>
+<p>This check updates a single row on the master, and then measures how long it 
+takes to be applied to the slaves. To do this, you need to pick a table that 
+is being replicated, then find a row that can be changed, and is not going 
+to be changed by any other process. A specific column of this row will be changed 
+from one value to another. All of this is fed to the <code>repinfo</code> option, and should 
+contain the following options, separated by commas: table name, primary key, key id, 
+column, first value, second value.</p>
+<p>Example 1: Slony is replicating a table named 'orders' from host 'alpha' to 
+host 'beta', in the database 'sales'. The primary key of the table is named 
+id, and we are going to test the row with an id of 3 (which is historical and 
+never changed). There is a column named 'salesrep' that we are going to toggle 
+from a value of 'slon' to 'nols' to check on the replication. We want to throw 
+a warning if the replication does not happen within 10 seconds.</p>
+<pre>
+  check_postgres_replicate_row --host=alpha --dbname=sales --host2=beta 
+  --dbname2=sales --warning=10 --repinfo=orders,id,3,salesrep,slon,nols</pre>
+<p>Example 2: Bucardo is replicating a table named 'receipt' from host 'green' 
+to hosts 'red', 'blue', and 'yellow'. The database for both sides is 'public'. 
+The slave databases are running on port 5455. The primary key is named 'receipt_id', 
+the row we want to use has a value of 9, and the column we want to change for the 
+test is called 'zone'. We'll toggle between 'north' and 'south' for the value of 
+this column, and throw a critical if the change is not on all three slaves within 5 seconds.</p>
+<pre>
+ check_postgres_replicate_row --host=green --port2=5455 --host2=red,blue,yellow
+  --critical=5 --repinfo=receipt,receipt_id,9,zone,north,south</pre>
+<p>For MRTG output, returns on the first line the time in seconds the replication takes to finish. 
+The maximum time is set to 4 minutes 30 seconds: if no replication has taken place in that long 
+a time, an error is thrown.</p>
+<p>
+</p>
+<h2><a name="txn_time"><strong>txn_time</strong></a></h2>
+<p>(<code>symlink: check_postgres_txn_time</code>) Checks the length of open transactions on one or more databases. 
+There is no need to run this command more than once per database cluster. 
+Databases can be filtered by use of the 
+<em>--include</em> and <em>--exclude</em> options. See the <a href="#basic_filtering">BASIC FILTERING</a> section 
+for more details. The owner of the transaction can also be filtered, by use of 
+the <em>--includeuser</em> and <em>--excludeuser</em> options.
+See the <a href="#user_name_filtering">USER NAME FILTERING</a> section for more details.</p>
+<p>The values or the <em>--warning</em> and <em>--critical</em> options are units of time, and 
+must be provided (no default). Valid units are 'seconds', 'minutes', 'hours', 
+or 'days'. Each may be written singular or abbreviated to just the first letter. 
+If no units are given, the units are assumed to be seconds.</p>
+<p>This action requires Postgres 8.3 or better.</p>
+<p>Example 1: Give a critical if any transaction has been open for more than 10 minutes:</p>
+<pre>
+  check_postgres_txn_time --port=5432 --critical='10 minutes'</pre>
+<p>Example 1: Warn if user 'warehouse' has a transaction open over 30 seconds</p>
+<pre>
+  check_postgres_txn_time --port-5432 --warning=30s --includeuser=warehouse</pre>
+<p>For MRTG output, returns the maximum time in seconds a transaction has been open on the 
+first line. The fourth line gives the name of the database.</p>
+<p>
+</p>
+<h2><a name="txn_idle"><strong>txn_idle</strong></a></h2>
+<p>(<code>symlink: check_postgres_txn_idle</code>) Checks the length of &quot;idle in transaction&quot; queries on one or more databases. There is 
+no need to run this more than once on the same database cluster. Databases can be filtered 
+by using the <em>--include</em> and <em>--exclude</em> options. See the <a href="#basic_filtering">BASIC FILTERING</a> 
+section below for more details.</p>
+<p>The <em>--warning</em> and <em>--critical</em> options are given as units of time, and both must 
+be provided (there are no defaults). Valid units are 'seconds', 'minutes', 'hours', 
+or 'days'. Each may be written singular or abbreviated to just the first letter. 
+If no units are given, the units are assumed to be seconds.</p>
+<p>This action requires Postgres 8.0 or better. Additionally, if the version is less than 8.3, 
+the 'stats_command_string' parameter must be set to 'on'.</p>
+<p>Example 1: Give a warning if any connection has been idle in transaction for more than 15 seconds:</p>
+<pre>
+  check_postgres_txn_idle --port=5432 --warning='15 seconds'</pre>
+<p>For MRTG output, returns the time in seconds the longest idle transaction has been running. The fourth 
+line returns the name of the database.</p>
+<p>
+</p>
+<h2><a name="rebuild_symlinks"><strong>rebuild_symlinks</strong></a></h2>
+<p>
+</p>
+<h2><a name="rebuild_symlinks_force"><strong>rebuild_symlinks_force</strong></a></h2>
+<p>This action requires no other arguments, and does not connect to any databases, 
+but simply creates symlinks in the current directory for each action, in the form 
+<strong>check_postgres_&lt;action_name&gt;</strong>.
+If the file already exists, it will not be overwritten. If the action is rebuild_symlinks_force, 
+then symlinks will be overwritten. The option --symlinks is a shorter way of saying 
+--action=rebuild_symlinks</p>
+<p>
+</p>
+<h2><a name="settings_checksum"><strong>settings_checksum</strong></a></h2>
+<p>(<code>symlink: check_postgres_settings_checksum</code>) Checks that all the Postgres settings are the same as last time you checked. 
+This is done by generating a checksum of a sorted list of setting names and 
+their values. Note that different users in the same database may have different 
+checksums, due to ALTER USER usage, and due to the fact that superusers see more 
+settings than ordinary users. Either the <em>--warning</em> or the <em>--critical</em> option 
+should be given, but not both. The value of each one is the checksum, a 
+32-character hexadecimal value. You can run with the special <code>--critical=0</code> option 
+to find out an existing checksum.</p>
+<p>This action requires the Digest::MD5 module.</p>
+<p>Example 1: Find the initial checksum for the database on port 5555 using the default user (usually postgres)</p>
+<pre>
+  check_postgres_settings_checksum --port=5555 --critical=0</pre>
+<p>Example 2: Make sure no settings have changed and warn if so, using the checksum from above.</p>
+<pre>
+  check_postgres_settings_checksum --port=5555 --warning=cd2f3b5e129dc2b4f5c0f6d8d2e64231</pre>
+<p>For MRTG output, returns a 1 or 0 indicating success of failure of the checksum to match. A 
+checksum must be provided as the <code>--mrtg</code> argument. The fourth line always gives the 
+current checksum.</p>
+<p>
+</p>
+<h2><a name="timesync"><strong>timesync</strong></a></h2>
+<p>(<code>symlink: check_postgres_timesync</code>) Compares the local system time with the time reported by one or more databases. 
+The <em>--warning</em> and <em>--critical</em> options represent the number of seconds between 
+the two systems before an alert is given. If neither is specified, the default values 
+are used, which are '2' and '5'. The warning value cannot be greater than the critical
+value. Due to the non-exact nature of this test, values of '0' or '1' are not recommended.</p>
+<p>The string returned shows the time difference as well as the time on each side written out.</p>
+<p>Example 1: Check that databases on hosts ankh, morpork, and klatch are no more than 3 seconds off from the local time:</p>
+<pre>
+  check_postgres_timesync --host=ankh,morpork,klatch --critical=3</pre>
+<p>For MRTG output, returns one the first line the number of seconds difference between the local 
+time and the database time. The fourth line returns the name of the database.</p>
+<p>
+</p>
+<h2><a name="txn_wraparound"><strong>txn_wraparound</strong></a></h2>
+<p>(<code>symlink: check_postgres_txn_wraparound</code>) Checks how close to transaction wraparound one or more databases are getting. 
+The <em>--warning</em> and <em>--critical</em> options indicate the number of transactions done, and must be a positive integer. 
+If either option is not given, the default values of 1.3 and 1.4 billion are used. There is no need to run this command 
+more than once per database cluster. For a more detailed discussion of what this number represents and what to do about 
+it, please visit the page 
+<a href="http://www.postgresql.org/docs/current/static/routine-vacuuming.html#VACUUM-FOR-WRAPAROUND">http://www.postgresql.org/docs/current/static/routine-vacuuming.html#VACUUM-FOR-WRAPAROUND</a></p>
+<p>The warning and critical values can have underscores in the number for legibility, as Perl does.</p>
+<p>Example 1: Check the default values for the localhost database</p>
+<pre>
+  check_postgres_txn_wraparound --host=localhost</pre>
+<p>Example 2: Check port 6000 and give a critical when 1.7 billion transactions are hit:</p>
+<pre>
+  check_postgres_txn_wraparound --port=6000 --critical=1_700_000_000</pre>
+<p>For MRTG output, returns the highest number of transactions for all databases on line one,
+while line 4 indicates which database it is.</p>
+<p>
+</p>
+<h2><a name="wal_files"><strong>wal_files</strong></a></h2>
+<p>(<code>symlink: check_postgres_wal_files</code>) Checks how many WAL files exist in the <em class="file">pg_xlog</em> directory, which is found 
+off of your <strong>data_directory</strong>, sometimes as a symlink to another physical disk for 
+performance reasons. This action must be run as a superuser, in order to access the 
+contents of the <em class="file">pg_xlog</em> directory. The minimum version to use this action is 
+Postgres 8.1. The <em>--warning</em> and <em>--critical</em> options are simply the number of 
+files in the <em class="file">pg_xlog</em> directory. What number to set this to will vary, but a general 
+guideline is to put a number slightly higher than what is normally there, to catch 
+problems early.</p>
+<p>Normally, WAL files are closed and then re-used, but a long-running open 
+transaction, or a faulty <strong>archive_command</strong> script, may cause Postgres to 
+create too many files. Ultimately, this will cause the disk they are on to run 
+out of space, at which point Postgres will shut down.</p>
+<p>Example 1: Check that the number of WAL files is 20 or less on host &quot;pluto&quot;</p>
+<pre>
+  check_postgres_wal_files --host=pluto --critical=20</pre>
+<p>For MRTG output, reports the number of WAL files on line 1.</p>
+<p>
+</p>
+<h2><a name="version"><strong>version</strong></a></h2>
+<p>(<code>symlink: check_postgres_version</code>) Checks that the required version of Postgres is running. The 
+<em>--warning</em> and <em>--critical</em> options (only one is required) must be of 
+the format <strong>X.Y</strong> or <strong>X.Y.Z</strong> where <strong>X</strong> is the major version number, 
+<strong>Y</strong> is the minor version number, and <strong>Z</strong> is the revision.</p>
+<p>Example 1: Give a warning if the database on port 5678 is not version 8.4.10:</p>
+<pre>
+  check_postgres_version --port=5678 -w=8.4.10</pre>
+<p>Example 2: Give a warning if any databases on hosts valley,grain, or sunshine is not 8.3:</p>
+<pre>
+  check_postgres_version -H valley,grain,sunshine --critical=8.3</pre>
+<p>For MRTG output, reports a 1 or a 0 indicating success or failure on the first line. The 
+fourth line indicates the current version. The version must be provided via the <code>--mrtg</code> option.</p>
+<p>
+</p>
+<hr />
+<h1><a name="basic_filtering">BASIC FILTERING</a></h1>
+<p>The options <em>--include</em> and <em>--exclude</em> can be combined to limit which 
+things are checked, depending on the action. The name of the database can 
+be filtered when using the following actions: 
+backends, database_size, locks, query_time, txn_idle, and txn_time.
+The name of a relation can be filtered when using the following actions: 
+bloat, index_size, table_size, relation_size, last_vacuum, last_autovacuum, 
+last_analyze, and last_autoanalyze.
+The name of a setting can be filtered when using the settings_checksum action.
+The name of a file system can be filtered when using the disk_space action.</p>
+<p>If only an include option is given, then ONLY those entries that match will be 
+checked. However, if given both exclude and include, the exclusion is done first, 
+and the inclusion after, to reinstate things that may have been excluded. Both 
+<em>--include</em> and <em>--exclude</em> can be given multiple times, 
+and/or as comma-separated lists. A leading tilde will match the following word 
+as a regular expression.</p>
+<p>To match a schema, end the search term with a single period. Leading tildes can 
+be used for schemas as well.</p>
+<p>Be careful when using filtering: an inclusion rule on the backends, for example, 
+may report no problems not only because the matching database had no backends, 
+but because you misspelled the name of the database!</p>
+<p>Examples:</p>
+<p>Only checks items named pg_class:</p>
+<pre>
+ --include=pg_class</pre>
+<p>Only checks items containing the letters 'pg_':</p>
+<pre>
+ --include=~pg_</pre>
+<p>Only check items beginning with 'pg_':</p>
+<pre>
+ --include=~^pg_</pre>
+<p>Exclude the item named 'test':</p>
+<pre>
+ --exclude=test</pre>
+<p>Exclude all items containing the letters 'test:</p>
+<pre>
+ --exclude=~test</pre>
+<p>Exclude all items in the schema 'pg_catalog':</p>
+<pre>
+ --exclude='pg_catalog.'</pre>
+<p>Exclude all items containing the letters 'ace', but allow the item 'faceoff':</p>
+<pre>
+ --exclude=~ace --include=faceoff</pre>
+<p>Exclude all items which start with the letters 'pg_', which contain the letters 'slon', 
+or which are named 'sql_settings' or 'green'. Specifically check items with the letters 'prod' in their names, and always check the item named 'pg_relname':</p>
+<pre>
+ --exclude=~^pg_,~slon,sql_settings --exclude=green --include=~prod,pg_relname</pre>
+<p>
+</p>
+<hr />
+<h1><a name="user_name_filtering">USER NAME FILTERING</a></h1>
+<p>The options <em>--includeuser</em> and <em>--excludeuser</em> can be used on some actions 
+to only examine database objects owned by (or not owned by) one or more users. 
+An <em>--includeuser</em> option always trumps an <em>--excludeuser</em> option. You can 
+give each option more than once for multiple users, or you can give a 
+comma-separated list. The actions that currently use these options are:</p>
+<dl>
+<dt><strong><a name="database_size" class="item">database_size</a></strong></dt>
+
+<dt><strong><a name="last_analyze" class="item">last_analyze</a></strong></dt>
+
+<dt><strong><a name="last_autoanalyze" class="item">last_autoanalyze</a></strong></dt>
+
+<dt><strong><a name="last_vacuum" class="item">last_vacuum</a></strong></dt>
+
+<dt><strong><a name="last_autovacuum" class="item">last_autovacuum</a></strong></dt>
+
+<dt><strong><a name="query_time" class="item">query_time</a></strong></dt>
+
+<dt><strong><a name="relation_size" class="item">relation_size</a></strong></dt>
+
+<dt><strong><a name="txn_time" class="item">txn_time</a></strong></dt>
+
+</dl>
+<p>Examples:</p>
+<p>Only check items owned by the user named greg:</p>
+<pre>
+ --includeuser=greg</pre>
+<p>Only check items owned by either watson or crick:</p>
+<pre>
+ --includeuser=watson,crick</pre>
+<p>Only check items owned by crick,franklin, watson, or wilkins:</p>
+<pre>
+ --includeuser=watson --includeuser=franklin --includeuser=crick,wilkins</pre>
+<p>Check all items except for those belonging to the user scott:</p>
+<pre>
+ --excludeuser=scott</pre>
+<p>
+</p>
+<hr />
+<h1><a name="test_mode">TEST MODE</a></h1>
+<p>To help in setting things up, this program can be run in a &quot;test mode&quot; by 
+specifying the <em>--test</em> option. This will perform some basic tests to 
+make sure that the databases can be contacted, and that certain per-action 
+prerequisites are met, such as whether the user is a superuser, if the version 
+of Postgres is new enough, and if stats_row_level is enabled.</p>
+<p>
+</p>
+<hr />
+<h1><a name="files">FILES</a></h1>
+<p>In addition to command-line configurations, you can put any options inside of a file. The file 
+<em class="file">.check_postgresrc</em> in the current directory will be used if found. If not found, then the file 
+<em class="file">~/.check_postgresrc</em> will be used. Finally, the file /etc/check_postgresrc will be used if available. 
+The format of the file is option = value, one per line. Any line starting with a '#' will be skipped. 
+Any values loaded from a check_postgresrc file will be overwritten by command-line options. All 
+check_postgresrc files can be ignored by supplying a <code>--no-checkpostgresrc</code> argument.</p>
+<p>
+</p>
+<hr />
+<h1><a name="environment_variables">ENVIRONMENT VARIABLES</a></h1>
+<p>The environment variable <em>$ENV{HOME}</em> is used to look for a <em class="file">.check_postgresrc</em> file.</p>
+<p>
+</p>
+<hr />
+<h1><a name="tips_and_tricks">TIPS AND TRICKS</a></h1>
+<p>Since this program uses the <strong>psql</strong> program, make sure it is accessible to the 
+user running the script. If run as a cronjob, this often means modifying the 
+<strong>PATH</strong> environment variable.</p>
+<p>If you are using Nagios in embedded Perl mode, use the <code>--action</code> argument 
+instead of symlinks, so that the plugin only gets compiled one time.</p>
+<p>
+</p>
+<hr />
+<h1><a name="dependencies">DEPENDENCIES</a></h1>
+<p>Access to a working version of psql, and the following very standard Perl modules:</p>
+<dl>
+<dt><strong><a name="cwd" class="item"><strong>Cwd</strong></a></strong></dt>
+
+<dt><strong><a name="getopt_long" class="item"><strong>Getopt::Long</strong></a></strong></dt>
+
+<dt><strong><a name="file_basename" class="item"><strong>File::Basename</strong></a></strong></dt>
+
+<dt><strong><a name="file_temp" class="item"><strong>File::Temp</strong></a></strong></dt>
+
+<dt><strong><a name="hires" class="item"><strong>Time::HiRes</strong> (if <code>$opt{showtime}</code> is set to true, which is the default)</a></strong></dt>
+
+</dl>
+<p>The <a href="#settings_checksum">settings_checksum</a> action requires the <strong>Digest::MD5</strong> module.</p>
+<p>The <a href="#checkpoint">checkpoint</a> action requires the <strong>Date::Parse</strong> module.</p>
+<p>Some actions require access to external programs. If psql is not explicitly 
+specified, the command <strong><code>which</code></strong> is used to find it. The program <strong><code>/bin/df</code></strong> 
+is needed by the <a href="#disk_space">disk_space</a> action.</p>
+<p>
+</p>
+<hr />
+<h1><a name="development">DEVELOPMENT</a></h1>
+<p>Development happens using the git system. You can clone the latest version by doing:</p>
+<pre>
+ git clone git://bucardo.org/check_postgres.git</pre>
+<p>
+</p>
+<hr />
+<h1><a name="mailing_list">MAILING LIST</a></h1>
+<p>Three mailing lists are available. For discussions about the program, bug reports, 
+feature requests, and commit notices, send email to <a href="mailto:check_postgres@bucardo.org">check_postgres@bucardo.org</a></p>
+<p><a href="https://mail.endcrypt.com/mailman/listinfo/check_postgres">https://mail.endcrypt.com/mailman/listinfo/check_postgres</a></p>
+<p>A low-volume list for announcement of new versions and important notices is the 
+'check_postgres-announce' list:</p>
+<p><a href="https://mail.endcrypt.com/mailman/listinfo/check_postgres-announce">https://mail.endcrypt.com/mailman/listinfo/check_postgres-announce</a></p>
+<p>Source code changes (via git-commit) are sent to the 
+'check_postgres-commit' list:</p>
+<p><a href="https://mail.endcrypt.com/mailman/listinfo/check_postgres-commit">https://mail.endcrypt.com/mailman/listinfo/check_postgres-commit</a></p>
+<p>
+</p>
+<hr />
+<h1><a name="history">HISTORY</a></h1>
+<p>Items not specifically attributed are by Greg Sabino Mullane.</p>
+<dl>
+<dt><strong><a name="0" class="item"><strong>Version 2.12.0</strong> (December 3, 2009)</a></strong></dt>
+
+<dd>
+<pre>
+  Allow the temporary directory to be specified via the &quot;tempdir&quot; argument,
+    for systems that need it (e.g. /tmp is not owned by root).
+  Fix so old versions of Postgres (&lt; 8.0) use the correct default database (Giles Westwood)
+  For &quot;same_schema&quot; trigger mismatches, show the attached table.
+  Add the new_version_bc check for Bucardo version checking.
+  Add database name to perf output for last_vacuum|analyze (Guillaume Lelarge)
+  Fix for bloat action against old versions of Postgres without the 'block_size' param.</pre>
+</dd>
+<dt><strong><a name="1" class="item"><strong>Version 2.11.1</strong> (August 27, 2009)</a></strong></dt>
+
+<dd>
+<pre>
+  Proper Nagios output for last_vacuum|analyze actions. (Cédric Villemain)
+  Proper Nagios output for locks action. (Cédric Villemain)
+  Proper Nagios output for txn_wraparound action. (Cédric Villemain)
+  Fix for constraints with embedded newlines for same_schema.
+  Allow --exclude for all items when using same_schema.</pre>
+</dd>
+<dt><strong><strong>Version 2.11.0</strong> (August 23, 2009)</strong></dt>
+
+<dd>
+<pre>
+  Add Nagios perf output to the wal_files check (Cédric Villemain)
+  Add support for .check_postgresrc, per request from Albe Laurenz.
+  Allow list of web fetch methods to be changed with the --get_method option.
+  Add support for the --language argument, which overrides any ENV.
+  Add the --no-check_postgresrc flag.
+  Ensure check_postgresrc options are completely overriden by command-line options.
+  Fix incorrect warning &gt; critical logic in replicate_rows (Glyn Astill)</pre>
+</dd>
+<dt><strong><strong>Version 2.10.0</strong> (August 3, 2009)</strong></dt>
+
+<dd>
+<pre>
+  For same_schema, compare view definitions, and compare languages.
+  Make script into a global executable via the Makefile.PL file.
+  Better output when comparing two databases.
+  Proper Nagios output syntax for autovac_freeze and backends checks (Cédric Villemain)</pre>
+</dd>
+<dt><strong><a name="5" class="item"><strong>Version 2.9.5</strong> (July 24, 2009)</a></strong></dt>
+
+<dd>
+<pre>
+  Don't use a LIMIT in check_bloat if --include is used. Per complaint from Jeff Frost.</pre>
+</dd>
+<dt><strong><a name="4" class="item"><strong>Version 2.9.4</strong> (July 21, 2009)</a></strong></dt>
+
+<dd>
+<pre>
+  More French translations (Guillaume Lelarge)</pre>
+</dd>
+<dt><strong><a name="3" class="item"><strong>Version 2.9.3</strong> (July 14, 2009)</a></strong></dt>
+
+<dd>
+<pre>
+  Quote dbname in perf output for the backends check. (Davide Abrigo)
+  Add 'fetch' as an alternative method for new_version checks, as this 
+    comes by default with FreeBSD. (Hywell Mallett)</pre>
+</dd>
+<dt><strong><a name="2" class="item"><strong>Version 2.9.2</strong> (July 12, 2009)</a></strong></dt>
+
+<dd>
+<pre>
+  Allow dots and dashes in database name for the backends check (Davide Abrigo)
+  Check and display the database for each match in the bloat check (Cédric Villemain)
+  Handle 'too many connections' FATAL error in the backends check with a critical,
+    rather than a generic error (Greg, idea by Jürgen Schulz-Brüssel)
+  Do not allow perflimit to interfere with exclusion rules in the vacuum and 
+    analyze tests. (Greg, bug reported by Jeff Frost)</pre>
+</dd>
+<dt><strong><strong>Version 2.9.1</strong> (June 12, 2009)</strong></dt>
+
+<dd>
+<pre>
+  Fix for multiple databases with the check_bloat action (Mark Kirkwood)
+  Fixes and improvements to the same_schema action (Jeff Boes)
+  Write tests for same_schema, other minor test fixes (Jeff Boes)</pre>
+</dd>
+<dt><strong><strong>Version 2.9.0</strong> (May 28, 2009)</strong></dt>
+
+<dd>
+<pre>
+  Added the same_schema action (Greg)</pre>
+</dd>
+<dt><strong><strong>Version 2.8.1</strong> (May 15, 2009)</strong></dt>
+
+<dd>
+<pre>
+  Added timeout via statement_timeout in addition to perl alarm (Greg)</pre>
+</dd>
+<dt><strong><strong>Version 2.8.0</strong> (May 4, 2009)</strong></dt>
+
+<dd>
+<pre>
+  Added internationalization support (Greg)
+  Added the 'disabled_triggers' check (Greg)
+  Added the 'prepared_txns' check (Greg)
+  Added the 'new_version_cp' and 'new_version_pg' checks (Greg)
+  French translations (Guillaume Lelarge)
+  Make the backends search return ok if no matches due to inclusion rules,
+    per report by Guillaume Lelarge (Greg)
+  Added comprehensive unit tests (Greg, Jeff Boes, Selena Decklemann)
+  Make fsm_pages and fsm_relatins handle 8.4 servers smoothly. (Greg)
+  Fix missing 'upd' field in show_dbstats (Andras Fabian)
+  Allow ENV{PGCONTROLDATA} and ENV{PGBINDIR}. (Greg)
+  Add various Perl module infrastructure (e.g. Makefile.PL) (Greg)
+  Fix incorrect regex in txn_wraparound (Greg)
+  For txn_wraparound: consistent ordering and fix duplicates in perf output (Andras Fabian)
+  Add in missing exabyte regex check (Selena Deckelmann)
+  Set stats to zero if we bail early due to USERWHERECLAUSE (Andras Fabian)
+  Add additional items to dbstats output (Andras Fabian)
+  Remove --schema option from the fsm_ checks. (Greg Mullane and Robert Treat)
+  Handle case when ENV{PGUSER} is set. (Andy Lester)
+  Many various fixes. (Jeff Boes)
+  Fix --dbservice: check version and use ENV{PGSERVICE} for old versions (Cédric Villemain)</pre>
+</dd>
+<dt><strong><strong>Version 2.7.3</strong> (February 10, 2009)</strong></dt>
+
+<dd>
+<pre>
+  Make the sequence action check if sequence being used for a int4 column and
+  react appropriately. (Michael Glaesemann)</pre>
+</dd>
+<dt><strong><strong>Version 2.7.2</strong> (February 9, 2009)</strong></dt>
+
+<dd>
+<pre>
+  Fix to prevent multiple groupings if db arguments given.</pre>
+</dd>
+<dt><strong><strong>Version 2.7.1</strong> (February 6, 2009)</strong></dt>
+
+<dd>
+<pre>
+  Allow the -p argument for port to work again.</pre>
+</dd>
+<dt><strong><strong>Version 2.7.0</strong> (February 4, 2009)</strong></dt>
+
+<dd>
+<pre>
+  Do not require a connection argument, but use defaults and ENV variables when 
+    possible: PGHOST, PGPORT, PGUSER, PGDATABASE.</pre>
+</dd>
+<dt><strong><strong>Version 2.6.1</strong> (February 4, 2009)</strong></dt>
+
+<dd>
+<pre>
+  Only require Date::Parse to be loaded if using the checkpoint action.</pre>
+</dd>
+<dt><strong><strong>Version 2.6.0</strong> (January 26, 2009)</strong></dt>
+
+<dd>
+<pre>
+  Add the 'checkpoint' action.</pre>
+</dd>
+<dt><strong><strong>Version 2.5.4</strong> (January 7, 2009)</strong></dt>
+
+<dd>
+<pre>
+  Better checking of $opt{dbservice} structure (Cédric Villemain)
+  Fix time display in timesync action output (Selena Deckelmann)
+  Fix documentation typos (Josh Tolley)</pre>
+</dd>
+<dt><strong><strong>Version 2.5.3</strong> (December 17, 2008)</strong></dt>
+
+<dd>
+<pre>
+  Minor fix to regex in verify_version (Lee Jensen)</pre>
+</dd>
+<dt><strong><strong>Version 2.5.2</strong> (December 16, 2008)</strong></dt>
+
+<dd>
+<pre>
+  Minor documentation tweak.</pre>
+</dd>
+<dt><strong><strong>Version 2.5.1</strong> (December 11, 2008)</strong></dt>
+
+<dd>
+<pre>
+  Add support for --noidle flag to prevent backends action from counting idle processes.
+  Patch by Selena Deckelmann.</pre>
+<pre>
+  Fix small undefined warning when not using --dbservice.</pre>
+</dd>
+<dt><strong><strong>Version 2.5.0</strong> (December 4, 2008)</strong></dt>
+
+<dd>
+<pre>
+  Add support for the pg_Service.conf file with the --dbservice option.</pre>
+</dd>
+<dt><strong><strong>Version 2.4.3</strong> (November 7, 2008)</strong></dt>
+
+<dd>
+<pre>
+  Fix options for replicate_row action, per report from Jason Gordon.</pre>
+</dd>
+<dt><strong><strong>Version 2.4.2</strong> (November 6, 2008)</strong></dt>
+
+<dd>
+<pre>
+  Wrap File::Temp::cleanup() calls in eval, in case File::Temp is an older version.
+  Patch by Chris Butler.</pre>
+</dd>
+<dt><strong><strong>Version 2.4.1</strong> (November 5, 2008)</strong></dt>
+
+<dd>
+<pre>
+  Cast numbers to numeric to support sequences ranges &gt; bigint in check_sequence action.
+  Thanks to Scott Marlowe for reporting this.</pre>
+</dd>
+<dt><strong><strong>Version 2.4.0</strong> (October 26, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Add Cacti support with the dbstats action.
+ Pretty up the time output for last vacuum and analyze actions.
+ Show the percentage of backends on the check_backends action.</pre>
+</dd>
+<dt><strong><a name="10" class="item"><strong>Version 2.3.10</strong> (October 23, 2008)</a></strong></dt>
+
+<dd>
+<pre>
+ Fix minor warning in action check_bloat with multiple databases.
+ Allow warning to be greater than critical when using the --reverse option.
+ Support the --perflimit option for the check_sequence action.</pre>
+</dd>
+<dt><strong><a name="9" class="item"><strong>Version 2.3.9</strong> (October 23, 2008)</a></strong></dt>
+
+<dd>
+<pre>
+ Minor tweak to way we store the default port.</pre>
+</dd>
+<dt><strong><a name="8" class="item"><strong>Version 2.3.8</strong> (October 21, 2008)</a></strong></dt>
+
+<dd>
+<pre>
+ Allow the default port to be changed easily.
+ Allow transform of simple output by MB, GB, etc.</pre>
+</dd>
+<dt><strong><a name="7" class="item"><strong>Version 2.3.7</strong> (October 14, 2008)</a></strong></dt>
+
+<dd>
+<pre>
+ Allow multiple databases in 'sequence' action. Reported by Christoph Zwerschke.</pre>
+</dd>
+<dt><strong><a name="6" class="item"><strong>Version 2.3.6</strong>  (October 13, 2008)</a></strong></dt>
+
+<dd>
+<pre>
+ Add missing $schema to check_fsm_pages. (Robert Treat)</pre>
+</dd>
+<dt><strong><strong>Version 2.3.5</strong> (October 9, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Change option 'checktype' to 'valtype' to prevent collisions with -c[ritical]
+ Better handling of errors.</pre>
+</dd>
+<dt><strong><strong>Version 2.3.4</strong> (October 9, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Do explicit cleanups of the temp directory, per problems reported by sb@nnx.com.</pre>
+</dd>
+<dt><strong><strong>Version 2.3.3</strong> (October 8, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Account for cases where some rounding queries give -0 instead of 0.
+ Thanks to Glyn Astill for helping to track this down.</pre>
+</dd>
+<dt><strong><strong>Version 2.3.2</strong> (October 8, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Always quote identifiers in check_replicate_row action.</pre>
+</dd>
+<dt><strong><strong>Version 2.3.1</strong> (October 7, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Give a better error if one of the databases cannot be reached.</pre>
+</dd>
+<dt><strong><strong>Version 2.3.0</strong> (October 4, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Add the &quot;sequence&quot; action, thanks to Gavin M. Roy for the idea.
+ Fix minor problem with autovac_freeze action when using MRTG output.
+ Allow output argument to be case-insensitive.
+ Documentation fixes.</pre>
+</dd>
+<dt><strong><strong>Version 2.2.4</strong> (October 3, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Fix some minor typos</pre>
+</dd>
+<dt><strong><strong>Version 2.2.3</strong> (October 1, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Expand range of allowed names for --repinfo argument (Glyn Astill)
+ Documentation tweaks.</pre>
+</dd>
+<dt><strong><strong>Version 2.2.2</strong> (September 30, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Fixes for minor output and scoping problems.</pre>
+</dd>
+<dt><strong><strong>Version 2.2.1</strong> (September 28, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Add MRTG output to fsm_pages and fsm_relations.
+ Force error messages to one-line for proper Nagios output.
+ Check for invalid prereqs on failed command. From conversations with Euler Taveira de Oliveira.
+ Tweak the fsm_pages formula a little.</pre>
+</dd>
+<dt><strong><strong>Version 2.2.0</strong> (September 25, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Add fsm_pages and fsm_relations actions. (Robert Treat)</pre>
+</dd>
+<dt><strong><strong>Version 2.1.4</strong> (September 22, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Fix for race condition in txn_time action.
+ Add --debugoutput option.</pre>
+</dd>
+<dt><strong><strong>Version 2.1.3</strong> (September 22, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Allow alternate arguments &quot;dbhost&quot; for &quot;host&quot; and &quot;dbport&quot; for &quot;port&quot;.
+ Output a zero as default value for second line of MRTG output.</pre>
+</dd>
+<dt><strong><strong>Version 2.1.2</strong> (July 28, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Fix sorting error in the &quot;disk_space&quot; action for non-Nagios output.
+ Allow --simple as a shortcut for --output=simple.</pre>
+</dd>
+<dt><strong><strong>Version 2.1.1</strong> (July 22, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Don't check databases with datallowconn false for the &quot;autovac_freeze&quot; action.</pre>
+</dd>
+<dt><strong><strong>Version 2.1.0</strong> (July 18, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Add the &quot;autovac_freeze&quot; action, thanks to Robert Treat for the idea and design.
+ Put an ORDER BY on the &quot;txn_wraparound&quot; action.</pre>
+</dd>
+<dt><strong><strong>Version 2.0.1</strong> (July 16, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Optimizations to speed up the &quot;bloat&quot; action quite a bit.
+ Fix &quot;version&quot; action to not always output in mrtg mode.</pre>
+</dd>
+<dt><strong><strong>Version 2.0.0</strong> (July 15, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Add support for MRTG and &quot;simple&quot; output options.
+ Many small improvements to nearly all actions.</pre>
+</dd>
+<dt><strong><strong>Version 1.9.1</strong> (June 24, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Fix an error in the bloat SQL in 1.9.0
+ Allow percentage arguments to be over 99%
+ Allow percentages in the bloat --warning and --critical (thanks to Robert Treat for the idea)</pre>
+</dd>
+<dt><strong><strong>Version 1.9.0</strong> (June 22, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Don't include information_schema in certain checks. (Jeff Frost)
+ Allow --include and --exclude to use schemas by using a trailing period.</pre>
+</dd>
+<dt><strong><strong>Version 1.8.5</strong> (June 22, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Output schema name before table name where appropriate.
+ Thanks to Jeff Frost.</pre>
+</dd>
+<dt><strong><strong>Version 1.8.4</strong> (June 19, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Better detection of problems in --replicate_row.</pre>
+</dd>
+<dt><strong><strong>Version 1.8.3</strong> (June 18, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Fix 'backends' action: there may be no rows in pg_stat_activity, so run a second
+   query if needed to find the max_connections setting.
+ Thanks to Jeff Frost for the bug report.</pre>
+</dd>
+<dt><strong><strong>Version 1.8.2</strong> (June 10, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Changes to allow working under Nagios' embedded Perl mode. (Ioannis Tambouras)</pre>
+</dd>
+<dt><strong><strong>Version 1.8.1</strong> (June 9, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Allow 'bloat' action to work on Postgres version 8.0.
+ Allow for different commands to be run for each action depending on the server version.
+ Give better warnings when running actions not available on older Postgres servers.</pre>
+</dd>
+<dt><strong><strong>Version 1.8.0</strong> (June 3, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Add the --reverse option to the custom_query action.</pre>
+</dd>
+<dt><strong><strong>Version 1.7.1</strong> (June 2, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Fix 'query_time' action: account for race condition in which zero rows appear in pg_stat_activity.
+ Thanks to Dustin Black for the bug report.</pre>
+</dd>
+<dt><strong><strong>Version 1.7.0</strong> (May 11, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Add --replicate_row action</pre>
+</dd>
+<dt><strong><strong>Version 1.6.1</strong> (May 11, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Add --symlinks option as a shortcut to --action=rebuild_symlinks</pre>
+</dd>
+<dt><strong><strong>Version 1.6.0</strong> (May 11, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Add the custom_query action.</pre>
+</dd>
+<dt><strong><strong>Version 1.5.2</strong> (May 2, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Fix problem with too eager creation of custom pgpass file.</pre>
+</dd>
+<dt><strong><strong>Version 1.5.1</strong> (April 17, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Add example Nagios configuration settings (Brian A. Seklecki)</pre>
+</dd>
+<dt><strong><strong>Version 1.5.0</strong> (April 16, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Add the --includeuser and --excludeuser options. Documentation cleanup.</pre>
+</dd>
+<dt><strong><strong>Version 1.4.3</strong> (April 16, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Add in the 'output' concept for future support of non-Nagios programs.</pre>
+</dd>
+<dt><strong><strong>Version 1.4.2</strong> (April 8, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Fix bug preventing --dbpass argument from working (Robert Treat).</pre>
+</dd>
+<dt><strong><strong>Version 1.4.1</strong> (April 4, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Minor documentation fixes.</pre>
+</dd>
+<dt><strong><strong>Version 1.4.0</strong> (April 2, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Have 'wal_files' action use pg_ls_dir (idea by Robert Treat).
+ For last_vacuum and last_analyze, respect autovacuum effects, add separate 
+   autovacuum checks (ideas by Robert Treat).</pre>
+</dd>
+<dt><strong><strong>Version 1.3.1</strong> (April 2, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Have txn_idle use query_start, not xact_start.</pre>
+</dd>
+<dt><strong><strong>Version 1.3.0</strong> (March 23, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Add in txn_idle and txn_time actions.</pre>
+</dd>
+<dt><strong><strong>Version 1.2.0</strong> (February 21, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Add the 'wal_files' action, which counts the number of WAL files
+   in your pg_xlog directory.
+ Fix some typos in the docs.
+ Explicitly allow -v as an argument.
+ Allow for a null syslog_facility in the 'logfile' action.</pre>
+</dd>
+<dt><strong><strong>Version 1.1.2</strong> (February 5, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Fix error preventing --action=rebuild_symlinks from working.</pre>
+</dd>
+<dt><strong><strong>Version 1.1.1</strong> (February 3, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Switch vacuum and analyze date output to use 'DD', not 'D'. (Glyn Astill)</pre>
+</dd>
+<dt><strong><strong>Version 1.1.0</strong> (December 16, 2008)</strong></dt>
+
+<dd>
+<pre>
+ Fixes, enhancements, and performance tracking.
+ Add performance data tracking via --showperf and --perflimit
+ Lots of refactoring and cleanup of how actions handle arguments.
+ Do basic checks to figure out syslog file for 'logfile' action.
+ Allow for exact matching of beta versions with 'version' action.
+ Redo the default arguments to only populate when neither 'warning' nor 'critical' is provided.
+ Allow just warning OR critical to be given for the 'timesync' action.
+ Remove 'redirect_stderr' requirement from 'logfile' due to 8.3 changes.
+ Actions 'last_vacuum' and 'last_analyze' are 8.2 only (Robert Treat)</pre>
+</dd>
+<dt><strong><a name="16" class="item"><strong>Version 1.0.16</strong> (December 7, 2007)</a></strong></dt>
+
+<dd>
+<pre>
+ First public release, December 2007</pre>
+</dd>
+</dl>
+<p>
+</p>
+<hr />
+<h1><a name="bugs_and_limitations">BUGS AND LIMITATIONS</a></h1>
+<p>The index bloat size optimization is rough.</p>
+<p>Some actions may not work on older versions of Postgres (before 8.0).</p>
+<p>Please report any problems to <a href="mailto:check_postgres@bucardo.org">check_postgres@bucardo.org</a></p>
+<p>
+</p>
+<hr />
+<h1><a name="author">AUTHOR</a></h1>
+<p>Greg Sabino Mullane &lt;<a href="mailto:greg@endpoint.com">greg@endpoint.com</a>&gt;</p>
+<p>
+</p>
+<hr />
+<h1><a name="nagios_examples">NAGIOS EXAMPLES</a></h1>
+<p>Some example Nagios configuration settings using this script:</p>
+<pre>
+ define command {
+     command_name    check_postgres_size
+     command_line    $USER2$/check_postgres.pl -H $HOSTADDRESS$ -u pgsql -db postgres --action database_size -w $ARG1$ -c $ARG2$
+ }</pre>
+<pre>
+ define command {
+     command_name    check_postgres_locks
+     command_line    $USER2$/check_postgres.pl -H $HOSTADDRESS$ -u pgsql -db postgres --action locks -w $ARG1$ -c $ARG2$
+ }</pre>
+<pre>
+ define service {
+     use                    generic-other
+     host_name              dbhost.gtld
+     service_description    dbhost PostgreSQL Service Database Usage Size
+     check_command          check_postgres_size!256000000!512000000
+ }</pre>
+<pre>
+ define service {
+     use                    generic-other
+     host_name              dbhost.gtld
+     service_description    dbhost PostgreSQL Service Database Locks
+     check_command          check_postgres_locks!2!3
+ }</pre>
+<p>
+</p>
+<hr />
+<h1><a name="license_and_copyright">LICENSE AND COPYRIGHT</a></h1>
+<p>Copyright (c) 2007-2009 Greg Sabino Mullane &lt;<a href="mailto:greg@endpoint.com">greg@endpoint.com</a>&gt;.</p>
+<p>Redistribution and use in source and binary forms, with or without 
+modification, are permitted provided that the following conditions are met:</p>
+<pre>
+  1. Redistributions of source code must retain the above copyright notice, 
+     this list of conditions and the following disclaimer.
+  2. Redistributions in binary form must reproduce the above copyright notice, 
+     this list of conditions and the following disclaimer in the documentation 
+     and/or other materials provided with the distribution.</pre>
+<p>THIS SOFTWARE IS PROVIDED BY THE AUTHOR &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED 
+WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO 
+EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT 
+OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING 
+IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+OF SUCH DAMAGE.</p>
+
+</body>
+
+</html>

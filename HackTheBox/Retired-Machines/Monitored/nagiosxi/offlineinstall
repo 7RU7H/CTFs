@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+# Import gpg key
+if [ ! -f /etc/pki/rpm-gpg/GPG-KEY-NAGIOS-V2 ]; then
+	/bin/cp -f GPG-KEY-NAGIOS-V2 /etc/pki/rpm-gpg/GPG-KEY-NAGIOS-V2
+	rpm --import GPG-KEY-NAGIOS-V2
+fi
+
+# Do local install of packages
+yum -y --nogpgcheck localinstall *.rpm
+
+# Used to allow PDF exporting without reaching out to Highcharts
+ln -sf /usr/local/nagiosxi/html/includes/components/highcharts/exporting-server/phantomjs /usr/bin

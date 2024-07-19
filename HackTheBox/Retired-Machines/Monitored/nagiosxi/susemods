@@ -1,0 +1,19 @@
+#!/bin/bash -e
+. ./xi-sys.cfg
+
+if ! rpm -q sle-sdk-release &>/dev/null; then
+
+    echo "Enabling SLE SDK repo..."
+    PKG="packages/sle-sdk-release-*$version*.rpm"
+
+    echo "Installing SLE SDK PKG: $PKG"
+    rpm -Uvh "$PKG"
+fi
+
+# Check to make sure RPM was installed
+if rpm -q sle-sdk-release &>/dev/null; then
+    echo "sle-sdk-release RPM installed OK"
+else
+    echo "ERROR: sle-sdk-release RPM was not installed - exiting." >&2
+    exit 1
+fi

@@ -1,0 +1,706 @@
+# Nmap 7.94SVN scan initiated Sun Feb 18 18:05:42 2024 as: nmap --script discovery -oA /home/kali/HackTheBoxCompetitive/Savage-Lands/Office/nmap/10-129-11-168-Discovery --min-rate 1000 -e tun0 -p 53,80,88,139,389,443,445,464,593,636,3268,3269,5985,9389,49664,49668,49681,50622 10.129.11.168
+Pre-scan script results:
+|_lltd-discovery: false
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_broadcast-ping: false
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+Nmap scan report for 10.129.11.168
+Host is up (0.075s latency).
+
+PORT      STATE SERVICE
+53/tcp    open  domain
+|_dns-nsec3-enum: Can't determine domain for host 10.129.11.168; use dns-nsec3-enum.domains script arg.
+|_dns-nsec-enum: Can't determine domain for host 10.129.11.168; use dns-nsec-enum.domains script arg.
+80/tcp    open  http
+|_http-trace: TRACE is enabled
+| http-security-headers: 
+|   X_Frame_Options: 
+|     Header: X-Frame-Options: SAMEORIGIN
+|     Description: The browser must not display this content in any frame from a page of different origin than the content itself.
+|   Cache_Control: 
+|     Header: Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+|   Pragma: 
+|     Header: Pragma: no-cache
+|   Expires: 
+|_    Header: Expires: Wed, 17 Aug 2005 00:00:00 GMT
+| http-grep: 
+|   (1) http://10.129.11.168:80/: 
+|     (1) ip: 
+|_      + 10.129.11.168
+|_http-chrono: Request times for /; avg: 2284.80ms; min: 1684.95ms; max: 3920.18ms
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; php: 1
+|     /images/
+|       png: 1
+|     /index.php/
+|       Other: 1
+|     /index.php/component/users/
+|       Other: 1
+|     /media/mod_menu/js/
+|       js: 1
+|     /media/system/css/
+|       css: 1
+|     /media/system/images/
+|       ico: 1; svg: 2
+|     /media/system/js/
+|       js: 5
+|   Longest directory structure:
+|     Depth: 3
+|     Dir: /media/system/css/
+|   Total files found (by extension):
+|_    Other: 3; css: 1; ico: 1; js: 6; php: 1; png: 1; svg: 2
+| http-enum: 
+|   /administrator/: Possible admin folder
+|   /administrator/index.php: Possible admin folder
+|   /Administrator/: Possible admin folder
+|   /robots.txt: Robots file
+|   /administrator/manifests/files/joomla.xml: Joomla version 4.2.7
+|   /htaccess.txt: Joomla!
+|   /README.txt: Interesting, a readme.
+|   /cache/: Potentially interesting folder
+|   /icons/: Potentially interesting folder w/ directory listing
+|   /images/: Potentially interesting folder
+|   /includes/: Potentially interesting folder
+|   /modules/: Potentially interesting folder
+|   /templates/: Potentially interesting folder
+|_  /tmp/: Potentially interesting folder
+|_http-generator: Joomla! - Open Source Content Management
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| http-headers: 
+|   Date: Mon, 19 Feb 2024 02:07:57 GMT
+|   Server: Apache/2.4.56 (Win64) OpenSSL/1.1.1t PHP/8.0.28
+|   X-Powered-By: PHP/8.0.28
+|   Set-Cookie: 3815f63d17a9109b26eb1b8c114159ac=okjjoguu0sosc78sp2jis1i79o; path=/; HttpOnly
+|   x-frame-options: SAMEORIGIN
+|   referrer-policy: strict-origin-when-cross-origin
+|   cross-origin-opener-policy: same-origin
+|   Expires: Wed, 17 Aug 2005 00:00:00 GMT
+|   Last-Modified: Mon, 19 Feb 2024 02:07:59 GMT
+|   Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+|   Pragma: no-cache
+|   Connection: close
+|   Content-Type: text/html; charset=utf-8
+|   
+|_  (Request type: HEAD)
+|_http-php-version: Version from header x-powered-by: PHP/8.0.28
+| http-unsafe-output-escaping: 
+|   Characters ['] reflected in parameter id at http://10.129.11.168:80/index.php?view=article&amp;id=3:iron-man-mark-3&amp;catid=8
+|   Characters ['] reflected in parameter catid at http://10.129.11.168:80/index.php?view=article&amp;id=3:iron-man-mark-3&amp;catid=8
+|   Characters ['] reflected in parameter id at http://10.129.11.168:80/index.php?view=article&amp;id=2:iron-man-mark-1&amp;catid=8
+|   Characters ['] reflected in parameter catid at http://10.129.11.168:80/index.php?view=article&amp;id=2:iron-man-mark-1&amp;catid=8
+|   Characters ['] reflected in parameter id at http://10.129.11.168:80/index.php?view=article&amp;id=4:iron-man-mark-4&amp;catid=8
+|   Characters ['] reflected in parameter catid at http://10.129.11.168:80/index.php?view=article&amp;id=4:iron-man-mark-4&amp;catid=8
+|_  Characters ['] reflected in parameter id at http://10.129.11.168:80/index.php?view=category&amp;id=8
+|_http-date: Mon, 19 Feb 2024 02:08:04 GMT; +8h59m57s from local time.
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-auth-finder: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.11.168
+|   url                                                                                  method
+|   http://10.129.11.168:80/                                                             FORM
+|   http://10.129.11.168:80/index.php                                                    FORM
+|   http://10.129.11.168:80/index.php/holograms-are-evolving                             FORM
+|   http://10.129.11.168:80/index.php?view=article&amp;id=3:iron-man-mark-3&amp;catid=8  FORM
+|   http://10.129.11.168:80/index.php?view=article&amp;id=2:iron-man-mark-1&amp;catid=8  FORM
+|   http://10.129.11.168:80/index.php?view=article&amp;id=4:iron-man-mark-4&amp;catid=8  FORM
+|   http://10.129.11.168:80/index.php?view=category&amp;id=8                             FORM
+|   http://10.129.11.168:80/index.php/component/users/remind?Itemid=101                  FORM
+|_  http://10.129.11.168:80/index.php/component/users/reset?Itemid=101                   FORM
+| http-robots.txt: 16 disallowed entries (15 shown)
+| /joomla/administrator/ /administrator/ /api/ /bin/ 
+| /cache/ /cli/ /components/ /includes/ /installation/ 
+|_/language/ /layouts/ /libraries/ /logs/ /modules/ /plugins/
+| http-vhosts: 
+| 107 names had status 200
+|_21 names had status ERROR
+| http-aspnet-debug: 
+|_  status: DEBUG is enabled
+|_http-title: Home
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.11.168
+|     
+|     Path: http://10.129.11.168:80/index.php?format=feed&amp;type=rss
+|     Line number: 2
+|     Comment: 
+|         <!-- generator="Joomla! - Open Source Content Management" -->
+|     
+|     Path: http://10.129.11.168:80/media/system/css/joomla-fontawesome.min.css?1b8ab3323b6e57a7bc64f120181d66ff
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * Font Awesome Free 5.15.4 by @fontawesome - https://fontawesome.com
+|          * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+|_         */
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.129.11.168
+|   Found the following error pages: 
+|   
+|   Error Code: 400
+|_  	http://10.129.11.168:80
+| http-traceroute: 
+|   last-modified
+|     Hop #1: Mon, 19 Feb 2024 02:07:07 GMT
+|     Hop #2: Mon, 19 Feb 2024 02:07:59 GMT
+|_    Hop #3: Mon, 19 Feb 2024 02:08:00 GMT
+|_http-devframework: Joomla detected. Found common traces on /
+|_http-mobileversion-checker: No mobile version detected.
+| http-feed: 
+| Spidering limited to: maxpagecount=40; withinhost=10.129.11.168
+|   Found the following feeds: 
+|     Atom: http://10.129.11.168:80/index.php?format=feed&amp;type=atom
+|     Atom: http://10.129.11.168/index.php?format=feed&amp;type=atom
+|     RSS (version 2.0): http://10.129.11.168:80/index.php/holograms-are-evolving?view=category&amp;id=8&amp;format=feed&amp;type=rss
+|     RSS (version 2.0): http://10.129.11.168:80/index.php?view=category&amp;id=8&amp;format=feed&amp;type=rss
+|     Atom: http://10.129.11.168/index.php/holograms-are-evolving?view=category&amp;id=8&amp;format=feed&amp;type=atom
+|     Atom: http://10.129.11.168/index.php?view=category&amp;id=8&amp;format=feed&amp;type=atom
+|     Atom: http://10.129.11.168:80/index.php/holograms-are-evolving?view=category&amp;id=8&amp;format=feed&amp;type=atom
+|     Atom: http://10.129.11.168:80/index.php?view=category&amp;id=8&amp;format=feed&amp;type=atom
+|     RSS (version 2.0): http://10.129.11.168/index.php?view=category&amp;id=8&amp;format=feed&amp;type=rss
+|     RSS (version 2.0): http://10.129.11.168/index.php?format=feed&amp;type=rss
+|     RSS (version 2.0): http://10.129.11.168/index.php/holograms-are-evolving?view=category&amp;id=8&amp;format=feed&amp;type=rss
+|_    RSS (version 2.0): http://10.129.11.168:80/index.php?format=feed&amp;type=rss
+88/tcp    open  kerberos-sec
+139/tcp   open  netbios-ssn
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+389/tcp   open  ldap
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|   TLSv1.3: 
+|     ciphers: 
+|       TLS_AKE_WITH_AES_256_GCM_SHA384 (secp384r1) - A
+|       TLS_AKE_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|     cipher preference: server
+|_  least strength: C
+| ssl-cert: Subject: commonName=DC.office.htb
+| Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::<unsupported>, DNS:DC.office.htb
+| Not valid before: 2023-05-10T12:36:58
+|_Not valid after:  2024-05-09T12:36:58
+| ldap-rootdse: 
+| LDAP Results
+|   <ROOT>
+|       domainFunctionality: 7
+|       forestFunctionality: 7
+|       domainControllerFunctionality: 7
+|       rootDomainNamingContext: DC=office,DC=htb
+|       ldapServiceName: office.htb:dc$@OFFICE.HTB
+|       isGlobalCatalogReady: TRUE
+|       supportedSASLMechanisms: GSSAPI
+|       supportedSASLMechanisms: GSS-SPNEGO
+|       supportedSASLMechanisms: EXTERNAL
+|       supportedSASLMechanisms: DIGEST-MD5
+|       supportedLDAPVersion: 3
+|       supportedLDAPVersion: 2
+|       supportedLDAPPolicies: MaxPoolThreads
+|       supportedLDAPPolicies: MaxPercentDirSyncRequests
+|       supportedLDAPPolicies: MaxDatagramRecv
+|       supportedLDAPPolicies: MaxReceiveBuffer
+|       supportedLDAPPolicies: InitRecvTimeout
+|       supportedLDAPPolicies: MaxConnections
+|       supportedLDAPPolicies: MaxConnIdleTime
+|       supportedLDAPPolicies: MaxPageSize
+|       supportedLDAPPolicies: MaxBatchReturnMessages
+|       supportedLDAPPolicies: MaxQueryDuration
+|       supportedLDAPPolicies: MaxDirSyncDuration
+|       supportedLDAPPolicies: MaxTempTableSize
+|       supportedLDAPPolicies: MaxResultSetSize
+|       supportedLDAPPolicies: MinResultSets
+|       supportedLDAPPolicies: MaxResultSetsPerConn
+|       supportedLDAPPolicies: MaxNotificationPerConn
+|       supportedLDAPPolicies: MaxValRange
+|       supportedLDAPPolicies: MaxValRangeTransitive
+|       supportedLDAPPolicies: ThreadMemoryLimit
+|       supportedLDAPPolicies: SystemMemoryLimitPercent
+|       supportedControl: 1.2.840.113556.1.4.319
+|       supportedControl: 1.2.840.113556.1.4.801
+|       supportedControl: 1.2.840.113556.1.4.473
+|       supportedControl: 1.2.840.113556.1.4.528
+|       supportedControl: 1.2.840.113556.1.4.417
+|       supportedControl: 1.2.840.113556.1.4.619
+|       supportedControl: 1.2.840.113556.1.4.841
+|       supportedControl: 1.2.840.113556.1.4.529
+|       supportedControl: 1.2.840.113556.1.4.805
+|       supportedControl: 1.2.840.113556.1.4.521
+|       supportedControl: 1.2.840.113556.1.4.970
+|       supportedControl: 1.2.840.113556.1.4.1338
+|       supportedControl: 1.2.840.113556.1.4.474
+|       supportedControl: 1.2.840.113556.1.4.1339
+|       supportedControl: 1.2.840.113556.1.4.1340
+|       supportedControl: 1.2.840.113556.1.4.1413
+|       supportedControl: 2.16.840.1.113730.3.4.9
+|       supportedControl: 2.16.840.1.113730.3.4.10
+|       supportedControl: 1.2.840.113556.1.4.1504
+|       supportedControl: 1.2.840.113556.1.4.1852
+|       supportedControl: 1.2.840.113556.1.4.802
+|       supportedControl: 1.2.840.113556.1.4.1907
+|       supportedControl: 1.2.840.113556.1.4.1948
+|       supportedControl: 1.2.840.113556.1.4.1974
+|       supportedControl: 1.2.840.113556.1.4.1341
+|       supportedControl: 1.2.840.113556.1.4.2026
+|       supportedControl: 1.2.840.113556.1.4.2064
+|       supportedControl: 1.2.840.113556.1.4.2065
+|       supportedControl: 1.2.840.113556.1.4.2066
+|       supportedControl: 1.2.840.113556.1.4.2090
+|       supportedControl: 1.2.840.113556.1.4.2205
+|       supportedControl: 1.2.840.113556.1.4.2204
+|       supportedControl: 1.2.840.113556.1.4.2206
+|       supportedControl: 1.2.840.113556.1.4.2211
+|       supportedControl: 1.2.840.113556.1.4.2239
+|       supportedControl: 1.2.840.113556.1.4.2255
+|       supportedControl: 1.2.840.113556.1.4.2256
+|       supportedControl: 1.2.840.113556.1.4.2309
+|       supportedControl: 1.2.840.113556.1.4.2330
+|       supportedControl: 1.2.840.113556.1.4.2354
+|       supportedCapabilities: 1.2.840.113556.1.4.800
+|       supportedCapabilities: 1.2.840.113556.1.4.1670
+|       supportedCapabilities: 1.2.840.113556.1.4.1791
+|       supportedCapabilities: 1.2.840.113556.1.4.1935
+|       supportedCapabilities: 1.2.840.113556.1.4.2080
+|       supportedCapabilities: 1.2.840.113556.1.4.2237
+|       subschemaSubentry: CN=Aggregate,CN=Schema,CN=Configuration,DC=office,DC=htb
+|       serverName: CN=DC,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=office,DC=htb
+|       schemaNamingContext: CN=Schema,CN=Configuration,DC=office,DC=htb
+|       namingContexts: DC=office,DC=htb
+|       namingContexts: CN=Configuration,DC=office,DC=htb
+|       namingContexts: CN=Schema,CN=Configuration,DC=office,DC=htb
+|       namingContexts: DC=DomainDnsZones,DC=office,DC=htb
+|       namingContexts: DC=ForestDnsZones,DC=office,DC=htb
+|       isSynchronized: TRUE
+|       highestCommittedUSN: 262282
+|       dsServiceName: CN=NTDS Settings,CN=DC,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=office,DC=htb
+|       dnsHostName: DC.office.htb
+|       defaultNamingContext: DC=office,DC=htb
+|       currentTime: 20240219020606.0Z
+|_      configurationNamingContext: CN=Configuration,DC=office,DC=htb
+|_ssl-date: TLS randomness does not represent time
+443/tcp   open  https
+| http-sitemap-generator: 
+|   Directory structure:
+|   Longest directory structure:
+|     Depth: 0
+|     Dir: /
+|   Total files found (by extension):
+|_    
+| http-vhosts: 
+| alerts : 400
+| server : 400
+| http : 400
+| exchange : 400
+|_124 names had status 403
+| tls-alpn: 
+|_  http/1.1
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-title: 403 Forbidden
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.129.11.168
+|   Found the following error pages: 
+|   
+|   Error Code: 403
+|_  	https://10.129.11.168:443/
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+| http-grep: 
+|   (1) https://10.129.11.168:443/: 
+|     (1) ip: 
+|_      + 10.129.11.168
+|_http-comments-displayer: Couldn't find any comments.
+| http-security-headers: 
+|   Strict_Transport_Security: 
+|_    HSTS not configured in HTTPS Server
+|_http-feed: Couldn't find any feeds.
+|_http-trace: TRACE is enabled
+|_http-date: Mon, 19 Feb 2024 02:06:08 GMT; +8h59m54s from local time.
+|_http-mobileversion-checker: No mobile version detected.
+| http-useragent-tester: 
+|   Status for browser useragent: 403
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+| ssl-cert: Subject: commonName=localhost
+| Not valid before: 2009-11-10T23:48:47
+|_Not valid after:  2019-11-08T23:48:47
+|_ssl-date: TLS randomness does not represent time
+|_http-chrono: Request times for /; avg: 277.87ms; min: 222.95ms; max: 328.74ms
+| http-headers: 
+|   Date: Mon, 19 Feb 2024 02:06:24 GMT
+|   Server: Apache/2.4.56 (Win64) OpenSSL/1.1.1t PHP/8.0.28
+|   Content-Length: 304
+|   Connection: close
+|   Content-Type: text/html; charset=iso-8859-1
+|   
+|_  (Request type: GET)
+|_http-referer-checker: Couldn't find any cross-domain scripts.
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 1024) - F
+|       TLS_DHE_RSA_WITH_SEED_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_SEED_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_IDEA_CBC_SHA (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher IDEA vulnerable to SWEET32 attack
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 1024) - F
+|       TLS_DHE_RSA_WITH_SEED_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_SEED_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_IDEA_CBC_SHA (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher IDEA vulnerable to SWEET32 attack
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_256_CCM_8 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_256_CCM (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_ARIA_256_GCM_SHA384 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_ARIA_256_GCM_SHA384 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CCM_8 (dh 1024) - F
+|       TLS_DHE_RSA_WITH_AES_128_CCM (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_ARIA_128_GCM_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_ARIA_128_GCM_SHA256 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA256 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_CAMELLIA_256_CBC_SHA384 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA256 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA256 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA256 (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_256_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_256_CBC_SHA (dh 1024) - F
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - F
+|       TLS_DHE_RSA_WITH_AES_128_CBC_SHA (dh 1024) - F
+|       TLS_DHE_RSA_WITH_CAMELLIA_128_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CCM_8 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CCM (rsa 1024) - F
+|       TLS_RSA_WITH_ARIA_256_GCM_SHA384 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CCM_8 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CCM (rsa 1024) - F
+|       TLS_RSA_WITH_ARIA_128_GCM_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA256 (rsa 1024) - F
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_256_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 1024) - F
+|       TLS_RSA_WITH_CAMELLIA_128_CBC_SHA (rsa 1024) - F
+|       TLS_DHE_RSA_WITH_SEED_CBC_SHA (dh 1024) - F
+|       TLS_RSA_WITH_SEED_CBC_SHA (rsa 1024) - F
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       Insecure certificate signature (SHA1), score capped at F
+|   TLSv1.3: 
+|     ciphers: 
+|       TLS_AKE_WITH_AES_256_GCM_SHA384 (ecdh_x25519) - A
+|       TLS_AKE_WITH_CHACHA20_POLY1305_SHA256 (ecdh_x25519) - A
+|       TLS_AKE_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|     cipher preference: server
+|_  least strength: F
+445/tcp   open  microsoft-ds
+|_smb-enum-services: ERROR: Script execution failed (use -d to debug)
+464/tcp   open  kpasswd5
+593/tcp   open  http-rpc-epmap
+|_banner: ncacn_http/1.0
+636/tcp   open  ldapssl
+| ssl-cert: Subject: commonName=DC.office.htb
+| Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::<unsupported>, DNS:DC.office.htb
+| Not valid before: 2023-05-10T12:36:58
+|_Not valid after:  2024-05-09T12:36:58
+|_ssl-date: TLS randomness does not represent time
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|   TLSv1.3: 
+|     ciphers: 
+|       TLS_AKE_WITH_AES_256_GCM_SHA384 (secp384r1) - A
+|       TLS_AKE_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|     cipher preference: server
+|_  least strength: C
+3268/tcp  open  globalcatLDAP
+3269/tcp  open  globalcatLDAPssl
+| ssl-enum-ciphers: 
+|   TLSv1.0: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|   TLSv1.1: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|   TLSv1.2: 
+|     ciphers: 
+|       TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|       TLS_DHE_RSA_WITH_AES_256_GCM_SHA384 (dh 2048) - A
+|       TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 (dh 2048) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384 (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256 (ecdh_x25519) - A
+|       TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA (secp384r1) - A
+|       TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA (ecdh_x25519) - A
+|       TLS_RSA_WITH_AES_256_GCM_SHA384 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_GCM_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA256 (rsa 2048) - A
+|       TLS_RSA_WITH_AES_256_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_AES_128_CBC_SHA (rsa 2048) - A
+|       TLS_RSA_WITH_3DES_EDE_CBC_SHA (rsa 2048) - C
+|     compressors: 
+|       NULL
+|     cipher preference: server
+|     warnings: 
+|       64-bit block cipher 3DES vulnerable to SWEET32 attack
+|   TLSv1.3: 
+|     ciphers: 
+|       TLS_AKE_WITH_AES_256_GCM_SHA384 (secp384r1) - A
+|       TLS_AKE_WITH_AES_128_GCM_SHA256 (ecdh_x25519) - A
+|     cipher preference: server
+|_  least strength: C
+|_ssl-date: TLS randomness does not represent time
+| ssl-cert: Subject: commonName=DC.office.htb
+| Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::<unsupported>, DNS:DC.office.htb
+| Not valid before: 2023-05-10T12:36:58
+|_Not valid after:  2024-05-09T12:36:58
+5985/tcp  open  wsman
+9389/tcp  open  adws
+49664/tcp open  unknown
+49668/tcp open  unknown
+49681/tcp open  unknown
+|_banner: ncacn_http/1.0
+50622/tcp open  unknown
+Service Info: Host: DC; OS: Windows
+
+Host script results:
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV   LOSS (%)
+| 53    0       57032.90   6081.78  0.0%
+| 80    0       56275.20   9253.25  0.0%
+| 88    0       54845.80   4991.37  0.0%
+| 139   0       53113.78   3693.71  10.0%
+| 389   0       56841.10   6633.13  0.0%
+| 443   0       55428.20   6284.51  0.0%
+| 445   0       56462.50   4575.22  0.0%
+|_464   0       53791.30   4891.71  0.0%
+|_fcrdns: FAIL (No PTR record)
+| smb2-capabilities: 
+|   2:0:2: 
+|     Distributed File System
+|   2:1:0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:0:0: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:0:2: 
+|     Distributed File System
+|     Leasing
+|     Multi-credit operations
+|   3:1:1: 
+|     Distributed File System
+|     Leasing
+|_    Multi-credit operations
+|_dns-brute: Can't guess domain of "10.129.11.168"; use dns-brute.domain script argument.
+| smb2-time: 
+|   date: 2024-02-19T02:06:27
+|_  start_date: N/A
+|_ipidseq: Unknown
+| smb-protocols: 
+|   dialects: 
+|     2:0:2
+|     2:1:0
+|     3:0:0
+|     3:0:2
+|_    3:1:1
+| smb2-security-mode: 
+|   3:1:1: 
+|_    Message signing enabled and required
+|_msrpc-enum: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+|_path-mtu: PMTU == 1500
+| smb-mbenum: 
+|_  ERROR: Failed to connect to browser service: Could not negotiate a connection:SMB: Failed to receive bytes: ERROR
+
+# Nmap done at Sun Feb 18 18:13:50 2024 -- 1 IP address (1 host up) scanned in 487.86 seconds

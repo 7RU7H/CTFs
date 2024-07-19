@@ -1,0 +1,83 @@
+#!/bin/bash -e
+
+. ../../xi-sys.cfg
+
+pkgname="nrpe-4.1.0"
+
+echo "UPGRADE: NRPE is being upgraded..."
+
+# Delete the old archive
+rm -rf "$pkgname"
+
+# Extract archive
+tar -xzf "$pkgname.tar.gz"
+
+# Make and install 
+(
+
+	# Check if version 2 (or assume 3)
+	set +e
+	version=3
+	out=$(/usr/local/nagios/bin/nrpe)
+	if echo $out | grep -q "Version: 2"; then
+		version=2
+	fi
+	set -e
+
+	# Special Ubuntu/Debian arguments for different locations
+	cd "./$pkgname"
+	if [ "$distro" == "Ubuntu" ] || [ "$distro" == "Debian" ]; then
+		./configure --with-ssl=/usr/bin/openssl --with-ssl-lib=/usr/lib/x86_64-linux-gnu --enable-command-args
+	else
+		if [ "$dist" == "el6" ]; then
+			./configure --with-init-type=sysv --with-piddir=/var/run/nrpe --enable-command-args
+		else
+			./configure --enable-command-args
+		fi
+	fi
+
+	make -j $make_j_flag all
+	make install-plugin
+	make install-daemon
+	make install-init
+
+	# Set the configuration if our old NRPE was 2.x
+	if [ $version -eq 2 ]; then
+		mv /usr/local/nagios/etc/nrpe.cfg /usr/local/nagios/etc/nrpe.cfg.old
+		make install-config
+	fi
+
+)
+
+# Remove xinetd (since NRPE 3 doesn't have a configuration for it)
+if [ -f /etc/xinetd.d/nrpe ]; then
+
+	# Disable the nrpe agent xinetd.d script
+	sed -i 's/disable.*= no/disable = yes/' /etc/xinetd.d/nrpe
+
+	# Restart xinetd
+	if [ ! `command -v systemctl` ]; then
+		service xinetd restart
+	else
+		systemctl restart xinetd
+	fi
+fi
+
+# Restart NRPE
+if [ ! `command -v systemctl` ]; then
+	service nrpe restart
+else
+	systemctl daemon-reload
+	systemctl restart nrpe
+fi
+
+# Do a simple sanity check to make sure some key files exist...
+for f in /usr/local/nagios/bin/nrpe /usr/local/nagios/libexec/check_nrpe ; do
+	if [ ! -f "$f" ]; then
+		echo "ERROR: NRPE install appears to have failed - exiting.  Missing file = $f"
+		exit 1
+	fi
+done
+
+# Things are okay
+echo "UPGRADE: NRPE upgraded OK."

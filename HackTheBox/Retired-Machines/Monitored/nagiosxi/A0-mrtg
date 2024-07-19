@@ -1,0 +1,26 @@
+#!/bin/bash -e
+
+. ./xi-sys.cfg
+
+# Was previous step completed?
+if [ ! -f installed.subcomponents ]; then
+	echo "Subcomponents were not installed - run previous script" >&2
+	exit 1
+fi
+
+# Was this step already completed?
+if [ -f installed.mrtg ]; then
+	echo "MRTG already configured - skipping."
+	exit 0
+fi
+
+# Make the file writable by the web server
+chown "$apacheuser:$nagiosgroup" "$mrtgcfg"
+
+# Edit the mrtg cron to have proper user and group (not root)
+# - Security issue if running as root!
+sed -i 's/mrtg.ok/mrtg.ok --user=nagios --group=nagios/' /etc/cron.d/mrtg
+
+echo "MRTG configured OK"
+touch installed.mrtg
+

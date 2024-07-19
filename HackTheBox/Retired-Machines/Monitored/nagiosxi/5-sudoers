@@ -1,0 +1,21 @@
+#!/bin/bash -e
+
+. ./xi-sys.cfg
+
+# Was previous step completed?
+if [ ! -f installed.services ]; then
+	echo "Services were not initialized - run previous script" >&2
+	exit 1
+fi
+
+# Was this step already completed?
+if [ -f installed.sudoers ]; then
+	echo "sudoers already configured - skipping."
+	exit 0
+fi
+
+./install-sudoers
+
+echo "sudoers configured OK"
+touch installed.sudoers
+

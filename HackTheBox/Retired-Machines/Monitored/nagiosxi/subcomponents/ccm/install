@@ -1,0 +1,43 @@
+#!/bin/bash -e
+
+. ../../xi-sys.cfg
+
+echo "INSTALL: Nagios CCM is being installed..."
+
+# Force mysql commands (don't die on errors)
+mysqlforce=""
+if [ $FORCE -eq 1 ]; then
+    mysqlforce="--force"
+fi
+
+# See if database already exists
+echo "NOTE: If prompted, enter the MySQL root password"
+if mysql nagiosql -u root -p"$mysqlpass" -e 'SELECT COUNT(*) FROM tbl_host' &>/dev/null; then
+    echo "CCM database already exists - skipping creation..."
+else
+
+    # Select the sql file depending on MySQL version
+    sqlfile="create_db.sql"
+    if [ "$dist" == "el8" ] || [ "$dist" == "el9" ] || [ "$dist" == "ubuntu20" ] ||  [ "$dist" == "ubuntu22" ]; then
+        sqlfile="create_db_mysql8.sql"
+    fi
+
+    # Run SQL to create database and add user
+    mysql -u root -p"$mysqlpass" $mysqlforce < db/$sqlfile
+    mysql -u root -p"$mysqlpass" $mysqlforce nagiosql < db/schema.sql
+    mysql -u root -p"$mysqlpass" $mysqlforce nagiosql < db/schema_01.sql
+    mysql -u root -p"$mysqlpass" $mysqlforce nagiosql < db/schema_02.sql
+    mysql -u root -p"$mysqlpass" $mysqlforce nagiosql < db/load_db.sql
+fi
+
+# Check MySQL database
+echo "NOTE: If prompted, enter the MySQL root password"
+if mysql -u root -p"$mysqlpass" nagiosql -e "SELECT COUNT(*) FROM tbl_host" &>/dev/null; then
+    echo "CCM database appears OK"
+else
+    echo "ERROR: CCM database install appears to have failed - exiting."
+    exit 1
+fi
+
+# Things are okay
+echo "INSTALL: Nagios CCM installed OK."

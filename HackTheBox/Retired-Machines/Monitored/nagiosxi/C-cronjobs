@@ -1,0 +1,34 @@
+#!/bin/bash -e
+
+. ./xi-sys.cfg
+
+# Was previous step completed?
+if [ ! -f installed.nagiosxi ]; then
+	echo "Nagios XI base files were not installed - run previous script" >&2
+	exit 1
+fi
+
+# Was this step already completed?
+if [ -f installed.crontabs ]; then
+	echo "Crontabs already configured - skipping."
+	exit 0
+fi
+
+# Install Nagios XI cron jobs
+install -m 644 nagiosxi/nagiosxi.cron.d /etc/cron.d/nagiosxi
+
+# Initialize apache crontab to make sure scheduled reporting will work
+crontab -u $apacheuser nagiosxi/crontab.apache
+
+if [[ "$distro" == "Ubuntu" ]] || [[ "$distro" == "Debian" ]]; then
+    chown $apacheuser:$apachegroup /var/spool/cron/crontabs/$apacheuser
+    chmod g+r /var/spool/cron/crontabs/$apacheuser
+else
+    chown $apacheuser:$apachegroup /var/spool/cron/apache
+    chmod g+r /var/spool/cron/apache
+fi
+
+
+echo "Crontabs installed OK"
+touch installed.crontabs
+

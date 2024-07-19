@@ -1,0 +1,113 @@
+#!/bin/bash -e
+
+. ./xi-sys.cfg
+
+##########################################
+# COPY OVER NEW XI HTML FILES
+##########################################
+
+# Save old config.inc file
+if [ -f "$proddir/html/config.inc.php" ]; then
+	cp -f "$proddir/html/config.inc.php" "$proddir/html/config.inc.saved.php"
+fi
+
+# Save old loginsplash file
+if [ -f "$proddir/html/loginsplash.inc.php" ]; then
+	cp -f "$proddir/html/loginsplash.inc.php" "$proddir/html/loginsplash.inc.saved.php"
+fi
+
+# Copy over XI files
+echo "Copying over new XI directory..."
+cp -r ./nagiosxi/basedir/* "$proddir"
+
+# Restore original config.inc file, but save a copy of the new one
+if [ -f "$proddir/html/config.inc.saved.php" ]; then
+	cp -f "$proddir/html/config.inc.php" "$proddir/html/config.inc.dist.php"
+	cp -f "$proddir/html/config.inc.saved.php" "$proddir/html/config.inc.php"
+fi
+
+# Restore original loginsplash file, but save a copy of the new one
+if [ -f "$proddir/html/loginsplash.inc.saved.php" ]; then
+	cp -f "$proddir/html/loginsplash.inc.php" "$proddir/html/loginsplash.inc.dist.php"
+	cp -f "$proddir/html/loginsplash.inc.saved.php" "$proddir/html/loginsplash.inc.php"
+fi
+
+# Change ownership on directories and files
+chown -R "$nagiosuser:$nagiosgroup" "$proddir"
+chown "root:$nagiosgroup" "$proddir"
+chown "root:$nagiosgroup" $proddir/*
+chown "root:$nagiosgroup" "$proddir/scripts/components"
+
+# Permissions for var should be all nagios permissions
+chown "$nagiosuser:$nagiosgroup" "$proddir/var"
+
+# Change to correct perms
+find "$proddir" -type d -exec /bin/chmod 755 -- {} +
+find "$proddir"/var -type d -exec /bin/chmod 775 -- {} +
+find "$proddir"/html -type f -exec /bin/chmod o-wx+r -- {} +
+find "$proddir"/scripts -type f -exec /bin/chmod o-wx+r -- {} +
+find "$proddir"/tools -type f -exec /bin/chmod o-wx+r -- {} +
+
+# Tmp directory has additional perms
+chmod g+s "$proddir/tmp"
+chmod -R ug+rwx  "$proddir/tmp"
+
+# Fix perms on zip files in tmp directory
+if ls "$proddir/tmp/*.zip" 1> /dev/null 2>&1; then
+    eval "$chownbin" "$nagiosuser:$nagiosgroup" $proddir/tmp/*.zip
+    chmod ug+w "$proddir"/tmp/*.zip
+fi
+
+# Set permissions on component etc directory
+mkdir -p "$proddir/etc/components/bpi"
+eval "$chownbin" -R "$apacheuser:$nagiosgroup" "$proddir/etc/components"
+find "$proddir/etc/components/" -type d -exec chmod 6775 {} \;
+
+# Set permissions on component var directory
+eval "$chownbin" -R  "$apacheuser:$nagiosgroup" "$proddir/var/components"
+find "$proddir/var/components/" -type d -exec chmod 6775 {} \;
+
+# Make sure all the sudo scripts are root:nagios
+chown "root:$nagiosgroup" "$proddir/scripts/reset_config_perms.sh"
+chown "root:$nagiosgroup" "$proddir/scripts/upgrade_to_latest.sh"
+chown "root:$nagiosgroup" "$proddir/scripts/change_timezone.sh"
+chown "root:$nagiosgroup" "$proddir/scripts/manage_services.sh"
+chown "root:$nagiosgroup" "$proddir/scripts/manage_ssl_config.sh"
+chown "root:$nagiosgroup" "$proddir/scripts/backup_xi.sh"
+chown "root:$nagiosgroup" "$proddir/scripts/repair_databases.sh"
+chown "root:$nagiosgroup" "$proddir/scripts/repairmysql.sh"
+chown "root:$nagiosgroup" "$proddir/scripts/send_to_nls.php"
+
+# Make sure all sudo component scripts are root:nagios
+chown "root:$nagiosgroup" "$proddir/scripts/components/getprofile.sh"
+chown "root:$nagiosgroup" "$proddir/scripts/components/autodiscover_new.php"
+
+# Set up script migrate jobs directory
+mkdir -p "$proddir/scripts/migrate/jobs"
+chown "root:$nagiosgroup" "$proddir/scripts/migrate"
+chown "root:$nagiosgroup" "$proddir/scripts/migrate/migrate.php"
+chown "root:$nagiosgroup" "$proddir/scripts/migrate/nagios_bundler.py"
+chown "root:$nagiosgroup" "$proddir/scripts/migrate/nagios_unbundler.py"
+chmod 550 "$proddir/scripts/migrate/migrate.php"
+chmod 550 "$proddir/scripts/migrate/nagios_bundler.py"
+chmod 550 "$proddir/scripts/migrate/nagios_unbundler.py"
+chown "$nagiosuser:$nagiosgroup" "$proddir/scripts/migrate/jobs"
+
+chown "root:$nagiosgroup" $proddir/scripts/pg2mysql/*
+chmod 550 $proddir/scripts/pg2mysql/*.php
+
+# Fix perms on PNP graph template permissions
+chown "$nagiosuser:$nagiosgroup" /usr/local/nagios/share/pnp/templates
+chmod g+ws /usr/local/nagios/share/pnp/templates
+chown ".$nagiosgroup" /usr/local/nagios/share/pnp/templates/*.php
+chmod g+w /usr/local/nagios/share/pnp/templates/*.php
+
+# Fix perms on SNMP MIBS
+chown -R "root:$nagiosgroup" "$mibsdir"
+chmod g+w -R "$mibsdir"
+chmod g+ws "$mibsdir"
+
+# Update deployment jobs section
+mkdir -p "$proddir/html/config/deployment/jobs"
+chown "$nagiosuser:$nagiosgroup" "$proddir/html/config/deployment/jobs"
+chmod 755 "$proddir/html/config/deployment/jobs"

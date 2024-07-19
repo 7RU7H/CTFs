@@ -1,0 +1,907 @@
+# Nmap 7.94SVN scan initiated Sat May 25 20:31:43 2024 as: nmap --script discovery -oA /home/kali/HackTheBoxCompetitive/Anomalies/BoardLight/nmap/10-129-201-202-Discovery --min-rate 300 -e tun0 -p 22,80 10.129.201.202
+Pre-scan script results:
+|_hostmap-robtex: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+| targets-sniffer: Sniffed 1 address(es). 
+|_224.0.23.12
+|_broadcast-pim-discovery: ERROR: Script execution failed (use -d to debug)
+|_http-robtex-shared-ns: *TEMPORARILY DISABLED* due to changes in Robtex's API. See https://www.robtex.com/api/
+|_broadcast-ping: false
+|_lltd-discovery: false
+|_broadcast-igmp-discovery: ERROR: Script execution failed (use -d to debug)
+| targets-asn: 
+|_  targets-asn.asn is a mandatory parameter
+|_mrinfo: ERROR: Script execution failed (use -d to debug)
+Nmap scan report for 10.129.201.202
+Host is up (0.064s latency).
+
+Bug in http-security-headers: no string output.
+PORT   STATE SERVICE
+22/tcp open  ssh
+| ssh-hostkey: 
+|   3072 06:2d:3b:85:10:59:ff:73:66:27:7f:0e:ae:03:ea:f4 (RSA)
+|   256 59:03:dc:52:87:3a:35:99:34:44:74:33:78:31:35:fb (ECDSA)
+|_  256 ab:13:38:e4:3e:e0:24:b4:69:38:a9:63:82:38:dd:f4 (ED25519)
+| ssh2-enum-algos: 
+|   kex_algorithms: (10)
+|   server_host_key_algorithms: (5)
+|   encryption_algorithms: (6)
+|   mac_algorithms: (10)
+|_  compression_algorithms: (2)
+|_banner: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.11
+80/tcp open  http
+| http-headers: 
+|   Date: Sat, 25 May 2024 19:32:19 GMT
+|   Server: Apache/2.4.41 (Ubuntu)
+|   Connection: close
+|   Content-Type: text/html; charset=UTF-8
+|   
+|_  (Request type: HEAD)
+| http-vhosts: 
+|_128 names had status 200
+|_http-date: Sat, 25 May 2024 19:32:08 GMT; +1h00m00s from local time.
+|_http-title: Site doesn't have a title (text/html; charset=UTF-8).
+|_http-devframework: Couldn't determine the underlying framework or CMS. Try increasing 'httpspider.maxpagecount' value to spider more pages.
+|_http-traceroute: ERROR: Script execution failed (use -d to debug)
+| http-referer-checker: 
+| Spidering limited to: maxpagecount=30
+|_  https://cdnjs.cloudflare.com:443/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js
+| http-sitemap-generator: 
+|   Directory structure:
+|     /
+|       Other: 1; php: 3
+|     /css/
+|       css: 1
+|     /images/
+|       jpg: 1; png: 12
+|     /js/
+|       js: 2
+|   Longest directory structure:
+|     Depth: 1
+|     Dir: /css/
+|   Total files found (by extension):
+|_    Other: 1; css: 1; jpg: 1; js: 2; php: 3; png: 12
+| http-errors: 
+| Spidering limited to: maxpagecount=40; withinhost=10.129.201.202
+|   Found the following error pages: 
+|   
+|   Error Code: 404
+|_  	http://10.129.201.202:80/portfolio.php
+| http-grep: 
+|   (1) http://10.129.201.202:80/: 
+|     (1) email: 
+|       + info@board.htb
+|   (1) http://10.129.201.202:80/js/%5C%22: 
+|     (1) ip: 
+|_      + 10.129.201.202
+| http-useragent-tester: 
+|   Status for browser useragent: 200
+|   Allowed User Agents: 
+|     Mozilla/5.0 (compatible; Nmap Scripting Engine; https://nmap.org/book/nse.html)
+|     libwww
+|     lwp-trivial
+|     libcurl-agent/1.0
+|     PHP/
+|     Python-urllib/2.5
+|     GT::WWW
+|     Snoopy
+|     MFC_Tear_Sample
+|     HTTP::Lite
+|     PHPCrawl
+|     URI::Fetch
+|     Zend_Http_Client
+|     http client
+|     PECL::HTTP
+|     Wget/1.13.4 (linux-gnu)
+|_    WWW-Mechanize/1.34
+|_http-feed: Couldn't find any feeds.
+|_http-chrono: Request times for /; avg: 392.04ms; min: 287.99ms; max: 518.18ms
+|_http-mobileversion-checker: No mobile version detected.
+| http-comments-displayer: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=10.129.201.202
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 158
+|     Comment: 
+|          // Get transition-duration of the element
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1933
+|     Comment: 
+|          //    - If key is not up or down => not a dropdown command
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1665
+|     Comment: 
+|          // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1634
+|     Comment: 
+|         /**
+|                  * Check for Popper dependency
+|                  * Popper - https://popper.js.org
+|                  */
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1529
+|     Comment: 
+|          // MouseEvent.which value for the right button (assuming a right-handed mouse)
+|     
+|     Path: http://10.129.201.202:80/about.php
+|     Line number: 10
+|     Comment: 
+|         <!-- Site Metas -->
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1662
+|     Comment: 
+|          // If this is a touch-enabled device we add extra
+|     
+|     Path: http://10.129.201.202:80/index.php
+|     Line number: 79
+|     Comment: 
+|         <!-- slider section -->
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1398
+|     Comment: 
+|          // It's a jQuery object
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 228
+|     Comment: 
+|         /**
+|            * ------------------------------------------------------------------------
+|            * Constants
+|            * ------------------------------------------------------------------------
+|            */
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2516
+|     Comment: 
+|          // thx d.walsh
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 3862
+|     Comment: 
+|          // Handle special case when .nav-link is inside .nav-item
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2434
+|     Comment: 
+|          // ----------------------------------------------------------------------
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1928
+|     Comment: 
+|          // If not input/textarea:
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 97
+|     Comment: 
+|          // eslint-disable-line prefer-rest-params
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1969
+|     Comment: 
+|          // Up
+|     
+|     Path: http://10.129.201.202:80/about.php
+|     Line number: 117
+|     Comment: 
+|         <!-- info section -->
+|     
+|     Path: http://10.129.201.202:80/about.php
+|     Line number: 5
+|     Comment: 
+|         <!-- Basic -->
+|     
+|     Path: http://10.129.201.202:80/js/jquery-3.4.1.min.js
+|     Line number: 1
+|     Comment: 
+|         /*! jQuery v3.4.1 | (c) JS Foundation and other contributors | jquery.org/license */
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1654
+|     Comment: 
+|          // https://github.com/twbs/bootstrap/issues/24251
+|     
+|     Path: http://10.129.201.202:80/about.php
+|     Line number: 83
+|     Comment: 
+|         <!-- who section -->
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1653
+|     Comment: 
+|          // to allow the menu to "escape" the scroll parent's boundaries
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 3859
+|     Comment: 
+|          // Set triggered links parents as active
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 559
+|     Comment: 
+|          // KeyboardEvent.which value for left arrow key
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2250
+|     Comment: 
+|          // Don't move modal's DOM position
+|     
+|     Path: http://10.129.201.202:80/about.php
+|     Line number: 17
+|     Comment: 
+|         <!-- slider stylesheet -->
+|     
+|     Path: http://10.129.201.202:80/contact.php
+|     Line number: 128
+|     Comment: 
+|         <!-- end contact section -->
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1523
+|     Comment: 
+|          // KeyboardEvent.which value for tab key
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1924
+|     Comment: 
+|          // eslint-disable-next-line complexity
+|     
+|     Path: http://10.129.201.202:80/about.php
+|     Line number: 21
+|     Comment: 
+|         <!-- bootstrap core css -->
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2846
+|     Comment: 
+|          // Protected
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 3107
+|     Comment: 
+|          // Content is a DOM node or a jQuery
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1527
+|     Comment: 
+|          // KeyboardEvent.which value for down arrow key
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 124
+|     Comment: 
+|         /**
+|            * --------------------------------------------------------------------------
+|            * Public Util Api
+|            * --------------------------------------------------------------------------
+|            */
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2663
+|     Comment: 
+|         /**
+|            * A pattern that matches safe data URLs. Only matches image, video and audio types.
+|            *
+|            * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
+|            */
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2436
+|     Comment: 
+|          // todo (fat): these should probably be refactored out of modal.js
+|     
+|     Path: http://10.129.201.202:80/about.php
+|     Line number: 256
+|     Comment: 
+|         
+|             -->
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 214
+|     Comment: 
+|          // when we don't find a shadow root
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2467
+|     Comment: 
+|          // Note: DOMNode.style.paddingRight returns the actual value or '' if not set
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 135
+|     Comment: 
+|          // eslint-disable-next-line no-bitwise
+|     
+|     Path: http://10.129.201.202:80/about.php
+|     Line number: 24
+|     Comment: 
+|         <!-- fonts style -->
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2588
+|     Comment: 
+|          // Only register focus restorer if modal will actually get shown
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 765
+|     Comment: 
+|          // swipe left
+|     
+|     Path: http://10.129.201.202:80/do.php
+|     Line number: 129
+|     Comment: 
+|         <!-- end do section -->
+|     
+|     Path: http://10.129.201.202:80/do.php
+|     Line number: 82
+|     Comment: 
+|         <!-- do section -->
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 3531
+|     Comment: 
+|          // We use append for html objects to maintain js events
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1
+|     Comment: 
+|         /*!
+|           * Bootstrap v4.3.1 (https://getbootstrap.com/)
+|           * Copyright 2011-2019 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+|           * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+|           */
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2839
+|     Comment: 
+|          // private
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1931
+|     Comment: 
+|          //  - If space key => not a dropdown command
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 252
+|     Comment: 
+|         /**
+|              * ------------------------------------------------------------------------
+|              * Class Definition
+|              * ------------------------------------------------------------------------
+|              */
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 668
+|     Comment: 
+|          // or the carousel or its parent isn't visible
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 3516
+|     Comment: 
+|          // Overrides
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2476
+|     Comment: 
+|          // Adjust sticky content margin
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 100
+|     Comment: 
+|          // eslint-disable-line no-undefined
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 85
+|     Comment: 
+|          // Shoutout AngusCroll (https://goo.gl/pxwQGp)
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 168
+|     Comment: 
+|          // If multiple durations are defined, take the first
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1664
+|     Comment: 
+|          // only needed because of broken event delegation on iOS
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2482
+|     Comment: 
+|          // Adjust body padding
+|     
+|     Path: http://10.129.201.202:80/index.php
+|     Line number: 169
+|     Comment: 
+|         <!-- end slider section -->
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 71
+|     Comment: 
+|         /**
+|            * --------------------------------------------------------------------------
+|            * Bootstrap (v4.3.1): util.js
+|            * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+|            * --------------------------------------------------------------------------
+|            */
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2655
+|     Comment: 
+|         /**
+|              * A pattern that recognizes a commonly useful subset of URLs that are safe.
+|              *
+|              * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
+|              */
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1519
+|     Comment: 
+|          // KeyboardEvent.which value for Escape (Esc) key
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 3860
+|     Comment: 
+|          // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 164
+|     Comment: 
+|          // Return 0 if element or transition duration is not found
+|     
+|     Path: http://10.129.201.202:80/about.php
+|     Line number: 240
+|     Comment: 
+|         <!-- end info_section -->
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 563
+|     Comment: 
+|          // Time for mouse compat events to fire after touch
+|     
+|     Path: http://10.129.201.202:80/css/style.css
+|     Line number: 714
+|     Comment: 
+|         /*# sourceMappingURL=style.css.map */
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 836
+|     Comment: 
+|          // is NOT fired) and after a timeout (to allow for mouse compatibility
+|     
+|     Path: http://10.129.201.202:80/contact.php
+|     Line number: 82
+|     Comment: 
+|         <!-- contact section -->
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2624
+|     Comment: 
+|          // Global attributes allowed on any supplied element below.
+|     
+|     Path: http://10.129.201.202:80/css/style.css
+|     Line number: 592
+|     Comment: 
+|         /* end contact section */
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 985
+|     Comment: 
+|          // Some weirdness is happening, so we bail
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1828
+|     Comment: 
+|          // Disable Popper.js if we have a static display
+|     
+|     Path: http://10.129.201.202:80/about.php
+|     Line number: 34
+|     Comment: 
+|         <!-- header section strats -->
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1630
+|     Comment: 
+|          // Disable totally Popper.js for Dropdown in Navbar
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1381
+|     Comment: 
+|          // Coerce string values
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2300
+|     Comment: 
+|          // Guard against infinite focus loop
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1901
+|     Comment: 
+|          // If this is a touch-enabled device we remove the extra
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 3742
+|     Comment: 
+|          // TODO (fat): remove sketch reliance on jQuery position/offset
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2470
+|     Comment: 
+|          // Adjust fixed content padding
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 371
+|     Comment: 
+|         /**
+|            * ------------------------------------------------------------------------
+|            * Data Api implementation
+|            * ------------------------------------------------------------------------
+|            */
+|     
+|     Path: http://10.129.201.202:80/about.php
+|     Line number: 8
+|     Comment: 
+|         <!-- Mobile Metas -->
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1647
+|     Comment: 
+|          // Check if it's jQuery element
+|     
+|     Path: http://10.129.201.202:80/css/style.css
+|     Line number: 713
+|     Comment: 
+|         /* end footer section*/
+|     
+|     Path: http://10.129.201.202:80/index.php
+|     Line number: 254
+|     Comment: 
+|         <!-- target section -->
+|     
+|     Path: http://10.129.201.202:80/css/style.css
+|     Line number: 689
+|     Comment: 
+|         /* footer section*/
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 835
+|     Comment: 
+|          // (as if it's the second time we tap on it, mouseenter compat event
+|     
+|     Path: http://10.129.201.202:80/about.php
+|     Line number: 114
+|     Comment: 
+|         <!-- end who section -->
+|     
+|     Path: http://10.129.201.202:80/css/style.css
+|     Line number: 529
+|     Comment: 
+|         /* contact section */
+|     
+|     Path: http://10.129.201.202:80/about.php
+|     Line number: 28
+|     Comment: 
+|         <!-- responsive style -->
+|     
+|     Path: http://10.129.201.202:80/css/style.css
+|     Line number: 71
+|     Comment: 
+|         /*header section*/
+|     
+|     Path: http://10.129.201.202:80/css/bootstrap.css
+|     Line number: 10038
+|     Comment: 
+|         /*# sourceMappingURL=bootstrap.css.map */
+|     
+|     Path: http://10.129.201.202:80/css/bootstrap.css
+|     Line number: 1
+|     Comment: 
+|         /*!
+|          * Bootstrap v4.3.1 (https://getbootstrap.com/)
+|          * Copyright 2011-2019 The Bootstrap Authors
+|          * Copyright 2011-2019 Twitter, Inc.
+|          * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+|          */
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1934
+|     Comment: 
+|          //    - If trigger inside the menu => not a dropdown command
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1777
+|     Comment: 
+|          // Handle dropup
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 4437
+|     Comment: 
+|         
+|         //# sourceMappingURL=bootstrap.js.map
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1932
+|     Comment: 
+|          //  - If key is other than escape
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 3858
+|     Comment: 
+|          // Set triggered link as active
+|     
+|     Path: http://10.129.201.202:80/about.php
+|     Line number: 26
+|     Comment: 
+|         <!-- Custom styles for this template -->
+|     
+|     Path: http://10.129.201.202:80/about.php
+|     Line number: 60
+|     Comment: 
+|         <!--  <a class="nav-link" href="portfolio.php"> Portfolio </a> -->
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 270
+|     Comment: 
+|          // Public
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2214
+|     Comment: 
+|         /**
+|                * `document` has 2 events `Event.FOCUSIN` and `Event.CLICK_DATA_API`
+|                * Do not move `document` in `htmlElements` array
+|                * It will remove `Event.CLICK_DATA_API` event that should remain
+|                */
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 769
+|     Comment: 
+|          // swipe right
+|     
+|     Path: http://10.129.201.202:80/about.php
+|     Line number: 276
+|     Comment: 
+|         <!-- end owl carousel script -->
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 136
+|     Comment: 
+|          // "~~" acts like a faster Math.floor() here
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2493
+|     Comment: 
+|          // Restore fixed content padding
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 265
+|     Comment: 
+|          // Getters
+|     
+|     Path: http://10.129.201.202:80/index.php
+|     Line number: 59
+|     Comment: 
+|         <!--   <a class="nav-link" href="portfolio.php"> Portfolio </a> -->
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1929
+|     Comment: 
+|          //  - And not a key in REGEXP_KEYDOWN => not a dropdown command
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 831
+|     Comment: 
+|          // If it's a touch-enabled device, mouseenter/leave are fired as
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1652
+|     Comment: 
+|          // If boundary is not `scrollParent`, then set position to `static`
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 379
+|     Comment: 
+|         /**
+|            * ------------------------------------------------------------------------
+|            * jQuery
+|            * ------------------------------------------------------------------------
+|            */
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 204
+|     Comment: 
+|          // Can find the shadow root otherwise it'll return the document
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 77
+|     Comment: 
+|         /**
+|            * ------------------------------------------------------------------------
+|            * Private TransitionEnd Helpers
+|            * ------------------------------------------------------------------------
+|            */
+|     
+|     Path: http://10.129.201.202:80/index.php
+|     Line number: 302
+|     Comment: 
+|         <!-- end target section -->
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1525
+|     Comment: 
+|          // KeyboardEvent.which value for up arrow key
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 833
+|     Comment: 
+|          // would stop cycling until user tapped out of it;
+|     
+|     Path: http://10.129.201.202:80/about.php
+|     Line number: 79
+|     Comment: 
+|         <!-- end header section -->
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2615
+|     Comment: 
+|         /**
+|            * --------------------------------------------------------------------------
+|            * Bootstrap (v4.3.1): tools/sanitizer.js
+|            * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+|            * --------------------------------------------------------------------------
+|            */
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 667
+|     Comment: 
+|          // Don't call next when the page isn't visible
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 261
+|     Comment: 
+|         /*#__PURE__*/
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 4397
+|     Comment: 
+|         /**
+|            * --------------------------------------------------------------------------
+|            * Bootstrap (v4.3.1): index.js
+|            * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+|            * --------------------------------------------------------------------------
+|            */
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 815
+|     Comment: 
+|          // ensure swiping with one touch and not pinching
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1902
+|     Comment: 
+|          // empty mouseover listeners we added for iOS support
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2435
+|     Comment: 
+|          // the following methods are used to handle overflowing modals
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 837
+|     Comment: 
+|          // events to fire) we explicitly restart cycling
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 290
+|     Comment: 
+|          // Private
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1663
+|     Comment: 
+|          // empty mouseover listeners to the body's immediate children;
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 561
+|     Comment: 
+|          // KeyboardEvent.which value for right arrow key
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2499
+|     Comment: 
+|          // Restore sticky content
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1521
+|     Comment: 
+|          // KeyboardEvent.which value for space key
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 333
+|     Comment: 
+|          // Static
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1477
+|     Comment: 
+|          // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
+|     
+|     Path: http://10.129.201.202:80/contact.php
+|     Line number: 60
+|     Comment: 
+|         <!-- <a class="nav-link" href="portfolio.php"> Portfolio </a> -->
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 832
+|     Comment: 
+|          // part of the mouse compatibility events on first tap - the carousel
+|     
+|     Path: http://10.129.201.202:80/about.php
+|     Line number: 243
+|     Comment: 
+|         <!-- footer section -->
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1930
+|     Comment: 
+|          // If input/textarea:
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 1974
+|     Comment: 
+|          // Down
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2508
+|     Comment: 
+|          // Restore body padding
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 181
+|     Comment: 
+|          // TODO: Remove in v5
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 834
+|     Comment: 
+|          // here, we listen for touchend, explicitly pause the carousel
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2833
+|     Comment: 
+|         /**
+|                * Check for Popper dependency
+|                * Popper - https://popper.js.org
+|                */
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2468
+|     Comment: 
+|          //   while $(DOMNode).css('padding-right') returns the calculated value or 0 if not set
+|     
+|     Path: http://10.129.201.202:80/js/bootstrap.js
+|     Line number: 2684
+|     Comment: 
+|          // Check if a regular expression validates the attribute.
+|     
+|     Path: http://10.129.201.202:80/css/style.css
+|     Line number: 187
+|     Comment: 
+|_        /*end header section*/
+|_http-backup-finder: ERROR: Script execution failed (use -d to debug)
+|_http-xssed: ERROR: Script execution failed (use -d to debug)
+
+Host script results:
+|_path-mtu: PMTU == 1500
+|_fcrdns: FAIL (No PTR record)
+|_ipidseq: All zeros
+|_dns-brute: Can't guess domain of "10.129.201.202"; use dns-brute.domain script argument.
+| qscan: 
+| PORT  FAMILY  MEAN (us)  STDDEV    LOSS (%)
+| 22    0       70519.00   41564.57  40.0%
+|_80    0       59521.43   7625.93   30.0%
+
+# Nmap done at Sat May 25 20:42:40 2024 -- 1 IP address (1 host up) scanned in 657.69 seconds
