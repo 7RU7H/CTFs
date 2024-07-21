@@ -2,6 +2,9 @@
 
 Photocopier CTF requires this clip https://www.youtube.com/watch?v=rN7pkFNEg5c
 
+Recycling bin
+https://www.youtube.com/watch?v=4BcnlEKC6hg
+
 This is living rent free in my head and I want to doa pwn ctf with a null pointer https://www.youtube.com/watch?v=bLHL75H_VEM so I never forget about C type casting
 
 Western Themed box - https://www.youtube.com/watch?v=vrLEPpBIHWI
