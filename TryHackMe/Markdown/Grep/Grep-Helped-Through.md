@@ -36,7 +36,7 @@ Before starting the directory was populated with minimal automated recon and I w
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](TryHackMe/Markdown/Grep/Screenshots/ping.png)
 There is grep.thm in nmap for 443, so adding it to the hosts file is required and fuzzing for subdomains is next and important step. 
 ![](etchost.png)
 

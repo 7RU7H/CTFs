@@ -17,7 +17,7 @@ Warning this machine contains references to Cowboy Bebop as finally I can use it
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](TryHackMe/Markdown/Anonymous/Screenshots/ping.png)
 
 Answers to the first three questions
 ![1920](nmap.png)

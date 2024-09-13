@@ -25,7 +25,7 @@ Both..
 ## Recon
 
 Nothing from ping.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Stocker/Screenshots/ping.png)
 I rreran a nmap scan for [ubuntu bionic](https://launchpad.net/ubuntu/+source/openssh/1:7.6p1-4ubuntu0.5) from dorking `lauchpad 4ubuntu0.5`
 
 `nikto` output a redirect to stocker.htb and nuclei found [[nginx-version-http___stocker.htb_]] running. `ffuf` for vhosts with 

@@ -42,7 +42,7 @@ Having never managed a DNS server and looking into here and there especially fro
 ## Recon
 
 The time to live (TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Dynstr/Screenshots/ping.png)
 
 Nuclei: [[generic-tokens-http___10.129.154.73_]]
 `key=AIzaSyCWDPCiH080dNCTYC-uprmLOn2mt2BMSUk,Password: sndanyd`

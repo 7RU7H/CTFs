@@ -19,7 +19,7 @@ Starting and restarting this Writeup multiple times, this will be the final time
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](TryHackMe/Markdown/Internal/Screenshots/ping.png)
 
 On port 80 it is just another....
 ![](justAnotherWPsite.png)

@@ -17,7 +17,7 @@ I peaked too much at [Tyler Ramsbey's Stealth - Detailed Walkthrough -- TryHackM
 ## Recon of machine and alternatives
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](TryHackMe/Markdown/Stealth/Screenshots/ping.png)
 
 - PowerShell Contrained Language mode
 - AMSI

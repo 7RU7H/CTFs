@@ -19,7 +19,7 @@ Spoilers for AoC 2023 from THM one of the machine contains a similar exploit for
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Agile/Agile-Season-Beta1-Attempt/Screenshots/ping.png)
 	
 ## Exploit
 

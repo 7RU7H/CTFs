@@ -16,7 +16,7 @@ While trying to do a HTB season 5 box I was hoping that a similar service was si
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](TryHackMe/Markdown/Lumberjack-Turtle/Screenshots/ping.png)
 
 www-root on port 80
 ![](javabeingthehint.png)

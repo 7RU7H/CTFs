@@ -10,7 +10,7 @@ Beyond Root:
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Bizness/Screenshots/ping.png)
 
 ![](httpswebroot.png)
 ![](subscribefield-works.png)
@@ -23,7 +23,7 @@ The time to live(ttl) indicates its OS. It is a decrementation from each hop bac
 ![](ofbiz18-12.png)
 ![](fail-webtool-cve2023-49070.png)
 ![](fail-control-cve2023-49070.png)
-![](PONG.png)
+![](HackTheBox/Retired-Machines/Bizness/Screenshots/PONG.png)
 ![](defaultpasswordjustforcompletionism.png)
 ![](tryingtopingsomehow.png)
 ![](cyberchefhelpingforbase64theysoserialpayload.png)

@@ -16,7 +16,7 @@ There will be nothing in:
 ## Recon
 
 The time to live(ttl) indicates its OS - Windows on IoT does exist, but this Linux of some sort.
-![ping](Screenshots/ping.png)
+![ping](TryHackMe/Markdown/Bugged/Screenshots/ping.png)
 
 Nmap did a lot of work with mosquitto subscribe module.
 ```lua

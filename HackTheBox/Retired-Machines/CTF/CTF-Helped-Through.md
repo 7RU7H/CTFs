@@ -24,7 +24,7 @@ CTF Compress Token Format - string of digit that change when performing two fact
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128. This machine has rate limiting protections and blacklisting IP to prevent content discovery tools and scanning 
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/CTF/Screenshots/ping.png)
 
 `/manual/`  from `feroxbuster`, and the `login.php` and `status.php` pages found by `gospider` look interesting.
 

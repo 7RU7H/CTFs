@@ -20,7 +20,7 @@ Towards the end a drink exploded over my keyboard and wrecked it.
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Monitored/Screenshots/ping.png)
 
 No default password [support.nagios.com/forum](https://support.nagios.com/forum/viewtopic.php?t=1175)
 ```

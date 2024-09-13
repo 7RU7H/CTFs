@@ -17,7 +17,7 @@ Time to also get [schooled](https://www.youtube.com/watch?v=R0ODb4yhKXY)!
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Schooled/Screenshots/ping.png)
 
 Unfortunately I needed to rescan port that was like a [A Lotus on a Irish Stream](https://www.youtube.com/watch?v=1m5V8zbyR2M), 33060
 

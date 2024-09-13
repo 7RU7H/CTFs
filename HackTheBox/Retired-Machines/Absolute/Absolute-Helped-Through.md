@@ -46,7 +46,7 @@ I also used the Official Write Up that is the PDF in this directory
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Absolute/Screenshots/ping.png)
 
 Alh4zr3d: Starts with CME
 ```bash

@@ -17,7 +17,7 @@ Beyond Root:
 ![](mistycraft.jpg)
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128. It does not response to ICMP packets...
-![ping](Screenshots/ping.png)
+![ping](OS-ProvingGrounds/Craft/Screenshots/ping.png)
 
 ![](masthead.jpg)
 ## Exploit

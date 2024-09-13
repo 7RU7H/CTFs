@@ -22,7 +22,7 @@ Beyond Root:
 ## Recon
 
 The time to live(6) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Awkward/Screenshots/ping.png)
 
 Directs us `hat-valley.htb`, but not redirected.
 ![](hatvalleyhtb.png)

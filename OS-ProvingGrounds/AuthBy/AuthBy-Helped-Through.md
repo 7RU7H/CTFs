@@ -19,7 +19,7 @@ Beyond Root:
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](OS-ProvingGrounds/AuthBy/Screenshots/ping.png)
 
 Nmap returned anonymous access to the FTP server. A quick brute force of non encrypted FTP allows for both anonymous login and Administrative access to write files to the server.
 ![](hydraftp.png)

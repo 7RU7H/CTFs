@@ -27,7 +27,7 @@ From payloadsallthethings - AAAAAAAAAAAAAAAAAAAAAAAAAARGH
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](TryHackMe/Wreath/Screenshots/ping.png)
 
 I made the mistake of getting stuck in to the port 80 manual enumerating and testing, although this was fruitful from a methodological perspective I missed the 873 port my automation and then my recursive recon failed in this area. 
 

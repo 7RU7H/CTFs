@@ -18,7 +18,7 @@ This helped-through was made by reading [ivanitlearning](https://ivanitlearning.
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![](ping.png)
+![](HackTheBox/Retired-Machines/Book/Screenshots/ping.png)
 
 Looking at port 80 as web site 
 ![](www-root.png)

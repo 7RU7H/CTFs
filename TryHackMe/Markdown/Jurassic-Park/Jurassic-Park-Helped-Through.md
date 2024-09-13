@@ -34,7 +34,7 @@ https://www.youtube.com/watch?v=EqUJxKQzaSM
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![](ping.png)
+![](TryHackMe/Markdown/Jurassic-Park/Screenshots/ping.png)
 
 Nmap tries SQL injections
 ![](nmap-vuln-sqli.png)

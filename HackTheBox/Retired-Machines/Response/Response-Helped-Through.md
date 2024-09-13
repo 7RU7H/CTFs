@@ -31,7 +31,7 @@ Tripletted with [[Absolute-Helped-Through]] and [[Dynstr-Helped-Through]]
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Response/Screenshots/ping.png)
 
 
 ```bash

@@ -14,7 +14,7 @@ This will be *great*, I have never done phishing and only the lightest Email rel
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Mailing/Screenshots/ping.png)
 
 ![](cme.png)
 ![](mailinghhostnameredirect.png)
