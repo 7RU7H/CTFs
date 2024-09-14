@@ -1,4 +1,5 @@
-# Walkthrough
+# Forest Helped-Through
+
 Name: Forest  
 Date: 03/06/2022  
 Difficulty: Easy / User Average: Medium  

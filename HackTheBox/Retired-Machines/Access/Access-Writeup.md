@@ -169,7 +169,7 @@ Unattended password trolling
 
 This felt like the kick in the balls as I threw out a strict dentist approach for more target problem solving approach.
 ![](bingobangobongo.png)
-This mahcine is such troll of a machine.
+This machine is such troll of a machine.
 
 For some reason possible group policy I could not run this from a remote share. 
 ```powershell

@@ -61,7 +61,7 @@ roastpotatoes
 
 ![](weirdness.png)
 
-![](ridbrute.png)
+![](TryHackMe/Markdown/Razorblack/Screenshots/ridbrute.png)
 
 xyan1d3 is not pre-auth
 

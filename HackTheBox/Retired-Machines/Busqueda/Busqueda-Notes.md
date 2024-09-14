@@ -32,7 +32,7 @@ Werkzeug/2.1.2 Python/3.10.6
 - OS detect, run generate noting for nmap
 - 80 - ` http://searcher.htb/`
 		- flask
-		- "[https://github.com/ArjunSharda/Searchor](https://github.com/ArjunSharda/Searchor)" >Searchor 2.4.0
+		- "[https://github.com/ArjunSharda/Searchor](https://github.com/ArjunSharda/Searchor)" > Searchor 2.4.0
 		- /search
 			- No weird extra url encoding 
 	- `http://gitea.searcher.htb/`
@@ -52,6 +52,3 @@ Werkzeug/2.1.2 Python/3.10.6
 
 #### Todo List
 
-
-ffuf for vhost
-gobuster

@@ -16,8 +16,8 @@ Learnt:
 - Come correct or get corrected - never chatted on a twitch channel before.
 - Stop - OODA on communication over any chat.
 - Dont think bloodhound is just local ingestor!
-- `:set paste` into my setup for tmux and vim and it works and maybe I would get a tatoo that said this. WOW!
-- Checked the authenicated ldap queries output for interesting fields?
+- `:set paste` into my setup for tmux and vim and it works and maybe I would get a tattoo that said this. WOW!
+- Checked the authenticated ldap queries output for interesting fields?
 - Some PSRemote is not disable entirely!  
 Beyond Root
 - AD hardening this box
@@ -27,7 +27,7 @@ For a brutal self assessment after clearing my head I am returning to this box t
 ## Recon
 
 The time to live(TTL) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](HackTheBox/Retired-Machines/Support/Screenshots/ping.png)
+![ping](HackTheBox/Retired-Machines/Support/Helped-Through-22012023/Screenshots/ping.png)
 Double check avaliability on common port, when a weird ping retest upon brutalExamifail attempt. 
 ![](smb-now-filtered-questionmark.png)
 
@@ -45,7 +45,7 @@ Check SMBCLIENT with guest user.
 Enumerating shares
 ![](readableguestshares.png)
 Continuing with Crackmap exec to rid brute the usernames
-![](ridbrute.png)
+![](HackTheBox/Retired-Machines/Support/Helped-Through-22012023/Screenshots/ridbrute.png)
 
 Noted researching a way to get crackmap output into a users.txt!! 
 
@@ -78,7 +78,7 @@ I remember think this was  weird it `$5a280d0b-9fd0-4701-8f96-82e2f1ea9dfb`. It 
 ![1000](guid.png)
 
 Got Ilspy after melting my brain with "I" "L" "l" madness of naming C sharp decompilers. 
-![](passwords.png)
+![](HackTheBox/Retired-Machines/Support/Helped-Through-22012023/Screenshots/passwords.png)
 User and Password! 
 ![](checkpass.png)
 ![](passpass.png)

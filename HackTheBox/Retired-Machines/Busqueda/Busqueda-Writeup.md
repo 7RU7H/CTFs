@@ -169,6 +169,42 @@ After some wondering and wandering - especial why the file permission were so we
 Basically we need something owned by root that reads the environment variable for some weird reason. 
 
 /root/.pm is node related - grep went to fast..
+
+Node performance
+
+
+![](greppingalltheDOLLARROOTs.png)
+
+```bash
+/usr/local/lib/node_modules/pm2/lib/templates/init-scripts/pm2-init-amazon.sh:    su - $USER -c "PATH=$PATH; PM2_HOME=$PM2_HOME $*"
+# Vim nomodeline:
+/usr/share/doc/vim-common/README.Debian:  if $USER != 'root'
+/usr/share/vim/vim82/doc/version8.txt:Solution:   Use $USER too. (Dominique Pelle, closes #3407)
+
+
+/usr/share/perl/5.34.0/CPAN/HTTP/Credentials.pm:        $USER = $CPAN::Config->{username};
+/usr/share/perl/5.34.0/CPAN/LWP/UserAgent.pm:use vars qw(@ISA $USER $PASSWD $SETUPDONE);
+/usr/share/perl/5.34.0/CPAN/LWP/UserAgent.pm:# Our own get_basic_credentials sets $USER and $PASSWD, two globals.
+/usr/share/perl/5.34.0/CPAN/LWP/UserAgent.pm:# $USER and $PASSWD to give the get_basic_credentials routine another
+/usr/share/perl/5.34.0/CPAN/LWP/UserAgent.pm:# chance to set $USER and $PASSWD.
+/usr/bin/byobu-janitor:killall -u $USER byobu-statusd >/dev/null 2>&1 || true
+```
+
+pm2 is x
+![](uiddoesnotmatter.png)
+
+Check to find out wtf is setting ENV variables like this - NPM or misconfiguring the machine for the PrivEsc ? - Background only.
+```bash
+grep -r / -e 'username=\"root\"'
+```
+
+https://pm2.keymetrics.io/docs/usage/quick-start/
+```bash
+$ pm2 start bashscript.sh
+$ pm2 start python-app.py --watch
+$ pm2 start binary-file -- --port 1520
+```
+
 ## Exploit
 
 ## Foothold
@@ -179,6 +215,9 @@ Basically we need something owned by root that reads the environment variable fo
 
 Should have spent more time on `eval()` and what dynamic evaluation is and ask how is it evaluating some input and then executing 
 
+python3 eval() is very bad; (OSCP-Beyondness I want) step back and RTFM on how eval actually works the i.e comma delimit its args - do not take mental leaps on similarity to SSTI -> eval() is eval(); similarity on its own is wrong, similiarity to x,y,z AND a unique definition  of what A is.
+
+
 ## Beyond Root
 
-
+See plans

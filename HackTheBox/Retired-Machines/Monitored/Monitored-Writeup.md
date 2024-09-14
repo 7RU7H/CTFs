@@ -185,7 +185,6 @@ Returning to the help page:
 
 
 - sudo is patched for baron edit exploits
-
 - check_icmp, dhcp are suid
 - /usr/local/nagiosxi/scripts/automation/ansible/ncpa_autoregister/secrets.yml is readable
 

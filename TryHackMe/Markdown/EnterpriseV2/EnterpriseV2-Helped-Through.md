@@ -69,7 +69,7 @@ My OSINT is crippled by my learning of this with CTFs, one day I will be good, b
 ![](enterprisegithub.png)
 
 `nik : ToastyBoi!`
-![1000](passwords.png)
+![1000](TryHackMe/Markdown/EnterpriseV2/Screenshots/passwords.png)
 
 ![1000](cmetoasty.png)
 
