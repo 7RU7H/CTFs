@@ -2,10 +2,16 @@
 
 Name: Busqueda
 Date:  
-Difficulty:  
+Difficulty:  Easy
 Goals:  
+- Focus practice after 6 months 
+	- 3.5 13/09; 3+3 14/09
 Learnt:
 Beyond Root:
+- Review (un)completed machine writeups, helpthroughs 
+- THM Box Clearance 
+- Find a similiar cmd injection box for JS and not script kiddy it 
+
 
 - [[Busqueda-Notes.md]]
 - [[Busqueda-CMD-by-CMDs.md]]
@@ -205,6 +211,56 @@ $ pm2 start python-app.py --watch
 $ pm2 start binary-file -- --port 1520
 ```
 
+```
+Cookie: i_like_gitea=bad18e6d6dc2204b; _csrf=4SlQfnjcUz-MGw4Jqto5faJGV-U6MTcyNjMyODAyNTI1NzM3MzE5NQ; redirect_to=%2F
+Connection: keep-alive
+
+_csrf=4SlQfnjcUz-MGw4Jqto5faJGV-U6MTcyNjMyODAyNTI1NzM3MzE5NQ&user_name=cody%40searcher.htb&password=FUZZ
+
+
+
+hydra -l cody%40searcher.htb -P ./passwordlist.txt gitea.searcher.htb -V http-post-form '/user/login:user_name=^USER^&password=^PASS^&F=incorrect:H=Cookie: i_like_gitea=bad18e6d6dc2204b; _csrf=4SlQfnjcUz-MGw4Jqto5faJGV-U6MTcyNjMyODAyNTI1NzM3MzE5NQ; redirect_to=%2F'
+
+```
+
+Cannot read apache2 logs
+
+BIN THE PEAS
+![](binpeas.png)
+
+```
+url = http://cody:jh1usoih2bkjaspwe92@gitea.searcher.htb/cody/Searcher_site.git
+
+jh1usoih2bkjaspwe92
+```
+
+https://cloud.hacktricks.xyz/pentesting-ci-cd/gitea-security
+
+![](nopasswordreuse.png)
+
+![](moresearchorplugs.png)
+
+![](noteventhecorrectemail.png)
+
+No keys
+```
+gpg --list-secret-keys --keyid-format=long
+```
+
+There is no `/data/gitea/conf/app.ini`
+
+![](PAIN.png)
+
+![](tryingeachoption.png)
+
+Is a wild card issue:
+![](isbelowstomenotroot.png)
+
+![1000](closeshButNhoShigAr.png)
+
+https://gtfobins.github.io/gtfobins/python/#sudo
+https://docs.docker.com/reference/cli/docker/inspect/
+
 ## Exploit
 
 ## Foothold
@@ -217,6 +273,7 @@ Should have spent more time on `eval()` and what dynamic evaluation is and ask h
 
 python3 eval() is very bad; (OSCP-Beyondness I want) step back and RTFM on how eval actually works the i.e comma delimit its args - do not take mental leaps on similarity to SSTI -> eval() is eval(); similarity on its own is wrong, similiarity to x,y,z AND a unique definition  of what A is.
 
+Situational awareness needs to be more extensive before PEASS
 
 ## Beyond Root
 
