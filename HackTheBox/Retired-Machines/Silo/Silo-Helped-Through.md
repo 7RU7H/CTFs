@@ -7,7 +7,10 @@ Goals:
 - Old OSCP like machine - not harder
 - Is Guided mode good
 Learnt:
+- Sometimes just use metasploit forever and hope 
 Beyond Root:
+- python2 in the near 2030s...
+- PATH and so libraries 
 
 - [[Silo-Notes.md]]
 - [[Silo-CMD-by-CMDs.md]]
@@ -55,20 +58,266 @@ So I am going to watch the IppSec video for this
 TIGER - scott / tiger is default?
 ![](TIGER.png)
 
-Also WTF has happened to HackTricks if https://book.hacktricks.wiki/en/network-services-pentesting/1521-1522-1529-pentesting-oracle-listener.html is the mirrored version.
+Also WTF has happened to HackTricks if https://book.hacktricks.wiki/en/network-services-pentesting/1521-1522-1529-pentesting-oracle-listener.html is the mirrored version is way better 
+https://github.com/TheSnowWight/hackdocs/blob/master/pentesting/1521-1522-1529-pentesting-oracle-listener/README.md
 
 ```
 # Which glibc does a machine has installed
 ldd --version
 ```
-## Exploit
 
-## Foothold
+After failing to install `sqlplus` both ways on the pwnbox - I really did not want to setup so libraries at that point but it'll make for a good beyond root. I decided to see what IppSec did, enjoyed the history of the box and the attack path was ODAT. So I decided to tire myself out on dipping into python2 hell and seeing I could update a previously working technique for getting python2 to work in 2020s. Might as well get this done now... and test my patience. There is a [medium article by Mario Rufisanto on Oracle TNS Pentesting 2024](https://medium.com/fmisec/oracle-tns-penetration-test-using-odat-83fafcea1988) - 2024. 
 
-## PrivEsc
+And it starts with a setup script. Amazing! Just had to remove the <> around the git clone in line 5. 
+```bash
+#!/bin/bash  
+  
+sudo apt-get install libaio1 python3-dev alien python3-pip -y  
+git clone https://github.com/quentinhardy/odat.git  
+cd odat/  
+git submodule init  
+git submodule update  
+sudo apt install oracle-instantclient-basic oracle-instantclient-devel oracle-instantclient-sqlplus -y  
+pip3 install cx_Oracle  
+sudo apt-get install python3-scapy -y  
+sudo pip3 install colorlog termcolor pycryptodome passlib python-libnmap  
+sudo pip3 install argcomplete && sudo activate-global-python-argcomplete
+```
+The worrying part is that I do not need `python2`.. but that can wait till beyond root, which is a nice boost to momentum.
 
-![](Silo-map.excalidraw.md)
+![](hurrayFormarioandodat.png)
+
+So decided that as the box is done due to how the Oracle database is configured and `odat` we could just read through the article. But unfortunately this another indirect write up of the machine so...
+
+Phind found this blog to help when the tool would not give the arguments in -h
+https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/cracking-the-giant-how-odat-challenges-oracle-the-king-of-databases/. BECAUSE I did not type utlfile correctly.. So that blog is old and wrong..
+
+
+```bash
+# Remember Odat is like impacket there are lots of tools
+# Takes awhile and there are prompts
+./odat.py all -s $ip
+
+# service name guessing is required
+./odat.py snguesser -s $ip
+# SID Guess is required
+./odat.py snguesser -s $ip
+
+# this tool asks alot try a different tool for this
+./odat.py passwordguesser -s $ip
+
+# With valid credentials and permission you can upload a shell and execute it 
+# Weirdly it has whitespace for the path then the file
+./odat.py utlfile -s <target_ip> -p 1521 -d <SID> -U username -P password --getFile remotePath remoteFile localFile
+
+./odat.py utlfile -s <target_ip> -p 1521 -d <SID> -U username -P password  --putFile remotePath remoteFile localFile
+
+./odat.py utlfile -s <target_ip> -p 1521 -d <SID> -U username -P password ----removeFile remotePath remoteFile 
+
+# This seems weird from an OPSEC, but this tool is from a different era
+./odat.py utlfile -s <target_ip> -p 1521 -d <SID> -U username -P password --test-module 
+
+./odat.py externaltable
+```
+
+For the archive just because 
+```python
+# Version 5.1.1 - 2022/04/27
+./odat.py -h
+	positional arguments:
+  {all,tnscmd,tnspoison,sidguesser,snguesser,passwordguesser,utlhttp,httpuritype,utltcp,ctxsys,externaltable,dbmsxslprocessor,dbmsadvisor,utlfile,dbmsscheduler,java,passwordstealer,oradbg,dbmslob,stealremotepwds,userlikepwd,smb,privesc,cve,search,unwrapper,clean}
+                      
+                      Choose a main command
+    all               to run all modules in order to know what it is possible to do
+    tnscmd            to communicate with the TNS listener
+    tnspoison         to exploit TNS poisoning attack (SID required)
+    sidguesser        to know valid SIDs
+    snguesser         to know valid Service Name(s)
+    passwordguesser   to know valid credentials
+    utlhttp           to send HTTP requests or to scan ports
+    httpuritype       to send HTTP requests or to scan ports
+    utltcp            to scan ports
+    ctxsys            to read files
+    externaltable     to read files or to execute system commands/scripts
+    dbmsxslprocessor  to upload files
+    dbmsadvisor       to upload files
+    utlfile           to download/upload/delete files
+    dbmsscheduler     to execute system commands without a standard output
+    java              to execute system commands
+    passwordstealer   to get hashed Oracle passwords
+    oradbg            to execute a bin or script
+    dbmslob           to download files
+    stealremotepwds   to steal hashed passwords thanks an authentication sniffing (CVE-2012-3137)
+    userlikepwd       to try each Oracle username stored in the DB like the corresponding pwd
+    smb               to capture the SMB authentication
+    privesc           to gain elevated access
+    cve               to exploit a CVE
+    search            to search in databases, tables and columns
+    unwrapper         to unwrap PL/SQL source code (no for 9i version)
+    clean             clean traces and logs
+
+options:
+  -h, --help          show this help message and exit
+  --version           show program's version number and exit
+
+```
+
+sqlplus
+```bash
+# if error:
+# `sqlplus: error while loading shared libraries: libsqlplus.so: cannot open shared object file: No such file or directory`
+sudo sh -c "echo /usr/lib/oracle/12.2/client64/lib > /etc/ld.so.conf.d/oracle-instantclient.conf";sudo ldconfig
+```
+
+Mostly because I wanted to validate if scott is actually a default user. It is in the logins list.. interesting given that the box creator did not know about odat according to Ippsec.
+![](scottisinthelist.png)
+
+I decided to ask Phind to find where it uses login.txt to find it is used in passwordguesser, which is a weird that the tool combines and names it passwordguesser... I realised it skipped it due to the many prompts. The tiger password is not in the odat pwds... so this is one those awkward moments. Anyway this one of those box that is just wordlist hellscape. So I am going to watch how Ippsec did this and note that this logins.txt is a good users.txt...
+
+Also I may break the box just to install sqlplus. Basically I want a self-hosting AI that makes specialised wordlist intelligently or a fucking committee of matching the hacking tool and the statistically best-by-country wordlist per network port levels of solution to this "problem". I can dream.
+
+To add to this another gotcha is: 
+
+
+Ippsec: Oracle 9 is uppercase, but later version are case sensitive
+
+My speed the spies the unimaginable from the mathematical shit show that would be combine user and password guessing game of eternity:
+![](itsinthemetasploitthatippsecuses.png)
+
+Ippsec then cheats... I now understand why I did not do this machine. Basically the solution is use metasploit forever.
+
+![](canyoutellifitisrunning.png)
+
+For the sake of tcpdump and no more saltdump
+![](intensesaltcontinues.png)
+
+Well at this point...I am not going to do this the intended way. But will learn about how I could have once I learn about force binaries to remember their so libraries in beyond root along with potentially more funky naming fun with msdat.  
+
+And then I failed to type utlfile
+![](WTFisthistool.png)
+
+So presumable the box got updated so I have to have sqlplus
+![](presumabletheprivlegesgotchanged.png)
+
+So while I waited for the pwnbox to install 2gb of packages and potential break my python setup now on the box. I came to a sad, but probably guessable answer:
+![](liketearsintherain.png)
+
+sqlplus does not have ctrl + c support. 
+![](scottyfindthefuckingctrlc.png)
+
+https://github.com/TheSnowWight/hackdocs/blob/master/pentesting/1521-1522-1529-pentesting-oracle-listener/README.md
+```bash
+
+sqlplus <username>/<password>@<ip_address>:<port>/<SID>;
+
+```
+
+```bash
+tcpdump -nvvvvXi tun0 tcp port 1521 -w auth.pcap
+```
+Some reason wireshark is not allowed to be root or monitor tun0
+![](justoseewhathappenedtothepassword.png)
+
+Well PL/SQL does not have the same show database, or show tables...
+
+![](okthen.png)
+
+https://www.geeksforgeeks.org/sql/sqlplus-command-reference/
+https://docs.oracle.com/en/database/oracle/oracle-database/18/sqpqr/sqlplus-quick-reference.pdf
+https://docs.oracle.com/search/?q=show+database%3B&lang=en&book=SQLRF&library=en%2Fdatabase%2Foracle%2Foracle-database%2F19
+
+Went back to https://medium.com/fmisec/oracle-tns-penetration-test-using-odat-83fafcea1988 and then realised that `select table_name from all_tables` is not a insert table name. We get 75 different tables:
+
+There is no obvious users table
+```
+SYSTEM_PRIVILEGE_MAP
+```
+
+```sql
+TABLE_NAME
+------------------------------
+DUAL
+SYSTEM_PRIVILEGE_MAP
+TABLE_PRIVILEGE_MAP
+STMT_AUDIT_OPTION_MAP
+AUDIT_ACTIONS
+WRR$_REPLAY_CALL_FILTER
+HS_BULKLOAD_VIEW_OBJ
+HS$_PARALLEL_METADATA
+HS_PARTITION_COL_NAME
+HS_PARTITION_COL_TYPE
+HELP
+DR$OBJECT_ATTRIBUTE
+DR$POLICY_TAB
+DR$THS
+DR$THS_PHRASE
+DR$NUMBER_SEQUENCE
+SRSNAMESPACE_TABLE
+OGIS_SPATIAL_REFERENCE_SYSTEMS
+OGIS_GEOMETRY_COLUMNS
+SDO_UNITS_OF_MEASURE
+SDO_PRIME_MERIDIANS
+SDO_ELLIPSOIDS
+SDO_DATUMS
+SDO_COORD_SYS
+SDO_COORD_AXIS_NAMES
+SDO_COORD_AXES
+SDO_COORD_REF_SYS
+SDO_COORD_OP_METHODS
+SDO_COORD_OPS
+SDO_PREFERRED_OPS_SYSTEM
+SDO_PREFERRED_OPS_USER
+SDO_COORD_OP_PATHS
+SDO_COORD_OP_PARAMS
+SDO_COORD_OP_PARAM_USE
+SDO_COORD_OP_PARAM_VALS
+SDO_CS_SRS
+NTV2_XML_DATA
+SDO_CRS_GEOGRAPHIC_PLUS_HEIGHT
+SDO_PROJECTIONS_OLD_SNAPSHOT
+SDO_ELLIPSOIDS_OLD_SNAPSHOT
+SDO_DATUMS_OLD_SNAPSHOT
+SDO_XML_SCHEMAS
+WWV_FLOW_DUAL100
+DEPT
+EMP
+BONUS
+SALGRADE
+WWV_FLOW_TEMP_TABLE
+WWV_FLOW_LOV_TEMP
+SDO_TOPO_DATA$
+SDO_TOPO_RELATION_DATA
+SDO_TOPO_TRANSACT_DATA
+SDO_CS_CONTEXT_INFORMATION
+SDO_TXN_IDX_EXP_UPD_RGN
+SDO_TXN_IDX_DELETES
+SDO_TXN_IDX_INSERTS
+SDO_ST_TOLERANCE
+XDB$XIDX_IMP_T
+KU$_DATAPUMP_MASTER_10_1
+KU$_DATAPUMP_MASTER_11_1
+KU$_DATAPUMP_MASTER_11_1_0_7
+KU$_DATAPUMP_MASTER_11_2
+IMPDP_STATS
+ODCI_PMO_ROWIDS$
+ODCI_WARNINGS$
+ODCI_SECOBJ$
+KU$_LIST_FILTER_TEMP_2
+KU$_LIST_FILTER_TEMP
+KU$NOEXP_TAB
+OL$NODES
+OL$HINTS
+OL$
+PLAN_TABLE$
+WRI$_ADV_ASA_RECO_DATA
+PSTUBTBL
+
+75 rows selected.
+```
+
+The clue is that we have to login do not have resource permissions so there must be something about the technology and the box that allows you to change it... no you just login `as sysdba`.
 
 ## Beyond Root
 
-
+Try install msdat in 2025 
+https://github.com/quentinhardy/msdat
