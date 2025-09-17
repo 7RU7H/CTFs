@@ -1,30 +1,30 @@
-# Silo Writeup
+# Bastion Writeup
 
-Name: Silo
+Name: Bastion
 Date:  
-Difficulty:  
+Difficulty:  Easy
 Goals:  
 Learnt:
 Beyond Root:
 
-- [[Silo-Notes.md]]
-- [[Silo-CMD-by-CMDs.md]]
+- [[Bastion-Notes.md]]
+- [[Bastion-CMD-by-CMDs.md]]
 
-
-![](Silo-map.excalidraw.md)
 
 ## Recon
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
-![ping](HackTheBox/Retired-Machines/Silo/Screenshots/ping.png)
+![ping](Screenshots/ping.png)
 	
 ## Exploit
 
 ## Foothold
 
-## PrivEsc
+## Privilege Escalation
 
-![](Silo-map.excalidraw.md)
+## Post-Root-Reflection  
+
+![](Bastion-map.excalidraw.md)
 
 ## Beyond Root
 
