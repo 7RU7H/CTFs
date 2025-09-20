@@ -10,6 +10,8 @@ Learnt:
 - Sometimes just use metasploit forever and hope 
 - base64 encode files just incase there is a password that is encoded weirdly and decode incorrectly by stdout
 - I need to practice the how could this get me to x in a non-standard way check
+- There always needs some turn about revision - scott 
+- Wordlists
 Beyond Root:
 - python2 in the near 2030s...
 - PATH and so libraries 
@@ -24,14 +26,15 @@ I have already done some of the enumeration, but instead I want to get an idea o
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](HackTheBox/Retired-Machines/Silo/Screenshots/ping.png)
-
+Previously checked RPC
 ![](nonullauthforrpc.png)
-
+And SMB with `crackmapexec`
 ![](cmesmbtest.png)
 
+Starting from scratch with `nmap`
 ![](nmap-silo-tcp.png)
 
-Now with the -sC and -sV flags
+Now with the `-sC` and `-sV` flags
 ```bash
 nmap -Pn -sC -sV --min-rate 500 -e tun0 -p 80,135,139,445,1521,5985 -oA sc-sv-TCP-ports 10.129.95.188
 ```
@@ -63,7 +66,7 @@ TIGER - scott / tiger is default?
 Also WTF has happened to HackTricks if https://book.hacktricks.wiki/en/network-services-pentesting/1521-1522-1529-pentesting-oracle-listener.html is the mirrored version is way better 
 https://github.com/TheSnowWight/hackdocs/blob/master/pentesting/1521-1522-1529-pentesting-oracle-listener/README.md
 
-```
+```bash
 # Which glibc does a machine has installed
 ldd --version
 ```
@@ -164,7 +167,7 @@ options:
 
 ```
 
-sqlplus
+`sqlplus`
 ```bash
 # if error:
 # `sqlplus: error while loading shared libraries: libsqlplus.so: cannot open shared object file: No such file or directory`
@@ -190,12 +193,12 @@ Ippsec then cheats... I now understand why I did not do this machine. Basically 
 
 ![](canyoutellifitisrunning.png)
 
-For the sake of tcpdump and no more saltdump
+For the sake of `tcpdump` and no more saltdump
 ![](intensesaltcontinues.png)
 
 Well at this point...I am not going to do this the intended way. But will learn about how I could have once I learn about force binaries to remember their so libraries in beyond root along with potentially more funky naming fun with msdat.  
 
-And then I failed to type utlfile
+And then I failed to type `utlfile`
 ![](WTFisthistool.png)
 
 So presumable the box got updated so I have to have sqlplus
