@@ -5,7 +5,10 @@ Date:
 Difficulty:  
 Goals:  
 Learnt:
+
 Beyond Root:
+- https://github.com/TheSnowWight/hackdocs/tree/master learn from a relevant page
+- 
 
 - [[Dog-Notes.md]]
 - [[Dog-CMD-by-CMDs.md]]
