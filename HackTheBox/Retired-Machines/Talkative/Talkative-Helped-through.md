@@ -90,6 +90,8 @@ I paused at https://www.youtube.com/watch?v=T0jebq1M_GY 8:08
 
 I had another test and fumble around with tmux logging no Kali this time and had little success.
 
+![](issuesforeveritseems.png)
+
 ## Exploit
 
 ## Foothold

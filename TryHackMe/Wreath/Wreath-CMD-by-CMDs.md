@@ -2,9 +2,9 @@
 
 ```bash
 sed -i 's/10.50.85.217/10.50.85.217/g' *-CMD-by-CMDs.md
-sed -i 's/10.200.84.200/10.200.84.200/g' *-CMD-by-CMDs.md
-sed -i 's/10.200.84.150/10.200.84.150/g' *-CMD-by-CMDs.md
-sed -i 's/10.200.84.100/10.200.84.100/g' *-CMD-by-CMDs.md
+sed -i 's/10.200.84.200/10.200.180.200/g' *-CMD-by-CMDs.md
+sed -i 's/10.200.84.150/10.200.180.150/g' *-CMD-by-CMDs.md
+sed -i 's/10.200.84.100/10.200.180.100/g' *-CMD-by-CMDs.md
 
 sed -i 's/10.50.55.42/10.50.85.217/g' *-Writeup.md
 sed -i 's/10.200.57.200/10.200.84.200/g' *-Writeup.md

@@ -8,7 +8,6 @@ Learnt:
 
 Beyond Root:
 - https://github.com/TheSnowWight/hackdocs/tree/master learn from a relevant page
-- 
 
 - [[Dog-Notes.md]]
 - [[Dog-CMD-by-CMDs.md]]
@@ -29,7 +28,7 @@ I decided I should directory bust before scanning with `nitko` and nuclei plus w
 
 ![](hopingfornonwordlisthellscapinga.png)
 
-![](nikto.png)
+![3000](nikto.png)
 
 Food is love for some people, but poor doggo can't stop scavenging.
 ![](dogisbig.png)
@@ -42,7 +41,7 @@ I dumped the .git directory with [git-dumper](https://github.com/arthaud/git-dum
 git-dumper http://sadwebsite.$tdl/.git outputDirectory # --proxy 127.0.0.1 8080
 ```
 
-And considered how best to fuzz this parameter `?q=FUZZ` as we not only have - `?q=admin`, but also `?q=user/password` potential hits and potential still usin the parameter for directory traversal or some injection attack. Also there is a lot places to check out of the gate so [[Dog-Notes]] was required.
+And considered how best to fuzz this parameter `?q=FUZZ` as we not only have - `?q=admin`, but also `?q=user/password` potential hits and potential still using the parameter for directory traversal or some injection attack. Also there is a lot places to check out of the gate so [[Dog-Notes]] was required.
 
 Checking to validate exposed files and directories
 ![](webconfig-fp.png)

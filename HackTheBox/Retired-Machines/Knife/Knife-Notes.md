@@ -1,12 +1,12 @@
-# Talkative Notes
+# Knife Notes
 
 ## Data 
 
-IP: 10.129.227.113
+IP: 
 OS:
 Arch:
 Hostname:
-DNS: talkative.htb
+DNS:
 Domain:  / Domain SID:
 Machine Purpose: 
 Services:
@@ -25,18 +25,13 @@ ls -1tr Screenshots | grep -v ping | awk '{print "![]("HTB")"}\' | xsel -b
 ```
 
 - OS detect, run generate noting for nmap
-	- jamovi, 172.17.0.18
-	- Debian
-	- TornadoSErver 5.0
-- 80
-	- Saul Goodman
-	- Matt William
-	- Janit Smith
-	- TalkZone
-	- Talk-A-Stats
-		- jamovi
-	- Talk-For-Biz
-		- rocketchat
+-
+-
+-
+-
+-
+-
+-
 -
 -
 -
