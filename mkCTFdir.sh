@@ -79,6 +79,7 @@ Credentials:
 \`\`\`
 sudo tcpdump -nvvvXi tun0 tcp port 80
 ls -1tr Screenshots | grep -v ping | awk '{print \"![](\"$1\")\"}\' | xsel -b
+sudo masscan -p22,80,443,3389 -oG masscan.log --rate=$beware -e tun0 10.10.110.0/24 
 \`\`\`
 
 - OS detect, run generate noting for nmap
