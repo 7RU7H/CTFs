@@ -1,7 +1,7 @@
 # Keeper Helped-Through
 
 Name: Keeper
-Date:  
+Date: 30/4/2026
 Difficulty: Easy 
 Goals:  
 - OSCP-like easy machine
@@ -10,7 +10,8 @@ Goals:
 - Write the initial working initial enumeration to automate `ping` and various quick enumerations that could be done manually but would cost time and save time in later `nmap` scans
 Learnt:
 - Copy and Pasta requirements on all things to notes
-- 
+- Putty Keys
+- Dorking better and often - always ask a question then a question about the question you asked when dorking MOSS
 Beyond Root:
 - Golang CTF basic enumeration binary 
 

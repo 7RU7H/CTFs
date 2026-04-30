@@ -2,12 +2,17 @@
 
 Name: Dog
 Date:  
-Difficulty:  
+Difficulty: Easy
 Goals:  
+- Use the Guided Mode to push through
+- Test my CTF automation tool 
+- Add UDP check for snmp
 Learnt:
 
 Beyond Root:
 - https://github.com/TheSnowWight/hackdocs/tree/master learn from a relevant page
+- Test and update my CTF automation tool
+
 
 - [[Dog-Notes.md]]
 - [[Dog-CMD-by-CMDs.md]]
@@ -81,3 +86,30 @@ Not sure if this means anything is executable
 ## Beyond Root
 
 
+Initial starting point 
+![](firstrunningofenum.png)
+Change the method and removed the Start() and Wait() method, concatenating the error handling
+![](pingworksnow.png)
+Then I fixed the way the curl command was run
+![](fixingcurldownloadingwebroot.png)
+By making the changes below:
+```go
+func downloadWebRootSource(ipAddress, protocol string) error {
+        requestURL := fmt.Sprintf("%s://%s", protocol, ipAddress)
+        outputFile := fmt.Sprintf("%s-www-root.html", protocol)
+        curlWebRootHTTP := exec.Command("curl", requestURL, "-o", outputFile)
+        curlWebRootHTTP.Stdout = os.Stdout
+        curlWebRootHTTP.Stderr = os.Stderr
+
+        if err := curlWebRootHTTP.Run(); err != nil {
+                fmt.Fprintln(os.Stderr, "Error:", err)
+                fmt.Fprintf(os.Stdout, "Unable to execute curl %s -o %s\n", requestURL, outputFile)
+                return err
+        }
+
+        time.Sleep(1 * time.Second)
+        fmt.Fprintf(os.Stdout, "Completed attempts to download the web root with curl %s://%s", protocol, ipAddress)
+
+        return nil
+}
+```
