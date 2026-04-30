@@ -1,7 +1,7 @@
 # Dead-End Helped-Thorough
 
 Name: Dead-End
-Date:  
+Date:  21/4/2026
 Difficulty:  Hard
 Goals:  
 - More Windows in my life 
@@ -126,9 +126,18 @@ What is the flag?
 ```
 
 ```
+## Returning to complete
 
-## Beyond Root
+I have had problems and busy with other projects. So I return to collect points and return to trying to obtain some certification in Cyber Security. One that I enjoy doing.
+The second and final flag elude me so I am here to finish this. I used https://medium.com/@chaoskist/tryhackme-write-up-dead-end-blue-team-room-e984c3d880e6 write up for the final answers.
 
-https://www.youtube.com/watch?v=4iAYaDRWT9A https://www.youtube.com/@djalilayed
+*"There are several ways to proof the binary were executed but the intended way and the answer of this question is using bam registry as shown in the image above"*
+```
+HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Services\bam\State\UserSettings\S-1-5-21-1966530601-3185510712-10604624-1008
+```
 
-https://blog.onfvp.com/post/volatility-cheatsheet/ of https://github.com/onfvp
+*"We know the first part of the flag was added to the registry key so you can confirm it if you want to or we can just copy the value from PowerShell log directly."*
+```
+THM{6l4D_y0u_kNOw_h0w_2_p1vOT}
+```
+

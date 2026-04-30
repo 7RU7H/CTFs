@@ -1,4 +1,5 @@
 # Squid Walkthrough
+
 Name: Squid
 Date:  22/09/2022
 Difficulty:  Easy
@@ -113,5 +114,5 @@ Register-ScheduledTask -Action $TaskAction -TaskName "GrantAllPerms" -Principal 
 Start-ScheduledTask -TaskName "GrantAllPerms"
 ```
 
-Finallly
+Finally
 ![](finalprivesc.png)

@@ -27,9 +27,9 @@ ls -1tr Screenshots | grep -v ping | awk '{print "![]("HTB")"}\' | xsel -b
 - OS detect, run generate noting for nmap
 -
 -
--
--
--
+- root:password tickets.keeper.htb/rt/
+- https://www.exploit-db.com/exploits/38459
+- https://github.com/advisories/GHSA-2jfq-9qf9-jmjj
 -
 -
 -

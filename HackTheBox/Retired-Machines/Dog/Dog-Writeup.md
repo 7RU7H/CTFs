@@ -17,17 +17,18 @@ Beyond Root:
 
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](Screenshots/ping.png)
-
+Running Nmap for TCP ports enumerating 22 and 80
 ![](nmap-tcp.png)
 
+I used `-sC` and `-sV` for more information on those ports.
 ![](alotofexposeddirectoriesandfile.png)
 
 I decided I should directory bust before scanning with `nitko` and nuclei plus whatever CMS scanner. This might be the rabbithole find-the-creds-in-the-haystack-full-of-creds box. 
-
 ![](biggobuster.png)
-
+And further `gobuster`  usage to enumerate directories.
 ![](hopingfornonwordlisthellscapinga.png)
 
+`nikto` scan to see if there are old vulnerabilities and security issues
 ![3000](nikto.png)
 
 Food is love for some people, but poor doggo can't stop scavenging.
