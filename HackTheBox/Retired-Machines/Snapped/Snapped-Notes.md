@@ -26,7 +26,9 @@ sudo masscan -p22,80,443,3389 -oG masscan.log --rate= -e tun0 10.10.110.0/24
 ```
 
 - OS detect, run generate noting for nmap
--
+- http 80
+	- nginx 1.24 
+	- snapped.htb
 -
 -
 -

@@ -6,6 +6,8 @@ Difficulty:  Hard
 Goals:  
 - Rewrite the 0xdf deobfuscated exploit in python to Golang with AI help, but not straight copy and paste-ing try building piece by piece to understand the parts in both python and golang more deeply 
 Learnt:
+- Subdomains exist
+- There is reason python is used in exploit dev
 Beyond Root:
 
 - [[Snapped-Notes.md]]
@@ -22,7 +24,20 @@ The initial starting point was the Beyond Root, after watching [0xdf YouTube Cop
 The time to live(ttl) indicates its OS. It is a decrementation from each hop back to original ping sender. Linux is < 64, Windows is < 128.
 ![ping](Screenshots/ping.png)
 
-	
+![](tcpnmap.png)
+
+![](snappedhostname.png)
+
+
+![](webroot.png)
+
+There is not much from enumerating, Gobuster, Nuclei and Gospider. Peaked at writeup and remembered that vhost exist.
+![](adminsubdomain.png)
+
+`admin@example.com : changeme` did not work.
+![](adminnginxui.png)
+
+https://0xdf.gitlab.io/2026/04/01/htb-snapped.html
 ## Exploit
 
 ## Foothold
@@ -39,6 +54,10 @@ echo 3 > /proc/sys/vm/drop_caches
 ## Post-Root-Reflection  
 
 I got to read and try out looks of very unfamiliar Golang. I have also never worked with unix piping properly
+
+- Check for subdomains; subdomains exist
+- Tech Stack get HTTP Headers
+- Dork the tech stack
 
 ## Beyond Root
 
