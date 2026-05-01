@@ -38,6 +38,8 @@ echo 3 > /proc/sys/vm/drop_caches
 
 ## Post-Root-Reflection  
 
+I got to read and try out looks of very unfamiliar Golang. I have also never worked with unix piping properly
+
 ## Beyond Root
 
 
