@@ -1,18 +1,21 @@
-# Dog Writeup
+# Dog Helped-Through
 
 Name: Dog
-Date:  
+Date:  03/5/2026
 Difficulty: Easy
 Goals:  
 - Use the Guided Mode to push through
 - Test my CTF automation tool 
-- Add UDP check for snmp
 Learnt:
-
+- READ
+- More finding Git Secrets techniques
+- I am enumerating into the wrong direction rather than going to best case
+- I can still do basic PrivEsc
+- This could have been a writeup easily 
+- Look for similar RCE for Admin Panel exploitation
 Beyond Root:
 - https://github.com/TheSnowWight/hackdocs/tree/master learn from a relevant page
 - Test and update my CTF automation tool
-
 
 - [[Dog-Notes.md]]
 - [[Dog-CMD-by-CMDs.md]]
@@ -64,6 +67,7 @@ So to the dev `?q=` is dirty, but is doing some (early part in) routablity
 Testing to see `?q=` and core
 ![](testingroutabilitywithcore.png)
 
+In reflection I went well off the beaten path treating this like a bug bounty rather than a CTF
 ![](verystrangedirtycore.png)
 Checking for a version I got this...
 ![](wecanexecute.png)
@@ -72,16 +76,39 @@ Not sure if this means anything is executable
 
 ![](yikes.png)
 
+Identified that it uses Drupal 7
 ![](drupal7.png)
-## Exploit
 
-## Foothold
+I think I am creating too much rabbitholage and not going for the jugular. I switched to guided mode. 
+![](databasepassword.png)
 
+
+root:BackDropJ2024DS2024
+
+Hint look up users, I missed Tiffany and had to check a Writeup https://0xdf.gitlab.io/2025/07/12/htb-dog.html#shell-as-www-data. 
+![](dogatdoghtb.png)
+
+tiffany : BackDropJ2024DS2024
+![](tiffanyadminpanel.png)
+
+I am really rusty these days. I know I have to RCE from this point. I do not know how to go about this I cannot find the version of Backdrop. I do not want to use AI. I decided that I would follow along with the writeup and focusing on being independent on a later Box. But I did learn a lateral thinking method of achieving an outcome
+
+- Have you tried dorking for a similar RCE technique for a similar stack?
+
+![](modulereference.png)
+
+Then simply getting a shell on the machine
+![](shell.png)
+
+John Cusack reuses the BackDropJ2024DS2024 password to move from www-data to human user. 
 ## Privilege Escalation
 
-## Post-Root-Reflection  
+I was glad that I could do the Privilege Escalation by myself.
+![](beegtfobin.png)
+And from `/var/www/html`
+![](root.png)
 
-![](Dog-map.excalidraw.md)
+## Post-Root-Reflection  
 
 ## Beyond Root
 

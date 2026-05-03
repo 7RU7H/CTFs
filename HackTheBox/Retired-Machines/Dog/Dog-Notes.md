@@ -38,6 +38,8 @@ ls -1tr Screenshots | grep -v ping | awk '{print "![]("HTB")"}\' | xsel -b
 	- .git 
 		- What is custom addition to BackDrop
 		- Creds
+			- 
+			- mysql://root:BackDropJ2024DS2024
 
 	- /core
 -

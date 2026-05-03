@@ -59,7 +59,7 @@ And it works
 
 ![](liseuser.png)
 
-`Inorgaard : Welcome2023!` for Request tracker works
+`Inorgaard : Welcome2023!` for Request tracker works - its actually `lnorgaard : Welcome2023!
 ![](Welcome2023.png)
 
 No password reuse
@@ -76,6 +76,10 @@ At this point I need a win in life and some confirmation I actually enjoy doing 
 
 I also tried `webmaster: Welcome2023!`. Then as I watched and was reminded of the copy and paste everything policy of old. It is a `l` not a `i`. Rough. 
 ## Foothold
+
+```
+ssh lnorgaard@keeper.htb
+```
 
 Learning the fundamental copy-pasta mentality for this reason is part of CTFs. 
 ![](user.png)
