@@ -5,7 +5,6 @@ Date:  24/02/2026
 Difficulty:  Hard
 Goals:  
 - Restart the restarting of Hacking 
-- Setup to do multiple machines at once 
 Learnt:
 Beyond Root:
 - Test out my tmux log everything attempts, scraps and push for releasing it some point this week
