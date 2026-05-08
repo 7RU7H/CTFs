@@ -25,7 +25,7 @@ ls -1tr Screenshots | grep -v ping | awk '{print "![]("HTB")"}\' | xsel -b
 ```
 
 - OS detect, run generate noting for nmap
--
+	- SMB share backups
 -
 -
 -
