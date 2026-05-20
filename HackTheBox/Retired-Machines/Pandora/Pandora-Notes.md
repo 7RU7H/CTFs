@@ -4,27 +4,47 @@
 
 IP: 
 OS:
+Arch:
 Hostname:
+DNS:
 Domain:  / Domain SID:
 Machine Purpose: 
 Services:
 Service Languages:
 Users:
+Email and Username Formatting:
 Credentials:
 
-## Objectives
-
-## Target Map
-
-![](Pandora-map.excalidraw.md)
-
-## Solution Inventory Map
 
 
-### Todo 
+#### Mindmap-per Service
 
-Make Excalidraw
+```
+sudo tcpdump -nvvvXi tun0 tcp port 80
+ls -1tr Screenshots | grep -v ping | awk '{print "![]("HTB")"}\' | xsel -b
+sudo masscan -p22,80,443,3389 -oG masscan.log --rate= -e tun0 10.10.110.0/24 
+```
 
-### Done
-      
+- OS detect, run generate noting for nmap
+	- 161 
+		- `daniel` `HotelBabylon23`
+	- localhost:80 pandora
+	-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+
+
+
+#### Todo List
+
 

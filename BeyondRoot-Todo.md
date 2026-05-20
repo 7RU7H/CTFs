@@ -1,5 +1,10 @@
 # Beyond Root Todo
 
+
+https://hausec.com/2019/09/09/bloodhound-cypher-cheatsheet/
+https://github.com/CompassSecurity/BloodHoundQueries
+
+
 https://surge.sh/
 
 Photocopier CTF requires this clip https://www.youtube.com/watch?v=rN7pkFNEg5c
